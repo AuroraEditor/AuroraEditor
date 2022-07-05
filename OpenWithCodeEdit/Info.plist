@@ -11,7 +11,7 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.FinderSync</string>
 		<key>NSExtensionPrincipalClass</key>
-		<string>$(PRODUCT_MODULE_NAME).CEOpenWith</string>
+		<string>$(PRODUCT_MODULE_NAME).AEOpenWith</string>
 	</dict>
 </dict>
 </plist>

@@ -174,16 +174,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     // MARK: - Open With CodeEdit (Extension) functions
     private func checkForFilesToOpen() {
         guard let defaults = UserDefaults.init(
-            suiteName: "austincondiff.CodeEdit.shared"
+            suiteName: "com.AuroraEditor.shared"
         ) else {
             print("Failed to get/init shared defaults")
             return
         }
 
-        // Register enableOpenInCE (enable Open In CodeEdit
-        defaults.register(defaults: ["enableOpenInCE": true])
+        // Register enableOpenInCE (enable Open In AuroraEditor
+        defaults.register(defaults: ["enableOpenInAE": true])
 
-        if let filesToOpen = defaults.string(forKey: "openInCEFiles") {
+        if let filesToOpen = defaults.string(forKey: "openInAEFiles") {
             let files = filesToOpen.split(separator: ";")
 
             for filePath in files {
@@ -196,7 +196,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                     }
             }
 
-            defaults.removeObject(forKey: "openInCEFiles")
+            defaults.removeObject(forKey: "openInAEFiles")
         }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

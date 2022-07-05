@@ -14,7 +14,7 @@
 import Cocoa
 import FinderSync
 
-class CEOpenWith: FIFinderSync {
+class AEOpenWith: FIFinderSync {
     override init() {
         super.init()
         // Add finder sync
@@ -38,9 +38,9 @@ class CEOpenWith: FIFinderSync {
 
     /// Open in CodeEdit (menu) action
     /// - Parameter sender: sender
-    @objc func openInCodeEditAction(_ sender: AnyObject?) {
+    @objc func openInAuroraEditorAction(_ sender: AnyObject?) {
         guard let items = FIFinderSyncController.default().selectedItemURLs(),
-              let defaults = UserDefaults.init(suiteName: "austincondiff.CodeEdit.shared") else {
+              let defaults = UserDefaults.init(suiteName: "com.AuroraEditor.shared") else {
             return
         }
 
@@ -52,11 +52,11 @@ class CEOpenWith: FIFinderSync {
         }
 
         guard let codeEdit = NSWorkspace.shared.urlForApplication(
-            withBundleIdentifier: "austincondiff.CodeEdit"
+            withBundleIdentifier: "com.AuroraEditor"
         ) else { return }
 
         // Add files to open to openInCEFiles.
-        defaults.set(files, forKey: "openInCEFiles")
+        defaults.set(files, forKey: "openInAEFiles")
 
         NSWorkspace.shared.open(
             [],
@@ -67,22 +67,22 @@ class CEOpenWith: FIFinderSync {
 
     // MARK: - Menu and toolbar item support
     override func menu(for menuKind: FIMenuKind) -> NSMenu {
-        guard let defaults = UserDefaults.init(suiteName: "austincondiff.CodeEdit.shared") else {
+        guard let defaults = UserDefaults.init(suiteName: "com.AuroraEditor.shared") else {
             NSLog("Unable to load defaults")
             return NSMenu(title: "")
         }
 
-        // Register enableOpenInCE (enable Open In CodeEdit
-        defaults.register(defaults: ["enableOpenInCE": true])
+        // Register enableOpenInCE (enable Open In AuroraEditor
+        defaults.register(defaults: ["enableOpenInAE": true])
 
         let menu = NSMenu(title: "")
-        let menuItem = NSMenuItem(title: "Open in CodeEdit",
-                                  action: #selector(openInCodeEditAction(_:)),
+        let menuItem = NSMenuItem(title: "Open in AuroraEditor",
+                                  action: #selector(openInAuroraEditorAction(_:)),
                                   keyEquivalent: ""
         )
         menuItem.image = NSImage.init(named: "icon")
 
-        if defaults.bool(forKey: "enableOpenInCE") {
+        if defaults.bool(forKey: "enableOpenInAE") {
             menu.addItem(menuItem)
         }
 
