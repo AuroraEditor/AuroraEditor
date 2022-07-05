@@ -29,6 +29,10 @@ Developers should be able to use an editor that feels snappy and fast.
 
 Most comparable editors are built on Electron, This is a huge disadvantage because it utilize a lot of unneccecary system resources.
 
+## Fork-Motivation
+
+...
+
 ## Community
 
 Join our community on [Discord](https://discord.gg/YyRWU7nbXG) where we discuss and collaborate on all things AuroraEditor.
