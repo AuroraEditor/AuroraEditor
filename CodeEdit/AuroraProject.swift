@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AuroraProjectFile {
+struct AuroraProjectFile: Codable {
     var file: String
     var time: Int
 }
