@@ -2,12 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:CodeEditCli">
+      location = "group:/Users/tihan-nico/Documents/GitHub/App/AuroraEditorCli">
    </FileRef>
    <FileRef
-      location = "group:CodeEditModules">
+      location = "group:AuroraEditorModules">
    </FileRef>
    <FileRef
-      location = "container:CodeEdit.xcodeproj">
+      location = "container:/Users/tihan-nico/Documents/GitHub/App/AuroraEditor.xcodeproj">
    </FileRef>
 </Workspace>
