@@ -98,7 +98,7 @@ public struct AboutView: View {
                     .frame(maxWidth: .infinity)
             }
             Button {
-                guard let url = URL(string: "https://github.com/CodeEditApp/CodeEdit/blob/main/LICENSE.md")
+                guard let url = URL(string: "https://github.com/AuroraEditor/AuroraEditor/blob/main/LICENSE.md")
                 else { return }
                 openURL(url)
             } label: {

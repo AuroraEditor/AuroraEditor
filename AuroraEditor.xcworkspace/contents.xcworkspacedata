@@ -2,12 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/tihan-nico/Documents/GitHub/App/AuroraEditorCli">
+      location = "group:AuroraEditorCli">
    </FileRef>
    <FileRef
       location = "group:AuroraEditorModules">
    </FileRef>
    <FileRef
-      location = "container:/Users/tihan-nico/Documents/GitHub/App/AuroraEditor.xcodeproj">
+      location = "container:AuroraEditor.xcodeproj">
    </FileRef>
 </Workspace>
