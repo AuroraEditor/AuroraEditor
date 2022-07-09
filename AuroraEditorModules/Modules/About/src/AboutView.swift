@@ -59,7 +59,7 @@ public struct AboutView: View {
 
     private var topMetaData: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text("CodeEdit").font(.system(size: 38, weight: .regular))
+            Text("Aurora Editor").font(.system(size: 38, weight: .regular))
             Text("Version \(appVersion) (\(appBuild))")
                 .textSelection(.enabled)
                 .foregroundColor(.secondary)
@@ -81,7 +81,7 @@ public struct AboutView: View {
 
     private var bottomMetaData: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text("Copyright © 2022 CodeEdit")
+            Text("Copyright © 2022 Aurora Editor")
             Text("MIT License")
         }
         .foregroundColor(.secondary)

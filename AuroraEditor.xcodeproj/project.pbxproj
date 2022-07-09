@@ -1207,7 +1207,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AuroraEditor/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Aurora Editor";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2022 CodeEdit";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2022 Aurora Editor";
 				INFOPLIST_KEY_NSPrincipalClass = AuroraEditor.AuroraEditorApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1242,7 +1242,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AuroraEditor/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Aurora Editor";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2022 CodeEdit";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2022 Aurora Editor";
 				INFOPLIST_KEY_NSPrincipalClass = AuroraEditor.AuroraEditorApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
