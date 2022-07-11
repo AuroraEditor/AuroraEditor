@@ -44,9 +44,6 @@ struct InspectorSidebarToolbarTop: View {
             }
             .frame(height: 29, alignment: .center)
             .frame(maxWidth: .infinity)
-            .overlay(alignment: .top) {
-                Divider()
-            }
             .overlay(alignment: .bottom) {
                 Divider()
             }

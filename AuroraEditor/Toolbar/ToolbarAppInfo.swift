@@ -46,30 +46,33 @@ public struct ToolbarAppInfo: View {
             HStack {
                 Image(systemName: "xmark.circle.fill")
                     .symbolRenderingMode(.multicolor)
+                    .imageScale(.small)
 
                 Text("2")
                     .foregroundColor(.secondary)
-                    .font(.system(size: 11))
+                    .font(.system(size: 10))
             }
             .padding(.trailing, 5)
 
             HStack {
                 Image(systemName: "exclamationmark.triangle.fill")
                     .symbolRenderingMode(.multicolor)
+                    .imageScale(.small)
 
                 Text("147")
                     .foregroundColor(.secondary)
-                    .font(.system(size: 11))
+                    .font(.system(size: 10))
             }
             .padding(.trailing, 5)
 
             HStack {
-                Image(systemName: "bell.badge")
+                Image(systemName: "bell.badge.fill")
                     .symbolRenderingMode(.multicolor)
+                    .imageScale(.small)
 
-                Text("1K +")
+                Text("1K+")
                     .foregroundColor(.secondary)
-                    .font(.system(size: 11))
+                    .font(.system(size: 10))
             }
         }
     }
