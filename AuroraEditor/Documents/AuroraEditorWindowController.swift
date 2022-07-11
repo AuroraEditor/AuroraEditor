@@ -12,6 +12,7 @@ import AuroraEditorUI
 import QuickOpen
 import Git
 import AppPreferences
+import AuroraEditorUtils
 
 final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate {
     private var prefs: AppPreferencesModel = .shared
@@ -62,7 +63,6 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
         )
         inspector.titlebarSeparatorStyle = .none
         inspector.minimumThickness = 260
-        inspector.maximumThickness = 260
         inspector.isCollapsed = true
         inspector.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(inspector)
@@ -96,10 +96,14 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         [
             .toggleFirstSidebarItem,
+            .flexibleSpace,
+            .runApplication,
             .sidebarTrackingSeparator,
             .branchPicker,
             .flexibleSpace,
+            .toolbarAppInformation,
             .flexibleSpace,
+            .libraryPopup,
             .toggleLastSidebarItem
         ]
     }
@@ -107,11 +111,16 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         [
             .toggleFirstSidebarItem,
-            .sidebarTrackingSeparator,
             .flexibleSpace,
+            .runApplication,
+            .sidebarTrackingSeparator,
+            .branchPicker,
+            .flexibleSpace,
+            .toolbarAppInformation,
+            .flexibleSpace,
+            .libraryPopup,
             .itemListTrackingSeparator,
-            .toggleLastSidebarItem,
-            .branchPicker
+            .toggleLastSidebarItem
         ]
     }
 
@@ -128,7 +137,7 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
                 }
 
                 return NSTrackingSeparatorToolbarItem(
-                    identifier: .itemListTrackingSeparator,
+                    identifier: NSToolbarItem.Identifier.itemListTrackingSeparator,
                     splitView: splitViewController.splitView,
                     dividerIndex: 1
                 )
@@ -146,6 +155,25 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
             )?.withSymbolConfiguration(.init(scale: .large))
 
             return toolbarItem
+        case .runApplication:
+            let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.runApplication)
+            toolbarItem.label = "Run Application"
+            toolbarItem.paletteLabel = "Run Application"
+            toolbarItem.toolTip = "Start the active scheme"
+            toolbarItem.isEnabled = false
+            toolbarItem.target = self
+            toolbarItem.image = NSImage(systemSymbolName: "play.fill",
+                                        accessibilityDescription: nil)?.withSymbolConfiguration(.init(scale: .small))
+
+            return toolbarItem
+        case .toolbarAppInformation:
+            let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toolbarAppInformation)
+            let view = NSHostingView(
+                rootView: ToolbarAppInfo()
+            )
+            toolbarItem.view = view
+
+            return toolbarItem
         case .toggleLastSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleLastSidebarItem)
             toolbarItem.label = "Inspector Sidebar"
@@ -161,7 +189,7 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
 
             return toolbarItem
         case .branchPicker:
-            let toolbarItem = NSToolbarItem(itemIdentifier: .branchPicker)
+            let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.branchPicker)
             let view = NSHostingView(
                 rootView: ToolbarBranchPicker(
                     shellClient: Current.shellClient,
@@ -169,6 +197,17 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
                 )
             )
             toolbarItem.view = view
+
+            return toolbarItem
+        case .libraryPopup:
+            let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.libraryPopup)
+            toolbarItem.label = "Library"
+            toolbarItem.paletteLabel = "Library"
+            toolbarItem.toolTip = "Library"
+            toolbarItem.isEnabled = false
+            toolbarItem.target = self
+            toolbarItem.image = NSImage(systemSymbolName: "plus",
+                                        accessibilityDescription: nil)?.withSymbolConfiguration(.init(scale: .small))
 
             return toolbarItem
         default:
@@ -189,9 +228,9 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
         guard let lastSplitView = splitViewController.splitViewItems.last else { return }
         lastSplitView.animator().isCollapsed.toggle()
         if lastSplitView.isCollapsed {
-            window?.toolbar?.removeItem(at: 4)
+            window?.toolbar?.removeItem(at: 9)
         } else {
-            window?.toolbar?.insertItem(withItemIdentifier: .itemListTrackingSeparator, at: 4)
+            window?.toolbar?.insertItem(withItemIdentifier: NSToolbarItem.Identifier.itemListTrackingSeparator, at: 9)
         }
     }
 
@@ -240,4 +279,7 @@ private extension NSToolbarItem.Identifier {
     static let toggleLastSidebarItem: NSToolbarItem.Identifier = NSToolbarItem.Identifier("ToggleLastSidebarItem")
     static let itemListTrackingSeparator = NSToolbarItem.Identifier("ItemListTrackingSeparator")
     static let branchPicker: NSToolbarItem.Identifier = NSToolbarItem.Identifier("BranchPicker")
+    static let libraryPopup: NSToolbarItem.Identifier = NSToolbarItem.Identifier("LibraryPopup")
+    static let runApplication: NSToolbarItem.Identifier = NSToolbarItem.Identifier("RunApplication")
+    static let toolbarAppInformation: NSToolbarItem.Identifier = NSToolbarItem.Identifier("ToolbarAppInformation")
 }
