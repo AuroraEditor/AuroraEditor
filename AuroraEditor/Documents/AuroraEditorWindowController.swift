@@ -61,7 +61,7 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
         let inspector = NSSplitViewItem(
             viewController: NSHostingController(rootView: inspectorView)
         )
-        inspector.titlebarSeparatorStyle = .none
+        inspector.titlebarSeparatorStyle = .line
         inspector.minimumThickness = 260
         inspector.isCollapsed = true
         inspector.collapseBehavior = .useConstraints
@@ -144,7 +144,7 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
         case .toggleFirstSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleFirstSidebarItem)
             toolbarItem.label = "Navigator Sidebar"
-            toolbarItem.paletteLabel = " Navigator Sidebar"
+            toolbarItem.paletteLabel = "Navigator Sidebar"
             toolbarItem.toolTip = "Hide or show the Navigator"
             toolbarItem.isBordered = true
             toolbarItem.target = self

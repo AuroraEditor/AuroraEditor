@@ -15,7 +15,7 @@ struct NavigatorSidebar: View {
     private let windowController: NSWindowController
 
     @State
-    private var selection: Int = 0
+    public var selection: Int = 0
 
     private let toolbarPadding: Double = -8.0
 
@@ -33,6 +33,26 @@ struct NavigatorSidebar: View {
                 SourceControlNavigatorView(workspace: workspace)
             case 2:
                 FindNavigator(state: workspace.searchState ?? .init(workspace))
+            case 3:
+                VStack(alignment: .center) {
+                    Text("Needs Implementation")
+                }
+                .frame(maxHeight: .infinity)
+            case 4:
+                VStack(alignment: .center) {
+                    Text("Needs Implementation")
+                }
+                .frame(maxHeight: .infinity)
+            case 5:
+                VStack(alignment: .center) {
+                    Text("Needs Implementation")
+                }
+                .frame(maxHeight: .infinity)
+            case 6:
+                VStack(alignment: .center) {
+                    Text("Needs Implementation")
+                }
+                .frame(maxHeight: .infinity)
             case 7:
                 ExtensionNavigator(data: workspace.extensionNavigatorData)
                     .environmentObject(workspace)
@@ -53,6 +73,18 @@ struct NavigatorSidebar: View {
                 SourceControlToolbarBottom()
                     .padding(.top, toolbarPadding)
             case 2:
+                NavigatorSidebarToolbarBottom(workspace: workspace)
+                    .padding(.top, toolbarPadding)
+            case 3:
+                NavigatorSidebarToolbarBottom(workspace: workspace)
+                    .padding(.top, toolbarPadding)
+            case 4:
+                NavigatorSidebarToolbarBottom(workspace: workspace)
+                    .padding(.top, toolbarPadding)
+            case 5:
+                NavigatorSidebarToolbarBottom(workspace: workspace)
+                    .padding(.top, toolbarPadding)
+            case 6:
                 NavigatorSidebarToolbarBottom(workspace: workspace)
                     .padding(.top, toolbarPadding)
             case 7:
