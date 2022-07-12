@@ -45,4 +45,12 @@ public final class SourceControlModel: ObservableObject {
             print("Failed to discard changes")
         }
     }
+
+    public func discardProjectChanges() {
+        do {
+            try gitClient.discardProjectChanges()
+        } catch {
+            print("Failed to discard changes")
+        }
+    }
 }

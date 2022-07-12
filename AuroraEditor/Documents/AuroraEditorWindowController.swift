@@ -20,14 +20,18 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
     var workspace: WorkspaceDocument?
     var quickOpenPanel: OverlayPanel?
 
+    @ObservedObject
+    var model: SourceControlModel
+
     private var splitViewController: NSSplitViewController! {
         get { contentViewController as? NSSplitViewController }
         set { contentViewController = newValue }
     }
 
     init(window: NSWindow, workspace: WorkspaceDocument) {
-        super.init(window: window)
         self.workspace = workspace
+        self.model = .init(workspaceURL: workspace.fileURL!)
+        super.init(window: window)
 
         setupSplitView(with: workspace)
         setupToolbar()
@@ -271,6 +275,10 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
                 panel.makeKeyAndOrderFront(self)
             }
         }
+    }
+
+    @IBAction func discardProjectChanges(_ sender: Any) {
+        model.discardProjectChanges()
     }
 }
 

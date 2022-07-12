@@ -26,6 +26,7 @@ public struct GitClient {
     ///   to retrieve a file commit history. Optional.
     public var getCommitHistory: (_ entries: Int?, _ fileLocalPath: String?) throws -> [Commit]
     public var discardFileChanges: (String) throws -> Void
+    public var discardProjectChanges: () throws -> Void
 
     init(
         getCurrentBranchName: @escaping () throws -> String,
@@ -35,7 +36,8 @@ public struct GitClient {
         cloneRepository: @escaping (String) -> AnyPublisher<CloneProgressResult, GitClientError>,
         getChangedFiles: @escaping () throws -> [ChangedFile],
         getCommitHistory: @escaping (_ entries: Int?, _ fileLocalPath: String?) throws -> [Commit],
-        discardFileChanges: @escaping (String) throws -> Void
+        discardFileChanges: @escaping (String) throws -> Void,
+        discardProjectChanges: @escaping () throws -> Void
     ) {
         self.getCurrentBranchName = getCurrentBranchName
         self.getBranches = getBranches
@@ -45,6 +47,7 @@ public struct GitClient {
         self.getChangedFiles = getChangedFiles
         self.getCommitHistory = getCommitHistory
         self.discardFileChanges = discardFileChanges
+        self.discardProjectChanges = discardProjectChanges
     }
 
     public enum GitClientError: Error {
