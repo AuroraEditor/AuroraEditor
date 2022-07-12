@@ -34,8 +34,41 @@ struct ChangesView: View {
                     Section("Local Changes") {
                         ForEach(model.changed) { file in
                             ChangedFileItemView(changedFile: file,
-                                                selection: $selectedFile,
-                                                workspaceURL: model.workspaceURL)
+                                                selection: $selectedFile)
+                            .contextMenu {
+                                Group {
+                                    Button("View in Finder") {
+                                        file.showInFinder(workspaceURL: model.workspaceURL)
+                                    }
+                                    Button("Reveal in Project Navigator") {}
+                                        .disabled(true) // TODO: Implementation Needed
+                                    Divider()
+                                }
+                                Group {
+                                    Button("Open in New Tab") {}
+                                        .disabled(true) // TODO: Implementation Needed
+                                    Button("Open in New Window") {}
+                                        .disabled(true) // TODO: Implementation Needed
+                                    Button("Open with External Editor") {}
+                                        .disabled(true) // TODO: Implementation Needed
+                                }
+                                Group {
+                                    Divider()
+                                    Button("Commit \(file.fileName)...") {}
+                                        .disabled(true) // TODO: Implementation Needed
+                                    Divider()
+                                    Button("Discard Changes in \(file.fileName)...") {
+                                        model.discardFileChanges(file: file)
+                                    }
+                                    Divider()
+                                }
+                                Group {
+                                    Button("Add \(file.fileName)") {}
+                                        .disabled(true) // TODO: Implementation Needed
+                                    Button("Mark \(file.fileName) as Resolved") {}
+                                        .disabled(true) // TODO: Implementation Needed
+                                }
+                            }
                         }
                     }
                     .foregroundColor(.secondary)

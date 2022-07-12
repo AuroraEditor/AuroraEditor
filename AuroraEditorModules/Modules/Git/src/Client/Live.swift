@@ -88,7 +88,6 @@ public extension GitClient {
 
         /// Gets the commit history log of the current file opened
         /// in the workspace.
-
         func getCommitHistory(entries: Int?, fileLocalPath: String?) throws -> [Commit] {
             var entriesString = ""
             let fileLocalPath = fileLocalPath?.escapedWhiteSpaces() ?? ""
@@ -123,6 +122,16 @@ public extension GitClient {
                         date: dateFormatter.date(from: parameters[safe: 7] ?? "") ?? Date()
                     )
                 }
+        }
+
+        func discardFileChanges(url: String) throws {
+            let output = try shellClient.run("cd \(directoryURL.relativePath.escapedWhiteSpaces());git restore \(url)")
+            print("cd \(directoryURL.relativePath.escapedWhiteSpaces());git restore \(url)")
+            if output.contains("fatal") {
+                throw GitClientError.outputError(output)
+            } else {
+                print("Successfully disregarded changes!")
+            }
         }
 
         return GitClient(
@@ -182,7 +191,8 @@ public extension GitClient {
                     .eraseToAnyPublisher()
             },
             getChangedFiles: getChangedFiles,
-            getCommitHistory: getCommitHistory(entries:fileLocalPath:)
+            getCommitHistory: getCommitHistory(entries:fileLocalPath:),
+            discardFileChanges: discardFileChanges
         )
     }
 }

@@ -25,6 +25,7 @@ public struct GitClient {
     ///   - fileLocalPath: specify a local file (e.g. `CodeEditModules/Package.swift`)
     ///   to retrieve a file commit history. Optional.
     public var getCommitHistory: (_ entries: Int?, _ fileLocalPath: String?) throws -> [Commit]
+    public var discardFileChanges: (String) throws -> Void
 
     init(
         getCurrentBranchName: @escaping () throws -> String,
@@ -33,7 +34,8 @@ public struct GitClient {
         pull: @escaping () throws -> Void,
         cloneRepository: @escaping (String) -> AnyPublisher<CloneProgressResult, GitClientError>,
         getChangedFiles: @escaping () throws -> [ChangedFile],
-        getCommitHistory: @escaping (_ entries: Int?, _ fileLocalPath: String?) throws -> [Commit]
+        getCommitHistory: @escaping (_ entries: Int?, _ fileLocalPath: String?) throws -> [Commit],
+        discardFileChanges: @escaping (String) throws -> Void
     ) {
         self.getCurrentBranchName = getCurrentBranchName
         self.getBranches = getBranches
@@ -42,9 +44,41 @@ public struct GitClient {
         self.cloneRepository = cloneRepository
         self.getChangedFiles = getChangedFiles
         self.getCommitHistory = getCommitHistory
+        self.discardFileChanges = discardFileChanges
     }
 
     public enum GitClientError: Error {
+        case BadConfigFile
+        case AuthenticationFailed
+        case NoUserNameConfigured
+        case NoUserEmailConfigured
+        case NotAGitRepository
+        case NotAtRepositoryRoot
+        case Conflict
+        case StashConflict
+        case UnmergedChanges
+        case PushRejected
+        case RemoteConnectionError
+        case DirtyWorkTree
+        case CantOpenResource
+        case GitNotFound
+        case CantCreatePipe
+        case CantAccessRemote
+        case RepositoryNotFound
+        case RepositoryIsLocked
+        case BranchNotFullyMerged
+        case NoRemoteReference
+        case InvalidBranchName
+        case BranchAlreadyExists
+        case NoLocalChanges
+        case NoStashFound
+        case LocalChangesOverwritten
+        case NoUpstreamBranch
+        case IsInSubModule
+        case WrongCase
+        case CantLockRef
+        case CantRebaseMultipleBranches
+        case PatchDoesNotApply
         case outputError(String)
         case notGitRepository
         case failedToDecodeURL

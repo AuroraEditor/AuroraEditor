@@ -37,4 +37,12 @@ public final class SourceControlModel: ObservableObject {
             changed = []
         }
     }
+
+    public func discardFileChanges(file: ChangedFile) {
+        do {
+            try gitClient.discardFileChanges(file.fileLink.path)
+        } catch {
+            print("Failed to discard changes")
+        }
+    }
 }

@@ -33,6 +33,25 @@ public extension WorkspaceClient {
 
         public typealias ID = String
 
+        public var watcher: DispatchSourceFileSystemObject?
+        static var watcherCode: () -> Void = {}
+
+        public func activateWatcher() -> Bool {
+            let descriptor = open(self.url.path, O_EVTONLY)
+            print("Activating watcher \(descriptor) for \(self.title)")
+            guard descriptor > 0 else { return false }
+            let source = DispatchSource.makeFileSystemObjectSource(
+                fileDescriptor: descriptor,
+                eventMask: .write,
+                queue: DispatchQueue.global()
+            )
+            source.setEventHandler { FileItem.watcherCode() }
+            source.setCancelHandler { close(descriptor) }
+            source.resume()
+            self.watcher = source
+            return true
+        }
+
         public init(
             url: URL,
             children: [FileItem]? = nil
@@ -92,10 +111,12 @@ public extension WorkspaceClient {
         /// Image(systemName: item.systemImage)
         /// ```
         public var systemImage: String {
+            print("Image accessed for \(self.title)")
             switch children {
             case nil:
                 return FileIcon.fileIcon(fileType: fileType)
             case let .some(children):
+                if self.watcher == nil { self.activateWatcher() }
                 return folderIcon(children)
             }
         }
@@ -143,12 +164,10 @@ public extension WorkspaceClient {
         }
 
         // MARK: Statics
-
         /// The default `FileManager` instance
         public static let fileManger = FileManager.default
 
         // MARK: Intents
-
         /// Allows the user to view the file or folder in the finder application
         public func showInFinder() {
             NSWorkspace.shared.activateFileViewerSelecting([url])
@@ -211,7 +230,6 @@ public extension WorkspaceClient {
         public func delete() {
             // this function also has to account for how the
             // file system can change outside of the editor
-
             let deleteConfirmation = NSAlert()
             let message = "\(self.fileName)\(self.isFolder ? " and its children" :"")"
             deleteConfirmation.messageText = "Do you want to move \(message) to the bin?"
@@ -260,7 +278,6 @@ public extension WorkspaceClient {
 }
 
 // MARK: Hashable
-
 extension WorkspaceClient.FileItem: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
@@ -270,7 +287,6 @@ extension WorkspaceClient.FileItem: Hashable {
 }
 
 // MARK: Comparable
-
 extension WorkspaceClient.FileItem: Comparable {
     public static func == (lhs: WorkspaceClient.FileItem, rhs: WorkspaceClient.FileItem) -> Bool {
         lhs.id == rhs.id

@@ -81,6 +81,10 @@ let package = Package(
             name: "Git",
             targets: ["Git"]
         ),
+        .library(
+            name: "AuroraEditorNotifications",
+            targets: ["AuroraEditorNotifications"]
+        ),
     ],
     dependencies: [
         .package(
@@ -339,6 +343,10 @@ let package = Package(
                 "ShellClient",
             ],
             path: "Modules/Git/Tests"
+        ),
+        .target(
+            name: "AuroraEditorNotifications",
+            path: "Modules/AuroraEditorNotifications/src"
         ),
     ]
 )
