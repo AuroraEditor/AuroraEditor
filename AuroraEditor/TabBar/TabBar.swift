@@ -217,27 +217,29 @@ struct TabBar: View {
 
     private var trailingAccessories: some View {
         HStack(spacing: 2) {
-            TabBarAccessoryIcon(
-                icon: .init(systemName: "arrow.left.arrow.right"),
-                action: { /* TODO */ }
-            )
-            .font(Font.system(size: 10, weight: .light, design: .default))
-            .foregroundColor(.secondary)
-            .buttonStyle(.plain)
-            .disabled(!prefs.sourceControlActive())
-            .help("Enable Code Review")
+            if workspace.selectionState.openFileItems.count > 0 {
+                TabBarAccessoryIcon(
+                    icon: .init(systemName: "arrow.left.arrow.right"),
+                    action: { /* TODO */ }
+                )
+                .font(Font.system(size: 10, weight: .light, design: .default))
+                .foregroundColor(.secondary)
+                .buttonStyle(.plain)
+                .disabled(!prefs.sourceControlActive())
+                .help("Enable Code Review")
 
-            TabBarAccessoryIcon(
-                icon: .init(systemName: "ellipsis.circle"),
-                action: { /* TODO */ }
-            )
-            .font(Font.system(size: 14, weight: .light, design: .default))
-            .foregroundColor(.secondary)
-            .buttonStyle(.plain)
-            .help("Options")
+                TabBarAccessoryIcon(
+                    icon: .init(systemName: "ellipsis.circle"),
+                    action: { /* TODO */ }
+                )
+                .font(Font.system(size: 14, weight: .light, design: .default))
+                .foregroundColor(.secondary)
+                .buttonStyle(.plain)
+                .help("Options")
 
-            Divider()
-                .padding(.vertical, 8)
+                Divider()
+                    .padding(.vertical, 8)
+            }
 
             TabBarAccessoryIcon(
                 icon: .init(systemName: "square.split.2x1"),
