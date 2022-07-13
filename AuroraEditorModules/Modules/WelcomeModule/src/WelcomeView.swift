@@ -19,7 +19,9 @@ public struct WelcomeView: View {
     @State private var repoPath = "~/"
     @State var isHovering: Bool = false
     @State var isHoveringClose: Bool = false
-    @StateObject private var prefs: AppPreferencesModel = .shared
+
+    @ObservedObject
+    private var prefs: AppPreferencesModel = .shared
 
     private let openDocument: (URL?, @escaping () -> Void) -> Void
     private let newDocument: () -> Void
@@ -144,6 +146,21 @@ public struct WelcomeView: View {
                             newDocument()
                             dismissWindow()
                         }
+
+                        WelcomeActionView(
+                            iconName: "plus.square.on.square",
+                            title: NSLocalizedString("Clone an exisiting project", bundle: .module, comment: ""),
+                            subtitle: NSLocalizedString(
+                                gitDisabledText(),
+                                bundle: .module,
+                                comment: ""
+                            )
+                        )
+                        .onTapGesture {
+                            showGitClone = true
+                        }
+                        .disabled(!prefs.sourceControlActive())
+
                         WelcomeActionView(
                             iconName: "folder",
                             title: NSLocalizedString("Open a file or folder", bundle: .module, comment: ""),
@@ -156,18 +173,6 @@ public struct WelcomeView: View {
                         .onTapGesture {
                             openDocument(nil, dismissWindow)
                         }
-                        WelcomeActionView(
-                            iconName: "plus.square.on.square",
-                            title: NSLocalizedString("Clone an exisiting project", bundle: .module, comment: ""),
-                            subtitle: NSLocalizedString(
-                                "Start working on something from a Git repository",
-                                bundle: .module,
-                                comment: ""
-                            )
-                        )
-                            .onTapGesture {
-                                showGitClone = true
-                            }
                     }
                 }
                 Spacer()
@@ -220,6 +225,14 @@ public struct WelcomeView: View {
                 repoPath: $repoPath,
                 shellClient: shellClient
             )
+        }
+    }
+
+    private func gitDisabledText() -> String {
+        if prefs.sourceControlActive() {
+            return "Start working on something from a Git repository"
+        } else {
+            return "Source Control is currently disabled, enable it in settings"
         }
     }
 

@@ -7,11 +7,15 @@
 import SwiftUI
 import Git
 import AuroraEditorUI
+import AppPreferences
 
 struct HistoryInspector: View {
 
     @ObservedObject
     private var model: HistoryInspectorModel
+
+    @ObservedObject
+    private var prefs: AppPreferencesModel = .shared
 
     @State var selectedCommitHistory: Commit?
 
@@ -23,17 +27,29 @@ struct HistoryInspector: View {
 
     var body: some View {
         VStack {
-            if model.commitHistory.isEmpty {
-                NoCommitHistoryView()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-            } else {
-                List(selection: $selectedCommitHistory) {
-                    ForEach(model.commitHistory) { commit in
-                        HistoryItem(commit: commit, selection: $selectedCommitHistory)
-                            .tag(commit)
+            if prefs.sourceControlActive() {
+                if model.commitHistory.isEmpty {
+                    NoCommitHistoryView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    List(selection: $selectedCommitHistory) {
+                        ForEach(model.commitHistory) { commit in
+                            HistoryItem(commit: commit, selection: $selectedCommitHistory)
+                                .tag(commit)
+                        }
                     }
+                    .listStyle(.inset)
                 }
-                .listStyle(.inset)
+            } else {
+                VStack(alignment: .center) {
+                    Text("Source Control Disabled")
+                        .font(.system(size: 16))
+                        .foregroundColor(.secondary)
+
+                    Text("Enable Source Control in settings")
+                        .font(.system(size: 10))
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
     }

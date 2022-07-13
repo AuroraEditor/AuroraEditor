@@ -8,8 +8,10 @@
 import SwiftUI
 import CodeEditSymbols
 import WorkspaceClient
-import Git
 import ShellClient
+import AppPreferences
+import Git
+import AuroraEditorUI
 
 /// A view that pops up a branch picker.
 public struct ToolbarBranchPicker: View {
@@ -20,6 +22,9 @@ public struct ToolbarBranchPicker: View {
     @State private var isHovering: Bool = false
     @State private var displayPopover: Bool = false
     @State private var currentBranch: String?
+
+    @ObservedObject
+    private var prefs: AppPreferencesModel = .shared
 
     /// Initializes the ``ToolbarBranchPicker`` with an instance of a `WorkspaceClient`
     /// - Parameter shellClient: An instance of the current `ShellClient`
@@ -40,13 +45,20 @@ public struct ToolbarBranchPicker: View {
 
     public var body: some View {
         HStack(alignment: .center, spacing: 5) {
-            if currentBranch != nil {
-                Image.checkout
-                    .font(.title3)
-                    .imageScale(.large)
-                    .foregroundColor(controlActive == .inactive ? inactiveColor : .primary)
+            if prefs.sourceControlActive() {
+                if currentBranch != nil {
+                    Image.checkout
+                        .font(.title3)
+                        .imageScale(.large)
+                        .foregroundColor(controlActive == .inactive ? inactiveColor : .primary)
+                } else {
+                    Image(systemName: "square.dashed")
+                        .font(.title3)
+                        .imageScale(.medium)
+                        .foregroundColor(controlActive == .inactive ? inactiveColor : .accentColor)
+                }
             } else {
-                Image(systemName: "square.dashed.inset.filled")
+                Image(systemName: "square.dashed")
                     .font(.title3)
                     .imageScale(.medium)
                     .foregroundColor(controlActive == .inactive ? inactiveColor : .accentColor)
@@ -57,17 +69,19 @@ public struct ToolbarBranchPicker: View {
                     .foregroundColor(controlActive == .inactive ? inactiveColor : .primary)
                     .frame(height: 16)
                     .help(title)
-                if let currentBranch = currentBranch {
-                    ZStack(alignment: .trailing) {
-                        Text(currentBranch)
-                            .padding(.trailing)
-                        if isHovering {
-                            Image(systemName: "chevron.down")
+                if prefs.sourceControlActive() {
+                    if let currentBranch = currentBranch {
+                        ZStack(alignment: .trailing) {
+                            Text(currentBranch)
+                                .padding(.trailing)
+                            if isHovering {
+                                Image(systemName: "chevron.down")
+                            }
                         }
+                        .font(.subheadline)
+                        .foregroundColor(controlActive == .inactive ? inactiveColor : .secondary)
+                        .frame(height: 11)
                     }
-                    .font(.subheadline)
-                    .foregroundColor(controlActive == .inactive ? inactiveColor : .secondary)
-                    .frame(height: 11)
                 }
             }
         }

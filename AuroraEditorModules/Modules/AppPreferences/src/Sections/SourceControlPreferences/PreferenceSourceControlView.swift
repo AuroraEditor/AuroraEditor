@@ -12,13 +12,21 @@ public struct PreferenceSourceControlView: View {
 
     public init() {}
 
-    @State private var selectedSection: Int = 0
+    @ObservedObject
+    private var prefs: AppPreferencesModel = .shared
+
+    @State
+    private var selectedSection: Int = 0
 
     public var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             VStack(spacing: 1) {
                 PreferencesToolbar {
-                    SegmentedControl($selectedSection, options: ["General", "Git"])
+                    if prefs.sourceControlActive() {
+                        SegmentedControl($selectedSection, options: ["General", "Git"])
+                    } else {
+                        SegmentedControl($selectedSection, options: ["General"])
+                    }
                 }
                 if selectedSection == 0 {
                     SourceControlGeneralView(isChecked: true, branchName: "main")

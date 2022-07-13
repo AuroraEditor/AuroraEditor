@@ -29,15 +29,19 @@ struct SourceControlGeneralView: View {
                     Toggle("Refresh local status automatically",
                            isOn: $prefs.preferences.sourceControl.general.refreshStatusLocaly)
                         .toggleStyle(.checkbox)
+                        .disabled(!prefs.sourceControlActive())
                     Toggle("Fetch and refresh server status automatically",
                            isOn: $prefs.preferences.sourceControl.general.fetchRefreshServerStatus)
                         .toggleStyle(.checkbox)
+                        .disabled(!prefs.sourceControlActive())
                     Toggle("Add and remove files automatically",
                            isOn: $prefs.preferences.sourceControl.general.addRemoveAutomatically)
                         .toggleStyle(.checkbox)
+                        .disabled(!prefs.sourceControlActive())
                     Toggle("Select files to commit automatically",
                            isOn: $prefs.preferences.sourceControl.general.selectFilesToCommit)
                         .toggleStyle(.checkbox)
+                        .disabled(!prefs.sourceControlActive())
                 }
                 .padding(.leading, 20)
             }
@@ -46,10 +50,12 @@ struct SourceControlGeneralView: View {
                 Toggle("Show Source Control changes",
                        isOn: $prefs.preferences.sourceControl.general.showSourceControlChanges)
                     .toggleStyle(.checkbox)
+                    .disabled(!prefs.sourceControlActive())
 
                 Toggle("Include upstream changes",
                        isOn: $prefs.preferences.sourceControl.general.includeUpstreamChanges)
                     .toggleStyle(.checkbox)
+                    .disabled(!prefs.sourceControlActive())
                     .padding(.leading, 20)
             }
 

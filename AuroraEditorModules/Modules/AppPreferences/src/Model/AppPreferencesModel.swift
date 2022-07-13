@@ -84,4 +84,8 @@ public final class AppPreferencesModel: ObservableObject {
             .appendingPathComponent("preferences")
             .appendingPathExtension("json")
     }
+
+    public func sourceControlActive() -> Bool {
+        return preferences.sourceControl.general.enableSourceControl
+    }
 }

@@ -176,16 +176,31 @@ struct TabBar: View {
     private var leadingAccessories: some View {
         HStack(spacing: 2) {
             TabBarAccessoryIcon(
+                icon: .init(systemName: "square.grid.2x2"),
+                action: { /* TODO */ }
+            )
+            .font(Font.system(size: 14, weight: .light, design: .default))
+            .foregroundColor(.secondary)
+            .buttonStyle(.plain)
+            .help("Navigate to Related Items")
+
+            Divider()
+                .padding(.vertical, 8)
+
+            TabBarAccessoryIcon(
                 icon: .init(systemName: "chevron.left"),
                 action: { /* TODO */ }
             )
+            .font(Font.system(size: 14, weight: .light, design: .default))
             .foregroundColor(.secondary)
             .buttonStyle(.plain)
             .help("Navigate back")
+
             TabBarAccessoryIcon(
                 icon: .init(systemName: "chevron.right"),
                 action: { /* TODO */ }
             )
+            .font(Font.system(size: 14, weight: .light, design: .default))
             .foregroundColor(.secondary)
             .buttonStyle(.plain)
             .help("Navigate forward")
@@ -203,23 +218,32 @@ struct TabBar: View {
     private var trailingAccessories: some View {
         HStack(spacing: 2) {
             TabBarAccessoryIcon(
+                icon: .init(systemName: "arrow.left.arrow.right"),
+                action: { /* TODO */ }
+            )
+            .font(Font.system(size: 10, weight: .light, design: .default))
+            .foregroundColor(.secondary)
+            .buttonStyle(.plain)
+            .disabled(!prefs.sourceControlActive())
+            .help("Enable Code Review")
+
+            TabBarAccessoryIcon(
                 icon: .init(systemName: "ellipsis.circle"),
                 action: { /* TODO */ }
             )
+            .font(Font.system(size: 14, weight: .light, design: .default))
             .foregroundColor(.secondary)
             .buttonStyle(.plain)
             .help("Options")
-            TabBarAccessoryIcon(
-                icon: .init(systemName: "arrow.left.arrow.right.square"),
-                action: { /* TODO */ }
-            )
-            .foregroundColor(.secondary)
-            .buttonStyle(.plain)
-            .help("Enable Code Review")
+
+            Divider()
+                .padding(.vertical, 8)
+
             TabBarAccessoryIcon(
                 icon: .init(systemName: "square.split.2x1"),
                 action: { /* TODO */ }
             )
+            .font(Font.system(size: 14, weight: .light, design: .default))
             .foregroundColor(.secondary)
             .buttonStyle(.plain)
             .help("Split View")
