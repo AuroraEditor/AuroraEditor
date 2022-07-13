@@ -709,6 +709,9 @@ CA
                             </menuItem>
                             <menuItem title="Stash Changes..." id="MUd-xq-c9P">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="stashChangesItems:" target="-1" id="f3v-Ta-obC"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Discard All Changes..." id="T49-F0-nAo">
                                 <modifierMask key="keyEquivalentModifierMask"/>

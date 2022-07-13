@@ -277,8 +277,44 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
         }
     }
 
+    // MARK: Git Main Menu Items
+
+    @IBAction func stashChangesItems(_ sender: Any) {
+        if tryFocusWindow(of: StashChangesSheet.self) { return }
+        if model.changed.count > 0 {
+            StashChangesSheet(workspaceURL: (workspace?.fileURL!)!).showWindow()
+        } else {
+            let alert = NSAlert()
+            alert.alertStyle = .informational
+            alert.messageText = "Cannot Stash Changes"
+            alert.informativeText = "There are no uncommitted changes in the working copies for this project."
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+        }
+    }
+
     @IBAction func discardProjectChanges(_ sender: Any) {
-        model.discardProjectChanges()
+        if model.changed.count > 0 {
+            model.discardProjectChanges()
+        } else {
+            let alert = NSAlert()
+            alert.alertStyle = .informational
+            alert.messageText = "Cannot Discard Changes"
+            alert.informativeText = "There are no uncommitted changes in the working copies for this project."
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+        }
+    }
+
+    /// Tries to focus a window with specified view content type.
+    /// - Parameter type: The type of viewContent which hosted in a window to be focused.
+    /// - Returns: `true` if window exist and focused, oterwise - `false`
+    private func tryFocusWindow<T: View>(of type: T.Type) -> Bool {
+        guard let window = NSApp.windows.filter({ ($0.contentView as? NSHostingView<T>) != nil }).first
+        else { return false }
+
+        window.makeKeyAndOrderFront(self)
+        return true
     }
 }
 

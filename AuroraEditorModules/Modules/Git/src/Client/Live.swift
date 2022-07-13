@@ -142,6 +142,24 @@ public extension GitClient {
             }
         }
 
+        func stashChanges(message: String?) throws {
+            if message == nil {
+                let output = try shellClient.run("cd \(directoryURL.relativePath.escapedWhiteSpaces());git stash")
+                if output.contains("fatal") {
+                    throw GitClientError.outputError(output)
+                } else {
+                    print("Successfully stashed changes!")
+                }
+            } else {
+                let output = try shellClient.run("cd \(directoryURL.relativePath.escapedWhiteSpaces());git stash save \(message!)")
+                if output.contains("fatal") {
+                    throw GitClientError.outputError(output)
+                } else {
+                    print("Successfully stashed changes!")
+                }
+            }
+        }
+
         return GitClient(
             getCurrentBranchName: getCurrentBranchName,
             getBranches: getBranches(_:),
@@ -201,7 +219,8 @@ public extension GitClient {
             getChangedFiles: getChangedFiles,
             getCommitHistory: getCommitHistory(entries:fileLocalPath:),
             discardFileChanges: discardFileChanges,
-            discardProjectChanges: discardProjectChanges
+            discardProjectChanges: discardProjectChanges,
+            stashChanges: stashChanges(message:)
         )
     }
 }

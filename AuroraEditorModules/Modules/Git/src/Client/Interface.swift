@@ -27,6 +27,7 @@ public struct GitClient {
     public var getCommitHistory: (_ entries: Int?, _ fileLocalPath: String?) throws -> [Commit]
     public var discardFileChanges: (String) throws -> Void
     public var discardProjectChanges: () throws -> Void
+    public var stashChanges: (String) throws -> Void
 
     init(
         getCurrentBranchName: @escaping () throws -> String,
@@ -37,7 +38,8 @@ public struct GitClient {
         getChangedFiles: @escaping () throws -> [ChangedFile],
         getCommitHistory: @escaping (_ entries: Int?, _ fileLocalPath: String?) throws -> [Commit],
         discardFileChanges: @escaping (String) throws -> Void,
-        discardProjectChanges: @escaping () throws -> Void
+        discardProjectChanges: @escaping () throws -> Void,
+        stashChanges: @escaping (String) throws -> Void
     ) {
         self.getCurrentBranchName = getCurrentBranchName
         self.getBranches = getBranches
@@ -48,6 +50,7 @@ public struct GitClient {
         self.getCommitHistory = getCommitHistory
         self.discardFileChanges = discardFileChanges
         self.discardProjectChanges = discardProjectChanges
+        self.stashChanges = stashChanges
     }
 
     public enum GitClientError: Error {
