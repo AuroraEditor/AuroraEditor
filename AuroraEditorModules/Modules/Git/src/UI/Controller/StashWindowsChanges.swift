@@ -21,6 +21,5 @@ final class StashWindowsChanges: NSWindowController, NSToolbarDelegate {
         window.styleMask.remove(.resizable)
         window.titleVisibility = .hidden
         window.titlebarAppearsTransparent = true
-        window.beginSheet(window)
     }
 }
