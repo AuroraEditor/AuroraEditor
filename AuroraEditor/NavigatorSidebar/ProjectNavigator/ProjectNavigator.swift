@@ -17,7 +17,6 @@ import WorkspaceClient
 ///
 struct ProjectNavigator: View {
     @ObservedObject var workspace: WorkspaceDocument
-    var windowController: NSWindowController
 
     var body: some View {
         OutlineView(workspace: workspace)

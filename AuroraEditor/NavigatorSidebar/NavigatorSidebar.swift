@@ -28,7 +28,7 @@ struct NavigatorSidebar: View {
         VStack {
             switch selection {
             case 0:
-                ProjectNavigator(workspace: workspace, windowController: windowController)
+                ProjectNavigator(workspace: workspace)
             case 1:
                 SourceControlNavigatorView(workspace: workspace)
             case 2:

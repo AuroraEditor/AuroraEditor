@@ -62,7 +62,7 @@ final class OutlineViewController: NSViewController {
         self.outlineView.autosaveExpandedItems = true
         self.outlineView.autosaveName = workspace?.workspaceClient?.folderURL()?.path ?? ""
         self.outlineView.headerView = nil
-        self.outlineView.menu = OutlineMenu(sender: self.outlineView)
+        self.outlineView.menu = OutlineMenu(sender: self.outlineView, workspaceURL: (workspace?.fileURL)!)
         self.outlineView.menu?.delegate = self
         self.outlineView.doubleAction = #selector(onItemDoubleClicked)
 

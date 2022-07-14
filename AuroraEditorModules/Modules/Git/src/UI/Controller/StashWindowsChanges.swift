@@ -16,25 +16,11 @@ final class StashWindowsChanges: NSWindowController, NSToolbarDelegate {
         self.init(window: window)
         window.isMovable = false
         window.isMovableByWindowBackground = false
+        window.styleMask.remove(.miniaturizable)
+        window.styleMask.remove(.closable)
+        window.styleMask.remove(.resizable)
+        window.titleVisibility = .hidden
+        window.titlebarAppearsTransparent = true
         window.beginSheet(window)
-    }
-
-    override func showWindow(_ sender: Any?) {
-        window?.center()
-        window?.alphaValue = 0.0
-
-        super.showWindow(sender)
-
-        window?.animator().alphaValue = 1.0
-    }
-
-    func closeAnimated() {
-        NSAnimationContext.beginGrouping()
-        NSAnimationContext.current.duration = 0.4
-        NSAnimationContext.current.completionHandler = {
-            self.close()
-        }
-        window?.animator().alphaValue = 0.0
-        NSAnimationContext.endGrouping()
     }
 }

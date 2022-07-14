@@ -8,10 +8,13 @@
 import SwiftUI
 import UniformTypeIdentifiers
 import WorkspaceClient
+import Git
 
 /// A subclass of `NSMenu` implementing the contextual menu for the project navigator
 final class OutlineMenu: NSMenu {
     typealias Item = WorkspaceClient.FileItem
+
+    let gitClient: GitClient
 
     /// The item to show the contextual menu for
     var item: Item?
@@ -21,8 +24,12 @@ final class OutlineMenu: NSMenu {
 
     var outlineView: NSOutlineView
 
-    init(sender: NSOutlineView) {
+    init(sender: NSOutlineView, workspaceURL: URL) {
         outlineView = sender
+        gitClient = GitClient.default(
+            directoryURL: workspaceURL,
+            shellClient: Current.shellClient
+        )
         super.init(title: "Options")
     }
 
@@ -157,7 +164,7 @@ final class OutlineMenu: NSMenu {
         let sourceControlMenu = NSMenu(title: "Source Control")
         sourceControlMenu.addItem(withTitle: "Commit \"\(item.fileName)\"...", action: nil, keyEquivalent: "")
         sourceControlMenu.addItem(.separator())
-        sourceControlMenu.addItem(withTitle: "Discard Changes...", action: nil, keyEquivalent: "")
+        sourceControlMenu.addItem(menuItem("Discard Changes in \"\(item.fileName)\"...", action: #selector(discardChangesInFile)))
         sourceControlMenu.addItem(.separator())
         sourceControlMenu.addItem(withTitle: "Add Selected Files", action: nil, keyEquivalent: "")
         sourceControlMenu.addItem(withTitle: "Mark Selected Files as Resolved", action: nil, keyEquivalent: "")
@@ -218,6 +225,37 @@ final class OutlineMenu: NSMenu {
     @objc
     private func duplicate() {
         item?.duplicate()
+    }
+
+    // MARK: Source Control
+
+    @objc
+    private func commitFile() {
+
+    }
+
+    // TODO: Need to find a way to check for changes in the current selected file
+    @objc
+    private func discardChangesInFile() {
+        let alert = NSAlert()
+        alert.messageText = "Do you want to permanently discard all changes to \"\(item?.fileName ?? "")\"?"
+        alert.informativeText = "You can't undo this action"
+        alert.alertStyle = .critical
+        alert.addButton(withTitle: "Discard Changes")
+        alert.buttons.last?.hasDestructiveAction = true
+        alert.addButton(withTitle: "Cancel")
+        if alert.runModal() == .alertFirstButtonReturn {
+            do {
+                try gitClient.discardFileChanges((item?.url.path)!)
+            } catch {
+                print("Error when trying to discard changes in file!")
+            }
+        }
+    }
+
+    @objc
+    private func addSelectedFiles() {
+
     }
 }
 
