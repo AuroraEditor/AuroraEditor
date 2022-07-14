@@ -30,7 +30,6 @@ public struct ToolbarAppInfo: View {
                 }
 
                 Spacer()
-                    .frame(width: 400)
 
                 HStack {
                     Text("Build Succeeded")
@@ -58,7 +57,6 @@ public struct ToolbarAppInfo: View {
                         .foregroundColor(.gray)
                         .font(.system(size: 10))
                 }
-                .padding(5)
             }
             .buttonStyle(.plain)
 
@@ -73,7 +71,6 @@ public struct ToolbarAppInfo: View {
                         .foregroundColor(.gray)
                         .font(.system(size: 10))
                 }
-                .padding(5)
             }
             .buttonStyle(.plain)
 
@@ -89,7 +86,6 @@ public struct ToolbarAppInfo: View {
                         .foregroundColor(.gray)
                         .font(.system(size: 10))
                 }
-                .padding(5)
             }
             .buttonStyle(.plain)
             .popover(isPresented: $openNotifications, arrowEdge: .bottom) {
