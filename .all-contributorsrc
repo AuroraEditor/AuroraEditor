@@ -14,9 +14,9 @@
         "infra",
         "test",
         "code"
-       ]
-     },
-     {
+      ]
+    },
+    {
       "login": "nanashili",
       "name": "Nanashi Li",
       "avatar_url": "https://avatars.githubusercontent.com/u/63672227?v=4",
@@ -24,10 +24,11 @@
       "contributions": [
         "infra",
         "test",
-        "code"
-       ]
-     },
-     {
+        "code",
+        "maintenance"
+      ]
+    },
+    {
       "login": "KaiTheRedNinja",
       "name": "KaiTheRedNinja",
       "avatar_url": "https://avatars.githubusercontent.com/u/88234730?v=4",
