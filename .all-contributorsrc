@@ -6,6 +6,17 @@
   "commit": false,
   "contributors": [
     {
+      "login": "wdg",
+      "name": "Wesley De Groot",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1290461?v=4",
+      "profile": "https://wdg.codes",
+      "contributions": [
+        "infra",
+        "test",
+        "code"
+       ]
+     },
+     {
       "login": "nanashili",
       "name": "Nanashi Li",
       "avatar_url": "https://avatars.githubusercontent.com/u/63672227?v=4",
@@ -14,7 +25,9 @@
         "infra",
         "test",
         "code"
-     },{
+       ]
+     },
+     {
       "login": "KaiTheRedNinja",
       "name": "KaiTheRedNinja",
       "avatar_url": "https://avatars.githubusercontent.com/u/88234730?v=4",
