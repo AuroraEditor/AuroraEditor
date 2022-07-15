@@ -1,0 +1,26 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "nanashili",
+      "name": "Nanashi Li",
+      "avatar_url": "https://avatars.githubusercontent.com/u/63672227?v=4",
+      "profile": "https://github.com/nanashili",
+      "contributions": [
+        "infra",
+        "test",
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "AuroraEditor",
+  "projectOwner": "AuroraEditor",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
