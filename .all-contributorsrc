@@ -14,6 +14,27 @@
         "infra",
         "test",
         "code"
+       ]
+     },
+     {
+      "login": "nanashili",
+      "name": "Nanashi Li",
+      "avatar_url": "https://avatars.githubusercontent.com/u/63672227?v=4",
+      "profile": "https://github.com/nanashili",
+      "contributions": [
+        "infra",
+        "test",
+        "code"
+       ]
+     },
+     {
+      "login": "KaiTheRedNinja",
+      "name": "KaiTheRedNinja",
+      "avatar_url": "https://avatars.githubusercontent.com/u/88234730?v=4",
+      "profile": "https://github.com/KaiTheRedNinja",
+      "contributions": [
+        "test",
+        "code"
       ]
     }
   ],
