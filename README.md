@@ -31,7 +31,10 @@ Most comparable editors are built on Electron, This is a huge disadvantage becau
 
 ## Fork-Motivation
 
-...
+- We want to encourage people to make PR's with shorter waiting times (and also supporting merging projects what you cannot finish yourself)
+- We want to make sure that the development discussion is *always* public, and should stay that way,
+- We want you to learn see [#swift-beginners](https://discord.gg/5aecJ4rq9D) on our Discord server.
+- Most of all, we want you to feel welcome, every commitment to the project counts.
 
 ## Community
 
