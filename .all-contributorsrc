@@ -1,0 +1,25 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "KaiTheRedNinja",
+      "name": "KaiTheRedNinja",
+      "avatar_url": "https://avatars.githubusercontent.com/u/88234730?v=4",
+      "profile": "https://github.com/KaiTheRedNinja",
+      "contributions": [
+        "test",
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "AuroraEditor",
+  "projectOwner": "AuroraEditor",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
