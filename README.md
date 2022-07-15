@@ -41,7 +41,7 @@ Most comparable editors are built on Electron, This is a huge disadvantage becau
 
 ## Community
 
-Join our community on [Discord](https://discord.gg/YyRWU7nbXG) where we discuss and collaborate on all things AuroraEditor.
+Join our community on [Discord](https://discord.gg/vsu37gqGrK) where we discuss and collaborate on all things of Aurora Editor.
 
 Don't be shy, jump right in and be part of the discussion!
 
