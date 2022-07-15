@@ -1,7 +1,4 @@
 
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 <p align="center">
   <h1 align="center">AuroraEditor</h1>
 </p>
@@ -19,6 +16,9 @@ AuroraEditor is a IDE built by the community, for the community.
 
 It will support deep integration with your selected git provider with project planning even, but also not limited to your favourite built in editor tools.
 
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 ![GitHub branch checks state](https://img.shields.io/github/checks-status/AuroraEditor/Editor/main?style=flat-square)
 ![GitHub Repo stars](https://img.shields.io/github/stars/AuroraEditor/Editor?style=flat-square)
 ![GitHub forks](https://img.shields.io/github/forks/AuroraEditor/Editor?style=flat-square)
