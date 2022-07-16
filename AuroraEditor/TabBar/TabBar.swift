@@ -217,7 +217,7 @@ struct TabBar: View {
 
     private var trailingAccessories: some View {
         HStack(spacing: 2) {
-            if workspace.selectionState.openFileItems.count > 0 {
+            if !workspace.selectionState.openFileItems.isEmpty {
                 TabBarAccessoryIcon(
                     icon: .init(systemName: "arrow.left.arrow.right"),
                     action: { /* TODO */ }

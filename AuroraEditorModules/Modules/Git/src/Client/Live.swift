@@ -151,7 +151,9 @@ public extension GitClient {
                     print("Successfully stashed changes!")
                 }
             } else {
-                let output = try shellClient.run("cd \(directoryURL.relativePath.escapedWhiteSpaces());git stash save \(message!)")
+                let output = try shellClient.run(
+                    "cd \(directoryURL.relativePath.escapedWhiteSpaces());git stash save \(message!)"
+                )
                 if output.contains("fatal") {
                     throw GitClientError.outputError(output)
                 } else {

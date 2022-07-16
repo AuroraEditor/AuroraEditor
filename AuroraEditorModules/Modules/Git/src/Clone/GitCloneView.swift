@@ -185,67 +185,67 @@ extension GitCloneView {
                             showAlert(alertMsg: "Error", infoText: error)
                         case .failedToDecodeURL:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .BadConfigFile:
+                        case .badConfigFile:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .AuthenticationFailed:
+                        case .authenticationFailed:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .NoUserNameConfigured:
+                        case .noUserNameConfigured:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .NoUserEmailConfigured:
+                        case .noUserEmailConfigured:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .NotAGitRepository:
+                        case .notAGitRepository:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .NotAtRepositoryRoot:
+                        case .notAtRepositoryRoot:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .Conflict:
+                        case .conflict:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .StashConflict:
+                        case .stashConflict:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .UnmergedChanges:
+                        case .unmergedChanges:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .PushRejected:
+                        case .pushRejected:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .RemoteConnectionError:
+                        case .remoteConnectionError:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .DirtyWorkTree:
+                        case .dirtyWorkTree:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .CantOpenResource:
+                        case .cantOpenResource:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .GitNotFound:
+                        case .gitNotFound:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .CantCreatePipe:
+                        case .cantCreatePipe:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .CantAccessRemote:
+                        case .cantAccessRemote:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .RepositoryNotFound:
+                        case .repositoryNotFound:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .RepositoryIsLocked:
+                        case .repositoryIsLocked:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .BranchNotFullyMerged:
+                        case .branchNotFullyMerged:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .NoRemoteReference:
+                        case .noRemoteReference:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .InvalidBranchName:
+                        case .invalidBranchName:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .BranchAlreadyExists:
+                        case .branchAlreadyExists:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .NoLocalChanges:
+                        case .noLocalChanges:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .NoStashFound:
+                        case .noStashFound:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .LocalChangesOverwritten:
+                        case .localChangesOverwritten:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .NoUpstreamBranch:
+                        case .noUpstreamBranch:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .IsInSubModule:
+                        case .isInSubModule:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .WrongCase:
+                        case .wrongCase:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .CantLockRef:
+                        case .cantLockRef:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .CantRebaseMultipleBranches:
+                        case .cantRebaseMultipleBranches:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .PatchDoesNotApply:
+                        case .patchDoesNotApply:
                             showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
                         }
                     case .finished: break

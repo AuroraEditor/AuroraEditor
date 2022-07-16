@@ -29,7 +29,9 @@ extension WelcomeWindowView {
             shellClient: Current.shellClient,
             openDocument: { url, opened in
                 if let url = url {
-                    AuroraEditorDocumentController.shared.openDocument(withContentsOf: url, display: true) { doc, _, _ in
+                    AuroraEditorDocumentController.shared.openDocument(
+                        withContentsOf: url,
+                        display: true) { doc, _, _ in
                         if doc != nil {
                             opened()
                         }
