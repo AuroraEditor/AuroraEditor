@@ -50,7 +50,7 @@ open class AuroraEditorKeychain {
      */
     @discardableResult
     open func set(_ value: String, forKey key: String,
-                  withAccess access: CodeEditKeychainAccessOptions? = nil) -> Bool {
+                  withAccess access: AuroraEditorKeychainAccessOptions? = nil) -> Bool {
 
         if let value = value.data(using: String.Encoding.utf8) {
             return set(value, forKey: key, withAccess: access)
@@ -69,7 +69,7 @@ open class AuroraEditorKeychain {
      */
     @discardableResult
     open func set(_ value: Data, forKey key: String,
-                  withAccess access: CodeEditKeychainAccessOptions? = nil) -> Bool {
+                  withAccess access: AuroraEditorKeychainAccessOptions? = nil) -> Bool {
 
         // The lock prevents the code to be run simultaneously
         // from multiple threads which may result in crashing
@@ -77,15 +77,15 @@ open class AuroraEditorKeychain {
         defer { lock.unlock() }
 
         deleteNoLock(key) // Delete any existing key before saving it
-        let accessible = access?.value ?? CodeEditKeychainAccessOptions.defaultOption.value
+        let accessible = access?.value ?? AuroraEditorKeychainAccessOptions.defaultOption.value
 
         let prefixedKey = keyWithPrefix(key)
 
         var query: [String: Any] = [
-            CodeEditKeychainConstants.class: kSecClassGenericPassword,
-            CodeEditKeychainConstants.attrAccount: prefixedKey,
-            CodeEditKeychainConstants.valueData: value,
-            CodeEditKeychainConstants.accessible: accessible
+            AuroraEditorKeychainConstants.class: kSecClassGenericPassword,
+            AuroraEditorKeychainConstants.attrAccount: prefixedKey,
+            AuroraEditorKeychainConstants.valueData: value,
+            AuroraEditorKeychainConstants.accessible: accessible
         ]
 
         query = addAccessGroupWhenPresent(query)
@@ -107,7 +107,7 @@ open class AuroraEditorKeychain {
      */
     @discardableResult
     open func set(_ value: Bool, forKey key: String,
-                  withAccess access: CodeEditKeychainAccessOptions? = nil) -> Bool {
+                  withAccess access: AuroraEditorKeychainAccessOptions? = nil) -> Bool {
 
         let bytes: [UInt8] = value ? [1] : [0]
         let data = Data(bytes)
@@ -148,15 +148,15 @@ open class AuroraEditorKeychain {
         let prefixedKey = keyWithPrefix(key)
 
         var query: [String: Any] = [
-            CodeEditKeychainConstants.class: kSecClassGenericPassword,
-            CodeEditKeychainConstants.attrAccount: prefixedKey,
-            CodeEditKeychainConstants.matchLimit: kSecMatchLimitOne
+            AuroraEditorKeychainConstants.class: kSecClassGenericPassword,
+            AuroraEditorKeychainConstants.attrAccount: prefixedKey,
+            AuroraEditorKeychainConstants.matchLimit: kSecMatchLimitOne
         ]
 
         if asReference {
-            query[CodeEditKeychainConstants.returnReference] = kCFBooleanTrue
+            query[AuroraEditorKeychainConstants.returnReference] = kCFBooleanTrue
         } else {
-            query[CodeEditKeychainConstants.returnData] =  kCFBooleanTrue
+            query[AuroraEditorKeychainConstants.returnData] =  kCFBooleanTrue
         }
 
         query = addAccessGroupWhenPresent(query)
@@ -207,11 +207,11 @@ open class AuroraEditorKeychain {
      */
     public var allKeys: [String] {
         var query: [String: Any] = [
-            CodeEditKeychainConstants.class: kSecClassGenericPassword,
-            CodeEditKeychainConstants.returnData: true,
-            CodeEditKeychainConstants.returnAttributes: true,
-            CodeEditKeychainConstants.returnReference: true,
-            CodeEditKeychainConstants.matchLimit: CodeEditKeychainConstants.secMatchLimitAll
+            AuroraEditorKeychainConstants.class: kSecClassGenericPassword,
+            AuroraEditorKeychainConstants.returnData: true,
+            AuroraEditorKeychainConstants.returnAttributes: true,
+            AuroraEditorKeychainConstants.returnReference: true,
+            AuroraEditorKeychainConstants.matchLimit: AuroraEditorKeychainConstants.secMatchLimitAll
         ]
 
         query = addAccessGroupWhenPresent(query)
@@ -224,7 +224,7 @@ open class AuroraEditorKeychain {
 
         if lastResultCode == noErr {
             return (result as? [[String: Any]])?.compactMap {
-                $0[CodeEditKeychainConstants.attrAccount] as? String } ?? []
+                $0[AuroraEditorKeychainConstants.attrAccount] as? String } ?? []
         }
 
         return []
@@ -240,8 +240,8 @@ open class AuroraEditorKeychain {
         let prefixedKey = keyWithPrefix(key)
 
         var query: [String: Any] = [
-            CodeEditKeychainConstants.class: kSecClassGenericPassword,
-            CodeEditKeychainConstants.attrAccount: prefixedKey
+            AuroraEditorKeychainConstants.class: kSecClassGenericPassword,
+            AuroraEditorKeychainConstants.attrAccount: prefixedKey
         ]
 
         query = addAccessGroupWhenPresent(query)
@@ -282,7 +282,7 @@ open class AuroraEditorKeychain {
         guard let accessGroup = accessGroup else { return items }
 
         var result: [String: Any] = items
-        result[CodeEditKeychainConstants.accessGroup] = accessGroup
+        result[AuroraEditorKeychainConstants.accessGroup] = accessGroup
         return result
     }
 }

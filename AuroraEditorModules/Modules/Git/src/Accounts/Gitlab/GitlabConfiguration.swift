@@ -11,7 +11,7 @@ public struct GitlabTokenConfiguration: Configuration {
 
     public var apiEndpoint: String?
     public var accessToken: String?
-    public let errorDomain: String? = "com.codeedit.models.accounts.gitlab"
+    public let errorDomain: String? = "com.AuroraEditor.models.accounts.gitlab"
 
     public init(_ token: String? = nil, url: String = gitlabBaseURL) {
         apiEndpoint = url
@@ -22,7 +22,7 @@ public struct GitlabTokenConfiguration: Configuration {
 public struct PrivateTokenConfiguration: Configuration {
     public var apiEndpoint: String?
     public var accessToken: String?
-    public let errorDomain: String? = "com.codeedit.models.accounts.gitlab"
+    public let errorDomain: String? = "com.AuroraEditor.models.accounts.gitlab"
 
     public init(_ token: String? = nil, url: String = gitlabBaseURL) {
         apiEndpoint = url

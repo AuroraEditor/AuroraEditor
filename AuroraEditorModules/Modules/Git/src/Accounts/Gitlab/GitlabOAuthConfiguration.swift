@@ -15,7 +15,7 @@ public struct GitlabOAuthConfiguration: Configuration {
     public let secret: String
     public let redirectURI: String
     public let webEndpoint: String
-    public let errorDomain = "com.codeedit.models.accounts.gitlab"
+    public let errorDomain = "com.AuroraEditor.models.accounts.gitlab"
 
     public init(_ url: String = gitlabBaseURL, webURL: String = gitlabWebURL,
                 token: String, secret: String, redirectURI: String) {

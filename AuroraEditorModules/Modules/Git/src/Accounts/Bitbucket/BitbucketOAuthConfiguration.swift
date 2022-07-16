@@ -14,7 +14,7 @@ public struct BitbucketOAuthConfiguration: Configuration {
     public let secret: String
     public let scopes: [String]
     public let webEndpoint: String
-    public let errorDomain = "com.codeedit.models.accounts.bitbucket"
+    public let errorDomain = "com.AuroraEditor.models.accounts.bitbucket"
 
     public init(_ url: String = bitbucketBaseURL, webURL: String = bitbucketWebURL,
                 token: String, secret: String, scopes: [String]) {

@@ -82,14 +82,14 @@ public final class ThemeModel: ObservableObject {
         }
     }
 
-    /// Loads all available themes from `~/.codeedit/themes/`
+    /// Loads all available themes from `~/.config/auroraeditor/themes/`
     ///
     /// If no themes are available, it will create a default theme and save
     /// it to the location mentioned above.
     ///
-    /// When overrides are found in `~/.codeedit/.preferences.json`
+    /// When overrides are found in `~/.config/auroraeditor/preferences.json`
     /// they are applied to the loaded themes without altering the original
-    /// the files in `~/.codeedit/themes/`.
+    /// the files in `~/.config/auroraeditor/themes/`.
     public func loadThemes() throws {
         // remove all themes from memory
         themes.removeAll()
@@ -150,10 +150,10 @@ public final class ThemeModel: ObservableObject {
 
     private func loadBundledThemes() throws {
         let bundledThemeNames: [String] = [
-            "codeedit-xcode-dark",
-            "codeedit-xcode-light",
-            "codeedit-github-dark",
-            "codeedit-github-light"
+            "ae-xcode-dark",
+            "ae-xcode-light",
+            "ae-github-dark",
+            "ae-github-light"
         ]
         for themeName in bundledThemeNames {
             guard let defaultUrl = Bundle.main.url(forResource: themeName, withExtension: "json") else {
@@ -169,10 +169,10 @@ public final class ThemeModel: ObservableObject {
     }
 
     /// Removes all overrides of the given theme in
-    /// `~/.codeedit/preferences.json`
+    /// `~/.config/auroraeditor/preferences.json`
     ///
     /// After removing overrides, themes are reloaded
-    /// from `~/.codeedit/themes`. See ``loadThemes()``
+    /// from `~/.config/auroraeditor/themes`. See ``loadThemes()``
     /// for more information.
     ///
     /// - Parameter theme: The theme to reset
@@ -185,10 +185,10 @@ public final class ThemeModel: ObservableObject {
         }
     }
 
-    /// Removes the given theme from `–/.codeedit/themes`
+    /// Removes the given theme from `–/.config/auroraeditor/themes`
     ///
     /// After removing the theme, themes are reloaded
-    /// from `~/.codeedit/themes`. See ``loadThemes()``
+    /// from `~/.config/auroraeditor/themes`. See ``loadThemes()``
     /// for more information.
     ///
     /// - Parameter theme: The theme to delete
@@ -216,7 +216,7 @@ public final class ThemeModel: ObservableObject {
         let url = themesURL
         themes.forEach { theme in
             do {
-                // load the original theme from `~/.codeedit/themes/`
+                // load the original theme from `~/.config/auroraeditor/themes/`
                 let originalUrl = url.appendingPathComponent(theme.name).appendingPathExtension("json")
                 let originalData = try Data(contentsOf: originalUrl)
                 let originalTheme = try JSONDecoder().decode(Theme.self, from: originalData)
@@ -255,9 +255,9 @@ public final class ThemeModel: ObservableObject {
     /// Default instance of the `FileManager`
     private let filemanager = FileManager.default
 
-    /// The base folder url `~/.codeedit/`
+    /// The base folder url `~/.config/auroraeditor/`
     private var baseURL: URL {
-        filemanager.homeDirectoryForCurrentUser.appendingPathComponent(".codeedit")
+        filemanager.homeDirectoryForCurrentUser.appendingPathComponent(".config").appendingPathComponent("auroraeditor")
     }
 
     /// The URL of the `themes` folder

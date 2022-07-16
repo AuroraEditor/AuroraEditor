@@ -14,7 +14,7 @@ public final class QuickOpenState: ObservableObject {
     @Published var isShowingOpenQuicklyFiles: Bool = false
 
     public let fileURL: URL
-    private let queue = DispatchQueue(label: "austincondiff.CodeEdit.quickOpen.searchFiles")
+    private let queue = DispatchQueue(label: "com.AuroraEditor.quickOpen.searchFiles")
 
     public init(fileURL: URL) {
         self.fileURL = fileURL

@@ -13,7 +13,7 @@ import FoundationNetworking
 public struct GithubTokenConfiguration: Configuration {
     public var apiEndpoint: String?
     public var accessToken: String?
-    public let errorDomain: String? = "com.codeedit.models.accounts.github"
+    public let errorDomain: String? = "com.AuroraEditor.models.accounts.github"
     public let authorizationHeader: String? = "Basic"
 
     /// Custom `Accept` header for API previews.
@@ -41,7 +41,7 @@ public struct OAuthConfiguration: Configuration {
     public let secret: String
     public let scopes: [String]
     public let webEndpoint: String
-    public let errorDomain = "com.codeedit.models.accounts.github"
+    public let errorDomain = "com.AuroraEditor.models.accounts.github"
 
     /// Custom `Accept` header for API previews.
     ///

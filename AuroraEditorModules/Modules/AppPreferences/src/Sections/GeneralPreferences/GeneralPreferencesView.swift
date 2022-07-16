@@ -19,17 +19,17 @@ public struct GeneralPreferencesView: View {
     private var prefs: AppPreferencesModel = .shared
 
     @State
-    private var openInCodeEdit: Bool = true
+    private var openInAuroraEditor: Bool = true
 
     public init() {
         guard let defaults = UserDefaults.init(
-            suiteName: "austincondiff.CodeEdit.shared"
+            suiteName: "com.AuroraEditor.shared"
         ) else {
             print("Failed to get/init shared defaults")
             return
         }
 
-        self.openInCodeEdit = defaults.bool(forKey: "enableOpenInCE")
+        self.openInAuroraEditor = defaults.bool(forKey: "enableOpenInAE")
     }
 
     public var body: some View {
@@ -47,7 +47,7 @@ public struct GeneralPreferencesView: View {
                 dialogWarningsSection
             }
             Group {
-                openInCodeEditToggle
+                openInAuroraEditorToggle
                 revealFileOnFocusChangeToggle
                 shellCommandSection
             }
@@ -213,8 +213,8 @@ private extension GeneralPreferencesView {
         PreferencesSection("Shell Command", align: .center) {
             Button(action: {
                 do {
-                    let url = Bundle.module.url(forResource: "codeedit", withExtension: nil, subdirectory: "Resources")
-                    let destination = "/usr/local/bin/codeedit"
+                    let url = Bundle.module.url(forResource: "ae", withExtension: nil, subdirectory: "Resources")
+                    let destination = "/usr/local/bin/ae"
 
                     if FileManager.default.fileExists(atPath: destination) {
                         try FileManager.default.removeItem(atPath: destination)
@@ -243,7 +243,7 @@ private extension GeneralPreferencesView {
                     print(error)
                 }
             }, label: {
-                Text("Install 'codeedit' command")
+                Text("Install 'ae' command")
                     .padding(.horizontal, 10)
             })
             .buttonStyle(.bordered)
@@ -276,19 +276,19 @@ private extension GeneralPreferencesView {
         }
     }
 
-    var openInCodeEditToggle: some View {
+    var openInAuroraEditorToggle: some View {
         PreferencesSection("Finder Context Menu", hideLabels: false) {
-            Toggle("Show “Open With CodeEdit” option", isOn: $openInCodeEdit)
+            Toggle("Show “Open With AuroraEditor” option", isOn: $openInAuroraEditor)
                 .toggleStyle(.checkbox)
-                .onChange(of: openInCodeEdit) { newValue in
+                .onChange(of: openInAuroraEditor) { newValue in
                     guard let defaults = UserDefaults.init(
-                        suiteName: "austincondiff.CodeEdit.shared"
+                        suiteName: "com.AuroraEditor.shared"
                     ) else {
                         print("Failed to get/init shared defaults")
                         return
                     }
 
-                    defaults.set(newValue, forKey: "enableOpenInCE")
+                    defaults.set(newValue, forKey: "enableOpenInAE")
                 }
         }
     }

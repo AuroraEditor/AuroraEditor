@@ -17,7 +17,7 @@ final class CodeFileUnitTests: XCTestCase {
             appropriateFor: nil,
             create: true
         )
-            .appendingPathComponent("CodeEdit", isDirectory: true)
+            .appendingPathComponent("AuroraEditor", isDirectory: true)
             .appendingPathComponent("WorkspaceClientTests", isDirectory: true)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
 

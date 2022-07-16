@@ -140,7 +140,7 @@ public extension WorkspaceClient {
             if self.parent == nil {
                 return "square.dashed.inset.filled"
             }
-            if self.fileName == ".codeedit" {
+            if self.fileName == ".auroraeditor" {
                 return "folder.fill.badge.gearshape"
             }
             return children.isEmpty ? "folder" : "folder.fill"

@@ -11,7 +11,7 @@ import Security
  These options are used to determine when a keychain item should be readable.
  The default value is AccessibleWhenUnlocked.
  */
-public enum CodeEditKeychainAccessOptions {
+public enum AuroraEditorKeychainAccessOptions {
 
     /**
      The data in the keychain item can be accessed only while the device is unlocked by the user.
@@ -65,7 +65,7 @@ public enum CodeEditKeychainAccessOptions {
      */
     case accessibleWhenPasscodeSetThisDeviceOnly
 
-    static var defaultOption: CodeEditKeychainAccessOptions {
+    static var defaultOption: AuroraEditorKeychainAccessOptions {
         .accessibleWhenUnlocked
     }
 
@@ -89,6 +89,6 @@ public enum CodeEditKeychainAccessOptions {
     }
 
     func toString(_ value: CFString) -> String {
-        CodeEditKeychainConstants.toString(value)
+        AuroraEditorKeychainConstants.toString(value)
     }
 }

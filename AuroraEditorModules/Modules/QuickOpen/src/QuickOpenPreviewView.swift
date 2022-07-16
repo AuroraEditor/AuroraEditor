@@ -10,7 +10,7 @@ import WorkspaceClient
 import CodeFile
 
 public struct QuickOpenPreviewView: View {
-    private let queue = DispatchQueue(label: "austincondiff.CodeEdit.quickOpen.preview")
+    private let queue = DispatchQueue(label: "com.AuroraEditor.quickOpen.preview")
     private let item: WorkspaceClient.FileItem
     @State private var content: String = ""
     @State private var loaded = false

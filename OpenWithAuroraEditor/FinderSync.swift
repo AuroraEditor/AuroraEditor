@@ -36,7 +36,7 @@ class AEOpenWith: FIFinderSync {
             }
     }
 
-    /// Open in CodeEdit (menu) action
+    /// Open in AuroraEditor (menu) action
     /// - Parameter sender: sender
     @objc func openInAuroraEditorAction(_ sender: AnyObject?) {
         guard let items = FIFinderSyncController.default().selectedItemURLs(),
@@ -51,7 +51,7 @@ class AEOpenWith: FIFinderSync {
             files.append("\(obj.path);")
         }
 
-        guard let codeEdit = NSWorkspace.shared.urlForApplication(
+        guard let AuroraEditor = NSWorkspace.shared.urlForApplication(
             withBundleIdentifier: "com.AuroraEditor"
         ) else { return }
 
@@ -60,7 +60,7 @@ class AEOpenWith: FIFinderSync {
 
         NSWorkspace.shared.open(
             [],
-            withApplicationAt: codeEdit,
+            withApplicationAt: AuroraEditor,
             configuration: NSWorkspace.OpenConfiguration()
         )
     }
