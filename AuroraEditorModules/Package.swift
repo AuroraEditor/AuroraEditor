@@ -118,10 +118,6 @@ let package = Package(
             from: "1.0.4"
         ),
         .package(
-            url: "https://github.com/groue/GRDB.swift.git",
-            from: "5.22.2"
-        ),
-        .package(
             name: "CodeEditSymbols",
             url: "https://github.com/CodeEditApp/CodeEditSymbols",
             branch: "main"
@@ -277,7 +273,6 @@ let package = Package(
             dependencies: [
                 "CodeEditKit",
                 "Light-Swift-Untar",
-                .productItem(name: "GRDB", package: "GRDB.swift", condition: nil),
                 "LSP"
             ],
             path: "Modules/ExtensionsStore/src"

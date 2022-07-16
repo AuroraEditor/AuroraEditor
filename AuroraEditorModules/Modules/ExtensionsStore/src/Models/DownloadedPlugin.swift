@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import GRDB
 
-public struct DownloadedPlugin: Codable, FetchableRecord, PersistableRecord, TableRecord {
+public struct DownloadedPlugin: Codable {
     public static var databaseTableName = "downloadedplugin"
 
     public var id: Int64?
