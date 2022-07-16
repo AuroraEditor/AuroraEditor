@@ -83,6 +83,7 @@ public struct AboutView: View {
         VStack(alignment: .leading, spacing: 5) {
             Text("Copyright © 2022 Aurora Editor")
             Text("MIT License")
+            Text("Based on CodeEdit, forked on the 4th of July 2022.")
         }
         .foregroundColor(.secondary)
         .font(.system(size: 9, weight: .light))
@@ -92,7 +93,11 @@ public struct AboutView: View {
     private var actionButtons: some View {
         HStack {
             Button {
-                AcknowledgementsView().showWindow(width: 300, height: 400)
+                AcknowledgementsView()
+                    .showWindow(
+                        width: 600,
+                        height: 600
+                    )
             } label: {
                 Text("Acknowledgments")
                     .frame(maxWidth: .infinity)

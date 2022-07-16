@@ -25,20 +25,30 @@ public struct AcknowledgementsView: View {
             Text("Dependencies")
                 .font(.system(size: 18, weight: .semibold)).padding([.leading, .top], 10.0)
             ScrollView {
-                VStack(alignment: .leading, spacing: 10) {
-                    ForEach(model.acknowledgements, id: \.name) { acknowledgement in
-                        AcknowledgementRow(acknowledgement: acknowledgement)
-                            .listRowBackground(Color.clear)
+                if model.acknowledgements.isEmpty {
+                    Text("Failed to load.")
+                } else {
+                    VStack(alignment: .leading, spacing: 10) {
+                        ForEach(model.acknowledgements, id: \.name) { acknowledgement in
+                            AcknowledgementRow(acknowledgement: acknowledgement)
+                                .listRowBackground(Color.clear)
+                        }
                     }
+                    .padding(.horizontal, 15)
+                    .padding(.bottom)
                 }
-                .padding(.horizontal, 15)
-                .padding(.bottom)
             }
         }
     }
 
     public func showWindow(width: CGFloat, height: CGFloat) {
-        PlaceholderWindowController(view: self, size: NSSize(width: width, height: height)).showWindow(nil)
+        PlaceholderWindowController(
+            view: self,
+            size: NSSize(
+                width: width,
+                height: height
+            )
+        ).showWindow(nil)
     }
 }
 
