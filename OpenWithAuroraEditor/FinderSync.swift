@@ -51,7 +51,7 @@ class AEOpenWith: FIFinderSync {
             files.append("\(obj.path);")
         }
 
-        guard let AuroraEditor = NSWorkspace.shared.urlForApplication(
+        guard let urlForAuroraEditor = NSWorkspace.shared.urlForApplication(
             withBundleIdentifier: "com.AuroraEditor"
         ) else { return }
 
@@ -60,7 +60,7 @@ class AEOpenWith: FIFinderSync {
 
         NSWorkspace.shared.open(
             [],
-            withApplicationAt: AuroraEditor,
+            withApplicationAt: urlForAuroraEditor,
             configuration: NSWorkspace.OpenConfiguration()
         )
     }
