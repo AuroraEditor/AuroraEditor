@@ -30,7 +30,9 @@ public struct AcknowledgementsView: View {
                         AcknowledgementRow(acknowledgement: acknowledgement)
                             .listRowBackground(Color.clear)
                     }
-                }.padding(.horizontal, 15)
+                }
+                .padding(.horizontal, 15)
+                .padding(.bottom)
             }
         }
     }
