@@ -1044,7 +1044,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OpenWithAuroraEditor/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = OpenWithCodeEdit;
+				INFOPLIST_KEY_CFBundleDisplayName = OpenWithAuroraEditor;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1074,7 +1074,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OpenWithAuroraEditor/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = OpenWithCodeEdit;
+				INFOPLIST_KEY_CFBundleDisplayName = OpenWithAuroraEditor;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1356,7 +1356,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = CodeEdit;
+				TEST_TARGET_NAME = AuroraEditor;
 			};
 			name = Debug;
 		};
@@ -1380,7 +1380,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = CodeEdit;
+				TEST_TARGET_NAME = AuroraEditor;
 			};
 			name = Release;
 		};
