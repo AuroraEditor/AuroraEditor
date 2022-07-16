@@ -1,6 +1,6 @@
 //
 //  FileItem+Array.swift
-//  CodeEditModules/WorkspaceClient
+//  AuroraEditorModules/WorkspaceClient
 //
 //  Created by Lukas Pistrol on 17.03.22.
 //

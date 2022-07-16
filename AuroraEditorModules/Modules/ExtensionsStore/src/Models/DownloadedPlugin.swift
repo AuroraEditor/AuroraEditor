@@ -1,6 +1,6 @@
 //
 //  DownloadedPlugin.swift
-//  CodeEditModules/ExtensionStore
+//  AuroraEditorModules/ExtensionStore
 //
 //  Created by Pavel Kasila on 6.04.22.
 //

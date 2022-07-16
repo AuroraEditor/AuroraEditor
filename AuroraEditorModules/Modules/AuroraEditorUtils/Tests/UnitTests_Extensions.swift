@@ -1,6 +1,6 @@
 //
 //  UnitTests.swift
-//  CodeEditModules/AuroraEditorUtilsTests
+//  AuroraEditorModules/AuroraEditorUtilsTests
 //
 //  Created by Lukas Pistrol on 01.05.22.
 //

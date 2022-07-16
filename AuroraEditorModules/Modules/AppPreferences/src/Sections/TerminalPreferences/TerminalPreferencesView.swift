@@ -1,6 +1,6 @@
 //
 //  TerminalPreferencesView.swift
-//  CodeEditModules/AppPreferences
+//  AuroraEditorModules/AppPreferences
 //
 //  Created by Lukas Pistrol on 02.04.22.
 //

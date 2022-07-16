@@ -1,6 +1,6 @@
 //
 //  QuickOpenState.swift
-//  CodeEditModules/QuickOpen
+//  AuroraEditorModules/QuickOpen
 //
 //  Created by Marco Carnevali on 05/04/22.
 //

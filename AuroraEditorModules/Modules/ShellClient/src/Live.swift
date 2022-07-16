@@ -1,6 +1,6 @@
 //
 //  Live.swift
-//  CodeEditModules/ShellClient
+//  AuroraEditorModules/ShellClient
 //
 //  Created by Marco Carnevali on 27/03/22.
 //

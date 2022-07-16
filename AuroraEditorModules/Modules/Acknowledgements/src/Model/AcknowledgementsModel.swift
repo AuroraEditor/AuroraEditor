@@ -1,6 +1,6 @@
 //
 //  AcknowledgementsModel.swift
-//  CodeEditModules/Acknowledgements
+//  AuroraEditorModules/Acknowledgements
 //
 //  Created by Lukas Pistrol on 01.05.22.
 //

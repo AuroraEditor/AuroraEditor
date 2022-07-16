@@ -1,6 +1,6 @@
 //
 //  GitlabAccount.swift
-//  CodeEditModules/GitAccounts
+//  AuroraEditorModules/GitAccounts
 //
 //  Created by Wesley de Groot on 02/04/2022.
 //

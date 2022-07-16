@@ -1,6 +1,6 @@
 //
 //  Interface.swift
-//  CodeEditModules/Git
+//  AuroraEditorModules/Git
 //
 //  Created by Marco Carnevali on 21/03/22.
 //
@@ -22,7 +22,7 @@ public struct GitClient {
     /// Get commit history
     /// - Parameters:
     ///   - entries: number of commits we want to fetch. Will use max if nil
-    ///   - fileLocalPath: specify a local file (e.g. `CodeEditModules/Package.swift`)
+    ///   - fileLocalPath: specify a local file (e.g. `AuroraEditorModules/Package.swift`)
     ///   to retrieve a file commit history. Optional.
     public var getCommitHistory: (_ entries: Int?, _ fileLocalPath: String?) throws -> [Commit]
     public var discardFileChanges: (String) throws -> Void

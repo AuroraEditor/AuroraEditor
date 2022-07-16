@@ -1,6 +1,6 @@
 //
 //  GeneralPreferencesView.swift
-//  CodeEditModules/AppPreferences
+//  AuroraEditorModules/AppPreferences
 //
 //  Created by Lukas Pistrol on 30.03.22.
 //

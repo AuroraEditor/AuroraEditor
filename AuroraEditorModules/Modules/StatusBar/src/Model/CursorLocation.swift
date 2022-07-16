@@ -1,6 +1,6 @@
 //
 //  CursorLocation.swift
-//  CodeEditModules/StatusBar
+//  AuroraEditorModules/StatusBar
 //
 //  Created by Lukas Pistrol on 11.05.22.
 //

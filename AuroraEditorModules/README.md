@@ -1,3 +1,3 @@
-# CodeEditModules
+# AuroraEditorModules
 
-`CodeEditModules` is a local Swift Package that contains modules of the app
+`AuroraEditorModules` is a local Swift Package that contains modules of the app

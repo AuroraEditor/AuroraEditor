@@ -1,6 +1,6 @@
 //
 //  Color+HEX.swift
-//  CodeEditModules/AuroraEditorUtils
+//  AuroraEditorModules/AuroraEditorUtils
 //
 //  Created by Lukas Pistrol on 23.03.22.
 //

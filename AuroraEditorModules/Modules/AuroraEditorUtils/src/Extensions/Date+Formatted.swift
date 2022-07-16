@@ -1,6 +1,6 @@
 //
 //  Date+Formatted.swift
-//  CodeEditModules/AuroraEditorUtils
+//  AuroraEditorModules/AuroraEditorUtils
 //
 //  Created by Lukas Pistrol on 20.04.22.
 //

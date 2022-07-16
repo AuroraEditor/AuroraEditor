@@ -1,6 +1,6 @@
 //
 //  Response.swift
-//  CodeEditModules/ExtensionStore
+//  AuroraEditorModules/ExtensionStore
 //
 //  Created by Pavel Kasila on 5.04.22.
 //

@@ -1,6 +1,6 @@
 //
 //  QuickOpenPreviewView.swift
-//  CodeEditModules/QuickOpen
+//  AuroraEditorModules/QuickOpen
 //
 //  Created by Pavel Kasila on 20.03.22.
 //

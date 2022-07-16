@@ -1,6 +1,6 @@
 //
 //  GitClientTests.swift
-//  CodeEditModules/GitTests
+//  AuroraEditorModules/GitTests
 //
 //  Created by Marco Carnevali on 27/03/22.
 //

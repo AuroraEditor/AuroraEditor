@@ -1,6 +1,6 @@
 //
 //  TerminalEmulatorView.swift
-//  CodeEditModules/TerminalEmulator
+//  AuroraEditorModules/TerminalEmulator
 //
 //  Created by Lukas Pistrol on 22.03.22.
 //

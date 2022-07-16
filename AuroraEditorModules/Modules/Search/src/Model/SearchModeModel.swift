@@ -1,6 +1,6 @@
 //
 //  SearchModeModel.swift
-//  CodeEditModules/Search
+//  AuroraEditorModules/Search
 //
 //  Created by Ziyuan Zhao on 2022/3/22.
 //

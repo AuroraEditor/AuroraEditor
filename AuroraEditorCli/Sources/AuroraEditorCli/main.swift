@@ -1,5 +1,5 @@
 //
-//  CodeEditCli.swift
+//  AuroraEditorCli.swift
 //  
 //
 //  Created by Ben Koska on 14.06.22.

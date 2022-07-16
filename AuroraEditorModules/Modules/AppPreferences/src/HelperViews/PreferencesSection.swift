@@ -1,6 +1,6 @@
 //
 //  PreferencesSection.swift
-//  CodeEditModules/AppPreferences
+//  AuroraEditorModules/AppPreferences
 //
 //  Created by Lukas Pistrol on 03.04.22.
 //

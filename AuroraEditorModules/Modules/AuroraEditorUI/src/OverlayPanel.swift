@@ -1,6 +1,6 @@
 //
 //  OverlayPanel.swift
-//  CodeEditModules/AuroraEditorUI
+//  AuroraEditorModules/AuroraEditorUI
 //
 //  Created by Pavel Kasila on 20.03.22.
 //

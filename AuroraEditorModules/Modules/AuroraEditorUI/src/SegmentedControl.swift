@@ -1,6 +1,6 @@
 //
 //  SegmentedControl.swift
-//  CodeEditModules/AuroraEditorUI
+//  AuroraEditorModules/AuroraEditorUI
 //
 //  Created by Lukas Pistrol on 31.03.22.
 //

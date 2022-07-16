@@ -1,6 +1,6 @@
 //
 //  BlurView.swift
-//  CodeEditModules/AuroraEditorUI
+//  AuroraEditorModules/AuroraEditorUI
 //
 //  Created by Rehatbir Singh on 15/03/2022.
 //

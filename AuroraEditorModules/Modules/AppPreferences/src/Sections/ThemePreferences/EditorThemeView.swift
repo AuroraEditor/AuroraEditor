@@ -1,6 +1,6 @@
 //
 //  EditorThemeView.swift
-//  CodeEditModules/AppPreferences
+//  AuroraEditorModules/AppPreferences
 //
 //  Created by Lukas Pistrol on 31.03.22.
 //

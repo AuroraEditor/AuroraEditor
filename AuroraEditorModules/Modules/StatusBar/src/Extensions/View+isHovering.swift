@@ -1,6 +1,6 @@
 //
 //  View+isHovering.swift
-//  CodeEditModules/StatusBar
+//  AuroraEditorModules/StatusBar
 //
 //  Created by Lukas Pistrol on 22.03.22.
 //

@@ -1,6 +1,6 @@
 //
 //  HelpButton.swift
-//  CodeEditModules/AuroraEditorUI
+//  AuroraEditorModules/AuroraEditorUI
 //
 //  Created by Lukas Pistrol on 30.03.22.
 //

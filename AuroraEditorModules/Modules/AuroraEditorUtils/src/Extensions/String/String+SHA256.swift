@@ -1,6 +1,6 @@
 //
 //  String+SHA256.swift
-//  CodeEditModules/AuroraEditorUtils
+//  AuroraEditorModules/AuroraEditorUtils
 //
 //  Created by Debdut Karmakar on 6/9/22.
 //

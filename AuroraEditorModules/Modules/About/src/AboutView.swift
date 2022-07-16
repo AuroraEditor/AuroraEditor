@@ -1,6 +1,6 @@
 //
 //  AboutView.swift
-//  CodeEditModules/About
+//  AuroraEditorModules/About
 //
 //  Created by Andrei Vidrasco on 02.04.2022
 //

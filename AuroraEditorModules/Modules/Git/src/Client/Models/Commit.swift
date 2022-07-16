@@ -1,6 +1,6 @@
 //
 //  Commit.swift
-//  CodeEditModules/Git
+//  AuroraEditorModules/Git
 //
 //  Created by Marco Carnevali on 27/03/22.
 //

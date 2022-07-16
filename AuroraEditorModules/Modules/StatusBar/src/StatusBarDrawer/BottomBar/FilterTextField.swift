@@ -1,6 +1,6 @@
 //
 //  FilterTextField.swift
-//  CodeEditModules/StatusBar
+//  AuroraEditorModules/StatusBar
 //
 //  Created by Stef Kors on 12/04/2022.
 //

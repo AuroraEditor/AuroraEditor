@@ -1,6 +1,6 @@
 //
 //  CodeFile.swift
-//  CodeEditModules/CodeFile
+//  AuroraEditorModules/CodeFile
 //
 //  Created by Rehatbir Singh on 12/03/2022.
 //
