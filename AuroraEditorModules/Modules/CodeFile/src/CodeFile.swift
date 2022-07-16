@@ -22,7 +22,7 @@ public final class CodeFileDocument: NSDocument, ObservableObject {
     // MARK: - NSDocument
 
     override public class var autosavesInPlace: Bool {
-        true
+        return true
     }
 
     override public func makeWindowControllers() {

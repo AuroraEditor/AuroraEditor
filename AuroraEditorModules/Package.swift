@@ -125,12 +125,7 @@ let package = Package(
             name: "CodeEditSymbols",
             url: "https://github.com/CodeEditApp/CodeEditSymbols",
             branch: "main"
-        ),
-        .package(
-            name: "CodeEditTextView",
-            url: "https://github.com/CodeEditApp/CodeEditTextView",
-            branch: "main"
-        ),
+        )
     ],
     targets: [
         .target(
@@ -153,7 +148,6 @@ let package = Package(
                 "Highlightr",
                 "AppPreferences",
                 "AuroraEditorUtils",
-                "CodeEditTextView",
             ],
             path: "Modules/CodeFile/src"
         ),
@@ -233,8 +227,6 @@ let package = Package(
                 "AuroraEditorUI",
                 "Git",
                 "AuroraEditorUtils",
-                "CodeEditSymbols",
-                "CodeEditTextView",
             ],
             path: "Modules/AppPreferences/src",
             resources: [.copy("Resources")]
