@@ -14,5 +14,6 @@ class WorkspaceNotificationModel: ObservableObject {
         highlightedFileItem = nil
     }
 
-    @Published var highlightedFileItem: WorkspaceClient.FileItem?
+    @Published
+    var highlightedFileItem: WorkspaceClient.FileItem?
 }

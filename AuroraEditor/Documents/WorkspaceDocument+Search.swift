@@ -12,7 +12,8 @@ import WorkspaceClient
 extension WorkspaceDocument {
     final class SearchState: ObservableObject {
         var workspace: WorkspaceDocument
-        @Published var searchResult: [SearchResultModel] = []
+        @Published
+        var searchResult: [SearchResultModel] = []
 
         init(_ workspace: WorkspaceDocument) {
             self.workspace = workspace

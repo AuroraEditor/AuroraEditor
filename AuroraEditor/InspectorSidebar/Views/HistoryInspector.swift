@@ -17,7 +17,8 @@ struct HistoryInspector: View {
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
-    @State var selectedCommitHistory: Commit?
+    @State
+    var selectedCommitHistory: Commit?
 
     /// Initialize with GitClient
     /// - Parameter gitClient: a GitClient

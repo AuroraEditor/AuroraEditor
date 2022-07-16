@@ -327,11 +327,11 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
 }
 
 private extension NSToolbarItem.Identifier {
-    static let toggleFirstSidebarItem: NSToolbarItem.Identifier = NSToolbarItem.Identifier("ToggleFirstSidebarItem")
-    static let toggleLastSidebarItem: NSToolbarItem.Identifier = NSToolbarItem.Identifier("ToggleLastSidebarItem")
+    static let toggleFirstSidebarItem = NSToolbarItem.Identifier("ToggleFirstSidebarItem")
+    static let toggleLastSidebarItem = NSToolbarItem.Identifier("ToggleLastSidebarItem")
     static let itemListTrackingSeparator = NSToolbarItem.Identifier("ItemListTrackingSeparator")
-    static let branchPicker: NSToolbarItem.Identifier = NSToolbarItem.Identifier("BranchPicker")
-    static let libraryPopup: NSToolbarItem.Identifier = NSToolbarItem.Identifier("LibraryPopup")
-    static let runApplication: NSToolbarItem.Identifier = NSToolbarItem.Identifier("RunApplication")
-    static let toolbarAppInformation: NSToolbarItem.Identifier = NSToolbarItem.Identifier("ToolbarAppInformation")
+    static let branchPicker = NSToolbarItem.Identifier("BranchPicker")
+    static let libraryPopup = NSToolbarItem.Identifier("LibraryPopup")
+    static let runApplication = NSToolbarItem.Identifier("RunApplication")
+    static let toolbarAppInformation = NSToolbarItem.Identifier("ToolbarAppInformation")
 }

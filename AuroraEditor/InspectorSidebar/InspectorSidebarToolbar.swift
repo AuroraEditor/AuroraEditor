@@ -11,16 +11,36 @@ struct InspectorSidebarToolbarTop: View {
     @Binding
     private var selection: Int
 
-    @State var targeted: Bool = true
-    @State private var icons = [
-        InspectorDockIcon(imageName: "doc", title: "File Inspector", id: 0),
-        InspectorDockIcon(imageName: "clock", title: "History Inspector", id: 1),
-        InspectorDockIcon(imageName: "questionmark.circle", title: "Quick Help Inspector", id: 2)
+    @State
+    var targeted: Bool = true
+
+    @State
+    private var icons = [
+        InspectorDockIcon(
+            imageName: "doc",
+            title: "File Inspector",
+            id: 0
+        ),
+        InspectorDockIcon(
+            imageName: "clock",
+            title: "History Inspector",
+            id: 1
+        ),
+        InspectorDockIcon(
+            imageName: "questionmark.circle",
+            title: "Quick Help Inspector",
+            id: 2
+        )
     ]
 
-    @State private var hasChangedLocation: Bool = false
-    @State private var draggingItem: InspectorDockIcon?
-    @State private var drugItemLocation: CGPoint?
+    @State
+    private var hasChangedLocation: Bool = false
+
+    @State
+    private var draggingItem: InspectorDockIcon?
+
+    @State
+    private var drugItemLocation: CGPoint?
 
     init(selection: Binding<Int>) {
         self._selection = selection
@@ -29,16 +49,23 @@ struct InspectorSidebarToolbarTop: View {
     var body: some View {
         HStack(spacing: 10) {
             ForEach(icons) { icon in
-                makeInspectorIcon(systemImage: icon.imageName, title: icon.title, id: icon.id)
-                    .opacity(draggingItem?.imageName == icon.imageName &&
-                             hasChangedLocation &&
-                             drugItemLocation != nil ? 0.0: 1.0)
-                    .onDrop(of: [.utf8PlainText],
-                            delegate: InspectorSidebarDockIconDelegate(item: icon,
-                                                                        current: $draggingItem,
-                                                                        icons: $icons,
-                                                                        hasChangedLocation: $hasChangedLocation,
-                                                                        drugItemLocation: $drugItemLocation))
+                makeInspectorIcon(
+                    systemImage: icon.imageName,
+                    title: icon.title,
+                    id: icon.id
+                )
+                .opacity(draggingItem?.imageName == icon.imageName &&
+                         hasChangedLocation &&
+                         drugItemLocation != nil ? 0.0: 1.0)
+                .onDrop(of: [.utf8PlainText],
+                        delegate: InspectorSidebarDockIconDelegate(
+                            item: icon,
+                            current: $draggingItem,
+                            icons: $icons,
+                            hasChangedLocation: $hasChangedLocation,
+                            drugItemLocation: $drugItemLocation
+                        )
+                )
             }
         }
         .frame(height: 29, alignment: .center)
@@ -59,9 +86,9 @@ struct InspectorSidebarToolbarTop: View {
                 .foregroundColor(id == selection ? .accentColor : .secondary)
                 .frame(width: 16, alignment: .center)
                 .onDrag {
-                if let index = icons.firstIndex(where: { $0.imageName == systemImage }) {
-                    draggingItem = icons[index]
-                }
+                    if let index = icons.firstIndex(where: { $0.imageName == systemImage }) {
+                        draggingItem = icons[index]
+                    }
                     return .init(object: NSString(string: systemImage))
                 } preview: {
                     RoundedRectangle(cornerRadius: .zero)
@@ -87,10 +114,18 @@ struct InspectorSidebarToolbarTop: View {
 
     private struct InspectorSidebarDockIconDelegate: DropDelegate {
         let item: InspectorDockIcon
-        @Binding var current: InspectorDockIcon?
-        @Binding var icons: [InspectorDockIcon]
-        @Binding var hasChangedLocation: Bool
-        @Binding var drugItemLocation: CGPoint?
+
+        @Binding
+        var current: InspectorDockIcon?
+
+        @Binding
+        var icons: [InspectorDockIcon]
+
+        @Binding
+        var hasChangedLocation: Bool
+
+        @Binding
+        var drugItemLocation: CGPoint?
 
         func dropEntered(info: DropInfo) {
             if current == nil {

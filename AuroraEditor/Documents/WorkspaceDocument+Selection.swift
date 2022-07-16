@@ -12,7 +12,6 @@ import TabBar
 import ExtensionsStore
 
 struct WorkspaceSelectionState: Codable {
-
     var selectedId: TabBarItemID?
     var openedTabs: [TabBarItemID] = []
     var temporaryTab: TabBarItemID?
