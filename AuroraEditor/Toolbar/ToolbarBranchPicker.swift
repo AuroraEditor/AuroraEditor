@@ -19,9 +19,15 @@ public struct ToolbarBranchPicker: View {
     private var controlActive
     private var workspace: WorkspaceClient?
     private var gitClient: GitClient?
-    @State private var isHovering: Bool = false
-    @State private var displayPopover: Bool = false
-    @State private var currentBranch: String?
+
+    @State
+    private var isHovering: Bool = false
+
+    @State
+    private var displayPopover: Bool = false
+
+    @State
+    private var currentBranch: String?
 
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
@@ -119,7 +125,8 @@ public struct ToolbarBranchPicker: View {
 
         var gitClient: GitClient?
 
-        @Binding var currentBranch: String?
+        @Binding
+        var currentBranch: String?
 
         var body: some View {
             VStack(alignment: .leading) {

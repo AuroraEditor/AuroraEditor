@@ -9,7 +9,6 @@ import SwiftUI
 struct QuickHelpInspector: View {
     var body: some View {
         VStack(alignment: .leading) {
-
             Text("Quick Help")
                 .foregroundColor(.secondary)
                 .fontWeight(.bold)
@@ -26,9 +25,10 @@ struct QuickHelpInspector: View {
 
             Button("Search Documentation") {
 
-            }.background(in: RoundedRectangle(cornerRadius: 4))
-                .frame(width: 250, alignment: .center)
-                .font(.system(size: 12))
+            }
+            .background(in: RoundedRectangle(cornerRadius: 4))
+            .frame(width: 250, alignment: .center)
+            .font(.system(size: 12))
 
             Divider().padding(.top, 15)
 

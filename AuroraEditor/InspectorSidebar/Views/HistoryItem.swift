@@ -12,7 +12,8 @@ struct HistoryItem: View {
 
     var commit: Commit
 
-    @Binding var selection: Commit?
+    @Binding
+    var selection: Commit?
 
     private var showPopup: Binding<Bool> {
         Binding<Bool> {
