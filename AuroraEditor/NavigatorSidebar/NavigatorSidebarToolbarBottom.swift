@@ -42,7 +42,8 @@ struct NavigatorSidebarToolbarBottom: View {
             Button("Add Folder") {
                 guard let folderURL = workspace.workspaceClient?.folderURL() else { return }
                 guard let root = try? workspace.workspaceClient?.getFileItem(folderURL.path) else { return }
-                root.addFolder(folderName: "untitled") // TODO: use currently selected file instead of root
+                // TODO: use currently selected file instead of root
+                root.addFolder(folderName: "untitled")
             }
         } label: {
             Image(systemName: "plus")

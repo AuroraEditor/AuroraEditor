@@ -15,7 +15,7 @@ public class NotificationManager: ObservableObject {
     public var banners: [BannerModule] = []
 
     public init() {}
-    
+
     public func postProgressNotification(title: String, progress: Progress) {
         banners.append(
             BannerModule(

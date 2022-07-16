@@ -7,13 +7,12 @@
 
 import SwiftUI
 
-// swiftlint:disable line_length
 public struct NotificationCentreView: View {
 
     @ObservedObject
     private var notificationCentre: NotificationManager = .shared
 
-    public init(){}
+    public init() {}
 
     public var body: some View {
         VStack {
@@ -21,8 +20,10 @@ public struct NotificationCentreView: View {
                 .padding(.top)
 
             List(notificationCentre.banners.indices) { notification in
-                notificationCentre.banners[notification].data.makeBanner(isPresented: $notificationCentre.banners[notification].isPresented,
-                                                              isRemoved: $notificationCentre.banners[notification].isRemoved)
+                notificationCentre.banners[notification].data.makeBanner(
+                    isPresented: $notificationCentre.banners[notification].isPresented,
+                    isRemoved: $notificationCentre.banners[notification].isRemoved
+                )
             }
         }
     }

@@ -54,37 +54,37 @@ public struct GitClient {
     }
 
     public enum GitClientError: Error {
-        case BadConfigFile
-        case AuthenticationFailed
-        case NoUserNameConfigured
-        case NoUserEmailConfigured
-        case NotAGitRepository
-        case NotAtRepositoryRoot
-        case Conflict
-        case StashConflict
-        case UnmergedChanges
-        case PushRejected
-        case RemoteConnectionError
-        case DirtyWorkTree
-        case CantOpenResource
-        case GitNotFound
-        case CantCreatePipe
-        case CantAccessRemote
-        case RepositoryNotFound
-        case RepositoryIsLocked
-        case BranchNotFullyMerged
-        case NoRemoteReference
-        case InvalidBranchName
-        case BranchAlreadyExists
-        case NoLocalChanges
-        case NoStashFound
-        case LocalChangesOverwritten
-        case NoUpstreamBranch
-        case IsInSubModule
-        case WrongCase
-        case CantLockRef
-        case CantRebaseMultipleBranches
-        case PatchDoesNotApply
+        case badConfigFile
+        case authenticationFailed
+        case noUserNameConfigured
+        case noUserEmailConfigured
+        case notAGitRepository
+        case notAtRepositoryRoot
+        case conflict
+        case stashConflict
+        case unmergedChanges
+        case pushRejected
+        case remoteConnectionError
+        case dirtyWorkTree
+        case cantOpenResource
+        case gitNotFound
+        case cantCreatePipe
+        case cantAccessRemote
+        case repositoryNotFound
+        case repositoryIsLocked
+        case branchNotFullyMerged
+        case noRemoteReference
+        case invalidBranchName
+        case branchAlreadyExists
+        case noLocalChanges
+        case noStashFound
+        case localChangesOverwritten
+        case noUpstreamBranch
+        case isInSubModule
+        case wrongCase
+        case cantLockRef
+        case cantRebaseMultipleBranches
+        case patchDoesNotApply
         case outputError(String)
         case notGitRepository
         case failedToDecodeURL

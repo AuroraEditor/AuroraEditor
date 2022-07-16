@@ -161,13 +161,36 @@ final class OutlineMenu: NSMenu {
 
     /// Submenu for **Source Control** menu item.
     private func sourceControlMenu(item: Item) -> NSMenu {
-        let sourceControlMenu = NSMenu(title: "Source Control")
-        sourceControlMenu.addItem(withTitle: "Commit \"\(item.fileName)\"...", action: nil, keyEquivalent: "")
-        sourceControlMenu.addItem(.separator())
-        sourceControlMenu.addItem(menuItem("Discard Changes in \"\(item.fileName)\"...", action: #selector(discardChangesInFile)))
-        sourceControlMenu.addItem(.separator())
-        sourceControlMenu.addItem(withTitle: "Add Selected Files", action: nil, keyEquivalent: "")
-        sourceControlMenu.addItem(withTitle: "Mark Selected Files as Resolved", action: nil, keyEquivalent: "")
+        let sourceControlMenu = NSMenu(
+            title: "Source Control"
+        )
+        sourceControlMenu.addItem(
+            withTitle: "Commit \"\(item.fileName)\"...",
+            action: nil,
+            keyEquivalent: ""
+        )
+        sourceControlMenu.addItem(
+            .separator()
+        )
+        sourceControlMenu.addItem(
+            menuItem(
+                "Discard Changes in \"\(item.fileName)\"...",
+                action: #selector(discardChangesInFile)
+            )
+        )
+        sourceControlMenu.addItem(
+            .separator()
+        )
+        sourceControlMenu.addItem(
+            withTitle: "Add Selected Files",
+            action: nil,
+            keyEquivalent: ""
+        )
+        sourceControlMenu.addItem(
+            withTitle: "Mark Selected Files as Resolved",
+            action: nil,
+            keyEquivalent: ""
+        )
 
         return sourceControlMenu
     }

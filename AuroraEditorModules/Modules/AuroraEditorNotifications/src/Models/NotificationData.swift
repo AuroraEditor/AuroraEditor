@@ -8,8 +8,12 @@
 import Foundation
 import SwiftUI
 
+// TODO: DOCS
+/// TODO: DOCS
 public typealias NotificationMessage = String
 
+// TODO: DOCS
+/// TODO: DOCS
 public protocol NotificationProperties {
 
     /**
@@ -32,26 +36,21 @@ public protocol NotificationProperties {
     var neverShowAgain: INeverShowAgainOptions? { get }
 }
 
+// TODO: DOCS
+/// TODO: DOCS
 public enum NeverShowAgainScope {
-
-    /**
-     * Will never show this notification on the current workspace again.
-     */
+    /// Will never show this notification on the current workspace again.
     case WORKSPACE
 
-    /**
-     * Will never show this notification on any workspace of the same
-     * profile again.
-     */
+    /// Will never show this notification on any workspace of the same profile again.
     case PROFILE
 
-    /**
-     * Will never show this notification on any workspace across all
-     * profiles again.
-     */
+    /// Will never show this notification on any workspace across all profiles again.
     case APPLICATION
 }
 
+// TODO: DOCS
+/// TODO: DOCS
 public protocol INeverShowAgainOptions {
 
     /**
@@ -100,6 +99,8 @@ public protocol INotification: NotificationProperties {
     var progress: INotificationProgressProperties { get }
 }
 
+// TODO: DOCS
+/// TODO: DOCS
 public protocol INotificationProgressProperties {
 
     /**
@@ -118,6 +119,8 @@ public protocol INotificationProgressProperties {
     var worked: Int64? { get }
 }
 
+// TODO: DOCS
+/// TODO: DOCS
 public protocol INotificationProgress {
 
     /**
@@ -141,28 +144,22 @@ public protocol INotificationProgress {
     func done()
 }
 
+/// Notifications filter
 public enum NotificationsFilter {
-
-    /**
-     * No filter is enabled.
-     */
+    /// No filter is enabled.
     case OFF
 
-    /**
-     * All notifications are configured as silent. See
-     * `INotificationProperties.silent` for more info.
-     */
+    /// All notifications are configured as silent. See
+    /// `INotificationProperties.silent` for more info.
     case SILENT
 
-    /**
-     * All notifications are silent except error notifications.
-     */
+    /// All notifications are silent except error notifications.
     case ERROR
 }
 
 public struct NotificationData: Codable {
     let title: String
-    var source: String? = nil
+    var source: String?
 
     let priority: Priority
     let style: Style

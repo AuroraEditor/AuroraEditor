@@ -14,7 +14,9 @@ import Git
 import AppPreferences
 import AuroraEditorUtils
 
+// swiftlint:disable:next type_body_length
 final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate {
+
     private var prefs: AppPreferencesModel = .shared
 
     var workspace: WorkspaceDocument?
@@ -204,14 +206,20 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
 
             return toolbarItem
         case .libraryPopup:
-            let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.libraryPopup)
+            let toolbarItem = NSToolbarItem(
+                itemIdentifier: NSToolbarItem.Identifier.libraryPopup
+            )
             toolbarItem.label = "Library"
             toolbarItem.paletteLabel = "Library"
             toolbarItem.toolTip = "Library"
             toolbarItem.isEnabled = false
             toolbarItem.target = self
-            toolbarItem.image = NSImage(systemSymbolName: "plus",
-                                        accessibilityDescription: nil)?.withSymbolConfiguration(.init(scale: .small))
+            toolbarItem.image = NSImage(
+                systemSymbolName: "plus",
+                accessibilityDescription: nil
+            )?.withSymbolConfiguration(
+                .init(scale: .small)
+            )
 
             return toolbarItem
         default:
@@ -281,28 +289,28 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
 
     @IBAction func stashChangesItems(_ sender: Any) {
         if tryFocusWindow(of: StashChangesSheet.self) { return }
-        if model.changed.count > 0 {
-            StashChangesSheet(workspaceURL: (workspace?.fileURL!)!).showWindow()
-        } else {
+        if model.changed.isEmpty {
             let alert = NSAlert()
             alert.alertStyle = .informational
             alert.messageText = "Cannot Stash Changes"
             alert.informativeText = "There are no uncommitted changes in the working copies for this project."
             alert.addButton(withTitle: "OK")
             alert.runModal()
+        } else {
+            StashChangesSheet(workspaceURL: (workspace?.fileURL!)!).showWindow()
         }
     }
 
     @IBAction func discardProjectChanges(_ sender: Any) {
-        if model.changed.count > 0 {
-            model.discardProjectChanges()
-        } else {
+        if model.changed.isEmpty {
             let alert = NSAlert()
             alert.alertStyle = .informational
             alert.messageText = "Cannot Discard Changes"
             alert.informativeText = "There are no uncommitted changes in the working copies for this project."
             alert.addButton(withTitle: "OK")
             alert.runModal()
+        } else {
+            model.discardProjectChanges()
         }
     }
 
