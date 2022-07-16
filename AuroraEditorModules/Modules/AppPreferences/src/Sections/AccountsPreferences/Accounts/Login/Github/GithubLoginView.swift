@@ -16,7 +16,7 @@ struct GithubLoginView: View {
 
     @Environment(\.openURL) var createToken
 
-    private let keychain = CodeEditKeychain()
+    private let keychain = AuroraEditorKeychain()
 
     @Binding var dismissDialog: Bool
 

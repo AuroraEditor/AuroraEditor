@@ -56,7 +56,7 @@ In this example we might want to name it "AdvancedPreferences".
 
 Inside the folder create a new SwiftUI view and name it "PreferencesAdvancedView.swift".
 
-Then go to the main `CodeEdit` target and open the "AppDelegate.swift" and scroll down to find the `private lazy var preferencesWindowController` instance. Search for the `Pane` titled "Advanced" and replace `PreferencesPlaceholderView()` with your newly created `PreferencesAdvancedView()`.
+Then go to the main `AuroraEditor` target and open the "AppDelegate.swift" and scroll down to find the `private lazy var preferencesWindowController` instance. Search for the `Pane` titled "Advanced" and replace `PreferencesPlaceholderView()` with your newly created `PreferencesAdvancedView()`.
 
 Back in "PreferencesAdvancedView.swift" implement your option like that:
 

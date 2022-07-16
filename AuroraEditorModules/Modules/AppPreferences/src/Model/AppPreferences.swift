@@ -9,9 +9,9 @@ import SwiftUI
 
 /// # AppPreferences
 ///
-/// The model structure of settings for `CodeEdit`
+/// The model structure of settings for `AuroraEditor`
 ///
-/// A `JSON` representation is persisted in `~/.codeedit/preference.json`.
+/// A `JSON` representation is persisted in `~/.config/auroraeditor/preference.json`.
 /// - Attention: Don't use `UserDefaults` for persisting user accessible settings.
 ///  If a further setting is needed, extend the struct like ``GeneralPreferences``,
 ///  ``ThemePreferences``,  or ``TerminalPreferences`` does.

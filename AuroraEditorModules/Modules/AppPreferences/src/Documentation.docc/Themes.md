@@ -2,7 +2,7 @@
 
 ## Overview
 
-A ``AppPreferences/Theme`` is stored in a `theme_name.json` file in the `~/.codeedit/themes/` directory. There are a
+A ``AppPreferences/Theme`` is stored in a `theme_name.json` file in the `~/.config/auroraeditor/themes/` directory. There are a
 couple of bundled themes that will automatically be put there once the app starts.
 
 Once a `JSON` file is loaded, the ``AppPreferences/Theme`` gets added to ``AppPreferences/ThemeModel/themes``.
@@ -13,14 +13,14 @@ They can either be ``AppPreferences/Theme/ThemeType/dark`` or ``AppPreferences/T
 
 ```json
 {
-  "author" : "CodeEdit",
-  "name" : "codeedit-xcode-dark",
+  "author" : "AuroraEditor",
+  "name" : "ae-xcode-dark",
   "displayName" : "Xcode Dark",
   "description" : "Xcode dark theme.",
   "version" : "0.0.1",
   "license" : "MIT",
   "type" : "dark",
-  "distributionURL" : "https:\/\/github.com\/CodeEditApp\/CodeEdit",
+  "distributionURL" : "https:\/\/github.com\/AuroraEditor\/AuroraEditor",
   "editor" : { ... },
   "terminal" : { ... }
 }

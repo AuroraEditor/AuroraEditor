@@ -1,6 +1,6 @@
 //
-//  CodeEditKeychain.swift
-//  AuroraEditorModules/AuroraEditorUtils
+//  AuroraEditorKeychain.swift
+//  AuroraEditor/AuroraEditorUtils
 //
 //  Created by Nanashi Li on 2022/04/14.
 //
@@ -10,7 +10,7 @@ import Security
 
 // TODO: DOCS (Nanashi Li)
 // swiftlint:disable missing_docs
-open class CodeEditKeychain {
+open class AuroraEditorKeychain {
 
     var lastQueryParameters: [String: Any]? // Used by the unit tests
 

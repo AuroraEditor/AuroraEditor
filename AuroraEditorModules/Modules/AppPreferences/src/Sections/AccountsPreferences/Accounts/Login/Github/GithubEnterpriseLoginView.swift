@@ -22,7 +22,7 @@ struct GithubEnterpriseLoginView: View {
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
-    private let keychain = CodeEditKeychain()
+    private let keychain = AuroraEditorKeychain()
 
     var body: some View {
         VStack {

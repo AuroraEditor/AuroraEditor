@@ -37,13 +37,14 @@ public final class AppPreferencesModel: ObservableObject {
     }
 
     /// Load and construct ``AppPreferences`` model from
-    /// `~/.codeedit/preferences.json`
+    /// `~/.config/auroraeditor/preferences.json`
     private func loadPreferences() -> AppPreferences {
         if !filemanager.fileExists(atPath: preferencesURL.path) {
-            let codeEditURL = filemanager
+            let auroraEditorURL = filemanager
                 .homeDirectoryForCurrentUser
-                .appendingPathComponent(".codeedit", isDirectory: true)
-            try? filemanager.createDirectory(at: codeEditURL, withIntermediateDirectories: false)
+                .appendingPathComponent(".config", isDirectory: true)
+                .appendingPathComponent("auroraeditor", isDirectory: true)
+            try? filemanager.createDirectory(at: auroraEditorURL, withIntermediateDirectories: false)
             return .init()
         }
 
@@ -56,7 +57,7 @@ public final class AppPreferencesModel: ObservableObject {
     }
 
     /// Save``AppPreferences`` model to
-    /// `~/.codeedit/preferences.json`
+    /// `~/.config/auroraeditor/preferences.json`
     private func savePreferences() throws {
         let data = try JSONEncoder().encode(preferences)
         let json = try JSONSerialization.jsonObject(with: data)
@@ -69,16 +70,17 @@ public final class AppPreferencesModel: ObservableObject {
 
     /// The base URL of preferences.
     ///
-    /// Points to `~/.codeedit/`
+    /// Points to `~/.config/auroraeditor/`
     internal var baseURL: URL {
         filemanager
             .homeDirectoryForCurrentUser
-            .appendingPathComponent(".codeedit", isDirectory: true)
+            .appendingPathComponent(".config", isDirectory: true)
+            .appendingPathComponent("auroraeditor", isDirectory: true)
     }
 
     /// The URL of the `preferences.json` settings file.
     ///
-    /// Points to `~/.codeedit/preferences.json`
+    /// Points to `~/.config/auroraeditor/preferences.json`
     private var preferencesURL: URL {
         baseURL
             .appendingPathComponent("preferences")
