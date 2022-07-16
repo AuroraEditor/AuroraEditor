@@ -12,10 +12,11 @@ final class FeedbackWindowController: NSWindowController, NSToolbarDelegate {
         let hostingController = NSHostingController(rootView: view)
         let window = NSWindow(contentViewController: hostingController)
         self.init(window: window)
-        window.title = "Feedback for CodeEdit"
+        window.title = "Feedback for Aurora Editor"
         window.setContentSize(size)
         window.styleMask.insert(.fullSizeContentView)
         window.styleMask.remove(.resizable)
+        window.titlebarSeparatorStyle = .none
     }
 
     override func showWindow(_ sender: Any?) {
