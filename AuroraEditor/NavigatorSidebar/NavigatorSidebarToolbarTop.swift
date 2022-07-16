@@ -15,20 +15,63 @@ struct NavigatorSidebarToolbarTop: View {
     @Binding
     private var selection: Int
 
-    @State private var icons = [
-        SidebarDockIcon(imageName: "folder", title: "Project", id: 0),
-        SidebarDockIcon(imageName: "vault", title: "Version Control", id: 1),
-        SidebarDockIcon(imageName: "magnifyingglass", title: "Search", id: 2),
-        SidebarDockIcon(imageName: "shippingbox", title: "...", id: 3),
-        SidebarDockIcon(imageName: "play", title: "...", id: 4),
-        SidebarDockIcon(imageName: "exclamationmark.triangle", title: "...", id: 5),
-        SidebarDockIcon(imageName: "curlybraces.square", title: "...", id: 6),
-        SidebarDockIcon(imageName: "puzzlepiece.extension", title: "...", id: 7),
-        SidebarDockIcon(imageName: "square.grid.2x2", title: "...", id: 8)
+    @State
+    private var icons = [
+        SidebarDockIcon(
+            imageName: "folder",
+            title: "Project",
+            id: 0
+        ),
+        SidebarDockIcon(
+            imageName: "vault",
+            title: "Version Control",
+            id: 1
+        ),
+        SidebarDockIcon(
+            imageName: "magnifyingglass",
+            title: "Search",
+            id: 2
+        ),
+        SidebarDockIcon(
+            imageName: "shippingbox",
+            title: "...",
+            id: 3
+        ),
+        SidebarDockIcon(
+            imageName: "play",
+            title: "...",
+            id: 4
+        ),
+        SidebarDockIcon(
+            imageName: "exclamationmark.triangle",
+            title: "...",
+            id: 5
+        ),
+        SidebarDockIcon(
+            imageName: "curlybraces.square",
+            title: "...",
+            id: 6
+        ),
+        SidebarDockIcon(
+            imageName: "puzzlepiece.extension",
+            title: "...",
+            id: 7
+        ),
+        SidebarDockIcon(
+            imageName: "square.grid.2x2",
+            title: "...",
+            id: 8
+        )
     ]
-    @State private var hasChangedLocation: Bool = false
-    @State private var draggingItem: SidebarDockIcon?
-    @State private var drugItemLocation: CGPoint?
+
+    @State
+    private var hasChangedLocation: Bool = false
+
+    @State
+    private var draggingItem: SidebarDockIcon?
+
+    @State
+    private var drugItemLocation: CGPoint?
 
     init(selection: Binding<Int>) {
         self._selection = selection
@@ -37,16 +80,24 @@ struct NavigatorSidebarToolbarTop: View {
     var body: some View {
         HStack(spacing: 2) {
             ForEach(icons) { icon in
-                makeIcon(named: icon.imageName, title: icon.title, id: icon.id)
-                    .opacity(draggingItem?.imageName == icon.imageName &&
-                             hasChangedLocation &&
-                             drugItemLocation != nil ? 0.0: 1.0)
-                    .onDrop(of: [.utf8PlainText],
-                            delegate: NavigatorSidebarDockIconDelegate(item: icon,
-                                                                        current: $draggingItem,
-                                                                        icons: $icons,
-                                                                        hasChangedLocation: $hasChangedLocation,
-                                                                        drugItemLocation: $drugItemLocation))
+                makeIcon(
+                    named: icon.imageName,
+                    title: icon.title,
+                    id: icon.id
+                )
+                .opacity(draggingItem?.imageName == icon.imageName &&
+                         hasChangedLocation &&
+                         drugItemLocation != nil ? 0.0: 1.0)
+                .onDrop(
+                    of: [.utf8PlainText],
+                        delegate: NavigatorSidebarDockIconDelegate(
+                            item: icon,
+                            current: $draggingItem,
+                            icons: $icons,
+                            hasChangedLocation: $hasChangedLocation,
+                            drugItemLocation: $drugItemLocation
+                        )
+                )
             }
         }
         .frame(height: 29, alignment: .center)
@@ -81,7 +132,10 @@ struct NavigatorSidebarToolbarTop: View {
     }
 
     private func getSafeImage(named: String, accesibilityDescription: String?) -> Image {
-        if let nsImage = NSImage(systemSymbolName: named, accessibilityDescription: accesibilityDescription) {
+        if let nsImage = NSImage(
+            systemSymbolName: named,
+            accessibilityDescription: accesibilityDescription
+        ) {
             return Image(nsImage: nsImage)
         } else {
             return Image(symbol: named)
@@ -130,7 +184,10 @@ struct NavigatorSidebarToolbarTop: View {
             drugItemLocation = info.location
 
             if icons[toIndex] != current {
-                icons.move(fromOffsets: IndexSet(integer: from), toOffset: toIndex > from ? toIndex + 1 : toIndex)
+                icons.move(
+                    fromOffsets: IndexSet(integer: from),
+                    toOffset: toIndex > from ? toIndex + 1 : toIndex
+                )
             }
         }
 
