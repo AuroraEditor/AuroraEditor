@@ -29,7 +29,7 @@ final class AcknowledgementsModel: ObservableObject {
                 for dependency in parsedJSON.object.pins.sorted(by: { $0.package < $1.package }) {
                     // Filter out Dependencies containing CodeEdit (case insensitive)
                     if dependency.package.range(
-                        of: "[Cc]ode[Ee]dit",
+                        of: "[Aa]rora[Ee]ditor",
                         options: .regularExpression,
                         range: nil,
                         locale: nil
