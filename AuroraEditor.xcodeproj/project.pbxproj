@@ -896,7 +896,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# The following script copies the generated Package.resolved file into the project directory, ignoring any errors.\ncp ${PROJECT_DIR}/CodeEdit.xcworkspace/xcshareddata/swiftpm/Package.resolved ${PROJECT_DIR} || :\n";
+			shellScript = "# The following script copies the generated Package.resolved file into the project directory, ignoring any errors.\ncp ${PROJECT_DIR}/AuroraEditor.xcworkspace/xcshareddata/swiftpm/Package.resolved ${PROJECT_DIR} || :\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
