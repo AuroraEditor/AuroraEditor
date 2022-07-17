@@ -19,7 +19,6 @@ final class OutlineTableViewCell: NSTableCellView {
         super.init(frame: frameRect)
 
         // Create the label
-
         self.label = NSTextField(frame: .zero)
         self.label.translatesAutoresizingMaskIntoConstraints = false
         self.label.drawsBackground = false
@@ -34,7 +33,6 @@ final class OutlineTableViewCell: NSTableCellView {
         self.textField = label
 
         // Create the icon
-
         self.icon = NSImageView(frame: .zero)
         self.icon.translatesAutoresizingMaskIntoConstraints = false
         self.icon.symbolConfiguration = .init(pointSize: fontSize, weight: .regular, scale: .medium)
@@ -43,14 +41,12 @@ final class OutlineTableViewCell: NSTableCellView {
         self.imageView = icon
 
         // Icon constraints
-
         self.icon.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: -2).isActive = true
         self.icon.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         self.icon.widthAnchor.constraint(equalToConstant: 25).isActive = true
         self.icon.heightAnchor.constraint(equalToConstant: frameRect.height).isActive = true
 
         // Label constraints
-
         self.label.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 1).isActive = true
         self.label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 1).isActive = true
         self.label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -92,9 +88,8 @@ extension OutlineTableViewCell: NSTextFieldDelegate {
     func validateFileName(for newName: String) -> Bool {
         guard newName != fileItem.fileName else { return true }
 
-        guard newName != "" &&
-               !newName.isValidFilename &&
-               !WorkspaceClient.FileItem.fileManger.fileExists(atPath:
+        guard newName != "" && newName.isValidFilename &&
+              !WorkspaceClient.FileItem.fileManger.fileExists(atPath:
                     fileItem.url.deletingLastPathComponent().appendingPathComponent(newName).path)
         else { return false }
 
@@ -104,8 +99,8 @@ extension OutlineTableViewCell: NSTextFieldDelegate {
 
 extension String {
     var isValidFilename: Bool {
-        let regex = ".*[^A-Za-z0-9 ].*"
+        let regex = "[^:]"
         let testString = NSPredicate(format: "SELF MATCHES %@", regex)
-        return testString.evaluate(with: self)
+        return !testString.evaluate(with: self)
     }
 }
