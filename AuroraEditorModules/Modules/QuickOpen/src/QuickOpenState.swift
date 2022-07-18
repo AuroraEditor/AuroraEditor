@@ -21,7 +21,7 @@ public final class QuickOpenState: ObservableObject {
     }
 
     func fetchOpenQuickly() {
-        guard openQuicklyQuery != "" else {
+        guard !openQuicklyQuery.isEmpty else {
             openQuicklyFiles = []
             self.isShowingOpenQuicklyFiles = !openQuicklyFiles.isEmpty
             return

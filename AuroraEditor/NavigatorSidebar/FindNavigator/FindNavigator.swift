@@ -73,7 +73,7 @@ struct FindNavigator: View {
                     .menuStyle(.borderlessButton)
                     .frame(width: currentFilter == Filters.ignoring.rawValue ? 80 : 88)
                     .onAppear {
-                        if currentFilter == "" {
+                        if currentFilter.isEmpty {
                             currentFilter = Filters.ignoring.rawValue
                         }
                     }

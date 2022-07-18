@@ -39,7 +39,7 @@ public struct StashChangesSheet: View {
             TextEditor(text: $stashMessage)
                 .border(Color(NSColor.separatorColor))
                 .overlay {
-                    if stashMessage == "" {
+                    if stashMessage.isEmpty {
                         Text("Optional Message")
                             .font(.system(size: 14))
                             .font(.title)

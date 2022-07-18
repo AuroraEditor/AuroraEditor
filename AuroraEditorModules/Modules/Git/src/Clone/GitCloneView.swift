@@ -138,7 +138,7 @@ extension GitCloneView {
     // swiftlint:disable function_body_length cyclomatic_complexity
     private func cloneRepository() {
         do {
-            if repoUrlStr == "" {
+            if repoUrlStr.isEmpty {
                 showAlert(alertMsg: "Url cannot be empty",
                           infoText: "You must specify a repository to clone")
                 return

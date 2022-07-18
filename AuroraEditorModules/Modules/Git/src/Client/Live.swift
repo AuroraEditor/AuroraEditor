@@ -23,13 +23,13 @@ public extension GitClient {
                     "cd \(directoryURL.relativePath.escapedWhiteSpaces());git branch -a --format \"%(refname:short)\""
                 )
                     .components(separatedBy: "\n")
-                    .filter { $0 != "" }
+                    .filter { !$0.isEmpty }
             }
             return try shellClient.run(
                 "cd \(directoryURL.relativePath.escapedWhiteSpaces());git branch --format \"%(refname:short)\""
             )
                 .components(separatedBy: "\n")
-                .filter { $0 != "" }
+                .filter { !$0.isEmpty }
         }
 
         func getCurrentBranchName() throws -> String {

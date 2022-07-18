@@ -88,7 +88,7 @@ extension OutlineTableViewCell: NSTextFieldDelegate {
     func validateFileName(for newName: String) -> Bool {
         guard newName != fileItem.fileName else { return true }
 
-        guard newName != "" && newName.isValidFilename &&
+        guard !newName.isEmpty && newName.isValidFilename &&
               !WorkspaceClient.FileItem.fileManger.fileExists(atPath:
                     fileItem.url.deletingLastPathComponent().appendingPathComponent(newName).path)
         else { return false }
