@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CodeEditSymbols
+import AuroraEditorSymbols
 
 struct GitAccountItem: View {
 

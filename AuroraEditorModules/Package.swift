@@ -58,6 +58,10 @@ let package = Package(
             targets: ["AuroraEditorUI"]
         ),
         .library(
+            name: "AuroraEditorSymbols",
+            targets: ["AuroraEditorSymbols"]
+        ),
+        .library(
             name: "ExtensionsStore",
             targets: ["ExtensionsStore"]
         ),
@@ -116,11 +120,6 @@ let package = Package(
             name: "Light-Swift-Untar",
             url: "https://github.com/Light-Untar/Light-Swift-Untar",
             from: "1.0.4"
-        ),
-        .package(
-            name: "CodeEditSymbols",
-            url: "https://github.com/CodeEditApp/CodeEditSymbols",
-            branch: "main"
         )
     ],
     targets: [
@@ -184,7 +183,7 @@ let package = Package(
                 "TerminalEmulator",
                 "CodeFile",
                 "AuroraEditorUI",
-                "CodeEditSymbols"
+                "AuroraEditorSymbols"
             ],
             path: "Modules/StatusBar/src"
         ),
@@ -247,11 +246,16 @@ let package = Package(
         .target(
             name: "AuroraEditorUI",
             dependencies: [
-                "CodeEditSymbols",
+                "AuroraEditorSymbols",
                 "WorkspaceClient",
                 "Git"
             ],
             path: "Modules/AuroraEditorUI/src"
+        ),
+        .target(
+            name: "AuroraEditorSymbols",
+            dependencies: [],
+            path: "Modules/AuroraEditorSymbols/src"
         ),
         .testTarget(
             name: "AuroraEditorUITests",

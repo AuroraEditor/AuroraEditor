@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CodeEditSymbols
+import AuroraEditorSymbols
 import WorkspaceClient
 import ShellClient
 import AppPreferences
