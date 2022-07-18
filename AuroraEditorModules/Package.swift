@@ -88,14 +88,13 @@ let package = Package(
         .library(
             name: "AuroraEditorNotifications",
             targets: ["AuroraEditorNotifications"]
+        ),
+        .library(
+            name: "Highlightr",
+            targets: ["Highlightr"]
         )
     ],
     dependencies: [
-        .package(
-            name: "Highlightr",
-            url: "https://github.com/lukepistrol/Highlightr.git",
-            branch: "main"
-        ),
         .package(
             name: "SnapshotTesting",
             url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
@@ -338,6 +337,13 @@ let package = Package(
         .target(
             name: "AuroraEditorNotifications",
             path: "Modules/AuroraEditorNotifications/src"
+        ),
+        .target(
+            name: "Highlightr",
+            path: "Modules/Highlightr/src",
+            resources: [
+                .copy("assets")
+            ]
         )
     ]
 )
