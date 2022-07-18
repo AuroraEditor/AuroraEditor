@@ -39,10 +39,10 @@ This project originates from https://github.com/CodeEditApp/CodeEdit. We decided
   - Encouraging people to make PRs, even if they aren't complete (this is an issue with CodeEdit, many amazing PRs go stale or take forever).
   - Making the code review cycle faster, including allowing people to merge their PRs once they have recieved enough reviews, instead of having to wait for an admin to do it. 
   - Making a clearer todo so that there is never the "what to do" programmer dilemma that slows down development.
-  - Getting people interested in Swift. to go to [#swift-beginners](https://discord.gg/5aecJ4rq9D) on our Discord server for help!
+  - Getting people interested in Swift. Go to [#swift-beginners](https://discord.gg/5aecJ4rq9D) on our Discord server for help!
 - We want to make sure that the development discussion is *always* public, not kept in locked channels, and should stay that way,
 - We felt that the architecture of CodeEdit wasn't up to standard, but the admins were insistent on keeping the flawed structure. The only way we saw CodeEdit could continue is if this changed. 
-- Most of all, we want you to feel welcome, every commitment to the project counts.
+- Most of all, we want you to feel welcome, every commitment to the project counts!
 
 ## Community
 
