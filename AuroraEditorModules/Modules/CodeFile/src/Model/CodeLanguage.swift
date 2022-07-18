@@ -226,6 +226,6 @@ extension CodeLanguage {
         CodeLanguage(id: HighlightrLanguage.x86asm, displayName: "x86 Assembly", extensions: ["x86asm"]),
         CodeLanguage(id: HighlightrLanguage.xl, displayName: "Xl", extensions: ["xl"]),
         CodeLanguage(id: HighlightrLanguage.xquery, displayName: "Xquery", extensions: ["xquery"]),
-        CodeLanguage(id: HighlightrLanguage.zephir, displayName: "Zephir", extensions: ["zephir"]),
+        CodeLanguage(id: HighlightrLanguage.zephir, displayName: "Zephir", extensions: ["zephir"])
     ]
 }

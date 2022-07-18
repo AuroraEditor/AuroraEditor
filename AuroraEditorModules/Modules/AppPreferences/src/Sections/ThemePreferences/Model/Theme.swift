@@ -272,7 +272,7 @@ public extension Theme {
                 brightBlue.color,
                 brightMagenta.color,
                 brightCyan.color,
-                brightWhite.color,
+                brightWhite.color
             ]
         }
 

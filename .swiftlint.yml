@@ -1,6 +1,8 @@
+# Swiftlint configuration file.
+
+# Disabled rule, reason
 disabled_rules:
-  - todo
-  - trailing_comma
+  - todo # New project, we have a lot of // TODO:
   - nesting
 
 type_name:

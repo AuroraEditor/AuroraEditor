@@ -96,12 +96,12 @@ struct CodeEditor: NSViewRepresentable {
 
         let alt0NoSlash: [NSFontDescriptor.FeatureKey: Int] = [
             .selectorIdentifier: 6,
-            .typeIdentifier: kStylisticAlternativesType,
+            .typeIdentifier: kStylisticAlternativesType
         ]
 
         let alt1NoSerif: [NSFontDescriptor.FeatureKey: Int] = [
             .selectorIdentifier: 8,
-            .typeIdentifier: kStylisticAlternativesType,
+            .typeIdentifier: kStylisticAlternativesType
         ]
 
         let descriptor = font.fontDescriptor.addingAttributes([.featureSettings: [alt0NoSlash, alt1NoSerif]])
