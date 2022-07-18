@@ -242,12 +242,17 @@ open class Highlightr {
             scannedString = nil
         }
 
-        let results = htmlEscape.matches(in: resultString.string,
-                                               options: [.reportCompletion],
-                                               range: NSRange(location: 0, length: resultString.length))
+        let results = htmlEscape.matches(
+            in: resultString.string,
+            options: [.reportCompletion],
+            range: NSRange(location: 0, length: resultString.length)
+        )
         var locOffset = 0
         for result in results {
-            let fixedRange = NSRange(location: result.range.location-locOffset, length: result.range.length)
+            let fixedRange = NSRange(
+                location: result.range.location-locOffset,
+                length: result.range.length
+            )
             let entity = (resultString.string as NSString).substring(with: fixedRange)
             if let decodedEntity = HTMLUtils.decode(entity) {
                 resultString.replaceCharacters(in: fixedRange, with: String(decodedEntity))

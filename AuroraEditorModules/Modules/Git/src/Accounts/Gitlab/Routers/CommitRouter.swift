@@ -16,12 +16,11 @@ enum CommitRouter: Router {
 
     var configuration: Configuration? {
         switch self {
-        case .readCommits(let config, nil, nil, nil, nil): return config
-        case .readCommit(let config, nil, nil): return config
-        case .readCommitDiffs(let config, nil, nil): return config
-        case .readCommitComments(let config, nil, nil): return config
-        case .readCommitStatuses(let config, nil, nil, nil, nil, nil, nil): return config
-        default: return nil
+        case .readCommits(let config, _, _, _, _): return config
+        case .readCommit(let config, _, _): return config
+        case .readCommitDiffs(let config, _, _): return config
+        case .readCommitComments(let config, _, _): return config
+        case .readCommitStatuses(let config, _, _, _, _, _, _): return config
         }
     }
 
@@ -45,8 +44,6 @@ enum CommitRouter: Router {
             return [:]
         case let .readCommitStatuses(_, _, _, ref, stage, name, all):
             return ["ref": ref, "stage": stage, "name": name, "all": String(all)]
-        default:
-            return [:]
         }
     }
 
@@ -62,8 +59,6 @@ enum CommitRouter: Router {
             return "project/\(id)/repository/commits/\(sha)/comments"
         case let .readCommitStatuses(_, id, sha, _, _, _, _):
             return "project/\(id)/repository/commits/\(sha)/statuses"
-        default:
-            return ""
         }
     }
 }
