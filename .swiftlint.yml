@@ -3,7 +3,6 @@
 # Disabled rule, reason
 disabled_rules:
   - todo # New project, we have a lot of // TODO:
-  - nesting
 
 type_name:
   excluded:
@@ -27,6 +26,12 @@ opt_in_rules:
   - identical_operands
   - empty_count
   - empty_string
+
+# Custom configuration for nesting, this needs to be removed at some point.
+nesting:
+  type_level:
+    warning: 2 # warning if you nest 2 level deep instead of 1
+    error: 3 # error if you nest 3 level deep instead of 1
 
 custom_rules:
   spaces_over_tabs:
