@@ -23,7 +23,7 @@ opt_in_rules:
   - pattern_matching_keywords
   - modifier_order
   - identical_operands
-#  - empty_count
+  - empty_count
 #  - empty_string
 
 custom_rules:
