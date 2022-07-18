@@ -35,33 +35,35 @@ enum CommitRouter: Router {
 
     var params: [String: Any] {
         switch self {
-        case .readCommits(nil, nil, let refName, let since, let until):
+        case let .readCommits(_, _, refName, since, until):
             return ["ref_name": refName, "since": since, "until": until]
-        case .readCommit(nil, nil, nil):
+        case .readCommit:
             return [:]
-        case .readCommitDiffs(nil, nil, nil):
+        case .readCommitDiffs:
             return [:]
-        case .readCommitComments(nil, nil, nil):
+        case .readCommitComments:
             return [:]
-        case .readCommitStatuses(nil, nil, nil, let ref, let stage, let name, let all):
+        case let .readCommitStatuses(_, _, _, ref, stage, name, all):
             return ["ref": ref, "stage": stage, "name": name, "all": String(all)]
-        default: return [:]
+        default:
+            return [:]
         }
     }
 
     var path: String {
         switch self {
-        case .readCommits(nil, let id, nil, nil, nil):
+        case let .readCommits(_, id, _, _, _):
             return "project/\(id)/repository/commits"
-        case .readCommit(nil, let id, let sha):
+        case let .readCommit(_, id, sha):
             return "project/\(id)/repository/commits/\(sha)"
-        case .readCommitDiffs(nil, let id, let sha):
+        case let .readCommitDiffs(_, id, sha):
             return "project/\(id)/repository/commits/\(sha)/diff"
-        case .readCommitComments(nil, let id, let sha):
+        case let .readCommitComments(_, id, sha):
             return "project/\(id)/repository/commits/\(sha)/comments"
-        case .readCommitStatuses(nil, let id, let sha, nil, nil, nil, nil):
+        case let .readCommitStatuses(_, id, sha, _, _, _, _):
             return "project/\(id)/repository/commits/\(sha)/statuses"
-        default: return ""
+        default:
+            return ""
         }
     }
 }
