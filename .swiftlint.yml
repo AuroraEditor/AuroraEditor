@@ -22,7 +22,7 @@ opt_in_rules:
   - convenience_type
   - pattern_matching_keywords
   - modifier_order
-#  - identical_operands
+  - identical_operands
 #  - empty_count
 #  - empty_string
 
