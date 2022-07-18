@@ -1,24 +1,28 @@
 # Swiftlint configuration file.
+# Part of AuroraEditor.
+# Please do not remove optional rules, feel free to add some if needed.
 
-# Disabled rule, reason
+# Disabled rule, reason.
 disabled_rules:
   - todo # New project, we have a lot of // TODO:
 
+# Exclude triggering type names.
 type_name:
   excluded:
     - ID
 
+# Exclude triggering identifier names.
 identifier_name:
   excluded:
     - id
     - vc
 
+# Opt in rules, we want it more stricter.
 opt_in_rules:
   - empty_count
   - closure_spacing
   - contains_over_first_not_nil
   - missing_docs
-#  - implicit_return
   - modifier_order
   - convenience_type
   - pattern_matching_keywords
@@ -33,6 +37,7 @@ nesting:
     warning: 2 # warning if you nest 2 level deep instead of 1
     error: 3 # error if you nest 3 level deep instead of 1
 
+# Prefer spaces over tabs.
 custom_rules:
   spaces_over_tabs:
     included: ".*\\.swift"
