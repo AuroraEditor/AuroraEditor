@@ -21,6 +21,10 @@ opt_in_rules:
   - modifier_order
   - convenience_type
 #  - pattern_matching_keywords
+#  - modifier_order
+#  - identical_operands
+#  - empty_count
+#  - empty_string
 
 custom_rules:
   spaces_over_tabs:
