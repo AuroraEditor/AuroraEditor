@@ -19,9 +19,9 @@ It will support everything you could expect from an Xcode-inspired application, 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-![GitHub branch checks state](https://img.shields.io/github/checks-status/AuroraEditor/Editor/main?style=flat-square)
-![GitHub Repo stars](https://img.shields.io/github/stars/AuroraEditor/Editor?style=flat-square)
-![GitHub forks](https://img.shields.io/github/forks/AuroraEditor/Editor?style=flat-square)
+![GitHub branch checks state](https://img.shields.io/github/checks-status/AuroraEditor/AuroraEditor/main?style=flat-square)
+![GitHub Repo stars](https://img.shields.io/github/stars/AuroraEditor/AuroraEditor?style=flat-square)
+![GitHub forks](https://img.shields.io/github/forks/AuroraEditor/AuroraEditor?style=flat-square)
 
 | :warning: | **AuroraEditor is currently in development and we do not yet offer a download.** <br> We will post a link here when we have an alpha release ready for testing. <br> Until then, we welcome contributors to help bring this project to life. | 
 | - |:-|
