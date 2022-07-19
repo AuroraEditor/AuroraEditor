@@ -150,10 +150,10 @@ public final class ThemeModel: ObservableObject {
 
     private func loadBundledThemes() throws {
         let bundledThemeNames: [String] = [
-            "ae-xcode-dark",
-            "ae-xcode-light",
-            "ae-github-dark",
-            "ae-github-light"
+            "auroraeditor-xcode-dark",
+            "auroraeditor-xcode-light",
+            "auroraeditor-github-dark",
+            "auroraeditor-github-light"
         ]
         for themeName in bundledThemeNames {
             guard let defaultUrl = Bundle.main.url(forResource: themeName, withExtension: "json") else {

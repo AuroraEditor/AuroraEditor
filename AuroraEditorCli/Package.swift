@@ -11,6 +11,6 @@ let package = Package(
     targets: [
         .executableTarget(
             name: "AuroraEditorCli"
-        ),
+        )
     ]
 )

@@ -24,8 +24,8 @@ struct CodeEditor: NSViewRepresentable {
     private let language: CodeLanguage?
     private let highlightr = Highlightr()
 
-    private var themeString: String {
-        return ThemeModel.shared.selectedTheme?.highlightrThemeString ?? ""
+    private var themeString: String? {
+        return ThemeModel.shared.selectedTheme?.highlightrThemeString
     }
 
     private var lineGutterColor: NSColor {
@@ -41,7 +41,11 @@ struct CodeEditor: NSViewRepresentable {
     ) {
         self.content = content
         self.language = language
-        highlightr?.setTheme(theme: .init(themeString: themeString))
+        if let themeString = themeString {
+            highlightr?.setTheme(theme: .init(themeString: themeString))
+        } else {
+            highlightr?.setTheme(to: "xcode")
+        }
     }
 
     func makeNSView(context: Context) -> NSScrollView {
@@ -96,12 +100,12 @@ struct CodeEditor: NSViewRepresentable {
 
         let alt0NoSlash: [NSFontDescriptor.FeatureKey: Int] = [
             .selectorIdentifier: 6,
-            .typeIdentifier: kStylisticAlternativesType,
+            .typeIdentifier: kStylisticAlternativesType
         ]
 
         let alt1NoSerif: [NSFontDescriptor.FeatureKey: Int] = [
             .selectorIdentifier: 8,
-            .typeIdentifier: kStylisticAlternativesType,
+            .typeIdentifier: kStylisticAlternativesType
         ]
 
         let descriptor = font.fontDescriptor.addingAttributes([.featureSettings: [alt0NoSlash, alt1NoSerif]])
@@ -162,18 +166,25 @@ struct CodeEditor: NSViewRepresentable {
             ]
         }
 
-        // FIXME: For some reason the theme does not get applied once it is changed (Issue #555)
         // To reproduce: Change the app appearance and then select a different theme.
         // - `themeString` gets changed successfully
         // - background changes accordingly
-        highlightr?.setTheme(theme: .init(themeString: themeString))
+        if let themeString = themeString {
+            highlightr?.setTheme(theme: .init(themeString: themeString))
+        } else {
+            print("WARNING: failed to decode themeString, fallback on xcode theme")
+            highlightr?.setTheme(to: "xcode")
+        }
         if prefs.preferences.textEditing.font.customFont {
             highlightr?.theme.codeFont = .init(
                 name: prefs.preferences.textEditing.font.name,
                 size: CGFloat(prefs.preferences.textEditing.font.size)
             )
         } else {
-            highlightr?.theme.codeFont = .monospacedSystemFont(ofSize: 11, weight: .medium)
+            highlightr?.theme.codeFont = .monospacedSystemFont(
+                ofSize: 11,
+                weight: .medium
+            )
         }
 
         if content.wrappedValue != textView.string {

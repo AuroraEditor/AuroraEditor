@@ -12,16 +12,16 @@
   </a>
 </p>
 
-AuroraEditor is a IDE built by the community, for the community.
+AuroraEditor is a IDE built by the community, for the community, and written in Swift for the best native performance and feel for macOS. 
 
-It will support deep integration with your selected git provider with project planning even, but also not limited to your favourite built in editor tools.
+It will support everything you could expect from an Xcode-inspired application, including deep integration with your selected git provider, project planning, and your favourite built in editor tools.
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-![GitHub branch checks state](https://img.shields.io/github/checks-status/AuroraEditor/Editor/main?style=flat-square)
-![GitHub Repo stars](https://img.shields.io/github/stars/AuroraEditor/Editor?style=flat-square)
-![GitHub forks](https://img.shields.io/github/forks/AuroraEditor/Editor?style=flat-square)
+![GitHub branch checks state](https://img.shields.io/github/checks-status/AuroraEditor/AuroraEditor/main?style=flat-square)
+![GitHub Repo stars](https://img.shields.io/github/stars/AuroraEditor/AuroraEditor?style=flat-square)
+![GitHub forks](https://img.shields.io/github/forks/AuroraEditor/AuroraEditor?style=flat-square)
 
 | :warning: | **AuroraEditor is currently in development and we do not yet offer a download.** <br> We will post a link here when we have an alpha release ready for testing. <br> Until then, we welcome contributors to help bring this project to life. | 
 | - |:-|
@@ -34,10 +34,15 @@ Most comparable editors are built on Electron, This is a huge disadvantage becau
 
 ## Fork-Motivation
 
-- We want to encourage people to make PR's with shorter waiting times (and also supporting merging projects what you cannot finish yourself)
-- We want to make sure that the development discussion is *always* public, and should stay that way,
-- We want you to learn see [#swift-beginners](https://discord.gg/5aecJ4rq9D) on our Discord server.
-- Most of all, we want you to feel welcome, every commitment to the project counts.
+This project originates from https://github.com/CodeEditApp/CodeEdit. We decided to take our own direction with this project for several reasons:
+- We want to increase the rate of development, which means
+  - Encouraging people to make PRs, even if they aren't complete (this is an issue with CodeEdit, many amazing PRs go stale or take forever).
+  - Making the code review cycle faster, including allowing people to merge their PRs once they have recieved enough reviews, instead of having to wait for an admin to do it. 
+  - Making a clearer todo so that there is never the "what to do" programmer dilemma that slows down development.
+  - Getting people interested in Swift. Go to [#swift-beginners](https://discord.gg/5aecJ4rq9D) on our Discord server for help!
+- We want to make sure that the development discussion is *always* public, not kept in locked channels, and should stay that way,
+- We felt that the architecture of CodeEdit wasn't up to standard, but the admins were insistent on keeping the flawed structure. The only way we saw CodeEdit could continue is if this changed. 
+- Most of all, we want you to feel welcome, every commitment to the project counts!
 
 ## Community
 
@@ -48,7 +53,7 @@ Don't be shy, jump right in and be part of the discussion!
 ## Contributing
 
 Be part of the next revolution in code editing by contributing to the project.
-This is a community-led effort, so we welcome as many contributors who can help.
+This is a community-led effort, so we welcome as many contributors who can help!
 Please read the [Contribution Guide](https://github.com/AuroraEditor/Editor/blob/main/CONTRIBUTING.md) for more information.
 
 ## License

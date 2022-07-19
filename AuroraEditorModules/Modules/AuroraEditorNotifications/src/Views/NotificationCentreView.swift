@@ -19,6 +19,7 @@ public struct NotificationCentreView: View {
             Text("Notifications")
                 .padding(.top)
 
+            // Non-constant range: not an integer range
             List(notificationCentre.banners.indices) { notification in
                 notificationCentre.banners[notification].data.makeBanner(
                     isPresented: $notificationCentre.banners[notification].isPresented,

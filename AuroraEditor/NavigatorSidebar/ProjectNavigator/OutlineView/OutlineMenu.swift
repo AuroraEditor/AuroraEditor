@@ -100,7 +100,7 @@ final class OutlineMenu: NSMenu {
             sortByName,
             sortByType,
             NSMenuItem.separator(),
-            sourceControl,
+            sourceControl
         ]
 
         setSubmenu(openAsMenu(item: item), for: openAs)

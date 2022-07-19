@@ -14,7 +14,7 @@ They can either be ``AppPreferences/Theme/ThemeType/dark`` or ``AppPreferences/T
 ```json
 {
   "author" : "AuroraEditor",
-  "name" : "ae-xcode-dark",
+  "name" : "auroraeditor-xcode-dark",
   "displayName" : "Xcode Dark",
   "description" : "Xcode dark theme.",
   "version" : "0.0.1",

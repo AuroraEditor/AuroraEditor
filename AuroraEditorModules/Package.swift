@@ -6,7 +6,7 @@ let package = Package(
     name: "AuroraEditorModules",
     defaultLocalization: "en",
     platforms: [
-        .macOS(.v12),
+        .macOS(.v12)
     ],
     products: [
         .library(
@@ -58,6 +58,10 @@ let package = Package(
             targets: ["AuroraEditorUI"]
         ),
         .library(
+            name: "AuroraEditorSymbols",
+            targets: ["AuroraEditorSymbols"]
+        ),
+        .library(
             name: "ExtensionsStore",
             targets: ["ExtensionsStore"]
         ),
@@ -85,13 +89,12 @@ let package = Package(
             name: "AuroraEditorNotifications",
             targets: ["AuroraEditorNotifications"]
         ),
+        .library(
+            name: "Highlightr",
+            targets: ["Highlightr"]
+        )
     ],
     dependencies: [
-        .package(
-            name: "Highlightr",
-            url: "https://github.com/lukepistrol/Highlightr.git",
-            branch: "main"
-        ),
         .package(
             name: "SnapshotTesting",
             url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
@@ -116,11 +119,6 @@ let package = Package(
             name: "Light-Swift-Untar",
             url: "https://github.com/Light-Untar/Light-Swift-Untar",
             from: "1.0.4"
-        ),
-        .package(
-            name: "CodeEditSymbols",
-            url: "https://github.com/CodeEditApp/CodeEditSymbols",
-            branch: "main"
         )
     ],
     targets: [
@@ -134,7 +132,7 @@ let package = Package(
         .testTarget(
             name: "WorkspaceClientTests",
             dependencies: [
-                "WorkspaceClient",
+                "WorkspaceClient"
             ],
             path: "Modules/WorkspaceClient/Tests"
         ),
@@ -143,14 +141,14 @@ let package = Package(
             dependencies: [
                 "Highlightr",
                 "AppPreferences",
-                "AuroraEditorUtils",
+                "AuroraEditorUtils"
             ],
             path: "Modules/CodeFile/src"
         ),
         .testTarget(
             name: "CodeFileTests",
             dependencies: [
-                "CodeFile",
+                "CodeFile"
             ],
             path: "Modules/CodeFile/Tests"
         ),
@@ -160,11 +158,11 @@ let package = Package(
                 "WorkspaceClient",
                 "AuroraEditorUI",
                 "Git",
-                "AppPreferences",
+                "AppPreferences"
             ],
             path: "Modules/WelcomeModule/src",
             resources: [
-                .process("Resources"),
+                .process("Resources")
             ]
         ),
         .testTarget(
@@ -173,7 +171,7 @@ let package = Package(
                 "WelcomeModule",
                 "Git",
                 "ShellClient",
-                "SnapshotTesting",
+                "SnapshotTesting"
             ],
             path: "Modules/WelcomeModule/Tests",
             exclude: ["__Snapshots__"]
@@ -184,7 +182,7 @@ let package = Package(
                 "TerminalEmulator",
                 "CodeFile",
                 "AuroraEditorUI",
-                "CodeEditSymbols",
+                "AuroraEditorSymbols"
             ],
             path: "Modules/StatusBar/src"
         ),
@@ -208,7 +206,7 @@ let package = Package(
         .target(
             name: "Search",
             dependencies: [
-                "WorkspaceClient",
+                "WorkspaceClient"
             ],
             path: "Modules/Search/src"
         ),
@@ -222,7 +220,7 @@ let package = Package(
                 "Preferences",
                 "AuroraEditorUI",
                 "Git",
-                "AuroraEditorUtils",
+                "AuroraEditorUtils"
             ],
             path: "Modules/AppPreferences/src",
             resources: [.copy("Resources")]
@@ -240,18 +238,23 @@ let package = Package(
             dependencies: [
                 "WorkspaceClient",
                 "CodeFile",
-                "AuroraEditorUI",
+                "AuroraEditorUI"
             ],
             path: "Modules/QuickOpen/src"
         ),
         .target(
             name: "AuroraEditorUI",
             dependencies: [
-                "CodeEditSymbols",
+                "AuroraEditorSymbols",
                 "WorkspaceClient",
                 "Git"
             ],
             path: "Modules/AuroraEditorUI/src"
+        ),
+        .target(
+            name: "AuroraEditorSymbols",
+            dependencies: [],
+            path: "Modules/AuroraEditorSymbols/src"
         ),
         .testTarget(
             name: "AuroraEditorUITests",
@@ -259,7 +262,7 @@ let package = Package(
                 "AuroraEditorUI",
                 "WorkspaceClient",
                 "Git",
-                "SnapshotTesting",
+                "SnapshotTesting"
             ],
             path: "Modules/AuroraEditorUI/Tests",
             exclude: ["__Snapshots__"]
@@ -281,7 +284,7 @@ let package = Package(
             name: "Breadcrumbs",
             dependencies: [
                 "WorkspaceClient",
-                "AppPreferences",
+                "AppPreferences"
             ],
             path: "Modules/Breadcrumbs/src"
         ),
@@ -291,7 +294,7 @@ let package = Package(
                 "Git",
                 "AuroraEditorUI",
                 "AppPreferences",
-                "AuroraEditorUtils",
+                "AuroraEditorUtils"
             ],
             path: "Modules/Feedback/src"
         ),
@@ -327,7 +330,7 @@ let package = Package(
             name: "GitTests",
             dependencies: [
                 "Git",
-                "ShellClient",
+                "ShellClient"
             ],
             path: "Modules/Git/Tests"
         ),
@@ -335,5 +338,12 @@ let package = Package(
             name: "AuroraEditorNotifications",
             path: "Modules/AuroraEditorNotifications/src"
         ),
+        .target(
+            name: "Highlightr",
+            path: "Modules/Highlightr/src",
+            resources: [
+                .copy("assets")
+            ]
+        )
     ]
 )

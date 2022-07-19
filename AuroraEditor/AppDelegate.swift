@@ -12,7 +12,7 @@ import About
 import WelcomeModule
 import ExtensionsStore
 import Feedback
-import CodeEditSymbols
+import AuroraEditorSymbols
 
 final class AuroraEditorApplication: NSApplication {
     let strongDelegate = AppDelegate()

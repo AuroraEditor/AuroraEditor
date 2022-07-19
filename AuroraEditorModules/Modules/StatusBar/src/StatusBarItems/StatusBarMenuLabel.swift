@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CodeEditSymbols
+import AuroraEditorSymbols
 
 /// A view that displays Text with custom chevron up/down symbol
 internal struct StatusBarMenuLabel: View {
