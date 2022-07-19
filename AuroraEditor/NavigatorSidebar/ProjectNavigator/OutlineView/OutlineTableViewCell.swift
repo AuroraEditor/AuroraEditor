@@ -50,6 +50,8 @@ final class OutlineTableViewCell: NSTableCellView {
         self.label.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 1).isActive = true
         self.label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 1).isActive = true
         self.label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        self.label.maximumNumberOfLines = 1
+        self.label.usesSingleLineMode = true
     }
 
     required init?(coder: NSCoder) {
