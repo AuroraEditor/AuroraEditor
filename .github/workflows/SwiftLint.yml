@@ -1,0 +1,19 @@
+name: Swift Lint
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: SwiftLint (version)
+        run: swiftlint version
+      - name: Toolchain version
+        run: swift -version
+      #- name: SwiftLint (strict)
+      #  run: swiftlint --strict
+      - name: SwiftLint (GH Actions)
+        run: swiftlint --reporter github-actions-logging --strict
