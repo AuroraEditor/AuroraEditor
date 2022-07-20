@@ -14,7 +14,8 @@ public extension WorkspaceClient {
     static func `default`(
         fileManager: FileManager,
         folderURL: URL,
-        ignoredFilesAndFolders: [String]
+        ignoredFilesAndFolders: [String],
+        onUpdate: @escaping () -> Void = {}
     ) throws -> Self {
         var flattenedFileItems: [String: FileItem] = [:]
 
@@ -40,6 +41,7 @@ public extension WorkspaceClient {
                     }
 
                     let newFileItem = FileItem(url: itemURL, children: subItems?.sortItems(foldersOnTop: true))
+                    // note: watcher code will be applied after the workspaceItem is created
                     subItems?.forEach { $0.parent = newFileItem }
                     items.append(newFileItem)
                     flattenedFileItems[newFileItem.id] = newFileItem
@@ -66,6 +68,37 @@ public extension WorkspaceClient {
         var isRunning: Bool = false
         var anotherInstanceRan: Int = 0
 
+        // this weird statement is so that watcherCode's closure does not contain watcherCode when it is uninitialised
+        var watcherCode = {}; watcherCode = {
+
+            // Something has changed inside the directory
+            // We should reload the files.
+            guard !isRunning else { // this runs when a file change is detected but is already running
+                anotherInstanceRan += 1
+                return
+            }
+            isRunning = true
+            flattenedFileItems = [workspaceItem.id: workspaceItem]
+            _ = try? rebuildFiles(fromItem: workspaceItem)
+            while anotherInstanceRan > 0 { // TODO: optimise
+                let somethingChanged = try? rebuildFiles(fromItem: workspaceItem)
+                anotherInstanceRan = !(somethingChanged ?? false) ? 0 : anotherInstanceRan - 1
+            }
+
+            // run the onUpdate function after changes have been made
+            onUpdate()
+
+            subject.send(workspaceItem.children ?? [])
+            isRunning = false
+            anotherInstanceRan = 0
+            // reload data in outline view controller through the main thread
+            DispatchQueue.main.async { onRefresh() }
+        }
+
+        flattenedFileItems.forEach {
+            $0.value.watcherCode = watcherCode
+        }
+
         /// Recursive function similar to `loadFiles`, but creates or deletes children of the
         /// `FileItem` so that they are accurate with the file system, instead of creating an
         /// entirely new `FileItem`, to prevent the `OutlineView` from going crazy with folding.
@@ -81,6 +114,7 @@ public extension WorkspaceClient {
             for oldContent in fileItem.children ?? [] {
                 if !directoryContentsUrls.contains(oldContent.url) {
                     if let removeAt = fileItem.children?.firstIndex(of: oldContent) {
+                        fileItem.children?[removeAt].watcher?.cancel()
                         fileItem.children?.remove(at: removeAt)
                         flattenedFileItems.removeValue(forKey: oldContent.id)
                         didChangeSomething = true
@@ -105,6 +139,7 @@ public extension WorkspaceClient {
                     if isDir.boolValue { subItems = try loadFiles(fromURL: newContent) }
 
                     let newFileItem = FileItem(url: newContent, children: subItems?.sortItems(foldersOnTop: true))
+                    newFileItem.watcherCode = watcherCode
                     subItems?.forEach { $0.parent = newFileItem }
                     newFileItem.parent = fileItem
                     flattenedFileItems[newFileItem.id] = newFileItem
@@ -123,27 +158,6 @@ public extension WorkspaceClient {
             })
 
             return didChangeSomething
-        }
-
-        FileItem.watcherCode = {
-            // Something has changed inside the directory
-            // We should reload the files.
-            guard !isRunning else { // this runs when a file change is detected but is already running
-                anotherInstanceRan += 1
-                return
-            }
-            isRunning = true
-            flattenedFileItems = [workspaceItem.id: workspaceItem]
-            _ = try? rebuildFiles(fromItem: workspaceItem)
-            while anotherInstanceRan > 0 { // TODO: optimise
-                let somethingChanged = try? rebuildFiles(fromItem: workspaceItem)
-                anotherInstanceRan = !(somethingChanged ?? false) ? 0 : anotherInstanceRan - 1
-            }
-            subject.send(workspaceItem.children ?? [])
-            isRunning = false
-            anotherInstanceRan = 0
-            // reload data in outline view controller through the main thread
-            DispatchQueue.main.async { onRefresh() }
         }
 
         func stopListeningToDirectory(directory: URL? = nil) {

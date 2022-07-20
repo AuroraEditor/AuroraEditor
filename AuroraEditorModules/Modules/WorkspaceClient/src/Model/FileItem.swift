@@ -44,7 +44,7 @@ public extension WorkspaceClient {
                 eventMask: .write,
                 queue: DispatchQueue.global()
             )
-            source.setEventHandler { FileItem.watcherCode() }
+            source.setEventHandler { self.watcherCode() }
             source.setCancelHandler { close(descriptor) }
             source.resume()
             self.watcher = source
