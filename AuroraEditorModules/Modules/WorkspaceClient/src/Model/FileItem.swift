@@ -34,7 +34,7 @@ public extension WorkspaceClient {
         public typealias ID = String
 
         public var watcher: DispatchSourceFileSystemObject?
-        static var watcherCode: () -> Void = {}
+        public var watcherCode: () -> Void = {}
 
         public func activateWatcher() -> Bool {
             let descriptor = open(self.url.path, O_EVTONLY)
