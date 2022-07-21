@@ -12,8 +12,11 @@ import WorkspaceClient
 final class OutlineTableViewCell: NSTableCellView {
 
     var label: NSTextField!
+    var changeLabel: NSTextField!
     var icon: NSImageView!
     var fileItem: WorkspaceClient.FileItem!
+
+    var labelTrailingConstraint: NSLayoutConstraint!
 
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -48,10 +51,40 @@ final class OutlineTableViewCell: NSTableCellView {
 
         // Label constraints
         self.label.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 1).isActive = true
-        self.label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 1).isActive = true
+        labelTrailingConstraint = self.label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 1)
+        labelTrailingConstraint.isActive = true
         self.label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         self.label.maximumNumberOfLines = 1
         self.label.usesSingleLineMode = true
+    }
+
+    func addModel(model: SourceControlModel, directoryURL: URL) {
+        for changedFile in model.changed {
+            guard "\(directoryURL.path)/\(changedFile.fileLink.path)" == self.fileItem.url.path else { continue }
+
+            // Create the change label
+            self.changeLabel = NSTextField(frame: .zero)
+            self.changeLabel.translatesAutoresizingMaskIntoConstraints = false
+            self.changeLabel.drawsBackground = false
+            self.changeLabel.isBordered = false
+            self.changeLabel.isEditable = false
+            self.changeLabel.isSelectable = false
+            self.changeLabel.layer?.cornerRadius = 10.0
+            self.changeLabel.font = .boldSystemFont(ofSize: fontSize-1)
+            self.changeLabel.alignment = .right
+            self.label.addSubview(changeLabel)
+
+            // change label constraints
+            self.changeLabel.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 1).isActive = true
+            self.changeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 1).isActive = true
+            self.changeLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+            self.changeLabel.maximumNumberOfLines = 1
+            self.changeLabel.usesSingleLineMode = true
+            self.changeLabel.stringValue = changedFile.changeTypeValue
+            labelTrailingConstraint.constant = 20
+            return
+        }
+        labelTrailingConstraint.constant = 1
     }
 
     required init?(coder: NSCoder) {
@@ -72,12 +105,9 @@ final class OutlineTableViewCell: NSTableCellView {
 let errorRed = NSColor.init(red: 1, green: 0, blue: 0, alpha: 0.2)
 extension OutlineTableViewCell: NSTextFieldDelegate {
     func controlTextDidChange(_ obj: Notification) {
-        print("Contents changed to \(label?.stringValue ?? "idk")")
-        print("File validity: \(validateFileName(for: label?.stringValue ?? ""))")
         label.backgroundColor = validateFileName(for: label?.stringValue ?? "") ? .none : errorRed
     }
     func controlTextDidEndEditing(_ obj: Notification) {
-        print("File validity: \(validateFileName(for: label?.stringValue ?? ""))")
         label.backgroundColor = validateFileName(for: label?.stringValue ?? "") ? .none : errorRed
         if validateFileName(for: label?.stringValue ?? "") {
             fileItem.move(to: fileItem.url.deletingLastPathComponent()

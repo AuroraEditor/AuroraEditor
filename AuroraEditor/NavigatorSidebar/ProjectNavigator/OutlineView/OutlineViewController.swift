@@ -33,6 +33,7 @@ final class OutlineViewController: NSViewController {
     }
 
     var workspace: WorkspaceDocument?
+    var model: SourceControlModel?
 
     var iconColor: AppPreferences.FileIconStyle = .color
     var fileExtensionsVisibility: AppPreferences.FileExtensionsVisibility = .showAll
@@ -73,6 +74,10 @@ final class OutlineViewController: NSViewController {
         self.scrollView.documentView = outlineView
         self.scrollView.contentView.automaticallyAdjustsContentInsets = false
         self.scrollView.contentView.contentInsets = .init(top: 10, left: 0, bottom: 0, right: 0)
+
+        if let folderURL = workspace?.workspaceClient?.folderURL() {
+            self.model = .init(workspaceURL: folderURL)
+        }
 
         WorkspaceClient.onRefresh = self.outlineView.reloadData
         outlineView.expandItem(outlineView.item(atRow: 0))
@@ -179,6 +184,10 @@ extension OutlineViewController: NSOutlineViewDelegate {
             view.icon.contentTintColor = color(for: item)
 
             view.label.stringValue = outlineViewLabel(for: item)
+        }
+
+        if let model = model, let folderURL = workspace?.workspaceClient?.folderURL() {
+            view.addModel(model: model, directoryURL: folderURL)
         }
 
         return view

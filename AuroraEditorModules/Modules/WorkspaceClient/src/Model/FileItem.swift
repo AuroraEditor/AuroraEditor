@@ -44,6 +44,7 @@ public extension WorkspaceClient {
                 eventMask: .write,
                 queue: DispatchQueue.global()
             )
+            print("Watcher \(descriptor) used up")
             source.setEventHandler { self.watcherCode() }
             source.setCancelHandler { close(descriptor) }
             source.resume()
