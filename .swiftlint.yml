@@ -45,3 +45,16 @@ custom_rules:
     regex: "\t"
     message: "Prefer spaces for indents over tabs. See Xcode setting: 'Text Editing' -> 'Indentation'"
     severity: warning
+
+  no_tabs:
+    name: "No tabs"
+    regex: "\t"
+    message: "Spaces should be used instead of tabs."
+    severity: error
+
+  at_attributes_newlining:
+    name: "Significant attributes"
+    message: "Significant @attributes should be on an extra line"
+    included: ".*.swift"
+    regex: '(@objc\([^\)]+\)|@nonobjc|@discardableResult|@propertyWrapper|@UIApplicationMain|@dynamicMemberLookup|@_cdecl\([^\)]+\))[^\n]'
+    severity: warning

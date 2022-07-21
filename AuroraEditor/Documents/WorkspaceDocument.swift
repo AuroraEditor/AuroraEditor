@@ -19,14 +19,20 @@ import ExtensionsStore
 import StatusBar
 import TabBar
 
-@objc(WorkspaceDocument) final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
+@objc(WorkspaceDocument)
+final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     var workspaceClient: WorkspaceClient?
 
     var extensionNavigatorData = ExtensionNavigatorData()
 
-    @Published var sortFoldersOnTop: Bool = true
-    @Published var selectionState: WorkspaceSelectionState = .init()
-    @Published var fileItems: [WorkspaceClient.FileItem] = []
+    @Published
+    var sortFoldersOnTop: Bool = true
+
+    @Published
+    var selectionState: WorkspaceSelectionState = .init()
+
+    @Published
+    var fileItems: [WorkspaceClient.FileItem] = []
 
     var statusBarModel: StatusBarModel?
     var searchState: SearchState?
@@ -34,7 +40,8 @@ import TabBar
     var listenerModel: WorkspaceNotificationModel = .init()
     private var cancellables = Set<AnyCancellable>()
 
-    @Published var targets: [Target] = []
+    @Published
+    var targets: [Target] = []
 
     deinit {
         cancellables.forEach { $0.cancel() }
