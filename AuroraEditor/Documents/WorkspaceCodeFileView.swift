@@ -32,10 +32,10 @@ struct WorkspaceCodeFileView: View {
                 return file.tabID == workspace.selectionState.selectedId
             }) {
                 if let fileItem = workspace.selectionState.openedCodeFiles[item] {
-                    if fileItem.typeOfFile == .text {
-                        codeFileView(fileItem, for: item)
+                    if fileItem.typeOfFile == .image {
+                        imageFileView(fileItem, for: item)
                     } else {
-                        otherFileView(fileItem, for: item)
+                        codeFileView(fileItem, for: item)
                     }
                 }
             } else {
@@ -64,7 +64,7 @@ struct WorkspaceCodeFileView: View {
     }
 
     @ViewBuilder
-    private func otherFileView(
+    private func imageFileView(
         _ otherFile: CodeFileDocument,
         for item: WorkspaceClient.FileItem
     ) -> some View {
