@@ -78,6 +78,7 @@
 		28FFE1BF27E3A441001939DB /* NavigatorSidebarToolbarBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FFE1BE27E3A441001939DB /* NavigatorSidebarToolbarBottom.swift */; };
 		2B5B25532885D9BA009C7384 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B25522885D9B9009C7384 /* .swiftlint.yml */; };
 		2B5B25552885D9C3009C7384 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B25542885D9C3009C7384 /* .gitignore */; };
+		2B5B255B2889C6D6009C7384 /* AuroraEditorTextView in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5B255A2889C6D6009C7384 /* AuroraEditorTextView */; };
 		2B71C0A42874AD61008E0859 /* AuroraProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B71C0A32874AD61008E0859 /* AuroraProject.swift */; };
 		2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468438427DC76E200F8E88E /* AppDelegate.swift */; };
 		2B7AC06B282452FB0082A5B8 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7AC06A282452FB0082A5B8 /* Media.xcassets */; };
@@ -283,6 +284,7 @@
 				D7F72DEB27EA3574000C3064 /* Search in Frameworks */,
 				201EF8AA287D751000F338BD /* AuroraEditorNotifications in Frameworks */,
 				28CE5EA027E6493D0065D29C /* StatusBar in Frameworks */,
+				2B5B255B2889C6D6009C7384 /* AuroraEditorTextView in Frameworks */,
 				2004A3832808468600FD9696 /* Feedback in Frameworks */,
 				5CF38A5E27E48E6C0096A0F7 /* CodeFile in Frameworks */,
 			);
@@ -672,6 +674,7 @@
 				2049D23E2874FDB5005721D8 /* AuroraEditorUI */,
 				2049D2402874FDB9005721D8 /* AuroraEditorUtils */,
 				201EF8A9287D751000F338BD /* AuroraEditorNotifications */,
+				2B5B255A2889C6D6009C7384 /* AuroraEditorTextView */,
 			);
 			productName = CodeEdit;
 			productReference = B658FB2C27DA9E0F00EA4DBD /* AuroraEditor.app */;
@@ -1507,6 +1510,10 @@
 		28CE5E9F27E6493D0065D29C /* StatusBar */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = StatusBar;
+		};
+		2B5B255A2889C6D6009C7384 /* AuroraEditorTextView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AuroraEditorTextView;
 		};
 		5C403B8E27E20F8000788241 /* WorkspaceClient */ = {
 			isa = XCSwiftPackageProductDependency;
