@@ -26,8 +26,8 @@ public typealias RPFont = NSFont
 private typealias RPThemeDict = [String: [AnyHashable: AnyObject]]
 private typealias RPThemeStringDict = [String: [String: String]]
 
-// swiftlint:disable type_body_length
-/// Theme parser, can be used to configure the theme parameters. 
+/// Theme parser, can be used to configure the theme parameters.
+// swiftlint:disable:next type_body_length
 open class Theme {
     internal let theme: String
     internal var lightTheme: String!

@@ -13,8 +13,6 @@ import JavaScriptCore
     import AppKit
 #endif
 
-// swiftlint:disable force_cast force_try
-
 /// Utility class for generating a highlighted NSAttributedString from a String.
 open class Highlightr {
     /// Returns the current Theme.
@@ -69,7 +67,10 @@ open class Highlightr {
             return nil
         }
 
-        let hgJs = try! String.init(contentsOfFile: hgPath)
+        guard let hgJs = try? String.init(contentsOfFile: hgPath) else {
+            return nil
+        }
+
         let value = jsContext.evaluateScript(hgJs)
         if value?.toBool() != true {
             return nil
@@ -101,7 +102,10 @@ open class Highlightr {
             print("Couldn't load \(name).min.css")
             return false
         }
-        let themeString = try! String.init(contentsOfFile: defTheme)
+        guard let themeString = try? String.init(contentsOfFile: defTheme) else {
+            return false
+        }
+
         theme = Theme(themeString: themeString)
 
         return true
@@ -180,8 +184,14 @@ open class Highlightr {
      - returns: Array of Strings
      */
     open func supportedLanguages() -> [String] {
-        let res = hljs.invokeMethod("listLanguages", withArguments: [])
-        return res!.toArray() as! [String]
+        guard let res = hljs.invokeMethod(
+            "listLanguages",
+            withArguments: []
+        ).toArray() as? [String] else {
+            return []
+        }
+
+        return res
     }
 
     /**

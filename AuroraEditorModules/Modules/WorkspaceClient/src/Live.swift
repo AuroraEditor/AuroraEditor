@@ -8,10 +8,15 @@ import Combine
 import Foundation
 
 // TODO: DOCS (Marco Carnevali)
-// swiftlint:disable missing_docs
 public extension WorkspaceClient {
-    // swiftlint:disable:next function_body_length
-    static func `default`(
+    /// <#Description#>
+    /// - Parameters:
+    ///   - fileManager: <#fileManager description#>
+    ///   - folderURL: <#folderURL description#>
+    ///   - ignoredFilesAndFolders: <#ignoredFilesAndFolders description#>
+    ///   - onUpdate: <#onUpdate description#>
+    /// - Returns: <#description#>
+    static func `default`( // swiftlint:disable:this function_body_length
         fileManager: FileManager,
         folderURL: URL,
         ignoredFilesAndFolders: [String],

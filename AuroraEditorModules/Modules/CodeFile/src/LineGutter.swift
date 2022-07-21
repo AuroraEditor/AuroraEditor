@@ -163,7 +163,7 @@ final class LineGutter: NSRulerView {
         _lineIndices = lineIndices
     }
 
-    // swiftlint:disable function_body_length
+    // swiftlint:disable:next function_body_length
     override func drawHashMarksAndLabels(in rect: NSRect) {
         guard let textView = textView,
               let clientView = clientView,

@@ -8,9 +8,14 @@
 import Foundation
 
 // TODO: DOCS (Nanashi Li)
-// swiftlint:disable missing_docs
 public extension BitbucketAccount {
-
+    /// <#Description#>
+    /// - Parameters:
+    ///   - session: <#session description#>
+    ///   - oauthConfig: <#oauthConfig description#>
+    ///   - refreshToken: <#refreshToken description#>
+    ///   - completion: <#completion description#>
+    /// - Returns: <#description#>
     func refreshToken(
         _ session: GitURLSession,
         oauthConfig: BitbucketOAuthConfiguration,

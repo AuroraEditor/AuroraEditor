@@ -179,7 +179,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         closeTabs(items: range)
     }
 
-    /// Closes an open temporary tab,  does not save the temporary tab's file.
+    /// Closes an open temporary tab, does not save the temporary tab's file.
     /// Removes the tab item from `openedCodeFiles`, `openedExtensions`, and `openFileItems`.
     private func closeTemporaryTab() {
         guard let id = selectionState.temporaryTab else { return }

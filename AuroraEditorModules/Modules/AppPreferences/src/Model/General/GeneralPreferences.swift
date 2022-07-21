@@ -53,9 +53,8 @@ public extension AppPreferences {
         /// Default initializer
         public init() {}
 
-        // swiftlint:disable function_body_length
         /// Explicit decoder init for setting default values when key is not present in `JSON`
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: Decoder) throws { // swiftlint:disable:this function_body_length
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.appAppearance = try container.decodeIfPresent(
                 Appearances.self,

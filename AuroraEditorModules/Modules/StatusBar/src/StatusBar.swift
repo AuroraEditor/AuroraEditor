@@ -12,7 +12,7 @@ import AuroraEditorUI
 /// # StatusBarView
 ///
 /// A View that lives on the bottom of the window and offers information
-/// about compilation errors/warnings, git,  cursor position in text,
+/// about compilation errors/warnings, git, cursor position in text
 /// indentation width (in spaces), text encoding and linebreak
 ///
 /// Additionally it offers a togglable/resizable drawer which can

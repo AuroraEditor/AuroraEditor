@@ -8,12 +8,8 @@
 import SwiftUI
 
 // TODO: DOCS (Nanashi Li)
-// swiftlint:disable missing_docs
-// swiftlint:disable function_body_length
-// swiftlint:disable cyclomatic_complexity
-public enum FileIcon {
 
-    // swiftlint:disable identifier_name
+public enum FileIcon {
     public enum FileType: String {
         case json
         case js
@@ -44,13 +40,15 @@ public enum FileIcon {
         case go
         case sum
         case mod
-        case Makefile
+        case makefile
         case ts
     }
 
     /// Returns a string describing a SFSymbol for files
     /// If not specified otherwise this will return `"doc"`
-    public static func fileIcon(fileType: FileType) -> String {
+    public static func fileIcon( // swiftlint:disable:this function_body_length cyclomatic_complexity
+        fileType: FileType
+    ) -> String {
         switch fileType {
         case .json, .js:
             return "curlybraces"
@@ -92,7 +90,7 @@ public enum FileIcon {
             return "s.square"
         case .mod:
             return "m.square"
-        case .Makefile:
+        case .makefile:
             return "terminal"
         default:
             return "doc"
@@ -101,6 +99,7 @@ public enum FileIcon {
 
     /// Returns a `Color` for a specific `fileType`
     /// If not specified otherwise this will return `Color.accentColor`
+    // swiftlint:disable:next cyclomatic_complexity
     public static func iconColor(fileType: FileType) -> Color {
         switch fileType {
         case .swift, .html:
@@ -123,7 +122,7 @@ public enum FileIcon {
             return Color(red: 0.02, green: 0.675, blue: 0.757, opacity: 1.0)
         case .sum, .mod:
             return Color(red: 0.925, green: 0.251, blue: 0.478, opacity: 1.0)
-        case .Makefile:
+        case .makefile:
             return Color(red: 0.937, green: 0.325, blue: 0.314, opacity: 1.0)
         default:
             return .accentColor

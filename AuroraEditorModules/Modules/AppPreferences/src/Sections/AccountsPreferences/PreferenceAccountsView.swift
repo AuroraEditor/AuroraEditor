@@ -8,7 +8,6 @@
 import SwiftUI
 import AuroraEditorUI
 
-// swiftlint:disable for_where
 public struct PreferenceAccountsView: View {
 
     @State
@@ -164,11 +163,9 @@ public struct PreferenceAccountsView: View {
     private func removeSourceControlAccount(selectedAccountId: String) {
         var gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
 
-        for account in gitAccounts {
-            if account.id == selectedAccountId {
-                let index = gitAccounts.firstIndex(of: account)
-                gitAccounts.remove(at: index ?? 0)
-            }
+        for account in gitAccounts where account.id == selectedAccountId {
+            let index = gitAccounts.firstIndex(of: account)
+            gitAccounts.remove(at: index ?? 0)
         }
     }
 

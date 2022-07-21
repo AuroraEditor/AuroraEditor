@@ -13,9 +13,13 @@ import FoundationNetworking
 #endif
 
 // TODO: DOCS (Nanashi Li)
-// swiftlint:disable missing_docs
 public protocol JSONPostRouter: Router {
-
+    /// <#Description#>
+    /// - Parameters:
+    ///   - session: <#session description#>
+    ///   - expectedResultType: <#expectedResultType description#>
+    ///   - completion: <#completion description#>
+    /// - Returns: <#description#>
     func postJSON<T>(
         _ session: GitURLSession,
         expectedResultType: T.Type,

@@ -11,8 +11,8 @@ import AppPreferences
 import AuroraEditorUI
 import TabBar
 
-// Disable the rule because this view is fairly complicated and I have already modularize some parts.
-// swiftlint:disable type_body_length
+// TODO: Disable the rule because this view is fairly complicated and I have already modularize some parts.
+// swiftlint:disable:next type_body_length
 struct TabBarItem: View {
     @Environment(\.colorScheme)
     private var colorScheme

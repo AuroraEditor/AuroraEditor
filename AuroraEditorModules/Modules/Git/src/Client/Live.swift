@@ -10,10 +10,13 @@ import ShellClient
 import Combine
 
 // TODO: DOCS (Marco Carnevali)
-// swiftlint:disable missing_docs
 public extension GitClient {
-    // swiftlint:disable function_body_length
-    static func `default`(
+    /// <#Description#>
+    /// - Parameters:
+    ///   - directoryURL: <#directoryURL description#>
+    ///   - shellClient: <#shellClient description#>
+    /// - Returns: <#description#>
+    static func `default`( // swiftlint:disable:this function_body_length
         directoryURL: URL,
         shellClient: ShellClient
     ) -> GitClient {

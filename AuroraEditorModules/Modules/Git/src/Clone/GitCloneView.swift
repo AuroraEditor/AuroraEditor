@@ -135,7 +135,7 @@ extension GitCloneView {
             }
         }
     }
-    // swiftlint:disable function_body_length cyclomatic_complexity
+    // swiftlint:disable:next function_body_length cyclomatic_complexity
     private func cloneRepository() {
         do {
             if repoUrlStr.isEmpty {

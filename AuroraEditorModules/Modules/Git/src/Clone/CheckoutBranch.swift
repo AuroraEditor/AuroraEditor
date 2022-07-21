@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 // TODO: DOCS (Aleksi Puttonen)
-// swiftlint:disable missing_docs
 public extension CheckoutBranchView {
     func getBranches() -> [String] {
         guard let url = URL(string: repoPath) else {

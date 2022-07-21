@@ -8,8 +8,9 @@ import Foundation
 import Combine
 
 // TODO: DOCS (Marco Carnevali)
-// swiftlint:disable missing_docs
 public extension ShellClient {
+    /// <#Description#>
+    /// - Returns: <#description#>
     static func live() -> Self {
         func generateProcessAndPipe(_ args: [String]) -> (Process, Pipe) {
             var arguments = ["-c"]

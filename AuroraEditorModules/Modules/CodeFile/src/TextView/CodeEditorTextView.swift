@@ -9,7 +9,6 @@ import Cocoa
 import SwiftUI
 import AppPreferences
 
-// swiftlint:disable modifier_order
 public final class CodeEditorTextView: NSTextView {
 
     @StateObject
@@ -46,12 +45,13 @@ public final class CodeEditorTextView: NSTextView {
         }
         return selectedRange
     }
+
     private var currentLine: String {
         let string = self.string
         return String(string[string.lineRange(for: swiftSelectedRange)])
     }
 
-    public override func insertNewline(_ sender: Any?) {
+    override public func insertNewline(_ sender: Any?) {
         // get line before newline
         let currentLine = self.currentLine
         let prefix = currentLine.prefix {
@@ -95,14 +95,14 @@ public final class CodeEditorTextView: NSTextView {
         super.moveBackward(self)
     }
 
-    public override func insertText(_ string: Any, replacementRange: NSRange) {
+    override public func insertText(_ string: Any, replacementRange: NSRange) {
         super.insertText(string, replacementRange: replacementRange)
         guard let string = string as? String
         else { return }
         self.autocompleteSymbols(string)
     }
 
-    public override func insertTab(_ sender: Any?) {
+    override public func insertTab(_ sender: Any?) {
         super.insertText(
             String(
                 repeating: " ",
@@ -124,7 +124,7 @@ public final class CodeEditorTextView: NSTextView {
     ///
     /// This is a basic view without any functionality, once we have most the items built
     /// we will start connecting the menu items to their respective actions.
-    public override func menu(for event: NSEvent) -> NSMenu? {
+    override public func menu(for event: NSEvent) -> NSMenu? {
         guard var menu = super.menu(for: event) else { return nil }
 
         menu = helpMenu(menu)
