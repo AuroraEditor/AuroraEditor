@@ -95,8 +95,8 @@ custom_rules:
     name: "SwiftLint File Disabling"
     regex: "swiftlint:disable\\s"
     match_kinds: comment
-    message: "Prefer swiftlint:disable:next or swiftlint:disable:this"
-    severity: warning
+    message: "Use swiftlint:disable:next or swiftlint:disable:this"
+    severity: error
 
   # Disable Xcode placeholders like <#Description#>
   no_placeholders:
