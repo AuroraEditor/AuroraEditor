@@ -12,7 +12,7 @@ public struct BitbucketTokenConfiguration: Configuration {
     public var accessToken: String?
     public var refreshToken: String?
     public var expirationDate: Date?
-    public let errorDomain = "com.AuroraEditor.models.accounts.bitbucket"
+    public let errorDomain = "com.auroraeditor.models.accounts.bitbucket"
 
     public init(json: [String: AnyObject], url: String = bitbucketBaseURL) {
         apiEndpoint = url

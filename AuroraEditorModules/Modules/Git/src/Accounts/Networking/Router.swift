@@ -46,7 +46,7 @@ public extension Configuration {
     }
 
     var errorDomain: String? {
-        "com.AuroraEditor.models.accounts.networking"
+        "com.auroraeditor.models.accounts.networking"
     }
 
     var customHeaders: [HTTPHeader]? {

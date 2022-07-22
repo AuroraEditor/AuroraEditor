@@ -39,7 +39,7 @@ public extension BitbucketAccount {
                         if response.statusCode != 200 {
                             let errorDescription = responseJSON["error_description"] as? String ?? ""
                             let error = NSError(
-                                domain: "com.AuroraEditor.models.accounts.bitbucket",
+                                domain: "com.auroraeditor.models.accounts.bitbucket",
                                 code: response.statusCode,
                                 userInfo: [NSLocalizedDescriptionKey: errorDescription])
                             completion(Result.failure(error))

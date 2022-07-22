@@ -52,7 +52,7 @@ class AEOpenWith: FIFinderSync {
         }
 
         guard let urlForAuroraEditor = NSWorkspace.shared.urlForApplication(
-            withBundleIdentifier: "com.AuroraEditor"
+            withBundleIdentifier: "com.auroraeditor"
         ) else { return }
 
         // Add files to open to openInCEFiles.
