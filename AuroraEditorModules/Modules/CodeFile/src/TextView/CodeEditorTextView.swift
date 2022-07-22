@@ -107,9 +107,9 @@ public final class CodeEditorTextView: NSTextView {
             super.insertText(
                 String(
                     repeating: " ",
-                    count: prefs.preferences.textEditing.defaultTabWidth
+                    count: self.prefs.preferences.textEditing.defaultTabWidth
                 ),
-                replacementRange: selectedRange()
+                replacementRange: self.selectedRange()
             )
         }
     }

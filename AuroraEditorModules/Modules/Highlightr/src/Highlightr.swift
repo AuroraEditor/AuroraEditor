@@ -217,7 +217,6 @@ open class Highlightr {
         let resultString = NSMutableAttributedString(string: "")
         var propStack = ["hljs"]
 
-        
         while !scanner.isAtEnd {
             var ended = false
             if scanner.scanUpTo(htmlStart, into: &scannedString) {
