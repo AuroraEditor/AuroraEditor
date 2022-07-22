@@ -47,9 +47,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                    !projects.isEmpty {
                     projects.forEach { path in
                         let url = URL(fileURLWithPath: path)
-                        AuroraEditorDocumentController.shared.reopenDocument(for: url,
-                                                                        withContentsOf: url,
-                                                                        display: true) { document, _, _ in
+                        AuroraEditorDocumentController.shared.reopenDocument(
+                            for: url,
+                            withContentsOf: url,
+                            display: true) { document, _, _ in
                             document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
                         }
                     }
