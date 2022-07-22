@@ -5,6 +5,7 @@
 # Disabled rule, reason.
 disabled_rules:
   - todo # New project, we have a lot of // TODO:
+  - missing_docs
 
 # Exclude triggering type names.
 type_name:
@@ -16,6 +17,25 @@ identifier_name:
   excluded:
     - id
     - vc
+    # (short) File extensions:
+    - c
+    - m
+    - h
+    - js
+    - md
+    - py
+    - go
+    - ts
+    - txt
+    - sh
+    - pf
+    - r
+    - q
+    - tp
+    - xl
+    - hy
+    - d
+    - cs
 
 # Opt in rules, we want it more stricter.
 opt_in_rules:
@@ -37,11 +57,52 @@ nesting:
     warning: 2 # warning if you nest 2 level deep instead of 1
     error: 3 # error if you nest 3 level deep instead of 1
 
-# Prefer spaces over tabs.
+# Custom rules
 custom_rules:
+  # Prefer spaces over tabs.
   spaces_over_tabs:
     included: ".*\\.swift"
     name: "Spaces over Tabs"
     regex: "\t"
     message: "Prefer spaces for indents over tabs. See Xcode setting: 'Text Editing' -> 'Indentation'"
+    severity: warning
+
+  # @Something needs a new line
+  at_attributes_newlining:
+    name: "Significant attributes"
+    message: "Significant @attributes should be on an extra line"
+    included: ".*.swift"
+    regex: '(@objc\([^\)]+\)|@nonobjc|@discardableResult|@propertyWrapper|@UIApplicationMain|@dynamicMemberLookup|@_cdecl\([^\)]+\))[^\n]'
+    severity: error
+
+  # forbid multiple empty lines
+  multiple_empty_lines:
+    included: ".*.swift"
+    name: "Multiple Empty Lines"
+    regex: '((?:\s*\n){3,})'
+    message: "There are too many line breaks"
+    severity: error
+
+  # one space after a comma
+  comma_space_rule:
+    regex: ",[ ]{2,}"
+    message: "Expected only one space after ',"
+    severity: error
+
+  # Disable usage of // swiftlint:disable (rulename)
+  swiftlint_file_disabling:
+    included: ".*.swift"
+    name: "SwiftLint File Disabling"
+    regex: "swiftlint:disable\\s"
+    match_kinds: comment
+    message: "Use swiftlint:disable:next or swiftlint:disable:this"
+    severity: error
+
+  # Disable Xcode placeholders like <#Description#>
+  no_placeholders:
+    included: ".*.swift"
+    name: "No Placeholders"
+    regex: "\\<#([a-zA-Z]+)#\\>"
+    match_kinds: comment
+    message: "Please do not use Xcode's placeholders."
     severity: warning

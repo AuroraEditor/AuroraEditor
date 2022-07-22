@@ -9,7 +9,7 @@ import Foundation
 import Security
 
 // TODO: DOCS (Nanashi Li)
-// swiftlint:disable missing_docs
+/// AuroraEditorKeychain
 open class AuroraEditorKeychain {
 
     var lastQueryParameters: [String: Any]? // Used by the unit tests
@@ -29,6 +29,7 @@ open class AuroraEditorKeychain {
 
     private let lock = NSLock()
 
+    /// AuroraEditorKeychain
     public init() { }
 
     /**
@@ -72,7 +73,7 @@ open class AuroraEditorKeychain {
                   withAccess access: AuroraEditorKeychainAccessOptions? = nil) -> Bool {
 
         // The lock prevents the code to be run simultaneously
-        // from multiple threads which may result in crashing
+        // From multiple threads which may result in crashing
         lock.lock()
         defer { lock.unlock() }
 
@@ -127,7 +128,7 @@ open class AuroraEditorKeychain {
                 return currentString
             }
 
-            lastResultCode = -67853 // errSecInvalidEncoding
+            lastResultCode = -67853 // - errSecInvalidEncoding
         }
 
         return nil
@@ -141,7 +142,7 @@ open class AuroraEditorKeychain {
      */
     open func getData(_ key: String, asReference: Bool = false) -> Data? {
         // The lock prevents the code to be run simultaneously
-        // from multiple threads which may result in crashing
+        // From multiple threads which may result in crashing
         lock.lock()
         defer { lock.unlock() }
 
@@ -194,7 +195,7 @@ open class AuroraEditorKeychain {
     @discardableResult
     open func delete(_ key: String) -> Bool {
         // The lock prevents the code to be run simultaneously
-        // from multiple threads which may result in crashing
+        // From multiple threads which may result in crashing
         lock.lock()
         defer { lock.unlock() }
 
@@ -260,7 +261,7 @@ open class AuroraEditorKeychain {
     @discardableResult
     open func clear() -> Bool {
         // The lock prevents the code to be run simultaneously
-        // from multiple threads which may result in crashing
+        // From multiple threads which may result in crashing
         lock.lock()
         defer { lock.unlock() }
 

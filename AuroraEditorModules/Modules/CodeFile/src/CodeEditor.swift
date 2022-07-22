@@ -12,6 +12,7 @@ import Highlightr
 import AppPreferences
 import Combine
 import AuroraEditorUtils
+import STTextView
 
 struct CodeEditor: NSViewRepresentable {
     @State

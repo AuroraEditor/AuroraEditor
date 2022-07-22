@@ -204,13 +204,15 @@ public struct FeedbackView: View {
             }
             .padding(.top)
 
-            // swiftlint:disable line_length
             VStack(alignment: .leading) {
                 Text("What actually happened?")
-                TextEditor(text: $feedbackModel.whatHappenedDescription)
-                           .frame(minHeight: 60, alignment: .leading)
-                           .border(Color(NSColor.separatorColor))
-                Text("Example: The autocomplete window flickered on screen and Aurora Editor crashed. See attached crashlog.")
+                TextEditor(
+                    text: $feedbackModel.whatHappenedDescription
+                )
+                .frame(minHeight: 60, alignment: .leading)
+                .border(Color(NSColor.separatorColor))
+                // swiftlint:disable:next line_length
+                Text("Example: The autocomplete window flickered on screen and Aurora Editor crashed.\nSee attached crashlog.")
                     .font(.system(size: 10))
                     .foregroundColor(.secondary)
             }

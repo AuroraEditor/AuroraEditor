@@ -92,6 +92,10 @@ let package = Package(
         .library(
             name: "Highlightr",
             targets: ["Highlightr"]
+        ),
+        .library(
+            name: "AuroraEditorTextView",
+            targets: ["AuroraEditorTextView"]
         )
     ],
     dependencies: [
@@ -119,6 +123,11 @@ let package = Package(
             name: "Light-Swift-Untar",
             url: "https://github.com/Light-Untar/Light-Swift-Untar",
             from: "1.0.4"
+        ),
+        .package(
+            name: "STTextView",
+            url: "https://github.com/krzyzanowskim/STTextView",
+            branch: "main"
         )
     ],
     targets: [
@@ -137,11 +146,20 @@ let package = Package(
             path: "Modules/WorkspaceClient/Tests"
         ),
         .target(
+            name: "AuroraEditorTextView",
+            dependencies: [
+                "Highlightr",
+                "STTextView"
+            ],
+            path: "Modules/AuroraEditorTextView/src"
+        ),
+        .target(
             name: "CodeFile",
             dependencies: [
                 "Highlightr",
                 "AppPreferences",
-                "AuroraEditorUtils"
+                "AuroraEditorUtils",
+                "AuroraEditorTextView"
             ],
             path: "Modules/CodeFile/src"
         ),

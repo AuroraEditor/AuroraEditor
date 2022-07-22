@@ -91,6 +91,7 @@ final class FileTypeList {
 
     var textList = [
         LanguageType(name: "Cascading Style Sheets", id: "css"),
+        LanguageType(name: "Cascading Style Sheets", id: "scss"),
         LanguageType(name: "HTML", id: "html"),
         LanguageType(name: "JSON", id: "json"),
         LanguageType(name: "Markdown Text", id: "md"),

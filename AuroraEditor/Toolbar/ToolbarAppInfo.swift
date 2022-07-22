@@ -8,7 +8,6 @@
 import SwiftUI
 import AuroraEditorNotifications
 
-// swiftlint:disable line_length
 public struct ToolbarAppInfo: View {
 
     @State
@@ -46,7 +45,10 @@ public struct ToolbarAppInfo: View {
             .cornerRadius(6)
 
             Button {
-                NotificationManager().postProgressNotification(title: "Test Notification", progress: Progress(totalUnitCount: 100))
+                NotificationManager().postProgressNotification(
+                    title: "Test Notification",
+                    progress: Progress(totalUnitCount: 100)
+                )
             } label: {
                 HStack {
                     Image(systemName: "xmark.circle.fill")

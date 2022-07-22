@@ -44,7 +44,6 @@ open class GithubRepositories: Codable {
     }
 }
 
-// swiftlint:disable line_length
 public extension GithubAccount {
 
     /**
@@ -68,7 +67,10 @@ public extension GithubAccount {
             ? GithubRepositoryRouter.readRepositories(configuration, owner!, page, perPage)
             : GithubRepositoryRouter.readAuthenticatedRepositories(configuration, page, perPage)
 
-        return router.load(session, dateDecodingStrategy: .formatted(Time.rfc3339DateFormatter), expectedResultType: [GithubRepositories].self) { repos, error in
+        return router.load(
+            session,
+            dateDecodingStrategy: .formatted(Time.rfc3339DateFormatter),
+            expectedResultType: [GithubRepositories].self) { repos, error in
             if let error = error {
                 completion(.failure(error))
             }
@@ -91,11 +93,14 @@ public extension GithubAccount {
                     owner: String,
                     name: String,
                     completion: @escaping (
-                        _ response: Result<GithubRepositories, Error>) -> Void) -> URLSessionDataTaskProtocol? {
-
+                    _ response: Result<GithubRepositories, Error>
+                    ) -> Void) -> URLSessionDataTaskProtocol? {
         let router = GithubRepositoryRouter.readRepository(configuration, owner, name)
 
-        return router.load(session, dateDecodingStrategy: .formatted(Time.rfc3339DateFormatter), expectedResultType: GithubRepositories.self) { repo, error in
+        return router.load(
+            session,
+            dateDecodingStrategy: .formatted(Time.rfc3339DateFormatter),
+            expectedResultType: GithubRepositories.self) { repo, error in
             if let error = error {
                 completion(.failure(error))
             } else {

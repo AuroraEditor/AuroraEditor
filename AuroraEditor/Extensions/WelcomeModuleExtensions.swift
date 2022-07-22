@@ -26,7 +26,7 @@ extension WelcomeWindowView {
         let windowController = NSWindowController(window: window)
 
         window.contentView = NSHostingView(rootView: WelcomeWindowView(
-            shellClient: Current.shellClient,
+            shellClient: sharedShellClient.shellClient,
             openDocument: { url, opened in
                 if let url = url {
                     AuroraEditorDocumentController.shared.openDocument(

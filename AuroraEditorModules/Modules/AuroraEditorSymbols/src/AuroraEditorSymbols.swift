@@ -37,7 +37,7 @@ public extension Image {
     /// Image for ChevronUpChevronDown
     static let customChevronUpChevronDown: Image = .init(symbol: "custom.chevron.up.chevron.down")
 
-    // add static properties for your symbols above this line
+    // Add static properties for your symbols above this line
 }
 
 public extension NSImage {
@@ -72,5 +72,5 @@ public extension NSImage {
     /// Image for ChevronUpChevronDown
     static let customChevronUpChevronDown: NSImage = .symbol(named: "custom.chevron.up.chevron.down")
 
-    // add static properties for your symbols above this line
+    // Add static properties for your symbols above this line
 }

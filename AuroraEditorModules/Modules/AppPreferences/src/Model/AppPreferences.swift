@@ -14,7 +14,7 @@ import SwiftUI
 /// A `JSON` representation is persisted in `~/.config/auroraeditor/preference.json`.
 /// - Attention: Don't use `UserDefaults` for persisting user accessible settings.
 ///  If a further setting is needed, extend the struct like ``GeneralPreferences``,
-///  ``ThemePreferences``,  or ``TerminalPreferences`` does.
+///  ``ThemePreferences``, or ``TerminalPreferences`` does.
 ///
 /// - Note: Also make sure to implement the ``init(from:)`` initializer, decoding
 ///  all properties with

@@ -5,7 +5,6 @@
 //  Created by Nanashi Li on 2022/07/16.
 //
 
-// swiftlint:disable identifier_name
 enum HighlightrLanguage: String {
     case abnf
     case accesslog

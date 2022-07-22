@@ -8,7 +8,6 @@
 import Foundation
 
 // TODO: DOCS (Nanashi Li)
-// swiftlint:disable missing_docs
 
 public let githubBaseURL = "https://api.github.com"
 public let githubWebURL = "https://github.com"

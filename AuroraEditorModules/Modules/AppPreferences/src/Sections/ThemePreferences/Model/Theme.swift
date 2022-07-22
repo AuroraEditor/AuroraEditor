@@ -276,7 +276,6 @@ public extension Theme {
             ]
         }
 
-        // swiftlint:disable function_body_length
         /// Allows to look up properties by their name
         ///
         /// **Example:**
@@ -285,7 +284,7 @@ public extension Theme {
         /// // equal to calling
         /// terminal.text
         /// ```
-        subscript(key: String) -> Attributes {
+        subscript(key: String) -> Attributes { // swiftlint:disable:this function_body_length
             get {
                 switch key {
                 case "text": return self.text

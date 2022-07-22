@@ -8,7 +8,6 @@
 import Foundation
 
 // TODO: DOCS (Nanashi Li)
-// swiftlint:disable missing_docs
 
 /// Some APIs provide additional data for new (preview) APIs if a custom header is added to the request.
 ///
