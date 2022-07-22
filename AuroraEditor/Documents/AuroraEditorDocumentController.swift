@@ -37,10 +37,6 @@ final class AuroraEditorDocumentController: NSDocumentController {
 
     override func removeDocument(_ document: NSDocument) {
         super.removeDocument(document)
-
-        if AuroraEditorDocumentController.shared.documents.isEmpty {
-            WelcomeWindowView.openWelcomeWindow()
-        }
     }
 
     override func clearRecentDocuments(_ sender: Any?) {
