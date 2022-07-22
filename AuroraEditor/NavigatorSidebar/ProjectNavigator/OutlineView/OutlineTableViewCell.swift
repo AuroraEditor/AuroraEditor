@@ -16,7 +16,6 @@ final class OutlineTableViewCell: NSTableCellView {
     var icon: NSImageView!
     var fileItem: WorkspaceClient.FileItem!
 
-    // swiftlint:disable:next function_body_length
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
 
