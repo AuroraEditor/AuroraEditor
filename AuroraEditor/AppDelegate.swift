@@ -46,16 +46,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                 if let projects = UserDefaults.standard.array(forKey: AppDelegate.recoverWorkspacesKey) as? [String],
                    !projects.isEmpty {
                     projects.forEach { path in
+                        print(#function, "Reopening \(path)")
                         let url = URL(fileURLWithPath: path)
                         AuroraEditorDocumentController.shared.reopenDocument(
                             for: url,
                             withContentsOf: url,
                             display: true) { document, _, _ in
-                            document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
+                                print("applicationDidFinishLaunching(): projects: Opened \(url.absoluteString)")
+                                document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
                         }
                     }
 
+                    print("No need to open Welcome Screen (projects)")
                     needToHandleOpen = false
+                } else {
+                    print("No open project.")
                 }
             }
 
@@ -64,17 +69,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                     let path = CommandLine.arguments[index+1]
                     let url = URL(fileURLWithPath: path)
 
-                    AuroraEditorDocumentController.shared.reopenDocument(for: url,
-                                                                    withContentsOf: url,
-                                                                    display: true) { document, _, _ in
-                        document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
+                    AuroraEditorDocumentController.shared.reopenDocument(
+                        for: url,
+                        withContentsOf: url,
+                        display: true) { document, _, _ in
+                            print("applicationDidFinishLaunching(): commandline: Opened \(url.absoluteString)")
+                            document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
                     }
 
+                    print("No need to open Welcome Screen (commandline)")
                     needToHandleOpen = false
                 }
             }
 
             if needToHandleOpen {
+                print("need to open Welcome Screen")
                 self.handleOpen()
             }
         }
@@ -107,7 +116,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         false
     }
 
-    func handleOpen() {
+    func handleOpen(funct: String = #function) {
+        print("handleOpen() called from", funct)
         let behavior = AppPreferencesModel.shared.preferences.general.reopenBehavior
 
         switch behavior {
@@ -175,7 +185,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     // MARK: - Open With AuroraEditor (Extension) functions
     private func checkForFilesToOpen() {
         guard let defaults = UserDefaults.init(
-            suiteName: "com.AuroraEditor.shared"
+            suiteName: "com.auroraeditor.shared"
         ) else {
             print("Failed to get/init shared defaults")
             return
@@ -193,6 +203,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                     for: fileURL,
                     withContentsOf: fileURL,
                     display: true) { document, _, _ in
+                        print("checkForFilesToOpen(): Opened \(fileURL.absoluteString)")
                         document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
                     }
             }

@@ -5,7 +5,7 @@
 	<key>com.apple.security.application-groups</key>
 	<array>
 		<string>$(TeamIdentifierPrefix)</string>
-		<string>com.AuroraEditor.shared</string>
+		<string>com.auroraeditor.shared</string>
 	</array>
 	<key>com.apple.security.cs.allow-jit</key>
 	<true/>

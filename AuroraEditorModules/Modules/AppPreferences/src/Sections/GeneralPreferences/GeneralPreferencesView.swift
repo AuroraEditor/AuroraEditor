@@ -23,7 +23,7 @@ public struct GeneralPreferencesView: View {
 
     public init() {
         guard let defaults = UserDefaults.init(
-            suiteName: "com.AuroraEditor.shared"
+            suiteName: "com.auroraeditor.shared"
         ) else {
             print("Failed to get/init shared defaults")
             return
@@ -282,7 +282,7 @@ private extension GeneralPreferencesView {
                 .toggleStyle(.checkbox)
                 .onChange(of: openInAuroraEditor) { newValue in
                     guard let defaults = UserDefaults.init(
-                        suiteName: "com.AuroraEditor.shared"
+                        suiteName: "com.auroraeditor.shared"
                     ) else {
                         print("Failed to get/init shared defaults")
                         return

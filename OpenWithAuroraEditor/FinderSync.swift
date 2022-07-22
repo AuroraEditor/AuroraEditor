@@ -40,7 +40,7 @@ class AEOpenWith: FIFinderSync {
     /// - Parameter sender: sender
     @objc func openInAuroraEditorAction(_ sender: AnyObject?) {
         guard let items = FIFinderSyncController.default().selectedItemURLs(),
-              let defaults = UserDefaults.init(suiteName: "com.AuroraEditor.shared") else {
+              let defaults = UserDefaults.init(suiteName: "com.auroraeditor.shared") else {
             return
         }
 
@@ -67,7 +67,7 @@ class AEOpenWith: FIFinderSync {
 
     // MARK: - Menu and toolbar item support
     override func menu(for menuKind: FIMenuKind) -> NSMenu {
-        guard let defaults = UserDefaults.init(suiteName: "com.AuroraEditor.shared") else {
+        guard let defaults = UserDefaults.init(suiteName: "com.auroraeditor.shared") else {
             NSLog("Unable to load defaults")
             return NSMenu(title: "")
         }
