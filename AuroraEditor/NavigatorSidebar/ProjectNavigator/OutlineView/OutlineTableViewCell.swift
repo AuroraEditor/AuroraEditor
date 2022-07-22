@@ -16,7 +16,6 @@ final class OutlineTableViewCell: NSTableCellView {
     var icon: NSImageView!
     var fileItem: WorkspaceClient.FileItem!
 
-    // swiftlint:disable function_body_length
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
 
@@ -53,6 +52,10 @@ final class OutlineTableViewCell: NSTableCellView {
         addSubview(icon)
         imageView = icon
 
+        createConstraints(frame: frameRect)
+    }
+
+    func createConstraints(frame frameRect: NSRect) {
         // Icon constraints
         icon.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: -2).isActive = true
         icon.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
