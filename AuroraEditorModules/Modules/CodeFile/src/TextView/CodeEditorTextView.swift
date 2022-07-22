@@ -103,13 +103,15 @@ public final class CodeEditorTextView: NSTextView {
     }
 
     override public func insertTab(_ sender: Any?) {
-        super.insertText(
-            String(
-                repeating: " ",
-                count: prefs.preferences.textEditing.defaultTabWidth
-            ),
-            replacementRange: selectedRange()
-        )
+        DispatchQueue.main.async {
+            super.insertText(
+                String(
+                    repeating: " ",
+                    count: prefs.preferences.textEditing.defaultTabWidth
+                ),
+                replacementRange: selectedRange()
+            )
+        }
     }
 
     /// input a backslash (\\)

@@ -217,6 +217,7 @@ open class Highlightr {
         let resultString = NSMutableAttributedString(string: "")
         var propStack = ["hljs"]
 
+        
         while !scanner.isAtEnd {
             var ended = false
             if scanner.scanUpTo(htmlStart, into: &scannedString) {
@@ -232,7 +233,7 @@ open class Highlightr {
                     continue
                 }
             }
-            scanner.scanLocation += 1
+            scanner.currentIndex = scanner.string.index(after: scanner.currentIndex)
             let string = scanner.string as NSString
             let nextChar = string.substring(with: NSRange(location: scanner.scanLocation, length: 1))
             if nextChar == "s" {
@@ -246,7 +247,7 @@ open class Highlightr {
             } else {
                 let attrScannedString = theme.applyStyleToString("<", styleList: propStack)
                 resultString.append(attrScannedString)
-                scanner.scanLocation += 1
+                scanner.currentIndex = scanner.string.index(after: scanner.currentIndex)
             }
 
             scannedString = nil
@@ -273,5 +274,4 @@ open class Highlightr {
 
         return resultString
     }
-
 }
