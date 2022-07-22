@@ -48,7 +48,6 @@
 		2072FA1E280D891500C7F8D4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072FA1D280D891500C7F8D4 /* Location.swift */; };
 		2077162E287C8EC80069C68E /* ToolbarAppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077162D287C8EC80069C68E /* ToolbarAppInfo.swift */; };
 		20AFDC7F28206701001A4FC7 /* Git in Frameworks */ = {isa = PBXBuildFile; productRef = 20AFDC7E28206701001A4FC7 /* Git */; };
-		20BCCE80287EF26B003F37B0 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCCE7F287EF26B003F37B0 /* World.swift */; };
 		20C8D7DC287ED2C700C5B3BA /* ToolbarBranchPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8D7DB287ED2C700C5B3BA /* ToolbarBranchPicker.swift */; };
 		20D839AB280DEB2900B27357 /* NoSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D839AA280DEB2900B27357 /* NoSelectionView.swift */; };
 		20D839AE280E0CA700B27357 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D839AD280E0CA700B27357 /* PopoverView.swift */; };
@@ -79,6 +78,7 @@
 		2B5B25532885D9BA009C7384 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B25522885D9B9009C7384 /* .swiftlint.yml */; };
 		2B5B25552885D9C3009C7384 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B25542885D9C3009C7384 /* .gitignore */; };
 		2B5B255B2889C6D6009C7384 /* AuroraEditorTextView in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5B255A2889C6D6009C7384 /* AuroraEditorTextView */; };
+		2B5B255D288ADABA009C7384 /* shellClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5B255C288ADABA009C7384 /* shellClient.swift */; };
 		2B71C0A42874AD61008E0859 /* AuroraProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B71C0A32874AD61008E0859 /* AuroraProject.swift */; };
 		2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468438427DC76E200F8E88E /* AppDelegate.swift */; };
 		2B7AC06B282452FB0082A5B8 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7AC06A282452FB0082A5B8 /* Media.xcassets */; };
@@ -194,7 +194,6 @@
 		2072FA1B280D874000C7F8D4 /* IndentUsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndentUsing.swift; sourceTree = "<group>"; };
 		2072FA1D280D891500C7F8D4 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		2077162D287C8EC80069C68E /* ToolbarAppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarAppInfo.swift; sourceTree = "<group>"; };
-		20BCCE7F287EF26B003F37B0 /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		20C8D7DB287ED2C700C5B3BA /* ToolbarBranchPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarBranchPicker.swift; sourceTree = "<group>"; };
 		20D839AA280DEB2900B27357 /* NoSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSelectionView.swift; sourceTree = "<group>"; };
 		20D839AD280E0CA700B27357 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
@@ -222,6 +221,7 @@
 		2B15CA0028254139004E8F22 /* OpenWithAuroraEditor.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = OpenWithAuroraEditor.entitlements; sourceTree = "<group>"; };
 		2B5B25522885D9B9009C7384 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		2B5B25542885D9C3009C7384 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
+		2B5B255C288ADABA009C7384 /* shellClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shellClient.swift; sourceTree = "<group>"; };
 		2B71C0A32874AD61008E0859 /* AuroraProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraProject.swift; sourceTree = "<group>"; };
 		2B7AC06A282452FB0082A5B8 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		2BE487EC28245162003F3F64 /* OpenWithAuroraEditor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OpenWithAuroraEditor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -559,10 +559,10 @@
 				287776EB27E350BA00D46668 /* TabBar */,
 				28069DA527F5BD320016BC47 /* DefaultThemes */,
 				0468438427DC76E200F8E88E /* AppDelegate.swift */,
-				20BCCE7F287EF26B003F37B0 /* World.swift */,
 				B658FB3327DA9E1000EA4DBD /* Assets.xcassets */,
 				2B5B25522885D9B9009C7384 /* .swiftlint.yml */,
 				2B5B25542885D9C3009C7384 /* .gitignore */,
+				2B5B255C288ADABA009C7384 /* shellClient.swift */,
 				B658FB3827DA9E1000EA4DBD /* AuroraEditor.entitlements */,
 				04660F6027E3A68A00477777 /* Info.plist */,
 				043C321927E32295006AE443 /* MainMenu.xib */,
@@ -921,6 +921,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B5B255D288ADABA009C7384 /* shellClient.swift in Sources */,
 				2072FA13280D74ED00C7F8D4 /* HistoryInspectorModel.swift in Sources */,
 				201169E52837B40300F92B46 /* RepositoriesView.swift in Sources */,
 				DE513F52281B672D002260B9 /* TabBarAccessory.swift in Sources */,
@@ -957,7 +958,6 @@
 				DE6F77872813625500D00A76 /* TabBarDivider.swift in Sources */,
 				D7211D4327E066CE008F2ED7 /* Localized+Ex.swift in Sources */,
 				20D839AE280E0CA700B27357 /* PopoverView.swift in Sources */,
-				20BCCE80287EF26B003F37B0 /* World.swift in Sources */,
 				2072FA1E280D891500C7F8D4 /* Location.swift in Sources */,
 				D7E201B227E8D50000CB86D0 /* FindNavigatorModeSelector.swift in Sources */,
 				287776E927E34BC700D46668 /* TabBar.swift in Sources */,

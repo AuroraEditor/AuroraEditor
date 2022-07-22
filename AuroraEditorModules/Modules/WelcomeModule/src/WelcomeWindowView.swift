@@ -28,18 +28,32 @@ public struct WelcomeWindowView: View {
     }
 
     public var body: some View {
-        HStack(spacing: 0) {
-            WelcomeView(
-                shellClient: shellClient,
-                openDocument: openDocument,
-                newDocument: newDocument,
-                dismissWindow: dismissWindow
-            )
-            RecentProjectsView(
-                openDocument: openDocument,
-                dismissWindow: dismissWindow
-            )
+        ZStack {
+            Button("_") { // Do not empty the text, this will break functionality
+                self.dismissWindow()
+            }
+            .buttonStyle(.plain)
+            .keyboardShortcut(.escape, modifiers: [])
+
+            Button("_") { // Do not empty the text, this will break functionality
+                self.dismissWindow()
+            }
+            .buttonStyle(.plain)
+            .keyboardShortcut("w", modifiers: [.command])
+
+            HStack(spacing: 0) {
+                WelcomeView(
+                    shellClient: shellClient,
+                    openDocument: openDocument,
+                    newDocument: newDocument,
+                    dismissWindow: dismissWindow
+                )
+                RecentProjectsView(
+                    openDocument: openDocument,
+                    dismissWindow: dismissWindow
+                )
+            }
+            .edgesIgnoringSafeArea(.top)
         }
-        .edgesIgnoringSafeArea(.top)
     }
 }

@@ -36,7 +36,7 @@ public final class SourceControlModel: ObservableObject {
         self.workspaceURL = workspaceURL
         gitClient = GitClient.default(
             directoryURL: workspaceURL,
-            shellClient: Current.shellClient
+            shellClient: sharedShellClient.shellClient
         )
         do { changed = try gitClient.getChangedFiles() } catch { changed = [] }
 

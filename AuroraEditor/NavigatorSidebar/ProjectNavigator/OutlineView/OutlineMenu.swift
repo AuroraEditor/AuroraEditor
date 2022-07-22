@@ -28,7 +28,7 @@ final class OutlineMenu: NSMenu {
         outlineView = sender
         gitClient = GitClient.default(
             directoryURL: workspaceURL,
-            shellClient: Current.shellClient
+            shellClient: sharedShellClient.shellClient
         )
         super.init(title: "Options")
     }

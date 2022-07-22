@@ -198,7 +198,7 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.branchPicker)
             let view = NSHostingView(
                 rootView: ToolbarBranchPicker(
-                    shellClient: Current.shellClient,
+                    shellClient: sharedShellClient.shellClient,
                     workspace: workspace?.workspaceClient
                 )
             )
