@@ -16,75 +16,68 @@ final class OutlineTableViewCell: NSTableCellView {
     var icon: NSImageView!
     var fileItem: WorkspaceClient.FileItem!
 
-    var labelTrailingConstraint: NSLayoutConstraint!
-
+    // swiftlint:disable function_body_length
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
 
         // Create the label
-        self.label = NSTextField(frame: .zero)
-        self.label.translatesAutoresizingMaskIntoConstraints = false
-        self.label.drawsBackground = false
-        self.label.isBordered = false
-        self.label.isEditable = true
-        self.label.isSelectable = true
-        self.label.delegate = self
-        self.label.layer?.cornerRadius = 10.0
-        self.label.font = .labelFont(ofSize: fontSize)
-
-        self.addSubview(label)
+        label = NSTextField(frame: .zero)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.drawsBackground = false
+        label.isBordered = false
+        label.isEditable = true
+        label.isSelectable = true
+        label.delegate = self
+        label.layer?.cornerRadius = 10.0
+        label.font = .labelFont(ofSize: fontSize)
+        label.lineBreakMode = .byTruncatingMiddle
+        addSubview(label)
         self.textField = label
 
-        // Create the icon
-        self.icon = NSImageView(frame: .zero)
-        self.icon.translatesAutoresizingMaskIntoConstraints = false
-        self.icon.symbolConfiguration = .init(pointSize: fontSize, weight: .regular, scale: .medium)
+        // Create the change label
+        changeLabel = NSTextField(frame: .zero)
+        changeLabel.translatesAutoresizingMaskIntoConstraints = false
+        changeLabel.drawsBackground = false
+        changeLabel.isBordered = false
+        changeLabel.isEditable = false
+        changeLabel.isSelectable = false
+        changeLabel.layer?.cornerRadius = 10.0
+        changeLabel.font = .boldSystemFont(ofSize: fontSize-1)
+        changeLabel.alignment = .right
+        label.addSubview(changeLabel)
 
-        self.addSubview(icon)
-        self.imageView = icon
+        // Create the icon
+        icon = NSImageView(frame: .zero)
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        icon.symbolConfiguration = .init(pointSize: fontSize, weight: .regular, scale: .medium)
+        addSubview(icon)
+        imageView = icon
 
         // Icon constraints
-        self.icon.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: -2).isActive = true
-        self.icon.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        self.icon.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        self.icon.heightAnchor.constraint(equalToConstant: frameRect.height).isActive = true
+        icon.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: -2).isActive = true
+        icon.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        icon.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        icon.heightAnchor.constraint(equalToConstant: frameRect.height).isActive = true
 
         // Label constraints
-        self.label.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 1).isActive = true
-        labelTrailingConstraint = self.label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 1)
-        labelTrailingConstraint.isActive = true
-        self.label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        self.label.maximumNumberOfLines = 1
-        self.label.usesSingleLineMode = true
+        label.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 1).isActive = true
+        label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 1).isActive = true
+        label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        label.maximumNumberOfLines = 1
+        label.usesSingleLineMode = true
+
+        // change label constraints
+        changeLabel.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 1).isActive = true
+        changeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 1).isActive = true
+        changeLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        changeLabel.maximumNumberOfLines = 1
+        changeLabel.usesSingleLineMode = true
     }
 
     func addModel(model: SourceControlModel, directoryURL: URL) {
-        for changedFile in model.changed {
-            guard "\(directoryURL.path)/\(changedFile.fileLink.path)" == self.fileItem.url.path else { continue }
-
-            // Create the change label
-            self.changeLabel = NSTextField(frame: .zero)
-            self.changeLabel.translatesAutoresizingMaskIntoConstraints = false
-            self.changeLabel.drawsBackground = false
-            self.changeLabel.isBordered = false
-            self.changeLabel.isEditable = false
-            self.changeLabel.isSelectable = false
-            self.changeLabel.layer?.cornerRadius = 10.0
-            self.changeLabel.font = .boldSystemFont(ofSize: fontSize-1)
-            self.changeLabel.alignment = .right
-            self.label.addSubview(changeLabel)
-
-            // change label constraints
-            self.changeLabel.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 1).isActive = true
-            self.changeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 1).isActive = true
-            self.changeLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-            self.changeLabel.maximumNumberOfLines = 1
-            self.changeLabel.usesSingleLineMode = true
-            self.changeLabel.stringValue = changedFile.changeTypeValue
-            labelTrailingConstraint.constant = 20
-            return
-        }
-        labelTrailingConstraint.constant = 1
+        changeLabel.stringValue = model.changed.first(where: { changedFile in
+            return "\(directoryURL.path)/\(changedFile.fileLink.path)" == self.fileItem.url.path
+        })?.changeTypeValue ?? ""
     }
 
     required init?(coder: NSCoder) {
