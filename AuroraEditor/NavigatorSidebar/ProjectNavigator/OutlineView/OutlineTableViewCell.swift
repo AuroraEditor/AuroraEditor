@@ -70,7 +70,7 @@ final class OutlineTableViewCell: NSTableCellView {
         label.usesSingleLineMode = true
 
         // change label constraints
-        changeLabel.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 1).isActive = true
+        changeLabel.leadingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25).isActive = true
         changeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 1).isActive = true
         changeLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         changeLabel.maximumNumberOfLines = 1
