@@ -106,7 +106,6 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
             ofType: pathExtention
         )
         selectionState.openedCodeFiles[item] = codeFile
-        Swift.print("Opening file for item: ", item.url)
     }
 
     private func openExtension(item: Plugin) {
@@ -210,7 +209,6 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
                 file?.save(self)
             }
         }
-
         guard let idx = selectionState.openFileItems.firstIndex(of: item) else { return }
         selectionState.openFileItems.remove(at: idx)
     }

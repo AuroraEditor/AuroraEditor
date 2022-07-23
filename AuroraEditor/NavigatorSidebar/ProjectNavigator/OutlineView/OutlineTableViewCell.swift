@@ -16,6 +16,21 @@ final class OutlineTableViewCell: NSTableCellView {
     var icon: NSImageView!
     var fileItem: WorkspaceClient.FileItem!
 
+    var changeLabelLargeWidth: NSLayoutConstraint!
+    var changeLabelSmallWidth: NSLayoutConstraint!
+
+    var changeLabelIsSmall: Bool = true {
+        didSet {
+            if changeLabelIsSmall { // is small
+                changeLabelLargeWidth.isActive = false
+                changeLabelSmallWidth.isActive = true
+            } else { // is large
+                changeLabelLargeWidth.isActive = true
+                changeLabelSmallWidth.isActive = false
+            }
+        }
+    }
+
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
 
@@ -43,7 +58,8 @@ final class OutlineTableViewCell: NSTableCellView {
         changeLabel.layer?.cornerRadius = 10.0
         changeLabel.font = .boldSystemFont(ofSize: fontSize-1)
         changeLabel.alignment = .right
-        label.addSubview(changeLabel)
+        changeLabel.textColor = .init(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.8)
+        addSubview(changeLabel)
 
         // Create the icon
         icon = NSImageView(frame: .zero)
@@ -64,13 +80,15 @@ final class OutlineTableViewCell: NSTableCellView {
 
         // Label constraints
         label.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 1).isActive = true
-        label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 1).isActive = true
+        label.trailingAnchor.constraint(equalTo: changeLabel.leadingAnchor, constant: 1).isActive = true
         label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         label.maximumNumberOfLines = 1
         label.usesSingleLineMode = true
 
         // change label constraints
-        changeLabel.leadingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25).isActive = true
+        changeLabelLargeWidth = changeLabel.leadingAnchor.constraint(equalTo: self.trailingAnchor, constant: -18)
+        changeLabelSmallWidth = changeLabel.leadingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0)
+        changeLabelIsSmall = true
         changeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 1).isActive = true
         changeLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         changeLabel.maximumNumberOfLines = 1
@@ -81,6 +99,7 @@ final class OutlineTableViewCell: NSTableCellView {
         changeLabel.stringValue = model.changed.first(where: { changedFile in
             return "\(directoryURL.path)/\(changedFile.fileLink.path)" == self.fileItem.url.path
         })?.changeTypeValue ?? ""
+        changeLabelIsSmall = changeLabel.stringValue.isEmpty
     }
 
     required init?(coder: NSCoder) {
