@@ -14,6 +14,15 @@ import Combine
 /// Source Control Navigator
 public final class SourceControlModel: ObservableObject {
 
+    enum State {
+        case loading
+        case error
+        case success
+    }
+
+    @Published
+    var state: State = .loading
+
     /// A GitClient instance
     let gitClient: GitClient
 
@@ -38,7 +47,19 @@ public final class SourceControlModel: ObservableObject {
             directoryURL: workspaceURL,
             shellClient: sharedShellClient.shellClient
         )
-        do { changed = try gitClient.getChangedFiles() } catch { changed = [] }
+        do {
+            changed = try gitClient.getChangedFiles()
+
+            DispatchQueue.main.async {
+                self.state = .success
+            }
+        } catch {
+            changed = []
+
+            DispatchQueue.main.async {
+                self.state = .success
+            }
+        }
 
         // check if .git repo exists
         if WorkspaceClient.FileItem.fileManger.fileExists(atPath:
