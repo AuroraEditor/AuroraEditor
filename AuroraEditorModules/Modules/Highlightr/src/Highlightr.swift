@@ -10,7 +10,7 @@ import Foundation
 import JavaScriptCore
 
 #if os(OSX)
-    import AppKit
+import AppKit
 #endif
 
 /// Utility class for generating a highlighted NSAttributedString from a String.
@@ -52,11 +52,11 @@ open class Highlightr {
         let window = JSValue(newObjectIn: jsContext)
         jsContext.setObject(window, forKeyedSubscript: "window" as NSString)
 
-        #if SWIFT_PACKAGE
+#if SWIFT_PACKAGE
         let bundle = Bundle.module
-        #else
+#else
         let bundle = Bundle(for: Highlightr.self)
-        #endif
+#endif
         self.bundle = bundle
         guard let hgPath = highlightPath ?? bundle.path(
             forResource: "highlight.min",
@@ -123,7 +123,7 @@ open class Highlightr {
      - parameter code:           Code to highlight.
      - parameter languageName:   Language name or alias. Set to `nil` to use auto detection.
      - parameter fastRender:     Defaults to true - When *true* will use the custom made
-                                 html parser rather than Apple's solution.
+     html parser rather than Apple's solution.
      
      - returns: NSAttributedString with the detected code highlighted.
      */
@@ -131,37 +131,37 @@ open class Highlightr {
         _ code: String,
         as languageName: String? = nil,
         fastRender: Bool = true) -> NSAttributedString? {
-        let ret: JSValue
-        if let languageName = languageName {
-            ret = hljs.invokeMethod("highlight", withArguments: [languageName, code, ignoreIllegals])
-        } else {
-            // language auto detection
-            ret = hljs.invokeMethod("highlightAuto", withArguments: [code])
-        }
-
-        let res = ret.objectForKeyedSubscript("value")
-        guard var string = res!.toString() else {
-            return nil
-        }
-
-        var returnString: NSAttributedString?
-        if fastRender {
-            returnString = processHTMLString(string)!
-        } else {
-            string = "<style>"+theme.lightTheme+"</style><pre><code class=\"hljs\">"+string+"</code></pre>"
-            let opt: [NSAttributedString.DocumentReadingOptionKey: Any] = [
-             .documentType: NSAttributedString.DocumentType.html,
-             .characterEncoding: String.Encoding.utf8.rawValue
-             ]
-
-            let data = string.data(using: String.Encoding.utf8)!
-            safeMainSync {
-                returnString = try? NSMutableAttributedString(data: data, options: opt, documentAttributes: nil)
+            let ret: JSValue
+            if let languageName = languageName {
+                ret = hljs.invokeMethod("highlight", withArguments: [languageName, code, ignoreIllegals])
+            } else {
+                // language auto detection
+                ret = hljs.invokeMethod("highlightAuto", withArguments: [code])
             }
-        }
 
-        return returnString
-    }
+            let res = ret.objectForKeyedSubscript("value")
+            guard var string = res!.toString() else {
+                return nil
+            }
+
+            var returnString: NSAttributedString?
+            if fastRender {
+                returnString = processHTMLString(string)!
+            } else {
+                string = "<style>"+theme.lightTheme+"</style><pre><code class=\"hljs\">"+string+"</code></pre>"
+                let opt: [NSAttributedString.DocumentReadingOptionKey: Any] = [
+                    .documentType: NSAttributedString.DocumentType.html,
+                    .characterEncoding: String.Encoding.utf8.rawValue
+                ]
+
+                let data = string.data(using: String.Encoding.utf8)!
+                safeMainSync {
+                    returnString = try? NSMutableAttributedString(data: data, options: opt, documentAttributes: nil)
+                }
+            }
+
+            return returnString
+        }
 
     /**
      Returns a list of all the available themes.
@@ -205,7 +205,7 @@ open class Highlightr {
         }
     }
 
-    // swiftlint:disable:next function_body_length
+    // swiftlint:disable:next function_body_length cyclomatic_complexity
     private func processHTMLString(_ string: String) -> NSAttributedString? {
         guard let htmlEscape else {
             return NSMutableAttributedString(string: string)
@@ -219,10 +219,15 @@ open class Highlightr {
 
         while !scanner.isAtEnd {
             var ended = false
-            if scanner.scanUpTo(htmlStart, into: &scannedString) {
-                if scanner.isAtEnd {
-                    ended = true
-                }
+            var didScanUpToHtmlStart = false
+
+            if let string = scanner.scanUpToString(htmlStart) {
+                scannedString = string as NSString
+                didScanUpToHtmlStart = true
+            }
+
+            if didScanUpToHtmlStart && scanner.isAtEnd {
+                ended = true
             }
 
             if scannedString != nil && scannedString!.length > 0 {
@@ -232,16 +237,19 @@ open class Highlightr {
                     continue
                 }
             }
+
+            var nextChar: String
             scanner.currentIndex = scanner.string.index(after: scanner.currentIndex)
-            let string = scanner.string as NSString
-            let nextChar = string.substring(with: NSRange(location: scanner.scanLocation, length: 1))
+            nextChar = String(scanner.string[scanner.currentIndex])
             if nextChar == "s" {
-                scanner.scanLocation += (spanStart as NSString).length
-                scanner.scanUpTo(spanStartClose, into: &scannedString)
-                scanner.scanLocation += (spanStartClose as NSString).length
+                scanner.currentIndex = scanner.string.index(scanner.currentIndex, offsetBy: spanStart.count)
+                if let string = scanner.scanUpToString(spanStartClose) {
+                    scannedString = string as NSString
+                }
+                scanner.currentIndex = scanner.string.index(scanner.currentIndex, offsetBy: spanStartClose.count)
                 propStack.append(scannedString! as String)
             } else if nextChar == "/" {
-                scanner.scanLocation += (spanEnd as NSString).length
+                scanner.currentIndex = scanner.string.index(scanner.currentIndex, offsetBy: spanEnd.count)
                 propStack.removeLast()
             } else {
                 let attrScannedString = theme.applyStyleToString("<", styleList: propStack)
