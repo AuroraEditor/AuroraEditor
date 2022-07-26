@@ -44,7 +44,7 @@ public extension WorkspaceClient {
                 eventMask: .write,
                 queue: DispatchQueue.global()
             )
-            print("Watcher \(descriptor) used up")
+            if descriptor > 2000 { print("Watcher \(descriptor) used up") }
             source.setEventHandler { self.watcherCode() }
             source.setCancelHandler { close(descriptor) }
             source.resume()
@@ -115,7 +115,9 @@ public extension WorkspaceClient {
             case nil:
                 return FileIcon.fileIcon(fileType: fileType)
             case let .some(children):
-                if self.watcher == nil && !self.activateWatcher() {
+                // check if there is no filter so that when searching, if a bunch of cache files
+                // pop up, such as ones in node_modules, we don't want to watch them. 
+                if self.watcher == nil && !self.activateWatcher() && WorkspaceClient.filter.isEmpty {
                     return "questionmark.folder"
                 }
                 return folderIcon(children)
@@ -274,6 +276,49 @@ public extension WorkspaceClient {
             do {
                 try FileItem.fileManger.moveItem(at: self.url, to: newLocation)
             } catch { fatalError(error.localizedDescription) }
+        }
+
+        /// Recursive function that returns the number of children
+        /// that contain the `searchString` in their path or their subitems' paths.
+        /// Returns `0` if the item is not a folder.
+        /// - Parameter searchString: The string
+        /// - Returns: The number of children that match the conditiions
+        public func appearanceWithinChildrenOf(searchString: String) -> Int {
+            guard !searchString.isEmpty else { return self.children?.count ?? 0 }
+            var count = 0
+            guard self.isFolder else { return 0 }
+            for child in self.children ?? [] {
+                if child.isFolder {
+                    count += child.appearanceWithinChildrenOf(searchString: searchString) > 0 ? 1 : 0
+                } else {
+                    count += child.url.path.lowercased().contains(searchString.lowercased()) ? 1 : 0
+                }
+            }
+            return count
+        }
+
+        /// Function that returns an array of the children
+        /// that contain the `searchString` in their path or their subitems' paths.
+        /// Similar to `appearanceWithinChildrenOf(searchString: String)`
+        /// Returns `[]` if the item is not a folder.
+        /// - Parameter searchString: The string
+        /// - Returns: The children that match the conditiions
+        public func childrenSatisfying(searchString: String) -> [FileItem] {
+            guard !searchString.isEmpty else { return self.children ?? [] }
+            var satisfyingChildren: [FileItem] = []
+            guard self.isFolder else { return [] }
+            for child in self.children ?? [] {
+                if child.isFolder {
+                    if child.appearanceWithinChildrenOf(searchString: searchString) > 0 {
+                        satisfyingChildren.append(child)
+                    }
+                } else {
+                    if child.url.path.lowercased().contains(searchString.lowercased()) {
+                        satisfyingChildren.append(child)
+                    }
+                }
+            }
+            return satisfyingChildren
         }
     }
 }

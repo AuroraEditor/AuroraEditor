@@ -9,13 +9,13 @@ import Foundation
 
 // TODO: DOCS (Marco Carnevali)
 public extension WorkspaceClient {
-    /// <#Description#>
+    /// Default instance of WorkspaceClient
     /// - Parameters:
-    ///   - fileManager: <#fileManager description#>
-    ///   - folderURL: <#folderURL description#>
-    ///   - ignoredFilesAndFolders: <#ignoredFilesAndFolders description#>
-    ///   - onUpdate: <#onUpdate description#>
-    /// - Returns: <#description#>
+    ///   - fileManager: a `FileManager` instance
+    ///   - folderURL: The root folder
+    ///   - ignoredFilesAndFolders: An array of file and folder names to exclude
+    ///   - onUpdate: A closure that is run when the file system changes.
+    /// - Returns: A WorkspaceClient instance
     static func `default`( // swiftlint:disable:this function_body_length
         fileManager: FileManager,
         folderURL: URL,

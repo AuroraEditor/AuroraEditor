@@ -32,6 +32,8 @@ final class OutlineViewController: NSViewController {
         return [root]
     }
 
+    var onRefresh: () -> Void = {}
+
     var workspace: WorkspaceDocument?
     var model: SourceControlModel?
 
@@ -79,7 +81,10 @@ final class OutlineViewController: NSViewController {
             self.model = .init(workspaceURL: folderURL)
         }
 
-        WorkspaceClient.onRefresh = self.outlineView.reloadData
+        print("Filter string: \(WorkspaceClient.filter)")
+
+        onRefresh = self.outlineView.reloadData
+        WorkspaceClient.onRefresh = onRefresh
         outlineView.expandItem(outlineView.item(atRow: 0))
     }
 
@@ -136,15 +141,14 @@ final class OutlineViewController: NSViewController {
 extension OutlineViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if let item = item as? Item {
-            return item.children?.count ?? 0
+            return item.appearanceWithinChildrenOf(searchString: WorkspaceClient.filter)
         }
         return content.count
     }
 
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        if let item = item as? Item,
-           let children = item.children {
-            return children[index]
+        if let item = item as? Item {
+           return item.childrenSatisfying(searchString: WorkspaceClient.filter)[index]
         }
         return content[index]
     }
