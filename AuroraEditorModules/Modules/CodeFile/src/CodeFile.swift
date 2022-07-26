@@ -56,7 +56,8 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
     // MARK: - NSDocument
 
     override public class var autosavesInPlace: Bool {
-        true
+        false
+//        true
     }
 
     override public func makeWindowControllers() {
@@ -83,5 +84,26 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
     override public func read(from data: Data, ofType _: String) throws {
         guard let content = String(data: data, encoding: .utf8) else { return }
         self.content = content
+    }
+
+    /// Save document. (custom function)
+    public func saveFileDocument() {
+
+        guard let url = self.fileURL,
+              let contents = content.data(using: .utf8) else {
+            fatalError("\(#function): Failed to get URL and file type.")
+        }
+
+        do {
+            try contents.write(to: url, options: .atomic)
+
+            let newContents = try? Data.init(contentsOf: url)
+            if newContents != contents {
+                fatalError("Saving did not update the file.")
+            }
+            Swift.print("File saved", String(data: newContents!, encoding: .utf8))
+        } catch {
+            fatalError("\(#function): Failed to save, \(error.localizedDescription)")
+        }
     }
 }

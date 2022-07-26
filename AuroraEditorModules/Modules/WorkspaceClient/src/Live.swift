@@ -184,6 +184,7 @@ public extension WorkspaceClient {
                 .receive(on: RunLoop.main)
                 .eraseToAnyPublisher(),
             getFileItem: { id in
+                // TODO: Can crash on save.
                 guard let item = flattenedFileItems[id] else {
                     throw WorkspaceClientError.fileNotExist
                 }

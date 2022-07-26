@@ -203,12 +203,11 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     /// Closes an open tab, save text files only.
     /// Removes the tab item from `openedCodeFiles`, `openedExtensions`, and `openFileItems`.
     private func closeFileTab(item: WorkspaceClient.FileItem) {
-        defer {
-            let file = selectionState.openedCodeFiles.removeValue(forKey: item)
-            if file?.typeOfFile == .text {
-                file?.save(self)
-            }
+        let file = selectionState.openedCodeFiles.removeValue(forKey: item)
+        if file?.typeOfFile == .text {
+            file?.saveFileDocument()
         }
+
         guard let idx = selectionState.openFileItems.firstIndex(of: item) else { return }
         selectionState.openFileItems.remove(at: idx)
     }

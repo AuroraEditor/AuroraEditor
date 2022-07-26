@@ -255,8 +255,15 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
         return file
     }
 
+    // TODO: Make this more reliable
     @IBAction func saveDocument(_ sender: Any) {
-        getSelectedCodeFile()?.save(sender)
+        guard let file = getSelectedCodeFile() else {
+            fatalError("Cannot get file")
+        }
+
+//        file.save(sender)
+        file.saveFileDocument()
+
         workspace?.convertTemporaryTab()
     }
 
