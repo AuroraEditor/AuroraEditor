@@ -82,17 +82,19 @@ public final class CodeEditorTextView: NSTextView {
         guard let end = autoPairs[symbol]
         else { return }
 
-        if prefs.preferences.textEditing.autocompleteBraces && symbol == "{" {
-            super.insertText(end, replacementRange: selectedRange())
+        DispatchQueue.main.async {
+            if self.prefs.preferences.textEditing.autocompleteBraces && symbol == "{" {
+                super.insertText(end, replacementRange: self.selectedRange())
+                super.moveBackward(self)
+                return
+            }
+
+            guard self.prefs.preferences.textEditing.enableTypeOverCompletion, symbol != "{"
+            else { return }
+
+            super.insertText(end, replacementRange: self.selectedRange())
             super.moveBackward(self)
-            return
         }
-
-        guard prefs.preferences.textEditing.enableTypeOverCompletion, symbol != "{"
-        else { return }
-
-        super.insertText(end, replacementRange: selectedRange())
-        super.moveBackward(self)
     }
 
     override public func insertText(_ string: Any, replacementRange: NSRange) {

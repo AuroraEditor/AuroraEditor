@@ -10,6 +10,15 @@ import Git
 
 public final class HistoryInspectorModel: ObservableObject {
 
+    enum State {
+        case loading
+        case error
+        case success
+    }
+
+    @Published
+    var state: State = .loading
+
     /// A GitClient instance
     private(set) var gitClient: GitClient
 
@@ -36,8 +45,16 @@ public final class HistoryInspectorModel: ObservableObject {
         do {
             let commitHistory = try gitClient.getCommitHistory(40, fileURL)
             self.commitHistory = commitHistory
+
+            DispatchQueue.main.async {
+                self.state = .success
+            }
         } catch {
             commitHistory = []
+
+            DispatchQueue.main.async {
+                self.state = .success
+            }
         }
     }
 }
