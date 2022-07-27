@@ -30,9 +30,14 @@ struct ProjectNavigatorToolbarBottom: View {
                     TextField("Filter", text: $filter)
                         .textFieldStyle(.plain)
                         .font(.system(size: 12))
-                }.onChange(of: filter, perform: { WorkspaceClient.filter = $0 })
+                    if !filter.isEmpty {
+                        clearFilterButton
+                    }
+                }.onChange(of: filter, perform: {
+                    WorkspaceClient.filter = $0
+                })
             }
-            .cornerRadius(7)
+            .cornerRadius(9)
             .overlay {
                 RoundedRectangle(cornerRadius: 7)
                     .stroke(Color.init(red: 0.5, green: 0.5, blue: 0.5), lineWidth: 0.5)
@@ -82,6 +87,20 @@ struct ProjectNavigatorToolbarBottom: View {
         }
         .menuStyle(.borderlessButton)
         .frame(maxWidth: 30)
+        .opacity(activeState == .inactive ? 0.45 : 1)
+    }
+
+    /// We clear the text and remove the first responder which removes the cursor
+    /// when the user clears the filter.
+    private var clearFilterButton: some View {
+        Button {
+            filter = ""
+            NSApp.keyWindow?.makeFirstResponder(nil)
+        } label: {
+            Image(systemName: "xmark.circle.fill")
+                .symbolRenderingMode(.hierarchical)
+        }
+        .buttonStyle(.plain)
         .opacity(activeState == .inactive ? 0.45 : 1)
     }
 }
