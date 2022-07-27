@@ -233,7 +233,7 @@ extension OutlineViewController: NSOutlineViewDelegate {
             view.fileItem = item
             view.icon.image = image
             view.icon.contentTintColor = color(for: item)
-
+            view.toolTip = item.fileName
             view.label.stringValue = outlineViewLabel(for: item)
         }
 
