@@ -71,7 +71,6 @@ struct CodeEditor: NSViewRepresentable {
         textView.maxSize = NSSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
         textView.minSize = NSSize(width: 0, height: scrollView.contentSize.height)
         textView.delegate = context.coordinator
-        textView.usesFontPanel = false
 
         scrollView.drawsBackground = true
         scrollView.borderType = .noBorder
@@ -94,7 +93,7 @@ struct CodeEditor: NSViewRepresentable {
     }
 
     private var lineGutterFont: NSFont {
-        let fontSize: Double = 10
+        let fontSize: Double = 11
 
         // TODO: calculate the font size depending on the editors font size.
         let font = NSFont.monospacedSystemFont(ofSize: fontSize, weight: .medium)
@@ -182,10 +181,8 @@ struct CodeEditor: NSViewRepresentable {
                 size: CGFloat(prefs.preferences.textEditing.font.size)
             )
         } else {
-            highlightr?.theme.codeFont = .monospacedSystemFont(
-                ofSize: 11,
-                weight: .medium
-            )
+            highlightr?.theme.codeFont = NSFont.monospacedSystemFont(ofSize: 11,
+                                                                     weight: .medium)
         }
 
         if content.wrappedValue != textView.string {

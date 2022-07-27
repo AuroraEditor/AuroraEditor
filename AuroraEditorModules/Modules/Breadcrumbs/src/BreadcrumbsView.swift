@@ -16,7 +16,8 @@ public struct BreadcrumbsView: View {
     @Environment(\.controlActiveState)
     private var activeState
 
-    @State private var fileItems: [WorkspaceClient.FileItem] = []
+    @State
+    private var fileItems: [WorkspaceClient.FileItem] = []
 
     private let file: WorkspaceClient.FileItem
     private let tappedOpenFile: (WorkspaceClient.FileItem) -> Void
@@ -61,10 +62,8 @@ public struct BreadcrumbsView: View {
 
     private var chevron: some View {
         Image(systemName: "chevron.compact.right")
-            .font(.system(size: 14, weight: .thin, design: .default))
+            .font(.system(size: 18, weight: .thin, design: .monospaced))
             .foregroundStyle(.primary)
-            .scaleEffect(x: 1.30, y: 1.0, anchor: .center)
-            .imageScale(.large)
             .opacity(activeState != .inactive ? 0.8 : 0.5)
     }
 
