@@ -29,6 +29,13 @@ final class AuroraEditorApplication: NSApplication {
 
 }
 
+/**
+ 2022-07-26 21:07:49.347758+0200 AuroraEditor[48132:1157389]
+ -[NSTaggedPointerString objectForKey:]: unrecognized selector sent to instance 0x8000000000000000
+ 2022-07-26 21:07:49.386108+0200 AuroraEditor[48132:1157389]
+ *** Terminating app due to uncaught exception 'NSInvalidArgumentException',
+ reason: '-[NSTaggedPointerString objectForKey:]: unrecognized selector sent to instance 0x8000000000000000'
+ */
 @NSApplicationMain
 final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     func applicationWillFinishLaunching(_ notification: Notification) {
