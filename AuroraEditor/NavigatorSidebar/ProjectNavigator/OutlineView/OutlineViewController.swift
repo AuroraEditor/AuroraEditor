@@ -81,11 +81,10 @@ final class OutlineViewController: NSViewController {
             self.model = .init(workspaceURL: folderURL)
         }
 
-        print("Filter string: \(WorkspaceClient.filter)")
-
-        onRefresh = self.outlineView.reloadData
-        WorkspaceClient.onRefresh = onRefresh
+        onRefresh = { self.reloadData() }
+        WorkspaceClient.onRefresh = { self.onRefresh() }
         outlineView.expandItem(outlineView.item(atRow: 0))
+        saveExpansionState()
     }
 
     init() {
@@ -132,6 +131,47 @@ final class OutlineViewController: NSViewController {
         } else {
             return .secondaryLabelColor
         }
+    }
+
+    private var isExpandingThings: Bool = false
+    /// Perform functions related to reloading the Outline View
+    func reloadData() {
+        self.outlineView.reloadData()
+        if !WorkspaceClient.filter.isEmpty {
+            // expand everything
+            outlineView.expandItem(outlineView.item(atRow: 0), expandChildren: true)
+        } else {
+            loadExpansionState()
+        }
+    }
+
+    /// Save the expansion state of the items in the Project Navigator
+    func saveExpansionState() {
+        guard WorkspaceClient.filter.isEmpty && !isExpandingThings else { return }
+        // TODO: save expansion state
+        var rowNumber = 0
+        while let itemToCheck = outlineView.item(atRow: rowNumber) {
+            guard let fileItem = itemToCheck as? Item else { break }
+            fileItem.shouldBeExpanded = outlineView.isItemExpanded(itemToCheck)
+            rowNumber += 1
+        }
+    }
+
+    /// Load any saved expansion state of the items in the Project Navigator
+    func loadExpansionState() {
+        isExpandingThings = true
+        // TODO: load expansion state
+        var rowNumber = 0
+        while let itemToCheck = outlineView.item(atRow: rowNumber) {
+            guard let fileItem = itemToCheck as? Item else { break }
+            if fileItem.shouldBeExpanded {
+                outlineView.expandItem(itemToCheck)
+            } else {
+                outlineView.collapseItem(itemToCheck)
+            }
+            rowNumber += 1
+        }
+        isExpandingThings = false
     }
 
 }
@@ -230,9 +270,12 @@ extension OutlineViewController: NSOutlineViewDelegate {
 
     func outlineViewItemDidExpand(_ notification: Notification) {
         updateSelection()
+        saveExpansionState()
     }
 
-    func outlineViewItemDidCollapse(_ notification: Notification) {}
+    func outlineViewItemDidCollapse(_ notification: Notification) {
+        saveExpansionState()
+    }
 
     func outlineView(_ outlineView: NSOutlineView, itemForPersistentObject object: Any) -> Any? {
         guard let id = object as? Item.ID,

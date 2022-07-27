@@ -21,7 +21,7 @@ public struct WorkspaceClient {
     /// This usually contains a `reloadData` function.
     public static var onRefresh: () -> Void = {}
     public static var filter: String = "" {
-        didSet { WorkspaceClient.onRefresh(); print("Text changed to \(WorkspaceClient.filter)") }
+        didSet { WorkspaceClient.onRefresh() }
     }
 
     // For some strange reason, swiftlint thinks this is wrong?

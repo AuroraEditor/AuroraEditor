@@ -31,6 +31,8 @@ public extension WorkspaceClient {
             Image(systemName: systemImage)
         }
 
+        public var shouldBeExpanded: Bool = false
+
         public typealias ID = String
 
         public var watcher: DispatchSourceFileSystemObject?
@@ -291,7 +293,7 @@ public extension WorkspaceClient {
                 if child.isFolder {
                     count += child.appearanceWithinChildrenOf(searchString: searchString) > 0 ? 1 : 0
                 } else {
-                    count += child.url.path.lowercased().contains(searchString.lowercased()) ? 1 : 0
+                    count += child.fileName.lowercased().contains(searchString.lowercased()) ? 1 : 0
                 }
             }
             return count
@@ -313,7 +315,7 @@ public extension WorkspaceClient {
                         satisfyingChildren.append(child)
                     }
                 } else {
-                    if child.url.path.lowercased().contains(searchString.lowercased()) {
+                    if child.fileName.lowercased().contains(searchString.lowercased()) {
                         satisfyingChildren.append(child)
                     }
                 }
