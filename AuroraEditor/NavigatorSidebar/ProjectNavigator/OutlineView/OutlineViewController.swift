@@ -147,20 +147,27 @@ final class OutlineViewController: NSViewController {
 
     /// Save the expansion state of the items in the Project Navigator
     func saveExpansionState() {
-        guard WorkspaceClient.filter.isEmpty && !isExpandingThings else { return }
-        // TODO: save expansion state
-        var rowNumber = 0
-        while let itemToCheck = outlineView.item(atRow: rowNumber) {
-            guard let fileItem = itemToCheck as? Item else { break }
-            fileItem.shouldBeExpanded = outlineView.isItemExpanded(itemToCheck)
-            rowNumber += 1
+        guard let workspaceItem = outlineView.item(atRow: 0) as? Item,
+              WorkspaceClient.filter.isEmpty && !isExpandingThings else { return }
+        saveExpansionState(of: workspaceItem)
+    }
+
+    func saveExpansionState(of item: Item) {
+        item.shouldBeExpanded = outlineView.isItemExpanded(item)
+        guard item.shouldBeExpanded else { return }
+        for childIndex in 0 ..< outlineView.numberOfChildren(ofItem: item) {
+            guard let child = outlineView.child(childIndex, ofItem: item) as? Item else { return }
+            guard child.shouldBeExpanded != outlineView.isItemExpanded(child) else { continue }
+            child.shouldBeExpanded = outlineView.isItemExpanded(child)
+            if outlineView.isItemExpanded(child) {
+                saveExpansionState(of: child)
+            }
         }
     }
 
     /// Load any saved expansion state of the items in the Project Navigator
     func loadExpansionState() {
         isExpandingThings = true
-        // TODO: load expansion state
         var rowNumber = 0
         while let itemToCheck = outlineView.item(atRow: rowNumber) {
             guard let fileItem = itemToCheck as? Item else { break }
