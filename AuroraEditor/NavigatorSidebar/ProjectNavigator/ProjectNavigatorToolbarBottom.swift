@@ -19,32 +19,29 @@ struct ProjectNavigatorToolbarBottom: View {
     var filter: String = ""
 
     var body: some View {
-        HStack(spacing: 10) {
+        HStack {
             addNewFileButton
                 .frame(width: 20)
                 .padding(.leading, 10)
-            ZStack {
-                Color.init(red: 0.7, green: 0.7, blue: 0.7, opacity: activeState == .inactive ? 0.25 : 0.5)
-                HStack {
-                    sortButton
-                    TextField("Filter", text: $filter)
-                        .textFieldStyle(.plain)
-                        .font(.system(size: 12))
-                    if !filter.isEmpty {
-                        clearFilterButton
-                    }
-                }.onChange(of: filter, perform: {
-                    WorkspaceClient.filter = $0
-                })
+            HStack {
+                sortButton
+                TextField("Filter", text: $filter)
+                    .textFieldStyle(.plain)
+                    .font(.system(size: 12))
+                if !filter.isEmpty {
+                    clearFilterButton
+                        .padding(.trailing, 5)
+                }
             }
-            .cornerRadius(9)
-            .overlay {
-                RoundedRectangle(cornerRadius: 7)
-                    .stroke(Color.init(red: 0.5, green: 0.5, blue: 0.5), lineWidth: 0.5)
-            }
-            .padding([.top, .bottom], 4)
-            .padding(.leading, -8)
+            .onChange(of: filter, perform: {
+                WorkspaceClient.filter = $0
+            })
+            .padding(.vertical, 3)
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+            .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.secondary, lineWidth: 0.5).cornerRadius(6))
             .padding(.trailing, 5)
+            .padding(.leading, -8)
         }
         .frame(height: 29, alignment: .center)
         .frame(maxWidth: .infinity)
