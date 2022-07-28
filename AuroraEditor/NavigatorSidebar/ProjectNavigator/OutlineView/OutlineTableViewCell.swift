@@ -56,9 +56,9 @@ final class OutlineTableViewCell: NSTableCellView {
         changeLabel.isEditable = false
         changeLabel.isSelectable = false
         changeLabel.layer?.cornerRadius = 10.0
-        changeLabel.font = .boldSystemFont(ofSize: fontSize-1)
+        changeLabel.font = .boldSystemFont(ofSize: fontSize)
         changeLabel.alignment = .right
-        changeLabel.textColor = .init(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.8)
+        changeLabel.textColor = NSColor(Color.secondary)
         addSubview(changeLabel)
 
         // Create the icon
