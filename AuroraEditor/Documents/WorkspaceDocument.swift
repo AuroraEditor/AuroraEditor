@@ -333,7 +333,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
 
     // MARK: Manage Workspace
     public var filter: String = "" {
-        didSet { WorkspaceClient.onRefresh() }
+        didSet { WorkspaceClient.onRefresh([]) }
     }
 
     // MARK: Close Workspace

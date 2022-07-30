@@ -23,8 +23,7 @@ public extension WorkspaceClient {
         onUpdate: @escaping () -> Void = {}
     ) throws -> Self {
         var flattenedFileItems: [String: FileItem] = [:]
-
-        // defining all the variables so that the defaultInstance can be made
+        var changedURLs: [String] = []
 
         // used by rebuildFiles to make sure concurrency doesn't go insane
         var isRunning: Bool = false
@@ -57,6 +56,8 @@ public extension WorkspaceClient {
         flattenedFileItems[workspaceItem.id] = workspaceItem
 
         func whenWatcherTriggered() {
+            changedURLs = []
+
             // Something has changed inside the directory
             // We should reload the files.
             guard !isRunning else { // this runs when a file change is detected but is already running
@@ -80,7 +81,7 @@ public extension WorkspaceClient {
             isRunning = false
             anotherInstanceRan = 0
             // reload data in outline view controller through the main thread
-            DispatchQueue.main.async { WorkspaceClient.onRefresh() }
+            DispatchQueue.main.async { WorkspaceClient.onRefresh(changedURLs) }
         }
 
         // this weird statement is so that watcherCode's closure does not contain watcherCode when it is uninitialised
@@ -181,6 +182,7 @@ public extension WorkspaceClient {
                 flattenedFileItems[$0.id] = $0
             })
 
+            if didChangeSomething { changedURLs.append(fileItem.url.path) }
             return didChangeSomething
         }
 

@@ -79,7 +79,12 @@ final class OutlineViewController: NSViewController {
             self.model = .init(workspaceURL: folderURL)
         }
 
-        WorkspaceClient.onRefresh = { self.reloadData() }
+        WorkspaceClient.onRefresh = { changedURLs in
+            for url in changedURLs {
+                self.outlineView.reloadItem(try? self.workspace?.workspaceClient?.getFileItem(url))
+            }
+            self.reloadData()
+        }
         outlineView.expandItem(outlineView.item(atRow: 0))
         saveExpansionState()
     }
@@ -133,7 +138,6 @@ final class OutlineViewController: NSViewController {
     private var isExpandingThings: Bool = false
     /// Perform functions related to reloading the Outline View
     func reloadData() {
-        self.outlineView.reloadData()
         if !(workspace?.filter.isEmpty ?? true) {
             // expand everything
             outlineView.expandItem(outlineView.item(atRow: 0), expandChildren: true)

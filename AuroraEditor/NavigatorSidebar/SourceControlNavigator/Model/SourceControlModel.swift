@@ -64,18 +64,16 @@ public final class SourceControlModel: ObservableObject {
         // check if .git repo exists
         if WorkspaceClient.FileItem.fileManger.fileExists(atPath:
             workspaceURL.appendingPathComponent(".git").path) {
-            self.workspaceClient = try? .default(fileManager: .default,
-                                                 folderURL: workspaceURL.appendingPathExtension(".git"),
-                                                 ignoredFilesAndFolders: ["hooks"],
-                                                 onUpdate: { self.changed = (try? self.gitClient.getChangedFiles())! })
-            workspaceClient?
-                .getFiles
-                .sink { files in
-                    files.forEach {
-                        _ = $0.activateWatcher()
-                    }
-                }
-                .store(in: &cancellables)
+            reloadFileChanges()
+        }
+    }
+
+    private func reloadFileChanges() {
+        changed = (try? gitClient.getChangedFiles()) ?? []
+        WorkspaceClient.onRefresh(changed.map { "\(workspaceURL.path)/\($0.fileLink.path)" })
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.reloadFileChanges()
         }
     }
 
