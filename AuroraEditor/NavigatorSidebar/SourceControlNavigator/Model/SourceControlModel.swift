@@ -69,8 +69,19 @@ public final class SourceControlModel: ObservableObject {
     }
 
     private func reloadFileChanges() {
-        changed = (try? gitClient.getChangedFiles()) ?? []
-        WorkspaceClient.onRefresh(changed.map { "\(workspaceURL.path)/\($0.fileLink.path)" })
+        let oldChangedFilesURL = changed.map { $0.fileLink.path }
+
+        let changedFiles = (try? gitClient.getChangedFiles()) ?? []
+        let newChangedFilesURL = (changedFiles).map {
+            $0.fileLink.path
+        }
+
+        if !oldChangedFilesURL.difference(from: newChangedFilesURL).isEmpty {
+            WorkspaceClient.onRefresh(oldChangedFilesURL.difference(from: newChangedFilesURL).map {
+                "\(workspaceURL.path)/\($0)"
+            })
+            changed = changedFiles
+        }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.reloadFileChanges()

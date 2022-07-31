@@ -56,7 +56,6 @@ public extension WorkspaceClient {
         flattenedFileItems[workspaceItem.id] = workspaceItem
 
         func whenWatcherTriggered() {
-            changedURLs = []
 
             // Something has changed inside the directory
             // We should reload the files.
@@ -64,6 +63,7 @@ public extension WorkspaceClient {
                 anotherInstanceRan += 1
                 return
             }
+            changedURLs = []
             isRunning = true
             flattenedFileItems = [workspaceItem.id: workspaceItem]
             _ = try? rebuildFiles(fromItem: workspaceItem)
