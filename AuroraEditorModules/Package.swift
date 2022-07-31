@@ -96,6 +96,10 @@ let package = Package(
         .library(
             name: "AuroraEditorTextView",
             targets: ["AuroraEditorTextView"]
+        ),
+        .library(
+            name: "Crashlytics",
+            targets: ["Crashlytics"]
         )
     ],
     dependencies: [
@@ -362,6 +366,16 @@ let package = Package(
             resources: [
                 .copy("assets")
             ]
+        ),
+        .target(
+            name: "Crashlytics",
+            dependencies: [
+                "AuroraEditorUI",
+                "Git",
+                "AuroraEditorUtils",
+                "AppPreferences"
+            ],
+            path: "Modules/Crashlytics/src"
         )
     ]
 )

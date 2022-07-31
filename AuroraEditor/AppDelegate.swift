@@ -13,6 +13,7 @@ import WelcomeModule
 import ExtensionsStore
 import Feedback
 import AuroraEditorSymbols
+import Crashlytics
 
 final class AuroraEditorApplication: NSApplication {
     let strongDelegate = AppDelegate()
@@ -43,6 +44,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+
+        AuroraCrashlytics.add(delegate: self)
+
         AppPreferencesModel.shared.preferences.general.appAppearance.applyAppearance()
         checkForFilesToOpen()
 
@@ -151,6 +155,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             doc.close()
             AuroraEditorDocumentController.shared.removeDocument(doc)
         }
+
+        if let date = UserDefaults.standard.string(forKey: "crash") {
+            CrashReportView(errorDetails: date).showWindow()
+        }
+
         return .terminateNow
     }
 
@@ -318,4 +327,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 
 extension AppDelegate {
     static let recoverWorkspacesKey = "recover.workspaces"
+}
+
+extension AppDelegate: AuroraCrashlyticsDelegate {
+    func auroraCrashlyticsDidCatchCrash(with model: Crashlytics.CrashModel) {
+        UserDefaults.standard.set(model.reason + "(\(Date()))", forKey: "crash")
+    }
 }
