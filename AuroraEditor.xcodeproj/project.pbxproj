@@ -47,6 +47,7 @@
 		2072FA1C280D874000C7F8D4 /* IndentUsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072FA1B280D874000C7F8D4 /* IndentUsing.swift */; };
 		2072FA1E280D891500C7F8D4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072FA1D280D891500C7F8D4 /* Location.swift */; };
 		2077162E287C8EC80069C68E /* ToolbarAppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077162D287C8EC80069C68E /* ToolbarAppInfo.swift */; };
+		20867D7E2896749F00922088 /* Crashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 20867D7D2896749F00922088 /* Crashlytics */; };
 		20AFDC7F28206701001A4FC7 /* Git in Frameworks */ = {isa = PBXBuildFile; productRef = 20AFDC7E28206701001A4FC7 /* Git */; };
 		20C8D7DC287ED2C700C5B3BA /* ToolbarBranchPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8D7DB287ED2C700C5B3BA /* ToolbarBranchPicker.swift */; };
 		20D839AB280DEB2900B27357 /* NoSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D839AA280DEB2900B27357 /* NoSelectionView.swift */; };
@@ -276,6 +277,7 @@
 				20AFDC7F28206701001A4FC7 /* Git in Frameworks */,
 				04C3256B28034FC800C8DA2D /* CodeEditKit in Frameworks */,
 				2864BAAC28117B3F002DBD1A /* ShellClient in Frameworks */,
+				20867D7E2896749F00922088 /* Crashlytics in Frameworks */,
 				2864BAAE28117D7C002DBD1A /* TerminalEmulator in Frameworks */,
 				2049D23F2874FDB5005721D8 /* AuroraEditorUI in Frameworks */,
 				5C403B8F27E20F8000788241 /* WorkspaceClient in Frameworks */,
@@ -726,6 +728,7 @@
 				2049D2402874FDB9005721D8 /* AuroraEditorUtils */,
 				201EF8A9287D751000F338BD /* AuroraEditorNotifications */,
 				2B5B255A2889C6D6009C7384 /* AuroraEditorTextView */,
+				20867D7D2896749F00922088 /* Crashlytics */,
 			);
 			productName = CodeEdit;
 			productReference = B658FB2C27DA9E0F00EA4DBD /* AuroraEditor.app */;
@@ -1542,6 +1545,10 @@
 		2049D2402874FDB9005721D8 /* AuroraEditorUtils */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AuroraEditorUtils;
+		};
+		20867D7D2896749F00922088 /* Crashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Crashlytics;
 		};
 		20AFDC7E28206701001A4FC7 /* Git */ = {
 			isa = XCSwiftPackageProductDependency;

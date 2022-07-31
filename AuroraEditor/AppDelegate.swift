@@ -13,6 +13,7 @@ import WelcomeModule
 import ExtensionsStore
 import Feedback
 import AuroraEditorSymbols
+import Crashlytics
 
 final class AuroraEditorApplication: NSApplication {
     let strongDelegate = AppDelegate()
@@ -42,7 +43,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         _ = AuroraEditorDocumentController.shared
     }
 
+    // swiftlint:disable:next function_body_length
     func applicationDidFinishLaunching(_ notification: Notification) {
+
+        AuroraCrashlytics.add(delegate: self)
+
         AppPreferencesModel.shared.preferences.general.appAppearance.applyAppearance()
         checkForFilesToOpen()
 
@@ -94,6 +99,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                 self.handleOpen()
             }
         }
+
+        showCrashAlert()
 
         do {
             try ExtensionsManager.shared?.preload()
@@ -152,6 +159,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             AuroraEditorDocumentController.shared.removeDocument(doc)
         }
         return .terminateNow
+    }
+
+    private func showCrashAlert() {
+        if let date = UserDefaults.standard.string(forKey: "crash") {
+            let alert = NSAlert()
+            alert.alertStyle = .critical
+            alert.messageText = "Crash Occured"
+            alert.informativeText = date
+            alert.addButton(withTitle: "Continue")
+            if alert.runModal() == .alertFirstButtonReturn {
+                UserDefaults.standard.removeObject(forKey: "crash")
+                UserDefaults.standard.synchronize()
+            }
+        }
     }
 
     // MARK: - Open windows
@@ -318,4 +339,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 
 extension AppDelegate {
     static let recoverWorkspacesKey = "recover.workspaces"
+}
+
+extension AppDelegate: AuroraCrashlyticsDelegate {
+    func auroraCrashlyticsDidCatchCrash(with model: Crashlytics.CrashModel) {
+        UserDefaults.standard.set(model.reason + "(\(Date()))", forKey: "crash")
+    }
 }
