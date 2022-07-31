@@ -35,6 +35,8 @@ public extension WorkspaceClient {
 
         public typealias ID = String
 
+        public var fileIdentifier = UUID().uuidString
+
         public var watcher: DispatchSourceFileSystemObject?
         public var watcherCode: () -> Void = {}
 
@@ -117,9 +119,7 @@ public extension WorkspaceClient {
             case nil:
                 return FileIcon.fileIcon(fileType: fileType)
             case let .some(children):
-                // check if there is no filter so that when searching, if a bunch of cache files
-                // pop up, such as ones in node_modules, we don't want to watch them. 
-                if self.watcher == nil && !self.activateWatcher() && WorkspaceClient.filter.isEmpty {
+                if self.watcher == nil {
                     return "questionmark.folder"
                 }
                 return folderIcon(children)
@@ -328,9 +328,8 @@ public extension WorkspaceClient {
 // MARK: Hashable
 extension WorkspaceClient.FileItem: Hashable {
     public func hash(into hasher: inout Hasher) {
+        hasher.combine(fileIdentifier)
         hasher.combine(id)
-        hasher.combine(url)
-        hasher.combine(children)
     }
 }
 

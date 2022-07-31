@@ -331,6 +331,11 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
 
     override func write(to url: URL, ofType typeName: String) throws {}
 
+    // MARK: Manage Workspace
+    public var filter: String = "" {
+        didSet { WorkspaceClient.onRefresh([]) }
+    }
+
     // MARK: Close Workspace
 
     /// Saves selection state to UserDefaults using SHA256 hash of project  path as key
