@@ -32,6 +32,8 @@ final class OutlineViewController: NSViewController {
         return [root]
     }
 
+    var onRefresh: () -> Void = {}
+
     var workspace: WorkspaceDocument?
     var model: SourceControlModel?
 
@@ -79,12 +81,8 @@ final class OutlineViewController: NSViewController {
             self.model = .init(workspaceURL: folderURL)
         }
 
-        WorkspaceClient.onRefresh = { changedURLs in
-            for url in changedURLs {
-                self.outlineView.reloadItem(try? self.workspace?.workspaceClient?.getFileItem(url))
-            }
-            self.reloadData()
-        }
+        onRefresh = { self.reloadData() }
+        WorkspaceClient.onRefresh = { self.onRefresh() }
         outlineView.expandItem(outlineView.item(atRow: 0))
         saveExpansionState()
     }
@@ -138,7 +136,8 @@ final class OutlineViewController: NSViewController {
     private var isExpandingThings: Bool = false
     /// Perform functions related to reloading the Outline View
     func reloadData() {
-        if !(workspace?.filter.isEmpty ?? true) {
+        self.outlineView.reloadData()
+        if !WorkspaceClient.filter.isEmpty {
             // expand everything
             outlineView.expandItem(outlineView.item(atRow: 0), expandChildren: true)
         } else {
@@ -149,7 +148,7 @@ final class OutlineViewController: NSViewController {
     /// Save the expansion state of the items in the Project Navigator
     func saveExpansionState() {
         guard let workspaceItem = outlineView.item(atRow: 0) as? Item,
-              (workspace?.filter.isEmpty ?? true) && !isExpandingThings else { return }
+              WorkspaceClient.filter.isEmpty && !isExpandingThings else { return }
         saveExpansionState(of: workspaceItem)
     }
 
@@ -189,14 +188,14 @@ final class OutlineViewController: NSViewController {
 extension OutlineViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if let item = item as? Item {
-            return item.appearanceWithinChildrenOf(searchString: workspace?.filter ?? "")
+            return item.appearanceWithinChildrenOf(searchString: WorkspaceClient.filter)
         }
         return content.count
     }
 
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         if let item = item as? Item {
-            return item.childrenSatisfying(searchString: workspace?.filter ?? "")[index]
+           return item.childrenSatisfying(searchString: WorkspaceClient.filter)[index]
         }
         return content[index]
     }
@@ -230,10 +229,6 @@ extension OutlineViewController: NSOutlineViewDelegate {
         let view = OutlineTableViewCell(frame: frameRect)
 
         if let item = item as? Item {
-            if (workspace?.filter.isEmpty ?? true) && item.watcher == nil {
-                _ = item.activateWatcher()
-            }
-
             let image = NSImage(systemSymbolName: item.systemImage, accessibilityDescription: nil)!
             view.fileItem = item
             view.icon.image = image

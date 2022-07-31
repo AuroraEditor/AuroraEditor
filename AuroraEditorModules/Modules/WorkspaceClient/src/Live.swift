@@ -23,74 +23,6 @@ public extension WorkspaceClient {
         onUpdate: @escaping () -> Void = {}
     ) throws -> Self {
         var flattenedFileItems: [String: FileItem] = [:]
-        var changedURLs: [String] = []
-
-        // used by rebuildFiles to make sure concurrency doesn't go insane
-        var isRunning: Bool = false
-        var anotherInstanceRan: Int = 0
-
-        // By using `CurrentValueSubject` we can define a starting value.
-        // The value passed during init it's going to be send as soon as the
-        // consumer subscribes to the publisher.
-        let subject = CurrentValueSubject<[FileItem], Never>([])
-
-        let defaultInstance = Self(
-            folderURL: { folderURL },
-            getFiles: subject
-                .handleEvents(receiveCancel: {
-                    stopListeningToDirectory()
-                })
-                .receive(on: RunLoop.main)
-                .eraseToAnyPublisher(),
-            getFileItem: { id in
-                // TODO: Can crash on save.
-                guard let item = flattenedFileItems[id] else {
-                    throw WorkspaceClientError.fileNotExist
-                }
-                return item
-            }
-        )
-
-        // workspace fileItem
-        let workspaceItem = FileItem(url: folderURL, children: [])
-        flattenedFileItems[workspaceItem.id] = workspaceItem
-
-        func whenWatcherTriggered() {
-
-            // Something has changed inside the directory
-            // We should reload the files.
-            guard !isRunning else { // this runs when a file change is detected but is already running
-                anotherInstanceRan += 1
-                return
-            }
-            changedURLs = []
-            isRunning = true
-            flattenedFileItems = [workspaceItem.id: workspaceItem]
-            _ = try? rebuildFiles(fromItem: workspaceItem)
-
-            // if another instance ran while rebuilding was in progress, rebuild again.
-            while anotherInstanceRan > 0 { // TODO: optimise
-                let somethingChanged = try? rebuildFiles(fromItem: workspaceItem)
-                anotherInstanceRan = !(somethingChanged ?? false) ? 0 : anotherInstanceRan - 1
-            }
-
-            // run the onUpdate function after changes have been made
-            onUpdate()
-
-            subject.send(workspaceItem.children ?? [])
-            isRunning = false
-            anotherInstanceRan = 0
-            // reload data in outline view controller through the main thread
-            DispatchQueue.main.async { WorkspaceClient.onRefresh(changedURLs) }
-        }
-
-        // this weird statement is so that watcherCode's closure does not contain watcherCode when it is uninitialised
-        var watcherCode = {}; watcherCode = { whenWatcherTriggered() }
-        workspaceItem.watcherCode = watcherCode
-
-        // initial load
-        _ = try? rebuildFiles(fromItem: workspaceItem)
-        subject.send(workspaceItem.children ?? [])
 
         /// Recursive loading of files into `FileItem`s
         /// - Parameter url: The URL of the directory to load the items of
@@ -122,6 +54,54 @@ public extension WorkspaceClient {
             }
 
             return items
+        }
+
+        // initial load
+        let fileItems = try loadFiles(fromURL: folderURL)
+        // workspace fileItem
+        let workspaceItem = FileItem(url: folderURL, children: fileItems)
+        flattenedFileItems[workspaceItem.id] = workspaceItem
+        fileItems.forEach { item in
+            item.parent = workspaceItem
+        }
+
+        // By using `CurrentValueSubject` we can define a starting value.
+        // The value passed during init it's going to be send as soon as the
+        // consumer subscribes to the publisher.
+        let subject = CurrentValueSubject<[FileItem], Never>(fileItems)
+
+        var isRunning: Bool = false
+        var anotherInstanceRan: Int = 0
+
+        // this weird statement is so that watcherCode's closure does not contain watcherCode when it is uninitialised
+        var watcherCode = {}; watcherCode = {
+
+            // Something has changed inside the directory
+            // We should reload the files.
+            guard !isRunning else { // this runs when a file change is detected but is already running
+                anotherInstanceRan += 1
+                return
+            }
+            isRunning = true
+            flattenedFileItems = [workspaceItem.id: workspaceItem]
+            _ = try? rebuildFiles(fromItem: workspaceItem)
+            while anotherInstanceRan > 0 { // TODO: optimise
+                let somethingChanged = try? rebuildFiles(fromItem: workspaceItem)
+                anotherInstanceRan = !(somethingChanged ?? false) ? 0 : anotherInstanceRan - 1
+            }
+
+            // run the onUpdate function after changes have been made
+            onUpdate()
+
+            subject.send(workspaceItem.children ?? [])
+            isRunning = false
+            anotherInstanceRan = 0
+            // reload data in outline view controller through the main thread
+            DispatchQueue.main.async { onRefresh() }
+        }
+
+        flattenedFileItems.forEach {
+            $0.value.watcherCode = watcherCode
         }
 
         /// Recursive function similar to `loadFiles`, but creates or deletes children of the
@@ -182,7 +162,6 @@ public extension WorkspaceClient {
                 flattenedFileItems[$0.id] = $0
             })
 
-            if didChangeSomething { changedURLs.append(fileItem.url.path) }
             return didChangeSomething
         }
 
@@ -196,6 +175,21 @@ public extension WorkspaceClient {
             }
         }
 
-        return defaultInstance
+        return Self(
+            folderURL: { folderURL },
+            getFiles: subject
+                .handleEvents(receiveCancel: {
+                    stopListeningToDirectory()
+                })
+                .receive(on: RunLoop.main)
+                .eraseToAnyPublisher(),
+            getFileItem: { id in
+                // TODO: Can crash on save.
+                guard let item = flattenedFileItems[id] else {
+                    throw WorkspaceClientError.fileNotExist
+                }
+                return item
+            }
+        )
     }
 }
