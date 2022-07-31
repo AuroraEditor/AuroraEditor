@@ -924,7 +924,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Hash (full length)\nGITHASH=$(git rev-parse HEAD)\n\n# -n does not add a newline.\nprintf \"$GITHASH\" > \"${PROJECT_DIR}/AuroraEditor/.githash\"\n\necho \"info: Updated ${PROJECT_DIR}/AuroraEditor/.githash: to \\\"$GITHASH\\\".\"\n";
+			shellScript = "# Hash (full length)\nGITHASH=$(git rev-parse HEAD)\n\nprintf \"$GITHASH\" > \"${PROJECT_DIR}/AuroraEditor/.githash\"\n\necho \"info: Updated ${PROJECT_DIR}/AuroraEditor/.githash: to \\\"$GITHASH\\\".\"\n";
 		};
 		2BA119D327E5274D00A996FF /* SwiftLint Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
