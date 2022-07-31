@@ -369,6 +369,12 @@ let package = Package(
         ),
         .target(
             name: "Crashlytics",
+            dependencies: [
+                "AuroraEditorUI",
+                "Git",
+                "AuroraEditorUtils",
+                "AppPreferences"
+            ],
             path: "Modules/Crashlytics/src"
         )
     ]

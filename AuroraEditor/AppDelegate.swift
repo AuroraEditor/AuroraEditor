@@ -43,7 +43,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         _ = AuroraEditorDocumentController.shared
     }
 
-    // swiftlint:disable:next function_body_length
     func applicationDidFinishLaunching(_ notification: Notification) {
 
         AuroraCrashlytics.add(delegate: self)
@@ -99,8 +98,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                 self.handleOpen()
             }
         }
-
-        showCrashAlert()
 
         do {
             try ExtensionsManager.shared?.preload()
@@ -158,21 +155,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             doc.close()
             AuroraEditorDocumentController.shared.removeDocument(doc)
         }
-        return .terminateNow
-    }
 
-    private func showCrashAlert() {
         if let date = UserDefaults.standard.string(forKey: "crash") {
-            let alert = NSAlert()
-            alert.alertStyle = .critical
-            alert.messageText = "Crash Occured"
-            alert.informativeText = date
-            alert.addButton(withTitle: "Continue")
-            if alert.runModal() == .alertFirstButtonReturn {
-                UserDefaults.standard.removeObject(forKey: "crash")
-                UserDefaults.standard.synchronize()
-            }
+            CrashReportView(errorDetails: date).showWindow()
         }
+
+        return .terminateNow
     }
 
     // MARK: - Open windows
