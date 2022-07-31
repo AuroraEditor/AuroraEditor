@@ -34,7 +34,7 @@ struct ProjectNavigatorToolbarBottom: View {
                 }
             }
             .onChange(of: filter, perform: {
-                WorkspaceClient.filter = $0
+                workspace.filter = $0
             })
             .padding(.vertical, 3)
             .background(.ultraThinMaterial)

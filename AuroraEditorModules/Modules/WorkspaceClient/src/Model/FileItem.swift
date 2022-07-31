@@ -119,9 +119,7 @@ public extension WorkspaceClient {
             case nil:
                 return FileIcon.fileIcon(fileType: fileType)
             case let .some(children):
-                // check if there is no filter so that when searching, if a bunch of cache files
-                // pop up, such as ones in node_modules, we don't want to watch them. 
-                if self.watcher == nil && !self.activateWatcher() && WorkspaceClient.filter.isEmpty {
+                if self.watcher == nil {
                     return "questionmark.folder"
                 }
                 return folderIcon(children)
