@@ -11,16 +11,23 @@ public extension Bundle {
 
     /// Returns the main bundle's version string if available (e.g. 1.0.0)
     static var versionString: String? {
-        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
     }
 
     /// Returns the main bundle's build string if available (e.g. 123)
     static var buildString: String? {
-        Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
     }
 
     /// Returns the main bundle's commitHash string if available (e.g. 7dbca499d2ae5e4a6d674c6cb498a862e930f4c3)
     static var commitHash: String? {
-        Bundle.main.object(forInfoDictionaryKey: "GitHash") as? String
+        guard let path = Bundle.main.url(forResource: "", withExtension: "githash"),
+              let data = try? Data.init(contentsOf: path),
+              let commit = String(data: data, encoding: .utf8) else {
+            print("Failed to get latest commit data.")
+            return nil
+        }
+
+        return commit
     }
 }

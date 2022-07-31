@@ -95,3 +95,6 @@ iOSInjectionProject/
 .codeedit
 .idea
 .vscode
+
+# Ignore .githash
+.githash

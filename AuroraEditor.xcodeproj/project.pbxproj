@@ -83,6 +83,7 @@
 		2B71C0A42874AD61008E0859 /* AuroraProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B71C0A32874AD61008E0859 /* AuroraProject.swift */; };
 		2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468438427DC76E200F8E88E /* AppDelegate.swift */; };
 		2B7AC06B282452FB0082A5B8 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7AC06A282452FB0082A5B8 /* Media.xcassets */; };
+		2BA19F252896F721000B9543 /* .githash in Resources */ = {isa = PBXBuildFile; fileRef = 2BA19F242896F721000B9543 /* .githash */; };
 		2BE487EF28245162003F3F64 /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE487EE28245162003F3F64 /* FinderSync.swift */; };
 		2BE487F428245162003F3F64 /* OpenWithAuroraEditor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BE487EC28245162003F3F64 /* OpenWithAuroraEditor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5C403B8F27E20F8000788241 /* WorkspaceClient in Frameworks */ = {isa = PBXBuildFile; productRef = 5C403B8E27E20F8000788241 /* WorkspaceClient */; };
@@ -226,6 +227,7 @@
 		2B5B255C288ADABA009C7384 /* shellClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shellClient.swift; sourceTree = "<group>"; };
 		2B71C0A32874AD61008E0859 /* AuroraProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraProject.swift; sourceTree = "<group>"; };
 		2B7AC06A282452FB0082A5B8 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		2BA19F242896F721000B9543 /* .githash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .githash; sourceTree = "<group>"; };
 		2BE487EC28245162003F3F64 /* OpenWithAuroraEditor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OpenWithAuroraEditor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE487EE28245162003F3F64 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
 		2BE487F028245162003F3F64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -614,6 +616,7 @@
 				0468438427DC76E200F8E88E /* AppDelegate.swift */,
 				B658FB3327DA9E1000EA4DBD /* Assets.xcassets */,
 				2B5B25522885D9B9009C7384 /* .swiftlint.yml */,
+				2BA19F242896F721000B9543 /* .githash */,
 				2B5B25542885D9C3009C7384 /* .gitignore */,
 				2B5B255C288ADABA009C7384 /* shellClient.swift */,
 				B658FB3827DA9E1000EA4DBD /* AuroraEditor.entitlements */,
@@ -836,6 +839,7 @@
 			files = (
 				2B5B25532885D9BA009C7384 /* .swiftlint.yml in Resources */,
 				B658FB3727DA9E1000EA4DBD /* Preview Assets.xcassets in Resources */,
+				2BA19F252896F721000B9543 /* .githash in Resources */,
 				28A51006281701B40087B0CC /* auroraeditor-github-dark.json in Resources */,
 				28A51002281673530087B0CC /* auroraeditor-xcode-light.json in Resources */,
 				2B5B25552885D9C3009C7384 /* .gitignore in Resources */,
@@ -920,7 +924,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Hash (full length)\nGITHASH=$(git rev-parse HEAD)\n\n# Set the hash.\n/usr/libexec/PlistBuddy -c \"Set :GitHash $GITHASH\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n\necho \"info: Updated ${PROJECT_DIR}/${INFOPLIST_FILE} key: hash to $GITHASH.\"\n";
+			shellScript = "# Hash (full length)\nGITHASH=$(git rev-parse HEAD)\n\n# -n does not add a newline.\nprintf \"$GITHASH\" > \"${PROJECT_DIR}/AuroraEditor/.githash\"\n\necho \"info: Updated ${PROJECT_DIR}/AuroraEditor/.githash: to \\\"$GITHASH\\\".\"\n";
 		};
 		2BA119D327E5274D00A996FF /* SwiftLint Run Script */ = {
 			isa = PBXShellScriptBuildPhase;

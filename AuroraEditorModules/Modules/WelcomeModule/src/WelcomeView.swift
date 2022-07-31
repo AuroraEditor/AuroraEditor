@@ -77,20 +77,11 @@ public struct WelcomeView: View {
         return "\(version) (\(build))"
     }
 
-    /// Get the last commit hash.
-    private var getGitHash: String? {
-        if let hash = Bundle.main.infoDictionary?["GitHash"] as? String {
-            return hash
-        }
-
-        return nil
-    }
-
     /// Get program and operating system information
     private func copyInformation() {
         var copyString = "Aurora Editor: \(appVersion) (\(appBuild))\n"
 
-        if let hash = getGitHash {
+        if let hash = Bundle.commitHash {
             copyString.append("Commit: \(hash)\n")
         }
 
