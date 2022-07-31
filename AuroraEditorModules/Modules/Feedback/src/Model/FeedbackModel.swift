@@ -145,9 +145,30 @@ public class FeedbackModel: ObservableObject {
                             expectation: String?,
                             actuallyHappened: String?) {
         let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
-        let firstGitAccount = gitAccounts.first
+        guard let firstGitAccount = gitAccounts.first else {
+            print("Did not find an account name.")
+            guard let safeTitle = "\(getFeebackTypeTitle()) \(title)"
+                    .addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
+                  let safeBody = createIssueBody(description: description,
+                                           steps: steps,
+                                           expectation: expectation,
+                                           actuallyHappened: actuallyHappened)
+                    .addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
+                  let issueURL = URL(
+                    string: "https://github.com/AuroraEditor/AuroraEditor/issues/" +
+                            "new?title=\(safeTitle)&body=\(safeBody)"
+                  ) else {
+                // TODO: Show error.
+                print("Failed to generate URL")
+                return
+            }
 
-        let config = GithubTokenConfiguration(keychain.get(firstGitAccount!.gitAccountName))
+            self.openIssueURL(issueURL)
+            // TODO: Close screen
+            return
+        }
+
+        let config = GithubTokenConfiguration(keychain.get(firstGitAccount.gitAccountName))
         GithubAccount(config).postIssue(owner: "AuroraEditor",
                                   repository: "AuroraEditor",
                                   title: "\(getFeebackTypeTitle()) \(title)",
