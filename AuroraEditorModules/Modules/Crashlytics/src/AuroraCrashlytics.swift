@@ -119,8 +119,7 @@ public class AuroraCrashlytics: NSObject {
         signal(SIGTRAP, AuroraCrashlytics.RecieveSignal)
     }
 
-    private static let RecieveException: @convention(c) (NSException) -> Swift.Void = {
-        (exteption) -> Void in
+    private static let RecieveException: @convention(c) (NSException) -> Swift.Void = { (exteption) -> Void in
         if appOldExceptionHandler != nil {
             appOldExceptionHandler!(exteption)
         }
@@ -143,8 +142,7 @@ public class AuroraCrashlytics: NSObject {
         }
     }
 
-    private static let RecieveSignal : @convention(c) (Int32) -> Void = {
-        (signal) -> Void in
+    private static let RecieveSignal : @convention(c) (Int32) -> Void = { (signal) -> Void in
 
         guard AuroraCrashlytics.isOpen == true else {
             return
