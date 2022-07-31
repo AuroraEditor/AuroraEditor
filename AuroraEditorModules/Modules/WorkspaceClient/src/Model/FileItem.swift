@@ -35,6 +35,8 @@ public extension WorkspaceClient {
 
         public typealias ID = String
 
+        public var fileIdentifier = UUID().uuidString
+
         public var watcher: DispatchSourceFileSystemObject?
         public var watcherCode: () -> Void = {}
 
@@ -328,9 +330,8 @@ public extension WorkspaceClient {
 // MARK: Hashable
 extension WorkspaceClient.FileItem: Hashable {
     public func hash(into hasher: inout Hasher) {
+        hasher.combine(fileIdentifier)
         hasher.combine(id)
-        hasher.combine(url)
-        hasher.combine(children)
     }
 }
 
