@@ -11,6 +11,9 @@ import AuroraEditorUtils
 
 public struct ToolbarAppInfo: View {
 
+    @Environment(\.controlActiveState)
+    private var activeState
+
     @State
     private var openNotifications: Bool = false
 
@@ -42,7 +45,7 @@ public struct ToolbarAppInfo: View {
                 }
             }
             .padding(5)
-            .background(.thinMaterial)
+            .background(.ultraThinMaterial)
             .cornerRadius(6)
 
             Button {
@@ -97,6 +100,7 @@ public struct ToolbarAppInfo: View {
                     .frame(width: 310)
             }
         }
+        .opacity(activeState == .inactive ? 0.45 : 1)
     }
 }
 
