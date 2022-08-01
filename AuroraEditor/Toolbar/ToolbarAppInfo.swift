@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AuroraEditorNotifications
+import AuroraEditorUtils
 
 public struct ToolbarAppInfo: View {
 
@@ -41,7 +42,7 @@ public struct ToolbarAppInfo: View {
                 }
             }
             .padding(5)
-            .background(Rectangle().foregroundColor(Color(nsColor: NSColor(named: "ToolbarAppInfoBackground")!)))
+            .background(.thinMaterial)
             .cornerRadius(6)
 
             Button {
