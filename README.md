@@ -23,10 +23,10 @@ It will support everything you could expect from an Xcode-inspired application, 
 <br />
 
 <p align="center">
-  <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge">
-  <img alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed-raw/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge">
-  <img alt="GitHub issues" src="https://img.shields.io/github/issues-raw/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge">
-  <img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed-raw/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge">
+  <a href='https://github.com/AuroraEditor/AuroraEditor/pulls'><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge"></a>
+  <a href='https://github.com/AuroraEditor/AuroraEditor/pulls?q=is%3Apr+is%3Aclosed'><img alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed-raw/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge"></a>
+  <a href='https://github.com/AuroraEditor/AuroraEditor/issues'><img alt="GitHub issues" src="https://img.shields.io/github/issues-raw/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge"></a>
+  <a href='https://github.com/AuroraEditor/AuroraEditor/issues?q=is%3Aissue+is%3Aclosed'><img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed-raw/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge"></a>
   <img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/AuroraEditor/AuroraEditor/main?color=0c122a&style=for-the-badge">
   <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge">
   <a href='https://github.com/AuroraEditor/AuroraEditor/fork'><img alt="GitHub forks" src="https://img.shields.io/github/forks/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge"></a>
