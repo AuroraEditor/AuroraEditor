@@ -29,7 +29,7 @@ It will support everything you could expect from an Xcode-inspired application, 
   <img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed-raw/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge">
   <img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/AuroraEditor/AuroraEditor/main?color=0c122a&style=for-the-badge">
   <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge">
-  <img alt="GitHub forks" src="https://img.shields.io/github/forks/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge">
+  <a href='https://github.com/AuroraEditor/AuroraEditor/fork'><img alt="GitHub forks" src="https://img.shields.io/github/forks/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge"></a>
  </p>
  
  <br />
