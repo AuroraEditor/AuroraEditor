@@ -114,14 +114,14 @@ public struct AboutView: View {
     }
 
     public func showWindow(width: CGFloat, height: CGFloat) {
-        PlaceholderWindowController(view: self,
+        AboutViewWindowController(view: self,
                                     size: NSSize(width: width,
                                                  height: height))
         .showWindow(nil)
     }
 }
 
-final class PlaceholderWindowController: NSWindowController {
+final class AboutViewWindowController: NSWindowController {
     convenience init<T: View>(view: T, size: NSSize) {
         let hostingController = NSHostingController(rootView: view)
         // New window holding our SwiftUI view
@@ -155,6 +155,7 @@ final class PlaceholderWindowController: NSWindowController {
         window?.isMovableByWindowBackground = true
         window?.titlebarAppearsTransparent = true
         window?.titleVisibility = .hidden
+        window?.isExcludedFromWindowsMenu = true
     }
 
     func closeAnimated() {
