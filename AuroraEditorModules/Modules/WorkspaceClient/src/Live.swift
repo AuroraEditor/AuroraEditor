@@ -34,6 +34,8 @@ public extension WorkspaceClient {
             for itemURL in directoryContents {
                 // Skip file if it is in ignore list
                 guard !ignoredFilesAndFolders.contains(itemURL.lastPathComponent) else { continue }
+                guard !itemURL.lastPathComponent.prefix(1).contains(".") else { continue }
+                guard !itemURL.lastPathComponent.prefix(1).contains("~") else { continue }
 
                 var isDir: ObjCBool = false
 
@@ -108,6 +110,7 @@ public extension WorkspaceClient {
         /// `FileItem` so that they are accurate with the file system, instead of creating an
         /// entirely new `FileItem`, to prevent the `OutlineView` from going crazy with folding.
         /// - Parameter fileItem: The `FileItem` to correct the children of
+        // swiftlint:disable:next cyclomatic_complexity
         func rebuildFiles(fromItem fileItem: FileItem) throws -> Bool {
             var didChangeSomething = false
 
@@ -130,6 +133,8 @@ public extension WorkspaceClient {
             // test for new children, and index them using loadFiles
             for newContent in directoryContentsUrls {
                 guard !ignoredFilesAndFolders.contains(newContent.lastPathComponent) else { continue }
+                guard !newContent.lastPathComponent.prefix(1).contains(".") else { continue }
+                guard !newContent.lastPathComponent.prefix(1).contains("~") else { continue }
 
                 var childExists = false
                 fileItem.children?.forEach({ childExists = $0.url == newContent ? true : childExists })
