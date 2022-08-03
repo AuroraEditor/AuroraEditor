@@ -1,5 +1,5 @@
 //
-//  Theme.swift
+//  HighlighrTheme.swift
 //  Pods
 //
 //  Created by Illanes, J.P. on 4/24/16.
@@ -28,7 +28,7 @@ private typealias RPThemeStringDict = [String: [String: String]]
 
 /// Theme parser, can be used to configure the theme parameters.
 // swiftlint:disable:next type_body_length
-open class Theme {
+open class HighlighrTheme {
     internal let theme: String
     internal var lightTheme: String!
 

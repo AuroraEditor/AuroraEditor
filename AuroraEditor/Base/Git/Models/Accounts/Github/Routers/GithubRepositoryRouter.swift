@@ -8,11 +8,11 @@
 import Foundation
 
 enum GithubRepositoryRouter: Router {
-    case readRepositories(Configuration, String, String, String)
-    case readAuthenticatedRepositories(Configuration, String, String)
-    case readRepository(Configuration, String, String)
+    case readRepositories(GitConfiguration, String, String, String)
+    case readAuthenticatedRepositories(GitConfiguration, String, String)
+    case readRepository(GitConfiguration, String, String)
 
-    var configuration: Configuration? {
+    var configuration: GitConfiguration? {
         switch self {
         case let .readRepositories(config, _, _, _): return config
         case let .readAuthenticatedRepositories(config, _, _): return config

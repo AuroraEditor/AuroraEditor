@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Preferences
 
 final class AuroraEditorApplication: NSApplication {
     let strongDelegate = AppDelegate()
@@ -322,7 +323,7 @@ extension AppDelegate {
 }
 
 extension AppDelegate: AuroraCrashlyticsDelegate {
-    func auroraCrashlyticsDidCatchCrash(with model: Crashlytics.CrashModel) {
+    func auroraCrashlyticsDidCatchCrash(with model: CrashModel) {
         UserDefaults.standard.set(model.reason + "(\(Date()))", forKey: "crash")
     }
 }

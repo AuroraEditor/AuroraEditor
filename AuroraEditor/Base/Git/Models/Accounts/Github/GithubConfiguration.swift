@@ -10,7 +10,7 @@ import Foundation
 import FoundationNetworking
 #endif
 
-public struct GithubTokenConfiguration: Configuration {
+public struct GithubTokenConfiguration: GitConfiguration {
     public var apiEndpoint: String?
     public var accessToken: String?
     public let errorDomain: String? = "com.auroraeditor.models.accounts.github"
@@ -34,7 +34,7 @@ public struct GithubTokenConfiguration: Configuration {
     }
 }
 
-public struct OAuthConfiguration: Configuration {
+public struct OAuthConfiguration: GitConfiguration {
     public var apiEndpoint: String?
     public var accessToken: String?
     public let token: String
@@ -120,7 +120,7 @@ enum GithubOAuthRouter: Router {
     case authorize(OAuthConfiguration)
     case accessToken(OAuthConfiguration, String)
 
-    var configuration: Configuration? {
+    var configuration: GitConfiguration? {
         switch self {
         case let .authorize(config): return config
         case let .accessToken(config, _): return config

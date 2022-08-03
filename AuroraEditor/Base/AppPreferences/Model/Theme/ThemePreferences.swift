@@ -27,7 +27,7 @@ public extension AppPreferences {
     ///   }
     /// }
     /// ```
-    typealias ThemeOverrides = [String: [String: Theme.Attributes]]
+    typealias ThemeOverrides = [String: [String: AuroraTheme.Attributes]]
 
     /// The global settings for themes
     struct ThemePreferences: Codable {

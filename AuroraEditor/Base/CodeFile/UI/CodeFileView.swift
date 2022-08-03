@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 /// CodeFileView is just a wrapper of the `CodeEditor` dependency
 public struct CodeFileView: View {

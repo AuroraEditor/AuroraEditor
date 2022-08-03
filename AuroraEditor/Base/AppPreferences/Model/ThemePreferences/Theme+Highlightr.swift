@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension Theme {
+public extension AuroraTheme {
     /// Returns a CSS string describing a highlight.js theme that represents the
     /// theme set in preferences.
     ///

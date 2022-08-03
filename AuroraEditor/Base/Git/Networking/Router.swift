@@ -27,7 +27,7 @@ public struct HTTPHeader {
     }
 }
 
-public protocol Configuration {
+public protocol GitConfiguration {
     var apiEndpoint: String? { get }
     var accessToken: String? { get }
     var accessTokenFieldName: String? { get }
@@ -36,7 +36,7 @@ public protocol Configuration {
     var customHeaders: [HTTPHeader]? { get }
 }
 
-public extension Configuration {
+public extension GitConfiguration {
     var accessTokenFieldName: String? {
         "access_token"
     }
@@ -61,7 +61,7 @@ public protocol Router {
     var path: String { get }
     var encoding: HTTPEncoding { get }
     var params: [String: Any] { get }
-    var configuration: Configuration? { get }
+    var configuration: GitConfiguration? { get }
 
     func urlQuery(_ parameters: [String: Any]) -> [URLQueryItem]?
 

@@ -8,13 +8,14 @@
 import Foundation
 
 enum CommitRouter: Router {
-    case readCommits(Configuration, id: String, refName: String, since: String, until: String)
-    case readCommit(Configuration, id: String, sha: String)
-    case readCommitDiffs(Configuration, id: String, sha: String)
-    case readCommitComments(Configuration, id: String, sha: String)
-    case readCommitStatuses(Configuration, id: String, sha: String, ref: String, stage: String, name: String, all: Bool)
+    case readCommits(GitConfiguration, id: String, refName: String, since: String, until: String)
+    case readCommit(GitConfiguration, id: String, sha: String)
+    case readCommitDiffs(GitConfiguration, id: String, sha: String)
+    case readCommitComments(GitConfiguration, id: String, sha: String)
+    // swiftlint:disable:next line_length
+    case readCommitStatuses(GitConfiguration, id: String, sha: String, ref: String, stage: String, name: String, all: Bool)
 
-    var configuration: Configuration? {
+    var configuration: GitConfiguration? {
         switch self {
         case .readCommits(let config, _, _, _, _): return config
         case .readCommit(let config, _, _): return config

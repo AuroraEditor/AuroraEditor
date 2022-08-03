@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct BitbucketTokenConfiguration: Configuration {
+public struct BitbucketTokenConfiguration: GitConfiguration {
     public var apiEndpoint: String?
     public var accessToken: String?
     public var refreshToken: String?

@@ -6,13 +6,12 @@
 //
 
 import SwiftUI
-import AuroraEditorUtils
-import Acknowledgements
 
 public struct AboutView: View {
     @Environment(\.openURL) private var openURL
 
-    @State private var hoveringOnCommitHash = false
+    @State
+    private var hoveringOnCommitHash = false
 
     public init() {}
 

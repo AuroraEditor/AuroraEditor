@@ -9,6 +9,7 @@ import AppKit
 import Foundation
 import SwiftUI
 import UniformTypeIdentifiers
+import QuickLookUI
 
 public enum CodeFileError: Error {
     case failedToDecode

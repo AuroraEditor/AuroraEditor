@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct GitlabOAuthConfiguration: Configuration {
+public struct GitlabOAuthConfiguration: GitConfiguration {
 
     public var apiEndpoint: String?
     public var accessToken: String?

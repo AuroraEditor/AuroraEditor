@@ -8,7 +8,7 @@
 import Foundation
 
 enum ReviewsRouter: JSONPostRouter {
-    case listReviews(Configuration, String, String, Int)
+    case listReviews(GitConfiguration, String, String, Int)
 
     var method: HTTPMethod {
         switch self {
@@ -24,7 +24,7 @@ enum ReviewsRouter: JSONPostRouter {
         }
     }
 
-    var configuration: Configuration? {
+    var configuration: GitConfiguration? {
         switch self {
         case let .listReviews(config, _, _, _):
             return config

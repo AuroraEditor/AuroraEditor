@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct BitbucketOAuthConfiguration: Configuration {
+public struct BitbucketOAuthConfiguration: GitConfiguration {
     public var apiEndpoint: String?
     public var accessToken: String?
     public let token: String

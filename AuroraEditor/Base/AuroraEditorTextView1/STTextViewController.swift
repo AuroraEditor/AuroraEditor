@@ -1,6 +1,6 @@
 //
 //  STTextViewController.swift
-//  AuroraEditorTextView
+//  CodeEditTextView
 //
 //  Created by Lukas Pistrol on 24.05.22.
 //

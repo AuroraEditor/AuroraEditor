@@ -8,8 +8,8 @@
 import Foundation
 
 enum PullRequestRouter: JSONPostRouter {
-    case readPullRequest(Configuration, String, String, String)
-    case readPullRequests(Configuration, String, String, String?, String?, Openness, SortType, SortDirection)
+    case readPullRequest(GitConfiguration, String, String, String)
+    case readPullRequests(GitConfiguration, String, String, String?, String?, Openness, SortType, SortDirection)
 
     var method: HTTPMethod {
         switch self {
@@ -26,7 +26,7 @@ enum PullRequestRouter: JSONPostRouter {
         }
     }
 
-    var configuration: Configuration? {
+    var configuration: GitConfiguration? {
         switch self {
         case let .readPullRequest(config, _, _, _): return config
         case let .readPullRequests(config, _, _, _, _, _, _, _): return config

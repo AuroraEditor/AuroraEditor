@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct ThemePreviewIcon: View {
-    init(_ theme: Theme, selection: Binding<Theme?>, colorScheme: ColorScheme) {
+    init(_ theme: AuroraTheme, selection: Binding<AuroraTheme?>, colorScheme: ColorScheme) {
         self.theme = theme
         self._selection = selection
         self.colorScheme = colorScheme
     }
 
-    var theme: Theme
+    var theme: AuroraTheme
 
     @Binding
-    var selection: Theme?
+    var selection: AuroraTheme?
 
     var colorScheme: ColorScheme
 

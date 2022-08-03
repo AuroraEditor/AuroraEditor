@@ -1,5 +1,5 @@
 //
-//  Mocks.swift
+//  ShellClientMock.swift
 //  AuroraEditorModules/ShellClient
 //
 //  Created by Marco Carnevali on 27/03/22.

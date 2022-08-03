@@ -6,9 +6,6 @@
 //
 
 import Foundation
-#if canImport(FoundationNetworking)
-import FoundationNetworking
-#endif
 
 open class PullRequest: Codable {
     open private(set) var id: Int = -1
