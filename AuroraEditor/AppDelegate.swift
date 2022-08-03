@@ -6,14 +6,6 @@
 //
 
 import SwiftUI
-import AppPreferences
-import Preferences
-import About
-import WelcomeModule
-import ExtensionsStore
-import Feedback
-import AuroraEditorSymbols
-import Crashlytics
 
 final class AuroraEditorApplication: NSApplication {
     let strongDelegate = AppDelegate()
