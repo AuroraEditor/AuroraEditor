@@ -474,7 +474,7 @@
 		043C321327E31FF6006AE443 /* AuroraEditorDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorDocumentController.swift; sourceTree = "<group>"; };
 		043C321527E3201F006AE443 /* WorkspaceDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceDocument.swift; sourceTree = "<group>"; };
 		043C321927E32295006AE443 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		0463E51027FCC1DF00806D5C /* AuroraEditorAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuroraEditorAPI.swift; path = "/Users/tihan-nico/Documents/GitHub/App/AuroraEditor/Base/Extensions/Models/AuroraEditorAPI.swift"; sourceTree = "<absolute>"; };
+		0463E51027FCC1DF00806D5C /* AuroraEditorAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorAPI.swift; sourceTree = "<group>"; };
 		0463E51227FCC1FB00806D5C /* AuroraEditorTargetsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorTargetsAPI.swift; sourceTree = "<group>"; };
 		04660F6027E3A68A00477777 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04660F6927E51E5C00477777 /* AuroraEditorWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorWindowController.swift; sourceTree = "<group>"; };
@@ -501,7 +501,7 @@
 		2072FA1D280D891500C7F8D4 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		2077162D287C8EC80069C68E /* ToolbarAppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarAppInfo.swift; sourceTree = "<group>"; };
 		2093CDE3289AA881003A88DD /* IgnoredFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredFiles.swift; sourceTree = "<group>"; };
-		209D024A289ABC340082441F /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Package.resolved; sourceTree = "<group>"; };
+		209D024A289ABC340082441F /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; name = Package.resolved; path = ../Package.resolved; sourceTree = "<group>"; };
 		209D0250289ABF9A0082441F /* STTextView+AutoComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STTextView+AutoComplete.swift"; sourceTree = "<group>"; };
 		209D0252289ABFB60082441F /* STTextView+Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STTextView+Menu.swift"; sourceTree = "<group>"; };
 		209D0254289ABFCC0082441F /* STTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTextViewController.swift; sourceTree = "<group>"; };
@@ -717,7 +717,7 @@
 		20D8385F289A7ACE00D91D05 /* SearchModeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModeModel.swift; sourceTree = "<group>"; };
 		20D83860289A7ACE00D91D05 /* SearchResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultModel.swift; sourceTree = "<group>"; };
 		20D83863289A7ACE00D91D05 /* TabBarItemRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemRepresentable.swift; sourceTree = "<group>"; };
-		20D83864289A7ACE00D91D05 /* TabBarDocumentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; name = TabBarDocumentation.docc; path = "/Users/tihan-nico/Documents/GitHub/App/AuroraEditor/Base/TabBar/TabBarDocumentation.docc"; sourceTree = "<absolute>"; };
+		20D83864289A7ACE00D91D05 /* TabBarDocumentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = TabBarDocumentation.docc; sourceTree = "<group>"; };
 		20D83865289A7ACE00D91D05 /* TabBarItemID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemID.swift; sourceTree = "<group>"; };
 		20D8386B289A7ACE00D91D05 /* FileIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIcon.swift; sourceTree = "<group>"; };
 		20D8386D289A7ACE00D91D05 /* FileItem+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileItem+Array.swift"; sourceTree = "<group>"; };
@@ -848,7 +848,7 @@
 		2B15CA0028254139004E8F22 /* OpenWithAuroraEditor.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = OpenWithAuroraEditor.entitlements; sourceTree = "<group>"; };
 		2B5B25522885D9B9009C7384 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		2B5B25542885D9C3009C7384 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
-		2B5B255C288ADABA009C7384 /* shellClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = shellClient.swift; path = "/Users/tihan-nico/Documents/GitHub/App/AuroraEditor/Base/Git/Models/Client/shellClient.swift"; sourceTree = "<absolute>"; };
+		2B5B255C288ADABA009C7384 /* shellClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shellClient.swift; sourceTree = "<group>"; };
 		2B71C0A32874AD61008E0859 /* AuroraProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraProject.swift; sourceTree = "<group>"; };
 		2B7AC06A282452FB0082A5B8 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		2BA19F242896F721000B9543 /* .githash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .githash; sourceTree = "<group>"; };
@@ -1975,9 +1975,8 @@
 			children = (
 				20D838FD289A7AD600D91D05 /* AboutView.swift */,
 			);
-			name = UI;
-			path = "/Users/tihan-nico/Documents/GitHub/App/AuroraEditor/Base/About";
-			sourceTree = "<absolute>";
+			path = UI;
+			sourceTree = "<group>";
 		};
 		20D838FE289A7C2600D91D05 /* UI */ = {
 			isa = PBXGroup;
@@ -2000,8 +1999,7 @@
 				20D83863289A7ACE00D91D05 /* TabBarItemRepresentable.swift */,
 				20D83865289A7ACE00D91D05 /* TabBarItemID.swift */,
 			);
-			name = Model;
-			path = "/Users/tihan-nico/Documents/GitHub/App/AuroraEditor/Base/TabBar/Model";
+			path = Model;
 			sourceTree = "<absolute>";
 		};
 		20D83900289A7C9200D91D05 /* UI */ = {
