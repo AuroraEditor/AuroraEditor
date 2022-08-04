@@ -185,14 +185,18 @@ final class OutlineViewController: NSViewController {
 extension OutlineViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if let item = item as? Item {
-            return item.appearanceWithinChildrenOf(searchString: WorkspaceClient.filter)
+            return item.appearanceWithinChildrenOf(searchString: WorkspaceClient.filter,
+                                                   ignoreDots: true,
+                                                   ignoreTilde: true)
         }
         return content.count
     }
 
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         if let item = item as? Item {
-           return item.childrenSatisfying(searchString: WorkspaceClient.filter)[index]
+           return item.childrenSatisfying(searchString: WorkspaceClient.filter,
+                                          ignoreDots: true,
+                                          ignoreTilde: true)[index]
         }
         return content[index]
     }
