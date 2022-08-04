@@ -101,7 +101,6 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
             if newContents != contents {
                 fatalError("Saving did not update the file.")
             }
-            Swift.print("File saved", String(data: newContents!, encoding: .utf8))
         } catch {
             fatalError("\(#function): Failed to save, \(error.localizedDescription)")
         }

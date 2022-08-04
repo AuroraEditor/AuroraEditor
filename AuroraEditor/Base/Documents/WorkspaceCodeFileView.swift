@@ -22,7 +22,7 @@ struct WorkspaceCodeFileView: View {
         ZStack {
             if let item = workspace.selectionState.openFileItems.first(where: { file in
                 if file.tabID == workspace.selectionState.selectedId {
-                    print("Item loaded is: ", file.url)
+                    Log.info("Item loaded is: \(file.url)")
                 }
                 return file.tabID == workspace.selectionState.selectedId
             }) {
