@@ -121,7 +121,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     func handleOpen(funct: String = #function) {
-        print("handleOpen() called from", funct)
+        Log.info("handleOpen() called from \(funct)")
         let behavior = AppPreferencesModel.shared.preferences.general.reopenBehavior
 
         switch behavior {
@@ -196,7 +196,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         guard let defaults = UserDefaults.init(
             suiteName: "com.auroraeditor.shared"
         ) else {
-            print("Failed to get/init shared defaults")
+            Log.error("Failed to get/init shared defaults")
             return
         }
 
@@ -212,7 +212,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                     for: fileURL,
                     withContentsOf: fileURL,
                     display: true) { document, _, _ in
-                        print("checkForFilesToOpen(): Opened \(fileURL.absoluteString)")
+                        Log.info("checkForFilesToOpen(): Opened \(fileURL.absoluteString)")
                         document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
                     }
             }

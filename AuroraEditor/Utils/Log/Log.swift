@@ -1,5 +1,5 @@
 //
-//  Logger.swift
+//  Log.swift
 //  AuroraEditor
 //
 //  Created by Nanashi Li on 2022/08/04.
@@ -7,8 +7,6 @@
 //
 
 import Foundation
-
-private let benchmarker = Benchmarker()
 
 public enum Level: Int {
     case trace, debug, info, warning, error
@@ -24,9 +22,7 @@ extension Level: Comparable {
     }
 }
 
-public class Logger {
-    /// The logger state.
-    public var enabled: Bool = true
+public class Log {
 
     /// The logger formatter.
     public var formatter: Formatter {
@@ -40,9 +36,6 @@ public class Logger {
     public var format: String {
         return formatter.description
     }
-
-    /// The queue used for logging.
-    private let queue = DispatchQueue(label: "delba.log")
 
     /**
      Creates and returns a new logger.
@@ -186,7 +179,9 @@ public class Logger {
                      _ line: Int,
                      _ column: Int,
                      _ function: String) {
-        guard enabled && level >= minLevel else { return }
+        #if DEBUG
+        guard level >= minLevel else { return }
+        #endif
 
         let date = Date()
 
@@ -202,48 +197,6 @@ public class Logger {
             date: date
         )
 
-        queue.async {
-            Swift.print(result, separator: "", terminator: "")
-        }
-    }
-
-    /**
-     Measures the performance of code.
-
-     - parameter description: The measure description.
-     - parameter number:      The number of iterations.
-     - parameter file:        The file in which the measure happens.
-     - parameter line:        The line at which the measure happens.
-     - parameter column:      The column at which the measure happens.
-     - parameter function:    The function in which the measure happens.
-     - parameter block:       The block to measure.
-     */
-    public func measure(_ description: String? = nil,
-                        iterations number: Int = 10,
-                        file: String = #file,
-                        line: Int = #line,
-                        column: Int = #column,
-                        function: String = #function,
-                        block: () -> Void) {
-        guard enabled && .debug >= minLevel else { return }
-
-        let measure = benchmarker.measure(description, iterations: number, block: block)
-
-        let date = Date()
-
-        let result = formatter.format(
-            description: measure.description,
-            average: measure.average,
-            relativeStandardDeviation: measure.relativeStandardDeviation,
-            file: file,
-            line: line,
-            column: column,
-            function: function,
-            date: date
-        )
-
-        queue.async {
-            Swift.print(result)
-        }
+        Swift.print(result, separator: "", terminator: "")
     }
 }

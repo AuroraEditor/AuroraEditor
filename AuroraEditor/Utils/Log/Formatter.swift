@@ -33,7 +33,7 @@ open class Formatter: Formatters {
     private let dateFormatter = DateFormatter()
 
     /// The formatter logger.
-    weak var logger: Logger?
+    weak var logger: Log?
 
     /// The formatter textual representation.
     var description: String {

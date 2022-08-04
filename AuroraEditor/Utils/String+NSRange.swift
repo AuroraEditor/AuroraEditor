@@ -12,6 +12,7 @@ extension String {
     subscript(value: NSRange) -> Substring? {
         let upperBound = String.Index(utf16Offset: Int(value.upperBound), in: self)
         let lowerBound = String.Index(utf16Offset: Int(value.lowerBound), in: self)
+        Log.info("")
         if upperBound <= self.endIndex {
             return self[lowerBound..<upperBound]
         } else {

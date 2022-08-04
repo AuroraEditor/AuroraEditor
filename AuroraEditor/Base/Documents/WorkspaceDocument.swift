@@ -11,8 +11,6 @@ import SwiftUI
 import Combine
 import CodeEditKit
 
-private let log = Logger()
-
 @objc(WorkspaceDocument)
 final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     var workspaceClient: WorkspaceClient?
@@ -284,7 +282,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         do {
             selectionState = try readSelectionState()
         } catch {
-            Swift.print("couldn't retrieve selection state from user defaults")
+            Log.warning("Couldn't retrieve selection state from user defaults")
         }
 
         workspaceClient?
@@ -340,7 +338,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         do {
             try saveSelectionState()
         } catch {
-            log.error("couldn't save selection state from user defaults")
+            Log.error("Couldn't save selection state from user defaults")
         }
 
         selectionState.selectedId = nil

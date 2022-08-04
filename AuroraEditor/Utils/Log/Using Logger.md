@@ -1,13 +1,11 @@
 Usage:
 
 ``` swift
-private let log = Logger()
-
-log.trace("Opened a file")
-log.debug("Check here for debugging")
-log.info("Oh look the editor opened a file at this location: ")
-log.warning("Be careful looks like this line can cause memory leaks.")
-log.error("Well that didn't go as expected!")
+Log.trace("Opened a file")
+Log.debug("Check here for debugging")
+Log.info("Oh look the editor opened a file at this location: ")
+Log.warning("Be careful looks like this line can cause memory leaks.")
+Log.error("Well that didn't go as expected!")
 ```
 Output:
 ```
@@ -16,10 +14,5 @@ Output:
 
 ### Min level of logs that will be shown:
 ``` swift
-log.minLevel = .warning
-```
-
-### Disable logging
-```swift
-log.enabled = false
+Log.minLogLevel = .warning
 ```

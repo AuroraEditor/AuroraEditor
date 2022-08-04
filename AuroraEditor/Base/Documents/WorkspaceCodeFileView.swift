@@ -8,8 +8,6 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-private let log = Logger()
-
 struct WorkspaceCodeFileView: View {
     var windowController: NSWindowController
 
@@ -24,7 +22,7 @@ struct WorkspaceCodeFileView: View {
         ZStack {
             if let item = workspace.selectionState.openFileItems.first(where: { file in
                 if file.tabID == workspace.selectionState.selectedId {
-                    log.info("Item loaded is: \(file.url)")
+                    Log.info("Item loaded is: \(file.url)")
                 }
                 return file.tabID == workspace.selectionState.selectedId
             }) {

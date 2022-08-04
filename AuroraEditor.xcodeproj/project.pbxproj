@@ -32,9 +32,9 @@
 		201169E22837B3D800F92B46 /* ChangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201169E12837B3D800F92B46 /* ChangesView.swift */; };
 		201169E52837B40300F92B46 /* RepositoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201169E42837B40300F92B46 /* RepositoriesView.swift */; };
 		201169E72837B5CA00F92B46 /* SourceControlModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201169E62837B5CA00F92B46 /* SourceControlModel.swift */; };
-		2021267C289BF7BA00246DD7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021267B289BF7BA00246DD7 /* Logger.swift */; };
+		2019258A289C362B009C2FAB /* LogExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20192589289C362B009C2FAB /* LogExtension.swift */; };
+		2021267C289BF7BA00246DD7 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021267B289BF7BA00246DD7 /* Log.swift */; };
 		2021267F289BF7EF00246DD7 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021267E289BF7EF00246DD7 /* Formatter.swift */; };
-		20212681289BF81C00246DD7 /* Benchmarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20212680289BF81C00246DD7 /* Benchmarker.swift */; };
 		20212683289BF84B00246DD7 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20212682289BF84B00246DD7 /* String.swift */; };
 		20212685289BF87600246DD7 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20212684289BF87600246DD7 /* Formatters.swift */; };
 		2072FA13280D74ED00C7F8D4 /* HistoryInspectorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072FA12280D74ED00C7F8D4 /* HistoryInspectorModel.swift */; };
@@ -498,9 +498,9 @@
 		201169E12837B3D800F92B46 /* ChangesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangesView.swift; sourceTree = "<group>"; };
 		201169E42837B40300F92B46 /* RepositoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesView.swift; sourceTree = "<group>"; };
 		201169E62837B5CA00F92B46 /* SourceControlModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlModel.swift; sourceTree = "<group>"; };
-		2021267B289BF7BA00246DD7 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		20192589289C362B009C2FAB /* LogExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogExtension.swift; sourceTree = "<group>"; };
+		2021267B289BF7BA00246DD7 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		2021267E289BF7EF00246DD7 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
-		20212680289BF81C00246DD7 /* Benchmarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Benchmarker.swift; sourceTree = "<group>"; };
 		20212682289BF84B00246DD7 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		20212684289BF87600246DD7 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		20212688289C055E00246DD7 /* Using Logger.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Using Logger.md"; sourceTree = "<group>"; };
@@ -959,9 +959,9 @@
 			isa = PBXGroup;
 			children = (
 				20212688289C055E00246DD7 /* Using Logger.md */,
-				2021267B289BF7BA00246DD7 /* Logger.swift */,
+				20192589289C362B009C2FAB /* LogExtension.swift */,
+				2021267B289BF7BA00246DD7 /* Log.swift */,
 				2021267E289BF7EF00246DD7 /* Formatter.swift */,
-				20212680289BF81C00246DD7 /* Benchmarker.swift */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -2972,7 +2972,6 @@
 				2093CD1F289AA07D003A88DD /* Token.swift in Sources */,
 				2093CD31289AA089003A88DD /* Gist.swift in Sources */,
 				2093CD8C289AA12B003A88DD /* BannerModule.swift in Sources */,
-				20212681289BF81C00246DD7 /* Benchmarker.swift in Sources */,
 				2093CD36289AA08F003A88DD /* UserRouter.swift in Sources */,
 				2093CD20289AA07D003A88DD /* BitbucketUser.swift in Sources */,
 				2093CD92289AA134003A88DD /* AppPreferencesDocumentation.docc in Sources */,
@@ -3153,7 +3152,7 @@
 				043C321627E3201F006AE443 /* WorkspaceDocument.swift in Sources */,
 				2093CD5D289AA0DD003A88DD /* AuroraCrashlytics.swift in Sources */,
 				2093CDC9289AA260003A88DD /* TabBarContextMenu.swift in Sources */,
-				2021267C289BF7BA00246DD7 /* Logger.swift in Sources */,
+				2021267C289BF7BA00246DD7 /* Log.swift in Sources */,
 				2093CD9B289AA14F003A88DD /* TextEditingPreferences.swift in Sources */,
 				2093CDA8289AA179003A88DD /* PreferenceSourceControlView.swift in Sources */,
 				2093CDDD289AA51D003A88DD /* AuroraEditorKeychainConstants.swift in Sources */,
@@ -3185,6 +3184,7 @@
 				2093CD24289AA084003A88DD /* IssueRouter.swift in Sources */,
 				2093CD53289AA0B5003A88DD /* FeedbackWindowController.swift in Sources */,
 				2093CDCD289AA4F4003A88DD /* StatusBarModel.swift in Sources */,
+				2019258A289C362B009C2FAB /* LogExtension.swift in Sources */,
 				2093CD19289AA079003A88DD /* BitbucketTokenConfiguration.swift in Sources */,
 				2093CCA6289AA01A003A88DD /* FileItem.swift in Sources */,
 				2093CD29289AA084003A88DD /* PullRequestRouter.swift in Sources */,
