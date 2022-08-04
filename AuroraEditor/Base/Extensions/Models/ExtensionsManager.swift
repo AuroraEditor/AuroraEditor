@@ -8,7 +8,6 @@
 import Foundation
 import Light_Swift_Untar
 import CodeEditKit
-import LSP
 
 /// Class which handles all extensions (its bundles, instances for each workspace and so on)
 public final class ExtensionsManager {

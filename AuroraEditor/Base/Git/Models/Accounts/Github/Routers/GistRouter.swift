@@ -8,11 +8,11 @@
 import Foundation
 
 enum GistRouter: JSONPostRouter {
-    case readAuthenticatedGists(Configuration, String, String)
-    case readGists(Configuration, String, String, String)
-    case readGist(Configuration, String)
-    case postGistFile(Configuration, String, String, String, Bool)
-    case patchGistFile(Configuration, String, String, String, String)
+    case readAuthenticatedGists(GitConfiguration, String, String)
+    case readGists(GitConfiguration, String, String, String)
+    case readGist(GitConfiguration, String)
+    case postGistFile(GitConfiguration, String, String, String, Bool)
+    case patchGistFile(GitConfiguration, String, String, String, String)
 
     var method: HTTPMethod {
         switch self {
@@ -32,7 +32,7 @@ enum GistRouter: JSONPostRouter {
         }
     }
 
-    var configuration: Configuration? {
+    var configuration: GitConfiguration? {
         switch self {
         case let .readAuthenticatedGists(config, _, _): return config
         case let .readGists(config, _, _, _): return config

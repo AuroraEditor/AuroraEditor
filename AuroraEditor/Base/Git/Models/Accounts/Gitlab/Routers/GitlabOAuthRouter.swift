@@ -11,7 +11,7 @@ enum GitlabOAuthRouter: Router {
     case authorize(GitlabOAuthConfiguration, String)
     case accessToken(GitlabOAuthConfiguration, String, String)
 
-    var configuration: Configuration? {
+    var configuration: GitConfiguration? {
         switch self {
         case .authorize(let config, _): return config
         case .accessToken(let config, _, _): return config

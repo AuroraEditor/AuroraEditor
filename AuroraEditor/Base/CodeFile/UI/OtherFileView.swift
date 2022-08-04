@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import QuickLookUI
 
 /// A SwiftUI Wrapper for `QLPreviewView`
 /// Mainly used for other unsupported files

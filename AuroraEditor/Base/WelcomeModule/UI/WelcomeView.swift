@@ -100,11 +100,11 @@ public struct WelcomeView: View {
                 Image(nsImage: NSApp.applicationIconImage)
                     .resizable()
                     .frame(width: 128, height: 128)
-                Text(NSLocalizedString("Welcome to Aurora", bundle: .module, comment: ""))
+                Text("Welcome to Aurora")
                     .font(.system(size: 38))
                 Text(
                     String(
-                        format: NSLocalizedString("Version %@ (%@)", bundle: .module, comment: ""),
+                        format: "Version %@ (%@)",
                         appVersion,
                         appBuild
                     )
@@ -127,8 +127,8 @@ public struct WelcomeView: View {
                     VStack(alignment: .leading, spacing: 15) {
                         WelcomeActionView(
                             iconName: "plus.square",
-                            title: NSLocalizedString("Create a new file", bundle: .module, comment: ""),
-                            subtitle: NSLocalizedString("Create a new file", bundle: .module, comment: "")
+                            title: "Create a new file",
+                            subtitle: "Create a new file"
                         )
                         .onTapGesture {
                             newDocument()
@@ -137,12 +137,8 @@ public struct WelcomeView: View {
 
                         WelcomeActionView(
                             iconName: "plus.square.on.square",
-                            title: NSLocalizedString("Clone an exisiting project", bundle: .module, comment: ""),
-                            subtitle: NSLocalizedString(
-                                gitDisabledText(),
-                                bundle: .module,
-                                comment: ""
-                            )
+                            title: "Clone an exisiting project",
+                            subtitle: gitDisabledText()
                         )
                         .onTapGesture {
                             showGitClone = true
@@ -151,12 +147,8 @@ public struct WelcomeView: View {
 
                         WelcomeActionView(
                             iconName: "folder",
-                            title: NSLocalizedString("Open a file or folder", bundle: .module, comment: ""),
-                            subtitle: NSLocalizedString(
-                                "Open an existing file or folder on your Mac",
-                                bundle: .module,
-                                comment: ""
-                            )
+                            title: "Open a file or folder",
+                            subtitle: "Open an existing file or folder on your Mac"
                         )
                         .onTapGesture {
                             openDocument(nil, dismissWindow)

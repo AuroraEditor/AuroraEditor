@@ -31,3 +31,7 @@ public extension Bundle {
         return commit
     }
 }
+
+extension Bundle {
+  static var module: Bundle { Bundle(identifier: "com.auroraeditor")! }
+}

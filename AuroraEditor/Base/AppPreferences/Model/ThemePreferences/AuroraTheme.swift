@@ -1,5 +1,5 @@
 //
-//  Theme.swift
+//  AuroraTheme.swift
 //  AuroraEditorModules/AppPreferences
 //
 //  Created by Lukas Pistrol on 31.03.22.
@@ -10,7 +10,7 @@ import SwiftUI
 /// # Theme
 ///
 /// The model structure of themes for the editor & terminal emulator
-public struct Theme: Identifiable, Codable, Equatable, Hashable, Loopable {
+public struct AuroraTheme: Identifiable, Codable, Equatable, Hashable, Loopable {
 
     enum CodingKeys: String, CodingKey {
         case author, license, distributionURL, name, displayName, editor, terminal, version
@@ -18,7 +18,7 @@ public struct Theme: Identifiable, Codable, Equatable, Hashable, Loopable {
         case metadataDescription = "description"
     }
 
-    public static func == (lhs: Theme, rhs: Theme) -> Bool {
+    public static func == (lhs: AuroraTheme, rhs: AuroraTheme) -> Bool {
         lhs.id == rhs.id
     }
 
@@ -82,7 +82,7 @@ public struct Theme: Identifiable, Codable, Equatable, Hashable, Loopable {
     }
 }
 
-public extension Theme {
+public extension AuroraTheme {
     /// The type of the theme
     /// - **dark**: this is a theme for dark system appearance
     /// - **light**: this is a theme for light system appearance
@@ -93,7 +93,7 @@ public extension Theme {
 }
 
 // MARK: - Attributes
-public extension Theme {
+public extension AuroraTheme {
     /// Attributes of a certain field
     ///
     /// As of now it only includes the colors `hex` string and
@@ -119,7 +119,7 @@ public extension Theme {
     }
 }
 
-public extension Theme {
+public extension AuroraTheme {
     /// The editor colors of the theme
     struct EditorColors: Codable, Hashable, Loopable {
         public var text: Attributes
@@ -230,7 +230,7 @@ public extension Theme {
     }
 }
 
-public extension Theme {
+public extension AuroraTheme {
     /// The terminal emulator colors of the theme
     struct TerminalColors: Codable, Hashable, Loopable {
         public var text: Attributes

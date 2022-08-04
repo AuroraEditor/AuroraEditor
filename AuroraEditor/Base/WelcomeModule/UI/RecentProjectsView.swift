@@ -25,7 +25,7 @@ public struct RecentProjectsView: View {
     private var emptyView: some View {
         VStack {
             Spacer()
-            Text(NSLocalizedString("No Recent Projects", bundle: .module, comment: ""))
+            Text("No Recent Projects")
                 .font(.system(size: 20))
             Spacer()
         }
@@ -33,7 +33,7 @@ public struct RecentProjectsView: View {
 
     func contextMenuShowInFinder(projectPath: String) -> some View {
         Group {
-            Button(NSLocalizedString("Show in Finder", bundle: .module, comment: "")) {
+            Button("Show in Finder") {
                 guard let url = URL(string: "file://\(projectPath)") else {
                     return
                 }
@@ -45,7 +45,7 @@ public struct RecentProjectsView: View {
 
     func contextMenuCopy(path: String) -> some View {
         Group {
-            Button(NSLocalizedString("Copy Path", bundle: .module, comment: "")) {
+            Button("Copy Path") {
                 let pasteboard = NSPasteboard.general
                 pasteboard.declareTypes([.string], owner: nil)
                 pasteboard.setString(path, forType: .string)
@@ -55,7 +55,7 @@ public struct RecentProjectsView: View {
 
     func contextMenuDelete(projectPath: String) -> some View {
         Group {
-            Button(NSLocalizedString("Remove from Recent Projects", bundle: .module, comment: "")) {
+            Button("Remove from Recent Projects") {
                 deleteFromRecent(item: projectPath)
             }
         }

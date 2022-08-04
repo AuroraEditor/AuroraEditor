@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct GitlabTokenConfiguration: Configuration {
+public struct GitlabTokenConfiguration: GitConfiguration {
 
     public var apiEndpoint: String?
     public var accessToken: String?
@@ -19,7 +19,7 @@ public struct GitlabTokenConfiguration: Configuration {
     }
 }
 
-public struct PrivateTokenConfiguration: Configuration {
+public struct PrivateTokenConfiguration: GitConfiguration {
     public var apiEndpoint: String?
     public var accessToken: String?
     public let errorDomain: String? = "com.auroraeditor.models.accounts.gitlab"

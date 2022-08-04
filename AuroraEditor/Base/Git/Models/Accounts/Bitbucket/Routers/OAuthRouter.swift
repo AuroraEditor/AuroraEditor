@@ -11,7 +11,7 @@ public enum OAuthRouter: Router {
     case authorize(BitbucketOAuthConfiguration)
     case accessToken(BitbucketOAuthConfiguration, String)
 
-    public var configuration: Configuration? {
+    public var configuration: GitConfiguration? {
         switch self {
         case .authorize(let config): return config
         case .accessToken(let config, _): return config

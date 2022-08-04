@@ -12,9 +12,9 @@ public let gitlabBaseURL = "https://gitlab.com/api/v4/"
 public let gitlabWebURL = "https://gitlab.com/"
 
 public struct GitlabAccount {
-    public let configuration: Configuration
+    public let configuration: GitConfiguration
 
-    public init(_ config: Configuration = GitlabTokenConfiguration()) {
+    public init(_ config: GitConfiguration = GitlabTokenConfiguration()) {
         configuration = config
     }
 }

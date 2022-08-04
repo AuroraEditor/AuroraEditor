@@ -1,5 +1,5 @@
 //
-//  Interface.swift
+//  GitClientInterface.swift
 //  AuroraEditorModules/Git
 //
 //  Created by Marco Carnevali on 21/03/22.

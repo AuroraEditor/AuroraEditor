@@ -36,9 +36,9 @@ public extension GithubAccount {
 }
 
 enum PublicKeyRouter: JSONPostRouter {
-    case postPublicKey(String, String, Configuration)
+    case postPublicKey(String, String, GitConfiguration)
 
-    var configuration: Configuration? {
+    var configuration: GitConfiguration? {
         switch self {
         case let .postPublicKey(_, _, config): return config
         }

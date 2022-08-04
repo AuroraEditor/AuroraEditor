@@ -8,9 +8,9 @@
 import Foundation
 
 enum UserRouter: Router {
-    case readAuthenticatedUser(Configuration)
+    case readAuthenticatedUser(GitConfiguration)
 
-    var configuration: Configuration? {
+    var configuration: GitConfiguration? {
         switch self {
         case .readAuthenticatedUser(let config): return config
         }

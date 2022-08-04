@@ -8,14 +8,14 @@
 import Foundation
 
 enum IssueRouter: JSONPostRouter {
-    case readAuthenticatedIssues(Configuration, String, String, Openness)
-    case readIssue(Configuration, String, String, Int)
-    case readIssues(Configuration, String, String, String, String, Openness)
-    case postIssue(Configuration, String, String, String, String?, String?, [String])
-    case patchIssue(Configuration, String, String, Int, String?, String?, String?, Openness?)
-    case commentIssue(Configuration, String, String, Int, String)
-    case readIssueComments(Configuration, String, String, Int, String, String)
-    case patchIssueComment(Configuration, String, String, Int, String)
+    case readAuthenticatedIssues(GitConfiguration, String, String, Openness)
+    case readIssue(GitConfiguration, String, String, Int)
+    case readIssues(GitConfiguration, String, String, String, String, Openness)
+    case postIssue(GitConfiguration, String, String, String, String?, String?, [String])
+    case patchIssue(GitConfiguration, String, String, Int, String?, String?, String?, Openness?)
+    case commentIssue(GitConfiguration, String, String, Int, String)
+    case readIssueComments(GitConfiguration, String, String, Int, String, String)
+    case patchIssueComment(GitConfiguration, String, String, Int, String)
 
     var method: HTTPMethod {
         switch self {
@@ -35,7 +35,7 @@ enum IssueRouter: JSONPostRouter {
         }
     }
 
-    var configuration: Configuration? {
+    var configuration: GitConfiguration? {
         switch self {
         case let .readAuthenticatedIssues(config, _, _, _): return config
         case let .readIssue(config, _, _, _): return config

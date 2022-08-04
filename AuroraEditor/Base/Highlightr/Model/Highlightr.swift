@@ -16,14 +16,14 @@ import AppKit
 /// Utility class for generating a highlighted NSAttributedString from a String.
 open class Highlightr {
     /// Returns the current Theme.
-    open var theme: Theme! {
+    open var theme: HighlighrTheme! {
         didSet {
             themeChanged?(theme)
         }
     }
 
     /// This block will be called every time the theme changes.
-    open var themeChanged: ((Theme) -> Void)?
+    open var themeChanged: ((HighlighrTheme) -> Void)?
 
     /// Defaults to `false` - when `true`, forces highlighting to finish even if illegal syntax is detected.
     open var ignoreIllegals = false
@@ -106,14 +106,14 @@ open class Highlightr {
             return false
         }
 
-        theme = Theme(themeString: themeString)
+        theme = HighlighrTheme(themeString: themeString)
 
         return true
     }
 
     /// Set theme
     /// - Parameter theme: theme
-    open func setTheme(theme: Theme) {
+    open func setTheme(theme: HighlighrTheme) {
         self.theme = theme
     }
 

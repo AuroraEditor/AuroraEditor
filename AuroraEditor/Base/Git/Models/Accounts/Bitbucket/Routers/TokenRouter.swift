@@ -11,7 +11,7 @@ public enum TokenRouter: Router {
     case refreshToken(BitbucketOAuthConfiguration, String)
     case emptyToken(BitbucketOAuthConfiguration, String)
 
-    public var configuration: Configuration? {
+    public var configuration: GitConfiguration? {
         switch self {
         case .refreshToken(let config, _):
             return config

@@ -1,5 +1,5 @@
 //
-//  Live.swift
+//  WorkspaceClientLive.swift
 //  AuroraEditorModules/WorkspaceClient
 //
 //  Created by Marco Carnevali on 16/03/22.

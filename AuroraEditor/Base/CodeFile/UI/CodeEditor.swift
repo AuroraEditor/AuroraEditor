@@ -9,7 +9,6 @@ import Foundation
 import AppKit
 import SwiftUI
 import Combine
-import STTextView
 
 struct CodeEditor: NSViewRepresentable {
     @State

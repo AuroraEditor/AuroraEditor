@@ -30,7 +30,7 @@ public enum Sort: String {
 
 enum ProjectRouter: Router {
     case readAuthenticatedProjects(
-        configuration: Configuration,
+        configuration: GitConfiguration,
         page: String,
         perPage: String,
         archived: Bool,
@@ -40,7 +40,7 @@ enum ProjectRouter: Router {
         search: String,
         simple: Bool)
     case readVisibleProjects(
-        configuration: Configuration,
+        configuration: GitConfiguration,
         page: String,
         perPage: String,
         archived: Bool,
@@ -50,7 +50,7 @@ enum ProjectRouter: Router {
         search: String,
         simple: Bool)
     case readOwnedProjects(
-        configuration: Configuration,
+        configuration: GitConfiguration,
         page: String,
         perPage: String,
         archived: Bool,
@@ -60,7 +60,7 @@ enum ProjectRouter: Router {
         search: String,
         simple: Bool)
     case readStarredProjects(
-        configuration: Configuration,
+        configuration: GitConfiguration,
         page: String,
         perPage: String,
         archived: Bool,
@@ -70,7 +70,7 @@ enum ProjectRouter: Router {
         search: String,
         simple: Bool)
     case readAllProjects(
-        configuration: Configuration,
+        configuration: GitConfiguration,
         page: String,
         perPage: String,
         archived: Bool,
@@ -79,12 +79,12 @@ enum ProjectRouter: Router {
         sort: Sort,
         search: String,
         simple: Bool)
-    case readSingleProject(configuration: Configuration, id: String)
-    case readProjectEvents(configuration: Configuration, id: String, page: String, perPage: String)
-    case readProjectHooks(configuration: Configuration, id: String)
-    case readProjectHook(configuration: Configuration, id: String, hookId: String)
+    case readSingleProject(configuration: GitConfiguration, id: String)
+    case readProjectEvents(configuration: GitConfiguration, id: String, page: String, perPage: String)
+    case readProjectHooks(configuration: GitConfiguration, id: String)
+    case readProjectHook(configuration: GitConfiguration, id: String, hookId: String)
 
-    var configuration: Configuration? {
+    var configuration: GitConfiguration? {
         switch self {
         case .readAuthenticatedProjects(let config, _, _, _, _, _, _, _, _): return config
         case .readVisibleProjects(let config, _, _, _, _, _, _, _, _): return config

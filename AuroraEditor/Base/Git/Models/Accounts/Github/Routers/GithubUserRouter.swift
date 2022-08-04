@@ -8,10 +8,10 @@
 import Foundation
 
 enum GithubUserRouter: Router {
-    case readAuthenticatedUser(Configuration)
-    case readUser(String, Configuration)
+    case readAuthenticatedUser(GitConfiguration)
+    case readUser(String, GitConfiguration)
 
-    var configuration: Configuration? {
+    var configuration: GitConfiguration? {
         switch self {
         case let .readAuthenticatedUser(config): return config
         case let .readUser(_, config): return config

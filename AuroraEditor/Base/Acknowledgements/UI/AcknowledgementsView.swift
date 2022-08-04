@@ -42,7 +42,7 @@ public struct AcknowledgementsView: View {
     }
 
     public func showWindow(width: CGFloat, height: CGFloat) {
-        PlaceholderWindowController(
+        AcknowledgementWindowController(
             view: self,
             size: NSSize(
                 width: width,
@@ -76,7 +76,7 @@ struct AcknowledgementRow: View {
     }
 }
 
-final class PlaceholderWindowController: NSWindowController {
+final class AcknowledgementWindowController: NSWindowController {
     convenience init<T: View>(view: T, size: NSSize) {
         let hostingController = NSHostingController(rootView: view)
         // New window holding our SwiftUI view

@@ -7,9 +7,9 @@
 
 import Foundation
 
-var sharedShellClient: World = .init()
+public var sharedShellClient: World = .init()
 
 // Inspired by: https://vimeo.com/291588126
-struct World {
+public struct World {
     var shellClient: ShellClient = .live()
 }

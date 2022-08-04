@@ -1,6 +1,6 @@
 //
-//  AuroraEditorTextView.swift
-//  AuroraEditorTextView
+//  CodeEditTextView.swift
+//  CodeEditTextView
 //
 //  Created by Lukas Pistrol on 24.05.22.
 //

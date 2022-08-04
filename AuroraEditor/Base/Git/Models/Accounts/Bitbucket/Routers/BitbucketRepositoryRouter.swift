@@ -8,10 +8,10 @@
 import Foundation
 
 public enum BitbucketRepositoryRouter: Router {
-    case readRepositories(Configuration, String?, [String: String])
-    case readRepository(Configuration, String, String)
+    case readRepositories(GitConfiguration, String?, [String: String])
+    case readRepository(GitConfiguration, String, String)
 
-    public var configuration: Configuration? {
+    public var configuration: GitConfiguration? {
         switch self {
         case .readRepositories(let config, _, _): return config
         case .readRepository(let config, _, _): return config
