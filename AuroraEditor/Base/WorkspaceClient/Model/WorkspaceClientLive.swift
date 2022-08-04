@@ -61,6 +61,7 @@ public extension WorkspaceClient {
             DispatchQueue.main.async { onRefresh() }
         }
         watcherCode()
+        workspaceItem.watcherCode = watcherCode
 
         /// Recursive loading of files into `FileItem`s
         /// - Parameter url: The URL of the directory to load the items of
@@ -87,6 +88,7 @@ public extension WorkspaceClient {
 
                     let newFileItem = FileItem(url: itemURL, children: subItems?.sortItems(foldersOnTop: true))
                     // note: watcher code will be applied after the workspaceItem is created
+                    newFileItem.watcherCode = watcherCode
                     subItems?.forEach { $0.parent = newFileItem }
                     items.append(newFileItem)
                     flattenedFileItems[newFileItem.id] = newFileItem

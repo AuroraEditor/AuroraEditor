@@ -212,16 +212,38 @@ public extension WorkspaceClient {
         /// This function allows creating files in the selected folder or project main directory
         /// - Parameter fileName: The name of the new file
         public func addFile(fileName: String) {
+            // check the folder for other files, and see what the most common file extension is
+            var fileExtensions: [String: Int] = ["": 0]
+
+            (self.isFolder ? self.children : parent?.children)?.forEach { child in
+                // if the file extension was present before, add it now
+                let childFileName = child.fileName(typeHidden: false)
+                if let index = childFileName.lastIndex(of: ".") {
+                    let childFileExtension = ".\(childFileName.suffix(from: index).dropFirst())"
+                    fileExtensions[childFileExtension] = (fileExtensions[childFileExtension] ?? 0) + 1
+                } else {
+                    fileExtensions[""] = (fileExtensions[""] ?? 0) + 1
+                }
+            }
+
+            var largestValue = 0
+            var idealExtension = ""
+            for (extName, count) in fileExtensions where count > largestValue {
+                idealExtension = extName
+                largestValue = count
+            }
+
             // Check if folder, if it is create file under self
             var fileUrl = (self.isFolder ?
-                       self.url.appendingPathComponent(fileName) :
-                        self.url.deletingLastPathComponent().appendingPathComponent(fileName))
+                        self.url.appendingPathComponent("\(fileName)\(idealExtension)") :
+                        self.url.deletingLastPathComponent().appendingPathComponent("\(fileName)\(idealExtension)"))
 
             // If a file/folder with the same name exists, add a number to the end.
             var fileNumber = 0
             while FileItem.fileManger.fileExists(atPath: fileUrl.path) {
                 fileNumber += 1
-                fileUrl = fileUrl.deletingLastPathComponent().appendingPathComponent("\(fileName)\(fileNumber)")
+                fileUrl = fileUrl.deletingLastPathComponent()
+                    .appendingPathComponent("\(fileName)\(fileNumber)\(idealExtension)")
             }
 
             // Create the file
