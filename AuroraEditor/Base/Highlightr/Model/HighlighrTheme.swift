@@ -8,26 +8,14 @@
 
 import Foundation
 
-#if os(iOS) || os(tvOS)
-import UIKit
-/// Typealias for UIColor
-public typealias RPColor = UIColor
-/// Typealias for UIFont
-public typealias RPFont = UIFont
-#else
 import AppKit
-/// Typealias for NSColor
 public typealias RPColor = NSColor
-/// Typealias for NSFont
 public typealias RPFont = NSFont
-
-#endif
 
 private typealias RPThemeDict = [String: [AnyHashable: AnyObject]]
 private typealias RPThemeStringDict = [String: [String: String]]
 
 /// Theme parser, can be used to configure the theme parameters.
-// swiftlint:disable:next type_body_length
 open class HighlighrTheme {
     internal let theme: String
     internal var lightTheme: String!
@@ -52,7 +40,7 @@ open class HighlighrTheme {
      */
     public init(themeString: String) {
         theme = themeString
-        setCodeFont(RPFont(name: "Courier", size: 14)!)
+        setCodeFont(NSFont.monospacedSystemFont(ofSize: 14, weight: .medium))
         strippedTheme = stripTheme(themeString)
         lightTheme = strippedThemeToString(strippedTheme)
         themeDict = strippedThemeToTheme(strippedTheme)
@@ -84,31 +72,14 @@ open class HighlighrTheme {
     open func setCodeFont(_ font: RPFont) {
         codeFont = font
 
-#if os(iOS) || os(tvOS)
-        let boldDescriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family: font.familyName,
-                                                               UIFontDescriptor.AttributeName.face: "Bold"])
-        let italicDescriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family: font.familyName,
-                                                                 UIFontDescriptor.AttributeName.face: "Italic"])
-        let obliqueDescriptor = UIFontDescriptor(
-            fontAttributes: [UIFontDescriptor.AttributeName.family: font.familyName,
-                             UIFontDescriptor.AttributeName.face: "Oblique"])
-#else
-        let boldDescriptor = NSFontDescriptor(
-            fontAttributes: [.family: font.familyName!,
-                             .face: "Bold"])
-        let italicDescriptor = NSFontDescriptor(
-            fontAttributes: [.family: font.familyName!,
-                             .face: "Italic"])
         let obliqueDescriptor = NSFontDescriptor(
             fontAttributes: [.family: font.familyName!,
                              .face: "Oblique"])
-#endif
 
-        boldCodeFont = RPFont(descriptor: boldDescriptor, size: font.pointSize)
-        italicCodeFont = RPFont(descriptor: italicDescriptor, size: font.pointSize)
+        boldCodeFont = NSFont.monospacedSystemFont(ofSize: 14, weight: .bold)
+        italicCodeFont = NSFont.monospacedSystemFont(ofSize: 14, weight: .medium)
 
-        if italicCodeFont == nil || italicCodeFont.familyName != font.familyName
-        {
+        if italicCodeFont == nil || italicCodeFont.familyName != font.familyName {
             italicCodeFont = RPFont(descriptor: obliqueDescriptor, size: font.pointSize)
         }
         if italicCodeFont == nil {

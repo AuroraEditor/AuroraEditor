@@ -1120,13 +1120,13 @@
 		20D8374E289A7ACD00D91D05 /* Highlightr */ = {
 			isa = PBXGroup;
 			children = (
-				20D83754289A7ACD00D91D05 /* assets */,
+				20D83754289A7ACD00D91D05 /* Assets */,
 				20D83919289A81D000D91D05 /* Model */,
 			);
 			path = Highlightr;
 			sourceTree = "<group>";
 		};
-		20D83754289A7ACD00D91D05 /* assets */ = {
+		20D83754289A7ACD00D91D05 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
 				20D83755289A7ACD00D91D05 /* vs.min.css */,
@@ -1221,7 +1221,7 @@
 				20D837AE289A7ACD00D91D05 /* monokai-sublime.min.css */,
 				20D837AF289A7ACD00D91D05 /* an-old-hope.min.css */,
 			);
-			path = assets;
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		20D837B1289A7ACD00D91D05 /* Feedback */ = {

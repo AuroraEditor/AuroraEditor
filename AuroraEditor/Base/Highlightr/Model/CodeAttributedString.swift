@@ -7,16 +7,10 @@
 //
 
 import Foundation
-
-#if os(OSX)
-    import AppKit
-#elseif os(iOS)
-    import UIKit
-#endif
+import AppKit
 
 /// Highlighting Delegate
-@objc public protocol HighlightDelegate
-{
+@objc public protocol HighlightDelegate {
     /**
      If this method returns *false*, the highlighting process will be skipped for this range.
      
@@ -48,9 +42,7 @@ open class CodeAttributedString: NSTextStorage {
 
     /**
      Initialize the CodeAttributedString
-
      - parameter highlightr: The highlightr instance to use. Defaults to `Highlightr()`.
-
      */
     public init(highlightr: Highlightr = Highlightr()!) {
         self.highlightr = highlightr
@@ -72,14 +64,12 @@ open class CodeAttributedString: NSTextStorage {
         setupListeners()
     }
 
-    #if os(OSX)
     /// Initialize the CodeAttributedString
     public required init?(pasteboardPropertyList propertyList: Any, ofType type: NSPasteboard.PasteboardType) {
         self.highlightr = Highlightr()!
         super.init(pasteboardPropertyList: propertyList, ofType: type)
         setupListeners()
     }
-    #endif
 
     /// Language syntax to use for highlighting. Providing nil will disable highlighting.
     open var language: String? {
@@ -104,8 +94,8 @@ open class CodeAttributedString: NSTextStorage {
     override open func attributes(
         at location: Int,
         effectiveRange range: NSRangePointer?) -> [AttributedStringKey: Any] {
-        return stringStorage.attributes(at: location, effectiveRange: range)
-    }
+            return stringStorage.attributes(at: location, effectiveRange: range)
+        }
 
     /**
      Replaces the characters at the given range with the provided string.
@@ -179,27 +169,24 @@ open class CodeAttributedString: NSTextStorage {
                     ),
                     options: [],
                     using: { (attrs, locRange, _) in
-                    var fixedRange = NSRange(location: range.location+locRange.location, length: locRange.length)
-                    fixedRange.length = (
-                        fixedRange.location + fixedRange.length < string.length
-                    ) ? fixedRange.length : string.length-fixedRange.location
-                    fixedRange.length = (fixedRange.length >= 0) ? fixedRange.length : 0
-                    self.stringStorage.setAttributes(attrs, range: fixedRange)
-                })
+                        var fixedRange = NSRange(location: range.location+locRange.location, length: locRange.length)
+                        fixedRange.length = (
+                            fixedRange.location + fixedRange.length < string.length
+                        ) ? fixedRange.length : string.length-fixedRange.location
+                        fixedRange.length = (fixedRange.length >= 0) ? fixedRange.length : 0
+                        self.stringStorage.setAttributes(attrs, range: fixedRange)
+                    })
                 self.endEditing()
                 self.edited(TextStorageEditActions.editedAttributes, range: range, changeInLength: 0)
                 self.highlightDelegate?.didHighlight?(range, success: true)
             })
-
         }
-
     }
 
     func setupListeners() {
         highlightr.themeChanged = { [weak self] _ in
-                    guard let self = self else { return }
-                    self.highlight(NSRange(location: 0, length: self.stringStorage.length))
+            guard let self = self else { return }
+            self.highlight(NSRange(location: 0, length: self.stringStorage.length))
         }
     }
-
 }

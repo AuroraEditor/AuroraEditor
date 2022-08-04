@@ -8,10 +8,7 @@
 
 import Foundation
 import JavaScriptCore
-
-#if os(OSX)
 import AppKit
-#endif
 
 /// Utility class for generating a highlighted NSAttributedString from a String.
 open class Highlightr {
@@ -53,15 +50,14 @@ open class Highlightr {
         jsContext.setObject(window, forKeyedSubscript: "window" as NSString)
 
 #if SWIFT_PACKAGE
-        let bundle = Bundle.module
+        let bundle = Bundle.main
 #else
         let bundle = Bundle(for: Highlightr.self)
 #endif
         self.bundle = bundle
-        guard let hgPath = highlightPath ?? bundle.path(
+        guard let hgPath = bundle.path(
             forResource: "highlight.min",
-            ofType: "js",
-            inDirectory: "assets") else
+            ofType: "js") else
         {
             print("Couldn't load highlight.min.js")
             return nil
@@ -97,8 +93,7 @@ open class Highlightr {
     open func setTheme(to name: String) -> Bool {
         guard let defTheme = bundle.path(
             forResource: name + ".min",
-            ofType: "css",
-            inDirectory: "assets") else {
+            ofType: "css") else {
             print("Couldn't load \(name).min.css")
             return false
         }
@@ -169,7 +164,7 @@ open class Highlightr {
      - returns: Array of Strings
      */
     open func availableThemes() -> [String] {
-        let paths = bundle.paths(forResourcesOfType: "css", inDirectory: "assets") as [NSString]
+        let paths = bundle.paths(forResourcesOfType: "css", inDirectory: nil) as [NSString]
         var result = [String]()
         for path in paths {
             result.append(path.lastPathComponent.replacingOccurrences(of: ".min.css", with: ""))

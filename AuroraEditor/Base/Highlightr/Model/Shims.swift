@@ -7,25 +7,9 @@
 //
 
 import Foundation
+import AppKit
 
-#if os(OSX)
-    import AppKit
-#elseif os(iOS)
-    import UIKit
-#endif
-
-#if swift(>=4.2)
-    /// AttributedStringKey
-    public typealias AttributedStringKey = NSAttributedString.Key
-#else
 /// AttributedStringKey
-    public typealias AttributedStringKey = NSAttributedStringKey
-#endif
-
-#if swift(>=4.2) && os(iOS)
+public typealias AttributedStringKey = NSAttributedString.Key
 /// AttributedStringKey
-    public typealias TextStorageEditActions = NSTextStorage.EditActions
-#else
-/// AttributedStringKey
-    public typealias TextStorageEditActions = NSTextStorageEditActions
-#endif
+public typealias TextStorageEditActions = NSTextStorageEditActions
