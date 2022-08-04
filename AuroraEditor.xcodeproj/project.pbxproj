@@ -821,7 +821,7 @@
 		20D838F7289A7ACE00D91D05 /* TerminalEmulatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalEmulatorView.swift; sourceTree = "<group>"; };
 		20D838F8289A7ACE00D91D05 /* TerminalEmulatorView+Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TerminalEmulatorView+Coordinator.swift"; sourceTree = "<group>"; };
 		20D838FA289A7ACE00D91D05 /* SwiftTerm+Color+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftTerm+Color+Init.swift"; sourceTree = "<group>"; };
-		20D838FD289A7AD600D91D05 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AboutView.swift; path = UI/AboutView.swift; sourceTree = "<group>"; };
+		20D838FD289A7AD600D91D05 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		20D839AA280DEB2900B27357 /* NoSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSelectionView.swift; sourceTree = "<group>"; };
 		20D839AD280E0CA700B27357 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
 		20EBB500280C325D00F3A5DA /* FileInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInspectorView.swift; sourceTree = "<group>"; };
@@ -1999,7 +1999,8 @@
 				20D83863289A7ACE00D91D05 /* TabBarItemRepresentable.swift */,
 				20D83865289A7ACE00D91D05 /* TabBarItemID.swift */,
 			);
-			path = Model;
+			name = Model;
+			path = /Users/kaitay/Documents/Coding/projects/xcode.nosync/AuroraEditor/AuroraEditor/Base/TabBar/Model;
 			sourceTree = "<absolute>";
 		};
 		20D83900289A7C9200D91D05 /* UI */ = {
