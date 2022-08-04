@@ -17,6 +17,13 @@ struct WorkspaceCodeFileView: View {
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
+    @State
+    private var font: NSFont = {
+        let size = AppPreferencesModel.shared.preferences.textEditing.font.size
+        let name = AppPreferencesModel.shared.preferences.textEditing.font.name
+        return NSFont(name: name, size: Double(size)) ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
+    }()
+
     @ViewBuilder
     var codeView: some View {
         ZStack {
@@ -24,13 +31,18 @@ struct WorkspaceCodeFileView: View {
                 if file.tabID == workspace.selectionState.selectedId {
                     Log.info("Item loaded is: \(file.url)")
                 }
+                
                 return file.tabID == workspace.selectionState.selectedId
             }) {
                 if let fileItem = workspace.selectionState.openedCodeFiles[item] {
                     if fileItem.typeOfFile == .image {
                         imageFileView(fileItem, for: item)
                     } else {
+                        // TODO: Disable editor V1
                         codeFileView(fileItem, for: item)
+
+                        // TODO: Test editor V2
+//                        aeCodeView(fileItem, for: item)
                     }
                 }
             } else {
@@ -49,7 +61,23 @@ struct WorkspaceCodeFileView: View {
         _ codeFile: CodeFileDocument,
         for item: WorkspaceClient.FileItem
     ) -> some View {
+        // TODO: Wesley - implement new editor.
         CodeFileView(codeFile: codeFile)
+            .safeAreaInset(edge: .top, spacing: 0) {
+                VStack(spacing: 0) {
+                    BreadcrumbsView(file: item, tappedOpenFile: workspace.openTab(item:))
+                    Divider()
+                }
+            }
+    }
+
+    @ViewBuilder
+    private func aeCodeView(
+        _ codeFile: CodeFileDocument,
+        for item: WorkspaceClient.FileItem
+    ) -> some View {
+        // TODO: Wesley - implement new editor.
+        AECodeView(codeFile: codeFile)
             .safeAreaInset(edge: .top, spacing: 0) {
                 VStack(spacing: 0) {
                     BreadcrumbsView(file: item, tappedOpenFile: workspace.openTab(item:))
@@ -90,5 +118,57 @@ struct WorkspaceCodeFileView: View {
     var body: some View {
         codeView
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+// MARK: AECodeView
+public struct AECodeView: View {
+    @ObservedObject
+    private var codeFile: CodeFileDocument
+
+    @ObservedObject
+    private var prefs: AppPreferencesModel = .shared
+
+    @Environment(\.colorScheme)
+    private var colorScheme
+
+    private let editable: Bool
+
+    public init(codeFile: CodeFileDocument, editable: Bool = true) {
+        self.codeFile = codeFile
+        self.editable = editable
+    }
+
+    @State
+    private var selectedTheme = ThemeModel.shared.selectedTheme ?? ThemeModel.shared.themes.first!
+
+    @State
+    private var font: NSFont = {
+        let size = AppPreferencesModel.shared.preferences.textEditing.font.size
+        let name = AppPreferencesModel.shared.preferences.textEditing.font.name
+        return NSFont(name: name, size: Double(size)) ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
+    }()
+
+    public var body: some View {
+        AuroraEditorTextView(
+            $codeFile.content,
+            font: $font,
+            tabWidth: $prefs.preferences.textEditing.defaultTabWidth,
+            lineHeight: .constant(1.2)
+        )
+        .id(codeFile.fileURL)
+        .background(selectedTheme.editor.background.swiftColor)
+        .disabled(!editable)
+        .frame(maxHeight: .infinity)
+        .onChange(of: ThemeModel.shared.selectedTheme) { newValue in
+            guard let theme = newValue else { return }
+            self.selectedTheme = theme
+        }
+        .onChange(of: prefs.preferences.textEditing.font) { _ in
+            font = NSFont(
+                name: prefs.preferences.textEditing.font.name,
+                size: Double(prefs.preferences.textEditing.font.size)
+            ) ?? .monospacedSystemFont(ofSize: 12, weight: .regular)
+        }
     }
 }
