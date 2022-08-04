@@ -9,7 +9,7 @@ disabled_rules:
 
 # paths to ignore during linting.
 excluded:
-  - .build # Where Swift Package Manager checks out dependency sources
+  - AuroraEditorModules/.build # Where Swift Package Manager checks out dependency sources
 
 # Exclude triggering type names.
 type_name:
