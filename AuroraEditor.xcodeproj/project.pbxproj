@@ -1999,9 +1999,8 @@
 				20D83863289A7ACE00D91D05 /* TabBarItemRepresentable.swift */,
 				20D83865289A7ACE00D91D05 /* TabBarItemID.swift */,
 			);
-			name = Model;
-			path = /Users/kaitay/Documents/Coding/projects/xcode.nosync/AuroraEditor/AuroraEditor/Base/TabBar/Model;
-			sourceTree = "<absolute>";
+			path = Model;
+			sourceTree = "<group>";
 		};
 		20D83900289A7C9200D91D05 /* UI */ = {
 			isa = PBXGroup;
