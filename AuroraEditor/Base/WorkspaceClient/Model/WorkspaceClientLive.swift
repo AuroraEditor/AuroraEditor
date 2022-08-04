@@ -24,6 +24,44 @@ public extension WorkspaceClient {
     ) throws -> Self {
         var flattenedFileItems: [String: FileItem] = [:]
 
+        // This is the object that the subscriber will watch
+        let subject = CurrentValueSubject<[FileItem], Never>([])
+
+        var isRunning: Bool = false
+        var anotherInstanceRan: Int = 0
+
+        // workspace fileItem
+        let workspaceItem = FileItem(url: folderURL, children: [])
+        flattenedFileItems[workspaceItem.id] = workspaceItem
+
+        // this weird statement is so that watcherCode's closure does not contain watcherCode when it is uninitialised
+        var watcherCode = {}; watcherCode = {
+
+            // Something has changed inside the directory
+            // We should reload the files.
+            guard !isRunning else { // this runs when a file change is detected but is already running
+                anotherInstanceRan += 1
+                return
+            }
+            isRunning = true
+            flattenedFileItems = [workspaceItem.id: workspaceItem]
+            _ = try? rebuildFiles(fromItem: workspaceItem)
+            while anotherInstanceRan > 0 { // TODO: optimise
+                let somethingChanged = try? rebuildFiles(fromItem: workspaceItem)
+                anotherInstanceRan = !(somethingChanged ?? false) ? 0 : anotherInstanceRan - 1
+            }
+
+            // run the onUpdate function after changes have been made
+            onUpdate()
+
+            subject.send(workspaceItem.children ?? [])
+            isRunning = false
+            anotherInstanceRan = 0
+            // reload data in outline view controller through the main thread
+            DispatchQueue.main.async { onRefresh() }
+        }
+        watcherCode()
+
         /// Recursive loading of files into `FileItem`s
         /// - Parameter url: The URL of the directory to load the items of
         /// - Returns: `[FileItem]` representing the contents of the directory
@@ -56,54 +94,6 @@ public extension WorkspaceClient {
             }
 
             return items
-        }
-
-        // initial load
-        let fileItems = try loadFiles(fromURL: folderURL)
-        // workspace fileItem
-        let workspaceItem = FileItem(url: folderURL, children: fileItems)
-        flattenedFileItems[workspaceItem.id] = workspaceItem
-        fileItems.forEach { item in
-            item.parent = workspaceItem
-        }
-
-        // By using `CurrentValueSubject` we can define a starting value.
-        // The value passed during init it's going to be send as soon as the
-        // consumer subscribes to the publisher.
-        let subject = CurrentValueSubject<[FileItem], Never>(fileItems)
-
-        var isRunning: Bool = false
-        var anotherInstanceRan: Int = 0
-
-        // this weird statement is so that watcherCode's closure does not contain watcherCode when it is uninitialised
-        var watcherCode = {}; watcherCode = {
-
-            // Something has changed inside the directory
-            // We should reload the files.
-            guard !isRunning else { // this runs when a file change is detected but is already running
-                anotherInstanceRan += 1
-                return
-            }
-            isRunning = true
-            flattenedFileItems = [workspaceItem.id: workspaceItem]
-            _ = try? rebuildFiles(fromItem: workspaceItem)
-            while anotherInstanceRan > 0 { // TODO: optimise
-                let somethingChanged = try? rebuildFiles(fromItem: workspaceItem)
-                anotherInstanceRan = !(somethingChanged ?? false) ? 0 : anotherInstanceRan - 1
-            }
-
-            // run the onUpdate function after changes have been made
-            onUpdate()
-
-            subject.send(workspaceItem.children ?? [])
-            isRunning = false
-            anotherInstanceRan = 0
-            // reload data in outline view controller through the main thread
-            DispatchQueue.main.async { onRefresh() }
-        }
-
-        flattenedFileItems.forEach {
-            $0.value.watcherCode = watcherCode
         }
 
         /// Recursive function similar to `loadFiles`, but creates or deletes children of the
