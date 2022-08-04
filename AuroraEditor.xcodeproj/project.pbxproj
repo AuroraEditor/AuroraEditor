@@ -503,6 +503,7 @@
 		20212680289BF81C00246DD7 /* Benchmarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Benchmarker.swift; sourceTree = "<group>"; };
 		20212682289BF84B00246DD7 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		20212684289BF87600246DD7 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
+		20212688289C055E00246DD7 /* Using Logger.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Using Logger.md"; sourceTree = "<group>"; };
 		2072FA12280D74ED00C7F8D4 /* HistoryInspectorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInspectorModel.swift; sourceTree = "<group>"; };
 		2072FA15280D83A500C7F8D4 /* FileTypeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypeList.swift; sourceTree = "<group>"; };
 		2072FA17280D871200C7F8D4 /* TextEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEncoding.swift; sourceTree = "<group>"; };
@@ -957,6 +958,7 @@
 		20212679289BF7A800246DD7 /* Log */ = {
 			isa = PBXGroup;
 			children = (
+				20212688289C055E00246DD7 /* Using Logger.md */,
 				2021267B289BF7BA00246DD7 /* Logger.swift */,
 				2021267E289BF7EF00246DD7 /* Formatter.swift */,
 				20212680289BF81C00246DD7 /* Benchmarker.swift */,
