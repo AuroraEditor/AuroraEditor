@@ -34,7 +34,7 @@ final class OutlineTableViewCell: NSTableCellView {
         super.init(frame: frameRect)
 
         // Create the label
-        label = NSTextField(frame: .zero)
+        label = SpecialSelectTextField(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.drawsBackground = false
         label.isBordered = false
@@ -112,6 +112,16 @@ final class OutlineTableViewCell: NSTableCellView {
         case 22: return 13
         case 24: return 14
         default: return 13
+        }
+    }
+
+    class SpecialSelectTextField: NSTextField {
+        override func becomeFirstResponder() -> Bool {
+            // TODO: Set text range
+            // this is the code to get the text range, however I cannot find a way to select it :(
+//            NSRange(location: 0, length: stringValue.distance(from: stringValue.startIndex,
+//                to: stringValue.lastIndex(of: ".") ?? stringValue.endIndex))
+            return true
         }
     }
 }
