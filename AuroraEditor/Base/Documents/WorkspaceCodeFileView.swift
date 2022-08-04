@@ -31,7 +31,7 @@ struct WorkspaceCodeFileView: View {
                 if file.tabID == workspace.selectionState.selectedId {
                     Log.info("Item loaded is: \(file.url)")
                 }
-                
+
                 return file.tabID == workspace.selectionState.selectedId
             }) {
                 if let fileItem = workspace.selectionState.openedCodeFiles[item] {
