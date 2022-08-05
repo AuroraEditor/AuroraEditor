@@ -10,6 +10,7 @@ import SwiftUI
 
 /// A View Controller managing and displaying a `STTextView`
 public class STTextViewController: NSViewController, STTextViewDelegate {
+    public var updateText: Bool = false
 
     internal var textView: STTextView!
     internal var rulerView: STLineNumberRulerView!

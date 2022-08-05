@@ -7,8 +7,37 @@
 
 import SwiftUI
 
+class AEHighlight {
+    @ObservedObject
+    var sharedCFG: SharedObjects = .shared
+
+    public func highlight(
+        code: String,
+        language: CodeLanguage? = CodeLanguage.default,
+        themeString: String? = "") -> NSAttributedString {
+        let highlightr = Highlightr()
+
+        if let themeString = themeString {
+            highlightr?.setTheme(theme: .init(themeString: themeString))
+        } else {
+            highlightr?.setTheme(to: "xcode")
+        }
+
+        if let highlightr = highlightr,
+           let string = highlightr.highlight(code,
+            as: language?.id.rawValue,
+            fastRender: true
+           ) {
+            return string
+        }
+
+        return NSAttributedString(string: code)
+    }
+}
 /// A `SwiftUI` wrapper for a ``STTextViewController``.
 public struct AuroraEditorTextView: NSViewControllerRepresentable {
+    var language: CodeLanguage? = CodeLanguage.default
+    var themeString: String?
 
     /// Initializes a Text Editor
     /// - Parameters:
@@ -38,29 +67,6 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
     @Binding private var font: NSFont
     @Binding private var tabWidth: Int
     @Binding private var lineHeight: Double
-    private let language: CodeLanguage?
-    private let highlightr = Highlightr()
-    private let themeString: String?
-
-    func highlight(code: String) -> NSAttributedString? {
-        let highlightr = Highlightr()
-
-        if let themeString = themeString {
-            highlightr?.setTheme(theme: .init(themeString: themeString))
-        } else {
-            highlightr?.setTheme(to: "xcode")
-        }
-
-        if let highlightr = highlightr,
-           let string = highlightr.highlight(code,
-            as: language?.id.rawValue,
-            fastRender: true
-           ) {
-            return string
-        }
-
-        return nil
-    }
 
     public typealias NSViewControllerType = STTextViewController
 
@@ -68,9 +74,11 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
         let controller = NSViewControllerType(
             text: $text,
             attrText: .constant(
-                self.highlight(
-                    code: text
-                ) ?? NSAttributedString(string: "Failed to open file")
+                AEHighlight().highlight(
+                    code: text,
+                    language: language,
+                    themeString: themeString
+                )
             ),
             font: font,
             tabWidth: tabWidth

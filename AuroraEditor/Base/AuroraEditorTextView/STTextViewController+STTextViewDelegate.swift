@@ -42,13 +42,24 @@ extension STTextViewController {
         didChangeTextIn affectedCharRange: NSTextRange,
         replacementString: String
     ) {
-        textView.autocompleteBracketPairs(replacementString)
-        print("Did change text in \(affectedCharRange) | \(replacementString)")
+        if !updateText {
+            updateText = true
+            textView.autocompleteBracketPairs(replacementString)
+            print("Did change text in \(affectedCharRange) | \(replacementString)")
 
-        // highlight()
-        setStandardAttributes()
+            // highlight()
+            setStandardAttributes()
 
-        self.text.wrappedValue = textView.string
+            self.text.wrappedValue = textView.string
+//            textView.setString(
+//                AEHighlight().highlight(
+//                    code: textView.string
+//                )
+//            )
+//            // TODO: Move Caret position.
+
+            updateText = false
+        }
     }
 
     public func textView(_ textView: STTextView, didMoveCaretTo row: Int, column: Int) {
