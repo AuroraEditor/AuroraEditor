@@ -48,11 +48,11 @@ extension STTextViewController {
         // highlight()
         setStandardAttributes()
 
-        // TODO: UPDATE SELF.TEXT
         self.text.wrappedValue = textView.string
     }
 
     public func textView(_ textView: STTextView, didMoveCaretTo row: Int, column: Int) {
-        print("New caret value", "row", row, "column", column)
+        // Update status bar using `SharedObjects`
+        SharedObjects.shared.caretPos = .init(line: row, column: column)
     }
 }

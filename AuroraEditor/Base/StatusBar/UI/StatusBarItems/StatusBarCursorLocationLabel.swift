@@ -14,12 +14,15 @@ internal struct StatusBarCursorLocationLabel: View {
     @ObservedObject
     private var model: StatusBarModel
 
+    @ObservedObject
+    private var shared: SharedObjects = .shared
+
     internal init(model: StatusBarModel) {
         self.model = model
     }
 
     internal var body: some View {
-        Text("Line: \(model.cursorLocation.line)  Col: \(model.cursorLocation.column)")
+        Text("Line: \(shared.caretPos.line)  Col: \(shared.caretPos.column)")
             .font(model.toolbarFont)
             .foregroundColor(foregroundColor)
             .fixedSize()

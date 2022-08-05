@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/wesley/Code/Apps/MacOS/AuroraEditor/AuroraEditor/Base/AuroraEditorTextView/STTextView/STTextView+Select2.swift">
-   </FileRef>
-   <FileRef
       location = "group:AuroraEditorCli">
    </FileRef>
    <FileRef

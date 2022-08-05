@@ -23,10 +23,6 @@ public class StatusBarModel: ObservableObject {
     @Published
     public var selectedTab: Int = 0
 
-    /// Returns the current location of the cursor in an editing view
-    @Published
-    public var cursorLocation: CursorLocation = .init(line: 1, column: 1) // Implementation needed!!
-
     /// Returns true when the drawer is visible
     @Published
     public var isExpanded: Bool = false
