@@ -268,10 +268,13 @@ extension OutlineViewController: NSOutlineViewDelegate {
 
         let selectedIndex = outlineView.selectedRow
 
-        guard let item = outlineView.item(atRow: selectedIndex) as? Item else { return }
+        guard let navigatorItem = outlineView.item(atRow: selectedIndex) as? Item else { return }
 
-        if item.children == nil && shouldSendSelectionUpdate {
-            workspace?.openTab(item: item)
+        if !(workspace?.selectionState.openedTabs.contains(navigatorItem.tabID) ?? false) {
+            if navigatorItem.children == nil && shouldSendSelectionUpdate {
+                workspace?.openTab(item: navigatorItem)
+                Log.warning("Opened a new tab for: \(navigatorItem.url)")
+            }
         }
     }
 
