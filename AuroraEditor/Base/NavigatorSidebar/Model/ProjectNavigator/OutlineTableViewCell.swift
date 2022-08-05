@@ -116,13 +116,13 @@ final class OutlineTableViewCell: NSTableCellView {
     }
 
     class SpecialSelectTextField: NSTextField {
-        override func becomeFirstResponder() -> Bool {
+//        override func becomeFirstResponder() -> Bool {
             // TODO: Set text range
             // this is the code to get the text range, however I cannot find a way to select it :(
 //            NSRange(location: 0, length: stringValue.distance(from: stringValue.startIndex,
 //                to: stringValue.lastIndex(of: ".") ?? stringValue.endIndex))
-            return true
-        }
+//            return true
+//        }
     }
 }
 

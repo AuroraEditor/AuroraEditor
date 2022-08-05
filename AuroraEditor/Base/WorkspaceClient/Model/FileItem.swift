@@ -18,17 +18,11 @@ public extension WorkspaceClient {
 
     /// An object containing all necessary information and actions for a specific file in the workspace
     final class FileItem: Identifiable, Codable, TabBarItemRepresentable {
-        public var tabID: TabBarItemID {
-            .codeEditor(id)
-        }
+        public var tabID: TabBarItemID { .codeEditor(id) }
 
-        public var title: String {
-            url.lastPathComponent
-        }
+        public var title: String { url.lastPathComponent }
 
-        public var icon: Image {
-            Image(systemName: systemImage)
-        }
+        public var icon: Image { Image(systemName: systemImage) }
 
         public var shouldBeExpanded: Bool = false
 
@@ -209,13 +203,35 @@ public extension WorkspaceClient {
             }
         }
 
+        public func flattenedChildren(depth: Int, ignoringFolders: Bool) -> [FileItem] {
+            guard depth > 0 else { return [] }
+            guard isFolder else { return [self] }
+            var childItems: [FileItem] = ignoringFolders ? [] : [self]
+            children?.forEach { child in
+                childItems.append(contentsOf: child.flattenedChildren(depth: depth-1,
+                    ignoringFolders: ignoringFolders))
+            }
+            return childItems
+        }
+
+        public func flattenedSiblings(height: Int, ignoringFolders: Bool) -> [FileItem] {
+            var topmostParent = self
+            for _ in 0..<height {
+                guard let parent = topmostParent.parent else { break }
+                topmostParent = parent
+            }
+            return topmostParent.flattenedChildren(depth: height, ignoringFolders: ignoringFolders)
+        }
+
         /// This function allows creating files in the selected folder or project main directory
         /// - Parameter fileName: The name of the new file
         public func addFile(fileName: String) {
             // check the folder for other files, and see what the most common file extension is
             var fileExtensions: [String: Int] = ["": 0]
 
-            (self.isFolder ? self.children : parent?.children)?.forEach { child in
+            for child in (self.isFolder ?
+                          self.flattenedSiblings(height: 2, ignoringFolders: true) :
+                          parent?.flattenedSiblings(height: 2, ignoringFolders: true)) ?? [] where !child.isFolder {
                 // if the file extension was present before, add it now
                 let childFileName = child.fileName(typeHidden: false)
                 if let index = childFileName.lastIndex(of: ".") {
@@ -372,16 +388,5 @@ extension WorkspaceClient.FileItem: Comparable {
 
     public static func < (lhs: WorkspaceClient.FileItem, rhs: WorkspaceClient.FileItem) -> Bool {
         lhs.url.lastPathComponent < rhs.url.lastPathComponent
-    }
-}
-
-public extension Array where Element: Hashable {
-
-    // TODO: DOCS (Marco Carnevali)
-    // swiftlint:disable:next missing_docs
-    func difference(from other: [Element]) -> [Element] {
-        let thisSet = Set(self)
-        let otherSet = Set(other)
-        return Array(thisSet.symmetricDifference(otherSet))
     }
 }

@@ -27,3 +27,14 @@ public extension Array where Element == WorkspaceClient.FileItem {
         }
     }
 }
+
+public extension Array where Element: Hashable {
+
+    // TODO: DOCS (Marco Carnevali)
+    // swiftlint:disable:next missing_docs
+    func difference(from other: [Element]) -> [Element] {
+        let thisSet = Set(self)
+        let otherSet = Set(other)
+        return Array(thisSet.symmetricDifference(otherSet))
+    }
+}
