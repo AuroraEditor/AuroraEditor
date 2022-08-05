@@ -103,11 +103,18 @@ custom_rules:
     message: "Use swiftlint:disable:next or swiftlint:disable:this"
     severity: error
 
+  # Don't use print
+  disallow_print:
+    included: ".*.swift"
+    name: "No print"
+    regex: "print(.*)"
+    message: "Please do not use print(), use log.info()."
+    severity: warning
+
   # Disable Xcode placeholders like <#Description#>
   no_placeholders:
     included: ".*.swift"
     name: "No Placeholders"
-    regex: "\\<#([a-zA-Z]+)#\\>"
-    match_kinds: comment
+    regex: "\\<\\#([a-zA-Z]+)\\#\\>"
     message: "Please do not use Xcode's placeholders."
     severity: warning
