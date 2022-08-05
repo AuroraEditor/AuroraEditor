@@ -53,28 +53,6 @@ struct TabBarTopDivider: View {
     }
 }
 
-/// The bottom border for tab bar (between tab bar and breadcrumbs).
-struct TabBarBottomDivider: View {
-    @Environment(\.colorScheme)
-    var colorScheme
-
-    @StateObject
-    private var prefs: AppPreferencesModel = .shared
-
-    var body: some View {
-        Rectangle()
-            .foregroundColor(
-                prefs.preferences.general.tabBarStyle == .xcode
-                ? Color(nsColor: .separatorColor)
-                    .opacity(colorScheme == .dark ? 0.80 : 0.40)
-                : Color(nsColor: .black)
-                    .opacity(colorScheme == .dark ? 0.65 : 0.13)
-
-            )
-            .frame(height: prefs.preferences.general.tabBarStyle == .xcode ? 1.0 : 0.8)
-    }
-}
-
 /// The divider shadow for native tab bar style.
 ///
 /// This is generally used in the top divider of tab bar when tab bar style is set to `native`.

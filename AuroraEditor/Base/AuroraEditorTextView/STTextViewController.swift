@@ -13,7 +13,6 @@ import STTextView
 public class STTextViewController: NSViewController, STTextViewDelegate {
 
     internal var textView: STTextView!
-
     internal var rulerView: STLineNumberRulerView!
 
     /// Binding for the `textView`s string
@@ -42,27 +41,30 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
     }
 
     // MARK: VC Lifecycle
-
     override public func loadView() {
         let scrollView = STTextView.scrollableTextView()
         textView = scrollView.documentView as? STTextView
 
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.hasVerticalScroller = true
+        scrollView.hasHorizontalScroller = false
 
         rulerView = STLineNumberRulerView(textView: textView, scrollView: scrollView)
-//        rulerView.backgroundColor = theme.background
+        rulerView.backgroundColor = textViewBackgroundColor()
         rulerView.textColor = .systemGray
-//        rulerView.separatorColor = theme.invisibles
+        rulerView.separatorColor = textViewBackgroundColor()
         rulerView.baselineOffset = baselineOffset
 
+        scrollView.borderType = .noBorder
+        scrollView.hasVerticalRuler = true
+        scrollView.hasHorizontalRuler = false
         scrollView.verticalRulerView = rulerView
         scrollView.rulersVisible = true
 
         textView.defaultParagraphStyle = self.paragraphStyle
-        textView.font = self.font
-//        textView.textColor = theme.text
-//        textView.backgroundColor = theme.background
+        textView.font = NSFont.monospacedSystemFont(ofSize: 12, weight: .medium)
+        textView.textColor = .textColor
+        textView.backgroundColor = textViewBackgroundColor()
 //        textView.insertionPointColor = theme.insertionPoint
         textView.insertionPointWidth = 1.0
 //        textView.selectionBackgroundColor = theme.selection
@@ -75,7 +77,6 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
         textView.delegate = self
 
         scrollView.documentView = textView
-
         scrollView.translatesAutoresizingMaskIntoConstraints = false
 
         self.view = scrollView
@@ -116,13 +117,13 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
     /// Reloads the UI to apply changes to ``STTextViewController/font``, ``STTextViewController/theme``, ...
     internal func reloadUI() {
         textView?.font = font
-//        textView?.textColor = theme.text
-//        textView?.backgroundColor = theme.background
+        textView?.textColor = .textColor
+        textView?.backgroundColor = textViewBackgroundColor()
 //        textView?.insertionPointColor = theme.insertionPoint
 //        textView?.selectionBackgroundColor = theme.selection
 //        textView?.selectedLineHighlightColor = theme.lineHighlight
 //
-//        rulerView?.backgroundColor = theme.background
+        rulerView?.backgroundColor = textViewBackgroundColor()
 //        rulerView?.separatorColor = theme.invisibles
         rulerView?.baselineOffset = baselineOffset
 
@@ -167,5 +168,13 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
     /// Handles `keyUp` events in the `textView`
     override public func keyUp(with event: NSEvent) {
         keyIsDown = false
+    }
+
+    private func textViewBackgroundColor() -> NSColor {
+        guard let currentTheme = ThemeModel.shared.selectedTheme,
+              AppPreferencesModel.shared.preferences.theme.useThemeBackground else {
+            return .textBackgroundColor
+        }
+        return NSColor(hex: currentTheme.editor.background.color)
     }
 }

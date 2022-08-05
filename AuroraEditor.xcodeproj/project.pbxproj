@@ -933,14 +933,8 @@
 		043C321227E31FE8006AE443 /* Documents */ = {
 			isa = PBXGroup;
 			children = (
-				043C321327E31FF6006AE443 /* AuroraEditorDocumentController.swift */,
-				043C321527E3201F006AE443 /* WorkspaceDocument.swift */,
-				04660F6927E51E5C00477777 /* AuroraEditorWindowController.swift */,
-				0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */,
-				D7E201AD27E8B3C000CB86D0 /* String+Ranges.swift */,
-				043BCF02281DA18A000AC47C /* WorkspaceDocument+Search.swift */,
-				043BCF04281DA19A000AC47C /* WorkspaceDocument+Selection.swift */,
-				6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */,
+				200FB696289D112C006E12D4 /* Model */,
+				200FB695289D1125006E12D4 /* UI */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -953,6 +947,29 @@
 				04C3254E2800AA4700C8DA2D /* ExtensionInstallationView.swift */,
 			);
 			path = ExtensionNavigator;
+			sourceTree = "<group>";
+		};
+		200FB695289D1125006E12D4 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		200FB696289D112C006E12D4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */,
+				043C321327E31FF6006AE443 /* AuroraEditorDocumentController.swift */,
+				043C321527E3201F006AE443 /* WorkspaceDocument.swift */,
+				04660F6927E51E5C00477777 /* AuroraEditorWindowController.swift */,
+				D7E201AD27E8B3C000CB86D0 /* String+Ranges.swift */,
+				043BCF02281DA18A000AC47C /* WorkspaceDocument+Search.swift */,
+				043BCF04281DA19A000AC47C /* WorkspaceDocument+Selection.swift */,
+				6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		20212679289BF7A800246DD7 /* Log */ = {
@@ -2476,7 +2493,6 @@
 				B658FB3827DA9E1000EA4DBD /* AuroraEditor.entitlements */,
 				04660F6027E3A68A00477777 /* Info.plist */,
 				043C321927E32295006AE443 /* MainMenu.xib */,
-				B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */,
 				209D024A289ABC340082441F /* Package.resolved */,
 			);
 			path = AuroraEditor;

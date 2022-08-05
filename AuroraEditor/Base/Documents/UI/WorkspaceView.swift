@@ -89,7 +89,7 @@ struct WorkspaceView: View {
                     .safeAreaInset(edge: .top, spacing: 0) {
                         VStack(spacing: 0) {
                             TabBar(windowController: windowController, workspace: workspace)
-                            TabBarBottomDivider()
+                            Divider().foregroundColor(.secondary)
                         }
                     }
                     .safeAreaInset(edge: .bottom) {
