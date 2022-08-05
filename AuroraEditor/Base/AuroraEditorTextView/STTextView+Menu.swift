@@ -6,10 +6,8 @@
 //
 
 import AppKit
-import STTextView
 
 extension STTextView {
-
     /// Setup context menus
     func setupMenus() {
         guard let menu = menu else { return }

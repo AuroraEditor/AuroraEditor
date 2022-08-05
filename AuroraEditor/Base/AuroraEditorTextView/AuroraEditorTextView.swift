@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import STTextView
 
 /// A `SwiftUI` wrapper for a ``STTextViewController``.
 public struct AuroraEditorTextView: NSViewControllerRepresentable {
@@ -23,24 +22,56 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
         _ text: Binding<String>,
         font: Binding<NSFont>,
         tabWidth: Binding<Int>,
-        lineHeight: Binding<Double>
+        lineHeight: Binding<Double>,
+        language: CodeLanguage?,
+        themeString: String?
     ) {
         self._text = text
         self._font = font
         self._tabWidth = tabWidth
         self._lineHeight = lineHeight
+        self.language = language
+        self.themeString = themeString
     }
 
     @Binding private var text: String
     @Binding private var font: NSFont
     @Binding private var tabWidth: Int
     @Binding private var lineHeight: Double
+    private let language: CodeLanguage?
+    private let highlightr = Highlightr()
+    private let themeString: String?
+
+    func highlight(code: String) -> NSAttributedString? {
+        let highlightr = Highlightr()
+
+        if let themeString = themeString {
+            highlightr?.setTheme(theme: .init(themeString: themeString))
+        } else {
+            highlightr?.setTheme(to: "xcode")
+        }
+
+        if let highlightr = highlightr,
+           let string = highlightr.highlight(code,
+            as: language?.id.rawValue,
+            fastRender: true
+           ) {
+            return string
+        }
+
+        return nil
+    }
 
     public typealias NSViewControllerType = STTextViewController
 
     public func makeNSViewController(context: Context) -> NSViewControllerType {
         let controller = NSViewControllerType(
             text: $text,
+            attrText: .constant(
+                self.highlight(
+                    code: text
+                ) ?? NSAttributedString(string: "Failed to open file")
+            ),
             font: font,
             tabWidth: tabWidth
         )

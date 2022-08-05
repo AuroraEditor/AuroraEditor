@@ -7,13 +7,15 @@
 
 import AppKit
 import SwiftUI
-import STTextView
 
 /// A View Controller managing and displaying a `STTextView`
 public class STTextViewController: NSViewController, STTextViewDelegate {
 
     internal var textView: STTextView!
     internal var rulerView: STLineNumberRulerView!
+
+    /// Binding for the `textView`s string
+    public var attrText: Binding<NSAttributedString>
 
     /// Binding for the `textView`s string
     public var text: Binding<String>
@@ -28,9 +30,12 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
     public var font: NSFont
 
     // MARK: Init
-
-    public init(text: Binding<String>, font: NSFont, tabWidth: Int) {
+    public init(text: Binding<String>,
+                attrText: Binding<NSAttributedString>,
+                font: NSFont,
+                tabWidth: Int) {
         self.text = text
+        self.attrText = attrText
         self.font = font
         self.tabWidth = tabWidth
         super.init(nibName: nil, bundle: nil)
@@ -38,6 +43,16 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
 
     required init(coder: NSCoder) {
         fatalError()
+    }
+
+    func setupRuler(textView: STTextView, scrollView: NSScrollView) -> STLineNumberRulerView {
+        let rulerView = STLineNumberRulerView(textView: textView, scrollView: scrollView)
+        rulerView.backgroundColor = textViewBackgroundColor()
+        rulerView.textColor = .systemGray
+        rulerView.separatorColor = textViewBackgroundColor()
+        rulerView.baselineOffset = baselineOffset
+
+        return rulerView
     }
 
     // MARK: VC Lifecycle
@@ -49,11 +64,7 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = false
 
-        rulerView = STLineNumberRulerView(textView: textView, scrollView: scrollView)
-        rulerView.backgroundColor = textViewBackgroundColor()
-        rulerView.textColor = .systemGray
-        rulerView.separatorColor = textViewBackgroundColor()
-        rulerView.baselineOffset = baselineOffset
+        rulerView = setupRuler(textView: textView, scrollView: scrollView)
 
         scrollView.borderType = .noBorder
         scrollView.hasVerticalRuler = true
@@ -65,11 +76,10 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
         textView.font = NSFont.monospacedSystemFont(ofSize: 12, weight: .medium)
         textView.textColor = .textColor
         textView.backgroundColor = textViewBackgroundColor()
-//        textView.insertionPointColor = theme.insertionPoint
         textView.insertionPointWidth = 1.0
-//        textView.selectionBackgroundColor = theme.selection
-//        textView.selectedLineHighlightColor = theme.lineHighlight
         textView.string = self.text.wrappedValue
+        textView.setString(self.attrText.wrappedValue)
+
         textView.widthTracksTextView = true
         textView.highlightSelectedLine = true
         textView.allowsUndo = true

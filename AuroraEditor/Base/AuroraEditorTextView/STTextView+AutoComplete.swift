@@ -6,7 +6,6 @@
 //
 
 import AppKit
-import STTextView
 
 extension STTextView {
 

@@ -39,10 +39,10 @@ struct WorkspaceCodeFileView: View {
                         imageFileView(fileItem, for: item)
                     } else {
                         // TODO: Disable editor V1
-                        codeFileView(fileItem, for: item)
+//                        codeFileView(fileItem, for: item)
 
                         // TODO: Test editor V2
-//                        aeCodeView(fileItem, for: item)
+                        aeCodeView(fileItem, for: item)
                     }
                 }
             } else {
@@ -149,12 +149,26 @@ public struct AECodeView: View {
         return NSFont(name: name, size: Double(size)) ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
     }()
 
+    private var themeString: String? {
+        return ThemeModel.shared.selectedTheme?.highlightrThemeString
+    }
+
+    private func getLanguage() -> CodeLanguage? {
+        if let url = codeFile.fileURL {
+            return .detectLanguageFromUrl(url: url)
+        } else {
+            return .default
+        }
+    }
+
     public var body: some View {
         AuroraEditorTextView(
             $codeFile.content,
             font: $font,
             tabWidth: $prefs.preferences.textEditing.defaultTabWidth,
-            lineHeight: .constant(1.2)
+            lineHeight: .constant(1.2),
+            language: getLanguage(),
+            themeString: themeString
         )
         .id(codeFile.fileURL)
         .background(selectedTheme.editor.background.swiftColor)

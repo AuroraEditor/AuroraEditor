@@ -6,7 +6,6 @@
 //
 
 import AppKit
-import STTextView
 
 extension STTextViewController {
     /// <#Description#>
@@ -45,8 +44,15 @@ extension STTextViewController {
     ) {
         textView.autocompleteBracketPairs(replacementString)
         print("Did change text in \(affectedCharRange) | \(replacementString)")
+
         // highlight()
         setStandardAttributes()
+
+        // TODO: UPDATE SELF.TEXT
         self.text.wrappedValue = textView.string
+    }
+
+    public func textView(_ textView: STTextView, didMoveCaretTo row: Int, column: Int) {
+        print("New caret value", "row", row, "column", column)
     }
 }
