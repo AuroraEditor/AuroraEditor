@@ -20,6 +20,8 @@ final class OutlineMenu: NSMenu {
     /// The workspace, for opening the item
     var workspace: WorkspaceDocument?
 
+    private let fileManger = FileManager.default
+
     var outlineView: NSOutlineView
 
     init(sender: NSOutlineView, workspaceURL: URL) {
@@ -239,7 +241,26 @@ final class OutlineMenu: NSMenu {
     /// Action that deletes the item.
     @objc
     private func delete() {
-        item?.delete()
+        let deleteConfirmation = NSAlert()
+        let message = "\(item!.fileName)\(item!.isFolder ? " and its children" :"")"
+        deleteConfirmation.messageText = "Do you want to move \(message) to the bin?"
+        deleteConfirmation.alertStyle = .critical
+        deleteConfirmation.addButton(withTitle: "Delete")
+        deleteConfirmation.buttons.last?.hasDestructiveAction = true
+        deleteConfirmation.addButton(withTitle: "Cancel")
+        if deleteConfirmation.runModal() == .alertFirstButtonReturn { // "Delete" button
+            if fileManger.fileExists(atPath: item?.url.path ?? "") {
+                do {
+                    if workspace?.selectionState.openedTabs.contains((item?.tabID)!) ?? false {
+                        workspace?.closeTab(item: item!.tabID)
+                    }
+                    // TODO: When file gets deleted we should update the Project Navigator
+                    try fileManger.removeItem(at: item!.url)
+                } catch {
+                    fatalError(error.localizedDescription)
+                }
+            }
+        }
     }
 
     /// Action that duplicates the item
