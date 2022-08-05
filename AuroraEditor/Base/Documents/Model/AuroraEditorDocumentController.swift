@@ -13,11 +13,11 @@ final class AuroraEditorDocumentController: NSDocumentController {
             // TODO: handle errors
 
             guard let document = document else {
-                print("Failed to unwrap document")
+                Log.error("Failed to unwrap document")
                 return
             }
 
-            print(document, documentWasAlreadyOpen)
+            Log.info(document, documentWasAlreadyOpen)
         }, onCancel: {})
     }
 
@@ -71,8 +71,8 @@ extension NSDocumentController {
                     }
                     self.updateRecent(url)
                     onCompletion(document, documentWasAlreadyOpen)
-                    print("Document:", document)
-                    print("Was already open?", documentWasAlreadyOpen)
+                    Log.info("Document:", document)
+                    Log.info("Was already open?", documentWasAlreadyOpen)
                 }
             } else if result == NSApplication.ModalResponse.cancel {
                 onCancel()

@@ -7,9 +7,9 @@
 import Combine
 
 public extension ShellClient {
-    /// <#Description#>
-    /// - Parameter output: <#output description#>
-    /// - Returns: <#description#>
+    /// Description
+    /// - Parameter output: output description
+    /// - Returns: description
     static func always(_ output: String) -> Self {
         Self(
             runLive: { _ in

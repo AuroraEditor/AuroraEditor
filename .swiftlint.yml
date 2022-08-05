@@ -108,7 +108,7 @@ custom_rules:
     included: ".*.swift"
     name: "No print"
     regex: "print(.*)"
-    message: "Please do not use print(), use log.info()."
+    message: "Please do not use print(), use `Log.info()`."
     severity: warning
 
   # Disable Xcode placeholders like <#Description#>

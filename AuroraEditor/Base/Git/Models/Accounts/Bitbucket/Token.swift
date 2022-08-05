@@ -9,13 +9,13 @@ import Foundation
 
 // TODO: DOCS (Nanashi Li)
 public extension BitbucketAccount {
-    /// <#Description#>
+    /// Refresh token
     /// - Parameters:
-    ///   - session: <#session description#>
-    ///   - oauthConfig: <#oauthConfig description#>
-    ///   - refreshToken: <#refreshToken description#>
-    ///   - completion: <#completion description#>
-    /// - Returns: <#description#>
+    ///   - session: session
+    ///   - oauthConfig: oauthConfig
+    ///   - refreshToken: refreshToken
+    ///   - completion: What to do on completion
+    /// - Returns: URLSessionTask
     func refreshToken(
         _ session: GitURLSession,
         oauthConfig: BitbucketOAuthConfiguration,

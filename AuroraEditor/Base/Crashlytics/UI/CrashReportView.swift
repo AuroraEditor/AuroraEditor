@@ -37,7 +37,7 @@ public struct CrashReportView: View {
                 Spacer()
 
                 HelpButton {
-                    Swift.print("Help")
+                    Log.info("Help")
                 }
             }
             VStack(alignment: .leading) {
@@ -107,7 +107,7 @@ public struct CrashReportView: View {
                     Button {
                         UserDefaults.standard.removeObject(forKey: "crash")
                         if prefs.preferences.accounts.sourceControlAccounts.gitAccount.isEmpty {
-                            print("Failed to find a github account")
+                            Log.info("Failed to find a github account")
                             restartApplication()
                         } else {
                             reportModel.createIssue(comments: reportModel.comments,

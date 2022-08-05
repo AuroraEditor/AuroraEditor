@@ -5,12 +5,6 @@
 //  Created by Wesley de Groot on 03/05/2022.
 //
 
-/**
- * For anyone working on this file.
- * print does not output to the console, use NSLog.
- * open "console.app" to debug,
- */
-
 import Cocoa
 import FinderSync
 

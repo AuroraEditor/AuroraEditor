@@ -24,7 +24,7 @@ public extension Bundle {
         guard let path = Bundle.main.url(forResource: "", withExtension: "githash"),
               let data = try? Data.init(contentsOf: path),
               let commit = String(data: data, encoding: .utf8) else {
-            print("Failed to get latest commit data.")
+            Log.error("Failed to get latest commit data.")
             return nil
         }
 

@@ -14,12 +14,12 @@ import FoundationNetworking
 
 // TODO: DOCS (Nanashi Li)
 public protocol JSONPostRouter: Router {
-    /// <#Description#>
+    /// Post JSON
     /// - Parameters:
-    ///   - session: <#session description#>
-    ///   - expectedResultType: <#expectedResultType description#>
-    ///   - completion: <#completion description#>
-    /// - Returns: <#description#>
+    ///   - session: session description
+    ///   - expectedResultType: expectedResultType description
+    ///   - completion: completion description
+    /// - Returns: description
     func postJSON<T>(
         _ session: GitURLSession,
         expectedResultType: T.Type,

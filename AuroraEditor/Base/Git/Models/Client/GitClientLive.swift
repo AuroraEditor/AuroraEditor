@@ -10,11 +10,11 @@ import Combine
 
 // TODO: DOCS (Marco Carnevali)
 public extension GitClient {
-    /// <#Description#>
+    /// Git client
     /// - Parameters:
-    ///   - directoryURL: <#directoryURL description#>
-    ///   - shellClient: <#shellClient description#>
-    /// - Returns: <#description#>
+    ///   - directoryURL: directoryURL description
+    ///   - shellClient: shellClient description
+    /// - Returns: description
     static func `default`( // swiftlint:disable:this function_body_length
         directoryURL: URL,
         shellClient: ShellClient
@@ -131,7 +131,7 @@ public extension GitClient {
             if output.contains("fatal") {
                 throw GitClientError.outputError(output)
             } else {
-                print("Successfully disregarded changes!")
+                Log.info("Successfully disregarded changes!")
             }
         }
 
@@ -140,7 +140,7 @@ public extension GitClient {
             if output.contains("fatal") {
                 throw GitClientError.outputError(output)
             } else {
-                print("Successfully disregarded changes!")
+                Log.info("Successfully disregarded changes!")
             }
         }
 
@@ -150,7 +150,7 @@ public extension GitClient {
                 if output.contains("fatal") {
                     throw GitClientError.outputError(output)
                 } else {
-                    print("Successfully stashed changes!")
+                    Log.info("Successfully stashed changes!")
                 }
             } else {
                 let output = try shellClient.run(
@@ -159,7 +159,7 @@ public extension GitClient {
                 if output.contains("fatal") {
                     throw GitClientError.outputError(output)
                 } else {
-                    print("Successfully stashed changes!")
+                    Log.info("Successfully stashed changes!")
                 }
             }
         }

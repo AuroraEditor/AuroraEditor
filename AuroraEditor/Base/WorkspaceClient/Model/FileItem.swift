@@ -41,7 +41,9 @@ public extension WorkspaceClient {
                 eventMask: .write,
                 queue: DispatchQueue.global()
             )
-            if descriptor > 2000 { print("Watcher \(descriptor) used up") }
+            if descriptor > 2000 {
+                Log.info("Watcher \(descriptor) used up")
+            }
             source.setEventHandler { self.watcherCode() }
             source.setCancelHandler { close(descriptor) }
             source.resume()
@@ -305,7 +307,7 @@ public extension WorkspaceClient {
                 do {
                     try FileItem.fileManger.copyItem(at: self.url, to: fileUrl)
                 } catch {
-                    print("Error at \(self.url.path) to \(fileUrl.path)")
+                    Log.error("Error at \(self.url.path) to \(fileUrl.path)")
                     fatalError(error.localizedDescription)
                 }
             }

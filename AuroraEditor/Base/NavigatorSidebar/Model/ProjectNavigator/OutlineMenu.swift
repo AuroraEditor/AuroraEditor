@@ -290,7 +290,7 @@ final class OutlineMenu: NSMenu {
             do {
                 try gitClient.discardFileChanges((item?.url.path)!)
             } catch {
-                print("Error when trying to discard changes in file!")
+                Log.error("Error when trying to discard changes in file!")
             }
         }
     }

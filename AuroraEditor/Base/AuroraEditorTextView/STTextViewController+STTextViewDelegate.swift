@@ -8,18 +8,18 @@
 import AppKit
 
 extension STTextViewController {
-    /// <#Description#>
-    /// - Parameter notification: <#notification description#>
+    /// Text did change
+    /// - Parameter notification: notification description
     public func textDidChange(_ notification: Notification) {
-        print("Text did change")
+        Log.info("Text did change")
     }
 
-    /// <#Description#>
+    /// Text should change
     /// - Parameters:
-    ///   - textView: <#textView description#>
-    ///   - affectedCharRange: <#affectedCharRange description#>
-    ///   - replacementString: <#replacementString description#>
-    /// - Returns: <#description#>
+    ///   - textView: textView description
+    ///   - affectedCharRange: affectedCharRange description
+    ///   - replacementString: replacementString description
+    /// - Returns: description
     public func textView(
         _ textView: STTextView,
         shouldChangeTextIn affectedCharRange: NSTextRange,
@@ -32,11 +32,11 @@ extension STTextViewController {
         return true
     }
 
-    /// <#Description#>
+    /// Text did change
     /// - Parameters:
-    ///   - textView: <#textView description#>
-    ///   - affectedCharRange: <#affectedCharRange description#>
-    ///   - replacementString: <#replacementString description#>
+    ///   - textView: textView description
+    ///   - affectedCharRange: affectedCharRange description
+    ///   - replacementString: replacementString description
     public func textView(
         _ textView: STTextView,
         didChangeTextIn affectedCharRange: NSTextRange,
@@ -45,7 +45,7 @@ extension STTextViewController {
         if !updateText {
             updateText = true
             textView.autocompleteBracketPairs(replacementString)
-            print("Did change text in \(affectedCharRange) | \(replacementString)")
+            Log.info("Did change text in \(affectedCharRange) | \(replacementString)")
 
             // highlight()
             setStandardAttributes()

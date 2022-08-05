@@ -12,7 +12,7 @@ extension WelcomeWindowView {
     /// Helper function which opens welcome view
     /// TODO: Move this to WelcomeModule after AuroraEditorDocumentController is in separate module
     static func openWelcomeWindow(function: String = #function, file: String = #file, line: Int = #line) {
-        print("openWelcomeWindow is called from \(function) on \(line) in \(file)")
+        Log.info("openWelcomeWindow is called from \(function) on \(line) in \(file)")
         let window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 800, height: 460),
             styleMask: [.titled, .fullSizeContentView],

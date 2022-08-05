@@ -149,7 +149,7 @@ public extension Router {
                     }
                 }
             default:
-                print("Cannot encode object of type \(type(of: value))")
+                Log.error("Cannot encode object of type \(type(of: value))")
             }
         }
 

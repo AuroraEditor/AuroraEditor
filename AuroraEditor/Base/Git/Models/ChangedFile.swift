@@ -57,7 +57,8 @@ public struct ChangedFile: Codable, Hashable, Identifiable {
         let workspace = workspaceURL.absoluteString
         let file = fileLink.absoluteString
         guard let url = URL(string: workspace + file) else {
-            return print("Failed to decode URL")
+            Log.error("Failed to decode URL")
+            return
         }
         NSWorkspace.shared.activateFileViewerSelecting([url])
     }

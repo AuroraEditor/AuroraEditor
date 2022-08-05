@@ -143,7 +143,7 @@ public class FeedbackModel: ObservableObject {
                             actuallyHappened: String?) {
         let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
         guard let firstGitAccount = gitAccounts.first else {
-            print("Did not find an account name.")
+            Log.warning("Did not find an account name.")
             guard let safeTitle = "\(getFeebackTypeTitle()) \(title)"
                     .addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
                   let safeBody = createIssueBody(description: description,
@@ -156,7 +156,7 @@ public class FeedbackModel: ObservableObject {
                             "new?title=\(safeTitle)&body=\(safeBody)"
                   ) else {
                 // TODO: Show error.
-                print("Failed to generate URL")
+                Log.error("Failed to generate URL")
                 return
             }
 
@@ -183,10 +183,10 @@ public class FeedbackModel: ObservableObject {
                     )
                 }
                 self.isSubmitted.toggle()
-                print(issue)
+                Log.info(issue)
             case .failure(let error):
                 self.failedToSubmit.toggle()
-                print(error)
+                Log.error(error)
             }
         }
     }

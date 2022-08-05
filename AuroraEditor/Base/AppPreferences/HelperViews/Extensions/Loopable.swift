@@ -25,7 +25,7 @@ extension Loopable {
     /// }
     ///
     /// let author = Author()
-    /// print(author.allProperties())
+    /// pr int(author.allProperties())
     ///
     /// // returns
     /// ["name": "Steve", "books": 4]

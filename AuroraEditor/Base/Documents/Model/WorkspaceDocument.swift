@@ -60,7 +60,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
             }
 
         } catch let err {
-            Swift.print(err)
+            Log.error(err)
         }
     }
 
@@ -317,7 +317,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
                 AuroraEditorAPI(extensionId: extensionID, workspace: self)
             }
         } catch let error {
-            Swift.print(error)
+            Log.error(error)
         }
     }
 

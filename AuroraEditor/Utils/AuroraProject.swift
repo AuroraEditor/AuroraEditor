@@ -12,7 +12,7 @@ struct AuroraProjectFile: Codable {
     var time: Int
 }
 
-/// <#Description#>
+/// AuroraProject
 struct AuroraProject: Codable {
     var auroraProject: String?
     var files: [String]?

@@ -9,8 +9,8 @@ import Combine
 
 // TODO: DOCS (Marco Carnevali)
 public extension ShellClient {
-    /// <#Description#>
-    /// - Returns: <#description#>
+    /// Shell client
+    /// - Returns: description
     static func live() -> Self {
         func generateProcessAndPipe(_ args: [String]) -> (Process, Pipe) {
             var arguments = ["-c"]

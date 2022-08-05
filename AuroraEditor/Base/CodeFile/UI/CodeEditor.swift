@@ -168,7 +168,7 @@ struct CodeEditor: NSViewRepresentable {
         if let themeString = themeString {
             highlightr?.setTheme(theme: .init(themeString: themeString))
         } else {
-            print("WARNING: failed to decode themeString, fallback on xcode theme")
+            Log.warning("WARNING: failed to decode themeString, fallback on xcode theme")
             highlightr?.setTheme(to: "xcode")
         }
         if prefs.preferences.textEditing.font.customFont {

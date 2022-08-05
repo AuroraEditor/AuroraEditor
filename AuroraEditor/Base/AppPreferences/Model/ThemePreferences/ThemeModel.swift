@@ -62,7 +62,7 @@ public final class ThemeModel: ObservableObject {
         do {
             try loadThemes()
         } catch {
-            print(error)
+            Log.error(error)
         }
     }
 
@@ -118,7 +118,7 @@ public final class ThemeModel: ObservableObject {
                 guard let terminalColors = try theme.terminal.allProperties() as? [String: AuroraTheme.Attributes],
                       let editorColors = try theme.editor.allProperties() as? [String: AuroraTheme.Attributes]
                 else {
-                    print("error")
+                    Log.error("error")
                     throw NSError()
                 }
 
@@ -181,7 +181,7 @@ public final class ThemeModel: ObservableObject {
         do {
             try self.loadThemes()
         } catch {
-            print(error)
+            Log.error(error)
         }
     }
 
@@ -206,7 +206,7 @@ public final class ThemeModel: ObservableObject {
             // reload themes
             try self.loadThemes()
         } catch {
-            print(error)
+            Log.error(error)
         }
     }
 
@@ -247,7 +247,7 @@ public final class ThemeModel: ObservableObject {
                 AppPreferencesModel.shared.preferences.theme.overrides[theme.name] = newAttr
 
             } catch {
-                print(error)
+                Log.error(error)
             }
         }
     }

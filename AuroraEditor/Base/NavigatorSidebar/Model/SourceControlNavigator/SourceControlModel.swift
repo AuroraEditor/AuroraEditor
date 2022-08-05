@@ -81,7 +81,7 @@ public final class SourceControlModel: ObservableObject {
         do {
             try gitClient.discardFileChanges(file.fileLink.path)
         } catch {
-            print("Failed to discard changes")
+            Log.error("Failed to discard changes")
         }
     }
 
@@ -89,7 +89,7 @@ public final class SourceControlModel: ObservableObject {
         do {
             try gitClient.discardProjectChanges()
         } catch {
-            print("Failed to discard changes")
+            Log.error("Failed to discard changes")
         }
     }
 }

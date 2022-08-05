@@ -81,9 +81,9 @@ struct GitlabHostedLoginView: View {
             switch response {
             case .success(let user):
                 if gitAccounts.contains(where: { $0.id == gitAccountName.lowercased() }) {
-                    print("Account with the username already exists!")
+                    Log.warning("Account with the username already exists!")
                 } else {
-                    print(user)
+                    Log.info(user)
                     prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
                         SourceControlAccounts(id: gitAccountName.lowercased(),
                                               gitProvider: "Gitlab",
@@ -97,7 +97,7 @@ struct GitlabHostedLoginView: View {
                     dismissDialog = false
                 }
             case .failure(let error):
-                print(error)
+                Log.error(error)
             }
         }
     }

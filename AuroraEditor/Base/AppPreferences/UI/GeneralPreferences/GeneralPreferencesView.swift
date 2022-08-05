@@ -24,7 +24,7 @@ public struct GeneralPreferencesView: View {
         guard let defaults = UserDefaults.init(
             suiteName: "com.auroraeditor.shared"
         ) else {
-            print("Failed to get/init shared defaults")
+            Log.error("Failed to get/init shared defaults")
             return
         }
 
@@ -220,7 +220,7 @@ private extension GeneralPreferencesView {
                     }
 
                     guard let shellUrl = url?.path else {
-                        print("Failed to get URL to shell command")
+                        Log.error("Failed to get URL to shell command")
                         return
                     }
 
@@ -239,7 +239,7 @@ private extension GeneralPreferencesView {
                         }
                     }
                 } catch {
-                    print(error)
+                    Log.error(error)
                 }
             }, label: {
                 Text("Install 'ae' command")
@@ -271,7 +271,7 @@ private extension GeneralPreferencesView {
         do {
             try task.run()
         } catch {
-            print(error)
+            Log.error(error)
         }
     }
 
@@ -283,7 +283,7 @@ private extension GeneralPreferencesView {
                     guard let defaults = UserDefaults.init(
                         suiteName: "com.auroraeditor.shared"
                     ) else {
-                        print("Failed to get/init shared defaults")
+                        Log.error("Failed to get/init shared defaults")
                         return
                     }
 

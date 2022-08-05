@@ -59,7 +59,7 @@ open class Highlightr {
             forResource: "highlight.min",
             ofType: "js") else
         {
-            print("Couldn't load highlight.min.js")
+            Log.error("Couldn't load highlight.min.js")
             return nil
         }
 
@@ -94,7 +94,7 @@ open class Highlightr {
         guard let defTheme = bundle.path(
             forResource: name + ".min",
             ofType: "css") else {
-            print("Couldn't load \(name).min.css")
+            Log.error("Couldn't load \(name).min.css")
             return false
         }
         guard let themeString = try? String.init(contentsOfFile: defTheme) else {

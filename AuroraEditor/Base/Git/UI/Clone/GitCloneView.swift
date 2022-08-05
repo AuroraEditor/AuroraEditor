@@ -252,9 +252,9 @@ extension GitCloneView {
                 }, receiveValue: { result in
                     switch result {
                     case let .receivingProgress(progress):
-                        print("Receiving Progress: ", progress)
+                        Log.info("Receiving Progress: ", progress)
                     case let .resolvingProgress(progress):
-                        print("Resolving Progress: ", progress)
+                        Log.info("Resolving Progress: ", progress)
                         if progress >= 100 {
                             cloneCancellable?.cancel()
                             isPresented = false

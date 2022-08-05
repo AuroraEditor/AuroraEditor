@@ -50,21 +50,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                 if let projects = UserDefaults.standard.array(forKey: AppDelegate.recoverWorkspacesKey) as? [String],
                    !projects.isEmpty {
                     projects.forEach { path in
-                        print(#function, "Reopening \(path)")
+                        Log.info(#function, "Reopening \(path)")
                         let url = URL(fileURLWithPath: path)
                         AuroraEditorDocumentController.shared.reopenDocument(
                             for: url,
                             withContentsOf: url,
                             display: true) { document, _, _ in
-                                print("applicationDidFinishLaunching(): projects: Opened \(url.absoluteString)")
+                                Log.info("applicationDidFinishLaunching(): projects: Opened \(url.absoluteString)")
                                 document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
                         }
                     }
 
-                    print("No need to open Welcome Screen (projects)")
+                    Log.info("No need to open Welcome Screen (projects)")
                     needToHandleOpen = false
                 } else {
-                    print("No open project.")
+                    Log.info("No open project.")
                 }
             }
 
@@ -77,17 +77,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                         for: url,
                         withContentsOf: url,
                         display: true) { document, _, _ in
-                            print("applicationDidFinishLaunching(): commandline: Opened \(url.absoluteString)")
+                            Log.info("applicationDidFinishLaunching(): commandline: Opened \(url.absoluteString)")
                             document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
                     }
 
-                    print("No need to open Welcome Screen (commandline)")
+                    Log.info("No need to open Welcome Screen (commandline)")
                     needToHandleOpen = false
                 }
             }
 
             if needToHandleOpen {
-                print("need to open Welcome Screen")
+                Log.info("need to open Welcome Screen")
                 self.handleOpen()
             }
         }
@@ -95,7 +95,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         do {
             try ExtensionsManager.shared?.preload()
         } catch let error {
-            print(error)
+            Log.error(error)
         }
     }
 
