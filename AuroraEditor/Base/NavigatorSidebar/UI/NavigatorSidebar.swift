@@ -30,7 +30,7 @@ struct NavigatorSidebar: View {
             case 1:
                 SourceControlNavigatorView(workspace: workspace)
             case 2:
-                FindNavigator(state: workspace.searchState ?? .init(workspace))
+                FindNavigator(workspace: workspace, state: workspace.searchState ?? .init(workspace))
             case 3:
                 VStack(alignment: .center) {
                     Text("Needs Implementation")
