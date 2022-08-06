@@ -1719,6 +1719,7 @@
 		20D8381B289A7ACD00D91D05 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9C3E1A06284E8E020042BEC0 /* WelcomeModuleExtensions.swift */,
 				20D8381F289A7ACD00D91D05 /* WelcomeWindowView.swift */,
 				20D83820289A7ACD00D91D05 /* WelcomeView.swift */,
 				20D83821289A7ACD00D91D05 /* WelcomeActionView.swift */,
@@ -2376,7 +2377,6 @@
 		20D83913289A811600D91D05 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				9C3E1A06284E8E020042BEC0 /* WelcomeModuleExtensions.swift */,
 				28B8F883280FFE4600596236 /* NSTableView+Background.swift */,
 			);
 			path = UI;
