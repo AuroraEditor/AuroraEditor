@@ -18,6 +18,9 @@ final class OutlineTableViewCell: NSTableCellView {
     var changeLabelLargeWidth: NSLayoutConstraint!
     var changeLabelSmallWidth: NSLayoutConstraint!
 
+    var workspace: WorkspaceDocument?
+    var model: SourceControlModel?
+
     var changeLabelIsSmall: Bool = true {
         didSet {
             if changeLabelIsSmall { // is small
@@ -30,7 +33,16 @@ final class OutlineTableViewCell: NSTableCellView {
         }
     }
 
-    override init(frame frameRect: NSRect) {
+    private let prefs = AppPreferencesModel.shared.preferences.general
+
+    /// Initializes the `OutlineTableViewCell` with an `icon` and `label`
+    /// Both the icon and label will be colored, and sized based on the user's preferences.
+    /// - Parameters:
+    ///   - frameRect: The frame of the cell.
+    ///   - item: The file item the cell represents.
+    ///   - isEditable: Set to true if the user should be able to edit the file name.
+    // swiftlint:disable:next function_body_length
+    init(frame frameRect: NSRect, item: WorkspaceClient.FileItem?, isEditable: Bool = true) {
         super.init(frame: frameRect)
 
         // Create the label
@@ -38,8 +50,8 @@ final class OutlineTableViewCell: NSTableCellView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.drawsBackground = false
         label.isBordered = false
-        label.isEditable = true
-        label.isSelectable = true
+        label.isEditable = isEditable
+        label.isSelectable = isEditable
         label.delegate = self
         label.layer?.cornerRadius = 10.0
         label.font = .labelFont(ofSize: fontSize)
@@ -66,6 +78,23 @@ final class OutlineTableViewCell: NSTableCellView {
         icon.symbolConfiguration = .init(pointSize: fontSize, weight: .regular, scale: .medium)
         addSubview(icon)
         imageView = icon
+
+        if let item = item {
+            let image = NSImage(systemSymbolName: item.systemImage, accessibilityDescription: nil)!
+            fileItem = item
+            icon.image = image
+            icon.contentTintColor = color(for: item)
+            toolTip = item.fileName
+            label.stringValue = label(for: item)
+        }
+
+        if let folderURL = workspace?.workspaceClient?.folderURL() {
+            self.model = .init(workspaceURL: folderURL)
+        }
+
+        if let model = model, let folderURL = workspace?.workspaceClient?.folderURL() {
+            addModel(model: model, directoryURL: folderURL)
+        }
 
         createConstraints(frame: frameRect)
     }
@@ -101,8 +130,21 @@ final class OutlineTableViewCell: NSTableCellView {
         changeLabelIsSmall = changeLabel.stringValue.isEmpty
     }
 
+    /// *Not Implemented*
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+        fatalError("""
+            init(frame: ) isn't implemented on `OutlineTableViewCell`.
+            Please use `.init(frame: NSRect, item: WorkspaceClient.FileItem?)
+            """)
+    }
+
+    /// *Not Implemented*
     required init?(coder: NSCoder) {
-        fatalError()
+        fatalError("""
+            init?(coder: NSCoder) isn't implemented on `OutlineTableViewCell`.
+            Please use `.init(frame: NSRect, item: WorkspaceClient.FileItem?)
+            """)
     }
 
     /// Returns the font size for the current row height. Defaults to `13.0`
@@ -112,6 +154,33 @@ final class OutlineTableViewCell: NSTableCellView {
         case 22: return 13
         case 24: return 14
         default: return 13
+        }
+    }
+
+    /// Generates a string based on user's file name preferences.
+    /// - Parameter item: The FileItem to generate the name for.
+    /// - Returns: A `String` with the name to display.
+    private func label(for item: WorkspaceClient.FileItem) -> String {
+        switch prefs.fileExtensionsVisibility {
+        case .hideAll:
+            return item.fileName(typeHidden: true)
+        case .showAll:
+            return item.fileName(typeHidden: false)
+        case .showOnly:
+            return item.fileName(typeHidden: !prefs.shownFileExtensions.extensions.contains(item.fileType.rawValue))
+        case .hideOnly:
+            return item.fileName(typeHidden: prefs.hiddenFileExtensions.extensions.contains(item.fileType.rawValue))
+        }
+    }
+
+    /// Get the appropriate color for the items icon depending on the users preferences.
+    /// - Parameter item: The `FileItem` to get the color for
+    /// - Returns: A `NSColor` for the given `FileItem`.
+    private func color(for item: WorkspaceClient.FileItem) -> NSColor {
+        if item.children == nil && prefs.fileIconStyle == .color {
+            return NSColor(item.iconColor)
+        } else {
+            return .secondaryLabelColor
         }
     }
 
