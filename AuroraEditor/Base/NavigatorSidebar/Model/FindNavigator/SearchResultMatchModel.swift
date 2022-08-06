@@ -56,13 +56,13 @@ public class SearchResultMatchModel: Hashable, Identifiable {
         paragraphStyle.lineBreakMode = .byCharWrapping
 
         let normalAttributes: [NSAttributedString.Key: Any] = [
-            .font: NSFont.systemFont(ofSize: 13,
+            .font: NSFont.systemFont(ofSize: 11,
                                      weight: .regular),
             .foregroundColor: NSColor.secondaryLabelColor,
             .paragraphStyle: paragraphStyle
         ]
         let boldAttributes: [NSAttributedString.Key: Any] = [
-            .font: NSFont.systemFont(ofSize: 13,
+            .font: NSFont.systemFont(ofSize: 11,
                                      weight: .bold),
             .foregroundColor: NSColor.labelColor,
             .paragraphStyle: paragraphStyle

@@ -21,21 +21,34 @@ final class FindNavigatorListMatchCell: NSTableCellView {
                                  width: frame.width,
                                  height: CGFloat.greatestFiniteMagnitude))
 
-        // Create the label
-        setUpLabel()
-        setLabelString()
-
-        self.addSubview(label)
+        label = NSTextField(wrappingLabelWithString: matchItem.lineContent)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.drawsBackground = false
+        label.isBordered = false
+        label.isEditable = false
+        label.isSelectable = false
+        label.layer?.cornerRadius = 10.0
+        label.allowsDefaultTighteningForTruncation = false
+        label.cell?.truncatesLastVisibleLine = true
+        label.cell?.wraps = true
+        label.cell?.font = .labelFont(ofSize: 11)
+        label.maximumNumberOfLines = 3
+        label.attributedStringValue = matchItem.attributedLabel()
+        label.font = .labelFont(ofSize: 11)
+        addSubview(label)
 
         // Create the icon
-
-        setUpImageView()
-
-        self.addSubview(icon)
-        self.imageView = icon
+        icon = NSImageView(frame: .zero)
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        icon.symbolConfiguration = .init(pointSize: 11,
+                                              weight: .regular,
+                                              scale: .medium)
+        icon.image = NSImage(systemSymbolName: "text.alignleft", accessibilityDescription: nil)
+        icon.contentTintColor = NSColor.secondaryLabelColor
+        addSubview(icon)
+        imageView = icon
 
         // Constraints
-
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 4),
             label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2),
@@ -47,39 +60,6 @@ final class FindNavigatorListMatchCell: NSTableCellView {
             icon.widthAnchor.constraint(equalToConstant: 16),
             icon.heightAnchor.constraint(equalToConstant: 16)
         ])
-    }
-
-    /// Sets up the `NSTextField` used as a label in the cell.
-    /// - Parameter frame: The frame the cell should use.
-    private func setUpLabel() {
-        self.label = NSTextField(wrappingLabelWithString: matchItem.lineContent ?? "")
-        self.label.translatesAutoresizingMaskIntoConstraints = false
-        self.label.drawsBackground = false
-        self.label.isEditable = false
-        self.label.isSelectable = false
-        self.label.layer?.cornerRadius = 10.0
-        self.label.font = .labelFont(ofSize: 13)
-        self.label.allowsDefaultTighteningForTruncation = false
-        self.label.cell?.truncatesLastVisibleLine = true
-        self.label.cell?.wraps = true
-        self.label.maximumNumberOfLines = 3
-    }
-
-    /// Sets up the image view for the search result.
-    private func setUpImageView() {
-        self.icon = NSImageView(frame: .zero)
-        self.icon.translatesAutoresizingMaskIntoConstraints = false
-        self.icon.symbolConfiguration = .init(pointSize: 13,
-                                              weight: .regular,
-                                              scale: .medium)
-        self.icon.image = NSImage(systemSymbolName: "text.alignleft", accessibilityDescription: nil)
-        self.icon.contentTintColor = NSColor.secondaryLabelColor
-    }
-
-    /// Sets the attributed string for the search result with correct paragraph break mode,
-    /// styling, font, etc.
-    private func setLabelString() {
-        self.label.attributedStringValue = matchItem.attributedLabel()
     }
 
     required init?(coder: NSCoder) {

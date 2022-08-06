@@ -61,7 +61,6 @@ struct InspectorSidebar: View {
         .background(
             EffectView(.windowBackground, blendingMode: .withinWindow)
         )
-
         .opacity(activeState == .inactive ? 0.45 : 1)
     }
 }

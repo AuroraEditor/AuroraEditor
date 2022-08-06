@@ -79,7 +79,7 @@ struct FindNavigatorModeSelector: View {
     private var chevron: some View {
         Image(systemName: "chevron.compact.right")
             .foregroundStyle(.secondary)
-            .imageScale(.large)
+            .imageScale(.small)
     }
 
     var body: some View {
@@ -92,15 +92,16 @@ struct FindNavigatorModeSelector: View {
                         }
                     }
                 } label: {
-                    HStack(spacing: 2) {
+                    HStack {
                         if index > 0 {
                             chevron
                         }
                         Text(selectedMode[index].title)
-                            .foregroundColor(selectedMode[index].needSelectionHightlight ? Color.accentColor : .primary)
                             .font(.system(size: 10))
+                            .foregroundColor(selectedMode[index].needSelectionHightlight ? Color.accentColor : .primary)
                     }
                 }
+                .id(selectedMode[index].title)
                 .searchModeMenu()
             }
             Spacer()

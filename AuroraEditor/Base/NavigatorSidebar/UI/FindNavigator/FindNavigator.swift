@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// TODO: Add state management to search @NanashiLi
 struct FindNavigator: View {
     @ObservedObject
     private var state: WorkspaceDocument.SearchState
@@ -22,7 +23,11 @@ struct FindNavigator: View {
         case matching = "Matching Case"
     }
 
-    @State var currentFilter: String = ""
+    @State
+    var currentFilter: String = ""
+
+    @State
+    private var submittedText: Bool = false
 
     private var foundFilesCount: Int {
         state.searchResult.count
@@ -41,7 +46,9 @@ struct FindNavigator: View {
         VStack {
             VStack {
                 FindNavigatorModeSelector(state: state)
-                FindNavigatorSearchBar(state: state, title: "", text: $searchText)
+                FindNavigatorSearchBar(state: state,
+                                       text: $searchText,
+                                       submittedText: $submittedText)
                 HStack {
                     Button {} label: {
                         Text("In Workspace")
@@ -72,6 +79,7 @@ struct FindNavigator: View {
                                 .font(.system(size: 10))
                         }
                     }
+                    .font(.system(size: 10))
                     .menuStyle(.borderlessButton)
                     .frame(width: currentFilter == Filters.ignoring.rawValue ? 80 : 88)
                     .onAppear {
@@ -84,15 +92,33 @@ struct FindNavigator: View {
             .padding(.horizontal, 10)
             .padding(.vertical, 5)
             Divider()
-            HStack(alignment: .center) {
-                Text(
-                    "\(state.searchResultCount) results in \(foundFilesCount) files")
-                    .font(.system(size: 10))
+            if !searchText.isEmpty && submittedText {
+                VStack {
+                    HStack(alignment: .center) {
+                        Text(
+                            "\(state.searchResultCount) results in \(foundFilesCount) files")
+                        .font(.system(size: 10))
+                    }
+                    Divider()
+                        .padding(.top, -5)
+                }
+                .padding(.bottom, -12)
             }
-            Divider()
-            FindNavigatorResultList(workspace: workspace)
+            if !searchText.isEmpty && foundFilesCount <= 0 && submittedText {
+                VStack(alignment: .center) {
+                    Text("No Results for \n\"\(searchText)\"\n in project")
+                        .multilineTextAlignment(.center)
+                        .font(.system(size: 16))
+                        .foregroundColor(.secondary)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else if !searchText.isEmpty && submittedText {
+                FindNavigatorResultList(workspace: workspace)
+            }
         }
+        .frame(maxHeight: .infinity, alignment: .top)
         .onSubmit {
+            submittedText = true
             state.search(searchText)
         }
     }

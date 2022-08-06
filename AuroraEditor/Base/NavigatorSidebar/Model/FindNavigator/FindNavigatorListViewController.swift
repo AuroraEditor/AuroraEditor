@@ -31,19 +31,20 @@ final class FindNavigatorListViewController: NSViewController {
         self.scrollView = NSScrollView()
         self.view = scrollView
 
-        self.outlineView = NSOutlineView()
-        self.outlineView.dataSource = self
-        self.outlineView.delegate = self
-        self.outlineView.headerView = nil
-        self.outlineView.lineBreakMode = .byTruncatingTail
+        outlineView = NSOutlineView()
+        outlineView.dataSource = self
+        outlineView.delegate = self
+        outlineView.headerView = nil
+        outlineView.lineBreakMode = .byTruncatingTail
 
         let column = NSTableColumn(identifier: .init(rawValue: "Cell"))
         column.title = "Cell"
         outlineView.addTableColumn(column)
 
-        self.scrollView.documentView = outlineView
-        self.scrollView.contentView.automaticallyAdjustsContentInsets = false
-        self.scrollView.contentView.contentInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
+        scrollView.documentView = outlineView
+        scrollView.contentView.automaticallyAdjustsContentInsets = false
+        scrollView.contentView.contentInsets = .init(top: 10, left: 0, bottom: 0, right: 0)
+        scrollView.hasVerticalScroller = true
     }
 
     init(workspace: WorkspaceDocument) {
@@ -183,7 +184,7 @@ extension FindNavigatorListViewController: NSOutlineViewDelegate {
                                             isEditable: false)
             // We're using a medium label for file names b/c it makes it easier to
             // distinguish quickly which results are from which files.
-            view.label.font = .systemFont(ofSize: 13, weight: .medium)
+            view.label.font = .systemFont(ofSize: 11, weight: .medium)
             return view
         }
     }
@@ -216,8 +217,10 @@ extension FindNavigatorListViewController: NSOutlineViewDelegate {
             tempView.allowsDefaultTighteningForTruncation = false
             tempView.cell?.truncatesLastVisibleLine = true
             tempView.cell?.wraps = true
+            tempView.cell?.font = .labelFont(ofSize: 11)
             tempView.maximumNumberOfLines = 3
             tempView.attributedStringValue = item.attributedLabel()
+            tempView.font = .labelFont(ofSize: 11)
             tempView.layout()
             let width = outlineView.frame.width - outlineView.indentationPerLevel*2 - 24
             return tempView.sizeThatFits(NSSize(width: width,

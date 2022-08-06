@@ -8,56 +8,31 @@
 import SwiftUI
 
 struct FindNavigatorSearchBar: View {
+
     @Environment(\.colorScheme)
     var colorScheme
+
+    @Environment(\.controlActiveState)
+    private var activeState
 
     @ObservedObject
     private var state: WorkspaceDocument.SearchState
 
-    @FocusState
-    private var isFocused: Bool
-
-    private let title: String
-
     @Binding
     private var text: String
+
+    @Binding
+    private var submittedText: Bool
 
     @Environment(\.controlActiveState)
     private var controlActive
 
-    @ViewBuilder
-    public func selectionBackground(
-        _ isFocused: Bool = false
-    ) -> some View {
-        if self.controlActive != .inactive {
-            if isFocused {
-                if colorScheme == .light {
-                    Color.white
-                } else {
-                    Color(hex: 0x1e1e1e)
-                }
-            } else {
-                if colorScheme == .light {
-                    Color.black.opacity(0.06)
-                } else {
-                    Color.white.opacity(0.24)
-                }
-            }
-        } else {
-            if colorScheme == .light {
-                Color.clear
-            } else {
-                Color.white.opacity(0.14)
-            }
-        }
-    }
-
     init(state: WorkspaceDocument.SearchState,
-         title: String,
-         text: Binding<String>) {
+         text: Binding<String>,
+         submittedText: Binding<Bool>) {
         self.state = state
-        self.title = title
         self._text = text
+        self._submittedText = submittedText
     }
 
     var body: some View {
@@ -65,31 +40,43 @@ struct FindNavigatorSearchBar: View {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(Color(nsColor: .secondaryLabelColor))
             textField
-            if !text.isEmpty { clearButton }
+            if !text.isEmpty {
+                clearSearchButton
+                    .padding(.trailing, 5)
+            }
         }
         .padding(.horizontal, 5)
         .padding(.vertical, 3)
-        .background(selectionBackground(isFocused))
+        .background(.ultraThinMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 6))
         .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray, lineWidth: 0.5).cornerRadius(6))
     }
 
     private var textField: some View {
-        TextField(title, text: $text)
+        TextField("Text", text: $text)
+            .font(.system(size: 12))
             .disableAutocorrection(true)
-            .textFieldStyle(PlainTextFieldStyle())
-            .focused($isFocused)
+            .textFieldStyle(.plain)
+            .onChange(of: text) { _ in
+                state.search(nil)
+                submittedText = false
+            }
     }
 
-    private var clearButton: some View {
+    /// We clear the text and remove the first responder which removes the cursor
+    /// when the user clears the filter.
+    private var clearSearchButton: some View {
         Button {
-            self.text = ""
+            text = ""
             state.search(nil)
+            submittedText = false
+            NSApp.keyWindow?.makeFirstResponder(nil)
         } label: {
             Image(systemName: "xmark.circle.fill")
+                .symbolRenderingMode(.hierarchical)
         }
-        .foregroundColor(.secondary)
-        .buttonStyle(PlainButtonStyle())
+        .buttonStyle(.plain)
+        .opacity(activeState == .inactive ? 0.45 : 1)
     }
 }
 
@@ -98,8 +85,8 @@ struct SearchBar_Previews: PreviewProvider {
         HStack {
             FindNavigatorSearchBar(
                 state: .init(WorkspaceDocument.init()),
-                title: "placeholder",
-                text: .constant("value")
+                text: .constant(""),
+                submittedText: .constant(false)
             )
         }
         .padding()
