@@ -24,7 +24,6 @@ public extension WorkspaceClient {
         onUpdate: @escaping () -> Void = {}
     ) throws -> Self {
         var flattenedFileItems: [String: FileItem] = [:]
-        var modifiedFileItems: [FileItem] = []
 
         // This is the object that the subscriber will watch
         let subject = CurrentValueSubject<[FileItem], Never>([])
@@ -45,42 +44,18 @@ public extension WorkspaceClient {
                 return
             }
             isRunning = true
-            modifiedFileItems = []
 
             // inital reload of files
-            if (try? rebuildFiles(fromItem: sourceFileItem)) ?? false {
-                modifiedFileItems.append(sourceFileItem)
-            }
+            _ = try? rebuildFiles(fromItem: sourceFileItem)
 
             // re-reload if another instance tried to run while this instance was running
             while anotherInstanceRan > 0 { // TODO: optimise
                 let somethingChanged = try? rebuildFiles(fromItem: workspaceItem)
-                if somethingChanged ?? false { modifiedFileItems.append(workspaceItem) }
                 anotherInstanceRan = !(somethingChanged ?? false) ? 0 : anotherInstanceRan - 1
             }
 
-            // git client related things
-            if let model = model {
-                modifiedFileItems.append(contentsOf: model.reloadChangedFiles()
-                        .filter({ flattenedFileItems["\(folderURL.path)/\($0.path)"] != nil })
-                        .map { changedFile in
-                    flattenedFileItems["\(folderURL.path)/\(changedFile.path)"]!
-                })
-            }
-
-            // remove redundant modified items
-            modifiedFileItems = Array(Set(modifiedFileItems)).filter { fileItem in
-                // test if the file item is part of another file item
-                for otherFileItem in modifiedFileItems {
-                    if otherFileItem.url.path.starts(with: fileItem.url.path) &&
-                        otherFileItem.url.path != fileItem.url.path {
-                        Log.info("\(fileItem.url.path) rejected over similarity to \(otherFileItem.url.path)")
-                        return false
-                    }
-                }
-                Log.info("\(fileItem.url.path) accepted")
-                return true
-            }
+            // reload git changes
+            _ = model?.reloadChangedFiles()
 
             // run the onUpdate function after changes have been made
             onUpdate()
@@ -89,11 +64,8 @@ public extension WorkspaceClient {
             isRunning = false
             anotherInstanceRan = 0
 
-            // this is so that if modifiedFileItems changes before the
-            // async function runs, the original value is still used.
-            let itemsToRefresh = modifiedFileItems
             // reload data in outline view controller through the main thread
-            DispatchQueue.main.async { onRefresh(itemsToRefresh) }
+            DispatchQueue.main.async { onRefresh() }
         }
         workspaceItem.watcherCode = watcherCode
         workspaceItem.watcherCode(workspaceItem)
@@ -126,7 +98,6 @@ public extension WorkspaceClient {
                     subItems?.forEach { $0.parent = newFileItem }
                     items.append(newFileItem)
                     flattenedFileItems[newFileItem.id] = newFileItem
-                    modifiedFileItems.append(newFileItem)
                 }
             }
 
@@ -187,8 +158,6 @@ public extension WorkspaceClient {
                 }
                 flattenedFileItems[$0.id] = $0
             })
-
-            if didChangeSomething { modifiedFileItems.append(fileItem) }
 
             return didChangeSomething
         }

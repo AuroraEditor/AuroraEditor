@@ -71,15 +71,8 @@ final class OutlineViewController: NSViewController {
         self.scrollView.contentView.automaticallyAdjustsContentInsets = false
         self.scrollView.contentView.contentInsets = .init(top: 10, left: 0, bottom: 0, right: 0)
 
-        WorkspaceClient.onRefresh = { modifiedFileItems in
-            Log.info("Refreshing \(modifiedFileItems.map { $0.url.path })")
-            for fileItem in modifiedFileItems {
-                var itemToReload = fileItem
-                while self.outlineView.row(forItem: itemToReload) == -1 && itemToReload.parent != nil {
-                    itemToReload = itemToReload.parent!
-                }
-                self.outlineView.reloadItem(itemToReload, reloadChildren: true)
-            }
+        WorkspaceClient.onRefresh = {
+            self.outlineView.reloadData()
             self.reloadData()
         }
         outlineView.expandItem(outlineView.item(atRow: 0))
