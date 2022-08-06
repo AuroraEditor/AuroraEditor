@@ -33,6 +33,17 @@ public extension WorkspaceClient {
         public var watcher: DispatchSourceFileSystemObject?
         public var watcherCode: (FileItem) -> Void = { _ in }
 
+        public var model: SourceControlModel?
+        public var gitStatus: GitType? {
+            guard let model = model else { Log.info("No model"); return nil }
+            for changedFile in model.changed where (
+                "\(model.workspaceURL.path)/\(changedFile.fileLink.path)" == self.url.path) {
+                Log.info("Change type for \(self.url.path): \(changedFile.changeTypeValue)")
+                return changedFile.changeType
+            }
+            return nil
+        }
+
         public func activateWatcher() -> Bool {
             let descriptor = open(self.url.path, O_EVTONLY)
             guard descriptor > 0 else { return false }
@@ -53,10 +64,12 @@ public extension WorkspaceClient {
 
         public init(
             url: URL,
-            children: [FileItem]? = nil
+            children: [FileItem]? = nil,
+            model: SourceControlModel? = nil
         ) {
             self.url = url
             self.children = children
+            self.model = model
             id = url.relativePath
         }
 

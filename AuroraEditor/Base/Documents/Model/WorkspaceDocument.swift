@@ -253,7 +253,8 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         self.workspaceClient = try .default(
             fileManager: .default,
             folderURL: url,
-            ignoredFilesAndFolders: ignoredFilesAndDirectory
+            ignoredFilesAndFolders: ignoredFilesAndDirectory,
+            model: .init(workspaceURL: url)
         )
         self.searchState = .init(self)
         self.quickOpenState = .init(fileURL: url)

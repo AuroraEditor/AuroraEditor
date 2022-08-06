@@ -94,10 +94,8 @@ final class OutlineTableViewCell: NSTableCellView {
         changeLabel.usesSingleLineMode = true
     }
 
-    func addModel(model: SourceControlModel, directoryURL: URL) {
-        changeLabel.stringValue = model.changed.first(where: { changedFile in
-            return "\(directoryURL.path)/\(changedFile.fileLink.path)" == self.fileItem.url.path
-        })?.changeTypeValue ?? ""
+    func addModel(directoryURL: URL) {
+        changeLabel.stringValue = fileItem.gitStatus?.description ?? ""
         changeLabelIsSmall = changeLabel.stringValue.isEmpty
     }
 
