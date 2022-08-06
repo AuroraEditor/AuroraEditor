@@ -56,7 +56,7 @@ final class OutlineTableViewCell: NSTableCellView {
         changeLabel.isSelectable = false
         changeLabel.layer?.cornerRadius = 10.0
         changeLabel.font = .boldSystemFont(ofSize: fontSize)
-        changeLabel.alignment = .right
+        changeLabel.alignment = .center
         changeLabel.textColor = NSColor(Color.secondary)
         addSubview(changeLabel)
 
