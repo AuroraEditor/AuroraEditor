@@ -96,7 +96,7 @@ final class OutlineTableViewCell: NSTableCellView {
 
     func addModel(model: SourceControlModel, directoryURL: URL) {
         changeLabel.stringValue = model.changed.first(where: { changedFile in
-            return "\(directoryURL.path)/\(changedFile.fileLink.path)" == self.fileItem.url.path
+            return "\(directoryURL.path)/\(changedFile.url.path)" == self.fileItem.url.path
         })?.changeTypeValue ?? ""
         changeLabelIsSmall = changeLabel.stringValue.isEmpty
     }
