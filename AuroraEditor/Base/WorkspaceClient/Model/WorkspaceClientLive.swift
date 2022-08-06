@@ -23,6 +23,7 @@ public extension WorkspaceClient {
         onUpdate: @escaping () -> Void = {}
     ) throws -> Self {
         var flattenedFileItems: [String: FileItem] = [:]
+        var modifiedFileItems: [FileItem] = []
 
         // This is the object that the subscriber will watch
         let subject = CurrentValueSubject<[FileItem], Never>([])
@@ -35,7 +36,7 @@ public extension WorkspaceClient {
         flattenedFileItems[workspaceItem.id] = workspaceItem
 
         // this weird statement is so that watcherCode's closure does not contain watcherCode when it is uninitialised
-        var watcherCode = {}; watcherCode = {
+        var watcherCode: (FileItem) -> Void = { _ in }; watcherCode = { sourceFileItem in
 
             // Something has changed inside the directory
             // We should reload the files.
@@ -44,11 +45,24 @@ public extension WorkspaceClient {
                 return
             }
             isRunning = true
-            flattenedFileItems = [workspaceItem.id: workspaceItem]
-            _ = try? rebuildFiles(fromItem: workspaceItem)
+            modifiedFileItems = []
+            if (try? rebuildFiles(fromItem: sourceFileItem)) ?? false {
+                modifiedFileItems.append(sourceFileItem)
+            }
             while anotherInstanceRan > 0 { // TODO: optimise
                 let somethingChanged = try? rebuildFiles(fromItem: workspaceItem)
+                if somethingChanged ?? false { modifiedFileItems.append(workspaceItem) }
                 anotherInstanceRan = !(somethingChanged ?? false) ? 0 : anotherInstanceRan - 1
+            }
+            modifiedFileItems = Array(Set(modifiedFileItems)).filter { fileItem in
+                // test if the file item is part of another file item
+                for otherFileItem in modifiedFileItems {
+                    if otherFileItem.url.path.starts(with: fileItem.url.path) &&
+                        otherFileItem.url.path != fileItem.url.path {
+                        return false
+                    }
+                }
+                return true
             }
 
             // run the onUpdate function after changes have been made
@@ -57,11 +71,15 @@ public extension WorkspaceClient {
             subject.send(workspaceItem.children ?? [])
             isRunning = false
             anotherInstanceRan = 0
+
+            // this is so that if modifiedFileItems changes before the
+            // async function runs, the original value is still used.
+            let itemsToRefresh = modifiedFileItems
             // reload data in outline view controller through the main thread
-            DispatchQueue.main.async { onRefresh() }
+            DispatchQueue.main.async { onRefresh(itemsToRefresh) }
         }
-        watcherCode()
         workspaceItem.watcherCode = watcherCode
+        workspaceItem.watcherCode(workspaceItem)
 
         /// Recursive loading of files into `FileItem`s
         /// - Parameter url: The URL of the directory to load the items of
@@ -69,7 +87,6 @@ public extension WorkspaceClient {
         func loadFiles(fromURL url: URL) throws -> [FileItem] {
             let directoryContents = try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)
             var items: [FileItem] = []
-
             for itemURL in directoryContents {
                 // Skip file if it is in ignore list
                 guard !ignoredFilesAndFolders.contains(itemURL.lastPathComponent) else { continue }
@@ -90,6 +107,7 @@ public extension WorkspaceClient {
                     subItems?.forEach { $0.parent = newFileItem }
                     items.append(newFileItem)
                     flattenedFileItems[newFileItem.id] = newFileItem
+                    modifiedFileItems.append(newFileItem)
                 }
             }
 
@@ -121,9 +139,8 @@ public extension WorkspaceClient {
             for newContent in directoryContentsUrls {
                 guard !ignoredFilesAndFolders.contains(newContent.lastPathComponent) else { continue }
 
-                var childExists = false
-                fileItem.children?.forEach({ childExists = $0.url == newContent ? true : childExists })
-                guard !childExists else { continue }
+                // if the child has already been indexed, continue to the next item.
+                guard !(fileItem.children?.map({ $0.url }).contains(newContent) ?? false) else { continue }
 
                 var isDir: ObjCBool = false
                 if fileManager.fileExists(atPath: newContent.path, isDirectory: &isDir) {
@@ -149,6 +166,8 @@ public extension WorkspaceClient {
                 }
                 flattenedFileItems[$0.id] = $0
             })
+
+            if didChangeSomething { modifiedFileItems.append(fileItem) }
 
             return didChangeSomething
         }

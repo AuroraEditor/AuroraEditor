@@ -29,8 +29,6 @@ final class OutlineViewController: NSViewController {
         return [root]
     }
 
-    var onRefresh: () -> Void = {}
-
     var workspace: WorkspaceDocument?
     var model: SourceControlModel?
 
@@ -78,8 +76,12 @@ final class OutlineViewController: NSViewController {
             self.model = .init(workspaceURL: folderURL)
         }
 
-        onRefresh = { self.reloadData() }
-        WorkspaceClient.onRefresh = { self.onRefresh() }
+        WorkspaceClient.onRefresh = { modifiedFileItems in
+            for fileItem in modifiedFileItems {
+                self.outlineView.reloadItem(fileItem, reloadChildren: true)
+            }
+            self.reloadData()
+        }
         outlineView.expandItem(outlineView.item(atRow: 0))
         saveExpansionState()
     }
@@ -136,7 +138,6 @@ final class OutlineViewController: NSViewController {
     private var isExpandingThings: Bool = false
     /// Perform functions related to reloading the Outline View
     func reloadData() {
-        self.outlineView.reloadData()
         if !WorkspaceClient.filter.isEmpty {
             // expand everything
             outlineView.expandItem(outlineView.item(atRow: 0), expandChildren: true)
@@ -171,8 +172,6 @@ final class OutlineViewController: NSViewController {
         var rowNumber = 0
         while let itemToCheck = outlineView.item(atRow: rowNumber) {
             guard let fileItem = itemToCheck as? Item else { break }
-            Log.info("Loading item \(fileItem.fileName): \(fileItem.shouldBeExpanded ? "Expand" : "Collapse")")
-            Log.info("\tcurrently is \(outlineView.isItemExpanded(fileItem) ? "Expanded" : "Collapsed")")
             if fileItem.shouldBeExpanded {
                 outlineView.expandItem(itemToCheck)
             } else {

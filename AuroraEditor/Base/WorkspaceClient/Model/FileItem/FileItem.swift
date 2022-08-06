@@ -31,7 +31,7 @@ public extension WorkspaceClient {
         public var fileIdentifier = UUID().uuidString
 
         public var watcher: DispatchSourceFileSystemObject?
-        public var watcherCode: () -> Void = {}
+        public var watcherCode: (FileItem) -> Void = { _ in }
 
         public func activateWatcher() -> Bool {
             let descriptor = open(self.url.path, O_EVTONLY)
@@ -44,7 +44,7 @@ public extension WorkspaceClient {
             if descriptor > 2000 {
                 Log.info("Watcher \(descriptor) used up")
             }
-            source.setEventHandler { self.watcherCode() }
+            source.setEventHandler { self.watcherCode(self) }
             source.setCancelHandler { close(descriptor) }
             source.resume()
             self.watcher = source
