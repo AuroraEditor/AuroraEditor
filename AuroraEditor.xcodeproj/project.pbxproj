@@ -1067,6 +1067,72 @@
 			path = Log;
 			sourceTree = "<group>";
 		};
+		202F2E2C289E6608000D3CAD /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				209D0258289ABFF70082441F /* AuroraEditorTextView.swift */,
+				209D0256289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift */,
+				209D0254289ABFCC0082441F /* STTextViewController.swift */,
+				209D0252289ABFB60082441F /* STTextView+Menu.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		202F2E2E289E6637000D3CAD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				209D0250289ABF9A0082441F /* STTextView+AutoComplete.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		202F2E2F289E665C000D3CAD /* Legal */ = {
+			isa = PBXGroup;
+			children = (
+				2B4C131C289D56F9000ED796 /* README.md */,
+				2B4C1302289D56F9000ED796 /* LICENSE.md */,
+			);
+			path = Legal;
+			sourceTree = "<group>";
+		};
+		202F2E30289E669D000D3CAD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2B4C130A289D56F9000ED796 /* STTextView+NSUserInterfaceValidations.swift */,
+				2B4C131B289D56F9000ED796 /* STTextView+TextInputClient.swift */,
+				2B4C131E289D56F9000ED796 /* STTextView+Insert.swift */,
+				2B4C1320289D56F9000ED796 /* STTextView+Complete.swift */,
+				2B4C1321289D56F9000ED796 /* STTextContentStorage.swift */,
+				2B4C1322289D56F9000ED796 /* STTextView+NSTextViewportLayoutControllerDelegate.swift */,
+				2B4C1324289D56F9000ED796 /* STInsertionPointLayer.swift */,
+				2B4C131F289D56F9000ED796 /* STTextLayoutManager.swift */,
+				2B4C1308289D56F9000ED796 /* STTextFinderClient.swift */,
+				2B4C1307289D56F9000ED796 /* STTextViewDelegate.swift */,
+				2B4C1306289D56F9000ED796 /* STTextView+Delete.swift */,
+				2B4C1305289D56F9000ED796 /* STTextLayoutFragmentLayer.swift */,
+				2B4C1303289D56F9000ED796 /* STTextView+Annotations.swift */,
+				2B4C1301289D56F9000ED796 /* STTextView+Find.swift */,
+				2B4C1300289D56F9000ED796 /* STTextView+Undo.swift */,
+				2B4C12FF289D56F9000ED796 /* STTextView+InsertionPoint.swift */,
+				2B4C1311289D56F9000ED796 /* STTextView+CopyPaste.swift */,
+				2B4C1353289D6457000ED796 /* STTextView+Select2.swift */,
+				2B4C131D289D56F9000ED796 /* STTextView+Select.swift */,
+				2B4C1312289D56F9000ED796 /* STTextView+Mouse.swift */,
+				2B4C1309289D56F9000ED796 /* STTextView+Scrolling.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		202F2E31289E66A2000D3CAD /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2B4C1323289D56F9000ED796 /* STAnnotationLabelView.swift */,
+				2B4C1304289D56F9000ED796 /* STLineNumberRulerView.swift */,
+				2B4C1313289D56F9000ED796 /* STTextView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		2072FA14280D838800C7F8D4 /* Lists */ = {
 			isa = PBXGroup;
 			children = (
@@ -1086,12 +1152,9 @@
 		209D024F289ABF520082441F /* AuroraEditorTextView */ = {
 			isa = PBXGroup;
 			children = (
+				202F2E2E289E6637000D3CAD /* Model */,
+				202F2E2C289E6608000D3CAD /* UI */,
 				2B4C12FE289D56F9000ED796 /* STTextView */,
-				209D0250289ABF9A0082441F /* STTextView+AutoComplete.swift */,
-				209D0252289ABFB60082441F /* STTextView+Menu.swift */,
-				209D0254289ABFCC0082441F /* STTextViewController.swift */,
-				209D0256289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift */,
-				209D0258289ABFF70082441F /* AuroraEditorTextView.swift */,
 			);
 			path = AuroraEditorTextView;
 			sourceTree = "<group>";
@@ -2525,35 +2588,12 @@
 		2B4C12FE289D56F9000ED796 /* STTextView */ = {
 			isa = PBXGroup;
 			children = (
-				2B4C12FF289D56F9000ED796 /* STTextView+InsertionPoint.swift */,
-				2B4C1300289D56F9000ED796 /* STTextView+Undo.swift */,
-				2B4C1301289D56F9000ED796 /* STTextView+Find.swift */,
-				2B4C1302289D56F9000ED796 /* LICENSE.md */,
-				2B4C1303289D56F9000ED796 /* STTextView+Annotations.swift */,
-				2B4C1304289D56F9000ED796 /* STLineNumberRulerView.swift */,
-				2B4C1305289D56F9000ED796 /* STTextLayoutFragmentLayer.swift */,
-				2B4C1306289D56F9000ED796 /* STTextView+Delete.swift */,
-				2B4C1307289D56F9000ED796 /* STTextViewDelegate.swift */,
-				2B4C1308289D56F9000ED796 /* STTextFinderClient.swift */,
-				2B4C1309289D56F9000ED796 /* STTextView+Scrolling.swift */,
-				2B4C130A289D56F9000ED796 /* STTextView+NSUserInterfaceValidations.swift */,
-				2B4C130B289D56F9000ED796 /* Completion */,
-				2B4C1311289D56F9000ED796 /* STTextView+CopyPaste.swift */,
-				2B4C1312289D56F9000ED796 /* STTextView+Mouse.swift */,
-				2B4C1313289D56F9000ED796 /* STTextView.swift */,
+				202F2E31289E66A2000D3CAD /* UI */,
+				202F2E30289E669D000D3CAD /* Model */,
+				202F2E2F289E665C000D3CAD /* Legal */,
 				2B4C1314289D56F9000ED796 /* Extensions */,
-				2B4C131B289D56F9000ED796 /* STTextView+TextInputClient.swift */,
-				2B4C131C289D56F9000ED796 /* README.md */,
-				2B4C131D289D56F9000ED796 /* STTextView+Select.swift */,
-				2B4C1353289D6457000ED796 /* STTextView+Select2.swift */,
-				2B4C131E289D56F9000ED796 /* STTextView+Insert.swift */,
-				2B4C131F289D56F9000ED796 /* STTextLayoutManager.swift */,
-				2B4C1320289D56F9000ED796 /* STTextView+Complete.swift */,
-				2B4C1321289D56F9000ED796 /* STTextContentStorage.swift */,
-				2B4C1322289D56F9000ED796 /* STTextView+NSTextViewportLayoutControllerDelegate.swift */,
-				2B4C1323289D56F9000ED796 /* STAnnotationLabelView.swift */,
-				2B4C1324289D56F9000ED796 /* STInsertionPointLayer.swift */,
-				2B4C1325289D56F9000ED796 /* Utility */,
+				2B4C130B289D56F9000ED796 /* Completion */,
+				2B4C1325289D56F9000ED796 /* Utils */,
 			);
 			path = STTextView;
 			sourceTree = "<group>";
@@ -2590,7 +2630,7 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		2B4C1325289D56F9000ED796 /* Utility */ = {
+		2B4C1325289D56F9000ED796 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				2B4C1326289D56F9000ED796 /* TypingTextUndo.swift */,
@@ -2599,7 +2639,7 @@
 				2B4C1329289D56F9000ED796 /* CoalescingUndoManager.swift */,
 				2B4C132A289D56F9000ED796 /* STCALayer.swift */,
 			);
-			path = Utility;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		2BE487ED28245162003F3F64 /* OpenWithAuroraEditor */ = {
