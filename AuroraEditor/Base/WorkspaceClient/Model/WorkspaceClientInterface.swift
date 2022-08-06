@@ -17,6 +17,8 @@ public struct WorkspaceClient {
 
     public var getFileItem: (_ id: String) throws -> FileItem
 
+    public var model: SourceControlModel?
+
     /// callback function that is run when a change is detected in the file system.
     /// This usually contains a `reloadData` function.
     public static var onRefresh: () -> Void = {}
@@ -28,11 +30,13 @@ public struct WorkspaceClient {
     public init(
         folderURL: @escaping () -> URL?,
         getFiles: AnyPublisher<[FileItem], Never>,
-        getFileItem: @escaping (_ id: String) throws -> FileItem
+        getFileItem: @escaping (_ id: String) throws -> FileItem,
+        model: SourceControlModel? = nil
     ) {
         self.folderURL = folderURL
         self.getFiles = getFiles
         self.getFileItem = getFileItem
+        self.model = model
     }
     // swiftlint:enable vertical_parameter_alignment
 

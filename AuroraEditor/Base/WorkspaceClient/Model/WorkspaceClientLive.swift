@@ -20,6 +20,7 @@ public extension WorkspaceClient {
         fileManager: FileManager,
         folderURL: URL,
         ignoredFilesAndFolders: [String],
+        model: SourceControlModel?,
         onUpdate: @escaping () -> Void = {}
     ) throws -> Self {
         var flattenedFileItems: [String: FileItem] = [:]
@@ -35,8 +36,7 @@ public extension WorkspaceClient {
         flattenedFileItems[workspaceItem.id] = workspaceItem
 
         // this weird statement is so that watcherCode's closure does not contain watcherCode when it is uninitialised
-        var watcherCode = {}; watcherCode = {
-
+        var watcherCode: (FileItem) -> Void = { _ in }; watcherCode = { sourceFileItem in
             // Something has changed inside the directory
             // We should reload the files.
             guard !isRunning else { // this runs when a file change is detected but is already running
@@ -44,12 +44,18 @@ public extension WorkspaceClient {
                 return
             }
             isRunning = true
-            flattenedFileItems = [workspaceItem.id: workspaceItem]
-            _ = try? rebuildFiles(fromItem: workspaceItem)
+
+            // inital reload of files
+            _ = try? rebuildFiles(fromItem: sourceFileItem)
+
+            // re-reload if another instance tried to run while this instance was running
             while anotherInstanceRan > 0 { // TODO: optimise
                 let somethingChanged = try? rebuildFiles(fromItem: workspaceItem)
                 anotherInstanceRan = !(somethingChanged ?? false) ? 0 : anotherInstanceRan - 1
             }
+
+            // reload git changes
+            _ = model?.reloadChangedFiles()
 
             // run the onUpdate function after changes have been made
             onUpdate()
@@ -57,11 +63,12 @@ public extension WorkspaceClient {
             subject.send(workspaceItem.children ?? [])
             isRunning = false
             anotherInstanceRan = 0
+
             // reload data in outline view controller through the main thread
             DispatchQueue.main.async { onRefresh() }
         }
-        watcherCode()
         workspaceItem.watcherCode = watcherCode
+        workspaceItem.watcherCode(workspaceItem)
 
         /// Recursive loading of files into `FileItem`s
         /// - Parameter url: The URL of the directory to load the items of
@@ -69,7 +76,6 @@ public extension WorkspaceClient {
         func loadFiles(fromURL url: URL) throws -> [FileItem] {
             let directoryContents = try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)
             var items: [FileItem] = []
-
             for itemURL in directoryContents {
                 // Skip file if it is in ignore list
                 guard !ignoredFilesAndFolders.contains(itemURL.lastPathComponent) else { continue }
@@ -84,7 +90,9 @@ public extension WorkspaceClient {
                         subItems = try loadFiles(fromURL: itemURL)
                     }
 
-                    let newFileItem = FileItem(url: itemURL, children: subItems?.sortItems(foldersOnTop: true))
+                    let newFileItem = FileItem(url: itemURL,
+                                               children: subItems?.sortItems(foldersOnTop: true),
+                                               model: model)
                     // note: watcher code will be applied after the workspaceItem is created
                     newFileItem.watcherCode = watcherCode
                     subItems?.forEach { $0.parent = newFileItem }
@@ -121,9 +129,8 @@ public extension WorkspaceClient {
             for newContent in directoryContentsUrls {
                 guard !ignoredFilesAndFolders.contains(newContent.lastPathComponent) else { continue }
 
-                var childExists = false
-                fileItem.children?.forEach({ childExists = $0.url == newContent ? true : childExists })
-                guard !childExists else { continue }
+                // if the child has already been indexed, continue to the next item.
+                guard !(fileItem.children?.map({ $0.url }).contains(newContent) ?? false) else { continue }
 
                 var isDir: ObjCBool = false
                 if fileManager.fileExists(atPath: newContent.path, isDirectory: &isDir) {
@@ -131,7 +138,9 @@ public extension WorkspaceClient {
 
                     if isDir.boolValue { subItems = try loadFiles(fromURL: newContent) }
 
-                    let newFileItem = FileItem(url: newContent, children: subItems?.sortItems(foldersOnTop: true))
+                    let newFileItem = FileItem(url: newContent,
+                                               children: subItems?.sortItems(foldersOnTop: true),
+                                               model: model)
                     newFileItem.watcherCode = watcherCode
                     subItems?.forEach { $0.parent = newFileItem }
                     newFileItem.parent = fileItem
@@ -177,7 +186,8 @@ public extension WorkspaceClient {
                     throw WorkspaceClientError.fileNotExist
                 }
                 return item
-            }
+            },
+            model: model
         )
     }
 }

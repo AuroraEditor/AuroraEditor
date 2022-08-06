@@ -68,7 +68,7 @@ final class OutlineTableViewCell: NSTableCellView {
         changeLabel.isSelectable = false
         changeLabel.layer?.cornerRadius = 10.0
         changeLabel.font = .boldSystemFont(ofSize: fontSize)
-        changeLabel.alignment = .right
+        changeLabel.alignment = .center
         changeLabel.textColor = NSColor(Color.secondary)
         addSubview(changeLabel)
 
@@ -92,8 +92,8 @@ final class OutlineTableViewCell: NSTableCellView {
             self.model = .init(workspaceURL: folderURL)
         }
 
-        if let model = model, let folderURL = workspace?.workspaceClient?.folderURL() {
-            addModel(model: model, directoryURL: folderURL)
+        if let folderURL = workspace?.workspaceClient?.folderURL() {
+            addModel(directoryURL: folderURL)
         }
 
         createConstraints(frame: frameRect)
@@ -123,10 +123,8 @@ final class OutlineTableViewCell: NSTableCellView {
         changeLabel.usesSingleLineMode = true
     }
 
-    func addModel(model: SourceControlModel, directoryURL: URL) {
-        changeLabel.stringValue = model.changed.first(where: { changedFile in
-            return "\(directoryURL.path)/\(changedFile.fileLink.path)" == self.fileItem.url.path
-        })?.changeTypeValue ?? ""
+    func addModel(directoryURL: URL) {
+        changeLabel.stringValue = fileItem.gitStatus?.description ?? ""
         changeLabelIsSmall = changeLabel.stringValue.isEmpty
     }
 

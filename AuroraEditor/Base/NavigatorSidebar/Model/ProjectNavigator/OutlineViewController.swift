@@ -29,10 +29,7 @@ final class OutlineViewController: NSViewController {
         return [root]
     }
 
-    var onRefresh: () -> Void = {}
-
     var workspace: WorkspaceDocument?
-    var model: SourceControlModel?
 
     var iconColor: AppPreferences.FileIconStyle = .color
     var fileExtensionsVisibility: AppPreferences.FileExtensionsVisibility = .showAll
@@ -74,12 +71,10 @@ final class OutlineViewController: NSViewController {
         self.scrollView.contentView.automaticallyAdjustsContentInsets = false
         self.scrollView.contentView.contentInsets = .init(top: 10, left: 0, bottom: 0, right: 0)
 
-        if let folderURL = workspace?.workspaceClient?.folderURL() {
-            self.model = .init(workspaceURL: folderURL)
+        WorkspaceClient.onRefresh = {
+            self.outlineView.reloadData()
+            self.reloadData()
         }
-
-        onRefresh = { self.reloadData() }
-        WorkspaceClient.onRefresh = { self.onRefresh() }
         outlineView.expandItem(outlineView.item(atRow: 0))
         saveExpansionState()
     }
@@ -136,7 +131,6 @@ final class OutlineViewController: NSViewController {
     private var isExpandingThings: Bool = false
     /// Perform functions related to reloading the Outline View
     func reloadData() {
-        self.outlineView.reloadData()
         if !WorkspaceClient.filter.isEmpty {
             // expand everything
             outlineView.expandItem(outlineView.item(atRow: 0), expandChildren: true)
