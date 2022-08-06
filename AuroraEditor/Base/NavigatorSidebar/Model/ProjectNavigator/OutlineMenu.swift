@@ -225,17 +225,16 @@ final class OutlineMenu: NSMenu {
     /// Action that creates a new untitled file
     @objc
     private func newFile() {
-        item?.addFile(fileName: "untitled")
         outlineView.expandItem((item?.isFolder ?? true) ? item : item?.parent)
+        item?.addFile(fileName: "untitled")
     }
 
     // TODO: allow custom folder names
     /// Action that creates a new untitled folder
     @objc
     private func newFolder() {
-        item?.addFolder(folderName: "untitled")
-        outlineView.expandItem(item)
         outlineView.expandItem((item?.isFolder ?? true) ? item : item?.parent)
+        item?.addFolder(folderName: "untitled")
     }
 
     /// Action that deletes the item.

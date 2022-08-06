@@ -171,6 +171,8 @@ final class OutlineViewController: NSViewController {
         var rowNumber = 0
         while let itemToCheck = outlineView.item(atRow: rowNumber) {
             guard let fileItem = itemToCheck as? Item else { break }
+            Log.info("Loading item \(fileItem.fileName): \(fileItem.shouldBeExpanded ? "Expand" : "Collapse")")
+            Log.info("\tcurrently is \(outlineView.isItemExpanded(fileItem) ? "Expanded" : "Collapsed")")
             if fileItem.shouldBeExpanded {
                 outlineView.expandItem(itemToCheck)
             } else {
