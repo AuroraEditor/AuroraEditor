@@ -9,7 +9,7 @@ import Foundation
 
 extension WorkspaceDocument {
     final class SearchState: ObservableObject {
-        var workspace: WorkspaceDocument
+        weak var workspace: WorkspaceDocument?
         var selectedMode: [SearchModeModel] = [
             .Find,
             .Text,
@@ -47,7 +47,7 @@ extension WorkspaceDocument {
             let textToCompare = ignoreCase ? text.lowercased() : text
             self.searchResult = []
             self.searchId = UUID()
-            guard let url = self.workspace.fileURL else { return }
+            guard let url = self.workspace?.fileURL else { return }
             let enumerator = FileManager.default.enumerator(at: url,
                                                             includingPropertiesForKeys: [
                                                                 .isRegularFileKey

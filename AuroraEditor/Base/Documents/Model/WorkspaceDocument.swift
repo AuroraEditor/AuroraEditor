@@ -240,11 +240,10 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         )
         window.center()
         window.minSize = .init(width: 1000, height: 600)
-        let windowController = AuroraEditorWindowController(
+        self.addWindowController(AuroraEditorWindowController(
             window: window,
             workspace: self
-        )
-        self.addWindowController(windowController)
+        ))
     }
 
     // MARK: Set Up Workspace

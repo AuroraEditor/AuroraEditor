@@ -103,7 +103,7 @@ public extension WorkspaceClient {
         /// Returns a parent ``WorkspaceClient/WorkspaceClient/FileItem``.
         ///
         /// If the item already is the top-level ``WorkspaceClient/WorkspaceClient/FileItem`` this returns `nil`.
-        public var parent: FileItem?
+        public weak var parent: FileItem?
 
         /// A boolean that is true if ``children`` is not `nil`
         public var isFolder: Bool {
