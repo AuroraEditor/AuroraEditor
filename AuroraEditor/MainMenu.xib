@@ -828,42 +828,5 @@ CA
             </items>
             <point key="canvasLocation" x="139" y="135"/>
         </menu>
-        <menuItem title="AuroraEditor Help" keyEquivalent="?" id="kSk-UH-BWX">
-            <connections>
-                <action selector="showHelp:" target="-1" id="Nqv-ha-1p4"/>
-            </connections>
-        </menuItem>
-        <menuItem title="View" id="ikn-m8-iQZ">
-            <modifierMask key="keyEquivalentModifierMask"/>
-            <menu key="submenu" title="View" id="L8y-eU-6v5">
-                <items>
-                    <menuItem title="Show Toolbar" keyEquivalent="t" id="P2x-zn-4Up">
-                        <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                        <connections>
-                            <action selector="toggleToolbarShown:" target="-1" id="sbX-5U-8G8"/>
-                        </connections>
-                    </menuItem>
-                    <menuItem title="Customize Toolbar…" id="gQg-Tx-TRi">
-                        <modifierMask key="keyEquivalentModifierMask"/>
-                        <connections>
-                            <action selector="runToolbarCustomizationPalette:" target="-1" id="hWU-9e-EnQ"/>
-                        </connections>
-                    </menuItem>
-                    <menuItem isSeparatorItem="YES" id="Fh3-ET-kNo"/>
-                    <menuItem title="Show Sidebar" keyEquivalent="s" id="95i-eM-Qcp">
-                        <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                        <connections>
-                            <action selector="toggleSidebar:" target="-1" id="IUn-JR-yw3"/>
-                        </connections>
-                    </menuItem>
-                    <menuItem title="Enter Full Screen" keyEquivalent="f" id="74t-1w-lAG">
-                        <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                        <connections>
-                            <action selector="toggleFullScreen:" target="-1" id="5g3-Xr-3xm"/>
-                        </connections>
-                    </menuItem>
-                </items>
-            </menu>
-        </menuItem>
     </objects>
 </document>
