@@ -23,9 +23,6 @@ struct TabBar: View {
     @ObservedObject
     private var workspace: WorkspaceDocument
 
-    @ObservedObject
-    private var sourceControlModel: SourceControlModel
-
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
@@ -33,7 +30,6 @@ struct TabBar: View {
     init(windowController: NSWindowController, workspace: WorkspaceDocument) {
         self.windowController = windowController
         self.workspace = workspace
-        self.sourceControlModel = .init(workspaceURL: workspace.fileURL!)
     }
 
     @State
@@ -176,46 +172,14 @@ struct TabBar: View {
 
     private var leadingAccessories: some View {
         HStack(spacing: 2) {
-            Menu {
-                Menu {
-                    ForEach(sourceControlModel.changed) { item in
-                        Button {
-
-                        } label: {
-                            Image(systemName: item.systemImage)
-                                .foregroundColor(item.iconColor)
-                            Text(item.fileName)
-                        }
-                    }
-
-                    Divider()
-
-                    Button {
-
-                    } label: {
-                        Text("Clear Menu")
-                    }
-                } label: {
-                    Text("Recent Files")
-                }
-
-                Menu {
-                    ForEach(sourceControlModel.changed) { item in
-                        Button {
-                            workspace.openTab(item: item)
-                        } label: {
-                            Image(systemName: item.systemImage)
-                                .foregroundColor(item.iconColor)
-                            Text(item.fileName)
-                        }
-                    }
-                } label: {
-                    Text("Locally Modified Files")
-                }
-            } label: {
-                Image(systemName: "square.grid.2x2")
-            }
+            TabBarAccessoryIcon(
+                icon: .init(systemName: "square.grid.2x2"),
+                action: { /* TODO */ }
+            )
+            .font(Font.system(size: 14, weight: .light, design: .default))
+            .foregroundColor(.secondary)
             .buttonStyle(.plain)
+            .help("Navigate to Related Items")
 
             Divider()
                 .padding(.vertical, 8)

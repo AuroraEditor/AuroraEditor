@@ -16,7 +16,7 @@ public struct GitClient {
     public var cloneRepository: (String) -> AnyPublisher<CloneProgressResult, GitClientError>
     /// Displays paths that have differences between the index file and the current HEAD commit,
     /// paths that have differences between the working tree and the index file, and paths in the working tree
-    public var getChangedFiles: () throws -> [FileItem]
+    public var getChangedFiles: () throws -> [ChangedFile]
     /// Get commit history
     /// - Parameters:
     ///   - entries: number of commits we want to fetch. Will use max if nil
@@ -33,7 +33,7 @@ public struct GitClient {
         checkoutBranch: @escaping (String) throws -> Void,
         pull: @escaping () throws -> Void,
         cloneRepository: @escaping (String) -> AnyPublisher<CloneProgressResult, GitClientError>,
-        getChangedFiles: @escaping () throws -> [FileItem],
+        getChangedFiles: @escaping () throws -> [ChangedFile],
         getCommitHistory: @escaping (_ entries: Int?, _ fileLocalPath: String?) throws -> [Commit],
         discardFileChanges: @escaping (String) throws -> Void,
         discardProjectChanges: @escaping () throws -> Void,

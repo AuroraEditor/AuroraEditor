@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-public typealias FileItem = WorkspaceClient.FileItem
+typealias FileItem = WorkspaceClient.FileItem
 
 extension FileItem {
     /// This function allows creation of folders in the main directory or sub-folders

@@ -63,7 +63,7 @@ public extension GitClient {
             }
         }
 
-        func getChangedFiles() throws -> [FileItem] {
+        func getChangedFiles() throws -> [ChangedFile] {
             let output = try shellClient.run(
                 "cd \(directoryURL.relativePath.escapedWhiteSpaces());git status -s --porcelain -u"
             )
@@ -72,11 +72,10 @@ public extension GitClient {
             }
             return try output
                 .split(whereSeparator: \.isNewline)
-                .map { line -> FileItem in
+                .map { line -> ChangedFile in
                     let paramData = line.trimmingCharacters(in: .whitespacesAndNewlines)
                     let parameters = paramData.components(separatedBy: " ")
-                    // swiftlint:disable:next line_length
-                    guard let url = URL(string: "\(directoryURL.relativePath)\(parameters[safe: 1] ?? String(describing: URLError.badURL))") else {
+                    guard let url = URL(string: parameters[safe: 1] ?? String(describing: URLError.badURL)) else {
                         throw GitClientError.failedToDecodeURL
                     }
 
@@ -84,7 +83,8 @@ public extension GitClient {
                         .init(rawValue: parameters[safe: 0] ?? "") ?? GitType.unknown
                     }
 
-                    return FileItem(url: url, changeType: gitType)
+                    return ChangedFile(changeType: gitType,
+                                        fileLink: url)
                 }
         }
 
