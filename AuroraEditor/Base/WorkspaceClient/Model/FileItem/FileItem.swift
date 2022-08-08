@@ -14,6 +14,7 @@ public extension WorkspaceClient {
         case id
         case url
         case children
+        case changeType
     }
 
     /// An object containing all necessary information and actions for a specific file in the workspace
@@ -77,6 +78,7 @@ public extension WorkspaceClient {
             id = try values.decode(String.self, forKey: .id)
             url = try values.decode(URL.self, forKey: .url)
             children = try values.decode([FileItem]?.self, forKey: .children)
+            changeType = try values.decode(GitType.self, forKey: .changeType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -84,6 +86,7 @@ public extension WorkspaceClient {
             try container.encode(id, forKey: .id)
             try container.encode(url, forKey: .url)
             try container.encode(children, forKey: .children)
+            try container.encode(changeType, forKey: .changeType)
         }
 
         /// The id of the ``WorkspaceClient/WorkspaceClient/FileItem``.
@@ -104,6 +107,8 @@ public extension WorkspaceClient {
         ///
         /// If the item already is the top-level ``WorkspaceClient/WorkspaceClient/FileItem`` this returns `nil`.
         public weak var parent: FileItem?
+
+        public let changeType: GitType?
 
         /// A boolean that is true if ``children`` is not `nil`
         public var isFolder: Bool {
@@ -175,6 +180,10 @@ public extension WorkspaceClient {
         /// If not specified otherwise this will return `Color.accentColor`
         public var iconColor: Color {
             FileIcon.iconColor(fileType: fileType)
+        }
+
+        public var changeTypeValue: String {
+            changeType?.description ?? ""
         }
 
         // MARK: Statics
