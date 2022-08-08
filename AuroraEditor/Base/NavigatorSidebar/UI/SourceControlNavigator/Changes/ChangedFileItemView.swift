@@ -10,10 +10,10 @@ import SwiftUI
 struct ChangedFileItemView: View {
 
     @State
-    var changedFile: FileItem
+    var changedFile: ChangedFile
 
     @Binding
-    var selection: FileItem.ID?
+    var selection: ChangedFile.ID?
 
     var body: some View {
         HStack {
