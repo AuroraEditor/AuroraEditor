@@ -52,7 +52,7 @@ struct NavigatorSidebar: View {
                 }
                 .frame(maxHeight: .infinity)
             case 7:
-                ExtensionNavigator(data: workspace.extensionNavigatorData)
+                ExtensionNavigator(data: workspace.extensionNavigatorData!)
                     .environmentObject(workspace)
             default:
                 Spacer()

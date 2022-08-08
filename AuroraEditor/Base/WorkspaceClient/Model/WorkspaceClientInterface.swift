@@ -17,6 +17,8 @@ public struct WorkspaceClient {
 
     public var getFileItem: (_ id: String) throws -> FileItem
 
+    public var cleanUp: () -> Void
+
     public var model: SourceControlModel?
 
     /// callback function that is run when a change is detected in the file system.
@@ -31,11 +33,13 @@ public struct WorkspaceClient {
         folderURL: @escaping () -> URL?,
         getFiles: AnyPublisher<[FileItem], Never>,
         getFileItem: @escaping (_ id: String) throws -> FileItem,
+        cleanUp: @escaping () -> Void = {},
         model: SourceControlModel? = nil
     ) {
         self.folderURL = folderURL
         self.getFiles = getFiles
         self.getFileItem = getFileItem
+        self.cleanUp = cleanUp
         self.model = model
     }
     // swiftlint:enable vertical_parameter_alignment

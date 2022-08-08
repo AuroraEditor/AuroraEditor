@@ -168,6 +168,7 @@ public extension WorkspaceClient {
             } else {
                 for item in flattenedFileItems.values {
                     item.watcher?.cancel()
+                    item.watcher = nil
                 }
             }
         }
@@ -186,6 +187,12 @@ public extension WorkspaceClient {
                     throw WorkspaceClientError.fileNotExist
                 }
                 return item
+            },
+            cleanUp: {
+                stopListeningToDirectory()
+                workspaceItem.children = []
+                flattenedFileItems = [workspaceItem.id: workspaceItem]
+                Log.info("Cleaned up watchers and file items")
             },
             model: model
         )
