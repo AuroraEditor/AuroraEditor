@@ -8,15 +8,32 @@
 import Foundation
 import SwiftUI
 
-public struct ChangedFile: Codable, Hashable, Identifiable {
+public struct ChangedFile: Codable, Hashable, Identifiable, TabBarItemRepresentable {
+
+    public var tabID: TabBarItemID { .codeEditor(id) }
+
+    public var title: String {
+        fileLink.lastPathComponent
+    }
+
+    public var icon: Image {
+        Image(systemName: systemImage)
+    }
+
     /// ID of the changed file
-    public var id = UUID()
+    public var id: String
 
     /// Change type is to tell us whether the type is a new file, modified or deleted
     public let changeType: GitType?
 
     /// Link of the file
     public let fileLink: URL
+
+    public init(fileLink: URL, changeType: GitType) {
+        self.fileLink = fileLink
+        self.changeType = changeType
+        id = fileLink.relativeString
+    }
 
     /// Use it like this
     /// ```swift
