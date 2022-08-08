@@ -55,23 +55,8 @@ final class OutlineMenu: NSMenu {
     /// - Parameter isFile: A flag indicating that the item is a file instead of a directory
     private func setupMenu() {
         guard let item = item else { return }
-        let showInFinder = menuItem("Show in Finder", action: #selector(showInFinder))
 
-        let openInTab = menuItem("Open in Tab", action: #selector(openInTab))
-        let openInNewWindow = menuItem("Open in New Window", action: nil)
-        let openExternalEditor = menuItem("Open with External Editor", action: #selector(openWithExternalEditor))
         let openAs = menuItem("Open As", action: nil)
-
-        let showFileInspector = menuItem("Show File Inspector", action: nil)
-
-        let newFile = menuItem("New File...", action: #selector(newFile))
-        let newFolder = menuItem("New Folder", action: #selector(newFolder))
-
-        let delete = menuItem("Delete", action:
-                                item.url != workspace?.workspaceClient?.folderURL()
-                              ? #selector(delete) : nil)
-
-        let duplicate = menuItem("Duplicate \(item.isFolder ? "Folder" : "File")", action: #selector(duplicate))
 
         let sortByName = menuItem("Sort by Name", action: nil)
         sortByName.isEnabled = item.isFolder
@@ -82,20 +67,22 @@ final class OutlineMenu: NSMenu {
         let sourceControl = menuItem("Source Control", action: nil)
 
         items = [
-            showInFinder,
+            menuItem("Show in Finder", action: #selector(showInFinder)),
             NSMenuItem.separator(),
-            openInTab,
-            openInNewWindow,
-            openExternalEditor,
+            menuItem("Open in Tab", action: #selector(openInTab)),
+            menuItem("Open in New Window", action: nil),
+            menuItem("Open with External Editor", action: #selector(openWithExternalEditor)),
             openAs,
             NSMenuItem.separator(),
-            showFileInspector,
+            menuItem("Show File Inspector", action: nil),
             NSMenuItem.separator(),
-            newFile,
-            newFolder,
+            menuItem("New File...", action: #selector(newFile)),
+            menuItem("New Folder", action: #selector(newFolder)),
             NSMenuItem.separator(),
-            delete,
-            duplicate,
+            menuItem("Rename", action: #selector(renameFile)),
+            menuItem("Delete", action: item.url != workspace?.workspaceClient?.folderURL()
+                     ? #selector(delete) : nil),
+            menuItem("Duplicate \(item.isFolder ? "Folder" : "File")", action: #selector(duplicate)),
             NSMenuItem.separator(),
             sortByName,
             sortByType,
@@ -221,7 +208,6 @@ final class OutlineMenu: NSMenu {
         item?.openWithExternalEditor()
     }
 
-    // TODO: allow custom file names
     /// Action that creates a new untitled file
     @objc
     private func newFile() {
@@ -229,12 +215,22 @@ final class OutlineMenu: NSMenu {
         item?.addFile(fileName: "untitled")
     }
 
-    // TODO: allow custom folder names
     /// Action that creates a new untitled folder
     @objc
     private func newFolder() {
         outlineView.expandItem((item?.isFolder ?? true) ? item : item?.parent)
         item?.addFolder(folderName: "untitled")
+    }
+
+    /// Opens the rename file dialogue on the cell this was presented from.
+    @objc
+    private func renameFile() {
+        let row = outlineView.row(forItem: item)
+        guard row > 0,
+              let cell = outlineView.view(atColumn: 0, row: row, makeIfNecessary: false) as? OutlineTableViewCell else {
+            return
+        }
+        cell.textField?.becomeFirstResponder()
     }
 
     /// Action that deletes the item.
