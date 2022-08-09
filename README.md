@@ -70,6 +70,10 @@ If you created an awesome feature for Aurora Editor why not [Show and tell](http
 
 When we have some awesome news or a big annoucement to make, we will be making it in the [Annoucement Discussion](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/announcements). So stay tuned for any future annoucments.
 
+## Mental Health Awareness
+
+We are aware how difficult and overwhelming it can be sometimes for developers when working on a big or small project. If you feel like you are getting overwhelmed when working on a certain feature or bug on Aurora Editor don't be afraid to let us know and we'll be able to help you out and takeover what you have been working on if you feel comfortable letting someone else do it. If you just feel the need to talk about certain issues feel free to talk about it in the [Mental Health Channel](https://discord.gg/HyC7Z9WaQS) or if just need advice on something ask in the [Advice Channel](https://discord.gg/Fnr5A5atbn).
+
 ## Contributing
 
 Be part of the next revolution in code editing by contributing to the project.
