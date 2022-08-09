@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// TODO: Convert to OutlineView @NanashiLi
 struct ChangesView: View {
 
     @ObservedObject
@@ -15,13 +16,17 @@ struct ChangesView: View {
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
+    @ObservedObject
+    var workspace: WorkspaceDocument
+
     @State
-    var selectedFile: ChangedFile.ID?
+    var selectedFile: FileItem.ID?
 
     /// Initialize with GitClient
     /// - Parameter gitClient: a GitClient
-    init(workspaceURL: URL) {
-        self.model = .init(workspaceURL: workspaceURL)
+    init(workspace: WorkspaceDocument) {
+        self.workspace = workspace
+        self.model = .init(workspaceURL: workspace.fileURL!)
     }
 
     var body: some View {
@@ -38,7 +43,8 @@ struct ChangesView: View {
                             Section("Local Changes") {
                                 ForEach(model.changed) { file in
                                     ChangedFileItemView(changedFile: file,
-                                                        selection: $selectedFile)
+                                                        selection: $selectedFile,
+                                                        workspace: workspace)
                                     .contextMenu {
                                         contextMenu(file: file)
                                     }
@@ -78,11 +84,11 @@ struct ChangesView: View {
     }
 
     @ViewBuilder
-    private func contextMenu(file: ChangedFile) -> some View {
+    private func contextMenu(file: FileItem) -> some View {
         VStack {
             Group {
                 Button("View in Finder") {
-                    file.showInFinder(workspaceURL: model.workspaceURL)
+                    file.showInFinder()
                 }
                 Button("Reveal in Project Navigator") {}
                     .disabled(true) // TODO: Implementation Needed

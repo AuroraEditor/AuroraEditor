@@ -14,6 +14,7 @@ public extension WorkspaceClient {
         case id
         case url
         case children
+        case changeType
     }
 
     /// An object containing all necessary information and actions for a specific file in the workspace
@@ -34,14 +35,7 @@ public extension WorkspaceClient {
         public var watcherCode: (FileItem) -> Void = { _ in }
 
         public var model: SourceControlModel?
-        public var gitStatus: GitType? {
-            guard let model = model else { return nil }
-            for changedFile in model.changed where (
-                "\(model.workspaceURL.path)/\(changedFile.fileLink.path)" == self.url.path) {
-                return changedFile.changeType
-            }
-            return nil
-        }
+        public var gitStatus: GitType?
 
         public func activateWatcher() -> Bool {
             let descriptor = open(self.url.path, O_EVTONLY)
@@ -61,14 +55,14 @@ public extension WorkspaceClient {
             return true
         }
 
-        public init(
-            url: URL,
-            children: [FileItem]? = nil,
-            model: SourceControlModel? = nil
-        ) {
+        public init(url: URL,
+                    children: [FileItem]? = nil,
+                    model: SourceControlModel? = nil,
+                    changeType: GitType? = nil) {
             self.url = url
             self.children = children
             self.model = model
+            self.gitStatus = changeType
             id = url.relativePath
         }
 
@@ -77,6 +71,7 @@ public extension WorkspaceClient {
             id = try values.decode(String.self, forKey: .id)
             url = try values.decode(URL.self, forKey: .url)
             children = try values.decode([FileItem]?.self, forKey: .children)
+            gitStatus = try values.decode(GitType.self, forKey: .changeType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -84,6 +79,7 @@ public extension WorkspaceClient {
             try container.encode(id, forKey: .id)
             try container.encode(url, forKey: .url)
             try container.encode(children, forKey: .children)
+            try container.encode(gitStatus, forKey: .changeType)
         }
 
         /// The id of the ``WorkspaceClient/WorkspaceClient/FileItem``.
@@ -143,6 +139,10 @@ public extension WorkspaceClient {
         /// Returns the extension of the file or an empty string if no extension is present.
         public var fileType: FileIcon.FileType {
             .init(rawValue: url.pathExtension) ?? .txt
+        }
+
+        public var changeTypeValue: String {
+            gitStatus?.description ?? ""
         }
 
         /// Returns a string describing a SFSymbol for folders

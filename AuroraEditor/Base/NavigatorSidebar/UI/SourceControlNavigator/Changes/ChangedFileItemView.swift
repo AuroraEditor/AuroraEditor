@@ -10,10 +10,13 @@ import SwiftUI
 struct ChangedFileItemView: View {
 
     @State
-    var changedFile: ChangedFile
+    var changedFile: FileItem
 
     @Binding
-    var selection: ChangedFile.ID?
+    var selection: FileItem.ID?
+
+    @State
+    var workspace: WorkspaceDocument
 
     var body: some View {
         HStack {
@@ -31,5 +34,8 @@ struct ChangedFileItemView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .padding(.leading, 15)
+        .onTapGesture {
+            workspace.openTab(item: changedFile)
+        }
     }
 }

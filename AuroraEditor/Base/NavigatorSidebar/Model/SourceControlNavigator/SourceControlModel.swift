@@ -32,7 +32,7 @@ public final class SourceControlModel: ObservableObject {
 
     /// A list of changed files
     @Published
-    public var changed: [ChangedFile]
+    public var changed: [FileItem]
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -60,9 +60,9 @@ public final class SourceControlModel: ObservableObject {
         }
     }
 
-    public func discardFileChanges(file: ChangedFile) {
+    public func discardFileChanges(file: FileItem) {
         do {
-            try gitClient.discardFileChanges(file.fileLink.path)
+            try gitClient.discardFileChanges(file.url.path)
         } catch {
             Log.error("Failed to discard changes")
         }
@@ -80,7 +80,7 @@ public final class SourceControlModel: ObservableObject {
         do {
             let newChanged = try gitClient.getChangedFiles()
             DispatchQueue.main.async { self.state = .success }
-            let difference = newChanged.map({ $0.fileLink }).difference(from: changed.map({ $0.fileLink }))
+            let difference = newChanged.map({ $0.url }).difference(from: changed.map({ $0.url }))
             changed = newChanged
             return difference
         } catch {
