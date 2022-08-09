@@ -216,7 +216,7 @@ struct TabBar: View {
             )
             .font(Font.system(size: 14, weight: .light, design: .default))
             .foregroundColor(.secondary)
-            .disabled(workspace.selectionState.openedTabs.isEmpty)
+            .disabled(workspace.selectionState.openedTabs.isEmpty || disableTabNavigationRight())
             .buttonStyle(.plain)
             .help("Navigate forward")
         }
@@ -284,6 +284,20 @@ struct TabBar: View {
         }
 
         if tabPosition == 0 {
+            return true
+        }
+
+        return false
+    }
+
+    private func disableTabNavigationRight() -> Bool {
+        let openedTabs = workspace.selectionState.openedTabs
+        var currentTab = workspace.selectionState.selectedId
+        let tabPosition = openedTabs.firstIndex {
+            $0 == currentTab
+        }
+
+        if currentTab == openedTabs.last {
             return true
         }
 
