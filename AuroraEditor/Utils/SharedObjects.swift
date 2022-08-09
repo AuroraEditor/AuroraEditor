@@ -1,5 +1,5 @@
 //
-//  sharedObjects.swift
+//  SharedObjects.swift
 //  AuroraEditor
 //
 //  Created by Wesley de Groot on 05/08/2022.

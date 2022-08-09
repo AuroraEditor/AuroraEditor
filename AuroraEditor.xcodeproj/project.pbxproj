@@ -455,7 +455,7 @@
 		2BA19F252896F721000B9543 /* .githash in Resources */ = {isa = PBXBuildFile; fileRef = 2BA19F242896F721000B9543 /* .githash */; };
 		2BE487EF28245162003F3F64 /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE487EE28245162003F3F64 /* FinderSync.swift */; };
 		2BE487F428245162003F3F64 /* OpenWithAuroraEditor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BE487EC28245162003F3F64 /* OpenWithAuroraEditor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		2BF983FF289D8B3C004F1A60 /* sharedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF983FE289D8B3C004F1A60 /* sharedObjects.swift */; };
+		2BF983FF289D8B3C004F1A60 /* SharedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF983FE289D8B3C004F1A60 /* SharedObjects.swift */; };
 		6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */; };
 		9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */; };
 		939C2CC6289E345900BBB345 /* FileItemFileSystemFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */; };
@@ -962,7 +962,7 @@
 		2BE487EC28245162003F3F64 /* OpenWithAuroraEditor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OpenWithAuroraEditor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE487EE28245162003F3F64 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
 		2BE487F028245162003F3F64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2BF983FE289D8B3C004F1A60 /* sharedObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sharedObjects.swift; sourceTree = "<group>"; };
+		2BF983FE289D8B3C004F1A60 /* SharedObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedObjects.swift; sourceTree = "<group>"; };
 		6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceDocument+Listeners.swift"; sourceTree = "<group>"; };
 		6CDA84AA284C0E4A00C1CC3A /* TabBarItemButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemButtonStyle.swift; sourceTree = "<group>"; };
 		6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContextMenu.swift; sourceTree = "<group>"; };
@@ -1229,7 +1229,7 @@
 				20D8373D289A7ACD00D91D05 /* Color+HEX.swift */,
 				20D8373E289A7ACD00D91D05 /* Bundle+Info.swift */,
 				20D8373F289A7ACD00D91D05 /* Date+Formatted.swift */,
-				2BF983FE289D8B3C004F1A60 /* sharedObjects.swift */,
+				2BF983FE289D8B3C004F1A60 /* SharedObjects.swift */,
 				2B71C0A32874AD61008E0859 /* AuroraProject.swift */,
 				20212684289BF87600246DD7 /* Formatters.swift */,
 				2032B50D28A256130089EBB6 /* Collection.swift */,
@@ -3459,7 +3459,7 @@
 				2093CDBE289AA1C2003A88DD /* AboutView.swift in Sources */,
 				043BCF03281DA18A000AC47C /* WorkspaceDocument+Search.swift in Sources */,
 				202F2E35289E7277000D3CAD /* SearchResultMatchModel.swift in Sources */,
-				2BF983FF289D8B3C004F1A60 /* sharedObjects.swift in Sources */,
+				2BF983FF289D8B3C004F1A60 /* SharedObjects.swift in Sources */,
 				04C325512800AC7400C8DA2D /* ExtensionInstallationViewModel.swift in Sources */,
 				2093CDBF289AA247003A88DD /* SearchModeModel.swift in Sources */,
 				2093CD59289AA0C6003A88DD /* ExtensionsManager.swift in Sources */,
