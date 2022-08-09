@@ -65,7 +65,7 @@ struct FileInspectorView: View {
                                 TextField("", text: $inspectorModel.fileName)
                                     .font(.system(size: 11))
                                     .frame(maxWidth: 150)
-                                    .onChange(of: inspectorModel.fileName) { _ in
+                                    .onSubmit {
                                         changeFileName(newFileName: inspectorModel.fileName)
                                     }
                             }
