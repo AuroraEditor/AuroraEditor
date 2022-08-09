@@ -43,6 +43,7 @@
 		202F2E3B289E7483000D3CAD /* FindNavigatorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E3A289E7483000D3CAD /* FindNavigatorListViewController.swift */; };
 		2032B50E28A256130089EBB6 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B50D28A256130089EBB6 /* Collection.swift */; };
 		2032B51028A256F50089EBB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B50F28A256F50089EBB6 /* Array.swift */; };
+		2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */; };
 		2072FA13280D74ED00C7F8D4 /* HistoryInspectorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072FA12280D74ED00C7F8D4 /* HistoryInspectorModel.swift */; };
 		2072FA16280D83A500C7F8D4 /* FileTypeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072FA15280D83A500C7F8D4 /* FileTypeList.swift */; };
 		2072FA18280D871200C7F8D4 /* TextEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072FA17280D871200C7F8D4 /* TextEncoding.swift */; };
@@ -557,6 +558,7 @@
 		202F2E3A289E7483000D3CAD /* FindNavigatorListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorListViewController.swift; sourceTree = "<group>"; };
 		2032B50D28A256130089EBB6 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		2032B50F28A256F50089EBB6 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowHostingController.swift; sourceTree = "<group>"; };
 		2072FA12280D74ED00C7F8D4 /* HistoryInspectorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInspectorModel.swift; sourceTree = "<group>"; };
 		2072FA15280D83A500C7F8D4 /* FileTypeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypeList.swift; sourceTree = "<group>"; };
 		2072FA17280D871200C7F8D4 /* TextEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEncoding.swift; sourceTree = "<group>"; };
@@ -1142,6 +1144,14 @@
 				2B4C1313289D56F9000ED796 /* STTextView.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		2032B51128A26B2D0089EBB6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		2072FA14280D838800C7F8D4 /* Lists */ = {
@@ -2173,6 +2183,7 @@
 		20D838FB289A7AD600D91D05 /* About */ = {
 			isa = PBXGroup;
 			children = (
+				2032B51128A26B2D0089EBB6 /* Controller */,
 				20D838FC289A7AD600D91D05 /* UI */,
 			);
 			path = About;
@@ -3274,6 +3285,7 @@
 				2B4C1354289D6457000ED796 /* STTextView+Select2.swift in Sources */,
 				043C321427E31FF6006AE443 /* AuroraEditorDocumentController.swift in Sources */,
 				2093CCAA289AA01A003A88DD /* FileItem+Array.swift in Sources */,
+				2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */,
 				2093CD48289AA095003A88DD /* Parameters.swift in Sources */,
 				20EBB503280C327C00F3A5DA /* HistoryInspector.swift in Sources */,
 				2093CD13289AA054003A88DD /* GitClientLive.swift in Sources */,
