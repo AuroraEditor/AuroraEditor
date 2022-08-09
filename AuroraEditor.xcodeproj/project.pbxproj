@@ -1656,15 +1656,15 @@
 		20D837FB289A7ACD00D91D05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				20D83805289A7ACD00D91D05 /* AppPreferences.swift */,
 				20D837FE289A7ACD00D91D05 /* AppPreferencesModel.swift */,
-				20D837E1289A7ACD00D91D05 /* ThemePreferences */,
-				20D837FC289A7ACD00D91D05 /* Source Control */,
+				20D83805289A7ACD00D91D05 /* AppPreferences.swift */,
 				20D837FF289A7ACD00D91D05 /* General */,
-				20D83801289A7ACD00D91D05 /* Text Editing */,
-				20D83803289A7ACD00D91D05 /* Terminal */,
-				20D83806289A7ACD00D91D05 /* Accounts */,
 				20D83809289A7ACD00D91D05 /* Theme */,
+				20D83806289A7ACD00D91D05 /* Accounts */,
+				20D83803289A7ACD00D91D05 /* Terminal */,
+				20D83801289A7ACD00D91D05 /* Text Editing */,
+				20D837FC289A7ACD00D91D05 /* Source Control */,
+				20D837E1289A7ACD00D91D05 /* ThemePreferences */,
 			);
 			path = Model;
 			sourceTree = "<group>";

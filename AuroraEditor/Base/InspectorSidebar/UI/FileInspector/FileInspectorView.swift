@@ -6,12 +6,25 @@
 //
 import SwiftUI
 
+// swiftlint:disable:next type_body_length
 struct FileInspectorView: View {
 
     @ObservedObject
     private var inspectorModel: FileInspectorModel
 
     let fileManager = FileManager.default
+
+    @State
+    private var identityTypeHover: Bool = false
+
+    @State
+    private var hideidentityType: Bool = true
+
+    @State
+    private var textSettingsHover: Bool = false
+
+    @State
+    private var hideTextSettings: Bool = true
 
     /// Initialize with GitClient
     /// - Parameter gitClient: a GitClient
@@ -22,127 +35,176 @@ struct FileInspectorView: View {
     var body: some View {
         VStack(alignment: .leading) {
 
-            Text("Identity and Type")
-                .foregroundColor(.secondary)
-                .fontWeight(.bold)
-                .font(.system(size: 13))
-
-            VStack(alignment: .trailing) {
+            VStack {
                 HStack {
-                    Text("Name")
-                        .foregroundColor(.primary)
-                        .fontWeight(.regular)
-                        .font(.system(size: 10))
-                    TextField("", text: $inspectorModel.fileName)
-                        .font(.system(size: 11))
-                        .frame(maxWidth: 150)
-                        .onChange(of: inspectorModel.fileName) { _ in
-                            changeFileName(newFileName: inspectorModel.fileName)
-                        }
-                }
+                    Text("Identity and Type")
+                        .foregroundColor(.secondary)
+                        .fontWeight(.bold)
+                        .font(.system(size: 13))
 
-                HStack {
-                    Text("Type")
-                        .foregroundColor(.primary)
-                        .fontWeight(.regular)
-                        .font(.system(size: 10))
-                    fileType
-                }
+                    Spacer()
 
-                Divider()
-            }
-
-            VStack(alignment: .trailing) {
-                HStack(alignment: .top) {
-                    Text("Location")
-                        .foregroundColor(.primary)
-                        .fontWeight(.regular)
-                        .font(.system(size: 10))
-
-                    VStack {
-                        location
-                        HStack {
-                            Text(inspectorModel.fileName)
-                                .font(.system(size: 11))
-
-                            Spacer()
-
-                            Image(systemName: "folder.fill")
-                                .resizable()
-                                .foregroundColor(.secondary)
-                                .frame(width: 13, height: 11)
-                        }
-                    }.frame(maxWidth: 150)
-                }
-                .padding(.top, 1)
-
-                HStack(alignment: .top) {
-                    Text("Full Path")
-                        .foregroundColor(.primary)
-                        .fontWeight(.regular)
-                        .font(.system(size: 10))
-
-                    HStack(alignment: .bottom) {
-                        Text(inspectorModel.fileURL)
-                            .foregroundColor(.primary)
-                            .fontWeight(.regular)
-                            .font(.system(size: 10))
-                            .lineLimit(4)
-
-                        Image(systemName: "arrow.forward.circle.fill")
-                            .resizable()
+                    if identityTypeHover {
+                        Text(hideidentityType ? "Hide" : "Show")
                             .foregroundColor(.secondary)
-                            .frame(width: 11, height: 11)
+                            .fontWeight(.bold)
                             .onTapGesture {
-                                guard let url = URL(string: "file://\(inspectorModel.fileURL)") else {
-                                    Log.error("Failed to decode")
-                                    return
-                                }
+                                hideidentityType.toggle()
+                            }
+                    }
+                }
 
-                                NSWorkspace.shared.activateFileViewerSelecting([url])
+                if hideidentityType {
+                    VStack {
+                        VStack(alignment: .trailing) {
+                            HStack {
+                                Text("Name")
+                                    .foregroundColor(.primary)
+                                    .fontWeight(.regular)
+                                    .font(.system(size: 10))
+                                TextField("", text: $inspectorModel.fileName)
+                                    .font(.system(size: 11))
+                                    .frame(maxWidth: 150)
+                                    .onChange(of: inspectorModel.fileName) { _ in
+                                        changeFileName(newFileName: inspectorModel.fileName)
+                                    }
                             }
 
+                            HStack {
+                                Text("Type")
+                                    .foregroundColor(.primary)
+                                    .fontWeight(.regular)
+                                    .font(.system(size: 10))
+                                fileType
+                            }
+
+                            Divider()
+                        }
+
+                        VStack(alignment: .trailing) {
+                            HStack(alignment: .top) {
+                                Text("Location")
+                                    .foregroundColor(.primary)
+                                    .fontWeight(.regular)
+                                    .font(.system(size: 10))
+
+                                VStack {
+                                    location
+                                    HStack {
+                                        Text(inspectorModel.fileName)
+                                            .font(.system(size: 11))
+
+                                        Spacer()
+
+                                        Image(systemName: "folder.fill")
+                                            .resizable()
+                                            .foregroundColor(.secondary)
+                                            .frame(width: 13, height: 11)
+                                    }
+                                }.frame(maxWidth: 150)
+                            }
+                            .padding(.top, 1)
+
+                            HStack(alignment: .top) {
+                                Text("Full Path")
+                                    .foregroundColor(.primary)
+                                    .fontWeight(.regular)
+                                    .font(.system(size: 10))
+
+                                HStack(alignment: .bottom) {
+                                    Text(inspectorModel.fileURL)
+                                        .foregroundColor(.primary)
+                                        .fontWeight(.regular)
+                                        .font(.system(size: 10))
+                                        .lineLimit(4)
+
+                                    Image(systemName: "arrow.forward.circle.fill")
+                                        .resizable()
+                                        .foregroundColor(.secondary)
+                                        .frame(width: 11, height: 11)
+                                        .onTapGesture {
+                                            guard let url = URL(string: "file://\(inspectorModel.fileURL)") else {
+                                                Log.error("Failed to decode")
+                                                return
+                                            }
+
+                                            NSWorkspace.shared.activateFileViewerSelecting([url])
+                                        }
+
+                                }
+                                .frame(maxWidth: 150, alignment: .leading)
+                            }
+                            .padding(.top, -5)
+
+                            Divider()
+                        }
                     }
-                    .frame(maxWidth: 150, alignment: .leading)
                 }
-                .padding(.top, -5)
+            }
+            .onHover { hover in
+                identityTypeHover = hover
+            }
 
+            if !hideidentityType {
                 Divider()
             }
 
-            Text("Text Settings")
-                .foregroundColor(.secondary)
-                .fontWeight(.bold)
-
-            VStack(alignment: .trailing) {
+            VStack(alignment: .leading) {
                 HStack {
-                    Text("Text Encoding")
-                        .foregroundColor(.primary)
-                        .fontWeight(.regular)
-                        .font(.system(size: 10))
-                    textEncoding
+                    Text("Text Settings")
+                        .foregroundColor(.secondary)
+                        .fontWeight(.bold)
+
+                    Spacer()
+
+                    if textSettingsHover {
+                        Text(hideTextSettings ? "Hide" : "Show")
+                            .foregroundColor(.secondary)
+                            .fontWeight(.bold)
+                            .onTapGesture {
+                                hideTextSettings.toggle()
+                            }
+                    }
                 }
 
-                HStack {
-                    Text("Line Endings")
-                        .foregroundColor(.primary)
-                        .fontWeight(.regular)
-                        .font(.system(size: 10))
-                    lineEndings
-                }
-                .padding(.top, 4)
+                if hideTextSettings {
+                    VStack(alignment: .trailing) {
+                        HStack {
+                            Text("Text Encoding")
+                                .foregroundColor(.primary)
+                                .fontWeight(.regular)
+                                .font(.system(size: 10))
+                            textEncoding
+                        }
 
-                Divider()
+                        HStack {
+                            Text("Line Endings")
+                                .foregroundColor(.primary)
+                                .fontWeight(.regular)
+                                .font(.system(size: 10))
+                            lineEndings
+                        }
+                        .padding(.top, 4)
 
-                HStack {
-                    Text("Indent Using")
-                        .foregroundColor(.primary)
-                        .fontWeight(.regular)
-                        .font(.system(size: 10))
-                    indentUsing
+                        Divider()
+
+                        HStack {
+                            Text("Indent Using")
+                                .foregroundColor(.primary)
+                                .fontWeight(.regular)
+                                .font(.system(size: 10))
+                            indentUsing
+                        }
+                        .padding(.top, 1)
+                    }
                 }
-                .padding(.top, 1)
             }
+            .onHover { hovering in
+                textSettingsHover = hovering
+            }
+
+            Divider()
+
         }.frame(maxWidth: 250).padding(5)
     }
 
@@ -294,7 +356,7 @@ struct FileInspectorView: View {
     }
 
     private func changeFileName(newFileName: String) {
-        var fileName = "\((inspectorModel.fileURL as NSString).deletingLastPathComponent)/\(newFileName)"
+        let fileName = "\((inspectorModel.fileURL as NSString).deletingLastPathComponent)/\(newFileName)"
         do {
             try fileManager.moveItem(atPath: inspectorModel.fileURL,
                                      toPath: fileName)
