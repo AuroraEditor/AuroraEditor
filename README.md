@@ -60,8 +60,15 @@ This project originates from https://github.com/CodeEditApp/CodeEdit. We decided
 ## Community
 
 Join our community on [Discord](https://discord.gg/vsu37gqGrK) where we discuss and collaborate on all things of Aurora Editor.
-
 Don't be shy, jump right in and be part of the discussion!
+
+## Community Details
+
+We would love to hear what kind of great ideas you as the community have. If you have an idea or a feature request for Aurora Editor feel free to add it to the [Ideas Discussion](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/ideas).
+
+If you created an awesome feature for Aurora Editor why not [Show and tell](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/show-and-tell), and celebrate with the community and developers of Aurora Editor.
+
+When we have some awesome news or a big annoucement to make, we will be making it in the [Annoucement Discussion](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/announcements). So stay tuned for any future annoucments.
 
 ## Contributing
 
