@@ -44,8 +44,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         checkForFilesToOpen()
 
         DispatchQueue.main.async {
-            var needToHandleOpen = true
-
             if NSApp.windows.isEmpty {
                 if let projects = UserDefaults.standard.array(forKey: AppDelegate.recoverWorkspacesKey) as? [String],
                    !projects.isEmpty {
@@ -62,9 +60,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                     }
 
                     Log.info("No need to open Welcome Screen (projects)")
-                    needToHandleOpen = false
                 } else {
-                    Log.info("No open project.")
+                    self.handleOpen()
                 }
             }
 
@@ -82,13 +79,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                     }
 
                     Log.info("No need to open Welcome Screen (commandline)")
-                    needToHandleOpen = false
                 }
-            }
-
-            if needToHandleOpen {
-                Log.info("need to open Welcome Screen")
-                self.handleOpen()
             }
         }
 

@@ -186,19 +186,37 @@ struct TabBar: View {
 
             TabBarAccessoryIcon(
                 icon: .init(systemName: "chevron.left"),
-                action: { /* TODO */ }
+                action: {
+                    var currentTab = workspace.selectionState.selectedId
+
+                    guard let idx = workspace.selectionState.openedTabs.firstIndex(of: currentTab!) else { return }
+
+                    if workspace.selectionState.selectedId == currentTab {
+                        workspace.selectionState.selectedId = workspace.selectionState.openedTabs[idx - 1]
+                    }
+                }
             )
             .font(Font.system(size: 14, weight: .light, design: .default))
             .foregroundColor(.secondary)
+            .disabled(workspace.selectionState.openedTabs.isEmpty || disableTabNavigationLeft())
             .buttonStyle(.plain)
             .help("Navigate back")
 
             TabBarAccessoryIcon(
                 icon: .init(systemName: "chevron.right"),
-                action: { /* TODO */ }
+                action: {
+                    var currentTab = workspace.selectionState.selectedId
+
+                    guard let idx = workspace.selectionState.openedTabs.firstIndex(of: currentTab!) else { return }
+
+                    if workspace.selectionState.selectedId == currentTab {
+                        workspace.selectionState.selectedId = workspace.selectionState.openedTabs[idx + 1]
+                    }
+                }
             )
             .font(Font.system(size: 14, weight: .light, design: .default))
             .foregroundColor(.secondary)
+            .disabled(workspace.selectionState.openedTabs.isEmpty)
             .buttonStyle(.plain)
             .help("Navigate forward")
         }
@@ -217,7 +235,8 @@ struct TabBar: View {
             if !workspace.selectionState.openFileItems.isEmpty {
                 TabBarAccessoryIcon(
                     icon: .init(systemName: "arrow.left.arrow.right"),
-                    action: { /* TODO */ }
+                    action: {
+                    }
                 )
                 .font(Font.system(size: 10, weight: .light, design: .default))
                 .foregroundColor(.secondary)
@@ -255,5 +274,19 @@ struct TabBar: View {
                 TabBarAccessoryNativeBackground(dividerAt: .leading)
             }
         }
+    }
+
+    private func disableTabNavigationLeft() -> Bool {
+        let openedTabs = workspace.selectionState.openedTabs
+        var currentTab = workspace.selectionState.selectedId
+        let tabPosition = openedTabs.firstIndex {
+            $0 == currentTab
+        }
+
+        if tabPosition == 0 {
+            return true
+        }
+
+        return false
     }
 }
