@@ -122,6 +122,23 @@ extension SourceControlController: NSOutlineViewDelegate {
         }
     }
 
+    func outlineViewSelectionDidChange(_ notification: Notification) {
+        guard let outlineView = notification.object as? NSOutlineView else {
+            return
+        }
+
+        let selectedIndex = outlineView.selectedRow
+
+        guard let navigatorItem = outlineView.item(atRow: selectedIndex) as? Item else { return }
+
+        if !(workspace?.selectionState.openedTabs.contains(navigatorItem.tabID) ?? false) {
+            if navigatorItem.children == nil && shouldSendSelectionUpdate {
+                workspace?.openTab(item: navigatorItem)
+                Log.warning("Opened a new tab for: \(navigatorItem.url)")
+            }
+        }
+    }
+
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
         rowHeight // This can be changed to 20 to match Xcode's row height.
     }
