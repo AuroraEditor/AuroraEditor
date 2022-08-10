@@ -16,7 +16,6 @@ final class SourceControlController: NSViewController {
     private var outlineView: NSOutlineView!
 
     var workspace: WorkspaceDocument?
-    var sourceControlModel: SourceControlModel?
 
     var iconColor: AppPreferences.FileIconStyle = .color
     var fileExtensionVisibility: AppPreferences.FileExtensionsVisibility = .showAll
@@ -48,10 +47,9 @@ final class SourceControlController: NSViewController {
         column.title = "Source Control"
         outlineView.addTableColumn(column)
 
-        scrollView.documentView = view
+        scrollView.documentView = outlineView
         scrollView.contentView.automaticallyAdjustsContentInsets = false
         scrollView.contentView.contentInsets = .init(top: 10, left: 0, bottom: 0, right: 0)
-
     }
 
     init() {
@@ -76,11 +74,12 @@ final class SourceControlController: NSViewController {
 
 extension SourceControlController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        return sourceControlModel?.changed.count ?? 0
+        Log.info("number of children requested for \(String(describing: item))")
+        return workspace?.workspaceClient?.model?.changed.count ?? 0
     }
 
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        return sourceControlModel?.changed[index] ?? 0
+        return workspace?.workspaceClient?.model?.changed[index] ?? 0
     }
 
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
