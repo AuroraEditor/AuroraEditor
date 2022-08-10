@@ -89,6 +89,7 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
 
         scrollView.documentView = textView
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.contentInsets = .init(top: 5, left: 0, bottom: 0, right: 0)
 
         self.view = scrollView
 
