@@ -106,18 +106,7 @@ extension SourceControlController: NSOutlineViewDelegate {
 
         let frameRect = NSRect(x: 0, y: 0, width: tableColumn.width, height: rowHeight)
 
-        let view = SourceControlTableViewCell(frame: frameRect)
-
-        if let item = item as? Item {
-            let image = NSImage(systemSymbolName: item.systemImage, accessibilityDescription: nil)!
-            view.fileItem = item
-            view.icon.image = image
-            view.icon.contentTintColor = color(for: item)
-            view.toolTip = item.fileName
-            view.label.stringValue = outlineViewLabel(for: item)
-        }
-
-        return view
+        return SourceControlTableViewCell(frame: frameRect, item: item as? Item)
     }
 
     private func outlineViewLabel(for item: Item) -> String {

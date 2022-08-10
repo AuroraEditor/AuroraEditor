@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// A `NSTableCellView` showing an ``icon`` and a ``label``
-final class OutlineTableViewCell: NSTableCellView {
+class OutlineTableViewCell: NSTableCellView {
 
     var label: NSTextField!
     var changeLabel: NSTextField!
