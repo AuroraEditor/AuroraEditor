@@ -53,6 +53,12 @@ struct ChangesView: View {
                             .foregroundColor(.secondary)
                         }
                         .listStyle(.sidebar)
+                        .onChange(of: selectedFile, perform: { newSelection in
+                            if let wsSelectedFile = try? workspace.workspaceClient?.getFileItem(newSelection ?? "") {
+                                workspace.openTab(item: wsSelectedFile)
+                            }
+                            Log.info("New selection: \(newSelection ?? "")")
+                        })
                     }
                 case .loading:
                     VStack {

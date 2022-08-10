@@ -121,7 +121,6 @@ final class OutlineTableViewCell: NSTableCellView {
     }
 
     func addModel() {
-        Log.info("Adding model for \(fileItem.url.path)")
         changeLabel.stringValue = fileItem.gitStatus?.description ?? ""
         changeLabelIsSmall = changeLabel.stringValue.isEmpty
     }
