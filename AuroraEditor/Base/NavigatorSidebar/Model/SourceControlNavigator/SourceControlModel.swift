@@ -76,13 +76,15 @@ public final class SourceControlModel: ObservableObject {
         }
     }
 
-    public func reloadChangedFiles() -> [URL] {
+    public func reloadChangedFiles() -> [FileItem] {
         do {
             let newChanged = try gitClient.getChangedFiles()
             DispatchQueue.main.async { self.state = .success }
             let difference = newChanged.map({ $0.url }).difference(from: changed.map({ $0.url }))
+            var differentFiles = newChanged.filter { difference.contains($0.url) }
+            differentFiles += changed.filter { difference.contains($0.url) }
             changed = newChanged
-            return difference
+            return differentFiles
         } catch {
             changed = []
             DispatchQueue.main.async { self.state = .success }

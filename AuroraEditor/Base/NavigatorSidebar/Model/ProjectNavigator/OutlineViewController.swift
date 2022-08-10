@@ -78,6 +78,16 @@ final class OutlineViewController: NSViewController {
         }
         outlineView.expandItem(outlineView.item(atRow: 0))
         saveExpansionState()
+        reloadChangedFiles()
+    }
+
+    func reloadChangedFiles() {
+        if let model = workspace?.workspaceClient?.model, let wsClient = workspace?.workspaceClient {
+            for item in model.reloadChangedFiles() {
+                outlineView.reloadItem(try? wsClient.getFileItem(item.id))
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { self.reloadChangedFiles() })
+        }
     }
 
     init() {
