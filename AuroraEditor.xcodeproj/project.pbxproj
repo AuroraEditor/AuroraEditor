@@ -389,6 +389,10 @@
 		20C8D7DC287ED2C700C5B3BA /* ToolbarBranchPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8D7DB287ED2C700C5B3BA /* ToolbarBranchPicker.swift */; };
 		20D839AB280DEB2900B27357 /* NoSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D839AA280DEB2900B27357 /* NoSelectionView.swift */; };
 		20D839AE280E0CA700B27357 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D839AD280E0CA700B27357 /* PopoverView.swift */; };
+		20E8748C28A3AB89002CE758 /* SourceControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8748B28A3AB89002CE758 /* SourceControlTableViewCell.swift */; };
+		20E8748E28A3AB9B002CE758 /* SourceControlMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8748D28A3AB9B002CE758 /* SourceControlMenu.swift */; };
+		20E8749028A3ABA8002CE758 /* SourceControlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8748F28A3ABA8002CE758 /* SourceControlController.swift */; };
+		20E8749228A3ABB6002CE758 /* SourceControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8749128A3ABB6002CE758 /* SourceControlView.swift */; };
 		20EBB501280C325D00F3A5DA /* FileInspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBB500280C325D00F3A5DA /* FileInspectorView.swift */; };
 		20EBB503280C327C00F3A5DA /* HistoryInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBB502280C327C00F3A5DA /* HistoryInspector.swift */; };
 		20EBB505280C329800F3A5DA /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBB504280C329800F3A5DA /* HistoryItem.swift */; };
@@ -890,6 +894,10 @@
 		20D838FD289A7AD600D91D05 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		20D839AA280DEB2900B27357 /* NoSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSelectionView.swift; sourceTree = "<group>"; };
 		20D839AD280E0CA700B27357 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
+		20E8748B28A3AB89002CE758 /* SourceControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlTableViewCell.swift; sourceTree = "<group>"; };
+		20E8748D28A3AB9B002CE758 /* SourceControlMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlMenu.swift; sourceTree = "<group>"; };
+		20E8748F28A3ABA8002CE758 /* SourceControlController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlController.swift; sourceTree = "<group>"; };
+		20E8749128A3ABB6002CE758 /* SourceControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlView.swift; sourceTree = "<group>"; };
 		20EBB500280C325D00F3A5DA /* FileInspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInspectorView.swift; sourceTree = "<group>"; };
 		20EBB502280C327C00F3A5DA /* HistoryInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInspector.swift; sourceTree = "<group>"; };
 		20EBB504280C329800F3A5DA /* HistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
@@ -2306,6 +2314,10 @@
 			isa = PBXGroup;
 			children = (
 				201169E62837B5CA00F92B46 /* SourceControlModel.swift */,
+				20E8748B28A3AB89002CE758 /* SourceControlTableViewCell.swift */,
+				20E8748D28A3AB9B002CE758 /* SourceControlMenu.swift */,
+				20E8748F28A3ABA8002CE758 /* SourceControlController.swift */,
+				20E8749128A3ABB6002CE758 /* SourceControlView.swift */,
 			);
 			path = SourceControlNavigator;
 			sourceTree = "<group>";
@@ -3193,6 +3205,7 @@
 				2093CC9A289A9FFD003A88DD /* StatusBarMaximizeButton.swift in Sources */,
 				2093CDDF289AA522003A88DD /* Bundle+Info.swift in Sources */,
 				2093CD52289AA0AE003A88DD /* FeedbackType.swift in Sources */,
+				20E8749028A3ABA8002CE758 /* SourceControlController.swift in Sources */,
 				2093CCA9289AA01A003A88DD /* WorkspaceClientMock.swift in Sources */,
 				0463E51327FCC1FB00806D5C /* AuroraEditorTargetsAPI.swift in Sources */,
 				2093CCA5289AA015003A88DD /* FileIcon.swift in Sources */,
@@ -3226,6 +3239,7 @@
 				2093CDAD289AA185003A88DD /* ThemePreviewIcon.swift in Sources */,
 				2093CC97289A9FF5003A88DD /* StatusBarBreakpointButton.swift in Sources */,
 				2093CD65289AA0E8003A88DD /* CodeLanguage.swift in Sources */,
+				20E8748E28A3AB9B002CE758 /* SourceControlMenu.swift in Sources */,
 				2093CD15289AA054003A88DD /* GitClientInterface.swift in Sources */,
 				2093CD5A289AA0C6003A88DD /* PluginRelease.swift in Sources */,
 				2093CDE9289AAE8B003A88DD /* StashWindowsChanges.swift in Sources */,
@@ -3251,6 +3265,7 @@
 				2093CD85289AA11A003A88DD /* NSFont+LineHeight.swift in Sources */,
 				2093CD5F289AA0E4003A88DD /* CodeFileView.swift in Sources */,
 				2093CD41289AA095003A88DD /* Event.swift in Sources */,
+				20E8748C28A3AB89002CE758 /* SourceControlTableViewCell.swift in Sources */,
 				2093CD16289AA054003A88DD /* Commit.swift in Sources */,
 				2B4C1347289D56F9000ED796 /* STTextView+Insert.swift in Sources */,
 				2093CDCB289AA260003A88DD /* TabBarItem.swift in Sources */,
@@ -3301,6 +3316,7 @@
 				2B4C133A289D56F9000ED796 /* STCompletion.swift in Sources */,
 				209D0259289ABFF70082441F /* AuroraEditorTextView.swift in Sources */,
 				2B4C133E289D56F9000ED796 /* NSResponder+debug.swift in Sources */,
+				20E8749228A3ABB6002CE758 /* SourceControlView.swift in Sources */,
 				2093CD9E289AA15F003A88DD /* Providers.swift in Sources */,
 				2093CD2A289AA084003A88DD /* GistRouter.swift in Sources */,
 				2093CD6A289AA0F2003A88DD /* BreadcrumbsView.swift in Sources */,
