@@ -55,10 +55,8 @@ public extension WorkspaceClient {
             }
 
             // reload git changes
-            let changedFiles = model?.reloadChangedFiles()
-            Log.info("Changedfiles: \(changedFiles ?? [])")
+            _ = model?.reloadChangedFiles()
             for changedFile in (model?.changed ?? []) {
-                Log.info("Git status for \(changedFile.url.path) is \(changedFile.gitStatus?.description ?? "unknown")")
                 flattenedFileItems[changedFile.id]?.gitStatus = changedFile.gitStatus
             }
 
