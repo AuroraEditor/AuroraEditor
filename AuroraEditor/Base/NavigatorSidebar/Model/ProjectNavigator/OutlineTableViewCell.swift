@@ -41,7 +41,6 @@ final class OutlineTableViewCell: NSTableCellView {
     ///   - frameRect: The frame of the cell.
     ///   - item: The file item the cell represents.
     ///   - isEditable: Set to true if the user should be able to edit the file name.
-    // swiftlint:disable:next function_body_length
     init(frame frameRect: NSRect, item: WorkspaceClient.FileItem?, isEditable: Bool = true) {
         super.init(frame: frameRect)
 
@@ -54,7 +53,7 @@ final class OutlineTableViewCell: NSTableCellView {
         label.isSelectable = isEditable
         label.delegate = self
         label.layer?.cornerRadius = 10.0
-        label.font = .labelFont(ofSize: fontSize)
+        label.font = .labelFont(ofSize: fontSize-1)
         label.lineBreakMode = .byTruncatingMiddle
         addSubview(label)
         self.textField = label
@@ -88,15 +87,13 @@ final class OutlineTableViewCell: NSTableCellView {
             label.stringValue = label(for: item)
         }
 
+        createConstraints(frame: frameRect)
+
         if let folderURL = workspace?.workspaceClient?.folderURL() {
             self.model = .init(workspaceURL: folderURL)
         }
 
-        if let folderURL = workspace?.workspaceClient?.folderURL() {
-            addModel(directoryURL: folderURL)
-        }
-
-        createConstraints(frame: frameRect)
+        addModel()
     }
 
     func createConstraints(frame frameRect: NSRect) {
@@ -123,7 +120,8 @@ final class OutlineTableViewCell: NSTableCellView {
         changeLabel.usesSingleLineMode = true
     }
 
-    func addModel(directoryURL: URL) {
+    func addModel() {
+        Log.info("Adding model for \(fileItem.url.path)")
         changeLabel.stringValue = fileItem.gitStatus?.description ?? ""
         changeLabelIsSmall = changeLabel.stringValue.isEmpty
     }

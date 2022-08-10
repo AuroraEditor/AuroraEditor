@@ -34,7 +34,6 @@ public extension WorkspaceClient {
         public var watcher: DispatchSourceFileSystemObject?
         public var watcherCode: (FileItem) -> Void = { _ in }
 
-        public var model: SourceControlModel?
         public var gitStatus: GitType?
 
         public func activateWatcher() -> Bool {
@@ -57,11 +56,9 @@ public extension WorkspaceClient {
 
         public init(url: URL,
                     children: [FileItem]? = nil,
-                    model: SourceControlModel? = nil,
                     changeType: GitType? = nil) {
             self.url = url
             self.children = children
-            self.model = model
             self.gitStatus = changeType
             id = url.relativePath
         }

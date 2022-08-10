@@ -55,7 +55,12 @@ public extension WorkspaceClient {
             }
 
             // reload git changes
-            _ = model?.reloadChangedFiles()
+            let changedFiles = model?.reloadChangedFiles()
+            Log.info("Changedfiles: \(changedFiles ?? [])")
+            for changedFile in (model?.changed ?? []) {
+                Log.info("Git status for \(changedFile.url.path) is \(changedFile.gitStatus?.description ?? "unknown")")
+                flattenedFileItems[changedFile.id]?.gitStatus = changedFile.gitStatus
+            }
 
             // run the onUpdate function after changes have been made
             onUpdate()
@@ -91,8 +96,7 @@ public extension WorkspaceClient {
                     }
 
                     let newFileItem = FileItem(url: itemURL,
-                                               children: subItems?.sortItems(foldersOnTop: true),
-                                               model: model)
+                                               children: subItems?.sortItems(foldersOnTop: true))
                     // note: watcher code will be applied after the workspaceItem is created
                     newFileItem.watcherCode = watcherCode
                     subItems?.forEach { $0.parent = newFileItem }
@@ -139,8 +143,7 @@ public extension WorkspaceClient {
                     if isDir.boolValue { subItems = try loadFiles(fromURL: newContent) }
 
                     let newFileItem = FileItem(url: newContent,
-                                               children: subItems?.sortItems(foldersOnTop: true),
-                                               model: model)
+                                               children: subItems?.sortItems(foldersOnTop: true))
                     newFileItem.watcherCode = watcherCode
                     subItems?.forEach { $0.parent = newFileItem }
                     newFileItem.parent = fileItem
