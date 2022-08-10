@@ -6,6 +6,7 @@
 //
 import SwiftUI
 
+// The source control history cell view
 struct HistoryItem: View {
 
     var commit: Commit

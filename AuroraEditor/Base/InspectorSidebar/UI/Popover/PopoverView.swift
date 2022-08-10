@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+// This popup view shows us information about
+// a certain commit that is in the History Inspector
+// view.
 struct PopoverView: View {
 
     private var commit: Commit
@@ -143,6 +146,7 @@ struct PopoverView: View {
         return "\(hash)?d=404&s=84" // send 404 if no image available, image size 84x84 (42x42 @2x)
     }
 
+    // Randomly chooses an avatar colour
     private var avatarColor: Color {
         let hash = generateAvatarHash().hash
         switch hash % 12 {

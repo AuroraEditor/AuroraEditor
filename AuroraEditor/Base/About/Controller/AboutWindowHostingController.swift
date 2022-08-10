@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+// This class helps display the AboutView
 final class AboutWindowHostingController: NSWindowController {
     convenience init<T: View>(view: T, size: NSSize) {
         let hostingController = NSHostingController(rootView: view)

@@ -174,7 +174,7 @@ struct TabBar: View {
     }
 
     // MARK: Accessories
-
+    // TabBar items on the left
     private var leadingAccessories: some View {
         HStack(spacing: 2) {
             Menu {
@@ -268,6 +268,7 @@ struct TabBar: View {
         }
     }
 
+    // TabBar items on right
     private var trailingAccessories: some View {
         HStack(spacing: 2) {
             if !workspace.selectionState.openFileItems.isEmpty {
@@ -314,6 +315,9 @@ struct TabBar: View {
         }
     }
 
+    // If the currently selected tab is the first item in
+    // the list we disable the left navigation button otherwise
+    // if it's > 0 we enable it.
     private func disableTabNavigationLeft() -> Bool {
         let openedTabs = workspace.selectionState.openedTabs
         var currentTab = workspace.selectionState.selectedId
@@ -328,6 +332,10 @@ struct TabBar: View {
         return false
     }
 
+    // Disables the right navigation button when the current tab
+    // is the last item in the list, if the current item is not the
+    // last item we re-enable it allowing the user to navigate forward
+    // of any open tabs they may have.
     private func disableTabNavigationRight() -> Bool {
         let openedTabs = workspace.selectionState.openedTabs
         var currentTab = workspace.selectionState.selectedId

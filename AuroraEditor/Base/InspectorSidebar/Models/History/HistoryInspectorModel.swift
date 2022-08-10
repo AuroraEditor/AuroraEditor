@@ -9,6 +9,7 @@ import Foundation
 
 public final class HistoryInspectorModel: ObservableObject {
 
+    /// The state of the current History Inspector View
     enum State {
         case loading
         case error

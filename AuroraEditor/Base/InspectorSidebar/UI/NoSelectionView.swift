@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// When a user doesn't have a file open but the Inspector View
+// is open we will show them this view as empty placeholder.
 struct NoSelectionView: View {
     var body: some View {
         VStack {

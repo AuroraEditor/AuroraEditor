@@ -8,6 +8,8 @@
 import Foundation
 import AppKit
 
+// This is a very basic implementation of handling crashes/bugs in live production
+// of Aurora Editor. This will end up being a more complex crashlytics in the future.
 public protocol AuroraCrashlyticsDelegate: NSObjectProtocol {
     func auroraCrashlyticsDidCatchCrash(with model: CrashModel)
 }

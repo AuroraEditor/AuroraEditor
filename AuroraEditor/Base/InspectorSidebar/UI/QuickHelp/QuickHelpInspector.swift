@@ -6,6 +6,8 @@
 //
 import SwiftUI
 
+// When selecting a function in the editor the QuickHelp
+// will give you a summary, decleration and discussion.
 struct QuickHelpInspector: View {
     var body: some View {
         VStack(alignment: .leading) {

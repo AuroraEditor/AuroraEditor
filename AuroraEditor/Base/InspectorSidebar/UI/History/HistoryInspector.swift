@@ -6,6 +6,8 @@
 //
 import SwiftUI
 
+// This shows source control history, and is very 
+// useful particularly if you are using git.
 struct HistoryInspector: View {
 
     @ObservedObject

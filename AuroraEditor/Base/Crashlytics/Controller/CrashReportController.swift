@@ -9,6 +9,7 @@ import Foundation
 
 import SwiftUI
 
+// This class helps display the Crash Reporting view before termination.
 final class CrashReportController: NSWindowController, NSToolbarDelegate {
     convenience init<T: View>(view: T) {
         let hostingController = NSHostingController(rootView: view)

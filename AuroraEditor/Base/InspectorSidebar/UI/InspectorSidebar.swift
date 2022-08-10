@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+// The main Inspector View that handles showing the different
+// views that the inspector has like the file inspector, history and
+// Quick Help.
 struct InspectorSidebar: View {
 
     @Environment(\.controlActiveState)

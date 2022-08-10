@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+// Shows the project name, runtime instance and the build
+// progress of a current project.
+//
+// This is still a work in progress.
 public struct ToolbarAppInfo: View {
 
     @Environment(\.controlActiveState)

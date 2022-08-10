@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+// This model handles sending crash report data to the Aurora Editor
+// Github repo.
 public class CrashReportModel: ObservableObject {
 
     public static let shared: CrashReportModel = .init()
@@ -40,6 +42,7 @@ public class CrashReportModel: ObservableObject {
         """
     }
 
+    // Creates a Github Issue
     public func createIssue(comments: String,
                             crashData: String) {
         let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
