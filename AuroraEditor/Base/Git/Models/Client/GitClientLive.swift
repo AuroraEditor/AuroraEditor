@@ -8,7 +8,8 @@
 import Foundation
 import Combine
 
-// TODO: DOCS (Marco Carnevali)
+// An extension class that makes the call to terminal to get
+// information or make a git action.
 public extension GitClient {
     /// Git client
     /// - Parameters:

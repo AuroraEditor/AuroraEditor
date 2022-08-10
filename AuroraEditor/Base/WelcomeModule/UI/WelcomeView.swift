@@ -9,13 +9,23 @@ import SwiftUI
 import AppKit
 import Foundation
 
+// The main window when opening Aurora Editor when there 
+// is no project to open. A user can open a project from
+// directory, create one or clone one from their desired
+// git provider.
 public struct WelcomeView: View {
-    @Environment(\.colorScheme) var colorScheme
-    @State var showGitClone = false
-    @State var showCheckoutBranch = false
-    @State private var repoPath = "~/"
-    @State var isHovering: Bool = false
-    @State var isHoveringClose: Bool = false
+    @Environment(\.colorScheme) 
+    var colorScheme
+    @State 
+    var showGitClone = false
+    @State 
+    var showCheckoutBranch = false
+    @State 
+    private var repoPath = "~/"
+    @State 
+    var isHovering: Bool = false
+    @State 
+    var isHoveringClose: Bool = false
 
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared

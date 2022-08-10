@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Used to determine the git type
 public enum GitType: String, Codable {
     case modified = "M"
     case unknown = "??"

@@ -8,7 +8,8 @@
 import Combine
 import Foundation
 
-// TODO: DOCS (Marco Carnevali)
+// A interface that is used accross AuroraEditor to access
+// contents of the WorkspaceClient.
 public struct WorkspaceClient {
 
     public var folderURL: () -> URL?
@@ -29,13 +30,11 @@ public struct WorkspaceClient {
     }
 
     // For some strange reason, swiftlint thinks this is wrong?
-    public init(
-        folderURL: @escaping () -> URL?,
-        getFiles: AnyPublisher<[FileItem], Never>,
-        getFileItem: @escaping (_ id: String) throws -> FileItem,
-        cleanUp: @escaping () -> Void = {},
-        model: SourceControlModel? = nil
-    ) {
+    public init(folderURL: @escaping () -> URL?,
+                getFiles: AnyPublisher<[FileItem], Never>,
+                getFileItem: @escaping (_ id: String) throws -> FileItem,
+                cleanUp: @escaping () -> Void = {},
+                model: SourceControlModel? = nil) {
         self.folderURL = folderURL
         self.getFiles = getFiles
         self.getFileItem = getFileItem

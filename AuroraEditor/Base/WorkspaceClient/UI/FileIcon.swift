@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-// TODO: DOCS (Nanashi Li)
-
 public enum FileIcon {
+    // Checks the file of the item extension
     public enum FileType: String {
         case json
         case js

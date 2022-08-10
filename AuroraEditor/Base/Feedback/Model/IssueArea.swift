@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Issue model
 struct IssueArea: Identifiable, Hashable {
     let name: String
     let id: String

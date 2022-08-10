@@ -7,7 +7,7 @@
 import Foundation
 import Combine
 
-// TODO: DOCS (Marco Carnevali)
+// A protocol to make calls to terminal to init a git call.
 public struct GitClient {
     public var getCurrentBranchName: () throws -> String
     public var getBranches: (Bool) throws -> [String]

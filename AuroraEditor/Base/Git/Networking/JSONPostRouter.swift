@@ -8,11 +8,8 @@
 // built for any other networking except those of git accounts
 
 import Foundation
-#if canImport(FoundationNetworking)
-import FoundationNetworking
-#endif
 
-// TODO: DOCS (Nanashi Li)
+// TODO: Rebuild Networking Layer for Accounts
 public protocol JSONPostRouter: Router {
     /// Post JSON
     /// - Parameters:

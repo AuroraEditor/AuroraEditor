@@ -9,6 +9,9 @@ import Foundation
 
 import SwiftUI
 
+// Shows the stash changes window from the main menu.
+//
+// BUG: Currently the window is not showing as a sheet.
 final class StashWindowsChanges: NSWindowController, NSToolbarDelegate {
     convenience init<T: View>(view: T) {
         let hostingController = NSHostingController(rootView: view)

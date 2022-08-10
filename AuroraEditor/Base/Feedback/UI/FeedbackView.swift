@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// A feedback view that allows users to report
+// any issue they might have had on the editor.
 public struct FeedbackView: View {
 
     public init() {}

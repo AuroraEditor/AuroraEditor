@@ -18,6 +18,7 @@ public extension WorkspaceClient {
     }
 
     /// An object containing all necessary information and actions for a specific file in the workspace
+    // TODO: Clean this up
     final class FileItem: Identifiable, Codable, TabBarItemRepresentable {
         public var tabID: TabBarItemID { .codeEditor(id) }
 

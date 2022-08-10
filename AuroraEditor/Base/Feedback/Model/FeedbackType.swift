@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Feedback type model
 struct FeedbackType: Identifiable, Hashable {
     let name: String
     let id: String

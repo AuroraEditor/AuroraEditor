@@ -10,7 +10,6 @@ import SwiftUI
 extension WelcomeWindowView {
 
     /// Helper function which opens welcome view
-    /// TODO: Move this to WelcomeModule after AuroraEditorDocumentController is in separate module
     static func openWelcomeWindow(function: String = #function, file: String = #file, line: Int = #line) {
         Log.info("openWelcomeWindow is called from \(function) on \(line) in \(file)")
         let window = NSWindow(

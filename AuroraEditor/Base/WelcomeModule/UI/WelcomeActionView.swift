@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+// A view to create a WelcomeActionView without having to
+// write boilerplate code every time a new action needs to
+// be added to the WelcomeView
 public struct WelcomeActionView: View {
     var iconName: String
     var title: String

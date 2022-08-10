@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Shows the feedback window model
 final class FeedbackWindowController: NSWindowController, NSToolbarDelegate {
     convenience init<T: View>(view: T, size: NSSize) {
         let hostingController = NSHostingController(rootView: view)

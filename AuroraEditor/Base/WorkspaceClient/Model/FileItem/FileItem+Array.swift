@@ -30,8 +30,7 @@ public extension Array where Element == WorkspaceClient.FileItem {
 
 public extension Array where Element: Hashable {
 
-    // TODO: DOCS (Marco Carnevali)
-    // swiftlint:disable:next missing_docs
+    // Checks the difference between two given items.
     func difference(from other: [Element]) -> [Element] {
         let thisSet = Set(self)
         let otherSet = Set(other)

@@ -7,7 +7,6 @@
 import Combine
 import Foundation
 
-// TODO: DOCS (Marco Carnevali)
 public extension WorkspaceClient {
     /// Default instance of WorkspaceClient
     /// - Parameters:

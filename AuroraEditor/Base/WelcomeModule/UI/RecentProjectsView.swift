@@ -22,6 +22,8 @@ public struct RecentProjectsView: View {
         self.recentProjectPaths = UserDefaults.standard.array(forKey: "recentProjectPaths") as? [String] ?? []
     }
 
+    // If there is a no recent projects opened we
+    // will show this view.
     private var emptyView: some View {
         VStack {
             Spacer()
@@ -31,6 +33,7 @@ public struct RecentProjectsView: View {
         }
     }
 
+    // MARK: Context Menu Items
     func contextMenuShowInFinder(projectPath: String) -> some View {
         Group {
             Button("Show in Finder") {

@@ -13,6 +13,8 @@ extension String {
     }
 }
 
+// This view creates a recent item cell for the WelcomeView
+// when a project has been recently opened.
 public struct RecentProjectItem: View {
     let projectPath: String
 
