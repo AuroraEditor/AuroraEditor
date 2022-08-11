@@ -57,6 +57,16 @@ This project originates from https://github.com/CodeEditApp/CodeEdit. We decided
 - We felt that the architecture of CodeEdit wasn't up to standard, but the admins were insistent on keeping the flawed structure. The only way we saw CodeEdit could continue is if this changed. 
 - Most of all, we want you to feel welcome, every commitment to the project counts!
 
+## Aurora Editor vs CodeEdit
+
+When looking at the core of both code bases there isn't to much difference between AE and CE, but we are trying to change that by following a more cleaner [architecture](https://github.com/AuroraEditor/AuroraEditor/wiki/Architecture), overtime the code base between AE and CE will barely be similar to each other. 
+
+We follow a strict set of principals when developing AE, some of which includes keeping the editor performant as possible, fixing all memory leaks that may hurt performance and making sure any PR that has been made follows AE's architecture guide closely, the code is readable at all times and meets our expectations in regards to performance, if it isn't we will work with the contributor till we have a satisfactory PR to merge in our `main` branch. 
+
+We try to keep our code base documented as much as possible making it easier for any new or existing contributor who's building new features or fixing a bug to just read the files documentation and instantly have an idea of what's happening.
+
+We respect the contributors that contributed to CE and we would like to thank them for giving us a base to begin with.
+
 ## Community
 
 Join our community on [Discord](https://discord.gg/vsu37gqGrK) where we discuss and collaborate on all things of Aurora Editor.
