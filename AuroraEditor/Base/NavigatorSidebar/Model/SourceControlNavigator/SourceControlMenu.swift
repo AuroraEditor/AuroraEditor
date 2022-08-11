@@ -52,9 +52,10 @@ final class SourceControlMenu: NSMenu {
         let openInNewWindow = menuItem("Open in New Indow", action: nil)
         let openExternalEditor = menuItem("Open with External Editor", action: #selector(openWithExternalEditor))
 
-        let commitFile = menuItem("Commit Selected Files...", action: nil)
+        let commitFile = menuItem("Commit \"\(item?.fileName ?? "Selected Files")\"...", action: nil)
 
-        let discardChanges = menuItem("Discard Changes in Selected Files...", action: #selector(discardChangesInFile))
+        let discardChanges = menuItem("Discard Changes in \"\(item?.fileName ?? "Selected Files")\"...",
+                                      action: #selector(discardChangesInFile))
 
         let addSelectedFiles = menuItem("Add Selected Files...", action: nil)
         let markAsResolved = menuItem("Mark Selected Files as Resolved", action: nil)

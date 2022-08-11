@@ -50,6 +50,7 @@
 		2072FA1C280D874000C7F8D4 /* IndentUsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072FA1B280D874000C7F8D4 /* IndentUsing.swift */; };
 		2072FA1E280D891500C7F8D4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072FA1D280D891500C7F8D4 /* Location.swift */; };
 		2077162E287C8EC80069C68E /* ToolbarAppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077162D287C8EC80069C68E /* ToolbarAppInfo.swift */; };
+		2086334F28A530AF00E29A22 /* CommitChangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2086334E28A530AF00E29A22 /* CommitChangesView.swift */; };
 		2093CC88289A9A04003A88DD /* CodeEditKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2093CC87289A9A04003A88DD /* CodeEditKit */; };
 		2093CC89289A9A04003A88DD /* CodeEditKit in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 2093CC87289A9A04003A88DD /* CodeEditKit */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2093CC8E289A9FA1003A88DD /* ShellClientLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838F3289A7ACE00D91D05 /* ShellClientLive.swift */; };
@@ -568,6 +569,7 @@
 		2072FA1B280D874000C7F8D4 /* IndentUsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndentUsing.swift; sourceTree = "<group>"; };
 		2072FA1D280D891500C7F8D4 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		2077162D287C8EC80069C68E /* ToolbarAppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarAppInfo.swift; sourceTree = "<group>"; };
+		2086334E28A530AF00E29A22 /* CommitChangesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitChangesView.swift; sourceTree = "<group>"; };
 		2093CDE3289AA881003A88DD /* IgnoredFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredFiles.swift; sourceTree = "<group>"; };
 		209D024A289ABC340082441F /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; name = Package.resolved; path = ../Package.resolved; sourceTree = "<group>"; };
 		209D0250289ABF9A0082441F /* STTextView+AutoComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STTextView+AutoComplete.swift"; sourceTree = "<group>"; };
@@ -2292,6 +2294,7 @@
 			isa = PBXGroup;
 			children = (
 				201169E12837B3D800F92B46 /* ChangesView.swift */,
+				2086334E28A530AF00E29A22 /* CommitChangesView.swift */,
 			);
 			path = Changes;
 			sourceTree = "<group>";
@@ -3199,6 +3202,7 @@
 				D7E201AE27E8B3C000CB86D0 /* String+Ranges.swift in Sources */,
 				20EBB50F280C389300F3A5DA /* FileInspectorModel.swift in Sources */,
 				2093CC9A289A9FFD003A88DD /* StatusBarMaximizeButton.swift in Sources */,
+				2086334F28A530AF00E29A22 /* CommitChangesView.swift in Sources */,
 				2093CDDF289AA522003A88DD /* Bundle+Info.swift in Sources */,
 				2093CD52289AA0AE003A88DD /* FeedbackType.swift in Sources */,
 				20E8749028A3ABA8002CE758 /* SourceControlController.swift in Sources */,

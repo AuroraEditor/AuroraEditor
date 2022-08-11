@@ -26,6 +26,7 @@ struct ChangesView: View {
                             .foregroundColor(.secondary)
                     } else {
                         SourceControlView(workspace: workspace)
+                        CommitChangesView(workspace: workspace)
                     }
                 case .loading:
                     VStack {
