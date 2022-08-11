@@ -14,17 +14,17 @@ import Foundation
 // directory, create one or clone one from their desired
 // git provider.
 public struct WelcomeView: View {
-    @Environment(\.colorScheme) 
+    @Environment(\.colorScheme)
     var colorScheme
-    @State 
+    @State
     var showGitClone = false
-    @State 
+    @State
     var showCheckoutBranch = false
-    @State 
+    @State
     private var repoPath = "~/"
-    @State 
+    @State
     var isHovering: Bool = false
-    @State 
+    @State
     var isHoveringClose: Bool = false
 
     @ObservedObject
@@ -59,8 +59,8 @@ public struct WelcomeView: View {
     private var macOsVersion: String {
         let url = URL(fileURLWithPath: "/System/Library/CoreServices/SystemVersion.plist")
         guard let dict = NSDictionary(contentsOf: url),
-           let version = dict["ProductUserVisibleVersion"],
-           let build = dict["ProductBuildVersion"]
+              let version = dict["ProductUserVisibleVersion"],
+              let build = dict["ProductBuildVersion"]
         else {
             return ProcessInfo.processInfo.operatingSystemVersionString
         }
