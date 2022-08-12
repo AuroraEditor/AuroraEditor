@@ -9,10 +9,10 @@ import SwiftUI
 // The source control history cell view
 struct HistoryItem: View {
 
-    var commit: Commit
+    var commit: CommitHistory
 
     @Binding
-    var selection: Commit?
+    var selection: CommitHistory?
 
     private var showPopup: Binding<Bool> {
         Binding<Bool> {
@@ -28,7 +28,7 @@ struct HistoryItem: View {
 
     @Environment(\.openURL) private var openCommit
 
-    init(commit: Commit, selection: Binding<Commit?>) {
+    init(commit: CommitHistory, selection: Binding<CommitHistory?>) {
         self.commit = commit
         self._selection = selection
     }

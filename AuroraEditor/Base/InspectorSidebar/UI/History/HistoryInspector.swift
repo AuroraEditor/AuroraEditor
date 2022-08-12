@@ -17,7 +17,7 @@ struct HistoryInspector: View {
     private var prefs: AppPreferencesModel = .shared
 
     @State
-    var selectedCommitHistory: Commit?
+    var selectedCommitHistory: CommitHistory?
 
     /// Initialize with GitClient
     /// - Parameter gitClient: a GitClient
@@ -42,9 +42,9 @@ struct HistoryInspector: View {
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else {
                         List(selection: $selectedCommitHistory) {
-                            ForEach(model.commitHistory) { commit in
-                                HistoryItem(commit: commit, selection: $selectedCommitHistory)
-                                    .tag(commit)
+                            ForEach(model.commitHistory) { commitHistory in
+                                HistoryItem(commit: commitHistory, selection: $selectedCommitHistory)
+                                    .tag(commitHistory)
                             }
                         }
                         .listStyle(.inset)

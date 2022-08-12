@@ -21,18 +21,7 @@ public extension GitClient {
         shellClient: ShellClient
     ) -> GitClient {
         func getBranches(_ allBranches: Bool = false) throws -> [String] {
-            if allBranches == true {
-                return try shellClient.run(
-                    "cd \(directoryURL.relativePath.escapedWhiteSpaces());git branch -a --format \"%(refname:short)\""
-                )
-                    .components(separatedBy: "\n")
-                    .filter { !$0.isEmpty }
-            }
-            return try shellClient.run(
-                "cd \(directoryURL.relativePath.escapedWhiteSpaces());git branch --format \"%(refname:short)\""
-            )
-                .components(separatedBy: "\n")
-                .filter { !$0.isEmpty }
+            return try Branches().getBranches(allBranches, directoryURL: directoryURL)
         }
 
         func getCurrentBranchName() throws -> String {
@@ -91,7 +80,7 @@ public extension GitClient {
 
         /// Gets the commit history log of the current file opened
         /// in the workspace.
-        func getCommitHistory(entries: Int?, fileLocalPath: String?) throws -> [Commit] {
+        func getCommitHistory(entries: Int?, fileLocalPath: String?) throws -> [CommitHistory] {
             var entriesString = ""
             let fileLocalPath = fileLocalPath?.escapedWhiteSpaces() ?? ""
             if let entries = entries { entriesString = "-n \(entries)" }
@@ -111,9 +100,9 @@ public extension GitClient {
             }
             return output
                 .split(separator: "\n")
-                .map { line -> Commit in
+                .map { line -> CommitHistory in
                     let parameters = line.components(separatedBy: "¦")
-                    return Commit(
+                    return CommitHistory(
                         hash: parameters[safe: 0] ?? "",
                         commitHash: parameters[safe: 1] ?? "",
                         message: parameters[safe: 2] ?? "",
@@ -227,11 +216,5 @@ public extension GitClient {
             discardProjectChanges: discardProjectChanges,
             stashChanges: stashChanges(message:)
         )
-    }
-}
-
-private extension String {
-    func escapedWhiteSpaces() -> String {
-        self.replacingOccurrences(of: " ", with: "\\ ")
     }
 }

@@ -22,7 +22,7 @@ public struct GitClient {
     ///   - entries: number of commits we want to fetch. Will use max if nil
     ///   - fileLocalPath: specify a local file (e.g. `AuroraEditorModules/Package.swift`)
     ///   to retrieve a file commit history. Optional.
-    public var getCommitHistory: (_ entries: Int?, _ fileLocalPath: String?) throws -> [Commit]
+    public var getCommitHistory: (_ entries: Int?, _ fileLocalPath: String?) throws -> [CommitHistory]
     public var discardFileChanges: (String) throws -> Void
     public var discardProjectChanges: () throws -> Void
     public var stashChanges: (String) throws -> Void
@@ -34,7 +34,7 @@ public struct GitClient {
         pull: @escaping () throws -> Void,
         cloneRepository: @escaping (String) -> AnyPublisher<CloneProgressResult, GitClientError>,
         getChangedFiles: @escaping () throws -> [FileItem],
-        getCommitHistory: @escaping (_ entries: Int?, _ fileLocalPath: String?) throws -> [Commit],
+        getCommitHistory: @escaping (_ entries: Int?, _ fileLocalPath: String?) throws -> [CommitHistory],
         discardFileChanges: @escaping (String) throws -> Void,
         discardProjectChanges: @escaping () throws -> Void,
         stashChanges: @escaping (String) throws -> Void
