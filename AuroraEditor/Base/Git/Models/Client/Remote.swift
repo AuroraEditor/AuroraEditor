@@ -89,7 +89,7 @@ public struct Remote {
 
         if match != nil && match!.count > remoteNamespace.count
             && match!.starts(with: remoteNamespace) {
-            return match!.substring(to: remoteNamespace.count)
+            return match!.substring(remoteNamespace.count)
         }
 
         return nil

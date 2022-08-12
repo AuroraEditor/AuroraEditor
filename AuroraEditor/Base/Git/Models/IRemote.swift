@@ -8,21 +8,13 @@
 
 import Foundation
 
-public var ForkedRemotePrefix = "aurora-editor-"
+public var forkedRemotePrefix = "aurora-editor-"
 
 public func forkPullRequestRemoteName(remoteName: String) -> String {
-    return "\(ForkedRemotePrefix)\(remoteName)"
+    return "\(forkedRemotePrefix)\(remoteName)"
 }
 
 public protocol IRemote {
     var name: String { get }
     var url: String { get }
 }
-
-//public func remoteEquals(x: IRemote? = nil, y: IRemote? = nil) -> Bool {
-//    if x == nil || y == nil {
-//        return false
-//    }
-//
-//    return x.name == y.name && x.url == y.url
-//}
