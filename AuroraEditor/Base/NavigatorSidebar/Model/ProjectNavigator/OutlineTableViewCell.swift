@@ -41,6 +41,7 @@ class OutlineTableViewCell: NSTableCellView {
     ///   - frameRect: The frame of the cell.
     ///   - item: The file item the cell represents.
     ///   - isEditable: Set to true if the user should be able to edit the file name.
+    // swiftlint:disable:next function_body_length
     init(frame frameRect: NSRect, item: WorkspaceClient.FileItem?, isEditable: Bool = true) {
         super.init(frame: frameRect)
 
@@ -79,7 +80,19 @@ class OutlineTableViewCell: NSTableCellView {
         imageView = icon
 
         if let item = item {
-            let image = NSImage(systemSymbolName: item.systemImage, accessibilityDescription: nil)!
+            var imageName = item.systemImage
+            if item.watcherCode == nil {
+                imageName = "exclamationmark.arrow.triangle.2.circlepath"
+            }
+            if item.watcher == nil {
+                if !item.activateWatcher() {
+                    // watcher failed to activate
+                    imageName = "eye.trianglebadge.exclamationmark"
+                } else {
+                    Log.info("Watcher activated")
+                }
+            }
+            let image = NSImage(systemSymbolName: imageName, accessibilityDescription: nil)!
             fileItem = item
             icon.image = image
             icon.contentTintColor = color(for: item)

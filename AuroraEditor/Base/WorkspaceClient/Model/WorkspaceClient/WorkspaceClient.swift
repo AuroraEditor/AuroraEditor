@@ -15,9 +15,9 @@ public class WorkspaceClient {
     // TODO: Turn into class variables
     /// callback function that is run when a change is detected in the file system.
     /// This usually contains a `reloadData` function.
-    public static var onRefresh: () -> Void = {}
-    public static var filter: String = "" {
-        didSet { WorkspaceClient.onRefresh() }
+    public var onRefresh: () -> Void = {}
+    public var filter: String = "" {
+        didSet { onRefresh() }
     }
 
     // Variables for the outside to interface with
@@ -93,8 +93,12 @@ public class WorkspaceClient {
         isRunning = false
         anotherInstanceRan = 0
 
+        Log.info("New flattened file items: \(flattenedFileItems)")
+
         // reload data in outline view controller through the main thread
-        DispatchQueue.main.async { WorkspaceClient.onRefresh() }
+        DispatchQueue.main.async {
+            self.onRefresh()
+        }
     }
 
     /// A function to kill the watcher of a specific directory, or all directories.
@@ -139,6 +143,7 @@ public class WorkspaceClient {
             self.reloadFromWatcher(sourceFileItem: sourceFileItem)
         }
         reloadFromWatcher(sourceFileItem: workspaceItem)
+        workspaceItem.workspaceClient = self
     }
     // swiftlint:enable vertical_parameter_alignment
 

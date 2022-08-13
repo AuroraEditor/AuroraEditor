@@ -33,11 +33,13 @@ public extension WorkspaceClient {
         public var fileIdentifier = UUID().uuidString
 
         public var watcher: DispatchSourceFileSystemObject?
-        public var watcherCode: (FileItem) -> Void = { _ in }
+        public var watcherCode: ((FileItem) -> Void)?
 
         public var gitStatus: GitType?
+        public var workspaceClient: WorkspaceClient?
 
         public func activateWatcher() -> Bool {
+            guard let watcherCode = watcherCode else { return false }
             let descriptor = open(self.url.path, O_EVTONLY)
             guard descriptor > 0 else { return false }
             let source = DispatchSource.makeFileSystemObjectSource(
@@ -46,9 +48,9 @@ public extension WorkspaceClient {
                 queue: DispatchQueue.global()
             )
             if descriptor > 2000 {
-                Log.info("Watcher \(descriptor) used up")
+                Log.info("Watcher \(descriptor) used up on \(url.path)")
             }
-            source.setEventHandler { self.watcherCode(self) }
+            source.setEventHandler { watcherCode(self) }
             source.setCancelHandler { close(descriptor) }
             source.resume()
             self.watcher = source
@@ -57,10 +59,13 @@ public extension WorkspaceClient {
 
         public init(url: URL,
                     children: [FileItem]? = nil,
-                    changeType: GitType? = nil) {
+                    changeType: GitType? = nil,
+                    workspaceClient: WorkspaceClient? = nil
+        ) {
             self.url = url
             self.children = children
             self.gitStatus = changeType
+            self.workspaceClient = workspaceClient
             id = url.relativePath
         }
 
@@ -116,16 +121,12 @@ public extension WorkspaceClient {
         /// Image(systemName: item.systemImage)
         /// ```
         public var systemImage: String {
-            switch children {
-            case nil:
-                return FileIcon.fileIcon(fileType: fileType)
-            case let .some(children):
-                // check if there is no filter so that when searching, if a bunch of cache files
-                // pop up, such as ones in node_modules, we don't want to watch them. 
-                if self.watcher == nil && !self.activateWatcher() && WorkspaceClient.filter.isEmpty {
-                    return "questionmark.folder"
-                }
+            if let children = children {
+                // item is a folder
                 return folderIcon(children)
+            } else {
+                // item is a file
+                return FileIcon.fileIcon(fileType: fileType)
             }
         }
 

@@ -30,7 +30,8 @@ extension WorkspaceClient {
                 }
 
                 let newFileItem = FileItem(url: itemURL,
-                                           children: subItems?.sortItems(foldersOnTop: true))
+                                           children: subItems?.sortItems(foldersOnTop: true),
+                                           workspaceClient: self)
                 // note: watcher code will be applied after the workspaceItem is created
                 newFileItem.watcherCode = { sourceFileItem in
                     self.reloadFromWatcher(sourceFileItem: sourceFileItem)
@@ -79,7 +80,8 @@ extension WorkspaceClient {
                 if isDir.boolValue { subItems = try loadFiles(fromURL: newContent) }
 
                 let newFileItem = FileItem(url: newContent,
-                                           children: subItems?.sortItems(foldersOnTop: true))
+                                           children: subItems?.sortItems(foldersOnTop: true),
+                                           workspaceClient: self)
                 newFileItem.watcherCode = { sourceFileItem in
                     self.reloadFromWatcher(sourceFileItem: sourceFileItem)
                 }
