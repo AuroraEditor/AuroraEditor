@@ -34,7 +34,7 @@ public struct ToolbarBranchPicker: View {
         workspace: WorkspaceClient?
     ) {
         self.workspace = workspace
-        if let folderURL = workspace?.folderURL() {
+        if let folderURL = workspace?.folderURL {
             self.gitClient = GitClient.default(
                 directoryURL: folderURL,
                 shellClient: shellClient
@@ -107,7 +107,7 @@ public struct ToolbarBranchPicker: View {
     }
 
     private var title: String {
-        workspace?.folderURL()?.lastPathComponent ?? "Empty"
+        workspace?.folderURL?.lastPathComponent ?? "Empty"
     }
 
     // MARK: Popover View

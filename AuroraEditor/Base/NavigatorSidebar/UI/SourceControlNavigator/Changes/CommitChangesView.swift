@@ -23,7 +23,7 @@ struct CommitChangesView: View {
 
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
-        if let folderURL = workspace.workspaceClient?.folderURL() {
+        if let folderURL = workspace.workspaceClient?.folderURL {
             self.gitClient = GitClient.default(
                 directoryURL: folderURL,
                 shellClient: sharedShellClient.shellClient

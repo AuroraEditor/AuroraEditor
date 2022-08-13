@@ -19,7 +19,6 @@ class OutlineTableViewCell: NSTableCellView {
     var changeLabelSmallWidth: NSLayoutConstraint!
 
     var workspace: WorkspaceDocument?
-    var model: SourceControlModel?
 
     var changeLabelIsSmall: Bool = true {
         didSet {
@@ -53,7 +52,7 @@ class OutlineTableViewCell: NSTableCellView {
         label.isSelectable = isEditable
         label.delegate = self
         label.layer?.cornerRadius = 10.0
-        label.font = .labelFont(ofSize: fontSize-1)
+        label.font = .labelFont(ofSize: fontSize)
         label.lineBreakMode = .byTruncatingMiddle
         addSubview(label)
         self.textField = label
@@ -79,21 +78,27 @@ class OutlineTableViewCell: NSTableCellView {
         imageView = icon
 
         if let item = item {
-            let image = NSImage(systemSymbolName: item.systemImage, accessibilityDescription: nil)!
-            fileItem = item
-            icon.image = image
-            icon.contentTintColor = color(for: item)
-            toolTip = item.fileName
-            label.stringValue = label(for: item)
+            addIcon(item: item)
         }
-
         createConstraints(frame: frameRect)
-
-        if let folderURL = workspace?.workspaceClient?.folderURL() {
-            self.model = .init(workspaceURL: folderURL)
-        }
-
         addModel()
+    }
+
+    func addIcon(item: FileItem) {
+        var imageName = item.systemImage
+        if item.watcherCode == nil {
+            imageName = "exclamationmark.arrow.triangle.2.circlepath"
+        }
+        if item.watcher == nil && !item.activateWatcher() {
+            // watcher failed to activate
+            imageName = "eye.trianglebadge.exclamationmark"
+        }
+        let image = NSImage(systemSymbolName: imageName, accessibilityDescription: nil)!
+        fileItem = item
+        icon.image = image
+        icon.contentTintColor = color(for: item)
+        toolTip = item.fileName
+        label.stringValue = label(for: item)
     }
 
     func createConstraints(frame frameRect: NSRect) {
@@ -155,7 +160,7 @@ class OutlineTableViewCell: NSTableCellView {
     /// Generates a string based on user's file name preferences.
     /// - Parameter item: The FileItem to generate the name for.
     /// - Returns: A `String` with the name to display.
-    private func label(for item: WorkspaceClient.FileItem) -> String {
+    func label(for item: WorkspaceClient.FileItem) -> String {
         switch prefs.fileExtensionsVisibility {
         case .hideAll:
             return item.fileName(typeHidden: true)
@@ -171,7 +176,7 @@ class OutlineTableViewCell: NSTableCellView {
     /// Get the appropriate color for the items icon depending on the users preferences.
     /// - Parameter item: The `FileItem` to get the color for
     /// - Returns: A `NSColor` for the given `FileItem`.
-    private func color(for item: WorkspaceClient.FileItem) -> NSColor {
+    func color(for item: WorkspaceClient.FileItem) -> NSColor {
         if item.children == nil && prefs.fileIconStyle == .color {
             return NSColor(item.iconColor)
         } else {

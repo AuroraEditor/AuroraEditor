@@ -33,7 +33,7 @@ struct ProjectNavigatorToolbarBottom: View {
                 }
             }
             .onChange(of: filter, perform: {
-                WorkspaceClient.filter = $0
+                workspace.workspaceClient?.filter = $0
             })
             .padding(.vertical, 3)
             .background(.ultraThinMaterial)
@@ -52,12 +52,12 @@ struct ProjectNavigatorToolbarBottom: View {
     private var addNewFileButton: some View {
         Menu {
             Button("Add File") {
-                guard let folderURL = workspace.workspaceClient?.folderURL(),
+                guard let folderURL = workspace.workspaceClient?.folderURL,
                       let root = try? workspace.workspaceClient?.getFileItem(folderURL.path) else { return }
                 root.addFile(fileName: "untitled") // TODO: use currently selected file instead of root
             }
             Button("Add Folder") {
-                guard let folderURL = workspace.workspaceClient?.folderURL(),
+                guard let folderURL = workspace.workspaceClient?.folderURL,
                       let root = try? workspace.workspaceClient?.getFileItem(folderURL.path) else { return }
                 // TODO: use currently selected file instead of root
                 root.addFolder(folderName: "untitled")
