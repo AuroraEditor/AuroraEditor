@@ -80,7 +80,7 @@ final class OutlineMenu: NSMenu {
             menuItem("New Folder", action: #selector(newFolder)),
             NSMenuItem.separator(),
             menuItem("Rename", action: #selector(renameFile)),
-            menuItem("Delete", action: item.url != workspace?.workspaceClient?.folderURL()
+            menuItem("Delete", action: item.url != workspace?.workspaceClient?.folderURL
                      ? #selector(delete) : nil),
             menuItem("Duplicate \(item.isFolder ? "Folder" : "File")", action: #selector(duplicate)),
             NSMenuItem.separator(),

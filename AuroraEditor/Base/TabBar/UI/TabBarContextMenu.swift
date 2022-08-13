@@ -112,7 +112,7 @@ struct TabBarContextMenu: ViewModifier {
     /// Copies the relative path from the workspace folder to the given file item to the pasteboard.
     /// - Parameter item: The `FileItem` to use.
     private func copyRelativePath(item: WorkspaceClient.FileItem) {
-        guard let rootPath = workspace.workspaceClient?.folderURL() else {
+        guard let rootPath = workspace.workspaceClient?.folderURL else {
             return
         }
         // Calculate the relative path

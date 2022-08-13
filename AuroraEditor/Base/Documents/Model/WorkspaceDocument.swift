@@ -41,7 +41,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     }
 
     override var debugDescription: String {
-        let path = workspaceClient?.folderURL()?.path ?? "unknown"
+        let path = workspaceClient?.folderURL?.path ?? "unknown"
         return "WorkspaceDocument with path \(path)"
     }
 
@@ -76,7 +76,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     // MARK: Set Up Workspace
 
     private func initWorkspaceState(_ url: URL) throws {
-        self.workspaceClient = try .default(
+        self.workspaceClient = .init(
             fileManager: .default,
             folderURL: url,
             ignoredFilesAndFolders: ignoredFilesAndDirectory,

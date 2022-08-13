@@ -22,7 +22,7 @@ final class OutlineViewController: NSViewController {
     ///
     /// Also creates a top level item "root" which represents the projects root directory and automatically expands it.
     private var content: [Item] {
-        guard let folderURL = workspace?.workspaceClient?.folderURL() else { return [] }
+        guard let folderURL = workspace?.workspaceClient?.folderURL else { return [] }
         let children = workspace?.fileItems.sortItems(foldersOnTop: true)
         guard let root = try? workspace?.workspaceClient?.getFileItem(folderURL.path) else { return [] }
         root.children = children
@@ -57,7 +57,7 @@ final class OutlineViewController: NSViewController {
         self.outlineView.dataSource = self
         self.outlineView.delegate = self
         self.outlineView.autosaveExpandedItems = true
-        self.outlineView.autosaveName = workspace?.workspaceClient?.folderURL()?.path ?? ""
+        self.outlineView.autosaveName = workspace?.workspaceClient?.folderURL?.path ?? ""
         self.outlineView.headerView = nil
         self.outlineView.menu = OutlineMenu(sender: self.outlineView, workspaceURL: (workspace?.fileURL)!)
         self.outlineView.menu?.delegate = self

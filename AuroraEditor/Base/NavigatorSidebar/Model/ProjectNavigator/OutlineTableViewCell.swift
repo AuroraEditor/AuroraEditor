@@ -89,7 +89,7 @@ class OutlineTableViewCell: NSTableCellView {
 
         createConstraints(frame: frameRect)
 
-        if let folderURL = workspace?.workspaceClient?.folderURL() {
+        if let folderURL = workspace?.workspaceClient?.folderURL {
             self.model = .init(workspaceURL: folderURL)
         }
 
