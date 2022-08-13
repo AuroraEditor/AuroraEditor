@@ -14,6 +14,15 @@ final class SourceControlTableViewCell: OutlineTableViewCell {
         super.init(frame: frameRect, item: item, isEditable: false)
     }
 
+    override func addIcon(item: FileItem) {
+        let image = NSImage(systemSymbolName: item.systemImage, accessibilityDescription: nil)!
+        fileItem = item
+        icon.image = image
+        icon.contentTintColor = color(for: item)
+        toolTip = item.fileName
+        label.stringValue = label(for: item)
+    }
+
     required init?(coder: NSCoder) {
         fatalError()
     }
