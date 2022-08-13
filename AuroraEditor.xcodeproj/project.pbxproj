@@ -399,6 +399,21 @@
 		209D0257289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0256289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift */; };
 		209D0259289ABFF70082441F /* AuroraEditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0258289ABFF70082441F /* AuroraEditorTextView.swift */; };
 		20C8D7DC287ED2C700C5B3BA /* ToolbarBranchPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8D7DB287ED2C700C5B3BA /* ToolbarBranchPicker.swift */; };
+		20D2A43328A7AA4A0073F7BD /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A43228A7AA4A0073F7BD /* Init.swift */; };
+		20D2A43628A7AAF30073F7BD /* DefaultBranch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A43528A7AAF30073F7BD /* DefaultBranch.swift */; };
+		20D2A43828A7AF810073F7BD /* GitIgnore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A43728A7AF810073F7BD /* GitIgnore.swift */; };
+		20D2A43A28A7BAF20073F7BD /* Interpret-Trailers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A43928A7BAF20073F7BD /* Interpret-Trailers.swift */; };
+		20D2A43C28A7C5970073F7BD /* LFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A43B28A7C5970073F7BD /* LFS.swift */; };
+		20D2A43E28A7CB510073F7BD /* Submodule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A43D28A7CB510073F7BD /* Submodule.swift */; };
+		20D2A44028A7CE300073F7BD /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A43F28A7CE300073F7BD /* Stage.swift */; };
+		20D2A44228A7CEFE0073F7BD /* Squash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A44128A7CEFE0073F7BD /* Squash.swift */; };
+		20D2A44428A7CFB40073F7BD /* RM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A44328A7CFB40073F7BD /* RM.swift */; };
+		20D2A44628A7D13C0073F7BD /* Revert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A44528A7D13C0073F7BD /* Revert.swift */; };
+		20D2A44828A7D1B00073F7BD /* Reflog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A44728A7D1B00073F7BD /* Reflog.swift */; };
+		20D2A44A28A7D5660073F7BD /* Merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A44928A7D5660073F7BD /* Merge.swift */; };
+		20D2A44C28A7D8D00073F7BD /* Format-Patch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A44B28A7D8D00073F7BD /* Format-Patch.swift */; };
+		20D2A44E28A7D9CE0073F7BD /* Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A44D28A7D9CE0073F7BD /* Description.swift */; };
+		20D2A45028A7DFE60073F7BD /* IProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A44F28A7DFE60073F7BD /* IProgress.swift */; };
 		20D839AB280DEB2900B27357 /* NoSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D839AA280DEB2900B27357 /* NoSelectionView.swift */; };
 		20D839AE280E0CA700B27357 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D839AD280E0CA700B27357 /* PopoverView.swift */; };
 		20E8748C28A3AB89002CE758 /* SourceControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8748B28A3AB89002CE758 /* SourceControlTableViewCell.swift */; };
@@ -602,6 +617,21 @@
 		209D0256289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STTextViewController+STTextViewDelegate.swift"; sourceTree = "<group>"; };
 		209D0258289ABFF70082441F /* AuroraEditorTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorTextView.swift; sourceTree = "<group>"; };
 		20C8D7DB287ED2C700C5B3BA /* ToolbarBranchPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarBranchPicker.swift; sourceTree = "<group>"; };
+		20D2A43228A7AA4A0073F7BD /* Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Init.swift; sourceTree = "<group>"; };
+		20D2A43528A7AAF30073F7BD /* DefaultBranch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBranch.swift; sourceTree = "<group>"; };
+		20D2A43728A7AF810073F7BD /* GitIgnore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitIgnore.swift; sourceTree = "<group>"; };
+		20D2A43928A7BAF20073F7BD /* Interpret-Trailers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Interpret-Trailers.swift"; sourceTree = "<group>"; };
+		20D2A43B28A7C5970073F7BD /* LFS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LFS.swift; sourceTree = "<group>"; };
+		20D2A43D28A7CB510073F7BD /* Submodule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Submodule.swift; sourceTree = "<group>"; };
+		20D2A43F28A7CE300073F7BD /* Stage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
+		20D2A44128A7CEFE0073F7BD /* Squash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Squash.swift; sourceTree = "<group>"; };
+		20D2A44328A7CFB40073F7BD /* RM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RM.swift; sourceTree = "<group>"; };
+		20D2A44528A7D13C0073F7BD /* Revert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Revert.swift; sourceTree = "<group>"; };
+		20D2A44728A7D1B00073F7BD /* Reflog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reflog.swift; sourceTree = "<group>"; };
+		20D2A44928A7D5660073F7BD /* Merge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merge.swift; sourceTree = "<group>"; };
+		20D2A44B28A7D8D00073F7BD /* Format-Patch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Format-Patch.swift"; sourceTree = "<group>"; };
+		20D2A44D28A7D9CE0073F7BD /* Description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Description.swift; sourceTree = "<group>"; };
+		20D2A44F28A7DFE60073F7BD /* IProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProgress.swift; sourceTree = "<group>"; };
 		20D83722289A7ACD00D91D05 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		20D83724289A7ACD00D91D05 /* StatusBarMenuLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarMenuLabel.swift; sourceTree = "<group>"; };
 		20D83725289A7ACD00D91D05 /* StatusBarBreakpointButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarBreakpointButton.swift; sourceTree = "<group>"; };
@@ -1227,6 +1257,14 @@
 				2B4C12FE289D56F9000ED796 /* STTextView */,
 			);
 			path = AuroraEditorTextView;
+			sourceTree = "<group>";
+		};
+		20D2A43428A7AAE20073F7BD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				20D2A43528A7AAF30073F7BD /* DefaultBranch.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		20D83712289A7A9200D91D05 /* Base */ = {
@@ -2103,6 +2141,7 @@
 		20D838C7289A7ACE00D91D05 /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				20D2A43428A7AAE20073F7BD /* Helpers */,
 				2041B8B028A67486005F03D8 /* Core */,
 				2041B8AE28A67091005F03D8 /* Branch.swift */,
 				2041B8B128A67498005F03D8 /* Add.swift */,
@@ -2115,6 +2154,19 @@
 				2041B8BF28A694FE005F03D8 /* Reset.swift */,
 				2041B8C128A69B8A005F03D8 /* Remote.swift */,
 				2041B8C628A6A904005F03D8 /* Refs.swift */,
+				20D2A43228A7AA4A0073F7BD /* Init.swift */,
+				20D2A43728A7AF810073F7BD /* GitIgnore.swift */,
+				20D2A43928A7BAF20073F7BD /* Interpret-Trailers.swift */,
+				20D2A43B28A7C5970073F7BD /* LFS.swift */,
+				20D2A43D28A7CB510073F7BD /* Submodule.swift */,
+				20D2A43F28A7CE300073F7BD /* Stage.swift */,
+				20D2A44128A7CEFE0073F7BD /* Squash.swift */,
+				20D2A44328A7CFB40073F7BD /* RM.swift */,
+				20D2A44528A7D13C0073F7BD /* Revert.swift */,
+				20D2A44728A7D1B00073F7BD /* Reflog.swift */,
+				20D2A44928A7D5660073F7BD /* Merge.swift */,
+				20D2A44B28A7D8D00073F7BD /* Format-Patch.swift */,
+				20D2A44D28A7D9CE0073F7BD /* Description.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -2129,6 +2181,7 @@
 				20D838CA289A7ACE00D91D05 /* ChangedFile.swift */,
 				20D838CB289A7ACE00D91D05 /* GitType.swift */,
 				2041B8C428A69D12005F03D8 /* IRemote.swift */,
+				20D2A44F28A7DFE60073F7BD /* IProgress.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3291,6 +3344,7 @@
 				2093CD71289AA0FC003A88DD /* HelpButton.swift in Sources */,
 				2B4C1338289D56F9000ED796 /* CompletionWindow.swift in Sources */,
 				2041B8C228A69B8A005F03D8 /* Remote.swift in Sources */,
+				20D2A44628A7D13C0073F7BD /* Revert.swift in Sources */,
 				2093CDCF289AA503003A88DD /* String+SHA256.swift in Sources */,
 				2093CDAD289AA185003A88DD /* ThemePreviewIcon.swift in Sources */,
 				2093CC97289A9FF5003A88DD /* StatusBarBreakpointButton.swift in Sources */,
@@ -3359,13 +3413,16 @@
 				043C321427E31FF6006AE443 /* AuroraEditorDocumentController.swift in Sources */,
 				2093CCAA289AA01A003A88DD /* FileItem+Array.swift in Sources */,
 				2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */,
+				20D2A44228A7CEFE0073F7BD /* Squash.swift in Sources */,
 				2093CD48289AA095003A88DD /* Parameters.swift in Sources */,
+				20D2A43C28A7C5970073F7BD /* LFS.swift in Sources */,
 				20EBB503280C327C00F3A5DA /* HistoryInspector.swift in Sources */,
 				2093CD13289AA054003A88DD /* GitClientLive.swift in Sources */,
 				2093CD2C289AA089003A88DD /* PullRequest.swift in Sources */,
 				2041B8B428A674FD005F03D8 /* Checkout.swift in Sources */,
 				2093CC8E289A9FA1003A88DD /* ShellClientLive.swift in Sources */,
 				2093CDB9289AA1AB003A88DD /* LocationsPreferencesView.swift in Sources */,
+				20D2A44828A7D1B00073F7BD /* Reflog.swift in Sources */,
 				2093CD8F289AA130003A88DD /* NotificationCentreView.swift in Sources */,
 				2093CDDE289AA522003A88DD /* Color+HEX.swift in Sources */,
 				2093CDA6289AA173003A88DD /* TerminalPreferencesView.swift in Sources */,
@@ -3400,6 +3457,7 @@
 				04C3255C2801F86900C8DA2D /* OutlineMenu.swift in Sources */,
 				2093CDE1289AA522003A88DD /* AuroraProject.swift in Sources */,
 				04540D5E27DD08C300E91B77 /* WorkspaceView.swift in Sources */,
+				20D2A44C28A7D8D00073F7BD /* Format-Patch.swift in Sources */,
 				2093CDC5289AA260003A88DD /* TabBarDivider.swift in Sources */,
 				2093CD9F289AA15F003A88DD /* AccountsPreferences.swift in Sources */,
 				2093CDB7289AA1A6003A88DD /* GithubLoginView.swift in Sources */,
@@ -3421,6 +3479,8 @@
 				2093CD5B289AA0D5003A88DD /* CrashReportView.swift in Sources */,
 				2093CDCC289AA4F4003A88DD /* StatusBarTabType.swift in Sources */,
 				2B4C1342289D56F9000ED796 /* NSTextLayoutManager+Helpers.swift in Sources */,
+				20D2A43828A7AF810073F7BD /* GitIgnore.swift in Sources */,
+				20D2A45028A7DFE60073F7BD /* IProgress.swift in Sources */,
 				2093CD43289AA095003A88DD /* EventNote.swift in Sources */,
 				2093CC92289A9FF5003A88DD /* StatusBarEncodingSelector.swift in Sources */,
 				2021267F289BF7EF00246DD7 /* Formatter.swift in Sources */,
@@ -3446,9 +3506,11 @@
 				2093CD37289AA08F003A88DD /* ProjectRouter.swift in Sources */,
 				20EBB501280C325D00F3A5DA /* FileInspectorView.swift in Sources */,
 				2093CD22289AA084003A88DD /* ReviewsRouter.swift in Sources */,
+				20D2A43628A7AAF30073F7BD /* DefaultBranch.swift in Sources */,
 				2093CD73289AA0FF003A88DD /* PressActionsModifier.swift in Sources */,
 				2093CC90289A9FEE003A88DD /* StatusBar.swift in Sources */,
 				2B4C1341289D56F9000ED796 /* NSRange+TextKit2.swift in Sources */,
+				20D2A43A28A7BAF20073F7BD /* Interpret-Trailers.swift in Sources */,
 				2093CD8E289AA130003A88DD /* NotificationWithButton.swift in Sources */,
 				2093CD61289AA0E4003A88DD /* CodeEditorTextView.swift in Sources */,
 				2032B50E28A256130089EBB6 /* Collection.swift in Sources */,
@@ -3472,18 +3534,22 @@
 				2093CD1A289AA079003A88DD /* BitbucketUserRouter.swift in Sources */,
 				2093CD2B289AA089003A88DD /* Review.swift in Sources */,
 				2093CD4A289AA095003A88DD /* Namespace.swift in Sources */,
+				20D2A43328A7AA4A0073F7BD /* Init.swift in Sources */,
 				2093CDD3289AA509003A88DD /* View+isHovering.swift in Sources */,
 				2093CD18289AA079003A88DD /* OAuthRouter.swift in Sources */,
 				2093CDB0289AA185003A88DD /* EditorThemeView.swift in Sources */,
 				04660F6A27E51E5C00477777 /* AuroraEditorWindowController.swift in Sources */,
+				20D2A44028A7CE300073F7BD /* Stage.swift in Sources */,
 				2B4C132B289D56F9000ED796 /* STTextView+InsertionPoint.swift in Sources */,
 				2B4C1339289D56F9000ED796 /* STCompletionViewController.swift in Sources */,
 				043BCF05281DA19A000AC47C /* WorkspaceDocument+Selection.swift in Sources */,
 				2093CDD7289AA511003A88DD /* String+PercentEncoding.swift in Sources */,
 				2093CD3A289AA08F003A88DD /* CommitRouter.swift in Sources */,
 				2B4C1346289D56F9000ED796 /* STTextView+Select.swift in Sources */,
+				20D2A44E28A7D9CE0073F7BD /* Description.swift in Sources */,
 				2B4C1340289D56F9000ED796 /* NSTextLocation+Equatable.swift in Sources */,
 				2093CD39289AA08F003A88DD /* GitlabOAuthConfiguration.swift in Sources */,
+				20D2A43E28A7CB510073F7BD /* Submodule.swift in Sources */,
 				2093CC9C289A9FFD003A88DD /* StatusBarClearButton.swift in Sources */,
 				2072FA18280D871200C7F8D4 /* TextEncoding.swift in Sources */,
 				2072FA16280D83A500C7F8D4 /* FileTypeList.swift in Sources */,
@@ -3540,6 +3606,7 @@
 				043BCF03281DA18A000AC47C /* WorkspaceDocument+Search.swift in Sources */,
 				202F2E35289E7277000D3CAD /* SearchResultMatchModel.swift in Sources */,
 				2BF983FF289D8B3C004F1A60 /* SharedObjects.swift in Sources */,
+				20D2A44A28A7D5660073F7BD /* Merge.swift in Sources */,
 				04C325512800AC7400C8DA2D /* ExtensionInstallationViewModel.swift in Sources */,
 				2093CDBF289AA247003A88DD /* SearchModeModel.swift in Sources */,
 				2093CD59289AA0C6003A88DD /* ExtensionsManager.swift in Sources */,
@@ -3547,6 +3614,7 @@
 				2093CCAF289AA02D003A88DD /* QuickOpenItem.swift in Sources */,
 				2093CDA1289AA167003A88DD /* Loopable.swift in Sources */,
 				2093CD58289AA0C6003A88DD /* Plugin.swift in Sources */,
+				20D2A44428A7CFB40073F7BD /* RM.swift in Sources */,
 				2093CD23289AA084003A88DD /* GitRouter.swift in Sources */,
 				2093CD98289AA144003A88DD /* ThemeModel.swift in Sources */,
 				28B0A19827E385C300B73177 /* NavigatorSidebarToolbarTop.swift in Sources */,

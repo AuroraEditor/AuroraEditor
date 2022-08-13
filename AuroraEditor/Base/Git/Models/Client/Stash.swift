@@ -17,6 +17,7 @@ public struct Stash {
     /// as well as the total amount of stash entries.
     func getStashes(directoryURL: URL) throws {
         let delimiter = "1F"
+        let delimiterString = String(UnicodeScalar(UInt8(16)))
         let format = ["%gD", "%H", "%gs"].joined(separator: "%x\(delimiter)")
 
         let output = try ShellClient.live().run(
@@ -24,7 +25,11 @@ public struct Stash {
         )
     }
 
-    func getLastAEStashEntryForBranch() {}
+    func getLastAEStashEntryForBranch(directoryURL: URL,
+                                      branch: String) throws {
+        let stash = try getStashes(directoryURL: directoryURL)
+        let branchName = branch
+    }
 
     /// Creates a stash entry message that indicates the entry was created by Aurora Editor
     func createAEStashMessage() {}
@@ -32,7 +37,9 @@ public struct Stash {
     /// Stash the working directory changes for the current branch
     func createAEStashEntry() {}
 
-    private func getStashEntryMatchingSha(directoryURL: URL, sha: String) {}
+    private func getStashEntryMatchingSha(directoryURL: URL, sha: String) throws {
+        let stash = try getStashes(directoryURL: directoryURL)
+    }
 
     /// Removes the given stash entry if it exists
     ///
@@ -53,9 +60,18 @@ public struct Stash {
 
     /// Get the files that were changed in the given stash commit
     func getStashedFiles(directoryURL: URL, stashSha: String) throws {
+        let args = ["stash",
+                    "show",
+                    stashSha,
+                    "--raw",
+                    "--numstat",
+                    "-z",
+                    "--format=format:",
+                    "--now-show-signature",
+                    "--"]
+
         let output = try ShellClient.live().run(
-            // swiftlint:disable:next line_length
-            "cd \(directoryURL.relativePath.escapedWhiteSpaces());git stash show \(stashSha) --raw --numstat -z --format=format: --no-show-signature --"
+            "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)"
         )
     }
 }
