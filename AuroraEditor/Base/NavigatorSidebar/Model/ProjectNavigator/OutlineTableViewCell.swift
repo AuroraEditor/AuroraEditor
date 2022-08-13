@@ -52,7 +52,7 @@ class OutlineTableViewCell: NSTableCellView {
         label.isSelectable = isEditable
         label.delegate = self
         label.layer?.cornerRadius = 10.0
-        label.font = .labelFont(ofSize: fontSize-1)
+        label.font = .labelFont(ofSize: fontSize)
         label.lineBreakMode = .byTruncatingMiddle
         addSubview(label)
         self.textField = label
