@@ -84,13 +84,9 @@ class OutlineTableViewCell: NSTableCellView {
             if item.watcherCode == nil {
                 imageName = "exclamationmark.arrow.triangle.2.circlepath"
             }
-            if item.watcher == nil {
-                if !item.activateWatcher() {
-                    // watcher failed to activate
-                    imageName = "eye.trianglebadge.exclamationmark"
-                } else {
-                    Log.info("Watcher activated")
-                }
+            if item.watcher == nil && !item.activateWatcher() {
+                // watcher failed to activate
+                imageName = "eye.trianglebadge.exclamationmark"
             }
             let image = NSImage(systemSymbolName: imageName, accessibilityDescription: nil)!
             fileItem = item
