@@ -127,6 +127,7 @@ class FileSystemTableViewCell: NSTableCellView {
 
     func addModel() {
         changeLabel.stringValue = fileItem.gitStatus?.description ?? ""
+        if changeLabel.stringValue == "?" { changeLabel.stringValue = "A" }
         changeLabelIsSmall = changeLabel.stringValue.isEmpty
     }
 

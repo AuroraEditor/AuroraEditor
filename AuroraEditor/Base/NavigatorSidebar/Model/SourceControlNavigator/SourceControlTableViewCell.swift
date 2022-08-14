@@ -24,12 +24,11 @@ final class SourceControlTableViewCell: FileSystemTableViewCell {
     }
 
     override func addModel() {
-        changeLabel.stringValue = fileItem.gitStatus?.description ?? ""
-        changeLabelIsSmall = changeLabel.stringValue.isEmpty
+        super.addModel()
         // add colour
-        if fileItem.gitStatus?.description == "A" {
+        if changeLabel.stringValue == "A" {
             label.textColor = NSColor(red: 106/255, green: 255/255, blue: 156/255, alpha: 1)
-        } else if fileItem.gitStatus?.description == "D" {
+        } else if changeLabel.stringValue == "D" {
             label.textColor = NSColor(red: 237/255, green: 94/255, blue: 122/255, alpha: 1)
         }
     }
