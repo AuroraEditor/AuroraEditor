@@ -1,8 +1,8 @@
 //
-//  WorkspaceClientInterface.swift
-//  AuroraEditorModules/WorkspaceClient
+//  WorkspaceClient.swift
+//  AuroraEditor
 //
-//  Created by Marco Carnevali on 16/03/22.
+//  Created by TAY KAI QUAN on 13/8/22.
 //
 
 import Combine
