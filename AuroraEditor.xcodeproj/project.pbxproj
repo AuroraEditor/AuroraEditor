@@ -22,8 +22,8 @@
 		04C3254D27FF331B00C8DA2D /* ExtensionNavigatorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3254C27FF331B00C8DA2D /* ExtensionNavigatorItem.swift */; };
 		04C3254F2800AA4700C8DA2D /* ExtensionInstallationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3254E2800AA4700C8DA2D /* ExtensionInstallationView.swift */; };
 		04C325512800AC7400C8DA2D /* ExtensionInstallationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C325502800AC7400C8DA2D /* ExtensionInstallationViewModel.swift */; };
-		04C3255B2801F86400C8DA2D /* OutlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285FEC6D27FE4B4A00E57D53 /* OutlineViewController.swift */; };
-		04C3255C2801F86900C8DA2D /* OutlineMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285FEC7127FE4EEF00E57D53 /* OutlineMenu.swift */; };
+		04C3255B2801F86400C8DA2D /* ProjectNavigatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285FEC6D27FE4B4A00E57D53 /* ProjectNavigatorViewController.swift */; };
+		04C3255C2801F86900C8DA2D /* ProjectNavigatorMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285FEC7127FE4EEF00E57D53 /* ProjectNavigatorMenu.swift */; };
 		200412EF280F3EAC00BCAF5C /* NoCommitHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200412EE280F3EAC00BCAF5C /* NoCommitHistoryView.swift */; };
 		201169D72837B2E300F92B46 /* SourceControlNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201169D62837B2E300F92B46 /* SourceControlNavigatorView.swift */; };
 		201169D92837B31200F92B46 /* SourceControlSearchToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201169D82837B31200F92B46 /* SourceControlSearchToolbar.swift */; };
@@ -424,8 +424,8 @@
 		20EBB50D280C383700F3A5DA /* LanguageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBB50C280C383700F3A5DA /* LanguageType.swift */; };
 		20EBB50F280C389300F3A5DA /* FileInspectorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBB50E280C389300F3A5DA /* FileInspectorModel.swift */; };
 		2813F93927ECC4C300E305E4 /* NavigatorSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287776E627E3413200D46668 /* NavigatorSidebar.swift */; };
-		2847019E27FDDF7600F87B6B /* OutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2847019D27FDDF7600F87B6B /* OutlineView.swift */; };
-		285FEC7027FE4B9800E57D53 /* OutlineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285FEC6F27FE4B9800E57D53 /* OutlineTableViewCell.swift */; };
+		2847019E27FDDF7600F87B6B /* ProjectNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2847019D27FDDF7600F87B6B /* ProjectNavigatorView.swift */; };
+		285FEC7027FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285FEC6F27FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift */; };
 		286471AB27ED51FD0039369D /* ProjectNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286471AA27ED51FD0039369D /* ProjectNavigator.swift */; };
 		28A51001281673530087B0CC /* auroraeditor-xcode-dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 28A50FFF281673530087B0CC /* auroraeditor-xcode-dark.json */; };
 		28A51002281673530087B0CC /* auroraeditor-xcode-light.json in Resources */ = {isa = PBXBuildFile; fileRef = 28A51000281673530087B0CC /* auroraeditor-xcode-light.json */; };
@@ -954,10 +954,10 @@
 		20EBB506280C32D300F3A5DA /* QuickHelpInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickHelpInspector.swift; sourceTree = "<group>"; };
 		20EBB50C280C383700F3A5DA /* LanguageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageType.swift; sourceTree = "<group>"; };
 		20EBB50E280C389300F3A5DA /* FileInspectorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInspectorModel.swift; sourceTree = "<group>"; };
-		2847019D27FDDF7600F87B6B /* OutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineView.swift; sourceTree = "<group>"; };
-		285FEC6D27FE4B4A00E57D53 /* OutlineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineViewController.swift; sourceTree = "<group>"; };
-		285FEC6F27FE4B9800E57D53 /* OutlineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineTableViewCell.swift; sourceTree = "<group>"; };
-		285FEC7127FE4EEF00E57D53 /* OutlineMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineMenu.swift; sourceTree = "<group>"; };
+		2847019D27FDDF7600F87B6B /* ProjectNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorView.swift; sourceTree = "<group>"; };
+		285FEC6D27FE4B4A00E57D53 /* ProjectNavigatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorViewController.swift; sourceTree = "<group>"; };
+		285FEC6F27FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorTableViewCell.swift; sourceTree = "<group>"; };
+		285FEC7127FE4EEF00E57D53 /* ProjectNavigatorMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorMenu.swift; sourceTree = "<group>"; };
 		286471AA27ED51FD0039369D /* ProjectNavigator.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ProjectNavigator.swift; sourceTree = "<group>"; tabWidth = 4; };
 		287776E627E3413200D46668 /* NavigatorSidebar.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = NavigatorSidebar.swift; sourceTree = "<group>"; tabWidth = 4; };
 		287776E827E34BC700D46668 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -2444,10 +2444,10 @@
 		20D8390B289A7E1800D91D05 /* ProjectNavigator */ = {
 			isa = PBXGroup;
 			children = (
-				2847019D27FDDF7600F87B6B /* OutlineView.swift */,
-				285FEC6D27FE4B4A00E57D53 /* OutlineViewController.swift */,
-				285FEC6F27FE4B9800E57D53 /* OutlineTableViewCell.swift */,
-				285FEC7127FE4EEF00E57D53 /* OutlineMenu.swift */,
+				2847019D27FDDF7600F87B6B /* ProjectNavigatorView.swift */,
+				285FEC6D27FE4B4A00E57D53 /* ProjectNavigatorViewController.swift */,
+				285FEC6F27FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift */,
+				285FEC7127FE4EEF00E57D53 /* ProjectNavigatorMenu.swift */,
 			);
 			path = ProjectNavigator;
 			sourceTree = "<group>";
@@ -3456,7 +3456,7 @@
 				2B4C1332289D56F9000ED796 /* STTextView+Delete.swift in Sources */,
 				2093CD66289AA0E8003A88DD /* HighlightrLanguage.swift in Sources */,
 				2093CD33289AA089003A88DD /* Comment.swift in Sources */,
-				04C3255C2801F86900C8DA2D /* OutlineMenu.swift in Sources */,
+				04C3255C2801F86900C8DA2D /* ProjectNavigatorMenu.swift in Sources */,
 				2093CDE1289AA522003A88DD /* AuroraProject.swift in Sources */,
 				04540D5E27DD08C300E91B77 /* WorkspaceView.swift in Sources */,
 				20D2A44C28A7D8D00073F7BD /* Format-Patch.swift in Sources */,
@@ -3490,7 +3490,7 @@
 				2032B51028A256F50089EBB6 /* Array.swift in Sources */,
 				2093CD91289AA130003A88DD /* NotificationView.swift in Sources */,
 				9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */,
-				285FEC7027FE4B9800E57D53 /* OutlineTableViewCell.swift in Sources */,
+				285FEC7027FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift in Sources */,
 				20C8D7DC287ED2C700C5B3BA /* ToolbarBranchPicker.swift in Sources */,
 				2093CD3E289AA095003A88DD /* GitlabUser.swift in Sources */,
 				2B4C1337289D56F9000ED796 /* CompletionWindowController.swift in Sources */,
@@ -3504,7 +3504,7 @@
 				2093CDBB289AA1B9003A88DD /* AcknowledgementsView.swift in Sources */,
 				202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */,
 				2093CDE0289AA522003A88DD /* Date+Formatted.swift in Sources */,
-				2847019E27FDDF7600F87B6B /* OutlineView.swift in Sources */,
+				2847019E27FDDF7600F87B6B /* ProjectNavigatorView.swift in Sources */,
 				2093CD37289AA08F003A88DD /* ProjectRouter.swift in Sources */,
 				20EBB501280C325D00F3A5DA /* FileInspectorView.swift in Sources */,
 				2093CD22289AA084003A88DD /* ReviewsRouter.swift in Sources */,
@@ -3626,7 +3626,7 @@
 				2093CDBD289AA1BD003A88DD /* ParsePackagesResolved.swift in Sources */,
 				0463E51127FCC1DF00806D5C /* AuroraEditorAPI.swift in Sources */,
 				2093CDD4289AA50C003A88DD /* HTMLUtils.swift in Sources */,
-				04C3255B2801F86400C8DA2D /* OutlineViewController.swift in Sources */,
+				04C3255B2801F86400C8DA2D /* ProjectNavigatorViewController.swift in Sources */,
 				2093CDC0289AA247003A88DD /* SearchResultModel.swift in Sources */,
 				2093CC8F289A9FA5003A88DD /* ShellClientInterface.swift in Sources */,
 				2093CD2E289AA089003A88DD /* Files.swift in Sources */,

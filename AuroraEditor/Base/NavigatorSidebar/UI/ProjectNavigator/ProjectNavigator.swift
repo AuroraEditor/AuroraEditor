@@ -19,6 +19,6 @@ struct ProjectNavigator: View {
     var workspace: WorkspaceDocument
 
     var body: some View {
-        OutlineView(workspace: workspace)
+        ProjectNavigatorView(workspace: workspace)
     }
 }

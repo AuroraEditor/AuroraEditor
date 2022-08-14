@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// A `NSTableCellView` showing an ``icon`` and a ``label``
-class OutlineTableViewCell: NSTableCellView {
+class ProjectNavigatorTableViewCell: NSTableCellView {
 
     var label: NSTextField!
     var changeLabel: NSTextField!
@@ -196,7 +196,7 @@ class OutlineTableViewCell: NSTableCellView {
 }
 
 let errorRed = NSColor.init(red: 1, green: 0, blue: 0, alpha: 0.2)
-extension OutlineTableViewCell: NSTextFieldDelegate {
+extension ProjectNavigatorTableViewCell: NSTextFieldDelegate {
     func controlTextDidChange(_ obj: Notification) {
         label.backgroundColor = validateFileName(for: label?.stringValue ?? "") ? .none : errorRed
     }

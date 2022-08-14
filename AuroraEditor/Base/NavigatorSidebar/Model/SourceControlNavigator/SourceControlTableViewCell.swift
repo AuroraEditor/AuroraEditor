@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-final class SourceControlTableViewCell: OutlineTableViewCell {
+final class SourceControlTableViewCell: ProjectNavigatorTableViewCell {
 
     override init(frame frameRect: NSRect, item: WorkspaceClient.FileItem?, isEditable _ : Bool = false) {
         super.init(frame: frameRect, item: item, isEditable: false)

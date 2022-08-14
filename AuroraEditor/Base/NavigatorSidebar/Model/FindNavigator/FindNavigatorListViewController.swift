@@ -179,7 +179,7 @@ extension FindNavigatorListViewController: NSOutlineViewDelegate {
                                    y: 0,
                                    width: tableColumn.width,
                                    height: prefs.general.projectNavigatorSize.rowHeight)
-            let view = OutlineTableViewCell(frame: frameRect,
+            let view = ProjectNavigatorTableViewCell(frame: frameRect,
                                             item: (item as? SearchResultModel)?.file,
                                             isEditable: false)
             // We're using a medium label for file names b/c it makes it easier to
