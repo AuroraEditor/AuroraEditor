@@ -2,7 +2,7 @@
 //  ProjectNavigatorOutlineView.swift
 //  AuroraEditor
 //
-//  Created by Lukas Pistrol on 05.04.22.
+//  Created by TAY KAI QUAN on 14/8/22
 //
 
 import SwiftUI
