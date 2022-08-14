@@ -114,6 +114,9 @@ public extension WorkspaceClient {
             parent == nil
         }
 
+        /// A boolean that is true if the file item actually exists in the file system
+        public var doesExist: Bool { FileItem.fileManger.fileExists(atPath: self.url.path) }
+
         /// Returns a string describing a SFSymbol for the current ``WorkspaceClient/WorkspaceClient/FileItem``
         ///
         /// Use it like this

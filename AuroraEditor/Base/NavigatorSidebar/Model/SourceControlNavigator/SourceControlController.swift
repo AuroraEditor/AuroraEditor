@@ -132,7 +132,7 @@ extension SourceControlController: NSOutlineViewDelegate {
         guard let navigatorItem = outlineView.item(atRow: selectedIndex) as? Item else { return }
 
         if !(workspace?.selectionState.openedTabs.contains(navigatorItem.tabID) ?? false) {
-            if navigatorItem.children == nil && shouldSendSelectionUpdate {
+            if navigatorItem.children == nil && shouldSendSelectionUpdate && navigatorItem.doesExist {
                 workspace?.openTab(item: navigatorItem)
                 Log.warning("Opened a new tab for: \(navigatorItem.url)")
             }
