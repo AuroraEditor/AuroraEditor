@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-final class SourceControlTableViewCell: ProjectNavigatorTableViewCell {
+final class SourceControlTableViewCell: FileSystemTableViewCell {
 
     override init(frame frameRect: NSRect, item: WorkspaceClient.FileItem?, isEditable _ : Bool = false) {
         super.init(frame: frameRect, item: item, isEditable: false)
@@ -36,15 +36,5 @@ final class SourceControlTableViewCell: ProjectNavigatorTableViewCell {
 
     required init?(coder: NSCoder) {
         fatalError()
-    }
-
-    /// Returns the font size for the current row height. Defaults to `13.0`
-    private var fontSize: Double {
-        switch self.frame.height {
-        case 20: return 11
-        case 22: return 13
-        case 24: return 14
-        default: return 13
-        }
     }
 }
