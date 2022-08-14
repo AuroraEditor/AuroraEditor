@@ -225,7 +225,7 @@ struct TabBar: View {
             TabBarAccessoryIcon(
                 icon: .init(systemName: "chevron.left"),
                 action: {
-                    var currentTab = workspace.selectionState.selectedId
+                    let currentTab = workspace.selectionState.selectedId
 
                     guard let idx = workspace.selectionState.openedTabs.firstIndex(of: currentTab!) else { return }
 
@@ -243,7 +243,7 @@ struct TabBar: View {
             TabBarAccessoryIcon(
                 icon: .init(systemName: "chevron.right"),
                 action: {
-                    var currentTab = workspace.selectionState.selectedId
+                    let currentTab = workspace.selectionState.selectedId
 
                     guard let idx = workspace.selectionState.openedTabs.firstIndex(of: currentTab!) else { return }
 
@@ -320,7 +320,7 @@ struct TabBar: View {
     // if it's > 0 we enable it.
     private func disableTabNavigationLeft() -> Bool {
         let openedTabs = workspace.selectionState.openedTabs
-        var currentTab = workspace.selectionState.selectedId
+        let currentTab = workspace.selectionState.selectedId
         let tabPosition = openedTabs.firstIndex {
             $0 == currentTab
         }
@@ -338,10 +338,7 @@ struct TabBar: View {
     // of any open tabs they may have.
     private func disableTabNavigationRight() -> Bool {
         let openedTabs = workspace.selectionState.openedTabs
-        var currentTab = workspace.selectionState.selectedId
-        let tabPosition = openedTabs.firstIndex {
-            $0 == currentTab
-        }
+        let currentTab = workspace.selectionState.selectedId
 
         if currentTab == openedTabs.last {
             return true
