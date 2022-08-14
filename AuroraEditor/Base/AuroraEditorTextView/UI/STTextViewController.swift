@@ -30,6 +30,9 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
     /// The font to use in the `textView`
     public var font: NSFont
 
+    private var keyDownEvent: Any?
+    private var keyUpEvent: Any?
+
     // MARK: Init
     public init(text: Binding<String>,
                 attrText: Binding<NSAttributedString>,
@@ -100,14 +103,24 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
-        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
+        keyDownEvent = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
             self.keyDown(with: event)
             return event
         }
 
-        NSEvent.addLocalMonitorForEvents(matching: .keyUp) { event in
+        keyUpEvent = NSEvent.addLocalMonitorForEvents(matching: .keyUp) { event in
             self.keyUp(with: event)
             return event
+        }
+    }
+
+    deinit {
+        Log.info("STTextView de-init'd")
+        if let keyDownEvent = keyDownEvent {
+            NSEvent.removeMonitor(keyDownEvent)
+        }
+        if let keyUpEvent = keyUpEvent {
+            NSEvent.removeMonitor(keyUpEvent)
         }
     }
 

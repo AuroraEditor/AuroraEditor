@@ -22,6 +22,8 @@ final class AboutWindowHostingController: NSWindowController {
         window.styleMask.remove(.miniaturizable)
     }
 
+    private var escapeDetectEvent: Any?
+
     override func showWindow(_ sender: Any?) {
         window?.center()
         window?.alphaValue = 0.0
@@ -31,7 +33,7 @@ final class AboutWindowHostingController: NSWindowController {
         window?.animator().alphaValue = 1.0
 
         // Close the window when the escape key is pressed
-        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
+        escapeDetectEvent = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
             guard event.keyCode == 53 else { return event }
 
             self.closeAnimated()
@@ -45,10 +47,20 @@ final class AboutWindowHostingController: NSWindowController {
         window?.titleVisibility = .hidden
     }
 
+    deinit {
+        Log.info("About Window controller de-init'd")
+        if let escapeDetectEvent = escapeDetectEvent {
+            NSEvent.removeMonitor(escapeDetectEvent)
+        }
+    }
+
     func closeAnimated() {
         NSAnimationContext.beginGrouping()
         NSAnimationContext.current.duration = 0.4
         NSAnimationContext.current.completionHandler = {
+            if let escapeDetectEvent = self.escapeDetectEvent {
+                NSEvent.removeMonitor(escapeDetectEvent)
+            }
             self.close()
         }
         window?.animator().alphaValue = 0.0
