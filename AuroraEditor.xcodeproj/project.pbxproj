@@ -1306,7 +1306,6 @@
 				20212679289BF7A800246DD7 /* Log */,
 				20D83843289A7ACE00D91D05 /* String+NSRange.swift */,
 				20D83845289A7ACE00D91D05 /* NSFont+LineHeight.swift */,
-				20D83846289A7ACE00D91D05 /* STTextView+ */,
 				20D83740289A7ACD00D91D05 /* String */,
 				20D8391E289A878900D91D05 /* TerminalEmulator */,
 				20D8391C289A829200D91D05 /* StatusBar */,
@@ -1860,13 +1859,6 @@
 				20D8383E289A7ACD00D91D05 /* HelpButton.swift */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		20D83846289A7ACE00D91D05 /* STTextView+ */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "STTextView+";
 			sourceTree = "<group>";
 		};
 		20D8384B289A7ACE00D91D05 /* Acknowledgements */ = {

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// swiftlint:disable:next type_body_length
 struct TabBar: View {
     /// The height of tab bar.
     /// I am not making it a private variable because it may need to be used in outside views.
