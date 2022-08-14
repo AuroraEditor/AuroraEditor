@@ -144,6 +144,22 @@ public extension WorkspaceClient {
             gitStatus?.description ?? ""
         }
 
+        var debugFileHeirachy: String { childrenDescription(tabCount: 0) }
+
+        func childrenDescription(tabCount: Int) -> String {
+            var myDetails = "\(String(repeating: "|  ", count: max(tabCount-1, 0)))\(tabCount != 0 ? "╰--" : "")"
+            myDetails += "\(url.path)"
+            if !self.isFolder { // if im a file, just return the url
+                return myDetails
+            } else { // if im a folder, return the url and its children's details
+                var childDetails = "\(myDetails)"
+                for child in children ?? [] {
+                    childDetails += "\n\(child.childrenDescription(tabCount: tabCount+1))"
+                }
+                return childDetails
+            }
+        }
+
         /// Returns a string describing a SFSymbol for folders
         ///
         /// If it is the top-level folder this will return `"square.dashed.inset.filled"`.
