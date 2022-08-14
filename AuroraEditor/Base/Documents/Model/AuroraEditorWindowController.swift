@@ -16,9 +16,6 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
     var workspace: WorkspaceDocument?
     var quickOpenPanel: OverlayPanel?
 
-    @ObservedObject
-    var model: SourceControlModel
-
     private var splitViewController: NSSplitViewController! {
         get { contentViewController as? NSSplitViewController }
         set { contentViewController = newValue }
@@ -26,7 +23,6 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
 
     init(window: NSWindow, workspace: WorkspaceDocument) {
         self.workspace = workspace
-        self.model = .init(workspaceURL: workspace.fileURL!)
         super.init(window: window)
 
         setupSplitView(with: workspace)
@@ -290,7 +286,7 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
 
     @IBAction func stashChangesItems(_ sender: Any) {
         if tryFocusWindow(of: StashChangesSheet.self) { return }
-        if model.changed.isEmpty {
+        if (workspace?.workspaceClient?.model?.changed ?? []).isEmpty {
             let alert = NSAlert()
             alert.alertStyle = .informational
             alert.messageText = "Cannot Stash Changes"
@@ -303,7 +299,7 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
     }
 
     @IBAction func discardProjectChanges(_ sender: Any) {
-        if model.changed.isEmpty {
+        if (workspace?.workspaceClient?.model?.changed ?? []).isEmpty {
             let alert = NSAlert()
             alert.alertStyle = .informational
             alert.messageText = "Cannot Discard Changes"
@@ -311,7 +307,7 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
             alert.addButton(withTitle: "OK")
             alert.runModal()
         } else {
-            model.discardProjectChanges()
+            workspace?.workspaceClient?.model?.discardProjectChanges()
         }
     }
 
