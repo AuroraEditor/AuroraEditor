@@ -93,8 +93,6 @@ public class WorkspaceClient {
         isRunning = false
         anotherInstanceRan = 0
 
-        Log.info("New flattened file items: \(flattenedFileItems)")
-
         // reload data in outline view controller through the main thread
         DispatchQueue.main.async {
             self.onRefresh()
