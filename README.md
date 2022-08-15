@@ -121,7 +121,29 @@ Thanks goes to these wonderful people:
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## License
-Copyright (c) 2022 Aurora Company
+Aurora Editor follows two license sets:
+Intelectual Property and MIT
+
+### Intelectual Property
+
+Copyright (C) 2022 Aurora Company
+
+These file is part of the Aurora Editor project.
+* [Git Models Client Module (excludes Core)](https://github.com/AuroraEditor/AuroraEditor/tree/main/AuroraEditor/Base/Git/Models/Client)
+* [Git Models Module](https://github.com/AuroraEditor/AuroraEditor/tree/main/AuroraEditor/Base/Git/Models)
+  - The above excludes the following:
+    - GitType.swift
+    - CommitHistory.swift
+    - ChangedFile.swift
+    - Accounts
+* Aurora Editor Logo
+
+The following mentioned above are part of Aurora Project and can not be copied and/or distributed without the express
+permission of Aurora Company.
+
+### MIT
+
+Copyright (C) 2022 Aurora Company
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
