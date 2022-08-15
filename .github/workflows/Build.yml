@@ -1,0 +1,17 @@
+name: Swift Lint
+name: Build
+# & Test
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Swift (clean) Build
+        run: xcodebuild -verbose -workspace "AuroraEditor.xcworkspace" -scheme "AuroraEditor" clean build | xcpretty
+      #- name: Swift Test
+      #  run: xcodebuild -verbose -workspace "AuroraEditor.xcworkspace" -scheme "AuroraEditorTests" clean test | xcpretty
