@@ -11,6 +11,7 @@ disabled_rules:
 excluded:
   - AuroraEditorModules/.build # Where Swift Package Manager checks out dependency sources
   - AuroraEditor/Base/AuroraEditorTextView/STTextView
+  - AuroraEditor/Base/Git/Models/Client/Helpers/GitError.swift
 
 # Exclude triggering type names.
 type_name:

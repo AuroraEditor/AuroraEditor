@@ -27,8 +27,6 @@ struct SourceControlToolbarBottom: View {
                 .disabled(true) // TODO: Implementation Needed
             Button("Stash Changes...") {}
                 .disabled(true) // TODO: Implementation Needed
-            Button("Commit...") {}
-                .disabled(true) // TODO: Implementation Needed
             Button("Create Pull Request...") {}
                 .disabled(true) // TODO: Implementation Needed
         } label: {

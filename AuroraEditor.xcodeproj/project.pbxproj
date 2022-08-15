@@ -395,6 +395,16 @@
 		209D0255289ABFCC0082441F /* STTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0254289ABFCC0082441F /* STTextViewController.swift */; };
 		209D0257289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0256289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift */; };
 		209D0259289ABFF70082441F /* AuroraEditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0258289ABFF70082441F /* AuroraEditorTextView.swift */; };
+		20BCB0B628AA53CC0064C7C0 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0B528AA53CC0064C7C0 /* Core.swift */; };
+		20BCB0B828AA561F0064C7C0 /* Update-Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0B728AA561F0064C7C0 /* Update-Index.swift */; };
+		20BCB0BA28AA68160064C7C0 /* Apply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0B928AA68160064C7C0 /* Apply.swift */; };
+		20BCB0BC28AA6AA10064C7C0 /* Diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0BB28AA6AA10064C7C0 /* Diff.swift */; };
+		20BCB0BE28AA6E340064C7C0 /* Update-Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0BD28AA6E340064C7C0 /* Update-Ref.swift */; };
+		20BCB0C028AA71760064C7C0 /* GitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0BF28AA71760064C7C0 /* GitError.swift */; };
+		20BCB0C228AA9AA00064C7C0 /* Stash-Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0C128AA9AA00064C7C0 /* Stash-Entry.swift */; };
+		20BCB0C428AA9FFA0064C7C0 /* ManualConflictResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0C328AA9FFA0064C7C0 /* ManualConflictResolution.swift */; };
+		20BCB0C628AAA1C00064C7C0 /* GitCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0C528AAA1C00064C7C0 /* GitCommit.swift */; };
+		20BCB0C828AAA3190064C7C0 /* GitAuthor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0C728AAA3190064C7C0 /* GitAuthor.swift */; };
 		20C8D7DC287ED2C700C5B3BA /* ToolbarBranchPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8D7DB287ED2C700C5B3BA /* ToolbarBranchPicker.swift */; };
 		20D2A43328A7AA4A0073F7BD /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A43228A7AA4A0073F7BD /* Init.swift */; };
 		20D2A43628A7AAF30073F7BD /* DefaultBranch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A43528A7AAF30073F7BD /* DefaultBranch.swift */; };
@@ -616,6 +626,16 @@
 		209D0254289ABFCC0082441F /* STTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTextViewController.swift; sourceTree = "<group>"; };
 		209D0256289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STTextViewController+STTextViewDelegate.swift"; sourceTree = "<group>"; };
 		209D0258289ABFF70082441F /* AuroraEditorTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorTextView.swift; sourceTree = "<group>"; };
+		20BCB0B528AA53CC0064C7C0 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
+		20BCB0B728AA561F0064C7C0 /* Update-Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Update-Index.swift"; sourceTree = "<group>"; };
+		20BCB0B928AA68160064C7C0 /* Apply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apply.swift; sourceTree = "<group>"; };
+		20BCB0BB28AA6AA10064C7C0 /* Diff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diff.swift; sourceTree = "<group>"; };
+		20BCB0BD28AA6E340064C7C0 /* Update-Ref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Update-Ref.swift"; sourceTree = "<group>"; };
+		20BCB0BF28AA71760064C7C0 /* GitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitError.swift; sourceTree = "<group>"; };
+		20BCB0C128AA9AA00064C7C0 /* Stash-Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stash-Entry.swift"; sourceTree = "<group>"; };
+		20BCB0C328AA9FFA0064C7C0 /* ManualConflictResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualConflictResolution.swift; sourceTree = "<group>"; };
+		20BCB0C528AAA1C00064C7C0 /* GitCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommit.swift; sourceTree = "<group>"; };
+		20BCB0C728AAA3190064C7C0 /* GitAuthor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitAuthor.swift; sourceTree = "<group>"; };
 		20C8D7DB287ED2C700C5B3BA /* ToolbarBranchPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarBranchPicker.swift; sourceTree = "<group>"; };
 		20D2A43228A7AA4A0073F7BD /* Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Init.swift; sourceTree = "<group>"; };
 		20D2A43528A7AAF30073F7BD /* DefaultBranch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBranch.swift; sourceTree = "<group>"; };
@@ -1263,6 +1283,8 @@
 			isa = PBXGroup;
 			children = (
 				20D2A43528A7AAF30073F7BD /* DefaultBranch.swift */,
+				20BCB0BF28AA71760064C7C0 /* GitError.swift */,
+				20BCB0C728AAA3190064C7C0 /* GitAuthor.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2157,6 +2179,11 @@
 				20D2A44928A7D5660073F7BD /* Merge.swift */,
 				20D2A44B28A7D8D00073F7BD /* Format-Patch.swift */,
 				20D2A44D28A7D9CE0073F7BD /* Description.swift */,
+				20BCB0B528AA53CC0064C7C0 /* Core.swift */,
+				20BCB0B728AA561F0064C7C0 /* Update-Index.swift */,
+				20BCB0B928AA68160064C7C0 /* Apply.swift */,
+				20BCB0BB28AA6AA10064C7C0 /* Diff.swift */,
+				20BCB0BD28AA6E340064C7C0 /* Update-Ref.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -2172,6 +2199,9 @@
 				20D838CB289A7ACE00D91D05 /* GitType.swift */,
 				2041B8C428A69D12005F03D8 /* IRemote.swift */,
 				20D2A44F28A7DFE60073F7BD /* IProgress.swift */,
+				20BCB0C128AA9AA00064C7C0 /* Stash-Entry.swift */,
+				20BCB0C328AA9FFA0064C7C0 /* ManualConflictResolution.swift */,
+				20BCB0C528AAA1C00064C7C0 /* GitCommit.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3271,6 +3301,7 @@
 				2093CD54289AA0C0003A88DD /* ExtensionsStoreAPI.swift in Sources */,
 				2093CD0F289AA04C003A88DD /* Highlightr.swift in Sources */,
 				935EB99C28A8F26900E8F798 /* FileSystemTableViewCell.swift in Sources */,
+				20BCB0C028AA71760064C7C0 /* GitError.swift in Sources */,
 				2072FA13280D74ED00C7F8D4 /* HistoryInspectorModel.swift in Sources */,
 				2093CDA2289AA16C003A88DD /* PreferencesSection.swift in Sources */,
 				201169E52837B40300F92B46 /* RepositoriesView.swift in Sources */,
@@ -3308,6 +3339,7 @@
 				2093CD21289AA084003A88DD /* GithubUserRouter.swift in Sources */,
 				D7E201AE27E8B3C000CB86D0 /* String+Ranges.swift in Sources */,
 				20EBB50F280C389300F3A5DA /* FileInspectorModel.swift in Sources */,
+				20BCB0C428AA9FFA0064C7C0 /* ManualConflictResolution.swift in Sources */,
 				2093CC9A289A9FFD003A88DD /* StatusBarMaximizeButton.swift in Sources */,
 				2086334F28A530AF00E29A22 /* CommitChangesView.swift in Sources */,
 				2093CDDF289AA522003A88DD /* Bundle+Info.swift in Sources */,
@@ -3378,6 +3410,7 @@
 				20E8748C28A3AB89002CE758 /* SourceControlTableViewCell.swift in Sources */,
 				2093CD16289AA054003A88DD /* CommitHistory.swift in Sources */,
 				2B4C1347289D56F9000ED796 /* STTextView+Insert.swift in Sources */,
+				20BCB0C228AA9AA00064C7C0 /* Stash-Entry.swift in Sources */,
 				2093CDCB289AA260003A88DD /* TabBarItem.swift in Sources */,
 				2093CDAF289AA185003A88DD /* PreviewThemeView.swift in Sources */,
 				939C2CC6289E345900BBB345 /* FileItemFileSystemFunctions.swift in Sources */,
@@ -3391,6 +3424,7 @@
 				2093CD14289AA054003A88DD /* GitType.swift in Sources */,
 				2B4C132D289D56F9000ED796 /* STTextView+Find.swift in Sources */,
 				2093CDA7289AA179003A88DD /* IgnoredFileView.swift in Sources */,
+				20BCB0B828AA561F0064C7C0 /* Update-Index.swift in Sources */,
 				2093CC9E289AA004003A88DD /* TerminalEmulatorView.swift in Sources */,
 				B6EE989227E887C600CDD8AB /* InspectorSidebarToolbar.swift in Sources */,
 				2B4C1331289D56F9000ED796 /* STTextLayoutFragmentLayer.swift in Sources */,
@@ -3413,6 +3447,7 @@
 				2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */,
 				20D2A44228A7CEFE0073F7BD /* Squash.swift in Sources */,
 				2093CD48289AA095003A88DD /* Parameters.swift in Sources */,
+				20BCB0BA28AA68160064C7C0 /* Apply.swift in Sources */,
 				20D2A43C28A7C5970073F7BD /* LFS.swift in Sources */,
 				20EBB503280C327C00F3A5DA /* HistoryInspector.swift in Sources */,
 				2093CD13289AA054003A88DD /* GitClientLive.swift in Sources */,
@@ -3482,8 +3517,10 @@
 				2093CD43289AA095003A88DD /* EventNote.swift in Sources */,
 				2093CC92289A9FF5003A88DD /* StatusBarEncodingSelector.swift in Sources */,
 				2021267F289BF7EF00246DD7 /* Formatter.swift in Sources */,
+				20BCB0C828AAA3190064C7C0 /* GitAuthor.swift in Sources */,
 				2093CDB6289AA1A2003A88DD /* GitlabLoginView.swift in Sources */,
 				2032B51028A256F50089EBB6 /* Array.swift in Sources */,
+				20BCB0BC28AA6AA10064C7C0 /* Diff.swift in Sources */,
 				2093CD91289AA130003A88DD /* NotificationView.swift in Sources */,
 				9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */,
 				285FEC7027FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift in Sources */,
@@ -3505,6 +3542,7 @@
 				20EBB501280C325D00F3A5DA /* FileInspectorView.swift in Sources */,
 				2093CD22289AA084003A88DD /* ReviewsRouter.swift in Sources */,
 				20D2A43628A7AAF30073F7BD /* DefaultBranch.swift in Sources */,
+				20BCB0B628AA53CC0064C7C0 /* Core.swift in Sources */,
 				2093CD73289AA0FF003A88DD /* PressActionsModifier.swift in Sources */,
 				2093CC90289A9FEE003A88DD /* StatusBar.swift in Sources */,
 				2B4C1341289D56F9000ED796 /* NSRange+TextKit2.swift in Sources */,
@@ -3518,6 +3556,7 @@
 				2093CDCA289AA260003A88DD /* TabBarXcode.swift in Sources */,
 				2093CC96289A9FF5003A88DD /* StatusBarCursorLocationLabel.swift in Sources */,
 				2093CD95289AA13F003A88DD /* AppPreferencesModel.swift in Sources */,
+				20BCB0C628AAA1C00064C7C0 /* GitCommit.swift in Sources */,
 				04C3254B27FF23B000C8DA2D /* ExtensionNavigatorData.swift in Sources */,
 				2093CDD2289AA507003A88DD /* SwiftTerm+Color+Init.swift in Sources */,
 				2093CCAE289AA02D003A88DD /* QuickOpenView.swift in Sources */,
@@ -3611,6 +3650,7 @@
 				2093CDBF289AA247003A88DD /* SearchModeModel.swift in Sources */,
 				2093CD59289AA0C6003A88DD /* ExtensionsManager.swift in Sources */,
 				2093CD72289AA0FF003A88DD /* OverlayPanel.swift in Sources */,
+				20BCB0BE28AA6E340064C7C0 /* Update-Ref.swift in Sources */,
 				2093CCAF289AA02D003A88DD /* QuickOpenItem.swift in Sources */,
 				2093CDA1289AA167003A88DD /* Loopable.swift in Sources */,
 				2093CD58289AA0C6003A88DD /* Plugin.swift in Sources */,

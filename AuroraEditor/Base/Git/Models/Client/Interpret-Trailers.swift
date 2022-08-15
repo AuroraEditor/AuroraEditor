@@ -4,6 +4,7 @@
 //
 //  Created by Nanashi Li on 2022/08/13.
 //  Copyright © 2022 Aurora Company. All rights reserved.
+//  This source code is restricted for Aurora Editor usage only.
 //
 
 import Foundation
@@ -26,7 +27,7 @@ class Trailer: ITrailer {
 
 /// Gets a value indicating whether the trailer token is
 /// Co-Authored-By. Does not validate the token value.
-func isCoAuthoredByTrailer(trailer: ITrailer) -> Bool {
+func isCoAuthoredByTrailer(trailer: Trailer) -> Bool {
     return trailer.token.lowercased() == "co-authored-by"
 }
 
