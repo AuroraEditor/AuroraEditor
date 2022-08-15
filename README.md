@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Logo" src="https://media.discordapp.net/attachments/955936800101269524/995262127830990888/unknown.png?width=128&height=128">
+  <img alt="Logo" src="https://cdn.discordapp.com/attachments/997418186070827129/1008425256651849869/unknown.png" style="width:128px;height:128px;">
 </p>
 
 <p align="center">
@@ -7,10 +7,10 @@
 </p>
 
 <p align="center">
-  <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Aurora_Editor?color=0c122a&style=for-the-badge">
-  <img alt="Discord" src="https://img.shields.io/discord/997410333348077620?color=0c122a&style=for-the-badge">
+  <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Aurora_Editor?color=f6579d&style=for-the-badge">
+  <img alt="Discord" src="https://img.shields.io/discord/997410333348077620?color=f98a6c&style=for-the-badge">
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-  <img alt="All Contributors" src="https://img.shields.io/badge/all_contributors-3-orange.svg?color=0c122a&style=for-the-badge">
+  <img alt="All Contributors" src="https://img.shields.io/badge/all_contributors-3-orange.svg?color=82b6d5&style=for-the-badge">
   <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 
@@ -23,13 +23,13 @@ It will support everything you could expect from an Xcode-inspired application, 
 <br />
 
 <p align="center">
-  <a href='https://github.com/AuroraEditor/AuroraEditor/pulls'><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge"></a>
-  <a href='https://github.com/AuroraEditor/AuroraEditor/pulls?q=is%3Apr+is%3Aclosed'><img alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed-raw/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge"></a>
-  <a href='https://github.com/AuroraEditor/AuroraEditor/issues'><img alt="GitHub issues" src="https://img.shields.io/github/issues-raw/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge"></a>
-  <a href='https://github.com/AuroraEditor/AuroraEditor/issues?q=is%3Aissue+is%3Aclosed'><img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed-raw/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge"></a>
-  <img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/AuroraEditor/AuroraEditor/main?color=0c122a&style=for-the-badge">
-  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge">
-  <a href='https://github.com/AuroraEditor/AuroraEditor/fork'><img alt="GitHub forks" src="https://img.shields.io/github/forks/AuroraEditor/AuroraEditor?color=0c122a&style=for-the-badge"></a>
+  <a href='https://github.com/AuroraEditor/AuroraEditor/pulls'><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
+  <a href='https://github.com/AuroraEditor/AuroraEditor/pulls?q=is%3Apr+is%3Aclosed'><img alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed-raw/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
+  <a href='https://github.com/AuroraEditor/AuroraEditor/issues'><img alt="GitHub issues" src="https://img.shields.io/github/issues-raw/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
+  <a href='https://github.com/AuroraEditor/AuroraEditor/issues?q=is%3Aissue+is%3Aclosed'><img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed-raw/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
+  <img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/AuroraEditor/AuroraEditor/main?color=f98a6c&style=for-the-badge">
+  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge">
+  <a href='https://github.com/AuroraEditor/AuroraEditor/fork'><img alt="GitHub forks" src="https://img.shields.io/github/forks/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
  </p>
  
  <br />
