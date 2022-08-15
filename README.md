@@ -124,7 +124,7 @@ Thanks goes to these wonderful people:
 Aurora Editor follows two license sets:
 Intelectual Property and MIT
 
-### Intelectual Property
+### Intelectual Property License
 
 Copyright (C) 2022 Aurora Company
 
@@ -141,7 +141,7 @@ These file is part of the Aurora Editor project.
 The following mentioned above are part of Aurora Project and can not be copied and/or distributed without the express
 permission of Aurora Company.
 
-### MIT
+### MIT License
 
 Copyright (C) 2022 Aurora Company
 
