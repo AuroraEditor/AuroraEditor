@@ -7,8 +7,12 @@
 </p>
 
 <p align="center">
-  <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Aurora_Editor?color=f6579d&style=for-the-badge">
-  <img alt="Discord" src="https://img.shields.io/discord/997410333348077620?color=f98a6c&style=for-the-badge">
+  <a href='https://twitter.com/Aurora_Editor' target='_blank'>
+    <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Aurora_Editor?color=f6579d&style=for-the-badge">
+  </a>
+  <a href='https://discord.gg/vsu37gqGrK' target='_blank'>
+    <img alt="Discord" src="https://img.shields.io/discord/997410333348077620?color=f98a6c&style=for-the-badge">
+  </a>
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
   <img alt="All Contributors" src="https://img.shields.io/badge/all_contributors-3-orange.svg?color=82b6d5&style=for-the-badge">
   <!-- ALL-CONTRIBUTORS-BADGE:END -->
