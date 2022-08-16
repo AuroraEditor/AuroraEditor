@@ -41,7 +41,7 @@ enum GitError: String {
     case PatchDoesNotApply = "error: (.+): (patch does not apply|already exists in working directory)"
     case BranchAlreadyExists = "fatal: [Aa] branch named '(.+)' already exists.?"
     case BadRevision = "fatal: bad revision '(.*)'"
-    case NotAGitRepository = "fatal: [Nn]ot a git repository \\(or any of the parent directories\\): (.*)"
+    case NotAGitRepository = "fatal: not a git repository (or any of the parent directories)"
     case CannotMergeUnrelatedHistories = "fatal: refusing to merge unrelated histories"
     case LFSAttributeDoesNotMatch = "The .+ attribute should be .+ but is .+"
     case BranchRenameFailed = "fatal: Branch rename failed"

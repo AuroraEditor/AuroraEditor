@@ -37,7 +37,7 @@ struct SourceControlNavigatorView: View {
             }
 
             if selectedSection == 1 {
-                RepositoriesView()
+                RepositoriesView(workspace: workspace)
             }
         }
     }

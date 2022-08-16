@@ -424,6 +424,9 @@
 		20D2A45028A7DFE60073F7BD /* IProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A44F28A7DFE60073F7BD /* IProgress.swift */; };
 		20D839AB280DEB2900B27357 /* NoSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D839AA280DEB2900B27357 /* NoSelectionView.swift */; };
 		20D839AE280E0CA700B27357 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D839AD280E0CA700B27357 /* PopoverView.swift */; };
+		20DF979B28ABA633009CE1E9 /* Rev-Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF979A28ABA633009CE1E9 /* Rev-Parse.swift */; };
+		20DF979F28ABAA72009CE1E9 /* RepositoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF979E28ABAA72009CE1E9 /* RepositoryModel.swift */; };
+		20DF97A128ABB30D009CE1E9 /* FileManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF97A028ABB30D009CE1E9 /* FileManger.swift */; };
 		20E8748C28A3AB89002CE758 /* SourceControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8748B28A3AB89002CE758 /* SourceControlTableViewCell.swift */; };
 		20E8748E28A3AB9B002CE758 /* SourceControlMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8748D28A3AB9B002CE758 /* SourceControlMenu.swift */; };
 		20E8749028A3ABA8002CE758 /* SourceControlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8748F28A3ABA8002CE758 /* SourceControlController.swift */; };
@@ -967,6 +970,9 @@
 		20D838FD289A7AD600D91D05 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		20D839AA280DEB2900B27357 /* NoSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSelectionView.swift; sourceTree = "<group>"; };
 		20D839AD280E0CA700B27357 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
+		20DF979A28ABA633009CE1E9 /* Rev-Parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rev-Parse.swift"; sourceTree = "<group>"; };
+		20DF979E28ABAA72009CE1E9 /* RepositoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryModel.swift; sourceTree = "<group>"; };
+		20DF97A028ABB30D009CE1E9 /* FileManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManger.swift; sourceTree = "<group>"; };
 		20E8748B28A3AB89002CE758 /* SourceControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlTableViewCell.swift; sourceTree = "<group>"; };
 		20E8748D28A3AB9B002CE758 /* SourceControlMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlMenu.swift; sourceTree = "<group>"; };
 		20E8748F28A3ABA8002CE758 /* SourceControlController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlController.swift; sourceTree = "<group>"; };
@@ -1344,6 +1350,7 @@
 				20212684289BF87600246DD7 /* Formatters.swift */,
 				2032B50D28A256130089EBB6 /* Collection.swift */,
 				2032B50F28A256F50089EBB6 /* Array.swift */,
+				20DF97A028ABB30D009CE1E9 /* FileManger.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2187,6 +2194,7 @@
 				20BCB0BB28AA6AA10064C7C0 /* Diff.swift */,
 				20BCB0BD28AA6E340064C7C0 /* Update-Ref.swift */,
 				204CD3E528AB87640003D082 /* Config.swift */,
+				20DF979A28ABA633009CE1E9 /* Rev-Parse.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -2442,11 +2450,8 @@
 		20D83908289A7DC600D91D05 /* SourceControlNavigator */ = {
 			isa = PBXGroup;
 			children = (
-				201169E62837B5CA00F92B46 /* SourceControlModel.swift */,
-				20E8748B28A3AB89002CE758 /* SourceControlTableViewCell.swift */,
-				20E8748D28A3AB9B002CE758 /* SourceControlMenu.swift */,
-				20E8748F28A3ABA8002CE758 /* SourceControlController.swift */,
-				20E8749128A3ABB6002CE758 /* SourceControlView.swift */,
+				20DF979D28ABAA59009CE1E9 /* Repositories */,
+				20DF979C28ABAA4C009CE1E9 /* Changes */,
 			);
 			path = SourceControlNavigator;
 			sourceTree = "<group>";
@@ -2710,6 +2715,26 @@
 				2072FA1D280D891500C7F8D4 /* Location.swift */,
 			);
 			path = FileInspector;
+			sourceTree = "<group>";
+		};
+		20DF979C28ABAA4C009CE1E9 /* Changes */ = {
+			isa = PBXGroup;
+			children = (
+				201169E62837B5CA00F92B46 /* SourceControlModel.swift */,
+				20E8748B28A3AB89002CE758 /* SourceControlTableViewCell.swift */,
+				20E8748D28A3AB9B002CE758 /* SourceControlMenu.swift */,
+				20E8748F28A3ABA8002CE758 /* SourceControlController.swift */,
+				20E8749128A3ABB6002CE758 /* SourceControlView.swift */,
+			);
+			path = Changes;
+			sourceTree = "<group>";
+		};
+		20DF979D28ABAA59009CE1E9 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				20DF979E28ABAA72009CE1E9 /* RepositoryModel.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 		20EBB50B280C382800F3A5DA /* Models */ = {
@@ -3444,6 +3469,7 @@
 				2093CD45289AA095003A88DD /* ProjectAccess.swift in Sources */,
 				2B4C1348289D56F9000ED796 /* STTextLayoutManager.swift in Sources */,
 				200412EF280F3EAC00BCAF5C /* NoCommitHistoryView.swift in Sources */,
+				20DF979F28ABAA72009CE1E9 /* RepositoryModel.swift in Sources */,
 				2B4C1354289D6457000ED796 /* STTextView+Select2.swift in Sources */,
 				043C321427E31FF6006AE443 /* AuroraEditorDocumentController.swift in Sources */,
 				2093CCAA289AA01A003A88DD /* FileItem+Array.swift in Sources */,
@@ -3483,6 +3509,7 @@
 				2072FA1A280D872600C7F8D4 /* LineEndings.swift in Sources */,
 				2B4C133C289D56F9000ED796 /* STTextView+Mouse.swift in Sources */,
 				201169E22837B3D800F92B46 /* ChangesView.swift in Sources */,
+				20DF97A128ABB30D009CE1E9 /* FileManger.swift in Sources */,
 				2093CDD5289AA511003A88DD /* String+QueryParameters.swift in Sources */,
 				20EBB507280C32D300F3A5DA /* QuickHelpInspector.swift in Sources */,
 				2093CC91289A9FF5003A88DD /* StatusBarIndentSelector.swift in Sources */,
@@ -3520,6 +3547,7 @@
 				2093CD43289AA095003A88DD /* EventNote.swift in Sources */,
 				2093CC92289A9FF5003A88DD /* StatusBarEncodingSelector.swift in Sources */,
 				2021267F289BF7EF00246DD7 /* Formatter.swift in Sources */,
+				20DF979B28ABA633009CE1E9 /* Rev-Parse.swift in Sources */,
 				20BCB0C828AAA3190064C7C0 /* GitAuthor.swift in Sources */,
 				2093CDB6289AA1A2003A88DD /* GitlabLoginView.swift in Sources */,
 				204CD3E628AB87640003D082 /* Config.swift in Sources */,

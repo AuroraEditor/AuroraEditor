@@ -8,9 +8,39 @@
 import SwiftUI
 
 struct RepositoriesView: View {
+
+    @ObservedObject
+    var workspace: WorkspaceDocument
+
+    @ObservedObject
+    var repositoryModel: RepositoryModel
+
+    init(workspace: WorkspaceDocument) {
+        self.workspace = workspace
+        self.repositoryModel = .init(workspace: workspace)
+    }
+
     var body: some View {
         VStack(alignment: .center) {
-            Text("Needs Implementation")
+            if repositoryModel.isGitRepository {
+                Text("Needs Implementation")
+            } else {
+                Text("This project does not seem to be a Git repository.")
+                    .padding(.horizontal)
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: 16))
+                    .foregroundColor(.secondary)
+
+                Button {
+
+                } label: {
+                    Text("Create Git repository")
+                        .font(.system(size: 11))
+                        .foregroundColor(.blue)
+                }
+                .padding(.top, -5)
+                .buttonStyle(.plain)
+            }
         }
         .frame(maxHeight: .infinity)
     }
@@ -18,6 +48,6 @@ struct RepositoriesView: View {
 
 struct RepositoriesView_Previews: PreviewProvider {
     static var previews: some View {
-        RepositoriesView()
+        RepositoriesView(workspace: WorkspaceDocument().self)
     }
 }
