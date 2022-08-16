@@ -52,14 +52,20 @@ Xcode is a great native editor for developers on Mac, but unfortunately it doesn
 ## Motivation for divergence from CodeEdit
 
 This project originates from https://github.com/CodeEditApp/CodeEdit. We decided to take our own direction with this project for several reasons:
-- We want to increase the rate of development, which means
-  - Encouraging people to make PRs, even if they aren't complete (this is an issue with CodeEdit, many amazing PRs go stale or take forever).
-  - Making the code review cycle faster, including allowing people to merge their PRs once they have recieved enough reviews, instead of having to wait for an admin to do it. 
-  - Making a clearer todo so that there is never the "what to do" programmer dilemma that slows down development.
-  - Getting people interested in Swift. Go to [#swift-beginners](https://discord.gg/Mp5pfU6bcD) on our Discord server for help!
+
+### Rate and direction of development
+We want to increase the rate of development, which means
+- Encouraging people to make PRs, even if they aren't complete (this is an issue with CodeEdit, many amazing PRs go stale or take forever).
+- Making the code review cycle faster, including allowing people to merge their PRs once they have recieved enough reviews, instead of having to wait for an admin to do it. 
+- Making a clearer todo so that there is never the "what to do" programmer dilemma that slows down development.
+- Getting people interested in Swift. Go to [#swift-beginners](https://discord.gg/Mp5pfU6bcD) on our Discord server for help!
+
+### Discussion
 - We want to make sure that the development discussion is *always* public, not kept in locked channels, and should stay that way,
-- We felt that the architecture of CodeEdit wasn't up to standard, but the admins were insistent on keeping the flawed structure. The only way we saw CodeEdit could continue is if this changed. 
-- Most of all, we want you to feel welcome, every commitment to the project counts!
+- We want everybody to feel welcome, and that every commitment to the project counts!
+
+### Architecture
+- We felt that the architecture of CodeEdit wasn't up to standard. One example is the usage of Modules, which not only increased build time but also code complexity because communication between code compoments and modules is difficult. However, CodeEdit was insistent on keeping their structure. The only way we saw the CodeEdit project could continue is if this changed. 
 
 ## Aurora Editor vs CodeEdit
 
