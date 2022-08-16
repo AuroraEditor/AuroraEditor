@@ -49,7 +49,7 @@ Most comparable editors are built on Electron, This is a huge disadvantage becau
 
 Xcode is a great native editor for developers on Mac, but unfortunately it doesn't support creating a multitude of projects in different programming languages, and this is where Aurora Editor comes in. Aurora Editor wants to give developers the posibility of creating their desired projects in their desired language on a editor that is native and gives a similar experience, performance and feel than that of Xcode on Mac.
 
-## Fork-Motivation
+## Motivation for divergence from CodeEdit
 
 This project originates from https://github.com/CodeEditApp/CodeEdit. We decided to take our own direction with this project for several reasons:
 - We want to increase the rate of development, which means
@@ -121,14 +121,15 @@ Thanks goes to these wonderful people:
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## License
-Aurora Editor follows two license sets:
-Intelectual Property and MIT
+Aurora Editor follows two license sets for different parts of the software:
+Intellectual Property and MIT
 
-### Intelectual Property License
+### Intellectual Property License
 
 Copyright (C) 2022 Aurora Company
 
-These file is part of the Aurora Editor project.
+The files mentioned below are part of Aurora Project and can not be copied and/or distributed without the express
+permission of Aurora Company.
 * [Git Models Client Module (excludes Core)](https://github.com/AuroraEditor/AuroraEditor/tree/main/AuroraEditor/Base/Git/Models/Client)
 * [Git Models Module](https://github.com/AuroraEditor/AuroraEditor/tree/main/AuroraEditor/Base/Git/Models)
   - The above excludes the following:
@@ -137,9 +138,6 @@ These file is part of the Aurora Editor project.
     - ChangedFile.swift
     - Accounts
 * Aurora Editor Logo
-
-The following mentioned above are part of Aurora Project and can not be copied and/or distributed without the express
-permission of Aurora Company.
 
 ### MIT License
 
