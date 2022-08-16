@@ -128,10 +128,10 @@ func setConfigValue(directoryURL: URL,
 
 /// Set the global config value by name.
 func setGlobalConfigValue(name: String,
-                          value: String) throws {
-    try setConfigValueInPath(name: name,
-                             value: value,
-                             path: nil)
+                          value: String) throws -> String {
+    return try setConfigValueInPath(name: name,
+                                    value: value,
+                                    path: nil)
 }
 
 /// Set the global config value by name.
@@ -170,7 +170,7 @@ func addGlobalConfigValueIfMissing(name: String,
 ///  Aurora Editor is installed in.
 func setConfigValueInPath(name: String,
                           value: String,
-                          path: String?) throws {
+                          path: String?) throws -> String {
 
     var gitCommand: String
 
@@ -190,7 +190,7 @@ func setConfigValueInPath(name: String,
         gitCommand = "cd \(path?.escapedWhiteSpaces()); git \(flags)"
     }
 
-    _ = try ShellClient.live().run(gitCommand)
+    return try ShellClient.live().run(gitCommand)
 }
 
 /// Remove the local config value by name.
