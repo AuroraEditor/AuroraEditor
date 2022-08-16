@@ -202,7 +202,7 @@ open class Highlightr {
 
     // swiftlint:disable:next function_body_length cyclomatic_complexity
     private func processHTMLString(_ string: String) -> NSAttributedString? {
-        guard let htmlEscape else {
+        guard let htmlEscape = htmlEscape else {
             return NSMutableAttributedString(string: string)
         }
 
