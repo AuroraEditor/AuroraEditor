@@ -12,7 +12,33 @@ public final class RepositoryModel: ObservableObject {
 
     let workspace: WorkspaceDocument
 
-    var isGitRepository: Bool {
+    @Published
+    var openGitCreationSheet: Bool = false
+
+    @Published
+    var repositoryName: String = ""
+
+    @Published
+    var repositoryDescription: String = ""
+
+    @Published
+    var repositoryLocalPath: String = ""
+
+    @Published
+    var addReadme: Bool = false
+
+    @Published
+    var isGitRepository: Bool = false
+
+    init(workspace: WorkspaceDocument) {
+        self.workspace = workspace
+        guard let projectPath = workspace.workspaceClient?.folderURL else { return }
+        self.repositoryLocalPath = projectPath.path
+        self.repositoryName = projectPath.lastPathComponent
+        self.isGitRepository = checkIfProjectIsRepo()
+    }
+
+    func checkIfProjectIsRepo() -> Bool {
         guard let path = workspace.workspaceClient?.folderURL else {
             return false
         }
@@ -33,9 +59,5 @@ public final class RepositoryModel: ObservableObject {
             Log.error("We couldn't verify if the current project is a git repo!")
             return false
         }
-    }
-
-    init(workspace: WorkspaceDocument) {
-        self.workspace = workspace
     }
 }

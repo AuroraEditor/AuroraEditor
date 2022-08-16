@@ -32,7 +32,7 @@ struct RepositoriesView: View {
                     .foregroundColor(.secondary)
 
                 Button {
-
+                    repositoryModel.openGitCreationSheet.toggle()
                 } label: {
                     Text("Create Git repository")
                         .font(.system(size: 11))
@@ -40,6 +40,9 @@ struct RepositoriesView: View {
                 }
                 .padding(.top, -5)
                 .buttonStyle(.plain)
+                .sheet(isPresented: $repositoryModel.openGitCreationSheet) {
+                    CreateNewRepositoryView(repositoryModel: repositoryModel)
+                }
             }
         }
         .frame(maxHeight: .infinity)

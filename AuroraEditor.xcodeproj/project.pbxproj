@@ -427,6 +427,7 @@
 		20DF979B28ABA633009CE1E9 /* Rev-Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF979A28ABA633009CE1E9 /* Rev-Parse.swift */; };
 		20DF979F28ABAA72009CE1E9 /* RepositoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF979E28ABAA72009CE1E9 /* RepositoryModel.swift */; };
 		20DF97A128ABB30D009CE1E9 /* FileManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF97A028ABB30D009CE1E9 /* FileManger.swift */; };
+		20DF97A328ABD7D2009CE1E9 /* CreateNewRepositoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF97A228ABD7D2009CE1E9 /* CreateNewRepositoryView.swift */; };
 		20E8748C28A3AB89002CE758 /* SourceControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8748B28A3AB89002CE758 /* SourceControlTableViewCell.swift */; };
 		20E8748E28A3AB9B002CE758 /* SourceControlMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8748D28A3AB9B002CE758 /* SourceControlMenu.swift */; };
 		20E8749028A3ABA8002CE758 /* SourceControlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8748F28A3ABA8002CE758 /* SourceControlController.swift */; };
@@ -973,6 +974,7 @@
 		20DF979A28ABA633009CE1E9 /* Rev-Parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rev-Parse.swift"; sourceTree = "<group>"; };
 		20DF979E28ABAA72009CE1E9 /* RepositoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryModel.swift; sourceTree = "<group>"; };
 		20DF97A028ABB30D009CE1E9 /* FileManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManger.swift; sourceTree = "<group>"; };
+		20DF97A228ABD7D2009CE1E9 /* CreateNewRepositoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewRepositoryView.swift; sourceTree = "<group>"; };
 		20E8748B28A3AB89002CE758 /* SourceControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlTableViewCell.swift; sourceTree = "<group>"; };
 		20E8748D28A3AB9B002CE758 /* SourceControlMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlMenu.swift; sourceTree = "<group>"; };
 		20E8748F28A3ABA8002CE758 /* SourceControlController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlController.swift; sourceTree = "<group>"; };
@@ -2422,6 +2424,7 @@
 			isa = PBXGroup;
 			children = (
 				201169E42837B40300F92B46 /* RepositoriesView.swift */,
+				20DF97A228ABD7D2009CE1E9 /* CreateNewRepositoryView.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -3476,6 +3479,7 @@
 				2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */,
 				20D2A44228A7CEFE0073F7BD /* Squash.swift in Sources */,
 				2093CD48289AA095003A88DD /* Parameters.swift in Sources */,
+				20DF97A328ABD7D2009CE1E9 /* CreateNewRepositoryView.swift in Sources */,
 				20BCB0BA28AA68160064C7C0 /* Apply.swift in Sources */,
 				20D2A43C28A7C5970073F7BD /* LFS.swift in Sources */,
 				20EBB503280C327C00F3A5DA /* HistoryInspector.swift in Sources */,
