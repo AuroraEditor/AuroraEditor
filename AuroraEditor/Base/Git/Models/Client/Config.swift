@@ -176,7 +176,7 @@ func setConfigValueInPath(name: String,
 
     var flags = ["config"]
 
-    if ((path?.isEmpty) != nil) {
+    if path == nil {
         flags.append("--global")
     }
 
@@ -212,7 +212,7 @@ func removeConfigValueInPath(name: String,
 
     var flags = ["config"]
 
-    if ((path?.isEmpty) != nil) {
+    if path == nil {
         flags.append("--global")
     }
 
