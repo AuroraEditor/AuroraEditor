@@ -63,13 +63,19 @@ This project originates from https://github.com/CodeEditApp/CodeEdit. We decided
 
 ## Aurora Editor vs CodeEdit
 
-When looking at the core of both code bases there isn't to much difference between AE and CE, but we are trying to change that by following a more cleaner [architecture](https://github.com/AuroraEditor/AuroraEditor/wiki/Architecture), overtime the code base between AE and CE will barely be similar to each other. 
+When looking at the core of both code bases there isn't to much difference between AuroraEditor (AE) and CodeEdit (CE). However, we are trying to change that, for example by following a cleaner [architecture](https://github.com/AuroraEditor/AuroraEditor/wiki/Architecture). Overtime the code base between AE and CE may barely be similar to each other. 
 
-We follow a strict set of principals when developing AE, some of which includes keeping the editor performant as possible, fixing all memory leaks that may hurt performance and making sure any PR that has been made follows AE's architecture guide closely, the code is readable at all times and meets our expectations in regards to performance, if it isn't we will work with the contributor till we have a satisfactory PR to merge in our `main` branch. 
+We follow a strict set of principals when developing AE, some of which includes 
+- Keeping the code as performant as possible (including build times)
+- Fixing memory leaks or excessive memory usage that may hurt performance
+- Making sure PRs follow AE's architecture guide closely
+- The code is readable at all times and meets our expectations in regards to performance
 
-We try to keep our code base documented as much as possible making it easier for any new or existing contributor who's building new features or fixing a bug to just read the files documentation and instantly have an idea of what's happening.
+Even if the code isn't completely up to these standards, we will work with the contributor until we have a satisfactory PR. No merge left behind!
 
-We respect the contributors that contributed to CE and we would like to thank them for giving us a base to begin with.
+We try to keep our code base documented as much as possible, so that any new or existing contributor who's building new features or fixing a bug can just read the documentation and instantly have an idea of what's happening.
+
+We very much respect the contributors that contributed to CE, and we would like to thank them for giving us a base to begin with.
 
 ## Community
 
