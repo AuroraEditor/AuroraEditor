@@ -59,7 +59,11 @@ extension STTextViewController {
 
             // TODO: Also work on backspace
             textView.setSelectedRange(affectedCharRange)
-            textView.moveForward(self)
+            if replacementString.isEmpty {
+                textView.moveBackward(self)
+            } else {
+                textView.moveForward(self)
+            }
 
             updateText = false
         }
