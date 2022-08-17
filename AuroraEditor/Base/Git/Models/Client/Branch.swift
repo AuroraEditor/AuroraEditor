@@ -94,7 +94,7 @@ public struct Branches {
     /// @returns - list branch names. null if an error is encountered
     func getBranchesPointedAt(directoryURL: URL,
                               commitsh: String) throws -> [String]? {
-        var args = [
+        let args = [
             "branch",
             "--points-at=\(commitsh)",
             "--format=%(refname:short)"

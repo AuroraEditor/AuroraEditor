@@ -73,7 +73,9 @@ public struct Tag {
             let parts = line
 
             if parts.substring(0) == "*" && parts.substring(2) == "[new tag]" {
-                var tagName = parts.substring(1).split(separator: ":").map { String($0) }
+                let tagName = parts.substring(1).split(separator: ":").map {
+                    String($0)
+                }
 
                 if !tagName.description.isEmpty {
                     unpushedTags.append(tagName.description.replacingOccurrences(of: "/^refs\\/tags\\//", with: ""))

@@ -31,6 +31,7 @@ public struct Stash {
     /// Get the list of stash entries created by Desktop in the current repository
     /// using the default ordering of refs (which is LIFO ordering),
     /// as well as the total amount of stash entries.
+    @discardableResult
     func getStashes(directoryURL: URL) throws -> StashResult {
         let delimiter = "1F"
         let delimiterString = String(UnicodeScalar(UInt8(16)))

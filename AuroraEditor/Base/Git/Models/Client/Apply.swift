@@ -40,7 +40,7 @@ func applyPatchToIndex(directoryURL: URL,
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git update-index --add --cacheinfo \(mode) \(oid) \(file.url)")
     }
 
-    var applyArgs: [String] = [
+    let applyArgs: [String] = [
         "apply",
         "--cached",
         "--undiff-zero",

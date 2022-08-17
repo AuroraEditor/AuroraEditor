@@ -168,6 +168,7 @@ func addGlobalConfigValueIfMissing(name: String,
 ///  we'll use the global configuration (i.e. --global)
 ///  and execute the Git call from the same location that
 ///  Aurora Editor is installed in.
+@discardableResult
 func setConfigValueInPath(name: String,
                           value: String,
                           path: String?) throws -> String {

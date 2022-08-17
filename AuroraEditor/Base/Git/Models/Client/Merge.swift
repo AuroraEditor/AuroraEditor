@@ -36,7 +36,7 @@ func merge(directoryURL: URL,
     )
 
     if isSquash {
-        let result  = try ShellClient.live().run(
+        let result = try ShellClient.live().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git commit --no-edit"
         )
     }

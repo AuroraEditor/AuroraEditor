@@ -78,6 +78,7 @@ public struct Reset {
     }
 
     /// Unstage all paths.
+    @discardableResult
     func unstageAll(directoryURL: URL) throws -> Bool {
         _ = try ShellClient.live().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git reset -- ."

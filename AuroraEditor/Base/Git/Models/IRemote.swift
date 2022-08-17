@@ -16,15 +16,15 @@ public func forkPullRequestRemoteName(remoteName: String) -> String {
 }
 
 public protocol IRemote {
-    var name: String? { get }
-    var url: String? { get }
+    var name: String { get }
+    var url: String { get }
 }
 
 public class GitRemote: IRemote {
-    public var name: String?
-    public var url: String?
+    public var name: String
+    public var url: String
 
-    init(name: String? = nil, url: String? = nil) {
+    init(name: String, url: String) {
         self.name = name
         self.url = url
     }
