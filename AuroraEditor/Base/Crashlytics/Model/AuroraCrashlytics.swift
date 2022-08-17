@@ -49,8 +49,7 @@ open class CrashModel: NSObject {
     }
 }
 
-// swiftlint:disable:next redundant_optional_initialization
-private var appOldExceptionHandler:(@convention(c) (NSException) -> Swift.Void)? = nil
+private var appOldExceptionHandler: (@convention(c) (NSException) -> Swift.Void)?
 
 public class AuroraCrashlytics: NSObject {
 
