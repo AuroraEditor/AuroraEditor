@@ -132,8 +132,9 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
 
     /// A default `NSParagraphStyle` with a set `lineHeight`
     private var paragraphStyle: NSMutableParagraphStyle {
-        // swiftlint:disable:next force_cast
-        let paragraph = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+        guard let paragraph = NSParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle else {
+            fatalError("Failed to get Paragraph")
+        }
         paragraph.minimumLineHeight = lineHeight
         paragraph.maximumLineHeight = lineHeight
         return paragraph

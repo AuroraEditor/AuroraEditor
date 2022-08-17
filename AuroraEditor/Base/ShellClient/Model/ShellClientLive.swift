@@ -40,8 +40,7 @@ public extension ShellClient {
                     .publisher(for: .NSFileHandleDataAvailable, object: outputHandler)
                     .sink { _ in
                         let data = outputHandler.availableData
-                        // swiftlint:disable:next empty_count
-                        guard data.count > 0 else {
+                        guard !data.isEmpty else {
                             // if no data is available anymore
                             // we should cancel this cancellable
                             // and mark the subject as finished

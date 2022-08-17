@@ -99,9 +99,8 @@ extension String {
         return self.index(self.startIndex, offsetBy: from)
     }
 
-    // swiftlint:disable:next identifier_name
-    func substring(_ to: Int) -> String {
-        let toIndex = index(from: to)
-        return String(self[..<toIndex])
+    func substring(_ toIndex: Int) -> String {
+        let index = index(from: toIndex)
+        return String(self[..<index])
     }
 }
