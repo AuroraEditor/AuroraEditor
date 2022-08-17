@@ -146,8 +146,7 @@ open class HighlighrTheme {
 
         var resultDict = [String: [String: String]]()
 
-        for result in results {
-            if result.numberOfRanges == 3 { // swiftlint:disable:this for_where
+        for result in results where result.numberOfRanges == 3 {
                 var attributes = [String: String]()
                 let cssPairs = objcString.substring(with: result.range(at: 2)).components(separatedBy: ";")
                 for pair in cssPairs {
@@ -160,9 +159,6 @@ open class HighlighrTheme {
                 if !attributes.isEmpty {
                     resultDict[objcString.substring(with: result.range(at: 1))] = attributes
                 }
-
-            }
-
         }
 
         var returnDict = [String: [String: String]]()
