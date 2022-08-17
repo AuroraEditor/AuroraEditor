@@ -38,8 +38,7 @@ func isUsingLFS(directoryURL: URL) throws -> Bool {
     let result = try ShellClient.live().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git lfs track")
 
-    // swiftlint:disable:next empty_count
-    return result.count > 0
+    return !result.isEmpty
 }
 
 /// Is the repository configured to track any paths with LFS?

@@ -71,8 +71,7 @@ public class AuroraCrashlytics: NSObject {
             self.delegates.append(week)
         }
 
-        // swiftlint:disable:next empty_count
-        if self.delegates.count > 0 {
+        if !self.delegates.isEmpty {
             self.open()
         }
     }
