@@ -48,7 +48,7 @@ func getAheadBehind(directoryURL: URL,
     // `--left-right` annotates the list of commits in the range with which side
     // they're coming from. When used with `--count`, it tells us how many
     // commits we have from the two different sides of the range.
-    var args = ["rev-list", "--left-right", "--count", range, "--"]
+    let args = ["rev-list", "--left-right", "--count", range, "--"]
 
     let result = try ShellClient().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)"
@@ -105,7 +105,7 @@ func getCommitsBetweenCommits(directoryURL: URL,
 func getCommitsInRange(directoryURL: URL,
                        range: String) throws -> [CommitOneLine]? {
 
-    var args = [
+    let args = [
         "rev-list",
         range,
         "--reverse",
@@ -124,11 +124,7 @@ func getCommitsInRange(directoryURL: URL,
         return nil
     }
 
-    let lines = result.split(separator: "\n")
-
     var commits: [CommitOneLine] = []
-
-    let commitSummaryRe = "^([a-z0-9]{40}) (.*)$"
 
     if result.count == 3 {
         let sha = result.substring(1)

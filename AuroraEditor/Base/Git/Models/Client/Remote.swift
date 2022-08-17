@@ -17,29 +17,32 @@ public struct Remote {
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git remote -v"
         )
 
-        if result.contains("fatal: not a git repository") {
+        if result.contains(GitError.NotAGitRepository.rawValue) {
             return []
         }
 
-        let output = result
-        let lines = output.split(separator: "\n")
-        // find a way to split ("/\s+/") with regex and then map it
-//        let remotes = lines.filter {
-//            $0.hasSuffix("(fetch)")
-//        }
+        let lines = result.split(separator: "\n")
+        let remotes = lines.filter {
+            $0.hasSuffix("(fetch)")
+        }.map {
+            $0.split(separator: "\t")
+        }.map {
+            GitRemote(name: $0[0].description,
+                      url: $0[1].description)
+        }
 
-        return []
+        return remotes
     }
 
     /// Add a new remote with the given URL.
     func addRemote(directoryURL: URL,
                    name: String,
                    url: String) throws -> IRemote? {
-        let result = try ShellClient.live().run(
+        try ShellClient.live().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git remote add"
         )
 
-        return nil
+        return GitRemote(name: name, url: url)
     }
 
     /// Removes an existing remote, or silently errors if it doesn't exist
