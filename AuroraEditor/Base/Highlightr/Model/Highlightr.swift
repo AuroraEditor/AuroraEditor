@@ -127,12 +127,12 @@ open class Highlightr {
         as languageName: String? = nil,
         fastRender: Bool = true) -> NSAttributedString? {
             let ret: JSValue
-            if let languageName = languageName {
-                ret = hljs.invokeMethod("highlight", withArguments: [languageName, code, ignoreIllegals])
-            } else {
+//            if let languageName = languageName {
+//                ret = hljs.invokeMethod("highlight", withArguments: [languageName, code, ignoreIllegals])
+//            } else {
                 // language auto detection
                 ret = hljs.invokeMethod("highlightAuto", withArguments: [code])
-            }
+//            }
 
             let res = ret.objectForKeyedSubscript("value")
             guard var string = res!.toString() else {
