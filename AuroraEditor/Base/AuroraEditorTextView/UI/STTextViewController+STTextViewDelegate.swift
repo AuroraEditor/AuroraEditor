@@ -50,7 +50,6 @@ extension STTextViewController {
             // highlight()
             setStandardAttributes()
 
-            self.text.wrappedValue = textView.string
             textView.setString(
                 AEHighlight().highlight(
                     code: textView.string,
