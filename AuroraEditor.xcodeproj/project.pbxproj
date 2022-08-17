@@ -41,7 +41,7 @@
 		202F2E39289E7444000D3CAD /* FindNavigatorListMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E38289E7444000D3CAD /* FindNavigatorListMatchCell.swift */; };
 		202F2E3B289E7483000D3CAD /* FindNavigatorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E3A289E7483000D3CAD /* FindNavigatorListViewController.swift */; };
 		2030964228AD03460083D725 /* Rev-List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2030964128AD03460083D725 /* Rev-List.swift */; };
-		2030964428AD06C60083D725 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2030964328AD06C60083D725 /* Branch.swift */; };
+		2030964428AD06C60083D725 /* GitBranch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2030964328AD06C60083D725 /* GitBranch.swift */; };
 		2032B50E28A256130089EBB6 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B50D28A256130089EBB6 /* Collection.swift */; };
 		2032B51028A256F50089EBB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B50F28A256F50089EBB6 /* Array.swift */; };
 		2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */; };
@@ -602,7 +602,7 @@
 		202F2E38289E7444000D3CAD /* FindNavigatorListMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorListMatchCell.swift; sourceTree = "<group>"; };
 		202F2E3A289E7483000D3CAD /* FindNavigatorListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorListViewController.swift; sourceTree = "<group>"; };
 		2030964128AD03460083D725 /* Rev-List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rev-List.swift"; sourceTree = "<group>"; };
-		2030964328AD06C60083D725 /* Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
+		2030964328AD06C60083D725 /* GitBranch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitBranch.swift; sourceTree = "<group>"; };
 		2032B50D28A256130089EBB6 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		2032B50F28A256F50089EBB6 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowHostingController.swift; sourceTree = "<group>"; };
@@ -2216,7 +2216,7 @@
 				20BCB0C128AA9AA00064C7C0 /* Stash-Entry.swift */,
 				20BCB0C328AA9FFA0064C7C0 /* ManualConflictResolution.swift */,
 				20BCB0C528AAA1C00064C7C0 /* GitCommit.swift */,
-				2030964328AD06C60083D725 /* Branch.swift */,
+				2030964328AD06C60083D725 /* GitBranch.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3562,7 +3562,7 @@
 				20C8D7DC287ED2C700C5B3BA /* ToolbarBranchPicker.swift in Sources */,
 				2093CD3E289AA095003A88DD /* GitlabUser.swift in Sources */,
 				2B4C1337289D56F9000ED796 /* CompletionWindowController.swift in Sources */,
-				2030964428AD06C60083D725 /* Branch.swift in Sources */,
+				2030964428AD06C60083D725 /* GitBranch.swift in Sources */,
 				2093CDE8289AAE87003A88DD /* StashChangesSheet.swift in Sources */,
 				2093CD6C289AA0FC003A88DD /* EffectView.swift in Sources */,
 				2093CDB3289AA19B003A88DD /* AccountSelectionDialog.swift in Sources */,

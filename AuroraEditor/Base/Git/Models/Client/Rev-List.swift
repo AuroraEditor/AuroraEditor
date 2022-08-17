@@ -15,6 +15,7 @@ import Foundation
 ///
 /// Each parameter can be the commit SHA or a ref name, or specify an empty
 /// string to represent HEAD.
+// swiftlint:disable:next identifier_name
 func revRange(from: String, to: String) -> String {
     return "\(from)..\(to)"
 }
@@ -25,6 +26,7 @@ func revRange(from: String, to: String) -> String {
 ///
 /// Each parameter can be the commit SHA or a ref name, or specify an empty
 /// string to represent HEAD.
+// swiftlint:disable:next identifier_name
 func revRangeInclusive(from: String, to: String) -> String {
     return "\(from)^...\(to)"
 }
@@ -35,6 +37,7 @@ func revRangeInclusive(from: String, to: String) -> String {
 ///
 /// Each parameter can be the commit SHA or a ref name, or you can use an empty
 /// string to represent HEAD.
+// swiftlint:disable:next identifier_name
 func revSymmetricDifference(from: String, to: String) -> String {
     return "\(from)...\(to)"
 }
@@ -77,7 +80,7 @@ func getAheadBehind(directoryURL: URL,
 }
 
 func getBranchAheadBehind(directoryURL: URL,
-                          branch: String){
+                          branch: String) {
 }
 
 /// Get a list of commits from the target branch that do not exist on the base
