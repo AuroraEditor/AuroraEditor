@@ -26,7 +26,7 @@ public extension CheckoutBranchView {
         }
     }
 
-    // swiftlint:disable:next function_body_length cyclomatic_complexity
+    // swiftlint:disable:next function_body_length
     func checkoutBranch() {
         var parsedBranch = selectedBranch
         if selectedBranch.contains("origin/") || selectedBranch.contains("upstream/") {

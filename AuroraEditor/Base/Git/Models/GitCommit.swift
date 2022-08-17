@@ -27,7 +27,7 @@ class CommitContext: ICommitContext {
     var description: String?
     var amend: Bool?
     var trailers: [Trailer]?
-    
+
     init(summary: String?,
          description: String?,
          amend: Bool?,
@@ -43,14 +43,14 @@ class CommitContext: ICommitContext {
 /// trailers.
 func extractCoAuthors(trailers: [Trailer]) -> [GitAuthor] {
     var coAuthors: [GitAuthor] = []
-    
+
     for trailer in trailers where isCoAuthoredByTrailer(trailer: trailer) {
         let author = GitAuthor(name: nil, email: nil).parse(nameAddr: trailer.value)
         if author != nil {
             coAuthors.append(author!)
         }
     }
-    
+
     return coAuthors
 }
 
@@ -62,7 +62,7 @@ func extractCoAuthors(trailers: [Trailer]) -> [GitAuthor] {
 class CommitOneLine {
     var sha: String
     var summary: String
-    
+
     init(sha: String, summary: String) {
         self.sha = sha
         self.summary = summary
@@ -81,7 +81,7 @@ class GitCommit {
     var authoredByCommitter: Bool
     /// Whether or not the commit is a merge commit (i.e. has at least 2 parents)
     var isMergeCommit: Bool
-    
+
     init(sha: String,
          shortSha: String,
          summary: String,

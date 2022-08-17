@@ -5,12 +5,12 @@
 # Disabled rule, reason.
 disabled_rules:
   - todo # New project, we have a lot of // TODO:
-  - missing_docs
+  - missing_docs # We miss a lot of docs right now
 
 # paths to ignore during linting.
 excluded:
   - AuroraEditorModules/.build # Where Swift Package Manager checks out dependency sources
-  - AuroraEditor/Base/AuroraEditorTextView/STTextView
+  - AuroraEditor/Base/AuroraEditorTextView/STTextView # External package which needs to be 'fixed'
   - AuroraEditor/Base/Git/Models/Client/Helpers/GitError.swift
 
 # Exclude triggering type names.
@@ -43,6 +43,10 @@ identifier_name:
     - d
     - cs
 
+# cyclomatic_complexity (ignore case)
+cyclomatic_complexity:
+  ignores_case_statements: true
+
 # Opt in rules, we want it more stricter.
 opt_in_rules:
   - empty_count
@@ -52,7 +56,6 @@ opt_in_rules:
   - modifier_order
   - convenience_type
   - pattern_matching_keywords
-  - modifier_order
   - identical_operands
   - empty_string
 
