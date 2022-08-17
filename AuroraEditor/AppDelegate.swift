@@ -33,7 +33,6 @@ final class AuroraEditorApplication: NSApplication {
 @NSApplicationMain
 final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     func applicationWillFinishLaunching(_ notification: Notification) {
-        _ = AuroraEditorDocumentController.shared
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {

@@ -24,7 +24,7 @@ func updateRef(directoryURL: URL,
                oldValue: String,
                newValue: String,
                reason: String) throws {
-    _ = try ShellClient.live().run(
+    try ShellClient().run(
         // swiftlint:disable:next line_length
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git update-ref \(ref) \(newValue) \(oldValue) -m \(reason)")
 }
@@ -43,6 +43,6 @@ func deleteRef(directoryURL: URL,
         args.append("-m")
         args.append(reason!)
     }
-    _ = try ShellClient.live().run(
+    try ShellClient().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)")
 }

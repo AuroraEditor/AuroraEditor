@@ -12,7 +12,7 @@ import Foundation
 /// Remove all files from the index
 func unstageAllFiles(directoryURL: URL) {
     do {
-        _ = try ShellClient.live().run(
+        try ShellClient().run(
             // these flags are important:
             // --cached - to only remove files from the index
             // -r - to recursively remove files, in case files are in folders
@@ -27,6 +27,6 @@ func unstageAllFiles(directoryURL: URL) {
 /// Remove conflicted file from  working tree and index
 func removeConflictedFile(directoryURL: URL,
                           file: FileItem) throws {
-    _ = try ShellClient.live().run(
+    try ShellClient().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git rm --\(file.url)")
 }

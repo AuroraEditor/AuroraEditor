@@ -45,7 +45,7 @@ public struct Remote {
     /// Removes an existing remote, or silently errors if it doesn't exist
     func removeRemote(directoryURL: URL,
                       name: String) throws {
-        _ = try ShellClient.live().run(
+        try ShellClient().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git remote remove"
         )
 
@@ -55,7 +55,7 @@ public struct Remote {
     func setRemoteURL(directoryURL: URL,
                       name: String,
                       url: String) throws -> Bool {
-        _ = try ShellClient.live().run(
+        try ShellClient().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git remote set-url \(name) \(url)"
         )
 
@@ -77,7 +77,7 @@ public struct Remote {
     /// Update the HEAD ref of the remote, which is the default branch.
     func updateRemoteHEAD(directoryURL: URL,
                           remote: IRemote) throws {
-        _ = try ShellClient.live().run(
+        try ShellClient().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git remote set-head -a \(remote.name)"
         )
     }

@@ -79,7 +79,7 @@ public struct CherryPick {
 
     /// Abandon the current cherry pick operation
     func abortCherryPick(directoryURL: URL) throws {
-        _ = try ShellClient.live().run(
+        try ShellClient().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git cherry-pick --abort"
         )
     }

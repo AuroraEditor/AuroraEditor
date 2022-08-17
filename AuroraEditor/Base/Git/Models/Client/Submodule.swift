@@ -71,7 +71,7 @@ func resetSubmodulePaths(directoryURL: URL,
         return
     }
 
-    _ = try ShellClient.live().run(
+    try ShellClient().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git submodule update --recursive --force --\(paths)")
 }
 

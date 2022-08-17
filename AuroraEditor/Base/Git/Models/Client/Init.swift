@@ -11,7 +11,7 @@ import Foundation
 
 /// Init a new git repository in the given path.
 func initGitRepository(directoryURL: URL) throws {
-    _ = try ShellClient.live().run(
+    try ShellClient().run(
         // swiftlint:disable:next line_length
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git -c init.defailtBranch=\(DefaultBranch().getDefaultBranch()) init"
     )

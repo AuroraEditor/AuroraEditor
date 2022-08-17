@@ -121,9 +121,9 @@ public struct Stash {
     func popStashEntry(directoryURL: URL, sha: String) throws {
         let stashToPop = try getStashEntryMatchingSha(directoryURL: directoryURL, sha: sha)
 
-        if stashToPop != nil {
+        if let stashToPop = stashToPop {
             let args = ["stash", "pop", "--quiet", "\(stashToPop)"]
-            let result = try ShellClient.live().run(
+            try ShellClient.live().run(
                 "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)")
 
             try dropAEStashEntry(directoryURL: directoryURL, sha: sha)

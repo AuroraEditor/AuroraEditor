@@ -77,6 +77,8 @@ public final class SourceControlModel: ObservableObject {
     }
 
     private var isReloading: Bool = false
+
+    @discardableResult
     public func reloadChangedFiles() -> [FileItem] {
         guard isReloading == false else { return [] }
         do {
