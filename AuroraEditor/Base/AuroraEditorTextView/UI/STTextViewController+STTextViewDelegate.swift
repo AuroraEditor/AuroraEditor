@@ -44,10 +44,10 @@ extension STTextViewController {
     ) {
         if !updateText {
             updateText = true
+
             textView.autocompleteBracketPairs(replacementString)
             Log.info("Did change text in \(affectedCharRange) | \(replacementString)")
 
-            // highlight()
             setStandardAttributes()
 
             textView.setString(
@@ -56,7 +56,10 @@ extension STTextViewController {
                     themeString: ThemeModel.shared.selectedTheme?.highlightrThemeString
                 )
             )
-//            // TODO: Move Caret position.
+
+            // TODO: Also work on backspace
+            textView.setSelectedRange(affectedCharRange)
+            textView.moveForward(self)
 
             updateText = false
         }
