@@ -51,11 +51,12 @@ extension STTextViewController {
             setStandardAttributes()
 
             self.text.wrappedValue = textView.string
-//            textView.setString(
-//                AEHighlight().highlight(
-//                    code: textView.string
-//                )
-//            )
+            textView.setString(
+                AEHighlight().highlight(
+                    code: textView.string,
+                    themeString: ThemeModel.shared.selectedTheme?.highlightrThemeString
+                )
+            )
 //            // TODO: Move Caret position.
 
             updateText = false
