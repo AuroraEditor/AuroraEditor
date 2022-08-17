@@ -43,7 +43,7 @@ public struct Branches {
             args.append("--no-track")
         }
 
-        _ = try ShellClient.live().run(
+        try ShellClient().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)")
     }
 
@@ -51,14 +51,14 @@ public struct Branches {
     func renameBranch(directoryURL: URL,
                       branch: String,
                       newName: String) throws {
-        _ = try ShellClient.live().run(
+        try ShellClient().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git branch -m \(branch) \(newName)")
     }
 
     /// Delete the branch locally.
     func deleteLocalBranch(directoryURL: URL,
                            branchName: String) throws -> Bool {
-        _ = try ShellClient.live().run(
+        try ShellClient().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git branch -D \(branchName)")
         return true
     }

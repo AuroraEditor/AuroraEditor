@@ -11,17 +11,17 @@ import Foundation
 
 class GitAuthor {
 
-    var name: String?
-    var email: String?
+    var name: String
+    var email: String
 
     init(name: String?, email: String?) {
-        self.name = name
-        self.email = email
+        self.name = name ?? "Unknown"
+        self.email = email ?? "Unknown"
     }
 
     public func parse(nameAddr: String) -> GitAuthor? {
         let value = nameAddr.components(separatedBy: "/^(.*?)\\s+<(.*?)>//")
-        return value == nil ? nil : GitAuthor(name: value[1],
+        return value.isEmpty ? nil : GitAuthor(name: value[1],
                                               email: value[2])
     }
 

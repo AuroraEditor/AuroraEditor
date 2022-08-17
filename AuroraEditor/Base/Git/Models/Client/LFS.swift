@@ -17,7 +17,7 @@ func installGlobalLFSFilters(force: Bool) throws {
         args.append("--force")
     }
 
-    _ = try ShellClient.live().run("git \(args)")
+    try ShellClient().run("git \(args)")
 }
 
 /// Install LFS hooks in the project
@@ -29,7 +29,7 @@ func installLFSHooks(directoryURL: URL,
         args.append("--force")
     }
 
-    _ = try ShellClient.live().run(
+    try ShellClient().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)")
 }
 

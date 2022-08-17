@@ -91,7 +91,7 @@ func updateIndex(directoryURL: URL,
 
     args.append("-z --stdin")
 
-    _ = try ShellClient.live().run(
+    try ShellClient().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)")
 }
 
