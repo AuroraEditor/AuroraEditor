@@ -15,6 +15,12 @@ struct RepositoriesView: View {
     @ObservedObject
     var repositoryModel: RepositoryModel
 
+    @State
+    var repository = DummyRepo(repoName: "Aurora Editor", branches: [
+        DummyBranch(name: "main"),
+        DummyBranch(name: "Changes-outlineview")
+    ])
+
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
         self.repositoryModel = .init(workspace: workspace)
@@ -23,7 +29,7 @@ struct RepositoriesView: View {
     var body: some View {
         VStack(alignment: .center) {
             if repositoryModel.isGitRepository {
-                Text("Needs Implementation")
+                RepositoriesWrapperView(workspace: workspace, repository: repository)
             } else {
                 Text("This project does not seem to be a Git repository.")
                     .padding(.horizontal)
