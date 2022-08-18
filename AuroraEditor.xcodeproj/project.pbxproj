@@ -386,7 +386,6 @@
 		2093CDE7289AAE83003A88DD /* CheckoutBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8387E289A7ACE00D91D05 /* CheckoutBranchView.swift */; };
 		2093CDE8289AAE87003A88DD /* StashChangesSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83879289A7ACE00D91D05 /* StashChangesSheet.swift */; };
 		2093CDE9289AAE8B003A88DD /* StashWindowsChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83878289A7ACE00D91D05 /* StashWindowsChanges.swift */; };
-		209D0240289AB9470082441F /* Light-Swift-Untar in Frameworks */ = {isa = PBXBuildFile; productRef = 209D023F289AB9470082441F /* Light-Swift-Untar */; };
 		209D0243289AB9590082441F /* Preferences in Frameworks */ = {isa = PBXBuildFile; productRef = 209D0242289AB9590082441F /* Preferences */; };
 		209D0246289AB9750082441F /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = 209D0245289AB9750082441F /* SwiftTerm */; };
 		209D024B289ABC340082441F /* Package.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 209D024A289ABC340082441F /* Package.resolved */; };
@@ -1109,7 +1108,6 @@
 				2093CC88289A9A04003A88DD /* CodeEditKit in Frameworks */,
 				209D0246289AB9750082441F /* SwiftTerm in Frameworks */,
 				209D0243289AB9590082441F /* Preferences in Frameworks */,
-				209D0240289AB9470082441F /* Light-Swift-Untar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2988,7 +2986,6 @@
 			name = AuroraEditor;
 			packageProductDependencies = (
 				2093CC87289A9A04003A88DD /* CodeEditKit */,
-				209D023F289AB9470082441F /* Light-Swift-Untar */,
 				209D0242289AB9590082441F /* Preferences */,
 				209D0245289AB9750082441F /* SwiftTerm */,
 			);
@@ -3070,7 +3067,6 @@
 			mainGroup = B658FB2327DA9E0F00EA4DBD;
 			packageReferences = (
 				04C3256728034F3D00C8DA2D /* XCRemoteSwiftPackageReference "CodeEditKit" */,
-				209D023E289AB9470082441F /* XCRemoteSwiftPackageReference "Light-Swift-Untar" */,
 				209D0241289AB9590082441F /* XCRemoteSwiftPackageReference "Preferences" */,
 				209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */,
 			);
@@ -3717,7 +3713,6 @@
 				04C3255B2801F86400C8DA2D /* ProjectNavigatorViewController.swift in Sources */,
 				2093CDC0289AA247003A88DD /* SearchResultModel.swift in Sources */,
 				9384C52B28AE086E00FC452A /* [TEMP]DummyClasses.swift in Sources */,
-				2093CC8F289A9FA5003A88DD /* ShellClientInterface.swift in Sources */,
 				2093CD2E289AA089003A88DD /* Files.swift in Sources */,
 				209D0257289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift in Sources */,
 				6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */,
@@ -4204,14 +4199,6 @@
 				kind = branch;
 			};
 		};
-		209D023E289AB9470082441F /* XCRemoteSwiftPackageReference "Light-Swift-Untar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Light-Untar/Light-Swift-Untar";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		209D0241289AB9590082441F /* XCRemoteSwiftPackageReference "Preferences" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Preferences.git";
@@ -4235,11 +4222,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 04C3256728034F3D00C8DA2D /* XCRemoteSwiftPackageReference "CodeEditKit" */;
 			productName = CodeEditKit;
-		};
-		209D023F289AB9470082441F /* Light-Swift-Untar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 209D023E289AB9470082441F /* XCRemoteSwiftPackageReference "Light-Swift-Untar" */;
-			productName = "Light-Swift-Untar";
 		};
 		209D0242289AB9590082441F /* Preferences */ = {
 			isa = XCSwiftPackageProductDependency;

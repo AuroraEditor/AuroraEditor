@@ -10,15 +10,6 @@
       }
     },
     {
-      "identity" : "light-swift-untar",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Light-Untar/Light-Swift-Untar",
-      "state" : {
-        "branch" : "main",
-        "revision" : "0facd92faa289d38beb0401361557c6d53129788"
-      }
-    },
-    {
       "identity" : "preferences",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sindresorhus/Preferences.git",
