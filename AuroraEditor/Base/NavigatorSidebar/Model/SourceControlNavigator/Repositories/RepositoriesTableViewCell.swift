@@ -10,10 +10,11 @@ import SwiftUI
 
 /// A `NSTableCellView` showing an ``icon`` and a ``label``
 final class RepositoriesTableViewCell: StandardTableViewCell {
+    // swiftlint:disable:next cyclomatic_complexity function_body_length
     init(frame frameRect: NSRect,
          repository: DummyRepo,
          represents cellType: CellType = .repo,
-         branchNumber: Int? = nil
+         item: DummyItem? = nil
     ) {
         super.init(frame: frameRect)
 
@@ -21,23 +22,13 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
         var image = NSImage()
         switch cellType {
         case .repo:
-            label.stringValue = "\(repository.repoName) (\(repository.branches[repository.current].name))"
-            if repository.isLocal {
-                image = NSImage(systemSymbolName: "clock", accessibilityDescription: nil)!
-            } else {
-                image = NSImage(systemSymbolName: "vault", accessibilityDescription: nil)!
-            }
+            let currentBranch = (repository.branches?.contents[repository.branches?.current ?? -1] as? DummyBranch)?
+                .name ?? "Unknown Main Branch"
+            label.stringValue = "\(repository.repoName) (\(currentBranch))"
+            image = NSImage(systemSymbolName: "clock", accessibilityDescription: nil)!
 
         case .branches:
             label.stringValue = "Branches"
-            image = NSImage(systemSymbolName: "arrow.triangle.branch", accessibilityDescription: nil)!
-
-        case .branch:
-            label.stringValue = repository.branches[branchNumber ?? -1].name
-            if repository.current == branchNumber ?? -1 {
-                secondaryLabel.stringValue = "*"
-            }
-            secondaryLabelIsSmall = secondaryLabel.stringValue.isEmpty
             image = NSImage(systemSymbolName: "arrow.triangle.branch", accessibilityDescription: nil)!
 
         case .recentLocations:
@@ -55,19 +46,47 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
         case .remotes:
             label.stringValue = "Remotes"
             image = NSImage(named: "vault")!
+
+        case .remote:
+            label.stringValue = "origin" // TODO: Modifiable remote name
+            image = NSImage(systemSymbolName: "vault", accessibilityDescription: nil)!
+
+        case .branch:
+            let currentBranch = (repository.branches?.contents[repository.branches?.current ?? -1] as? DummyBranch)?
+                .name ?? "Unknown Main Branch"
+            label.stringValue = item?.name ?? "Unknown Branch"
+            if label.stringValue == currentBranch {
+                secondaryLabel.stringValue = "*"
+            }
+            secondaryLabelIsSmall = secondaryLabel.stringValue.isEmpty
+            image = NSImage(systemSymbolName: "arrow.triangle.branch", accessibilityDescription: nil)!
+
+        case .tag:
+            label.stringValue = item?.name ?? "Unknown Tag"
+            image = NSImage(systemSymbolName: "tag", accessibilityDescription: nil)!
+
+        case .change:
+            label.stringValue = item?.name ?? "Unknown Change"
+            image = NSImage(systemSymbolName: "tray", accessibilityDescription: nil)!
         }
         icon.image = image
         icon.contentTintColor = .gray
     }
 
     enum CellType {
+        // groups
         case repo
         case branches
-        case branch
         case recentLocations
         case tags
         case stashedChanges
         case remotes
+        case remote
+
+        // items
+        case branch
+        case tag
+        case change
     }
 
     required init?(coder: NSCoder) {

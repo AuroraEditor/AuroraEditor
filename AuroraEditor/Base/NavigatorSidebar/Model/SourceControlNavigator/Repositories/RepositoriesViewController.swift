@@ -93,7 +93,7 @@ final class RepositoriesViewController: NSViewController {
     private func onItemDoubleClicked() {
         let item = outlineView.item(atRow: outlineView.clickedRow)
 
-        if item is DummyRepo || item is DummyRepo.DummyContainer {
+        if item is DummyRepo || item is DummyContainer {
             if outlineView.isItemExpanded(item) {
                 outlineView.collapseItem(item)
             } else {
@@ -107,57 +107,42 @@ final class RepositoriesViewController: NSViewController {
 
 extension RepositoriesViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        if let item = item as? DummyRepo {
-            // item is a repo.
-            // if it is a remote, it will only contain its branches
-            guard item.isLocal else { return item.branches.count }
-            // else, it will contain Branches, Recent Locations, Tags, Stashed Changes, and Remotes
-            return item.containers.count
-        } else if let item = item as? DummyRepo.DummyContainer {
+        if item is DummyRepo {
+            // item is a repo
+            return 5
+        } else if let item = item as? DummyContainer {
             // item is a container
-            switch item.type {
-            case .branches:
-                return repository.branches.count
-            case .recentLocations:
-                return repository.recentBranches.count
-            case .stashedChanges:
-                return repository.stashedChanges.count
-            case .tags:
-                return repository.tags.count
-            case .remotes:
-                return repository.remotes.count
-            }
-        } else if item is DummyRepo.DummyBranch {
-            // item is a branch, has no children
+            return item.contents.count
+        } else if item is DummyItem {
+            // item is an item, and therefore has no children
             return 0
         }
-        // else it might be the top level item, return 1 for the repo
+        // it might be the top level item, return 1 for the repo
         return 1
     }
 
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         if let item = item as? DummyRepo {
             // item is a repo.
-            // if it is a remote, it will only contain its branches
-            guard item.isLocal else { return item.branches[index] }
-            // else, it will contain Branches, Recent Locations, Tags, Stashed Changes, and Remotes
-            return item.containers[index]
-        } else if let item = item as? DummyRepo.DummyContainer {
-            // item is a container
-            switch item.type {
-            case .branches:
-                return repository.branches[index]
-            case .recentLocations:
-                return repository.recentBranches[index]
-            case .stashedChanges:
-                return repository.stashedChanges[index]
-            case .tags:
-                return repository.tags[index]
-            case .remotes:
-                return repository.remotes[index]
+            switch index {
+            case 0:
+                return item.branches!
+            case 1:
+                return item.recentLocations!
+            case 2:
+                return item.tags!
+            case 3:
+                return item.stashedChanges!
+            case 4:
+                return item.remotes!
+            default:
+                return 0
             }
-        } else if item is DummyRepo.DummyBranch {
-            // item is a branch, has no children
+        } else if let item = item as? DummyContainer {
+            // item is a container
+            return item.contents[index]
+        } else if item is DummyItem {
+            // item is an item, has no children
             return 0
         }
         // item is top level, should be the repository
@@ -169,7 +154,7 @@ extension RepositoriesViewController: NSOutlineViewDataSource {
 
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         // only repos and containers are expandable
-        return item is DummyRepo || item is DummyRepo.DummyContainer
+        return item is DummyRepo || item is DummyContainer
     }
 }
 
@@ -185,7 +170,10 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
         true
     }
 
-    func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+    // swiftlint:disable:next cyclomatic_complexity function_body_length
+    func outlineView(_ outlineView: NSOutlineView,
+                     viewFor tableColumn: NSTableColumn?,
+                     item: Any) -> NSView? {
         guard let tableColumn = tableColumn else { return nil }
 
         let frameRect = NSRect(x: 0, y: 0, width: tableColumn.width, height: rowHeight)
@@ -195,53 +183,53 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
             return RepositoriesTableViewCell(frame: frameRect,
                                              repository: item,
                                              represents: .repo)
-        } else if let item = item as? DummyRepo.DummyContainer {
+        } else if let item = item as? DummyContainer {
             // item is a container
-            switch item.type {
-            case .branches:
+            if item is DummyBranches {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
                                                  represents: .branches)
-
-            case .recentLocations:
+            } else if item is DummyRecentLocations {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
                                                  represents: .recentLocations)
-
-            case .stashedChanges:
+            } else if item is DummyStashedChanges {
                 return RepositoriesTableViewCell(frame: frameRect,
-                                                repository: repository,
-                                                represents: .stashedChanges)
-
-            case .tags:
+                                                 repository: repository,
+                                                 represents: .stashedChanges)
+            } else if item is DummyTags {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
                                                  represents: .tags)
-
-            case .remotes:
+            } else if item is DummyRemotes {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
                                                  represents: .remotes)
+            } else if item is DummyRemote {
+                return RepositoriesTableViewCell(frame: frameRect,
+                                                 repository: repository,
+                                                 represents: .remote)
             }
-        } else if let item = item as? DummyRepo.DummyBranch {
-            // item is a branch, has no children
-            // TODO: Make this distinguish between local and remote.
-            // Currently it assumes the branch's parent is the main repo. This usually isn't a problem
-            // except when a branch exists in the main repo that doesn't in the remote
-            // one possible implementation is to put a parent property into the branch, and from there
-            // detect if the branch is owned by a remote or a local
-            return RepositoriesTableViewCell(frame: frameRect,
-                                             repository: repository,
-                                             represents: .branch,
-                                             branchNumber: repository.branches.firstIndex(where: {
-                $0.name == item.name
-            }))
+        } else if let item = item as? DummyItem {
+            if item is DummyBranch {
+                return RepositoriesTableViewCell(frame: frameRect,
+                                                 repository: repository,
+                                                 represents: .branch)
+            } else if item is DummyTag {
+                return RepositoriesTableViewCell(frame: frameRect,
+                                                 repository: repository,
+                                                 represents: .tag)
+            } else if item is DummyChange {
+                return RepositoriesTableViewCell(frame: frameRect,
+                                                 repository: repository,
+                                                 represents: .change)
+            }
         }
         return nil
     }
 
     func outlineViewSelectionDidChange(_ notification: Notification) {
-        let selectedIndex = outlineView.selectedRow
+//        let selectedIndex = outlineView.selectedRow
         // TODO: If the item clicked is something openable (eg. a branch), open a tab
     }
 
