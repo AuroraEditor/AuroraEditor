@@ -59,7 +59,7 @@ final class RepositoriesViewController: NSViewController {
 
         self.scrollView.documentView = outlineView
         self.scrollView.contentView.automaticallyAdjustsContentInsets = false
-        self.scrollView.contentView.contentInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
+        self.scrollView.contentView.contentInsets = .init(top: 10, left: 0, bottom: 0, right: 0)
         scrollView.hasVerticalScroller = true
 
         outlineView.expandItem(outlineView.item(atRow: 0))

@@ -29,11 +29,11 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
 
         case .branches:
             label.stringValue = "Branches"
-            image = NSImage(named: "git.branch")!
+            image = NSImage(systemSymbolName: "arrow.triangle.branch", accessibilityDescription: nil)!
 
         case .recentLocations:
             label.stringValue = "Recent Locations"
-            image = NSImage(named: "git.branch")!
+            image = NSImage(systemSymbolName: "arrow.triangle.branch", accessibilityDescription: nil)!
 
         case .tags:
             label.stringValue = "Tags"
@@ -59,7 +59,7 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
                 secondaryLabel.stringValue = "*"
             }
             secondaryLabelIsSmall = secondaryLabel.stringValue.isEmpty
-            image = NSImage(named: "git.branch")!
+            image = NSImage(systemSymbolName: "arrow.triangle.branch", accessibilityDescription: nil)!
 
         case .tag:
             label.stringValue = item?.name ?? "Unknown Tag"
