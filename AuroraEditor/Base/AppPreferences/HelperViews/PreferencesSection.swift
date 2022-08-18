@@ -13,7 +13,7 @@ public struct PreferencesContent<Content: View>: View {
     private let width: Double
     private let content: Content
 
-    public init(width: Double = 844, @ViewBuilder content: () -> Content) {
+    public init(width: Double = 570, @ViewBuilder content: () -> Content) {
         self.width = width
         self.content = content()
     }
@@ -23,7 +23,7 @@ public struct PreferencesContent<Content: View>: View {
             content
         }
         .frame(width: width)
-        .padding(30)
+        .padding()
     }
 }
 

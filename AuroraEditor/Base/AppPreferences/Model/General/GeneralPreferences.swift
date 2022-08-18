@@ -244,3 +244,62 @@ public extension AppPreferences {
         }
     }
 }
+
+func aeCommandLine() {
+    do {
+        let url = Bundle.main.url(forResource: "ae", withExtension: nil, subdirectory: "Resources")
+        let destination = "/usr/local/bin/ae"
+
+        if FileManager.default.fileExists(atPath: destination) {
+            try FileManager.default.removeItem(atPath: destination)
+        }
+
+        guard let shellUrl = url?.path else {
+            Log.error("Failed to get URL to shell command")
+            return
+        }
+
+        NSWorkspace.shared.requestAuthorization(to: .createSymbolicLink) { auth, error in
+            guard let auth = auth, error == nil else {
+                fallbackShellInstallation(commandPath: shellUrl, destinationPath: destination)
+                return
+            }
+
+            do {
+                try FileManager(authorization: auth).createSymbolicLink(
+                    atPath: destination, withDestinationPath: shellUrl
+                )
+            } catch {
+                fallbackShellInstallation(commandPath: shellUrl, destinationPath: destination)
+            }
+        }
+    } catch {
+        Log.error(error)
+    }
+}
+
+func fallbackShellInstallation(commandPath: String, destinationPath: String) {
+    let cmd = [
+        "osascript",
+        "-e",
+        "\"do shell script \\\"mkdir -p /usr/local/bin && ln -sf \'\(commandPath)\' \'\(destinationPath)\'\\\"\"",
+        "with administrator privileges"
+    ]
+
+    let cmdStr = cmd.joined(separator: " ")
+
+    let task = Process()
+    let pipe = Pipe()
+
+    task.standardOutput = pipe
+    task.standardError = pipe
+    task.arguments = ["-c", cmdStr]
+    task.executableURL = URL(fileURLWithPath: "/bin/zsh")
+    task.standardInput = nil
+
+    do {
+        try task.run()
+    } catch {
+        Log.error(error)
+    }
+}
