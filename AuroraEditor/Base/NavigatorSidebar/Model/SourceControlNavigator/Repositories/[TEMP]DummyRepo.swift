@@ -8,6 +8,13 @@
 
 import SwiftUI
 
+// Note to Nanashili: The way I've coded this dummyrepo is so that its as easy as possible to
+// migrate to RepositoryModel. You can move the classes starting with `Repo` to the model. They're
+// all optionals so you don't need to worry about not having them init'd when you're using the model
+// to create a repo.
+
+// TL;DR, just move lines 23-27 to RepositoryModel.
+
 // TODO: Nanashili (issued by Kai Tay): Implement the DummyRepo properties into RepositoryModel
 // The rest of the classes can stay the same.
 class DummyRepo {
@@ -30,6 +37,7 @@ class DummyRepo {
     ) {
         self.repoName = repoName
         self.branches = RepoBranches(contents: branches, current: current)
+        self.branches?.current = current
         self.recentLocations = RepoRecentLocations(contents: recentBranches)
         self.tags = RepoTags(contents: tags)
         self.stashedChanges = RepoStashedChanges(contents: stashedChanges)
