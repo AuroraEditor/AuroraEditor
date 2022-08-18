@@ -10,7 +10,7 @@ import SwiftUI
 
 /// A `NSTableCellView` showing an ``icon`` and a ``label``
 final class RepositoriesTableViewCell: StandardTableViewCell {
-    // swiftlint:disable:next cyclomatic_complexity function_body_length
+    // swiftlint:disable:next function_body_length
     init(frame frameRect: NSRect,
          repository: DummyRepo,
          represents cellType: CellType = .repo,
