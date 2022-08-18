@@ -9,7 +9,7 @@ import Foundation
 import AppKit
 import SwiftUI
 import Combine
-import CodeEditKit
+import AEExtensionKit
 
 @objc(WorkspaceDocument)
 final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {

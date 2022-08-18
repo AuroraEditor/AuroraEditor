@@ -95,7 +95,7 @@ public struct Stash {
     }
 
     private func getStashEntryMatchingSha(directoryURL: URL, sha: String) throws -> String? {
-        let stash = try getStashes(directoryURL: directoryURL)
+        try getStashes(directoryURL: directoryURL)
         return ""
     }
 
@@ -108,7 +108,7 @@ public struct Stash {
 
         if entryToDelete != nil {
             let args = ["stash", "drop", entryToDelete]
-            let result = try ShellClient.live().run(
+            try ShellClient.live().run(
                 "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)")
         }
     }
@@ -147,7 +147,7 @@ public struct Stash {
                     "--now-show-signature",
                     "--"]
 
-        let output = try ShellClient.live().run(
+        try ShellClient.live().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)"
         )
     }
