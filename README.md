@@ -13,9 +13,6 @@
   <a href='https://discord.gg/5aecJ4rq9D' target='_blank'>
     <img alt="Discord" src="https://img.shields.io/discord/997410333348077620?color=f98a6c&style=for-the-badge">
   </a>
-  <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 
 <br />
@@ -29,8 +26,10 @@ It will support everything you could expect from an Xcode-inspired application, 
 <p align="center">
   <a href='https://github.com/AuroraEditor/AuroraEditor/pulls'><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
   <a href='https://github.com/AuroraEditor/AuroraEditor/pulls?q=is%3Apr+is%3Aclosed'><img alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed-raw/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
+  <br />
   <a href='https://github.com/AuroraEditor/AuroraEditor/issues'><img alt="GitHub issues" src="https://img.shields.io/github/issues-raw/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
   <a href='https://github.com/AuroraEditor/AuroraEditor/issues?q=is%3Aissue+is%3Aclosed'><img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed-raw/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
+  <br />
   <img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/AuroraEditor/AuroraEditor/main?color=f98a6c&style=for-the-badge">
   <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge">
   <a href='https://github.com/AuroraEditor/AuroraEditor/fork'><img alt="GitHub forks" src="https://img.shields.io/github/forks/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
@@ -40,6 +39,10 @@ It will support everything you could expect from an Xcode-inspired application, 
 
 | :warning: |  **AuroraEditor is currently in development and we do not yet offer a download.** <br> We will post a link here when we have an alpha release ready for testing. <br> Until then, we welcome contributors to help bring this project to life. |
 |--|--|
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Motivation
 
