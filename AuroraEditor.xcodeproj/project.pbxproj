@@ -500,6 +500,11 @@
 		2BF983FF289D8B3C004F1A60 /* SharedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF983FE289D8B3C004F1A60 /* SharedObjects.swift */; };
 		6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */; };
 		9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */; };
+		9354D4B328ACEDDE004C6D18 /* RepositoriesWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354D4B228ACEDDE004C6D18 /* RepositoriesWrapperView.swift */; };
+		9354D4B528ACEDEF004C6D18 /* RepositoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354D4B428ACEDEF004C6D18 /* RepositoriesViewController.swift */; };
+		9354D4B728ACEE04004C6D18 /* RepositoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354D4B628ACEE04004C6D18 /* RepositoriesTableViewCell.swift */; };
+		9354D4B928ACEE20004C6D18 /* RepositoriesMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354D4B828ACEE20004C6D18 /* RepositoriesMenu.swift */; };
+		9354D4BB28AD2872004C6D18 /* StandardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354D4BA28AD2872004C6D18 /* StandardTableViewCell.swift */; };
 		935EB99C28A8F26900E8F798 /* FileSystemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935EB99B28A8F26900E8F798 /* FileSystemTableViewCell.swift */; };
 		939C2CC6289E345900BBB345 /* FileItemFileSystemFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */; };
 		93F0066728A7574C0038E5B7 /* WorkspaceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F0066628A7574C0038E5B7 /* WorkspaceClient.swift */; };
@@ -1054,6 +1059,11 @@
 		6CDA84AA284C0E4A00C1CC3A /* TabBarItemButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemButtonStyle.swift; sourceTree = "<group>"; };
 		6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContextMenu.swift; sourceTree = "<group>"; };
 		9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorToolbarBottom.swift; sourceTree = "<group>"; };
+		9354D4B228ACEDDE004C6D18 /* RepositoriesWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesWrapperView.swift; sourceTree = "<group>"; };
+		9354D4B428ACEDEF004C6D18 /* RepositoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesViewController.swift; sourceTree = "<group>"; };
+		9354D4B628ACEE04004C6D18 /* RepositoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesTableViewCell.swift; sourceTree = "<group>"; };
+		9354D4B828ACEE20004C6D18 /* RepositoriesMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesMenu.swift; sourceTree = "<group>"; };
+		9354D4BA28AD2872004C6D18 /* StandardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardTableViewCell.swift; sourceTree = "<group>"; };
 		935EB99B28A8F26900E8F798 /* FileSystemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemTableViewCell.swift; sourceTree = "<group>"; };
 		939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileItemFileSystemFunctions.swift; sourceTree = "<group>"; };
 		93F0066628A7574C0038E5B7 /* WorkspaceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceClient.swift; sourceTree = "<group>"; };
@@ -1242,13 +1252,6 @@
 				2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		2041B8AD28A669BD005F03D8 /* History */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = History;
 			sourceTree = "<group>";
 		};
 		2041B8B028A67486005F03D8 /* Core */ = {
@@ -2410,7 +2413,6 @@
 			children = (
 				20D83906289A7D9F00D91D05 /* Changes */,
 				20D83905289A7D9800D91D05 /* Repositories */,
-				2041B8AD28A669BD005F03D8 /* History */,
 				201169D62837B2E300F92B46 /* SourceControlNavigatorView.swift */,
 				201169D82837B31200F92B46 /* SourceControlSearchToolbar.swift */,
 				201169DC2837B3AC00F92B46 /* SourceControlToolbarBottom.swift */,
@@ -2443,6 +2445,7 @@
 				20D83909289A7DF300D91D05 /* ExtensionNavigator */,
 				20D83908289A7DC600D91D05 /* SourceControlNavigator */,
 				935EB99B28A8F26900E8F798 /* FileSystemTableViewCell.swift */,
+				9354D4BA28AD2872004C6D18 /* StandardTableViewCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2733,6 +2736,10 @@
 			isa = PBXGroup;
 			children = (
 				20DF979E28ABAA72009CE1E9 /* RepositoryModel.swift */,
+				9354D4B228ACEDDE004C6D18 /* RepositoriesWrapperView.swift */,
+				9354D4B428ACEDEF004C6D18 /* RepositoriesViewController.swift */,
+				9354D4B628ACEE04004C6D18 /* RepositoriesTableViewCell.swift */,
+				9354D4B828ACEE20004C6D18 /* RepositoriesMenu.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -3370,6 +3377,7 @@
 				20BCB0C428AA9FFA0064C7C0 /* ManualConflictResolution.swift in Sources */,
 				2093CC9A289A9FFD003A88DD /* StatusBarMaximizeButton.swift in Sources */,
 				2086334F28A530AF00E29A22 /* CommitChangesView.swift in Sources */,
+				9354D4B328ACEDDE004C6D18 /* RepositoriesWrapperView.swift in Sources */,
 				2093CDDF289AA522003A88DD /* Bundle+Info.swift in Sources */,
 				2093CD52289AA0AE003A88DD /* FeedbackType.swift in Sources */,
 				20E8749028A3ABA8002CE758 /* SourceControlController.swift in Sources */,
@@ -3437,6 +3445,7 @@
 				2093CD41289AA095003A88DD /* Event.swift in Sources */,
 				20E8748C28A3AB89002CE758 /* SourceControlTableViewCell.swift in Sources */,
 				2093CD16289AA054003A88DD /* CommitHistory.swift in Sources */,
+				9354D4B728ACEE04004C6D18 /* RepositoriesTableViewCell.swift in Sources */,
 				2B4C1347289D56F9000ED796 /* STTextView+Insert.swift in Sources */,
 				20BCB0C228AA9AA00064C7C0 /* Stash-Entry.swift in Sources */,
 				2093CDCB289AA260003A88DD /* TabBarItem.swift in Sources */,
@@ -3475,6 +3484,7 @@
 				2093CCAA289AA01A003A88DD /* FileItem+Array.swift in Sources */,
 				2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */,
 				20D2A44228A7CEFE0073F7BD /* Squash.swift in Sources */,
+				9354D4BB28AD2872004C6D18 /* StandardTableViewCell.swift in Sources */,
 				2093CD48289AA095003A88DD /* Parameters.swift in Sources */,
 				20BCB0BA28AA68160064C7C0 /* Apply.swift in Sources */,
 				20D2A43C28A7C5970073F7BD /* LFS.swift in Sources */,
@@ -3508,6 +3518,7 @@
 				2093CDA0289AA163003A88DD /* ThemePreferences.swift in Sources */,
 				2072FA1A280D872600C7F8D4 /* LineEndings.swift in Sources */,
 				2B4C133C289D56F9000ED796 /* STTextView+Mouse.swift in Sources */,
+				9354D4B928ACEE20004C6D18 /* RepositoriesMenu.swift in Sources */,
 				201169E22837B3D800F92B46 /* ChangesView.swift in Sources */,
 				20DF97A128ABB30D009CE1E9 /* FileManger.swift in Sources */,
 				2093CDD5289AA511003A88DD /* String+QueryParameters.swift in Sources */,
@@ -3541,6 +3552,7 @@
 				2093CD25289AA084003A88DD /* GithubConfiguration.swift in Sources */,
 				2093CD5B289AA0D5003A88DD /* CrashReportView.swift in Sources */,
 				2093CDCC289AA4F4003A88DD /* StatusBarTabType.swift in Sources */,
+				9354D4B528ACEDEF004C6D18 /* RepositoriesViewController.swift in Sources */,
 				2B4C1342289D56F9000ED796 /* NSTextLayoutManager+Helpers.swift in Sources */,
 				20D2A43828A7AF810073F7BD /* GitIgnore.swift in Sources */,
 				20D2A45028A7DFE60073F7BD /* IProgress.swift in Sources */,
