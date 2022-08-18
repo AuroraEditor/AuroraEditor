@@ -82,7 +82,7 @@ public struct Branches {
         // been deleted on the remote. If we identify that specific
         // error we can safely remove our remote ref which is what would
         // happen if the push didn't fail.
-        if result == GitError.BranchDeletionFailed.rawValue {
+        if result == GitError.branchDeletionFailed.rawValue {
             let ref = "refs/remotes/\(remoteName)/\(remoteBranchName)"
             try deleteRef(directoryURL: directoryURL, ref: ref, reason: nil)
         }

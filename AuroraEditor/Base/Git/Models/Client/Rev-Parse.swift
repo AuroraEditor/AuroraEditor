@@ -30,7 +30,7 @@ func getRepositoryType(path: String) throws -> RepositoryType {
             "cd \(path);git rev-parse --is-bare-repository -show-cdup"
         )
 
-        if !result.contains(GitError.NotAGitRepository.rawValue) {
+        if !result.contains(GitError.notAGitRepository.rawValue) {
             let isBare = result.split(separator: "\n", maxSplits: 2)
 
             return isBare.description == "true" ? .bare : .regular
