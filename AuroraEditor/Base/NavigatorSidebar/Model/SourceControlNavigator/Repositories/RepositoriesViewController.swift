@@ -214,15 +214,18 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
             if item is DummyBranch {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
-                                                 represents: .branch)
+                                                 represents: .branch,
+                                                 item: item)
             } else if item is DummyTag {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
-                                                 represents: .tag)
+                                                 represents: .tag,
+                                                 item: item)
             } else if item is DummyChange {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
-                                                 represents: .change)
+                                                 represents: .change,
+                                                 item: item)
             }
         }
         return nil
