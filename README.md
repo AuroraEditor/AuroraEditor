@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Logo" src="https://cdn.discordapp.com/attachments/997418186070827129/1008425256651849869/unknown.png" width="128px;" height="128px;">
+  <img alt="Logo" src="https://avatars.githubusercontent.com/u/106490518?s=128&v=4" width="128px;" height="128px;">
 </p>
 
 <p align="center">
