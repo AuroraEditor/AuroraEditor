@@ -12,6 +12,5 @@ jobs:
       - uses: actions/checkout@v2
       - name: Swift (clean) Build
         run: set -o pipefail && xcodebuild -verbose -workspace "AuroraEditor.xcworkspace" -scheme "AuroraEditor" clean build
-      # | xcpretty
       #- name: Swift Test
       #  run: set -o pipefail && xcodebuild -verbose -workspace "AuroraEditor.xcworkspace" -scheme "AuroraEditorTests" clean test | xcpretty

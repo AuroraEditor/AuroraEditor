@@ -13,7 +13,5 @@ jobs:
         run: swiftlint version
       - name: Toolchain version
         run: swift -version
-      #- name: SwiftLint (strict)
-      #  run: swiftlint --strict
       - name: SwiftLint (GH Actions)
         run: swiftlint --reporter github-actions-logging --strict
