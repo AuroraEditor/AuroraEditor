@@ -1,0 +1,41 @@
+{
+  "pins" : [
+    {
+      "identity" : "codeeditkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CodeEditApp/CodeEditKit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "2482e5870fd8082c908fabfdaaf245498cb3dd54"
+      }
+    },
+    {
+      "identity" : "light-swift-untar",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Light-Untar/Light-Swift-Untar",
+      "state" : {
+        "branch" : "main",
+        "revision" : "0facd92faa289d38beb0401361557c6d53129788"
+      }
+    },
+    {
+      "identity" : "preferences",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/Preferences.git",
+      "state" : {
+        "revision" : "2651cd144615009242c994b087508fef99e9275c",
+        "version" : "2.6.0"
+      }
+    },
+    {
+      "identity" : "swiftterm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/migueldeicaza/SwiftTerm.git",
+      "state" : {
+        "revision" : "70a3af884c24dff9f1beeda04e889b5591f04f3c",
+        "version" : "1.0.7"
+      }
+    }
+  ],
+  "version" : 2
+}

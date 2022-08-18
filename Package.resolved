@@ -1,0 +1,52 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CodeEditKit",
+        "repositoryURL": "https://github.com/CodeEditApp/CodeEditKit",
+        "state": {
+          "branch": "main",
+          "revision": "2482e5870fd8082c908fabfdaaf245498cb3dd54",
+          "version": null
+        }
+      },
+      {
+        "package": "Light-Swift-Untar",
+        "repositoryURL": "https://github.com/Light-Untar/Light-Swift-Untar",
+        "state": {
+          "branch": "main",
+          "revision": "0facd92faa289d38beb0401361557c6d53129788",
+          "version": null
+        }
+      },
+      {
+        "package": "Preferences",
+        "repositoryURL": "https://github.com/sindresorhus/Preferences.git",
+        "state": {
+          "branch": "main",
+          "revision": "5f17a0bbac132a5d5b0d97ed50fe66faea3068af",
+          "version": null
+        }
+      },
+      {
+        "package": "STTextView",
+        "repositoryURL": "https://github.com/krzyzanowskim/STTextView",
+        "state": {
+          "branch": "main",
+          "revision": "6f80a71d9e687629a8d7ee69cb96b91685739d69",
+          "version": null
+        }
+      },
+      {
+        "package": "SwiftTerm",
+        "repositoryURL": "https://github.com/migueldeicaza/SwiftTerm.git",
+        "state": {
+          "branch": null,
+          "revision": "70a3af884c24dff9f1beeda04e889b5591f04f3c",
+          "version": "1.0.7"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
