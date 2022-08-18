@@ -112,7 +112,7 @@ public struct WelcomeView: View {
                     .frame(width: 128, height: 128)
                 Text("Welcome to Aurora")
                     .font(.system(size: 38))
-                Text("Version \(appVersion) \(appBuild)")
+                Text("Version \(appVersion) (\(appBuild))")
                     .foregroundColor(.secondary)
                     .font(.system(size: 13))
                     .onHover { inside in
