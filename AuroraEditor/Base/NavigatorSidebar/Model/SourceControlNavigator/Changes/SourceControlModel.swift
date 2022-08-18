@@ -86,8 +86,10 @@ public final class SourceControlModel: ObservableObject {
             let difference = newChanged.map({ $0.url }).difference(from: changed.map({ $0.url }))
             var differentFiles = newChanged.filter { difference.contains($0.url) }
             differentFiles += changed.filter { difference.contains($0.url) }
-            if !differentFiles.isEmpty { changed = newChanged }
-            isReloading = false
+            DispatchQueue.main.async {
+                if !differentFiles.isEmpty { self.changed = newChanged }
+                self.isReloading = false
+            }
             return differentFiles
         } catch {
             isReloading = false
