@@ -22,7 +22,7 @@ struct SourceControlNavigatorView: View {
     var body: some View {
         VStack {
             SegmentedControl($selectedSection,
-                             options: ["Changes", "Repositories", "History"],
+                             options: ["Changes", "Repositories"],
                              prominent: true)
             .frame(maxWidth: .infinity)
             .frame(height: 27)
