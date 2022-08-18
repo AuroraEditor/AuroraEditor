@@ -27,7 +27,7 @@ public struct Checkout {
 
     /// Check out the paths at HEAD.
     func checkoutPaths(directoryURL: URL, paths: [String]) throws {
-        let output = try ShellClient.live().run(
+        try ShellClient.live().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git checkout HEAD --\(paths)"
         )
     }

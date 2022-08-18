@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CodeEditKit
+import AEExtensionKit
 
 final class AuroraEditorAPI: ExtensionAPI {
      var extensionId: String

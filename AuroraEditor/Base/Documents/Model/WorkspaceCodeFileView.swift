@@ -38,10 +38,6 @@ struct WorkspaceCodeFileView: View {
                     if fileItem.typeOfFile == .image {
                         imageFileView(fileItem, for: item)
                     } else {
-                        // TODO: Disable editor V1
-//                        codeFileView(fileItem, for: item)
-
-                        // TODO: Test editor V2
                         aeCodeView(fileItem, for: item)
                     }
                 }
