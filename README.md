@@ -10,7 +10,7 @@
   <a href='https://twitter.com/Aurora_Editor' target='_blank'>
     <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Aurora_Editor?color=f6579d&style=for-the-badge">
   </a>
-  <a href='https://discord.gg/vsu37gqGrK' target='_blank'>
+  <a href='https://discord.gg/5aecJ4rq9D' target='_blank'>
     <img alt="Discord" src="https://img.shields.io/discord/997410333348077620?color=f98a6c&style=for-the-badge">
   </a>
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
@@ -85,7 +85,7 @@ We very much respect the contributors that contributed to CE, and we would like 
 
 ## Community
 
-Join our community on [Discord](https://discord.gg/vsu37gqGrK) where we discuss and collaborate on all things of Aurora Editor.
+Join our community on [Discord](https://discord.gg/5aecJ4rq9D) where we discuss and collaborate on all things of Aurora Editor.
 Don't be shy, jump right in and be part of the discussion!
 
 ## Community Details
