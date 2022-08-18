@@ -47,9 +47,9 @@ public struct ToolbarBranchPicker: View {
         HStack(alignment: .center, spacing: 5) {
             if prefs.sourceControlActive() {
                 if currentBranch != nil {
-                    Image.checkout
+                    Image("git.branch")
                         .font(.title3)
-                        .imageScale(.large)
+                        .imageScale(.medium)
                         .foregroundColor(controlActive == .inactive ? inactiveColor : .primary)
                 } else {
                     Image(systemName: "square.dashed")
@@ -178,7 +178,7 @@ public struct ToolbarBranchPicker: View {
                             Text(name)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         } icon: {
-                            Image.checkout
+                            Image("git.branch")
                                 .imageScale(.large)
                         }
                         .foregroundColor(isHovering ? .white : .secondary)
