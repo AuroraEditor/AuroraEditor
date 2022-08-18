@@ -74,7 +74,6 @@ final class SourceControlController: NSViewController {
 
 extension SourceControlController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        Log.info("number of children requested for \(String(describing: item))")
         return workspace?.workspaceClient?.model?.changed.count ?? 0
     }
 
