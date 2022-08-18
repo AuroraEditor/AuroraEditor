@@ -25,7 +25,6 @@ extension String {
      - returns: A string colored with the specified color.
      */
     func withColor(_ color: String?) -> String {
-        // TODO: Find a way to tint the text in the debugger (eg: \u{001b}[fg\(color);\(self)\u{001b}[;)
         return ""
     }
 

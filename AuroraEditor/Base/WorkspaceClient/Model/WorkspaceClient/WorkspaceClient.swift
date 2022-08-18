@@ -37,11 +37,10 @@ public class WorkspaceClient {
     /// within the scope of the `WorkspaceClient`.
     /// - Parameter id: The file's full path
     /// - Returns: The file item corresponding to the file
-    public func getFileItem(_ id: String) throws -> FileItem {
-        // TODO: Can crash on save.
-        guard let item = flattenedFileItems[id] else {
+    public func getFileItem(_ id: String) throws -> FileItem {        guard let item = flattenedFileItems[id] else {
             throw WorkspaceClientError.fileNotExist
         }
+
         return item
     }
 

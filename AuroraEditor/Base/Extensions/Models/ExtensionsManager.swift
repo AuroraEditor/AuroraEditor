@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CodeEditKit
+import AEExtensionKit
 
 /// Class which handles all extensions (its bundles, instances for each workspace and so on)
 public final class ExtensionsManager {

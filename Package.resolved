@@ -2,20 +2,11 @@
   "object": {
     "pins": [
       {
-        "package": "CodeEditKit",
-        "repositoryURL": "https://github.com/CodeEditApp/CodeEditKit",
+        "package": "AEExtensionKit",
+        "repositoryURL": "https://github.com/AuroraEditor/AEExtensionKit.git",
         "state": {
           "branch": "main",
-          "revision": "2482e5870fd8082c908fabfdaaf245498cb3dd54",
-          "version": null
-        }
-      },
-      {
-        "package": "Light-Swift-Untar",
-        "repositoryURL": "https://github.com/Light-Untar/Light-Swift-Untar",
-        "state": {
-          "branch": "main",
-          "revision": "0facd92faa289d38beb0401361557c6d53129788",
+          "revision": "53577d52ad6db38b3543ff2a17acc533a0673b8c",
           "version": null
         }
       },
@@ -23,18 +14,9 @@
         "package": "Preferences",
         "repositoryURL": "https://github.com/sindresorhus/Preferences.git",
         "state": {
-          "branch": "main",
-          "revision": "5f17a0bbac132a5d5b0d97ed50fe66faea3068af",
-          "version": null
-        }
-      },
-      {
-        "package": "STTextView",
-        "repositoryURL": "https://github.com/krzyzanowskim/STTextView",
-        "state": {
-          "branch": "main",
-          "revision": "6f80a71d9e687629a8d7ee69cb96b91685739d69",
-          "version": null
+          "branch": null,
+          "revision": "2651cd144615009242c994b087508fef99e9275c",
+          "version": "2.6.0"
         }
       },
       {
