@@ -18,7 +18,7 @@ public struct Tag {
     func createTag(directoryURL: URL,
                    name: String,
                    targetCommitSha: String) throws {
-        _ = try ShellClient.live().run(
+        try ShellClient().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git tag -a -m \(name) \(targetCommitSha) "
         )
     }
@@ -27,7 +27,7 @@ public struct Tag {
     ///
     /// @param name - The name of the tag to delete.
     func deleteTag(directoryURL: URL, name: String) throws {
-        _ = try ShellClient.live().run(
+        try ShellClient().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git tag -d \(name)"
         )
     }
@@ -73,7 +73,9 @@ public struct Tag {
             let parts = line
 
             if parts.substring(0) == "*" && parts.substring(2) == "[new tag]" {
-                var tagName = parts.substring(1).split(separator: ":").map { String($0) }
+                let tagName = parts.substring(1).split(separator: ":").map {
+                    String($0)
+                }
 
                 if !tagName.description.isEmpty {
                     unpushedTags.append(tagName.description.replacingOccurrences(of: "/^refs\\/tags\\//", with: ""))

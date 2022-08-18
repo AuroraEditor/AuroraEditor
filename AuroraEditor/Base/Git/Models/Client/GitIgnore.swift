@@ -80,6 +80,7 @@ public struct GitIgnore {
     ///
     /// @param text - The text to format.
     /// @param directoryURL - The project url
+    @discardableResult
     func formatGitIgnoreContents(text: String,
                                  directoryURL: URL) throws -> String {
 

@@ -44,13 +44,10 @@ class CommitContext: ICommitContext {
 func extractCoAuthors(trailers: [Trailer]) -> [GitAuthor] {
     var coAuthors: [GitAuthor] = []
 
-    for trailer in trailers {
-        // swiftlint:disable:next for_where
-        if isCoAuthoredByTrailer(trailer: trailer) {
-            let author = GitAuthor(name: nil, email: nil).parse(nameAddr: trailer.value)
-            if author != nil {
-                coAuthors.append(author!)
-            }
+    for trailer in trailers where isCoAuthoredByTrailer(trailer: trailer) {
+        let author = GitAuthor(name: nil, email: nil).parse(nameAddr: trailer.value)
+        if author != nil {
+            coAuthors.append(author!)
         }
     }
 

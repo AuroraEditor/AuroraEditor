@@ -53,12 +53,11 @@ func parseRawUnfoldedTrailers(trailers: String, seperators: String) -> [ITrailer
 
 func parseSingleUnfoldedTrailer(line: String, seperators: String) -> ITrailer? {
     for seperator in seperators {
-        // swiftlint:disable:next identifier_name
-        let ix = line.index(of: seperator)?.encodedOffset
+        let idx = line.firstIndex(of: seperator)?.utf16Offset(in: "")
 
-        if ix! > 0 {
+        if idx! > 0 {
             return Trailer(token: line.substring(0).trimmingCharacters(in: .whitespaces),
-                           value: line.substring(ix! + 1).trimmingCharacters(in: .whitespaces))
+                           value: line.substring(idx! + 1).trimmingCharacters(in: .whitespaces))
         }
     }
     return nil

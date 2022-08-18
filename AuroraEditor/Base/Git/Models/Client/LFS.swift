@@ -17,7 +17,7 @@ func installGlobalLFSFilters(force: Bool) throws {
         args.append("--force")
     }
 
-    _ = try ShellClient.live().run("git \(args)")
+    try ShellClient().run("git \(args)")
 }
 
 /// Install LFS hooks in the project
@@ -29,7 +29,7 @@ func installLFSHooks(directoryURL: URL,
         args.append("--force")
     }
 
-    _ = try ShellClient.live().run(
+    try ShellClient().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)")
 }
 
@@ -38,8 +38,7 @@ func isUsingLFS(directoryURL: URL) throws -> Bool {
     let result = try ShellClient.live().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git lfs track")
 
-    // swiftlint:disable:next empty_count
-    return result.count > 0
+    return !result.isEmpty
 }
 
 /// Is the repository configured to track any paths with LFS?

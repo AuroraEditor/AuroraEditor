@@ -44,19 +44,26 @@ extension STTextViewController {
     ) {
         if !updateText {
             updateText = true
+
             textView.autocompleteBracketPairs(replacementString)
             Log.info("Did change text in \(affectedCharRange) | \(replacementString)")
 
-            // highlight()
             setStandardAttributes()
 
-            self.text.wrappedValue = textView.string
-//            textView.setString(
-//                AEHighlight().highlight(
-//                    code: textView.string
-//                )
-//            )
-//            // TODO: Move Caret position.
+            textView.setString(
+                AEHighlight().highlight(
+                    code: textView.string,
+                    themeString: ThemeModel.shared.selectedTheme?.highlightrThemeString
+                )
+            )
+
+            // TODO: Also work on backspace
+            textView.setSelectedRange(affectedCharRange)
+            if replacementString.isEmpty {
+                textView.moveBackward(self)
+            } else {
+                textView.moveForward(self)
+            }
 
             updateText = false
         }

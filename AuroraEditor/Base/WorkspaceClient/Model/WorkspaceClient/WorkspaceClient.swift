@@ -84,7 +84,7 @@ public class WorkspaceClient {
         }
 
         // reload git changes
-        _ = model?.reloadChangedFiles()
+        model?.reloadChangedFiles()
         for changedFile in (model?.changed ?? []) {
             flattenedFileItems[changedFile.id]?.gitStatus = changedFile.gitStatus
         }

@@ -43,7 +43,7 @@ public struct Reset {
                ref: String) throws -> Bool {
         let args = resetModeToArgs(mode: mode,
                                    ref: ref)
-        _ = try ShellClient.live().run(
+        try ShellClient().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)"
         )
         return true
@@ -72,14 +72,15 @@ public struct Reset {
 
         let args = [baseArgs, "--", paths] as [Any]
 
-        _ = try ShellClient.live().run(
+        try ShellClient().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)"
         )
     }
 
     /// Unstage all paths.
+    @discardableResult
     func unstageAll(directoryURL: URL) throws -> Bool {
-        _ = try ShellClient.live().run(
+        try ShellClient().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git reset -- ."
         )
         return true

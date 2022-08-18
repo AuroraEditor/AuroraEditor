@@ -49,6 +49,7 @@ extension WorkspaceClient {
     /// `FileItem` so that they are accurate with the file system, instead of creating an
     /// entirely new `FileItem`, to prevent the `OutlineView` from going crazy with folding.
     /// - Parameter fileItem: The `FileItem` to correct the children of
+    @discardableResult
     func rebuildFiles(fromItem fileItem: FileItem) throws -> Bool {
         var didChangeSomething = false
 

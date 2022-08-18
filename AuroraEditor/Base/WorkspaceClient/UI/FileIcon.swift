@@ -45,7 +45,7 @@ public enum FileIcon {
 
     /// Returns a string describing a SFSymbol for files
     /// If not specified otherwise this will return `"doc"`
-    public static func fileIcon( // swiftlint:disable:this function_body_length cyclomatic_complexity
+    public static func fileIcon( // swiftlint:disable:this function_body_length
         fileType: FileType
     ) -> String {
         switch fileType {
@@ -98,7 +98,6 @@ public enum FileIcon {
 
     /// Returns a `Color` for a specific `fileType`
     /// If not specified otherwise this will return `Color.accentColor`
-    // swiftlint:disable:next cyclomatic_complexity
     public static func iconColor(fileType: FileType) -> Color {
         switch fileType {
         case .swift, .html:

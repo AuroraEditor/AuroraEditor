@@ -40,6 +40,8 @@
 		202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E36289E740D000D3CAD /* FindNavigatorResultList.swift */; };
 		202F2E39289E7444000D3CAD /* FindNavigatorListMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E38289E7444000D3CAD /* FindNavigatorListMatchCell.swift */; };
 		202F2E3B289E7483000D3CAD /* FindNavigatorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E3A289E7483000D3CAD /* FindNavigatorListViewController.swift */; };
+		2030964228AD03460083D725 /* Rev-List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2030964128AD03460083D725 /* Rev-List.swift */; };
+		2030964428AD06C60083D725 /* GitBranch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2030964328AD06C60083D725 /* GitBranch.swift */; };
 		2032B50E28A256130089EBB6 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B50D28A256130089EBB6 /* Collection.swift */; };
 		2032B51028A256F50089EBB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B50F28A256F50089EBB6 /* Array.swift */; };
 		2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */; };
@@ -66,8 +68,6 @@
 		2086334F28A530AF00E29A22 /* CommitChangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2086334E28A530AF00E29A22 /* CommitChangesView.swift */; };
 		2093CC88289A9A04003A88DD /* CodeEditKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2093CC87289A9A04003A88DD /* CodeEditKit */; };
 		2093CC89289A9A04003A88DD /* CodeEditKit in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 2093CC87289A9A04003A88DD /* CodeEditKit */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		2093CC8E289A9FA1003A88DD /* ShellClientLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838F3289A7ACE00D91D05 /* ShellClientLive.swift */; };
-		2093CC8F289A9FA5003A88DD /* ShellClientInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838F4289A7ACE00D91D05 /* ShellClientInterface.swift */; };
 		2093CC90289A9FEE003A88DD /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83722289A7ACD00D91D05 /* StatusBar.swift */; };
 		2093CC91289A9FF5003A88DD /* StatusBarIndentSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83726289A7ACD00D91D05 /* StatusBarIndentSelector.swift */; };
 		2093CC92289A9FF5003A88DD /* StatusBarEncodingSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83727289A7ACD00D91D05 /* StatusBarEncodingSelector.swift */; };
@@ -91,7 +91,6 @@
 		2093CCA5289AA015003A88DD /* FileIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8386B289A7ACE00D91D05 /* FileIcon.swift */; };
 		2093CCA6289AA01A003A88DD /* FileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8386E289A7ACE00D91D05 /* FileItem.swift */; };
 		2093CCAA289AA01A003A88DD /* FileItem+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8386D289A7ACE00D91D05 /* FileItem+Array.swift */; };
-		2093CCAC289AA023003A88DD /* ShellClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838F2289A7ACE00D91D05 /* ShellClientMock.swift */; };
 		2093CCAD289AA028003A88DD /* QuickOpenState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838EE289A7ACE00D91D05 /* QuickOpenState.swift */; };
 		2093CCAE289AA02D003A88DD /* QuickOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838EC289A7ACE00D91D05 /* QuickOpenView.swift */; };
 		2093CCAF289AA02D003A88DD /* QuickOpenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838EF289A7ACE00D91D05 /* QuickOpenItem.swift */; };
@@ -427,6 +426,7 @@
 		20DF979B28ABA633009CE1E9 /* Rev-Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF979A28ABA633009CE1E9 /* Rev-Parse.swift */; };
 		20DF979F28ABAA72009CE1E9 /* RepositoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF979E28ABAA72009CE1E9 /* RepositoryModel.swift */; };
 		20DF97A128ABB30D009CE1E9 /* FileManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF97A028ABB30D009CE1E9 /* FileManger.swift */; };
+		20DF97A328ABD7D2009CE1E9 /* CreateNewRepositoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF97A228ABD7D2009CE1E9 /* CreateNewRepositoryView.swift */; };
 		20E8748C28A3AB89002CE758 /* SourceControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8748B28A3AB89002CE758 /* SourceControlTableViewCell.swift */; };
 		20E8748E28A3AB9B002CE758 /* SourceControlMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8748D28A3AB9B002CE758 /* SourceControlMenu.swift */; };
 		20E8749028A3ABA8002CE758 /* SourceControlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8748F28A3ABA8002CE758 /* SourceControlController.swift */; };
@@ -495,6 +495,7 @@
 		2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468438427DC76E200F8E88E /* AppDelegate.swift */; };
 		2B7AC06B282452FB0082A5B8 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7AC06A282452FB0082A5B8 /* Media.xcassets */; };
 		2BA19F252896F721000B9543 /* .githash in Resources */ = {isa = PBXBuildFile; fileRef = 2BA19F242896F721000B9543 /* .githash */; };
+		2BD8A21428ACFA6D00282989 /* ShellClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8A21328ACFA6D00282989 /* ShellClient.swift */; };
 		2BE487EF28245162003F3F64 /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE487EE28245162003F3F64 /* FinderSync.swift */; };
 		2BE487F428245162003F3F64 /* OpenWithAuroraEditor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BE487EC28245162003F3F64 /* OpenWithAuroraEditor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2BF983FF289D8B3C004F1A60 /* SharedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF983FE289D8B3C004F1A60 /* SharedObjects.swift */; };
@@ -606,6 +607,8 @@
 		202F2E36289E740D000D3CAD /* FindNavigatorResultList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorResultList.swift; sourceTree = "<group>"; };
 		202F2E38289E7444000D3CAD /* FindNavigatorListMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorListMatchCell.swift; sourceTree = "<group>"; };
 		202F2E3A289E7483000D3CAD /* FindNavigatorListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorListViewController.swift; sourceTree = "<group>"; };
+		2030964128AD03460083D725 /* Rev-List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rev-List.swift"; sourceTree = "<group>"; };
+		2030964328AD06C60083D725 /* GitBranch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitBranch.swift; sourceTree = "<group>"; };
 		2032B50D28A256130089EBB6 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		2032B50F28A256F50089EBB6 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowHostingController.swift; sourceTree = "<group>"; };
@@ -967,9 +970,6 @@
 		20D838ED289A7ACE00D91D05 /* QuickOpenPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickOpenPreviewView.swift; sourceTree = "<group>"; };
 		20D838EE289A7ACE00D91D05 /* QuickOpenState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickOpenState.swift; sourceTree = "<group>"; };
 		20D838EF289A7ACE00D91D05 /* QuickOpenItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickOpenItem.swift; sourceTree = "<group>"; };
-		20D838F2289A7ACE00D91D05 /* ShellClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellClientMock.swift; sourceTree = "<group>"; };
-		20D838F3289A7ACE00D91D05 /* ShellClientLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellClientLive.swift; sourceTree = "<group>"; };
-		20D838F4289A7ACE00D91D05 /* ShellClientInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellClientInterface.swift; sourceTree = "<group>"; };
 		20D838F7289A7ACE00D91D05 /* TerminalEmulatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalEmulatorView.swift; sourceTree = "<group>"; };
 		20D838F8289A7ACE00D91D05 /* TerminalEmulatorView+Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TerminalEmulatorView+Coordinator.swift"; sourceTree = "<group>"; };
 		20D838FA289A7ACE00D91D05 /* SwiftTerm+Color+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftTerm+Color+Init.swift"; sourceTree = "<group>"; };
@@ -979,6 +979,7 @@
 		20DF979A28ABA633009CE1E9 /* Rev-Parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rev-Parse.swift"; sourceTree = "<group>"; };
 		20DF979E28ABAA72009CE1E9 /* RepositoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryModel.swift; sourceTree = "<group>"; };
 		20DF97A028ABB30D009CE1E9 /* FileManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManger.swift; sourceTree = "<group>"; };
+		20DF97A228ABD7D2009CE1E9 /* CreateNewRepositoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewRepositoryView.swift; sourceTree = "<group>"; };
 		20E8748B28A3AB89002CE758 /* SourceControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlTableViewCell.swift; sourceTree = "<group>"; };
 		20E8748D28A3AB9B002CE758 /* SourceControlMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlMenu.swift; sourceTree = "<group>"; };
 		20E8748F28A3ABA8002CE758 /* SourceControlController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlController.swift; sourceTree = "<group>"; };
@@ -1052,6 +1053,7 @@
 		2B71C0A32874AD61008E0859 /* AuroraProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraProject.swift; sourceTree = "<group>"; };
 		2B7AC06A282452FB0082A5B8 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		2BA19F242896F721000B9543 /* .githash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .githash; sourceTree = "<group>"; };
+		2BD8A21328ACFA6D00282989 /* ShellClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShellClient.swift; sourceTree = "<group>"; };
 		2BE487EC28245162003F3F64 /* OpenWithAuroraEditor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OpenWithAuroraEditor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE487EE28245162003F3F64 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
 		2BE487F028245162003F3F64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2200,6 +2202,7 @@
 				20BCB0BD28AA6E340064C7C0 /* Update-Ref.swift */,
 				204CD3E528AB87640003D082 /* Config.swift */,
 				20DF979A28ABA633009CE1E9 /* Rev-Parse.swift */,
+				2030964128AD03460083D725 /* Rev-List.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -2218,6 +2221,7 @@
 				20BCB0C128AA9AA00064C7C0 /* Stash-Entry.swift */,
 				20BCB0C328AA9FFA0064C7C0 /* ManualConflictResolution.swift */,
 				20BCB0C528AAA1C00064C7C0 /* GitCommit.swift */,
+				2030964328AD06C60083D725 /* GitBranch.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2304,9 +2308,7 @@
 		20D838F1289A7ACE00D91D05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				20D838F2289A7ACE00D91D05 /* ShellClientMock.swift */,
-				20D838F3289A7ACE00D91D05 /* ShellClientLive.swift */,
-				20D838F4289A7ACE00D91D05 /* ShellClientInterface.swift */,
+				2BD8A21328ACFA6D00282989 /* ShellClient.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2426,6 +2428,7 @@
 			isa = PBXGroup;
 			children = (
 				201169E42837B40300F92B46 /* RepositoriesView.swift */,
+				20DF97A228ABD7D2009CE1E9 /* CreateNewRepositoryView.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -3363,7 +3366,6 @@
 				2041B8C728A6A904005F03D8 /* Refs.swift in Sources */,
 				2093CD12289AA054003A88DD /* ChangedFile.swift in Sources */,
 				2041B8C528A69D12005F03D8 /* IRemote.swift in Sources */,
-				2093CCAC289AA023003A88DD /* ShellClientMock.swift in Sources */,
 				2093CD57289AA0C6003A88DD /* DownloadedPlugin.swift in Sources */,
 				2093CDC8289AA260003A88DD /* TabBar.swift in Sources */,
 				2093CD6E289AA0FC003A88DD /* SegmentedControl.swift in Sources */,
@@ -3464,6 +3466,7 @@
 				2093CD14289AA054003A88DD /* GitType.swift in Sources */,
 				2B4C132D289D56F9000ED796 /* STTextView+Find.swift in Sources */,
 				2093CDA7289AA179003A88DD /* IgnoredFileView.swift in Sources */,
+				2BD8A21428ACFA6D00282989 /* ShellClient.swift in Sources */,
 				20BCB0B828AA561F0064C7C0 /* Update-Index.swift in Sources */,
 				2093CC9E289AA004003A88DD /* TerminalEmulatorView.swift in Sources */,
 				B6EE989227E887C600CDD8AB /* InspectorSidebarToolbar.swift in Sources */,
@@ -3489,13 +3492,13 @@
 				20D2A44228A7CEFE0073F7BD /* Squash.swift in Sources */,
 				9354D4BB28AD2872004C6D18 /* StandardTableViewCell.swift in Sources */,
 				2093CD48289AA095003A88DD /* Parameters.swift in Sources */,
+				20DF97A328ABD7D2009CE1E9 /* CreateNewRepositoryView.swift in Sources */,
 				20BCB0BA28AA68160064C7C0 /* Apply.swift in Sources */,
 				20D2A43C28A7C5970073F7BD /* LFS.swift in Sources */,
 				20EBB503280C327C00F3A5DA /* HistoryInspector.swift in Sources */,
 				2093CD13289AA054003A88DD /* GitClientLive.swift in Sources */,
 				2093CD2C289AA089003A88DD /* PullRequest.swift in Sources */,
 				2041B8B428A674FD005F03D8 /* Checkout.swift in Sources */,
-				2093CC8E289A9FA1003A88DD /* ShellClientLive.swift in Sources */,
 				2093CDB9289AA1AB003A88DD /* LocationsPreferencesView.swift in Sources */,
 				20D2A44828A7D1B00073F7BD /* Reflog.swift in Sources */,
 				2093CD8F289AA130003A88DD /* NotificationCentreView.swift in Sources */,
@@ -3574,6 +3577,7 @@
 				20C8D7DC287ED2C700C5B3BA /* ToolbarBranchPicker.swift in Sources */,
 				2093CD3E289AA095003A88DD /* GitlabUser.swift in Sources */,
 				2B4C1337289D56F9000ED796 /* CompletionWindowController.swift in Sources */,
+				2030964428AD06C60083D725 /* GitBranch.swift in Sources */,
 				2093CDE8289AAE87003A88DD /* StashChangesSheet.swift in Sources */,
 				2093CD6C289AA0FC003A88DD /* EffectView.swift in Sources */,
 				2093CDB3289AA19B003A88DD /* AccountSelectionDialog.swift in Sources */,
@@ -3616,6 +3620,7 @@
 				2093CD9C289AA152003A88DD /* TerminalPreferences.swift in Sources */,
 				2093CD62289AA0E4003A88DD /* OtherFileView.swift in Sources */,
 				2041B8BE28A687AE005F03D8 /* Stash.swift in Sources */,
+				2030964228AD03460083D725 /* Rev-List.swift in Sources */,
 				2093CD1A289AA079003A88DD /* BitbucketUserRouter.swift in Sources */,
 				2093CD2B289AA089003A88DD /* Review.swift in Sources */,
 				2093CD4A289AA095003A88DD /* Namespace.swift in Sources */,

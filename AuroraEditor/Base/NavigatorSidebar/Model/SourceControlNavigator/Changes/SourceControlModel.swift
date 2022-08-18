@@ -77,6 +77,8 @@ public final class SourceControlModel: ObservableObject {
     }
 
     private var isReloading: Bool = false
+
+    @discardableResult
     public func reloadChangedFiles() -> [FileItem] {
         guard isReloading == false else { return [] }
         do {
@@ -93,8 +95,10 @@ public final class SourceControlModel: ObservableObject {
             return differentFiles
         } catch {
             isReloading = false
-            changed = []
-            DispatchQueue.main.async { self.state = .success }
+            DispatchQueue.main.async {
+                self.changed = []
+                self.state = .success
+            }
         }
         return []
     }

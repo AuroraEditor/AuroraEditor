@@ -17,35 +17,38 @@ public struct Remote {
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git remote -v"
         )
 
-        if result.contains("fatal: not a git repository") {
+        if result.contains(GitError.NotAGitRepository.rawValue) {
             return []
         }
 
-        let output = result
-        let lines = output.split(separator: "\n")
-        // find a way to split ("/\s+/") with regex and then map it
-//        let remotes = lines.filter {
-//            $0.hasSuffix("(fetch)")
-//        }
+        let lines = result.split(separator: "\n")
+        let remotes = lines.filter {
+            $0.hasSuffix("(fetch)")
+        }.map {
+            $0.split(separator: "\t")
+        }.map {
+            GitRemote(name: $0[0].description,
+                      url: $0[1].description)
+        }
 
-        return []
+        return remotes
     }
 
     /// Add a new remote with the given URL.
     func addRemote(directoryURL: URL,
                    name: String,
                    url: String) throws -> IRemote? {
-        let result = try ShellClient.live().run(
+        try ShellClient.live().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git remote add"
         )
 
-        return nil
+        return GitRemote(name: name, url: url)
     }
 
     /// Removes an existing remote, or silently errors if it doesn't exist
     func removeRemote(directoryURL: URL,
                       name: String) throws {
-        _ = try ShellClient.live().run(
+        try ShellClient().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git remote remove"
         )
 
@@ -55,7 +58,7 @@ public struct Remote {
     func setRemoteURL(directoryURL: URL,
                       name: String,
                       url: String) throws -> Bool {
-        _ = try ShellClient.live().run(
+        try ShellClient().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git remote set-url \(name) \(url)"
         )
 
@@ -77,7 +80,7 @@ public struct Remote {
     /// Update the HEAD ref of the remote, which is the default branch.
     func updateRemoteHEAD(directoryURL: URL,
                           remote: IRemote) throws {
-        _ = try ShellClient.live().run(
+        try ShellClient().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git remote set-head -a \(remote.name)"
         )
     }

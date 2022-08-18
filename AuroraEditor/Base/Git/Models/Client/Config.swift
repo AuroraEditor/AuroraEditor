@@ -74,16 +74,16 @@ func getConfigValueInPath(name: String,
         flags.append("--local")
     }
 
-    if type != nil {
+    if let type = type {
         flags.append("--type \(type)")
     }
 
     flags.append(name)
 
-    if path == nil {
-        gitCommand = "git \(flags)"
+    if let path = path {
+        gitCommand = "cd \(path.escapedWhiteSpaces()); git \(flags)"
     } else {
-        gitCommand = "cd \(path?.escapedWhiteSpaces()); git \(flags)"
+        gitCommand = "git \(flags)"
     }
 
     let result = try ShellClient.live().run(gitCommand)
@@ -110,7 +110,7 @@ func getGlobalConfig() throws -> String? {
     }
 
     let path = pathSegment.ranges(of: "file:/")
-    if path == nil || path.count < 2 {
+    if path.count < 2 {
         return nil
     }
 
@@ -137,7 +137,7 @@ func setGlobalConfigValue(name: String,
 /// Set the global config value by name.
 func addGlobalConfigValue(name: String,
                           value: String) throws {
-    _ = try ShellClient.live().run(
+    try ShellClient().run(
         "git config --global --add \(name) \(value)"
     )
 }
@@ -168,6 +168,7 @@ func addGlobalConfigValueIfMissing(name: String,
 ///  we'll use the global configuration (i.e. --global)
 ///  and execute the Git call from the same location that
 ///  Aurora Editor is installed in.
+@discardableResult
 func setConfigValueInPath(name: String,
                           value: String,
                           path: String?) throws -> String {
@@ -184,10 +185,10 @@ func setConfigValueInPath(name: String,
     flags.append(name)
     flags.append(value)
 
-    if path == nil {
-        gitCommand = "git \(flags)"
+    if let path = path {
+        gitCommand = "cd \(path.escapedWhiteSpaces()); git \(flags)"
     } else {
-        gitCommand = "cd \(path?.escapedWhiteSpaces()); git \(flags)"
+        gitCommand = "git \(flags)"
     }
 
     return try ShellClient.live().run(gitCommand)
@@ -219,11 +220,11 @@ func removeConfigValueInPath(name: String,
     flags.append("--unset-all")
     flags.append(name)
 
-    if path == nil {
-        gitCommand = "git \(flags)"
+    if let path = path {
+        gitCommand = "cd \(path.escapedWhiteSpaces()); git \(flags)"
     } else {
-        gitCommand = "cd \(path?.escapedWhiteSpaces()); git \(flags)"
+        gitCommand = "git \(flags)"
     }
 
-    _ = try ShellClient.live().run(gitCommand)
+    try ShellClient().run(gitCommand)
 }
