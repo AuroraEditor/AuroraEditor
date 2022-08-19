@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Preferences
 
 final class AuroraEditorApplication: NSApplication {
     let strongDelegate = AppDelegate()
