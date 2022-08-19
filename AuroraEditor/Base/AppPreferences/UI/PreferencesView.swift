@@ -21,14 +21,14 @@ struct PreferencesView: View {
                                    tag: item.id,
                                    selection: $viewModel.selectedId) {
                         HStack {
-                            ZStack {
-                                Color.blue
+                            ZStack(alignment: .center) {
+                                item.colour
                                 Image(nsImage: item.image)
                                     .imageScale(.small)
                                     .scaledToFit()
                             }
                             .cornerRadius(5)
-                            .frame(width: 20, height: 20)
+                            .frame(width: 23, height: 23)
                             Text(item.name)
                         }
                     }
@@ -79,6 +79,7 @@ struct SettingItem: Identifiable {
     let id = UUID().uuidString
     let name: String
     let image: NSImage
+    let colour: Color
 }
 
 final class ViewModel: ObservableObject {
@@ -95,30 +96,42 @@ final class ViewModel: ObservableObject {
 
     static let settingItems = [
         SettingItem(name: "General",
-                    image: NSImage(systemSymbolName: "gearshape", accessibilityDescription: nil)!),
+                    image: NSImage(systemSymbolName: "gearshape", accessibilityDescription: nil)!,
+                    colour: .gray),
         SettingItem(name: "Accounts",
-                    image: NSImage(systemSymbolName: "at", accessibilityDescription: nil)!),
+                    image: NSImage(systemSymbolName: "at", accessibilityDescription: nil)!,
+                    colour: .purple),
         SettingItem(name: "Behaviors",
-                    image: NSImage(systemSymbolName: "flowchart", accessibilityDescription: nil)!),
+                    image: NSImage(systemSymbolName: "flowchart", accessibilityDescription: nil)!,
+                    colour: .blue),
         SettingItem(name: "Navigation",
                     image: NSImage(systemSymbolName: "arrow.triangle.turn.up.right.diamond",
-                                   accessibilityDescription: nil)!),
+                                   accessibilityDescription: nil)!,
+                    colour: .gray),
         SettingItem(name: "Themes",
-                    image: NSImage(systemSymbolName: "paintbrush", accessibilityDescription: nil)!),
+                    image: NSImage(systemSymbolName: "paintbrush", accessibilityDescription: nil)!,
+                    colour: .cyan),
         SettingItem(name: "Text Editing",
-                    image: NSImage(systemSymbolName: "square.and.pencil", accessibilityDescription: nil)!),
+                    image: NSImage(systemSymbolName: "square.and.pencil", accessibilityDescription: nil)!,
+                    colour: .green),
         SettingItem(name: "Terminal",
-                    image: NSImage(systemSymbolName: "terminal", accessibilityDescription: nil)!),
+                    image: NSImage(systemSymbolName: "terminal", accessibilityDescription: nil)!,
+                    colour: .red),
         SettingItem(name: "Key Bindings",
-                    image: NSImage(systemSymbolName: "keyboard", accessibilityDescription: nil)!),
+                    image: NSImage(systemSymbolName: "keyboard", accessibilityDescription: nil)!,
+                    colour: .gray),
         SettingItem(name: "Source Control",
-                    image: NSImage.vault),
+                    image: NSImage.vault,
+                    colour: .purple),
         SettingItem(name: "Components",
-                    image: NSImage(systemSymbolName: "puzzlepiece", accessibilityDescription: nil)!),
+                    image: NSImage(systemSymbolName: "puzzlepiece", accessibilityDescription: nil)!,
+                    colour: .green),
         SettingItem(name: "Locations",
-                    image: NSImage(systemSymbolName: "externaldrive", accessibilityDescription: nil)!),
+                    image: NSImage(systemSymbolName: "externaldrive", accessibilityDescription: nil)!,
+                    colour: .purple),
         SettingItem(name: "Advanced",
-                    image: NSImage(systemSymbolName: "gearshape.2", accessibilityDescription: nil)!)
+                    image: NSImage(systemSymbolName: "gearshape.2", accessibilityDescription: nil)!,
+                    colour: .pink)
     ]
 }
 
