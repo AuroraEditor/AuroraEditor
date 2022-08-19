@@ -17,8 +17,8 @@ struct RepositoriesView: View {
 
     @State
     var repository = DummyRepo(repoName: "Aurora Editor", branches: [
-        DummyBranch(name: "main"),
-        DummyBranch(name: "Changes-outlineview")
+        RepoBranch(name: "main"),
+        RepoBranch(name: "Changes-outlineview")
     ])
 
     init(workspace: WorkspaceDocument) {
