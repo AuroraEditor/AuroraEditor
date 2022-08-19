@@ -384,7 +384,6 @@
 		2093CDE7289AAE83003A88DD /* CheckoutBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8387E289A7ACE00D91D05 /* CheckoutBranchView.swift */; };
 		2093CDE8289AAE87003A88DD /* StashChangesSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83879289A7ACE00D91D05 /* StashChangesSheet.swift */; };
 		2093CDE9289AAE8B003A88DD /* StashWindowsChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83878289A7ACE00D91D05 /* StashWindowsChanges.swift */; };
-		209D0243289AB9590082441F /* Preferences in Frameworks */ = {isa = PBXBuildFile; productRef = 209D0242289AB9590082441F /* Preferences */; };
 		209D0246289AB9750082441F /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = 209D0245289AB9750082441F /* SwiftTerm */; };
 		209D024B289ABC340082441F /* Package.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 209D024A289ABC340082441F /* Package.resolved */; };
 		209D0251289ABF9A0082441F /* STTextView+AutoComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0250289ABF9A0082441F /* STTextView+AutoComplete.swift */; };
@@ -392,6 +391,8 @@
 		209D0255289ABFCC0082441F /* STTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0254289ABFCC0082441F /* STTextViewController.swift */; };
 		209D0257289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0256289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift */; };
 		209D0259289ABFF70082441F /* AuroraEditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0258289ABFF70082441F /* AuroraEditorTextView.swift */; };
+		20B6A1FE28AFE107004EC8D7 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B6A1FD28AFE107004EC8D7 /* SettingItem.swift */; };
+		20B6A20028AFE124004EC8D7 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B6A1FF28AFE124004EC8D7 /* SettingsModel.swift */; };
 		20BCB0B628AA53CC0064C7C0 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0B528AA53CC0064C7C0 /* Core.swift */; };
 		20BCB0B828AA561F0064C7C0 /* Update-Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0B728AA561F0064C7C0 /* Update-Index.swift */; };
 		20BCB0BA28AA68160064C7C0 /* Apply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0B928AA68160064C7C0 /* Apply.swift */; };
@@ -646,6 +647,8 @@
 		209D0254289ABFCC0082441F /* STTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTextViewController.swift; sourceTree = "<group>"; };
 		209D0256289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STTextViewController+STTextViewDelegate.swift"; sourceTree = "<group>"; };
 		209D0258289ABFF70082441F /* AuroraEditorTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorTextView.swift; sourceTree = "<group>"; };
+		20B6A1FD28AFE107004EC8D7 /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
+		20B6A1FF28AFE124004EC8D7 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		20BCB0B528AA53CC0064C7C0 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		20BCB0B728AA561F0064C7C0 /* Update-Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Update-Index.swift"; sourceTree = "<group>"; };
 		20BCB0B928AA68160064C7C0 /* Apply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apply.swift; sourceTree = "<group>"; };
@@ -1117,7 +1120,6 @@
 			files = (
 				209D0246289AB9750082441F /* SwiftTerm in Frameworks */,
 				2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */,
-				209D0243289AB9590082441F /* Preferences in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1300,6 +1302,14 @@
 				2B4C12FE289D56F9000ED796 /* STTextView */,
 			);
 			path = AuroraEditorTextView;
+			sourceTree = "<group>";
+		};
+		20B6A1FC28AFE05E004EC8D7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		20D2A43428A7AAE20073F7BD /* Helpers */ = {
@@ -1626,6 +1636,7 @@
 			isa = PBXGroup;
 			children = (
 				20D837FA289A7ACD00D91D05 /* AppPreferencesDocumentation.docc */,
+				20B6A1FC28AFE05E004EC8D7 /* Controller */,
 				20D837F6289A7ACD00D91D05 /* Resources */,
 				20D837FB289A7ACD00D91D05 /* Model */,
 				20D8380B289A7ACD00D91D05 /* HelperViews */,
@@ -1646,7 +1657,6 @@
 				20D837F4289A7ACD00D91D05 /* LocationsPreferences */,
 				20D8380F289A7ACD00D91D05 /* PreferencesPlaceholderView.swift */,
 				206729AE28AE69DC00EB0957 /* PreferencesView.swift */,
-				93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1784,6 +1794,8 @@
 				20D83801289A7ACD00D91D05 /* Text Editing */,
 				20D837FC289A7ACD00D91D05 /* Source Control */,
 				20D837E1289A7ACD00D91D05 /* ThemePreferences */,
+				20B6A1FD28AFE107004EC8D7 /* SettingItem.swift */,
+				20B6A1FF28AFE124004EC8D7 /* SettingsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2984,7 +2996,6 @@
 			);
 			name = AuroraEditor;
 			packageProductDependencies = (
-				209D0242289AB9590082441F /* Preferences */,
 				209D0245289AB9750082441F /* SwiftTerm */,
 				2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */,
 			);
@@ -3065,7 +3076,6 @@
 			);
 			mainGroup = B658FB2327DA9E0F00EA4DBD;
 			packageReferences = (
-				209D0241289AB9590082441F /* XCRemoteSwiftPackageReference "Preferences" */,
 				209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */,
 				2BE5EDAB28AE64A700C0A4AE /* XCRemoteSwiftPackageReference "AEExtensionKit" */,
 			);
@@ -3570,10 +3580,12 @@
 				9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */,
 				285FEC7027FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift in Sources */,
 				20C8D7DC287ED2C700C5B3BA /* ToolbarBranchPicker.swift in Sources */,
+				20B6A20028AFE124004EC8D7 /* SettingsModel.swift in Sources */,
 				2093CD3E289AA095003A88DD /* GitlabUser.swift in Sources */,
 				2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */,
 				2B4C1337289D56F9000ED796 /* CompletionWindowController.swift in Sources */,
 				2030964428AD06C60083D725 /* GitBranch.swift in Sources */,
+				20B6A1FE28AFE107004EC8D7 /* SettingItem.swift in Sources */,
 				2093CDE8289AAE87003A88DD /* StashChangesSheet.swift in Sources */,
 				2093CD6C289AA0FC003A88DD /* EffectView.swift in Sources */,
 				2093CDB3289AA19B003A88DD /* AccountSelectionDialog.swift in Sources */,
@@ -4195,14 +4207,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		209D0241289AB9590082441F /* XCRemoteSwiftPackageReference "Preferences" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/Preferences.git";
-			requirement = {
-				kind = exactVersion;
-				version = 2.5.0;
-			};
-		};
 		209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/migueldeicaza/SwiftTerm.git";
@@ -4222,11 +4226,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		209D0242289AB9590082441F /* Preferences */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 209D0241289AB9590082441F /* XCRemoteSwiftPackageReference "Preferences" */;
-			productName = Preferences;
-		};
 		209D0245289AB9750082441F /* SwiftTerm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */;

@@ -27,55 +27,91 @@ public struct TextEditingPreferencesView: View {
 
     public var body: some View {
         PreferencesContent {
-            PreferencesSection("Default Tab Width") {
-                HStack(spacing: 5) {
-                    TextField("", value: $prefs.preferences.textEditing.defaultTabWidth, formatter: numberFormat)
-                        .multilineTextAlignment(.trailing)
-                        .frame(width: 40)
-                    Stepper("Default Tab Width:",
-                            value: $prefs.preferences.textEditing.defaultTabWidth,
-                            in: 1...8)
-                    Text("spaces")
+            GroupBox {
+                HStack {
+                    Text("Default Tab Width")
+                    Spacer()
+                    HStack(spacing: 5) {
+                        TextField("", value: $prefs.preferences.textEditing.defaultTabWidth, formatter: numberFormat)
+                            .multilineTextAlignment(.trailing)
+                            .frame(width: 40)
+                        Stepper("Default Tab Width:",
+                                value: $prefs.preferences.textEditing.defaultTabWidth,
+                                in: 1...8)
+                        .labelsHidden()
+                        Text("spaces")
+                    }
                 }
-            }
-            PreferencesSection("Font") {
+                .padding(.top, 5)
+                .padding(.horizontal)
+
+                Divider()
+
                 fontSelector
+                    .padding(.bottom, 5)
+                    .padding(.horizontal)
             }
-            PreferencesSection("Code completion") {
+            .padding(.bottom)
+
+            Text("Editor Completion")
+                .fontWeight(.bold)
+                .padding(.horizontal)
+
+            GroupBox {
                 autocompleteBraces
+                    .padding(.horizontal)
+                Divider()
                 enableTypeOverCompletion
+                    .padding(.horizontal)
             }
         }
     }
 
     @ViewBuilder
     private var fontSelector: some View {
-        Picker("Font:", selection: $prefs.preferences.textEditing.font.customFont) {
-            Text("System Font")
-                .tag(false)
-            Text("Custom")
-                .tag(true)
-        }
-        .fixedSize()
-        if prefs.preferences.textEditing.font.customFont {
-            FontPicker(
-                "\(prefs.preferences.textEditing.font.name) \(prefs.preferences.textEditing.font.size)",
-                name: $prefs.preferences.textEditing.font.name, size: $prefs.preferences.textEditing.font.size
-            )
+        HStack {
+            Text("Font")
+            Spacer()
+            Picker("Font:", selection: $prefs.preferences.textEditing.font.customFont) {
+                Text("System Font")
+                    .tag(false)
+                Text("Custom")
+                    .tag(true)
+            }
+            .labelsHidden()
+            .fixedSize()
+            if prefs.preferences.textEditing.font.customFont {
+                FontPicker(
+                    "\(prefs.preferences.textEditing.font.name) \(prefs.preferences.textEditing.font.size)",
+                    name: $prefs.preferences.textEditing.font.name, size: $prefs.preferences.textEditing.font.size
+                )
+            }
         }
     }
 
     private var autocompleteBraces: some View {
         HStack {
+            Text("Autocomplete braces")
+            Spacer()
             Toggle("Autocomplete braces", isOn: $prefs.preferences.textEditing.autocompleteBraces)
-            Text("Automatically insert closing braces (\"}\")")
+                .toggleStyle(.switch)
+                .labelsHidden()
         }
     }
 
     private var enableTypeOverCompletion: some View {
         HStack {
-            Toggle("Enable type-over completion", isOn: $prefs.preferences.textEditing.enableTypeOverCompletion)
             Text("Enable type-over completion")
+            Spacer()
+            Toggle("Enable type-over completion", isOn: $prefs.preferences.textEditing.enableTypeOverCompletion)
+                .toggleStyle(.switch)
+                .labelsHidden()
         }
+    }
+}
+
+struct TextEditingPreferencesView_Previews: PreviewProvider {
+    static var previews: some View {
+        TextEditingPreferencesView()
     }
 }

@@ -11,10 +11,6 @@ public struct PreferenceAccountsView: View {
 
     @State
     private var openAccountDialog = false
-    @State
-    private var cloneUsing = false
-    @State
-    var accountSelection: SourceControlAccounts.ID?
 
     @StateObject
     private var prefs: AppPreferencesModel = .shared
@@ -23,24 +19,31 @@ public struct PreferenceAccountsView: View {
 
     public var body: some View {
         PreferencesContent {
-            VStack {
+            if prefs.preferences.accounts.sourceControlAccounts.gitAccount.isEmpty {
+                // swiftlint:disable:next line_length
+                Text("Doesn't seem like you have a Git Account attached to Aurora Editor, press the \"Add Account\" button to a Git Account.")
+                    .padding(.horizontal)
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: 16))
+                    .foregroundColor(.secondary)
+            } else {
                 List($prefs.preferences.accounts.sourceControlAccounts.gitAccount) { account in
                     AccountItemView(account: account)
                 }
                 .padding(.horizontal, -10)
                 .listStyle(.plain)
+            }
 
-                HStack {
-                    Spacer()
-                    Button {
-                        openAccountDialog.toggle()
-                    } label: {
-                        Text("Add Account")
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .sheet(isPresented: $openAccountDialog) {
-                        AccountSelectionDialog()
-                    }
+            HStack {
+                Spacer()
+                Button {
+                    openAccountDialog.toggle()
+                } label: {
+                    Text("Add Account")
+                }
+                .buttonStyle(.borderedProminent)
+                .sheet(isPresented: $openAccountDialog) {
+                    AccountSelectionDialog()
                 }
             }
         }
@@ -59,6 +62,5 @@ public struct PreferenceAccountsView: View {
 struct PreferenceAccountsView_Previews: PreviewProvider {
     static var previews: some View {
         PreferenceAccountsView()
-            .preferredColorScheme(.dark)
     }
 }

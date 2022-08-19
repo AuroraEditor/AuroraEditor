@@ -10,15 +10,6 @@
       }
     },
     {
-      "identity" : "preferences",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/sindresorhus/Preferences.git",
-      "state" : {
-        "revision" : "ffeaaad1def45d0625720dc1adae3789cd9c167d",
-        "version" : "2.5.0"
-      }
-    },
-    {
       "identity" : "swiftterm",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/migueldeicaza/SwiftTerm.git",

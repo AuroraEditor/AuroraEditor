@@ -8,14 +8,13 @@
 
 import SwiftUI
 
-// Shows the feedback window model
+// Shows the settings window model
 final class PreferencesWindowController: NSWindowController, NSToolbarDelegate {
-    convenience init<T: View>(view: T, size: NSSize) {
+    convenience init<T: View>(view: T) {
         let hostingController = NSHostingController(rootView: view)
         let window = NSWindow(contentViewController: hostingController)
         self.init(window: window)
         window.title = "Preferences"
-        window.setContentSize(size)
         window.styleMask.insert(.fullSizeContentView)
         window.styleMask.remove(.resizable)
         window.titlebarSeparatorStyle = .none
@@ -32,10 +31,10 @@ final class PreferencesWindowController: NSWindowController, NSToolbarDelegate {
         window?.collectionBehavior = [.transient, .ignoresCycle]
         window?.backgroundColor = .windowBackgroundColor
 
-        feedbackToolbar()
+        settingsToolbar()
     }
 
-    private func feedbackToolbar() {
+    private func settingsToolbar() {
         let toolbar = NSToolbar(identifier: UUID().uuidString)
         toolbar.delegate = self
         toolbar.displayMode = .labelOnly
