@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Preferences
 
 /// A view that implements the `Locations` preference section
 public struct LocationsPreferencesView: View {

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Preferences
 
 /// A view that implements the `Terminal` preference section
 public struct TerminalPreferencesView: View {

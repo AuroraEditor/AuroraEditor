@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Preferences
 
 public struct PreferencesPlaceholderView: View {
 
