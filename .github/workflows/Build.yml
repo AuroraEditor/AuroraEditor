@@ -7,10 +7,10 @@ on:
     branches: [ main ]
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-12
     steps:
       - uses: actions/checkout@v2
       - name: Swift (clean) Build
-        run: set -o pipefail && xcodebuild -verbose -workspace "AuroraEditor.xcworkspace" -scheme "AuroraEditor" clean build
+        run: set -o pipefail && xcodebuild -verbose -workspace "AuroraEditor.xcworkspace" -scheme "AuroraEditor" clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
       #- name: Swift Test
       #  run: set -o pipefail && xcodebuild -verbose -workspace "AuroraEditor.xcworkspace" -scheme "AuroraEditorTests" clean test | xcpretty
