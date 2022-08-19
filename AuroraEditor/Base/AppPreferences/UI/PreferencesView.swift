@@ -21,10 +21,14 @@ struct PreferencesView: View {
                                    tag: item.id,
                                    selection: $viewModel.selectedId) {
                         HStack {
-                            Image(nsImage: item.image)
-                                .imageScale(.small)
-                                .frame(width: 20)
-                                .scaledToFit()
+                            ZStack {
+                                Color.blue
+                                Image(nsImage: item.image)
+                                    .imageScale(.small)
+                                    .scaledToFit()
+                            }
+                            .cornerRadius(5)
+                            .frame(width: 20, height: 20)
                             Text(item.name)
                         }
                     }
