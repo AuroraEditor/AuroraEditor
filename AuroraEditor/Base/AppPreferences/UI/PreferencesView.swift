@@ -69,7 +69,6 @@ struct SettingItem: Identifiable {
     let id = UUID().uuidString
     let name: String
     let image: NSImage
-    let contentView: any View
 }
 
 final class ViewModel: ObservableObject {
@@ -86,42 +85,30 @@ final class ViewModel: ObservableObject {
 
     static let settingItems = [
         SettingItem(name: "General",
-                    image: NSImage(systemSymbolName: "gearshape", accessibilityDescription: nil)!,
-                    contentView: GeneralPreferencesView()),
+                    image: NSImage(systemSymbolName: "gearshape", accessibilityDescription: nil)!),
         SettingItem(name: "Accounts",
-                    image: NSImage(systemSymbolName: "at", accessibilityDescription: nil)!,
-                    contentView: PreferenceAccountsView()),
+                    image: NSImage(systemSymbolName: "at", accessibilityDescription: nil)!),
         SettingItem(name: "Behaviors",
-                    image: NSImage(systemSymbolName: "flowchart", accessibilityDescription: nil)!,
-                    contentView: PreferencesPlaceholderView()),
+                    image: NSImage(systemSymbolName: "flowchart", accessibilityDescription: nil)!),
         SettingItem(name: "Navigation",
                     image: NSImage(systemSymbolName: "arrow.triangle.turn.up.right.diamond",
-                                   accessibilityDescription: nil)!,
-                    contentView: PreferencesPlaceholderView()),
+                                   accessibilityDescription: nil)!),
         SettingItem(name: "Themes",
-                    image: NSImage(systemSymbolName: "paintbrush", accessibilityDescription: nil)!,
-                    contentView: ThemePreferencesView()),
+                    image: NSImage(systemSymbolName: "paintbrush", accessibilityDescription: nil)!),
         SettingItem(name: "Text Editing",
-                    image: NSImage(systemSymbolName: "square.and.pencil", accessibilityDescription: nil)!,
-                    contentView: TextEditingPreferencesView()),
+                    image: NSImage(systemSymbolName: "square.and.pencil", accessibilityDescription: nil)!),
         SettingItem(name: "Terminal",
-                    image: NSImage(systemSymbolName: "terminal", accessibilityDescription: nil)!,
-                    contentView: TerminalPreferencesView()),
+                    image: NSImage(systemSymbolName: "terminal", accessibilityDescription: nil)!),
         SettingItem(name: "Key Bindings",
-                    image: NSImage(systemSymbolName: "keyboard", accessibilityDescription: nil)!,
-                    contentView: PreferencesPlaceholderView()),
+                    image: NSImage(systemSymbolName: "keyboard", accessibilityDescription: nil)!),
         SettingItem(name: "Source Control",
-                    image: NSImage.vault,
-                    contentView: PreferenceSourceControlView()),
+                    image: NSImage.vault),
         SettingItem(name: "Components",
-                    image: NSImage(systemSymbolName: "puzzlepiece", accessibilityDescription: nil)!,
-                    contentView: PreferencesPlaceholderView()),
+                    image: NSImage(systemSymbolName: "puzzlepiece", accessibilityDescription: nil)!),
         SettingItem(name: "Locations",
-                    image: NSImage(systemSymbolName: "externaldrive", accessibilityDescription: nil)!,
-                    contentView: LocationsPreferencesView()),
+                    image: NSImage(systemSymbolName: "externaldrive", accessibilityDescription: nil)!),
         SettingItem(name: "Advanced",
-                    image: NSImage(systemSymbolName: "gearshape.2", accessibilityDescription: nil)!,
-                    contentView: PreferencesPlaceholderView())
+                    image: NSImage(systemSymbolName: "gearshape.2", accessibilityDescription: nil)!)
     ]
 }
 
