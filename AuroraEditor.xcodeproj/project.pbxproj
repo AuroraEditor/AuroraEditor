@@ -512,6 +512,7 @@
 		9384C52B28AE086E00FC452A /* [TEMP]DummyRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9384C52A28AE086E00FC452A /* [TEMP]DummyRepo.swift */; };
 		939C109528AE7D0700403A97 /* RepositoryContainers&Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */; };
 		939C2CC6289E345900BBB345 /* FileItemFileSystemFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */; };
+		93DD4FF328AFD0F100B664D4 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */; };
 		93F0066728A7574C0038E5B7 /* WorkspaceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F0066628A7574C0038E5B7 /* WorkspaceClient.swift */; };
 		93F0066928A757670038E5B7 /* WorkspaceClient+FileIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F0066828A757670038E5B7 /* WorkspaceClient+FileIndex.swift */; };
 		93F73D0D28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F73D0C28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift */; };
@@ -1077,6 +1078,7 @@
 		9384C52A28AE086E00FC452A /* [TEMP]DummyRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "[TEMP]DummyRepo.swift"; sourceTree = "<group>"; };
 		939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoryContainers&Items.swift"; sourceTree = "<group>"; };
 		939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileItemFileSystemFunctions.swift; sourceTree = "<group>"; };
+		93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		93F0066628A7574C0038E5B7 /* WorkspaceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceClient.swift; sourceTree = "<group>"; };
 		93F0066828A757670038E5B7 /* WorkspaceClient+FileIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceClient+FileIndex.swift"; sourceTree = "<group>"; };
 		93F73D0C28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceDocument+Tabs.swift"; sourceTree = "<group>"; };
@@ -1644,6 +1646,7 @@
 				20D837F4289A7ACD00D91D05 /* LocationsPreferences */,
 				20D8380F289A7ACD00D91D05 /* PreferencesPlaceholderView.swift */,
 				206729AE28AE69DC00EB0957 /* PreferencesView.swift */,
+				93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -3541,6 +3544,7 @@
 				2093CDAC289AA185003A88DD /* TerminalThemeView.swift in Sources */,
 				D7211D4327E066CE008F2ED7 /* Localized+Ex.swift in Sources */,
 				2093CC9B289A9FFD003A88DD /* StatusBarSplitTerminalButton.swift in Sources */,
+				93DD4FF328AFD0F100B664D4 /* PreferencesWindowController.swift in Sources */,
 				20D839AE280E0CA700B27357 /* PopoverView.swift in Sources */,
 				2093CC95289A9FF5003A88DD /* StatusBarToggleDrawerButton.swift in Sources */,
 				2072FA1E280D891500C7F8D4 /* Location.swift in Sources */,

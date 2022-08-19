@@ -69,6 +69,10 @@ struct PreferencesView: View {
             }
         }
     }
+
+    public func showWindow() {
+        PreferencesWindowController(view: self, size: NSSize(width: 760, height: 500)).showWindow(nil)
+    }
 }
 
 struct SettingItem: Identifiable {
