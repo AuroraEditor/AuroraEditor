@@ -93,7 +93,7 @@ final class RepositoriesViewController: NSViewController {
     private func onItemDoubleClicked() {
         let item = outlineView.item(atRow: outlineView.clickedRow)
 
-        if item is DummyRepo || item is DummyContainer {
+        if item is DummyRepo || item is RepoContainer {
             if outlineView.isItemExpanded(item) {
                 outlineView.collapseItem(item)
             } else {
@@ -110,10 +110,10 @@ extension RepositoriesViewController: NSOutlineViewDataSource {
         if item is DummyRepo {
             // item is a repo
             return 5
-        } else if let item = item as? DummyContainer {
+        } else if let item = item as? RepoContainer {
             // item is a container
             return item.contents.count
-        } else if item is DummyItem {
+        } else if item is RepoItem {
             // item is an item, and therefore has no children
             return 0
         }
@@ -138,10 +138,10 @@ extension RepositoriesViewController: NSOutlineViewDataSource {
             default:
                 return 0
             }
-        } else if let item = item as? DummyContainer {
+        } else if let item = item as? RepoContainer {
             // item is a container
             return item.contents[index]
-        } else if item is DummyItem {
+        } else if item is RepoItem {
             // item is an item, has no children
             return 0
         }
@@ -154,7 +154,7 @@ extension RepositoriesViewController: NSOutlineViewDataSource {
 
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         // only repos and containers are expandable
-        return item is DummyRepo || item is DummyContainer
+        return item is DummyRepo || item is RepoContainer
     }
 }
 
@@ -183,45 +183,45 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
             return RepositoriesTableViewCell(frame: frameRect,
                                              repository: item,
                                              represents: .repo)
-        } else if let item = item as? DummyContainer {
+        } else if let item = item as? RepoContainer {
             // item is a container
-            if item is DummyBranches {
+            if item is RepoBranches {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
                                                  represents: .branches)
-            } else if item is DummyRecentLocations {
+            } else if item is RepoRecentLocations {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
                                                  represents: .recentLocations)
-            } else if item is DummyStashedChanges {
+            } else if item is RepoStashedChanges {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
                                                  represents: .stashedChanges)
-            } else if item is DummyTags {
+            } else if item is RepoTags {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
                                                  represents: .tags)
-            } else if item is DummyRemotes {
+            } else if item is RepoRemotes {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
                                                  represents: .remotes)
-            } else if item is DummyRemote {
+            } else if item is RepoRemote {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
                                                  represents: .remote)
             }
-        } else if let item = item as? DummyItem {
-            if item is DummyBranch {
+        } else if let item = item as? RepoItem {
+            if item is RepoBranch {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
                                                  represents: .branch,
                                                  item: item)
-            } else if item is DummyTag {
+            } else if item is RepoTag {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
                                                  represents: .tag,
                                                  item: item)
-            } else if item is DummyChange {
+            } else if item is RepoChange {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
                                                  represents: .change,

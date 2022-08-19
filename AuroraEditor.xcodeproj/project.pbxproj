@@ -508,7 +508,8 @@
 		9354D4B928ACEE20004C6D18 /* RepositoriesMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354D4B828ACEE20004C6D18 /* RepositoriesMenu.swift */; };
 		9354D4BB28AD2872004C6D18 /* StandardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354D4BA28AD2872004C6D18 /* StandardTableViewCell.swift */; };
 		935EB99C28A8F26900E8F798 /* FileSystemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935EB99B28A8F26900E8F798 /* FileSystemTableViewCell.swift */; };
-		9384C52B28AE086E00FC452A /* [TEMP]DummyClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9384C52A28AE086E00FC452A /* [TEMP]DummyClasses.swift */; };
+		9384C52B28AE086E00FC452A /* [TEMP]DummyRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9384C52A28AE086E00FC452A /* [TEMP]DummyRepo.swift */; };
+		939C109528AE7D0700403A97 /* RepositoryContainers&Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */; };
 		939C2CC6289E345900BBB345 /* FileItemFileSystemFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */; };
 		93F0066728A7574C0038E5B7 /* WorkspaceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F0066628A7574C0038E5B7 /* WorkspaceClient.swift */; };
 		93F0066928A757670038E5B7 /* WorkspaceClient+FileIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F0066828A757670038E5B7 /* WorkspaceClient+FileIndex.swift */; };
@@ -1071,7 +1072,8 @@
 		9354D4B828ACEE20004C6D18 /* RepositoriesMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesMenu.swift; sourceTree = "<group>"; };
 		9354D4BA28AD2872004C6D18 /* StandardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardTableViewCell.swift; sourceTree = "<group>"; };
 		935EB99B28A8F26900E8F798 /* FileSystemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemTableViewCell.swift; sourceTree = "<group>"; };
-		9384C52A28AE086E00FC452A /* [TEMP]DummyClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "[TEMP]DummyClasses.swift"; sourceTree = "<group>"; };
+		9384C52A28AE086E00FC452A /* [TEMP]DummyRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "[TEMP]DummyRepo.swift"; sourceTree = "<group>"; };
+		939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoryContainers&Items.swift"; sourceTree = "<group>"; };
 		939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileItemFileSystemFunctions.swift; sourceTree = "<group>"; };
 		93F0066628A7574C0038E5B7 /* WorkspaceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceClient.swift; sourceTree = "<group>"; };
 		93F0066828A757670038E5B7 /* WorkspaceClient+FileIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceClient+FileIndex.swift"; sourceTree = "<group>"; };
@@ -2732,7 +2734,8 @@
 				9354D4B428ACEDEF004C6D18 /* RepositoriesViewController.swift */,
 				9354D4B628ACEE04004C6D18 /* RepositoriesTableViewCell.swift */,
 				9354D4B828ACEE20004C6D18 /* RepositoriesMenu.swift */,
-				9384C52A28AE086E00FC452A /* [TEMP]DummyClasses.swift */,
+				9384C52A28AE086E00FC452A /* [TEMP]DummyRepo.swift */,
+				939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -3571,6 +3574,7 @@
 				2093CD4D289AA0A2003A88DD /* Session.swift in Sources */,
 				2093CD42289AA095003A88DD /* ProjectHook.swift in Sources */,
 				2093CD1C289AA079003A88DD /* BitbucketRepositoryRouter.swift in Sources */,
+				939C109528AE7D0700403A97 /* RepositoryContainers&Items.swift in Sources */,
 				2093CDBB289AA1B9003A88DD /* AcknowledgementsView.swift in Sources */,
 				202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */,
 				2093CDE0289AA522003A88DD /* Date+Formatted.swift in Sources */,
@@ -3704,7 +3708,7 @@
 				2093CDD4289AA50C003A88DD /* HTMLUtils.swift in Sources */,
 				04C3255B2801F86400C8DA2D /* ProjectNavigatorViewController.swift in Sources */,
 				2093CDC0289AA247003A88DD /* SearchResultModel.swift in Sources */,
-				9384C52B28AE086E00FC452A /* [TEMP]DummyClasses.swift in Sources */,
+				9384C52B28AE086E00FC452A /* [TEMP]DummyRepo.swift in Sources */,
 				2093CD2E289AA089003A88DD /* Files.swift in Sources */,
 				209D0257289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift in Sources */,
 				6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */,
