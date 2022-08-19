@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 jobs:
   build:
-    runs-on: macos-12
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: Swift (clean) Build
