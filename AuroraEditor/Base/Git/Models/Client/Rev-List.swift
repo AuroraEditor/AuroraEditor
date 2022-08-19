@@ -56,7 +56,7 @@ func getAheadBehind(directoryURL: URL,
 
     // This means one of the refs (most likely the upstream branch) no longer
     // exists. In that case we can't be ahead/behind at all.
-    if result.contains(GitError.BadRevision.rawValue) {
+    if result.contains(GitError.badRevision.rawValue) {
         return nil
     }
 
@@ -120,7 +120,7 @@ func getCommitsInRange(directoryURL: URL,
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)"
     )
 
-    if result.contains(GitError.BadRevision.rawValue) {
+    if result.contains(GitError.badRevision.rawValue) {
         return nil
     }
 

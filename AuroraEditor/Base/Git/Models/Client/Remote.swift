@@ -17,7 +17,7 @@ public struct Remote {
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git remote -v"
         )
 
-        if result.contains(GitError.NotAGitRepository.rawValue) {
+        if result.contains(GitError.notAGitRepository.rawValue) {
             return []
         }
 

@@ -166,7 +166,7 @@ extension WorkspaceDocument {
     /// Removes the tab item from `openedCodeFiles`, `openedExtensions`, and `openFileItems`.
     private func closeFileTab(item: WorkspaceClient.FileItem) {
         let file = selectionState.openedCodeFiles.removeValue(forKey: item)
-        if file?.typeOfFile == .text {
+        if file?.typeOfFile != .image {
             file?.saveFileDocument()
         }
 
