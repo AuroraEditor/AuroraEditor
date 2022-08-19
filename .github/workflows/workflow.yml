@@ -1,4 +1,4 @@
-name: Swift Lint
+name: Build & Lint
 on:
   push:
     branches: [ main ]
@@ -17,3 +17,5 @@ jobs:
         run: swiftlint version
       - name: SwiftLint (GH Actions)
         run: swiftlint --reporter github-actions-logging --strict
+      - name: Swift (clean) Build
+        run: set -o pipefail && xcodebuild -verbose -workspace "AuroraEditor.xcworkspace" -scheme "AuroraEditor" clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
