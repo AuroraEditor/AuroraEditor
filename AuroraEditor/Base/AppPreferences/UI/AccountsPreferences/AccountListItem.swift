@@ -21,3 +21,9 @@ struct AccountListItem: View {
         }
     }
 }
+
+struct AccountListItem_Previews: PreviewProvider {
+    static var previews: some View {
+        AccountListItem(gitClientName: "Github")
+    }
+}

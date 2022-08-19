@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Preferences
 
 /// A view that implements the `Theme` preference section
 public struct ThemePreferencesView: View {
@@ -41,7 +40,6 @@ public struct ThemePreferencesView: View {
                     .help("Not yet implemented")
             }
         }
-        .frame(width: 872)
         .padding()
         .onAppear {
             try? themeModel.loadThemes()

@@ -110,16 +110,21 @@ struct GithubLoginView: View {
                     Log.warning("Account with the username already exists!")
                 } else {
                     Log.info(user)
-                    prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
-                        SourceControlAccounts(id: gitAccountName.lowercased(),
-                                              gitProvider: "GitHub",
-                                              gitProviderLink: "https://github.com",
-                                              gitProviderDescription: "GitHub",
-                                              gitAccountName: gitAccountName,
-                                              gitCloningProtocol: true,
-                                              gitSSHKey: "",
-                                              isTokenValid: true))
-                    keychain.set(accountToken, forKey: "github_\(accountName)")
+                    DispatchQueue.main.async {
+                        prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
+                            SourceControlAccounts(id: gitAccountName.lowercased(),
+                                                  gitProvider: "GitHub",
+                                                  gitProviderLink: "https://github.com",
+                                                  gitProviderDescription: "GitHub",
+                                                  gitAccountName: gitAccountName,
+                                                  gitAccountEmail: user.email ?? "Not Found",
+                                                  gitAccountUsername: user.login!,
+                                                  gitAccountImage: user.avatarURL!,
+                                                  gitCloningProtocol: true,
+                                                  gitSSHKey: "",
+                                                  isTokenValid: true))
+                        keychain.set(accountToken, forKey: "github_\(accountName)")
+                    }
                     dismissDialog.toggle()
                 }
             case .failure(let error):

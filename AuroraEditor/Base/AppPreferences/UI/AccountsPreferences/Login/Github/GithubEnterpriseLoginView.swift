@@ -91,6 +91,9 @@ struct GithubEnterpriseLoginView: View {
                                               gitProviderLink: eneterpriseLink,
                                               gitProviderDescription: "GitHub",
                                               gitAccountName: gitAccountName,
+                                              gitAccountEmail: user.email!,
+                                              gitAccountUsername: user.login!,
+                                              gitAccountImage: user.avatarURL!,
                                               gitCloningProtocol: true,
                                               gitSSHKey: "",
                                               isTokenValid: true))

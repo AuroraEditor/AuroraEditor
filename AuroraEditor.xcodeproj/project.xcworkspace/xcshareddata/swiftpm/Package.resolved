@@ -1,21 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "codeeditkit",
+      "identity" : "aeextensionkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/CodeEditApp/CodeEditKit",
+      "location" : "https://github.com/AuroraEditor/AEExtensionKit.git",
       "state" : {
         "branch" : "main",
-        "revision" : "2482e5870fd8082c908fabfdaaf245498cb3dd54"
-      }
-    },
-    {
-      "identity" : "preferences",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/sindresorhus/Preferences.git",
-      "state" : {
-        "revision" : "2651cd144615009242c994b087508fef99e9275c",
-        "version" : "2.6.0"
+        "revision" : "53577d52ad6db38b3543ff2a17acc533a0673b8c"
       }
     },
     {

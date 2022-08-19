@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Preferences
 
 /// A view that implements the `Locations` preference section
 public struct LocationsPreferencesView: View {
@@ -15,41 +14,56 @@ public struct LocationsPreferencesView: View {
 
     public var body: some View {
         PreferencesContent {
-            PreferencesSection("Preferences Location") {
-                HStack {
-                    Text(AppPreferencesModel.shared.baseURL.path)
-                        .foregroundColor(.secondary)
-                    Button {
-                        NSWorkspace.shared.selectFile(
-                            nil,
-                            inFileViewerRootedAtPath: AppPreferencesModel.shared.baseURL.path
-                        )
-                    } label: {
-                        Image(systemName: "arrow.right.circle.fill")
+            GroupBox {
+                VStack {
+                    HStack {
+                        Text("Preferences Location")
+
+                        Spacer()
+
+                        HStack {
+                            Text(AppPreferencesModel.shared.baseURL.path)
+                                .foregroundColor(.secondary)
+                            Button {
+                                NSWorkspace.shared.selectFile(
+                                    nil,
+                                    inFileViewerRootedAtPath: AppPreferencesModel.shared.baseURL.path
+                                )
+                            } label: {
+                                Image(systemName: "arrow.right.circle.fill")
+                            }
+                            .buttonStyle(.plain)
+                            .foregroundColor(.secondary)
+                        }
                     }
-                    .buttonStyle(.plain)
-                    .foregroundColor(.secondary)
-                }
-            }
-            PreferencesSection("Themes Location") {
-                HStack {
-                    Text(ThemeModel.shared.themesURL.path)
-                        .foregroundColor(.secondary)
-                    Button {
-                        NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: ThemeModel.shared.themesURL.path)
-                    } label: {
-                        Image(systemName: "arrow.right.circle.fill")
+                    .padding(.top, 5)
+                    .padding(.horizontal)
+
+                    Divider()
+
+                    HStack {
+                        Text("Themes Location")
+
+                        Spacer()
+
+                        HStack {
+                            Text(ThemeModel.shared.themesURL.path)
+                                .foregroundColor(.secondary)
+                            Button {
+                                NSWorkspace.shared.selectFile(
+                                    nil,
+                                    inFileViewerRootedAtPath: ThemeModel.shared.themesURL.path)
+                            } label: {
+                                Image(systemName: "arrow.right.circle.fill")
+                            }
+                            .buttonStyle(.plain)
+                            .foregroundColor(.secondary)
+                        }
                     }
-                    .buttonStyle(.plain)
-                    .foregroundColor(.secondary)
+                    .padding(.bottom, 5)
+                    .padding(.horizontal)
                 }
             }
         }
-    }
-}
-
-private struct LocationsPreferences_Previews: PreviewProvider {
-    public static var previews: some View {
-        LocationsPreferencesView()
     }
 }

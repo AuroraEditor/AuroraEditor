@@ -33,22 +33,65 @@ public struct GeneralPreferencesView: View {
 
     public var body: some View {
         PreferencesContent {
-            appearanceSection
-            showIssuesSection
-            fileExtensionsSection
-            fileIconStyleSection
-            tabBarStyleSection
-            reopenBehaviorSection
-            projectNavigatorSizeSection
-            findNavigatorDetailSection
-            Group {
-                issueNavigatorDetailSection
-                dialogWarningsSection
+            Text("Appearance")
+                .fontWeight(.bold)
+                .padding(.horizontal)
+
+            GroupBox {
+                appearanceSection
+                    .padding(.vertical, 5)
+                Divider()
+                showIssuesSection
+                    .padding(.vertical, 5)
+                Divider()
+                fileExtensionsSection
+                    .padding(.vertical, 5)
+                Divider()
+                fileIconStyleSection
+                    .padding(.vertical, 5)
+                Divider()
+                tabBarStyleSection
+                    .padding(.vertical, 5)
             }
-            Group {
-                openInAuroraEditorToggle
+
+            GroupBox {
+                reopenBehaviorSection
+                    .padding(.vertical, 5)
+                Divider()
+                dialogWarningsSection
+                    .padding(.vertical, 5)
+            }
+            .padding(.bottom)
+
+            Text("Navigator")
+                .fontWeight(.bold)
+                .padding(.horizontal)
+
+            GroupBox {
+                projectNavigatorSizeSection
+                    .padding(.vertical, 5)
+                Divider()
+                findNavigatorDetailSection
+                    .padding(.vertical, 5)
+                Divider()
+                issueNavigatorDetailSection
+                    .padding(.vertical, 5)
+                Divider()
                 revealFileOnFocusChangeToggle
+                    .padding(.vertical, 5)
+            }
+            .padding(.bottom)
+
+            Text("Other")
+                .fontWeight(.bold)
+                .padding(.horizontal)
+
+            GroupBox {
+                openInAuroraEditorToggle
+                    .padding(.vertical, 5)
+                Divider()
                 shellCommandSection
+                    .padding(.vertical, 5)
             }
         }
     }
@@ -56,7 +99,9 @@ public struct GeneralPreferencesView: View {
 
 private extension GeneralPreferencesView {
     var appearanceSection: some View {
-        PreferencesSection("Appearance") {
+        HStack {
+            Text("Appearance")
+            Spacer()
             Picker("Appearance", selection: $prefs.preferences.general.appAppearance) {
                 Text("System")
                     .tag(AppPreferences.Appearances.system)
@@ -66,33 +111,47 @@ private extension GeneralPreferencesView {
                 Text("Dark")
                     .tag(AppPreferences.Appearances.dark)
             }
+            .pickerStyle(.automatic)
+            .labelsHidden()
             .onChange(of: prefs.preferences.general.appAppearance) { tag in
                 tag.applyAppearance()
             }
             .frame(width: inputWidth)
         }
+        .padding(.horizontal)
     }
 
     // TODO: Implement reflecting Show Issues preference and remove disabled modifier
     var showIssuesSection: some View {
-        PreferencesSection("Show Issues", hideLabels: false) {
-            Picker("Show Issues", selection: $prefs.preferences.general.showIssues) {
-                Text("Show Inline")
-                    .tag(AppPreferences.Issues.inline)
-                Text("Show Minimized")
-                    .tag(AppPreferences.Issues.minimized)
-            }
-            .labelsHidden()
-            .frame(width: inputWidth)
+        HStack {
+            Text("Show Issues")
 
-            Toggle("Show Live Issues", isOn: $prefs.preferences.general.showLiveIssues)
-                .toggleStyle(.checkbox)
+            Spacer()
+
+            VStack {
+                Picker("Show Issues", selection: $prefs.preferences.general.showIssues) {
+                    Text("Show Inline")
+                        .tag(AppPreferences.Issues.inline)
+                    Text("Show Minimized")
+                        .tag(AppPreferences.Issues.minimized)
+                }
+                .labelsHidden()
+                .frame(width: inputWidth)
+
+                Toggle("Show Live Issues", isOn: $prefs.preferences.general.showLiveIssues)
+                    .toggleStyle(.checkbox)
+            }
+            .disabled(true)
         }
-        .disabled(true)
+        .padding(.horizontal)
     }
 
     var fileExtensionsSection: some View {
-        PreferencesSection("File Extensions") {
+        HStack {
+            Text("File Extensions")
+
+            Spacer()
+
             Picker("File Extensions:", selection: $prefs.preferences.general.fileExtensionsVisibility) {
                 Text("Hide all")
                     .tag(AppPreferences.FileExtensionsVisibility.hideAll)
@@ -104,6 +163,7 @@ private extension GeneralPreferencesView {
                 Text("Hide only")
                     .tag(AppPreferences.FileExtensionsVisibility.hideOnly)
             }
+            .labelsHidden()
             .frame(width: inputWidth)
             if case .showOnly = prefs.preferences.general.fileExtensionsVisibility {
                 SettingsTextEditor(text: $prefs.preferences.general.shownFileExtensions.string)
@@ -116,34 +176,45 @@ private extension GeneralPreferencesView {
                 .frame(height: textEditorHeight)
             }
         }
+        .padding(.horizontal)
     }
 
     var fileIconStyleSection: some View {
-        PreferencesSection("File Icon Style") {
+        HStack {
+            Text("File Icon Style")
+            Spacer()
             Picker("File Icon Style:", selection: $prefs.preferences.general.fileIconStyle) {
                 Text("Color")
                     .tag(AppPreferences.FileIconStyle.color)
                 Text("Monochrome")
                     .tag(AppPreferences.FileIconStyle.monochrome)
             }
+            .labelsHidden()
             .pickerStyle(.radioGroup)
         }
+        .padding(.horizontal)
     }
 
     var tabBarStyleSection: some View {
-        PreferencesSection("Tab Bar Style") {
+        HStack {
+            Text("Tab Bar Style")
+            Spacer()
             Picker("Tab Bar Style:", selection: $prefs.preferences.general.tabBarStyle) {
-                Text("Xcode")
+                Text("Xcode Style")
                     .tag(AppPreferences.TabBarStyle.xcode)
-                Text("Native")
+                Text("Aurora Style")
                     .tag(AppPreferences.TabBarStyle.native)
             }
+            .labelsHidden()
             .pickerStyle(.radioGroup)
         }
+        .padding(.horizontal)
     }
 
     var reopenBehaviorSection: some View {
-        PreferencesSection("Reopen Behavior") {
+        HStack {
+            Text("Reopen Behavior")
+            Spacer()
             Picker("Reopen Behavior:", selection: $prefs.preferences.general.reopenBehavior) {
                 Text("Welcome Screen")
                     .tag(AppPreferences.ReopenBehavior.welcome)
@@ -153,12 +224,16 @@ private extension GeneralPreferencesView {
                 Text("New Document")
                     .tag(AppPreferences.ReopenBehavior.newDocument)
             }
+            .labelsHidden()
             .frame(width: inputWidth)
         }
+        .padding(.horizontal)
     }
 
     var projectNavigatorSizeSection: some View {
-        PreferencesSection("Project Navigator Size") {
+        HStack {
+            Text("Project Navigator Size")
+            Spacer()
             Picker("Project Navigator Size", selection: $prefs.preferences.general.projectNavigatorSize) {
                 Text("Small")
                     .tag(AppPreferences.ProjectNavigatorSize.small)
@@ -167,37 +242,49 @@ private extension GeneralPreferencesView {
                 Text("Large")
                     .tag(AppPreferences.ProjectNavigatorSize.large)
             }
+            .labelsHidden()
             .frame(width: inputWidth)
         }
+        .padding(.horizontal)
     }
 
     var findNavigatorDetailSection: some View {
-        PreferencesSection("Find Navigator Detail") {
+        HStack {
+            Text("Find Navigator Detail")
+            Spacer()
             Picker("Find Navigator Detail", selection: $prefs.preferences.general.findNavigatorDetail) {
                 ForEach(AppPreferences.NavigatorDetail.allCases, id: \.self) { tag in
                     Text(tag.label).tag(tag)
                 }
             }
+            .labelsHidden()
             .frame(width: inputWidth)
         }
+        .padding(.horizontal)
     }
 
     // TODO: Implement reflecting Issue Navigator Detail preference and remove disabled modifier
     var issueNavigatorDetailSection: some View {
-        PreferencesSection("Issue Navigator Detail") {
+        HStack {
+            Text("Issue Navigator Detail")
+            Spacer()
             Picker("Issue Navigator Detail", selection: $prefs.preferences.general.issueNavigatorDetail) {
                 ForEach(AppPreferences.NavigatorDetail.allCases, id: \.self) { tag in
                     Text(tag.label).tag(tag)
                 }
             }
+            .labelsHidden()
             .frame(width: inputWidth)
         }
+        .padding(.horizontal)
         .disabled(true)
     }
 
     // TODO: Implement reset for Don't Ask Me warnings Button and remove disabled modifier
     var dialogWarningsSection: some View {
-        PreferencesSection("Dialog Warnings", align: .center) {
+        HStack {
+            Text("Dialog Warnings")
+            Spacer()
             Button(action: {
             }, label: {
                 Text("Reset \"Don't Ask Me\" Warnings")
@@ -205,78 +292,29 @@ private extension GeneralPreferencesView {
             })
             .buttonStyle(.bordered)
         }
+        .padding(.horizontal)
         .disabled(true)
     }
 
     var shellCommandSection: some View {
-        PreferencesSection("Shell Command", align: .center) {
+        HStack {
+            Text("Shell Command")
+            Spacer()
             Button(action: {
-                do {
-                    let url = Bundle.module.url(forResource: "ae", withExtension: nil, subdirectory: "Resources")
-                    let destination = "/usr/local/bin/ae"
-
-                    if FileManager.default.fileExists(atPath: destination) {
-                        try FileManager.default.removeItem(atPath: destination)
-                    }
-
-                    guard let shellUrl = url?.path else {
-                        Log.error("Failed to get URL to shell command")
-                        return
-                    }
-
-                    NSWorkspace.shared.requestAuthorization(to: .createSymbolicLink) { auth, error in
-                        guard let auth = auth, error == nil else {
-                            fallbackShellInstallation(commandPath: shellUrl, destinationPath: destination)
-                            return
-                        }
-
-                        do {
-                            try FileManager(authorization: auth).createSymbolicLink(
-                                atPath: destination, withDestinationPath: shellUrl
-                            )
-                        } catch {
-                            fallbackShellInstallation(commandPath: shellUrl, destinationPath: destination)
-                        }
-                    }
-                } catch {
-                    Log.error(error)
-                }
+                aeCommandLine()
             }, label: {
                 Text("Install 'ae' command")
                     .padding(.horizontal, 10)
             })
             .buttonStyle(.bordered)
         }
-    }
-
-    func fallbackShellInstallation(commandPath: String, destinationPath: String) {
-        let cmd = [
-            "osascript",
-            "-e",
-            "\"do shell script \\\"mkdir -p /usr/local/bin && ln -sf \'\(commandPath)\' \'\(destinationPath)\'\\\"\"",
-            "with administrator privileges"
-        ]
-
-        let cmdStr = cmd.joined(separator: " ")
-
-        let task = Process()
-        let pipe = Pipe()
-
-        task.standardOutput = pipe
-        task.standardError = pipe
-        task.arguments = ["-c", cmdStr]
-        task.executableURL = URL(fileURLWithPath: "/bin/zsh")
-        task.standardInput = nil
-
-        do {
-            try task.run()
-        } catch {
-            Log.error(error)
-        }
+        .padding(.horizontal)
     }
 
     var openInAuroraEditorToggle: some View {
-        PreferencesSection("Finder Context Menu", hideLabels: false) {
+        HStack {
+            Text("Finder Context Menu")
+            Spacer()
             Toggle("Show “Open With AuroraEditor” option", isOn: $openInAuroraEditor)
                 .toggleStyle(.checkbox)
                 .onChange(of: openInAuroraEditor) { newValue in
@@ -290,12 +328,22 @@ private extension GeneralPreferencesView {
                     defaults.set(newValue, forKey: "enableOpenInAE")
                 }
         }
+        .padding(.horizontal)
     }
 
     var revealFileOnFocusChangeToggle: some View {
-        PreferencesSection("Project Navigator Behavior", hideLabels: false) {
+        HStack {
+            Text("Project Navigator Behavior")
+            Spacer()
             Toggle("Automatically Show Active File", isOn: $prefs.preferences.general.revealFileOnFocusChange)
                 .toggleStyle(.checkbox)
         }
+        .padding(.horizontal)
+    }
+}
+
+struct GeneralPreferencesView_Previews: PreviewProvider {
+    static var previews: some View {
+        GeneralPreferencesView()
     }
 }

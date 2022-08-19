@@ -13,6 +13,9 @@ public struct SourceControlAccounts: Codable, Identifiable, Hashable {
     public var gitProviderLink: String
     public var gitProviderDescription: String
     public var gitAccountName: String
+    public var gitAccountEmail: String
+    public var gitAccountUsername: String
+    public var gitAccountImage: String
     // If bool we use the HTTP protocol else if false we use SHH
     public var gitCloningProtocol: Bool
     public var gitSSHKey: String

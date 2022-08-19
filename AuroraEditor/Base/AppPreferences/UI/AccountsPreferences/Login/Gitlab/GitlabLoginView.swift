@@ -84,6 +84,9 @@ struct GitlabLoginView: View {
                                               gitProviderLink: "https://gitlab.com",
                                               gitProviderDescription: "Gitlab",
                                               gitAccountName: gitAccountName,
+                                              gitAccountEmail: "user.email",
+                                              gitAccountUsername: "user.username",
+                                              gitAccountImage: "user.avatarURL?.absoluteString!",
                                               gitCloningProtocol: true,
                                               gitSSHKey: "",
                                               isTokenValid: true))

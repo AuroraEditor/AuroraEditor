@@ -18,84 +18,184 @@ struct SourceControlGeneralView: View {
     private var prefs: AppPreferencesModel = .shared
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            GroupBox {
+                HStack(alignment: .top) {
+                    Spacer()
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text("Enable Source Control")
+                            Spacer()
+                            Toggle("Enable Source Control",
+                                   isOn: $prefs.preferences.sourceControl.general.enableSourceControl)
+                            .labelsHidden()
+                            .toggleStyle(.switch)
+                        }
 
-            PreferencesSection("Source Control", hideLabels: false) {
-                Toggle("Enable Source Control", isOn: $prefs.preferences.sourceControl.general.enableSourceControl)
-                    .toggleStyle(.checkbox)
+                        Divider()
 
-                VStack(alignment: .leading) {
-                    Toggle("Refresh local status automatically",
-                           isOn: $prefs.preferences.sourceControl.general.refreshStatusLocaly)
-                        .toggleStyle(.checkbox)
-                        .disabled(!prefs.sourceControlActive())
-                    Toggle("Fetch and refresh server status automatically",
-                           isOn: $prefs.preferences.sourceControl.general.fetchRefreshServerStatus)
-                        .toggleStyle(.checkbox)
-                        .disabled(!prefs.sourceControlActive())
-                    Toggle("Add and remove files automatically",
-                           isOn: $prefs.preferences.sourceControl.general.addRemoveAutomatically)
-                        .toggleStyle(.checkbox)
-                        .disabled(!prefs.sourceControlActive())
-                    Toggle("Select files to commit automatically",
-                           isOn: $prefs.preferences.sourceControl.general.selectFilesToCommit)
-                        .toggleStyle(.checkbox)
-                        .disabled(!prefs.sourceControlActive())
+                        HStack {
+                            Text("Refresh local status automatically")
+                            Spacer()
+                            Toggle("Refresh local status automatically",
+                                   isOn: $prefs.preferences.sourceControl.general.refreshStatusLocaly)
+                            .labelsHidden()
+                            .toggleStyle(.switch)
+                            .disabled(!prefs.sourceControlActive())
+                        }
+
+                        Divider()
+
+                        HStack {
+                            Text("Fetch and refresh server status automatically")
+                            Spacer()
+                            Toggle("Fetch and refresh server status automatically",
+                                   isOn: $prefs.preferences.sourceControl.general.fetchRefreshServerStatus)
+                            .labelsHidden()
+                            .toggleStyle(.switch)
+                            .disabled(!prefs.sourceControlActive())
+                        }
+
+                        Divider()
+
+                        HStack {
+                            Text("Add and remove files automatically")
+                            Spacer()
+                            Toggle("Add and remove files automatically",
+                                   isOn: $prefs.preferences.sourceControl.general.addRemoveAutomatically)
+                            .labelsHidden()
+                            .toggleStyle(.switch)
+                            .disabled(!prefs.sourceControlActive())
+                        }
+
+                        Divider()
+
+                        HStack {
+                            Text("Select files to commit automatically")
+                            Spacer()
+                            Toggle("Select files to commit automatically",
+                                   isOn: $prefs.preferences.sourceControl.general.selectFilesToCommit)
+                            .labelsHidden()
+                            .toggleStyle(.switch)
+                            .disabled(!prefs.sourceControlActive())
+                        }
+                    }
                 }
-                .padding(.leading, 20)
+                .padding(.vertical, 5)
+                .padding(.horizontal)
             }
 
-            PreferencesSection("Text Editing", hideLabels: false) {
-                Toggle("Show Source Control changes",
-                       isOn: $prefs.preferences.sourceControl.general.showSourceControlChanges)
-                    .toggleStyle(.checkbox)
-                    .disabled(!prefs.sourceControlActive())
+            Text("Text Editing")
+                .fontWeight(.medium)
+                .font(.system(size: 12))
+                .padding(.horizontal)
+                .padding(.top, 5)
 
-                Toggle("Include upstream changes",
-                       isOn: $prefs.preferences.sourceControl.general.includeUpstreamChanges)
-                    .toggleStyle(.checkbox)
-                    .disabled(!prefs.sourceControlActive())
-                    .padding(.leading, 20)
-            }
+            GroupBox {
+                VStack {
+                    HStack {
+                        Text("Show Source Control changes")
+                        Spacer()
+                        Toggle("Show Source Control changes",
+                               isOn: $prefs.preferences.sourceControl.general.showSourceControlChanges)
+                        .labelsHidden()
+                        .toggleStyle(.switch)
+                        .disabled(!prefs.sourceControlActive())
+                    }
 
-            PreferencesSection("Reporting", hideLabels: false) {
-                Toggle("Open created issue in the browser",
-                       isOn: $prefs.preferences.sourceControl.general.openFeedbackInBrowser)
-                    .toggleStyle(.checkbox)
-            }
+                    Divider()
 
-            PreferencesSection("Comparison View", hideLabels: true) {
-                Picker("Comparison View",
-                       selection: $prefs.preferences.sourceControl.general.revisionComparisonLayout) {
-                    Text("Local Revision on Left Side")
-                        .tag(AppPreferences.RevisionComparisonLayout.localLeft)
-                    Text("Local Revision on Right Side")
-                        .tag(AppPreferences.RevisionComparisonLayout.localRight)
+                    HStack {
+                        Text("Include upstream changes")
+                        Spacer()
+                        Toggle("Include upstream changes",
+                               isOn: $prefs.preferences.sourceControl.general.includeUpstreamChanges)
+                        .labelsHidden()
+                        .toggleStyle(.switch)
+                        .disabled(!prefs.sourceControlActive())
+                    }
                 }
-                .frame(width: inputWidth)
+                .padding(.vertical, 5)
+                .padding(.horizontal)
             }
 
-            PreferencesSection("Source Control Navigator", hideLabels: true) {
-                Picker("Source Control Navigator",
-                       selection: $prefs.preferences.sourceControl.general.controlNavigatorOrder) {
-                    Text("Sort by Name")
-                        .tag(AppPreferences.ControlNavigatorOrder.sortByName)
-                    Text("Sort by Date")
-                        .tag(AppPreferences.ControlNavigatorOrder.sortByDate)
+            Text("Reporting")
+                .fontWeight(.medium)
+                .font(.system(size: 12))
+                .padding(.horizontal)
+                .padding(.top, 5)
+
+            GroupBox {
+                HStack(alignment: .center) {
+                    Text("Open created issue in the browser")
+                    Spacer()
+                    Toggle("Open created issue in the browser",
+                           isOn: $prefs.preferences.sourceControl.general.openFeedbackInBrowser)
+                    .labelsHidden()
+                    .toggleStyle(.switch)
                 }
-                .frame(width: inputWidth)
+                .padding(.vertical, 5)
+                .padding(.horizontal)
             }
 
-            PreferencesSection("Default Branch Name", hideLabels: false) {
-                TextField("main", text: $branchName)
+            GroupBox {
+                HStack(alignment: .top) {
+                    Text("Comparison View")
+                    Spacer()
+                    Picker("Comparison View",
+                           selection: $prefs.preferences.sourceControl.general.revisionComparisonLayout) {
+                        Text("Local Revision on Left Side")
+                            .tag(AppPreferences.RevisionComparisonLayout.localLeft)
+                        Text("Local Revision on Right Side")
+                            .tag(AppPreferences.RevisionComparisonLayout.localRight)
+                    }
+                    .labelsHidden()
                     .frame(width: inputWidth)
-                Text("Branch names cannot contain spaces, backslashes, or other symbols")
-                    .font(.system(size: 12))
-                    .foregroundColor(.secondary)
+                }
+                .padding(.vertical, 5)
+                .padding(.horizontal)
+            }
+
+            GroupBox {
+                HStack(alignment: .top) {
+                    Text("Source Control Navigator")
+                    Spacer()
+                    Picker("Source Control Navigator",
+                           selection: $prefs.preferences.sourceControl.general.controlNavigatorOrder) {
+                        Text("Sort by Name")
+                            .tag(AppPreferences.ControlNavigatorOrder.sortByName)
+                        Text("Sort by Date")
+                            .tag(AppPreferences.ControlNavigatorOrder.sortByDate)
+                    }
+                    .labelsHidden()
+                    .frame(width: inputWidth)
+                }
+                .padding(.vertical, 5)
+                .padding(.horizontal)
+            }
+
+            GroupBox {
+                VStack(alignment: .leading) {
+                    HStack(alignment: .top) {
+                        Text("Default Branch Name")
+                        Spacer()
+                        VStack(alignment: .trailing) {
+                            TextField("main", text: $branchName)
+                                .frame(width: inputWidth)
+                                .textFieldStyle(.roundedBorder)
+                        }
+                    }
+
+                    Divider()
+
+                    Text("Branch names cannot contain spaces, backslashes, or other symbols")
+                        .font(.system(size: 11))
+                        .foregroundColor(.secondary)
+                }
+                .padding(.vertical, 5)
+                .padding(.horizontal)
             }
         }
-        .frame(height: 350)
-        .background(EffectView(.contentBackground))
     }
 }
 

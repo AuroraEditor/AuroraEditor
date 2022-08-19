@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Preferences
 
 public struct PreferencesPlaceholderView: View {
 
@@ -15,8 +14,8 @@ public struct PreferencesPlaceholderView: View {
     public var body: some View {
         VStack {
             Text("Implementation needed")
+                .font(.system(size: 16))
+                .foregroundColor(.secondary)
         }
-        .frame(width: 844, height: 300)
-        .padding(30)
     }
 }
