@@ -14,7 +14,7 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
     init(frame frameRect: NSRect,
          repository: DummyRepo,
          represents cellType: CellType = .repo,
-         item: DummyItem? = nil
+         item: RepoItem? = nil
     ) {
         super.init(frame: frameRect)
 
@@ -22,7 +22,7 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
         var image = NSImage()
         switch cellType {
         case .repo:
-            let currentBranch = (repository.branches?.contents[repository.branches?.current ?? -1] as? DummyBranch)?
+            let currentBranch = (repository.branches?.contents[repository.branches?.current ?? -1] as? RepoBranch)?
                 .name ?? "Unknown Main Branch"
             label.stringValue = "\(repository.repoName) (\(currentBranch))"
             image = NSImage(systemSymbolName: "clock", accessibilityDescription: nil)!
@@ -52,7 +52,7 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
             image = NSImage(systemSymbolName: "vault", accessibilityDescription: nil)!
 
         case .branch:
-            let currentBranch = (repository.branches?.contents[repository.branches?.current ?? -1] as? DummyBranch)?
+            let currentBranch = (repository.branches?.contents[repository.branches?.current ?? -1] as? RepoBranch)?
                 .name ?? "Unknown Main Branch"
             label.stringValue = item?.name ?? "Unknown Branch"
             if label.stringValue == currentBranch {
