@@ -88,7 +88,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(convertTemporaryTab),
-                                               name: NSNotification.Name("CodeEditor.didBeginEditing"),
+                                               name: NSNotification.Name("AE.didBeginEditing"),
                                                object: nil)
         Log.info("Created document \(self)")
     }

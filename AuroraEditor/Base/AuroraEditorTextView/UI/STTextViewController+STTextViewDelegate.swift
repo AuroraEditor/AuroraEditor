@@ -42,6 +42,11 @@ extension STTextViewController {
         didChangeTextIn affectedCharRange: NSTextRange,
         replacementString: String
     ) {
+        NotificationCenter.default.post(
+            name: NSNotification.Name("AE.didBeginEditing"),
+            object: nil
+        )
+
         if !updateText {
             updateText = true
 

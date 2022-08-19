@@ -289,8 +289,6 @@
 		2093CD73289AA0FF003A88DD /* PressActionsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8383D289A7ACD00D91D05 /* PressActionsModifier.swift */; };
 		2093CD84289AA11A003A88DD /* String+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83843289A7ACE00D91D05 /* String+NSRange.swift */; };
 		2093CD85289AA11A003A88DD /* NSFont+LineHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83845289A7ACE00D91D05 /* NSFont+LineHeight.swift */; };
-		2093CD89289AA123003A88DD /* Symbols.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20D837C9289A7ACD00D91D05 /* Symbols.xcassets */; };
-		2093CD8A289AA125003A88DD /* AuroraEditorSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837CA289A7ACD00D91D05 /* AuroraEditorSymbols.swift */; };
 		2093CD8B289AA12B003A88DD /* NotificationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838E4289A7ACE00D91D05 /* NotificationData.swift */; };
 		2093CD8C289AA12B003A88DD /* BannerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838E3289A7ACE00D91D05 /* BannerModule.swift */; };
 		2093CD8D289AA12B003A88DD /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838E1289A7ACE00D91D05 /* NotificationManager.swift */; };
@@ -445,6 +443,8 @@
 		28B0A19827E385C300B73177 /* NavigatorSidebarToolbarTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B0A19727E385C300B73177 /* NavigatorSidebarToolbarTop.swift */; };
 		28B8F884280FFE4600596236 /* NSTableView+Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B8F883280FFE4600596236 /* NSTableView+Background.swift */; };
 		28FFE1BF27E3A441001939DB /* NavigatorSidebarToolbarBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FFE1BE27E3A441001939DB /* NavigatorSidebarToolbarBottom.swift */; };
+		2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B18EC4528AEC84900494768 /* Symbols.xcassets */; };
+		2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */; };
 		2B4C132B289D56F9000ED796 /* STTextView+InsertionPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C12FF289D56F9000ED796 /* STTextView+InsertionPoint.swift */; };
 		2B4C132C289D56F9000ED796 /* STTextView+Undo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1300289D56F9000ED796 /* STTextView+Undo.swift */; };
 		2B4C132D289D56F9000ED796 /* STTextView+Find.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1301289D56F9000ED796 /* STTextView+Find.swift */; };
@@ -802,8 +802,6 @@
 		20D837C4289A7ACD00D91D05 /* ExtensionsStoreAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsStoreAPI.swift; sourceTree = "<group>"; };
 		20D837C5289A7ACD00D91D05 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		20D837C6289A7ACD00D91D05 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
-		20D837C9289A7ACD00D91D05 /* Symbols.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Symbols.xcassets; sourceTree = "<group>"; };
-		20D837CA289A7ACD00D91D05 /* AuroraEditorSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorSymbols.swift; sourceTree = "<group>"; };
 		20D837CF289A7ACD00D91D05 /* GeneralPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesView.swift; sourceTree = "<group>"; };
 		20D837D1289A7ACD00D91D05 /* TerminalPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalPreferencesView.swift; sourceTree = "<group>"; };
 		20D837D3289A7ACD00D91D05 /* PreferenceSourceControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceSourceControlView.swift; sourceTree = "<group>"; };
@@ -1003,6 +1001,8 @@
 		28B8F883280FFE4600596236 /* NSTableView+Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTableView+Background.swift"; sourceTree = "<group>"; };
 		28FFE1BE27E3A441001939DB /* NavigatorSidebarToolbarBottom.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = NavigatorSidebarToolbarBottom.swift; sourceTree = "<group>"; tabWidth = 4; };
 		2B15CA0028254139004E8F22 /* OpenWithAuroraEditor.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = OpenWithAuroraEditor.entitlements; sourceTree = "<group>"; };
+		2B18EC4528AEC84900494768 /* Symbols.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Symbols.xcassets; sourceTree = "<group>"; };
+		2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuroraEditorSymbols.swift; sourceTree = "<group>"; };
 		2B4C12FF289D56F9000ED796 /* STTextView+InsertionPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STTextView+InsertionPoint.swift"; sourceTree = "<group>"; };
 		2B4C1300289D56F9000ED796 /* STTextView+Undo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STTextView+Undo.swift"; sourceTree = "<group>"; };
 		2B4C1301289D56F9000ED796 /* STTextView+Find.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STTextView+Find.swift"; sourceTree = "<group>"; };
@@ -1313,7 +1313,6 @@
 				20D8384B289A7ACE00D91D05 /* Acknowledgements */,
 				20D837CB289A7ACD00D91D05 /* AppPreferences */,
 				20D838DF289A7ACE00D91D05 /* AuroraEditorNotifications */,
-				20D837C7289A7ACD00D91D05 /* AuroraEditorSymbols */,
 				20D83824289A7ACD00D91D05 /* AuroraEditorUI */,
 				20D83749289A7ACD00D91D05 /* Breadcrumbs */,
 				20D838CE289A7ACE00D91D05 /* CodeFile */,
@@ -1347,6 +1346,7 @@
 				20D83744289A7ACD00D91D05 /* KeyChain */,
 				20D8373D289A7ACD00D91D05 /* Color+HEX.swift */,
 				20D8373E289A7ACD00D91D05 /* Bundle+Info.swift */,
+				2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */,
 				20D8373F289A7ACD00D91D05 /* Date+Formatted.swift */,
 				2BF983FE289D8B3C004F1A60 /* SharedObjects.swift */,
 				2B71C0A32874AD61008E0859 /* AuroraProject.swift */,
@@ -1607,23 +1607,6 @@
 				20D837C2289A7ACD00D91D05 /* Plugin.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		20D837C7289A7ACD00D91D05 /* AuroraEditorSymbols */ = {
-			isa = PBXGroup;
-			children = (
-				20D837C8289A7ACD00D91D05 /* src */,
-			);
-			path = AuroraEditorSymbols;
-			sourceTree = "<group>";
-		};
-		20D837C8289A7ACD00D91D05 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				20D837C9289A7ACD00D91D05 /* Symbols.xcassets */,
-				20D837CA289A7ACD00D91D05 /* AuroraEditorSymbols.swift */,
-			);
-			path = src;
 			sourceTree = "<group>";
 		};
 		20D837CB289A7ACD00D91D05 /* AppPreferences */ = {
@@ -2912,6 +2895,7 @@
 				28069DA527F5BD320016BC47 /* DefaultThemes */,
 				0468438427DC76E200F8E88E /* AppDelegate.swift */,
 				B658FB3327DA9E1000EA4DBD /* Assets.xcassets */,
+				2B18EC4528AEC84900494768 /* Symbols.xcassets */,
 				2B5B25522885D9B9009C7384 /* .swiftlint.yml */,
 				2BA19F242896F721000B9543 /* .githash */,
 				2B5B25542885D9C3009C7384 /* .gitignore */,
@@ -3100,6 +3084,7 @@
 				2093CCFE289AA044003A88DD /* googlecode.min.css in Resources */,
 				2093CD0C289AA044003A88DD /* kimbie.dark.min.css in Resources */,
 				2B5B25532885D9BA009C7384 /* .swiftlint.yml in Resources */,
+				2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */,
 				2093CCE5289AA044003A88DD /* school-book.min.css in Resources */,
 				2093CCC1289AA044003A88DD /* tomorrow-night-bright.min.css in Resources */,
 				2093CD0A289AA044003A88DD /* vs.min.css in Resources */,
@@ -3120,7 +3105,6 @@
 				2093CCBF289AA044003A88DD /* ocean.min.css in Resources */,
 				2093CCD4289AA044003A88DD /* gml.min.css in Resources */,
 				2093CCCE289AA044003A88DD /* foundation.min.css in Resources */,
-				2093CD89289AA123003A88DD /* Symbols.xcassets in Resources */,
 				2093CCF7289AA044003A88DD /* kimbie.light.min.css in Resources */,
 				2093CCF8289AA044003A88DD /* gruvbox-light.min.css in Resources */,
 				2093CCB5289AA044003A88DD /* arta.min.css in Resources */,
@@ -3537,7 +3521,6 @@
 				2093CDB7289AA1A6003A88DD /* GithubLoginView.swift in Sources */,
 				2B4C134D289D56F9000ED796 /* STInsertionPointLayer.swift in Sources */,
 				2B4C133B289D56F9000ED796 /* STTextView+CopyPaste.swift in Sources */,
-				2093CD8A289AA125003A88DD /* AuroraEditorSymbols.swift in Sources */,
 				2093CD4F289AA0A9003A88DD /* FeedbackView.swift in Sources */,
 				2B4C134A289D56F9000ED796 /* STTextContentStorage.swift in Sources */,
 				2093CDE6289AAE81003A88DD /* GitCloneView.swift in Sources */,
@@ -3570,6 +3553,7 @@
 				285FEC7027FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift in Sources */,
 				20C8D7DC287ED2C700C5B3BA /* ToolbarBranchPicker.swift in Sources */,
 				2093CD3E289AA095003A88DD /* GitlabUser.swift in Sources */,
+				2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */,
 				2B4C1337289D56F9000ED796 /* CompletionWindowController.swift in Sources */,
 				2030964428AD06C60083D725 /* GitBranch.swift in Sources */,
 				2093CDE8289AAE87003A88DD /* StashChangesSheet.swift in Sources */,
@@ -3975,7 +3959,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "AuroraEditor/Assets.xcassets OpenWithAuroraEditor/Media.xcassets AuroraEditor/Base/AuroraEditorSymbols/src/Symbols.xcassets";
+				DEVELOPMENT_ASSET_PATHS = "AuroraEditor/Assets.xcassets OpenWithAuroraEditor/Media.xcassets AuroraEditor/Symbols.xcassets";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -4011,7 +3995,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "AuroraEditor/Assets.xcassets OpenWithAuroraEditor/Media.xcassets AuroraEditor/Base/AuroraEditorSymbols/src/Symbols.xcassets";
+				DEVELOPMENT_ASSET_PATHS = "AuroraEditor/Assets.xcassets OpenWithAuroraEditor/Media.xcassets AuroraEditor/Symbols.xcassets";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -4194,7 +4178,7 @@
 			repositoryURL = "https://github.com/sindresorhus/Preferences.git";
 			requirement = {
 				kind = exactVersion;
-				version = 2.6.0;
+				version = 2.5.0;
 			};
 		};
 		209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */ = {
