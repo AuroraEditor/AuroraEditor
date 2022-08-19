@@ -418,6 +418,7 @@
 		20D2A44C28A7D8D00073F7BD /* Format-Patch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A44B28A7D8D00073F7BD /* Format-Patch.swift */; };
 		20D2A44E28A7D9CE0073F7BD /* Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A44D28A7D9CE0073F7BD /* Description.swift */; };
 		20D2A45028A7DFE60073F7BD /* IProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A44F28A7DFE60073F7BD /* IProgress.swift */; };
+		20D59CD228AFAAE400E3907B /* AccountItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D59CD128AFAAE400E3907B /* AccountItemView.swift */; };
 		20D839AB280DEB2900B27357 /* NoSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D839AA280DEB2900B27357 /* NoSelectionView.swift */; };
 		20D839AE280E0CA700B27357 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D839AD280E0CA700B27357 /* PopoverView.swift */; };
 		20DF979B28ABA633009CE1E9 /* Rev-Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF979A28ABA633009CE1E9 /* Rev-Parse.swift */; };
@@ -670,6 +671,7 @@
 		20D2A44B28A7D8D00073F7BD /* Format-Patch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Format-Patch.swift"; sourceTree = "<group>"; };
 		20D2A44D28A7D9CE0073F7BD /* Description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Description.swift; sourceTree = "<group>"; };
 		20D2A44F28A7DFE60073F7BD /* IProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProgress.swift; sourceTree = "<group>"; };
+		20D59CD128AFAAE400E3907B /* AccountItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountItemView.swift; sourceTree = "<group>"; };
 		20D83722289A7ACD00D91D05 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		20D83724289A7ACD00D91D05 /* StatusBarMenuLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarMenuLabel.swift; sourceTree = "<group>"; };
 		20D83725289A7ACD00D91D05 /* StatusBarBreakpointButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarBreakpointButton.swift; sourceTree = "<group>"; };
@@ -1710,6 +1712,7 @@
 				20D837EA289A7ACD00D91D05 /* AccountListItem.swift */,
 				20D837EB289A7ACD00D91D05 /* AccountSelectionDialog.swift */,
 				20D837EC289A7ACD00D91D05 /* Login */,
+				20D59CD128AFAAE400E3907B /* AccountItemView.swift */,
 			);
 			path = AccountsPreferences;
 			sourceTree = "<group>";
@@ -3600,6 +3603,7 @@
 				20BCB0C628AAA1C00064C7C0 /* GitCommit.swift in Sources */,
 				04C3254B27FF23B000C8DA2D /* ExtensionNavigatorData.swift in Sources */,
 				2093CDD2289AA507003A88DD /* SwiftTerm+Color+Init.swift in Sources */,
+				20D59CD228AFAAE400E3907B /* AccountItemView.swift in Sources */,
 				2093CCAE289AA02D003A88DD /* QuickOpenView.swift in Sources */,
 				2093CC93289A9FF5003A88DD /* StatusBarMenuLabel.swift in Sources */,
 				2093CD9A289AA14C003A88DD /* GeneralPreferences.swift in Sources */,
