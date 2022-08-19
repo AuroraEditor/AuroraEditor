@@ -55,6 +55,10 @@ extension STTextViewController {
 
             setStandardAttributes()
 
+            // Send change to publisher
+            self.text.wrappedValue = textView.string
+
+            // Highlight the updated value.
             textView.setString(
                 AEHighlight().highlight(
                     code: textView.string,
@@ -62,14 +66,16 @@ extension STTextViewController {
                 )
             )
 
-            // TODO: Also work on backspace
             textView.setSelectedRange(affectedCharRange)
             if replacementString.isEmpty {
+                // On backspace
                 textView.moveBackward(self)
             } else {
+                // All other
                 textView.moveForward(self)
             }
 
+            // We did update the text.
             updateText = false
         }
     }
