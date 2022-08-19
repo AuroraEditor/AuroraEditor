@@ -36,7 +36,6 @@ public struct PreferenceAccountsView: View {
             }
             .padding(1)
             .background(Rectangle().foregroundColor(Color(NSColor.separatorColor)))
-            .frame(width: 872, height: 468)
             .padding()
         }
     }

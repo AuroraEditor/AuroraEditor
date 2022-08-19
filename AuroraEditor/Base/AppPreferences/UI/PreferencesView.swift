@@ -39,29 +39,29 @@ struct PreferencesView: View {
     var settingContentView: some View {
         ScrollView {
             if viewModel.selectedId == viewModel.setting[0].id {
-                GeneralPreferencesView()
+                GeneralPreferencesView()        // General
             } else if viewModel.selectedId == viewModel.setting[1].id {
-                PreferenceAccountsView()
+                PreferenceAccountsView()        // Accounts
             } else if viewModel.selectedId == viewModel.setting[2].id {
-                PreferencesPlaceholderView()
+                PreferencesPlaceholderView()    // Behaviors
             } else if viewModel.selectedId == viewModel.setting[3].id {
-                PreferencesPlaceholderView()
+                PreferencesPlaceholderView()    // Navigation
             } else if viewModel.selectedId == viewModel.setting[4].id {
-                ThemePreferencesView()
+                ThemePreferencesView()          // Themes
             } else if viewModel.selectedId == viewModel.setting[5].id {
-                TextEditingPreferencesView()
+                TextEditingPreferencesView()    // Text Editing
             } else if viewModel.selectedId == viewModel.setting[6].id {
-                TerminalPreferencesView()
+                TerminalPreferencesView()       // Terminal
             } else if viewModel.selectedId == viewModel.setting[7].id {
-                PreferencesPlaceholderView()
+                PreferencesPlaceholderView()    // Key Bindings
             } else if viewModel.selectedId == viewModel.setting[8].id {
-                PreferenceSourceControlView()
+                PreferenceSourceControlView()   // Source Control
             } else if viewModel.selectedId == viewModel.setting[9].id {
-                PreferencesPlaceholderView()
+                PreferencesPlaceholderView()    // Components
             } else if viewModel.selectedId == viewModel.setting[10].id {
-                LocationsPreferencesView()
+                LocationsPreferencesView()      // Locations
             } else if viewModel.selectedId == viewModel.setting[11].id {
-                PreferencesPlaceholderView()
+                PreferencesPlaceholderView()    // Advanced
             }
         }
     }

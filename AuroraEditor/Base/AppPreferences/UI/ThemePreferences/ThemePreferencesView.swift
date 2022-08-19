@@ -41,7 +41,6 @@ public struct ThemePreferencesView: View {
                     .help("Not yet implemented")
             }
         }
-        .frame(width: 872)
         .padding()
         .onAppear {
             try? themeModel.loadThemes()

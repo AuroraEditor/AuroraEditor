@@ -16,7 +16,6 @@ public struct PreferencesPlaceholderView: View {
         VStack {
             Text("Implementation needed")
         }
-        .frame(width: 844, height: 300)
         .padding(30)
     }
 }

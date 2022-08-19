@@ -36,7 +36,6 @@ public struct PreferenceSourceControlView: View {
             }
             .padding(1)
             .background(Rectangle().foregroundColor(Color(NSColor.separatorColor)))
-            .frame(width: 872)
             .padding()
         }
     }
