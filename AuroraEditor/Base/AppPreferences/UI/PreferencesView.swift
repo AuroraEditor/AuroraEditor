@@ -23,6 +23,8 @@ struct PreferencesView: View {
                         HStack {
                             Image(nsImage: item.image)
                                 .imageScale(.small)
+                                .frame(width: 20)
+                                .scaledToFit()
                             Text(item.name)
                         }
                     }
