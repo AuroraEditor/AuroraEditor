@@ -38,32 +38,32 @@ public struct GeneralPreferencesView: View {
                 .padding(.horizontal)
 
             GroupBox {
-                GroupBox {
+                Group {
                     appearanceSection
                         .padding(.vertical, 5)
                     Divider()
                 }
-                GroupBox {
+                Group {
                     showIssuesSection
                         .padding(.vertical, 5)
                     Divider()
                 }
-                GroupBox {
+                Group {
                     fileExtensionsSection
                         .padding(.vertical, 5)
                     Divider()
                 }
-                GroupBox {
+                Group {
                     fileIconStyleSection
                         .padding(.vertical, 5)
                     Divider()
                 }
-                GroupBox {
+                Group {
                     tabBarStyleSection
                         .padding(.vertical, 5)
                     Divider()
                 }
-                GroupBox {
+                Group {
                     sidebarStyleSection
                         .padding(.vertical, 5)
                     Divider()
@@ -229,12 +229,12 @@ private extension GeneralPreferencesView {
 
     var sidebarStyleSection: some View {
         HStack {
-            Text("Sidebar Style")
+            Text("Navigator Mode Selection Position")
             Spacer()
             Picker("Tab Bar Style:", selection: $prefs.preferences.general.sidebarStyle) {
-                Text("Xcode Style")
+                Text("Top")
                     .tag(AppPreferences.SidebarStyle.xcode)
-                Text("VSCode Style")
+                Text("Left")
                     .tag(AppPreferences.SidebarStyle.vscode)
             }
             .labelsHidden()
