@@ -149,7 +149,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 
     @IBAction func openPreferences(_ sender: Any) {
         if tryFocusWindow(of: PreferencesView.self) { return }
-        Log.error("AAA", "AAAA")
+
         PreferencesView().showWindow()
     }
 
