@@ -229,7 +229,7 @@ private extension GeneralPreferencesView {
 
     var sidebarStyleSection: some View {
         HStack {
-            Text("Navigator Mode Selection Position")
+            Text("Navigator Mode Position")
             Spacer()
             Picker("Tab Bar Style:", selection: $prefs.preferences.general.sidebarStyle) {
                 Text("Top")
