@@ -14,58 +14,76 @@ struct PreferencesView: View {
     var viewModel = SettingsModel()
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(viewModel.setting) { item in
-                    NavigationLink(destination: settingContentView,
-                                   tag: item.id,
-                                   selection: $viewModel.selectedId) {
-                        HStack {
-                            Image(nsImage: item.image)
-                                .imageScale(.small)
-                                .scaledToFit()
-                                .foregroundColor(.white)
-                                .frame(width: 23, height: 23)
-                                .background(RoundedRectangle(cornerRadius: 5).foregroundColor(item.colour).opacity(0.5))
-                            Text(item.name)
+        ZStack {
+            Button("CLOSE WINDOW") {
+                closeWindow()
+            }
+            .frame(width: 0, height: 0)
+            .padding(0)
+            .opacity(0)
+            .keyboardShortcut("w", modifiers: [.command])
+            NavigationView {
+                List {
+                    ForEach(viewModel.setting) { item in
+                        NavigationLink(destination: settingContentView,
+                                       tag: item.id,
+                                       selection: $viewModel.selectedId) {
+                            HStack {
+                                Image(nsImage: item.image)
+                                    .imageScale(.small)
+                                    .scaledToFit()
+                                    .foregroundColor(.white)
+                                    .frame(width: 23, height: 23)
+                                    .background(
+                                        RoundedRectangle(
+                                            cornerRadius: 5)
+                                        .foregroundColor(item.colour)
+                                        .opacity(0.5)
+                                    )
+                                Text(item.name)
+                            }
                         }
                     }
                 }
+                .listStyle(.sidebar)
+                Text("No selection")
             }
-            .listStyle(.sidebar)
-            Text("No selection")
+            .frame(width: 760, height: 500)
         }
-        .frame(width: 760, height: 500)
     }
 
     var settingContentView: some View {
-        ScrollView {
-            if viewModel.selectedId == viewModel.setting[0].id {
-                GeneralPreferencesView()        // General
-            } else if viewModel.selectedId == viewModel.setting[1].id {
-                PreferenceAccountsView()        // Accounts
-            } else if viewModel.selectedId == viewModel.setting[2].id {
-                PreferencesPlaceholderView()    // Behaviors
-            } else if viewModel.selectedId == viewModel.setting[3].id {
-                PreferencesPlaceholderView()    // Navigation
-            } else if viewModel.selectedId == viewModel.setting[4].id {
-                ThemePreferencesView()          // Themes
-            } else if viewModel.selectedId == viewModel.setting[5].id {
-                TextEditingPreferencesView()    // Text Editing
-            } else if viewModel.selectedId == viewModel.setting[6].id {
-                TerminalPreferencesView()       // Terminal
-            } else if viewModel.selectedId == viewModel.setting[7].id {
-                PreferencesPlaceholderView()    // Key Bindings
-            } else if viewModel.selectedId == viewModel.setting[8].id {
-                PreferenceSourceControlView()   // Source Control
-            } else if viewModel.selectedId == viewModel.setting[9].id {
-                PreferencesPlaceholderView()    // Components
-            } else if viewModel.selectedId == viewModel.setting[10].id {
-                LocationsPreferencesView()      // Locations
-            } else if viewModel.selectedId == viewModel.setting[11].id {
-                PreferencesPlaceholderView()    // Advanced
-            }
+            ScrollView {
+                if viewModel.selectedId == viewModel.setting[0].id {
+                    GeneralPreferencesView()        // General
+                } else if viewModel.selectedId == viewModel.setting[1].id {
+                    PreferenceAccountsView()        // Accounts
+                } else if viewModel.selectedId == viewModel.setting[2].id {
+                    PreferencesPlaceholderView()    // Behaviors
+                } else if viewModel.selectedId == viewModel.setting[3].id {
+                    PreferencesPlaceholderView()    // Navigation
+                } else if viewModel.selectedId == viewModel.setting[4].id {
+                    ThemePreferencesView()          // Themes
+                } else if viewModel.selectedId == viewModel.setting[5].id {
+                    TextEditingPreferencesView()    // Text Editing
+                } else if viewModel.selectedId == viewModel.setting[6].id {
+                    TerminalPreferencesView()       // Terminal
+                } else if viewModel.selectedId == viewModel.setting[7].id {
+                    PreferencesPlaceholderView()    // Key Bindings
+                } else if viewModel.selectedId == viewModel.setting[8].id {
+                    PreferenceSourceControlView()   // Source Control
+                } else if viewModel.selectedId == viewModel.setting[9].id {
+                    PreferencesPlaceholderView()    // Components
+                } else if viewModel.selectedId == viewModel.setting[10].id {
+                    LocationsPreferencesView()      // Locations
+                } else if viewModel.selectedId == viewModel.setting[11].id {
+                    PreferencesPlaceholderView()    // Advanced
+                }
         }
+    }
+
+    public func closeWindow() {
+        PreferencesWindowController(view: self).closeWindow()
     }
 
     public func showWindow() {

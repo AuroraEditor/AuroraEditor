@@ -42,13 +42,7 @@ final class PreferencesWindowController: NSWindowController, NSToolbarDelegate {
         self.window?.toolbar = toolbar
     }
 
-    func closeAnimated() {
-        NSAnimationContext.beginGrouping()
-        NSAnimationContext.current.duration = 0.4
-        NSAnimationContext.current.completionHandler = {
-            self.close()
-        }
-        window?.animator().alphaValue = 0.0
-        NSAnimationContext.endGrouping()
+    func closeWindow() {
+        NSApplication.shared.keyWindow?.close()
     }
 }
