@@ -159,7 +159,10 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
         rulerView?.backgroundColor = textViewBackgroundColor()
 //        rulerView?.separatorColor = theme.invisibles
         rulerView?.baselineOffset = baselineOffset
-//        setStandardAttributes() // This makes the text smaller, but flickers the screen. reloadUI is loaded after the text change.
+//        setStandardAttributes()
+        // This makes the text smaller,
+        // but flickers the screen.
+        // reloadUI is loaded after the text change.
     }
 
     /// Sets the standard attributes (`font`, `baselineOffset`) to the whole text
