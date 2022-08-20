@@ -48,9 +48,9 @@ struct CommitChangesView: View {
             .padding(.vertical, 4)
             .padding(.horizontal, 10)
             .textFieldStyle(.plain)
-            .background(Color(hex: "#1E1E1E"))
+            .background(.ultraThickMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 6))
-            .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray, lineWidth: 0.5).cornerRadius(6))
+            .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.secondary, lineWidth: 0.5).cornerRadius(6))
             .disabled(getFirstFileSummary() == "Unable to commit")
 
             TextField(text: $descriptionText) {
@@ -60,9 +60,9 @@ struct CommitChangesView: View {
             .padding(10)
             .textFieldStyle(.plain)
             .frame(height: 66, alignment: .topLeading)
-            .background(Color(hex: "#1E1E1E"))
+            .background(.ultraThickMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 6))
-            .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray, lineWidth: 0.5).cornerRadius(6))
+            .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.secondary, lineWidth: 0.5).cornerRadius(6))
 
             Button {
 
