@@ -1,120 +1,133 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/806104/163099605-4eaedd33-8441-4125-9ca1-a7ccb2f62a74.png" height="128">
-  <h1 align="center">CodeEdit for macOS</h1>
+  <img alt="Logo" src="https://avatars.githubusercontent.com/u/106490518?s=128&v=4" width="128px;" height="128px;">
 </p>
 
 <p align="center">
-  <a aria-label="Follow CodeEdit on Twitter" href="https://twitter.com/CodeEditApp" target="_blank">
-    <img alt="" src="https://img.shields.io/badge/Follow%20@CodeEditApp-black.svg?style=for-the-badge&logo=Twitter">
+  <h1 align="center">AuroraEditor</h1>
+</p>
+
+<p align="center">
+  <a href='https://twitter.com/Aurora_Editor' target='_blank'>
+    <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Aurora_Editor?color=f6579d&style=for-the-badge">
   </a>
-  <a aria-label="Join the community on Discord" href="https://discord.gg/vChUXVf9Em" target="_blank">
-    <img alt="" src="https://img.shields.io/badge/Join%20the%20community-black.svg?style=for-the-badge&logo=Discord">
+  <a href='https://discord.gg/5aecJ4rq9D' target='_blank'>
+    <img alt="Discord" src="https://img.shields.io/discord/997410333348077620?color=f98a6c&style=for-the-badge">
   </a>
 </p>
 
-CodeEdit is a code editor built by the community, for the community, written entirely and unapologetically for macOS. Features include syntax highlighting, code completion, project find and replace, snippets, terminal, task running, debugging, git integration, code review, extensions, and more. 
+<br />
 
-<img width="1012" alt="github-banner" src="https://user-images.githubusercontent.com/806104/163101427-4787970f-c78b-4a98-a29b-1ef26b62fd40.png">
+AuroraEditor is a IDE built by the community, for the community, and written in Swift for the best native performance and feel for macOS. 
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-32-orange.svg?style=flat-square)](#contributors-)
-![GitHub branch checks state](https://img.shields.io/github/checks-status/CodeEditApp/CodeEdit/main?style=flat-square)
-![GitHub Repo stars](https://img.shields.io/github/stars/CodeEditApp/CodeEdit?style=flat-square)
-![GitHub forks](https://img.shields.io/github/forks/CodeEditApp/CodeEdit?style=flat-square)
-[![Discord Badge](https://img.shields.io/discord/951544472238444645?color=5865F2&label=Discord&logo=discord&logoColor=white&style=flat-square)](https://discord.gg/vChUXVf9Em)
+It will support everything you could expect from an Xcode-inspired application, including deep integration with your selected git provider, project planning, and your favourite built in editor tools.
 
-| :warning: | **CodeEdit is currently in development and we do not yet offer a download.** <br> We will post a link here when we have an alpha release ready for testing. Until then, we welcome contributors to help bring this project to life. | &nbsp;&nbsp;&nbsp;&nbsp;[CONTRIBUTE](https://github.com/CodeEditApp/CodeEdit/blob/main/CONTRIBUTING.md)&nbsp;&nbsp;&nbsp;&nbsp; |
-| - |:-| - |
+<br />
 
-## Table of Contents
+<p align="center">
+  <a href='https://github.com/AuroraEditor/AuroraEditor/pulls'><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
+  <a href='https://github.com/AuroraEditor/AuroraEditor/pulls?q=is%3Apr+is%3Aclosed'><img alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed-raw/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
+  <br />
+  <a href='https://github.com/AuroraEditor/AuroraEditor/issues'><img alt="GitHub issues" src="https://img.shields.io/github/issues-raw/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
+  <a href='https://github.com/AuroraEditor/AuroraEditor/issues?q=is%3Aissue+is%3Aclosed'><img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed-raw/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
+  <br />
+  <img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/AuroraEditor/AuroraEditor/main?color=f98a6c&style=for-the-badge">
+  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge">
+  <a href='https://github.com/AuroraEditor/AuroraEditor/fork'><img alt="GitHub forks" src="https://img.shields.io/github/forks/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
+ </p>
+ 
+ <br />
 
-- [Motivation](#motivation)
-- [Mission](#mission)
-- [Community](#community)
-- [Contributing](#contributing)
-- [Contributors](#contributors)
-- [Sponsors](#sponsors)
-- [Backers](#backers)
-- [License](#license)
+| :warning: |  **AuroraEditor is currently in development and we do not yet offer a download.** <br> We will post a link here when we have an alpha release ready for testing. <br> Until then, we welcome contributors to help bring this project to life. |
+|--|--|
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Motivation
 
-Developers that use a Mac should be able to use an editor that feels at home on the Mac. Comparable editors are built on Electron. This is a huge limitation because it cannot utilize system resources to their fullest potential.
+Developers should be able to use an editor that feels snappy and fast.
 
-Electron requires a Chromium instance to run. This can mean massive performance losses and high RAM usage even for small apps built on it. Additionally, the overall code footprint is much larger and animations are slower. More frames are lost and things like window resizing feels laggy. Native apps are smooth as butter and utilize system resources much more efficiently for better performance and reliability. For more information on this, we'll point you to [a fantastic article](https://www.remotion.com/blog/why-remotion-is-a-native-macos-app-not-electron) by the nice folks at Remotion.
+Most comparable editors are built on Electron, This is a huge disadvantage because it utilize a lot of unneccecary system resources. Electron requires a Chromium instance to run. This can mean massive performance losses and high RAM usage even for small apps built on it. Additionally, the overall code footprint is much larger and animations are slower. More frames are lost and things like window resizing feels laggy. Native apps are smooth as butter and utilize system resources much more efficiently for better performance and reliability.
 
-Xcode offers this great native experience however it mostly supports projects written specifically for Apple platforms. There are many projects not written for Apple platforms that deserve that same macOS-native experience that developers get with Xcode.
+Xcode is a great native editor for developers on Mac, but unfortunately it doesn't support creating a multitude of projects in different programming languages, and this is where Aurora Editor comes in. Aurora Editor wants to give developers the posibility of creating their desired projects in their desired language on a editor that is native and gives a similar experience, performance and feel than that of Xcode on Mac.
 
-This raised the question, what if such an editor existed? We think developers deserve a native experience. This led to the creation of [this concept](https://www.figma.com/proto/qj6raZbQsZpGO0NAVi4qsv/CodeEdit-Concept?node-id=1%3A870) which our project aims to make a reality.
+## Motivation for divergence from CodeEdit
 
-## Mission
+This project originates from https://github.com/CodeEditApp/CodeEdit. We decided to take our own direction with this project for several reasons:
 
-We think there is room to streamline the developer experience. To gain maximum adoption, CodeEdit should be open source, free to use, and supported by the community. 
+### Rate and direction of development
+We want to increase the rate of development, which means
+- Encouraging people to make PRs, even if they aren't complete (this is an issue with CodeEdit, many amazing PRs go stale or take forever).
+- Making the code review cycle faster, including allowing people to merge their PRs once they have recieved enough reviews, instead of having to wait for an admin to do it. 
+- Making a clearer todo so that there is never the "what to do" programmer dilemma that slows down development.
+- Getting people interested in Swift. Go to [#swift-beginners](https://discord.gg/Mp5pfU6bcD) on our Discord server for help!
 
-![github-equation](https://user-images.githubusercontent.com/806104/163101287-feba5466-dde0-450c-a9ac-8f9dd3d00e52.png)
+### Discussion
+- We want to make sure that the development discussion is *always* public, not kept in locked channels, and should stay that way,
+- We want everybody to feel welcome, and that every commitment to the project counts!
 
-We'd like to keep our application light as TextEdit, but provide an experience similar to Xcode. In other words, we'd like to offer developers the power of a full IDE while remaining lightweight.
+### Architecture
+- We felt that the architecture of CodeEdit wasn't up to standard. One example is the usage of Modules, which not only increased build time but also code complexity because communication between code compoments and modules is difficult. However, CodeEdit was insistent on keeping their structure. The only way we saw the CodeEdit project could continue is if this changed. 
 
-Our goal is to develop an app that looks and feels like it was designed and developed by Apple and to closely stick to their design standards and development patterns even down to the application icon and naming strategy.
+## Aurora Editor vs CodeEdit
 
-It might sound crazy, but it is our hope that at some point Apple adopts this project or at least feels like they could.
+When looking at the core of both code bases there isn't to much difference between AuroraEditor (AE) and CodeEdit (CE). However, we are trying to change that, for example by following a cleaner [architecture](https://github.com/AuroraEditor/AuroraEditor/wiki/Architecture). Overtime the code base between AE and CE may barely be similar to each other. 
+
+We follow a strict set of principals when developing AE, some of which includes 
+- Keeping the code as performant as possible (including build times)
+- Fixing memory leaks or excessive memory usage that may hurt performance
+- Making sure PRs follow AE's architecture guide closely
+- The code is readable at all times and meets our expectations in regards to performance
+
+Even if the code isn't completely up to these standards, we will work with the contributor until we have a satisfactory PR. No merge left behind!
+
+We try to keep our code base documented as much as possible, so that any new or existing contributor who's building new features or fixing a bug can just read the documentation and instantly have an idea of what's happening.
+
+We very much respect the contributors that contributed to CE, and we would like to thank them for giving us a base to begin with.
 
 ## Community
 
-Join our growing community on [Discord](https://discord.gg/vChUXVf9Em) where we discuss and collaborate on all things CodeEdit. Don't be shy, jump right in and be part of the discussion!
+Join our community on [Discord](https://discord.gg/5aecJ4rq9D) where we discuss and collaborate on all things of Aurora Editor.
+Don't be shy, jump right in and be part of the discussion!
+
+## Community Details
+
+We would love to hear what kind of great ideas you as the community have. If you have an idea or a feature request for Aurora Editor feel free to add it to the [Ideas Discussion](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/ideas).
+
+If you created an awesome feature for Aurora Editor why not [Show and tell](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/show-and-tell), and celebrate with the community and developers of Aurora Editor.
+
+When we have some awesome news or a big annoucement to make, we will be making it in the [Annoucement Discussion](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/announcements). So stay tuned for any future annoucments.
+
+## Mental Health Awareness
+
+We are aware how difficult and overwhelming it can be sometimes for developers when working on a big or small project. If you feel like you are getting overwhelmed when working on a certain feature or bug on Aurora Editor don't be afraid to let us know and we'll be able to help you out and takeover what you have been working on if you feel comfortable letting someone else do it. If you just feel the need to talk about certain issues feel free to talk about it in the [Mental Health Channel](https://discord.gg/HyC7Z9WaQS) or if just need advice on something ask in the [Advice Channel](https://discord.gg/Fnr5A5atbn).
 
 ## Contributing
 
-Be part of the next revolution in code editing by contributing to the project. This is a community-led effort, so we welcome as many contributors who can help. Read the [Contribution Guide](https://github.com/CodeEditApp/CodeEdit/blob/main/CONTRIBUTING.md) for more information.
+Be part of the next revolution in code editing by contributing to the project.
+This is a community-led effort, so we welcome as many contributors who can help!
+Please read the following for more information.
 
-## Contributors
+* [What to do/add to the editor](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/development-todo)
+* [Contribution Guide](https://github.com/AuroraEditor/AuroraEditor/blob/main/CONTRIBUTING.md)
+* [Architecture Guide](https://github.com/AuroraEditor/AuroraEditor/wiki/Architecture)
+* [Developer Guide](https://github.com/AuroraEditor/AuroraEditor/wiki/Developer-Guide)
+* [Troubeshooting Guide](https://github.com/AuroraEditor/AuroraEditor/wiki/Troubleshooting)
 
+## Contributors ✨
+
+Thanks goes to these wonderful people:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="http://www.austincondiff.com"><img src="https://avatars.githubusercontent.com/u/806104?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Austin Condiff</b></sub></a><br /><a href="#design-austincondiff" title="Design">🎨</a> <a href="https://github.com/CodeEditApp/CodeEdit/commits?author=austincondiff" title="Code">💻</a></td>
-    <td align="center"><a href="http://lukaspistrol.com"><img src="https://avatars.githubusercontent.com/u/9460130?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lukas Pistrol</b></sub></a><br /><a href="#infra-lukepistrol" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/CodeEditApp/CodeEdit/commits?author=lukepistrol" title="Tests">⚠️</a> <a href="https://github.com/CodeEditApp/CodeEdit/commits?author=lukepistrol" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/pkasila"><img src="https://avatars.githubusercontent.com/u/17158860?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Pavel Kasila</b></sub></a><br /><a href="#infra-pkasila" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/CodeEditApp/CodeEdit/commits?author=pkasila" title="Tests">⚠️</a> <a href="https://github.com/CodeEditApp/CodeEdit/commits?author=pkasila" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/MarcoCarnevali"><img src="https://avatars.githubusercontent.com/u/9656572?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Marco Carnevali</b></sub></a><br /><a href="#infra-MarcoCarnevali" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/CodeEditApp/CodeEdit/commits?author=MarcoCarnevali" title="Tests">⚠️</a> <a href="https://github.com/CodeEditApp/CodeEdit/commits?author=MarcoCarnevali" title="Code">💻</a></td>
-    <td align="center"><a href="https://wdg.codes"><img src="https://avatars.githubusercontent.com/u/1290461?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Wesley De Groot</b></sub></a><br /><a href="#infra-wdg" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/CodeEditApp/CodeEdit/commits?author=wdg" title="Tests">⚠️</a> <a href="https://github.com/CodeEditApp/CodeEdit/commits?author=wdg" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/nanashili"><img src="https://avatars.githubusercontent.com/u/63672227?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nanashi Li</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=nanashili" title="Code">💻</a></td>
-    <td align="center"><a href="https://ninjiacoder.me"><img src="https://avatars.githubusercontent.com/u/22616933?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ninjiacoder</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=RayZhao1998" title="Code">💻</a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://twitch.tv/Jeehut"><img src="https://avatars.githubusercontent.com/u/6942160?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Cihat Gündüz</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=Jeehut" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/MysteryCoder456"><img src="https://avatars.githubusercontent.com/u/43755491?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rehatbir Singh</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=MysteryCoder456" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/Angelk90"><img src="https://avatars.githubusercontent.com/u/20476002?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Angelk90</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=Angelk90" title="Code">💻</a></td>
-    <td align="center"><a href="https://www.stefkors.com"><img src="https://avatars.githubusercontent.com/u/11800807?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stef Kors</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=StefKors" title="Code">💻</a></td>
-    <td align="center"><a href="https://akringblog.com/"><img src="https://avatars.githubusercontent.com/u/6525286?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Chris Akring</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=akring" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/highjeans"><img src="https://avatars.githubusercontent.com/u/77588045?v=4?s=100" width="100px;" alt=""/><br /><sub><b>highjeans</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=highjeans" title="Code">💻</a></td>
-    <td align="center"><a href="https://blog.windchillmedia.com"><img src="https://avatars.githubusercontent.com/u/35942988?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Khan Winter</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=thecoolwinter" title="Code">💻</a> <a href="https://github.com/CodeEditApp/CodeEdit/issues?q=author%3Athecoolwinter" title="Bug reports">🐛</a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://github.com/jasonplatts"><img src="https://avatars.githubusercontent.com/u/48892071?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jason Platts</b></sub></a><br /><a href="#infra-jasonplatts" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#plugin-jasonplatts" title="Plugin/utility libraries">🔌</a></td>
-    <td align="center"><a href="https://github.com/dzign1"><img src="https://avatars.githubusercontent.com/u/44317715?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rob Hughes</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=dzign1" title="Code">💻</a></td>
-    <td align="center"><a href="https://lingxi.li"><img src="https://avatars.githubusercontent.com/u/36816148?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lingxi Li</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=lilingxi01" title="Code">💻</a> <a href="https://github.com/CodeEditApp/CodeEdit/issues?q=author%3Alilingxi01" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/octree"><img src="https://avatars.githubusercontent.com/u/7934444?v=4?s=100" width="100px;" alt=""/><br /><sub><b>HZ.Liu</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=octree" title="Code">💻</a> <a href="https://github.com/CodeEditApp/CodeEdit/issues?q=author%3Aoctree" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://www.youtube.com/channel/UCx1gvWpy5zjOd7yZyDwmXEA?sub_confirmation=1"><img src="https://avatars.githubusercontent.com/u/8013017?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Richard Topchii</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=richardtop" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/Pythonen"><img src="https://avatars.githubusercontent.com/u/53183345?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Pythonen</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=Pythonen" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/jav-solo"><img src="https://avatars.githubusercontent.com/u/10246220?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Javier Solorzano</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=jav-solo" title="Code">💻</a> <a href="https://github.com/CodeEditApp/CodeEdit/issues?q=author%3Ajav-solo" title="Bug reports">🐛</a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="http://angcosmin.com"><img src="https://avatars.githubusercontent.com/u/8146514?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Cosmin Anghel</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=AngCosmin" title="Code">💻</a></td>
-    <td align="center"><a href="http://mmshivesh.ml"><img src="https://avatars.githubusercontent.com/u/23611514?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Shivesh</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=mmshivesh" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/drucelweisse"><img src="https://avatars.githubusercontent.com/u/36012972?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andrey Plotnikov</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=drucelweisse" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/POPOBE97"><img src="https://avatars.githubusercontent.com/u/7891810?v=4?s=100" width="100px;" alt=""/><br /><sub><b>POPOBE97</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=POPOBE97" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/nrudnyk"><img src="https://avatars.githubusercontent.com/u/20221382?v=4?s=100" width="100px;" alt=""/><br /><sub><b>nrudnyk</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=nrudnyk" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/KaiTheRedNinja"><img src="https://avatars.githubusercontent.com/u/88234730?v=4?s=100" width="100px;" alt=""/><br /><sub><b>KaiTheRedNinja</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=KaiTheRedNinja" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/benkoska"><img src="https://avatars.githubusercontent.com/u/17319613?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ben Koska</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=benkoska" title="Code">💻</a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://github.com/evolify"><img src="https://avatars.githubusercontent.com/u/12669069?v=4?s=100" width="100px;" alt=""/><br /><sub><b>evolify</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/issues?q=author%3Aevolify" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/shibotong"><img src="https://avatars.githubusercontent.com/u/44807628?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Shibo Tong</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=shibotong" title="Code">💻</a></td>
-    <td align="center"><a href="https://ethanwong.me"><img src="https://avatars.githubusercontent.com/u/8158163?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ethan Wong</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/commits?author=GetToSet" title="Code">💻</a></td>
-    <td align="center"><a href="http://gantoreno.com"><img src="https://avatars.githubusercontent.com/u/43397475?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Gabriel Moreno</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/issues?q=author%3Agantoreno" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/Prince213"><img src="https://avatars.githubusercontent.com/u/25235514?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sizhe Zhao</b></sub></a><br /><a href="https://github.com/CodeEditApp/CodeEdit/issues?q=author%3APrince213" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://wdg.codes"><img src="https://avatars.githubusercontent.com/u/1290461?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Wesley De Groot</b></sub></a><br /><a href="#infra-wdg" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=wdg" title="Tests">⚠️</a> <a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=wdg" title="Code">💻</a> <a href="#maintenance-wdg" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/nanashili"><img src="https://avatars.githubusercontent.com/u/63672227?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nanashi Li</b></sub></a><br /><a href="#infra-nanashili" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=nanashili" title="Tests">⚠️</a> <a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=nanashili" title="Code">💻</a> <a href="#maintenance-nanashili" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/KaiTheRedNinja"><img src="https://avatars.githubusercontent.com/u/88234730?v=4?s=100" width="100px;" alt=""/><br /><sub><b>KaiTheRedNinja</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=KaiTheRedNinja" title="Tests">⚠️</a> <a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=KaiTheRedNinja" title="Code">💻</a> <a href="#maintenance-KaiTheRedNinja" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/Angelk90"><img src="https://avatars.githubusercontent.com/u/20476002?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Angelk90</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3AAngelk90" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
@@ -123,38 +136,44 @@ Be part of the next revolution in code editing by contributing to the project. T
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-## Sponsors
-
-Support CodeEdit's development by [becoming a sponsor](https://github.com/sponsors/CodeEditApp).
-
-<a title="Vercel" href="https://vercel.com/?utm_source=codeedit&utm_campaign=oss" target="_blank"><img src="https://user-images.githubusercontent.com/806104/162766170-60f3b95a-ca30-4015-a3e3-a605df78b98a.png" width="128"></a>
-<a title="MacStadium" href="https://macstadium.com" target="_blank"><img src="https://user-images.githubusercontent.com/806104/162766594-eff7f985-31a9-48c5-9e58-139794fefa10.png" width="128"></a>
-<a title="GitBook" href="https://www.gitbook.com/" target="_blank"><img src="https://user-images.githubusercontent.com/806104/162766464-c10dc9fc-088a-4945-a0e1-17bd42705b70.png" width="128"></a>
-<a title="panascais" href="https://github.com/panascais" target="_blank"><img src="https://avatars.githubusercontent.com/u/19628635?s=200&v=4" width="128"></a>
-<a title="DevUtilsApp" href="https://devutils.app/?utm_source=codeedit&utm_campaign=oss" target="_blank"><img src="https://devutils.app/512.png" width="128"></a>
-
-## Backers
-
-Support CodeEdit's development by [becoming a backer](https://github.com/sponsors/CodeEditApp).
-
-<a title="dannydorazio" href="https://github.com/dannydorazio" target="_blank"><img src="https://avatars.githubusercontent.com/u/21158275?v=4" width="64"></a>
-<a title="omrd" href="https://github.com/omrd" target="_blank"><img src="https://avatars.githubusercontent.com/u/34616424?v=4" width="64"></a>
-<a title="sparrowcode" href="https://github.com/sparrowcode" target="_blank"><img src="https://avatars.githubusercontent.com/u/98487302?s=200&v=4" width="64"></a>
-<a title="Gebes" href="https://github.com/Gebes" target="_blank"><img src="https://avatars.githubusercontent.com/u/35232234?v=4" width="64"></a>
-<a title="lovetodream" href="https://github.com/lovetodream" target="_blank"><img src="https://avatars.githubusercontent.com/u/38291523?v=4" width="64"></a>
-<a title="ridafkih" href="https://github.com/ridafkih" target="_blank"><img src="https://avatars.githubusercontent.com/u/9158485?v=4" width="64"></a>
-
-### Thanks to all of our other backers
-
-[@ivanvorobei](https://github.com/ivanvorobei)
-[@albertorestifo](https://github.com/albertorestifo)
-[@rkusa](https://github.com/rkusa)
-[@cadenkriese](https://github.com/cadenkriese)
-[@petrjahoda](https://github.com/petrjahoda)
-[@allejo](https://github.com/allejo)
-[@frousselet](frousselet)
-[@wkillerud](wkillerud)
-
 ## License
+Aurora Editor follows two license sets for different parts of the software:
+Intellectual Property and MIT
 
-Licensed under the [MIT license](https://github.com/CodeEditApp/CodeEdit/blob/main/LICENSE.md).
+### Intellectual Property License
+
+Copyright (C) 2022 Aurora Company
+
+The files mentioned below are part of Aurora Project and can not be copied and/or distributed without the express
+permission of Aurora Company.
+* [Git Models Client Module (excludes Core)](https://github.com/AuroraEditor/AuroraEditor/tree/main/AuroraEditor/Base/Git/Models/Client)
+* [Git Models Module](https://github.com/AuroraEditor/AuroraEditor/tree/main/AuroraEditor/Base/Git/Models)
+  - The above excludes the following:
+    - GitType.swift
+    - CommitHistory.swift
+    - ChangedFile.swift
+    - Accounts
+* Aurora Editor Logo
+
+### MIT License
+
+Copyright (C) 2022 Aurora Company
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

@@ -1,0 +1,27 @@
+{
+    "auroraProject": "1.0",
+    "files": [
+        "a.ext",
+        "b.ext",
+        "c.ext"
+    ],
+    "lastSearch": null,
+    "lastReplace": null,
+    "lastOpenFile": null,
+    "state": null,
+    "totalTimeSpend": 60,
+    "timeOn": [
+        {
+            "file": "a.ext",
+            "time": 10
+        },
+        {
+            "file": "b.ext",
+            "time": 20
+        },
+        {
+            "file": "c.ext",
+            "time": 30
+        },
+    ]
+}

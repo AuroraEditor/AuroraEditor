@@ -1,0 +1,21 @@
+name: Build & Lint
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: macos-12
+    steps:
+      - uses: actions/checkout@v2
+      - name: MacOS Version
+        run: sw_vers
+      - name: Toolchain version
+        run: swift -version
+      - name: SwiftLint (version)
+        run: swiftlint version
+      - name: SwiftLint (GH Actions)
+        run: swiftlint --reporter github-actions-logging --strict
+      - name: Swift (clean) Build
+        run: set -o pipefail && xcodebuild -verbose -workspace "AuroraEditor.xcworkspace" -scheme "AuroraEditor" clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
