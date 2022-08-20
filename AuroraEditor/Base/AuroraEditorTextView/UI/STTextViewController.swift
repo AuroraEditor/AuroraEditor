@@ -50,7 +50,10 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
     }
 
     func setupRuler(textView: STTextView, scrollView: NSScrollView) -> STLineNumberRulerView {
-        let rulerView = STLineNumberRulerView(textView: textView, scrollView: scrollView)
+        let rulerView = STLineNumberRulerView(
+            textView: textView,
+            scrollView: scrollView
+        )
         rulerView.backgroundColor = textViewBackgroundColor()
         rulerView.textColor = .systemGray
         rulerView.separatorColor = textViewBackgroundColor()
@@ -77,7 +80,10 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
         scrollView.rulersVisible = true
 
         textView.defaultParagraphStyle = self.paragraphStyle
-        textView.font = NSFont.monospacedSystemFont(ofSize: 12, weight: .medium)
+        textView.font = NSFont.monospacedSystemFont(
+            ofSize: 10,
+            weight: .medium
+        )
         textView.textColor = .textColor
         textView.backgroundColor = textViewBackgroundColor()
         textView.insertionPointWidth = 1.0
@@ -142,6 +148,7 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
 
     /// Reloads the UI to apply changes to ``STTextViewController/font``, ``STTextViewController/theme``, ...
     internal func reloadUI() {
+        Log.info("Reloading UI")
         textView?.font = font
         textView?.textColor = .textColor
         textView?.backgroundColor = textViewBackgroundColor()
@@ -152,8 +159,10 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
         rulerView?.backgroundColor = textViewBackgroundColor()
 //        rulerView?.separatorColor = theme.invisibles
         rulerView?.baselineOffset = baselineOffset
-
-        setStandardAttributes()
+//        setStandardAttributes()
+        // This makes the text smaller,
+        // but flickers the screen.
+        // reloadUI is loaded after the text change.
     }
 
     /// Sets the standard attributes (`font`, `baselineOffset`) to the whole text
