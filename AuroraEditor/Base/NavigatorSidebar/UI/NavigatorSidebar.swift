@@ -11,11 +11,11 @@ struct NavigatorSidebar: View {
     @ObservedObject
     private var workspace: WorkspaceDocument
 
+    @StateObject var prefs: AppPreferencesModel = .shared
+
     private let windowController: NSWindowController
 
     @State public var selection: Int = 0
-
-    @State public var toolbarOnTop: Bool = true
 
     private let toolbarPadding: Double = -8.0
 
@@ -60,10 +60,10 @@ struct NavigatorSidebar: View {
                 Spacer()
             }
         }
-        .ignoresSafeArea(edges: toolbarOnTop ? [.leading] : [])
-        .padding([.top, .leading], toolbarOnTop ? 0 : -10)
+        .ignoresSafeArea(edges: (prefs.preferences.general.sidebarStyle == .xcode) ? [.leading] : [])
+        .padding([.top, .leading], (prefs.preferences.general.sidebarStyle == .xcode) ? 0 : -10)
         .safeAreaInset(edge: .leading) {
-            if !toolbarOnTop {
+            if prefs.preferences.general.sidebarStyle == .vscode {
                 NavigatorSidebarToolbarLeft(selection: $selection)
                     .padding(.leading, 5)
                     .padding(.trailing, -3)
@@ -84,7 +84,7 @@ struct NavigatorSidebar: View {
             }
         }
         .safeAreaInset(edge: .top) {
-            if toolbarOnTop {
+            if prefs.preferences.general.sidebarStyle == .xcode {
                 NavigatorSidebarToolbarTop(selection: $selection)
                     .padding(.bottom, toolbarPadding)
             } else {

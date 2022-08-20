@@ -38,20 +38,36 @@ public struct GeneralPreferencesView: View {
                 .padding(.horizontal)
 
             GroupBox {
-                appearanceSection
-                    .padding(.vertical, 5)
-                Divider()
-                showIssuesSection
-                    .padding(.vertical, 5)
-                Divider()
-                fileExtensionsSection
-                    .padding(.vertical, 5)
-                Divider()
-                fileIconStyleSection
-                    .padding(.vertical, 5)
-                Divider()
-                tabBarStyleSection
-                    .padding(.vertical, 5)
+                GroupBox {
+                    appearanceSection
+                        .padding(.vertical, 5)
+                    Divider()
+                }
+                GroupBox {
+                    showIssuesSection
+                        .padding(.vertical, 5)
+                    Divider()
+                }
+                GroupBox {
+                    fileExtensionsSection
+                        .padding(.vertical, 5)
+                    Divider()
+                }
+                GroupBox {
+                    fileIconStyleSection
+                        .padding(.vertical, 5)
+                    Divider()
+                }
+                GroupBox {
+                    tabBarStyleSection
+                        .padding(.vertical, 5)
+                    Divider()
+                }
+                GroupBox {
+                    sidebarStyleSection
+                        .padding(.vertical, 5)
+                    Divider()
+                }
             }
 
             GroupBox {
@@ -204,6 +220,22 @@ private extension GeneralPreferencesView {
                     .tag(AppPreferences.TabBarStyle.xcode)
                 Text("Aurora Style")
                     .tag(AppPreferences.TabBarStyle.native)
+            }
+            .labelsHidden()
+            .pickerStyle(.radioGroup)
+        }
+        .padding(.horizontal)
+    }
+
+    var sidebarStyleSection: some View {
+        HStack {
+            Text("Sidebar Style")
+            Spacer()
+            Picker("Tab Bar Style:", selection: $prefs.preferences.general.sidebarStyle) {
+                Text("Xcode Style")
+                    .tag(AppPreferences.SidebarStyle.xcode)
+                Text("VSCode Style")
+                    .tag(AppPreferences.SidebarStyle.vscode)
             }
             .labelsHidden()
             .pickerStyle(.radioGroup)
