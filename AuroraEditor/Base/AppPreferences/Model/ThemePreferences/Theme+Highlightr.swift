@@ -16,6 +16,9 @@ public extension AuroraTheme {
     var highlightrThemeString: String {
         let themeColors = editor
         let themeString = """
+* {
+  font-size: 8px;
+}
 .hljs{
   display:block;
   overflow-x:auto;
