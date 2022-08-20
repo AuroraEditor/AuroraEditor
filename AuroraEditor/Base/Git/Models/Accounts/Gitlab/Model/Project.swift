@@ -36,7 +36,7 @@ open class Project: Codable {
     open var snippetsEnabled: Bool?
     open var sharedRunnersEnabled: Bool?
     open var creatorID: Int?
-    open var namespace: Namespace?
+    open var namespace: GitNameSpace?
     open var avatarURL: URL?
     open var starCount: Int?
     open var forksCount: Int?

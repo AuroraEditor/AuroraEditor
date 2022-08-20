@@ -7,7 +7,7 @@
 
 import Foundation
 
-open class Namespace: Codable {
+open class GitNameSpace: Codable {
     open var id: Int?
     open var name: String?
     open var path: String?
