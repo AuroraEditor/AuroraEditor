@@ -34,7 +34,6 @@ struct FileInspectorView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-
             VStack {
                 HStack {
                     Text("Identity and Type")
@@ -206,7 +205,6 @@ struct FileInspectorView: View {
             }
 
             Divider()
-
         }.frame(maxWidth: 250).padding(5)
     }
 
@@ -295,7 +293,7 @@ struct FileInspectorView: View {
             }
         }
         .labelsHidden()
-        .frame(maxWidth: 150, maxHeight: 11)
+        .modifier(CustomPickerView())
     }
 
     private var location: some View {
@@ -305,7 +303,7 @@ struct FileInspectorView: View {
             }
         }
         .labelsHidden()
-        .frame(maxWidth: 150, maxHeight: 11)
+        .modifier(CustomPickerView())
     }
 
     private var textEncoding: some View {
@@ -315,7 +313,7 @@ struct FileInspectorView: View {
             }
         }
         .labelsHidden()
-        .frame(maxWidth: 150, maxHeight: 11)
+        .modifier(CustomPickerView())
     }
 
     private var lineEndings: some View {
@@ -325,7 +323,7 @@ struct FileInspectorView: View {
             }
         }
         .labelsHidden()
-        .frame(maxWidth: 150, maxHeight: 11)
+        .modifier(CustomPickerView())
     }
 
     private var indentUsing: some View {
@@ -335,7 +333,7 @@ struct FileInspectorView: View {
             }
         }
         .labelsHidden()
-        .frame(maxWidth: 150, maxHeight: 11)
+        .modifier(CustomPickerView())
     }
 
     private func changeFileName(newFileName: String) {
@@ -347,5 +345,23 @@ struct FileInspectorView: View {
             Log.error("Ooops! Something went wrong: \(error)")
             Log.info(fileName)
         }
+    }
+}
+
+/// Custom picker
+struct CustomPickerView: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .frame(maxWidth: 150, maxHeight: 11)
+            // TODO: Update max height on a better way
+            .clipped()
+            // Mask our ".clipped()" a bit
+            .mask(
+                RoundedRectangle(cornerRadius: 25, style: .continuous)
+            )
+            .overlay(
+                Capsule(style: .continuous)
+                    .stroke(.separator, style: StrokeStyle(lineWidth: 1))
+            )
     }
 }
