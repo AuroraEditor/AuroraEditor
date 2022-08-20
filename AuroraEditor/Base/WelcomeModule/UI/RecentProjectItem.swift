@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-extension String {
-    func abbreviatingWithTildeInPath() -> String {
-        (self as NSString).abbreviatingWithTildeInPath
-    }
-}
-
 // This view creates a recent item cell for the WelcomeView
 // when a project has been recently opened.
 public struct RecentProjectItem: View {
