@@ -15,6 +15,8 @@ struct NavigatorSidebar: View {
 
     @State public var selection: Int = 0
 
+    @State public var toolbarOnTop: Bool = true
+
     private let toolbarPadding: Double = -8.0
 
     init(workspace: WorkspaceDocument, windowController: NSWindowController) {
@@ -58,9 +60,36 @@ struct NavigatorSidebar: View {
                 Spacer()
             }
         }
+        .ignoresSafeArea(edges: toolbarOnTop ? [.leading] : [])
+        .padding([.top, .leading], toolbarOnTop ? 0 : -10)
+        .safeAreaInset(edge: .leading) {
+            if !toolbarOnTop {
+                NavigatorSidebarToolbarLeft(selection: $selection)
+                    .padding(.leading, 5)
+                    .padding(.trailing, -3)
+                    .safeAreaInset(edge: .trailing) {
+                        // this complex thing is so that theres a vertical divider that goes from top to bottom
+                        HStack {
+                            GeometryReader { geometry in
+                                Divider()
+                                    .frame(height: geometry.size.height + 8)
+                            }
+                        }
+                        .frame(width: 1)
+                        .offset(y: -8)
+                    }
+            } else {
+                HStack {
+                }.frame(width: 0)
+            }
+        }
         .safeAreaInset(edge: .top) {
-            NavigatorSidebarToolbarTop(selection: $selection)
-                .padding(.bottom, toolbarPadding)
+            if toolbarOnTop {
+                NavigatorSidebarToolbarTop(selection: $selection)
+                    .padding(.bottom, toolbarPadding)
+            } else {
+                Divider()
+            }
         }
         .safeAreaInset(edge: .bottom) {
             switch selection {
