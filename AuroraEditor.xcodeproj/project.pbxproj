@@ -496,6 +496,7 @@
 		2B5B255D288ADABA009C7384 /* shellClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5B255C288ADABA009C7384 /* shellClient.swift */; };
 		2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468438427DC76E200F8E88E /* AppDelegate.swift */; };
 		2B7AC06B282452FB0082A5B8 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7AC06A282452FB0082A5B8 /* Media.xcassets */; };
+		2B89F85228B132C5007CB9C1 /* AuroraMessagebox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B89F85128B132C5007CB9C1 /* AuroraMessagebox.swift */; };
 		2BA19F252896F721000B9543 /* .githash in Resources */ = {isa = PBXBuildFile; fileRef = 2BA19F242896F721000B9543 /* .githash */; };
 		2BD8A21428ACFA6D00282989 /* ShellClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8A21328ACFA6D00282989 /* ShellClient.swift */; };
 		2BE487EF28245162003F3F64 /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE487EE28245162003F3F64 /* FinderSync.swift */; };
@@ -1065,6 +1066,7 @@
 		2B5B255C288ADABA009C7384 /* shellClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shellClient.swift; sourceTree = "<group>"; };
 		2B71C0A32874AD61008E0859 /* AuroraProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraProject.swift; sourceTree = "<group>"; };
 		2B7AC06A282452FB0082A5B8 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		2B89F85128B132C5007CB9C1 /* AuroraMessagebox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraMessagebox.swift; sourceTree = "<group>"; };
 		2BA19F242896F721000B9543 /* .githash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .githash; sourceTree = "<group>"; };
 		2BD8A21328ACFA6D00282989 /* ShellClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShellClient.swift; sourceTree = "<group>"; };
 		2BE487EC28245162003F3F64 /* OpenWithAuroraEditor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OpenWithAuroraEditor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1392,6 +1394,7 @@
 				20D8373F289A7ACD00D91D05 /* Date+Formatted.swift */,
 				2BF983FE289D8B3C004F1A60 /* SharedObjects.swift */,
 				2B71C0A32874AD61008E0859 /* AuroraProject.swift */,
+				2B89F85128B132C5007CB9C1 /* AuroraMessagebox.swift */,
 				20212684289BF87600246DD7 /* Formatters.swift */,
 				2032B50D28A256130089EBB6 /* Collection.swift */,
 				2032B50F28A256F50089EBB6 /* Array.swift */,
@@ -3384,6 +3387,7 @@
 				20EBB50D280C383700F3A5DA /* LanguageType.swift in Sources */,
 				2093CDD8289AA511003A88DD /* URL+URLParameters.swift in Sources */,
 				2093CD46289AA095003A88DD /* AvatarURL.swift in Sources */,
+				2B89F85228B132C5007CB9C1 /* AuroraMessagebox.swift in Sources */,
 				2093CDA9289AA179003A88DD /* SourceControlGeneralView.swift in Sources */,
 				2093CD1E289AA07D003A88DD /* BitbucketRepositories.swift in Sources */,
 				201169D92837B31200F92B46 /* SourceControlSearchToolbar.swift in Sources */,

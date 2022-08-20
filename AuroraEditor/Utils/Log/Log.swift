@@ -155,6 +155,28 @@ public class Log {
                       line: Int = #line,
                       column: Int = #column,
                       function: String = #function) {
+
+        let fileWithoutPathSubstr = file.split(separator: "/")
+        let fileWithoutPath = fileWithoutPathSubstr[
+            fileWithoutPathSubstr.count - 1
+        ]
+
+        var message = ""
+        message.append("\(fileWithoutPath):\(line):\(column)")
+        message.append("\r\n")
+        message.append(function)
+        message.append("\r\n\r\n")
+
+        for item in items {
+            message.append("\(item)")
+            message.append("\r\n")
+        }
+
+        auroraMessageBox(
+            type: .critical,
+            message: message
+        )
+
         log(.error, items, separator, terminator, file, line, column, function)
     }
 
