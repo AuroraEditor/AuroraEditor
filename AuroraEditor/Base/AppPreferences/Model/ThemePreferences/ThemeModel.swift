@@ -44,7 +44,9 @@ public final class ThemeModel: ObservableObject {
     @Published
     public var selectedTheme: AuroraTheme? {
         didSet {
-            AppPreferencesModel.shared.preferences.theme.selectedTheme = selectedTheme?.name
+            DispatchQueue.main.async {
+                AppPreferencesModel.shared.preferences.theme.selectedTheme = self.selectedTheme?.name
+            }
         }
     }
 
@@ -244,7 +246,9 @@ public final class ThemeModel: ObservableObject {
                         newAttr["editor"]?[key] = value
                     }
                 }
-                AppPreferencesModel.shared.preferences.theme.overrides[theme.name] = newAttr
+                DispatchQueue.main.async {
+                    AppPreferencesModel.shared.preferences.theme.overrides[theme.name] = newAttr
+                }
 
             } catch {
                 Log.error(error)

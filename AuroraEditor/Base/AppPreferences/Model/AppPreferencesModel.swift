@@ -32,7 +32,9 @@ public final class AppPreferencesModel: ObservableObject {
     public var preferences: AppPreferences {
         didSet {
             try? savePreferences()
-            objectWillChange.send()
+            DispatchQueue.main.async {
+                self.objectWillChange.send()
+            }
         }
     }
 
