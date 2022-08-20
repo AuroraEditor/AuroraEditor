@@ -117,4 +117,8 @@ extension String {
             return []
         }
     }
+
+    func abbreviatingWithTildeInPath() -> String {
+        (self as NSString).abbreviatingWithTildeInPath
+    }
 }

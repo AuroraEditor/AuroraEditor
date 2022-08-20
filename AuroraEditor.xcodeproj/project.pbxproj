@@ -391,6 +391,7 @@
 		209D0255289ABFCC0082441F /* STTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0254289ABFCC0082441F /* STTextViewController.swift */; };
 		209D0257289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0256289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift */; };
 		209D0259289ABFF70082441F /* AuroraEditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0258289ABFF70082441F /* AuroraEditorTextView.swift */; };
+		20B5BD9C28B11C6200B2A02F /* WelcomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BD9B28B11C6200B2A02F /* WelcomeModel.swift */; };
 		20B6A1FE28AFE107004EC8D7 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B6A1FD28AFE107004EC8D7 /* SettingItem.swift */; };
 		20B6A20028AFE124004EC8D7 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B6A1FF28AFE124004EC8D7 /* SettingsModel.swift */; };
 		20BCB0B628AA53CC0064C7C0 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0B528AA53CC0064C7C0 /* Core.swift */; };
@@ -648,6 +649,7 @@
 		209D0254289ABFCC0082441F /* STTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTextViewController.swift; sourceTree = "<group>"; };
 		209D0256289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STTextViewController+STTextViewDelegate.swift"; sourceTree = "<group>"; };
 		209D0258289ABFF70082441F /* AuroraEditorTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorTextView.swift; sourceTree = "<group>"; };
+		20B5BD9B28B11C6200B2A02F /* WelcomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeModel.swift; sourceTree = "<group>"; };
 		20B6A1FD28AFE107004EC8D7 /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
 		20B6A1FF28AFE124004EC8D7 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		20BCB0B528AA53CC0064C7C0 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
@@ -1306,6 +1308,22 @@
 			path = AuroraEditorTextView;
 			sourceTree = "<group>";
 		};
+		20B5BD9728B11AA500B2A02F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				20B5BD9B28B11C6200B2A02F /* WelcomeModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		20B5BD9A28B11BF400B2A02F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9C3E1A06284E8E020042BEC0 /* WelcomeModuleExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		20B6A1FC28AFE05E004EC8D7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -1867,6 +1885,7 @@
 		20D83810289A7ACD00D91D05 /* WelcomeModule */ = {
 			isa = PBXGroup;
 			children = (
+				20B5BD9728B11AA500B2A02F /* Model */,
 				20D8381B289A7ACD00D91D05 /* UI */,
 			);
 			path = WelcomeModule;
@@ -1875,7 +1894,7 @@
 		20D8381B289A7ACD00D91D05 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				9C3E1A06284E8E020042BEC0 /* WelcomeModuleExtensions.swift */,
+				20B5BD9A28B11BF400B2A02F /* Extensions */,
 				20D8381F289A7ACD00D91D05 /* WelcomeWindowView.swift */,
 				20D83820289A7ACD00D91D05 /* WelcomeView.swift */,
 				20D83821289A7ACD00D91D05 /* WelcomeActionView.swift */,
@@ -3373,6 +3392,7 @@
 				2093CD34289AA089003A88DD /* Issue.swift in Sources */,
 				2041B8C728A6A904005F03D8 /* Refs.swift in Sources */,
 				2093CD12289AA054003A88DD /* ChangedFile.swift in Sources */,
+				20B5BD9C28B11C6200B2A02F /* WelcomeModel.swift in Sources */,
 				2041B8C528A69D12005F03D8 /* IRemote.swift in Sources */,
 				2093CD57289AA0C6003A88DD /* DownloadedPlugin.swift in Sources */,
 				2093CDC8289AA260003A88DD /* TabBar.swift in Sources */,
