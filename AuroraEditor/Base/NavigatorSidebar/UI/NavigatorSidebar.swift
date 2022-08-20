@@ -11,11 +11,16 @@ struct NavigatorSidebar: View {
     @ObservedObject
     private var workspace: WorkspaceDocument
 
-    @StateObject var prefs: AppPreferencesModel = .shared
+    @StateObject
+    var prefs: AppPreferencesModel = .shared
 
     private let windowController: NSWindowController
 
-    @State public var selection: Int = 0
+    @State
+    public var selection: Int = 0
+
+    @State
+    private var dropProposal: SplitViewProposalDropPosition?
 
     private let toolbarPadding: Double = -8.0
 
@@ -60,6 +65,23 @@ struct NavigatorSidebar: View {
                 Spacer()
             }
         }
+        .splitView(availablePositions: [.top, .bottom, .center],
+                   proposalPosition: $dropProposal,
+                   margin: 15,
+                   onDrop: { position in
+            switch position {
+            case .top:
+                Log.info("Dropped at the top")
+            case .bottom:
+                Log.info("Dropped at the bottom")
+            case .leading:
+                Log.info("Dropped at the start")
+            case .trailing:
+                Log.info("Dropped at the end")
+            case .center:
+                Log.info("Dropped at the center")
+            }
+        })
         .ignoresSafeArea(edges: (prefs.preferences.general.sidebarStyle == .xcode) ? [.leading] : [])
         .padding([.top, .leading], (prefs.preferences.general.sidebarStyle == .xcode) ? 0 : -10)
         .safeAreaInset(edge: .leading) {

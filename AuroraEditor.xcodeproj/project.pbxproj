@@ -392,6 +392,11 @@
 		209D0257289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0256289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift */; };
 		209D0259289ABFF70082441F /* AuroraEditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0258289ABFF70082441F /* AuroraEditorTextView.swift */; };
 		20B5BD9C28B11C6200B2A02F /* WelcomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BD9B28B11C6200B2A02F /* WelcomeModel.swift */; };
+		20B5BDA128B130EA00B2A02F /* DropProposalPositionCalculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BDA028B130EA00B2A02F /* DropProposalPositionCalculations.swift */; };
+		20B5BDA328B130F000B2A02F /* SplitEditorDropProposalPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BDA228B130F000B2A02F /* SplitEditorDropProposalPosition.swift */; };
+		20B5BDA528B130F300B2A02F /* SplitViewDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BDA428B130F300B2A02F /* SplitViewDropDelegate.swift */; };
+		20B5BDA728B130FA00B2A02F /* SplitViewDropProposalOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BDA628B130FA00B2A02F /* SplitViewDropProposalOverlay.swift */; };
+		20B5BDA928B130FF00B2A02F /* SplitViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BDA828B130FF00B2A02F /* SplitViewModifier.swift */; };
 		20B6A1FE28AFE107004EC8D7 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B6A1FD28AFE107004EC8D7 /* SettingItem.swift */; };
 		20B6A20028AFE124004EC8D7 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B6A1FF28AFE124004EC8D7 /* SettingsModel.swift */; };
 		20BCB0B628AA53CC0064C7C0 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0B528AA53CC0064C7C0 /* Core.swift */; };
@@ -650,6 +655,11 @@
 		209D0256289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STTextViewController+STTextViewDelegate.swift"; sourceTree = "<group>"; };
 		209D0258289ABFF70082441F /* AuroraEditorTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorTextView.swift; sourceTree = "<group>"; };
 		20B5BD9B28B11C6200B2A02F /* WelcomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeModel.swift; sourceTree = "<group>"; };
+		20B5BDA028B130EA00B2A02F /* DropProposalPositionCalculations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropProposalPositionCalculations.swift; sourceTree = "<group>"; };
+		20B5BDA228B130F000B2A02F /* SplitEditorDropProposalPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitEditorDropProposalPosition.swift; sourceTree = "<group>"; };
+		20B5BDA428B130F300B2A02F /* SplitViewDropDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewDropDelegate.swift; sourceTree = "<group>"; };
+		20B5BDA628B130FA00B2A02F /* SplitViewDropProposalOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewDropProposalOverlay.swift; sourceTree = "<group>"; };
+		20B5BDA828B130FF00B2A02F /* SplitViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewModifier.swift; sourceTree = "<group>"; };
 		20B6A1FD28AFE107004EC8D7 /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
 		20B6A1FF28AFE124004EC8D7 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		20BCB0B528AA53CC0064C7C0 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
@@ -1166,6 +1176,7 @@
 		200FB695289D1125006E12D4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */,
 				B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */,
 			);
 			path = UI;
@@ -1174,7 +1185,6 @@
 		200FB696289D112C006E12D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */,
 				043C321327E31FF6006AE443 /* AuroraEditorDocumentController.swift */,
 				043C321527E3201F006AE443 /* WorkspaceDocument.swift */,
 				04660F6927E51E5C00477777 /* AuroraEditorWindowController.swift */,
@@ -1324,6 +1334,18 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		20B5BD9F28B1309200B2A02F /* SplitView */ = {
+			isa = PBXGroup;
+			children = (
+				20B5BDA028B130EA00B2A02F /* DropProposalPositionCalculations.swift */,
+				20B5BDA228B130F000B2A02F /* SplitEditorDropProposalPosition.swift */,
+				20B5BDA428B130F300B2A02F /* SplitViewDropDelegate.swift */,
+				20B5BDA628B130FA00B2A02F /* SplitViewDropProposalOverlay.swift */,
+				20B5BDA828B130FF00B2A02F /* SplitViewModifier.swift */,
+			);
+			path = SplitView;
+			sourceTree = "<group>";
+		};
 		20B6A1FC28AFE05E004EC8D7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -1377,6 +1399,7 @@
 		20D83713289A7A9900D91D05 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				20B5BD9F28B1309200B2A02F /* SplitView */,
 				20212679289BF7A800246DD7 /* Log */,
 				20D83843289A7ACE00D91D05 /* String+NSRange.swift */,
 				20D83845289A7ACE00D91D05 /* NSFont+LineHeight.swift */,
@@ -3459,6 +3482,7 @@
 				2093CD1D289AA079003A88DD /* BitbucketAccount.swift in Sources */,
 				2041B8B228A67498005F03D8 /* Add.swift in Sources */,
 				2B4C133D289D56F9000ED796 /* STTextView.swift in Sources */,
+				20B5BDA728B130FA00B2A02F /* SplitViewDropProposalOverlay.swift in Sources */,
 				2093CCB1289AA032003A88DD /* LSPClient.swift in Sources */,
 				2093CD1F289AA07D003A88DD /* Token.swift in Sources */,
 				2093CD31289AA089003A88DD /* Gist.swift in Sources */,
@@ -3511,6 +3535,7 @@
 				2093CD90289AA130003A88DD /* NotificationWithProgress.swift in Sources */,
 				2093CD45289AA095003A88DD /* ProjectAccess.swift in Sources */,
 				2B4C1348289D56F9000ED796 /* STTextLayoutManager.swift in Sources */,
+				20B5BDA528B130F300B2A02F /* SplitViewDropDelegate.swift in Sources */,
 				200412EF280F3EAC00BCAF5C /* NoCommitHistoryView.swift in Sources */,
 				20DF979F28ABAA72009CE1E9 /* RepositoryModel.swift in Sources */,
 				2B4C1354289D6457000ED796 /* STTextView+Select2.swift in Sources */,
@@ -3523,6 +3548,8 @@
 				20DF97A328ABD7D2009CE1E9 /* CreateNewRepositoryView.swift in Sources */,
 				20BCB0BA28AA68160064C7C0 /* Apply.swift in Sources */,
 				20D2A43C28A7C5970073F7BD /* LFS.swift in Sources */,
+				20B5BDA328B130F000B2A02F /* SplitEditorDropProposalPosition.swift in Sources */,
+				20B5BDA928B130FF00B2A02F /* SplitViewModifier.swift in Sources */,
 				20EBB503280C327C00F3A5DA /* HistoryInspector.swift in Sources */,
 				2093CD13289AA054003A88DD /* GitClientLive.swift in Sources */,
 				2093CD2C289AA089003A88DD /* PullRequest.swift in Sources */,
@@ -3645,6 +3672,7 @@
 				2093CDD2289AA507003A88DD /* SwiftTerm+Color+Init.swift in Sources */,
 				20D59CD228AFAAE400E3907B /* AccountItemView.swift in Sources */,
 				2093CCAE289AA02D003A88DD /* QuickOpenView.swift in Sources */,
+				20B5BDA128B130EA00B2A02F /* DropProposalPositionCalculations.swift in Sources */,
 				2093CC93289A9FF5003A88DD /* StatusBarMenuLabel.swift in Sources */,
 				2093CD9A289AA14C003A88DD /* GeneralPreferences.swift in Sources */,
 				2093CD9D289AA15F003A88DD /* SourceControlAccounts.swift in Sources */,

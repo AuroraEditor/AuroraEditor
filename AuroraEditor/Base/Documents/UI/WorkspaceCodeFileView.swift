@@ -18,6 +18,9 @@ struct WorkspaceCodeFileView: View {
     private var prefs: AppPreferencesModel = .shared
 
     @State
+    private var dropProposal: SplitViewProposalDropPosition?
+
+    @State
     private var font: NSFont = {
         let size = AppPreferencesModel.shared.preferences.textEditing.font.size
         let name = AppPreferencesModel.shared.preferences.textEditing.font.name
@@ -37,8 +40,42 @@ struct WorkspaceCodeFileView: View {
                 if let fileItem = workspace.selectionState.openedCodeFiles[item] {
                     if fileItem.typeOfFile == .image {
                         imageFileView(fileItem, for: item)
+                            .splitView(availablePositions: [.top, .bottom, .center, .leading, .trailing],
+                                       proposalPosition: $dropProposal,
+                                       margin: 15,
+                                       onDrop: { position in
+                                switch position {
+                                case .top:
+                                    Log.info("Dropped at the top")
+                                case .bottom:
+                                    Log.info("Dropped at the bottom")
+                                case .leading:
+                                    Log.info("Dropped at the start")
+                                case .trailing:
+                                    Log.info("Dropped at the end")
+                                case .center:
+                                    Log.info("Dropped at the center")
+                                }
+                            })
                     } else {
                         aeCodeView(fileItem, for: item)
+                            .splitView(availablePositions: [.top, .bottom, .center, .leading, .trailing],
+                                       proposalPosition: $dropProposal,
+                                       margin: 15,
+                                       onDrop: { position in
+                                switch position {
+                                case .top:
+                                    Log.info("Dropped at the top")
+                                case .bottom:
+                                    Log.info("Dropped at the bottom")
+                                case .leading:
+                                    Log.info("Dropped at the start")
+                                case .trailing:
+                                    Log.info("Dropped at the end")
+                                case .center:
+                                    Log.info("Dropped at the center")
+                                }
+                            })
                     }
                 }
             } else {
