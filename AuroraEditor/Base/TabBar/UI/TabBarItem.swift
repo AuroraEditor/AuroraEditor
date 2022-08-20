@@ -62,7 +62,12 @@ struct TabBarItem: View {
             isAppeared = false
         }
         withAnimation(
-            .easeOut(duration: prefs.preferences.general.tabBarStyle == .native ? 0.15 : 0.20)
+            .easeOut(
+                duration:
+                    prefs.preferences.general.tabBarStyle == .native
+                ? 0.15
+                : 0.20
+            )
         ) {
             workspace.closeTab(item: item.tabID)
         }

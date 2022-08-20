@@ -36,6 +36,9 @@ public extension AppPreferences {
         /// Choose between native-styled tab bar and Xcode-liked tab bar.
         public var tabBarStyle: TabBarStyle = .xcode
 
+        /// Choose between Xcode-like and VSCode-like sidebar mode selection
+        public var sidebarStyle: SidebarStyle = .xcode
+
         /// The reopen behavior of the app
         public var reopenBehavior: ReopenBehavior = .welcome
 
@@ -192,6 +195,14 @@ public extension AppPreferences {
     enum TabBarStyle: String, Codable {
         case native
         case xcode
+    }
+
+    /// The style for the sidebar's mode selection
+    /// - **xcode**: Xcode-like mode selection
+    /// - **vscode**: VSCode-like mode seliction
+    enum SidebarStyle: String, Codable {
+        case xcode
+        case vscode
     }
 
     /// The reopen behavior of the app

@@ -11,6 +11,8 @@ struct NavigatorSidebar: View {
     @ObservedObject
     private var workspace: WorkspaceDocument
 
+    @StateObject var prefs: AppPreferencesModel = .shared
+
     private let windowController: NSWindowController
 
     @State public var selection: Int = 0
@@ -58,9 +60,36 @@ struct NavigatorSidebar: View {
                 Spacer()
             }
         }
+        .ignoresSafeArea(edges: (prefs.preferences.general.sidebarStyle == .xcode) ? [.leading] : [])
+        .padding([.top, .leading], (prefs.preferences.general.sidebarStyle == .xcode) ? 0 : -10)
+        .safeAreaInset(edge: .leading) {
+            if prefs.preferences.general.sidebarStyle == .vscode {
+                NavigatorSidebarToolbarLeft(selection: $selection)
+                    .padding(.leading, 5)
+                    .padding(.trailing, -3)
+                    .safeAreaInset(edge: .trailing) {
+                        // this complex thing is so that theres a vertical divider that goes from top to bottom
+                        HStack {
+                            GeometryReader { geometry in
+                                Divider()
+                                    .frame(height: geometry.size.height + 8)
+                            }
+                        }
+                        .frame(width: 1)
+                        .offset(y: -8)
+                    }
+            } else {
+                HStack {
+                }.frame(width: 0)
+            }
+        }
         .safeAreaInset(edge: .top) {
-            NavigatorSidebarToolbarTop(selection: $selection)
-                .padding(.bottom, toolbarPadding)
+            if prefs.preferences.general.sidebarStyle == .xcode {
+                NavigatorSidebarToolbarTop(selection: $selection)
+                    .padding(.bottom, toolbarPadding)
+            } else {
+                Divider()
+            }
         }
         .safeAreaInset(edge: .bottom) {
             switch selection {

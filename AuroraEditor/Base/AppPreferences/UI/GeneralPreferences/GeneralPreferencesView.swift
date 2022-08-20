@@ -38,20 +38,35 @@ public struct GeneralPreferencesView: View {
                 .padding(.horizontal)
 
             GroupBox {
-                appearanceSection
-                    .padding(.vertical, 5)
-                Divider()
-                showIssuesSection
-                    .padding(.vertical, 5)
-                Divider()
-                fileExtensionsSection
-                    .padding(.vertical, 5)
-                Divider()
-                fileIconStyleSection
-                    .padding(.vertical, 5)
-                Divider()
-                tabBarStyleSection
-                    .padding(.vertical, 5)
+                Group {
+                    appearanceSection
+                        .padding(.vertical, 5)
+                    Divider()
+                }
+                Group {
+                    showIssuesSection
+                        .padding(.vertical, 5)
+                    Divider()
+                }
+                Group {
+                    fileExtensionsSection
+                        .padding(.vertical, 5)
+                    Divider()
+                }
+                Group {
+                    fileIconStyleSection
+                        .padding(.vertical, 5)
+                    Divider()
+                }
+                Group {
+                    tabBarStyleSection
+                        .padding(.vertical, 5)
+                    Divider()
+                }
+                Group {
+                    sidebarStyleSection
+                        .padding(.vertical, 5)
+                }
             }
 
             GroupBox {
@@ -204,6 +219,22 @@ private extension GeneralPreferencesView {
                     .tag(AppPreferences.TabBarStyle.xcode)
                 Text("Aurora Style")
                     .tag(AppPreferences.TabBarStyle.native)
+            }
+            .labelsHidden()
+            .pickerStyle(.radioGroup)
+        }
+        .padding(.horizontal)
+    }
+
+    var sidebarStyleSection: some View {
+        HStack {
+            Text("Navigator Mode Position")
+            Spacer()
+            Picker("Tab Bar Style:", selection: $prefs.preferences.general.sidebarStyle) {
+                Text("Top")
+                    .tag(AppPreferences.SidebarStyle.xcode)
+                Text("Left")
+                    .tag(AppPreferences.SidebarStyle.vscode)
             }
             .labelsHidden()
             .pickerStyle(.radioGroup)
