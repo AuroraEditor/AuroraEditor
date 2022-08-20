@@ -12,7 +12,7 @@ class SettingsModel: ObservableObject {
 
     init(setting: [SettingItem] = SettingsModel.settingItems) {
         self.setting = setting
-        self.selectedId = setting[1].id
+        self.selectedId = setting[0].id
     }
 
     @Published
