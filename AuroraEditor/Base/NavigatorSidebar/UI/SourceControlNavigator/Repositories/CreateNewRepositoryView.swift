@@ -61,7 +61,7 @@ struct CreateNewRepositoryView: View {
                 } label: {
                     Text("Cancel")
                         .font(.system(size: 12))
-                        .foregroundColor(.white)
+                        .foregroundColor(.primary)
                         .padding()
                 }
 
