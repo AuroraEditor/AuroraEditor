@@ -216,63 +216,53 @@ struct FileInspectorView: View {
                 Section(header: Text("Sourcecode Objective-C")) {
                     ForEach(inspectorModel.languageTypeObjCList) {
                         Text($0.name)
-                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Sourcecode C")) {
                     ForEach(inspectorModel.sourcecodeCList) {
                         Text($0.name)
-                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Sourcecode C++")) {
                     ForEach(inspectorModel.sourcecodeCPlusList) {
                         Text($0.name)
-                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Sourcecode Swift")) {
                     ForEach(inspectorModel.sourcecodeSwiftList) {
                         Text($0.name)
-                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Sourcecode Assembly")) {
                     ForEach(inspectorModel.sourcecodeAssemblyList) {
                         Text($0.name)
-                            .font(.system(size: 11))
                     }
                 }
             }
             Group {
-                Section(header: Text("Sourcecode Objective-C")) {
+                Section(header: Text("Sourcecode Script")) {
                     ForEach(inspectorModel.sourcecodeScriptList) {
                         Text($0.name)
-                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Property List / XML")) {
                     ForEach(inspectorModel.propertyList) {
                         Text($0.name)
-                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Shell Script")) {
                     ForEach(inspectorModel.shellList) {
                         Text($0.name)
-                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Mach-O")) {
                     ForEach(inspectorModel.machOList) {
                         Text($0.name)
-                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Text")) {
                     ForEach(inspectorModel.textList) {
                         Text($0.name)
-                            .font(.system(size: 11))
                     }
                 }
             }
@@ -280,36 +270,30 @@ struct FileInspectorView: View {
                 Section(header: Text("Audio")) {
                     ForEach(inspectorModel.audioList) {
                         Text($0.name)
-                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Image")) {
                     ForEach(inspectorModel.imageList) {
                         Text($0.name)
-                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Video")) {
                     ForEach(inspectorModel.videoList) {
                         Text($0.name)
-                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Archive")) {
                     ForEach(inspectorModel.archiveList) {
                         Text($0.name)
-                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Other")) {
                     ForEach(inspectorModel.otherList) {
                         Text($0.name)
-                            .font(.system(size: 11))
                     }
                 }
             }
         }
-        .font(.system(size: 11))
         .labelsHidden()
         .frame(maxWidth: 150, maxHeight: 11)
     }
@@ -318,7 +302,6 @@ struct FileInspectorView: View {
         Picker("", selection: $inspectorModel.locationSelection) {
             ForEach(inspectorModel.locationList) {
                 Text($0.name)
-                    .font(.system(size: 11))
             }
         }
         .labelsHidden()
@@ -329,7 +312,6 @@ struct FileInspectorView: View {
         Picker("", selection: $inspectorModel.textEncodingSelection) {
             ForEach(inspectorModel.textEncodingList) {
                 Text($0.name)
-                    .font(.system(size: 11))
             }
         }
         .labelsHidden()
@@ -340,7 +322,6 @@ struct FileInspectorView: View {
         Picker("", selection: $inspectorModel.lineEndingsSelection) {
             ForEach(inspectorModel.lineEndingsList) {
                 Text($0.name)
-                    .font(.system(size: 11))
             }
         }
         .labelsHidden()
@@ -351,7 +332,6 @@ struct FileInspectorView: View {
         Picker("", selection: $inspectorModel.indentUsingSelection) {
             ForEach(inspectorModel.indentUsingList) {
                 Text($0.name)
-                    .font(.system(size: 11))
             }
         }
         .labelsHidden()
