@@ -30,6 +30,7 @@ public struct PreferenceAccountsView: View {
                 List($prefs.preferences.accounts.sourceControlAccounts.gitAccount) { account in
                     AccountItemView(account: account)
                 }
+                .frame(minHeight: 435)
                 .padding(.horizontal, -10)
                 .listStyle(.plain)
             }
