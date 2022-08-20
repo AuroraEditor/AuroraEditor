@@ -10,6 +10,9 @@ import SwiftUI
 
 struct AccountItemView: View {
 
+    @Environment(\.openURL)
+    var openGithubProfile
+
     @Binding
     var account: SourceControlAccounts
 
@@ -36,6 +39,7 @@ struct AccountItemView: View {
                     Spacer()
 
                     Button {
+                        openGithubProfile(URL(string: "\(account.gitProviderLink)/\(account.gitAccountUsername)")!)
                     } label: {
                         Text("Show Profile...")
                     }
