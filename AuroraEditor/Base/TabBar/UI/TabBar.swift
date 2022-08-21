@@ -388,6 +388,7 @@ struct TabBar: View {
                 .menuStyle(.borderlessButton)
                 .buttonStyle(.plain)
                 .menuIndicator(.hidden)
+                .frame(width: 20)
             }
         }
     }
