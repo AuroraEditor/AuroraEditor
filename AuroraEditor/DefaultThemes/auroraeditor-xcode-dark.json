@@ -21,13 +21,13 @@
             "color" : "#67B7A4"
         },
         "lineHighlight" : {
-            "color" : "#23252B"
+            "color" : "#2f3239"
         },
         "values" : {
             "color" : "#A167E6"
         },
         "background" : {
-            "color" : "#1F1F24"
+            "color" : "#292a30"
         },
         "keywords" : {
             "color" : "#FF7AB3"
@@ -39,7 +39,7 @@
             "color" : "#D9D9D9"
         },
         "selection" : {
-            "color" : "#515B70"
+            "color" : "#636f83"
         },
         "types" : {
             "color" : "#5DD8FF"
@@ -54,7 +54,7 @@
             "color" : "#D0BF69"
         },
         "invisibles" : {
-            "color" : "#424D5B"
+            "color" : "#53606e"
         }
     },
     "terminal" : {

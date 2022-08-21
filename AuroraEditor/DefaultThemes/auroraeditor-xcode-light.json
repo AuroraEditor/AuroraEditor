@@ -21,7 +21,7 @@
             "color" : "#326D74"
         },
         "lineHighlight" : {
-            "color" : "#E8F2FF"
+            "color" : "#ecf5ff"
         },
         "values" : {
             "color" : "#6C36A9"
@@ -39,7 +39,7 @@
             "color" : "#262626"
         },
         "selection" : {
-            "color" : "#A4CDFF"
+            "color" : "#b2d7ff"
         },
         "types" : {
             "color" : "#0B4F79"
@@ -54,7 +54,7 @@
             "color" : "#1C00CF"
         },
         "invisibles" : {
-            "color" : "#CCCCCC"
+            "color" : "#d6d6d6"
         }
     },
     "terminal" : {
