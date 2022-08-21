@@ -63,10 +63,6 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
         inspector.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(inspector)
 
-        splitVC.splitView.setHoldingPriority(.defaultHigh, forSubviewAt: 0)
-        splitVC.splitView.setHoldingPriority(.defaultLow, forSubviewAt: 1)
-        splitVC.splitView.setHoldingPriority(.defaultHigh, forSubviewAt: 2)
-
         self.splitViewController = splitVC
     }
 
