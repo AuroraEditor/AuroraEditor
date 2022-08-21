@@ -67,7 +67,8 @@ struct NavigatorSidebar: View {
         }
         .splitView(availablePositions: [.top, .bottom, .center],
                    proposalPosition: $dropProposal,
-                   margin: 15,
+                   margin: 0.25,
+                   isProportional: true,
                    onDrop: { position in
             switch position {
             case .top:

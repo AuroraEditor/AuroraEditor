@@ -15,6 +15,7 @@ struct SplitViewDropDelegate: DropDelegate {
     let availablePositions: [SplitViewProposalDropPosition]
     let geometryProxy: GeometryProxy
     let margin: CGFloat
+    let hitboxSizes: [SplitViewProposalDropPosition: CGFloat]
     let onDrop: ((SplitViewProposalDropPosition) -> Void)?
 
     func performDrop(info: DropInfo) -> Bool {
@@ -31,7 +32,9 @@ struct SplitViewDropDelegate: DropDelegate {
         if let calculatedProposalPosition = calculateDropProposalPosition(
             in: localFrame,
             for: info.location,
-            margin: margin
+            margin: margin,
+            hitboxSizes: hitboxSizes,
+            availablePositions: availablePositions
         ), availablePositions.contains(calculatedProposalPosition) {
             proposalPosition = calculatedProposalPosition
         } else {
