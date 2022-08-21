@@ -27,6 +27,9 @@ extension WorkspaceDocument {
             case .extensionInstallation:
                 guard let plugin = item as? Plugin else { return }
                 self.openExtension(item: plugin)
+            case .webTab:
+                guard let webTab = item as? WebTab else { return }
+                self.openWebTab(item: webTab)
             }
 
         } catch let err {
@@ -76,6 +79,12 @@ extension WorkspaceDocument {
         }
     }
 
+    private func openWebTab(item: WebTab) {
+        if !selectionState.openedWebTabs.contains(item) {
+            selectionState.openedWebTabs.append(item)
+        }
+    }
+
     // MARK: Close Tabs
 
     /// Closes single tab
@@ -97,6 +106,9 @@ extension WorkspaceDocument {
         case .extensionInstallation:
             guard let item = selectionState.getItemByTab(id: id) as? Plugin else { return }
             closeExtensionTab(item: item)
+        case .webTab:
+            guard let item = selectionState.getItemByTab(id: id) as? WebTab else { return }
+            closeWebTab(item: item)
         }
 
         if selectionState.openedTabs.isEmpty {
@@ -154,6 +166,10 @@ extension WorkspaceDocument {
             guard let item = selectionState.getItemByTab(id: id)
                     as? Plugin else { return }
             closeExtensionTab(item: item)
+        case .webTab:
+            guard let item = selectionState.getItemByTab(id: id)
+                    as? Plugin else { return }
+            closeExtensionTab(item: item)
         }
 
         guard let openFileItemIdx = selectionState
@@ -177,6 +193,11 @@ extension WorkspaceDocument {
     private func closeExtensionTab(item: Plugin) {
         guard let idx = selectionState.openedExtensions.firstIndex(of: item) else { return }
         selectionState.openedExtensions.remove(at: idx)
+    }
+
+    private func closeWebTab(item: WebTab) {
+        guard let idx = selectionState.openedWebTabs.firstIndex(of: item) else { return }
+        selectionState.openedWebTabs.remove(at: idx)
     }
 
     /// Makes the temporary tab permanent when a file save or edit happens.

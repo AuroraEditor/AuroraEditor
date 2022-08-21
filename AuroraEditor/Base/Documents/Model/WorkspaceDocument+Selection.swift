@@ -23,6 +23,8 @@ struct WorkspaceSelectionState: Codable {
 
     var openedExtensions: [Plugin] = []
 
+    var openedWebTabs: [WebTab] = []
+
     enum CodingKeys: String, CodingKey {
         case selectedId, openedTabs, temporaryTab, openedExtensions
     }
@@ -57,6 +59,10 @@ struct WorkspaceSelectionState: Codable {
             }
         case .extensionInstallation:
             return self.openedExtensions.first { item in
+                item.tabID == id
+            }
+        case .webTab:
+            return self.openedWebTabs.first { item in
                 item.tabID == id
             }
         }
