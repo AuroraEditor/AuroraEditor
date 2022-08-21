@@ -74,33 +74,36 @@ import Foundation
  */
 func calculateDropProposalPosition(in rect: CGRect,
                                    for point: CGPoint,
-                                   margin: CGFloat) -> SplitViewProposalDropPosition? {
+                                   margin: CGFloat,
+                                   hitboxSizes: [SplitViewProposalDropPosition: CGFloat] = [:],
+                                   availablePositions: [SplitViewProposalDropPosition] = []
+) -> SplitViewProposalDropPosition? {
     let leadingRect = CGRect(
         x: rect.minX,
         y: rect.minY,
-        width: margin,
+        width: availablePositions.contains(.leading) ? (hitboxSizes[.leading] ?? margin) : 0,
         height: rect.height
     )
 
     let trailingRect = CGRect(
-        x: rect.maxX - margin,
+        x: rect.maxX - (availablePositions.contains(.trailing) ? (hitboxSizes[.trailing] ?? margin) : 0),
         y: rect.minY,
-        width: margin,
+        width: availablePositions.contains(.trailing) ? (hitboxSizes[.trailing] ?? margin) : 0,
         height: rect.height
     )
 
     let topRect = CGRect(
-        x: rect.minX + margin,
+        x: leadingRect.maxX,
         y: rect.minY,
-        width: rect.width - 2 * margin,
-        height: margin
+        width: rect.width - leadingRect.width - trailingRect.width,
+        height: availablePositions.contains(.top) ? (hitboxSizes[.top] ?? margin) : 0
     )
 
     let bottomRect = CGRect(
-        x: rect.minX + margin,
-        y: rect.maxY - margin,
-        width: rect.width - 2 * margin,
-        height: margin
+        x: leadingRect.maxX,
+        y: rect.maxY - (availablePositions.contains(.bottom) ? (hitboxSizes[.bottom] ?? margin) : 0),
+        width: rect.width - leadingRect.width - trailingRect.width,
+        height: availablePositions.contains(.top) ? (hitboxSizes[.bottom] ?? margin) : 0
     )
 
     if leadingRect.contains(point) {

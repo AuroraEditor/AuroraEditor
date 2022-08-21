@@ -13,6 +13,8 @@ struct SplitViewModifier: ViewModifier {
 
     let availablePositions: [SplitViewProposalDropPosition]
     let margin: CGFloat
+    let isProportional: Bool
+    let hitboxSizes: [SplitViewProposalDropPosition: CGFloat]
     let onDrop: ((SplitViewProposalDropPosition) -> Void)?
 
     func body(content: Content) -> some View {
@@ -26,6 +28,7 @@ struct SplitViewModifier: ViewModifier {
                             availablePositions: availablePositions,
                             geometryProxy: geometryProxy,
                             margin: margin,
+                            hitboxSizes: isProportional ? getHitboxSizes(geometryProxy: geometryProxy) : hitboxSizes,
                             onDrop: onDrop
                         )
                     )
@@ -38,6 +41,16 @@ struct SplitViewModifier: ViewModifier {
             }
         }
     }
+
+    func getHitboxSizes(geometryProxy: GeometryProxy) -> [SplitViewProposalDropPosition: CGFloat] {
+        let localFrame = geometryProxy.frame(in: .local)
+        return [
+            .top: localFrame.height * (hitboxSizes[.top] ?? margin),
+            .bottom: localFrame.height * (hitboxSizes[.bottom] ?? margin),
+            .leading: localFrame.width * (hitboxSizes[.leading] ?? margin),
+            .trailing: localFrame.width * (hitboxSizes[.trailing] ?? margin)
+        ]
+    }
 }
 
 extension View {
@@ -47,16 +60,21 @@ extension View {
     ///   - availablePositions: availablePositions description
     ///   - proposalPosition: proposalPosition description
     ///   - margin: margin description
+    ///   - isProportional: If true, the `margin` is used as a percentage of the frame for the dragging hitbox
     ///   - onDrop: onDrop description
     ///
     /// - Returns: description
     public func splitView(availablePositions: [SplitViewProposalDropPosition],
                           proposalPosition: Binding<SplitViewProposalDropPosition?>,
                           margin: CGFloat,
+                          isProportional: Bool = false,
+                          hitboxSizes: [SplitViewProposalDropPosition: CGFloat] = [:],
                           onDrop: ((SplitViewProposalDropPosition) -> Void)?) -> some View {
         modifier(SplitViewModifier(proposalPosition: proposalPosition,
                                    availablePositions: availablePositions,
                                    margin: margin,
+                                   isProportional: isProportional,
+                                   hitboxSizes: hitboxSizes,
                                    onDrop: onDrop))
     }
 }
