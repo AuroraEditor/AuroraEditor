@@ -33,11 +33,10 @@ struct SplitViewModifier: ViewModifier {
                         )
                     )
 
-                if let proposalPosition = proposalPosition {
-                    SplitViewDropProposalOverlay(
-                        proposalPosition: proposalPosition
-                    )
-                }
+                SplitViewDropProposalOverlay(
+                    proposalPosition: proposalPosition
+                )
+                .opacity(proposalPosition == nil ? 0 : 1)
             }
         }
     }

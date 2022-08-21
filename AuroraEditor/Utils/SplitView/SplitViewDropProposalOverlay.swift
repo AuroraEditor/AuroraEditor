@@ -36,17 +36,23 @@ struct SplitViewDropProposalOverlay: View {
 
     @ViewBuilder
     private var contentView: some View {
-        switch proposalPosition {
-        case .leading:
-            leadingPositionOverlay
-        case .trailing:
-            trailingPositionOverlay
-        case .top:
-            topPositionOverlay
-        case .bottom:
-            bottomPositionOverlay
-        case .center:
-            centerPositionOverlay
+        ZStack {
+            if let proposalPosition = proposalPosition {
+                switch proposalPosition {
+                case .leading:
+                    leadingPositionOverlay
+                case .trailing:
+                    trailingPositionOverlay
+                case .top:
+                    topPositionOverlay
+                case .bottom:
+                    bottomPositionOverlay
+                case .center:
+                    centerPositionOverlay
+                }
+            } else {
+                noPositionOverlay
+            }
         }
     }
 
@@ -80,6 +86,11 @@ struct SplitViewDropProposalOverlay: View {
 
     private var centerPositionOverlay: some View {
         overlay
+    }
+
+    private var noPositionOverlay: some View {
+        overlay
+            .frame(width: 0, height: 0)
     }
 
     private var overlay: some View {
