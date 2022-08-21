@@ -216,8 +216,8 @@ struct TabBar: View {
             } label: {
                 Image(systemName: "square.grid.2x2")
             }
-            .frame(maxWidth: 50)
             .buttonStyle(.plain)
+            .menuStyle(.borderedButton)
             .help("Navigate to Related Items")
 
             Divider()
