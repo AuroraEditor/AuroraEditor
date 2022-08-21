@@ -242,7 +242,7 @@ struct FileInspectorView: View {
                 }
             }
             Group {
-                Section(header: Text("Sourcecode Objective-C")) {
+                Section(header: Text("Sourcecode Script")) {
                     ForEach(inspectorModel.sourcecodeScriptList) {
                         Text($0.name)
                             .font(.system(size: 11))
@@ -352,7 +352,6 @@ struct FileInspectorView: View {
         }
         .labelsHidden()
         .frame(maxWidth: 150, maxHeight: 12)
-        .menuStyle(RedBorderMenuStyle())
     }
 
     private func changeFileName(newFileName: String) {
@@ -364,13 +363,5 @@ struct FileInspectorView: View {
             Log.error("Ooops! Something went wrong: \(error)")
             Log.info(fileName)
         }
-    }
-}
-
-struct RedBorderMenuStyle: MenuStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        Menu(configuration)
-            .font(.system(size: 11))
-            .border(Color.red)
     }
 }
