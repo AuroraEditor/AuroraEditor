@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// swiftlint:disable:next type_body_length
 struct TabBar: View {
     /// The height of tab bar.
     /// I am not making it a private variable because it may need to be used in outside views.
@@ -215,6 +216,7 @@ struct TabBar: View {
             } label: {
                 Image(systemName: "square.grid.2x2")
             }
+            .frame(maxWidth: 50)
             .buttonStyle(.plain)
             .help("Navigate to Related Items")
 
