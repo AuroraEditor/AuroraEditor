@@ -63,6 +63,7 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
     }
 
     // MARK: VC Lifecycle
+    // swiftlint:disable:next function_body_length
     override public func loadView() {
         let scrollView = STTextView.scrollableTextView()
         textView = scrollView.documentView as? STTextView
@@ -81,7 +82,7 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
 
         textView.defaultParagraphStyle = self.paragraphStyle
         textView.font = NSFont.monospacedSystemFont(
-            ofSize: 10,
+            ofSize: 12,
             weight: .medium
         )
         textView.textColor = .textColor
@@ -92,6 +93,7 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
 
         textView.widthTracksTextView = true
         textView.highlightSelectedLine = true
+        textView.selectedLineHighlightColor = selectedLineHighlightColor()
         textView.allowsUndo = true
         textView.setupMenus()
         textView.delegate = self
@@ -152,6 +154,7 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
         textView?.font = font
         textView?.textColor = .textColor
         textView?.backgroundColor = textViewBackgroundColor()
+        textView?.selectedLineHighlightColor = selectedLineHighlightColor()
 //        textView?.insertionPointColor = theme.insertionPoint
 //        textView?.selectionBackgroundColor = theme.selection
 //        textView?.selectedLineHighlightColor = theme.lineHighlight
@@ -210,5 +213,12 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
             return .textBackgroundColor
         }
         return NSColor(hex: currentTheme.editor.background.color)
+    }
+
+    private func selectedLineHighlightColor() -> NSColor {
+        guard let currentTheme = ThemeModel.shared.selectedTheme else {
+            return NSColor.selectedTextBackgroundColor.withAlphaComponent(0.25)
+        }
+        return NSColor(hex: currentTheme.editor.lineHighlight.color)
     }
 }

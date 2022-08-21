@@ -39,7 +39,7 @@ struct FileInspectorView: View {
                     Text("Identity and Type")
                         .foregroundColor(.secondary)
                         .fontWeight(.bold)
-                        .font(.system(size: 11))
+                        .font(.system(size: 13))
 
                     Spacer()
 
@@ -47,7 +47,6 @@ struct FileInspectorView: View {
                         Text(hideidentityType ? "Hide" : "Show")
                             .foregroundColor(.secondary)
                             .fontWeight(.bold)
-                            .font(.system(size: 11))
                             .onTapGesture {
                                 hideidentityType.toggle()
                             }
@@ -61,7 +60,7 @@ struct FileInspectorView: View {
                                 Text("Name")
                                     .foregroundColor(.primary)
                                     .fontWeight(.regular)
-                                    .font(.system(size: 11))
+                                    .font(.system(size: 10))
                                 TextField("", text: $inspectorModel.fileName)
                                     .font(.system(size: 11))
                                     .frame(maxWidth: 150)
@@ -74,7 +73,7 @@ struct FileInspectorView: View {
                                 Text("Type")
                                     .foregroundColor(.primary)
                                     .fontWeight(.regular)
-                                    .font(.system(size: 11))
+                                    .font(.system(size: 10))
                                 fileType
                             }
 
@@ -86,7 +85,7 @@ struct FileInspectorView: View {
                                 Text("Location")
                                     .foregroundColor(.primary)
                                     .fontWeight(.regular)
-                                    .font(.system(size: 11))
+                                    .font(.system(size: 10))
 
                                 VStack {
                                     location
@@ -109,13 +108,13 @@ struct FileInspectorView: View {
                                 Text("Full Path")
                                     .foregroundColor(.primary)
                                     .fontWeight(.regular)
-                                    .font(.system(size: 11))
+                                    .font(.system(size: 10))
 
                                 HStack(alignment: .bottom) {
                                     Text(inspectorModel.fileURL)
                                         .foregroundColor(.primary)
                                         .fontWeight(.regular)
-                                        .font(.system(size: 11))
+                                        .font(.system(size: 10))
                                         .lineLimit(4)
 
                                     Image(systemName: "arrow.forward.circle.fill")
@@ -161,7 +160,6 @@ struct FileInspectorView: View {
                         Text(hideTextSettings ? "Hide" : "Show")
                             .foregroundColor(.secondary)
                             .fontWeight(.bold)
-                            .font(.system(size: 11))
                             .onTapGesture {
                                 hideTextSettings.toggle()
                             }
@@ -174,7 +172,7 @@ struct FileInspectorView: View {
                             Text("Text Encoding")
                                 .foregroundColor(.primary)
                                 .fontWeight(.regular)
-                                .font(.system(size: 11))
+                                .font(.system(size: 10))
                             textEncoding
                         }
 
@@ -182,7 +180,7 @@ struct FileInspectorView: View {
                             Text("Line Endings")
                                 .foregroundColor(.primary)
                                 .fontWeight(.regular)
-                                .font(.system(size: 11))
+                                .font(.system(size: 10))
                             lineEndings
                         }
                         .padding(.top, 4)
@@ -193,7 +191,7 @@ struct FileInspectorView: View {
                             Text("Indent Using")
                                 .foregroundColor(.primary)
                                 .fontWeight(.regular)
-                                .font(.system(size: 11))
+                                .font(.system(size: 10))
                             indentUsing
                         }
                         .padding(.top, 1)
@@ -205,6 +203,7 @@ struct FileInspectorView: View {
             }
 
             Divider()
+
         }.frame(maxWidth: 250).padding(5)
     }
 
@@ -214,53 +213,63 @@ struct FileInspectorView: View {
                 Section(header: Text("Sourcecode Objective-C")) {
                     ForEach(inspectorModel.languageTypeObjCList) {
                         Text($0.name)
+                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Sourcecode C")) {
                     ForEach(inspectorModel.sourcecodeCList) {
                         Text($0.name)
+                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Sourcecode C++")) {
                     ForEach(inspectorModel.sourcecodeCPlusList) {
                         Text($0.name)
+                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Sourcecode Swift")) {
                     ForEach(inspectorModel.sourcecodeSwiftList) {
                         Text($0.name)
+                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Sourcecode Assembly")) {
                     ForEach(inspectorModel.sourcecodeAssemblyList) {
                         Text($0.name)
+                            .font(.system(size: 11))
                     }
                 }
             }
             Group {
-                Section(header: Text("Sourcecode Script")) {
+                Section(header: Text("Sourcecode Objective-C")) {
                     ForEach(inspectorModel.sourcecodeScriptList) {
                         Text($0.name)
+                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Property List / XML")) {
                     ForEach(inspectorModel.propertyList) {
                         Text($0.name)
+                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Shell Script")) {
                     ForEach(inspectorModel.shellList) {
                         Text($0.name)
+                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Mach-O")) {
                     ForEach(inspectorModel.machOList) {
                         Text($0.name)
+                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Text")) {
                     ForEach(inspectorModel.textList) {
                         Text($0.name)
+                            .font(.system(size: 11))
                     }
                 }
             }
@@ -268,72 +277,82 @@ struct FileInspectorView: View {
                 Section(header: Text("Audio")) {
                     ForEach(inspectorModel.audioList) {
                         Text($0.name)
+                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Image")) {
                     ForEach(inspectorModel.imageList) {
                         Text($0.name)
+                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Video")) {
                     ForEach(inspectorModel.videoList) {
                         Text($0.name)
+                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Archive")) {
                     ForEach(inspectorModel.archiveList) {
                         Text($0.name)
+                            .font(.system(size: 11))
                     }
                 }
                 Section(header: Text("Other")) {
                     ForEach(inspectorModel.otherList) {
                         Text($0.name)
+                            .font(.system(size: 11))
                     }
                 }
             }
         }
         .labelsHidden()
-        .modifier(CustomPickerView())
+        .frame(maxWidth: 150, maxHeight: 12)
     }
 
     private var location: some View {
         Picker("", selection: $inspectorModel.locationSelection) {
             ForEach(inspectorModel.locationList) {
                 Text($0.name)
+                    .font(.system(size: 11))
             }
         }
         .labelsHidden()
-        .modifier(CustomPickerView())
+        .frame(maxWidth: 150, maxHeight: 12)
     }
 
     private var textEncoding: some View {
         Picker("", selection: $inspectorModel.textEncodingSelection) {
             ForEach(inspectorModel.textEncodingList) {
                 Text($0.name)
+                    .font(.system(size: 11))
             }
         }
         .labelsHidden()
-        .modifier(CustomPickerView())
+        .frame(maxWidth: 150, maxHeight: 12)
     }
 
     private var lineEndings: some View {
         Picker("", selection: $inspectorModel.lineEndingsSelection) {
             ForEach(inspectorModel.lineEndingsList) {
                 Text($0.name)
+                    .font(.system(size: 11))
             }
         }
         .labelsHidden()
-        .modifier(CustomPickerView())
+        .frame(maxWidth: 150, maxHeight: 12)
     }
 
     private var indentUsing: some View {
         Picker("", selection: $inspectorModel.indentUsingSelection) {
             ForEach(inspectorModel.indentUsingList) {
                 Text($0.name)
+                    .font(.system(size: 11))
             }
         }
         .labelsHidden()
-        .modifier(CustomPickerView())
+        .frame(maxWidth: 150, maxHeight: 12)
+        .menuStyle(RedBorderMenuStyle())
     }
 
     private func changeFileName(newFileName: String) {
@@ -348,20 +367,10 @@ struct FileInspectorView: View {
     }
 }
 
-/// Custom picker
-struct CustomPickerView: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .frame(maxWidth: 150, maxHeight: 11)
-            // TODO: Update max height on a better way
-            .clipped()
-            // Mask our ".clipped()" a bit
-            .mask(
-                RoundedRectangle(cornerRadius: 25, style: .continuous)
-            )
-            .overlay(
-                Capsule(style: .continuous)
-                    .stroke(.separator, style: StrokeStyle(lineWidth: 1))
-            )
+struct RedBorderMenuStyle: MenuStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Menu(configuration)
+            .font(.system(size: 11))
+            .border(Color.red)
     }
 }
