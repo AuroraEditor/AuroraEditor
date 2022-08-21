@@ -23,7 +23,7 @@ struct SplitViewDropProposalOverlay: View {
 
     @Namespace private var animation
 
-    let proposalPosition: SplitViewProposalDropPosition
+    let proposalPosition: SplitViewProposalDropPosition?
 
     var body: some View {
         contentView
