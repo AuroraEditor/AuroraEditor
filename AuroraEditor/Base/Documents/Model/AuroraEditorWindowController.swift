@@ -223,9 +223,13 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
         guard let lastSplitView = splitViewController.splitViewItems.last else { return }
         lastSplitView.animator().isCollapsed.toggle()
         if lastSplitView.isCollapsed {
-            window?.toolbar?.removeItem(at: 9)
+            window?.toolbar?.removeItem(at: (window?.toolbar?.items.count)! - 2)
+            window?.toolbar?.removeItem(at: (window?.toolbar?.items.count)! - 2)
         } else {
-            window?.toolbar?.insertItem(withItemIdentifier: NSToolbarItem.Identifier.itemListTrackingSeparator, at: 9)
+            window?.toolbar?.insertItem(withItemIdentifier: NSToolbarItem.Identifier.itemListTrackingSeparator,
+                                        at: (window?.toolbar?.items.count)! - 1)
+            window?.toolbar?.insertItem(withItemIdentifier: NSToolbarItem.Identifier.flexibleSpace,
+                                        at: (window?.toolbar?.items.count)! - 1)
         }
     }
 
