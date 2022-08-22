@@ -17,6 +17,16 @@ struct WebView: NSViewRepresentable {
     @Binding
     var pageURL: URL? // Page to load
 
+    @Binding
+    var updateType: UpdateType
+
+    enum UpdateType {
+        case refresh
+        case back
+        case forward
+        case none
+    }
+
     func makeNSView(context: Context) -> NSView {
         let webKitView = WKWebView()
 
@@ -29,8 +39,25 @@ struct WebView: NSViewRepresentable {
     }
 
     func updateNSView(_ nsView: NSView, context: Context) {
-        guard let nsView = nsView as? WKWebView, let pageURL = pageURL else { return }
-        let request = URLRequest(url: pageURL)
-        nsView.load(request)     // Send the command to WKWebView to load our page
+        guard let webView = nsView as? WKWebView, let pageURL = pageURL else { return }
+        if let currentURL = webView.url, currentURL != pageURL {
+            Log.info("Reloading page")
+            let request = URLRequest(url: pageURL)
+            webView.load(request)     // Send the command to WKWebView to load our page
+        }
+        Log.info("Update type: \(updateType)")
+        switch updateType {
+        case .refresh:
+            webView.reload()
+        case .back:
+            webView.goBack()
+        case .forward:
+            webView.goForward()
+        case .none:
+            break // nothing to do on none
+        }
+        if updateType != .none { DispatchQueue.main.async {
+            updateType = .none
+        }}
     }
 }

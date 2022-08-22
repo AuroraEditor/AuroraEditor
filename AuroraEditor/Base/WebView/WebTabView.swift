@@ -13,11 +13,16 @@ struct WebTabView: View {
 
     @ObservedObject var webTab: WebTab
 
+    @State var updateType: WebView.UpdateType = .none
+
     var body: some View {
         VStack {
             HStack {
                 HStack {
                     refreshButton
+                        .padding(.leading, 8)
+                    navigationButtonBack
+                    navigationButtonForward
                     TextField("URL", text: $webTab.address)
                         .onSubmit {
                             webTab.updateURL()
@@ -36,9 +41,7 @@ struct WebTabView: View {
             .frame(height: 25, alignment: .center)
             .frame(maxWidth: .infinity)
 
-            if webTab.url != nil {
-                WebView(pageURL: $webTab.url)
-            } else {
+            ZStack {
                 HStack {
                     Spacer()
                     Text("Invalid Web Page")
@@ -48,18 +51,40 @@ struct WebTabView: View {
                         .clipped()
                     Spacer()
                 }
+                if webTab.url != nil {
+                    WebView(pageURL: $webTab.url, updateType: $updateType)
+                }
             }
         }
     }
 
     private var refreshButton: some View {
         Button {
-            // refresh the web view
+            updateType = .refresh
         } label: {
-            Image(systemName: "plus")
+            Image(systemName: "arrow.clockwise")
         }
         .buttonStyle(.borderless)
-        .frame(maxWidth: 30)
+        .frame(maxWidth: 10)
+    }
+
+    private var navigationButtonBack: some View {
+        Button {
+            updateType = .back
+        } label: {
+            Image(systemName: "chevron.left")
+        }
+        .buttonStyle(.borderless)
+        .frame(maxWidth: 10)
+    }
+    private var navigationButtonForward: some View {
+        Button {
+            updateType = .forward
+        } label: {
+            Image(systemName: "chevron.right")
+        }
+        .buttonStyle(.borderless)
+        .frame(maxWidth: 10)
     }
 }
 
