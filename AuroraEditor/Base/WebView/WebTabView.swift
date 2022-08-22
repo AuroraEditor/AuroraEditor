@@ -14,6 +14,8 @@ struct WebTabView: View {
     @ObservedObject var webTab: WebTab
 
     @State var updateType: WebView.UpdateType = .none
+    @State var canGoBack: Bool = false
+    @State var canGoForward: Bool = false
 
     var body: some View {
         VStack {
@@ -52,7 +54,10 @@ struct WebTabView: View {
                     Spacer()
                 }
                 if webTab.url != nil {
-                    WebView(pageURL: $webTab.url, updateType: $updateType)
+                    WebView(pageURL: $webTab.url,
+                            updateType: $updateType,
+                            canGoBack: $canGoBack,
+                            canGoForward: $canGoForward)
                 }
             }
         }
@@ -74,6 +79,7 @@ struct WebTabView: View {
         } label: {
             Image(systemName: "chevron.left")
         }
+        .disabled(!canGoBack)
         .buttonStyle(.borderless)
         .frame(maxWidth: 10)
     }
@@ -83,6 +89,7 @@ struct WebTabView: View {
         } label: {
             Image(systemName: "chevron.right")
         }
+        .disabled(!canGoForward)
         .buttonStyle(.borderless)
         .frame(maxWidth: 10)
     }

@@ -20,6 +20,9 @@ struct WebView: NSViewRepresentable {
     @Binding
     var updateType: UpdateType
 
+    @Binding var canGoBack: Bool
+    @Binding var canGoForward: Bool
+
     enum UpdateType {
         case refresh
         case back
@@ -47,13 +50,11 @@ struct WebView: NSViewRepresentable {
 
         // if the url is different from the webview's url, load the new page
         if let currentURL = webView.url, currentURL != pageURL {
-            Log.info("Reloading page")
             let request = URLRequest(url: pageURL)
             webView.load(request)     // Send the command to WKWebView to load our page
         }
 
         // if there was an update (eg. refres, back, forward) then do the relevant action
-        Log.info("Update type: \(updateType)")
         switch updateType {
         case .refresh:
             webView.reload()
@@ -79,8 +80,9 @@ struct WebView: NSViewRepresentable {
         }
 
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            Log.info("Navigated to new page: \(webView.url?.absoluteString ?? "Unknown Page")")
             parent.pageURL = webView.url
+            parent.canGoForward = webView.canGoForward
+            parent.canGoBack = webView.canGoBack
         }
     }
 
