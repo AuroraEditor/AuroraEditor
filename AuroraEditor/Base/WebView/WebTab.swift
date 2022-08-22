@@ -31,8 +31,14 @@ final class WebTab: Equatable, Identifiable, TabBarItemRepresentable, Observable
     }
 
     public var title: String {
-//        self.url?.debugDescription ?? "No URL"
-        "Web View"
+        guard var initialText = self.url?.debugDescription else { return "No URL" }
+        if let slashRange = initialText.range(of: "://") {
+            initialText.removeSubrange(initialText.startIndex..<slashRange.upperBound)
+        }
+        if let slashRange = initialText.firstIndex(of: "/") {
+            initialText.removeSubrange(slashRange..<initialText.endIndex)
+        }
+        return initialText
     }
 
     public var icon: Image {

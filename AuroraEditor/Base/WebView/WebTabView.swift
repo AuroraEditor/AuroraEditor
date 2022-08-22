@@ -42,7 +42,7 @@ struct WebTabView: View {
             .frame(maxWidth: .infinity)
 
             ZStack {
-                HStack {
+                VStack {
                     Spacer()
                     Text("Invalid Web Page")
                         .font(.system(size: 17))
