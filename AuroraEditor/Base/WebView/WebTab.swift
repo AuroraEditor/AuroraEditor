@@ -17,10 +17,13 @@ final class WebTab: Equatable, Identifiable, TabBarItemRepresentable, Observable
         return true
     }
 
+    var id = UUID()
+
     @Published public var url: URL?
+    @Published public var address: String
 
     public var tabID: TabBarItemID {
-        .webTab(url?.debugDescription ?? "no url")
+        .webTab(id.debugDescription)
     }
 
     public var title: String {
@@ -38,5 +41,11 @@ final class WebTab: Equatable, Identifiable, TabBarItemRepresentable, Observable
 
     init(url: URL?) {
         self.url = url
+        self.address = url?.path ?? ""
+        Log.info(self.url?.debugDescription ?? "no url for web view")
+    }
+
+    func updateURL(to newAddress: String = "") {
+        url = URL(string: newAddress.isEmpty ? address : newAddress)
     }
 }

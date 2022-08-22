@@ -12,17 +12,25 @@ import WebKit
 
 // UIViewRepresentable, wraps UIKit views for use with SwiftUI
 struct WebView: NSViewRepresentable {
-    typealias NSViewType = WKWebView
+    typealias NSViewType = NSView
 
     @Binding
     var pageURL: URL? // Page to load
 
-    func makeNSView(context: Context) -> WKWebView {
-        return WKWebView() // Just make a new WKWebView, we don't need to do anything else here.
+    func makeNSView(context: Context) -> NSView {
+        let webKitView = WKWebView()
+
+        if let pageURL = pageURL {
+            let request = URLRequest(url: pageURL)
+            webKitView.load(request)
+        }
+
+        return webKitView
     }
 
-    func updateNSView(_ nsView: WKWebView, context: Context) {
-        let request = URLRequest(url: pageURL!)
+    func updateNSView(_ nsView: NSView, context: Context) {
+        guard let nsView = nsView as? WKWebView, let pageURL = pageURL else { return }
+        let request = URLRequest(url: pageURL)
         nsView.load(request)     // Send the command to WKWebView to load our page
     }
 }
