@@ -20,48 +20,11 @@ public struct ToolbarPlusMenu: View {
 
     public var body: some View {
         Button {
-            displayPopover.toggle()
+            workspace?.openTab(item: WebTab(url: URL(string: "https://auroraeditor.com")))
         } label: {
-            Image(systemName: "plus")
+            Image(systemName: "globe")
                 .scaledToFill()
         }
-        .popover(isPresented: $displayPopover, arrowEdge: .bottom) {
-            HStack {
-                Button {
-                    workspace?.openTab(item: WebTab(url: URL(string: "https://auroraeditor.com")))
-                } label: {
-                    VStack {
-                        Image(systemName: "globe")
-                            .font(.system(size: 30))
-                            .scaledToFill()
-                        Text("Web View")
-                    }
-                    .padding(.all, 10)
-                    .frame(height: 60)
-                }
-                Button { } label: {
-                    VStack {
-                        Image(systemName: "circle")
-                            .font(.system(size: 30))
-                            .scaledToFill()
-                        Text("Placeholder")
-                    }
-                    .padding(.all, 10)
-                    .frame(height: 60)
-                }
-                Button { } label: {
-                    VStack {
-                        Image(systemName: "circle")
-                            .font(.system(size: 30))
-                            .scaledToFill()
-                        Text("Placeholder")
-                    }
-                    .padding(.all, 10)
-                    .frame(height: 60)
-                }
-            }
-            .buttonStyle(.borderless)
-            .padding(.all, 10)
-        }
+        .buttonStyle(.plain)
     }
 }

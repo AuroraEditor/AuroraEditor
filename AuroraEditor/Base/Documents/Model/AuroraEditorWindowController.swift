@@ -199,10 +199,17 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
             let toolbarItem = NSToolbarItem(
                 itemIdentifier: NSToolbarItem.Identifier.libraryPopup
             )
-            let view = NSHostingView(
-                rootView: ToolbarPlusMenu(workspace: workspace)
+            toolbarItem.label = "Library"
+            toolbarItem.paletteLabel = "Library"
+            toolbarItem.toolTip = "Library"
+            toolbarItem.isEnabled = false
+            toolbarItem.target = self
+            toolbarItem.image = NSImage(
+                systemSymbolName: "plus",
+                accessibilityDescription: nil
+            )?.withSymbolConfiguration(
+                .init(scale: .small)
             )
-            toolbarItem.view = view
 
             return toolbarItem
         default:
