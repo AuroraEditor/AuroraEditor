@@ -19,7 +19,11 @@ final class WebTab: Equatable, Identifiable, TabBarItemRepresentable, Observable
 
     var id = UUID()
 
-    @Published public var url: URL?
+    @Published public var url: URL? {
+        didSet {
+            self.address = url?.absoluteString ?? ""
+        }
+    }
     @Published public var address: String
 
     public var tabID: TabBarItemID {
