@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// swiftlint:disable:next type_body_length
 struct TabBar: View {
     /// The height of tab bar.
     /// I am not making it a private variable because it may need to be used in outside views.
@@ -176,47 +177,8 @@ struct TabBar: View {
     // TabBar items on the left
     private var leadingAccessories: some View {
         HStack(spacing: 2) {
-            Menu {
-                Menu {
-                    ForEach(sourceControlModel.changed) { item in
-                        Button {
-
-                        } label: {
-                            Image(systemName: item.systemImage)
-                                .foregroundColor(item.iconColor)
-                            Text(item.fileName)
-                        }
-                    }
-
-                    Divider()
-
-                    Button {
-
-                    } label: {
-                        Text("Clear Menu")
-                    }
-                } label: {
-                    Text("Recent Files")
-                }
-
-                Menu {
-                    ForEach(sourceControlModel.changed) { item in
-                        Button {
-                            workspace.openTab(item: item)
-                        } label: {
-                            Image(systemName: item.systemImage)
-                                .foregroundColor(item.iconColor)
-                            Text(item.fileName)
-                        }
-                    }
-                } label: {
-                    Text("Locally Modified Files")
-                }
-            } label: {
-                Image(systemName: "square.grid.2x2")
-            }
-            .buttonStyle(.plain)
-            .help("Navigate to Related Items")
+            recentMenuButton
+                .help("Navigate to Related Items")
 
             Divider()
                 .padding(.vertical, 8)
@@ -344,5 +306,90 @@ struct TabBar: View {
         }
 
         return false
+    }
+
+    private var recentMenuButton: some View {
+        VStack {
+            if #available(macOS 13, *) {
+                Menu {
+                    Menu {
+                        ForEach(sourceControlModel.changed) { item in
+                            Button {
+
+                            } label: {
+                                Image(systemName: item.systemImage)
+                                    .foregroundColor(item.iconColor)
+                                Text(item.fileName)
+                            }
+                        }
+                        Divider()
+                        Button {
+                        } label: {
+                            Text("Clear Menu")
+                        }
+                    } label: {
+                        Text("Recent Files")
+                    }
+
+                    Menu {
+                        ForEach(sourceControlModel.changed) { item in
+                            Button {
+                                workspace.openTab(item: item)
+                            } label: {
+                                Image(systemName: item.systemImage)
+                                    .foregroundColor(item.iconColor)
+                                Text(item.fileName)
+                            }
+                        }
+                    } label: {
+                        Text("Locally Modified Files")
+                    }
+                } label: {
+                    Image(systemName: "square.grid.2x2")
+                }
+                .buttonStyle(.plain)
+            } else {
+                Menu {
+                    Menu {
+                        ForEach(sourceControlModel.changed) { item in
+                            Button {
+
+                            } label: {
+                                Image(systemName: item.systemImage)
+                                    .foregroundColor(item.iconColor)
+                                Text(item.fileName)
+                            }
+                        }
+                        Divider()
+                        Button {
+                        } label: {
+                            Text("Clear Menu")
+                        }
+                    } label: {
+                        Text("Recent Files")
+                    }
+
+                    Menu {
+                        ForEach(sourceControlModel.changed) { item in
+                            Button {
+                                workspace.openTab(item: item)
+                            } label: {
+                                Image(systemName: item.systemImage)
+                                    .foregroundColor(item.iconColor)
+                                Text(item.fileName)
+                            }
+                        }
+                    } label: {
+                        Text("Locally Modified Files")
+                    }
+                } label: {
+                    Image(systemName: "square.grid.2x2")
+                }
+                .menuStyle(.borderlessButton)
+                .buttonStyle(.plain)
+                .menuIndicator(.hidden)
+                .frame(width: 20)
+            }
+        }
     }
 }
