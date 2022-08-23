@@ -80,11 +80,8 @@ extension WorkspaceDocument {
     }
 
     private func openWebTab(item: WebTab) {
-        if !selectionState.openedWebTabs.contains(item) {
-            Log.info("Opening web tab for \(item.url?.path ?? "no url")")
-            selectionState.openedWebTabs.append(item)
-        }
-        Log.info("Opened web tabs: \(selectionState.openedWebTabs.map({ $0.url?.path ?? "no url" }))")
+        // its not possible to have the same web tab opened multiple times, so no need to check
+        selectionState.openedWebTabs.append(item)
     }
 
     // MARK: Close Tabs

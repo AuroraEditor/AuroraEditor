@@ -52,7 +52,6 @@ final class WebTab: Codable, Equatable, Identifiable, TabBarItemRepresentable, O
     init(url: URL?) {
         self.url = url
         self.address = url?.path ?? ""
-        Log.info(self.url?.debugDescription ?? "no url for web view")
     }
 
     func updateURL(to newAddress: String = "") {
