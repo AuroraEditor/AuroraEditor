@@ -81,8 +81,10 @@ extension WorkspaceDocument {
 
     private func openWebTab(item: WebTab) {
         if !selectionState.openedWebTabs.contains(item) {
+            Log.info("Opening web tab for \(item.url?.path ?? "no url")")
             selectionState.openedWebTabs.append(item)
         }
+        Log.info("Opened web tabs: \(selectionState.openedWebTabs.map({ $0.url?.path ?? "no url" }))")
     }
 
     // MARK: Close Tabs
@@ -168,8 +170,8 @@ extension WorkspaceDocument {
             closeExtensionTab(item: item)
         case .webTab:
             guard let item = selectionState.getItemByTab(id: id)
-                    as? Plugin else { return }
-            closeExtensionTab(item: item)
+                    as? WebTab else { return }
+            closeWebTab(item: item)
         }
 
         guard let openFileItemIdx = selectionState
