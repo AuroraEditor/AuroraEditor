@@ -112,8 +112,12 @@ extension FileItem {
         var fileUrl = self.url
         while FileItem.fileManger.fileExists(atPath: fileUrl.path) {
             let previousName = fileUrl.lastPathComponent
-            fileUrl = fileUrl.deletingLastPathComponent().appendingPathComponent("\(previousName) copy")
+            let fileExtension = fileUrl.pathExtension.isEmpty ? "" : ".\(fileUrl.pathExtension)"
+            let fileName = fileExtension.isEmpty ? previousName :
+                previousName.replacingOccurrences(of: ".\(fileExtension)", with: "")
+            fileUrl = fileUrl.deletingLastPathComponent().appendingPathComponent("\(fileName) copy\(fileExtension)")
         }
+        Log.info("Duplicating file to \(fileUrl)")
 
         if FileItem.fileManger.fileExists(atPath: self.url.path) {
             do {

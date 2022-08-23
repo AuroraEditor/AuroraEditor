@@ -15,6 +15,9 @@ public enum TabBarItemID: Codable, Identifiable, Hashable {
             return "codeEditor_\(path)"
         case .extensionInstallation(let id):
             return "extensionInstallation_\(id.uuidString)"
+        case .webTab(let url):
+            // note: does not allow for multiple tabs of the same URL
+            return "webTab_\(url)"
         }
     }
 
@@ -23,4 +26,7 @@ public enum TabBarItemID: Codable, Identifiable, Hashable {
 
     /// Represents extension installation tab
     case extensionInstallation(UUID)
+
+    /// Represents web tab
+    case webTab(String)
 }

@@ -80,6 +80,10 @@ struct WorkspaceView: View {
                         .environmentObject(workspace)
                         .frame(alignment: .center)
                 }
+            case .webTab:
+                if let webTab = workspace.selectionState.selected as? WebTab {
+                    WebTabView(webTab: webTab)
+                }
             }
         } else {
             noEditor

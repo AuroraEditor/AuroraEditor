@@ -257,6 +257,10 @@ struct TabBar: View {
                     .padding(.vertical, 8)
             }
 
+            ToolbarPlusMenu(workspace: workspace)
+                .foregroundColor(.secondary)
+                .help("Open New Web Tab")
+
             TabBarAccessoryIcon(
                 icon: .init(systemName: "square.split.2x1"),
                 action: { /* TODO */ }
