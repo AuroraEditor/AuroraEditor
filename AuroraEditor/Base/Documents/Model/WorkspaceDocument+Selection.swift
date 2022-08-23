@@ -26,7 +26,7 @@ struct WorkspaceSelectionState: Codable {
     var openedWebTabs: [WebTab] = []
 
     enum CodingKeys: String, CodingKey {
-        case selectedId, openedTabs, temporaryTab, openedExtensions
+        case selectedId, openedTabs, temporaryTab, openedExtensions, openedWebTabs
     }
 
     init() {
@@ -38,6 +38,7 @@ struct WorkspaceSelectionState: Codable {
         openedTabs = try container.decode([TabBarItemID].self, forKey: .openedTabs)
         temporaryTab = try container.decode(TabBarItemID?.self, forKey: .temporaryTab)
         openedExtensions = try container.decode([Plugin].self, forKey: .openedExtensions)
+        openedWebTabs = try container.decode([WebTab].self, forKey: .openedWebTabs)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -46,6 +47,7 @@ struct WorkspaceSelectionState: Codable {
         try container.encode(openedTabs, forKey: .openedTabs)
         try container.encode(temporaryTab, forKey: .temporaryTab)
         try container.encode(openedExtensions, forKey: .openedExtensions)
+        try container.encode(openedWebTabs, forKey: .openedWebTabs)
     }
 
     /// Returns TabBarItemRepresentable by its identifier

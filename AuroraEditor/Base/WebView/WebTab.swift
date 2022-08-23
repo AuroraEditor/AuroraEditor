@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-final class WebTab: Equatable, Identifiable, TabBarItemRepresentable, ObservableObject {
+final class WebTab: Codable, Equatable, Identifiable, TabBarItemRepresentable, ObservableObject {
     static func == (lhs: WebTab, rhs: WebTab) -> Bool {
         guard lhs.url == rhs.url else { return false }
         guard lhs.tabID == rhs.tabID else { return false }
@@ -57,5 +57,24 @@ final class WebTab: Equatable, Identifiable, TabBarItemRepresentable, Observable
 
     func updateURL(to newAddress: String = "") {
         url = URL(string: newAddress.isEmpty ? address : newAddress)
+    }
+
+    enum WebTabKey: CodingKey {
+        case id
+        case url
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: WebTabKey.self)
+        self.id = try container.decode(UUID.self, forKey: .id)
+        self.url = try container.decode(URL?.self, forKey: .url)
+        self.address = ""
+        self.address = url?.path ?? ""
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: WebTabKey.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.url, forKey: .url)
     }
 }
