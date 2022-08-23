@@ -38,8 +38,7 @@ struct WebTabView: View {
                 .padding(.trailing, 5)
                 .padding(.leading, 5)
             }
-            .padding(.top, 8)
-            .frame(height: 30, alignment: .center)
+            .frame(height: 34, alignment: .center)
             .frame(maxWidth: .infinity)
 
             ZStack {
