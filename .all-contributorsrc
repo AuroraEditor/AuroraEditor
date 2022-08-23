@@ -1,59 +1,68 @@
 {
-    "files": [
-        "README.md"
-    ],
-    "imageSize": 100,
-    "commit": false,
-    "contributors": [
-        {
-            "login": "wdg",
-            "name": "Wesley De Groot",
-            "avatar_url": "https://avatars.githubusercontent.com/u/1290461?v=4",
-            "profile": "https://wdg.codes",
-            "contributions": [
-                "infra",
-                "test",
-                "code",
-                "maintenance"
-            ]
-        },
-        {
-            "login": "nanashili",
-            "name": "Nanashi Li",
-            "avatar_url": "https://avatars.githubusercontent.com/u/63672227?v=4",
-            "profile": "https://github.com/nanashili",
-            "contributions": [
-                "infra",
-                "test",
-                "code",
-                "maintenance"
-            ]
-        },
-        {
-            "login": "KaiTheRedNinja",
-            "name": "KaiTheRedNinja",
-            "avatar_url": "https://avatars.githubusercontent.com/u/88234730?v=4",
-            "profile": "https://github.com/KaiTheRedNinja",
-            "contributions": [
-                "test",
-                "code",
-                "maintenance"
-            ]
-        },
-        {
-            "login": "Angelk90",
-            "name": "Angelk90",
-            "avatar_url": "https://avatars.githubusercontent.com/u/20476002?v=4",
-            "profile": "https://github.com/Angelk90",
-            "contributions": [
-                "bug"
-            ]
-        }
-    ],
-    "contributorsPerLine": 7,
-    "projectName": "AuroraEditor",
-    "projectOwner": "AuroraEditor",
-    "repoType": "github",
-    "repoHost": "https://github.com",
-    "skipCi": true
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "wdg",
+      "name": "Wesley De Groot",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1290461?v=4",
+      "profile": "https://wdg.codes",
+      "contributions": [
+        "infra",
+        "test",
+        "code",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "nanashili",
+      "name": "Nanashi Li",
+      "avatar_url": "https://avatars.githubusercontent.com/u/63672227?v=4",
+      "profile": "https://github.com/nanashili",
+      "contributions": [
+        "infra",
+        "test",
+        "code",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "KaiTheRedNinja",
+      "name": "KaiTheRedNinja",
+      "avatar_url": "https://avatars.githubusercontent.com/u/88234730?v=4",
+      "profile": "https://github.com/KaiTheRedNinja",
+      "contributions": [
+        "test",
+        "code",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "Angelk90",
+      "name": "Angelk90",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20476002?v=4",
+      "profile": "https://github.com/Angelk90",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "AlexBurneikis",
+      "name": "Burneikis",
+      "avatar_url": "https://avatars.githubusercontent.com/u/87457198?v=4",
+      "profile": "https://github.com/AlexBurneikis",
+      "contributions": [
+        "bug"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "AuroraEditor",
+  "projectOwner": "AuroraEditor",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
 }
