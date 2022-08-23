@@ -84,6 +84,18 @@ struct WorkspaceCodeFileView: View {
                     .foregroundColor(.secondary)
                     .frame(minHeight: 0)
                     .clipped()
+                    .overlay {
+                        Button(
+                            action: {
+                                NSApplication.shared.keyWindow?.close()
+                            },
+                            label: { EmptyView() }
+                        )
+                        .frame(width: 0, height: 0)
+                        .padding(0)
+                        .opacity(0)
+                        .keyboardShortcut("w", modifiers: [.command])
+                    }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
