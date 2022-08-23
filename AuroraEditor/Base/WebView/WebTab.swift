@@ -24,13 +24,15 @@ final class WebTab: Codable, Equatable, Identifiable, TabBarItemRepresentable, O
             self.address = url?.absoluteString ?? ""
         }
     }
+
     @Published public var address: String
+    @Published public var title: String
 
     public var tabID: TabBarItemID {
         .webTab(id.debugDescription)
     }
 
-    public var title: String {
+    public var ttitle: String {
         guard var initialText = self.url?.debugDescription else { return "No URL" }
         if let slashRange = initialText.range(of: "://") {
             initialText.removeSubrange(initialText.startIndex..<slashRange.upperBound)
@@ -52,6 +54,7 @@ final class WebTab: Codable, Equatable, Identifiable, TabBarItemRepresentable, O
     init(url: URL?) {
         self.url = url
         self.address = url?.path ?? ""
+        self.title = NSLocalizedString("Loading", comment: "Loading")
     }
 
     func updateURL(to newAddress: String = "") {
@@ -67,6 +70,7 @@ final class WebTab: Codable, Equatable, Identifiable, TabBarItemRepresentable, O
         let container = try decoder.container(keyedBy: WebTabKey.self)
         self.id = try container.decode(UUID.self, forKey: .id)
         self.url = try container.decode(URL?.self, forKey: .url)
+        self.title = "Loading"
         self.address = ""
         self.address = url?.path ?? ""
     }

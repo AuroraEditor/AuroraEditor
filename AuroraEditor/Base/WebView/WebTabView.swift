@@ -12,7 +12,6 @@ import WebKit
 struct WebTabView: View {
 
     @ObservedObject var webTab: WebTab
-
     @State var updateType: WebView.UpdateType = .none
     @State var canGoBack: Bool = false
     @State var canGoForward: Bool = false
@@ -40,7 +39,7 @@ struct WebTabView: View {
                 .padding(.leading, 5)
             }
             .padding(.top, 8)
-            .frame(height: 25, alignment: .center)
+            .frame(height: 30, alignment: .center)
             .frame(maxWidth: .infinity)
 
             ZStack {
@@ -55,6 +54,7 @@ struct WebTabView: View {
                 }
                 if webTab.url != nil {
                     WebView(pageURL: $webTab.url,
+                            pageTitle: $webTab.title,
                             updateType: $updateType,
                             canGoBack: $canGoBack,
                             canGoForward: $canGoForward)
@@ -83,6 +83,7 @@ struct WebTabView: View {
         .buttonStyle(.borderless)
         .frame(maxWidth: 10)
     }
+
     private var navigationButtonForward: some View {
         Button {
             updateType = .forward

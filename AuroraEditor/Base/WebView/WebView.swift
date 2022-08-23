@@ -14,8 +14,13 @@ import WebKit
 struct WebView: NSViewRepresentable {
     typealias NSViewType = NSView
 
+    /// Page to load
     @Binding
-    var pageURL: URL? // Page to load
+    var pageURL: URL?
+
+    /// Page title
+    @Binding
+    var pageTitle: String
 
     @Binding
     var updateType: UpdateType
@@ -51,7 +56,8 @@ struct WebView: NSViewRepresentable {
         // if the url is different from the webview's url, load the new page
         if let currentURL = webView.url, currentURL != pageURL {
             let request = URLRequest(url: pageURL)
-            webView.load(request)     // Send the command to WKWebView to load our page
+            // Send the command to WKWebView to load our page
+            webView.load(request)
         }
 
         // if there was an update (eg. refres, back, forward) then do the relevant action
@@ -79,7 +85,12 @@ struct WebView: NSViewRepresentable {
             self.parent = parent
         }
 
+        func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+            Log.error("Webview failed", navigation ?? "Unknown", error)
+        }
+
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            parent.pageTitle = webView.title ?? (webView.url?.relativePath ?? "Unknown")
             parent.pageURL = webView.url
             parent.canGoForward = webView.canGoForward
             parent.canGoBack = webView.canGoBack
