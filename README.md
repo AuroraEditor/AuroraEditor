@@ -57,7 +57,7 @@ Xcode is a great native editor for developers on Mac, but unfortunately it doesn
 This project originates from https://github.com/CodeEditApp/CodeEdit. We decided to take our own direction with this project for several reasons:
 
 ### Rate and direction of development
-We want to increase the rate of development, which means
+We want to increase the rate of development, which means:
 - Encouraging people to make PRs, even if they aren't complete (this is an issue with CodeEdit, many amazing PRs go stale or take forever).
 - Making the code review cycle faster, including allowing people to merge their PRs once they have recieved enough reviews, instead of having to wait for an admin to do it. 
 - Making a clearer todo so that there is never the "what to do" programmer dilemma that slows down development.
