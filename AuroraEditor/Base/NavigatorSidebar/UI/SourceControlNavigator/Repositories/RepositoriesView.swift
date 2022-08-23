@@ -16,14 +16,19 @@ struct RepositoriesView: View {
     var repositoryModel: RepositoryModel
 
     @State
-    var repository = DummyRepo(repoName: "Aurora Editor", branches: [
-        RepoBranch(name: "main"),
-        RepoBranch(name: "Changes-outlineview")
-    ])
+    var repository: DummyRepo
 
-    init(workspace: WorkspaceDocument) {
+    init?(workspace: WorkspaceDocument) {
         self.workspace = workspace
         self.repositoryModel = .init(workspace: workspace)
+        guard let repoNameValue = workspace.workspaceClient?.folderURL?.lastPathComponent else {
+            return nil
+        }
+
+        self.repository = DummyRepo(repoName: repoNameValue, branches: [
+            RepoBranch(name: "main"),
+            RepoBranch(name: "Changes-outlineview")
+        ])
     }
 
     var body: some View {
