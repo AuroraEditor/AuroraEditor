@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RepositoriesView: View {
+    private var gitClient: GitClient?
 
     @ObservedObject
     var workspace: WorkspaceDocument
@@ -25,10 +26,45 @@ struct RepositoriesView: View {
             return nil
         }
 
-        self.repository = DummyRepo(repoName: repoNameValue, branches: [
-            RepoBranch(name: "main"),
-            RepoBranch(name: "Changes-outlineview")
-        ])
+        if let folderURL = workspace.workspaceClient?.folderURL {
+
+            let repoNameValue: String = folderURL.lastPathComponent
+
+            self.gitClient = GitClient.default(
+                directoryURL: folderURL,
+                shellClient: sharedShellClient.shellClient
+            )
+
+            let branchNames: [String] = ((try? gitClient?.getBranches(false)) ?? [])
+            var branchNamesRemotes: [String] = ((try? gitClient?.getBranches(true)) ?? [])
+            branchNamesRemotes = Array(Set(branchNamesRemotes).subtracting(branchNames))
+
+            let branchesNameValue: [RepoBranch] = (branchNames.map { (branch: String) in
+                 RepoBranch(name: branch)
+            })
+
+            let reduced = branchNamesRemotes.reduce(into: [String: [String]]()) { partialResult, currentTerm in
+                let components = currentTerm.components(separatedBy: "/")
+                guard components.count == 2 else { return }
+                partialResult[components[0]] = partialResult[components[0], default: [String]()] + [components[1]]
+            }
+
+            let remotes: [RepoRemote] = (reduced.map { (key, array) in
+                let content: [RepoBranch] = array.map { RepoBranch(name: $0) }
+                Log.info(key, content)
+                return RepoRemote(content: content, name: key)
+            })
+
+            repository = DummyRepo(
+                repoName: repoNameValue,
+                branches: branchesNameValue,
+                remotes: remotes
+            )
+        } else {
+            self.repository = DummyRepo(repoName: repoNameValue, branches: [
+                RepoBranch(name: "master")
+            ])
+        }
     }
 
     var body: some View {

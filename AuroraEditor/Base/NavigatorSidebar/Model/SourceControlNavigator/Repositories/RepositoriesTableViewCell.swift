@@ -49,7 +49,7 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
 
         case .remote:
             label.stringValue = "origin" // TODO: Modifiable remote name
-            image = NSImage(systemSymbolName: "vault", accessibilityDescription: nil)!
+            image = NSImage(named: "vault")!
 
         case .branch:
             let currentBranch = (repository.branches?.contents[repository.branches?.current ?? -1] as? RepoBranch)?
