@@ -91,6 +91,10 @@ public extension AppPreferences {
                 TabBarStyle.self,
                 forKey: .tabBarStyle
             ) ?? .xcode
+            self.sidebarStyle = try container.decodeIfPresent(
+                SidebarStyle.self,
+                forKey: .sidebarStyle
+            ) ?? .xcode
             self.reopenBehavior = try container.decodeIfPresent(
                 ReopenBehavior.self,
                 forKey: .reopenBehavior
