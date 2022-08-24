@@ -84,7 +84,7 @@ struct WebView: NSViewRepresentable {
         }
 
         // if the URL is valid (has a protocol), load the page
-        if let url = url, url.debugDescription.range(of: "://",
+        if let url = url, url.debugDescription.range(of: "^.+://",
                                                      options: .regularExpression,
                                                      range: nil, locale: nil) != nil {
             Log.info("URL \(url.debugDescription) To Be Loaded")
