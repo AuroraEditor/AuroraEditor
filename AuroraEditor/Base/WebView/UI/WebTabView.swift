@@ -21,28 +21,14 @@ struct WebTabView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                HStack {
-                    refreshButton
-                        .padding(.leading, 8)
-                    navigationButtonBack
-                    navigationButtonForward
-                    TextField("URL", text: $webTab.address)
-                        .onSubmit {
-                            webTab.updateURL()
-                        }
-                        .textFieldStyle(.plain)
-                        .font(.system(size: 12))
-                }
-                .padding(.vertical, 3)
-                .background(.ultraThinMaterial)
-                .clipShape(RoundedRectangle(cornerRadius: 6))
-                .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray, lineWidth: 0.5).cornerRadius(6))
-                .padding(.trailing, 5)
-                .padding(.leading, 5)
+            if #available(macOS 13, *) {
+                urlBar
+                    .frame(height: 34, alignment: .center)
+            } else {
+                urlBar
+                    .padding(.top, 7)
+                    .frame(height: 30, alignment: .center)
             }
-            .frame(height: 34, alignment: .center)
-            .frame(maxWidth: .infinity)
 
             ZStack {
                 VStack {
@@ -65,6 +51,30 @@ struct WebTabView: View {
                 .opacity(navigationFailed ? 0 : 1)
             }
         }
+    }
+
+    private var urlBar: some View {
+        HStack {
+            HStack {
+                refreshButton
+                    .padding(.leading, 8)
+                navigationButtonBack
+                navigationButtonForward
+                TextField("URL", text: $webTab.address)
+                    .onSubmit {
+                        webTab.updateURL()
+                    }
+                    .textFieldStyle(.plain)
+                    .font(.system(size: 12))
+            }
+            .padding(.vertical, 3)
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+            .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray, lineWidth: 0.5).cornerRadius(6))
+            .padding(.trailing, 5)
+            .padding(.leading, 5)
+        }
+        .frame(maxWidth: .infinity)
     }
 
     private var refreshButton: some View {
