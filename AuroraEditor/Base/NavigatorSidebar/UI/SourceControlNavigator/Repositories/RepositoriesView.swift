@@ -51,7 +51,6 @@ struct RepositoriesView: View {
 
             let remotes: [RepoRemote] = (reduced.map { (key, array) in
                 let content: [RepoBranch] = array.map { RepoBranch(name: $0) }
-                Log.info(key, content)
                 return RepoRemote(content: content, name: key)
             })
 
