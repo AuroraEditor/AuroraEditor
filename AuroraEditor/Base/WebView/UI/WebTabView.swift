@@ -12,7 +12,7 @@ import WebKit
 struct WebTabView: View {
 
     @ObservedObject var webTab: WebTab
-    @State var updateType: WebView.UpdateType = .none
+    @State var updateType: WebWKView.UpdateType = .none
     @State var canGoBack: Bool = false
     @State var canGoForward: Bool = false
 
@@ -55,13 +55,13 @@ struct WebTabView: View {
                         .clipped()
                     Spacer()
                 }
-                WebView(pageURL: $webTab.url,
-                        pageTitle: $webTab.title,
-                        updateType: $updateType,
-                        canGoBack: $canGoBack,
-                        canGoForward: $canGoForward,
-                        navigationFailed: $navigationFailed,
-                        errorMessage: $errorMessage)
+                WebWKView(pageURL: $webTab.url,
+                          pageTitle: $webTab.title,
+                          updateType: $updateType,
+                          canGoBack: $canGoBack,
+                          canGoForward: $canGoForward,
+                          navigationFailed: $navigationFailed,
+                          errorMessage: $errorMessage)
                 .opacity(navigationFailed ? 0 : 1)
             }
         }

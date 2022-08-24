@@ -11,7 +11,7 @@ import SwiftUI
 import WebKit
 
 // UIViewRepresentable, wraps UIKit views for use with SwiftUI
-struct WebView: NSViewRepresentable {
+struct WebWKView: NSViewRepresentable {
     typealias NSViewType = NSView
 
     /// Page to load
@@ -22,6 +22,7 @@ struct WebView: NSViewRepresentable {
     @Binding
     var pageTitle: String
 
+    /// The type of update. Used on reload, back and forward navigation
     @Binding
     var updateType: UpdateType
 
@@ -31,6 +32,7 @@ struct WebView: NSViewRepresentable {
     @Binding var navigationFailed: Bool
     @Binding var errorMessage: String
 
+    /// The type of update. Used on reload, back and forward navigation
     enum UpdateType {
         case refresh
         case back
@@ -74,6 +76,11 @@ struct WebView: NSViewRepresentable {
         }}
     }
 
+
+    /// Convenience function to load a page
+    /// - Parameters:
+    ///   - webView: The web view
+    ///   - url: The URL to load
     func loadPage(webView: WKWebView, url: URL?) {
         // check that the URL is different
         if webView.url != nil {
@@ -101,17 +108,19 @@ struct WebView: NSViewRepresentable {
     }
 
     class Coordinator: NSObject, WKNavigationDelegate {
-        var parent: WebView
+        var parent: WebWKView
 
-        init(_ parent: WebView) {
+        init(_ parent: WebWKView) {
             self.parent = parent
         }
 
+        /// On navigation failure, show the error
         func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
             parent.navigationFailed = true
             parent.errorMessage = error.localizedDescription
         }
 
+        /// Update page title, url, and various statuses when web view finished navigation
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             parent.pageTitle = webView.title ?? (webView.url?.relativePath ?? "Unknown")
             parent.pageURL = webView.url
