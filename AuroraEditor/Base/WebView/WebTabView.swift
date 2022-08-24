@@ -16,6 +16,9 @@ struct WebTabView: View {
     @State var canGoBack: Bool = false
     @State var canGoForward: Bool = false
 
+    @State var navigationFailed: Bool = false
+    @State var errorMessage: String = ""
+
     var body: some View {
         VStack {
             HStack {
@@ -44,20 +47,22 @@ struct WebTabView: View {
             ZStack {
                 VStack {
                     Spacer()
-                    Text("Invalid Web Page")
+                    Text("Web Page Error: \n\"\(errorMessage)\"")
+                        .multilineTextAlignment(.center)
                         .font(.system(size: 17))
                         .foregroundColor(.secondary)
                         .frame(minHeight: 0)
                         .clipped()
                     Spacer()
                 }
-                if webTab.url != nil {
-                    WebView(pageURL: $webTab.url,
-                            pageTitle: $webTab.title,
-                            updateType: $updateType,
-                            canGoBack: $canGoBack,
-                            canGoForward: $canGoForward)
-                }
+                WebView(pageURL: $webTab.url,
+                        pageTitle: $webTab.title,
+                        updateType: $updateType,
+                        canGoBack: $canGoBack,
+                        canGoForward: $canGoForward,
+                        navigationFailed: $navigationFailed,
+                        errorMessage: $errorMessage)
+                .opacity(navigationFailed ? 0 : 1)
             }
         }
     }

@@ -28,6 +28,9 @@ struct WebView: NSViewRepresentable {
     @Binding var canGoBack: Bool
     @Binding var canGoForward: Bool
 
+    @Binding var navigationFailed: Bool
+    @Binding var errorMessage: String
+
     enum UpdateType {
         case refresh
         case back
@@ -40,10 +43,7 @@ struct WebView: NSViewRepresentable {
         webKitView.navigationDelegate = context.coordinator
 
         // load the initial page
-        if let pageURL = pageURL {
-            let request = URLRequest(url: pageURL)
-            webKitView.load(request)
-        }
+        loadPage(webView: webKitView, url: pageURL)
 
         return webKitView
     }
@@ -53,12 +53,8 @@ struct WebView: NSViewRepresentable {
         guard let webView = nsView as? WKWebView, let pageURL = pageURL else { return }
         webView.navigationDelegate = context.coordinator
 
-        // if the url is different from the webview's url, load the new page
-        if let currentURL = webView.url, currentURL != pageURL {
-            let request = URLRequest(url: pageURL)
-            // Send the command to WKWebView to load our page
-            webView.load(request)
-        }
+        // load the new page
+        loadPage(webView: webView, url: pageURL)
 
         // if there was an update (eg. refres, back, forward) then do the relevant action
         switch updateType {
@@ -78,6 +74,32 @@ struct WebView: NSViewRepresentable {
         }}
     }
 
+    func loadPage(webView: WKWebView, url: URL?) {
+        // check that the URL is different
+        if webView.url != nil {
+            if webView.url?.debugDescription == url?.debugDescription {
+                Log.info("Same URL Entered")
+                return
+            }
+        }
+
+        // if the URL is valid (has a protocol), load the page
+        if let url = url, url.debugDescription.range(of: "://",
+                                                     options: .regularExpression,
+                                                     range: nil, locale: nil) != nil {
+            Log.info("URL \(url.debugDescription) To Be Loaded")
+            let request = URLRequest(url: url)
+            // Send the command to WKWebView to load our page
+            webView.load(request)
+        } else {
+            Log.info("URL \(url?.debugDescription ?? "no url") Rejected")
+            DispatchQueue.main.async {
+                self.navigationFailed = true
+                self.errorMessage = url == nil ? "No URL" : "Invalid URL"
+            }
+        }
+    }
+
     class Coordinator: NSObject, WKNavigationDelegate {
         var parent: WebView
 
@@ -86,7 +108,8 @@ struct WebView: NSViewRepresentable {
         }
 
         func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-            Log.error("Webview failed", navigation ?? "Unknown", error)
+            parent.navigationFailed = true
+            parent.errorMessage = error.localizedDescription
         }
 
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -94,6 +117,8 @@ struct WebView: NSViewRepresentable {
             parent.pageURL = webView.url
             parent.canGoForward = webView.canGoForward
             parent.canGoBack = webView.canGoBack
+            parent.navigationFailed = false
+            parent.errorMessage = "No Error"
         }
     }
 
