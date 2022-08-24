@@ -76,7 +76,6 @@ struct WebWKView: NSViewRepresentable {
         }}
     }
 
-
     /// Convenience function to load a page
     /// - Parameters:
     ///   - webView: The web view
