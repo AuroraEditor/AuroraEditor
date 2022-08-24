@@ -82,23 +82,18 @@ struct WebWKView: NSViewRepresentable {
     ///   - url: The URL to load
     func loadPage(webView: WKWebView, url: URL?) {
         // check that the URL is different
-        if webView.url != nil {
-            if webView.url?.debugDescription == url?.debugDescription {
-                Log.info("Same URL Entered")
-                return
-            }
+        if webView.url != nil && webView.url?.debugDescription == url?.debugDescription {
+            return
         }
 
         // if the URL is valid (has a protocol), load the page
         if let url = url, url.debugDescription.range(of: "^.+://",
                                                      options: .regularExpression,
                                                      range: nil, locale: nil) != nil {
-            Log.info("URL \(url.debugDescription) To Be Loaded")
             let request = URLRequest(url: url)
             // Send the command to WKWebView to load our page
             webView.load(request)
         } else {
-            Log.info("URL \(url?.debugDescription ?? "no url") Rejected")
             DispatchQueue.main.async {
                 self.navigationFailed = true
                 self.errorMessage = url == nil ? "No URL" : "Invalid URL"
