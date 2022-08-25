@@ -207,6 +207,12 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
         keyIsDown = false
     }
 
+    override public func mouseDown(with event: NSEvent) {
+        super.mouseDown(with: event)
+        textView.moveToEndOfDocument(nil)
+        _ = textView.becomeFirstResponder()
+    }
+
     private func textViewBackgroundColor() -> NSColor {
         guard let currentTheme = ThemeModel.shared.selectedTheme,
               AppPreferencesModel.shared.preferences.theme.useThemeBackground else {

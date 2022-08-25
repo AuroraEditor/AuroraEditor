@@ -37,12 +37,7 @@ extension STTextView {
     }
 
     @objc open func delete(_ sender: Any?) {
-        for textRange in textLayoutManager.textSelections.flatMap(\.textRanges) {
-            // "replaceContents" doesn't work with NSTextContentStorage at all
-            // textLayoutManager.replaceContents(in: textRange, with: NSAttributedString())
-            let nsrange = NSRange(textRange, in: textContentStorage)
-            insertText("", replacementRange: nsrange)
-        }
+        deleteToBeginningOfLine(sender)
     }
 
     private func updatePasteboard(with text: String) {
