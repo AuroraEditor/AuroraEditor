@@ -30,8 +30,13 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
     /// The font to use in the `textView`
     public var font: NSFont
 
+    /// The cursor shown when the view is being hovered
+    let cursor = NSCursor.iBeam
+
     private var keyDownEvent: Any?
     private var keyUpEvent: Any?
+    private var mouseEnteredEvent: Any?
+    private var mouseDraggedEvent: Any?
 
     // MARK: Init
     public init(text: Binding<String>,
@@ -120,6 +125,18 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
             self.keyUp(with: event)
             return event
         }
+
+        mouseEnteredEvent = NSEvent.addLocalMonitorForEvents(matching: .mouseEntered, handler: { event in
+            self.mouseEntered(with: event)
+            return event
+        })
+
+        mouseDraggedEvent = NSEvent.addLocalMonitorForEvents(matching: .leftMouseDragged, handler: { event in
+            self.textView.mouseDragged(with: event)
+            return event
+        })
+
+        cursor.set()
     }
 
     deinit {
@@ -129,6 +146,13 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
         }
         if let keyUpEvent = keyUpEvent {
             NSEvent.removeMonitor(keyUpEvent)
+        }
+        if let mouseEnteredEvent = mouseEnteredEvent {
+            NSEvent.removeMonitor(mouseEnteredEvent)
+        }
+
+        if let mouseDraggedEvent = mouseDraggedEvent {
+            NSEvent.removeMonitor(mouseDraggedEvent)
         }
     }
 
@@ -211,6 +235,12 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
         super.mouseDown(with: event)
         textView.moveToEndOfDocument(nil)
         _ = textView.becomeFirstResponder()
+    }
+
+    override public func mouseEntered(with event: NSEvent) {
+        super.mouseEntered(with: event)
+        self.view.addCursorRect(self.view.bounds, cursor: NSCursor.iBeam)
+        cursor.set()
     }
 
     private func textViewBackgroundColor() -> NSColor {
