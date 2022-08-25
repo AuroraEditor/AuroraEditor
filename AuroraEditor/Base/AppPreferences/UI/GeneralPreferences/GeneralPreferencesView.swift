@@ -97,6 +97,15 @@ public struct GeneralPreferencesView: View {
             }
             .padding(.bottom)
 
+            Text("Inspector")
+                .fontWeight(.bold)
+                .padding(.horizontal)
+
+            GroupBox {
+                keepInspectorWindowOpen
+            }
+            .padding(.bottom)
+
             Text("Other")
                 .fontWeight(.bold)
                 .padding(.horizontal)
@@ -154,7 +163,7 @@ private extension GeneralPreferencesView {
                 .frame(width: inputWidth)
 
                 Toggle("Show Live Issues", isOn: $prefs.preferences.general.showLiveIssues)
-                    .toggleStyle(.checkbox)
+                    .toggleStyle(.switch)
             }
             .disabled(true)
         }
@@ -344,10 +353,11 @@ private extension GeneralPreferencesView {
 
     var openInAuroraEditorToggle: some View {
         HStack {
-            Text("Finder Context Menu")
+            Text("Show “Open With AuroraEditor” option")
             Spacer()
-            Toggle("Show “Open With AuroraEditor” option", isOn: $openInAuroraEditor)
-                .toggleStyle(.checkbox)
+            Toggle("", isOn: $openInAuroraEditor)
+                .labelsHidden()
+                .toggleStyle(.switch)
                 .onChange(of: openInAuroraEditor) { newValue in
                     guard let defaults = UserDefaults.init(
                         suiteName: "com.auroraeditor.shared"
@@ -364,17 +374,24 @@ private extension GeneralPreferencesView {
 
     var revealFileOnFocusChangeToggle: some View {
         HStack {
-            Text("Project Navigator Behavior")
+            Text("Automatically Show Active File")
             Spacer()
             Toggle("Automatically Show Active File", isOn: $prefs.preferences.general.revealFileOnFocusChange)
-                .toggleStyle(.checkbox)
+                .toggleStyle(.switch)
+                .labelsHidden()
         }
         .padding(.horizontal)
     }
-}
 
-struct GeneralPreferencesView_Previews: PreviewProvider {
-    static var previews: some View {
-        GeneralPreferencesView()
+    var keepInspectorWindowOpen: some View {
+        HStack {
+            Text("Keep Inspector Sidebar Open")
+            Spacer()
+            Toggle("", isOn: $prefs.preferences.general.keepInspectorSidebarOpen)
+                .toggleStyle(.switch)
+                .labelsHidden()
+        }
+        .padding(.vertical, 7)
+        .padding(.horizontal)
     }
 }
