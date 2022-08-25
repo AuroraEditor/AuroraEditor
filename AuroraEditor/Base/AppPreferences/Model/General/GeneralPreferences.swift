@@ -53,6 +53,8 @@ public extension AppPreferences {
         /// The reveal file in navigator when focus changes behavior of the app.
         public var revealFileOnFocusChange: Bool = false
 
+        public var keepInspectorSidebarOpen: Bool = true
+
         /// Default initializer
         public init() {}
 
@@ -115,6 +117,10 @@ public extension AppPreferences {
                 Bool.self,
                 forKey: .revealFileOnFocusChange
             ) ?? false
+            self.keepInspectorSidebarOpen = try container.decodeIfPresent(
+                Bool.self,
+                forKey: .keepInspectorSidebarOpen
+            ) ?? true
         }
         // swiftlint:enable function_body_length
     }
