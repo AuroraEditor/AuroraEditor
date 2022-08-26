@@ -132,8 +132,31 @@ extension FileItem {
     /// This function moves the item or folder if possible
     public func move(to newLocation: URL) {
         guard !FileItem.fileManger.fileExists(atPath: newLocation.path) else { return }
+        createMissingParentDirectory(for: newLocation.deletingLastPathComponent())
+
         do {
+            Log.info("Moving file \(self.url.debugDescription) to \(newLocation.debugDescription)")
             try FileItem.fileManger.moveItem(at: self.url, to: newLocation)
         } catch { fatalError(error.localizedDescription) }
+
+        // This function recursively creates missing directories if the file is moved to a directory that does not exist
+        func createMissingParentDirectory(for url: URL, createSelf: Bool = true) {
+            // if the folder's parent folder doesn't exist, create it.
+            if !FileItem.fileManger.fileExists(atPath: url.deletingLastPathComponent().path) {
+                createMissingParentDirectory(for: url.deletingLastPathComponent())
+            }
+            // if the folder doesn't exist and the function was ordered to create it, create it.
+            if createSelf && !FileItem.fileManger.fileExists(atPath: url.path) {
+                Log.info("Creating folder \(url.debugDescription)")
+                // Create the folder
+                do {
+                    try FileItem.fileManger.createDirectory(at: url,
+                                                            withIntermediateDirectories: true,
+                                                            attributes: [:])
+                } catch {
+                    fatalError(error.localizedDescription)
+                }
+            }
+        }
     }
 }
