@@ -17,6 +17,8 @@ public enum GitType: String, Codable {
     case renamed = "R"
     case copied = "C"
     case updatedUnmerged = "U"
+    case ignored = "!"
+    case unchanged = "."
 
     var description: String {
         switch self {
@@ -28,6 +30,34 @@ public enum GitType: String, Codable {
         case .renamed: return "R"
         case .copied: return "C"
         case .updatedUnmerged: return "U"
+        case .ignored: return "!"
+        case .unchanged: return "."
         }
     }
+}
+
+/// The enum representation of a Git file change in Aurora Editor.
+enum FileStatusKind: String {
+    case new = "New"
+    case modified = "Modified"
+    case deleted = "Deleted"
+    case copied = "Copied"
+    case renamed = "Renamed"
+    case conflicted = "Conflicted"
+    case untracked = "Untracked"
+}
+
+enum UnmergedEntrySummary: String {
+    case addedByUs = "added-by-us"
+    case deletedByUs = "deleted-by-us"
+    case addedByThem = "added-by-them"
+    case deletedByThem = "deleted-by-them"
+    case bothDeleted = "both-deleted"
+    case bothAdded = "both-added"
+    case bothModified = "both-modified"
+}
+
+/// The porcelain status for an unmerged entry
+func untrackedEntry() -> String {
+    return "untracked"
 }
