@@ -44,9 +44,7 @@ public struct BreadcrumbsView: View {
         .frame(height: 28, alignment: .center)
         .background {
             EffectView(
-                colorScheme == .dark
-                ? NSVisualEffectView.Material.windowBackground
-                : NSVisualEffectView.Material.contentBackground,
+                NSVisualEffectView.Material.contentBackground,
                 blendingMode: NSVisualEffectView.BlendingMode.withinWindow
             )
         }

@@ -14,9 +14,7 @@ struct TabBarXcodeBackground: View {
 
     var body: some View {
         EffectView(
-            colorScheme == .dark
-            ? NSVisualEffectView.Material.windowBackground
-            : NSVisualEffectView.Material.contentBackground,
+            NSVisualEffectView.Material.contentBackground,
             blendingMode: NSVisualEffectView.BlendingMode.withinWindow
         )
     }
