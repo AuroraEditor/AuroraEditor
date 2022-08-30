@@ -409,6 +409,11 @@
 		20BCB0C428AA9FFA0064C7C0 /* ManualConflictResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0C328AA9FFA0064C7C0 /* ManualConflictResolution.swift */; };
 		20BCB0C628AAA1C00064C7C0 /* GitCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0C528AAA1C00064C7C0 /* GitCommit.swift */; };
 		20BCB0C828AAA3190064C7C0 /* GitAuthor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0C728AAA3190064C7C0 /* GitAuthor.swift */; };
+		20C22DA828BCD2A3004973CA /* Diff-Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C22DA728BCD2A3004973CA /* Diff-Index.swift */; };
+		20C22DAA28BCE18F004973CA /* Diff-Check.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C22DA928BCE18F004973CA /* Diff-Check.swift */; };
+		20C22DAF28BCE339004973CA /* Raw-Diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C22DAE28BCE339004973CA /* Raw-Diff.swift */; };
+		20C22DB128BCE869004973CA /* Diff-Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C22DB028BCE869004973CA /* Diff-Line.swift */; };
+		20C22DB328BCEB4D004973CA /* Diff-Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C22DB228BCEB4D004973CA /* Diff-Selection.swift */; };
 		20C8D7DC287ED2C700C5B3BA /* ToolbarBranchPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8D7DB287ED2C700C5B3BA /* ToolbarBranchPicker.swift */; };
 		20D2A43328A7AA4A0073F7BD /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A43228A7AA4A0073F7BD /* Init.swift */; };
 		20D2A43628A7AAF30073F7BD /* DefaultBranch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D2A43528A7AAF30073F7BD /* DefaultBranch.swift */; };
@@ -442,6 +447,9 @@
 		20EBB507280C32D300F3A5DA /* QuickHelpInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBB506280C32D300F3A5DA /* QuickHelpInspector.swift */; };
 		20EBB50D280C383700F3A5DA /* LanguageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBB50C280C383700F3A5DA /* LanguageType.swift */; };
 		20EBB50F280C389300F3A5DA /* FileInspectorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBB50E280C389300F3A5DA /* FileInspectorModel.swift */; };
+		20FDB4E328BD06CB00FDD8C3 /* Diff-Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FDB4E228BD06CB00FDD8C3 /* Diff-Data.swift */; };
+		20FDB4E528BD17FB00FDD8C3 /* Diff-Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FDB4E428BD17FB00FDD8C3 /* Diff-Parser.swift */; };
+		20FDB4E828BD26B500FDD8C3 /* Diff-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FDB4E728BD26B500FDD8C3 /* Diff-Helper.swift */; };
 		2813F93927ECC4C300E305E4 /* NavigatorSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287776E627E3413200D46668 /* NavigatorSidebar.swift */; };
 		2847019E27FDDF7600F87B6B /* ProjectNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2847019D27FDDF7600F87B6B /* ProjectNavigatorView.swift */; };
 		285FEC7027FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285FEC6F27FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift */; };
@@ -677,6 +685,11 @@
 		20BCB0C328AA9FFA0064C7C0 /* ManualConflictResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualConflictResolution.swift; sourceTree = "<group>"; };
 		20BCB0C528AAA1C00064C7C0 /* GitCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommit.swift; sourceTree = "<group>"; };
 		20BCB0C728AAA3190064C7C0 /* GitAuthor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitAuthor.swift; sourceTree = "<group>"; };
+		20C22DA728BCD2A3004973CA /* Diff-Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Diff-Index.swift"; sourceTree = "<group>"; };
+		20C22DA928BCE18F004973CA /* Diff-Check.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Diff-Check.swift"; sourceTree = "<group>"; };
+		20C22DAE28BCE339004973CA /* Raw-Diff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Raw-Diff.swift"; sourceTree = "<group>"; };
+		20C22DB028BCE869004973CA /* Diff-Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Diff-Line.swift"; sourceTree = "<group>"; };
+		20C22DB228BCEB4D004973CA /* Diff-Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Diff-Selection.swift"; sourceTree = "<group>"; };
 		20C8D7DB287ED2C700C5B3BA /* ToolbarBranchPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarBranchPicker.swift; sourceTree = "<group>"; };
 		20D2A43228A7AA4A0073F7BD /* Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Init.swift; sourceTree = "<group>"; };
 		20D2A43528A7AAF30073F7BD /* DefaultBranch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBranch.swift; sourceTree = "<group>"; };
@@ -1016,6 +1029,9 @@
 		20EBB506280C32D300F3A5DA /* QuickHelpInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickHelpInspector.swift; sourceTree = "<group>"; };
 		20EBB50C280C383700F3A5DA /* LanguageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageType.swift; sourceTree = "<group>"; };
 		20EBB50E280C389300F3A5DA /* FileInspectorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInspectorModel.swift; sourceTree = "<group>"; };
+		20FDB4E228BD06CB00FDD8C3 /* Diff-Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Diff-Data.swift"; sourceTree = "<group>"; };
+		20FDB4E428BD17FB00FDD8C3 /* Diff-Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Diff-Parser.swift"; sourceTree = "<group>"; };
+		20FDB4E728BD26B500FDD8C3 /* Diff-Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Diff-Helper.swift"; sourceTree = "<group>"; };
 		2847019D27FDDF7600F87B6B /* ProjectNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorView.swift; sourceTree = "<group>"; };
 		285FEC6D27FE4B4A00E57D53 /* ProjectNavigatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorViewController.swift; sourceTree = "<group>"; };
 		285FEC6F27FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorTableViewCell.swift; sourceTree = "<group>"; };
@@ -1362,6 +1378,18 @@
 				93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		20C22DAD28BCE321004973CA /* Diff */ = {
+			isa = PBXGroup;
+			children = (
+				20FDB4E628BD26A100FDD8C3 /* Helper */,
+				20C22DAE28BCE339004973CA /* Raw-Diff.swift */,
+				20C22DB028BCE869004973CA /* Diff-Line.swift */,
+				20C22DB228BCEB4D004973CA /* Diff-Selection.swift */,
+				20FDB4E228BD06CB00FDD8C3 /* Diff-Data.swift */,
+			);
+			path = Diff;
 			sourceTree = "<group>";
 		};
 		20D2A43428A7AAE20073F7BD /* Helpers */ = {
@@ -2266,6 +2294,9 @@
 				204CD3E528AB87640003D082 /* Config.swift */,
 				20DF979A28ABA633009CE1E9 /* Rev-Parse.swift */,
 				2030964128AD03460083D725 /* Rev-List.swift */,
+				20C22DA728BCD2A3004973CA /* Diff-Index.swift */,
+				20C22DA928BCE18F004973CA /* Diff-Check.swift */,
+				20FDB4E428BD17FB00FDD8C3 /* Diff-Parser.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -2273,6 +2304,7 @@
 		20D838C8289A7ACE00D91D05 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				20C22DAD28BCE321004973CA /* Diff */,
 				20D83916289A818B00D91D05 /* Accounts */,
 				20D838C7289A7ACE00D91D05 /* Client */,
 				20D8387A289A7ACE00D91D05 /* GitUIModel.swift */,
@@ -2824,6 +2856,14 @@
 				20DD3FF6288D92B200757239 /* History */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		20FDB4E628BD26A100FDD8C3 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				20FDB4E728BD26B500FDD8C3 /* Diff-Helper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		28069DA527F5BD320016BC47 /* DefaultThemes */ = {
@@ -3438,6 +3478,7 @@
 				20EBB50D280C383700F3A5DA /* LanguageType.swift in Sources */,
 				2093CDD8289AA511003A88DD /* URL+URLParameters.swift in Sources */,
 				2093CD46289AA095003A88DD /* AvatarURL.swift in Sources */,
+				20C22DA828BCD2A3004973CA /* Diff-Index.swift in Sources */,
 				2093CDA9289AA179003A88DD /* SourceControlGeneralView.swift in Sources */,
 				2093CD1E289AA07D003A88DD /* BitbucketRepositories.swift in Sources */,
 				201169D92837B31200F92B46 /* SourceControlSearchToolbar.swift in Sources */,
@@ -3481,6 +3522,7 @@
 				2093CD44289AA095003A88DD /* Permissions.swift in Sources */,
 				2093CCA2289AA00B003A88DD /* WelcomeActionView.swift in Sources */,
 				2093CDC7289AA260003A88DD /* TabBarAccessory.swift in Sources */,
+				20C22DAF28BCE339004973CA /* Raw-Diff.swift in Sources */,
 				2093CD49289AA095003A88DD /* EventData.swift in Sources */,
 				2093CDD6289AA511003A88DD /* Dictionary+Additions.swift in Sources */,
 				2093CDA3289AA16C003A88DD /* PreferencesColorPicker.swift in Sources */,
@@ -3536,6 +3578,7 @@
 				2093CD16289AA054003A88DD /* CommitHistory.swift in Sources */,
 				9354D4B728ACEE04004C6D18 /* RepositoriesTableViewCell.swift in Sources */,
 				2B4C1347289D56F9000ED796 /* STTextView+Insert.swift in Sources */,
+				20C22DAA28BCE18F004973CA /* Diff-Check.swift in Sources */,
 				20BCB0C228AA9AA00064C7C0 /* Stash-Entry.swift in Sources */,
 				2093CDCB289AA260003A88DD /* TabBarItem.swift in Sources */,
 				2093CDAF289AA185003A88DD /* PreviewThemeView.swift in Sources */,
@@ -3607,6 +3650,7 @@
 				2093CDB1289AA19B003A88DD /* AccountListItem.swift in Sources */,
 				209D0251289ABF9A0082441F /* STTextView+AutoComplete.swift in Sources */,
 				2093CC99289A9FFD003A88DD /* FilterTextField.swift in Sources */,
+				20FDB4E328BD06CB00FDD8C3 /* Diff-Data.swift in Sources */,
 				2093CD6F289AA0FC003A88DD /* SettingsTextEditor.swift in Sources */,
 				2093CDA0289AA163003A88DD /* ThemePreferences.swift in Sources */,
 				2072FA1A280D872600C7F8D4 /* LineEndings.swift in Sources */,
@@ -3614,6 +3658,7 @@
 				9354D4B928ACEE20004C6D18 /* RepositoriesMenu.swift in Sources */,
 				201169E22837B3D800F92B46 /* ChangesView.swift in Sources */,
 				20DF97A128ABB30D009CE1E9 /* FileManger.swift in Sources */,
+				20FDB4E828BD26B500FDD8C3 /* Diff-Helper.swift in Sources */,
 				2093CDD5289AA511003A88DD /* String+QueryParameters.swift in Sources */,
 				20EBB507280C32D300F3A5DA /* QuickHelpInspector.swift in Sources */,
 				2093CC91289A9FF5003A88DD /* StatusBarIndentSelector.swift in Sources */,
@@ -3667,6 +3712,7 @@
 				20B6A20028AFE124004EC8D7 /* SettingsModel.swift in Sources */,
 				2093CD3E289AA095003A88DD /* GitlabUser.swift in Sources */,
 				2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */,
+				20C22DB328BCEB4D004973CA /* Diff-Selection.swift in Sources */,
 				2B4C1337289D56F9000ED796 /* CompletionWindowController.swift in Sources */,
 				2030964428AD06C60083D725 /* GitBranch.swift in Sources */,
 				20B6A1FE28AFE107004EC8D7 /* SettingItem.swift in Sources */,
@@ -3781,6 +3827,7 @@
 				2041B8AF28A67091005F03D8 /* Branch.swift in Sources */,
 				2093CD40289AA095003A88DD /* GitlabCommit.swift in Sources */,
 				2093CD60289AA0E4003A88DD /* CodeFile.swift in Sources */,
+				20C22DB128BCE869004973CA /* Diff-Line.swift in Sources */,
 				2093CD27289AA084003A88DD /* PublicKey.swift in Sources */,
 				043C321627E3201F006AE443 /* WorkspaceDocument.swift in Sources */,
 				2041B8B628A67631005F03D8 /* Cherry-Pick.swift in Sources */,
@@ -3794,6 +3841,7 @@
 				2093CDA8289AA179003A88DD /* PreferenceSourceControlView.swift in Sources */,
 				2093CDDD289AA51D003A88DD /* AuroraEditorKeychainConstants.swift in Sources */,
 				2093CDBE289AA1C2003A88DD /* AboutView.swift in Sources */,
+				20FDB4E528BD17FB00FDD8C3 /* Diff-Parser.swift in Sources */,
 				043BCF03281DA18A000AC47C /* WorkspaceDocument+Search.swift in Sources */,
 				202F2E35289E7277000D3CAD /* SearchResultMatchModel.swift in Sources */,
 				2BF983FF289D8B3C004F1A60 /* SharedObjects.swift in Sources */,

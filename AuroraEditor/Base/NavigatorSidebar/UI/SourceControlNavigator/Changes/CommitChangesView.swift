@@ -98,6 +98,10 @@ struct CommitChangesView: View {
             return "Summary (Required)"
         case .updatedUnmerged:
             return "Unmerged file \(fileName ?? "Unknown File")"
+        case .ignored:
+            return "Ignore file \(fileName ?? "Unknown File")"
+        case .unchanged:
+            return "Unchanged"
         case .none:
             return "Unable to commit"
         }
