@@ -49,6 +49,7 @@ struct WorkspaceView: View {
 
     var noEditor: some View {
         ZStack {
+            Color("EditorBackground")
             Text("No Editor")
                 .font(.system(size: 17))
                 .foregroundColor(.secondary)
