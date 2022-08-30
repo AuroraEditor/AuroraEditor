@@ -36,6 +36,9 @@ struct WorkspaceView: View {
     @State
     var showInspector = true
 
+    @StateObject
+    private var editorSheetModel: EditorSheetViewsModel = .shared
+
     /// The fullscreen state of the NSWindow.
     /// This will be passed into all child views as an environment variable.
     @State
@@ -168,6 +171,9 @@ struct WorkspaceView: View {
                     windowController.window?.titlebarSeparatorStyle = .automatic
                 }
             }
+        }
+        .sheet(isPresented: $editorSheetModel.showFileCreationSheet) {
+            FileCreationSelectionView()
         }
     }
 }

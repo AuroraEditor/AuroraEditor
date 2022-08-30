@@ -14,6 +14,9 @@ struct NavigatorSidebarToolbarBottom: View {
     @ObservedObject
     private var workspace: WorkspaceDocument
 
+    @State
+    private var selectFileCreationType: Bool = false
+
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
     }
@@ -35,9 +38,10 @@ struct NavigatorSidebarToolbarBottom: View {
     private var addNewFileButton: some View {
         Menu {
             Button("Add File") {
-                guard let folderURL = workspace.workspaceClient?.folderURL,
-                      let root = try? workspace.workspaceClient?.getFileItem(folderURL.path) else { return }
-                root.addFile(fileName: "untitled") // TODO: use currently selected file instead of root
+                selectFileCreationType = true
+            }
+            .sheet(isPresented: $selectFileCreationType) {
+                FileCreationSelectionView()
             }
             Button("Add Folder") {
                 guard let folderURL = workspace.workspaceClient?.folderURL,
