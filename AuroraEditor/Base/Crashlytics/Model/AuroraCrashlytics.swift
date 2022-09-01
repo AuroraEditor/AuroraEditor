@@ -142,7 +142,7 @@ public class AuroraCrashlytics: NSObject {
         }
     }
 
-    private static let RecieveSignal : @convention(c) (Int32) -> Void = { (signal) -> Void in
+    private static let RecieveSignal: @convention(c) (Int32) -> Void = { (signal) -> Void in
 
         guard AuroraCrashlytics.isOpen == true else {
             return
