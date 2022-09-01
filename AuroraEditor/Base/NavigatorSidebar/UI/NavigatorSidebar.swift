@@ -38,26 +38,8 @@ struct NavigatorSidebar: View {
                 SourceControlNavigatorView(workspace: workspace)
             case 2:
                 FindNavigator(workspace: workspace, state: workspace.searchState ?? .init(workspace))
-            case 3:
-                VStack(alignment: .center) {
-                    Text("Needs Implementation")
-                }
-                .frame(maxHeight: .infinity)
-            case 4:
-                VStack(alignment: .center) {
-                    Text("Needs Implementation")
-                }
-                .frame(maxHeight: .infinity)
-            case 5:
-                VStack(alignment: .center) {
-                    Text("Needs Implementation")
-                }
-                .frame(maxHeight: .infinity)
-            case 6:
-                VStack(alignment: .center) {
-                    Text("Needs Implementation")
-                }
-                .frame(maxHeight: .infinity)
+            case 3, 4, 5, 6:
+                needsImplementation
             case 7:
                 ExtensionNavigator(data: workspace.extensionNavigatorData!)
                     .environmentObject(workspace)
@@ -130,5 +112,16 @@ struct NavigatorSidebar: View {
                     .padding(.top, toolbarPadding)
             }
         }
+    }
+
+    var needsImplementation: some View {
+        VStack(alignment: .center) {
+            HStack {
+                Spacer()
+                Text("Needs Implementation")
+                Spacer()
+            }
+        }
+        .frame(maxHeight: .infinity)
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 
 final class SourceControlTableViewCell: FileSystemTableViewCell {
 
-    override init(frame frameRect: NSRect, item: WorkspaceClient.FileItem?, isEditable _ : Bool = false) {
+    override init(frame frameRect: NSRect, item: WorkspaceClient.FileItem?, isEditable _: Bool = false) {
         super.init(frame: frameRect, item: item, isEditable: false)
     }
 
