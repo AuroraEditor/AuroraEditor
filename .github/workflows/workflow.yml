@@ -17,7 +17,7 @@ jobs:
         with:
           path: |
             ~/Library/Developer/Xcode/DerivedData/Swiftcord-*/Build
-            ~/Library/Developer/Xcode/DerivedData/Swiftcord-*/SourcePackages
+            ~/Library/Developer/Xcode/DerivedData/AuroraEditor-*/SourcePackages
           key: ${{ runner.os }}-derivedData-cache-${{ hashFiles(
               'AuroraEditor.xcworkspace/xcshareddata/swiftpm/Package.resolved',
               'AuroraEditor.xcodeproj/xcshareddata/swiftpm/Package.resolved'
