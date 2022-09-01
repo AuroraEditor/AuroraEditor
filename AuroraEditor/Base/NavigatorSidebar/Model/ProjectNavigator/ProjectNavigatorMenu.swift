@@ -24,6 +24,9 @@ final class ProjectNavigatorMenu: NSMenu {
 
     var outlineView: NSOutlineView
 
+    @ObservedObject
+    private var editorSheetModel: EditorSheetViewsModel = .shared
+
     init(sender: NSOutlineView, workspaceURL: URL) {
         outlineView = sender
         gitClient = GitClient.default(
@@ -212,7 +215,7 @@ final class ProjectNavigatorMenu: NSMenu {
     @objc
     private func newFile() {
         outlineView.expandItem((item?.isFolder ?? true) ? item : item?.parent)
-        item?.addFile(fileName: "untitled")
+        editorSheetModel.showFileCreationSheet.toggle()
     }
 
     /// Action that creates a new untitled folder
