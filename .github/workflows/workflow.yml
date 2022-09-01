@@ -7,9 +7,24 @@ on:
 jobs:
   build:
     runs-on: macos-12
-    timeout-minutes: 10 # If a build exceeds 10 mins, it probably isn't ever going to complete
+    timeout-minutes: 10 # If a build exceeds 10 mins, it probably went stale
     steps:
       - uses: actions/checkout@v2
+      
+      ### Caching
+      - uses: actions/cache@v2
+        name: "Cache Derived Data"
+        with:
+          path: |
+            ~/Library/Developer/Xcode/DerivedData/Swiftcord-*/Build
+            ~/Library/Developer/Xcode/DerivedData/Swiftcord-*/SourcePackages
+          key: ${{ runner.os }}-derivedData-cache-${{ hashFiles(
+              'Swiftcord.xcworkspace/xcshareddata/swiftpm/Package.resolved',
+              'Swiftcord.xcodeproj/xcshareddata/swiftpm/Package.resolved'
+            ) }}
+          restore-keys: |
+            ${{ runner.os }}-derivedData-cache
+      
       - name: MacOS Version
         run: sw_vers
       - name: Toolchain version
