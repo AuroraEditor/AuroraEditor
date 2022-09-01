@@ -19,8 +19,8 @@ jobs:
             ~/Library/Developer/Xcode/DerivedData/Swiftcord-*/Build
             ~/Library/Developer/Xcode/DerivedData/Swiftcord-*/SourcePackages
           key: ${{ runner.os }}-derivedData-cache-${{ hashFiles(
-              'Swiftcord.xcworkspace/xcshareddata/swiftpm/Package.resolved',
-              'Swiftcord.xcodeproj/xcshareddata/swiftpm/Package.resolved'
+              'AuroraEditor.xcworkspace/xcshareddata/swiftpm/Package.resolved',
+              'AuroraEditor.xcodeproj/xcshareddata/swiftpm/Package.resolved'
             ) }}
           restore-keys: |
             ${{ runner.os }}-derivedData-cache
