@@ -90,6 +90,20 @@ public struct RecentProjectsView: View {
         }
     }
 
+    func openDocument(for url: String) {
+        openDocument( URL(fileURLWithPath: url),
+                      dismissWindow )
+        if let urlLocation = recentProjectPaths.firstIndex(of: url) {
+            recentProjectPaths.remove(at: urlLocation)
+            recentProjectPaths.insert(url, at: 0)
+
+            UserDefaults.standard.set(
+                self.recentProjectPaths,
+                forKey: "recentProjectPaths"
+            )
+        }
+    }
+
     public var body: some View {
         VStack(alignment: !recentProjectPaths.isEmpty ? .leading : .center, spacing: 10) {
             if !recentProjectPaths.isEmpty {
@@ -98,10 +112,7 @@ public struct RecentProjectsView: View {
                         RecentProjectItem(projectPath: projectPath)
                             .frame(width: 300)
                             .gesture(TapGesture(count: 2).onEnded {
-                                openDocument(
-                                    URL(fileURLWithPath: projectPath),
-                                    dismissWindow
-                                )
+                                openDocument(for: projectPath)
                             })
                             .simultaneousGesture(TapGesture().onEnded {
                                 selectedProjectPath = projectPath
@@ -134,10 +145,7 @@ public struct RecentProjectsView: View {
 
                         Button("") {
                             if let selectedProjectPath = selectedProjectPath {
-                                openDocument(
-                                    URL(fileURLWithPath: selectedProjectPath),
-                                    dismissWindow
-                                )
+                                openDocument(for: selectedProjectPath)
                             }
                         }
                         .buttonStyle(.borderless)
