@@ -21,6 +21,8 @@ AuroraEditor is a IDE built by the community, for the community, and written in 
 
 It will support everything you could expect from an Xcode-inspired application, including deep integration with your selected git provider, project planning, and your favourite built in editor tools.
 
+<img width="1012" alt="github-banner" src="https://user-images.githubusercontent.com/63672227/187914690-2277654c-6cab-4738-b151-1c85947bea8b.jpg">
+
 <br />
 
 <p align="center">
