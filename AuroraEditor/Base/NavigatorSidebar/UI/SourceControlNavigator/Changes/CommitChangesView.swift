@@ -34,6 +34,7 @@ struct CommitChangesView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Divider()
+                .padding(.leading, 5)
                 .padding(.horizontal, -15)
 
             Text("Commit")
