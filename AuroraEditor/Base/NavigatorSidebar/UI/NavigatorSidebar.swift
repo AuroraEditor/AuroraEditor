@@ -85,7 +85,7 @@ struct NavigatorSidebar: View {
         })
         .ignoresSafeArea(edges: (prefs.preferences.general.sidebarStyle == .xcode) ? [.leading] : [])
         .padding([.top, .leading], (prefs.preferences.general.sidebarStyle == .xcode) ? 0 : -10)
-        .safeAreaInset(edge: .leading) {
+        .safeAreaInset(edge: .leading) { // VSC style sidebar
             if prefs.preferences.general.sidebarStyle == .vscode {
                 NavigatorSidebarToolbarLeft(selection: $selection)
                     .padding(.leading, 5)
@@ -99,14 +99,14 @@ struct NavigatorSidebar: View {
                             }
                         }
                         .frame(width: 1)
-                        .offset(y: -8)
+                        .offset(x: -2, y: -8)
                     }
             } else {
                 HStack {
                 }.frame(width: 0)
             }
         }
-        .safeAreaInset(edge: .top) {
+        .safeAreaInset(edge: .top) { // Xcode style sidebar
             if prefs.preferences.general.sidebarStyle == .xcode {
                 NavigatorSidebarToolbarTop(selection: $selection)
                     .padding(.bottom, toolbarPadding)
