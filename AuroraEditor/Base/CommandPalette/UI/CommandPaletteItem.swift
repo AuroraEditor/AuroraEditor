@@ -22,6 +22,7 @@ struct CommandPaletteItem: View {
             VStack(alignment: .leading, spacing: 0) {
                 Text(command.name).font(.system(size: 14))
                     .lineLimit(1)
+                    .opacity(command.isEnabled ? 1 : 0.5)
             }.padding(.horizontal, 15)
             Spacer()
         }

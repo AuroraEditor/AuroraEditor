@@ -66,7 +66,7 @@ extension WorkspaceDocument {
             for subItem in submenu.items {
                 addMenuItemAsCommand(item: subItem, nameSoFar: "\(item.title) ->")
             }
-        } else if item.isEnabled {
+        } else {
             Log.info("Item: \(item.title)")
             self.commandPaletteState?.possibleCommands.append(Command(name: "\(nameSoFar) \(item.title)", command: {
                 if let action = item.action {
@@ -81,7 +81,7 @@ extension WorkspaceDocument {
                         self.perform(action)
                     }
                 }
-            }))
+            }, isEnabled: item.isEnabled && item.action != nil))
         }
     }
 }

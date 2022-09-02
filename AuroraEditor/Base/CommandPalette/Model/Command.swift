@@ -16,10 +16,12 @@ class Command: ObservableObject, Identifiable, Hashable {
     @Published var name: String
     var command: () -> Void = {}
     var id = UUID()
+    var isEnabled: Bool
 
-    init(name: String, command: @escaping () -> Void = {}) {
+    init(name: String, command: @escaping () -> Void = {}, isEnabled: Bool = true) {
         self.name = name
         self.command = command
+        self.isEnabled = isEnabled
     }
 
     func hash(into hasher: inout Hasher) {
