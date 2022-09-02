@@ -13,6 +13,7 @@ struct GamesProjectView: View {
         VStack {
             Text("Needs Implementation")
         }
+        .frame(width: .infinity, height: .infinity)
     }
 }
 

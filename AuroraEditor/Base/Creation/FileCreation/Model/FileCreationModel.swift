@@ -15,19 +15,37 @@ class FileCreationModel: ObservableObject {
     @Published
     var languageItems = [
         FileSelectionItem(languageName: "Java",
-                          langaugeIcon: "scale.3d"),
+                          langaugeIcon: "java"),
+        FileSelectionItem(languageName: "C",
+                          langaugeIcon: "c-programming"),
         FileSelectionItem(languageName: "C++",
-                          langaugeIcon: "scale.3d"),
-        FileSelectionItem(languageName: "Kotlin",
-                          langaugeIcon: "scale.3d"),
-        FileSelectionItem(languageName: "Carbon",
-                          langaugeIcon: "scale.3d"),
+                          langaugeIcon: "c-plus-plus"),
         FileSelectionItem(languageName: "C#",
-                          langaugeIcon: "scale.3d"),
+                          langaugeIcon: "c-sharp-logo"),
+        FileSelectionItem(languageName: "Kotlin",
+                          langaugeIcon: "kotlin"),
         FileSelectionItem(languageName: "Swift",
-                          langaugeIcon: "scale.3d"),
-        FileSelectionItem(languageName: "Rust",
-                          langaugeIcon: "scale.3d")
+                          langaugeIcon: "swift"),
+        FileSelectionItem(languageName: "Dart",
+                          langaugeIcon: "dart"),
+        FileSelectionItem(languageName: "Typescript",
+                          langaugeIcon: "typescript"),
+        FileSelectionItem(languageName: "JavaScript",
+                          langaugeIcon: "javascript"),
+        FileSelectionItem(languageName: "HTML",
+                          langaugeIcon: "html"),
+        FileSelectionItem(languageName: "CSS",
+                          langaugeIcon: "css3"),
+        FileSelectionItem(languageName: "SASS",
+                          langaugeIcon: "sass"),
+        FileSelectionItem(languageName: "Ruby",
+                          langaugeIcon: "ruby"),
+        FileSelectionItem(languageName: "Go",
+                          langaugeIcon: "golang"),
+        FileSelectionItem(languageName: "Python",
+                          langaugeIcon: "python"),
+        FileSelectionItem(languageName: "Dockerfile",
+                          langaugeIcon: "docker")
     ]
 
     @Published
@@ -44,6 +62,62 @@ class FileCreationModel: ObservableObject {
                           langaugeIcon: "scale.3d"),
         FileSelectionItem(languageName: "Kotlin Multiplatform",
                           langaugeIcon: "scale.3d")
+    ]
+
+    @Published
+    var crossPlatformProjects = [
+        FileSelectionItem(languageName: "Flutter",
+                          langaugeIcon: "fluttersvg"),
+        FileSelectionItem(languageName: "Ionic",
+                          langaugeIcon: "ionic"),
+        FileSelectionItem(languageName: "Angular",
+                          langaugeIcon: "angularjs"),
+        FileSelectionItem(languageName: "React Native",
+                          langaugeIcon: "react-native"),
+        FileSelectionItem(languageName: "Kotlin Multiplatform",
+                          langaugeIcon: "kotlin")
+    ]
+
+    @Published
+    var aiMLProjects = [
+        FileSelectionItem(languageName: "Python",
+                          langaugeIcon: "python"),
+        FileSelectionItem(languageName: "Java",
+                          langaugeIcon: "java"),
+        FileSelectionItem(languageName: "R",
+                          langaugeIcon: "rlogo"),
+        FileSelectionItem(languageName: "Haskell",
+                          langaugeIcon: "haskell"),
+        FileSelectionItem(languageName: "Julia",
+                          langaugeIcon: "julia"),
+        FileSelectionItem(languageName: "C++",
+                          langaugeIcon: "c-plus-plus"),
+        FileSelectionItem(languageName: "Lisp",
+                          langaugeIcon: "lisp")
+    ]
+
+    @Published
+    var webProjects = [
+        FileSelectionItem(languageName: "Flutter",
+                          langaugeIcon: "fluttersvg"),
+        FileSelectionItem(languageName: "Ionic",
+                          langaugeIcon: "ionic"),
+        FileSelectionItem(languageName: "Angular",
+                          langaugeIcon: "angularjs"),
+        FileSelectionItem(languageName: "React JS",
+                          langaugeIcon: "react-native"),
+        FileSelectionItem(languageName: "Vue JS",
+                          langaugeIcon: "vue-js"),
+        FileSelectionItem(languageName: "Redux",
+                          langaugeIcon: "redux"),
+        FileSelectionItem(languageName: "Jenkins",
+                          langaugeIcon: "jenkins"),
+        FileSelectionItem(languageName: "Flask",
+                          langaugeIcon: "flask"),
+        FileSelectionItem(languageName: "Express JS",
+                          langaugeIcon: "express-js"),
+        FileSelectionItem(languageName: "Bootstrap",
+                          langaugeIcon: "bootstrap")
     ]
 
     @Published

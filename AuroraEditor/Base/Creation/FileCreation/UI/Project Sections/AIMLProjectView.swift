@@ -9,8 +9,34 @@
 import SwiftUI
 
 struct AIMLProjectView: View {
+    @StateObject
+    private var creationSheetModel: FileCreationModel = .shared
+
+    private var gridItemLayout = [GridItem(.flexible()),
+                                  GridItem(.flexible()),
+                                  GridItem(.flexible()),
+                                  GridItem(.flexible()),
+                                  GridItem(.flexible())]
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            ScrollView(.vertical) {
+                LazyVGrid(columns: gridItemLayout) {
+                    ForEach(creationSheetModel.aiMLProjects, id: \.self) { language in
+                        VStack {
+                            Image(language.langaugeIcon)
+                                .padding(.bottom, 10)
+
+                            Text(language.languageName)
+                                .multilineTextAlignment(.center)
+                                .lineLimit(1)
+                                .font(.system(size: 11))
+                        }
+                        .padding()
+                    }
+                }
+            }.frame(maxWidth: .infinity)
+        }
     }
 }
 

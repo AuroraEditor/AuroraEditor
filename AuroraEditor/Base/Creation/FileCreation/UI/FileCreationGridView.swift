@@ -10,22 +10,8 @@ import SwiftUI
 
 struct FileCreationGridView: View {
 
-    private var languageItems = [
-        FileSelectionItem(languageName: "Java",
-                          langaugeIcon: "scale.3d"),
-        FileSelectionItem(languageName: "C++",
-                          langaugeIcon: "scale.3d"),
-        FileSelectionItem(languageName: "Kotlin",
-                          langaugeIcon: "scale.3d"),
-        FileSelectionItem(languageName: "Carbon",
-                          langaugeIcon: "scale.3d"),
-        FileSelectionItem(languageName: "C#",
-                          langaugeIcon: "scale.3d"),
-        FileSelectionItem(languageName: "Swift",
-                          langaugeIcon: "scale.3d"),
-        FileSelectionItem(languageName: "Rust",
-                          langaugeIcon: "scale.3d")
-    ]
+    @StateObject
+    private var creationSheetModel: FileCreationModel = .shared
 
     private var gridItemLayout = [GridItem(.flexible()),
                                   GridItem(.flexible()),
@@ -37,11 +23,15 @@ struct FileCreationGridView: View {
         ScrollView(.vertical) {
             Section {
                 LazyVGrid(columns: gridItemLayout) {
-                    ForEach(languageItems, id: \.self) { language in
+                    ForEach(creationSheetModel.languageItems, id: \.self) { language in
                         VStack {
-                            Image(systemName: language.langaugeIcon)
+                            Image(language.langaugeIcon)
                                 .padding(.bottom, 10)
+
                             Text(language.languageName)
+                                .multilineTextAlignment(.center)
+                                .lineLimit(1)
+                                .font(.system(size: 11))
                         }
                         .padding()
                     }

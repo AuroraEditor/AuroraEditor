@@ -32,22 +32,22 @@ struct ProjectCreationGridView: View {
             }
 
             if creationSheetModel.selectedSection == 0 {
-                Text("Cross-platform")
+                CrossPlatformProjectView()
             }
 
             if creationSheetModel.selectedSection == 1 {
-                Text("Web")
+                WebProjectView()
             }
 
             if creationSheetModel.selectedSection == 2 {
-                Text("AI/ML")
+                AIMLProjectView()
             }
 
             if creationSheetModel.selectedSection == 3 {
                 GamesProjectView()
             }
         }
-        .border(.gray.opacity(0.3))
+        .border(Color(nsColor: NSColor.separatorColor))
     }
 }
 

@@ -46,7 +46,7 @@ public struct SegmentedControl: View {
 
             }
         }
-        .frame(height: 20)
+        .frame(width: .infinity, height: 20)
     }
 }
 
