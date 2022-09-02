@@ -14,7 +14,7 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
     private var prefs: AppPreferencesModel = .shared
 
     var workspace: WorkspaceDocument?
-    var quickOpenPanel: OverlayPanel?
+    var overlayPanel: OverlayPanel?
 
     private var splitViewController: NSSplitViewController! {
         get { contentViewController as? NSSplitViewController }
@@ -269,52 +269,47 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
 
     @IBAction func openCommandPalette(_ sender: Any) {
         if let workspace = workspace, let state = workspace.quickOpenState {
-            if let quickOpenPanel = quickOpenPanel {
-                if quickOpenPanel.isKeyWindow {
-                    quickOpenPanel.close()
-                    return
-                } else {
-                    window?.addChildWindow(quickOpenPanel, ordered: .above)
-                    quickOpenPanel.makeKeyAndOrderFront(self)
-                }
-            } else {
-                let panel = OverlayPanel()
-                self.quickOpenPanel = panel
-                let contentView = QuickOpenView(
-                    state: state,
-                    onClose: { panel.close() },
-                    openFile: workspace.openTab(item:)
-                )
-                panel.contentView = NSHostingView(rootView: contentView)
-                window?.addChildWindow(panel, ordered: .above)
-                panel.makeKeyAndOrderFront(self)
+            // if the panel exists, is open and is actually a command palette, close it.
+            if let commandPalettePanel = overlayPanel, commandPalettePanel.isKeyWindow &&
+                commandPalettePanel.viewType ?? .commandPalette == .commandPalette {
+                commandPalettePanel.close()
+                return
             }
+            // else, init and show the command palette.
+            let panel = OverlayPanel()
+            configureOverlayPanel(panel: panel, content: NSHostingView(rootView: QuickOpenView(
+                state: state,
+                onClose: { panel.close() },
+                openFile: workspace.openTab(item:)
+            )), viewType: .commandPalette)
+            self.overlayPanel = panel
         }
     }
 
     @IBAction func openQuickly(_ sender: Any) {
         if let workspace = workspace, let state = workspace.quickOpenState {
-            if let quickOpenPanel = quickOpenPanel {
-                if quickOpenPanel.isKeyWindow {
-                    quickOpenPanel.close()
-                    return
-                } else {
-                    window?.addChildWindow(quickOpenPanel, ordered: .above)
-                    quickOpenPanel.makeKeyAndOrderFront(self)
-                }
-            } else {
-                let panel = OverlayPanel()
-                self.quickOpenPanel = panel
-                let contentView = QuickOpenView(
-                    state: state,
-                    onClose: { panel.close() },
-                    openFile: workspace.openTab(item:)
-                )
-                panel.contentView = NSHostingView(rootView: contentView)
-                window?.addChildWindow(panel, ordered: .above)
-                panel.makeKeyAndOrderFront(self)
+            // if the panel exists, is open and is actually a quick open panel, close it.
+            if let quickOpenPanel = overlayPanel, quickOpenPanel.isKeyWindow &&
+                quickOpenPanel.viewType ?? .quickOpen == .quickOpen {
+                quickOpenPanel.close()
+                return
             }
+            // else, init and show the quick open panel
+            let panel = OverlayPanel()
+            configureOverlayPanel(panel: panel, content: NSHostingView(rootView: QuickOpenView(
+                state: state,
+                onClose: { panel.close() },
+                openFile: workspace.openTab(item:)
+            )), viewType: .quickOpen)
+            self.overlayPanel = panel
         }
+    }
+
+    func configureOverlayPanel(panel: OverlayPanel, content: NSView, viewType: OverlayPanel.ViewType? = nil) {
+        panel.contentView = content
+        window?.addChildWindow(panel, ordered: .above)
+        panel.makeKeyAndOrderFront(self)
+        panel.viewType = viewType
     }
 
     // MARK: Git Main Menu Items
