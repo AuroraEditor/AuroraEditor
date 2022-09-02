@@ -33,9 +33,10 @@ public final class CommandPaletteState: ObservableObject {
 
         queue.async { [weak self] in
             guard let self = self else { return }
-            // TODO: Filter commands somehow
             DispatchQueue.main.async {
-                self.commands = self.possibleCommands
+                self.commands = self.possibleCommands.filter({
+                    $0.name.lowercased().contains(self.commandQuery.lowercased())
+                })
                 self.isShowingCommands = !self.commands.isEmpty
             }
         }

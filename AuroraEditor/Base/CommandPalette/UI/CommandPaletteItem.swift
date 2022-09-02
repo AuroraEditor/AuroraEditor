@@ -22,8 +22,9 @@ struct CommandPaletteItem: View {
             Image(systemName: command.icon)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 28, height: 28)
+                .frame(width: 20, height: 20)
                 .padding(2)
+                .padding(.leading, 5)
             VStack(alignment: .leading, spacing: 0) {
                 Text(command.name).font(.system(size: 14))
                     .lineLimit(1)
