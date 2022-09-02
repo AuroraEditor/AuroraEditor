@@ -66,14 +66,17 @@ extension WorkspaceDocument {
             for subItem in submenu.items {
                 addMenuItemAsCommand(item: subItem)
             }
-        } else {
+        } else if item.isEnabled {
             Log.info("Item: \(item.title)")
             self.commandPaletteState?.possibleCommands.append(Command(name: item.title, command: {
-                // TODO: Somehow run the menu bar function
-//                if let action = item.action, let target = item.target {
-//                    target.perform(action)
-//                    Log.info("Action for \(item.title) executed")
-//                }
+                if let action = item.action {
+                    if let target = item.target {
+                        _ = target.perform(action)
+                    } else {
+                        self.perform(action)
+                    }
+                    Log.info("Action for \(item.title) executed")
+                }
             }))
         }
     }
