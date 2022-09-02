@@ -11,40 +11,7 @@ import SwiftUI
 
 extension WorkspaceDocument {
     func setupCommands() {
-        self.commandPaletteState = .init(possibleCommands: [
-            Command(name: "Open Quickly", command: {
-                Log.info("Opening Quickly")
-                self.windowController?.openQuickly(self)
-            }),
-            Command(name: "Stash Changes", command: {
-                Log.info("Stashed Changes")
-                self.windowController?.stashChangesItems(self)
-            }),
-            Command(name: "Discard Project Changes", command: {
-                Log.info("Discarding Project Changes")
-                self.windowController?.discardProjectChanges(self)
-            }),
-            Command(name: "Open Preferences", command: {
-                Log.info("Opening Preferences")
-                if self.tryFocusWindow(of: PreferencesView.self) { return }
-                PreferencesView().showWindow()
-            }),
-            Command(name: "Open About Page", command: {
-                Log.info("Opening About")
-                if self.tryFocusWindow(of: AboutView.self) { return }
-                AboutView().showWindow(width: 530, height: 220)
-            }),
-            Command(name: "Open Welcome Screen", command: {
-                Log.info("Opening Welcome Screen")
-                if self.tryFocusWindow(of: WelcomeWindowView.self) { return }
-                WelcomeWindowView.openWelcomeWindow()
-            }),
-            Command(name: "Open Feedback Page", command: {
-                Log.info("Opening Feedback")
-                if self.tryFocusWindow(of: FeedbackView.self) { return }
-                FeedbackView().showWindow()
-            })
-        ])
+        self.commandPaletteState = .init(possibleCommands: [])
         for item in NSApplication.shared.mainMenu?.items ?? [] {
             addMenuItemAsCommand(item: item)
         }
@@ -61,21 +28,25 @@ extension WorkspaceDocument {
         return true
     }
 
-    private func addMenuItemAsCommand(item: NSMenuItem) {
+    private func addMenuItemAsCommand(item: NSMenuItem, nameSoFar: String = "") {
         if let submenu = item.submenu {
             for subItem in submenu.items {
-                addMenuItemAsCommand(item: subItem)
+                addMenuItemAsCommand(item: subItem, nameSoFar: "\(item.title) ->")
             }
         } else if item.isEnabled {
             Log.info("Item: \(item.title)")
-            self.commandPaletteState?.possibleCommands.append(Command(name: item.title, command: {
+            self.commandPaletteState?.possibleCommands.append(Command(name: "\(nameSoFar) \(item.title)", command: {
                 if let action = item.action {
                     if let target = item.target {
+                        Log.info("Action for \(item.title) executed by target")
                         _ = target.perform(action)
+                    } else if let window = self.windowController?.window {
+                        Log.info("Action for \(item.title) executed by window")
+                        window.perform(action)
                     } else {
+                        Log.info("Action for \(item.title) executed by self")
                         self.perform(action)
                     }
-                    Log.info("Action for \(item.title) executed")
                 }
             }))
         }
