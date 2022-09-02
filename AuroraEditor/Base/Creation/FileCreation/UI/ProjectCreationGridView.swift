@@ -1,0 +1,58 @@
+//
+//  ProjectCreationGridView.swift
+//  AuroraEditor
+//
+//  Created by Nanashi Li on 2022/09/01.
+//  Copyright © 2022 Aurora Company. All rights reserved.
+//
+
+import SwiftUI
+
+struct ProjectCreationGridView: View {
+
+    @ObservedObject
+    private var creationSheetModel: FileCreationModel = .shared
+
+    private var gridItemLayout = [GridItem(.flexible()),
+                                  GridItem(.flexible()),
+                                  GridItem(.flexible()),
+                                  GridItem(.flexible()),
+                                  GridItem(.flexible())]
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            SegmentedControl($creationSheetModel.selectedSection,
+                             options: ["Cross-platform", "Web", "AI/ML", "Games"],
+                             prominent: true)
+            .frame(height: 27)
+            .padding(.horizontal, 8)
+            .padding(.bottom, 2)
+            .overlay(alignment: .bottom) {
+                Divider()
+            }
+
+            if creationSheetModel.selectedSection == 0 {
+                Text("Cross-platform")
+            }
+
+            if creationSheetModel.selectedSection == 1 {
+                Text("Web")
+            }
+
+            if creationSheetModel.selectedSection == 2 {
+                Text("AI/ML")
+            }
+
+            if creationSheetModel.selectedSection == 3 {
+                GamesProjectView()
+            }
+        }
+        .border(.gray.opacity(0.3))
+    }
+}
+
+struct ProjectCreationGridView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProjectCreationGridView()
+    }
+}

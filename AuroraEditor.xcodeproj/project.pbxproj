@@ -31,6 +31,8 @@
 		201169E22837B3D800F92B46 /* ChangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201169E12837B3D800F92B46 /* ChangesView.swift */; };
 		201169E52837B40300F92B46 /* RepositoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201169E42837B40300F92B46 /* RepositoriesView.swift */; };
 		201169E72837B5CA00F92B46 /* SourceControlModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201169E62837B5CA00F92B46 /* SourceControlModel.swift */; };
+		2017483228C10BCE00F73F82 /* ProjectCreationGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2017483128C10BCE00F73F82 /* ProjectCreationGridView.swift */; };
+		2017483428C10E9100F73F82 /* FileCreationGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2017483328C10E9100F73F82 /* FileCreationGridView.swift */; };
 		2019258A289C362B009C2FAB /* LogExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20192589289C362B009C2FAB /* LogExtension.swift */; };
 		2021267C289BF7BA00246DD7 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021267B289BF7BA00246DD7 /* Log.swift */; };
 		2021267F289BF7EF00246DD7 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021267E289BF7EF00246DD7 /* Formatter.swift */; };
@@ -45,6 +47,11 @@
 		2032B50E28A256130089EBB6 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B50D28A256130089EBB6 /* Collection.swift */; };
 		2032B51028A256F50089EBB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B50F28A256F50089EBB6 /* Array.swift */; };
 		2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */; };
+		203D206C28C117CE00E09807 /* FileCreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D206B28C117CE00E09807 /* FileCreationModel.swift */; };
+		203D206F28C11E5E00E09807 /* CrossPlatformProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D206E28C11E5E00E09807 /* CrossPlatformProjectView.swift */; };
+		203D207128C11E6D00E09807 /* WebProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D207028C11E6D00E09807 /* WebProjectView.swift */; };
+		203D207328C11E7800E09807 /* GamesProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D207228C11E7800E09807 /* GamesProjectView.swift */; };
+		203D207528C11E8800E09807 /* AIMLProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D207428C11E8800E09807 /* AIMLProjectView.swift */; };
 		2041B8AF28A67091005F03D8 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2041B8AE28A67091005F03D8 /* Branch.swift */; };
 		2041B8B228A67498005F03D8 /* Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2041B8B128A67498005F03D8 /* Add.swift */; };
 		2041B8B428A674FD005F03D8 /* Checkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2041B8B328A674FD005F03D8 /* Checkout.swift */; };
@@ -626,6 +633,8 @@
 		201169E12837B3D800F92B46 /* ChangesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangesView.swift; sourceTree = "<group>"; };
 		201169E42837B40300F92B46 /* RepositoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesView.swift; sourceTree = "<group>"; };
 		201169E62837B5CA00F92B46 /* SourceControlModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlModel.swift; sourceTree = "<group>"; };
+		2017483128C10BCE00F73F82 /* ProjectCreationGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreationGridView.swift; sourceTree = "<group>"; };
+		2017483328C10E9100F73F82 /* FileCreationGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCreationGridView.swift; sourceTree = "<group>"; };
 		20192589289C362B009C2FAB /* LogExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogExtension.swift; sourceTree = "<group>"; };
 		2021267B289BF7BA00246DD7 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		2021267E289BF7EF00246DD7 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
@@ -641,6 +650,11 @@
 		2032B50D28A256130089EBB6 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		2032B50F28A256F50089EBB6 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowHostingController.swift; sourceTree = "<group>"; };
+		203D206B28C117CE00E09807 /* FileCreationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCreationModel.swift; sourceTree = "<group>"; };
+		203D206E28C11E5E00E09807 /* CrossPlatformProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossPlatformProjectView.swift; sourceTree = "<group>"; };
+		203D207028C11E6D00E09807 /* WebProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebProjectView.swift; sourceTree = "<group>"; };
+		203D207228C11E7800E09807 /* GamesProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesProjectView.swift; sourceTree = "<group>"; };
+		203D207428C11E8800E09807 /* AIMLProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIMLProjectView.swift; sourceTree = "<group>"; };
 		2041B8AE28A67091005F03D8 /* Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
 		2041B8B128A67498005F03D8 /* Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Add.swift; sourceTree = "<group>"; };
 		2041B8B328A674FD005F03D8 /* Checkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkout.swift; sourceTree = "<group>"; };
@@ -1317,6 +1331,17 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		203D206D28C119D100E09807 /* Project Sections */ = {
+			isa = PBXGroup;
+			children = (
+				203D206E28C11E5E00E09807 /* CrossPlatformProjectView.swift */,
+				203D207028C11E6D00E09807 /* WebProjectView.swift */,
+				203D207228C11E7800E09807 /* GamesProjectView.swift */,
+				203D207428C11E8800E09807 /* AIMLProjectView.swift */,
+			);
+			path = "Project Sections";
+			sourceTree = "<group>";
+		};
 		2041B8B028A67486005F03D8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -1374,6 +1399,7 @@
 			isa = PBXGroup;
 			children = (
 				20A5E6F028BE51EC00D585B6 /* FileSelectionItem.swift */,
+				203D206B28C117CE00E09807 /* FileCreationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1381,8 +1407,11 @@
 		20A5E6EB28BE433D00D585B6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				203D206D28C119D100E09807 /* Project Sections */,
 				20A5E6EC28BE43A700D585B6 /* FileCreationSelectionView.swift */,
 				20A5E6EE28BE43D700D585B6 /* FileCreationNamingView.swift */,
+				2017483128C10BCE00F73F82 /* ProjectCreationGridView.swift */,
+				2017483328C10E9100F73F82 /* FileCreationGridView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -3682,6 +3711,7 @@
 				2093CDA6289AA173003A88DD /* TerminalPreferencesView.swift in Sources */,
 				2B4C1349289D56F9000ED796 /* STTextView+Complete.swift in Sources */,
 				2093CD99289AA148003A88DD /* SourceControlPreferences.swift in Sources */,
+				2017483228C10BCE00F73F82 /* ProjectCreationGridView.swift in Sources */,
 				2093CD30289AA089003A88DD /* GithubAccount.swift in Sources */,
 				2B4C133A289D56F9000ED796 /* STCompletion.swift in Sources */,
 				209D0259289ABFF70082441F /* AuroraEditorTextView.swift in Sources */,
@@ -3773,6 +3803,7 @@
 				2093CDBB289AA1B9003A88DD /* AcknowledgementsView.swift in Sources */,
 				202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */,
 				2093CDE0289AA522003A88DD /* Date+Formatted.swift in Sources */,
+				203D207328C11E7800E09807 /* GamesProjectView.swift in Sources */,
 				2847019E27FDDF7600F87B6B /* ProjectNavigatorView.swift in Sources */,
 				2093CD37289AA08F003A88DD /* ProjectRouter.swift in Sources */,
 				93C43E8228B0DBF0002E23DC /* NavigatorSidebarToolbarLeft.swift in Sources */,
@@ -3812,6 +3843,7 @@
 				2041B8BE28A687AE005F03D8 /* Stash.swift in Sources */,
 				2030964228AD03460083D725 /* Rev-List.swift in Sources */,
 				2093CD1A289AA079003A88DD /* BitbucketUserRouter.swift in Sources */,
+				2017483428C10E9100F73F82 /* FileCreationGridView.swift in Sources */,
 				2093CD2B289AA089003A88DD /* Review.swift in Sources */,
 				2093CD4A289AA095003A88DD /* Namespace.swift in Sources */,
 				20D2A43328A7AA4A0073F7BD /* Init.swift in Sources */,
@@ -3823,7 +3855,9 @@
 				20D2A44028A7CE300073F7BD /* Stage.swift in Sources */,
 				2B4C132B289D56F9000ED796 /* STTextView+InsertionPoint.swift in Sources */,
 				2B4C1339289D56F9000ED796 /* STCompletionViewController.swift in Sources */,
+				203D207128C11E6D00E09807 /* WebProjectView.swift in Sources */,
 				043BCF05281DA19A000AC47C /* WorkspaceDocument+Selection.swift in Sources */,
+				203D206F28C11E5E00E09807 /* CrossPlatformProjectView.swift in Sources */,
 				2093CDD7289AA511003A88DD /* String+PercentEncoding.swift in Sources */,
 				2093CD3A289AA08F003A88DD /* CommitRouter.swift in Sources */,
 				2B4C1346289D56F9000ED796 /* STTextView+Select.swift in Sources */,
@@ -3898,6 +3932,7 @@
 				2093CD59289AA0C6003A88DD /* ExtensionsManager.swift in Sources */,
 				2093CD72289AA0FF003A88DD /* OverlayPanel.swift in Sources */,
 				20BCB0BE28AA6E340064C7C0 /* Update-Ref.swift in Sources */,
+				203D207528C11E8800E09807 /* AIMLProjectView.swift in Sources */,
 				2093CCAF289AA02D003A88DD /* QuickOpenItem.swift in Sources */,
 				2093CDA1289AA167003A88DD /* Loopable.swift in Sources */,
 				2093CD58289AA0C6003A88DD /* Plugin.swift in Sources */,
@@ -3908,6 +3943,7 @@
 				2B4C1334289D56F9000ED796 /* STTextFinderClient.swift in Sources */,
 				2093CDBD289AA1BD003A88DD /* ParsePackagesResolved.swift in Sources */,
 				0463E51127FCC1DF00806D5C /* AuroraEditorAPI.swift in Sources */,
+				203D206C28C117CE00E09807 /* FileCreationModel.swift in Sources */,
 				2093CDD4289AA50C003A88DD /* HTMLUtils.swift in Sources */,
 				04C3255B2801F86400C8DA2D /* ProjectNavigatorViewController.swift in Sources */,
 				2093CDC0289AA247003A88DD /* SearchResultModel.swift in Sources */,

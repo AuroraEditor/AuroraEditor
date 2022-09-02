@@ -13,22 +13,11 @@ struct FileCreationSelectionView: View {
     @ObservedObject
     private var editorSheetModel: EditorSheetViewsModel = .shared
 
-    private var languageItems = [
-        FileSelectionItem(languageName: "Java",
-                          langaugeIcon: "scale.3d"),
-        FileSelectionItem(languageName: "C++",
-                          langaugeIcon: "scale.3d"),
-        FileSelectionItem(languageName: "Kotlin",
-                          langaugeIcon: "scale.3d"),
-        FileSelectionItem(languageName: "Carbon",
-                          langaugeIcon: "scale.3d"),
-        FileSelectionItem(languageName: "C#",
-                          langaugeIcon: "scale.3d"),
-        FileSelectionItem(languageName: "Swift",
-                          langaugeIcon: "scale.3d"),
-        FileSelectionItem(languageName: "Rust",
-                          langaugeIcon: "scale.3d")
-    ]
+    @StateObject
+    private var creationSheetModel: FileCreationModel = .shared
+
+    @State
+    var isProjectCreation: Bool = false
 
     private var gridItemLayout = [GridItem(.flexible()),
                                   GridItem(.flexible()),
@@ -45,7 +34,7 @@ struct FileCreationSelectionView: View {
             ScrollView(.vertical) {
                 Section {
                     LazyVGrid(columns: gridItemLayout) {
-                        ForEach(languageItems, id: \.self) { language in
+                        ForEach(creationSheetModel.languageItems, id: \.self) { language in
                             VStack {
                                 Image(systemName: language.langaugeIcon)
                                     .padding(.bottom, 10)
@@ -72,7 +61,7 @@ struct FileCreationSelectionView: View {
 
                 Section {
                     LazyVGrid(columns: gridItemLayout) {
-                        ForEach(languageItems, id: \.self) { language in
+                        ForEach(creationSheetModel.languageItems, id: \.self) { language in
                             VStack {
                                 Image(systemName: language.langaugeIcon)
                                     .padding(.bottom, 10)

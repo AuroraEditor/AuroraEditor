@@ -21,6 +21,7 @@ DerivedData/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
+AuroraEditor.xcarchive
 
 ## Obj-C/Swift specific
 *.hmap
@@ -95,6 +96,4 @@ iOSInjectionProject/
 .codeedit
 .idea
 .vscode
-
-# Ignore .githash
 .githash
