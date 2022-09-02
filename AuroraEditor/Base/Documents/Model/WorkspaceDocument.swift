@@ -88,40 +88,6 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         )
         self.searchState = .init(self)
         self.quickOpenState = .init(fileURL: url)
-        self.commandPaletteState = .init(commands: [
-            Command(name: "Open Quickly", icon: "doc.text.magnifyingglass", command: {
-                Log.info("Opening Quickly")
-                self.windowController?.openQuickly(self)
-            }),
-            Command(name: "Stash Changes", icon: "tray", command: {
-                Log.info("Stashed Changes")
-                self.windowController?.stashChangesItems(self)
-            }),
-            Command(name: "Discard Project Changes", icon: "trash", command: {
-                Log.info("Discarding Project Changes")
-                self.windowController?.discardProjectChanges(self)
-            }),
-            Command(name: "Open Preferences", icon: "gearshape", command: {
-                Log.info("Opening Preferences")
-                if self.tryFocusWindow(of: PreferencesView.self) { return }
-                PreferencesView().showWindow()
-            }),
-            Command(name: "Open About Page", icon: "info.circle", command: {
-                Log.info("Opening About")
-                if self.tryFocusWindow(of: AboutView.self) { return }
-                AboutView().showWindow(width: 530, height: 220)
-            }),
-            Command(name: "Open Welcome Screen", icon: "house", command: {
-                Log.info("Opening Welcome Screen")
-                if self.tryFocusWindow(of: WelcomeWindowView.self) { return }
-                WelcomeWindowView.openWelcomeWindow()
-            }),
-            Command(name: "Open Feedback Page", icon: "text.bubble.fill", command: {
-                Log.info("Opening Feedback")
-                if self.tryFocusWindow(of: FeedbackView.self) { return }
-                FeedbackView().showWindow()
-            })
-        ])
         self.statusBarModel = .init(workspaceURL: url)
 
         NotificationCenter.default.addObserver(self,
@@ -129,17 +95,6 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
                                                name: NSNotification.Name("AE.didBeginEditing"),
                                                object: nil)
         Log.info("Created document \(self)")
-    }
-
-    /// Tries to focus a window with specified view content type.
-    /// - Parameter type: The type of viewContent which hosted in a window to be focused.
-    /// - Returns: `true` if window exist and focused, oterwise - `false`
-    private func tryFocusWindow<T: View>(of type: T.Type) -> Bool {
-        guard let window = NSApp.windows.filter({ ($0.contentView as? NSHostingView<T>) != nil }).first
-        else { return false }
-
-        window.makeKeyAndOrderFront(self)
-        return true
     }
 
     /// Retrieves selection state from UserDefaults using SHA256 hash of project  path as key
@@ -197,6 +152,8 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
             Log.error(error)
         }
         Log.info("Made document from read: \(self)")
+
+        setupCommands()
     }
 
     override func write(to url: URL, ofType typeName: String) throws {}
