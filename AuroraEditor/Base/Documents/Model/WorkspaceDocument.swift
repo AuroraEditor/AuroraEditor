@@ -29,6 +29,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     var statusBarModel: StatusBarModel?
     var searchState: SearchState?
     var quickOpenState: QuickOpenState?
+    var commandPaletteState: CommandPaletteState?
     var listenerModel: WorkspaceNotificationModel = .init()
     private var cancellables = Set<AnyCancellable>()
 
@@ -84,6 +85,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         )
         self.searchState = .init(self)
         self.quickOpenState = .init(fileURL: url)
+        self.commandPaletteState = .init(fileURL: url)
         self.statusBarModel = .init(workspaceURL: url)
 
         NotificationCenter.default.addObserver(self,
@@ -190,6 +192,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         self.workspaceClient = nil
         self.searchState = nil
         self.quickOpenState = nil
+        self.commandPaletteState = nil
         self.statusBarModel = nil
         for windowController in self.windowControllers {
             self.removeWindowController(windowController)

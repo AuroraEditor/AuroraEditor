@@ -268,7 +268,7 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
     }
 
     @IBAction func openCommandPalette(_ sender: Any) {
-        if let workspace = workspace, let state = workspace.quickOpenState {
+        if let workspace = workspace, let state = workspace.commandPaletteState {
             // if the panel exists, is open and is actually a command palette, close it.
             if let commandPalettePanel = overlayPanel, commandPalettePanel.isKeyWindow &&
                 commandPalettePanel.viewType ?? .commandPalette == .commandPalette {
@@ -277,7 +277,7 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
             }
             // else, init and show the command palette.
             let panel = OverlayPanel()
-            configureOverlayPanel(panel: panel, content: NSHostingView(rootView: QuickOpenView(
+            configureOverlayPanel(panel: panel, content: NSHostingView(rootView: CommandPaletteView(
                 state: state,
                 onClose: { panel.close() },
                 openFile: workspace.openTab(item:)
@@ -307,6 +307,7 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
 
     func configureOverlayPanel(panel: OverlayPanel, content: NSView, viewType: OverlayPanel.ViewType? = nil) {
         panel.contentView = content
+        // TODO: Fix bug where panel appears too high when it is created with preexisting items
         window?.addChildWindow(panel, ordered: .above)
         panel.makeKeyAndOrderFront(self)
         panel.viewType = viewType
