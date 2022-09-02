@@ -53,7 +53,7 @@ struct FileCreationSelectionView: View {
                 .buttonStyle(.borderedProminent)
             }
         }
-        .frame(width: 550)
+        .frame(width: 697, height: 487)
         .padding()
     }
 }
