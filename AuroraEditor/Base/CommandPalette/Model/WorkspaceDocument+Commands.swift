@@ -67,7 +67,6 @@ extension WorkspaceDocument {
                 addMenuItemAsCommand(item: subItem, nameSoFar: "\(item.title) ->")
             }
         } else {
-            Log.info("Item: \(item.title)")
             self.commandPaletteState?.possibleCommands.append(Command(name: "\(nameSoFar) \(item.title)", command: {
                 if let action = item.action {
                     if let target = item.target {
