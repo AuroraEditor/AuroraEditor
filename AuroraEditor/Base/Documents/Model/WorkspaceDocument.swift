@@ -60,6 +60,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         false
     }
 
+    var windowController: AuroraEditorWindowController?
     override func makeWindowControllers() {
         let window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 800, height: 600),
@@ -68,10 +69,12 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         )
         window.center()
         window.minSize = .init(width: 1000, height: 600)
-        self.addWindowController(AuroraEditorWindowController(
+        let windowController = AuroraEditorWindowController(
             window: window,
             workspace: self
-        ))
+        )
+        self.addWindowController(windowController)
+        self.windowController = windowController
     }
 
     // MARK: Set Up Workspace
@@ -86,9 +89,38 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         self.searchState = .init(self)
         self.quickOpenState = .init(fileURL: url)
         self.commandPaletteState = .init(commands: [
-            Command(name: "Test", icon: "circle", command: { Log.info("Command Test executed") }),
-            Command(name: "Pants", icon: "square", command: { Log.info("Command Pants executed") }),
-            Command(name: "Pink", icon: "triangle", command: { Log.info("Command Pink executed") })
+            Command(name: "Open Quickly", icon: "doc.text.magnifyingglass", command: {
+                Log.info("Opening Quickly")
+                self.windowController?.openQuickly(self)
+            }),
+            Command(name: "Stash Changes", icon: "tray", command: {
+                Log.info("Stashed Changes")
+                self.windowController?.stashChangesItems(self)
+            }),
+            Command(name: "Discard Project Changes", icon: "trash", command: {
+                Log.info("Discarding Project Changes")
+                self.windowController?.discardProjectChanges(self)
+            }),
+            Command(name: "Open Preferences", icon: "gearshape", command: {
+                Log.info("Opening Preferences")
+                if self.tryFocusWindow(of: PreferencesView.self) { return }
+                PreferencesView().showWindow()
+            }),
+            Command(name: "Open About Page", icon: "info.circle", command: {
+                Log.info("Opening About")
+                if self.tryFocusWindow(of: AboutView.self) { return }
+                AboutView().showWindow(width: 530, height: 220)
+            }),
+            Command(name: "Open Welcome Screen", icon: "house", command: {
+                Log.info("Opening Welcome Screen")
+                if self.tryFocusWindow(of: WelcomeWindowView.self) { return }
+                WelcomeWindowView.openWelcomeWindow()
+            }),
+            Command(name: "Open Feedback Page", icon: "text.bubble.fill", command: {
+                Log.info("Opening Feedback")
+                if self.tryFocusWindow(of: FeedbackView.self) { return }
+                FeedbackView().showWindow()
+            })
         ])
         self.statusBarModel = .init(workspaceURL: url)
 
@@ -97,6 +129,17 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
                                                name: NSNotification.Name("AE.didBeginEditing"),
                                                object: nil)
         Log.info("Created document \(self)")
+    }
+
+    /// Tries to focus a window with specified view content type.
+    /// - Parameter type: The type of viewContent which hosted in a window to be focused.
+    /// - Returns: `true` if window exist and focused, oterwise - `false`
+    private func tryFocusWindow<T: View>(of type: T.Type) -> Bool {
+        guard let window = NSApp.windows.filter({ ($0.contentView as? NSHostingView<T>) != nil }).first
+        else { return false }
+
+        window.makeKeyAndOrderFront(self)
+        return true
     }
 
     /// Retrieves selection state from UserDefaults using SHA256 hash of project  path as key
