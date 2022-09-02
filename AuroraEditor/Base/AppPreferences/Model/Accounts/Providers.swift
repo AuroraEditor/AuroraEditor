@@ -9,5 +9,6 @@ import Foundation
 
 struct Providers: Identifiable, Hashable {
     let name: String
+    let icon: String
     let id: String
 }

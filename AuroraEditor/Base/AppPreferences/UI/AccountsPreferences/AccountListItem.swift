@@ -10,10 +10,11 @@ import SwiftUI
 struct AccountListItem: View {
 
     var gitClientName: String
+    var gitClientSymbol: String
 
     var body: some View {
         HStack {
-            Image(symbol: "vault.fill")
+            Image(gitClientSymbol)
                 .resizable()
                 .frame(width: 28.0, height: 28.0)
             Text(gitClientName)
@@ -24,6 +25,6 @@ struct AccountListItem: View {
 
 struct AccountListItem_Previews: PreviewProvider {
     static var previews: some View {
-        AccountListItem(gitClientName: "Github")
+        AccountListItem(gitClientName: "Github", gitClientSymbol: "github")
     }
 }

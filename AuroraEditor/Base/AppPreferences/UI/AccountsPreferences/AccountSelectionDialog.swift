@@ -13,12 +13,12 @@ struct AccountSelectionDialog: View {
     var presentationMode
 
     var gitProviders = [
-        Providers(name: "Bitbucket Cloud", id: "bitbucketCloud"),
-        Providers(name: "Bitbucket Server", id: "bitbucketServer"),
-        Providers(name: "GitHub", id: "github"),
-        Providers(name: "GitHub Enterprise", id: "githubEnterprise"),
-        Providers(name: "GitLab", id: "gitlab"),
-        Providers(name: "GitLab Self-Hosted", id: "gitlabSelfHosted")
+        Providers(name: "Bitbucket Cloud", icon: "bitbucket", id: "bitbucketCloud"),
+        Providers(name: "Bitbucket Server", icon: "bitbucket", id: "bitbucketServer"),
+        Providers(name: "GitHub", icon: "github", id: "github"),
+        Providers(name: "GitHub Enterprise", icon: "github", id: "githubEnterprise"),
+        Providers(name: "GitLab", icon: "gitlab", id: "gitlab"),
+        Providers(name: "GitLab Self-Hosted", icon: "gitlab", id: "gitlabSelfHosted")
     ]
 
     @State var providerSelection: Providers.ID? = "github"
@@ -32,7 +32,7 @@ struct AccountSelectionDialog: View {
                 .font(.system(size: 12))
 
             List(gitProviders, selection: $providerSelection) {
-                AccountListItem(gitClientName: $0.name)
+                AccountListItem(gitClientName: $0.name, gitClientSymbol: $0.icon)
             }
             .background(Color(NSColor.controlBackgroundColor))
             .padding(1)
