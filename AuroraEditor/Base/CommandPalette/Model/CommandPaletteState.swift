@@ -17,8 +17,8 @@ public final class CommandPaletteState: ObservableObject {
 
     private let queue = DispatchQueue(label: "com.auroraeditor.quickOpen.commandPalette")
 
-    init(commands: [Command] = []) {
-        self.possibleCommands = commands
+    init(possibleCommands: [Command] = []) {
+        self.possibleCommands = possibleCommands
     }
 
     func fetchCommands() {

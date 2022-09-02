@@ -11,7 +11,7 @@ import SwiftUI
 
 extension WorkspaceDocument {
     func setupCommands() {
-        self.commandPaletteState = .init(commands: [
+        self.commandPaletteState = .init(possibleCommands: [
             Command(name: "Open Quickly", command: {
                 Log.info("Opening Quickly")
                 self.windowController?.openQuickly(self)
@@ -45,6 +45,9 @@ extension WorkspaceDocument {
                 FeedbackView().showWindow()
             })
         ])
+        for item in NSApplication.shared.mainMenu?.items ?? [] {
+            addMenuItemAsCommand(item: item)
+        }
     }
 
     /// Tries to focus a window with specified view content type.
@@ -56,5 +59,22 @@ extension WorkspaceDocument {
 
         window.makeKeyAndOrderFront(self)
         return true
+    }
+
+    private func addMenuItemAsCommand(item: NSMenuItem) {
+        if let submenu = item.submenu {
+            for subItem in submenu.items {
+                addMenuItemAsCommand(item: subItem)
+            }
+        } else {
+            Log.info("Item: \(item.title)")
+            self.commandPaletteState?.possibleCommands.append(Command(name: item.title, command: {
+                // TODO: Somehow run the menu bar function
+//                if let action = item.action, let target = item.target {
+//                    target.perform(action)
+//                    Log.info("Action for \(item.title) executed")
+//                }
+            }))
+        }
     }
 }

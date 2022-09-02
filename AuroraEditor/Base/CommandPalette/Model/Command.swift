@@ -23,7 +23,6 @@ class Command: ObservableObject, Identifiable, Hashable {
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
-        hasher.combine(icon)
+        hasher.combine(id)
     }
 }
