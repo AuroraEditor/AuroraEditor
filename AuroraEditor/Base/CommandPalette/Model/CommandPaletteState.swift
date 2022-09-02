@@ -23,8 +23,11 @@ public final class CommandPaletteState: ObservableObject {
 
     func fetchCommands() {
         guard !commandQuery.isEmpty else {
-            commands = []
-            self.isShowingCommands = !commands.isEmpty
+            Log.info("Query is empty")
+            DispatchQueue.main.async {
+                self.commands = []
+                self.isShowingCommands = false
+            }
             return
         }
 
