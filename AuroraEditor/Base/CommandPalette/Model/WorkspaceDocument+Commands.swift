@@ -11,7 +11,40 @@ import SwiftUI
 
 extension WorkspaceDocument {
     func setupCommands() {
-        self.commandPaletteState = .init(possibleCommands: [])
+        self.commandPaletteState = .init(possibleCommands: [
+            Command(name: "Open Quickly", command: {
+                Log.info("Opening Quickly")
+                self.windowController?.openQuickly(self)
+            }),
+            Command(name: "Stash Changes", command: {
+                Log.info("Stashed Changes")
+                self.windowController?.stashChangesItems(self)
+            }),
+            Command(name: "Discard Project Changes", command: {
+                Log.info("Discarding Project Changes")
+                self.windowController?.discardProjectChanges(self)
+            }),
+            Command(name: "Open Preferences", command: {
+                Log.info("Opening Preferences")
+                if self.tryFocusWindow(of: PreferencesView.self) { return }
+                PreferencesView().showWindow()
+            }),
+            Command(name: "Open About Page", command: {
+                Log.info("Opening About")
+                if self.tryFocusWindow(of: AboutView.self) { return }
+                AboutView().showWindow(width: 530, height: 220)
+            }),
+            Command(name: "Open Welcome Screen", command: {
+                Log.info("Opening Welcome Screen")
+                if self.tryFocusWindow(of: WelcomeWindowView.self) { return }
+                WelcomeWindowView.openWelcomeWindow()
+            }),
+            Command(name: "Open Feedback Page", command: {
+                Log.info("Opening Feedback")
+                if self.tryFocusWindow(of: FeedbackView.self) { return }
+                FeedbackView().showWindow()
+            })
+        ])
         for item in NSApplication.shared.mainMenu?.items ?? [] {
             addMenuItemAsCommand(item: item)
         }
