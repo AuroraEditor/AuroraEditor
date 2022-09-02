@@ -267,6 +267,31 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
         workspace?.convertTemporaryTab()
     }
 
+    @IBAction func openCommandPalette(_ sender: Any) {
+        if let workspace = workspace, let state = workspace.quickOpenState {
+            if let quickOpenPanel = quickOpenPanel {
+                if quickOpenPanel.isKeyWindow {
+                    quickOpenPanel.close()
+                    return
+                } else {
+                    window?.addChildWindow(quickOpenPanel, ordered: .above)
+                    quickOpenPanel.makeKeyAndOrderFront(self)
+                }
+            } else {
+                let panel = OverlayPanel()
+                self.quickOpenPanel = panel
+                let contentView = QuickOpenView(
+                    state: state,
+                    onClose: { panel.close() },
+                    openFile: workspace.openTab(item:)
+                )
+                panel.contentView = NSHostingView(rootView: contentView)
+                window?.addChildWindow(panel, ordered: .above)
+                panel.makeKeyAndOrderFront(self)
+            }
+        }
+    }
+
     @IBAction func openQuickly(_ sender: Any) {
         if let workspace = workspace, let state = workspace.quickOpenState {
             if let quickOpenPanel = quickOpenPanel {
