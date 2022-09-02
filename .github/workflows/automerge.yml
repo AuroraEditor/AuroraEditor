@@ -1,0 +1,12 @@
+name: Enable Automerge
+on:
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+#    runs-on: ubuntu
+    steps:
+      - uses: peter-evans/enable-pull-request-automerge@v2
+        with:
+          token: ${{ secrets.PAT }}
+          pull-request-number: 1
