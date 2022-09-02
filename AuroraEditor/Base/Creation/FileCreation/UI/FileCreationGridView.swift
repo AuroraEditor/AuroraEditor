@@ -13,27 +13,16 @@ struct FileCreationGridView: View {
     @StateObject
     private var creationSheetModel: FileCreationModel = .shared
 
-    private var gridItemLayout = [GridItem(.flexible()),
-                                  GridItem(.flexible()),
-                                  GridItem(.flexible()),
-                                  GridItem(.flexible()),
-                                  GridItem(.flexible())]
+    private var gridItemLayout: [GridItem] = Array(repeating: .init(.flexible()),
+                                                   count: 5)
 
     var body: some View {
         ScrollView(.vertical) {
             Section {
                 LazyVGrid(columns: gridItemLayout) {
                     ForEach(creationSheetModel.languageItems, id: \.self) { language in
-                        VStack {
-                            Image(language.langaugeIcon)
-                                .padding(.bottom, 10)
-
-                            Text(language.languageName)
-                                .multilineTextAlignment(.center)
-                                .lineLimit(1)
-                                .font(.system(size: 11))
-                        }
-                        .padding()
+                        GridColumn(item: language,
+                                   selectedItem: $creationSheetModel.selectedLanguageItem)
                     }
                 }
             } header: {
@@ -54,6 +43,34 @@ struct FileCreationGridView: View {
             }
         }
         .border(.gray.opacity(0.3))
+    }
+
+    struct GridColumn: View {
+        let item: FileSelectionItem
+
+        @Binding
+        var selectedItem: FileSelectionItem
+
+        var body: some View {
+            Button(action: {
+                selectedItem = item
+            }, label: {
+                VStack {
+                    Image(item.langaugeIcon)
+                        .padding(.bottom, 10)
+
+                    Text(item.languageName)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(1)
+                        .font(.system(size: 11))
+                }
+            })
+            .buttonStyle(.plain)
+            .frame(width: 85, height: 85)
+            // swiftlint:disable:next line_length
+            .background(selectedItem == item ? Color(nsColor: NSColor.controlAccentColor).opacity(0.08) : Color.white.opacity(0))
+            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        }
     }
 }
 

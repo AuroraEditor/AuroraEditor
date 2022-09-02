@@ -47,6 +47,9 @@
 		2032B50E28A256130089EBB6 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B50D28A256130089EBB6 /* Collection.swift */; };
 		2032B51028A256F50089EBB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B50F28A256F50089EBB6 /* Array.swift */; };
 		2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */; };
+		2039C2EC28C25F5B000215F2 /* ProjectSelectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2039C2EB28C25F5B000215F2 /* ProjectSelectionItem.swift */; };
+		2039C2F228C26924000215F2 /* ProjectGridColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2039C2F128C26924000215F2 /* ProjectGridColumn.swift */; };
+		2039C2F428C26A7F000215F2 /* ProjectCreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2039C2F328C26A7F000215F2 /* ProjectCreationModel.swift */; };
 		203D206C28C117CE00E09807 /* FileCreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D206B28C117CE00E09807 /* FileCreationModel.swift */; };
 		203D206F28C11E5E00E09807 /* CrossPlatformProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D206E28C11E5E00E09807 /* CrossPlatformProjectView.swift */; };
 		203D207128C11E6D00E09807 /* WebProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D207028C11E6D00E09807 /* WebProjectView.swift */; };
@@ -650,6 +653,9 @@
 		2032B50D28A256130089EBB6 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		2032B50F28A256F50089EBB6 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowHostingController.swift; sourceTree = "<group>"; };
+		2039C2EB28C25F5B000215F2 /* ProjectSelectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectSelectionItem.swift; sourceTree = "<group>"; };
+		2039C2F128C26924000215F2 /* ProjectGridColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectGridColumn.swift; sourceTree = "<group>"; };
+		2039C2F328C26A7F000215F2 /* ProjectCreationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreationModel.swift; sourceTree = "<group>"; };
 		203D206B28C117CE00E09807 /* FileCreationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCreationModel.swift; sourceTree = "<group>"; };
 		203D206E28C11E5E00E09807 /* CrossPlatformProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossPlatformProjectView.swift; sourceTree = "<group>"; };
 		203D207028C11E6D00E09807 /* WebProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebProjectView.swift; sourceTree = "<group>"; };
@@ -1331,9 +1337,18 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		2039C2F028C2690E000215F2 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2039C2F128C26924000215F2 /* ProjectGridColumn.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		203D206D28C119D100E09807 /* Project Sections */ = {
 			isa = PBXGroup;
 			children = (
+				2039C2F028C2690E000215F2 /* Components */,
 				203D206E28C11E5E00E09807 /* CrossPlatformProjectView.swift */,
 				203D207028C11E6D00E09807 /* WebProjectView.swift */,
 				203D207228C11E7800E09807 /* GamesProjectView.swift */,
@@ -1400,6 +1415,8 @@
 			children = (
 				20A5E6F028BE51EC00D585B6 /* FileSelectionItem.swift */,
 				203D206B28C117CE00E09807 /* FileCreationModel.swift */,
+				2039C2EB28C25F5B000215F2 /* ProjectSelectionItem.swift */,
+				2039C2F328C26A7F000215F2 /* ProjectCreationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3777,6 +3794,7 @@
 				2021267F289BF7EF00246DD7 /* Formatter.swift in Sources */,
 				20DF979B28ABA633009CE1E9 /* Rev-Parse.swift in Sources */,
 				20BCB0C828AAA3190064C7C0 /* GitAuthor.swift in Sources */,
+				2039C2F428C26A7F000215F2 /* ProjectCreationModel.swift in Sources */,
 				2093CDB6289AA1A2003A88DD /* GitlabLoginView.swift in Sources */,
 				204CD3E628AB87640003D082 /* Config.swift in Sources */,
 				2032B51028A256F50089EBB6 /* Array.swift in Sources */,
@@ -3826,6 +3844,7 @@
 				2093CD95289AA13F003A88DD /* AppPreferencesModel.swift in Sources */,
 				20BCB0C628AAA1C00064C7C0 /* GitCommit.swift in Sources */,
 				04C3254B27FF23B000C8DA2D /* ExtensionNavigatorData.swift in Sources */,
+				2039C2EC28C25F5B000215F2 /* ProjectSelectionItem.swift in Sources */,
 				2093CDD2289AA507003A88DD /* SwiftTerm+Color+Init.swift in Sources */,
 				20D59CD228AFAAE400E3907B /* AccountItemView.swift in Sources */,
 				2093CCAE289AA02D003A88DD /* QuickOpenView.swift in Sources */,
@@ -3889,6 +3908,7 @@
 				2093CD4E289AA0A9003A88DD /* FeedbackToolbar.swift in Sources */,
 				93F73D0D28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift in Sources */,
 				2B4C1351289D56F9000ED796 /* CoalescingUndoManager.swift in Sources */,
+				2039C2F228C26924000215F2 /* ProjectGridColumn.swift in Sources */,
 				9C3E1A07284E8E020042BEC0 /* WelcomeModuleExtensions.swift in Sources */,
 				2093CDBA289AA1AF003A88DD /* PreferencesPlaceholderView.swift in Sources */,
 				2093CD68289AA0F2003A88DD /* BreadcrumbsComponent.swift in Sources */,

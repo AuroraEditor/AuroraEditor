@@ -19,6 +19,9 @@ struct FileCreationSelectionView: View {
     @State
     var isProjectCreation: Bool = false
 
+    @State
+    var showFileNamingSheet: Bool = false
+
     var body: some View {
         VStack(alignment: .leading) {
             Text("Choose a template for your new file:")
@@ -43,7 +46,7 @@ struct FileCreationSelectionView: View {
                 Spacer()
 
                 Button {
-
+                    showFileNamingSheet = true
                 } label: {
                     Text("Next")
                         .padding(10)
@@ -51,6 +54,12 @@ struct FileCreationSelectionView: View {
                         .foregroundColor(.white)
                 }
                 .buttonStyle(.borderedProminent)
+                .sheet(isPresented: $showFileNamingSheet) {
+                    if !isProjectCreation {
+                        // swiftlint:disable:next line_length
+                        FileCreationNamingView(fileName: "untitled.\(creationSheetModel.selectedLanguageItem.languageExtension)")
+                    }
+                }
             }
         }
         .frame(width: 697, height: 487)

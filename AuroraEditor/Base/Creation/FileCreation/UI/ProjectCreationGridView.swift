@@ -11,7 +11,7 @@ import SwiftUI
 struct ProjectCreationGridView: View {
 
     @ObservedObject
-    private var creationSheetModel: FileCreationModel = .shared
+    private var creationSheetModel: ProjectCreationModel = .shared
 
     private var gridItemLayout = [GridItem(.flexible()),
                                   GridItem(.flexible()),

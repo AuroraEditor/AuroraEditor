@@ -9,4 +9,5 @@
 struct FileSelectionItem: Codable, Hashable {
     var languageName: String
     var langaugeIcon: String
+    var languageExtension: String
 }

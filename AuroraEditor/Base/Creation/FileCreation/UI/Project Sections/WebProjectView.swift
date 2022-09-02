@@ -10,28 +10,26 @@ import SwiftUI
 
 struct WebProjectView: View {
     @StateObject
-    private var creationSheetModel: FileCreationModel = .shared
+    private var creationSheetModel: ProjectCreationModel = .shared
 
-    private var gridItemLayout = [GridItem(.flexible()),
-                                  GridItem(.flexible()),
-                                  GridItem(.flexible()),
-                                  GridItem(.flexible()),
-                                  GridItem(.flexible())]
+    private var gridItemLayout: [GridItem] = Array(repeating: .init(.flexible()),
+                                                   count: 5)
+
+    @State
+    var selectedItem: ProjectSelectionItem = ProjectSelectionItem(languageName: "Flutter",
+                                                                  langaugeIcon: "fluttersvg")
+
+    init() {
+        creationSheetModel.selectedProjectItem = selectedItem
+    }
 
     var body: some View {
         VStack {
             ScrollView(.vertical) {
                 LazyVGrid(columns: gridItemLayout) {
-                    ForEach(creationSheetModel.webProjects, id: \.self) { language in
-                        VStack {
-                            Image(language.langaugeIcon)
-                                .padding(.bottom, 10)
-
-                            Text(language.languageName)
-                                .multilineTextAlignment(.center)
-                                .lineLimit(1)
-                                .font(.system(size: 11))
-                        }
+                    ForEach(creationSheetModel.webProjects, id: \.self) { project in
+                        ProjectGridColumn(item: project,
+                                          selectedItem: $creationSheetModel.selectedProjectItem)
                         .padding()
                     }
                 }

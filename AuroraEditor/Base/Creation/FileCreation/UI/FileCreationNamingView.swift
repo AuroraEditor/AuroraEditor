@@ -16,6 +16,9 @@ struct FileCreationNamingView: View {
     @State
     var tags: String = ""
 
+    @Environment(\.presentationMode)
+    var presentationMode
+
     var body: some View {
         VStack(alignment: .trailing) {
             HStack {
@@ -44,7 +47,7 @@ struct FileCreationNamingView: View {
             HStack {
                 Spacer()
                 Button {
-
+                    presentationMode.wrappedValue.dismiss()
                 } label: {
                      Text("Cancel")
                 }
@@ -56,9 +59,8 @@ struct FileCreationNamingView: View {
                 }
                 .buttonStyle(.borderedProminent)
             }
-            .padding(.vertical, 5)
         }
-        .frame(width: 307, height: 95)
+        .frame(width: 307, height: 90)
         .padding(15)
     }
 }

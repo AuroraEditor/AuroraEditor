@@ -58,6 +58,8 @@ struct ProjectNavigatorToolbarBottom: View {
                 editorSheetModel.showFileCreationSheet.toggle()
             }
 
+            Divider()
+
             Button("New Folder") {
                 guard let folderURL = workspace.workspaceClient?.folderURL,
                       let root = try? workspace.workspaceClient?.getFileItem(folderURL.path) else { return }
