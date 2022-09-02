@@ -9,30 +9,24 @@
 import SwiftUI
 
 struct CommandPaletteItem: View {
-    private let baseDirectory: URL
-    private let fileItem: WorkspaceClient.FileItem
+    private let command: Command
 
     public init(
-        baseDirectory: URL,
-        fileItem: WorkspaceClient.FileItem
+        command: Command
     ) {
-        self.baseDirectory = baseDirectory
-        self.fileItem = fileItem
+        self.command = command
     }
 
     public var body: some View {
         HStack(spacing: 8) {
-            Image(nsImage: NSWorkspace.shared.icon(forFile: fileItem.url.path))
+            Image(systemName: command.icon)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 32, height: 32)
+                .frame(width: 28, height: 28)
+                .padding(2)
             VStack(alignment: .leading, spacing: 0) {
-                Text(fileItem.url.lastPathComponent).font(.system(size: 13))
+                Text(command.name).font(.system(size: 14))
                     .lineLimit(1)
-                Text(fileItem.url.path.replacingOccurrences(of: baseDirectory.path, with: ""))
-                    .font(.system(size: 11))
-                    .lineLimit(1)
-                    .truncationMode(.tail)
             }.padding(.trailing, 15)
             Spacer()
         }

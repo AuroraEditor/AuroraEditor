@@ -10,52 +10,34 @@ import Combine
 import Foundation
 
 public final class CommandPaletteState: ObservableObject {
-    @Published var openQuicklyQuery: String = ""
-    @Published var openQuicklyFiles: [WorkspaceClient.FileItem] = []
-    @Published var isShowingOpenQuicklyFiles: Bool = false
+    @Published var commandQuery: String = ""
+    @Published var commands: [Command] = []
+    @Published var isShowingCommands: Bool = false
 
     public let fileURL: URL
-    private let queue = DispatchQueue(label: "com.auroraeditor.quickOpen.searchFiles")
+    private let queue = DispatchQueue(label: "com.auroraeditor.quickOpen.commandPalette")
 
     public init(fileURL: URL) {
         self.fileURL = fileURL
     }
 
-    func fetchOpenQuickly() {
-        guard !openQuicklyQuery.isEmpty else {
-            openQuicklyFiles = []
-            self.isShowingOpenQuicklyFiles = !openQuicklyFiles.isEmpty
+    func fetchCommands() {
+        guard !commandQuery.isEmpty else {
+            commands = []
+            self.isShowingCommands = !commands.isEmpty
             return
         }
 
         queue.async { [weak self] in
             guard let self = self else { return }
-            let enumerator = FileManager.default.enumerator(
-                at: self.fileURL,
-                includingPropertiesForKeys: [
-                    .isRegularFileKey
-                ],
-                options: [
-                    .skipsHiddenFiles,
-                    .skipsPackageDescendants
+            // TODO: Filter commands somehow
+            DispatchQueue.main.async {
+                self.commands = [
+                    Command(name: "Test", icon: "circle"),
+                    Command(name: "Pants", icon: "square"),
+                    Command(name: "Pink", icon: "triangle")
                 ]
-            )
-            if let filePaths = enumerator?.allObjects as? [URL] {
-                let files = filePaths.filter { url in
-                    let state1 = url.lastPathComponent.lowercased().contains(self.openQuicklyQuery.lowercased())
-                    do {
-                        let values = try url.resourceValues(forKeys: [.isRegularFileKey])
-                        return state1 && (values.isRegularFile ?? false)
-                    } catch {
-                        return false
-                    }
-                }.map { url in
-                    WorkspaceClient.FileItem(url: url, children: nil)
-                }
-                DispatchQueue.main.async {
-                    self.openQuicklyFiles = files
-                    self.isShowingOpenQuicklyFiles = !self.openQuicklyFiles.isEmpty
-                }
+                self.isShowingCommands = !self.commands.isEmpty
             }
         }
     }

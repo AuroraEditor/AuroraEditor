@@ -12,7 +12,7 @@ struct CommandPaletteView: View {
     @ObservedObject private var state: CommandPaletteState
     private let onClose: () -> Void
     private let openFile: (WorkspaceClient.FileItem) -> Void
-    @State private var selectedItem: WorkspaceClient.FileItem?
+    @State private var selectedCommand: Command?
 
     public init(
         state: CommandPaletteState,
@@ -34,14 +34,14 @@ struct CommandPaletteView: View {
                         .frame(width: 20, height: 20)
                         .padding(.trailing, 12)
                         .offset(x: 0, y: 1)
-                    TextField("Execute Command", text: $state.openQuicklyQuery)
+                    TextField("Execute Command", text: $state.commandQuery)
                         .font(.system(size: 20, weight: .light, design: .default))
                         .textFieldStyle(.plain)
                         .onReceive(
-                            state.$openQuicklyQuery
+                            state.$commandQuery
                                 .debounce(for: .seconds(0.4), scheduler: DispatchQueue.main)
                         ) { _ in
-                            state.fetchOpenQuickly()
+                            state.fetchCommands()
                         }
                 }
                     .padding(16)
@@ -49,27 +49,28 @@ struct CommandPaletteView: View {
                     .background(EffectView(.sidebar, blendingMode: .behindWindow))
             }
             Divider()
-            List(state.openQuicklyFiles, selection: $selectedItem) { file in
-                CommandPaletteItem(baseDirectory: state.fileURL, fileItem: file)
-                .onTapGesture(count: 2) {
-                    self.openFile(file)
-                    self.onClose()
-                }
-                .onTapGesture(count: 1) {
-                    self.selectedItem = file
-                }
-                .background(self.selectedItem == file ?
+            List(state.commands, selection: $selectedCommand) { command in
+                CommandPaletteItem(command: command)
+                    .onTapGesture(count: 2) {
+                        Log.info("Command \(command.name) executed")
+                        self.onClose()
+                    }
+                    .onTapGesture(count: 1) {
+                        self.selectedCommand = command
+                    }
+                    .background(self.selectedCommand == command ?
                                 RoundedRectangle(cornerRadius: 5, style: .continuous)
-                                    .fill(Color(red: 0, green: 0.38, blue: 0.816, opacity: 0.85)) :
-                                RoundedRectangle(cornerRadius: 5, style: .continuous)
-                                    .fill(Color.clear))
+                        .fill(Color(red: 0, green: 0.38, blue: 0.816, opacity: 0.85)) :
+                                    RoundedRectangle(cornerRadius: 5, style: .continuous)
+                        .fill(Color.clear))
             }
+            .padding([.top, .horizontal], -5)
         }
             .background(EffectView(.sidebar, blendingMode: .behindWindow))
             .edgesIgnoringSafeArea(.vertical)
             .frame(minWidth: 600,
-               minHeight: self.state.isShowingOpenQuicklyFiles ? 400 : 28,
-               maxHeight: self.state.isShowingOpenQuicklyFiles ? .infinity : 28)
+               minHeight: self.state.isShowingCommands ? 400 : 28,
+               maxHeight: self.state.isShowingCommands ? .infinity : 28)
     }
 }
 
