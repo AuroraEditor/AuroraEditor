@@ -85,7 +85,11 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         )
         self.searchState = .init(self)
         self.quickOpenState = .init(fileURL: url)
-        self.commandPaletteState = .init(fileURL: url)
+        self.commandPaletteState = .init(commands: [
+            Command(name: "Test", icon: "circle", command: { Log.info("Command Test executed") }),
+            Command(name: "Pants", icon: "square", command: { Log.info("Command Pants executed") }),
+            Command(name: "Pink", icon: "triangle", command: { Log.info("Command Pink executed") })
+        ])
         self.statusBarModel = .init(workspaceURL: url)
 
         NotificationCenter.default.addObserver(self,

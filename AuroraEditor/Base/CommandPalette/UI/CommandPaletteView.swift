@@ -50,21 +50,33 @@ struct CommandPaletteView: View {
             }
             Divider()
             List(state.commands, selection: $selectedCommand) { command in
-                CommandPaletteItem(command: command)
-                    .onTapGesture(count: 2) {
-                        Log.info("Command \(command.name) executed")
-                        self.onClose()
-                    }
-                    .onTapGesture(count: 1) {
-                        self.selectedCommand = command
-                    }
-                    .background(self.selectedCommand == command ?
-                                RoundedRectangle(cornerRadius: 5, style: .continuous)
-                        .fill(Color(red: 0, green: 0.38, blue: 0.816, opacity: 0.85)) :
+                ZStack {
+                    CommandPaletteItem(command: command)
+                        .onTapGesture(count: 2) {
+                            command.command()
+                            self.onClose()
+                        }
+                        .onTapGesture(count: 1) {
+                            self.selectedCommand = command
+                        }
+                        .background(self.selectedCommand == command ?
                                     RoundedRectangle(cornerRadius: 5, style: .continuous)
-                        .fill(Color.clear))
+                            .fill(Color(red: 0, green: 0.38, blue: 0.816, opacity: 0.85)) :
+                                        RoundedRectangle(cornerRadius: 5, style: .continuous)
+                            .fill(Color.clear))
+
+                    Button("") {
+                        if let selectedCommand = selectedCommand {
+                            selectedCommand.command()
+                            self.onClose()
+                        }
+                    }
+                    .buttonStyle(.borderless)
+                    .keyboardShortcut(.defaultAction)
+                }
             }
             .padding([.top, .horizontal], -5)
+            .listStyle(.sidebar)
         }
             .background(EffectView(.sidebar, blendingMode: .behindWindow))
             .edgesIgnoringSafeArea(.vertical)
@@ -77,7 +89,7 @@ struct CommandPaletteView: View {
 struct CommandPaletteView_Previews: PreviewProvider {
     static var previews: some View {
         CommandPaletteView(
-            state: .init(fileURL: .init(fileURLWithPath: "")),
+            state: .init(),
             onClose: {},
             openFile: { _ in }
         )

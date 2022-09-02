@@ -15,11 +15,13 @@ class Command: ObservableObject, Identifiable, Hashable {
 
     @Published var name: String
     @Published var icon: String
+    var command: () -> Void = {}
     var id = UUID()
 
-    init(name: String, icon: String) {
+    init(name: String, icon: String, command: @escaping () -> Void = {}) {
         self.name = name
         self.icon = icon
+        self.command = command
     }
 
     func hash(into hasher: inout Hasher) {

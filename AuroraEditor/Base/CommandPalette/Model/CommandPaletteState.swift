@@ -12,13 +12,13 @@ import Foundation
 public final class CommandPaletteState: ObservableObject {
     @Published var commandQuery: String = ""
     @Published var commands: [Command] = []
+    @Published var possibleCommands: [Command] = []
     @Published var isShowingCommands: Bool = false
 
-    public let fileURL: URL
     private let queue = DispatchQueue(label: "com.auroraeditor.quickOpen.commandPalette")
 
-    public init(fileURL: URL) {
-        self.fileURL = fileURL
+    init(commands: [Command] = []) {
+        self.possibleCommands = commands
     }
 
     func fetchCommands() {
@@ -32,11 +32,7 @@ public final class CommandPaletteState: ObservableObject {
             guard let self = self else { return }
             // TODO: Filter commands somehow
             DispatchQueue.main.async {
-                self.commands = [
-                    Command(name: "Test", icon: "circle"),
-                    Command(name: "Pants", icon: "square"),
-                    Command(name: "Pink", icon: "triangle")
-                ]
+                self.commands = self.possibleCommands
                 self.isShowingCommands = !self.commands.isEmpty
             }
         }
