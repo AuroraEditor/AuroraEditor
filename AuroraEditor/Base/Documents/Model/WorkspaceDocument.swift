@@ -89,6 +89,8 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         self.searchState = .init(self)
         self.quickOpenState = .init(fileURL: url)
         self.statusBarModel = .init(workspaceURL: url)
+        self.commandPaletteState = .init(possibleCommands: [])
+        setupCommands()
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(convertTemporaryTab),
@@ -152,8 +154,6 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
             Log.error(error)
         }
         Log.info("Made document from read: \(self)")
-
-        setupCommands()
     }
 
     override func write(to url: URL, ofType typeName: String) throws {}
