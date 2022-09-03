@@ -93,6 +93,26 @@ extension WorkspaceDocument {
             Command(name: "Give Feedback", command: {
                 if self.tryFocusWindow(of: FeedbackView.self) { return }
                 FeedbackView().showWindow()
+            }),
+
+            // MARK: File creation/deletion, web tabs, tab closing
+            Command(name: "Add File at Root", command: {
+                guard let folderURL = self.workspaceClient?.folderURL,
+                      let root = try? self.workspaceClient?.getFileItem(folderURL.path) else { return }
+                root.addFile(fileName: "untitled")
+            }),
+            Command(name: "Add Folder at Root", command: {
+                guard let folderURL = self.workspaceClient?.folderURL,
+                      let root = try? self.workspaceClient?.getFileItem(folderURL.path) else { return }
+                root.addFolder(folderName: "untitled")
+            }),
+            Command(name: "Open Web Tab", command: {
+                self.openTab(item: WebTab(url: URL(string: "https://auroraeditor.com")))
+            }),
+            Command(name: "Close Current Tab", command: {
+                if let currentTab = self.selectionState.selectedId {
+                    self.closeTab(item: currentTab)
+                }
             })
         ])
     }
