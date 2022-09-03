@@ -36,7 +36,7 @@ public final class CommandPaletteState: ObservableObject {
             DispatchQueue.main.async {
                 self.commands = self.possibleCommands.filter({
                     $0.name.lowercased().contains(self.commandQuery.lowercased())
-                })
+                }).sorted(by: { $0.name.count < $1.name .count })
                 self.isShowingCommands = !self.commands.isEmpty
             }
         }

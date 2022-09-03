@@ -12,65 +12,88 @@ import SwiftUI
 extension WorkspaceDocument {
     func setupCommands() {
         self.commandPaletteState?.addCommands(commands: [
+            // MARK: AuroraEditor menu
+            Command(name: "About AurorEditor", command: {
+                if self.tryFocusWindow(of: AboutView.self) { return }
+                AboutView().showWindow(width: 530, height: 220)
+            }),
+            Command(name: "Preferences", command: {
+                if self.tryFocusWindow(of: PreferencesView.self) { return }
+                PreferencesView().showWindow()
+            }),
+            Command(name: "Hide AuroraEditor", command: {
+                NSApplication.hide(NSApplication.shared)(self)
+            }),
+            Command(name: "Hide Others", command: {
+                NSApplication.hideOtherApplications(NSApplication.shared)(self)
+            }),
+            Command(name: "Show All", command: {
+                NSApplication.unhideAllApplications(NSApplication.shared)(self)
+            }),
+            Command(name: "Quit AuroraEditor", command: {
+                NSApplication.shared.terminate(self)
+            }),
+
+            // MARK: File menu
+            Command(name: "New", command: {
+                NSDocumentController.newDocument(NSDocumentController.shared)(self)
+            }),
+            Command(name: "Open", command: {
+                NSDocumentController.openDocument(NSDocumentController.shared)(self)
+            }),
             Command(name: "Open Quickly", command: {
-                Log.info("Opening Quickly")
                 self.windowController?.openQuickly(self)
             }),
+            Command(name: "Save", command: {
+                NSDocument.save(self)(self)
+            }),
+            Command(name: "Save As...", command: {
+                NSDocument.saveAs(self)(self)
+            }),
+            Command(name: "Close", command: {
+                self.windowController?.close()
+            }),
+
+            // MARK: View menu
+            Command(name: "Toggle Toolbar", command: {
+                self.windowController?.window?.toggleToolbarShown(self)
+            }),
+            Command(name: "Customize Toolbar", command: {
+                self.windowController?.window?.runToolbarCustomizationPalette(self)
+            }),
+            Command(name: "Show Sidebar", command: {
+                self.windowController?.splitViewController.toggleSidebar(self)
+            }),
+            Command(name: "Toggle Full Screen", command: {
+                self.windowController?.window?.toggleFullScreen(self)
+            }),
+
+            // TODO: Find and Navigate menus
+
+            // MARK: Source Control menu
             Command(name: "Stash Changes", command: {
-                Log.info("Stashed Changes")
                 self.windowController?.stashChangesItems(self)
             }),
             Command(name: "Discard Project Changes", command: {
-                Log.info("Discarding Project Changes")
                 self.windowController?.discardProjectChanges(self)
             }),
-            Command(name: "Open Preferences", command: {
-                Log.info("Opening Preferences")
-                if self.tryFocusWindow(of: PreferencesView.self) { return }
-                PreferencesView().showWindow()
+
+            // MARK: Window and Help menu
+            Command(name: "Minimise", command: {
+                self.windowController?.window?.miniaturize(self)
             }),
-            Command(name: "Open About Page", command: {
-                Log.info("Opening About")
-                if self.tryFocusWindow(of: AboutView.self) { return }
-                AboutView().showWindow(width: 530, height: 220)
+            Command(name: "Zoom", command: {
+                self.windowController?.window?.zoom(self)
             }),
-            Command(name: "Open Welcome Screen", command: {
-                Log.info("Opening Welcome Screen")
+            Command(name: "Welcome Screen", command: {
                 if self.tryFocusWindow(of: WelcomeWindowView.self) { return }
                 WelcomeWindowView.openWelcomeWindow()
             }),
-            Command(name: "Open Feedback Page", command: {
-                Log.info("Opening Feedback")
+            Command(name: "Give Feedback", command: {
                 if self.tryFocusWindow(of: FeedbackView.self) { return }
                 FeedbackView().showWindow()
-            }),
-            Command(name: "Stash Changes", command: {
-                Log.info("Stashed Changes")
-                self.windowController?.stashChangesItems(self)
-            }),
-            Command(name: "Discard Project Changes", command: {
-                Log.info("Discarding Project Changes")
-                self.windowController?.discardProjectChanges(self)
-            }),
-            Command(name: "Open Preferences", command: {
-                Log.info("Opening Preferences")
-                if self.tryFocusWindow(of: PreferencesView.self) { return }
-                PreferencesView().showWindow()
-            }),
-            Command(name: "Open About Page", command: {
-                Log.info("Opening About")
-                if self.tryFocusWindow(of: AboutView.self) { return }
-                AboutView().showWindow(width: 530, height: 220)
-            }),
-            Command(name: "Open Welcome Screen", command: {
-                Log.info("Opening Welcome Screen")
-                if self.tryFocusWindow(of: WelcomeWindowView.self) { return }
-                WelcomeWindowView.openWelcomeWindow()
-            }),
+            })
         ])
-        for item in NSApplication.shared.mainMenu?.items ?? [] {
-            addMenuItemAsCommand(item: item)
-        }
     }
 
     /// Tries to focus a window with specified view content type.
@@ -82,28 +105,5 @@ extension WorkspaceDocument {
 
         window.makeKeyAndOrderFront(self)
         return true
-    }
-
-    private func addMenuItemAsCommand(item: NSMenuItem, nameSoFar: String = "") {
-        if let submenu = item.submenu {
-            for subItem in submenu.items {
-                addMenuItemAsCommand(item: subItem, nameSoFar: "\(item.title) ->")
-            }
-        } else {
-            self.commandPaletteState?.addCommand(command: Command(name: "\(nameSoFar) \(item.title)", command: {
-                if let action = item.action {
-                    if let target = item.target {
-                        Log.info("Action for \(item.title) executed by target")
-                        _ = target.perform(action)
-                    } else if let window = self.windowController?.window {
-                        Log.info("Action for \(item.title) executed by window")
-                        window.perform(action)
-                    } else {
-                        Log.info("Action for \(item.title) executed by self")
-                        self.perform(action)
-                    }
-                }
-            }, isEnabled: item.isEnabled && item.action != nil))
-        }
     }
 }

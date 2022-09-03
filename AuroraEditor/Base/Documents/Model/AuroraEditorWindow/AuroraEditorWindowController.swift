@@ -8,7 +8,6 @@
 import Cocoa
 import SwiftUI
 
-// swiftlint:disable:next type_body_length
 final class AuroraEditorWindowController: NSWindowController {
 
     var prefs: AppPreferencesModel = .shared
