@@ -10,6 +10,7 @@ import Foundation
 import SwiftUI
 
 extension WorkspaceDocument {
+    // swiftlint:disable:next function_body_length
     func setupCommands() {
         self.commandPaletteState?.addCommands(commands: [
             // MARK: AuroraEditor menu
