@@ -41,4 +41,12 @@ public final class CommandPaletteState: ObservableObject {
             }
         }
     }
+
+    func addCommand(command: Command) {
+        possibleCommands.append(command)
+    }
+
+    func addCommands(commands: [Command]) {
+        possibleCommands.append(contentsOf: commands)
+    }
 }
