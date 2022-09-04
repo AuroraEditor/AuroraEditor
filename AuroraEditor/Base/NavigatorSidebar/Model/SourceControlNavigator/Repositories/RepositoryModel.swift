@@ -53,8 +53,10 @@ public final class RepositoryModel: ObservableObject {
         self.isGitRepository = checkIfProjectIsRepo()
     }
 
-    func addGitRepoDetails(client: GitClient) {
-        self.gitClient = client
+    func addGitRepoDetails(client: GitClient? = nil) {
+        if let client = client {
+            self.gitClient = client
+        }
 
         self.repoName = workspace.workspaceClient?.folderURL?.lastPathComponent
 
@@ -62,18 +64,37 @@ public final class RepositoryModel: ObservableObject {
         guard repoName != nil && !repoName!.isEmpty else { return }
 
         let branchNames: [String] = ((try? gitClient?.getBranches(false)) ?? [])
+        let currentBranchName = (try? gitClient?.getCurrentBranchName()) ?? ""
+        let currentBranchIndex = branchNames.firstIndex(of: currentBranchName) ?? -1
 
         // set branches
-        self.branches = RepoBranches(contents: branchNames.map { branch in
-             RepoBranch(name: branch)
-        })
+        if branches == nil {
+            self.branches = RepoBranches(contents: branchNames.map { branch in
+                RepoBranch(name: branch)
+            }, current: currentBranchIndex)
+        } else {
+            branches?.contents = branchNames.map { RepoBranch(name: $0) }
+            branches?.current = currentBranchIndex
+        }
 
         // TODO: Get recent locations
-        self.recentLocations = RepoRecentLocations(contents: [])
+        if recentLocations == nil {
+            self.recentLocations = RepoRecentLocations(contents: [])
+        } else {
+            recentLocations?.contents = []
+        }
         // TODO: Get tags
-        self.tags = RepoTags(contents: [])
+        if tags == nil {
+            self.tags = RepoTags(contents: [])
+        } else {
+            tags?.contents = []
+        }
         // TODO: Get stashed changes
-        self.stashedChanges = RepoStashedChanges(contents: [])
+        if stashedChanges == nil {
+            self.stashedChanges = RepoStashedChanges(contents: [])
+        } else {
+            stashedChanges?.contents = []
+        }
 
         // TODO: Get remote repo branches
         remotes = RepoRemotes(contents: [
