@@ -28,6 +28,10 @@ public class GitClient: ObservableObject {
         self.allBranchNames = allBranchNamesSubject
             .receive(on: RunLoop.main)
             .eraseToAnyPublisher()
+
+        _ = try? getCurrentBranchName()
+        _ = try? getBranches(allBranches: false)
+        _ = try? getBranches(allBranches: true)
     }
 
     public var currentBranchName: AnyPublisher<String, Never>
