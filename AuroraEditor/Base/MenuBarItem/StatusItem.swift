@@ -14,8 +14,7 @@ extension AppDelegate {
     func setup(statusItem: NSStatusItem) {
         Log.info("Setting up the status item")
         if let button = statusItem.button {
-            button.image = NSImage(systemSymbolName: "1.circle", accessibilityDescription: "AuroraEditor")
-//            button.image = NSImage(named: "AppIcon")
+            button.image = NSImage(named: "MenuBarIcon")
         }
 
         let menu = NSMenu()
