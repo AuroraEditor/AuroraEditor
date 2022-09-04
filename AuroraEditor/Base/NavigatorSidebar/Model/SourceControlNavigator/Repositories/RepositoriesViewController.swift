@@ -232,8 +232,10 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
     }
 
     func outlineViewSelectionDidChange(_ notification: Notification) {
-//        let selectedIndex = outlineView.selectedRow
-        // TODO: If the item clicked is something openable (eg. a branch), open a tab
+        let selectedIndex = outlineView.selectedRow
+        if let selectedBranch = outlineView.item(atRow: selectedIndex) as? RepoBranch {
+            Log.info("Clicked on \(selectedBranch)")
+        }
     }
 
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
@@ -273,6 +275,7 @@ extension RepositoriesViewController: NSMenuDelegate {
             // TODO: Distinguish between repo, container, branch, etc.
             menu.repository = self.repository
             menu.workspace = workspace
+            menu.item = outlineView.item(atRow: row) as? RepoItem
         }
         menu.update()
     }

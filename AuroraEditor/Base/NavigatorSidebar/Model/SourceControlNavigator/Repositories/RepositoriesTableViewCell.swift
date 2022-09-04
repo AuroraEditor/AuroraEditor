@@ -22,9 +22,13 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
         var image = NSImage()
         switch cellType {
         case .repo:
-            let currentBranch = (repository.branches?.contents[repository.branches?.current ?? -1] as? RepoBranch)?
-                .name ?? "Unknown Main Branch"
-            label.stringValue = "\(repository.repoName ?? "Unknown Repo") (\(currentBranch))"
+            if repository.branches?.contents.count ?? -2 > repository.branches?.current ?? -1 {
+                let currentBranch = (repository.branches?.contents[repository.branches?.current ?? -1] as? RepoBranch)?
+                    .name ?? "Unknown Main Branch"
+                label.stringValue = "\(repository.repoName ?? "Unknown Repo") (\(currentBranch))"
+            } else {
+                label.stringValue = "\(repository.repoName ?? "Unknown Repo") (Unknown Main Branch)"
+            }
             image = NSImage(systemSymbolName: "clock", accessibilityDescription: nil)!
 
         case .branches:
