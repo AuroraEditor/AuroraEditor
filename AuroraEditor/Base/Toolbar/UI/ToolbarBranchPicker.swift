@@ -37,18 +37,11 @@ public struct ToolbarBranchPicker: View {
 
     public var body: some View {
         HStack(alignment: .center, spacing: 5) {
-            if prefs.sourceControlActive() {
-                if gitClient?.publishedBranchName != nil {
-                    Image("git.branch")
-                        .font(.title3)
-                        .imageScale(.medium)
-                        .foregroundColor(controlActive == .inactive ? inactiveColor : .primary)
-                } else {
-                    Image(systemName: "square.dashed")
-                        .font(.title3)
-                        .imageScale(.medium)
-                        .foregroundColor(controlActive == .inactive ? inactiveColor : .accentColor)
-                }
+            if prefs.sourceControlActive() && gitClient?.publishedBranchName != nil {
+                Image("git.branch")
+                    .font(.title3)
+                    .imageScale(.medium)
+                    .foregroundColor(controlActive == .inactive ? inactiveColor : .primary)
             } else {
                 Image(systemName: "square.dashed")
                     .font(.title3)

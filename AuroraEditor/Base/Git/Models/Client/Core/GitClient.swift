@@ -56,6 +56,7 @@ public class GitClient: ObservableObject {
         }
         currentBranchNameSubject.send(output)
         publishedBranchName = output
+        objectWillChange.send()
         return output
     }
 
@@ -68,6 +69,7 @@ public class GitClient: ObservableObject {
             branchNamesSubject.send(branches)
             publishedBranchNames = branches
         }
+        objectWillChange.send()
         return branches
     }
 
