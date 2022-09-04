@@ -170,7 +170,7 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
         true
     }
 
-    // swiftlint:disable:next cyclomatic_complexity function_body_length
+    // swiftlint:disable:next cyclomatic_complexity
     func outlineView(_ outlineView: NSOutlineView,
                      viewFor tableColumn: NSTableColumn?,
                      item: Any) -> NSView? {
@@ -184,47 +184,39 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
                                              repository: item,
                                              represents: .repo)
         } else if let item = item as? RepoContainer {
+            var represents: RepositoriesTableViewCell.CellType?
             // item is a container
             if item is RepoBranches {
-                return RepositoriesTableViewCell(frame: frameRect,
-                                                 repository: repository,
-                                                 represents: .branches)
+                represents = .branches
             } else if item is RepoRecentLocations {
-                return RepositoriesTableViewCell(frame: frameRect,
-                                                 repository: repository,
-                                                 represents: .recentLocations)
+                represents = .recentLocations
             } else if item is RepoStashedChanges {
-                return RepositoriesTableViewCell(frame: frameRect,
-                                                 repository: repository,
-                                                 represents: .stashedChanges)
+                represents = .stashedChanges
             } else if item is RepoTags {
-                return RepositoriesTableViewCell(frame: frameRect,
-                                                 repository: repository,
-                                                 represents: .tags)
+                represents = .tags
             } else if item is RepoRemotes {
-                return RepositoriesTableViewCell(frame: frameRect,
-                                                 repository: repository,
-                                                 represents: .remotes)
+                represents = .remotes
             } else if item is RepoRemote {
+                represents = .remote
+            }
+            if let represents = represents {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
-                                                 represents: .remote)
+                                                 represents: represents)
             }
         } else if let item = item as? RepoItem {
+            var represents: RepositoriesTableViewCell.CellType?
             if item is RepoBranch {
-                return RepositoriesTableViewCell(frame: frameRect,
-                                                 repository: repository,
-                                                 represents: .branch,
-                                                 item: item)
+                represents = .branch
             } else if item is RepoTag {
-                return RepositoriesTableViewCell(frame: frameRect,
-                                                 repository: repository,
-                                                 represents: .tag,
-                                                 item: item)
+                represents = .tag
             } else if item is RepoChange {
+                represents = .change
+            }
+            if let represents = represents {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
-                                                 represents: .change,
+                                                 represents: represents,
                                                  item: item)
             }
         }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 
 public final class RepositoryModel: ObservableObject {
 
@@ -100,6 +101,41 @@ public final class RepositoryModel: ObservableObject {
         remotes = RepoRemotes(contents: [
             RepoRemote(content: [], name: "Origin")
         ])
+
+        watchBranches()
+    }
+
+    var currentBranchNameListener: AnyCancellable?
+    var branchNamesListener: AnyCancellable?
+    var allBranchNamesListener: AnyCancellable?
+    func watchBranches() {
+        currentBranchNameListener = gitClient?.currentBranchName.sink(receiveValue: { newName in
+            guard let branches = self.branches, let branchContents = branches.contents as? [RepoBranch] else { return }
+            branches.current = branchContents.firstIndex(where: { $0.name == newName }) ?? -1
+        })
+
+        branchNamesListener = gitClient?.branchNames.sink(receiveValue: { newBranchNames in
+            guard let branches = self.branches else { return }
+            branches.contents = newBranchNames.map({ branchName in
+                RepoBranch(name: branchName)
+            })
+        })
+
+        allBranchNamesListener = gitClient?.allBranchNames.sink(receiveValue: { newBranchNames in
+            guard let remotes = self.remotes, let remoteContents = remotes.contents as? [RepoRemote] else { return }
+            let newBranches = newBranchNames.map({ branchName in
+                RepoBranch(name: branchName)
+            })
+            for remote in remoteContents {
+                remote.contents = newBranches
+            }
+        })
+    }
+
+    deinit {
+        currentBranchNameListener?.cancel()
+        branchNamesListener?.cancel()
+        allBranchNamesListener?.cancel()
     }
 
     func checkIfProjectIsRepo() -> Bool {

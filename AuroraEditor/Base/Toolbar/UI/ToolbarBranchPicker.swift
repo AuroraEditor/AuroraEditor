@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 /// A view that pops up a branch picker.
 public struct ToolbarBranchPicker: View {
@@ -20,9 +21,6 @@ public struct ToolbarBranchPicker: View {
     @State
     private var displayPopover: Bool = false
 
-    @State
-    private var currentBranch: String?
-
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
@@ -35,13 +33,12 @@ public struct ToolbarBranchPicker: View {
     ) {
         self.workspace = workspace
         self.gitClient = workspace?.model?.gitClient
-        self._currentBranch = State(initialValue: try? gitClient?.getCurrentBranchName())
     }
 
     public var body: some View {
         HStack(alignment: .center, spacing: 5) {
             if prefs.sourceControlActive() {
-                if currentBranch != nil {
+                if gitClient?.publishedBranchName != nil {
                     Image("git.branch")
                         .font(.title3)
                         .imageScale(.medium)
@@ -65,7 +62,7 @@ public struct ToolbarBranchPicker: View {
                     .frame(height: 16)
                     .help(title)
                 if prefs.sourceControlActive() {
-                    if let currentBranch = currentBranch {
+                    if let currentBranch = gitClient?.publishedBranchName {
                         ZStack(alignment: .trailing) {
                             Text(currentBranch)
                                 .padding(.trailing)
@@ -82,7 +79,7 @@ public struct ToolbarBranchPicker: View {
         }
         .contentShape(Rectangle())
         .onTapGesture {
-            if currentBranch != nil {
+            if gitClient?.publishedBranchName != nil {
                 displayPopover.toggle()
             }
         }
@@ -90,7 +87,8 @@ public struct ToolbarBranchPicker: View {
             isHovering = active
         }
         .popover(isPresented: $displayPopover, arrowEdge: .bottom) {
-            PopoverView(gitClient: gitClient, currentBranch: $currentBranch)
+            ToolbarBranchPicker.PopoverView(gitClient: gitClient,
+                                            currentBranch: gitClient?.publishedBranchName ?? "No Branch")
         }
     }
 
@@ -111,8 +109,8 @@ public struct ToolbarBranchPicker: View {
 
         var gitClient: GitClient?
 
-        @Binding
-        var currentBranch: String?
+        @State
+        var currentBranch: String
 
         var body: some View {
             VStack(alignment: .leading) {
@@ -128,7 +126,6 @@ public struct ToolbarBranchPicker: View {
                         ForEach(branchNames, id: \.self) { branch in
                             BranchCell(name: branch) {
                                 try? gitClient?.checkoutBranch(name: branch)
-                                currentBranch = try? gitClient?.getCurrentBranchName()
                             }
                         }
                     }

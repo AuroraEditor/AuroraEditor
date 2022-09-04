@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 // A protocol to make calls to terminal to init a git call.
-public class GitClient {
+public class GitClient: ObservableObject {
     var directoryURL: URL
     var shellClient: ShellClient
 
@@ -32,12 +32,15 @@ public class GitClient {
 
     public var currentBranchName: AnyPublisher<String, Never>
     private var currentBranchNameSubject = CurrentValueSubject<String, Never>("Unknown Branch")
+    @Published var publishedBranchName: String = ""
 
     public var branchNames: AnyPublisher<[String], Never>
     private var branchNamesSubject = CurrentValueSubject<[String], Never>([])
+    @Published var publishedBranchNames: [String] = []
 
     public var allBranchNames: AnyPublisher<[String], Never>
     private var allBranchNamesSubject = CurrentValueSubject<[String], Never>([])
+    @Published var publishedAllBranchNames: [String] = []
 
     public func getCurrentBranchName() throws -> String {
         let output = try shellClient.run(
@@ -48,15 +51,18 @@ public class GitClient {
             throw GitClientError.notGitRepository
         }
         currentBranchNameSubject.send(output)
+        publishedBranchName = output
         return output
     }
 
     public func getBranches(allBranches: Bool = false) throws -> [String] {
         let branches = try Branches().getBranches(allBranches, directoryURL: directoryURL)
         if allBranches {
-            branchNamesSubject.send(branches)
-        } else {
             allBranchNamesSubject.send(branches)
+            publishedAllBranchNames = branches
+        } else {
+            branchNamesSubject.send(branches)
+            publishedBranchNames = branches
         }
         return branches
     }
