@@ -16,7 +16,28 @@ public class GitClient {
     init(directoryURL: URL, shellClient: ShellClient) {
         self.directoryURL = directoryURL
         self.shellClient = shellClient
+
+        self.currentBranchName = currentBranchNameSubject
+            .receive(on: RunLoop.main)
+            .eraseToAnyPublisher()
+
+        self.branchNames = branchNamesSubject
+            .receive(on: RunLoop.main)
+            .eraseToAnyPublisher()
+
+        self.allBranchNames = allBranchNamesSubject
+            .receive(on: RunLoop.main)
+            .eraseToAnyPublisher()
     }
+
+    public var currentBranchName: AnyPublisher<String, Never>
+    private var currentBranchNameSubject = CurrentValueSubject<String, Never>("Unknown Branch")
+
+    public var branchNames: AnyPublisher<[String], Never>
+    private var branchNamesSubject = CurrentValueSubject<[String], Never>([])
+
+    public var allBranchNames: AnyPublisher<[String], Never>
+    private var allBranchNamesSubject = CurrentValueSubject<[String], Never>([])
 
     public func getCurrentBranchName() throws -> String {
         let output = try shellClient.run(
@@ -26,23 +47,32 @@ public class GitClient {
         if output.contains("fatal: not a git repository") {
             throw GitClientError.notGitRepository
         }
+        currentBranchNameSubject.send(output)
         return output
     }
 
-    public func getBranches(_ allBranches: Bool = false) throws -> [String] {
-        return try Branches().getBranches(allBranches, directoryURL: directoryURL)
+    public func getBranches(allBranches: Bool = false) throws -> [String] {
+        let branches = try Branches().getBranches(allBranches, directoryURL: directoryURL)
+        if allBranches {
+            branchNamesSubject.send(branches)
+        } else {
+            allBranchNamesSubject.send(branches)
+        }
+        return branches
     }
 
     public func checkoutBranch(name: String) throws {
-        guard try getCurrentBranchName() != name else { return }
+        guard currentBranchNameSubject.value != name else { return }
         let output = try shellClient.run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git checkout \(name)"
         )
         if output.contains("fatal: not a git repository") {
             throw GitClientError.notGitRepository
         } else if !output.contains("Switched to branch") && !output.contains("Switched to a new branch") {
+            Log.error(output)
             throw GitClientError.outputError(output)
         }
+        _ = try? getCurrentBranchName() // update the current branch
     }
 
     public func pull() throws {
@@ -98,6 +128,7 @@ public class GitClient {
             }
             .eraseToAnyPublisher()
     }
+
     /// Displays paths that have differences between the index file and the current HEAD commit,
     /// paths that have differences between the working tree and the index file, and paths in the working tree
     public func getChangedFiles() throws -> [FileItem] {

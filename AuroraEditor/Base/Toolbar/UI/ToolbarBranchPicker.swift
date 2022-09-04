@@ -92,9 +92,6 @@ public struct ToolbarBranchPicker: View {
         .popover(isPresented: $displayPopover, arrowEdge: .bottom) {
             PopoverView(gitClient: gitClient, currentBranch: $currentBranch)
         }
-        .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { (_) in
-            currentBranch = try? gitClient?.getCurrentBranchName()
-        }
     }
 
     private var inactiveColor: Color {
@@ -198,7 +195,7 @@ public struct ToolbarBranchPicker: View {
         }
 
         var branchNames: [String] {
-            ((try? gitClient?.getBranches(false)) ?? []).filter { $0 != currentBranch }
+            ((try? gitClient?.getBranches(allBranches: false)) ?? []).filter { $0 != currentBranch }
         }
     }
 }

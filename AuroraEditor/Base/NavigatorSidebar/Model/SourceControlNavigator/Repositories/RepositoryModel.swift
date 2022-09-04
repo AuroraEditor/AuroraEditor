@@ -63,7 +63,7 @@ public final class RepositoryModel: ObservableObject {
         // reponame must not be nil or ""
         guard repoName != nil && !repoName!.isEmpty else { return }
 
-        let branchNames: [String] = ((try? gitClient?.getBranches(false)) ?? [])
+        let branchNames: [String] = ((try? gitClient?.getBranches(allBranches: false)) ?? [])
         let currentBranchName = (try? gitClient?.getCurrentBranchName()) ?? ""
         let currentBranchIndex = branchNames.firstIndex(of: currentBranchName) ?? -1
 

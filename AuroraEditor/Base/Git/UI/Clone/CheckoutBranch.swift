@@ -18,7 +18,7 @@ public extension CheckoutBranchView {
             let branches = try GitClient.init(
                 directoryURL: url,
                 shellClient: shellClient
-            ).getBranches(true)
+            ).getBranches(allBranches: true)
 
             return branches
         } catch {

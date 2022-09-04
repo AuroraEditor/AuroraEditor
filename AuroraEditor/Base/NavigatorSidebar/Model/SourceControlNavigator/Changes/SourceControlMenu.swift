@@ -24,7 +24,10 @@ final class SourceControlMenu: NSMenu {
 
     init(sender: NSOutlineView, workspaceURL: URL) {
         outlineView = sender
-        gitClient = workspace?.workspaceClient?.model?.gitClient!
+        gitClient = GitClient.init(
+            directoryURL: workspaceURL,
+            shellClient: sharedShellClient.shellClient
+        )
         super.init(title: "Source Control Options")
     }
 
