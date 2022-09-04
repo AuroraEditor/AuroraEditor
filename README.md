@@ -13,6 +13,9 @@
   <a href='https://discord.gg/5aecJ4rq9D' target='_blank'>
     <img alt="Discord" src="https://img.shields.io/discord/997410333348077620?color=f98a6c&style=for-the-badge">
   </a>
+  <a href='https://nightly.link/AuroraEditor/AuroraEditor/workflows/workflow/main/AuroraEditor%201.0.dmg' target='_blank'>
+  <img alt="Download" src="https://img.shields.io/badge/Download-Nightly Build-6bbee8?style=for-the-badge">
+ </a>
 </p>
 
 <br />
@@ -38,9 +41,6 @@ It will support everything you could expect from an Xcode-inspired application, 
  </p>
  
  <br />
-
-| :warning: |  **AuroraEditor is currently in development and we do not yet offer a download.** <br> We will post a link here when we have an alpha release ready for testing. <br> Until then, we welcome contributors to help bring this project to life. |
-|--|--|
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
