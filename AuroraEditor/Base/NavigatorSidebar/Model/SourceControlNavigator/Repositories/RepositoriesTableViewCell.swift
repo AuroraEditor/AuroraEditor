@@ -12,7 +12,7 @@ import SwiftUI
 final class RepositoriesTableViewCell: StandardTableViewCell {
     // swiftlint:disable:next function_body_length
     init(frame frameRect: NSRect,
-         repository: DummyRepo,
+         repository: RepositoryModel,
          represents cellType: CellType = .repo,
          item: RepoItem? = nil
     ) {
@@ -24,7 +24,7 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
         case .repo:
             let currentBranch = (repository.branches?.contents[repository.branches?.current ?? -1] as? RepoBranch)?
                 .name ?? "Unknown Main Branch"
-            label.stringValue = "\(repository.repoName) (\(currentBranch))"
+            label.stringValue = "\(repository.repoName ?? "Unknown Repo") (\(currentBranch))"
             image = NSImage(systemSymbolName: "clock", accessibilityDescription: nil)!
 
         case .branches:

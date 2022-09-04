@@ -14,7 +14,7 @@ import SwiftUI
 /// currently open project.
 final class RepositoriesViewController: NSViewController {
 
-    var repository: DummyRepo!
+    var repository: RepositoryModel!
 
     var scrollView: NSScrollView!
     var outlineView: NSOutlineView!
@@ -93,7 +93,7 @@ final class RepositoriesViewController: NSViewController {
     private func onItemDoubleClicked() {
         let item = outlineView.item(atRow: outlineView.clickedRow)
 
-        if item is DummyRepo || item is RepoContainer {
+        if item is RepositoryModel || item is RepoContainer {
             if outlineView.isItemExpanded(item) {
                 outlineView.collapseItem(item)
             } else {
@@ -107,7 +107,7 @@ final class RepositoriesViewController: NSViewController {
 
 extension RepositoriesViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        if item is DummyRepo {
+        if item is RepositoryModel {
             // item is a repo
             return 5
         } else if let item = item as? RepoContainer {
@@ -122,7 +122,7 @@ extension RepositoriesViewController: NSOutlineViewDataSource {
     }
 
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        if let item = item as? DummyRepo {
+        if let item = item as? RepositoryModel {
             // item is a repo.
             switch index {
             case 0:
@@ -154,7 +154,7 @@ extension RepositoriesViewController: NSOutlineViewDataSource {
 
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         // only repos and containers are expandable
-        return item is DummyRepo || item is RepoContainer
+        return item is RepositoryModel || item is RepoContainer
     }
 }
 
@@ -178,7 +178,7 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
 
         let frameRect = NSRect(x: 0, y: 0, width: tableColumn.width, height: rowHeight)
 
-        if let item = item as? DummyRepo {
+        if let item = item as? RepositoryModel {
             // item is a repo.
             return RepositoriesTableViewCell(frame: frameRect,
                                              repository: item,

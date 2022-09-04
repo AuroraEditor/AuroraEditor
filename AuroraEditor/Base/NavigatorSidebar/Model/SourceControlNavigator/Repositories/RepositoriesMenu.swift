@@ -16,7 +16,7 @@ final class RepositoriesMenu: NSMenu {
     /// The workspace, for opening the item
     var workspace: WorkspaceDocument?
 
-    var repository: DummyRepo?
+    var repository: RepositoryModel?
 
     private let fileManger = FileManager.default
 
