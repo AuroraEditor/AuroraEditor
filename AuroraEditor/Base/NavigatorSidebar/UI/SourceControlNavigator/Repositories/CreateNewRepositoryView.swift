@@ -72,7 +72,7 @@ struct CreateNewRepositoryView: View {
                         }
                         try initGitRepository(directoryURL: projectPath)
 
-                        repositoryModel.isGitRepository.toggle()
+                        repositoryModel.isGitRepository = repositoryModel.checkIfProjectIsRepo()
                         repositoryModel.openGitCreationSheet.toggle()
                     } catch {
                         Log.error("Unable to create a repo for project")
