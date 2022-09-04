@@ -68,4 +68,4 @@ jobs:
           # Artifact name
           name: AuroraEditor_Nightly # optional, default is artifact
           # A file, directory or wildcard pattern that describes what to upload
-          path: AuroraEditor.dmg
+          path: "Aurora Editor 1.0.dmg"
