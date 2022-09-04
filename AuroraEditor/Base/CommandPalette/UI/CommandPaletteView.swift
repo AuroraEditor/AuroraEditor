@@ -1,20 +1,21 @@
 //
-//  QuickOpenView.swift
-//  AuroraEditorModules/QuickOpen
+//  CommandPaletteView.swift
+//  AuroraEditor
 //
-//  Created by Pavel Kasila on 20.03.22.
+//  Created by TAY KAI QUAN on 2/9/22.
+//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import SwiftUI
 
-public struct QuickOpenView: View {
-    @ObservedObject private var state: QuickOpenState
+struct CommandPaletteView: View {
+    @ObservedObject private var state: CommandPaletteState
     private let onClose: () -> Void
     private let openFile: (WorkspaceClient.FileItem) -> Void
-    @State private var selectedItem: WorkspaceClient.FileItem?
+    @State private var selectedCommand: Command?
 
     public init(
-        state: QuickOpenState,
+        state: CommandPaletteState,
         onClose: @escaping () -> Void,
         openFile: @escaping (WorkspaceClient.FileItem) -> Void
     ) {
@@ -23,6 +24,8 @@ public struct QuickOpenView: View {
         self.openFile = openFile
     }
 
+    /// It should return bool value in order to notify underlying handler if event was handled or not.
+    /// So returning true - means you need to break the chain and do not pass event down the line
     func onKeyDown(with event: NSEvent) -> Bool {
         switch event.keyCode {
         case 125: // down arrow
@@ -34,8 +37,8 @@ public struct QuickOpenView: View {
             return true
 
         case 36: // enter key
-            if let selectedItem = selectedItem {
-                openFile(selectedItem)
+            if let selectedCommand = selectedCommand {
+                selectedCommand.command()
             }
             self.onClose()
             return true
@@ -49,24 +52,24 @@ public struct QuickOpenView: View {
         }
     }
 
-    func onQueryChange(text: String) {
-        state.fetchOpenQuickly()
-        if !state.isShowingOpenQuicklyFiles {
-            selectedItem = nil
+    func selectOffset(by offset: Int) {
+        guard !state.commands.isEmpty else { return }
+
+        // check if a command has been selected
+        if let selectedCommand = selectedCommand, let currentIndex = state.commands.firstIndex(of: selectedCommand) {
+            // select current index + offset, wrapping around if theres underflow or overflow.
+            let newIndex = (currentIndex + offset + state.commands.count) % (state.commands.count)
+            self.selectedCommand = state.commands[newIndex]
+        } else {
+            // if theres no selected command, just select the first or last item depending on direction
+            selectedCommand = state.commands[ offset < 0 ? state.commands.count-1 : 0]
         }
     }
 
-    func selectOffset(by offset: Int) {
-        guard !state.openQuicklyFiles.isEmpty else { return }
-
-        // check if a command has been selected
-        if let selectedItem = selectedItem, let currentIndex = state.openQuicklyFiles.firstIndex(of: selectedItem) {
-            // select current index + offset, wrapping around if theres underflow or overflow.
-            let newIndex = (currentIndex + offset + state.openQuicklyFiles.count) % (state.openQuicklyFiles.count)
-            self.selectedItem = state.openQuicklyFiles[newIndex]
-        } else {
-            // if theres no selected command, just select the first or last item depending on direction
-            selectedItem = state.openQuicklyFiles[ offset < 0 ? state.openQuicklyFiles.count-1 : 0]
+    func onQueryChange(text: String) {
+        state.fetchCommands()
+        if !state.isShowingCommands {
+            selectedCommand = nil
         }
     }
 
@@ -74,7 +77,7 @@ public struct QuickOpenView: View {
         VStack(spacing: 0.0) {
             VStack {
                 HStack(alignment: .center, spacing: 0) {
-                    Image(systemName: "doc.text.magnifyingglass")
+                    Image(systemName: "command")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 20, height: 20)
@@ -82,41 +85,33 @@ public struct QuickOpenView: View {
                         .offset(x: 0, y: 1)
                     ActionAwareInput(onDown: onKeyDown,
                                      onTextChange: onQueryChange,
-                                     text: $state.openQuicklyQuery)
+                                     text: $state.commandQuery)
                 }
                 .padding(16)
                 .foregroundColor(.primary.opacity(0.85))
-                .background(EffectView(.sidebar, blendingMode: .behindWindow))
             }
             .frame(height: 52)
-            if state.isShowingOpenQuicklyFiles {
+            if state.isShowingCommands {
                 Divider()
-                NavigationView {
+                List(state.commands, selection: $selectedCommand) { command in
                     ZStack {
-                        List(state.openQuicklyFiles, id: \.id) { file in
-                            NavigationLink(tag: file, selection: $selectedItem) {
-                                QuickOpenPreviewView(item: file)
-                            } label: {
-                                QuickOpenItem(baseDirectory: state.fileURL, fileItem: file)
-                            }
+                        CommandPaletteItem(command: command)
                             .onTapGesture(count: 2) {
-                                self.openFile(file)
+                                command.command()
                                 self.onClose()
                             }
                             .onTapGesture(count: 1) {
-                                self.selectedItem = file
+                                self.selectedCommand = command
                             }
-                        }
-                        .frame(minWidth: 250, maxWidth: 250)
-                        if state.openQuicklyFiles.isEmpty {
-                            EmptyView()
-                        } else {
-                            Text("Select a file to preview")
-                        }
+                            .background(self.selectedCommand == command ?
+                                        RoundedRectangle(cornerRadius: 5, style: .continuous)
+                                .fill(Color(red: 0, green: 0.38, blue: 0.816, opacity: 0.85)) :
+                                            RoundedRectangle(cornerRadius: 5, style: .continuous)
+                                .fill(Color.clear))
 
                         Button("") {
-                            if let selectedItem = selectedItem {
-                                self.openFile(selectedItem)
+                            if let selectedCommand = selectedCommand {
+                                selectedCommand.command()
                                 self.onClose()
                             }
                         }
@@ -124,20 +119,22 @@ public struct QuickOpenView: View {
                         .keyboardShortcut(.defaultAction)
                     }
                 }
+                .padding([.top, .horizontal], -5)
+                .listStyle(.sidebar)
             }
         }
         .background(EffectView(.sidebar, blendingMode: .behindWindow))
         .edgesIgnoringSafeArea(.vertical)
         .frame(minWidth: 600,
-           minHeight: self.state.isShowingOpenQuicklyFiles ? 400 : 28,
-           maxHeight: self.state.isShowingOpenQuicklyFiles ? .infinity : 28)
+           minHeight: self.state.isShowingCommands ? 400 : 28,
+           maxHeight: self.state.isShowingCommands ? .infinity : 28)
     }
 }
 
-struct QuickOpenView_Previews: PreviewProvider {
+struct CommandPaletteView_Previews: PreviewProvider {
     static var previews: some View {
-        QuickOpenView(
-            state: .init(fileURL: .init(fileURLWithPath: "")),
+        CommandPaletteView(
+            state: .init(),
             onClose: {},
             openFile: { _ in }
         )

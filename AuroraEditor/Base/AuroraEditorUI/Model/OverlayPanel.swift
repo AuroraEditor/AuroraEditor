@@ -8,6 +8,14 @@
 import Cocoa
 
 public final class OverlayPanel: NSPanel, NSWindowDelegate {
+
+    var viewType: ViewType?
+
+    enum ViewType {
+        case quickOpen
+        case commandPalette
+    }
+
     public init() {
         super.init(
             contentRect: NSRect(x: 0, y: 0, width: 500, height: 48),

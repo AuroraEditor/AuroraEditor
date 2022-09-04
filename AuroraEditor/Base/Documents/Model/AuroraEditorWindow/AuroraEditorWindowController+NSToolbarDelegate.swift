@@ -1,72 +1,17 @@
 //
-//  AuroraEditorWindowController.swift
+//  AuroraEditorWindowController+NSToolbarDelegate.swift
 //  AuroraEditor
 //
-//  Created by Pavel Kasila on 18.03.22.
+//  Created by TAY KAI QUAN on 3/9/22.
+//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import Cocoa
 import SwiftUI
 
-// swiftlint:disable:next type_body_length
-final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate {
+extension AuroraEditorWindowController: NSToolbarDelegate {
 
-    private var prefs: AppPreferencesModel = .shared
-
-    var workspace: WorkspaceDocument?
-    var quickOpenPanel: OverlayPanel?
-
-    private var splitViewController: NSSplitViewController! {
-        get { contentViewController as? NSSplitViewController }
-        set { contentViewController = newValue }
-    }
-
-    init(window: NSWindow, workspace: WorkspaceDocument) {
-        self.workspace = workspace
-        super.init(window: window)
-
-        setupSplitView(with: workspace)
-        setupToolbar()
-    }
-
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    private func setupSplitView(with workspace: WorkspaceDocument) {
-        let splitVC = NSSplitViewController()
-
-        let navigatorView = NavigatorSidebar(workspace: workspace, windowController: self)
-        let navigator = NSSplitViewItem(
-            sidebarWithViewController: NSHostingController(rootView: navigatorView)
-        )
-        navigator.titlebarSeparatorStyle = .none
-        navigator.minimumThickness = 260
-        navigator.collapseBehavior = .useConstraints
-        splitVC.addSplitViewItem(navigator)
-
-        let workspaceView = WorkspaceView(windowController: self, workspace: workspace)
-        let mainContent = NSSplitViewItem(
-            viewController: NSHostingController(rootView: workspaceView)
-        )
-        mainContent.titlebarSeparatorStyle = .line
-        splitVC.addSplitViewItem(mainContent)
-
-        let inspectorView = InspectorSidebar(workspace: workspace, windowController: self)
-        let inspector = NSSplitViewItem(
-            viewController: NSHostingController(rootView: inspectorView)
-        )
-        inspector.titlebarSeparatorStyle = .line
-        inspector.minimumThickness = 260
-        inspector.isCollapsed = !prefs.preferences.general.keepInspectorSidebarOpen
-        inspector.collapseBehavior = .useConstraints
-        splitVC.addSplitViewItem(inspector)
-
-        self.splitViewController = splitVC
-    }
-
-    private func setupToolbar() {
+    func setupToolbar() {
         let toolbar = NSToolbar(identifier: UUID().uuidString)
         toolbar.delegate = self
         toolbar.displayMode = .labelOnly
@@ -86,8 +31,6 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
         }
         self.window?.toolbar = toolbar
     }
-
-    // MARK: - Toolbar
 
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         [
@@ -217,10 +160,6 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
         }
     }
 
-    override func windowDidLoad() {
-        super.windowDidLoad()
-    }
-
     @objc func toggleFirstPanel() {
         guard let firstSplitView = splitViewController.splitViewItems.first else { return }
         firstSplitView.animator().isCollapsed.toggle()
@@ -244,92 +183,6 @@ final class AuroraEditorWindowController: NSWindowController, NSToolbarDelegate 
             window?.toolbar?.insertItem(withItemIdentifier: NSToolbarItem.Identifier.flexibleSpace,
                                         at: (window?.toolbar?.items.count)! - 1)
         }
-    }
-
-    private func getSelectedCodeFile() -> CodeFileDocument? {
-        guard let id = workspace?.selectionState.selectedId else { return nil }
-        guard let item = workspace?.selectionState.openFileItems.first(where: { item in
-            item.tabID == id
-        }) else { return nil }
-        guard let file = workspace?.selectionState.openedCodeFiles[item] else { return nil }
-        return file
-    }
-
-    // TODO: Make this more reliable
-    @IBAction func saveDocument(_ sender: Any) {
-        guard let file = getSelectedCodeFile() else {
-            fatalError("Cannot get file")
-        }
-
-//        file.save(sender)
-        file.saveFileDocument()
-
-        workspace?.convertTemporaryTab()
-    }
-
-    @IBAction func openQuickly(_ sender: Any) {
-        if let workspace = workspace, let state = workspace.quickOpenState {
-            if let quickOpenPanel = quickOpenPanel {
-                if quickOpenPanel.isKeyWindow {
-                    quickOpenPanel.close()
-                    return
-                } else {
-                    window?.addChildWindow(quickOpenPanel, ordered: .above)
-                    quickOpenPanel.makeKeyAndOrderFront(self)
-                }
-            } else {
-                let panel = OverlayPanel()
-                self.quickOpenPanel = panel
-                let contentView = QuickOpenView(
-                    state: state,
-                    onClose: { panel.close() },
-                    openFile: workspace.openTab(item:)
-                )
-                panel.contentView = NSHostingView(rootView: contentView)
-                window?.addChildWindow(panel, ordered: .above)
-                panel.makeKeyAndOrderFront(self)
-            }
-        }
-    }
-
-    // MARK: Git Main Menu Items
-
-    @IBAction func stashChangesItems(_ sender: Any) {
-        if tryFocusWindow(of: StashChangesSheet.self) { return }
-        if (workspace?.workspaceClient?.model?.changed ?? []).isEmpty {
-            let alert = NSAlert()
-            alert.alertStyle = .informational
-            alert.messageText = "Cannot Stash Changes"
-            alert.informativeText = "There are no uncommitted changes in the working copies for this project."
-            alert.addButton(withTitle: "OK")
-            alert.runModal()
-        } else {
-            StashChangesSheet(workspaceURL: (workspace?.fileURL!)!).showWindow()
-        }
-    }
-
-    @IBAction func discardProjectChanges(_ sender: Any) {
-        if (workspace?.workspaceClient?.model?.changed ?? []).isEmpty {
-            let alert = NSAlert()
-            alert.alertStyle = .informational
-            alert.messageText = "Cannot Discard Changes"
-            alert.informativeText = "There are no uncommitted changes in the working copies for this project."
-            alert.addButton(withTitle: "OK")
-            alert.runModal()
-        } else {
-            workspace?.workspaceClient?.model?.discardProjectChanges()
-        }
-    }
-
-    /// Tries to focus a window with specified view content type.
-    /// - Parameter type: The type of viewContent which hosted in a window to be focused.
-    /// - Returns: `true` if window exist and focused, oterwise - `false`
-    private func tryFocusWindow<T: View>(of type: T.Type) -> Bool {
-        guard let window = NSApp.windows.filter({ ($0.contentView as? NSHostingView<T>) != nil }).first
-        else { return false }
-
-        window.makeKeyAndOrderFront(self)
-        return true
     }
 }
 

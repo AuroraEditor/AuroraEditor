@@ -531,8 +531,15 @@
 		93A753E028B25A4C00472A68 /* WebTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A753DF28B25A4B00472A68 /* WebTab.swift */; };
 		93A753E228B25E5000472A68 /* WebTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A753E128B25E5000472A68 /* WebTabView.swift */; };
 		93A753E428B25ECF00472A68 /* WebWKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A753E328B25ECF00472A68 /* WebWKView.swift */; };
+		93ACA43728C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACA43628C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift */; };
 		93C43E8228B0DBF0002E23DC /* NavigatorSidebarToolbarLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C43E8128B0DBF0002E23DC /* NavigatorSidebarToolbarLeft.swift */; };
 		93DD4FF328AFD0F100B664D4 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */; };
+		93EF415C28C1D21E004083AD /* CommandPaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF415B28C1D21E004083AD /* CommandPaletteView.swift */; };
+		93EF415F28C1D2DB004083AD /* CommandPaletteState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF415E28C1D2DB004083AD /* CommandPaletteState.swift */; };
+		93EF416128C1D38E004083AD /* CommandPaletteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF416028C1D38E004083AD /* CommandPaletteItem.swift */; };
+		93EF416328C1D752004083AD /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF416228C1D752004083AD /* Command.swift */; };
+		93EF416528C1EBBC004083AD /* ActionAwareInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF416428C1EBBC004083AD /* ActionAwareInput.swift */; };
+		93EF416728C1F828004083AD /* WorkspaceDocument+Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF416628C1F828004083AD /* WorkspaceDocument+Commands.swift */; };
 		93F0066728A7574C0038E5B7 /* WorkspaceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F0066628A7574C0038E5B7 /* WorkspaceClient.swift */; };
 		93F0066928A757670038E5B7 /* WorkspaceClient+FileIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F0066828A757670038E5B7 /* WorkspaceClient+FileIndex.swift */; };
 		93F73D0D28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F73D0C28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift */; };
@@ -1118,8 +1125,15 @@
 		93A753DF28B25A4B00472A68 /* WebTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebTab.swift; sourceTree = "<group>"; };
 		93A753E128B25E5000472A68 /* WebTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebTabView.swift; sourceTree = "<group>"; };
 		93A753E328B25ECF00472A68 /* WebWKView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebWKView.swift; sourceTree = "<group>"; };
+		93ACA43628C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuroraEditorWindowController+NSToolbarDelegate.swift"; sourceTree = "<group>"; };
 		93C43E8128B0DBF0002E23DC /* NavigatorSidebarToolbarLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorSidebarToolbarLeft.swift; sourceTree = "<group>"; };
 		93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		93EF415B28C1D21E004083AD /* CommandPaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteView.swift; sourceTree = "<group>"; };
+		93EF415E28C1D2DB004083AD /* CommandPaletteState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteState.swift; sourceTree = "<group>"; };
+		93EF416028C1D38E004083AD /* CommandPaletteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteItem.swift; sourceTree = "<group>"; };
+		93EF416228C1D752004083AD /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		93EF416428C1EBBC004083AD /* ActionAwareInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionAwareInput.swift; sourceTree = "<group>"; };
+		93EF416628C1F828004083AD /* WorkspaceDocument+Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceDocument+Commands.swift"; sourceTree = "<group>"; };
 		93F0066628A7574C0038E5B7 /* WorkspaceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceClient.swift; sourceTree = "<group>"; };
 		93F0066828A757670038E5B7 /* WorkspaceClient+FileIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceClient+FileIndex.swift"; sourceTree = "<group>"; };
 		93F73D0C28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceDocument+Tabs.swift"; sourceTree = "<group>"; };
@@ -1209,14 +1223,9 @@
 		200FB696289D112C006E12D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				043C321327E31FF6006AE443 /* AuroraEditorDocumentController.swift */,
-				043C321527E3201F006AE443 /* WorkspaceDocument.swift */,
-				04660F6927E51E5C00477777 /* AuroraEditorWindowController.swift */,
+				93ACA43528C32FC000672994 /* WorkspaceDocument */,
+				93ACA43428C32F9100672994 /* AuroraEditorWindow */,
 				D7E201AD27E8B3C000CB86D0 /* String+Ranges.swift */,
-				043BCF02281DA18A000AC47C /* WorkspaceDocument+Search.swift */,
-				043BCF04281DA19A000AC47C /* WorkspaceDocument+Selection.swift */,
-				6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */,
-				93F73D0C28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1424,6 +1433,7 @@
 				20D8374E289A7ACD00D91D05 /* Highlightr */,
 				20D83851289A7ACE00D91D05 /* LSP */,
 				20D838EA289A7ACE00D91D05 /* QuickOpen */,
+				93EF415928C1D1BF004083AD /* CommandPalette */,
 				20D838F0289A7ACE00D91D05 /* ShellClient */,
 				20D83718289A7ACD00D91D05 /* StatusBar */,
 				20D838F5289A7ACE00D91D05 /* TerminalEmulator */,
@@ -2987,6 +2997,28 @@
 			path = WebView;
 			sourceTree = "<group>";
 		};
+		93ACA43428C32F9100672994 /* AuroraEditorWindow */ = {
+			isa = PBXGroup;
+			children = (
+				04660F6927E51E5C00477777 /* AuroraEditorWindowController.swift */,
+				93ACA43628C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift */,
+			);
+			path = AuroraEditorWindow;
+			sourceTree = "<group>";
+		};
+		93ACA43528C32FC000672994 /* WorkspaceDocument */ = {
+			isa = PBXGroup;
+			children = (
+				043C321327E31FF6006AE443 /* AuroraEditorDocumentController.swift */,
+				043C321527E3201F006AE443 /* WorkspaceDocument.swift */,
+				043BCF02281DA18A000AC47C /* WorkspaceDocument+Search.swift */,
+				043BCF04281DA19A000AC47C /* WorkspaceDocument+Selection.swift */,
+				6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */,
+				93F73D0C28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift */,
+			);
+			path = WorkspaceDocument;
+			sourceTree = "<group>";
+		};
 		93E2BD6F28B600D100E7FA03 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -2994,6 +3026,35 @@
 				93A753E328B25ECF00472A68 /* WebWKView.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		93EF415928C1D1BF004083AD /* CommandPalette */ = {
+			isa = PBXGroup;
+			children = (
+				93EF415D28C1D2CD004083AD /* Model */,
+				93EF415A28C1D205004083AD /* UI */,
+			);
+			path = CommandPalette;
+			sourceTree = "<group>";
+		};
+		93EF415A28C1D205004083AD /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				93EF415B28C1D21E004083AD /* CommandPaletteView.swift */,
+				93EF416028C1D38E004083AD /* CommandPaletteItem.swift */,
+				93EF416428C1EBBC004083AD /* ActionAwareInput.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		93EF415D28C1D2CD004083AD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				93EF415E28C1D2DB004083AD /* CommandPaletteState.swift */,
+				93EF416228C1D752004083AD /* Command.swift */,
+				93EF416628C1F828004083AD /* WorkspaceDocument+Commands.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		93F0066528A756F50038E5B7 /* WorkspaceClient */ = {
@@ -3507,6 +3568,7 @@
 				2093CD52289AA0AE003A88DD /* FeedbackType.swift in Sources */,
 				20E8749028A3ABA8002CE758 /* SourceControlController.swift in Sources */,
 				0463E51327FCC1FB00806D5C /* AuroraEditorTargetsAPI.swift in Sources */,
+				93EF416128C1D38E004083AD /* CommandPaletteItem.swift in Sources */,
 				2093CCA5289AA015003A88DD /* FileIcon.swift in Sources */,
 				201169DD2837B3AC00F92B46 /* SourceControlToolbarBottom.swift in Sources */,
 				2093CD10289AA04C003A88DD /* Shims.swift in Sources */,
@@ -3597,6 +3659,7 @@
 				2B4C1331289D56F9000ED796 /* STTextLayoutFragmentLayer.swift in Sources */,
 				2093CD0E289AA04C003A88DD /* HighlighrTheme.swift in Sources */,
 				201169E72837B5CA00F92B46 /* SourceControlModel.swift in Sources */,
+				93EF415C28C1D21E004083AD /* CommandPaletteView.swift in Sources */,
 				2093CD5E289AA0DD003A88DD /* CrashReportModel.swift in Sources */,
 				28B8F884280FFE4600596236 /* NSTableView+Background.swift in Sources */,
 				2093CDE4289AA887003A88DD /* IgnoredFiles.swift in Sources */,
@@ -3618,6 +3681,7 @@
 				9354D4BB28AD2872004C6D18 /* StandardTableViewCell.swift in Sources */,
 				2093CD48289AA095003A88DD /* Parameters.swift in Sources */,
 				20DF97A328ABD7D2009CE1E9 /* CreateNewRepositoryView.swift in Sources */,
+				93EF416328C1D752004083AD /* Command.swift in Sources */,
 				20BCB0BA28AA68160064C7C0 /* Apply.swift in Sources */,
 				20D2A43C28A7C5970073F7BD /* LFS.swift in Sources */,
 				20B5BDA328B130F000B2A02F /* SplitEditorDropProposalPosition.swift in Sources */,
@@ -3647,6 +3711,7 @@
 				209D0251289ABF9A0082441F /* STTextView+AutoComplete.swift in Sources */,
 				2093CC99289A9FFD003A88DD /* FilterTextField.swift in Sources */,
 				20FDB4E328BD06CB00FDD8C3 /* Diff-Data.swift in Sources */,
+				93EF416728C1F828004083AD /* WorkspaceDocument+Commands.swift in Sources */,
 				2093CD6F289AA0FC003A88DD /* SettingsTextEditor.swift in Sources */,
 				2093CDA0289AA163003A88DD /* ThemePreferences.swift in Sources */,
 				2072FA1A280D872600C7F8D4 /* LineEndings.swift in Sources */,
@@ -3664,6 +3729,7 @@
 				2093CD66289AA0E8003A88DD /* HighlightrLanguage.swift in Sources */,
 				2093CD33289AA089003A88DD /* Comment.swift in Sources */,
 				04C3255C2801F86900C8DA2D /* ProjectNavigatorMenu.swift in Sources */,
+				93EF415F28C1D2DB004083AD /* CommandPaletteState.swift in Sources */,
 				2093CDE1289AA522003A88DD /* AuroraProject.swift in Sources */,
 				04540D5E27DD08C300E91B77 /* WorkspaceView.swift in Sources */,
 				20D2A44C28A7D8D00073F7BD /* Format-Patch.swift in Sources */,
@@ -3685,6 +3751,7 @@
 				2072FA1E280D891500C7F8D4 /* Location.swift in Sources */,
 				2093CD28289AA084003A88DD /* GithubRepositoryRouter.swift in Sources */,
 				D7E201B227E8D50000CB86D0 /* FindNavigatorModeSelector.swift in Sources */,
+				93EF416528C1EBBC004083AD /* ActionAwareInput.swift in Sources */,
 				2093CD25289AA084003A88DD /* GithubConfiguration.swift in Sources */,
 				2093CD5B289AA0D5003A88DD /* CrashReportView.swift in Sources */,
 				2093CDCC289AA4F4003A88DD /* StatusBarTabType.swift in Sources */,
@@ -3859,6 +3926,7 @@
 				0463E51127FCC1DF00806D5C /* AuroraEditorAPI.swift in Sources */,
 				2093CDD4289AA50C003A88DD /* HTMLUtils.swift in Sources */,
 				04C3255B2801F86400C8DA2D /* ProjectNavigatorViewController.swift in Sources */,
+				93ACA43728C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift in Sources */,
 				2093CDC0289AA247003A88DD /* SearchResultModel.swift in Sources */,
 				2093CD2E289AA089003A88DD /* Files.swift in Sources */,
 				209D0257289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift in Sources */,
