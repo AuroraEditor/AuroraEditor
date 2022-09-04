@@ -17,8 +17,8 @@ jobs:
         name: "Cache Derived Data"
         with:
           path: |
-            ~/Library/Developer/Xcode/DerivedData/AuroraEditor/Build
-            ~/Library/Developer/Xcode/DerivedData/AuroraEditor/SourcePackages
+            ~/Library/Developer/Xcode/DerivedData/AuroraEditor-*/Build
+            ~/Library/Developer/Xcode/DerivedData/AuroraEditor-*/SourcePackages
           key: ${{ runner.os }}-derivedData-cache-${{ hashFiles(
               'AuroraEditor.xcworkspace/xcshareddata/swiftpm/Package.resolved',
               'AuroraEditor.xcodeproj/xcshareddata/swiftpm/Package.resolved'
