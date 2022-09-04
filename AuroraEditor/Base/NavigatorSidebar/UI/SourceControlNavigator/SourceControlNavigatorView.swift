@@ -28,6 +28,7 @@ struct SourceControlNavigatorView: View {
             .frame(height: 27)
             .padding(.horizontal, 8)
             .padding(.bottom, 2)
+            .padding(.top, 1)
             .overlay(alignment: .bottom) {
                 Divider()
             }
