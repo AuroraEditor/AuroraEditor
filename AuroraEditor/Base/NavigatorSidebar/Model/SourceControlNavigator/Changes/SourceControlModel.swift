@@ -41,7 +41,7 @@ public final class SourceControlModel: ObservableObject {
     ///
     public init(workspaceURL: URL) {
         self.workspaceURL = workspaceURL
-        gitClient = GitClient.default(
+        gitClient = GitClient.init(
             directoryURL: workspaceURL,
             shellClient: sharedShellClient.shellClient
         )
@@ -62,7 +62,7 @@ public final class SourceControlModel: ObservableObject {
 
     public func discardFileChanges(file: FileItem) {
         do {
-            try gitClient.discardFileChanges(file.url.path)
+            try gitClient.discardFileChanges(url: file.url.path)
         } catch {
             Log.error("Failed to discard changes")
         }

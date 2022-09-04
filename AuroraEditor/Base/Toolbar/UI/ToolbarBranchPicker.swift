@@ -34,12 +34,7 @@ public struct ToolbarBranchPicker: View {
         workspace: WorkspaceClient?
     ) {
         self.workspace = workspace
-        if let folderURL = workspace?.folderURL {
-            self.gitClient = GitClient.default(
-                directoryURL: folderURL,
-                shellClient: shellClient
-            )
-        }
+        self.gitClient = workspace?.model?.gitClient
         self._currentBranch = State(initialValue: try? gitClient?.getCurrentBranchName())
     }
 
@@ -135,7 +130,7 @@ public struct ToolbarBranchPicker: View {
                         headerLabel("Branches")
                         ForEach(branchNames, id: \.self) { branch in
                             BranchCell(name: branch) {
-                                try? gitClient?.checkoutBranch(branch)
+                                try? gitClient?.checkoutBranch(name: branch)
                                 currentBranch = try? gitClient?.getCurrentBranchName()
                             }
                         }

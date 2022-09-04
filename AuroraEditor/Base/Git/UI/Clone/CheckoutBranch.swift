@@ -15,7 +15,7 @@ public extension CheckoutBranchView {
             return [""]
         }
         do {
-            let branches = try GitClient.default(
+            let branches = try GitClient.init(
                 directoryURL: url,
                 shellClient: shellClient
             ).getBranches(true)
@@ -34,8 +34,8 @@ public extension CheckoutBranchView {
         }
         do {
             if let url = URL(string: repoPath) {
-                try GitClient.default(directoryURL: url,
-                                      shellClient: shellClient).checkoutBranch(parsedBranch)
+                try GitClient.init(directoryURL: url,
+                                   shellClient: shellClient).checkoutBranch(name: parsedBranch)
                 isPresented = false
             }
         } catch {
