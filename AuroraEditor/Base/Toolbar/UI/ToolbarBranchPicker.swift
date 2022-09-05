@@ -119,7 +119,7 @@ public struct ToolbarBranchPicker: View {
                             headerLabel("Branches")
                             ForEach(branchNames, id: \.self) { branch in
                                 BranchCell(name: branch) {
-                                    try? gitClient?.checkoutBranch(branch)
+                                    try? gitClient?.checkoutBranch(name: branch)
                                 }
                             }
                         }
