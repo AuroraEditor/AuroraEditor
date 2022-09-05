@@ -22,7 +22,7 @@ struct ProjectCreationGridView: View {
     var body: some View {
         VStack(alignment: .leading) {
             SegmentedControl($creationSheetModel.selectedSection,
-                             options: ["Cross-platform", "Web", "AI/ML", "Games"],
+                             options: ["Cross-platform", "Web", "AI/ML"],
                              prominent: true)
             .frame(height: 27)
             .padding(.horizontal, 8)
@@ -41,10 +41,6 @@ struct ProjectCreationGridView: View {
 
             if creationSheetModel.selectedSection == 2 {
                 AIMLProjectView()
-            }
-
-            if creationSheetModel.selectedSection == 3 {
-                GamesProjectView()
             }
         }
         .border(Color(nsColor: NSColor.separatorColor))

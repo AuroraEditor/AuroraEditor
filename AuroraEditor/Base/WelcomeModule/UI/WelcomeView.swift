@@ -30,6 +30,9 @@ public struct WelcomeView: View {
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
+    @ObservedObject
+    private var editorSheetModel: EditorSheetViewsModel = .shared
+
     private let openDocument: (URL?, @escaping () -> Void) -> Void
     private let newDocument: () -> Void
     private let dismissWindow: () -> Void
@@ -79,7 +82,7 @@ public struct WelcomeView: View {
                             subtitle: "Create a new file"
                         )
                         .onTapGesture {
-                            newDocument()
+                            editorSheetModel.isProjectCreation.toggle()
                             dismissWindow()
                         }
 

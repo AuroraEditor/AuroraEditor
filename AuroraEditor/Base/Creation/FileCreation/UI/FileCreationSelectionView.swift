@@ -10,11 +10,17 @@ import SwiftUI
 
 struct FileCreationSelectionView: View {
 
-    @ObservedObject
-    private var editorSheetModel: EditorSheetViewsModel = .shared
+    @Environment(\.presentationMode)
+    var presentationMode
 
     @StateObject
     private var creationSheetModel: FileCreationModel = .shared
+
+    @StateObject
+    private var projectCreationModel: ProjectCreationModel = .shared
+
+    @State
+    var workspace: WorkspaceDocument
 
     @State
     var isProjectCreation: Bool = false
@@ -36,7 +42,7 @@ struct FileCreationSelectionView: View {
 
             HStack {
                 Button {
-                    editorSheetModel.showFileCreationSheet.toggle()
+                    presentationMode.wrappedValue.dismiss()
                 } label: {
                     Text("Cancel")
                         .padding()
@@ -46,7 +52,18 @@ struct FileCreationSelectionView: View {
                 Spacer()
 
                 Button {
-                    showFileNamingSheet = true
+                    if isProjectCreation {
+                        projectCreationModel.createAEProject(projectName: "test-react-project") { completion in
+                            switch completion {
+                            case .success:
+                                presentationMode.wrappedValue.dismiss()
+                            case .failure(let error):
+                                Log.error(error)
+                            }
+                        }
+                    } else {
+                        showFileNamingSheet = true
+                    }
                 } label: {
                     Text("Next")
                         .padding(10)
@@ -56,8 +73,9 @@ struct FileCreationSelectionView: View {
                 .buttonStyle(.borderedProminent)
                 .sheet(isPresented: $showFileNamingSheet) {
                     if !isProjectCreation {
-                        // swiftlint:disable:next line_length
-                        FileCreationNamingView(fileName: "untitled.\(creationSheetModel.selectedLanguageItem.languageExtension)")
+                        FileCreationNamingView(workspace: workspace,
+                                               // swiftlint:disable:next line_length
+                                               fileName: "untitled.\(creationSheetModel.selectedLanguageItem.languageExtension)")
                     }
                 }
             }
@@ -69,6 +87,6 @@ struct FileCreationSelectionView: View {
 
 struct FileCreationSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        FileCreationSelectionView()
+        FileCreationSelectionView(workspace: WorkspaceDocument())
     }
 }

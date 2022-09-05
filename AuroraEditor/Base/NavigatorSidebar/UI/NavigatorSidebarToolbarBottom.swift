@@ -41,7 +41,7 @@ struct NavigatorSidebarToolbarBottom: View {
                 selectFileCreationType = true
             }
             .sheet(isPresented: $selectFileCreationType) {
-                FileCreationSelectionView()
+                FileCreationSelectionView(workspace: workspace)
             }
             Button("Add Folder") {
                 guard let folderURL = workspace.workspaceClient?.folderURL,

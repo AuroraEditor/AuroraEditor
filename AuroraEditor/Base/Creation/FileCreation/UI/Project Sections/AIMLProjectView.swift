@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct AIMLProjectView: View {
-    @StateObject
+
+    @ObservedObject
     private var creationSheetModel: ProjectCreationModel = .shared
 
     private var gridItemLayout: [GridItem] = Array(repeating: .init(.flexible()),
@@ -18,10 +19,6 @@ struct AIMLProjectView: View {
     @State
     var selectedItem: ProjectSelectionItem = ProjectSelectionItem(languageName: "Python",
                                                                   langaugeIcon: "python")
-
-    init() {
-        creationSheetModel.selectedProjectItem = selectedItem
-    }
 
     var body: some View {
         VStack {
@@ -33,7 +30,11 @@ struct AIMLProjectView: View {
                         .padding()
                     }
                 }
-            }.frame(maxWidth: .infinity)
+            }
+            .frame(maxWidth: .infinity)
+            .onAppear {
+                creationSheetModel.selectedProjectItem = selectedItem
+            }
         }
     }
 }

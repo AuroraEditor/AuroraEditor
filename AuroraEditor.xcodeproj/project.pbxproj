@@ -53,7 +53,6 @@
 		203D206C28C117CE00E09807 /* FileCreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D206B28C117CE00E09807 /* FileCreationModel.swift */; };
 		203D206F28C11E5E00E09807 /* CrossPlatformProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D206E28C11E5E00E09807 /* CrossPlatformProjectView.swift */; };
 		203D207128C11E6D00E09807 /* WebProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D207028C11E6D00E09807 /* WebProjectView.swift */; };
-		203D207328C11E7800E09807 /* GamesProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D207228C11E7800E09807 /* GamesProjectView.swift */; };
 		203D207528C11E8800E09807 /* AIMLProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203D207428C11E8800E09807 /* AIMLProjectView.swift */; };
 		2041B8AF28A67091005F03D8 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2041B8AE28A67091005F03D8 /* Branch.swift */; };
 		2041B8B228A67498005F03D8 /* Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2041B8B128A67498005F03D8 /* Add.swift */; };
@@ -412,6 +411,9 @@
 		20B5BDA928B130FF00B2A02F /* SplitViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BDA828B130FF00B2A02F /* SplitViewModifier.swift */; };
 		20B6A1FE28AFE107004EC8D7 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B6A1FD28AFE107004EC8D7 /* SettingItem.swift */; };
 		20B6A20028AFE124004EC8D7 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B6A1FF28AFE124004EC8D7 /* SettingsModel.swift */; };
+		20BC82CB28C60CB300F6B91A /* NSScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BC82CA28C60CB300F6B91A /* NSScreen.swift */; };
+		20BC82CF28C6311600F6B91A /* ProjectValidationCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BC82CE28C6311600F6B91A /* ProjectValidationCheck.swift */; };
+		20BC82D128C639C800F6B91A /* ReactProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BC82D028C639C800F6B91A /* ReactProject.swift */; };
 		20BCB0B628AA53CC0064C7C0 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0B528AA53CC0064C7C0 /* Core.swift */; };
 		20BCB0B828AA561F0064C7C0 /* Update-Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0B728AA561F0064C7C0 /* Update-Index.swift */; };
 		20BCB0BA28AA68160064C7C0 /* Apply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0B928AA68160064C7C0 /* Apply.swift */; };
@@ -665,7 +667,6 @@
 		203D206B28C117CE00E09807 /* FileCreationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCreationModel.swift; sourceTree = "<group>"; };
 		203D206E28C11E5E00E09807 /* CrossPlatformProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossPlatformProjectView.swift; sourceTree = "<group>"; };
 		203D207028C11E6D00E09807 /* WebProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebProjectView.swift; sourceTree = "<group>"; };
-		203D207228C11E7800E09807 /* GamesProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesProjectView.swift; sourceTree = "<group>"; };
 		203D207428C11E8800E09807 /* AIMLProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIMLProjectView.swift; sourceTree = "<group>"; };
 		2041B8AE28A67091005F03D8 /* Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
 		2041B8B128A67498005F03D8 /* Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Add.swift; sourceTree = "<group>"; };
@@ -709,6 +710,9 @@
 		20B5BDA828B130FF00B2A02F /* SplitViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewModifier.swift; sourceTree = "<group>"; };
 		20B6A1FD28AFE107004EC8D7 /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
 		20B6A1FF28AFE124004EC8D7 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		20BC82CA28C60CB300F6B91A /* NSScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSScreen.swift; sourceTree = "<group>"; };
+		20BC82CE28C6311600F6B91A /* ProjectValidationCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectValidationCheck.swift; sourceTree = "<group>"; };
+		20BC82D028C639C800F6B91A /* ReactProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactProject.swift; sourceTree = "<group>"; };
 		20BCB0B528AA53CC0064C7C0 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		20BCB0B728AA561F0064C7C0 /* Update-Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Update-Index.swift"; sourceTree = "<group>"; };
 		20BCB0B928AA68160064C7C0 /* Apply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apply.swift; sourceTree = "<group>"; };
@@ -1358,7 +1362,6 @@
 				2039C2F028C2690E000215F2 /* Components */,
 				203D206E28C11E5E00E09807 /* CrossPlatformProjectView.swift */,
 				203D207028C11E6D00E09807 /* WebProjectView.swift */,
-				203D207228C11E7800E09807 /* GamesProjectView.swift */,
 				203D207428C11E8800E09807 /* AIMLProjectView.swift */,
 			);
 			path = "Project Sections";
@@ -1420,6 +1423,7 @@
 		20A5E6EA28BE433600D585B6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				20BC82CD28C6303300F6B91A /* ProjectCreation */,
 				20A5E6F028BE51EC00D585B6 /* FileSelectionItem.swift */,
 				203D206B28C117CE00E09807 /* FileCreationModel.swift */,
 				2039C2EB28C25F5B000215F2 /* ProjectSelectionItem.swift */,
@@ -1474,6 +1478,15 @@
 				93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		20BC82CD28C6303300F6B91A /* ProjectCreation */ = {
+			isa = PBXGroup;
+			children = (
+				20BC82CE28C6311600F6B91A /* ProjectValidationCheck.swift */,
+				20BC82D028C639C800F6B91A /* ReactProject.swift */,
+			);
+			path = ProjectCreation;
 			sourceTree = "<group>";
 		};
 		20C22DAD28BCE321004973CA /* Diff */ = {
@@ -1558,6 +1571,7 @@
 				2032B50F28A256F50089EBB6 /* Array.swift */,
 				20DF97A028ABB30D009CE1E9 /* FileManger.swift */,
 				206729B128AE6AC900EB0957 /* GroupBox.swift */,
+				20BC82CA28C60CB300F6B91A /* NSScreen.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3611,6 +3625,7 @@
 				2093CD54289AA0C0003A88DD /* ExtensionsStoreAPI.swift in Sources */,
 				2093CD0F289AA04C003A88DD /* Highlightr.swift in Sources */,
 				935EB99C28A8F26900E8F798 /* FileSystemTableViewCell.swift in Sources */,
+				20BC82CB28C60CB300F6B91A /* NSScreen.swift in Sources */,
 				20BCB0C028AA71760064C7C0 /* GitError.swift in Sources */,
 				2072FA13280D74ED00C7F8D4 /* HistoryInspectorModel.swift in Sources */,
 				2093CDA2289AA16C003A88DD /* PreferencesSection.swift in Sources */,
@@ -3772,6 +3787,7 @@
 				20D2A44228A7CEFE0073F7BD /* Squash.swift in Sources */,
 				9354D4BB28AD2872004C6D18 /* StandardTableViewCell.swift in Sources */,
 				2093CD48289AA095003A88DD /* Parameters.swift in Sources */,
+				20BC82D128C639C800F6B91A /* ReactProject.swift in Sources */,
 				20DF97A328ABD7D2009CE1E9 /* CreateNewRepositoryView.swift in Sources */,
 				93EF416328C1D752004083AD /* Command.swift in Sources */,
 				20BCB0BA28AA68160064C7C0 /* Apply.swift in Sources */,
@@ -3830,6 +3846,7 @@
 				2093CD9F289AA15F003A88DD /* AccountsPreferences.swift in Sources */,
 				2093CDB7289AA1A6003A88DD /* GithubLoginView.swift in Sources */,
 				2B4C134D289D56F9000ED796 /* STInsertionPointLayer.swift in Sources */,
+				20BC82CF28C6311600F6B91A /* ProjectValidationCheck.swift in Sources */,
 				2B4C133B289D56F9000ED796 /* STTextView+CopyPaste.swift in Sources */,
 				2093CD4F289AA0A9003A88DD /* FeedbackView.swift in Sources */,
 				2B4C134A289D56F9000ED796 /* STTextContentStorage.swift in Sources */,
@@ -3884,7 +3901,6 @@
 				2093CDBB289AA1B9003A88DD /* AcknowledgementsView.swift in Sources */,
 				202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */,
 				2093CDE0289AA522003A88DD /* Date+Formatted.swift in Sources */,
-				203D207328C11E7800E09807 /* GamesProjectView.swift in Sources */,
 				2847019E27FDDF7600F87B6B /* ProjectNavigatorView.swift in Sources */,
 				2093CD37289AA08F003A88DD /* ProjectRouter.swift in Sources */,
 				93C43E8228B0DBF0002E23DC /* NavigatorSidebarToolbarLeft.swift in Sources */,

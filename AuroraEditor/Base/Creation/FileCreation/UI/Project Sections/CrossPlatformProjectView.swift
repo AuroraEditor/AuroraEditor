@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CrossPlatformProjectView: View {
 
-    @StateObject
+    @ObservedObject
     private var creationSheetModel: ProjectCreationModel = .shared
 
     private var gridItemLayout: [GridItem] = Array(repeating: .init(.flexible()),
@@ -19,10 +19,6 @@ struct CrossPlatformProjectView: View {
     @State
     var selectedItem: ProjectSelectionItem = ProjectSelectionItem(languageName: "Flutter",
                                                                   langaugeIcon: "fluttersvg")
-
-    init() {
-        creationSheetModel.selectedProjectItem = selectedItem
-    }
 
     var body: some View {
         VStack {
@@ -35,6 +31,9 @@ struct CrossPlatformProjectView: View {
                     }
                 }
             }.frame(maxWidth: .infinity)
+        }
+        .onAppear {
+            creationSheetModel.selectedProjectItem = selectedItem
         }
     }
 }

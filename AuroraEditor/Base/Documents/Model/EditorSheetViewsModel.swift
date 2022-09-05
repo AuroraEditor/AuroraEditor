@@ -14,4 +14,7 @@ class EditorSheetViewsModel: ObservableObject {
 
     @Published
     var showFileCreationSheet: Bool = false
+
+    @Published
+    var isProjectCreation: Bool = false
 }

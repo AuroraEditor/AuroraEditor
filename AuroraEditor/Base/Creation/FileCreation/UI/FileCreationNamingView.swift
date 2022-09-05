@@ -10,14 +10,23 @@ import SwiftUI
 
 struct FileCreationNamingView: View {
 
+    @Environment(\.presentationMode)
+    var presentationMode
+
+    @ObservedObject
+    private var creationSheetModel: FileCreationModel = .shared
+
+    @ObservedObject
+    private var sheetModel: EditorSheetViewsModel = .shared
+
+    @State
+    var workspace: WorkspaceDocument?
+
     @State
     var fileName: String = ""
 
     @State
     var tags: String = ""
-
-    @Environment(\.presentationMode)
-    var presentationMode
 
     var body: some View {
         VStack(alignment: .trailing) {
@@ -50,12 +59,26 @@ struct FileCreationNamingView: View {
                     presentationMode.wrappedValue.dismiss()
                 } label: {
                      Text("Cancel")
+                        .foregroundColor(.primary)
                 }
 
                 Button {
-
+                    guard let workspaceURL = workspace?.workspaceClient?.folderURL else {
+                        return
+                    }
+                    creationSheetModel.createLanguageFile(directoryURL: workspaceURL,
+                                                          fileName: fileName) { completion in
+                        switch completion {
+                        case .success:
+                            presentationMode.wrappedValue.dismiss()
+                            sheetModel.showFileCreationSheet.toggle()
+                        case .failure(let failure):
+                            Log.error(failure)
+                        }
+                    }
                 } label: {
                      Text("Create")
+                        .foregroundColor(.white)
                 }
                 .buttonStyle(.borderedProminent)
             }
@@ -67,6 +90,6 @@ struct FileCreationNamingView: View {
 
 struct FileCreationNamingView_Previews: PreviewProvider {
     static var previews: some View {
-        FileCreationNamingView()
+        FileCreationNamingView(workspace: WorkspaceDocument(), fileName: "")
     }
 }

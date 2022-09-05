@@ -121,6 +121,7 @@ struct WorkspaceView: View {
                 EmptyView()
             }
         }
+        .frame(minWidth: 400, idealWidth: 600, minHeight: 450, idealHeight: 800)
         .alert(alertTitle, isPresented: $showingAlert, actions: {
             Button(
                 action: { showingAlert = false },
@@ -173,7 +174,11 @@ struct WorkspaceView: View {
             }
         }
         .sheet(isPresented: $editorSheetModel.showFileCreationSheet) {
-            FileCreationSelectionView()
+            FileCreationSelectionView(workspace: workspace)
+        }
+        .sheet(isPresented: $editorSheetModel.isProjectCreation) {
+            FileCreationSelectionView(workspace: workspace,
+                                      isProjectCreation: true)
         }
     }
 }

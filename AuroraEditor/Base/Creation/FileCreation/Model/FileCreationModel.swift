@@ -6,11 +6,13 @@
 //  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
-import Foundation
+import AppKit
 
 class FileCreationModel: ObservableObject {
 
     public static var shared: FileCreationModel = .init()
+
+    private let fileManager: FileManager = .default
 
     @Published
     var languageItems = [
@@ -68,4 +70,50 @@ class FileCreationModel: ObservableObject {
     var selectedLanguageItem: FileSelectionItem = FileSelectionItem(languageName: "Java",
                                                                     langaugeIcon: "java",
                                                                     languageExtension: "java")
+
+    func createLanguageFile(directoryURL: URL,
+                            fileName: String,
+                            completionHandler: @escaping (Result<String, Error>) -> Void) {
+        let newFilePath = directoryURL.appendingPathComponent(fileName)
+
+        if !fileManager.fileExists(atPath: newFilePath.path) {
+
+            let fileContent = """
+//
+//  \(fileName)
+//
+//  Created by \(Host.current().localizedName!) on \(Date().yearMonthDayFormat()).
+//
+""".data(using: .utf8)
+
+            fileManager.createFile(atPath: newFilePath.path,
+                                   contents: fileContent,
+                                   attributes: [.ownerAccountName: Host.current().localizedName!,
+                                                .creationDate: Date()])
+            completionHandler(.success("Success"))
+        } else {
+            let alert = NSAlert()
+            alert.messageText = "\"\(fileName)\" already exists. Do you want to replace it?"
+            alert.alertStyle = .critical
+            // swiftlint:disable:next line_length
+            alert.informativeText = "A file or folder with the same name already exists in the selected folder. Replacing it will overwrite its current contents."
+            alert.addButton(withTitle: "Replace")
+            alert.buttons.last?.hasDestructiveAction = true
+            alert.addButton(withTitle: "Cancel")
+            if alert.runModal() == .alertFirstButtonReturn {
+                do {
+                    try fileManager.replaceItemAt(directoryURL.appendingPathExtension(fileName),
+                                                  withItemAt: newFilePath)
+                    completionHandler(.success("Success"))
+                } catch {
+                    // swiftlint:disable:next line_length
+                    completionHandler(.failure(FileCreationError.unableToReplace("Unable to replace file at path: \(newFilePath).")))
+                }
+            }
+        }
+    }
+}
+
+enum FileCreationError: Error {
+    case unableToReplace(String)
 }
