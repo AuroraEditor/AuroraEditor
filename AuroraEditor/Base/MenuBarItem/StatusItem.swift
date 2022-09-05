@@ -27,6 +27,7 @@ extension AppDelegate {
             NSMenuItem(title: "Preferences", action: #selector(openPreferences), keyEquivalent: ","),
             NSMenuItem(title: "Open Welcome View", action: #selector(openWelcome), keyEquivalent: "e"),
             NSMenuItem.separator(),
+            NSMenuItem(title: "Hide this item", action: #selector(hideMenuItem), keyEquivalent: "h"),
             NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         ]
         statusItem.menu = menu
@@ -49,5 +50,11 @@ extension AppDelegate {
             onCompletion: { _, _ in },
             onCancel: {}
         )
+    }
+
+    @objc
+    func hideMenuItem(_ sender: Any?) {
+        statusItem.button?.isHidden = true
+        AppPreferencesModel.shared.preferences.general.menuItemShowMode = .hidden
     }
 }
