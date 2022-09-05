@@ -619,8 +619,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		043BCF02281DA18A000AC47C /* WorkspaceDocument+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceDocument+Search.swift"; sourceTree = "<group>"; };
-		043BCF04281DA19A000AC47C /* WorkspaceDocument+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceDocument+Selection.swift"; sourceTree = "<group>"; };
+		043BCF02281DA18A000AC47C /* WorkspaceDocument+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WorkspaceDocument+Search.swift"; path = "AuroraEditor/Base/Documents/Model/WorkspaceDocument/WorkspaceDocument+Search.swift"; sourceTree = SOURCE_ROOT; };
+		043BCF04281DA19A000AC47C /* WorkspaceDocument+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WorkspaceDocument+Selection.swift"; path = "AuroraEditor/Base/Documents/Model/WorkspaceDocument/WorkspaceDocument+Selection.swift"; sourceTree = SOURCE_ROOT; };
 		043C321327E31FF6006AE443 /* AuroraEditorDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorDocumentController.swift; sourceTree = "<group>"; };
 		043C321527E3201F006AE443 /* WorkspaceDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceDocument.swift; sourceTree = "<group>"; };
 		043C321927E32295006AE443 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -1136,7 +1136,7 @@
 		2BE487EE28245162003F3F64 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
 		2BE487F028245162003F3F64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BF983FE289D8B3C004F1A60 /* SharedObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedObjects.swift; sourceTree = "<group>"; };
-		6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceDocument+Listeners.swift"; sourceTree = "<group>"; };
+		6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WorkspaceDocument+Listeners.swift"; path = "AuroraEditor/Base/Documents/Model/WorkspaceDocument/WorkspaceDocument+Listeners.swift"; sourceTree = SOURCE_ROOT; };
 		6CDA84AA284C0E4A00C1CC3A /* TabBarItemButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemButtonStyle.swift; sourceTree = "<group>"; };
 		6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContextMenu.swift; sourceTree = "<group>"; };
 		9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorToolbarBottom.swift; sourceTree = "<group>"; };
@@ -1164,7 +1164,7 @@
 		93EF416628C1F828004083AD /* WorkspaceDocument+Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceDocument+Commands.swift"; sourceTree = "<group>"; };
 		93F0066628A7574C0038E5B7 /* WorkspaceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceClient.swift; sourceTree = "<group>"; };
 		93F0066828A757670038E5B7 /* WorkspaceClient+FileIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceClient+FileIndex.swift"; sourceTree = "<group>"; };
-		93F73D0C28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceDocument+Tabs.swift"; sourceTree = "<group>"; };
+		93F73D0C28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WorkspaceDocument+Tabs.swift"; path = "AuroraEditor/Base/Documents/Model/WorkspaceDocument/WorkspaceDocument+Tabs.swift"; sourceTree = SOURCE_ROOT; };
 		9C3E1A06284E8E020042BEC0 /* WelcomeModuleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeModuleExtensions.swift; sourceTree = "<group>"; };
 		B658FB2C27DA9E0F00EA4DBD /* AuroraEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuroraEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceView.swift; sourceTree = "<group>"; tabWidth = 4; };
@@ -1254,10 +1254,6 @@
 				93ACA43528C32FC000672994 /* WorkspaceDocument */,
 				93ACA43428C32F9100672994 /* AuroraEditorWindow */,
 				D7E201AD27E8B3C000CB86D0 /* String+Ranges.swift */,
-				043BCF02281DA18A000AC47C /* WorkspaceDocument+Search.swift */,
-				043BCF04281DA19A000AC47C /* WorkspaceDocument+Selection.swift */,
-				6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */,
-				93F73D0C28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift */,
 				20A5E6F228BE5EE100D585B6 /* EditorSheetViewsModel.swift */,
 			);
 			path = Model;
@@ -3103,12 +3099,12 @@
 		93ACA43528C32FC000672994 /* WorkspaceDocument */ = {
 			isa = PBXGroup;
 			children = (
-				043C321327E31FF6006AE443 /* AuroraEditorDocumentController.swift */,
-				043C321527E3201F006AE443 /* WorkspaceDocument.swift */,
 				043BCF02281DA18A000AC47C /* WorkspaceDocument+Search.swift */,
 				043BCF04281DA19A000AC47C /* WorkspaceDocument+Selection.swift */,
 				6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */,
 				93F73D0C28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift */,
+				043C321327E31FF6006AE443 /* AuroraEditorDocumentController.swift */,
+				043C321527E3201F006AE443 /* WorkspaceDocument.swift */,
 			);
 			path = WorkspaceDocument;
 			sourceTree = "<group>";
@@ -4036,7 +4032,6 @@
 				93ACA43728C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift in Sources */,
 				2093CDC0289AA247003A88DD /* SearchResultModel.swift in Sources */,
 				20A5E6EF28BE43D700D585B6 /* FileCreationNamingView.swift in Sources */,
-				9384C52B28AE086E00FC452A /* [TEMP]DummyRepo.swift in Sources */,
 				2093CD2E289AA089003A88DD /* Files.swift in Sources */,
 				209D0257289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift in Sources */,
 				6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */,
