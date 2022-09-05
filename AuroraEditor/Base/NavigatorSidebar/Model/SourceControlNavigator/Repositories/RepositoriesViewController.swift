@@ -14,7 +14,7 @@ import SwiftUI
 /// currently open project.
 final class RepositoriesViewController: NSViewController {
 
-    var repository: DummyRepo!
+    var repository: RepositoryModel!
 
     var scrollView: NSScrollView!
     var outlineView: NSOutlineView!
@@ -93,7 +93,7 @@ final class RepositoriesViewController: NSViewController {
     private func onItemDoubleClicked() {
         let item = outlineView.item(atRow: outlineView.clickedRow)
 
-        if item is DummyRepo || item is RepoContainer {
+        if item is RepositoryModel || item is RepoContainer {
             if outlineView.isItemExpanded(item) {
                 outlineView.collapseItem(item)
             } else {
@@ -107,7 +107,7 @@ final class RepositoriesViewController: NSViewController {
 
 extension RepositoriesViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        if item is DummyRepo {
+        if item is RepositoryModel {
             // item is a repo
             return 5
         } else if let item = item as? RepoContainer {
@@ -122,7 +122,7 @@ extension RepositoriesViewController: NSOutlineViewDataSource {
     }
 
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        if let item = item as? DummyRepo {
+        if let item = item as? RepositoryModel {
             // item is a repo.
             switch index {
             case 0:
@@ -154,7 +154,7 @@ extension RepositoriesViewController: NSOutlineViewDataSource {
 
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         // only repos and containers are expandable
-        return item is DummyRepo || item is RepoContainer
+        return item is RepositoryModel || item is RepoContainer
     }
 }
 
@@ -170,7 +170,7 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
         true
     }
 
-    // swiftlint:disable:next cyclomatic_complexity function_body_length
+    // swiftlint:disable:next cyclomatic_complexity
     func outlineView(_ outlineView: NSOutlineView,
                      viewFor tableColumn: NSTableColumn?,
                      item: Any) -> NSView? {
@@ -178,53 +178,45 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
 
         let frameRect = NSRect(x: 0, y: 0, width: tableColumn.width, height: rowHeight)
 
-        if let item = item as? DummyRepo {
+        if let item = item as? RepositoryModel {
             // item is a repo.
             return RepositoriesTableViewCell(frame: frameRect,
                                              repository: item,
                                              represents: .repo)
         } else if let item = item as? RepoContainer {
+            var represents: RepositoriesTableViewCell.CellType?
             // item is a container
             if item is RepoBranches {
-                return RepositoriesTableViewCell(frame: frameRect,
-                                                 repository: repository,
-                                                 represents: .branches)
+                represents = .branches
             } else if item is RepoRecentLocations {
-                return RepositoriesTableViewCell(frame: frameRect,
-                                                 repository: repository,
-                                                 represents: .recentLocations)
+                represents = .recentLocations
             } else if item is RepoStashedChanges {
-                return RepositoriesTableViewCell(frame: frameRect,
-                                                 repository: repository,
-                                                 represents: .stashedChanges)
+                represents = .stashedChanges
             } else if item is RepoTags {
-                return RepositoriesTableViewCell(frame: frameRect,
-                                                 repository: repository,
-                                                 represents: .tags)
+                represents = .tags
             } else if item is RepoRemotes {
-                return RepositoriesTableViewCell(frame: frameRect,
-                                                 repository: repository,
-                                                 represents: .remotes)
+                represents = .remotes
             } else if item is RepoRemote {
+                represents = .remote
+            }
+            if let represents = represents {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
-                                                 represents: .remote)
+                                                 represents: represents)
             }
         } else if let item = item as? RepoItem {
+            var represents: RepositoriesTableViewCell.CellType?
             if item is RepoBranch {
-                return RepositoriesTableViewCell(frame: frameRect,
-                                                 repository: repository,
-                                                 represents: .branch,
-                                                 item: item)
+                represents = .branch
             } else if item is RepoTag {
-                return RepositoriesTableViewCell(frame: frameRect,
-                                                 repository: repository,
-                                                 represents: .tag,
-                                                 item: item)
+                represents = .tag
             } else if item is RepoChange {
+                represents = .change
+            }
+            if let represents = represents {
                 return RepositoriesTableViewCell(frame: frameRect,
                                                  repository: repository,
-                                                 represents: .change,
+                                                 represents: represents,
                                                  item: item)
             }
         }
@@ -232,8 +224,10 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
     }
 
     func outlineViewSelectionDidChange(_ notification: Notification) {
-//        let selectedIndex = outlineView.selectedRow
-        // TODO: If the item clicked is something openable (eg. a branch), open a tab
+        let selectedIndex = outlineView.selectedRow
+        if let selectedBranch = outlineView.item(atRow: selectedIndex) as? RepoBranch {
+            Log.info("Clicked on \(selectedBranch)")
+        }
     }
 
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
@@ -273,6 +267,7 @@ extension RepositoriesViewController: NSMenuDelegate {
             // TODO: Distinguish between repo, container, branch, etc.
             menu.repository = self.repository
             menu.workspace = workspace
+            menu.item = outlineView.item(atRow: row) as? RepoItem
         }
         menu.update()
     }

@@ -24,7 +24,7 @@ final class SourceControlMenu: NSMenu {
 
     init(sender: NSOutlineView, workspaceURL: URL) {
         outlineView = sender
-        gitClient = GitClient.default(
+        gitClient = GitClient.init(
             directoryURL: workspaceURL,
             shellClient: sharedShellClient.shellClient
         )
@@ -121,7 +121,7 @@ final class SourceControlMenu: NSMenu {
         alert.addButton(withTitle: "Cancel")
         if alert.runModal() == .alertFirstButtonReturn {
             do {
-                try gitClient.discardFileChanges((item?.url.path)!)
+                try gitClient.discardFileChanges(url: (item?.url.path)!)
             } catch {
                 Log.error("Error when trying to discard changes in file!")
             }

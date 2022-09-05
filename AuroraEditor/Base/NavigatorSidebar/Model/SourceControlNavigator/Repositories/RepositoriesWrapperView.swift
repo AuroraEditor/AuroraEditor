@@ -1,5 +1,5 @@
 //
-//  RepositoriesView.swift
+//  RepositoriesWrapperView.swift
 //  AuroraEditor
 //
 //  Created by TAY KAI QUAN on 17/8/22.
@@ -16,7 +16,7 @@ struct RepositoriesWrapperView: NSViewControllerRepresentable {
     var workspace: WorkspaceDocument
 
     @State
-    var repository: DummyRepo
+    var repository: RepositoryModel
 
     @StateObject
     var prefs: AppPreferencesModel = .shared

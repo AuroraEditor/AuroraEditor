@@ -169,47 +169,47 @@ extension GitCloneView {
             guard let dirUrl = URL(string: repoPath) else {
                 return
             }
-//            var isDir: ObjCBool = true
-//            if FileManager.default.fileExists(atPath: repoPath, isDirectory: &isDir) {
-//                showAlert(alertMsg: "Error", infoText: "Directory already exists")
-//                return
-//            }
-//            try FileManager.default.createDirectory(atPath: repoPath,
-//                                                    withIntermediateDirectories: true,
-//                                                    attributes: nil)
-//            gitClient = GitClient.default(
-//                directoryURL: dirUrl,
-//                shellClient: shellClient
-//            )
-//
-//            cloneCancellable = gitClient?
-//                .cloneRepository(repoUrlStr)
-//                .sink(receiveCompletion: { result in
-//                    switch result {
-//                    case let .failure(error):
-//                        switch error {
-//                        case .notGitRepository:
-//                            showAlert(alertMsg: "Error", infoText: "Not a git repository")
-//                        case let .outputError(error):
-//                            showAlert(alertMsg: "Error", infoText: error)
-//                        default:
-//                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL: \(error)")
-//                        }
-//                    case .finished: break
-//                    }
-//                }, receiveValue: { result in
-//                    switch result {
-//                    case let .receivingProgress(progress):
-//                        Log.info("Receiving Progress: ", progress)
-//                    case let .resolvingProgress(progress):
-//                        Log.info("Resolving Progress: ", progress)
-//                        if progress >= 100 {
-//                            cloneCancellable?.cancel()
-//                            isPresented = false
-//                        }
-//                    case .other: break
-//                    }
-//                })
+            var isDir: ObjCBool = true
+            if FileManager.default.fileExists(atPath: repoPath, isDirectory: &isDir) {
+                showAlert(alertMsg: "Error", infoText: "Directory already exists")
+                return
+            }
+            try FileManager.default.createDirectory(atPath: repoPath,
+                                                    withIntermediateDirectories: true,
+                                                    attributes: nil)
+            gitClient = GitClient.init(
+                directoryURL: dirUrl,
+                shellClient: shellClient
+            )
+
+            cloneCancellable = gitClient?
+                .cloneRepository(path: repoUrlStr)
+                .sink(receiveCompletion: { result in
+                    switch result {
+                    case let .failure(error):
+                        switch error {
+                        case .notGitRepository:
+                            showAlert(alertMsg: "Error", infoText: "Not a git repository")
+                        case let .outputError(error):
+                            showAlert(alertMsg: "Error", infoText: error)
+                        default:
+                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
+                        }
+                    case .finished: break
+                    }
+                }, receiveValue: { result in
+                    switch result {
+                    case let .receivingProgress(progress):
+                        Log.info("Receiving Progress: ", progress)
+                    case let .resolvingProgress(progress):
+                        Log.info("Resolving Progress: ", progress)
+                        if progress >= 100 {
+                            cloneCancellable?.cancel()
+                            isPresented = false
+                        }
+                    case .other: break
+                    }
+                })
             checkBranches(dirUrl: dirUrl)
         } catch {
             showAlert(alertMsg: "Error", infoText: error.localizedDescription)
@@ -218,8 +218,8 @@ extension GitCloneView {
     private func checkBranches(dirUrl: URL) {
         // Check if repo has only one branch, and if so, don't show the checkout page
         do {
-            let branches = try GitClient.default(directoryURL: dirUrl,
-                                  shellClient: shellClient).getBranches(true)
+            let branches = try GitClient.init(directoryURL: dirUrl,
+                                              shellClient: shellClient).getBranches(allBranches: true)
             let filtered = branches.filter { !$0.contains("HEAD") }
             if filtered.count > 1 {
                 showCheckout = true
