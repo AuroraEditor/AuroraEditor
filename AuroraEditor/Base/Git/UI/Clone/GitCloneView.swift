@@ -12,8 +12,8 @@ import Combine
 public struct GitCloneView: View {
     private let shellClient: ShellClient
     @Binding private var isPresented: Bool
-    @Binding private var showCheckout: Bool
     @Binding private var repoPath: String
+    @State private var showCheckout: Bool = false
     @State private var repoUrlStr = ""
     @State private var gitClient: GitClient?
     @State private var cloneCancellable: AnyCancellable?
@@ -21,16 +21,26 @@ public struct GitCloneView: View {
     public init(
         shellClient: ShellClient,
         isPresented: Binding<Bool>,
-        showCheckout: Binding<Bool>,
         repoPath: Binding<String>
     ) {
         self.shellClient = shellClient
         self._isPresented = isPresented
-        self._showCheckout = showCheckout
         self._repoPath = repoPath
     }
 
     public var body: some View {
+        if showCheckout {
+            CheckoutBranchView(
+                isPresented: $showCheckout,
+                repoPath: $repoPath,
+                shellClient: shellClient
+            )
+        } else {
+            cloneView
+        }
+    }
+
+    public var cloneView: some View {
         VStack(spacing: 8) {
             HStack {
                 Image(nsImage: NSApp.applicationIconImage)
@@ -135,7 +145,7 @@ extension GitCloneView {
         }
     }
 
-    private func cloneRepository() { // swiftlint:disable:this function_body_length
+    private func cloneRepository() { // swift lint:disable:this function_body_length
         do {
             if repoUrlStr.isEmpty {
                 showAlert(alertMsg: "Url cannot be empty",
@@ -159,109 +169,47 @@ extension GitCloneView {
             guard let dirUrl = URL(string: repoPath) else {
                 return
             }
-            var isDir: ObjCBool = true
-            if FileManager.default.fileExists(atPath: repoPath, isDirectory: &isDir) {
-                showAlert(alertMsg: "Error", infoText: "Directory already exists")
-                return
-            }
-            try FileManager.default.createDirectory(atPath: repoPath,
-                                                    withIntermediateDirectories: true,
-                                                    attributes: nil)
-            gitClient = GitClient.default(
-                directoryURL: dirUrl,
-                shellClient: shellClient
-            )
-
-            cloneCancellable = gitClient?
-                .cloneRepository(repoUrlStr)
-                .sink(receiveCompletion: { result in
-                    switch result {
-                    case let .failure(error):
-                        switch error {
-                        case .notGitRepository:
-                            showAlert(alertMsg: "Error", infoText: "Not a git repository")
-                        case let .outputError(error):
-                            showAlert(alertMsg: "Error", infoText: error)
-                        case .failedToDecodeURL:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .badConfigFile:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .authenticationFailed:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .noUserNameConfigured:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .noUserEmailConfigured:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .notAGitRepository:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .notAtRepositoryRoot:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .conflict:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .stashConflict:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .unmergedChanges:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .pushRejected:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .remoteConnectionError:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .dirtyWorkTree:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .cantOpenResource:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .gitNotFound:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .cantCreatePipe:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .cantAccessRemote:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .repositoryNotFound:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .repositoryIsLocked:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .branchNotFullyMerged:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .noRemoteReference:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .invalidBranchName:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .branchAlreadyExists:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .noLocalChanges:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .noStashFound:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .localChangesOverwritten:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .noUpstreamBranch:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .isInSubModule:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .wrongCase:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .cantLockRef:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .cantRebaseMultipleBranches:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .patchDoesNotApply:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        }
-                    case .finished: break
-                    }
-                }, receiveValue: { result in
-                    switch result {
-                    case let .receivingProgress(progress):
-                        Log.info("Receiving Progress: ", progress)
-                    case let .resolvingProgress(progress):
-                        Log.info("Resolving Progress: ", progress)
-                        if progress >= 100 {
-                            cloneCancellable?.cancel()
-                            isPresented = false
-                        }
-                    case .other: break
-                    }
-                })
+//            var isDir: ObjCBool = true
+//            if FileManager.default.fileExists(atPath: repoPath, isDirectory: &isDir) {
+//                showAlert(alertMsg: "Error", infoText: "Directory already exists")
+//                return
+//            }
+//            try FileManager.default.createDirectory(atPath: repoPath,
+//                                                    withIntermediateDirectories: true,
+//                                                    attributes: nil)
+//            gitClient = GitClient.default(
+//                directoryURL: dirUrl,
+//                shellClient: shellClient
+//            )
+//
+//            cloneCancellable = gitClient?
+//                .cloneRepository(repoUrlStr)
+//                .sink(receiveCompletion: { result in
+//                    switch result {
+//                    case let .failure(error):
+//                        switch error {
+//                        case .notGitRepository:
+//                            showAlert(alertMsg: "Error", infoText: "Not a git repository")
+//                        case let .outputError(error):
+//                            showAlert(alertMsg: "Error", infoText: error)
+//                        default:
+//                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL: \(error)")
+//                        }
+//                    case .finished: break
+//                    }
+//                }, receiveValue: { result in
+//                    switch result {
+//                    case let .receivingProgress(progress):
+//                        Log.info("Receiving Progress: ", progress)
+//                    case let .resolvingProgress(progress):
+//                        Log.info("Resolving Progress: ", progress)
+//                        if progress >= 100 {
+//                            cloneCancellable?.cancel()
+//                            isPresented = false
+//                        }
+//                    case .other: break
+//                    }
+//                })
             checkBranches(dirUrl: dirUrl)
         } catch {
             showAlert(alertMsg: "Error", infoText: error.localizedDescription)

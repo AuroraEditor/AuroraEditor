@@ -40,7 +40,7 @@ extension AppDelegate {
 
     @objc
     func cloneProject(_ sender: Any?) {
-        WelcomeWindowView.openWelcomeWindow(showGit: true)
+        GitCloneView.openGitClientWindow()
     }
 
     @objc

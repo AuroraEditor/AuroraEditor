@@ -25,8 +25,6 @@ public struct WelcomeView: View {
     @State
     var showGitClone = false
     @State
-    var showCheckoutBranch = false
-    @State
     private var repoPath = "~/"
     @State
     var isHovering: Bool = false
@@ -132,15 +130,7 @@ public struct WelcomeView: View {
             GitCloneView(
                 shellClient: shellClient,
                 isPresented: $showGitClone,
-                showCheckout: $showCheckoutBranch,
                 repoPath: $repoPath
-            )
-        }
-        .sheet(isPresented: $showCheckoutBranch) {
-            CheckoutBranchView(
-                isPresented: $showCheckoutBranch,
-                repoPath: $repoPath,
-                shellClient: shellClient
             )
         }
     }
