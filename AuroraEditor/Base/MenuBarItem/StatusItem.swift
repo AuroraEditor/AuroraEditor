@@ -12,7 +12,6 @@ import SwiftUI
 extension AppDelegate {
 
     func setup(statusItem: NSStatusItem) {
-        Log.info("Setting up the status item")
         if let button = statusItem.button {
             button.image = NSImage(named: "MenuBarIcon")
         }
@@ -31,7 +30,6 @@ extension AppDelegate {
             NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         ]
         statusItem.menu = menu
-        Log.info("Finished setting up the status item")
     }
 
     @objc

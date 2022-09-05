@@ -106,30 +106,7 @@ public class GitClient: ObservableObject {
                 return output
             }
             .map { value -> CloneProgressResult in
-                // TODO: Make a more solid parsing system.
-                if value.contains("Receiving objects: ") {
-                    return .receivingProgress(
-                        Int(
-                            value
-                                .replacingOccurrences(of: "Receiving objects: ", with: "")
-                                .replacingOccurrences(of: " ", with: "")
-                                .split(separator: "%")
-                                .first ?? "0"
-                        ) ?? 0
-                    )
-                } else if value.contains("Resolving deltas: ") {
-                    return .resolvingProgress(
-                        Int(
-                            value
-                                .replacingOccurrences(of: "Resolving deltas: ", with: "")
-                                .replacingOccurrences(of: " ", with: "")
-                                .split(separator: "%")
-                                .first ?? "0"
-                        ) ?? 0
-                    )
-                } else {
-                    return .other(value)
-                }
+                return self.valueToProgress(value: value)
             }
             .mapError {
                 if let error = $0 as? GitClientError {
@@ -139,6 +116,55 @@ public class GitClient: ObservableObject {
                 }
             }
             .eraseToAnyPublisher()
+    }
+
+    private func valueToProgress(value: String) -> CloneProgressResult {
+        // TODO: Make a more solid parsing system.
+        if value.contains("Cloning into") {
+            return .cloningInto
+        } else if value.contains("Counting objects: ") {
+            return .countingProgress(
+                Int(
+                    value
+                        .replacingOccurrences(of: "remote: Counting objects: ", with: "")
+                        .replacingOccurrences(of: " ", with: "")
+                        .split(separator: "%")
+                        .first ?? "0"
+                ) ?? 0
+            )
+        } else if value.contains("Compressing objects: ") {
+            return .compressingProgress(
+                Int(
+                    value
+                        .replacingOccurrences(of: "remote: Compressing objects: ", with: "")
+                        .replacingOccurrences(of: " ", with: "")
+                        .split(separator: "%")
+                        .first ?? "0"
+                ) ?? 0
+            )
+        } else if value.contains("Receiving objects: ") {
+            return .receivingProgress(
+                Int(
+                    value
+                        .replacingOccurrences(of: "Receiving objects: ", with: "")
+                        .replacingOccurrences(of: " ", with: "")
+                        .split(separator: "%")
+                        .first ?? "0"
+                ) ?? 0
+            )
+        } else if value.contains("Resolving deltas: ") {
+            return .resolvingProgress(
+                Int(
+                    value
+                        .replacingOccurrences(of: "Resolving deltas: ", with: "")
+                        .replacingOccurrences(of: " ", with: "")
+                        .split(separator: "%")
+                        .first ?? "0"
+                ) ?? 0
+            )
+        } else {
+            return .other(value)
+        }
     }
 
     /// Displays paths that have differences between the index file and the current HEAD commit,

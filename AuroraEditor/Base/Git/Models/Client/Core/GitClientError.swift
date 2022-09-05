@@ -47,6 +47,9 @@ extension GitClient {
     }
 
     public enum CloneProgressResult {
+        case cloningInto
+        case countingProgress(Int)
+        case compressingProgress(Int)
         case receivingProgress(Int)
         case resolvingProgress(Int)
         case other(String)

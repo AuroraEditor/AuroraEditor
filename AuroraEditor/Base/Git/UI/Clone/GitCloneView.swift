@@ -18,6 +18,10 @@ public struct GitCloneView: View {
     @State private var gitClient: GitClient?
     @State private var cloneCancellable: AnyCancellable?
 
+    @State private var isCloning: Bool = false
+    @State private var stateCloning: String = "Preparing to clone..."
+    @State private var valueCloning: Int = 0
+
     public init(
         shellClient: ShellClient,
         isPresented: Binding<Bool>,
@@ -36,54 +40,90 @@ public struct GitCloneView: View {
                 shellClient: shellClient
             )
         } else {
-            cloneView
+            if !isCloning {
+                cloneView
+            } else {
+                progressView
+            }
         }
     }
 
     public var cloneView: some View {
-        VStack(spacing: 8) {
-            HStack {
-                Image(nsImage: NSApp.applicationIconImage)
-                    .resizable()
-                    .frame(width: 64, height: 64)
-                    .padding(.bottom, 50)
-                VStack(alignment: .leading) {
-                    Text("Clone a repository")
-                        .bold()
-                        .padding(.bottom, 2)
-                    Text("Enter a git repository URL:")
-                        .font(.system(size: 11))
-                        .foregroundColor(.secondary)
-                        .alignmentGuide(.trailing) { context in
-                            context[.trailing]
-                        }
-                    TextField("Git Repository URL", text: $repoUrlStr)
-                        .lineLimit(1)
-                        .padding(.bottom, 15)
-                        .frame(width: 300)
-                    HStack {
-                        Button("Cancel") {
-                            isPresented = false
-                        }
-                        Button("Clone") {
-                            cloneRepository()
-                        }
-                        .keyboardShortcut(.defaultAction)
-                        .disabled(!isValid(url: repoUrlStr))
+        HStack {
+            Image(nsImage: NSApp.applicationIconImage)
+                .resizable()
+                .frame(width: 64, height: 64)
+                .padding(.bottom, 50)
+            VStack(alignment: .leading) {
+                Text("Clone a repository")
+                    .bold()
+                    .padding(.bottom, 2)
+                Text("Enter a git repository URL:")
+                    .font(.system(size: 11))
+                    .foregroundColor(.secondary)
+                    .alignmentGuide(.trailing) { context in
+                        context[.trailing]
                     }
-                    .offset(x: 185)
-                    .alignmentGuide(.leading) { context in
-                        context[.leading]
+                TextField("Git Repository URL", text: $repoUrlStr)
+                    .lineLimit(1)
+                    .padding(.bottom, 15)
+                    .frame(width: 300)
+                    .onSubmit {
+                        cloneRepository()
                     }
+                HStack {
+                    Button("Cancel") {
+                        isPresented = false
+                    }
+                    Button("Clone") {
+                        cloneRepository()
+                    }
+                    .keyboardShortcut(.defaultAction)
+                    .disabled(!isValid(url: repoUrlStr))
+                }
+                .offset(x: 185)
+                .alignmentGuide(.leading) { context in
+                    context[.leading]
                 }
             }
-            .padding(.top, 20)
-            .padding(.horizontal, 20)
-            .padding(.bottom, 16)
-            .onAppear {
-                self.checkClipboard(textFieldText: &repoUrlStr)
+        }
+        .padding(.top, 20)
+        .padding(.horizontal, 20)
+        .padding(.bottom, 16)
+        .onAppear {
+            self.checkClipboard(textFieldText: &repoUrlStr)
+        }
+    }
+
+    public var progressView: some View {
+        VStack(alignment: .leading) {
+            Text("Cloning \""+repoUrlStr+"\"")
+                .bold()
+                .padding(.bottom, 2)
+            Text(stateCloning)
+                .font(.system(size: 11))
+                .foregroundColor(.secondary)
+                .alignmentGuide(.trailing) { context in
+                    context[.trailing]
+                }
+
+            ProgressView(value: Float(valueCloning)/100.0)
+                .progressViewStyle(LinearProgressViewStyle())
+
+            HStack {
+                Button("Cancel") {
+                    isPresented = false
+                    cloneCancellable?.cancel()
+                }
+            }
+            .offset(x: 240)
+            .alignmentGuide(.leading) { context in
+                context[.leading]
             }
         }
+        .padding(.top, 20)
+        .padding(.horizontal, 20)
+        .padding(.bottom, 16)
     }
 }
 
@@ -145,6 +185,7 @@ extension GitCloneView {
         }
     }
 
+    // MARK: Clone repo
     private func cloneRepository() { // swiftlint:disable:this function_body_length
         do {
             if repoUrlStr.isEmpty {
@@ -199,10 +240,24 @@ extension GitCloneView {
                     }
                 }, receiveValue: { result in
                     switch result {
+                    case .cloningInto:
+                        isCloning = true
+                    case let .countingProgress(progress):
+                        stateCloning = "Counting Progress: \(progress)%"
+                        valueCloning = progress
+                        Log.info("Counting Progress: \(progress)%")
+                    case let .compressingProgress(progress):
+                        stateCloning = "Compressing Progress: \(progress)%"
+                        valueCloning = progress
+                        Log.info("Compressing Progress: \(progress)%")
                     case let .receivingProgress(progress):
-                        Log.info("Receiving Progress: ", progress)
+                        stateCloning = "Receiving Progress: \(progress)%"
+                        valueCloning = progress
+                        Log.info("Receiving Progress: \(progress)%")
                     case let .resolvingProgress(progress):
-                        Log.info("Resolving Progress: ", progress)
+                        stateCloning = "Resolving Progress: \(progress)%"
+                        valueCloning = progress
+                        Log.info("Resolving Progress: \(progress)%")
                         if progress >= 100 {
                             cloneCancellable?.cancel()
                             isPresented = false

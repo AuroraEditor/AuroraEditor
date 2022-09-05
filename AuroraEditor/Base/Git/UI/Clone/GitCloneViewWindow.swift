@@ -29,7 +29,7 @@ extension GitCloneView {
             shellClient: .live(),
             isPresented: .init(get: { true }, set: { newValue in
                 if newValue == false {
-                    window.close()
+                    windowController.window?.close()
                 }
             }),
             repoPath: .init(get: { windowPath }, set: { newValue in
