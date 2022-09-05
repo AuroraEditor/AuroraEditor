@@ -145,7 +145,7 @@ extension GitCloneView {
         }
     }
 
-    private func cloneRepository() { // swift lint:disable:this function_body_length
+    private func cloneRepository() { // swiftlint:disable:this function_body_length
         do {
             if repoUrlStr.isEmpty {
                 showAlert(alertMsg: "Url cannot be empty",
