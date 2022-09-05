@@ -11,16 +11,15 @@ import UniformTypeIdentifiers
 
 /// A subclass of `NSMenu` implementing the contextual menu for the project navigator
 final class RepositoriesMenu: NSMenu {
-    typealias Item = WorkspaceClient.FileItem
 
     /// The workspace, for opening the item
     var workspace: WorkspaceDocument?
 
-    var repository: DummyRepo?
-
-    private let fileManger = FileManager.default
+    var repository: RepositoryModel?
 
     var outlineView: NSOutlineView
+
+    var item: RepoItem?
 
     init(sender: NSOutlineView, workspaceURL: URL) {
         outlineView = sender
@@ -53,7 +52,7 @@ final class RepositoriesMenu: NSMenu {
             menuItem("New Branch from [selected branch name]", action: nil),
             menuItem("Rename [selected branch name]", action: nil),
             menuItem("Tag [selected branch name]", action: nil),
-            menuItem("Switch...", action: nil),
+            menuItem("Switch...", action: item is RepoBranch ? #selector(switchToBranch(_:)) : nil),
             NSMenuItem.separator(),
             menuItem("Merge from Branch...", action: nil),
             menuItem("Merge into Branch...", action: nil),
@@ -67,6 +66,12 @@ final class RepositoriesMenu: NSMenu {
             NSMenuItem.separator(),
             menuItem("Delete", action: nil)
         ]
+    }
+
+    @objc func switchToBranch(_ sender: Any?) {
+        guard let branch = item as? RepoBranch else { return }
+        try? workspace?.workspaceClient?.model?.gitClient.checkoutBranch(name: branch.name)
+        self.outlineView.reloadData()
     }
 
     /// Updates the menu for the selected item and hides it if no item is provided.

@@ -167,13 +167,13 @@ extension GitCloneView {
             try FileManager.default.createDirectory(atPath: repoPath,
                                                     withIntermediateDirectories: true,
                                                     attributes: nil)
-            gitClient = GitClient.default(
+            gitClient = GitClient.init(
                 directoryURL: dirUrl,
                 shellClient: shellClient
             )
 
             cloneCancellable = gitClient?
-                .cloneRepository(repoUrlStr)
+                .cloneRepository(path: repoUrlStr)
                 .sink(receiveCompletion: { result in
                     switch result {
                     case let .failure(error):
@@ -270,8 +270,8 @@ extension GitCloneView {
     private func checkBranches(dirUrl: URL) {
         // Check if repo has only one branch, and if so, don't show the checkout page
         do {
-            let branches = try GitClient.default(directoryURL: dirUrl,
-                                  shellClient: shellClient).getBranches(true)
+            let branches = try GitClient.init(directoryURL: dirUrl,
+                                              shellClient: shellClient).getBranches(allBranches: true)
             let filtered = branches.filter { !$0.contains("HEAD") }
             if filtered.count > 1 {
                 showCheckout = true

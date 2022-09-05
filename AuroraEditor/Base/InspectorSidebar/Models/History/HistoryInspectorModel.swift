@@ -38,12 +38,12 @@ public final class HistoryInspectorModel: ObservableObject {
     public init(workspaceURL: URL, fileURL: String) {
         self.workspaceURL = workspaceURL
         self.fileURL = fileURL
-        gitClient = GitClient.default(
+        gitClient = GitClient.init(
             directoryURL: workspaceURL,
             shellClient: sharedShellClient.shellClient
         )
         do {
-            let commitHistory = try gitClient.getCommitHistory(40, fileURL)
+            let commitHistory = try gitClient.getCommitHistory(entries: 40, fileLocalPath: fileURL)
             self.commitHistory = commitHistory
 
             DispatchQueue.main.async {

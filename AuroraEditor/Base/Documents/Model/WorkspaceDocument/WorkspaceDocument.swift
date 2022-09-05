@@ -29,6 +29,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     var statusBarModel: StatusBarModel?
     var searchState: SearchState?
     var quickOpenState: QuickOpenState?
+    var commandPaletteState: CommandPaletteState?
     var listenerModel: WorkspaceNotificationModel = .init()
     private var cancellables = Set<AnyCancellable>()
 
@@ -59,6 +60,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         false
     }
 
+    var windowController: AuroraEditorWindowController?
     override func makeWindowControllers() {
         let window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 800, height: 600),
@@ -67,10 +69,12 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         )
         window.center()
         window.minSize = .init(width: 1000, height: 600)
-        self.addWindowController(AuroraEditorWindowController(
+        let windowController = AuroraEditorWindowController(
             window: window,
             workspace: self
-        ))
+        )
+        self.addWindowController(windowController)
+        self.windowController = windowController
     }
 
     // MARK: Set Up Workspace
@@ -85,6 +89,8 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         self.searchState = .init(self)
         self.quickOpenState = .init(fileURL: url)
         self.statusBarModel = .init(workspaceURL: url)
+        self.commandPaletteState = .init(possibleCommands: [])
+        setupCommands()
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(convertTemporaryTab),
@@ -190,6 +196,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         self.workspaceClient = nil
         self.searchState = nil
         self.quickOpenState = nil
+        self.commandPaletteState = nil
         self.statusBarModel = nil
         for windowController in self.windowControllers {
             self.removeWindowController(windowController)

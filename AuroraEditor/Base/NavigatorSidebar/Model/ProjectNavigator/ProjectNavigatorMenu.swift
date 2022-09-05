@@ -12,7 +12,7 @@ import UniformTypeIdentifiers
 final class ProjectNavigatorMenu: NSMenu {
     typealias Item = WorkspaceClient.FileItem
 
-    let gitClient: GitClient
+    let gitClient: GitClient?
 
     /// The item to show the contextual menu for
     var item: Item?
@@ -29,10 +29,7 @@ final class ProjectNavigatorMenu: NSMenu {
 
     init(sender: NSOutlineView, workspaceURL: URL) {
         outlineView = sender
-        gitClient = GitClient.default(
-            directoryURL: workspaceURL,
-            shellClient: sharedShellClient.shellClient
-        )
+        gitClient = workspace?.workspaceClient?.model?.gitClient
         super.init(title: "Options")
     }
 
@@ -287,7 +284,7 @@ final class ProjectNavigatorMenu: NSMenu {
         alert.addButton(withTitle: "Cancel")
         if alert.runModal() == .alertFirstButtonReturn {
             do {
-                try gitClient.discardFileChanges((item?.url.path)!)
+                try gitClient?.discardFileChanges(url: (item?.url.path)!)
             } catch {
                 Log.error("Error when trying to discard changes in file!")
             }
