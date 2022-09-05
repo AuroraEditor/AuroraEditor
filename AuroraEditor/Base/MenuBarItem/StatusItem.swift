@@ -41,7 +41,7 @@ extension AppDelegate {
 
     @objc
     func cloneProject(_ sender: Any?) {
-        // TODO: Get the clone project view showing
+        WelcomeWindowView.openWelcomeWindow(showGit: true)
     }
 
     @objc

@@ -14,6 +14,12 @@ import Foundation
 // directory, create one or clone one from their desired
 // git provider.
 public struct WelcomeView: View {
+
+    let shellClient: ShellClient
+    let openDocument: (URL?, @escaping () -> Void) -> Void
+    let newDocument: () -> Void
+    let dismissWindow: () -> Void
+
     @Environment(\.colorScheme)
     var colorScheme
     @State
@@ -29,23 +35,6 @@ public struct WelcomeView: View {
 
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
-
-    private let openDocument: (URL?, @escaping () -> Void) -> Void
-    private let newDocument: () -> Void
-    private let dismissWindow: () -> Void
-    private let shellClient: ShellClient
-
-    public init(
-        shellClient: ShellClient,
-        openDocument: @escaping (URL?, @escaping () -> Void) -> Void,
-        newDocument: @escaping () -> Void,
-        dismissWindow: @escaping () -> Void
-    ) {
-        self.shellClient = shellClient
-        self.openDocument = openDocument
-        self.newDocument = newDocument
-        self.dismissWindow = dismissWindow
-    }
 
     public var body: some View {
         ZStack(alignment: .topLeading) {
