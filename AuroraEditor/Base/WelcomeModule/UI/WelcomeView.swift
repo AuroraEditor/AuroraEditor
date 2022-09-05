@@ -31,6 +31,16 @@ public struct WelcomeView: View {
     @State
     var isHoveringClose: Bool = false
 
+    init(shellClient: ShellClient,
+         openDocument: @escaping (URL?, @escaping () -> Void) -> Void,
+         newDocument: @escaping () -> Void,
+         dismissWindow: @escaping () -> Void) {
+        self.shellClient = shellClient
+        self.openDocument = openDocument
+        self.newDocument = newDocument
+        self.dismissWindow = dismissWindow
+    }
+
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 

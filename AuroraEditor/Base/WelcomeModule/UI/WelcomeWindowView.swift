@@ -13,20 +13,17 @@ public struct WelcomeWindowView: View {
     private let newDocument: () -> Void
     private let dismissWindow: () -> Void
     private let shellClient: ShellClient
-    private let showGitOnInit: Bool
 
     public init(
         shellClient: ShellClient,
         openDocument: @escaping (URL?, @escaping () -> Void) -> Void,
         newDocument: @escaping () -> Void,
-        dismissWindow: @escaping () -> Void,
-        showGitOnInit: Bool = false
+        dismissWindow: @escaping () -> Void
     ) {
         self.shellClient = shellClient
         self.openDocument = openDocument
         self.newDocument = newDocument
         self.dismissWindow = dismissWindow
-        self.showGitOnInit = showGitOnInit
     }
 
     public var body: some View {
@@ -48,8 +45,7 @@ public struct WelcomeWindowView: View {
                     shellClient: shellClient,
                     openDocument: openDocument,
                     newDocument: newDocument,
-                    dismissWindow: dismissWindow,
-                    showGitClone: showGitOnInit
+                    dismissWindow: dismissWindow
                 )
                 RecentProjectsView(
                     openDocument: openDocument,

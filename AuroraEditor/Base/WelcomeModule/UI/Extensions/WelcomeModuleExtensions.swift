@@ -10,8 +10,7 @@ import SwiftUI
 extension WelcomeWindowView {
 
     /// Helper function which opens welcome view
-    static func openWelcomeWindow(showGit: Bool = false,
-                                  function: String = #function,
+    static func openWelcomeWindow(function: String = #function,
                                   file: String = #file,
                                   line: Int = #line) {
         Log.info("openWelcomeWindow is called from \(function) on \(line) in \(file)")
@@ -51,8 +50,7 @@ extension WelcomeWindowView {
             },
             dismissWindow: {
                 windowController.window?.close()
-            },
-            showGitOnInit: showGit
+            }
         ))
         window.makeKeyAndOrderFront(self)
     }
