@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 /// A view that pops up a branch picker.
 public struct ToolbarBranchPicker: View {
@@ -20,9 +21,6 @@ public struct ToolbarBranchPicker: View {
     @State
     private var displayPopover: Bool = false
 
-    @State
-    private var currentBranch: String?
-
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
@@ -34,29 +32,16 @@ public struct ToolbarBranchPicker: View {
         workspace: WorkspaceClient?
     ) {
         self.workspace = workspace
-        if let folderURL = workspace?.folderURL {
-            self.gitClient = GitClient.default(
-                directoryURL: folderURL,
-                shellClient: shellClient
-            )
-        }
-        self._currentBranch = State(initialValue: try? gitClient?.getCurrentBranchName())
+        self.gitClient = workspace?.model?.gitClient
     }
 
     public var body: some View {
         HStack(alignment: .center, spacing: 5) {
-            if prefs.sourceControlActive() {
-                if currentBranch != nil {
-                    Image("git.branch")
-                        .font(.title3)
-                        .imageScale(.medium)
-                        .foregroundColor(controlActive == .inactive ? inactiveColor : .primary)
-                } else {
-                    Image(systemName: "square.dashed")
-                        .font(.title3)
-                        .imageScale(.medium)
-                        .foregroundColor(controlActive == .inactive ? inactiveColor : .accentColor)
-                }
+            if prefs.sourceControlActive() && gitClient?.publishedBranchName != nil {
+                Image("git.branch")
+                    .font(.title3)
+                    .imageScale(.medium)
+                    .foregroundColor(controlActive == .inactive ? inactiveColor : .primary)
             } else {
                 Image(systemName: "square.dashed")
                     .font(.title3)
@@ -70,7 +55,7 @@ public struct ToolbarBranchPicker: View {
                     .frame(height: 16)
                     .help(title)
                 if prefs.sourceControlActive() {
-                    if let currentBranch = currentBranch {
+                    if let currentBranch = gitClient?.publishedBranchName {
                         ZStack(alignment: .trailing) {
                             Text(currentBranch)
                                 .padding(.trailing)
@@ -87,7 +72,7 @@ public struct ToolbarBranchPicker: View {
         }
         .contentShape(Rectangle())
         .onTapGesture {
-            if currentBranch != nil {
+            if gitClient?.publishedBranchName != nil {
                 displayPopover.toggle()
             }
         }
@@ -95,10 +80,8 @@ public struct ToolbarBranchPicker: View {
             isHovering = active
         }
         .popover(isPresented: $displayPopover, arrowEdge: .bottom) {
-            PopoverView(gitClient: gitClient, currentBranch: $currentBranch)
-        }
-        .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { (_) in
-            currentBranch = try? gitClient?.getCurrentBranchName()
+            ToolbarBranchPicker.PopoverView(gitClient: gitClient,
+                                            currentBranch: gitClient?.publishedBranchName ?? "No Branch")
         }
     }
 
@@ -119,8 +102,8 @@ public struct ToolbarBranchPicker: View {
 
         var gitClient: GitClient?
 
-        @Binding
-        var currentBranch: String?
+        @State
+        var currentBranch: String
 
         var body: some View {
             VStack(alignment: .leading) {
@@ -136,8 +119,7 @@ public struct ToolbarBranchPicker: View {
                             headerLabel("Branches")
                             ForEach(branchNames, id: \.self) { branch in
                                 BranchCell(name: branch) {
-                                    try? gitClient?.checkoutBranch(branch)
-                                    currentBranch = try? gitClient?.getCurrentBranchName()
+                                    try? gitClient?.checkoutBranch(name: branch)
                                 }
                             }
                         }
@@ -205,7 +187,7 @@ public struct ToolbarBranchPicker: View {
         }
 
         var branchNames: [String] {
-            ((try? gitClient?.getBranches(false)) ?? []).filter { $0 != currentBranch }
+            ((try? gitClient?.getBranches(allBranches: false)) ?? []).filter { $0 != currentBranch }
         }
     }
 }

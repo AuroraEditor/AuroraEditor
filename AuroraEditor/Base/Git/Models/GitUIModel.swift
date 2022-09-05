@@ -19,7 +19,7 @@ public final class GitUIModel: ObservableObject {
     ///
     public init(workspaceURL: URL) {
         self.workspaceURL = workspaceURL
-        gitClient = GitClient.default(
+        gitClient = GitClient.init(
             directoryURL: workspaceURL,
             shellClient: .live()
         )
@@ -27,7 +27,7 @@ public final class GitUIModel: ObservableObject {
 
     public func stashChanges(message: String?) {
         do {
-            try gitClient.stashChanges(message ?? "")
+            try gitClient.stashChanges(message: message ?? "")
         } catch {
             Log.error("Failed to stash changes!")
         }

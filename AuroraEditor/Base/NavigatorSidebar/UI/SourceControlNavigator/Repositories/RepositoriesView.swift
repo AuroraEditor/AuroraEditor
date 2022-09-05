@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct RepositoriesView: View {
-    private var gitClient: GitClient?
 
     @ObservedObject
     var workspace: WorkspaceDocument
@@ -16,60 +15,19 @@ struct RepositoriesView: View {
     @ObservedObject
     var repositoryModel: RepositoryModel
 
-    @State
-    var repository: DummyRepo
-
     init?(workspace: WorkspaceDocument) {
         self.workspace = workspace
         self.repositoryModel = .init(workspace: workspace)
-        guard let repoNameValue = workspace.workspaceClient?.folderURL?.lastPathComponent else {
-            return nil
-        }
 
-        if let folderURL = workspace.workspaceClient?.folderURL {
-
-            let repoNameValue: String = folderURL.lastPathComponent
-
-            self.gitClient = GitClient.default(
-                directoryURL: folderURL,
-                shellClient: sharedShellClient.shellClient
-            )
-
-            let branchNames: [String] = ((try? gitClient?.getBranches(false)) ?? [])
-            var branchNamesRemotes: [String] = ((try? gitClient?.getBranches(true)) ?? [])
-            branchNamesRemotes = Array(Set(branchNamesRemotes).subtracting(branchNames))
-
-            let branchesNameValue: [RepoBranch] = (branchNames.map { (branch: String) in
-                 RepoBranch(name: branch)
-            })
-
-            let reduced = branchNamesRemotes.reduce(into: [String: [String]]()) { partialResult, currentTerm in
-                let components = currentTerm.components(separatedBy: "/")
-                guard components.count == 2 else { return }
-                partialResult[components[0]] = partialResult[components[0], default: [String]()] + [components[1]]
-            }
-
-            let remotes: [RepoRemote] = (reduced.map { (key, array) in
-                let content: [RepoBranch] = array.map { RepoBranch(name: $0) }
-                return RepoRemote(content: content, name: key)
-            })
-
-            repository = DummyRepo(
-                repoName: repoNameValue,
-                branches: branchesNameValue,
-                remotes: remotes
-            )
-        } else {
-            self.repository = DummyRepo(repoName: repoNameValue, branches: [
-                RepoBranch(name: "master")
-            ])
+        if let client = workspace.workspaceClient?.model?.gitClient {
+            repositoryModel.addGitRepoDetails(client: client)
         }
     }
 
     var body: some View {
         VStack(alignment: .center) {
             if repositoryModel.isGitRepository {
-                RepositoriesWrapperView(workspace: workspace, repository: repository)
+                RepositoriesWrapperView(workspace: workspace, repository: repositoryModel)
             } else {
                 Text("This project does not seem to be a Git repository.")
                     .padding(.horizontal)
