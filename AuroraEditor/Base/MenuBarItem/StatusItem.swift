@@ -29,7 +29,6 @@ extension AppDelegate {
             NSMenuItem.separator(),
             NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         ]
-
         statusItem.menu = menu
         Log.info("Finished setting up the status item")
     }

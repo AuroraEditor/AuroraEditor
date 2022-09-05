@@ -89,8 +89,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             Log.error(error)
         }
 
-        self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        setup(statusItem: statusItem)
+        if AppPreferencesModel.shared.preferences.general.menuItemShowMode == .shown {
+            self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+            setup(statusItem: statusItem)
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

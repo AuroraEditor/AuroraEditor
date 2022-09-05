@@ -520,6 +520,7 @@
 		6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */; };
 		9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */; };
 		934D2F0828C4EC7E0034E5C8 /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D2F0728C4EC7E0034E5C8 /* StatusItem.swift */; };
+		934D2F0A28C591FD0034E5C8 /* GeneralPreferencesViewSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D2F0928C591FD0034E5C8 /* GeneralPreferencesViewSections.swift */; };
 		9354D4B328ACEDDE004C6D18 /* RepositoriesWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354D4B228ACEDDE004C6D18 /* RepositoriesWrapperView.swift */; };
 		9354D4B528ACEDEF004C6D18 /* RepositoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354D4B428ACEDEF004C6D18 /* RepositoriesViewController.swift */; };
 		9354D4B728ACEE04004C6D18 /* RepositoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354D4B628ACEE04004C6D18 /* RepositoriesTableViewCell.swift */; };
@@ -1116,6 +1117,7 @@
 		6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContextMenu.swift; sourceTree = "<group>"; };
 		9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorToolbarBottom.swift; sourceTree = "<group>"; };
 		934D2F0728C4EC7E0034E5C8 /* StatusItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
+		934D2F0928C591FD0034E5C8 /* GeneralPreferencesViewSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewSections.swift; sourceTree = "<group>"; };
 		9354D4B228ACEDDE004C6D18 /* RepositoriesWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesWrapperView.swift; sourceTree = "<group>"; };
 		9354D4B428ACEDEF004C6D18 /* RepositoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesViewController.swift; sourceTree = "<group>"; };
 		9354D4B628ACEE04004C6D18 /* RepositoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesTableViewCell.swift; sourceTree = "<group>"; };
@@ -1761,6 +1763,7 @@
 			isa = PBXGroup;
 			children = (
 				20D837CF289A7ACD00D91D05 /* GeneralPreferencesView.swift */,
+				934D2F0928C591FD0034E5C8 /* GeneralPreferencesViewSections.swift */,
 			);
 			path = GeneralPreferences;
 			sourceTree = "<group>";
@@ -3641,6 +3644,7 @@
 				2093CDCE289AA4F4003A88DD /* CursorLocation.swift in Sources */,
 				2093CD3D289AA095003A88DD /* GroupAccess.swift in Sources */,
 				202F2E3B289E7483000D3CAD /* FindNavigatorListViewController.swift in Sources */,
+				934D2F0A28C591FD0034E5C8 /* GeneralPreferencesViewSections.swift in Sources */,
 				20212683289BF84B00246DD7 /* String.swift in Sources */,
 				2093CD84289AA11A003A88DD /* String+NSRange.swift in Sources */,
 				2B4C1333289D56F9000ED796 /* STTextViewDelegate.swift in Sources */,
