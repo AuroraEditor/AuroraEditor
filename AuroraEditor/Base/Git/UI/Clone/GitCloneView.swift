@@ -19,7 +19,7 @@ public struct GitCloneView: View {
     @State private var cloneCancellable: AnyCancellable?
 
     @State private var isCloning: Bool = false
-    @State private var stateCloning: String = "Preparing to clone..."
+    @State private var cloningStage: Int = 0
     @State private var valueCloning: Int = 0
 
     public init(
@@ -95,17 +95,26 @@ public struct GitCloneView: View {
         }
     }
 
+    private var progressLabels = [
+        "Counting Progress",
+        "Compressing Progress",
+        "Receiving Progress",
+        "Resolving Progress"
+    ]
+
     public var progressView: some View {
         VStack(alignment: .leading) {
             Text("Cloning \""+repoUrlStr+"\"")
                 .bold()
                 .padding(.bottom, 2)
-            Text(stateCloning)
-                .font(.system(size: 11))
-                .foregroundColor(.secondary)
-                .alignmentGuide(.trailing) { context in
-                    context[.trailing]
-                }
+
+            ForEach(0..<4) { index in
+                // swiftlint:disable:next line_length
+                Text("\(progressLabels[index]): \(cloningStage == index ? valueCloning : (cloningStage > index ? 100 : 0))%")
+                    .font(.system(size: 11))
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.leading)
+            }
 
             ProgressView(value: Float(valueCloning)/100.0)
                 .progressViewStyle(LinearProgressViewStyle())
@@ -243,19 +252,19 @@ extension GitCloneView {
                     case .cloningInto:
                         isCloning = true
                     case let .countingProgress(progress):
-                        stateCloning = "Counting Progress: \(progress)%"
+                        cloningStage = 0
                         valueCloning = progress
                         Log.info("Counting Progress: \(progress)%")
                     case let .compressingProgress(progress):
-                        stateCloning = "Compressing Progress: \(progress)%"
+                        cloningStage = 1
                         valueCloning = progress
                         Log.info("Compressing Progress: \(progress)%")
                     case let .receivingProgress(progress):
-                        stateCloning = "Receiving Progress: \(progress)%"
+                        cloningStage = 2
                         valueCloning = progress
                         Log.info("Receiving Progress: \(progress)%")
                     case let .resolvingProgress(progress):
-                        stateCloning = "Resolving Progress: \(progress)%"
+                        cloningStage = 3
                         valueCloning = progress
                         Log.info("Resolving Progress: \(progress)%")
                         if progress >= 100 {
