@@ -104,9 +104,10 @@ extension GitCloneView {
                 return
             }
             var isDir: ObjCBool = true
+            // if the file exists, the user would already have said they were okay with
+            // getting rid of it, so just remove it and overwrite it.
             if FileManager.default.fileExists(atPath: repoPath, isDirectory: &isDir) {
-                showAlert(alertMsg: "Error", infoText: "Directory already exists")
-                return
+                try? FileManager.default.removeItem(atPath: repoPath)
             }
             repoPathStr = repoPath
             try FileManager.default.createDirectory(atPath: repoPath,
