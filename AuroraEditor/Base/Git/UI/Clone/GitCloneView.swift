@@ -108,10 +108,17 @@ public struct GitCloneView: View {
                 .bold()
                 .padding(.bottom, 2)
 
-            Text("\(progressLabels[cloningStage]): \(valueCloning)% (\(cloningStage+1)/4)")
-                .font(.system(size: 11))
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.leading)
+            if cloningStage != 4 {
+                Text("\(progressLabels[cloningStage]): \(valueCloning)% (\(cloningStage+1)/4)")
+                    .font(.system(size: 11))
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.leading)
+            } else {
+                Text("Finished Cloning")
+                    .font(.system(size: 11))
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.leading)
+            }
 
             ProgressView(value: Float(valueCloning)/100.0)
                 .progressViewStyle(LinearProgressViewStyle())
@@ -122,7 +129,7 @@ public struct GitCloneView: View {
                     cloneCancellable?.cancel()
                 }
             }
-            .offset(x: 310)
+            .offset(x: 315)
             .alignmentGuide(.leading) { context in
                 context[.leading]
             }
@@ -261,8 +268,11 @@ extension GitCloneView {
                         cloningStage = 3
                         valueCloning = progress
                         if progress >= 100 {
+                            cloningStage = 4
                             cloneCancellable?.cancel()
-                            isPresented = false
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                                isPresented = false
+                            })
                         }
                     case .other: break
                     }
