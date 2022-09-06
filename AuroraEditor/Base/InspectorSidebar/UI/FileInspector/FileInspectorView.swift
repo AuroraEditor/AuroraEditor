@@ -204,7 +204,9 @@ struct FileInspectorView: View {
 
             Divider()
 
-        }.frame(maxWidth: 250).padding(5)
+        }
+        .frame(minWidth: 250, maxWidth: .infinity)
+        .padding(5)
     }
 
     private var fileType: some View {
@@ -307,7 +309,7 @@ struct FileInspectorView: View {
             }
         }
         .labelsHidden()
-        .frame(maxWidth: 150, maxHeight: 12)
+        .frame(maxWidth: 150, maxHeight: 15)
     }
 
     private var location: some View {

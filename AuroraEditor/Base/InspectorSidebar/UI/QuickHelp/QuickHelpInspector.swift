@@ -15,13 +15,13 @@ struct QuickHelpInspector: View {
                 .foregroundColor(.secondary)
                 .fontWeight(.bold)
                 .font(.system(size: 13))
-                .frame(width: 250, alignment: .leading)
+                .frame(minWidth: 250, maxWidth: .infinity, alignment: .leading)
 
             Text("No Quick Help")
                 .foregroundColor(.secondary)
                 .font(.system(size: 16))
                 .fontWeight(.medium)
-                .frame(width: 250, alignment: .center)
+                .frame(minWidth: 250, maxWidth: .infinity, alignment: .center)
                 .padding(.top, 10)
                 .padding(.bottom, 10)
 
@@ -29,12 +29,14 @@ struct QuickHelpInspector: View {
 
             }
             .background(in: RoundedRectangle(cornerRadius: 4))
-            .frame(width: 250, alignment: .center)
+            .frame(minWidth: 250, maxWidth: .infinity, alignment: .center)
             .font(.system(size: 12))
 
             Divider().padding(.top, 15)
 
-        }.frame(maxWidth: 250).padding(5)
+        }
+        .frame(minWidth: 250, maxWidth: .infinity)
+        .padding(5)
     }
 }
 

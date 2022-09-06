@@ -139,7 +139,6 @@ final class AuroraEditorWindowController: NSWindowController {
     // MARK: Git Main Menu Items
 
     @IBAction func stashChangesItems(_ sender: Any) {
-        if tryFocusWindow(of: StashChangesSheet.self) { return }
         if (workspace?.workspaceClient?.model?.changed ?? []).isEmpty {
             let alert = NSAlert()
             alert.alertStyle = .informational
@@ -148,7 +147,7 @@ final class AuroraEditorWindowController: NSWindowController {
             alert.addButton(withTitle: "OK")
             alert.runModal()
         } else {
-            StashChangesSheet(workspaceURL: (workspace?.fileURL!)!).showWindow()
+            workspace?.showStashChangesSheet.toggle()
         }
     }
 

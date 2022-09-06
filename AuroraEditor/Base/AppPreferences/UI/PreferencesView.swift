@@ -45,7 +45,9 @@ struct PreferencesView: View {
                         }
                     }
                 }
+                .frame(width: 150)
                 .listStyle(.sidebar)
+
                 Text("No selection")
             }
             .frame(width: 760, height: 500)

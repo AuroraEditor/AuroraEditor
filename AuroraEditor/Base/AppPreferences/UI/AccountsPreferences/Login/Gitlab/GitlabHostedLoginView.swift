@@ -23,7 +23,7 @@ struct GitlabHostedLoginView: View {
 
     var body: some View {
         VStack {
-            Text("Sign in to your GitHub account")
+            Text("Sign in to your Gitlab account")
 
             VStack(alignment: .trailing) {
                 HStack {
@@ -46,21 +46,31 @@ struct GitlabHostedLoginView: View {
 
             HStack {
                 HStack {
-                    Button("Create a Token on Gitlab Self-Hosted") {
+                    Button {
                         createToken(URL(string: "https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html")!)
+                    } label: {
+                        Text("Create a Token on Gitlab Self-Hosted")
+                            .foregroundColor(.primary)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 HStack {
-                    Button("Cancel") {
+                    Button {
                         dismissDialog = false
+                    } label: {
+                        Text("Cancel")
+                            .foregroundColor(.primary)
                     }
+
                     if accountToken.isEmpty {
                         Button("Sign In") {}
                         .disabled(true)
                     } else {
-                        Button("Sign In") {
+                        Button {
                             loginGitlabSelfHosted(gitAccountName: accountName)
+                        } label: {
+                            Text("Sign In")
+                                .foregroundColor(.white)
                         }
                         .buttonStyle(.borderedProminent)
                     }
@@ -69,7 +79,7 @@ struct GitlabHostedLoginView: View {
             }.padding(.top, 10)
         }
         .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
-        .frame(width: 485, height: 190)
+        .frame(width: 545, height: 190)
     }
 
     private func loginGitlabSelfHosted(gitAccountName: String) {
