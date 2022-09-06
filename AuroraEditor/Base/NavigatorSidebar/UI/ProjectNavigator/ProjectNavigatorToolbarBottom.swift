@@ -14,6 +14,9 @@ struct ProjectNavigatorToolbarBottom: View {
     @ObservedObject
     var workspace: WorkspaceDocument
 
+    @ObservedObject
+    private var editorSheetModel: EditorSheetViewsModel = .shared
+
     @State
     var filter: String = ""
 
@@ -51,12 +54,13 @@ struct ProjectNavigatorToolbarBottom: View {
 
     private var addNewFileButton: some View {
         Menu {
-            Button("Add File") {
-                guard let folderURL = workspace.workspaceClient?.folderURL,
-                      let root = try? workspace.workspaceClient?.getFileItem(folderURL.path) else { return }
-                root.addFile(fileName: "untitled") // TODO: use currently selected file instead of root
+            Button("New File...") {
+                editorSheetModel.showFileCreationSheet.toggle()
             }
-            Button("Add Folder") {
+
+            Divider()
+
+            Button("New Folder") {
                 guard let folderURL = workspace.workspaceClient?.folderURL,
                       let root = try? workspace.workspaceClient?.getFileItem(folderURL.path) else { return }
                 // TODO: use currently selected file instead of root
