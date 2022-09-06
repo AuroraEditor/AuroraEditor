@@ -16,9 +16,6 @@ public class WorkspaceClient {
     /// callback function that is run when a change is detected in the file system.
     /// This usually contains a `reloadData` function.
     public var onRefresh: () -> Void = {}
-    public var filter: String = "" {
-        didSet { onRefresh() }
-    }
 
     // Variables for the outside to interface with
     public var getFiles: AnyPublisher<[FileItem], Never> =
