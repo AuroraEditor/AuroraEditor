@@ -91,6 +91,7 @@ public struct RecentProjectsView: View {
     }
 
     func openDocument(for url: String) {
+        Log.info("Opening document: \(url)")
         openDocument( URL(fileURLWithPath: url),
                       dismissWindow )
         if let urlLocation = recentProjectPaths.firstIndex(of: url) {

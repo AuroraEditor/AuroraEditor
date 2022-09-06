@@ -158,6 +158,27 @@ extension GitCloneView {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                                 NSApplication.shared.removeDockProgress()
                                 isPresented = false
+                                // open the document
+                                let repoFileURL = URL(fileURLWithPath: repoPath)
+                                Log.info("Opening \(repoFileURL)")
+                                AuroraEditorDocumentController.shared.openDocument(
+                                    withContentsOf: repoFileURL,
+                                    display: true,
+                                    completionHandler: { _, _, _ in }
+                                )
+                                // add to recent projects
+                                var recentProjectPaths = (
+                                    UserDefaults.standard.array(forKey: "recentProjectPaths") as? [String] ?? []
+                                ).filter { FileManager.default.fileExists(atPath: $0) }
+                                if let urlLocation = recentProjectPaths.firstIndex(of: repoPath) {
+                                    recentProjectPaths.remove(at: urlLocation)
+                                }
+                                recentProjectPaths.insert(repoPath, at: 0)
+
+                                UserDefaults.standard.set(
+                                    recentProjectPaths,
+                                    forKey: "recentProjectPaths"
+                                )
                             })
                         }
                     case .other: break
