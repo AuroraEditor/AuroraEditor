@@ -42,7 +42,8 @@ extension AppDelegate {
             .filter { FileManager.default.fileExists(atPath: $0) }
 
         menuItem.submenu?.items = recentProjectPaths.map({ name in
-            NSMenuItem(title: name, action: #selector(openFile), keyEquivalent: "")
+            let title = name.abbreviatingWithTildeInPath()
+            return NSMenuItem(title: title, action: #selector(openFile), keyEquivalent: "")
         })
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
