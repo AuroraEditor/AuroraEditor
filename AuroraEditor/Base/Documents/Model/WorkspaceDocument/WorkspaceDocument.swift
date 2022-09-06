@@ -25,6 +25,9 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
 
     @Published
     var fileItems: [WorkspaceClient.FileItem] = []
+    public var filter: String = "" {
+        didSet { workspaceClient?.onRefresh() }
+    }
 
     var statusBarModel: StatusBarModel?
     var searchState: SearchState?

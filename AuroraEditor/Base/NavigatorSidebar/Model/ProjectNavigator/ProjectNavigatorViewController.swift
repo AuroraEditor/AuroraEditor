@@ -139,8 +139,8 @@ final class ProjectNavigatorViewController: NSViewController {
     /// Perform functions related to reloading the Outline View
     func reloadData() {
         self.outlineView.reloadData()
-        guard let workspaceClient = self.workspace?.workspaceClient else { return }
-        if !workspaceClient.filter.isEmpty {
+        guard let workspace = self.workspace else { return }
+        if !workspace.filter.isEmpty {
             // expand everything
             outlineView.expandItem(outlineView.item(atRow: 0), expandChildren: true)
         } else {
@@ -150,9 +150,9 @@ final class ProjectNavigatorViewController: NSViewController {
 
     /// Save the expansion state of the items in the Project Navigator
     func saveExpansionState() {
-        guard let workspaceClient = self.workspace?.workspaceClient,
+        guard let workspace = self.workspace,
               let workspaceItem = outlineView.item(atRow: 0) as? Item,
-              workspaceClient.filter.isEmpty && !isExpandingThings else { return }
+              workspace.filter.isEmpty && !isExpandingThings else { return }
         saveExpansionState(of: workspaceItem)
     }
 
@@ -191,9 +191,9 @@ final class ProjectNavigatorViewController: NSViewController {
 
 extension ProjectNavigatorViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        guard let workspaceClient = self.workspace?.workspaceClient else { return 0 }
+        guard let workspace = self.workspace else { return 0 }
         if let item = item as? Item {
-            return item.appearanceWithinChildrenOf(searchString: workspaceClient.filter,
+            return item.appearanceWithinChildrenOf(searchString: workspace.filter,
                                                    ignoreDots: true,
                                                    ignoreTilde: true)
         }
@@ -201,11 +201,11 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
     }
 
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        guard let workspaceClient = self.workspace?.workspaceClient,
+        guard let workspace = self.workspace,
               let item = item as? Item
         else { return content[index] }
 
-        return item.childrenSatisfying(searchString: workspaceClient.filter,
+        return item.childrenSatisfying(searchString: workspace.filter,
                                        ignoreDots: true,
                                        ignoreTilde: true)[index]
     }
