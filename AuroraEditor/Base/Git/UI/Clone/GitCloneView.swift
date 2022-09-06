@@ -18,6 +18,10 @@ public struct GitCloneView: View {
     @State private var gitClient: GitClient?
     @State private var cloneCancellable: AnyCancellable?
 
+    // the path that the repo is actually going to be cloned to
+    // used if the user presses cancel, to get rid of the half-cloned repo.
+    @State var repoPathStr = ""
+
     @State private var isCloning: Bool = false
     @State private var cloningStage: Int = 0
     @State private var valueCloning: Int = 0
@@ -73,7 +77,7 @@ public struct GitCloneView: View {
                     }
                 HStack {
                     Button("Cancel") {
-                        isPresented = false
+                        cancelClone()
                     }
                     Button("Clone") {
                         cloneRepository()
@@ -125,8 +129,7 @@ public struct GitCloneView: View {
 
             HStack {
                 Button("Cancel") {
-                    isPresented = false
-                    cloneCancellable?.cancel()
+                    cancelClone(deleteRemains: true)
                 }
             }
             .offset(x: 315)
@@ -198,6 +201,18 @@ extension GitCloneView {
         }
     }
 
+    func cancelClone(deleteRemains: Bool = false) {
+        isPresented = false
+        cloneCancellable?.cancel()
+
+        guard deleteRemains && FileManager.default.fileExists(atPath: repoPathStr) else { return }
+        do {
+            try FileManager.default.removeItem(atPath: repoPathStr)
+        } catch {
+            showAlert(alertMsg: "Error", infoText: error.localizedDescription)
+        }
+    }
+
     // MARK: Clone repo
     private func cloneRepository() { // swiftlint:disable:this function_body_length
         do {
@@ -228,6 +243,7 @@ extension GitCloneView {
                 showAlert(alertMsg: "Error", infoText: "Directory already exists")
                 return
             }
+            repoPathStr = repoPath
             try FileManager.default.createDirectory(atPath: repoPath,
                                                     withIntermediateDirectories: true,
                                                     attributes: nil)
