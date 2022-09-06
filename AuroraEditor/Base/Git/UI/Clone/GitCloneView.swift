@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 public struct GitCloneView: View {
-    private let shellClient: ShellClient
+    let shellClient: ShellClient
     @Binding var isPresented: Bool
     @Binding var repoPath: String
     @State var showCheckout: Bool = false
