@@ -66,6 +66,7 @@ public struct GeneralPreferencesView: View {
                 Group {
                     sidebarStyleSection
                         .padding(.vertical, 5)
+                    Divider()
                 }
                 Group {
                     menuItemMode
