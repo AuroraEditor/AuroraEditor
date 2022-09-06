@@ -19,12 +19,17 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
 
     @Published
     var sortFoldersOnTop: Bool = true
+    @Published
+    var showFileCreationSheet: Bool = false
 
     @Published
     var selectionState: WorkspaceSelectionState = .init()
 
     @Published
     var fileItems: [WorkspaceClient.FileItem] = []
+    public var filter: String = "" {
+        didSet { workspaceClient?.onRefresh() }
+    }
 
     var statusBarModel: StatusBarModel?
     var searchState: SearchState?
