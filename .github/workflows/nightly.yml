@@ -46,9 +46,13 @@ jobs:
       - name: "Create Release Build Archive"
         run: | 
           set -o pipefail && xcodebuild -workspace AuroraEditor.xcworkspace -scheme AuroraEditorRelease -configuration Release archive -archivePath builds/AuroraEditor.xcarchive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty 
-          
+
       - name: "Export Release Build"
-        run: xcrun xcodebuild -exportArchive -exportOptionsPlist .github/export.plist -archivePath builds/AuroraEditor.xcarchive -exportPath builds
+        uses: nick-fields/retry@v2
+        with:
+          timeout_seconds: 30
+          max_attempts: 3
+          command: xcrun xcodebuild -exportArchive -exportOptionsPlist .github/export.plist -archivePath builds/AuroraEditor.xcarchive -exportPath builds
         
       - name: Install create-dmg
         run: npm install --global create-dmg
