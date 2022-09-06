@@ -172,6 +172,9 @@ struct WorkspaceView: View {
         .sheet(isPresented: $workspace.showFileCreationSheet) {
             FileCreationSelectionView(workspace: workspace)
         }
+        .sheet(isPresented: $workspace.showStashChangesSheet) {
+            StashChangesSheet(workspaceURL: workspace.workspaceURL())
+        }
     }
 }
 

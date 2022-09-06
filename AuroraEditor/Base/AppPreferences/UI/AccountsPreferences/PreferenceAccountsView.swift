@@ -41,6 +41,7 @@ public struct PreferenceAccountsView: View {
                     openAccountDialog.toggle()
                 } label: {
                     Text("Add Account")
+                        .foregroundColor(.white)
                 }
                 .buttonStyle(.borderedProminent)
                 .sheet(isPresented: $openAccountDialog) {

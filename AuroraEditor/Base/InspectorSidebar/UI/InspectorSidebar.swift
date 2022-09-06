@@ -38,6 +38,7 @@ struct InspectorSidebar: View {
                     case 0:
                         FileInspectorView(workspaceURL: workspace.fileURL!,
                                           fileURL: codeFile.fileURL!.path)
+                        .frame(maxWidth: .infinity)
                     case 1:
                         HistoryInspector(workspaceURL: workspace.fileURL!,
                                          fileURL: codeFile.fileURL!.path)
