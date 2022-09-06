@@ -34,6 +34,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     func applicationWillFinishLaunching(_ notification: Notification) {
     }
 
+    var statusItem: NSStatusItem!
+
     func applicationDidFinishLaunching(_ notification: Notification) {
 
         AuroraCrashlytics.add(delegate: self)
@@ -85,6 +87,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             try ExtensionsManager.shared?.preload()
         } catch let error {
             Log.error(error)
+        }
+
+        if AppPreferencesModel.shared.preferences.general.menuItemShowMode == .shown {
+            self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+            setup(statusItem: statusItem)
         }
     }
 

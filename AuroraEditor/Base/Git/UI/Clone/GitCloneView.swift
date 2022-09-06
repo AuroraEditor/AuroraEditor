@@ -10,274 +10,135 @@ import Foundation
 import Combine
 
 public struct GitCloneView: View {
-    private let shellClient: ShellClient
-    @Binding private var isPresented: Bool
-    @Binding private var showCheckout: Bool
-    @Binding private var repoPath: String
-    @State private var repoUrlStr = ""
-    @State private var gitClient: GitClient?
-    @State private var cloneCancellable: AnyCancellable?
+    let shellClient: ShellClient
+    @Binding var isPresented: Bool
+    @Binding var repoPath: String
+    @State var showCheckout: Bool = false
+    @State var repoUrlStr = ""                      // the repo string that the user inputs
+    @State var gitClient: GitClient?
+    @State var cloneCancellable: AnyCancellable?    // the publisher for the cloning progress
+
+    // the path that the repo is actually going to be cloned to
+    // used if the user presses cancel, to get rid of the half-cloned repo.
+    @State var repoPathStr = ""
+
+    @State var isCloning: Bool = false
+    @State var cloningStage: Int = 0    // 0 through 4, depending on the stage that cloning is at
+    @State var valueCloning: Int = 0    // The percentage of the current stage that is complete
+
+    private var progressLabels = [      // the labels for each cloning stage
+        "Counting Progress",
+        "Compressing Progress",
+        "Receiving Progress",
+        "Resolving Progress"
+    ]
 
     public init(
         shellClient: ShellClient,
         isPresented: Binding<Bool>,
-        showCheckout: Binding<Bool>,
         repoPath: Binding<String>
     ) {
         self.shellClient = shellClient
         self._isPresented = isPresented
-        self._showCheckout = showCheckout
         self._repoPath = repoPath
     }
 
     public var body: some View {
-        VStack(spacing: 8) {
-            HStack {
-                Image(nsImage: NSApp.applicationIconImage)
-                    .resizable()
-                    .frame(width: 64, height: 64)
-                    .padding(.bottom, 50)
-                VStack(alignment: .leading) {
-                    Text("Clone a repository")
-                        .bold()
-                        .padding(.bottom, 2)
-                    Text("Enter a git repository URL:")
-                        .font(.system(size: 11))
-                        .foregroundColor(.secondary)
-                        .alignmentGuide(.trailing) { context in
-                            context[.trailing]
-                        }
-                    TextField("Git Repository URL", text: $repoUrlStr)
-                        .lineLimit(1)
-                        .padding(.bottom, 15)
-                        .frame(width: 300)
-                    HStack {
-                        Button("Cancel") {
-                            isPresented = false
-                        }
-                        Button("Clone") {
-                            cloneRepository()
-                        }
-                        .keyboardShortcut(.defaultAction)
-                        .disabled(!isValid(url: repoUrlStr))
-                    }
-                    .offset(x: 185)
-                    .alignmentGuide(.leading) { context in
-                        context[.leading]
-                    }
-                }
-            }
-            .padding(.top, 20)
-            .padding(.horizontal, 20)
-            .padding(.bottom, 16)
-            .onAppear {
-                self.checkClipboard(textFieldText: &repoUrlStr)
-            }
-        }
-    }
-}
-
-extension GitCloneView {
-    func getPath(modifiable: inout String, saveName: String) -> String? {
-        let dialog = NSSavePanel()
-        dialog.showsResizeIndicator    = true
-        dialog.showsHiddenFiles        = false
-        dialog.showsTagField = false
-        dialog.prompt = "Clone"
-        dialog.nameFieldStringValue = saveName
-        dialog.nameFieldLabel = "Clone as"
-        dialog.title = "Clone"
-
-        if dialog.runModal() ==  NSApplication.ModalResponse.OK {
-            let result = dialog.url
-
-            if result != nil {
-                let path: String = result!.path
-                // path contains the directory path e.g
-                // /Users/ourcodeworld/Desktop/folder
-                modifiable = path
-                return path
-            }
-        } else {
-            // User clicked on "Cancel"
-            return nil
-        }
-        return nil
-    }
-
-    func showAlert(alertMsg: String, infoText: String) {
-        let alert = NSAlert()
-        alert.messageText = alertMsg
-        alert.informativeText = infoText
-        alert.addButton(withTitle: "OK")
-        alert.alertStyle = .warning
-        alert.runModal()
-    }
-
-    func isValid(url: String) -> Bool {
-        // Doing the same kind of check that Xcode does when cloning
-        let url = url.lowercased()
-        if url.starts(with: "http://") && url.count > 7 {
-            return true
-        } else if url.starts(with: "https://") && url.count > 8 {
-            return true
-        } else if url.starts(with: "git@") && url.count > 4 {
-            return true
-        }
-        return false
-    }
-
-    func checkClipboard(textFieldText: inout String) {
-        if let url = NSPasteboard.general.pasteboardItems?.first?.string(forType: .string) {
-            if isValid(url: url) {
-                textFieldText = url
-            }
-        }
-    }
-
-    private func cloneRepository() { // swiftlint:disable:this function_body_length
-        do {
-            if repoUrlStr.isEmpty {
-                showAlert(alertMsg: "Url cannot be empty",
-                          infoText: "You must specify a repository to clone")
-                return
-            }
-            // Parsing repo name
-            let repoURL = URL(string: repoUrlStr)
-            if var repoName = repoURL?.lastPathComponent {
-                // Strip .git from name if it has it.
-                // Cloning repository without .git also works
-                if repoName.contains(".git") {
-                    repoName.removeLast(4)
-                }
-                guard getPath(modifiable: &repoPath, saveName: repoName) != nil else {
-                    return
-                }
-            } else {
-                return
-            }
-            guard let dirUrl = URL(string: repoPath) else {
-                return
-            }
-            var isDir: ObjCBool = true
-            if FileManager.default.fileExists(atPath: repoPath, isDirectory: &isDir) {
-                showAlert(alertMsg: "Error", infoText: "Directory already exists")
-                return
-            }
-            try FileManager.default.createDirectory(atPath: repoPath,
-                                                    withIntermediateDirectories: true,
-                                                    attributes: nil)
-            gitClient = GitClient.init(
-                directoryURL: dirUrl,
+        if showCheckout {
+            CheckoutBranchView(
+                isPresented: $showCheckout,
+                repoPath: $repoPath,
                 shellClient: shellClient
             )
-
-            cloneCancellable = gitClient?
-                .cloneRepository(path: repoUrlStr)
-                .sink(receiveCompletion: { result in
-                    switch result {
-                    case let .failure(error):
-                        switch error {
-                        case .notGitRepository:
-                            showAlert(alertMsg: "Error", infoText: "Not a git repository")
-                        case let .outputError(error):
-                            showAlert(alertMsg: "Error", infoText: error)
-                        case .failedToDecodeURL:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .badConfigFile:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .authenticationFailed:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .noUserNameConfigured:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .noUserEmailConfigured:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .notAGitRepository:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .notAtRepositoryRoot:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .conflict:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .stashConflict:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .unmergedChanges:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .pushRejected:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .remoteConnectionError:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .dirtyWorkTree:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .cantOpenResource:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .gitNotFound:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .cantCreatePipe:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .cantAccessRemote:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .repositoryNotFound:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .repositoryIsLocked:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .branchNotFullyMerged:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .noRemoteReference:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .invalidBranchName:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .branchAlreadyExists:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .noLocalChanges:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .noStashFound:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .localChangesOverwritten:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .noUpstreamBranch:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .isInSubModule:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .wrongCase:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .cantLockRef:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .cantRebaseMultipleBranches:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        case .patchDoesNotApply:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        }
-                    case .finished: break
-                    }
-                }, receiveValue: { result in
-                    switch result {
-                    case let .receivingProgress(progress):
-                        Log.info("Receiving Progress: ", progress)
-                    case let .resolvingProgress(progress):
-                        Log.info("Resolving Progress: ", progress)
-                        if progress >= 100 {
-                            cloneCancellable?.cancel()
-                            isPresented = false
-                        }
-                    case .other: break
-                    }
-                })
-            checkBranches(dirUrl: dirUrl)
-        } catch {
-            showAlert(alertMsg: "Error", infoText: error.localizedDescription)
+        } else {
+            if !isCloning {
+                cloneView
+            } else {
+                progressView
+            }
         }
     }
-    private func checkBranches(dirUrl: URL) {
-        // Check if repo has only one branch, and if so, don't show the checkout page
-        do {
-            let branches = try GitClient.init(directoryURL: dirUrl,
-                                              shellClient: shellClient).getBranches(allBranches: true)
-            let filtered = branches.filter { !$0.contains("HEAD") }
-            if filtered.count > 1 {
-                showCheckout = true
+
+    public var cloneView: some View {
+        HStack {
+            Image(nsImage: NSApp.applicationIconImage)
+                .resizable()
+                .frame(width: 64, height: 64)
+                .padding(.bottom, 50)
+            VStack(alignment: .leading) {
+                Text("Clone a repository")
+                    .bold()
+                    .padding(.bottom, 2)
+                Text("Enter a git repository URL:")
+                    .font(.system(size: 11))
+                    .foregroundColor(.secondary)
+                    .alignmentGuide(.trailing) { context in
+                        context[.trailing]
+                    }
+                TextField("Git Repository URL", text: $repoUrlStr)
+                    .lineLimit(1)
+                    .padding(.bottom, 15)
+                    .frame(width: 300)
+                    .onSubmit {
+                        cloneRepository()
+                    }
+                HStack {
+                    Button("Cancel") {
+                        cancelClone()
+                    }
+                    Button("Clone") {
+                        cloneRepository()
+                    }
+                    .keyboardShortcut(.defaultAction)
+                    .disabled(!isValid(url: repoUrlStr))
+                }
+                .offset(x: 185)
+                .alignmentGuide(.leading) { context in
+                    context[.leading]
+                }
             }
-        } catch {
-            return
         }
+        .padding(.top, 20)
+        .padding(.horizontal, 20)
+        .padding(.bottom, 16)
+        .onAppear {
+            self.checkClipboard(textFieldText: &repoUrlStr)
+        }
+    }
+
+    public var progressView: some View {
+        VStack(alignment: .leading) {
+            Text("Cloning \""+repoUrlStr+"\"")
+                .bold()
+                .padding(.bottom, 2)
+
+            if cloningStage != 4 {
+                Text("\(progressLabels[cloningStage]): \(valueCloning)% (\(cloningStage+1)/4)")
+                    .font(.system(size: 11))
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.leading)
+            } else {
+                Text("Finished Cloning")
+                    .font(.system(size: 11))
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.leading)
+            }
+
+            ProgressView(value: Float(valueCloning)/100.0)
+                .progressViewStyle(LinearProgressViewStyle())
+
+            HStack {
+                Button("Cancel") {
+                    cancelClone(deleteRemains: true)
+                }
+            }
+            .offset(x: 315)
+            .alignmentGuide(.leading) { context in
+                context[.leading]
+            }
+        }
+        .padding(.top, 20)
+        .padding(.horizontal, 20)
+        .padding(.bottom, 16)
     }
 }

@@ -39,6 +39,9 @@ public extension AppPreferences {
         /// Choose between Xcode-like and VSCode-like sidebar mode selection
         public var sidebarStyle: SidebarStyle = .xcode
 
+        /// Choose between showing and hiding the menu bar accessory
+        public var menuItemShowMode: MenuBarShow = .shown
+
         /// The reopen behavior of the app
         public var reopenBehavior: ReopenBehavior = .welcome
 
@@ -97,6 +100,10 @@ public extension AppPreferences {
                 SidebarStyle.self,
                 forKey: .sidebarStyle
             ) ?? .xcode
+            self.menuItemShowMode = try container.decodeIfPresent(
+                MenuBarShow.self,
+                forKey: .menuItemShowMode
+            ) ?? .shown
             self.reopenBehavior = try container.decodeIfPresent(
                 ReopenBehavior.self,
                 forKey: .reopenBehavior
@@ -213,6 +220,14 @@ public extension AppPreferences {
     enum SidebarStyle: String, Codable {
         case xcode
         case vscode
+    }
+
+    /// If the menu item should be shwon
+    /// - **shown**: The menu bar item is shown
+    /// - **hidden**: The menu bar item is hidden
+    enum MenuBarShow: String, Codable {
+        case shown
+        case hidden
     }
 
     /// The reopen behavior of the app
