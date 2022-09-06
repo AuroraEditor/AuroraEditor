@@ -108,13 +108,10 @@ public struct GitCloneView: View {
                 .bold()
                 .padding(.bottom, 2)
 
-            ForEach(0..<4) { index in
-                // swiftlint:disable:next line_length
-                Text("\(progressLabels[index]): \(cloningStage == index ? valueCloning : (cloningStage > index ? 100 : 0))%")
-                    .font(.system(size: 11))
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.leading)
-            }
+            Text("\(progressLabels[cloningStage]): \(valueCloning)% (\(cloningStage+1)/4)")
+                .font(.system(size: 11))
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.leading)
 
             ProgressView(value: Float(valueCloning)/100.0)
                 .progressViewStyle(LinearProgressViewStyle())
@@ -125,7 +122,7 @@ public struct GitCloneView: View {
                     cloneCancellable?.cancel()
                 }
             }
-            .offset(x: 240)
+            .offset(x: 310)
             .alignmentGuide(.leading) { context in
                 context[.leading]
             }
@@ -254,19 +251,15 @@ extension GitCloneView {
                     case let .countingProgress(progress):
                         cloningStage = 0
                         valueCloning = progress
-                        Log.info("Counting Progress: \(progress)%")
                     case let .compressingProgress(progress):
                         cloningStage = 1
                         valueCloning = progress
-                        Log.info("Compressing Progress: \(progress)%")
                     case let .receivingProgress(progress):
                         cloningStage = 2
                         valueCloning = progress
-                        Log.info("Receiving Progress: \(progress)%")
                     case let .resolvingProgress(progress):
                         cloningStage = 3
                         valueCloning = progress
-                        Log.info("Resolving Progress: \(progress)%")
                         if progress >= 100 {
                             cloneCancellable?.cancel()
                             isPresented = false
