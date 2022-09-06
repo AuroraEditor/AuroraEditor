@@ -446,7 +446,6 @@
 		20EBB507280C32D300F3A5DA /* QuickHelpInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBB506280C32D300F3A5DA /* QuickHelpInspector.swift */; };
 		20EBB50D280C383700F3A5DA /* LanguageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBB50C280C383700F3A5DA /* LanguageType.swift */; };
 		20EBB50F280C389300F3A5DA /* FileInspectorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBB50E280C389300F3A5DA /* FileInspectorModel.swift */; };
-		20F8377528C7750200EAE842 /* EditorSheetViewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F8377428C7750200EAE842 /* EditorSheetViewsModel.swift */; };
 		20F8377F28C7769B00EAE842 /* FileCreationNamingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F8377E28C7769B00EAE842 /* FileCreationNamingView.swift */; };
 		20F8378128C776EF00EAE842 /* FileCreationGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F8378028C776EF00EAE842 /* FileCreationGridView.swift */; };
 		20F8378328C776FF00EAE842 /* FileCreationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F8378228C776FF00EAE842 /* FileCreationSelectionView.swift */; };
@@ -1040,7 +1039,6 @@
 		20EBB506280C32D300F3A5DA /* QuickHelpInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickHelpInspector.swift; sourceTree = "<group>"; };
 		20EBB50C280C383700F3A5DA /* LanguageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageType.swift; sourceTree = "<group>"; };
 		20EBB50E280C389300F3A5DA /* FileInspectorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInspectorModel.swift; sourceTree = "<group>"; };
-		20F8377428C7750200EAE842 /* EditorSheetViewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorSheetViewsModel.swift; sourceTree = "<group>"; };
 		20F8377E28C7769B00EAE842 /* FileCreationNamingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCreationNamingView.swift; sourceTree = "<group>"; };
 		20F8378028C776EF00EAE842 /* FileCreationGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCreationGridView.swift; sourceTree = "<group>"; };
 		20F8378228C776FF00EAE842 /* FileCreationSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCreationSelectionView.swift; sourceTree = "<group>"; };
@@ -1238,7 +1236,6 @@
 				93ACA43528C32FC000672994 /* WorkspaceDocument */,
 				93ACA43428C32F9100672994 /* AuroraEditorWindow */,
 				D7E201AD27E8B3C000CB86D0 /* String+Ranges.swift */,
-				20F8377428C7750200EAE842 /* EditorSheetViewsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3742,7 +3739,6 @@
 				2093CD2C289AA089003A88DD /* PullRequest.swift in Sources */,
 				2041B8B428A674FD005F03D8 /* Checkout.swift in Sources */,
 				2093CDB9289AA1AB003A88DD /* LocationsPreferencesView.swift in Sources */,
-				20F8377528C7750200EAE842 /* EditorSheetViewsModel.swift in Sources */,
 				20D2A44828A7D1B00073F7BD /* Reflog.swift in Sources */,
 				2093CD8F289AA130003A88DD /* NotificationCentreView.swift in Sources */,
 				2093CDDE289AA522003A88DD /* Color+HEX.swift in Sources */,

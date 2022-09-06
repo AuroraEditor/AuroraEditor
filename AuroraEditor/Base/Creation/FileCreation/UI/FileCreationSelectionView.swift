@@ -17,7 +17,7 @@ struct FileCreationSelectionView: View {
     private var creationSheetModel: FileCreationModel = .shared
 
     @State
-    var workspaceClient: WorkspaceClient?
+    var workspace: WorkspaceDocument?
 
     @State
     var showFileNamingSheet: Bool = false
@@ -51,7 +51,7 @@ struct FileCreationSelectionView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .sheet(isPresented: $showFileNamingSheet) {
-                    FileCreationNamingView(workspaceClient: workspaceClient,
+                    FileCreationNamingView(workspace: workspace,
                                            // swiftlint:disable:next line_length
                                            fileName: "untitled.\(creationSheetModel.selectedLanguageItem.languageExtension)")
                 }

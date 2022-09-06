@@ -14,9 +14,6 @@ struct ProjectNavigatorToolbarBottom: View {
     @ObservedObject
     var workspace: WorkspaceDocument
 
-    @ObservedObject
-    private var editorSheetModel: EditorSheetViewsModel = .shared
-
     @State
     var filter: String = ""
 
@@ -55,7 +52,7 @@ struct ProjectNavigatorToolbarBottom: View {
     private var addNewFileButton: some View {
         Menu {
             Button("New File...") {
-                editorSheetModel.showFileCreationSheet.toggle()
+                workspace.showFileCreationSheet.toggle()
             }
 
             Divider()

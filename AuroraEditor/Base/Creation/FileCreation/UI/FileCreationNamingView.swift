@@ -16,11 +16,8 @@ struct FileCreationNamingView: View {
     @ObservedObject
     private var creationSheetModel: FileCreationModel = .shared
 
-    @ObservedObject
-    private var sheetModel: EditorSheetViewsModel = .shared
-
     @State
-    var workspaceClient: WorkspaceClient?
+    var workspace: WorkspaceDocument?
 
     @State
     var fileName: String = ""
@@ -63,7 +60,7 @@ struct FileCreationNamingView: View {
                 }
 
                 Button {
-                    guard let workspaceURL = workspaceClient?.folderURL else {
+                    guard let workspaceURL = workspace?.workspaceClient?.folderURL else {
                         return
                     }
                     creationSheetModel.createLanguageFile(directoryURL: workspaceURL,
@@ -71,7 +68,7 @@ struct FileCreationNamingView: View {
                         switch completion {
                         case .success:
                             presentationMode.wrappedValue.dismiss()
-                            sheetModel.showFileCreationSheet.toggle()
+                            workspace?.showFileCreationSheet.toggle()
                         case .failure(let failure):
                             Log.error(failure)
                         }

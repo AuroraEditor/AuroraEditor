@@ -19,6 +19,8 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
 
     @Published
     var sortFoldersOnTop: Bool = true
+    @Published
+    var showFileCreationSheet: Bool = false
 
     @Published
     var selectionState: WorkspaceSelectionState = .init()

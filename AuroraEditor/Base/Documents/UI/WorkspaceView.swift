@@ -24,9 +24,6 @@ struct WorkspaceView: View {
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
-    @StateObject
-    private var editorSheetModel: EditorSheetViewsModel = .shared
-
     @State
     private var showingAlert = false
 
@@ -172,8 +169,8 @@ struct WorkspaceView: View {
                 }
             }
         }
-        .sheet(isPresented: $editorSheetModel.showFileCreationSheet) {
-            FileCreationSelectionView(workspaceClient: workspace.workspaceClient ?? nil)
+        .sheet(isPresented: $workspace.showFileCreationSheet) {
+            FileCreationSelectionView(workspace: workspace)
         }
     }
 }
