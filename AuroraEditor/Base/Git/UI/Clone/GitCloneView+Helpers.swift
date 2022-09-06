@@ -139,19 +139,24 @@ extension GitCloneView {
                     case let .countingProgress(progress):
                         cloningStage = 0
                         valueCloning = progress
+                        NSApplication.shared.setDockProgress(progress: 0.10 * Double(progress) / 100 + 0.0)
                     case let .compressingProgress(progress):
                         cloningStage = 1
                         valueCloning = progress
+                        NSApplication.shared.setDockProgress(progress: 0.10 * Double(progress) / 100 + 0.10)
                     case let .receivingProgress(progress):
                         cloningStage = 2
                         valueCloning = progress
+                        NSApplication.shared.setDockProgress(progress: 0.30 * Double(progress) / 100 + 0.20)
                     case let .resolvingProgress(progress):
                         cloningStage = 3
                         valueCloning = progress
+                        NSApplication.shared.setDockProgress(progress: 0.50 * Double(progress) / 100 + 0.50)
                         if progress >= 100 {
                             cloningStage = 4
                             cloneCancellable?.cancel()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                                NSApplication.shared.removeDockProgress()
                                 isPresented = false
                             })
                         }
