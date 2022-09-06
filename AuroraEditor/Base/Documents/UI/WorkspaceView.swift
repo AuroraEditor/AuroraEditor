@@ -169,6 +169,9 @@ struct WorkspaceView: View {
                 }
             }
         }
+        .sheet(isPresented: $workspace.showFileCreationSheet) {
+            FileCreationSelectionView(workspace: workspace)
+        }
     }
 }
 
