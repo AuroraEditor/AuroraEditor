@@ -12,7 +12,7 @@ import Combine
 public struct ToolbarBranchPicker: View {
     @Environment(\.controlActiveState)
     private var controlActive
-    private var workspace: FileSystemClient?
+    private var fileSystemClient: FileSystemClient?
     private var gitClient: GitClient?
 
     @State
@@ -29,10 +29,10 @@ public struct ToolbarBranchPicker: View {
     /// - Parameter workspace: An instance of the current `FileSystemClient`
     public init(
         shellClient: ShellClient,
-        workspace: FileSystemClient?
+        fileSystemClient: FileSystemClient?
     ) {
-        self.workspace = workspace
-        self.gitClient = workspace?.model?.gitClient
+        self.fileSystemClient = fileSystemClient
+        self.gitClient = fileSystemClient?.model?.gitClient
     }
 
     public var body: some View {
@@ -90,7 +90,7 @@ public struct ToolbarBranchPicker: View {
     }
 
     private var title: String {
-        workspace?.folderURL?.lastPathComponent ?? "Empty"
+        fileSystemClient?.folderURL?.lastPathComponent ?? "Empty"
     }
 
     // MARK: Popover View
