@@ -113,7 +113,7 @@ extension AppDelegate {
 
     @objc
     func about(_ sender: Any?) {
-        if self.tryFocusWindow(of: AboutView.self) { return }
+        if AppDelegate.tryFocusWindow(of: AboutView.self) { return }
         AboutView().showWindow(width: 530, height: 220)
     }
 
@@ -121,16 +121,5 @@ extension AppDelegate {
     func hideMenuItem(_ sender: Any?) {
         statusItem.button?.isHidden = true
         AppPreferencesModel.shared.preferences.general.menuItemShowMode = .hidden
-    }
-
-    /// Tries to focus a window with specified view content type.
-    /// - Parameter type: The type of viewContent which hosted in a window to be focused.
-    /// - Returns: `true` if window exist and focused, oterwise - `false`
-    private func tryFocusWindow<T: View>(of type: T.Type) -> Bool {
-        guard let window = NSApp.windows.filter({ ($0.contentView as? NSHostingView<T>) != nil }).first
-        else { return false }
-
-        window.makeKeyAndOrderFront(self)
-        return true
     }
 }
