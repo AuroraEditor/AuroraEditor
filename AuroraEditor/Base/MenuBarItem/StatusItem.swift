@@ -52,8 +52,7 @@ extension AppDelegate {
             .filter { FileManager.default.fileExists(atPath: $0) }
 
         menuItem.submenu?.items = recentProjectPaths.map({ name in
-            let title = name.abbreviatingWithTildeInPath()
-            return NSMenuItem(title: title, action: #selector(openFile), keyEquivalent: "")
+            return RecentProjectMenuItem(title: name, action: #selector(openFile), keyEquivalent: "")
         })
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
@@ -63,8 +62,8 @@ extension AppDelegate {
 
     @objc
     func openFile(_ sender: Any?) {
-        guard let sender = sender as? NSMenuItem else { return }
-        let repoPath = sender.title
+        guard let sender = sender as? RecentProjectMenuItem else { return }
+        let repoPath = sender.urlString
         // open the document
         let repoFileURL = URL(fileURLWithPath: repoPath)
         Log.info("Opening \(repoFileURL)")
@@ -121,5 +120,18 @@ extension AppDelegate {
     func hideMenuItem(_ sender: Any?) {
         statusItem.button?.isHidden = true
         AppPreferencesModel.shared.preferences.general.menuItemShowMode = .hidden
+    }
+}
+
+class RecentProjectMenuItem: NSMenuItem {
+    var urlString: String = ""
+
+    override init(title: String, action selector: Selector?, keyEquivalent charCode: String) {
+        urlString = title
+        super.init(title: urlString.abbreviatingWithTildeInPath(), action: selector, keyEquivalent: charCode)
+    }
+
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
     }
 }
