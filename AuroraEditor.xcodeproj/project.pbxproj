@@ -2127,7 +2127,7 @@
 		20D8386C289A7ACE00D91D05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				93F0066528A756F50038E5B7 /* FileItemClient */,
+				93F0066528A756F50038E5B7 /* FileSystemClient */,
 				939C2CC4289E341F00BBB345 /* FileItem */,
 			);
 			path = Model;
@@ -3138,13 +3138,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		93F0066528A756F50038E5B7 /* FileItemClient */ = {
+		93F0066528A756F50038E5B7 /* FileSystemClient */ = {
 			isa = PBXGroup;
 			children = (
 				93F0066628A7574C0038E5B7 /* FileSystemClient.swift */,
 				93F0066828A757670038E5B7 /* FileSystemClient+FileIndex.swift */,
 			);
-			path = FileItemClient;
+			path = FileSystemClient;
 			sourceTree = "<group>";
 		};
 		B658FB2327DA9E0F00EA4DBD = {
