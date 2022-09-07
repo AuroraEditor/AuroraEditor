@@ -10,6 +10,13 @@ import Foundation
 import SwiftUI
 
 extension AppDelegate {
+    private var appVersion: String {
+        Bundle.versionString ?? "No Version"
+    }
+
+    private var appBuild: String {
+        Bundle.buildString ?? "No Build"
+    }
 
     func setup(statusItem: NSStatusItem) {
         if let button = statusItem.button {
@@ -28,9 +35,12 @@ extension AppDelegate {
             NSMenuItem(title: "Open a project or file", action: #selector(openProject), keyEquivalent: "3"),
             recentProjectsItem,
             NSMenuItem.separator(),
+            NSMenuItem(title: "Version \(appVersion) (\(appBuild))",
+                       action: #selector(copyInformation), keyEquivalent: ""),
+            NSMenuItem(title: "About AuroraEditor", action: #selector(about), keyEquivalent: ""),
             NSMenuItem(title: "Preferences", action: #selector(openPreferences), keyEquivalent: ","),
-            NSMenuItem(title: "Open Welcome View", action: #selector(openWelcome), keyEquivalent: "e"),
             NSMenuItem.separator(),
+            NSMenuItem(title: "Open Welcome View", action: #selector(openWelcome), keyEquivalent: "e"),
             NSMenuItem(title: "Hide this item", action: #selector(hideMenuItem), keyEquivalent: "h"),
             NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         ]
@@ -97,8 +107,30 @@ extension AppDelegate {
     }
 
     @objc
+    func copyInformation(_ sender: Any?) {
+        AuroraEditor.copyInformation()
+    }
+
+    @objc
+    func about(_ sender: Any?) {
+        if self.tryFocusWindow(of: AboutView.self) { return }
+        AboutView().showWindow(width: 530, height: 220)
+    }
+
+    @objc
     func hideMenuItem(_ sender: Any?) {
         statusItem.button?.isHidden = true
         AppPreferencesModel.shared.preferences.general.menuItemShowMode = .hidden
+    }
+
+    /// Tries to focus a window with specified view content type.
+    /// - Parameter type: The type of viewContent which hosted in a window to be focused.
+    /// - Returns: `true` if window exist and focused, oterwise - `false`
+    private func tryFocusWindow<T: View>(of type: T.Type) -> Bool {
+        guard let window = NSApp.windows.filter({ ($0.contentView as? NSHostingView<T>) != nil }).first
+        else { return false }
+
+        window.makeKeyAndOrderFront(self)
+        return true
     }
 }
