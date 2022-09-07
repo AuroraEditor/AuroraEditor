@@ -1,5 +1,5 @@
 //
-//  WorkspaceClient.swift
+//  FileSystemClient.swift
 //  AuroraEditor
 //
 //  Created by TAY KAI QUAN on 13/8/22.
@@ -8,9 +8,7 @@
 import Combine
 import Foundation
 
-// A interface that is used accross AuroraEditor to access
-// contents of the WorkspaceClient.
-public class WorkspaceClient {
+public class FileSystemClient {
 
     // TODO: Turn into class variables
     /// callback function that is run when a change is detected in the file system.
@@ -31,18 +29,19 @@ public class WorkspaceClient {
     private var subject = CurrentValueSubject<[FileItem], Never>([])
 
     /// A function that, given a file's path, returns a `FileItem` if it exists
-    /// within the scope of the `WorkspaceClient`.
+    /// within the scope of the `FileSystemClient`.
     /// - Parameter id: The file's full path
     /// - Returns: The file item corresponding to the file
-    public func getFileItem(_ id: String) throws -> FileItem {        guard let item = flattenedFileItems[id] else {
-            throw WorkspaceClientError.fileNotExist
+    public func getFileItem(_ id: String) throws -> FileItem {
+        guard let item = flattenedFileItems[id] else {
+            throw FileSystemClientError.fileNotExist
         }
 
         return item
     }
 
-    /// Usually run when the owner of the `WorkspaceClient` doesn't need it anymore.
-    /// This de-inits most functions in the `WorkspaceClient`, so that in case it isn't de-init'd it does not use up
+    /// Usually run when the owner of the `FileSystemClient` doesn't need it anymore.
+    /// This de-inits most functions in the `FileSystemClient`, so that in case it isn't de-init'd it does not use up
     /// significant amounts of RAM.
     public func cleanUp() {
         stopListeningToDirectory()
@@ -141,7 +140,7 @@ public class WorkspaceClient {
     }
     // swiftlint:enable vertical_parameter_alignment
 
-    enum WorkspaceClientError: Error {
+    enum FileSystemClientError: Error {
         case fileNotExist
     }
 }

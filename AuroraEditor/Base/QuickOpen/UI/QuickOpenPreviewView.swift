@@ -9,13 +9,13 @@ import SwiftUI
 
 public struct QuickOpenPreviewView: View {
     private let queue = DispatchQueue(label: "com.auroraeditor.quickOpen.preview")
-    private let item: WorkspaceClient.FileItem
+    private let item: FileSystemClient.FileItem
     @State private var content: String = ""
     @State private var loaded = false
     @State private var error: String?
 
     public init(
-        item: WorkspaceClient.FileItem
+        item: FileSystemClient.FileItem
     ) {
         self.item = item
     }

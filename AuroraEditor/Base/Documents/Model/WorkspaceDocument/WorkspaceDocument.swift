@@ -13,7 +13,7 @@ import AEExtensionKit
 
 @objc(WorkspaceDocument)
 final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
-    var workspaceClient: WorkspaceClient?
+    var workspaceClient: FileSystemClient?
 
     var extensionNavigatorData: ExtensionNavigatorData? = ExtensionNavigatorData()
 
@@ -28,7 +28,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     var selectionState: WorkspaceSelectionState = .init()
 
     @Published
-    var fileItems: [WorkspaceClient.FileItem] = []
+    var fileItems: [FileSystemClient.FileItem] = []
     public var filter: String = "" {
         didSet { workspaceClient?.onRefresh() }
     }

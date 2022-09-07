@@ -8,12 +8,12 @@
 import AppKit
 
 public final class BreadcrumsMenu: NSMenu, NSMenuDelegate {
-    private let fileItems: [WorkspaceClient.FileItem]
-    private let tappedOpenFile: (WorkspaceClient.FileItem) -> Void
+    private let fileItems: [FileSystemClient.FileItem]
+    private let tappedOpenFile: (FileSystemClient.FileItem) -> Void
 
     public init(
-        fileItems: [WorkspaceClient.FileItem],
-        tappedOpenFile: @escaping (WorkspaceClient.FileItem) -> Void
+        fileItems: [FileSystemClient.FileItem],
+        tappedOpenFile: @escaping (FileSystemClient.FileItem) -> Void
     ) {
         self.fileItems = fileItems
         self.tappedOpenFile = tappedOpenFile
@@ -38,13 +38,13 @@ public final class BreadcrumsMenu: NSMenu, NSMenuDelegate {
     /// Only when menu item is highlighted then generate its submenu
     public func menu(_: NSMenu, willHighlight item: NSMenuItem?) {
         if let highlightedItem = item, let submenuItems = highlightedItem.submenu?.items, submenuItems.isEmpty {
-            if let highlightedFileItem = highlightedItem.representedObject as? WorkspaceClient.FileItem {
+            if let highlightedFileItem = highlightedItem.representedObject as? FileSystemClient.FileItem {
                 highlightedItem.submenu = generateSubmenu(highlightedFileItem)
             }
         }
     }
 
-    private func generateSubmenu(_ fileItem: WorkspaceClient.FileItem) -> BreadcrumsMenu? {
+    private func generateSubmenu(_ fileItem: FileSystemClient.FileItem) -> BreadcrumsMenu? {
         if let children = fileItem.children {
             let menu = BreadcrumsMenu(
                 fileItems: children,
@@ -57,12 +57,12 @@ public final class BreadcrumsMenu: NSMenu, NSMenuDelegate {
 }
 
 final class BreadcrumbsMenuItem: NSMenuItem {
-    private let fileItem: WorkspaceClient.FileItem
-    private let tappedOpenFile: (WorkspaceClient.FileItem) -> Void
+    private let fileItem: FileSystemClient.FileItem
+    private let tappedOpenFile: (FileSystemClient.FileItem) -> Void
 
     init(
-        fileItem: WorkspaceClient.FileItem,
-        tappedOpenFile: @escaping (WorkspaceClient.FileItem) -> Void
+        fileItem: FileSystemClient.FileItem,
+        tappedOpenFile: @escaping (FileSystemClient.FileItem) -> Void
     ) {
         self.fileItem = fileItem
         self.tappedOpenFile = tappedOpenFile

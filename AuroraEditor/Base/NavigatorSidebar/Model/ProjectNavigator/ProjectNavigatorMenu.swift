@@ -10,7 +10,7 @@ import UniformTypeIdentifiers
 
 /// A subclass of `NSMenu` implementing the contextual menu for the project navigator
 final class ProjectNavigatorMenu: NSMenu {
-    typealias Item = WorkspaceClient.FileItem
+    typealias Item = FileSystemClient.FileItem
 
     let gitClient: GitClient?
 

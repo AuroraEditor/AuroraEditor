@@ -13,7 +13,7 @@ import SwiftUI
 /// currently open project.
 final class ProjectNavigatorViewController: NSViewController {
 
-    typealias Item = WorkspaceClient.FileItem
+    typealias Item = FileSystemClient.FileItem
 
     var scrollView: NSScrollView!
     var outlineView: NSOutlineView!

@@ -1,5 +1,5 @@
 //
-//  WorkspaceClient+FileIndex.swift
+//  FileSystemClient+FileIndex.swift
 //  AuroraEditor
 //
 //  Created by TAY KAI QUAN on 13/8/22.
@@ -7,7 +7,7 @@
 import Combine
 import Foundation
 
-extension WorkspaceClient {
+extension FileSystemClient {
 
     /// Recursive loading of files into `FileItem`s
     /// - Parameter url: The URL of the directory to load the items of

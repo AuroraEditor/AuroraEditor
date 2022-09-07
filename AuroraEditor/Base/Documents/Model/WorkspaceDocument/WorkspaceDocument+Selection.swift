@@ -18,8 +18,8 @@ struct WorkspaceSelectionState: Codable {
         return getItemByTab(id: selectedId)
     }
 
-    var openFileItems: [WorkspaceClient.FileItem] = []
-    var openedCodeFiles: [WorkspaceClient.FileItem: CodeFileDocument] = [:]
+    var openFileItems: [FileSystemClient.FileItem] = []
+    var openedCodeFiles: [FileSystemClient.FileItem: CodeFileDocument] = [:]
 
     var openedExtensions: [Plugin] = []
 

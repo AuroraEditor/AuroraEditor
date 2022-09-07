@@ -24,8 +24,8 @@ public final class SourceControlModel: ObservableObject {
     /// A GitClient instance
     let gitClient: GitClient
 
-    /// A WorkspaceClient instance, but set to the .git repo (if it exists)
-    var workspaceClient: WorkspaceClient?
+    /// A FileSystemClient instance, but set to the .git repo (if it exists)
+    var workspaceClient: FileSystemClient?
 
     /// The base URL of the workspace
     let workspaceURL: URL

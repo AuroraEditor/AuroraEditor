@@ -1,6 +1,6 @@
 //
 //  FileItem.swift
-//  AuroraEditorModules/WorkspaceClient
+//  AuroraEditorModules/FileSystemClient
 //
 //  Created by Marco Carnevali on 16/03/22.
 //
@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import UniformTypeIdentifiers
 
-public extension WorkspaceClient {
+public extension FileSystemClient {
     enum FileItemCodingKeys: String, CodingKey {
         case id
         case url
@@ -36,7 +36,7 @@ public extension WorkspaceClient {
         public var watcherCode: ((FileItem) -> Void)?
 
         public var gitStatus: GitType?
-        public var workspaceClient: WorkspaceClient?
+        public var workspaceClient: FileSystemClient?
 
         public func activateWatcher() -> Bool {
             guard let watcherCode = watcherCode else { return false }
@@ -60,7 +60,7 @@ public extension WorkspaceClient {
         public init(url: URL,
                     children: [FileItem]? = nil,
                     changeType: GitType? = nil,
-                    workspaceClient: WorkspaceClient? = nil
+                    workspaceClient: FileSystemClient? = nil
         ) {
             self.url = url
             self.children = children
@@ -85,23 +85,23 @@ public extension WorkspaceClient {
             try container.encode(gitStatus, forKey: .changeType)
         }
 
-        /// The id of the ``WorkspaceClient/WorkspaceClient/FileItem``.
+        /// The id of the ``FileSystemClient/FileSystemClient/FileItem``.
         ///
         /// This is equal to `url.relativePath`
         public var id: ID
 
-        /// Returns the URL of the ``WorkspaceClient/WorkspaceClient/FileItem``
+        /// Returns the URL of the ``FileSystemClient/FileSystemClient/FileItem``
         public var url: URL
 
-        /// Returns the children of the current ``WorkspaceClient/WorkspaceClient/FileItem``.
+        /// Returns the children of the current ``FileSystemClient/FileSystemClient/FileItem``.
         ///
-        /// If the current ``WorkspaceClient/WorkspaceClient/FileItem`` is a file this will be `nil`.
+        /// If the current ``FileSystemClient/FileSystemClient/FileItem`` is a file this will be `nil`.
         /// If it is an empty folder this will be an empty array.
         public var children: [FileItem]?
 
-        /// Returns a parent ``WorkspaceClient/WorkspaceClient/FileItem``.
+        /// Returns a parent ``FileSystemClient/FileSystemClient/FileItem``.
         ///
-        /// If the item already is the top-level ``WorkspaceClient/WorkspaceClient/FileItem`` this returns `nil`.
+        /// If the item already is the top-level ``FileSystemClient/FileSystemClient/FileItem`` this returns `nil`.
         public weak var parent: FileItem?
 
         /// A boolean that is true if ``children`` is not `nil`
@@ -117,7 +117,7 @@ public extension WorkspaceClient {
         /// A boolean that is true if the file item actually exists in the file system
         public var doesExist: Bool { FileItem.fileManger.fileExists(atPath: self.url.path) }
 
-        /// Returns a string describing a SFSymbol for the current ``WorkspaceClient/WorkspaceClient/FileItem``
+        /// Returns a string describing a SFSymbol for the current ``FileSystemClient/FileSystemClient/FileItem``
         ///
         /// Use it like this
         /// ```swift
@@ -284,7 +284,7 @@ public extension WorkspaceClient {
 }
 
 // MARK: Hashable
-extension WorkspaceClient.FileItem: Hashable {
+extension FileSystemClient.FileItem: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(fileIdentifier)
         hasher.combine(id)
@@ -292,12 +292,12 @@ extension WorkspaceClient.FileItem: Hashable {
 }
 
 // MARK: Comparable
-extension WorkspaceClient.FileItem: Comparable {
-    public static func == (lhs: WorkspaceClient.FileItem, rhs: WorkspaceClient.FileItem) -> Bool {
+extension FileSystemClient.FileItem: Comparable {
+    public static func == (lhs: FileSystemClient.FileItem, rhs: FileSystemClient.FileItem) -> Bool {
         lhs.id == rhs.id
     }
 
-    public static func < (lhs: WorkspaceClient.FileItem, rhs: WorkspaceClient.FileItem) -> Bool {
+    public static func < (lhs: FileSystemClient.FileItem, rhs: FileSystemClient.FileItem) -> Bool {
         lhs.url.lastPathComponent < rhs.url.lastPathComponent
     }
 }

@@ -69,7 +69,7 @@ struct TabBarContextMenu: ViewModifier {
 
             Divider()
 
-            if let item = item as? WorkspaceClient.FileItem {
+            if let item = item as? FileSystemClient.FileItem {
                 Group {
                     Button("Copy Path") {
                         copyPath(item: item)
@@ -104,14 +104,14 @@ struct TabBarContextMenu: ViewModifier {
 
     /// Copies the absolute path of the given `FileItem`
     /// - Parameter item: The `FileItem` to use.
-    private func copyPath(item: WorkspaceClient.FileItem) {
+    private func copyPath(item: FileSystemClient.FileItem) {
         NSPasteboard.general.clearContents()
         NSPasteboard.general.setString(item.url.standardizedFileURL.path, forType: .string)
     }
 
     /// Copies the relative path from the workspace folder to the given file item to the pasteboard.
     /// - Parameter item: The `FileItem` to use.
-    private func copyRelativePath(item: WorkspaceClient.FileItem) {
+    private func copyRelativePath(item: FileSystemClient.FileItem) {
         guard let rootPath = workspace.workspaceClient?.folderURL else {
             return
         }

@@ -9,7 +9,7 @@ import Foundation
 
 public final class QuickOpenState: ObservableObject {
     @Published var openQuicklyQuery: String = ""
-    @Published var openQuicklyFiles: [WorkspaceClient.FileItem] = []
+    @Published var openQuicklyFiles: [FileSystemClient.FileItem] = []
     @Published var isShowingOpenQuicklyFiles: Bool = false
 
     public let fileURL: URL
@@ -48,7 +48,7 @@ public final class QuickOpenState: ObservableObject {
                         return false
                     }
                 }.map { url in
-                    WorkspaceClient.FileItem(url: url, children: nil)
+                    FileSystemClient.FileItem(url: url, children: nil)
                 }
                 DispatchQueue.main.async {
                     self.openQuicklyFiles = files
