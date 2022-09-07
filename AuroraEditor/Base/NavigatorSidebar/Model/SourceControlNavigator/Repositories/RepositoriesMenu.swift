@@ -47,11 +47,12 @@ final class RepositoriesMenu: NSMenu {
     /// Setup the menu and disables certain items when `isFile` is false
     /// - Parameter isFile: A flag indicating that the item is a file instead of a directory
     private func setupMenu() {
+        guard let branch = item as? RepoBranch else { return }
 
         items = [
-            menuItem("New Branch from [selected branch name]", action: nil),
-            menuItem("Rename [selected branch name]", action: nil),
-            menuItem("Tag [selected branch name]", action: nil),
+            menuItem("New Branch from \"\(branch.name)\"", action: nil),
+            menuItem("Rename \"\(branch.name)\"", action: nil),
+            menuItem("Tag \"\(branch.name)\"", action: nil),
             menuItem("Switch...", action: item is RepoBranch ? #selector(switchToBranch(_:)) : nil),
             NSMenuItem.separator(),
             menuItem("Merge from Branch...", action: nil),
@@ -64,7 +65,7 @@ final class RepositoriesMenu: NSMenu {
             menuItem("Apply Stashed Changes...", action: nil),
             menuItem("Export Stashed Changes as Patch File...", action: nil),
             NSMenuItem.separator(),
-            menuItem("Delete", action: nil)
+            menuItem("Delete", action: isSelectedBranchCurrentOne() ? nil : #selector(deleteBranch))
         ]
     }
 
@@ -74,9 +75,44 @@ final class RepositoriesMenu: NSMenu {
         self.outlineView.reloadData()
     }
 
+    @objc
+    func deleteBranch() {
+        guard let branch = item as? RepoBranch else { return }
+
+        let alert = NSAlert()
+        alert.messageText = "Do you want to delete the branch “\(branch.name)”?"
+        alert.informativeText = "The branch will be removed from the repository. You can’t undo this action."
+        alert.addButton(withTitle: "Delete")
+        alert.addButton(withTitle: "Cancel")
+        if alert.runModal() == .alertFirstButtonReturn {
+            do {
+                if try Branches().deleteLocalBranch(directoryURL: (workspace?.workspaceURL())!,
+                                                    branchName: branch.name) {
+                    self.outlineView.reloadData()
+                } else {
+                    Log.error("Failed to delete branch \(branch.name)")
+                }
+            } catch {
+                Log.error("Failed to delete branch \(branch.name)")
+            }
+        }
+    }
+
     /// Updates the menu for the selected item and hides it if no item is provided.
     override func update() {
         removeAllItems()
         setupMenu()
+    }
+
+    func isSelectedBranchCurrentOne() -> Bool {
+        guard let branch = item as? RepoBranch else { return false }
+        do {
+            let currentBranch = try Branches().getCurrentBranch(directoryURL: (workspace?.workspaceURL())!)
+
+            return currentBranch == branch.name
+        } catch {
+            Log.error("Failed to find current branch name.")
+            return false
+        }
     }
 }

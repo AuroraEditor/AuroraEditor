@@ -11,6 +11,12 @@ import Foundation
 
 public struct Branches {
 
+    func getCurrentBranch(directoryURL: URL) throws -> String {
+        return try ShellClient.live().run(
+            "cd \(directoryURL.relativePath.escapedWhiteSpaces());git rev-parse --abbrev-ref HEAD"
+        ).removingNewLines()
+    }
+
     func getBranches(_ allBranches: Bool = false, directoryURL: URL) throws -> [String] {
         if allBranches == true {
             return try ShellClient.live().run(
