@@ -14,5 +14,5 @@ class WorkspaceNotificationModel: ObservableObject {
     }
 
     @Published
-    var highlightedFileItem: WorkspaceClient.FileItem?
+    var highlightedFileItem: FileSystemClient.FileItem?
 }

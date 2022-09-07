@@ -13,7 +13,7 @@ import SwiftUI
 /// currently open project.
 final class ProjectNavigatorViewController: NSViewController {
 
-    typealias Item = WorkspaceClient.FileItem
+    typealias Item = FileSystemClient.FileItem
 
     var scrollView: NSScrollView!
     var outlineView: NSOutlineView!
@@ -22,9 +22,9 @@ final class ProjectNavigatorViewController: NSViewController {
     ///
     /// Also creates a top level item "root" which represents the projects root directory and automatically expands it.
     private var content: [Item] {
-        guard let folderURL = workspace?.workspaceClient?.folderURL else { return [] }
+        guard let folderURL = workspace?.fileSystemClient?.folderURL else { return [] }
         let children = workspace?.fileItems.sortItems(foldersOnTop: true)
-        guard let root = try? workspace?.workspaceClient?.getFileItem(folderURL.path) else { return [] }
+        guard let root = try? workspace?.fileSystemClient?.getFileItem(folderURL.path) else { return [] }
         root.children = children
         return [root]
     }
@@ -57,7 +57,7 @@ final class ProjectNavigatorViewController: NSViewController {
         self.outlineView.dataSource = self
         self.outlineView.delegate = self
         self.outlineView.autosaveExpandedItems = true
-        self.outlineView.autosaveName = workspace?.workspaceClient?.folderURL?.path ?? ""
+        self.outlineView.autosaveName = workspace?.fileSystemClient?.folderURL?.path ?? ""
         self.outlineView.headerView = nil
         self.outlineView.menu = ProjectNavigatorMenu(sender: self.outlineView, workspaceURL: (workspace?.fileURL)!)
         self.outlineView.menu?.delegate = self
@@ -78,7 +78,7 @@ final class ProjectNavigatorViewController: NSViewController {
     }
 
     func reloadChangedFiles() {
-        if let model = workspace?.workspaceClient?.model, let wsClient = workspace?.workspaceClient {
+        if let model = workspace?.fileSystemClient?.model, let wsClient = workspace?.fileSystemClient {
             for item in model.reloadChangedFiles() {
                 outlineView.reloadItem(try? wsClient.getFileItem(item.id))
             }
@@ -271,7 +271,7 @@ extension ProjectNavigatorViewController: NSOutlineViewDelegate {
 
     func outlineView(_ outlineView: NSOutlineView, itemForPersistentObject object: Any) -> Any? {
         guard let id = object as? Item.ID,
-              let item = try? workspace?.workspaceClient?.getFileItem(id) else { return nil }
+              let item = try? workspace?.fileSystemClient?.getFileItem(id) else { return nil }
         return item
     }
 
@@ -289,7 +289,7 @@ extension ProjectNavigatorViewController: NSOutlineViewDelegate {
         // selecting the row.
         if AppPreferencesModel.shared.preferences.general.revealFileOnFocusChange,
            case let .codeEditor(id) = id,
-           let fileItem = try? workspace?.workspaceClient?.getFileItem(id as Item.ID) as? Item {
+           let fileItem = try? workspace?.fileSystemClient?.getFileItem(id as Item.ID) as? Item {
             reveal(fileItem)
         }
 

@@ -10,7 +10,7 @@ import SwiftUI
 
 class FileSystemTableViewCell: StandardTableViewCell {
 
-    var fileItem: WorkspaceClient.FileItem!
+    var fileItem: FileSystemClient.FileItem!
 
     var changeLabelLargeWidth: NSLayoutConstraint!
     var changeLabelSmallWidth: NSLayoutConstraint!
@@ -23,7 +23,7 @@ class FileSystemTableViewCell: StandardTableViewCell {
     ///   - frameRect: The frame of the cell.
     ///   - item: The file item the cell represents.
     ///   - isEditable: Set to true if the user should be able to edit the file name.
-    init(frame frameRect: NSRect, item: WorkspaceClient.FileItem?, isEditable: Bool = true) {
+    init(frame frameRect: NSRect, item: FileSystemClient.FileItem?, isEditable: Bool = true) {
         super.init(frame: frameRect, isEditable: isEditable)
 
         if let item = item {
@@ -65,7 +65,7 @@ class FileSystemTableViewCell: StandardTableViewCell {
         super.init(frame: frameRect)
         fatalError("""
             init(frame: ) isn't implemented on `OutlineTableViewCell`.
-            Please use `.init(frame: NSRect, item: WorkspaceClient.FileItem?)
+            Please use `.init(frame: NSRect, item: FileSystemClient.FileItem?)
             """)
     }
 
@@ -73,7 +73,7 @@ class FileSystemTableViewCell: StandardTableViewCell {
     required init?(coder: NSCoder) {
         fatalError("""
             init?(coder: NSCoder) isn't implemented on `OutlineTableViewCell`.
-            Please use `.init(frame: NSRect, item: WorkspaceClient.FileItem?)
+            Please use `.init(frame: NSRect, item: FileSystemClient.FileItem?)
             """)
     }
 
@@ -90,7 +90,7 @@ class FileSystemTableViewCell: StandardTableViewCell {
     /// Generates a string based on user's file name preferences.
     /// - Parameter item: The FileItem to generate the name for.
     /// - Returns: A `String` with the name to display.
-    func label(for item: WorkspaceClient.FileItem) -> String {
+    func label(for item: FileSystemClient.FileItem) -> String {
         switch prefs.fileExtensionsVisibility {
         case .hideAll:
             return item.fileName(typeHidden: true)
@@ -106,7 +106,7 @@ class FileSystemTableViewCell: StandardTableViewCell {
     /// Get the appropriate color for the items icon depending on the users preferences.
     /// - Parameter item: The `FileItem` to get the color for
     /// - Returns: A `NSColor` for the given `FileItem`.
-    func color(for item: WorkspaceClient.FileItem) -> NSColor {
+    func color(for item: FileSystemClient.FileItem) -> NSColor {
         if item.children == nil && prefs.fileIconStyle == .color {
             return NSColor(item.iconColor)
         } else {
@@ -134,7 +134,7 @@ extension FileSystemTableViewCell: NSTextFieldDelegate {
         guard newName != fileItem.fileName else { return true }
 
         guard !newName.isEmpty && newName.isValidFilename &&
-              !WorkspaceClient.FileItem.fileManger.fileExists(atPath:
+              !FileSystemClient.FileItem.fileManger.fileExists(atPath:
                     fileItem.url.deletingLastPathComponent().appendingPathComponent(newName).path)
         else { return false }
 

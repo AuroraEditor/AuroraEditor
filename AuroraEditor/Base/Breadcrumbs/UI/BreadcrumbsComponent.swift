@@ -16,12 +16,12 @@ public struct BreadcrumbsComponent: View {
 
     @StateObject private var prefs: AppPreferencesModel = .shared
     @State var position: NSPoint?
-    private let fileItem: WorkspaceClient.FileItem
-    private let tappedOpenFile: (WorkspaceClient.FileItem) -> Void
+    private let fileItem: FileSystemClient.FileItem
+    private let tappedOpenFile: (FileSystemClient.FileItem) -> Void
 
     public init(
-        fileItem: WorkspaceClient.FileItem,
-        tappedOpenFile: @escaping (WorkspaceClient.FileItem) -> Void
+        fileItem: FileSystemClient.FileItem,
+        tappedOpenFile: @escaping (FileSystemClient.FileItem) -> Void
     ) {
         self.fileItem = fileItem
         self.tappedOpenFile = tappedOpenFile

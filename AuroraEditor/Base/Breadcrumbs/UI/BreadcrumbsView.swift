@@ -15,14 +15,14 @@ public struct BreadcrumbsView: View {
     private var activeState
 
     @State
-    private var fileItems: [WorkspaceClient.FileItem] = []
+    private var fileItems: [FileSystemClient.FileItem] = []
 
-    private let file: WorkspaceClient.FileItem
-    private let tappedOpenFile: (WorkspaceClient.FileItem) -> Void
+    private let file: FileSystemClient.FileItem
+    private let tappedOpenFile: (FileSystemClient.FileItem) -> Void
 
     public init(
-        file: WorkspaceClient.FileItem,
-        tappedOpenFile: @escaping (WorkspaceClient.FileItem) -> Void
+        file: FileSystemClient.FileItem,
+        tappedOpenFile: @escaping (FileSystemClient.FileItem) -> Void
     ) {
         self.file = file
         self.tappedOpenFile = tappedOpenFile
@@ -63,9 +63,9 @@ public struct BreadcrumbsView: View {
             .opacity(activeState != .inactive ? 0.8 : 0.5)
     }
 
-    private func fileInfo(_ file: WorkspaceClient.FileItem) {
+    private func fileInfo(_ file: FileSystemClient.FileItem) {
         fileItems = []
-        var currentFile: WorkspaceClient.FileItem? = file
+        var currentFile: FileSystemClient.FileItem? = file
         while let currentFileLoop = currentFile {
             fileItems.insert(currentFileLoop, at: 0)
             currentFile = currentFileLoop.parent

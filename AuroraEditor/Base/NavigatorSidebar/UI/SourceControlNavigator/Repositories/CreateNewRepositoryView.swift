@@ -67,7 +67,7 @@ struct CreateNewRepositoryView: View {
 
                 Button {
                     do {
-                        guard let projectPath = repositoryModel.workspace.workspaceClient?.folderURL else {
+                        guard let projectPath = repositoryModel.workspace.fileSystemClient?.folderURL else {
                             return
                         }
                         try initGitRepository(directoryURL: projectPath)

@@ -132,7 +132,7 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
             let view = NSHostingView(
                 rootView: ToolbarBranchPicker(
                     shellClient: sharedShellClient.shellClient,
-                    workspace: workspace?.workspaceClient
+                    fileSystemClient: workspace?.fileSystemClient
                 )
             )
             toolbarItem.view = view

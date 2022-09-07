@@ -22,7 +22,7 @@ extension WorkspaceDocument {
             }
             switch item.tabID {
             case .codeEditor:
-                guard let file = item as? WorkspaceClient.FileItem else { return }
+                guard let file = item as? FileSystemClient.FileItem else { return }
                 try self.openFile(item: file)
             case .extensionInstallation:
                 guard let plugin = item as? Plugin else { return }
@@ -60,7 +60,7 @@ extension WorkspaceDocument {
         }
     }
 
-    private func openFile(item: WorkspaceClient.FileItem) throws {
+    private func openFile(item: FileSystemClient.FileItem) throws {
         if !selectionState.openFileItems.contains(item) {
             selectionState.openFileItems.append(item)
         }
@@ -100,7 +100,7 @@ extension WorkspaceDocument {
 
         switch id {
         case .codeEditor:
-            guard let item = selectionState.getItemByTab(id: id) as? WorkspaceClient.FileItem else { return }
+            guard let item = selectionState.getItemByTab(id: id) as? FileSystemClient.FileItem else { return }
             closeFileTab(item: item)
         case .extensionInstallation:
             guard let item = selectionState.getItemByTab(id: id) as? Plugin else { return }
@@ -159,7 +159,7 @@ extension WorkspaceDocument {
         switch id {
         case .codeEditor:
             guard let item = selectionState.getItemByTab(id: id)
-                    as? WorkspaceClient.FileItem else { return }
+                    as? FileSystemClient.FileItem else { return }
             selectionState.openedCodeFiles.removeValue(forKey: item)
         case .extensionInstallation:
             guard let item = selectionState.getItemByTab(id: id)
@@ -179,7 +179,7 @@ extension WorkspaceDocument {
 
     /// Closes an open tab, save text files only.
     /// Removes the tab item from `openedCodeFiles`, `openedExtensions`, and `openFileItems`.
-    private func closeFileTab(item: WorkspaceClient.FileItem) {
+    private func closeFileTab(item: FileSystemClient.FileItem) {
         let file = selectionState.openedCodeFiles.removeValue(forKey: item)
         if file?.typeOfFile != .image {
             file?.saveFileDocument()

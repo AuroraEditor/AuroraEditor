@@ -9,11 +9,11 @@ import SwiftUI
 
 public struct QuickOpenItem: View {
     private let baseDirectory: URL
-    private let fileItem: WorkspaceClient.FileItem
+    private let fileItem: FileSystemClient.FileItem
 
     public init(
         baseDirectory: URL,
-        fileItem: WorkspaceClient.FileItem
+        fileItem: FileSystemClient.FileItem
     ) {
         self.baseDirectory = baseDirectory
         self.fileItem = fileItem

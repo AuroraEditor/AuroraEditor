@@ -551,8 +551,8 @@
 		93EF416328C1D752004083AD /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF416228C1D752004083AD /* Command.swift */; };
 		93EF416528C1EBBC004083AD /* ActionAwareInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF416428C1EBBC004083AD /* ActionAwareInput.swift */; };
 		93EF416728C1F828004083AD /* WorkspaceDocument+Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF416628C1F828004083AD /* WorkspaceDocument+Commands.swift */; };
-		93F0066728A7574C0038E5B7 /* WorkspaceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F0066628A7574C0038E5B7 /* WorkspaceClient.swift */; };
-		93F0066928A757670038E5B7 /* WorkspaceClient+FileIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F0066828A757670038E5B7 /* WorkspaceClient+FileIndex.swift */; };
+		93F0066728A7574C0038E5B7 /* FileSystemClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F0066628A7574C0038E5B7 /* FileSystemClient.swift */; };
+		93F0066928A757670038E5B7 /* FileSystemClient+FileIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F0066828A757670038E5B7 /* FileSystemClient+FileIndex.swift */; };
 		93F73D0D28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F73D0C28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift */; };
 		9C3E1A07284E8E020042BEC0 /* WelcomeModuleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E1A06284E8E020042BEC0 /* WelcomeModuleExtensions.swift */; };
 		B658FB3427DA9E1000EA4DBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B658FB3327DA9E1000EA4DBD /* Assets.xcassets */; };
@@ -1156,8 +1156,8 @@
 		93EF416228C1D752004083AD /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		93EF416428C1EBBC004083AD /* ActionAwareInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionAwareInput.swift; sourceTree = "<group>"; };
 		93EF416628C1F828004083AD /* WorkspaceDocument+Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceDocument+Commands.swift"; sourceTree = "<group>"; };
-		93F0066628A7574C0038E5B7 /* WorkspaceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceClient.swift; sourceTree = "<group>"; };
-		93F0066828A757670038E5B7 /* WorkspaceClient+FileIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceClient+FileIndex.swift"; sourceTree = "<group>"; };
+		93F0066628A7574C0038E5B7 /* FileSystemClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemClient.swift; sourceTree = "<group>"; };
+		93F0066828A757670038E5B7 /* FileSystemClient+FileIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileSystemClient+FileIndex.swift"; sourceTree = "<group>"; };
 		93F73D0C28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceDocument+Tabs.swift"; sourceTree = "<group>"; };
 		9C3E1A06284E8E020042BEC0 /* WelcomeModuleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeModuleExtensions.swift; sourceTree = "<group>"; };
 		B658FB2C27DA9E0F00EA4DBD /* AuroraEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuroraEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1462,7 +1462,7 @@
 				934D2F0528C4EC430034E5C8 /* MenuBarItem */,
 				20D838F5289A7ACE00D91D05 /* TerminalEmulator */,
 				20D83810289A7ACD00D91D05 /* WelcomeModule */,
-				20D83866289A7ACE00D91D05 /* WorkspaceClient */,
+				20D83866289A7ACE00D91D05 /* FileSystemClient */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2107,13 +2107,13 @@
 			path = AuroraEditor/Base/NavigatorSidebar/Model/FindNavigator;
 			sourceTree = SOURCE_ROOT;
 		};
-		20D83866289A7ACE00D91D05 /* WorkspaceClient */ = {
+		20D83866289A7ACE00D91D05 /* FileSystemClient */ = {
 			isa = PBXGroup;
 			children = (
 				20D8386A289A7ACE00D91D05 /* UI */,
 				20D8386C289A7ACE00D91D05 /* Model */,
 			);
-			path = WorkspaceClient;
+			path = FileSystemClient;
 			sourceTree = "<group>";
 		};
 		20D8386A289A7ACE00D91D05 /* UI */ = {
@@ -2127,7 +2127,7 @@
 		20D8386C289A7ACE00D91D05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				93F0066528A756F50038E5B7 /* WorkspaceClient */,
+				93F0066528A756F50038E5B7 /* FileSystemClient */,
 				939C2CC4289E341F00BBB345 /* FileItem */,
 			);
 			path = Model;
@@ -3138,13 +3138,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		93F0066528A756F50038E5B7 /* WorkspaceClient */ = {
+		93F0066528A756F50038E5B7 /* FileSystemClient */ = {
 			isa = PBXGroup;
 			children = (
-				93F0066628A7574C0038E5B7 /* WorkspaceClient.swift */,
-				93F0066828A757670038E5B7 /* WorkspaceClient+FileIndex.swift */,
+				93F0066628A7574C0038E5B7 /* FileSystemClient.swift */,
+				93F0066828A757670038E5B7 /* FileSystemClient+FileIndex.swift */,
 			);
-			path = WorkspaceClient;
+			path = FileSystemClient;
 			sourceTree = "<group>";
 		};
 		B658FB2327DA9E0F00EA4DBD = {
@@ -3908,7 +3908,7 @@
 				2093CD9A289AA14C003A88DD /* GeneralPreferences.swift in Sources */,
 				2093CD9D289AA15F003A88DD /* SourceControlAccounts.swift in Sources */,
 				2093CD69289AA0F2003A88DD /* BreadcrumbsMenu.swift in Sources */,
-				93F0066928A757670038E5B7 /* WorkspaceClient+FileIndex.swift in Sources */,
+				93F0066928A757670038E5B7 /* FileSystemClient+FileIndex.swift in Sources */,
 				2093CDB4289AA1A2003A88DD /* GitlabHostedLoginView.swift in Sources */,
 				2093CD9C289AA152003A88DD /* TerminalPreferences.swift in Sources */,
 				206729AF28AE69DC00EB0957 /* PreferencesView.swift in Sources */,
@@ -3946,7 +3946,7 @@
 				2093CDC6289AA260003A88DD /* TabBarNative.swift in Sources */,
 				2093CDB2289AA19B003A88DD /* PreferenceAccountsView.swift in Sources */,
 				2093CDE7289AAE83003A88DD /* CheckoutBranchView.swift in Sources */,
-				93F0066728A7574C0038E5B7 /* WorkspaceClient.swift in Sources */,
+				93F0066728A7574C0038E5B7 /* FileSystemClient.swift in Sources */,
 				2093CDC4289AA260003A88DD /* TabBarItemButtonStyle.swift in Sources */,
 				2093CD11289AA054003A88DD /* GitUIModel.swift in Sources */,
 				2093CDD0289AA503003A88DD /* String+RemoveOccurrences.swift in Sources */,

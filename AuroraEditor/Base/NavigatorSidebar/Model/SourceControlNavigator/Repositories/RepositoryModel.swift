@@ -48,7 +48,7 @@ public final class RepositoryModel: ObservableObject {
 
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
-        guard let projectPath = workspace.workspaceClient?.folderURL else { return }
+        guard let projectPath = workspace.fileSystemClient?.folderURL else { return }
         self.repositoryLocalPath = projectPath.path
         self.repositoryName = projectPath.lastPathComponent
         self.isGitRepository = checkIfProjectIsRepo()
@@ -59,7 +59,7 @@ public final class RepositoryModel: ObservableObject {
             self.gitClient = client
         }
 
-        self.repoName = workspace.workspaceClient?.folderURL?.lastPathComponent
+        self.repoName = workspace.fileSystemClient?.folderURL?.lastPathComponent
 
         // reponame must not be nil or ""
         guard repoName != nil && !repoName!.isEmpty else { return }
@@ -139,7 +139,7 @@ public final class RepositoryModel: ObservableObject {
     }
 
     func checkIfProjectIsRepo() -> Bool {
-        guard let path = workspace.workspaceClient?.folderURL else {
+        guard let path = workspace.fileSystemClient?.folderURL else {
             return false
         }
 

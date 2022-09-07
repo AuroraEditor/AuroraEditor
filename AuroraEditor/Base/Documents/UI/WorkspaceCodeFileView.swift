@@ -104,7 +104,7 @@ struct WorkspaceCodeFileView: View {
     @ViewBuilder
     private func codeFileView(
         _ codeFile: CodeFileDocument,
-        for item: WorkspaceClient.FileItem
+        for item: FileSystemClient.FileItem
     ) -> some View {
         // TODO: Wesley - implement new editor.
         CodeFileView(codeFile: codeFile)
@@ -119,7 +119,7 @@ struct WorkspaceCodeFileView: View {
     @ViewBuilder
     private func aeCodeView(
         _ codeFile: CodeFileDocument,
-        for item: WorkspaceClient.FileItem
+        for item: FileSystemClient.FileItem
     ) -> some View {
         // TODO: Wesley - implement new editor.
         AECodeView(codeFile: codeFile)
@@ -134,7 +134,7 @@ struct WorkspaceCodeFileView: View {
     @ViewBuilder
     private func imageFileView(
         _ otherFile: CodeFileDocument,
-        for item: WorkspaceClient.FileItem
+        for item: FileSystemClient.FileItem
     ) -> some View {
         ZStack {
             if let url = otherFile.previewItemURL,

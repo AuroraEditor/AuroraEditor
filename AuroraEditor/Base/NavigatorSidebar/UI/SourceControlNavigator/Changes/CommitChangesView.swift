@@ -23,7 +23,7 @@ struct CommitChangesView: View {
 
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
-        self.gitClient = workspace.workspaceClient?.model?.gitClient
+        self.gitClient = workspace.fileSystemClient?.model?.gitClient
     }
 
     var body: some View {
@@ -76,8 +76,8 @@ struct CommitChangesView: View {
     // Based on the Git Change type of the file we create a summary string
     // that matches that of the Git Change type
     private func getFirstFileSummary() -> String {
-        let fileName = workspace.workspaceClient?.model?.changed[0].fileName
-        switch workspace.workspaceClient?.model?.changed[0].gitStatus {
+        let fileName = workspace.fileSystemClient?.model?.changed[0].fileName
+        switch workspace.fileSystemClient?.model?.changed[0].gitStatus {
         case .modified:
             return "Update \(fileName ?? "Unknown File")"
         case .added:
@@ -106,7 +106,7 @@ struct CommitChangesView: View {
     // If there is only one changed file in list we will return true else
     // if there is more than one we return false.
     private func checkIfChangeIsOne() -> Bool {
-        return workspace.workspaceClient?.model?.changed.count == 1
+        return workspace.fileSystemClient?.model?.changed.count == 1
     }
 
     // Gets the current projects branch name.

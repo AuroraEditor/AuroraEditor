@@ -9,11 +9,11 @@ import Foundation
 
 /// A struct for holding information about a file and any matches it may have for a search query.
 public class SearchResultModel: Hashable {
-    public var file: WorkspaceClient.FileItem
+    public var file: FileSystemClient.FileItem
     public var lineMatches: [SearchResultMatchModel]
 
     public init(
-        file: WorkspaceClient.FileItem,
+        file: FileSystemClient.FileItem,
         lineMatches: [SearchResultMatchModel] = []
     ) {
         self.file = file

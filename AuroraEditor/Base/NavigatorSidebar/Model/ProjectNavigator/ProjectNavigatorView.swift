@@ -22,7 +22,7 @@ struct ProjectNavigatorView: NSViewControllerRepresentable {
     func makeNSViewController(context: Context) -> ProjectNavigatorViewController {
         let controller = ProjectNavigatorViewController()
         controller.workspace = workspace
-        workspace.workspaceClient?.onRefresh = {
+        workspace.fileSystemClient?.onRefresh = {
             controller.reloadData()
         }
         controller.iconColor = prefs.preferences.general.fileIconStyle

@@ -34,7 +34,7 @@ struct TabBar: View {
     init(windowController: NSWindowController, workspace: WorkspaceDocument) {
         self.windowController = windowController
         self.workspace = workspace
-        self.sourceControlModel = workspace.workspaceClient?.model ?? .init(workspaceURL: workspace.fileURL!)
+        self.sourceControlModel = workspace.fileSystemClient?.model ?? .init(workspaceURL: workspace.fileURL!)
     }
 
     @State

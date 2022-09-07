@@ -47,7 +47,7 @@ final class RepositoriesViewController: NSViewController {
         self.outlineView.dataSource = self
         self.outlineView.delegate = self
         self.outlineView.autosaveExpandedItems = true
-        self.outlineView.autosaveName = workspace?.workspaceClient?.folderURL?.path ?? ""
+        self.outlineView.autosaveName = workspace?.fileSystemClient?.folderURL?.path ?? ""
         self.outlineView.headerView = nil
         self.outlineView.menu = RepositoriesMenu(sender: self.outlineView, workspaceURL: (workspace?.fileURL)!)
         self.outlineView.menu?.delegate = self
@@ -238,7 +238,7 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, itemForPersistentObject object: Any) -> Any? {
         return nil
 //        guard let id = object as? Item.ID,
-//              let item = try? workspace?.workspaceClient?.getFileItem(id) else { return nil }
+//              let item = try? workspace?.fileSystemClient?.getFileItem(id) else { return nil }
 //        return item
     }
 

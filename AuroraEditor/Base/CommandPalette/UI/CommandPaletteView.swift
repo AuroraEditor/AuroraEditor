@@ -11,13 +11,13 @@ import SwiftUI
 struct CommandPaletteView: View {
     @ObservedObject private var state: CommandPaletteState
     private let onClose: () -> Void
-    private let openFile: (WorkspaceClient.FileItem) -> Void
+    private let openFile: (FileSystemClient.FileItem) -> Void
     @State private var selectedCommand: Command?
 
     public init(
         state: CommandPaletteState,
         onClose: @escaping () -> Void,
-        openFile: @escaping (WorkspaceClient.FileItem) -> Void
+        openFile: @escaping (FileSystemClient.FileItem) -> Void
     ) {
         self.state = state
         self.onClose = onClose
