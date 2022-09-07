@@ -208,7 +208,7 @@ public class GitClient: ObservableObject {
         dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
         let output = try shellClient.run(
             // swiftlint:disable:next line_length
-            "cd \(directoryURL.relativePath.escapedWhiteSpaces());git log --pretty=%h¦%H¦%s¦%aN¦%ae¦%cn¦%ce¦%aD¦ \(entriesString) \(fileLocalPath)"
+            "cd \(directoryURL.relativePath.escapedWhiteSpaces());git log --follow --pretty=%h¦%H¦%s¦%aN¦%ae¦%cn¦%ce¦%aD¦ \(entriesString) \(fileLocalPath)"
         )
         let remote = try shellClient.run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git ls-remote --get-url"

@@ -10,6 +10,13 @@ import Foundation
 import SwiftUI
 
 extension AppDelegate {
+    private var appVersion: String {
+        return Bundle.versionString ?? "No Version"
+    }
+
+    private var appBuild: String {
+        return Bundle.buildString ?? "No Build"
+    }
 
     func setup(statusItem: NSStatusItem) {
         if let button = statusItem.button {
@@ -28,9 +35,12 @@ extension AppDelegate {
             NSMenuItem(title: "Open a project or file", action: #selector(openProject), keyEquivalent: "3"),
             recentProjectsItem,
             NSMenuItem.separator(),
+            NSMenuItem(title: "Version \(appVersion) (\(appBuild))",
+                       action: #selector(copyInformation), keyEquivalent: ""),
+            NSMenuItem(title: "About AuroraEditor", action: #selector(about), keyEquivalent: ""),
             NSMenuItem(title: "Preferences", action: #selector(openPreferences), keyEquivalent: ","),
-            NSMenuItem(title: "Open Welcome View", action: #selector(openWelcome), keyEquivalent: "e"),
             NSMenuItem.separator(),
+            NSMenuItem(title: "Open Welcome View", action: #selector(openWelcome), keyEquivalent: "e"),
             NSMenuItem(title: "Hide this item", action: #selector(hideMenuItem), keyEquivalent: "h"),
             NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         ]
@@ -42,7 +52,7 @@ extension AppDelegate {
             .filter { FileManager.default.fileExists(atPath: $0) }
 
         menuItem.submenu?.items = recentProjectPaths.map({ name in
-            NSMenuItem(title: name, action: #selector(openFile), keyEquivalent: "")
+            return RecentProjectMenuItem(title: name, action: #selector(openFile), keyEquivalent: "")
         })
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
@@ -52,8 +62,8 @@ extension AppDelegate {
 
     @objc
     func openFile(_ sender: Any?) {
-        guard let sender = sender as? NSMenuItem else { return }
-        let repoPath = sender.title
+        guard let sender = sender as? RecentProjectMenuItem else { return }
+        let repoPath = sender.urlString
         // open the document
         let repoFileURL = URL(fileURLWithPath: repoPath)
         Log.info("Opening \(repoFileURL)")
@@ -96,8 +106,32 @@ extension AppDelegate {
     }
 
     @objc
+    func copyInformation(_ sender: Any?) {
+        AuroraEditor.copyInformation()
+    }
+
+    @objc
+    func about(_ sender: Any?) {
+        if AppDelegate.tryFocusWindow(of: AboutView.self) { return }
+        AboutView().showWindow(width: 530, height: 220)
+    }
+
+    @objc
     func hideMenuItem(_ sender: Any?) {
         statusItem.button?.isHidden = true
         AppPreferencesModel.shared.preferences.general.menuItemShowMode = .hidden
+    }
+}
+
+class RecentProjectMenuItem: NSMenuItem {
+    var urlString: String = ""
+
+    override init(title: String, action selector: Selector?, keyEquivalent charCode: String) {
+        urlString = title
+        super.init(title: urlString.abbreviatingWithTildeInPath(), action: selector, keyEquivalent: charCode)
+    }
+
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
     }
 }

@@ -155,25 +155,25 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     // MARK: - Open windows
 
     @IBAction func openPreferences(_ sender: Any) {
-        if tryFocusWindow(of: PreferencesView.self) { return }
+        if AppDelegate.tryFocusWindow(of: PreferencesView.self) { return }
 
         PreferencesView().showWindow()
     }
 
     @IBAction func openWelcome(_ sender: Any) {
-        if tryFocusWindow(of: WelcomeWindowView.self) { return }
+        if AppDelegate.tryFocusWindow(of: WelcomeWindowView.self) { return }
 
         WelcomeWindowView.openWelcomeWindow()
     }
 
     @IBAction func openAbout(_ sender: Any) {
-        if tryFocusWindow(of: AboutView.self) { return }
+        if AppDelegate.tryFocusWindow(of: AboutView.self) { return }
 
         AboutView().showWindow(width: 530, height: 220)
     }
 
     @IBAction func openFeedback(_ sender: Any) {
-        if tryFocusWindow(of: FeedbackView.self) { return }
+        if AppDelegate.tryFocusWindow(of: FeedbackView.self) { return }
 
         FeedbackView().showWindow()
     }
@@ -181,7 +181,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     /// Tries to focus a window with specified view content type.
     /// - Parameter type: The type of viewContent which hosted in a window to be focused.
     /// - Returns: `true` if window exist and focused, oterwise - `false`
-    private func tryFocusWindow<T: View>(of type: T.Type) -> Bool {
+    static func tryFocusWindow<T: View>(of type: T.Type) -> Bool {
         guard let window = NSApp.windows.filter({ ($0.contentView as? NSHostingView<T>) != nil }).first
         else { return false }
 
