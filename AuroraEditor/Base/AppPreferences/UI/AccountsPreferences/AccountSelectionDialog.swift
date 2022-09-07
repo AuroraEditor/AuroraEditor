@@ -9,8 +9,8 @@ import SwiftUI
 
 struct AccountSelectionDialog: View {
 
-    @Environment(\.presentationMode)
-    var presentationMode
+    @Environment(\.dismiss)
+    private var dismiss
 
     var gitProviders = [
         Providers(name: "Bitbucket Cloud", icon: "bitbucket", id: "bitbucketCloud"),
@@ -39,11 +39,18 @@ struct AccountSelectionDialog: View {
             .background(Rectangle().foregroundColor(Color(NSColor.separatorColor)))
 
             HStack {
-                Button("Cancel") {
-                    presentationMode.wrappedValue.dismiss()
+                Button {
+                    dismiss()
+                } label: {
+                    Text("Cancel")
+                        .foregroundColor(.primary)
                 }
-                Button("Continue") {
+
+                Button {
                     openGitLogin.toggle()
+                } label: {
+                    Text("Continue")
+                        .foregroundColor(.white)
                 }
                 .sheet(isPresented: $openGitLogin, content: {
                     openAccountLoginDialog

@@ -41,21 +41,30 @@ struct GitlabLoginView: View {
 
             HStack {
                 HStack {
-                    Button("Create a Token on Gitlab") {
+                    Button {
                         createToken(URL(string: "https://gitlab.com/-/profile/personal_access_tokens")!)
+                    } label: {
+                        Text("Create a Token on Gitlab")
+                            .foregroundColor(.primary)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 HStack {
-                    Button("Cancel") {
+                    Button {
                         dismissDialog.toggle()
+                    } label: {
+                        Text("Cancel")
+                            .foregroundColor(.primary)
                     }
                     if accountToken.isEmpty {
                         Button("Sign In") {}
                         .disabled(true)
                     } else {
-                        Button("Sign In") {
+                        Button {
                             loginGitlab(gitAccountName: accountName)
+                        } label: {
+                            Text("Sign In")
+                                .foregroundColor(.white)
                         }
                         .buttonStyle(.borderedProminent)
                     }

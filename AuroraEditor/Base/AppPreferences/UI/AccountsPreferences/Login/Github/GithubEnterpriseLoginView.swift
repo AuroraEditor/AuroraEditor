@@ -47,21 +47,32 @@ struct GithubEnterpriseLoginView: View {
 
             HStack {
                 HStack {
-                    Button("Create a Token on GitHub Enterprise") {
+                    Button {
                         createToken(URL(string: "https://github.com/settings/tokens/new")!)
+                    } label: {
+                        Text("Create a Token on GitHub Enterprise")
+                            .foregroundColor(.primary)
+                            .lineLimit(1)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 HStack {
-                    Button("Cancel") {
+                    Button {
                         dismissDialog = false
+                    } label: {
+                        Text("Cancel")
+                            .foregroundColor(.primary)
                     }
+
                     if accountToken.isEmpty {
                         Button("Sign In") {}
                         .disabled(true)
                     } else {
-                        Button("Sign In") {
+                        Button {
                             loginGithubEnterprise(gitAccountName: accountName)
+                        } label: {
+                            Text("Sign In")
+                                .foregroundColor(.white)
                         }
                         .buttonStyle(.borderedProminent)
                     }
@@ -70,7 +81,7 @@ struct GithubEnterpriseLoginView: View {
             }.padding(.top, 10)
         }
         .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
-        .frame(width: 485, height: 190)
+        .frame(width: 525, height: 190)
     }
 
     private func loginGithubEnterprise(gitAccountName: String) {

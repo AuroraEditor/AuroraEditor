@@ -62,6 +62,7 @@ struct FindNavigator: View {
                             state.search(searchText)
                         } label: {
                             Text(Filters.ignoring.rawValue)
+                                .font(.system(size: 11))
                         }
                         Button {
                             currentFilter = Filters.matching.rawValue
@@ -69,6 +70,7 @@ struct FindNavigator: View {
                             state.search(searchText)
                         } label: {
                             Text(Filters.matching.rawValue)
+                                .font(.system(size: 11))
                         }
                     } label: {
                         HStack(spacing: 2) {

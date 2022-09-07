@@ -39,55 +39,76 @@ struct GithubLoginView: View {
                 }
             }
 
-            VStack {
-                Text("GitHub personal access tokens must have these scopes set:")
-                    .fontWeight(.bold)
-                    .font(.system(size: 11))
+            GroupBox {
+                VStack {
+                    Text("GitHub personal access tokens must have these scopes set:")
+                        .fontWeight(.bold)
+                        .font(.system(size: 11))
+                        .foregroundColor(.secondary)
 
-                VStack(alignment: .leading) {
-                    HStack {
-                        Image(systemName: "checkmark")
-                        Text("admin:public _key")
-                            .font(.system(size: 10))
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Image(systemName: "checkmark")
+                                .foregroundColor(.secondary)
+                            Text("admin:public_key")
+                                .font(.system(size: 10))
+                                .foregroundColor(.secondary)
+                        }
+                        HStack {
+                            Image(systemName: "checkmark")
+                                .foregroundColor(.secondary)
+                            Text("write:discussion")
+                                .font(.system(size: 10))
+                                .foregroundColor(.secondary)
+                        }
+                        HStack {
+                            Image(systemName: "checkmark")
+                                .foregroundColor(.secondary)
+                            Text("repo")
+                                .font(.system(size: 10))
+                                .foregroundColor(.secondary)
+                        }
+                        HStack {
+                            Image(systemName: "checkmark")
+                                .foregroundColor(.secondary)
+                            Text("user")
+                                .font(.system(size: 10))
+                                .foregroundColor(.secondary)
+                        }
                     }
-                    HStack {
-                        Image(systemName: "checkmark")
-                        Text("write:discussion")
-                            .font(.system(size: 10))
-                    }
-                    HStack {
-                        Image(systemName: "checkmark")
-                        Text("repo")
-                            .font(.system(size: 10))
-                    }
-                    HStack {
-                        Image(systemName: "checkmark")
-                        Text("user")
-                            .font(.system(size: 10))
-                    }
-                }.padding(.top, 2)
+                    .padding(.top, 2)
+                }
+                .padding(.vertical, 5)
+                .frame(width: 455)
             }
-            .frame(maxWidth: .infinity)
-            .padding(.bottom, 10)
-            .padding(.top, 10)
 
             HStack {
                 HStack {
-                    Button("Create a Token on GitHub") {
+                    Button {
                         createToken(URL(string: "https://github.com/settings/tokens/new")!)
+                    } label: {
+                        Text("Create a Token on GitHub")
+                            .foregroundColor(.primary)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 HStack {
-                    Button("Cancel") {
+                    Button {
                         dismissDialog.toggle()
+                    } label: {
+                        Text("Cancel")
+                            .foregroundColor(.primary)
                     }
+
                     if accountToken.isEmpty {
                         Button("Sign In") {}
                         .disabled(true)
                     } else {
-                        Button("Sign In") {
+                        Button {
                             loginGithub(gitAccountName: accountName)
+                        } label: {
+                            Text("Sign In")
+                                .foregroundColor(.white)
                         }
                         .buttonStyle(.borderedProminent)
                     }

@@ -53,13 +53,19 @@ public struct StashChangesSheet: View {
                 Spacer()
 
                 HStack {
-                    Button("Cancel") {
+                    Button {
                         dismiss()
+                    } label: {
+                        Text("Cancel")
+                            .foregroundColor(.primary)
                     }
 
-                    Button("Stash") {
+                    Button {
                         gitModel.stashChanges(message: stashMessage)
                         dismiss()
+                    } label: {
+                        Text("Stash")
+                            .foregroundColor(.white)
                     }
                     .buttonStyle(.borderedProminent)
                 }
@@ -67,9 +73,5 @@ public struct StashChangesSheet: View {
             .padding([.trailing, .bottom])
         }
         .frame(width: 485)
-    }
-
-    public func showWindow() {
-        StashWindowsChanges(view: self).showWindow(nil)
     }
 }

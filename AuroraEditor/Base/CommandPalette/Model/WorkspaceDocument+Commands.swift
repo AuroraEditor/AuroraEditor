@@ -73,7 +73,7 @@ extension WorkspaceDocument {
 
             // MARK: Source Control menu
             Command(name: "Stash Changes", command: {
-                self.windowController?.stashChangesItems(self)
+                self.showStashChangesSheet.toggle()
             }),
             Command(name: "Discard Project Changes", command: {
                 self.windowController?.discardProjectChanges(self)

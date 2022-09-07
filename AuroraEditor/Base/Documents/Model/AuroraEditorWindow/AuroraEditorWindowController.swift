@@ -148,7 +148,7 @@ final class AuroraEditorWindowController: NSWindowController {
             alert.addButton(withTitle: "OK")
             alert.runModal()
         } else {
-            StashChangesSheet(workspaceURL: (workspace?.fileURL!)!).showWindow()
+            workspace?.showStashChangesSheet.toggle()
         }
     }
 

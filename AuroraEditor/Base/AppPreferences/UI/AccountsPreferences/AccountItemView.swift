@@ -42,6 +42,7 @@ struct AccountItemView: View {
                         openGithubProfile(URL(string: "\(account.gitProviderLink)/\(account.gitAccountUsername)")!)
                     } label: {
                         Text("Show Profile...")
+                            .foregroundColor(.white)
                     }
                 }
                 .padding(.top, 5)

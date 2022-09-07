@@ -69,5 +69,6 @@ struct HistoryInspector: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
+        .frame(minWidth: 250, maxWidth: .infinity)
     }
 }
