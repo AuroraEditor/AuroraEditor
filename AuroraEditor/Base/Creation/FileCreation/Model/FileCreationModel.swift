@@ -63,7 +63,7 @@ class FileCreationModel: ObservableObject {
                           languageExtension: "py"),
         FileSelectionItem(languageName: "Dockerfile",
                           langaugeIcon: "docker",
-                          languageExtension: ".dockerfile")
+                          languageExtension: "dockerfile")
     ]
 
     @Published

@@ -15,11 +15,11 @@ extension WorkspaceDocument {
         self.commandPaletteState?.addCommands(commands: [
             // MARK: AuroraEditor menu
             Command(name: "About AurorEditor", command: {
-                if self.tryFocusWindow(of: AboutView.self) { return }
+                if AppDelegate.tryFocusWindow(of: AboutView.self) { return }
                 AboutView().showWindow(width: 530, height: 220)
             }),
             Command(name: "Preferences", command: {
-                if self.tryFocusWindow(of: PreferencesView.self) { return }
+                if AppDelegate.tryFocusWindow(of: PreferencesView.self) { return }
                 PreferencesView().showWindow()
             }),
             Command(name: "Hide AuroraEditor", command: {
@@ -87,11 +87,11 @@ extension WorkspaceDocument {
                 self.windowController?.window?.zoom(self)
             }),
             Command(name: "Welcome Screen", command: {
-                if self.tryFocusWindow(of: WelcomeWindowView.self) { return }
+                if AppDelegate.tryFocusWindow(of: WelcomeWindowView.self) { return }
                 WelcomeWindowView.openWelcomeWindow()
             }),
             Command(name: "Give Feedback", command: {
-                if self.tryFocusWindow(of: FeedbackView.self) { return }
+                if AppDelegate.tryFocusWindow(of: FeedbackView.self) { return }
                 FeedbackView().showWindow()
             }),
 
@@ -115,16 +115,5 @@ extension WorkspaceDocument {
                 }
             })
         ])
-    }
-
-    /// Tries to focus a window with specified view content type.
-    /// - Parameter type: The type of viewContent which hosted in a window to be focused.
-    /// - Returns: `true` if window exist and focused, oterwise - `false`
-    private func tryFocusWindow<T: View>(of type: T.Type) -> Bool {
-        guard let window = NSApp.windows.filter({ ($0.contentView as? NSHostingView<T>) != nil }).first
-        else { return false }
-
-        window.makeKeyAndOrderFront(self)
-        return true
     }
 }

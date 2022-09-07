@@ -19,6 +19,13 @@ public struct ToolbarAppInfo: View {
     @State
     private var openNotifications: Bool = false
 
+    func getTime() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        let dateString = formatter.string(from: Date())
+        return dateString
+    }
+
     public var body: some View {
         HStack(alignment: .center) {
             HStack {
@@ -42,7 +49,7 @@ public struct ToolbarAppInfo: View {
 
                     Text("|")
 
-                    Text("Today at 17:45")
+                    Text("Today at " + getTime())
                         .font(.system(size: 11))
                 }
             }
