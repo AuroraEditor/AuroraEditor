@@ -49,7 +49,7 @@ public struct ToolbarAppInfo: View {
 
                     Text("|")
 
-                    Text("Today at "+getTime())
+                    Text("Today at " + getTime())
                         .font(.system(size: 11))
                 }
             }

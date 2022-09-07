@@ -11,11 +11,11 @@ import SwiftUI
 
 extension AppDelegate {
     private var appVersion: String {
-        Bundle.versionString ?? "No Version"
+        return Bundle.versionString ?? "No Version"
     }
 
     private var appBuild: String {
-        Bundle.buildString ?? "No Build"
+        return Bundle.buildString ?? "No Build"
     }
 
     func setup(statusItem: NSStatusItem) {
