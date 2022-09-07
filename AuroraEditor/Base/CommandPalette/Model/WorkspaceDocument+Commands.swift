@@ -97,13 +97,13 @@ extension WorkspaceDocument {
 
             // MARK: File creation/deletion, web tabs, tab closing
             Command(name: "Add File at Root", command: {
-                guard let folderURL = self.workspaceClient?.folderURL,
-                      let root = try? self.workspaceClient?.getFileItem(folderURL.path) else { return }
+                guard let folderURL = self.fileSystemClient?.folderURL,
+                      let root = try? self.fileSystemClient?.getFileItem(folderURL.path) else { return }
                 root.addFile(fileName: "untitled")
             }),
             Command(name: "Add Folder at Root", command: {
-                guard let folderURL = self.workspaceClient?.folderURL,
-                      let root = try? self.workspaceClient?.getFileItem(folderURL.path) else { return }
+                guard let folderURL = self.fileSystemClient?.folderURL,
+                      let root = try? self.fileSystemClient?.getFileItem(folderURL.path) else { return }
                 root.addFolder(folderName: "untitled")
             }),
             Command(name: "Open Web Tab", command: {

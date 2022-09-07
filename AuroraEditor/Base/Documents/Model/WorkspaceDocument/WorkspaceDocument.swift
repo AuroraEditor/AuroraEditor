@@ -13,7 +13,8 @@ import AEExtensionKit
 
 @objc(WorkspaceDocument)
 final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
-    var workspaceClient: FileSystemClient?
+    /// The FileSystemClient instance that manages the project's file system
+    var fileSystemClient: FileSystemClient?
 
     var extensionNavigatorData: ExtensionNavigatorData? = ExtensionNavigatorData()
 
@@ -30,7 +31,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     @Published
     var fileItems: [FileSystemClient.FileItem] = []
     public var filter: String = "" {
-        didSet { workspaceClient?.onRefresh() }
+        didSet { fileSystemClient?.onRefresh() }
     }
 
     var statusBarModel: StatusBarModel?
@@ -49,7 +50,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     }
 
     override var debugDescription: String {
-        let path = workspaceClient?.folderURL?.path ?? "unknown"
+        let path = fileSystemClient?.folderURL?.path ?? "unknown"
         return "WorkspaceDocument with path \(path)"
     }
 
@@ -87,7 +88,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     // MARK: Set Up Workspace
 
     private func initWorkspaceState(_ url: URL) throws {
-        self.workspaceClient = .init(
+        self.fileSystemClient = .init(
             fileManager: .default,
             folderURL: url,
             ignoredFilesAndFolders: ignoredFilesAndDirectory,
@@ -126,7 +127,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
             Log.warning("Couldn't retrieve selection state from user defaults")
         }
 
-        workspaceClient?
+        fileSystemClient?
             .getFiles
             .sink { [weak self] files in
                 guard let self = self else { return }
@@ -198,9 +199,9 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
 
         // deinit classes
         cancellables.forEach { $0.cancel() }
-        self.workspaceClient?.cleanUp()
-        self.workspaceClient?.model = nil
-        self.workspaceClient = nil
+        self.fileSystemClient?.cleanUp()
+        self.fileSystemClient?.model = nil
+        self.fileSystemClient = nil
         self.searchState = nil
         self.quickOpenState = nil
         self.commandPaletteState = nil

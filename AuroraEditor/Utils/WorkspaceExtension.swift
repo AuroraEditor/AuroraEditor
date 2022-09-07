@@ -12,7 +12,7 @@ extension WorkspaceDocument {
 
     func workspaceURL() -> URL {
         do {
-            guard let workspaceFolder = self.workspaceClient?.folderURL else {
+            guard let workspaceFolder = self.fileSystemClient?.folderURL else {
                 throw URLError(.fileDoesNotExist)
             }
             return workspaceFolder

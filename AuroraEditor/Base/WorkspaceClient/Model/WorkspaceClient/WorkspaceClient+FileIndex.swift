@@ -31,7 +31,7 @@ extension FileSystemClient {
 
                 let newFileItem = FileItem(url: itemURL,
                                            children: subItems?.sortItems(foldersOnTop: true),
-                                           workspaceClient: self)
+                                           fileSystemClient: self)
                 // note: watcher code will be applied after the workspaceItem is created
                 newFileItem.watcherCode = { sourceFileItem in
                     self.reloadFromWatcher(sourceFileItem: sourceFileItem)
@@ -82,7 +82,7 @@ extension FileSystemClient {
 
                 let newFileItem = FileItem(url: newContent,
                                            children: subItems?.sortItems(foldersOnTop: true),
-                                           workspaceClient: self)
+                                           fileSystemClient: self)
                 newFileItem.watcherCode = { sourceFileItem in
                     self.reloadFromWatcher(sourceFileItem: sourceFileItem)
                 }

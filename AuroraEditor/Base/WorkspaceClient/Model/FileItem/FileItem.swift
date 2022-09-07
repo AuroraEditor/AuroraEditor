@@ -36,7 +36,7 @@ public extension FileSystemClient {
         public var watcherCode: ((FileItem) -> Void)?
 
         public var gitStatus: GitType?
-        public var workspaceClient: FileSystemClient?
+        public var fileSystemClient: FileSystemClient?
 
         public func activateWatcher() -> Bool {
             guard let watcherCode = watcherCode else { return false }
@@ -60,12 +60,12 @@ public extension FileSystemClient {
         public init(url: URL,
                     children: [FileItem]? = nil,
                     changeType: GitType? = nil,
-                    workspaceClient: FileSystemClient? = nil
+                    fileSystemClient: FileSystemClient? = nil
         ) {
             self.url = url
             self.children = children
             self.gitStatus = changeType
-            self.workspaceClient = workspaceClient
+            self.fileSystemClient = fileSystemClient
             id = url.relativePath
         }
 

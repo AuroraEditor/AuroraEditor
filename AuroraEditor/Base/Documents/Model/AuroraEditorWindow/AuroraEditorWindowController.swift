@@ -139,7 +139,7 @@ final class AuroraEditorWindowController: NSWindowController {
     // MARK: Git Main Menu Items
 
     @IBAction func stashChangesItems(_ sender: Any) {
-        if (workspace?.workspaceClient?.model?.changed ?? []).isEmpty {
+        if (workspace?.fileSystemClient?.model?.changed ?? []).isEmpty {
             let alert = NSAlert()
             alert.alertStyle = .informational
             alert.messageText = "Cannot Stash Changes"
@@ -152,7 +152,7 @@ final class AuroraEditorWindowController: NSWindowController {
     }
 
     @IBAction func discardProjectChanges(_ sender: Any) {
-        if (workspace?.workspaceClient?.model?.changed ?? []).isEmpty {
+        if (workspace?.fileSystemClient?.model?.changed ?? []).isEmpty {
             let alert = NSAlert()
             alert.alertStyle = .informational
             alert.messageText = "Cannot Discard Changes"
@@ -160,7 +160,7 @@ final class AuroraEditorWindowController: NSWindowController {
             alert.addButton(withTitle: "OK")
             alert.runModal()
         } else {
-            workspace?.workspaceClient?.model?.discardProjectChanges()
+            workspace?.fileSystemClient?.model?.discardProjectChanges()
         }
     }
 

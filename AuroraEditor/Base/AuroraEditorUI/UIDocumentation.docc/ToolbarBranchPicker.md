@@ -24,7 +24,7 @@ create a new [`NSToolbarItem`](https://developer.apple.com/documentation/appkit/
 let toolbarItem = NSToolbarItem(itemIdentifier: /* Identifier */)
 
 // create a NSHostingView
-let view = BranchPickerToolbarItem(workspace?.workspaceClient)
+let view = BranchPickerToolbarItem(workspace?.fileSystemClient)
 let hostingView = NSHostingView(rootView: view)
 
 // set the view property of the toolbar item

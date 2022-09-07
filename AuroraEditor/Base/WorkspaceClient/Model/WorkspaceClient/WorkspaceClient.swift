@@ -136,7 +136,7 @@ public class FileSystemClient {
             self.reloadFromWatcher(sourceFileItem: sourceFileItem)
         }
         reloadFromWatcher(sourceFileItem: workspaceItem)
-        workspaceItem.workspaceClient = self
+        workspaceItem.fileSystemClient = self
     }
     // swiftlint:enable vertical_parameter_alignment
 

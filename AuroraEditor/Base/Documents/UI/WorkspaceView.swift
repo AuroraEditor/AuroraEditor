@@ -93,7 +93,7 @@ struct WorkspaceView: View {
 
     var body: some View {
         ZStack {
-            if workspace.workspaceClient != nil, let model = workspace.statusBarModel {
+            if workspace.fileSystemClient != nil, let model = workspace.statusBarModel {
                 ZStack {
                     tabContent
                 }

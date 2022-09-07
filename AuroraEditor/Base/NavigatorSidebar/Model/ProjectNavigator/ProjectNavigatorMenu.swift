@@ -26,7 +26,7 @@ final class ProjectNavigatorMenu: NSMenu {
 
     init(sender: NSOutlineView, workspaceURL: URL) {
         outlineView = sender
-        gitClient = workspace?.workspaceClient?.model?.gitClient
+        gitClient = workspace?.fileSystemClient?.model?.gitClient
         super.init(title: "Options")
     }
 
@@ -77,7 +77,7 @@ final class ProjectNavigatorMenu: NSMenu {
             menuItem("New Folder", action: #selector(newFolder)),
             NSMenuItem.separator(),
             menuItem("Rename", action: #selector(renameFile)),
-            menuItem("Delete", action: item.url != workspace?.workspaceClient?.folderURL
+            menuItem("Delete", action: item.url != workspace?.fileSystemClient?.folderURL
                      ? #selector(delete) : nil),
             menuItem("Duplicate \(item.isFolder ? "Folder" : "File")", action: #selector(duplicate)),
             NSMenuItem.separator(),

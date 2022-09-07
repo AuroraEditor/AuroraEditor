@@ -74,11 +74,11 @@ final class SourceControlController: NSViewController {
 
 extension SourceControlController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        return workspace?.workspaceClient?.model?.changed.count ?? 0
+        return workspace?.fileSystemClient?.model?.changed.count ?? 0
     }
 
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        return workspace?.workspaceClient?.model?.changed[index] ?? 0
+        return workspace?.fileSystemClient?.model?.changed[index] ?? 0
     }
 
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {

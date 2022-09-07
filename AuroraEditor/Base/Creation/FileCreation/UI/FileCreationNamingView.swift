@@ -60,7 +60,7 @@ struct FileCreationNamingView: View {
                 }
 
                 Button {
-                    guard let workspaceURL = workspace?.workspaceClient?.folderURL else {
+                    guard let workspaceURL = workspace?.fileSystemClient?.folderURL else {
                         return
                     }
                     creationSheetModel.createLanguageFile(directoryURL: workspaceURL,

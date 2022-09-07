@@ -18,9 +18,9 @@ struct ChangesView: View {
     var body: some View {
         VStack(alignment: .center) {
             if prefs.sourceControlActive() {
-                switch workspace.workspaceClient?.model?.state {
+                switch workspace.fileSystemClient?.model?.state {
                 case .success:
-                    if workspace.workspaceClient!.model!.changed.isEmpty {
+                    if workspace.fileSystemClient!.model!.changed.isEmpty {
                         Text("No Changes")
                             .font(.system(size: 16))
                             .foregroundColor(.secondary)

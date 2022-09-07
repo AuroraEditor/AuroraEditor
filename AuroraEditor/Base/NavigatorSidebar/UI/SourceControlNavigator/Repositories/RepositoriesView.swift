@@ -19,7 +19,7 @@ struct RepositoriesView: View {
         self.workspace = workspace
         self.repositoryModel = .init(workspace: workspace)
 
-        if let client = workspace.workspaceClient?.model?.gitClient {
+        if let client = workspace.fileSystemClient?.model?.gitClient {
             repositoryModel.addGitRepoDetails(client: client)
         }
     }

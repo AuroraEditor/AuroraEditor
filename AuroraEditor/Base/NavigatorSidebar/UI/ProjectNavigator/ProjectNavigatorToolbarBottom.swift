@@ -58,8 +58,8 @@ struct ProjectNavigatorToolbarBottom: View {
             Divider()
 
             Button("New Folder") {
-                guard let folderURL = workspace.workspaceClient?.folderURL,
-                      let root = try? workspace.workspaceClient?.getFileItem(folderURL.path) else { return }
+                guard let folderURL = workspace.fileSystemClient?.folderURL,
+                      let root = try? workspace.fileSystemClient?.getFileItem(folderURL.path) else { return }
                 // TODO: use currently selected file instead of root
                 root.addFolder(folderName: "untitled")
             }

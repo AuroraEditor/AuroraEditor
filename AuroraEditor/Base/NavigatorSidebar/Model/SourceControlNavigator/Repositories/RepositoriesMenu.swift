@@ -70,7 +70,7 @@ final class RepositoriesMenu: NSMenu {
 
     @objc func switchToBranch(_ sender: Any?) {
         guard let branch = item as? RepoBranch else { return }
-        try? workspace?.workspaceClient?.model?.gitClient.checkoutBranch(name: branch.name)
+        try? workspace?.fileSystemClient?.model?.gitClient.checkoutBranch(name: branch.name)
         self.outlineView.reloadData()
     }
 
