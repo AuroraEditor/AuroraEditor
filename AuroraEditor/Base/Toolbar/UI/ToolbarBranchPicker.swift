@@ -36,9 +36,7 @@ public struct ToolbarBranchPicker: View {
 
     public var body: some View {
         HStack(alignment: .center, spacing: 5) {
-            if prefs.sourceControlActive()
-                && changesModel.gitClient.publishedBranchName != nil
-                && changesModel.isGitRepository {
+            if prefs.sourceControlActive() && changesModel.isGitRepository {
                 Image("git.branch")
                     .font(.title3)
                     .imageScale(.medium)
@@ -73,9 +71,7 @@ public struct ToolbarBranchPicker: View {
         }
         .contentShape(Rectangle())
         .onTapGesture {
-            if prefs.sourceControlActive()
-                && changesModel.gitClient.publishedBranchName != nil
-                && changesModel.isGitRepository {
+            if prefs.sourceControlActive() && changesModel.isGitRepository {
                 displayPopover.toggle()
             }
         }
@@ -84,7 +80,7 @@ public struct ToolbarBranchPicker: View {
         }
         .popover(isPresented: $displayPopover, arrowEdge: .bottom) {
             ToolbarBranchPicker.PopoverView(gitClient: changesModel.gitClient,
-                                            currentBranch: changesModel.gitClient.publishedBranchName ?? "No Branch")
+                                            currentBranch: changesModel.gitClient.publishedBranchName)
         }
     }
 
