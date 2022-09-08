@@ -71,25 +71,14 @@ class FileCreationModel: ObservableObject {
                                                                     langaugeIcon: "java",
                                                                     languageExtension: "java")
 
-    func createLanguageFile(directoryURL: URL,
+    func createLanguageFile(workspace: WorkspaceDocument,
                             fileName: String,
                             completionHandler: @escaping (Result<String, Error>) -> Void) {
+        guard let directoryURL = workspace.newFileModel.sourceURL ??
+                                 workspace.fileSystemClient?.folderURL else { return }
         let newFilePath = directoryURL.appendingPathComponent(fileName)
-
         if !fileManager.fileExists(atPath: newFilePath.path) {
-
-            let fileContent = """
-//
-//  \(fileName)
-//
-//  Created by \(Host.current().localizedName!) on \(Date().yearMonthDayFormat()).
-//
-""".data(using: .utf8)
-
-            fileManager.createFile(atPath: newFilePath.path,
-                                   contents: fileContent,
-                                   attributes: [.ownerAccountName: Host.current().localizedName!,
-                                                .creationDate: Date()])
+            createFileWithStarterContent(atPath: newFilePath.path, fileName: fileName)
             completionHandler(.success("Success"))
         } else {
             let alert = NSAlert()
@@ -102,8 +91,8 @@ class FileCreationModel: ObservableObject {
             alert.addButton(withTitle: "Cancel")
             if alert.runModal() == .alertFirstButtonReturn {
                 do {
-                    try fileManager.replaceItemAt(directoryURL.appendingPathExtension(fileName),
-                                                  withItemAt: newFilePath)
+                    try fileManager.removeItem(at: newFilePath)
+                    createFileWithStarterContent(atPath: newFilePath.path, fileName: fileName)
                     completionHandler(.success("Success"))
                 } catch {
                     // swiftlint:disable:next line_length
@@ -111,6 +100,21 @@ class FileCreationModel: ObservableObject {
                 }
             }
         }
+    }
+
+    private func createFileWithStarterContent(atPath path: String, fileName: String) {
+        let fileContent = """
+//
+//  \(fileName)
+//
+//  Created by \(Host.current().localizedName!) on \(Date().yearMonthDayFormat()).
+//
+""".data(using: .utf8)
+
+        fileManager.createFile(atPath: path,
+                               contents: fileContent,
+                               attributes: [.ownerAccountName: Host.current().localizedName!,
+                                            .creationDate: Date()])
     }
 }
 
