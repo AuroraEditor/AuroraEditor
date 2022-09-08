@@ -169,9 +169,6 @@ struct WorkspaceView: View {
                 }
             }
         }
-        .onChange(of: workspace.newFileModel.showFileCreationSheet, perform: { _ in
-            Log.info("Changed to \(workspace.newFileModel.showFileCreationSheet)")
-        })
         .sheet(isPresented: $workspace.newFileModel.showFileCreationSheet) {
             FileCreationSelectionView(workspace: workspace)
         }
