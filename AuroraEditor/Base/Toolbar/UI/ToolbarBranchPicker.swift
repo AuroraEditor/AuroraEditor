@@ -24,6 +24,9 @@ public struct ToolbarBranchPicker: View {
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
+    @ObservedObject
+    private var changesModel: SourceControlModel
+
     /// Initializes the ``ToolbarBranchPicker`` with an instance of a `FileSystemClient`
     /// - Parameter shellClient: An instance of the current `ShellClient`
     /// - Parameter workspace: An instance of the current `FileSystemClient`
@@ -33,11 +36,14 @@ public struct ToolbarBranchPicker: View {
     ) {
         self.fileSystemClient = fileSystemClient
         self.gitClient = fileSystemClient?.model?.gitClient
+        self.changesModel = .init(workspaceURL: (fileSystemClient?.folderURL)!)
     }
 
     public var body: some View {
         HStack(alignment: .center, spacing: 5) {
-            if prefs.sourceControlActive() && gitClient?.publishedBranchName != nil {
+            if prefs.sourceControlActive()
+                && gitClient?.publishedBranchName != nil
+                && changesModel.isGitRepository {
                 Image("git.branch")
                     .font(.title3)
                     .imageScale(.medium)
@@ -54,7 +60,7 @@ public struct ToolbarBranchPicker: View {
                     .foregroundColor(controlActive == .inactive ? inactiveColor : .primary)
                     .frame(height: 16)
                     .help(title)
-                if prefs.sourceControlActive() {
+                if prefs.sourceControlActive() && changesModel.isGitRepository {
                     if let currentBranch = gitClient?.publishedBranchName {
                         ZStack(alignment: .trailing) {
                             Text(currentBranch)
@@ -72,7 +78,9 @@ public struct ToolbarBranchPicker: View {
         }
         .contentShape(Rectangle())
         .onTapGesture {
-            if gitClient?.publishedBranchName != nil {
+            if prefs.sourceControlActive()
+                && gitClient?.publishedBranchName != nil
+                && changesModel.isGitRepository {
                 displayPopover.toggle()
             }
         }
