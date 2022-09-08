@@ -13,7 +13,6 @@ public struct ToolbarBranchPicker: View {
     @Environment(\.controlActiveState)
     private var controlActive
     private var fileSystemClient: FileSystemClient?
-    private var gitClient: GitClient?
 
     @State
     private var isHovering: Bool = false
@@ -30,19 +29,15 @@ public struct ToolbarBranchPicker: View {
     /// Initializes the ``ToolbarBranchPicker`` with an instance of a `FileSystemClient`
     /// - Parameter shellClient: An instance of the current `ShellClient`
     /// - Parameter workspace: An instance of the current `FileSystemClient`
-    public init(
-        shellClient: ShellClient,
-        fileSystemClient: FileSystemClient?
-    ) {
+    public init(fileSystemClient: FileSystemClient?) {
         self.fileSystemClient = fileSystemClient
-        self.gitClient = fileSystemClient?.model?.gitClient
         self.changesModel = .init(workspaceURL: (fileSystemClient?.folderURL)!)
     }
 
     public var body: some View {
         HStack(alignment: .center, spacing: 5) {
             if prefs.sourceControlActive()
-                && gitClient?.publishedBranchName != nil
+                && changesModel.gitClient.publishedBranchName != nil
                 && changesModel.isGitRepository {
                 Image("git.branch")
                     .font(.title3)
@@ -61,7 +56,7 @@ public struct ToolbarBranchPicker: View {
                     .frame(height: 16)
                     .help(title)
                 if prefs.sourceControlActive() && changesModel.isGitRepository {
-                    if let currentBranch = gitClient?.publishedBranchName {
+                    if let currentBranch = changesModel.gitClient.publishedBranchName {
                         ZStack(alignment: .trailing) {
                             Text(currentBranch)
                                 .padding(.trailing)
@@ -79,7 +74,7 @@ public struct ToolbarBranchPicker: View {
         .contentShape(Rectangle())
         .onTapGesture {
             if prefs.sourceControlActive()
-                && gitClient?.publishedBranchName != nil
+                && changesModel.gitClient.publishedBranchName != nil
                 && changesModel.isGitRepository {
                 displayPopover.toggle()
             }
@@ -88,8 +83,8 @@ public struct ToolbarBranchPicker: View {
             isHovering = active
         }
         .popover(isPresented: $displayPopover, arrowEdge: .bottom) {
-            ToolbarBranchPicker.PopoverView(gitClient: gitClient,
-                                            currentBranch: gitClient?.publishedBranchName ?? "No Branch")
+            ToolbarBranchPicker.PopoverView(gitClient: changesModel.gitClient,
+                                            currentBranch: changesModel.gitClient.publishedBranchName ?? "No Branch")
         }
     }
 
