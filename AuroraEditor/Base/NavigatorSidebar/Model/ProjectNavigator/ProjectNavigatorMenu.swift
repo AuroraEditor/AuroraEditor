@@ -74,6 +74,7 @@ final class ProjectNavigatorMenu: NSMenu {
             menuItem("Show File Inspector", action: nil),
             NSMenuItem.separator(),
             menuItem("New File...", action: #selector(newFile)),
+            menuItem("New File From Template...", action: #selector(newFileFromTemplate)),
             menuItem("New Folder", action: #selector(newFolder)),
             NSMenuItem.separator(),
             menuItem("Rename", action: #selector(renameFile)),
@@ -210,6 +211,14 @@ final class ProjectNavigatorMenu: NSMenu {
     private func newFile() {
         outlineView.expandItem((item?.isFolder ?? true) ? item : item?.parent)
         item?.addFile(fileName: "untitled")
+    }
+
+    /// Action that activates the FileCreationSelectionView
+    @objc
+    private func newFileFromTemplate() {
+        if let url = item?.url {
+            workspace?.newFileModel.showSheetWithUrl(url: url)
+        }
     }
 
     /// Action that creates a new untitled folder
