@@ -16,6 +16,12 @@ class StandardTableViewCell: NSTableCellView {
 
     var workspace: WorkspaceDocument?
 
+    var secondaryLabelRightAlignmed: Bool = true {
+        didSet {
+            resizeSubviews(withOldSize: .zero)
+        }
+    }
+
     private let prefs = AppPreferencesModel.shared.preferences.general
 
     /// Initializes the `OutlineTableViewCell` with an `icon` and `label`
@@ -115,18 +121,28 @@ class StandardTableViewCell: NSTableCellView {
                                 width: alignmentRect.width, height: frame.height)
         }
 
-        let secondLabelWidth = secondaryLabel.frame.size.width
-        let newSize = secondaryLabel.sizeThatFits(CGSize(width: secondLabelWidth,
-                                                         height: CGFloat.greatestFiniteMagnitude))
+        // right align the secondary label
+        if secondaryLabelRightAlignmed {
+            let secondLabelWidth = secondaryLabel.frame.size.width
+            let newSize = secondaryLabel.sizeThatFits(CGSize(width: secondLabelWidth,
+                                                             height: CGFloat.greatestFiniteMagnitude))
+            // somehow, a width of 0 makes it resize properly.
+            secondaryLabel.frame = NSRect(x: frame.width-newSize.width, y: 2.5,
+                                          width: 0, height: newSize.height)
 
-        // somehow, a width of 0 makes it resize properly.
-        secondaryLabel.frame = NSRect(x: frame.width-newSize.width, y: 2.5,
-                                      width: 0, height: newSize.height)
-//        secondaryLabel.wantsLayer = true
-//        secondaryLabel.layer?.backgroundColor = .white
+            label.frame = NSRect(x: iconWidth+2, y: 2.5,
+                                 width: secondaryLabel.frame.minX-icon.frame.maxX-5, height: 25)
 
-        label.frame = NSRect(x: iconWidth+2, y: 2.5,
-                             width: secondaryLabel.frame.minX-icon.frame.maxX-5, height: 25)
+        // put the secondary label right after the primary label
+        } else {
+            let mainLabelWidth = label.frame.size.width
+            let newSize = label.sizeThatFits(CGSize(width: mainLabelWidth,
+                                                    height: CGFloat.greatestFiniteMagnitude))
+            label.frame = NSRect(x: iconWidth+2, y: 2.5,
+                                 width: newSize.width, height: 25)
+            secondaryLabel.frame = NSRect(x: label.frame.maxX + 2, y: 2.5,
+                                          width: frame.width - label.frame.maxX - 2, height: 25)
+        }
     }
 
     /// *Not Implemented*
