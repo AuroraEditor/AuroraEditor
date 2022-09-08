@@ -60,15 +60,13 @@ struct FileCreationNamingView: View {
                 }
 
                 Button {
-                    guard let workspaceURL = workspace?.fileSystemClient?.folderURL else {
-                        return
-                    }
-                    creationSheetModel.createLanguageFile(directoryURL: workspaceURL,
+                    guard let workspace = workspace else { return }
+                    creationSheetModel.createLanguageFile(workspace: workspace,
                                                           fileName: fileName) { completion in
                         switch completion {
                         case .success:
                             presentationMode.wrappedValue.dismiss()
-                            workspace?.showFileCreationSheet.toggle()
+                            workspace.newFileModel.showFileCreationSheet.toggle()
                         case .failure(let failure):
                             Log.error(failure)
                         }

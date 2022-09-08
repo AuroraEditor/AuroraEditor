@@ -169,7 +169,7 @@ struct WorkspaceView: View {
                 }
             }
         }
-        .sheet(isPresented: $workspace.showFileCreationSheet) {
+        .sheet(isPresented: $workspace.newFileModel.showFileCreationSheet) {
             FileCreationSelectionView(workspace: workspace)
         }
         .sheet(isPresented: $workspace.showStashChangesSheet) {
