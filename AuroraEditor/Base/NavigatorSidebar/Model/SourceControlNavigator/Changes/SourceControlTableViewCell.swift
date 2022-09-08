@@ -31,6 +31,7 @@ final class SourceControlTableViewCell: FileSystemTableViewCell {
         } else if secondaryLabel.stringValue == "D" {
             label.textColor = NSColor(red: 237/255, green: 94/255, blue: 122/255, alpha: 1)
         }
+        resizeSubviews(withOldSize: .zero)
     }
 
     required init?(coder: NSCoder) {

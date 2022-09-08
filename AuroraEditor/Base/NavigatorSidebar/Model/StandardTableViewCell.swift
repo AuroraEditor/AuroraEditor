@@ -122,6 +122,8 @@ class StandardTableViewCell: NSTableCellView {
         // somehow, a width of 0 makes it resize properly.
         secondaryLabel.frame = NSRect(x: frame.width-newSize.width, y: 2.5,
                                       width: 0, height: newSize.height)
+//        secondaryLabel.wantsLayer = true
+//        secondaryLabel.layer?.backgroundColor = .white
 
         label.frame = NSRect(x: iconWidth+2, y: 2.5,
                              width: secondaryLabel.frame.minX-icon.frame.maxX-5, height: 25)
