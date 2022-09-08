@@ -18,6 +18,8 @@ public enum TabBarItemID: Codable, Identifiable, Hashable {
         case .webTab(let url):
             // note: does not allow for multiple tabs of the same URL
             return "webTab_\(url)"
+        case .projectHistory(let project):
+            return project
         }
     }
 
@@ -29,4 +31,6 @@ public enum TabBarItemID: Codable, Identifiable, Hashable {
 
     /// Represents web tab
     case webTab(String)
+
+    case projectHistory(String)
 }
