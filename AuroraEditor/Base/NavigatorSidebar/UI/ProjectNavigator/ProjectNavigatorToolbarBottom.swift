@@ -52,7 +52,8 @@ struct ProjectNavigatorToolbarBottom: View {
     private var addNewFileButton: some View {
         Menu {
             Button("New File...") {
-                workspace.newFileModel.showFileCreationSheet.toggle()
+                // TODO: use currently selected file instead of root
+                workspace.newFileModel.showSheetWithUrl(url: nil)
             }
 
             Divider()

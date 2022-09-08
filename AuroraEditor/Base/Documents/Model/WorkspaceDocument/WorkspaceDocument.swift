@@ -97,6 +97,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         self.quickOpenState = .init(fileURL: url)
         self.statusBarModel = .init(workspaceURL: url)
         self.commandPaletteState = .init(possibleCommands: [])
+        self.newFileModel = .init(workspace: self)
         setupCommands()
 
         NotificationCenter.default.addObserver(self,
