@@ -216,7 +216,7 @@ final class ProjectNavigatorMenu: NSMenu {
     /// Action that activates the FileCreationSelectionView
     @objc
     private func newFileFromTemplate() {
-        if let url = item?.url, let nearestFolder = item?.nearestFolder {
+        if let nearestFolder = item?.nearestFolder {
             workspace?.newFileModel.showSheetWithUrl(url: nearestFolder)
         }
     }

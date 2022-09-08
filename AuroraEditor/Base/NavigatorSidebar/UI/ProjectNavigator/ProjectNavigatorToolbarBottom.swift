@@ -53,7 +53,7 @@ struct ProjectNavigatorToolbarBottom: View {
         Menu {
             Button("New File...") {
                 // TODO: use currently selected file instead of root
-                workspace.newFileModel.showSheetWithUrl(url: nil)
+                workspace.newFileModel.showSheetWithUrl(url: workspace.newFileModel.outlineViewSelection?.nearestFolder)
             }
 
             Divider()

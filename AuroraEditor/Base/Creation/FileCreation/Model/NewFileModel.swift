@@ -28,6 +28,9 @@ class NewFileModel: ObservableObject {
     @Published
     var sourceURL: URL?
 
+    @Published
+    var outlineViewSelection: FileItem?
+
     func showSheetWithUrl(url: URL?) {
         showFileCreationSheet.toggle()
         sourceURL = url
