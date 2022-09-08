@@ -68,7 +68,7 @@ struct FileCreationNamingView: View {
                         switch completion {
                         case .success:
                             presentationMode.wrappedValue.dismiss()
-                            workspace?.showFileCreationSheet.toggle()
+                            workspace?.newFileModel.showFileCreationSheet.toggle()
                         case .failure(let failure):
                             Log.error(failure)
                         }

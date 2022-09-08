@@ -52,7 +52,7 @@ struct ProjectNavigatorToolbarBottom: View {
     private var addNewFileButton: some View {
         Menu {
             Button("New File...") {
-                workspace.showFileCreationSheet.toggle()
+                workspace.newFileModel.showFileCreationSheet.toggle()
             }
 
             Divider()
