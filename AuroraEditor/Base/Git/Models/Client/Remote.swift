@@ -98,4 +98,16 @@ public struct Remote {
 
         return nil
     }
+
+    func getRemoteHead(url: String) throws -> [String] {
+        return try ShellClient.live().run(
+            "git ls-remote -q --symref \(url) | head -1 | cut -f1 | sed 's!^ref: refs/heads/!!'"
+        ).components(separatedBy: "\n").filter { !$0.isEmpty }
+    }
+
+    func getRemoteBranch(url: String) throws -> [String] {
+        return try ShellClient.live().run(
+            "git ls-remote \(url) --h --sort origin \"refs/heads/*\" | cut -f2 | sed 's!^refs/heads/!!'"
+        ).components(separatedBy: "\n").filter { !$0.isEmpty }
+    }
 }

@@ -14,7 +14,7 @@ public struct GitCloneView: View {
     @Binding var isPresented: Bool
     @Binding var repoPath: String
     @State var showCheckout: Bool = false
-    @State var repoUrlStr = ""                      // the repo string that the user inputs
+    @State var repoUrlStr: String = ""                      // the repo string that the user inputs
     @State var gitClient: GitClient?
     @State var cloneCancellable: AnyCancellable?    // the publisher for the cloning progress
 
@@ -37,6 +37,7 @@ public struct GitCloneView: View {
     @State var arrayBranch: [String] = []
     @State var mainBranch: String = ""
     @State var selectedBranch: String = ""
+    @State private var showingSheet = false
 
     public init(
         shellClient: ShellClient,
@@ -87,6 +88,78 @@ public struct GitCloneView: View {
                     .onSubmit {
                         cloneRepository()
                     }
+                HStack {
+                    Button("Cancel") {
+                        cancelClone()
+                    }
+                    Button("Clone") {
+                        if let url = NSPasteboard.general.pasteboardItems?.first?.string(forType: .string) {
+                            if isValid(url: url) {
+                                showingSheet.toggle()
+                                getRemoteHead(url: url)
+                                getRemoteBranch(url: url)
+                            }
+                        }
+                    }.sheet(isPresented: $showingSheet) {
+                        selectView
+                    }
+                    .keyboardShortcut(.defaultAction)
+                    .disabled(!isValid(url: repoUrlStr))
+                }
+                .offset(x: 185)
+                .alignmentGuide(.leading) { context in
+                    context[.leading]
+                }
+            }
+        }
+        .padding(.top, 20)
+        .padding(.horizontal, 20)
+        .padding(.bottom, 16)
+        .onAppear {
+            self.checkClipboard(textFieldText: &repoUrlStr)
+        }
+        .frame(height: 180)
+    }
+
+    func getRemoteHead(url: String) {
+        do {
+            let branch = try Remote().getRemoteHead(url: url)
+            Log.info(branch)
+            if branch[0].contains("fatal:") {
+                Log.info("Error: getRemoteHead")
+            } else {
+                self.mainBranch = branch[0]
+                self.selectedBranch = branch[0]
+            }
+        } catch {
+            Log.error("Failed to find main branch name.")
+        }
+    }
+
+    func getRemoteBranch(url: String) {
+        do {
+            let branches = try Remote().getRemoteBranch(url: url)
+            Log.info(branches)
+            if branches[0].contains("fatal:") {
+                Log.info("Error: getRemoteBranch")
+            } else {
+                self.arrayBranch = branches
+            }
+        } catch {
+            Log.error("Failed to find branches.")
+        }
+    }
+
+    public var selectView: some View {
+        HStack {
+            Image(nsImage: NSApp.applicationIconImage)
+                .resizable()
+                .frame(width: 64, height: 64)
+                .padding(.bottom, 50)
+            VStack(alignment: .leading) {
+                Text("Clone a repository")
+                    .bold()
+                    .padding(.bottom, 2)
                 Toggle("Clone all branches", isOn: $allBranches)
                 if  allBranches  && !arrayBranch.isEmpty {
                     Picker("Checkout", selection: $selectedBranch) {
@@ -104,7 +177,7 @@ public struct GitCloneView: View {
                 }
                 HStack {
                     Button("Cancel") {
-                        cancelClone()
+                        showingSheet.toggle()
                     }
                     Button("Clone") {
                         cloneRepository()
@@ -121,44 +194,7 @@ public struct GitCloneView: View {
         .padding(.top, 20)
         .padding(.horizontal, 20)
         .padding(.bottom, 16)
-        .onAppear {
-            self.checkClipboard(textFieldText: &repoUrlStr)
-            if let url = NSPasteboard.general.pasteboardItems?.first?.string(forType: .string) {
-                if isValid(url: url) {
-                    getRemoteHead(url: url)
-                    getRemoteBranch(url: url)
-                }
-            }
-        }
-    }
-
-    func getRemoteHead(url: String) {
-        do {
-            let branch = try Branches().getRemoteHead(url: url)
-            Log.info(branch)
-            if branch[0].contains("fatal:") {
-                Log.info("Error: getRemoteHead")
-            } else {
-                self.mainBranch = branch[0]
-                self.selectedBranch = branch[0]
-            }
-        } catch {
-            Log.error("Failed to find main branch name.")
-        }
-    }
-
-    func getRemoteBranch(url: String) {
-        do {
-            let branches = try Branches().getRemoteBranch(url: url)
-            Log.info(branches)
-            if branches[0].contains("fatal:") {
-                Log.info("Error: getRemoteBranch")
-            } else {
-                self.arrayBranch = branches
-            }
-        } catch {
-            Log.error("Failed to find branches.")
-        }
+        .frame(width: 400, height: 180)
     }
 
     public var progressView: some View {
