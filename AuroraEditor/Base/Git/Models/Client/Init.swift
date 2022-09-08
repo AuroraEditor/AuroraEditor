@@ -13,6 +13,6 @@ import Foundation
 func initGitRepository(directoryURL: URL) throws {
     try ShellClient().run(
         // swiftlint:disable:next line_length
-        "cd \(directoryURL.relativePath.escapedWhiteSpaces());git -c init.defailtBranch=\(DefaultBranch().getDefaultBranch()) init"
+        "cd \(directoryURL.relativePath.escapedWhiteSpaces());git -c init.defaultBranch=\(DefaultBranch().getDefaultBranch()) init"
     )
 }

@@ -31,7 +31,8 @@ public struct DefaultBranch {
 
     /// Returns the configured default branch when creating new repositories
     func getDefaultBranch() throws -> String {
-        return try getConfiguredDefaultBranch() ?? defaultBranchInAE
+        // return try getConfiguredDefaultBranch() ?? defaultBranchInAE
+        return defaultBranchInAE
     }
 
     /// Sets the configured default branch when creating new repositories.
