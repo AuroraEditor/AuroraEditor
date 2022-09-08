@@ -63,11 +63,7 @@ extension FileItem {
             largestValue = count
         }
 
-        // Check if folder, if it is create file under self
-        var fileUrl = (self.isFolder ?
-                    self.url.appendingPathComponent("\(fileName)\(idealExtension)") :
-                    self.url.deletingLastPathComponent().appendingPathComponent("\(fileName)\(idealExtension)"))
-
+        var fileUrl = nearestFolder.appendingPathComponent("\(fileName)\(idealExtension)")
         // If a file/folder with the same name exists, add a number to the end.
         var fileNumber = 0
         while FileItem.fileManger.fileExists(atPath: fileUrl.path) {
@@ -82,6 +78,13 @@ extension FileItem {
             contents: nil,
             attributes: [FileAttributeKey.creationDate: Date()]
         )
+    }
+
+    /// Nearest folder refers to the parent directory if this is a non-folder item, or itself if the item is a folder.
+    var nearestFolder: URL {
+        (self.isFolder ?
+                    self.url :
+                    self.url.deletingLastPathComponent())
     }
 
     /// This function deletes the item or folder from the current project
