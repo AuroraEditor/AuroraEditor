@@ -57,7 +57,6 @@ class FileSystemTableViewCell: StandardTableViewCell {
     func addModel() {
         secondaryLabel.stringValue = fileItem.gitStatus?.description ?? ""
         if secondaryLabel.stringValue == "?" { secondaryLabel.stringValue = "A" }
-        secondaryLabelIsSmall = secondaryLabel.stringValue.isEmpty
     }
 
     /// *Not Implemented*

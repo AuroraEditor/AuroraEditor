@@ -22,12 +22,13 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
         var image = NSImage()
         switch cellType {
         case .repo:
+            label.stringValue = "\(repository.repoName ?? "Unknown Repo")"
             if repository.branches?.contents.count ?? -2 > repository.branches?.current ?? -1 {
                 let currentBranch = (repository.branches?.contents[repository.branches?.current ?? -1] as? RepoBranch)?
                     .name ?? "Unknown Main Branch"
-                label.stringValue = "\(repository.repoName ?? "Unknown Repo") (\(currentBranch))"
+                secondaryLabel.stringValue = "\(currentBranch)"
             } else {
-                label.stringValue = "\(repository.repoName ?? "Unknown Repo") (Unknown Main Branch)"
+                secondaryLabel.stringValue = "Unknown Main Branch"
             }
             image = NSImage(systemSymbolName: "clock", accessibilityDescription: nil)!
 
@@ -62,7 +63,6 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
             if label.stringValue == currentBranch {
                 secondaryLabel.stringValue = "*"
             }
-            secondaryLabelIsSmall = secondaryLabel.stringValue.isEmpty
             image = NSImage(named: "git.branch")!
 
         case .tag:
@@ -75,6 +75,11 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
         }
         icon.image = image
         icon.contentTintColor = .gray
+
+        if cellType == .repo {
+            self.secondaryLabelRightAlignmed = false
+        }
+        resizeSubviews(withOldSize: .zero)
     }
 
     enum CellType {
