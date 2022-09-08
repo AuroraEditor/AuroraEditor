@@ -228,7 +228,7 @@ final class ProjectNavigatorMenu: NSMenu {
                 as? ProjectNavigatorTableViewCell else {
             return
         }
-        cell.textField?.becomeFirstResponder()
+        outlineView.window?.makeFirstResponder(cell.textField)
     }
 
     /// Action that deletes the item.

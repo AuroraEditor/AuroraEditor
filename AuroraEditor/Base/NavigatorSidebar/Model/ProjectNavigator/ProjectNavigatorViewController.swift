@@ -54,23 +54,26 @@ final class ProjectNavigatorViewController: NSViewController {
         self.view = scrollView
 
         self.outlineView = NSOutlineView()
-        self.outlineView.dataSource = self
-        self.outlineView.delegate = self
-        self.outlineView.autosaveExpandedItems = true
-        self.outlineView.autosaveName = workspace?.fileSystemClient?.folderURL?.path ?? ""
-        self.outlineView.headerView = nil
-        self.outlineView.menu = ProjectNavigatorMenu(sender: self.outlineView, workspaceURL: (workspace?.fileURL)!)
-        self.outlineView.menu?.delegate = self
-        self.outlineView.doubleAction = #selector(onItemDoubleClicked)
+        outlineView.dataSource = self
+        outlineView.delegate = self
+        outlineView.autosaveExpandedItems = true
+        outlineView.autosaveName = workspace?.fileSystemClient?.folderURL?.path ?? ""
+        outlineView.headerView = nil
+        outlineView.menu = ProjectNavigatorMenu(sender: self.outlineView, workspaceURL: (workspace?.fileURL)!)
+        outlineView.menu?.delegate = self
+        outlineView.doubleAction = #selector(onItemDoubleClicked)
 
         let column = NSTableColumn(identifier: .init(rawValue: "Cell"))
         column.title = "Cell"
         outlineView.addTableColumn(column)
 
-        self.scrollView.documentView = outlineView
-        self.scrollView.contentView.automaticallyAdjustsContentInsets = false
-        self.scrollView.contentView.contentInsets = .init(top: 10, left: 0, bottom: 0, right: 0)
+        scrollView.documentView = outlineView
+        scrollView.contentView.automaticallyAdjustsContentInsets = false
+        scrollView.contentView.contentInsets = .init(top: 10, left: 0, bottom: 0, right: 0)
+        scrollView.scrollerStyle = .overlay
         scrollView.hasVerticalScroller = true
+        scrollView.hasHorizontalScroller = false
+        scrollView.autohidesScrollers = true
 
         outlineView.expandItem(outlineView.item(atRow: 0))
         saveExpansionState()
