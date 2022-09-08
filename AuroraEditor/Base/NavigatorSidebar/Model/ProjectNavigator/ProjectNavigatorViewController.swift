@@ -239,7 +239,8 @@ extension ProjectNavigatorViewController: NSOutlineViewDelegate {
 
         let frameRect = NSRect(x: 0, y: 0, width: tableColumn.width, height: rowHeight)
 
-        return ProjectNavigatorTableViewCell(frame: frameRect, item: item as? Item)
+        let item = ProjectNavigatorTableViewCell(frame: frameRect, item: item as? Item)
+        return item
     }
 
     func outlineViewSelectionDidChange(_ notification: Notification) {
@@ -273,6 +274,7 @@ extension ProjectNavigatorViewController: NSOutlineViewDelegate {
     }
 
     func outlineViewItemDidCollapse(_ notification: Notification) {
+        updateSelection()
         saveExpansionState()
     }
 

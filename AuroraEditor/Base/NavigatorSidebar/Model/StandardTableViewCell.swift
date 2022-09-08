@@ -39,13 +39,11 @@ class StandardTableViewCell: NSTableCellView {
         // Create the label
         label = createLabel()
         configLabel(label: self.label, isEditable: isEditable)
-        addSubview(label)
         self.textField = label
 
         // Create the secondary label
         secondaryLabel = createSecondaryLabel()
         configSecondaryLabel(secondaryLabel: secondaryLabel)
-        addSubview(secondaryLabel)
 
         // Create the icon
         icon = createIcon()
@@ -55,6 +53,9 @@ class StandardTableViewCell: NSTableCellView {
 
         // add constraints
         createConstraints(frame: frameRect)
+        addSubview(label)
+        addSubview(secondaryLabel)
+        addSubview(icon)
     }
 
     // MARK: Create and config stuff
@@ -84,7 +85,7 @@ class StandardTableViewCell: NSTableCellView {
         secondaryLabel.isEditable = false
         secondaryLabel.isSelectable = false
         secondaryLabel.layer?.cornerRadius = 10.0
-        secondaryLabel.font = .boldSystemFont(ofSize: fontSize)
+        secondaryLabel.font = .systemFont(ofSize: fontSize)
         secondaryLabel.alignment = .center
         secondaryLabel.textColor = NSColor(Color.secondary)
     }
@@ -102,17 +103,28 @@ class StandardTableViewCell: NSTableCellView {
         resizeSubviews(withOldSize: .zero)
     }
 
+    let iconWidth: CGFloat = 22
     override func resizeSubviews(withOldSize oldSize: NSSize) {
         super.resizeSubviews(withOldSize: oldSize)
 
         icon.frame = NSRect(x: 2, y: 4,
-                            width: 22, height: frame.height)
-        Log.info("Middle: \(icon.frame.midX)")
+                            width: iconWidth, height: frame.height)
+        // center align the image
+        if let alignmentRect = icon.image?.alignmentRect {
+            icon.frame = NSRect(x: (iconWidth+4-alignmentRect.width)/2, y: 4,
+                                width: alignmentRect.width, height: frame.height)
+        }
 
-        label.frame = NSRect(x: icon.frame.maxX, y: 4,
-                             width: frame.width - icon.frame.width - 1, height: 25)
-        
-        secondaryLabel.frame = .zero
+        let secondLabelWidth = secondaryLabel.frame.size.width
+        let newSize = secondaryLabel.sizeThatFits(CGSize(width: secondLabelWidth,
+                                                         height: CGFloat.greatestFiniteMagnitude))
+
+        // somehow, a width of 0 makes it resize properly.
+        secondaryLabel.frame = NSRect(x: frame.width-newSize.width, y: 2.5,
+                                      width: 0, height: newSize.height)
+
+        label.frame = NSRect(x: iconWidth+2, y: 2.5,
+                             width: secondaryLabel.frame.minX-icon.frame.maxX-5, height: 25)
     }
 
     /// *Not Implemented*
