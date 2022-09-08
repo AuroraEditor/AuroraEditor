@@ -21,8 +21,6 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     @Published
     var sortFoldersOnTop: Bool = true
     @Published
-    var showFileCreationSheet: Bool = false
-    @Published
     var showStashChangesSheet: Bool = false
 
     @Published
@@ -38,6 +36,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     var searchState: SearchState?
     var quickOpenState: QuickOpenState?
     var commandPaletteState: CommandPaletteState?
+    var newFileModel: NewFileModel = .init()
     var listenerModel: WorkspaceNotificationModel = .init()
     private var cancellables = Set<AnyCancellable>()
 
@@ -98,6 +97,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         self.quickOpenState = .init(fileURL: url)
         self.statusBarModel = .init(workspaceURL: url)
         self.commandPaletteState = .init(possibleCommands: [])
+        self.newFileModel = .init(workspace: self)
         setupCommands()
 
         NotificationCenter.default.addObserver(self,
