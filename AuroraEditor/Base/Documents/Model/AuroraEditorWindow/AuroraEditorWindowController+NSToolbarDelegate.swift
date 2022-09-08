@@ -130,10 +130,7 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
         case .branchPicker:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.branchPicker)
             let view = NSHostingView(
-                rootView: ToolbarBranchPicker(
-                    shellClient: sharedShellClient.shellClient,
-                    fileSystemClient: workspace?.fileSystemClient
-                )
+                rootView: ToolbarBranchPicker(fileSystemClient: workspace?.fileSystemClient)
             )
             toolbarItem.view = view
 
