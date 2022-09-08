@@ -34,6 +34,9 @@ public final class SourceControlModel: ObservableObject {
     @Published
     public var changed: [FileItem]
 
+    @Published
+    public var isGitRepository: Bool = false
+
     private var cancellables = Set<AnyCancellable>()
 
     /// Initialize with a GitClient
@@ -41,6 +44,7 @@ public final class SourceControlModel: ObservableObject {
     ///
     public init(workspaceURL: URL) {
         self.workspaceURL = workspaceURL
+        self.isGitRepository = checkIfProjectIsRepo(workspaceURL: workspaceURL)
         gitClient = GitClient.init(
             directoryURL: workspaceURL,
             shellClient: sharedShellClient.shellClient

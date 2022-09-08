@@ -48,10 +48,9 @@ public final class RepositoryModel: ObservableObject {
 
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
-        guard let projectPath = workspace.fileSystemClient?.folderURL else { return }
-        self.repositoryLocalPath = projectPath.path
-        self.repositoryName = projectPath.lastPathComponent
-        self.isGitRepository = checkIfProjectIsRepo()
+        self.repositoryLocalPath = workspace.workspaceURL().path
+        self.repositoryName = workspace.workspaceURL().lastPathComponent
+        self.isGitRepository = checkIfProjectIsRepo(workspaceURL: workspace.workspaceURL())
     }
 
     func addGitRepoDetails(client: GitClient? = nil) {
@@ -136,28 +135,5 @@ public final class RepositoryModel: ObservableObject {
         currentBranchNameListener?.cancel()
         branchNamesListener?.cancel()
         allBranchNamesListener?.cancel()
-    }
-
-    func checkIfProjectIsRepo() -> Bool {
-        guard let path = workspace.fileSystemClient?.folderURL else {
-            return false
-        }
-
-        do {
-            let type = try getRepositoryType(path: path.path)
-
-            if type == .unsafe {
-                // If the path is considered unsafe by Git we won't be able to
-                // verify that it's a repository (or worktree). So we'll fall back to this
-                // naive approximation.
-                Log.debug(type)
-                return FileManager().directoryExistsAtPath("\(path)/.git")
-            }
-
-            return type != .missing
-        } catch {
-            Log.error("We couldn't verify if the current project is a git repo!")
-            return false
-        }
     }
 }
