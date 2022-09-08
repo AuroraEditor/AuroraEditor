@@ -69,6 +69,7 @@ extension GitCloneView {
     func cancelClone(deleteRemains: Bool = false) {
         isPresented = false
         cloneCancellable?.cancel()
+        NSApplication.shared.removeDockProgress()
 
         guard deleteRemains && FileManager.default.fileExists(atPath: repoPathStr) else { return }
         do {
