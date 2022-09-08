@@ -14,22 +14,7 @@ class StandardTableViewCell: NSTableCellView {
     var secondaryLabel: NSTextField!
     var icon: NSImageView!
 
-    var secondaryLabelLargeWidth: NSLayoutConstraint!
-    var secondaryLabelSmallWidth: NSLayoutConstraint!
-
     var workspace: WorkspaceDocument?
-
-    var secondaryLabelIsSmall: Bool = true {
-        didSet {
-            if secondaryLabelIsSmall { // is small
-                secondaryLabelLargeWidth.isActive = false
-                secondaryLabelSmallWidth.isActive = true
-            } else { // is large
-                secondaryLabelLargeWidth.isActive = true
-                secondaryLabelSmallWidth.isActive = false
-            }
-        }
-    }
 
     private let prefs = AppPreferencesModel.shared.preferences.general
 
@@ -41,7 +26,16 @@ class StandardTableViewCell: NSTableCellView {
     ///   - isEditable: Set to true if the user should be able to edit the file name.
     init(frame frameRect: NSRect, isEditable: Bool = true) {
         super.init(frame: frameRect)
+        setupViews(frame: frameRect, isEditable: isEditable)
+    }
 
+    // Default init, assumes isEditable to be false
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+        setupViews(frame: frameRect, isEditable: false)
+    }
+
+    private func setupViews(frame frameRect: NSRect, isEditable: Bool) {
         // Create the label
         label = createLabel()
         configLabel(label: self.label, isEditable: isEditable)
@@ -63,6 +57,7 @@ class StandardTableViewCell: NSTableCellView {
         createConstraints(frame: frameRect)
     }
 
+    // MARK: Create and config stuff
     func createLabel() -> NSTextField {
         return SpecialSelectTextField(frame: .zero)
     }
@@ -104,52 +99,20 @@ class StandardTableViewCell: NSTableCellView {
     }
 
     func createConstraints(frame frameRect: NSRect) {
-        // Icon constraints
-        icon.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: -2).isActive = true
-        icon.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        icon.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        icon.heightAnchor.constraint(equalToConstant: frameRect.height).isActive = true
-
-        // Label constraints
-        label.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: 1).isActive = true
-        label.trailingAnchor.constraint(equalTo: secondaryLabel.leadingAnchor, constant: 1).isActive = true
-        label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        label.maximumNumberOfLines = 1
-        label.usesSingleLineMode = true
-
-        // change label constraints
-        secondaryLabelLargeWidth = secondaryLabel.leadingAnchor.constraint(equalTo: self.trailingAnchor, constant: -18)
-        secondaryLabelSmallWidth = secondaryLabel.leadingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0)
-        secondaryLabelIsSmall = true
-        secondaryLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 1).isActive = true
-        secondaryLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        secondaryLabel.maximumNumberOfLines = 1
-        secondaryLabel.usesSingleLineMode = true
+        resizeSubviews(withOldSize: .zero)
     }
 
-    // Default init, assumes isEditable to be false
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
+    override func resizeSubviews(withOldSize oldSize: NSSize) {
+        super.resizeSubviews(withOldSize: oldSize)
 
-        // Create the label
-        label = createLabel()
-        configLabel(label: self.label, isEditable: false)
-        addSubview(label)
-        self.textField = label
+        icon.frame = NSRect(x: 2, y: 4,
+                            width: 22, height: frame.height)
+        Log.info("Middle: \(icon.frame.midX)")
 
-        // Create the secondary label
-        secondaryLabel = createSecondaryLabel()
-        configSecondaryLabel(secondaryLabel: secondaryLabel)
-        addSubview(secondaryLabel)
-
-        // Create the icon
-        icon = createIcon()
-        configIcon(icon: icon)
-        addSubview(icon)
-        imageView = icon
-
-        // add constraints
-        createConstraints(frame: frameRect)
+        label.frame = NSRect(x: icon.frame.maxX, y: 4,
+                             width: frame.width - icon.frame.width - 1, height: 25)
+        
+        secondaryLabel.frame = .zero
     }
 
     /// *Not Implemented*

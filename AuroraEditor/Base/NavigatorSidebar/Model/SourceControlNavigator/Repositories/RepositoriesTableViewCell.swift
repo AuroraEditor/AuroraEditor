@@ -62,7 +62,6 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
             if label.stringValue == currentBranch {
                 secondaryLabel.stringValue = "*"
             }
-            secondaryLabelIsSmall = secondaryLabel.stringValue.isEmpty
             image = NSImage(named: "git.branch")!
 
         case .tag:
