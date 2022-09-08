@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 // A protocol to make calls to terminal to init a git call.
-public class GitClient: ObservableObject {
+public class GitClient: ObservableObject { // swiftlint:disable:this type_body_length
     var directoryURL: URL
     var shellClient: ShellClient
 
@@ -96,26 +96,47 @@ public class GitClient: ObservableObject {
         }
     }
 
-    public func cloneRepository(path: String) -> AnyPublisher<CloneProgressResult, GitClientError> {
+    public func cloneRepositoryOnlyBranch(path: String, branch: String) ->
+    AnyPublisher<CloneProgressResult, GitClientError> {
         shellClient
-            .runLive("git clone \(path) \(directoryURL.relativePath.escapedWhiteSpaces()) --progress")
-            .tryMap { output -> String in
+            .runLive(
+            // swiftlint:disable:next line_length
+            "git clone -b \(branch) --single-branch \(path) \(directoryURL.relativePath.escapedWhiteSpaces()) --progress"
+            ).tryMap { output -> String in
                 if output.contains("fatal: not a git repository") {
                     throw GitClientError.notGitRepository
                 }
                 return output
-            }
-            .map { value -> CloneProgressResult in
+            }.map { value -> CloneProgressResult in
                 return self.valueToProgress(value: value)
-            }
-            .mapError {
+            }.mapError {
                 if let error = $0 as? GitClientError {
                     return error
                 } else {
                     return GitClientError.outputError($0.localizedDescription)
                 }
-            }
-            .eraseToAnyPublisher()
+            }.eraseToAnyPublisher()
+    }
+
+    public func cloneRepository(path: String, checkout: String) -> AnyPublisher<CloneProgressResult, GitClientError> {
+        shellClient
+            .runLive(
+                // swiftlint:disable:next line_length
+                "git clone \(path) \(directoryURL.relativePath.escapedWhiteSpaces()) --progress && cd \(directoryURL.relativePath.escapedWhiteSpaces()) && git checkout \(checkout)"
+            ).tryMap { output -> String in
+                if output.contains("fatal: not a git repository") {
+                    throw GitClientError.notGitRepository
+                }
+                return output
+            }.map { value -> CloneProgressResult in
+                return self.valueToProgress(value: value)
+            }.mapError {
+                if let error = $0 as? GitClientError {
+                    return error
+                } else {
+                    return GitClientError.outputError($0.localizedDescription)
+                }
+            }.eraseToAnyPublisher()
     }
 
     private func valueToProgress(value: String) -> CloneProgressResult {

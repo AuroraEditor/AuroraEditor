@@ -33,6 +33,11 @@ public struct GitCloneView: View {
         "Resolving Progress"
     ]
 
+    @State var allBranches = true
+    @State var arrayBranch: [String] = []
+    @State var mainBranch: String = ""
+    @State var selectedBranch: String = ""
+
     public init(
         shellClient: ShellClient,
         isPresented: Binding<Bool>,
@@ -77,11 +82,26 @@ public struct GitCloneView: View {
                     }
                 TextField("Git Repository URL", text: $repoUrlStr)
                     .lineLimit(1)
-                    .padding(.bottom, 15)
+                    .padding(.bottom, 5)
                     .frame(width: 300)
                     .onSubmit {
                         cloneRepository()
                     }
+                Toggle("Clone all branches", isOn: $allBranches)
+                if  allBranches  && !arrayBranch.isEmpty {
+                    Picker("Checkout", selection: $selectedBranch) {
+                        ForEach(arrayBranch, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                }
+                if  !allBranches  && !arrayBranch.isEmpty {
+                    Picker("Branch", selection: $selectedBranch) {
+                        ForEach(arrayBranch, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                }
                 HStack {
                     Button("Cancel") {
                         cancelClone()
@@ -103,6 +123,41 @@ public struct GitCloneView: View {
         .padding(.bottom, 16)
         .onAppear {
             self.checkClipboard(textFieldText: &repoUrlStr)
+            if let url = NSPasteboard.general.pasteboardItems?.first?.string(forType: .string) {
+                if isValid(url: url) {
+                    getRemoteHead(url: url)
+                    getRemoteBranch(url: url)
+                }
+            }
+        }
+    }
+
+    func getRemoteHead(url: String) {
+        do {
+            let branch = try Branches().getRemoteHead(url: url)
+            Log.info(branch)
+            if branch[0].contains("fatal:") {
+                Log.info("Error: getRemoteHead")
+            } else {
+                self.mainBranch = branch[0]
+                self.selectedBranch = branch[0]
+            }
+        } catch {
+            Log.error("Failed to find main branch name.")
+        }
+    }
+
+    func getRemoteBranch(url: String) {
+        do {
+            let branches = try Branches().getRemoteBranch(url: url)
+            Log.info(branches)
+            if branches[0].contains("fatal:") {
+                Log.info("Error: getRemoteBranch")
+            } else {
+                self.arrayBranch = branches
+            }
+        } catch {
+            Log.error("Failed to find branches.")
         }
     }
 

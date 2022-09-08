@@ -119,8 +119,11 @@ extension GitCloneView {
                 shellClient: shellClient
             )
 
-            cloneCancellable = gitClient?
-                .cloneRepository(path: repoUrlStr)
+            let repo = allBranches ?
+            gitClient?.cloneRepository(path: repoUrlStr, checkout: selectedBranch) :
+            gitClient?.cloneRepositoryOnlyBranch(path: repoUrlStr, branch: selectedBranch)
+
+            cloneCancellable = repo?
                 .sink(receiveCompletion: { result in
                     switch result {
                     case let .failure(error):
