@@ -14,6 +14,7 @@ import SwiftUI
 final class ProjectNavigatorViewController: NSViewController {
 
     typealias Item = FileSystemClient.FileItem
+    let dragType: NSPasteboard.PasteboardType = .fileURL
 
     var scrollView: NSScrollView!
     var outlineView: NSOutlineView!
@@ -21,7 +22,7 @@ final class ProjectNavigatorViewController: NSViewController {
     /// Gets the folder structure
     ///
     /// Also creates a top level item "root" which represents the projects root directory and automatically expands it.
-    private var content: [Item] {
+    var content: [Item] {
         guard let folderURL = workspace?.fileSystemClient?.folderURL else { return [] }
         let children = workspace?.fileItems.sortItems(foldersOnTop: true)
         guard let root = try? workspace?.fileSystemClient?.getFileItem(folderURL.path) else { return [] }
@@ -46,7 +47,7 @@ final class ProjectNavigatorViewController: NSViewController {
     /// This helps determine whether or not to send an `openTab` when the selection changes.
     /// Used b/c the state may update when the selection changes, but we don't necessarily want
     /// to open the file a second time.
-    private var shouldSendSelectionUpdate: Bool = true
+    var shouldSendSelectionUpdate: Bool = true
 
     /// Setup the ``scrollView`` and ``outlineView``
     override func loadView() {
@@ -74,6 +75,7 @@ final class ProjectNavigatorViewController: NSViewController {
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = false
         scrollView.autohidesScrollers = true
+        outlineView.registerForDraggedTypes([dragType])
 
         outlineView.expandItem(outlineView.item(atRow: 0))
         saveExpansionState()
@@ -186,107 +188,6 @@ final class ProjectNavigatorViewController: NSViewController {
             rowNumber += 1
         }
         isExpandingThings = false
-    }
-
-}
-
-// MARK: - NSOutlineViewDataSource
-
-extension ProjectNavigatorViewController: NSOutlineViewDataSource {
-    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        guard let workspace = self.workspace else { return 0 }
-        if let item = item as? Item {
-            return item.appearanceWithinChildrenOf(searchString: workspace.filter,
-                                                   ignoreDots: true,
-                                                   ignoreTilde: true)
-        }
-        return content.count
-    }
-
-    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        guard let workspace = self.workspace,
-              let item = item as? Item
-        else { return content[index] }
-
-        return item.childrenSatisfying(searchString: workspace.filter,
-                                       ignoreDots: true,
-                                       ignoreTilde: true)[index]
-    }
-
-    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        if let item = item as? Item {
-            return item.children != nil
-        }
-        return false
-    }
-}
-
-// MARK: - NSOutlineViewDelegate
-
-extension ProjectNavigatorViewController: NSOutlineViewDelegate {
-    func outlineView(_ outlineView: NSOutlineView,
-                     shouldShowCellExpansionFor tableColumn: NSTableColumn?, item: Any) -> Bool {
-        true
-    }
-
-    func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
-        true
-    }
-
-    func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-
-        guard let tableColumn = tableColumn else { return nil }
-
-        let frameRect = NSRect(x: 0, y: 0, width: tableColumn.width, height: rowHeight)
-
-        let item = ProjectNavigatorTableViewCell(frame: frameRect, item: item as? Item)
-        return item
-    }
-
-    func outlineViewSelectionDidChange(_ notification: Notification) {
-        guard let outlineView = notification.object as? NSOutlineView else {
-            return
-        }
-
-        let selectedIndex = outlineView.selectedRow
-
-        guard let navigatorItem = outlineView.item(atRow: selectedIndex) as? Item else { return }
-
-        // update the outlineview selection in the workspace. This is used by the bottom toolbar
-        // when the + button is clicked to create a new file.
-        workspace?.newFileModel.outlineViewSelection = navigatorItem
-
-        if !(workspace?.selectionState.openedTabs.contains(navigatorItem.tabID) ?? false) {
-            if navigatorItem.children == nil && shouldSendSelectionUpdate {
-                workspace?.openTab(item: navigatorItem)
-                Log.info("Opened a new tab for: \(navigatorItem.url)")
-            }
-        }
-    }
-
-    func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-        rowHeight // This can be changed to 20 to match Xcode's row height.
-    }
-
-    func outlineViewItemDidExpand(_ notification: Notification) {
-        updateSelection()
-        saveExpansionState()
-    }
-
-    func outlineViewItemDidCollapse(_ notification: Notification) {
-        updateSelection()
-        saveExpansionState()
-    }
-
-    func outlineView(_ outlineView: NSOutlineView, itemForPersistentObject object: Any) -> Any? {
-        guard let id = object as? Item.ID,
-              let item = try? workspace?.fileSystemClient?.getFileItem(id) else { return nil }
-        return item
-    }
-
-    func outlineView(_ outlineView: NSOutlineView, persistentObjectForItem item: Any?) -> Any? {
-        guard let item = item as? Item else { return nil }
-        return item.id
     }
 
     /// Recursively gets and selects an ``Item`` from an array of ``Item`` and their `children` based on the `id`.
