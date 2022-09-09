@@ -29,6 +29,18 @@ struct ProjectCommitHistoryView: View {
                 .padding(.horizontal, 8)
                 .padding(.bottom, 2)
                 .padding(.top, 1)
+                .onChange(of: selectedSection, perform: { _ in
+                    switch selectedSection {
+                    case 1:
+                        projectHistoryModel.gitHistoryDate = .lastDay
+                    case 2:
+                        projectHistoryModel.gitHistoryDate = .lastSevenDays
+                    case 3:
+                        projectHistoryModel.gitHistoryDate = .lastThirtyDays
+                    default: // case 0 also falls under this. Just show everything.
+                        projectHistoryModel.gitHistoryDate = .none
+                    }
+                })
 
                 Spacer()
 
@@ -39,62 +51,15 @@ struct ProjectCommitHistoryView: View {
                 Divider()
             }
 
-            switch selectedSection {
-            case 0:
-                switch projectHistoryModel.state {
-                case .loading:
-                    loadingChanges
-                case .success:
-                    commitHistoryList()
-                case .error:
-                    errorView
-                case .empty:
-                    emptyView
-                }
-            case 1:
-                switch projectHistoryModel.state {
-                case .loading:
-                    loadingChanges
-                case .success:
-                    commitHistoryList()
-                case .error:
-                    errorView
-                case .empty:
-                    emptyView
-                }
-            case 2:
-                switch projectHistoryModel.state {
-                case .loading:
-                    loadingChanges
-                case .success:
-                    commitHistoryList()
-                case .error:
-                    errorView
-                case .empty:
-                    emptyView
-                }
-            case 3:
-                switch projectHistoryModel.state {
-                case .loading:
-                    loadingChanges
-                case .success:
-                    commitHistoryList()
-                case .error:
-                    errorView
-                case .empty:
-                    emptyView
-                }
-            default:
-                switch projectHistoryModel.state {
-                case .loading:
-                    loadingChanges
-                case .success:
-                    commitHistoryList()
-                case .error:
-                    errorView
-                case .empty:
-                    emptyView
-                }
+            switch projectHistoryModel.state {
+            case .loading:
+                loadingChanges
+            case .success:
+                commitHistoryList()
+            case .error:
+                errorView
+            case .empty:
+                emptyView
             }
         }
     }
@@ -158,7 +123,7 @@ struct ProjectCommitHistoryView: View {
 
     private var emptyView: some View {
         VStack {
-            Text("Seems Like There Is No Commits In This Project")
+            Text("Seems Like There Is No Commits In This Project\(selectedSection == 0 ? "" : " and Timeframe")")
                 .font(.system(size: 16))
                 .foregroundColor(.secondary)
         }

@@ -49,7 +49,18 @@ import SwiftUI
      var projectHistory: [CommitHistory] = []
 
      @Published
-    var gitHistoryDate: CommitDate?
+     var gitHistoryDate: CommitDate? {
+         didSet {
+             DispatchQueue.main.async {
+                 self.state = .loading
+                 do {
+                     try self.reloadProjectHistory()
+                 } catch {
+                     Log.error("Failed to get commits")
+                 }
+             }
+         }
+     }
 
      init(workspace: WorkspaceDocument) {
          self.workspace = workspace
@@ -58,28 +69,33 @@ import SwiftUI
              self.state = .loading
          }
 
-         do {
-             let projectHistory = try getCommits(directoryURL: workspace.workspaceURL(),
-                                                 limit: 150,
-                                                 commitsSince: gitHistoryDate)
-
-             if projectHistory.isEmpty {
+         DispatchQueue.main.async {
+             do {
+                 try self.reloadProjectHistory()
+             } catch {
                  DispatchQueue.main.async {
                      self.state = .empty
                  }
-             }
 
-             DispatchQueue.main.async {
-                 self.state = .success
+                 self.projectHistory = []
              }
+         }
+     }
 
-             self.projectHistory = projectHistory
-         } catch {
+     func reloadProjectHistory() throws {
+         let projectHistory = try getCommits(directoryURL: workspace.workspaceURL(),
+                                             limit: 150,
+                                             commitsSince: gitHistoryDate)
+         if projectHistory.isEmpty {
              DispatchQueue.main.async {
                  self.state = .empty
              }
-
-             projectHistory = []
+         } else {
+             DispatchQueue.main.async {
+                 self.state = .success
+             }
          }
+
+         self.projectHistory = projectHistory
      }
  }
