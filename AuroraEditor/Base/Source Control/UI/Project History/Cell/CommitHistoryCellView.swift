@@ -9,16 +9,20 @@
 import SwiftUI
 
 struct CommitHistoryCellView: View {
+
+    @State
+    var commit: CommitHistory
+
     var body: some View {
         HStack {
-            Avatar().gitAvatar(authorEmail: "tihannicopaxton1@gmail.com")
+            Avatar().gitAvatar(authorEmail: commit.authorEmail)
 
             VStack(alignment: .leading, spacing: 3) {
-                Text("Nanashi Li")
+                Text(commit.author)
                     .font(.system(size: 11))
                     .fontWeight(.bold)
 
-                Text("Inspector: Added basic support for inspector (#470)")
+                Text(commit.message)
                     .font(.system(size: 11))
                     .lineLimit(1)
             }
@@ -27,7 +31,7 @@ struct CommitHistoryCellView: View {
 
             VStack {
                 VStack(alignment: .trailing, spacing: 3) {
-                    Text("e038595")
+                    Text(commit.hash)
                         .font(.system(size: 10))
                         .background(
                             RoundedRectangle(cornerRadius: 3)
@@ -37,7 +41,7 @@ struct CommitHistoryCellView: View {
                         )
                         .padding(.trailing, 5)
 
-                    Text("10 minutes ago")
+                    Text(commit.date.relativeStringToNow())
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
                 }
@@ -45,11 +49,5 @@ struct CommitHistoryCellView: View {
             }
         }
         .padding(.horizontal, 10)
-    }
-}
-
-struct CommitHistoryCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        CommitHistoryCellView()
     }
 }

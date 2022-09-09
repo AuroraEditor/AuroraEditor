@@ -74,7 +74,7 @@ public struct Remote {
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git remote get-url \(name)"
         )
 
-        return result
+        return result.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     /// Update the HEAD ref of the remote, which is the default branch.

@@ -13,11 +13,11 @@ struct ProjectCommitHistoryView: View {
     @ObservedObject
     var projectHistoryModel: ProjectCommitHistory
 
-    @State
-    private var selectedSection: Int = 0
+    @Environment(\.openURL)
+    private var openCommit
 
     @State
-    private var gitHistoryCount: Int = 0
+    private var selectedSection: Int = 0
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -35,46 +35,127 @@ struct ProjectCommitHistoryView: View {
 
             switch selectedSection {
             case 0:
-                debug("Selected All")
-                commitHistoryList(historyItems: 1998)
+                switch projectHistoryModel.state {
+                case .loading:
+                    loadingChanges
+                case .success:
+                    commitHistoryList()
+                case .error:
+                    errorView
+                case .empty:
+                    emptyView
+                }
             case 1:
-                debug("Selected Last 24 Hours")
-                commitHistoryList(historyItems: 24)
+                switch projectHistoryModel.state {
+                case .loading:
+                    loadingChanges
+                case .success:
+                    commitHistoryList()
+                case .error:
+                    errorView
+                case .empty:
+                    emptyView
+                }
             case 2:
-                debug("Selected Last 7 Days")
-                commitHistoryList(historyItems: 65)
+                switch projectHistoryModel.state {
+                case .loading:
+                    loadingChanges
+                case .success:
+                    commitHistoryList()
+                case .error:
+                    errorView
+                case .empty:
+                    emptyView
+                }
             case 3:
-                debug("Selected Last 30 Days")
-                commitHistoryList(historyItems: 220)
+                switch projectHistoryModel.state {
+                case .loading:
+                    loadingChanges
+                case .success:
+                    commitHistoryList()
+                case .error:
+                    errorView
+                case .empty:
+                    emptyView
+                }
             default:
-                debug("Selected All")
+                switch projectHistoryModel.state {
+                case .loading:
+                    loadingChanges
+                case .success:
+                    commitHistoryList()
+                case .error:
+                    errorView
+                case .empty:
+                    emptyView
+                }
             }
         }
     }
 
-    func commitHistoryList(historyItems: Int) -> some View {
+    private var loadingChanges: some View {
+        VStack {
+            Text("Loading Changes")
+                .font(.system(size: 16))
+                .foregroundColor(.secondary)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    func commitHistoryList() -> some View {
         List {
-            ForEach(projectHistoryModel.projectHistory) { _ in
-                CommitHistoryCellView()
+            ForEach(projectHistoryModel.projectHistory) { commit in
+                CommitHistoryCellView(commit: commit)
                     .contextMenu {
                         Group {
-                            Button("Copy Commit Message") {}
-                            Button("Copy Identifier") {}
-                            Button("Email Nanashi Li...") {}
+                            Button("Copy Commit Message") {
+                                let pasteboard = NSPasteboard.general
+                                pasteboard.clearContents()
+                                pasteboard.setString(commit.message, forType: .string)
+                            }
+                            Button("Copy Identifier") {}.disabled(true)
+                            Button("Email \(commit.author)...") {
+                                let service = NSSharingService(named: NSSharingService.Name.composeEmail)
+                                service?.recipients = [commit.authorEmail]
+                                service?.perform(withItems: [])
+                            }
                         }
                         Divider()
                         Group {
-                            Button("Tag \"e038595\"...") {}
-                            Button("New Branch from \"e038595\"...") {}
-                            Button("Cherry-Pick Tag \"e038595\"...") {}
+                            Button("Tag \"\(commit.hash)\"...") {}.disabled(true)
+                            Button("New Branch from \"\(commit.hash)\"...") {}.disabled(true)
+                            Button("Cherry-Pick Tag \"\(commit.hash)\"...") {}.disabled(true)
                         }
                         Divider()
-                        Button("View on Host...") {}
+                        Button("View on Host...") {
+                            if let commitRemoteURL = commit.commitBaseURL?.absoluteString {
+                                let commitURL = "\(commitRemoteURL)/\(commit.commitHash)"
+                                openCommit(URL(string: commitURL)!)
+                            }
+                        }
                         Divider()
-                        Button("Switch to \"e038595\"...") {}
+                        Button("Switch to \"\(commit.hash)\"...") {}.disabled(true)
                     }
             }
         }
         .listStyle(.plain)
+    }
+
+    private var errorView: some View {
+        VStack {
+            Text("Failed To Find Changes")
+                .font(.system(size: 16))
+                .foregroundColor(.secondary)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private var emptyView: some View {
+        VStack {
+            Text("Seems Like There Is No Commits In This Project")
+                .font(.system(size: 16))
+                .foregroundColor(.secondary)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

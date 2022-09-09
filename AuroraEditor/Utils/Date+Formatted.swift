@@ -46,7 +46,7 @@ public extension Date {
     func gitDateFormat(commitDate: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale.current
-        dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
+        dateFormatter.dateFormat = "E MMM dd HH:mm:ss yyyy Z"
         return dateFormatter.date(from: commitDate)
     }
 }

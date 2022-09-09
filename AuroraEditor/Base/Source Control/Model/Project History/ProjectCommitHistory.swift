@@ -15,6 +15,7 @@ import SwiftUI
          case loading
          case error
          case success
+         case empty
      }
 
      @Published
@@ -47,23 +48,38 @@ import SwiftUI
      @Published
      var projectHistory: [CommitHistory] = []
 
+     @Published
+    var gitHistoryDate: CommitDate?
+
      init(workspace: WorkspaceDocument) {
          self.workspace = workspace
 
+         DispatchQueue.main.async {
+             self.state = .loading
+         }
+
          do {
              let projectHistory = try getCommits(directoryURL: workspace.workspaceURL(),
-                                                 limit: 100)
+                                                 limit: 150,
+                                                 commitsSince: gitHistoryDate)
+
+             if projectHistory.isEmpty {
+                 DispatchQueue.main.async {
+                     self.state = .empty
+                 }
+             }
+
+             DispatchQueue.main.async {
+                 self.state = .success
+             }
+
              self.projectHistory = projectHistory
-
-             DispatchQueue.main.async {
-                 self.state = .success
-             }
          } catch {
-             projectHistory = []
-
              DispatchQueue.main.async {
-                 self.state = .success
+                 self.state = .empty
              }
+
+             projectHistory = []
          }
      }
  }
