@@ -108,15 +108,18 @@ public class GitClient: ObservableObject {
                     throw GitClientError.notGitRepository
                 }
                 return output
-            }.map { value -> CloneProgressResult in
+            }
+            .map { value -> CloneProgressResult in
                 return self.valueToProgress(value: value)
-            }.mapError {
+            }
+            .mapError {
                 if let error = $0 as? GitClientError {
                     return error
                 } else {
                     return GitClientError.outputError($0.localizedDescription)
                 }
-            }.eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
     }
 
     private func valueToProgress(value: String) -> CloneProgressResult {

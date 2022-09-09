@@ -9,6 +9,7 @@ import SwiftUI
 import Foundation
 import Combine
 
+// swiftlint:disable:next type_body_length
 public struct GitCloneView: View {
     let shellClient: ShellClient
     @Binding var isPresented: Bool
@@ -37,7 +38,10 @@ public struct GitCloneView: View {
     @State var arrayBranch: [String] = []
     @State var mainBranch: String = ""
     @State var selectedBranch: String = ""
-    @State private var showingSheet = false
+    @State private var showingSheetVerify = false
+    @State private var showingSheetSettings = false
+    @State private var showingSheetError = false
+    @State private var check = 0
 
     public init(
         shellClient: ShellClient,
@@ -75,12 +79,14 @@ public struct GitCloneView: View {
                 Text("Clone a repository")
                     .bold()
                     .padding(.bottom, 2)
+
                 Text("Enter a git repository URL:")
                     .font(.system(size: 11))
                     .foregroundColor(.secondary)
                     .alignmentGuide(.trailing) { context in
                         context[.trailing]
                     }
+
                 TextField("Git Repository URL", text: $repoUrlStr)
                     .lineLimit(1)
                     .padding(.bottom, 5)
@@ -88,20 +94,24 @@ public struct GitCloneView: View {
                     .onSubmit {
                         cloneRepository()
                     }
+
                 HStack {
                     Button("Cancel") {
                         cancelClone()
                     }
                     Button("Clone") {
-                        if let url = NSPasteboard.general.pasteboardItems?.first?.string(forType: .string) {
-                            if isValid(url: url) {
-                                showingSheet.toggle()
-                                getRemoteHead(url: url)
-                                getRemoteBranch(url: url)
-                            }
-                        }
-                    }.sheet(isPresented: $showingSheet) {
+                        check = 0
+                        showingSheetError = false
+                        showingSheetVerify = true
+                    }
+                    .sheet(isPresented: $showingSheetVerify) {
+                        progressVerifyView
+                    }
+                    .sheet(isPresented: $showingSheetSettings) {
                         selectView
+                    }
+                    .sheet(isPresented: $showingSheetError) {
+                        errorView
                     }
                     .keyboardShortcut(.defaultAction)
                     .disabled(!isValid(url: repoUrlStr))
@@ -118,18 +128,24 @@ public struct GitCloneView: View {
         .onAppear {
             self.checkClipboard(textFieldText: &repoUrlStr)
         }
-        .frame(height: 180)
     }
 
     func getRemoteHead(url: String) {
         do {
-            let branch = try Remote().getRemoteHead(url: url)
+            let branch = try Remote().getRemoteHEAD(url: url)
             Log.info(branch)
             if branch[0].contains("fatal:") {
                 Log.info("Error: getRemoteHead")
+                showingSheetError = true
             } else {
                 self.mainBranch = branch[0]
                 self.selectedBranch = branch[0]
+                self.check += 1
+                Log.info(check)
+                if check == 2 {
+                    showingSheetVerify = false
+                    showingSheetSettings = true
+                }
             }
         } catch {
             Log.error("Failed to find main branch name.")
@@ -142,8 +158,15 @@ public struct GitCloneView: View {
             Log.info(branches)
             if branches[0].contains("fatal:") {
                 Log.info("Error: getRemoteBranch")
+                showingSheetError = true
             } else {
                 self.arrayBranch = branches
+                self.check += 1
+                Log.info(check)
+                if check == 2 {
+                    showingSheetVerify = false
+                    showingSheetSettings = true
+                }
             }
         } catch {
             Log.error("Failed to find branches.")
@@ -160,7 +183,9 @@ public struct GitCloneView: View {
                 Text("Clone a repository")
                     .bold()
                     .padding(.bottom, 2)
+
                 Toggle("Clone all branches", isOn: $allBranches)
+
                 if  allBranches  && !arrayBranch.isEmpty {
                     Picker("Checkout", selection: $selectedBranch) {
                         ForEach(arrayBranch, id: \.self) {
@@ -168,6 +193,7 @@ public struct GitCloneView: View {
                         }
                     }
                 }
+
                 if  !allBranches  && !arrayBranch.isEmpty {
                     Picker("Branch", selection: $selectedBranch) {
                         ForEach(arrayBranch, id: \.self) {
@@ -175,9 +201,11 @@ public struct GitCloneView: View {
                         }
                     }
                 }
+
                 HStack {
                     Button("Cancel") {
-                        showingSheet.toggle()
+                        showingSheetSettings = false
+                        self.check = 0
                     }
                     Button("Clone") {
                         cloneRepository()
@@ -195,6 +223,46 @@ public struct GitCloneView: View {
         .padding(.horizontal, 20)
         .padding(.bottom, 16)
         .frame(width: 400, height: 180)
+    }
+
+    public var progressVerifyView: some View {
+        HStack {
+            Image(nsImage: NSApp.applicationIconImage)
+                .resizable()
+                .frame(width: 64, height: 64)
+                .padding(.bottom, 50)
+            VStack(alignment: .leading) {
+                Text("Verifying \""+repoUrlStr+"\"")
+                    .bold()
+                    .padding(.bottom, 2)
+
+                Text("Preparing to clone...")
+                    .font(.system(size: 11))
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.leading)
+
+                ProgressView()
+                    .progressViewStyle(LinearProgressViewStyle())
+
+                HStack {
+                    Button("Cancel") {
+                        showingSheetVerify = false
+                    }
+                }
+                .offset(x: 315)
+                .alignmentGuide(.leading) { context in
+                    context[.leading]
+                }
+            }
+        }
+        .padding(.top, 20)
+        .padding(.horizontal, 20)
+        .padding(.bottom, 16)
+        .frame(width: 500, height: 150)
+        .onAppear {
+            getRemoteHead(url: repoUrlStr)
+            getRemoteBranch(url: repoUrlStr)
+        }
     }
 
     public var progressView: some View {
@@ -226,6 +294,34 @@ public struct GitCloneView: View {
             .offset(x: 315)
             .alignmentGuide(.leading) { context in
                 context[.leading]
+            }
+        }
+        .padding(.top, 20)
+        .padding(.horizontal, 20)
+        .padding(.bottom, 16)
+    }
+
+    public var errorView: some View {
+        HStack {
+            Image(nsImage: NSApp.applicationIconImage)
+                .resizable()
+                .frame(width: 64, height: 64)
+                .padding(.bottom, 50)
+            VStack(alignment: .leading) {
+                Text("Error")
+                    .bold()
+                    .padding(.bottom, 2)
+
+                HStack {
+                    Button("Cancel") {
+                        showingSheetVerify = false
+                        showingSheetSettings = false
+                        showingSheetError = false
+                        check = 0
+                    }.keyboardShortcut(.defaultAction)
+                }.alignmentGuide(.leading) { context in
+                    context[.leading]
+                }
             }
         }
         .padding(.top, 20)
