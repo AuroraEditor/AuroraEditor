@@ -530,6 +530,8 @@
 		934D2F0328C4A5690034E5C8 /* GitClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D2F0228C4A5690034E5C8 /* GitClientError.swift */; };
 		934D2F0828C4EC7E0034E5C8 /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D2F0728C4EC7E0034E5C8 /* StatusItem.swift */; };
 		934D2F0A28C591FD0034E5C8 /* GeneralPreferencesViewSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D2F0928C591FD0034E5C8 /* GeneralPreferencesViewSections.swift */; };
+		9352467A28CB16A200E38DAD /* ProjectNavigatorOutlineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9352467928CB16A200E38DAD /* ProjectNavigatorOutlineDelegate.swift */; };
+		9352467C28CB2EB700E38DAD /* ProjectNavigatorOutlineDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9352467B28CB2EB700E38DAD /* ProjectNavigatorOutlineDataSource.swift */; };
 		93532A7E28C736AA007588B4 /* DockProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93532A7D28C736AA007588B4 /* DockProgress.swift */; };
 		9354D4B328ACEDDE004C6D18 /* RepositoriesWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354D4B228ACEDDE004C6D18 /* RepositoriesWrapperView.swift */; };
 		9354D4B528ACEDEF004C6D18 /* RepositoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354D4B428ACEDEF004C6D18 /* RepositoriesViewController.swift */; };
@@ -1137,6 +1139,8 @@
 		934D2F0228C4A5690034E5C8 /* GitClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitClientError.swift; sourceTree = "<group>"; };
 		934D2F0728C4EC7E0034E5C8 /* StatusItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
 		934D2F0928C591FD0034E5C8 /* GeneralPreferencesViewSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewSections.swift; sourceTree = "<group>"; };
+		9352467928CB16A200E38DAD /* ProjectNavigatorOutlineDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorOutlineDelegate.swift; sourceTree = "<group>"; };
+		9352467B28CB2EB700E38DAD /* ProjectNavigatorOutlineDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorOutlineDataSource.swift; sourceTree = "<group>"; };
 		93532A7D28C736AA007588B4 /* DockProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockProgress.swift; sourceTree = "<group>"; };
 		9354D4B228ACEDDE004C6D18 /* RepositoriesWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesWrapperView.swift; sourceTree = "<group>"; };
 		9354D4B428ACEDEF004C6D18 /* RepositoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesViewController.swift; sourceTree = "<group>"; };
@@ -2624,6 +2628,8 @@
 			children = (
 				2847019D27FDDF7600F87B6B /* ProjectNavigatorView.swift */,
 				285FEC6D27FE4B4A00E57D53 /* ProjectNavigatorViewController.swift */,
+				9352467928CB16A200E38DAD /* ProjectNavigatorOutlineDelegate.swift */,
+				9352467B28CB2EB700E38DAD /* ProjectNavigatorOutlineDataSource.swift */,
 				285FEC6F27FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift */,
 				285FEC7127FE4EEF00E57D53 /* ProjectNavigatorMenu.swift */,
 			);
@@ -3645,6 +3651,7 @@
 				2093CD17289AA079003A88DD /* TokenRouter.swift in Sources */,
 				2093CCA0289AA00B003A88DD /* WelcomeWindowView.swift in Sources */,
 				2093CD21289AA084003A88DD /* GithubUserRouter.swift in Sources */,
+				9352467C28CB2EB700E38DAD /* ProjectNavigatorOutlineDataSource.swift in Sources */,
 				D7E201AE27E8B3C000CB86D0 /* String+Ranges.swift in Sources */,
 				20EBB50F280C389300F3A5DA /* FileInspectorModel.swift in Sources */,
 				20BCB0C428AA9FFA0064C7C0 /* ManualConflictResolution.swift in Sources */,
@@ -3694,6 +3701,7 @@
 				2093CD65289AA0E8003A88DD /* CodeLanguage.swift in Sources */,
 				20E8748E28A3AB9B002CE758 /* SourceControlMenu.swift in Sources */,
 				2093CD15289AA054003A88DD /* GitClient.swift in Sources */,
+				9352467A28CB16A200E38DAD /* ProjectNavigatorOutlineDelegate.swift in Sources */,
 				2093CD5A289AA0C6003A88DD /* PluginRelease.swift in Sources */,
 				2093CDE9289AAE8B003A88DD /* StashWindowsChanges.swift in Sources */,
 				2093CC98289A9FF8003A88DD /* StatusBarDrawer.swift in Sources */,
