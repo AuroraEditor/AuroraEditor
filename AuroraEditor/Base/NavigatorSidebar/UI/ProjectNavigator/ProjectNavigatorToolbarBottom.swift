@@ -11,6 +11,9 @@ struct ProjectNavigatorToolbarBottom: View {
     @Environment(\.controlActiveState)
     private var activeState
 
+    @Environment(\.colorScheme)
+    private var colorScheme
+
     @ObservedObject
     var workspace: WorkspaceDocument
 
@@ -36,7 +39,7 @@ struct ProjectNavigatorToolbarBottom: View {
                 workspace.filter = $0
             })
             .padding(.vertical, 3)
-            .background(.ultraThinMaterial)
+            .background(colorScheme == .dark ? Color(hex: "#FFFFFF").opacity(0.1) : Color(hex: "#808080").opacity(0.2))
             .clipShape(RoundedRectangle(cornerRadius: 6))
             .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray, lineWidth: 0.5).cornerRadius(6))
             .padding(.trailing, 5)

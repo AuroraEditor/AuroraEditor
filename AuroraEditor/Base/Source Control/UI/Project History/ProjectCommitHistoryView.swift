@@ -21,14 +21,20 @@ struct ProjectCommitHistoryView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            SegmentedControl($selectedSection,
-                             options: ["All", "Last 24 Hours", "Last 7 Days", "Last 30 Days"],
-                             prominent: true)
-            .frame(maxWidth: .infinity)
-            .frame(height: 27)
-            .padding(.horizontal, 8)
-            .padding(.bottom, 2)
-            .padding(.top, 1)
+            HStack {
+                SegmentedControl($selectedSection,
+                                 options: ["All", "Last 24 Hours", "Last 7 Days", "Last 30 Days"],
+                                 prominent: true)
+                .frame(height: 27)
+                .padding(.horizontal, 8)
+                .padding(.bottom, 2)
+                .padding(.top, 1)
+
+                Spacer()
+
+                FilterCommitHistoryView()
+                    .frame(width: 300)
+            }
             .overlay(alignment: .bottom) {
                 Divider()
             }

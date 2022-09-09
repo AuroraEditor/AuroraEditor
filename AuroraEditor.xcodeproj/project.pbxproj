@@ -438,6 +438,7 @@
 		20D59CD228AFAAE400E3907B /* AccountItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D59CD128AFAAE400E3907B /* AccountItemView.swift */; };
 		20D839AB280DEB2900B27357 /* NoSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D839AA280DEB2900B27357 /* NoSelectionView.swift */; };
 		20D839AE280E0CA700B27357 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D839AD280E0CA700B27357 /* PopoverView.swift */; };
+		20D9E32C28CB68DE00FE3339 /* FilterCommitHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E32B28CB68DE00FE3339 /* FilterCommitHistoryView.swift */; };
 		20DF979B28ABA633009CE1E9 /* Rev-Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF979A28ABA633009CE1E9 /* Rev-Parse.swift */; };
 		20DF979F28ABAA72009CE1E9 /* RepositoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF979E28ABAA72009CE1E9 /* RepositoryModel.swift */; };
 		20DF97A128ABB30D009CE1E9 /* FileManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DF97A028ABB30D009CE1E9 /* FileManger.swift */; };
@@ -1046,6 +1047,7 @@
 		20D838FD289A7AD600D91D05 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		20D839AA280DEB2900B27357 /* NoSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSelectionView.swift; sourceTree = "<group>"; };
 		20D839AD280E0CA700B27357 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
+		20D9E32B28CB68DE00FE3339 /* FilterCommitHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCommitHistoryView.swift; sourceTree = "<group>"; };
 		20DF979A28ABA633009CE1E9 /* Rev-Parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rev-Parse.swift"; sourceTree = "<group>"; };
 		20DF979E28ABAA72009CE1E9 /* RepositoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryModel.swift; sourceTree = "<group>"; };
 		20DF97A028ABB30D009CE1E9 /* FileManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManger.swift; sourceTree = "<group>"; };
@@ -1405,6 +1407,7 @@
 			children = (
 				20752E4428CA54A000935487 /* Cell */,
 				20752E4228CA4E3100935487 /* ProjectCommitHistoryView.swift */,
+				20D9E32B28CB68DE00FE3339 /* FilterCommitHistoryView.swift */,
 			);
 			path = "Project History";
 			sourceTree = "<group>";
@@ -4078,6 +4081,7 @@
 				2B4C1350289D56F9000ED796 /* PixelAlign.swift in Sources */,
 				2093CD1B289AA079003A88DD /* BitbucketOAuthConfiguration.swift in Sources */,
 				2093CD3F289AA095003A88DD /* Project.swift in Sources */,
+				20D9E32C28CB68DE00FE3339 /* FilterCommitHistoryView.swift in Sources */,
 				20D839AB280DEB2900B27357 /* NoSelectionView.swift in Sources */,
 				209D0253289ABFB60082441F /* STTextView+Menu.swift in Sources */,
 				2093CDA5289AA170003A88DD /* GeneralPreferencesView.swift in Sources */,
