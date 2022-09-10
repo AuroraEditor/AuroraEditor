@@ -228,8 +228,7 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
 
     func outlineViewSelectionDidChange(_ notification: Notification) {
         let selectedIndex = outlineView.selectedRow
-        // swiftlint:disable:next unused_optional_binding
-        if let _ = outlineView.item(atRow: selectedIndex) as? RepoContainer {
+        if outlineView.item(atRow: selectedIndex) is RepoContainer {
             workspace?.openTab(item: ProjectCommitHistory(workspace: workspace!))
         } else if let selectedBranch = outlineView.item(atRow: selectedIndex) as? RepoBranch {
             Log.info("Clicked on \(selectedBranch)")

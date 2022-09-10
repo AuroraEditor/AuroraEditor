@@ -38,11 +38,11 @@ func getCommits(directoryURL: URL,
     if commitsSince != nil {
         switch commitsSince {
         case .lastDay:
-            args.append("--since=24.hours")
+            args.append("--since=\"24 hours ago\"")
         case .lastSevenDays:
-            args.append("--since=7.days")
+            args.append("--since=\"7 days ago\"")
         case .lastThirtyDays:
-            args.append("--since=30.days")
+            args.append("--since=\"30 days ago\"")
         case .none:
             return []
         }

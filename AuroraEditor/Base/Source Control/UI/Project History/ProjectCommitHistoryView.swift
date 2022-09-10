@@ -123,7 +123,7 @@ struct ProjectCommitHistoryView: View {
 
     private var emptyView: some View {
         VStack {
-            Text("Seems Like There Is No Commits In This Project\(selectedSection == 0 ? "" : " and Timeframe")")
+            Text("Seems Like There Is No Commits In This \(selectedSection == 0 ? "Project" : "Timeframe")")
                 .font(.system(size: 16))
                 .foregroundColor(.secondary)
         }
