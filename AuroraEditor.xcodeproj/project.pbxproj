@@ -529,12 +529,9 @@
 		2BD8A21428ACFA6D00282989 /* ShellClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8A21328ACFA6D00282989 /* ShellClient.swift */; };
 		2BE487EF28245162003F3F64 /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE487EE28245162003F3F64 /* FinderSync.swift */; };
 		2BE487F428245162003F3F64 /* OpenWithAuroraEditor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BE487EC28245162003F3F64 /* OpenWithAuroraEditor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */; };
+		2BF86A4228AF9EA400079705 /* AEExtensionKit in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */; };
 		2BF983FF289D8B3C004F1A60 /* SharedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF983FE289D8B3C004F1A60 /* SharedObjects.swift */; };
-		2BFB0D1628CCF7B30076348F /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFB0D1128CCF7B30076348F /* Target.swift */; };
-		2BFB0D1728CCF7B30076348F /* ExtensionManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFB0D1228CCF7B30076348F /* ExtensionManifest.swift */; };
-		2BFB0D1828CCF7B30076348F /* TargetsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFB0D1328CCF7B30076348F /* TargetsAPI.swift */; };
-		2BFB0D1928CCF7B30076348F /* ExtensionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFB0D1428CCF7B30076348F /* ExtensionAPI.swift */; };
-		2BFB0D1A28CCF7B30076348F /* ExtensionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFB0D1528CCF7B30076348F /* ExtensionInterface.swift */; };
 		6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */; };
 		9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */; };
 		932A313E28C9BD410084464F /* NewFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932A313D28C9BD410084464F /* NewFileModel.swift */; };
@@ -613,6 +610,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2BF86A4228AF9EA400079705 /* AEExtensionKit in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1150,11 +1148,6 @@
 		2BE487EE28245162003F3F64 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
 		2BE487F028245162003F3F64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BF983FE289D8B3C004F1A60 /* SharedObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedObjects.swift; sourceTree = "<group>"; };
-		2BFB0D1128CCF7B30076348F /* Target.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
-		2BFB0D1228CCF7B30076348F /* ExtensionManifest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionManifest.swift; sourceTree = "<group>"; };
-		2BFB0D1328CCF7B30076348F /* TargetsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetsAPI.swift; sourceTree = "<group>"; };
-		2BFB0D1428CCF7B30076348F /* ExtensionAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionAPI.swift; sourceTree = "<group>"; };
-		2BFB0D1528CCF7B30076348F /* ExtensionInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionInterface.swift; sourceTree = "<group>"; };
 		6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceDocument+Listeners.swift"; sourceTree = "<group>"; };
 		6CDA84AA284C0E4A00C1CC3A /* TabBarItemButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemButtonStyle.swift; sourceTree = "<group>"; };
 		6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContextMenu.swift; sourceTree = "<group>"; };
@@ -1226,6 +1219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				209D0246289AB9750082441F /* SwiftTerm in Frameworks */,
+				2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1552,7 +1546,6 @@
 		20D83712289A7A9200D91D05 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				2BFB0D0F28CCF7B30076348F /* AEExtensionKit */,
 				20752E3928CA4C1100935487 /* Source Control */,
 				20F8377628C7764700EAE842 /* Creation */,
 				93A753DE28B25A3800472A68 /* WebView */,
@@ -3161,26 +3154,6 @@
 			path = OpenWithAuroraEditor;
 			sourceTree = "<group>";
 		};
-		2BFB0D0F28CCF7B30076348F /* AEExtensionKit */ = {
-			isa = PBXGroup;
-			children = (
-				2BFB0D1028CCF7B30076348F /* Targets */,
-				2BFB0D1228CCF7B30076348F /* ExtensionManifest.swift */,
-				2BFB0D1328CCF7B30076348F /* TargetsAPI.swift */,
-				2BFB0D1428CCF7B30076348F /* ExtensionAPI.swift */,
-				2BFB0D1528CCF7B30076348F /* ExtensionInterface.swift */,
-			);
-			path = AEExtensionKit;
-			sourceTree = "<group>";
-		};
-		2BFB0D1028CCF7B30076348F /* Targets */ = {
-			isa = PBXGroup;
-			children = (
-				2BFB0D1128CCF7B30076348F /* Target.swift */,
-			);
-			path = Targets;
-			sourceTree = "<group>";
-		};
 		5C403B8D27E20F8000788241 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -3398,6 +3371,7 @@
 			name = AuroraEditor;
 			packageProductDependencies = (
 				209D0245289AB9750082441F /* SwiftTerm */,
+				2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */,
 			);
 			productName = CodeEdit;
 			productReference = B658FB2C27DA9E0F00EA4DBD /* AuroraEditor.app */;
@@ -3477,6 +3451,7 @@
 			mainGroup = B658FB2327DA9E0F00EA4DBD;
 			packageReferences = (
 				209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */,
+				2BE5EDAB28AE64A700C0A4AE /* XCRemoteSwiftPackageReference "AEExtensionKit" */,
 			);
 			productRefGroup = B658FB2D27DA9E0F00EA4DBD /* Products */;
 			projectDirPath = "";
@@ -3905,7 +3880,6 @@
 				20B5BDA528B130F300B2A02F /* SplitViewDropDelegate.swift in Sources */,
 				20F8378328C776FF00EAE842 /* FileCreationSelectionView.swift in Sources */,
 				200412EF280F3EAC00BCAF5C /* NoCommitHistoryView.swift in Sources */,
-				2BFB0D1728CCF7B30076348F /* ExtensionManifest.swift in Sources */,
 				20DF979F28ABAA72009CE1E9 /* RepositoryModel.swift in Sources */,
 				2B4C1354289D6457000ED796 /* STTextView+Select2.swift in Sources */,
 				043C321427E31FF6006AE443 /* AuroraEditorDocumentController.swift in Sources */,
@@ -4005,14 +3979,12 @@
 				204CD3E628AB87640003D082 /* Config.swift in Sources */,
 				2032B51028A256F50089EBB6 /* Array.swift in Sources */,
 				20BCB0BC28AA6AA10064C7C0 /* Diff.swift in Sources */,
-				2BFB0D1A28CCF7B30076348F /* ExtensionInterface.swift in Sources */,
 				2093CD91289AA130003A88DD /* NotificationView.swift in Sources */,
 				9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */,
 				285FEC7027FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift in Sources */,
 				20C8D7DC287ED2C700C5B3BA /* ToolbarBranchPicker.swift in Sources */,
 				20B6A20028AFE124004EC8D7 /* SettingsModel.swift in Sources */,
 				2093CD3E289AA095003A88DD /* GitlabUser.swift in Sources */,
-				2BFB0D1628CCF7B30076348F /* Target.swift in Sources */,
 				2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */,
 				20C22DB328BCEB4D004973CA /* Diff-Selection.swift in Sources */,
 				2B4C1337289D56F9000ED796 /* CompletionWindowController.swift in Sources */,
@@ -4044,7 +4016,6 @@
 				20752E4128CA4C6500935487 /* ProjectCommitHistory.swift in Sources */,
 				2093CD61289AA0E4003A88DD /* CodeEditorTextView.swift in Sources */,
 				2032B50E28A256130089EBB6 /* Collection.swift in Sources */,
-				2BFB0D1828CCF7B30076348F /* TargetsAPI.swift in Sources */,
 				286471AB27ED51FD0039369D /* ProjectNavigator.swift in Sources */,
 				2093CDC1289AA258003A88DD /* TabBarDocumentation.docc in Sources */,
 				209D0255289ABFCC0082441F /* STTextViewController.swift in Sources */,
@@ -4101,7 +4072,6 @@
 				2093CDC6289AA260003A88DD /* TabBarNative.swift in Sources */,
 				2093CDB2289AA19B003A88DD /* PreferenceAccountsView.swift in Sources */,
 				2093CDE7289AAE83003A88DD /* CheckoutBranchView.swift in Sources */,
-				2BFB0D1928CCF7B30076348F /* ExtensionAPI.swift in Sources */,
 				93F0066728A7574C0038E5B7 /* FileSystemClient.swift in Sources */,
 				2093CDC4289AA260003A88DD /* TabBarItemButtonStyle.swift in Sources */,
 				2093CD11289AA054003A88DD /* GitUIModel.swift in Sources */,
@@ -4669,6 +4639,14 @@
 				version = 1.0.7;
 			};
 		};
+		2BE5EDAB28AE64A700C0A4AE /* XCRemoteSwiftPackageReference "AEExtensionKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AuroraEditor/AEExtensionKit.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -4676,6 +4654,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */;
 			productName = SwiftTerm;
+		};
+		2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BE5EDAB28AE64A700C0A4AE /* XCRemoteSwiftPackageReference "AEExtensionKit" */;
+			productName = AEExtensionKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

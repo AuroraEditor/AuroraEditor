@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "AEExtensionKit",
+        "repositoryURL": "https://github.com/AuroraEditor/AEExtensionKit.git",
+        "state": {
+          "branch": "main",
+          "revision": "53577d52ad6db38b3543ff2a17acc533a0673b8c",
+          "version": null
+        }
+      },
+      {
         "package": "SwiftTerm",
         "repositoryURL": "https://github.com/migueldeicaza/SwiftTerm.git",
         "state": {
