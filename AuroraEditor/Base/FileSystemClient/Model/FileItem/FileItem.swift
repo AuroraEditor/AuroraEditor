@@ -39,9 +39,12 @@ public extension FileSystemClient {
         public var fileSystemClient: FileSystemClient?
 
         public func activateWatcher() -> Bool {
+            // check that there is watcher code and that opening the file succeeded
             guard let watcherCode = watcherCode else { return false }
             let descriptor = open(self.url.path, O_EVTONLY)
             guard descriptor > 0 else { return false }
+
+            // create the source
             let source = DispatchSource.makeFileSystemObjectSource(
                 fileDescriptor: descriptor,
                 eventMask: .write,
@@ -54,6 +57,10 @@ public extension FileSystemClient {
             source.setCancelHandler { close(descriptor) }
             source.resume()
             self.watcher = source
+
+            // reindex the current item, because the files in the item may have changed
+            // since the initial load on startup.
+            fileSystemClient?.reloadFromWatcher(sourceFileItem: self)
             return true
         }
 
