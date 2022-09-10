@@ -117,6 +117,10 @@ Please read the following for more information.
 * [Developer Guide](https://github.com/AuroraEditor/AuroraEditor/wiki/Developer-Guide)
 * [Troubeshooting Guide](https://github.com/AuroraEditor/AuroraEditor/wiki/Troubleshooting)
 
+## Slack
+
+Or join our Slack on https://join.slack.com/t/auroraeditor/shared_invite/zt-1fti1r72d-8mWmJsj279vDV~YdKhcUEA
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people:

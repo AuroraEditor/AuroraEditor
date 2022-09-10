@@ -183,6 +183,11 @@ struct WorkspaceView: View {
         .sheet(isPresented: $workspace.showStashChangesSheet) {
             StashChangesSheet(workspaceURL: workspace.workspaceURL())
         }
+        .sheet(isPresented: $workspace.showRenameBranchSheet) {
+            RenameBranchView(workspace: workspace,
+                             currentBranchName: workspace.currentlySelectedBranch,
+                             newBranchName: workspace.currentlySelectedBranch)
+        }
     }
 }
 

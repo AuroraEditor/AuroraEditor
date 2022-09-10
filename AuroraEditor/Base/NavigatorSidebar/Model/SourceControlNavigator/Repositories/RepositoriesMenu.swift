@@ -51,7 +51,7 @@ final class RepositoriesMenu: NSMenu {
 
         items = [
             menuItem("New Branch from \"\(branch.name)\"", action: nil),
-            menuItem("Rename \"\(branch.name)\"", action: nil),
+            menuItem("Rename \"\(branch.name)\"", action: #selector(renameBranch)),
             menuItem("Tag \"\(branch.name)\"", action: nil),
             menuItem("Switch...", action: item is RepoBranch ? #selector(switchToBranch(_:)) : nil),
             NSMenuItem.separator(),
@@ -73,6 +73,14 @@ final class RepositoriesMenu: NSMenu {
         guard let branch = item as? RepoBranch else { return }
         try? workspace?.fileSystemClient?.model?.gitClient.checkoutBranch(name: branch.name)
         self.outlineView.reloadData()
+    }
+
+    @objc
+    private func renameBranch() {
+        guard let branch = item as? RepoBranch else { return }
+
+        workspace?.currentlySelectedBranch = branch.name
+        workspace?.showRenameBranchSheet.toggle()
     }
 
     @objc
