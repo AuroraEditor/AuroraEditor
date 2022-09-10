@@ -20,6 +20,8 @@ public enum TabBarItemID: Codable, Identifiable, Hashable {
             return "webTab_\(url)"
         case .projectHistory(let project):
             return project
+        case .branchHistory(let branch):
+            return branch
         }
     }
 
@@ -33,4 +35,6 @@ public enum TabBarItemID: Codable, Identifiable, Hashable {
     case webTab(String)
 
     case projectHistory(String)
+
+    case branchHistory(String)
 }

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
- final class ProjectCommitHistory: Equatable, Identifiable, TabBarItemRepresentable, ObservableObject {
+final class ProjectCommitHistory: Equatable, Identifiable, TabBarItemRepresentable, ObservableObject {
 
      /// The state of the current Project Commit History View
      enum State {

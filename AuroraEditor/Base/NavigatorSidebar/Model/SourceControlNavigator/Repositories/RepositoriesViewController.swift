@@ -231,7 +231,8 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
         if outlineView.item(atRow: selectedIndex) is RepoContainer {
             workspace?.openTab(item: ProjectCommitHistory(workspace: workspace!))
         } else if let selectedBranch = outlineView.item(atRow: selectedIndex) as? RepoBranch {
-            Log.info("Clicked on \(selectedBranch)")
+            workspace?.openTab(item: BranchCommitHistory(workspace: workspace!,
+                                                         branchName: selectedBranch.name))
         }
     }
 
