@@ -89,6 +89,10 @@ struct WorkspaceView: View {
                 if let projectHistoryTab = workspace.selectionState.selected as? ProjectCommitHistory {
                     ProjectCommitHistoryView(projectHistoryModel: projectHistoryTab)
                 }
+            case .branchHistory:
+                if let branchHistoryTab = workspace.selectionState.selected as? BranchCommitHistory {
+                    BranchCommitHistoryView(branchCommitModel: branchHistoryTab)
+                }
             }
         } else {
             noEditor

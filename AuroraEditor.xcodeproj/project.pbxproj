@@ -73,6 +73,8 @@
 		20752E4B28CA665900935487 /* GitLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20752E4A28CA665900935487 /* GitLog.swift */; };
 		2076DF1128C9F0900031DDB1 /* Check.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2076DF1028C9F0900031DDB1 /* Check.swift */; };
 		2077162E287C8EC80069C68E /* ToolbarAppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077162D287C8EC80069C68E /* ToolbarAppInfo.swift */; };
+		207D295828CCDE4300D31530 /* BranchCommitHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207D295728CCDE4300D31530 /* BranchCommitHistoryView.swift */; };
+		207D295A28CCDEDC00D31530 /* BranchCommitHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207D295928CCDEDC00D31530 /* BranchCommitHistory.swift */; };
 		2086334F28A530AF00E29A22 /* CommitChangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2086334E28A530AF00E29A22 /* CommitChangesView.swift */; };
 		2093CC90289A9FEE003A88DD /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83722289A7ACD00D91D05 /* StatusBar.swift */; };
 		2093CC91289A9FF5003A88DD /* StatusBarIndentSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83726289A7ACD00D91D05 /* StatusBarIndentSelector.swift */; };
@@ -692,6 +694,8 @@
 		20752E4A28CA665900935487 /* GitLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitLog.swift; sourceTree = "<group>"; };
 		2076DF1028C9F0900031DDB1 /* Check.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Check.swift; sourceTree = "<group>"; };
 		2077162D287C8EC80069C68E /* ToolbarAppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarAppInfo.swift; sourceTree = "<group>"; };
+		207D295728CCDE4300D31530 /* BranchCommitHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCommitHistoryView.swift; sourceTree = "<group>"; };
+		207D295928CCDEDC00D31530 /* BranchCommitHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCommitHistory.swift; sourceTree = "<group>"; };
 		2086334E28A530AF00E29A22 /* CommitChangesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitChangesView.swift; sourceTree = "<group>"; };
 		2093CDE3289AA881003A88DD /* IgnoredFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredFiles.swift; sourceTree = "<group>"; };
 		209D024A289ABC340082441F /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; name = Package.resolved; path = ../Package.resolved; sourceTree = "<group>"; };
@@ -1408,6 +1412,7 @@
 				20752E4428CA54A000935487 /* Cell */,
 				20752E4228CA4E3100935487 /* ProjectCommitHistoryView.swift */,
 				20D9E32B28CB68DE00FE3339 /* FilterCommitHistoryView.swift */,
+				207D295728CCDE4300D31530 /* BranchCommitHistoryView.swift */,
 			);
 			path = "Project History";
 			sourceTree = "<group>";
@@ -1430,6 +1435,7 @@
 			isa = PBXGroup;
 			children = (
 				20752E4028CA4C6500935487 /* ProjectCommitHistory.swift */,
+				207D295928CCDEDC00D31530 /* BranchCommitHistory.swift */,
 			);
 			path = "Project History";
 			sourceTree = "<group>";
@@ -4070,6 +4076,7 @@
 				93F73D0D28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift in Sources */,
 				2B4C1351289D56F9000ED796 /* CoalescingUndoManager.swift in Sources */,
 				9C3E1A07284E8E020042BEC0 /* WelcomeModuleExtensions.swift in Sources */,
+				207D295828CCDE4300D31530 /* BranchCommitHistoryView.swift in Sources */,
 				2093CDBA289AA1AF003A88DD /* PreferencesPlaceholderView.swift in Sources */,
 				932A313E28C9BD410084464F /* NewFileModel.swift in Sources */,
 				2093CD68289AA0F2003A88DD /* BreadcrumbsComponent.swift in Sources */,
@@ -4101,6 +4108,7 @@
 				2B4C132C289D56F9000ED796 /* STTextView+Undo.swift in Sources */,
 				2093CD9B289AA14F003A88DD /* TextEditingPreferences.swift in Sources */,
 				2B4C1336289D56F9000ED796 /* STTextView+NSUserInterfaceValidations.swift in Sources */,
+				207D295A28CCDEDC00D31530 /* BranchCommitHistory.swift in Sources */,
 				2076DF1128C9F0900031DDB1 /* Check.swift in Sources */,
 				2093CDA8289AA179003A88DD /* PreferenceSourceControlView.swift in Sources */,
 				2093CDDD289AA51D003A88DD /* AuroraEditorKeychainConstants.swift in Sources */,
