@@ -546,6 +546,7 @@
 		9354D4BB28AD2872004C6D18 /* StandardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354D4BA28AD2872004C6D18 /* StandardTableViewCell.swift */; };
 		935EB99C28A8F26900E8F798 /* FileSystemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935EB99B28A8F26900E8F798 /* FileSystemTableViewCell.swift */; };
 		936312E728CCC7AE004CD24B /* TabBarItemIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936312E628CCC7AE004CD24B /* TabBarItemIcon.swift */; };
+		936312EA28CCCAD9004CD24B /* TabBarAccessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936312E928CCCAD9004CD24B /* TabBarAccessories.swift */; };
 		93672E8528B2684F0086132E /* ToolbarPlusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93672E8428B2684F0086132E /* ToolbarPlusMenu.swift */; };
 		939C109528AE7D0700403A97 /* RepositoryContainers&Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */; };
 		939C2CC6289E345900BBB345 /* FileItemFileSystemFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */; };
@@ -1162,6 +1163,7 @@
 		9354D4BA28AD2872004C6D18 /* StandardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardTableViewCell.swift; sourceTree = "<group>"; };
 		935EB99B28A8F26900E8F798 /* FileSystemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemTableViewCell.swift; sourceTree = "<group>"; };
 		936312E628CCC7AE004CD24B /* TabBarItemIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemIcon.swift; sourceTree = "<group>"; };
+		936312E928CCCAD9004CD24B /* TabBarAccessories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAccessories.swift; sourceTree = "<group>"; };
 		93672E8428B2684F0086132E /* ToolbarPlusMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarPlusMenu.swift; sourceTree = "<group>"; };
 		939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoryContainers&Items.swift"; sourceTree = "<group>"; };
 		939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileItemFileSystemFunctions.swift; sourceTree = "<group>"; };
@@ -2589,7 +2591,7 @@
 				6CDA84AA284C0E4A00C1CC3A /* TabBarItemButtonStyle.swift */,
 				6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */,
 				936312E528CCC795004CD24B /* TabBarItem */,
-				287776E827E34BC700D46668 /* TabBar.swift */,
+				936312E828CCCAC4004CD24B /* TabBar */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -3161,6 +3163,15 @@
 				936312E628CCC7AE004CD24B /* TabBarItemIcon.swift */,
 			);
 			path = TabBarItem;
+			sourceTree = "<group>";
+		};
+		936312E828CCCAC4004CD24B /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				287776E827E34BC700D46668 /* TabBar.swift */,
+				936312E928CCCAD9004CD24B /* TabBarAccessories.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		939C2CC4289E341F00BBB345 /* FileItem */ = {
@@ -4068,6 +4079,7 @@
 				2093CDE7289AAE83003A88DD /* CheckoutBranchView.swift in Sources */,
 				93F0066728A7574C0038E5B7 /* FileSystemClient.swift in Sources */,
 				2093CDC4289AA260003A88DD /* TabBarItemButtonStyle.swift in Sources */,
+				936312EA28CCCAD9004CD24B /* TabBarAccessories.swift in Sources */,
 				2093CD11289AA054003A88DD /* GitUIModel.swift in Sources */,
 				2093CDD0289AA503003A88DD /* String+RemoveOccurrences.swift in Sources */,
 				93A753E028B25A4C00472A68 /* WebTab.swift in Sources */,
