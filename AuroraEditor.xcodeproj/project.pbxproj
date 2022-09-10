@@ -73,6 +73,7 @@
 		20752E4B28CA665900935487 /* GitLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20752E4A28CA665900935487 /* GitLog.swift */; };
 		2076DF1128C9F0900031DDB1 /* Check.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2076DF1028C9F0900031DDB1 /* Check.swift */; };
 		2077162E287C8EC80069C68E /* ToolbarAppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077162D287C8EC80069C68E /* ToolbarAppInfo.swift */; };
+		207D295D28CCE72F00D31530 /* RenameBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207D295C28CCE72F00D31530 /* RenameBranchView.swift */; };
 		2086334F28A530AF00E29A22 /* CommitChangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2086334E28A530AF00E29A22 /* CommitChangesView.swift */; };
 		2093CC90289A9FEE003A88DD /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83722289A7ACD00D91D05 /* StatusBar.swift */; };
 		2093CC91289A9FF5003A88DD /* StatusBarIndentSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83726289A7ACD00D91D05 /* StatusBarIndentSelector.swift */; };
@@ -692,6 +693,7 @@
 		20752E4A28CA665900935487 /* GitLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitLog.swift; sourceTree = "<group>"; };
 		2076DF1028C9F0900031DDB1 /* Check.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Check.swift; sourceTree = "<group>"; };
 		2077162D287C8EC80069C68E /* ToolbarAppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarAppInfo.swift; sourceTree = "<group>"; };
+		207D295C28CCE72F00D31530 /* RenameBranchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameBranchView.swift; sourceTree = "<group>"; };
 		2086334E28A530AF00E29A22 /* CommitChangesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitChangesView.swift; sourceTree = "<group>"; };
 		2093CDE3289AA881003A88DD /* IgnoredFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredFiles.swift; sourceTree = "<group>"; };
 		209D024A289ABC340082441F /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; name = Package.resolved; path = ../Package.resolved; sourceTree = "<group>"; };
@@ -1387,6 +1389,7 @@
 		20752E3A28CA4C1E00935487 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				207D295B28CCE72100D31530 /* Rename */,
 				20752E3E28CA4C3B00935487 /* Clone */,
 				20752E3D28CA4C3500935487 /* Stash */,
 				20752E3C28CA4C2800935487 /* Project History */,
@@ -1456,6 +1459,14 @@
 				20D8390F289A7F3F00D91D05 /* UI */,
 			);
 			path = Toolbar;
+			sourceTree = "<group>";
+		};
+		207D295B28CCE72100D31530 /* Rename */ = {
+			isa = PBXGroup;
+			children = (
+				207D295C28CCE72F00D31530 /* RenameBranchView.swift */,
+			);
+			path = Rename;
 			sourceTree = "<group>";
 		};
 		209D024F289ABF520082441F /* AuroraEditorTextView */ = {
@@ -3739,6 +3750,7 @@
 				2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */,
 				D7012EE827E757850001E1EF /* FindNavigator.swift in Sources */,
 				2B4C1343289D56F9000ED796 /* NSTextContentManager+Helpers.swift in Sources */,
+				207D295D28CCE72F00D31530 /* RenameBranchView.swift in Sources */,
 				2093CD17289AA079003A88DD /* TokenRouter.swift in Sources */,
 				2093CCA0289AA00B003A88DD /* WelcomeWindowView.swift in Sources */,
 				2093CD21289AA084003A88DD /* GithubUserRouter.swift in Sources */,
