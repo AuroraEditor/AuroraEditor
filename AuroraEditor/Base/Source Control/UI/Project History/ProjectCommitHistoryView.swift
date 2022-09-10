@@ -19,6 +19,9 @@ struct ProjectCommitHistoryView: View {
     @State
     private var selectedSection: Int = 0
 
+    @State
+    private var showInfoPopup: Bool = false
+
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -43,6 +46,17 @@ struct ProjectCommitHistoryView: View {
                 })
 
                 Spacer()
+
+                switch projectHistoryModel.state {
+                case .loading:
+                    EmptyView()
+                case .success:
+                    showCommitDetails
+                case .error:
+                    EmptyView()
+                case .empty:
+                    EmptyView()
+                }
 
                 FilterCommitHistoryView()
                     .frame(width: 300)
@@ -73,7 +87,7 @@ struct ProjectCommitHistoryView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
-    func commitHistoryList() -> some View {
+    private func commitHistoryList() -> some View {
         List {
             ForEach(projectHistoryModel.projectHistory) { commit in
                 CommitHistoryCellView(commit: commit)
@@ -128,5 +142,27 @@ struct ProjectCommitHistoryView: View {
                 .foregroundColor(.secondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private var showCommitDetails: some View {
+        HStack {
+            Button {
+                showInfoPopup.toggle()
+            } label: {
+                Image(systemName: "info.circle")
+                    .foregroundColor(.secondary)
+            }
+            .popover(isPresented: $showInfoPopup) {
+                Text("We limit the amount of items that is shown in the commit list to improve performance")
+                    .frame(width: 150)
+                    .padding()
+            }
+            .buttonStyle(.plain)
+
+            Text("\(projectHistoryModel.projectHistory.count) commits found.")
+                .font(.system(size: 11))
+                .foregroundColor(.secondary)
+        }
+        .padding(.horizontal)
     }
 }
