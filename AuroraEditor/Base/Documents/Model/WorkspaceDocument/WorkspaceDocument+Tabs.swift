@@ -30,6 +30,9 @@ extension WorkspaceDocument {
             case .webTab:
                 guard let webTab = item as? WebTab else { return }
                 self.openWebTab(item: webTab)
+            case .projectHistory:
+                guard let projectCommitHistoryTab = item as? ProjectCommitHistory else { return }
+                self.openProjectCommitHistory(item: projectCommitHistoryTab)
             }
 
         } catch let err {
@@ -84,6 +87,10 @@ extension WorkspaceDocument {
         selectionState.openedWebTabs.append(item)
     }
 
+    private func openProjectCommitHistory(item: ProjectCommitHistory) {
+        selectionState.openedProjectCommitHistory.append(item)
+    }
+
     // MARK: Close Tabs
 
     /// Closes single tab
@@ -108,6 +115,9 @@ extension WorkspaceDocument {
         case .webTab:
             guard let item = selectionState.getItemByTab(id: id) as? WebTab else { return }
             closeWebTab(item: item)
+        case .projectHistory:
+            guard let item = selectionState.getItemByTab(id: id) as? ProjectCommitHistory else { return }
+            closeProjectCommitHistoryTab(item: item)
         }
 
         if selectionState.openedTabs.isEmpty {
@@ -169,6 +179,10 @@ extension WorkspaceDocument {
             guard let item = selectionState.getItemByTab(id: id)
                     as? WebTab else { return }
             closeWebTab(item: item)
+        case .projectHistory:
+            guard let item = selectionState.getItemByTab(id: id)
+                    as? ProjectCommitHistory else { return }
+            closeProjectCommitHistoryTab(item: item)
         }
 
         guard let openFileItemIdx = selectionState
@@ -197,6 +211,11 @@ extension WorkspaceDocument {
     private func closeWebTab(item: WebTab) {
         guard let idx = selectionState.openedWebTabs.firstIndex(of: item) else { return }
         selectionState.openedWebTabs.remove(at: idx)
+    }
+
+    private func closeProjectCommitHistoryTab(item: ProjectCommitHistory) {
+        guard let idx = selectionState.openedProjectCommitHistory.firstIndex(of: item) else { return }
+        selectionState.openedProjectCommitHistory.remove(at: idx)
     }
 
     /// Makes the temporary tab permanent when a file save or edit happens.

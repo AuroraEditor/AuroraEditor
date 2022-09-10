@@ -85,6 +85,10 @@ struct WorkspaceView: View {
                 if let webTab = workspace.selectionState.selected as? WebTab {
                     WebTabView(webTab: webTab)
                 }
+            case .projectHistory:
+                if let projectHistoryTab = workspace.selectionState.selected as? ProjectCommitHistory {
+                    ProjectCommitHistoryView(projectHistoryModel: projectHistoryTab)
+                }
             }
         } else {
             noEditor

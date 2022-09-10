@@ -25,6 +25,8 @@ struct WorkspaceSelectionState: Codable {
 
     var openedWebTabs: [WebTab] = []
 
+    var openedProjectCommitHistory: [ProjectCommitHistory] = []
+
     enum CodingKeys: String, CodingKey {
         case selectedId, openedTabs, temporaryTab, openedExtensions, openedWebTabs
     }
@@ -65,6 +67,10 @@ struct WorkspaceSelectionState: Codable {
             }
         case .webTab:
             return self.openedWebTabs.first { item in
+                item.tabID == id
+            }
+        case .projectHistory:
+            return self.openedProjectCommitHistory.first { item in
                 item.tabID == id
             }
         }
