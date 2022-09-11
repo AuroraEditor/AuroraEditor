@@ -42,11 +42,9 @@ extension ProjectNavigatorViewController: NSOutlineViewDelegate {
         // when the + button is clicked to create a new file.
         workspace?.newFileModel.outlineViewSelection = navigatorItem
 
-        if !(workspace?.selectionState.openedTabs.contains(navigatorItem.tabID) ?? false) {
-            if navigatorItem.children == nil && shouldSendSelectionUpdate {
-                workspace?.openTab(item: navigatorItem)
-                Log.info("Opened a new tab for: \(navigatorItem.url)")
-            }
+        if !navigatorItem.isFolder && shouldSendSelectionUpdate {
+            workspace?.openTab(item: navigatorItem)
+            Log.info("Opened a new tab for: \(navigatorItem.url)")
         }
     }
 

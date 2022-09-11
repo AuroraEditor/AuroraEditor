@@ -183,6 +183,8 @@ struct TabBar: View {
                                             tabWidth: $tabWidth
                                         )
                                     )
+                                } else {
+                                    Text("Unknown Item")
                                 }
                             }
                         }
@@ -201,7 +203,7 @@ struct TabBar: View {
                             scrollReader.scrollTo(selectedId)
                         }
                         // When tabs are changing, re-compute the expected tab width.
-                        .onChange(of: workspace.selectionState.openedTabs.count) { _ in
+                        .onChange(of: workspace.selectionState.openedTabs) { _ in
                             openedTabs = workspace.selectionState.openedTabs
                             updateForTabCountChange(geometryProxy: geometryProxy)
                         }
