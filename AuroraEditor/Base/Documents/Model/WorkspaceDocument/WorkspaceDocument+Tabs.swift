@@ -30,13 +30,14 @@ extension WorkspaceDocument {
             case .projectHistory:
                 guard let projectCommitHistoryTab = item as? ProjectCommitHistory else { return }
                 self.openProjectCommitHistory(item: projectCommitHistoryTab)
+            case .branchHistory:
+                guard let branchCommitHistoryTab = item as? BranchCommitHistory else { return }
+                self.openBranchCommitHistory(item: branchCommitHistoryTab)
             }
         }
         updateNewlyOpenedTabs(item: item)
         // select the tab
         selectionState.selectedId = item.tabID
-        Log.info("Currently open tabs: \(selectionState.openedTabs)")
-        Log.info("Selected tab: \(selectionState.selectedId)")
     }
 
     /// Updates the opened tabs and temporary tab.
