@@ -19,6 +19,7 @@ public struct CommitHistory: Equatable, Hashable, Identifiable {
     public let commiterEmail: String
     public let remoteURL: URL?
     public let date: Date
+    public let isMerge: Bool?
 
     public var commitBaseURL: URL? {
         if let remoteURL = remoteURL {
