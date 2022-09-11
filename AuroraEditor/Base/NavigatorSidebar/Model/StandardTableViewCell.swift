@@ -24,7 +24,7 @@ class StandardTableViewCell: NSTableCellView {
 
     private let prefs = AppPreferencesModel.shared.preferences.general
 
-    /// Initializes the `OutlineTableViewCell` with an `icon` and `label`
+    /// Initializes the `TableViewCell` with an `icon` and `label`
     /// Both the icon and label will be colored, and sized based on the user's preferences.
     /// - Parameters:
     ///   - frameRect: The frame of the cell.

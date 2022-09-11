@@ -562,6 +562,7 @@
 		93D5F5D328CE064700286EBD /* TabHierarchyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F5D228CE064700286EBD /* TabHierarchyView.swift */; };
 		93D5F5D528CE074100286EBD /* TabHierarchyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F5D428CE074000286EBD /* TabHierarchyViewController.swift */; };
 		93D5F5D728CE0EF500286EBD /* TabHierarchyMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F5D628CE0EF500286EBD /* TabHierarchyMenu.swift */; };
+		93D5F5D928CE123200286EBD /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F5D828CE123200286EBD /* TextTableViewCell.swift */; };
 		93DD4FF328AFD0F100B664D4 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */; };
 		93EF415C28C1D21E004083AD /* CommandPaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF415B28C1D21E004083AD /* CommandPaletteView.swift */; };
 		93EF415F28C1D2DB004083AD /* CommandPaletteState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF415E28C1D2DB004083AD /* CommandPaletteState.swift */; };
@@ -1185,6 +1186,7 @@
 		93D5F5D228CE064700286EBD /* TabHierarchyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyView.swift; sourceTree = "<group>"; };
 		93D5F5D428CE074000286EBD /* TabHierarchyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyViewController.swift; sourceTree = "<group>"; };
 		93D5F5D628CE0EF500286EBD /* TabHierarchyMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyMenu.swift; sourceTree = "<group>"; };
+		93D5F5D828CE123200286EBD /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
 		93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		93EF415B28C1D21E004083AD /* CommandPaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteView.swift; sourceTree = "<group>"; };
 		93EF415E28C1D2DB004083AD /* CommandPaletteState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteState.swift; sourceTree = "<group>"; };
@@ -2712,6 +2714,7 @@
 				93D5F5D128CE060A00286EBD /* HierarchyNavigator */,
 				935EB99B28A8F26900E8F798 /* FileSystemTableViewCell.swift */,
 				9354D4BA28AD2872004C6D18 /* StandardTableViewCell.swift */,
+				93D5F5D828CE123200286EBD /* TextTableViewCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4059,6 +4062,7 @@
 				20752E4628CA54B200935487 /* CommitHistoryCellView.swift in Sources */,
 				2093CC96289A9FF5003A88DD /* StatusBarCursorLocationLabel.swift in Sources */,
 				2093CD95289AA13F003A88DD /* AppPreferencesModel.swift in Sources */,
+				93D5F5D928CE123200286EBD /* TextTableViewCell.swift in Sources */,
 				20BCB0C628AAA1C00064C7C0 /* GitCommit.swift in Sources */,
 				04C3254B27FF23B000C8DA2D /* ExtensionNavigatorData.swift in Sources */,
 				2093CDD2289AA507003A88DD /* SwiftTerm+Color+Init.swift in Sources */,

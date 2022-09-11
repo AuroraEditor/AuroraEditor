@@ -96,22 +96,62 @@ class TabHierarchyViewController: NSViewController {
 extension TabHierarchyViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         // TODO: Number of children
-        if item == nil {
+        if let item = item {
+            // number of children for an item
+            if let itemCategory = item as? TabHierarchyCategory { // if the item is a header
+                switch itemCategory {
+                case .savedTabs:
+                    return 0
+                case .openTabs:
+                    return workspace?.selectionState.openedTabs.count ?? 0
+                case .unknown:
+                    return 0
+                }
+            } else {
+                // the child is a tab. In the future might want to support nested tabs.
+                return 0
+            }
+        } else {
             // number of children in root view
-            return 0
+            // one for the tabs in the hierarchy, one for the currently open tabs
+            return 2
         }
-        // number of children for item
-        return 0
     }
 
     // TODO: Return the child at index of item
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
+        if item == nil {
+            switch index {
+            case 0:
+                return TabHierarchyCategory.savedTabs
+            case 1:
+                return TabHierarchyCategory.openTabs
+            default:
+                return TabHierarchyCategory.unknown
+            }
+        } else if let itemCategory = item as? TabHierarchyCategory {
+            // TODO: return the appropriate tab
+            switch itemCategory {
+            case .savedTabs:
+                break
+            case .openTabs:
+                if let itemTab = workspace?.selectionState.openedTabs[index] {
+                    return itemTab
+                }
+            case .unknown:
+                break
+            }
+        }
         return 0
     }
 
     // TODO: Return if a certain item is expandable
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        return false
+        if item is TabHierarchyCategory { // if it is a header, return true
+            return true
+        } else {
+            return false
+        }
     }
 }
 
@@ -131,10 +171,25 @@ extension TabHierarchyViewController: NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView,
                      viewFor tableColumn: NSTableColumn?,
                      item: Any) -> NSView? {
-//        guard let tableColumn = tableColumn else { return nil }
+        guard let tableColumn = tableColumn else { return nil }
 
-//        let frameRect = NSRect(x: 0, y: 0, width: tableColumn.width, height: rowHeight)
-
+        let frameRect = NSRect(x: 0, y: 0, width: tableColumn.width, height: rowHeight)
+        if let itemCategory = item as? TabHierarchyCategory { // header items
+            var itemText = ""
+            switch itemCategory {
+            case .savedTabs:
+                itemText = "Saved Tabs: 0"
+            case .openTabs:
+                itemText = "Open Tabs: \(workspace?.selectionState.openedTabs.count ?? 0)"
+            case .unknown:
+                itemText = "Unknown Category"
+            }
+            let textField = TextTableViewCell(frame: frameRect, isEditable: false, startingText: itemText)
+            return textField
+        } else if let itemTab = item as? TabBarItemID { // tab items
+            let textField = TextTableViewCell(frame: frameRect, isEditable: false, startingText: itemTab.id)
+            return textField
+        }
         return nil
     }
 
@@ -146,26 +201,14 @@ extension TabHierarchyViewController: NSOutlineViewDelegate {
 
     // TODO: Don't allow selecting a header
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
+        if item is TabHierarchyCategory {
+            return false
+        }
         return true
     }
 
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
         rowHeight // This can be changed to 20 to match Xcode's row height.
-    }
-
-    // TODO: Return item for persistent object
-    func outlineView(_ outlineView: NSOutlineView, itemForPersistentObject object: Any) -> Any? {
-        return nil
-//        guard let id = object as? Item.ID,
-//              let item = try? workspace?.fileSystemClient?.getFileItem(id) else { return nil }
-//        return item
-    }
-
-    // TODO: Return object for persistent item
-    func outlineView(_ outlineView: NSOutlineView, persistentObjectForItem item: Any?) -> Any? {
-        return nil
-//        guard let item = item as? Item else { return nil }
-//        return item.id
     }
 }
 
@@ -186,4 +229,10 @@ extension TabHierarchyViewController: NSMenuDelegate {
         }
         menu.update()
     }
+}
+
+enum TabHierarchyCategory {
+    case savedTabs
+    case openTabs
+    case unknown
 }
