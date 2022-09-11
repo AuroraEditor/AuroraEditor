@@ -15,32 +15,28 @@ extension WorkspaceDocument {
     /// Opens new tab
     /// - Parameter item: any item which can be represented as a tab
     func openTab(item: TabBarItemRepresentable) {
-        do {
-            // open the tab if it isn't already open
-            if !selectionState.openedTabs.contains(item.tabID) {
-                switch item.tabID {
-                case .codeEditor:
-                    guard let file = item as? FileSystemClient.FileItem else { return }
-                    try self.openFile(item: file)
-                case .extensionInstallation:
-                    guard let plugin = item as? Plugin else { return }
-                    self.openExtension(item: plugin)
-                case .webTab:
-                    guard let webTab = item as? WebTab else { return }
-                    self.openWebTab(item: webTab)
-                case .projectHistory:
-                    guard let projectCommitHistoryTab = item as? ProjectCommitHistory else { return }
-                    self.openProjectCommitHistory(item: projectCommitHistoryTab)
-                }
+        // open the tab if it isn't already open
+        if !selectionState.openedTabs.contains(item.tabID) {
+            switch item.tabID {
+            case .codeEditor:
+                guard let file = item as? FileSystemClient.FileItem else { return }
+                self.openFile(item: file)
+            case .extensionInstallation:
+                guard let plugin = item as? Plugin else { return }
+                self.openExtension(item: plugin)
+            case .webTab:
+                guard let webTab = item as? WebTab else { return }
+                self.openWebTab(item: webTab)
+            case .projectHistory:
+                guard let projectCommitHistoryTab = item as? ProjectCommitHistory else { return }
+                self.openProjectCommitHistory(item: projectCommitHistoryTab)
             }
-            updateNewlyOpenedTabs(item: item)
-            // select the tab
-            selectionState.selectedId = item.tabID
-            Log.info("Currently open tabs: \(selectionState.openedTabs)")
-            Log.info("Selected tab: \(selectionState.selectedId)")
-        } catch let err {
-            Log.error(err)
         }
+        updateNewlyOpenedTabs(item: item)
+        // select the tab
+        selectionState.selectedId = item.tabID
+        Log.info("Currently open tabs: \(selectionState.openedTabs)")
+        Log.info("Selected tab: \(selectionState.selectedId)")
     }
 
     /// Updates the opened tabs and temporary tab.
@@ -66,17 +62,23 @@ extension WorkspaceDocument {
         }
     }
 
-    private func openFile(item: FileSystemClient.FileItem) throws {
+    private func openFile(item: FileSystemClient.FileItem) {
         if !selectionState.openFileItems.contains(item) {
             selectionState.openFileItems.append(item)
         }
-        let pathExtention = item.url.pathExtension
-        let codeFile = try CodeFileDocument(
-            for: item.url,
-            withContentsOf: item.url,
-            ofType: pathExtention
-        )
-        selectionState.openedCodeFiles[item] = codeFile
+        DispatchQueue.main.async {
+            let pathExtention = item.url.pathExtension
+            do {
+                let codeFile = try CodeFileDocument(
+                    for: item.url,
+                    withContentsOf: item.url,
+                    ofType: pathExtention
+                )
+                self.selectionState.openedCodeFiles[item] = codeFile
+            } catch let err {
+                Log.error(err)
+            }
+        }
     }
 
     private func openExtension(item: Plugin) {

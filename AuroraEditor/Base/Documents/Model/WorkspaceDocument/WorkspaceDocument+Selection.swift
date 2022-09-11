@@ -58,10 +58,8 @@ struct WorkspaceSelectionState: Codable {
     func getItemByTab(id: TabBarItemID) -> TabBarItemRepresentable? {
         switch id {
         case .codeEditor:
-            Log.info("Looking for \(id)")
             return self.openFileItems.first { item in
-                Log.info("Item: \(item.tabID)")
-                return item.tabID == id
+                item.tabID == id
             }
         case .extensionInstallation:
             return self.openedExtensions.first { item in

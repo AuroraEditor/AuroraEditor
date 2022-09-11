@@ -74,6 +74,7 @@ struct WorkspaceView: View {
         if let tabID = workspace.selectionState.selectedId {
             switch tabID {
             case .codeEditor:
+                Text("Loading")
                 WorkspaceCodeFileView(windowController: windowController, workspace: workspace)
             case .extensionInstallation:
                 if let plugin = workspace.selectionState.selected as? Plugin {
