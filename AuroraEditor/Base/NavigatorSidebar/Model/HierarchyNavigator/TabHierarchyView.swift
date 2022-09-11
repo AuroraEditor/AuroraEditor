@@ -1,39 +1,34 @@
 //
-//  RepositoriesWrapperView.swift
+//  TabHierarchyView.swift
 //  AuroraEditor
 //
-//  Created by TAY KAI QUAN on 17/8/22.
+//  Created by TAY KAI QUAN on 11/9/22.
 //  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import SwiftUI
-import Combine
 
-/// Wraps a ``RepositoriesViewController`` inside a `NSViewControllerRepresentable`
-struct RepositoriesWrapperView: NSViewControllerRepresentable {
+/// Wraps a ``TabHierarchyViewController`` in a `NSViewControllerRepresentable`
+struct TabHierarchyView: NSViewControllerRepresentable {
 
     @StateObject
     var workspace: WorkspaceDocument
 
-    @State
-    var repository: RepositoryModel
-
     @StateObject
     var prefs: AppPreferencesModel = .shared
 
-    typealias NSViewControllerType = RepositoriesViewController
+    typealias NSViewControllerType = TabHierarchyViewController
 
-    func makeNSViewController(context: Context) -> RepositoriesViewController {
-        let controller = RepositoriesViewController()
+    func makeNSViewController(context: Context) -> TabHierarchyViewController {
+        let controller = TabHierarchyViewController()
         controller.workspace = workspace
-        controller.repository = repository
 
         context.coordinator.controller = controller
 
         return controller
     }
 
-    func updateNSViewController(_ nsViewController: RepositoriesViewController, context: Context) {
+    func updateNSViewController(_ nsViewController: TabHierarchyViewController, context: Context) {
         nsViewController.rowHeight = prefs.preferences.general.projectNavigatorSize.rowHeight
         nsViewController.updateSelection()
         return
@@ -49,12 +44,7 @@ struct RepositoriesWrapperView: NSViewControllerRepresentable {
             super.init()
         }
 
-        var listener: AnyCancellable?
         var workspace: WorkspaceDocument
-        var controller: RepositoriesViewController?
-
-        deinit {
-            listener?.cancel()
-        }
+        var controller: TabHierarchyViewController?
     }
 }
