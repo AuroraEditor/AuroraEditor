@@ -44,6 +44,81 @@ struct TabBar: View {
     @State
     var isHoveringOverTabs: Bool = false
 
+    /// This state is used to detect if the dragging type should be changed from DragGesture to OnDrag.
+    /// It is basically switched when vertical displacement is exceeding the threshold.
+    @State
+    var shouldOnDrag: Bool = false
+
+    /// Is current `onDrag` over tabs?
+    ///
+    /// When it is true, then the `onDrag` is over the tabs, then we leave the space for dragged tab.
+    /// When it is false, then the dragging cursor is outside the tab bar, then we should shrink the space.
+    ///
+    /// - TODO: The change of this state is overall incorrect. Should move it into workspace state.
+    @State
+    var isOnDragOverTabs: Bool = false
+
+    /// The last location of `onDrag`.
+    ///
+    /// It can be used on reordering algorithm of `onDrag` (detecting when should we switch two tabs).
+    @State
+    var onDragLastLocation: CGPoint?
+
+    /// The tab id of current dragging tab.
+    ///
+    /// It will be `nil` when there is no tab dragged currently.
+    @State
+    var draggingTabId: TabBarItemID?
+
+    @State
+    var onDragTabId: TabBarItemID?
+
+    /// The start location of dragging.
+    ///
+    /// When there is no tab being dragged, it will be `nil`.
+    /// - TODO: Check if I can use `value.startLocation` trustfully.
+    @State
+    var draggingStartLocation: CGFloat?
+
+    /// The last location of dragging.
+    ///
+    /// This is used to determine the dragging direction.
+    /// - TODO: Check if I can use `value.translation` instead.
+    @State
+    var draggingLastLocation: CGFloat?
+
+    /// Current opened tabs.
+    ///
+    /// This is a copy of `workspace.selectionState.openedTabs`.
+    /// I am making a copy of it because using state will hugely improve the dragging performance.
+    /// Updating ObservedObject too often will generate lags.
+    @State
+    var openedTabs: [TabBarItemID] = []
+
+    /// A map of tab width.
+    ///
+    /// All width are measured dynamically (so it can also fit the Xcode tab bar style).
+    /// This is used to be added on the offset of current dragging tab in order to make a smooth
+    /// dragging experience.
+    @State
+    var tabWidth: [TabBarItemID: CGFloat] = [:]
+
+    /// A map of tab location (CGRect).
+    ///
+    /// All locations are measured dynamically.
+    /// This is used to compute when we should swap two tabs based on current cursor location.
+    @State
+    var tabLocations: [TabBarItemID: CGRect] = [:]
+
+    /// A map of tab offsets.
+    ///
+    /// This is used to determine the tab offset of every tab (by their tab id) while dragging.
+    @State
+    var tabOffsets: [TabBarItemID: CGFloat] = [:]
+
+    /// Update the expected tab width when corresponding UI state is updated.
+    ///
+    /// This function will be called when the number of tabs or the parent size is changed.
     private func updateExpectedTabWidth(proxy: GeometryProxy) {
         expectedTabWidth = max(
             // Equally divided size of a native tab.
@@ -78,7 +153,7 @@ struct TabBar: View {
                             alignment: .center,
                             spacing: -1
                         ) {
-                            ForEach(workspace.selectionState.openedTabs, id: \.id) { id in
+                            ForEach(openedTabs, id: \.id) { id in
                                 if let item = workspace.selectionState.getItemByTab(id: id) {
                                     TabBarItem(
                                         expectedWidth: $expectedTabWidth,
@@ -87,12 +162,37 @@ struct TabBar: View {
                                         workspace: workspace
                                     )
                                     .frame(height: TabBar.height)
+                                    .background(makeTabItemGeometryReader(id: id))
+                                    // TODO: Detect the onDrag outside of tab bar.
+                                    // When a tab is dragged out, we shrink the space of it.
+//                                    .padding(
+//                                        .trailing,
+//                                        !isOnDragOverTabs && onDragTabId == id ? (-tabWidth[id]! + 1) : 0
+//                                    )
+                                    .offset(x: tabOffsets[id] ?? 0, y: 0)
+                                    .highPriorityGesture(
+                                        makeTabDragGesture(id: id),
+                                        including: shouldOnDrag ? .subviews : .all
+                                    )
+                                    // Detect the drop action of each tab.
+                                    .onDrop(
+                                        of: [.utf8PlainText], // TODO: Make a unique type for it.
+                                        delegate: TabBarItemOnDropDelegate(
+                                            currentTabId: id,
+                                            openedTabs: $openedTabs,
+                                            onDragTabId: $onDragTabId,
+                                            onDragLastLocation: $onDragLastLocation,
+                                            isOnDragOverTabs: $isOnDragOverTabs,
+                                            tabWidth: $tabWidth
+                                        )
+                                    )
                                 }
                             }
                         }
                         // This padding is to hide dividers at two ends under the accessory view divider.
                         .padding(.horizontal, prefs.preferences.general.tabBarStyle == .native ? -1 : 0)
                         .onAppear {
+                            openedTabs = workspace.selectionState.openedTabs
                             // On view appeared, compute the initial expected width for tabs.
                             updateExpectedTabWidth(proxy: geometryProxy)
                             // On first tab appeared, jump to the corresponding position.
@@ -105,6 +205,7 @@ struct TabBar: View {
                         }
                         // When tabs are changing, re-compute the expected tab width.
                         .onChange(of: workspace.selectionState.openedTabs.count) { _ in
+                            openedTabs = workspace.selectionState.openedTabs
                             updateForTabCountChange(geometryProxy: geometryProxy)
                         }
                         .onChange(of: workspace.selectionState.temporaryTab, perform: { _ in

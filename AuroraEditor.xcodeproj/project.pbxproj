@@ -554,6 +554,7 @@
 		93A753E228B25E5000472A68 /* WebTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A753E128B25E5000472A68 /* WebTabView.swift */; };
 		93A753E428B25ECF00472A68 /* WebWKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A753E328B25ECF00472A68 /* WebWKView.swift */; };
 		93ACA43728C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACA43628C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift */; };
+		93B1D10C28CD907A005A8C24 /* TabBar+Drag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B1D10B28CD907A005A8C24 /* TabBar+Drag.swift */; };
 		93C43E8228B0DBF0002E23DC /* NavigatorSidebarToolbarLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C43E8128B0DBF0002E23DC /* NavigatorSidebarToolbarLeft.swift */; };
 		93CB9AE028C72BC20068074A /* GitCloneView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CB9ADF28C72BC20068074A /* GitCloneView+Helpers.swift */; };
 		93DD4FF328AFD0F100B664D4 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */; };
@@ -1171,6 +1172,7 @@
 		93A753E128B25E5000472A68 /* WebTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebTabView.swift; sourceTree = "<group>"; };
 		93A753E328B25ECF00472A68 /* WebWKView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebWKView.swift; sourceTree = "<group>"; };
 		93ACA43628C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuroraEditorWindowController+NSToolbarDelegate.swift"; sourceTree = "<group>"; };
+		93B1D10B28CD907A005A8C24 /* TabBar+Drag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBar+Drag.swift"; sourceTree = "<group>"; };
 		93C43E8128B0DBF0002E23DC /* NavigatorSidebarToolbarLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorSidebarToolbarLeft.swift; sourceTree = "<group>"; };
 		93CB9ADF28C72BC20068074A /* GitCloneView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GitCloneView+Helpers.swift"; sourceTree = "<group>"; };
 		93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
@@ -3169,6 +3171,7 @@
 			isa = PBXGroup;
 			children = (
 				287776E827E34BC700D46668 /* TabBar.swift */,
+				93B1D10B28CD907A005A8C24 /* TabBar+Drag.swift */,
 				936312E928CCCAD9004CD24B /* TabBarAccessories.swift */,
 			);
 			path = TabBar;
@@ -3806,6 +3809,7 @@
 				2072FA1C280D874000C7F8D4 /* IndentUsing.swift in Sources */,
 				2093CD71289AA0FC003A88DD /* HelpButton.swift in Sources */,
 				2B4C1338289D56F9000ED796 /* CompletionWindow.swift in Sources */,
+				93B1D10C28CD907A005A8C24 /* TabBar+Drag.swift in Sources */,
 				2041B8C228A69B8A005F03D8 /* Remote.swift in Sources */,
 				20D2A44628A7D13C0073F7BD /* Revert.swift in Sources */,
 				2093CDCF289AA503003A88DD /* String+SHA256.swift in Sources */,
