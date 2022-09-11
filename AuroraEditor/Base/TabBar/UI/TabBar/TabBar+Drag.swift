@@ -16,14 +16,16 @@ extension TabBar {
     func makeTabDragGesture(id: TabBarItemID) -> some Gesture {
         return DragGesture(minimumDistance: 2, coordinateSpace: .global)
             .onChanged({ value in
-                Log.info("Changed to \(value.translation)")
                 if draggingTabId != id {
                     shouldOnDrag = false
                     draggingTabId = id
                     draggingStartLocation = value.startLocation.x
                     draggingLastLocation = value.location.x
                 }
+                // if the location is too far away on the Y axis from the start, get rid of the gesture.
                 if abs(value.location.y - value.startLocation.y) > TabBar.height {
+                    // toggling shouldOnDrag momentarily turns off the highPriorityGesture in TabBar.swift
+                    // which should end the gesture forcefully.
                     shouldOnDrag = true
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                         shouldOnDrag = false
@@ -47,6 +49,7 @@ extension TabBar {
                 let previousIndex = currentIndex > 0 ? currentIndex - 1 : nil
                 let nextIndex = currentIndex < openedTabs.count - 1 ? currentIndex + 1 : nil
                 tabOffsets[id] = currentLocation - startLocation
+
                 // Interacting with the previous tab.
                 if previousIndex != nil && dragDifference < 0 {
                     // Wrap `previousTabIndex` because it may be `nil`.
@@ -70,6 +73,7 @@ extension TabBar {
                         return
                     }
                 }
+
                 // Interacting with the next tab.
                 if nextIndex != nil && dragDifference > 0 {
                     // Wrap `previousTabIndex` because it may be `nil`.
@@ -93,6 +97,7 @@ extension TabBar {
                         return
                     }
                 }
+
                 // Only update the last dragging location when there is enough offset.
                 if draggingLastLocation == nil || abs(value.location.x - draggingLastLocation!) >= 10 {
                     draggingLastLocation = value.location.x

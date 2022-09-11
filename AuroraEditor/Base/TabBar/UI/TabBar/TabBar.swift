@@ -49,8 +49,6 @@ struct TabBar: View {
     @State
     var shouldOnDrag: Bool = false
 
-    /// Is current `onDrag` over tabs?
-    ///
     /// When it is true, then the `onDrag` is over the tabs, then we leave the space for dragged tab.
     /// When it is false, then the dragging cursor is outside the tab bar, then we should shrink the space.
     ///
@@ -76,22 +74,21 @@ struct TabBar: View {
     /// The start location of dragging.
     ///
     /// When there is no tab being dragged, it will be `nil`.
-    /// - TODO: Check if I can use `value.startLocation` trustfully.
+    /// - TODO: Check if `value.startLocation` is reliable
     @State
     var draggingStartLocation: CGFloat?
 
     /// The last location of dragging.
     ///
     /// This is used to determine the dragging direction.
-    /// - TODO: Check if I can use `value.translation` instead.
+    /// - TODO: Check if `value.translation` is usable
     @State
     var draggingLastLocation: CGFloat?
 
     /// Current opened tabs.
     ///
     /// This is a copy of `workspace.selectionState.openedTabs`.
-    /// I am making a copy of it because using state will hugely improve the dragging performance.
-    /// Updating ObservedObject too often will generate lags.
+    /// A copy will hugely improve the dragging performance, as updating ObservedObject too often will generate lags.
     @State
     var openedTabs: [TabBarItemID] = []
 
