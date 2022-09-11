@@ -30,7 +30,6 @@ struct TabHierarchyView: NSViewControllerRepresentable {
 
     func updateNSViewController(_ nsViewController: TabHierarchyViewController, context: Context) {
         nsViewController.rowHeight = prefs.preferences.general.projectNavigatorSize.rowHeight
-        nsViewController.updateSelection()
         return
     }
 

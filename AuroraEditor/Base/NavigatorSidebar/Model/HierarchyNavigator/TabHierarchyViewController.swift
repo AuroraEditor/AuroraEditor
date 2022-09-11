@@ -69,19 +69,6 @@ class TabHierarchyViewController: NSViewController {
         fatalError()
     }
 
-    /// Updates the selection of the ``outlineView`` whenever it changes.
-    ///
-    /// Most importantly when the `id` changes from an external view.
-    // TODO: Selection
-    func updateSelection() {
-//        guard let itemID = workspace?.selectionState.selectedId else {
-//            outlineView.deselectRow(outlineView.selectedRow)
-//            return
-//        }
-//
-//        select(by: itemID, from: content)
-    }
-
     /// Expand or collapse the folder on double click
     // TODO: Double click stuff
     @objc
@@ -187,16 +174,19 @@ extension TabHierarchyViewController: NSOutlineViewDelegate {
             let textField = TextTableViewCell(frame: frameRect, isEditable: false, startingText: itemText)
             return textField
         } else if let itemTab = item as? TabBarItemID { // tab items
-            let textField = TextTableViewCell(frame: frameRect, isEditable: false, startingText: itemTab.id)
-            return textField
+            let tabView = TabHierarchyTableViewCell(frame: frameRect)
+            tabView.workspace = workspace
+            tabView.addTabItem(tabItem: itemTab)
+            return tabView
         }
         return nil
     }
 
     func outlineViewSelectionDidChange(_ notification: Notification) {
-        // let selectedIndex = outlineView.selectedRow
-        // guard let item = outlineView.item(atRow: selectedIndex) else { return }
-        // TODO: When the selection changes, most likely open the tab
+        let selectedIndex = outlineView.selectedRow
+        guard let item = outlineView.item(atRow: selectedIndex) as? TabBarItemID,
+              let itemTab = workspace?.selectionState.getItemByTab(id: item) else { return }
+        workspace?.openTab(item: itemTab)
     }
 
     // TODO: Don't allow selecting a header
