@@ -1,17 +1,16 @@
 //
-//  ProjectCommitHistoryView.swift
+//  BranchCommitHistoryView.swift
 //  AuroraEditor
 //
-//  Created by Nanashi Li on 2022/09/08.
+//  Created by Nanashi Li on 2022/09/10.
 //  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import SwiftUI
 
-struct ProjectCommitHistoryView: View {
-
+struct BranchCommitHistoryView: View {
     @ObservedObject
-    var projectHistoryModel: ProjectCommitHistory
+    var branchCommitModel: BranchCommitHistory
 
     @Environment(\.openURL)
     private var openCommit
@@ -35,19 +34,19 @@ struct ProjectCommitHistoryView: View {
                 .onChange(of: selectedSection, perform: { _ in
                     switch selectedSection {
                     case 1:
-                        projectHistoryModel.gitHistoryDate = .lastDay
+                        branchCommitModel.gitHistoryDate = .lastDay
                     case 2:
-                        projectHistoryModel.gitHistoryDate = .lastSevenDays
+                        branchCommitModel.gitHistoryDate = .lastSevenDays
                     case 3:
-                        projectHistoryModel.gitHistoryDate = .lastThirtyDays
+                        branchCommitModel.gitHistoryDate = .lastThirtyDays
                     default: // case 0 also falls under this. Just show everything.
-                        projectHistoryModel.gitHistoryDate = .none
+                        branchCommitModel.gitHistoryDate = .none
                     }
                 })
 
                 Spacer()
 
-                switch projectHistoryModel.state {
+                switch branchCommitModel.state {
                 case .loading:
                     EmptyView()
                 case .success:
@@ -65,7 +64,7 @@ struct ProjectCommitHistoryView: View {
                 Divider()
             }
 
-            switch projectHistoryModel.state {
+            switch branchCommitModel.state {
             case .loading:
                 loadingChanges
             case .success:
@@ -89,7 +88,7 @@ struct ProjectCommitHistoryView: View {
 
     private func commitHistoryList() -> some View {
         List {
-            ForEach(projectHistoryModel.projectHistory) { commit in
+            ForEach(branchCommitModel.projectHistory) { commit in
                 CommitHistoryCellView(commit: commit)
                     .contextMenu {
                         Group {
@@ -159,7 +158,7 @@ struct ProjectCommitHistoryView: View {
             }
             .buttonStyle(.plain)
 
-            Text("\(projectHistoryModel.projectHistory.count) commits found.")
+            Text("\(branchCommitModel.projectHistory.count) commits found.")
                 .font(.system(size: 11))
                 .foregroundColor(.secondary)
         }

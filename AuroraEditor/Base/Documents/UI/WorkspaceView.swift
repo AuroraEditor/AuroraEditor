@@ -89,6 +89,10 @@ struct WorkspaceView: View {
                 if let projectHistoryTab = workspace.selectionState.selected as? ProjectCommitHistory {
                     ProjectCommitHistoryView(projectHistoryModel: projectHistoryTab)
                 }
+            case .branchHistory:
+                if let branchHistoryTab = workspace.selectionState.selected as? BranchCommitHistory {
+                    BranchCommitHistoryView(branchCommitModel: branchHistoryTab)
+                }
             }
         } else {
             noEditor
@@ -178,6 +182,11 @@ struct WorkspaceView: View {
         }
         .sheet(isPresented: $workspace.showStashChangesSheet) {
             StashChangesSheet(workspaceURL: workspace.workspaceURL())
+        }
+        .sheet(isPresented: $workspace.showRenameBranchSheet) {
+            RenameBranchView(workspace: workspace,
+                             currentBranchName: workspace.currentlySelectedBranch,
+                             newBranchName: workspace.currentlySelectedBranch)
         }
     }
 }

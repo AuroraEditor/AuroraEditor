@@ -18,9 +18,30 @@ struct CommitHistoryCellView: View {
             Avatar().gitAvatar(authorEmail: commit.authorEmail)
 
             VStack(alignment: .leading, spacing: 3) {
-                Text(commit.author)
-                    .font(.system(size: 11))
-                    .fontWeight(.bold)
+                HStack {
+                    Text(commit.author)
+                        .font(.system(size: 11))
+                        .fontWeight(.bold)
+
+                    if commit.isMerge ?? false {
+                        HStack {
+                            Image("git.merge")
+                                .foregroundColor(.secondary)
+
+                            Text("Merged")
+                                .foregroundColor(.secondary)
+                                .padding(.leading, -3)
+                        }
+                        .font(.system(size: 10))
+                        .background(
+                            RoundedRectangle(cornerRadius: 3)
+                                .padding(.trailing, -5)
+                                .padding(.leading, -5)
+                                .foregroundColor(Color(nsColor: .quaternaryLabelColor))
+                        )
+                        .padding(.trailing, 5)
+                    }
+                }
 
                 Text(commit.message)
                     .font(.system(size: 11))
@@ -49,5 +70,20 @@ struct CommitHistoryCellView: View {
             }
         }
         .padding(.horizontal, 10)
+    }
+}
+
+struct CommitHistoryCellView_Previews: PreviewProvider {
+    static var previews: some View {
+        CommitHistoryCellView(commit: CommitHistory(hash: "",
+                                                    commitHash: "",
+                                                    message: "",
+                                                    author: "Tihan-Nico Paxton",
+                                                    authorEmail: "",
+                                                    commiter: "",
+                                                    commiterEmail: "",
+                                                    remoteURL: URL(string: "github.com"),
+                                                    date: Date(),
+                                                    isMerge: true))
     }
 }

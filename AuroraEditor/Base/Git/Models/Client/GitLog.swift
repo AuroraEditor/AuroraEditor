@@ -21,12 +21,10 @@ func getCommits(directoryURL: URL,
                 skip: Int = 0,
                 additionalArgs: [String] = [],
                 commitsSince: CommitDate? = nil,
-                getMerged: Bool = false) throws -> [CommitHistory] {
+                getMerged: Bool = true) throws -> [CommitHistory] {
     var args: [String] = ["log"]
 
-    if getMerged {
-        args.append("--merged")
-    } else {
+    if !getMerged {
         args.append("--no-merges")
     }
 
@@ -87,7 +85,8 @@ func getCommits(directoryURL: URL,
                 commiterEmail: String(parameters[safe: 7] ?? ""),
                 remoteURL: URL(string: try Remote().getRemoteURL(directoryURL: directoryURL,
                                                              name: "origin")!),
-                date: Date().gitDateFormat(commitDate: String(parameters[safe: 5] ?? "")) ?? Date()
+                date: Date().gitDateFormat(commitDate: String(parameters[safe: 5] ?? "")) ?? Date(),
+                isMerge: parameters[safe: 2]?.contains("Merge pull request") ?? false
             )
         }
 }

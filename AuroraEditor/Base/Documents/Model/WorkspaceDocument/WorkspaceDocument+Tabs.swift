@@ -31,6 +31,9 @@ extension WorkspaceDocument {
                 case .projectHistory:
                     guard let projectCommitHistoryTab = item as? ProjectCommitHistory else { return }
                     self.openProjectCommitHistory(item: projectCommitHistoryTab)
+                case .branchHistory:
+                    guard let branchCommitHistoryTab = item as? BranchCommitHistory else { return }
+                    self.openBranchCommitHistory(item: branchCommitHistoryTab)
                 }
             }
             updateNewlyOpenedTabs(item: item)
@@ -94,10 +97,15 @@ extension WorkspaceDocument {
         selectionState.openedProjectCommitHistory.append(item)
     }
 
+    private func openBranchCommitHistory(item: BranchCommitHistory) {
+        selectionState.openedBranchCommitHistory.append(item)
+    }
+
     // MARK: Close Tabs
 
     /// Closes single tab
     /// - Parameter id: tab bar item's identifier to be closed
+    // swiftlint:disable:next cyclomatic_complexity
     func closeTab(item id: TabBarItemID) {
         if id == selectionState.temporaryTab {
             selectionState.previousTemporaryTab = selectionState.temporaryTab
@@ -121,6 +129,9 @@ extension WorkspaceDocument {
         case .projectHistory:
             guard let item = selectionState.getItemByTab(id: id) as? ProjectCommitHistory else { return }
             closeProjectCommitHistoryTab(item: item)
+        case .branchHistory:
+            guard let item = selectionState.getItemByTab(id: id) as? BranchCommitHistory else { return }
+            closeBranchCommitHistoryTab(item: item)
         }
 
         if selectionState.openedTabs.isEmpty {
@@ -190,6 +201,10 @@ extension WorkspaceDocument {
             guard let item = selectionState.getItemByTab(id: id)
                     as? ProjectCommitHistory else { return }
             closeProjectCommitHistoryTab(item: item)
+        case .branchHistory:
+            guard let item = selectionState.getItemByTab(id: id)
+                    as? BranchCommitHistory else { return }
+            closeBranchCommitHistoryTab(item: item)
         }
 
         guard let openFileItemIdx = selectionState
@@ -223,6 +238,11 @@ extension WorkspaceDocument {
     private func closeProjectCommitHistoryTab(item: ProjectCommitHistory) {
         guard let idx = selectionState.openedProjectCommitHistory.firstIndex(of: item) else { return }
         selectionState.openedProjectCommitHistory.remove(at: idx)
+    }
+
+    private func closeBranchCommitHistoryTab(item: BranchCommitHistory) {
+        guard let idx = selectionState.openedBranchCommitHistory.firstIndex(of: item) else { return }
+        selectionState.openedBranchCommitHistory.remove(at: idx)
     }
 
     /// Makes the temporary tab permanent when a file save or edit happens.

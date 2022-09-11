@@ -230,7 +230,8 @@ public class GitClient: ObservableObject {
                     commiter: parameters[safe: 5] ?? "",
                     commiterEmail: parameters[safe: 6] ?? "",
                     remoteURL: remoteURL,
-                    date: dateFormatter.date(from: parameters[safe: 7] ?? "") ?? Date()
+                    date: dateFormatter.date(from: parameters[safe: 7] ?? "") ?? Date(),
+                    isMerge: nil
                 )
             }
     }

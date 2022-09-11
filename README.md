@@ -90,7 +90,7 @@ We very much respect the contributors that contributed to CE, and we would like 
 
 ## Community
 
-Join our community on [Discord](https://discord.gg/5aecJ4rq9D) where we discuss and collaborate on all things of Aurora Editor.
+Join our community on [Discord](https://discord.gg/5aecJ4rq9D) or [Slack](https://join.slack.com/t/auroraeditor/shared_invite/zt-1fti1r72d-8mWmJsj279vDV~YdKhcUEA) where we discuss and collaborate on all things of Aurora Editor.
 Don't be shy, jump right in and be part of the discussion!
 
 ## Community Details
