@@ -393,6 +393,7 @@
 		2093CDE7289AAE83003A88DD /* CheckoutBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8387E289A7ACE00D91D05 /* CheckoutBranchView.swift */; };
 		2093CDE8289AAE87003A88DD /* StashChangesSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83879289A7ACE00D91D05 /* StashChangesSheet.swift */; };
 		2093CDE9289AAE8B003A88DD /* StashWindowsChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83878289A7ACE00D91D05 /* StashWindowsChanges.swift */; };
+		2096A82428CF76D400F6ED39 /* CreateNewBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2096A82328CF76D400F6ED39 /* CreateNewBranchView.swift */; };
 		209D0246289AB9750082441F /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = 209D0245289AB9750082441F /* SwiftTerm */; };
 		209D024B289ABC340082441F /* Package.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 209D024A289ABC340082441F /* Package.resolved */; };
 		209D0251289ABF9A0082441F /* STTextView+AutoComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0250289ABF9A0082441F /* STTextView+AutoComplete.swift */; };
@@ -702,6 +703,7 @@
 		207D295C28CCE72F00D31530 /* RenameBranchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameBranchView.swift; sourceTree = "<group>"; };
 		2086334E28A530AF00E29A22 /* CommitChangesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitChangesView.swift; sourceTree = "<group>"; };
 		2093CDE3289AA881003A88DD /* IgnoredFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredFiles.swift; sourceTree = "<group>"; };
+		2096A82328CF76D400F6ED39 /* CreateNewBranchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewBranchView.swift; sourceTree = "<group>"; };
 		209D024A289ABC340082441F /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; name = Package.resolved; path = ../Package.resolved; sourceTree = "<group>"; };
 		209D0250289ABF9A0082441F /* STTextView+AutoComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STTextView+AutoComplete.swift"; sourceTree = "<group>"; };
 		209D0252289ABFB60082441F /* STTextView+Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STTextView+Menu.swift"; sourceTree = "<group>"; };
@@ -1403,6 +1405,7 @@
 		20752E3A28CA4C1E00935487 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2096A82228CF76C500F6ED39 /* Branch */,
 				20130BDC28CF30EB0000B634 /* Remote */,
 				207D295B28CCE72100D31530 /* Rename */,
 				20752E3E28CA4C3B00935487 /* Clone */,
@@ -1484,6 +1487,14 @@
 				207D295C28CCE72F00D31530 /* RenameBranchView.swift */,
 			);
 			path = Rename;
+			sourceTree = "<group>";
+		};
+		2096A82228CF76C500F6ED39 /* Branch */ = {
+			isa = PBXGroup;
+			children = (
+				2096A82328CF76D400F6ED39 /* CreateNewBranchView.swift */,
+			);
+			path = Branch;
 			sourceTree = "<group>";
 		};
 		209D024F289ABF520082441F /* AuroraEditorTextView */ = {
@@ -3988,6 +3999,7 @@
 				20BCB0C828AAA3190064C7C0 /* GitAuthor.swift in Sources */,
 				2093CDB6289AA1A2003A88DD /* GitlabLoginView.swift in Sources */,
 				204CD3E628AB87640003D082 /* Config.swift in Sources */,
+				2096A82428CF76D400F6ED39 /* CreateNewBranchView.swift in Sources */,
 				2032B51028A256F50089EBB6 /* Array.swift in Sources */,
 				20BCB0BC28AA6AA10064C7C0 /* Diff.swift in Sources */,
 				2093CD91289AA130003A88DD /* NotificationView.swift in Sources */,

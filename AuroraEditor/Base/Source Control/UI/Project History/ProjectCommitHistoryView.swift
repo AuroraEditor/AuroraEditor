@@ -13,6 +13,8 @@ struct ProjectCommitHistoryView: View {
     @ObservedObject
     var projectHistoryModel: ProjectCommitHistory
 
+    let workspace: WorkspaceDocument
+
     @Environment(\.openURL)
     private var openCommit
 
@@ -108,7 +110,11 @@ struct ProjectCommitHistoryView: View {
                         Divider()
                         Group {
                             Button("Tag \"\(commit.hash)\"...") {}.disabled(true)
-                            Button("New Branch from \"\(commit.hash)\"...") {}.disabled(true)
+                            Button("New Branch from \"\(commit.hash)\"...") {
+                                workspace.branchRevision = commit.hash
+                                workspace.branchRevisionDescription = commit.message
+                                workspace.showBranchCreationSheet.toggle()
+                            }
                             Button("Cherry-Pick Tag \"\(commit.hash)\"...") {}.disabled(true)
                         }
                         Divider()
