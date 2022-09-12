@@ -31,6 +31,7 @@
 		201169E22837B3D800F92B46 /* ChangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201169E12837B3D800F92B46 /* ChangesView.swift */; };
 		201169E52837B40300F92B46 /* RepositoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201169E42837B40300F92B46 /* RepositoriesView.swift */; };
 		201169E72837B5CA00F92B46 /* SourceControlModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201169E62837B5CA00F92B46 /* SourceControlModel.swift */; };
+		20130BDE28CF30FB0000B634 /* AddRemoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20130BDD28CF30FB0000B634 /* AddRemoteView.swift */; };
 		2019258A289C362B009C2FAB /* LogExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20192589289C362B009C2FAB /* LogExtension.swift */; };
 		2021267C289BF7BA00246DD7 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021267B289BF7BA00246DD7 /* Log.swift */; };
 		2021267F289BF7EF00246DD7 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021267E289BF7EF00246DD7 /* Formatter.swift */; };
@@ -652,6 +653,7 @@
 		201169E12837B3D800F92B46 /* ChangesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangesView.swift; sourceTree = "<group>"; };
 		201169E42837B40300F92B46 /* RepositoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesView.swift; sourceTree = "<group>"; };
 		201169E62837B5CA00F92B46 /* SourceControlModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlModel.swift; sourceTree = "<group>"; };
+		20130BDD28CF30FB0000B634 /* AddRemoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRemoteView.swift; sourceTree = "<group>"; };
 		20192589289C362B009C2FAB /* LogExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogExtension.swift; sourceTree = "<group>"; };
 		2021267B289BF7BA00246DD7 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		2021267E289BF7EF00246DD7 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
@@ -1278,6 +1280,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		20130BDC28CF30EB0000B634 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				20130BDD28CF30FB0000B634 /* AddRemoteView.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
 		20212679289BF7A800246DD7 /* Log */ = {
 			isa = PBXGroup;
 			children = (
@@ -1393,6 +1403,7 @@
 		20752E3A28CA4C1E00935487 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				20130BDC28CF30EB0000B634 /* Remote */,
 				207D295B28CCE72100D31530 /* Rename */,
 				20752E3E28CA4C3B00935487 /* Clone */,
 				20752E3D28CA4C3500935487 /* Stash */,
@@ -4040,6 +4051,7 @@
 				206729AF28AE69DC00EB0957 /* PreferencesView.swift in Sources */,
 				2093CD62289AA0E4003A88DD /* OtherFileView.swift in Sources */,
 				2041B8BE28A687AE005F03D8 /* Stash.swift in Sources */,
+				20130BDE28CF30FB0000B634 /* AddRemoteView.swift in Sources */,
 				2030964228AD03460083D725 /* Rev-List.swift in Sources */,
 				2093CD1A289AA079003A88DD /* BitbucketUserRouter.swift in Sources */,
 				2093CD2B289AA089003A88DD /* Review.swift in Sources */,
