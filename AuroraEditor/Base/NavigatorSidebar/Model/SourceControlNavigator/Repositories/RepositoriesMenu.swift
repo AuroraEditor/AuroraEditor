@@ -58,8 +58,9 @@ final class RepositoriesMenu: NSMenu {
             menuItem("Merge from Branch...", action: nil),
             menuItem("Merge into Branch...", action: nil),
             NSMenuItem.separator(),
-            menuItem("New \"\(repository?.repoName ?? "Unknown Repository")\" Remote...", action: nil),
-            menuItem("Add Existing Remote...", action: nil),
+            menuItem("New \"\(repository?.repoName ?? "Unknown Repository")\" Remote...",
+                     action: nil),
+            menuItem("Add Existing Remote...", action: #selector(addNewRemote)),
             NSMenuItem.separator(),
             menuItem("View on [Remote Provider]", action: nil),
             menuItem("Apply Stashed Changes...", action: nil),
@@ -67,6 +68,11 @@ final class RepositoriesMenu: NSMenu {
             NSMenuItem.separator(),
             menuItem("Delete", action: isSelectedBranchCurrentOne() ? nil : #selector(deleteBranch))
         ]
+    }
+
+    @objc
+    func addNewRemote() {
+        workspace?.showAddRemoteView.toggle()
     }
 
     @objc func switchToBranch(_ sender: Any?) {

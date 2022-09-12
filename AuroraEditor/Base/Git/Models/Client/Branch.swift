@@ -22,14 +22,14 @@ public struct Branches {
             return try ShellClient.live().run(
                 "cd \(directoryURL.relativePath.escapedWhiteSpaces());git branch -a --format \"%(refname:short)\""
             )
-                .components(separatedBy: "\n")
-                .filter { !$0.isEmpty }
+            .components(separatedBy: "\n")
+            .filter { !$0.isEmpty }
         }
         return try ShellClient.live().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git branch --format \"%(refname:short)\""
         )
-            .components(separatedBy: "\n")
-            .filter { !$0.isEmpty }
+        .components(separatedBy: "\n")
+        .filter { !$0.isEmpty }
     }
 
     /// Create a new branch from the given start point.
