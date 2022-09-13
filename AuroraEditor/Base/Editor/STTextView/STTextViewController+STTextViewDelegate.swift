@@ -11,7 +11,7 @@ extension STTextViewController {
     /// Description
     /// - Parameter notification: notification description
     public func textDidChange(_ notification: Notification) {
-        print("Text did change")
+        Log.info("Text did change")
     }
 
     /// Description

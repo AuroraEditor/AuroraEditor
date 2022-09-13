@@ -55,7 +55,7 @@ extension STTextView {
         }
     }
 
-    open override func resetCursorRects() {
+    override open func resetCursorRects() {
         self.addCursorRect(self.bounds, cursor: NSCursor.iBeam)
     }
 
