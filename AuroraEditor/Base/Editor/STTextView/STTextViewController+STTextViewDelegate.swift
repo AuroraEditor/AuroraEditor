@@ -2,19 +2,19 @@
 //  STTextViewController+STTextViewDelegate.swift
 //  AuroraEditorTextView
 //
-//  Created by Lukas Pistrol on 28.05.22.
+//  Created by Wesley de Groot.
 //
 
 import AppKit
 
 extension STTextViewController {
-    /// Description
+    /// Text did change
     /// - Parameter notification: notification description
     public func textDidChange(_ notification: Notification) {
         Log.info("Text did change")
     }
 
-    /// Description
+    /// Text should change
     /// - Parameters:
     ///   - textView: textView description
     ///   - affectedCharRange: affectedCharRange description
@@ -32,7 +32,7 @@ extension STTextViewController {
         return true
     }
 
-    /// Description
+    /// Text did change
     /// - Parameters:
     ///   - textView: textView description
     ///   - affectedCharRange: affectedCharRange description
@@ -42,22 +42,40 @@ extension STTextViewController {
         didChangeTextIn affectedCharRange: NSTextRange,
         replacementString: String
     ) {
+        NotificationCenter.default.post(
+            name: NSNotification.Name("AE.didBeginEditing"),
+            object: nil
+        )
+
         if !updateText {
             updateText = true
+
             textView.autocompleteBracketPairs(replacementString)
             Log.info("Did change text in \(affectedCharRange) | \(replacementString)")
 
-            // highlight()
             setStandardAttributes()
 
+            // Send change to publisher
             self.text.wrappedValue = textView.string
-//            textView.setString(
-//                AEHighlight().highlight(
-//                    code: textView.string
-//                )
-//            )
-//            // TODO: Move Caret position.
 
+            // Highlight the updated value.
+            textView.setString(
+                AEHighlight().highlight(
+                    code: textView.string,
+                    themeString: ThemeModel.shared.selectedTheme?.highlightrThemeString
+                )
+            )
+
+            textView.setSelectedRange(affectedCharRange)
+            if replacementString.isEmpty {
+                // On backspace
+                textView.moveBackward(self)
+            } else {
+                // All other
+                textView.moveForward(self)
+            }
+
+            // We did update the text.
             updateText = false
         }
     }
