@@ -945,4 +945,4 @@ private extension CALayer {
 
         return false
     }
-}
+} // swiftlint:disable:this file_length
