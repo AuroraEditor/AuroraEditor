@@ -45,7 +45,7 @@ extension STTextViewController {
         if !updateText {
             updateText = true
             textView.autocompleteBracketPairs(replacementString)
-            print("Did change text in \(affectedCharRange) | \(replacementString)")
+            Log.info("Did change text in \(affectedCharRange) | \(replacementString)")
 
             // highlight()
             setStandardAttributes()
