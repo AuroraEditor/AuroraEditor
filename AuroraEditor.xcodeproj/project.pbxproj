@@ -450,11 +450,6 @@
 		20EBB507280C32D300F3A5DA /* QuickHelpInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBB506280C32D300F3A5DA /* QuickHelpInspector.swift */; };
 		20EBB50D280C383700F3A5DA /* LanguageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBB50C280C383700F3A5DA /* LanguageType.swift */; };
 		20EBB50F280C389300F3A5DA /* FileInspectorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBB50E280C389300F3A5DA /* FileInspectorModel.swift */; };
-		20F8377F28C7769B00EAE842 /* FileCreationNamingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F8377E28C7769B00EAE842 /* FileCreationNamingView.swift */; };
-		20F8378128C776EF00EAE842 /* FileCreationGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F8378028C776EF00EAE842 /* FileCreationGridView.swift */; };
-		20F8378328C776FF00EAE842 /* FileCreationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F8378228C776FF00EAE842 /* FileCreationSelectionView.swift */; };
-		20F8378528C7776A00EAE842 /* FileCreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F8378428C7776A00EAE842 /* FileCreationModel.swift */; };
-		20F8378728C7777700EAE842 /* FileSelectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F8378628C7777700EAE842 /* FileSelectionItem.swift */; };
 		20F8379028C7B45700EAE842 /* WorkspaceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F8378F28C7B45700EAE842 /* WorkspaceExtension.swift */; };
 		20FDB4E328BD06CB00FDD8C3 /* Diff-Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FDB4E228BD06CB00FDD8C3 /* Diff-Data.swift */; };
 		20FDB4E528BD17FB00FDD8C3 /* Diff-Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FDB4E428BD17FB00FDD8C3 /* Diff-Parser.swift */; };
@@ -533,6 +528,12 @@
 		2BDFA90928D107B200980385 /* CodeFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA90028D107B200980385 /* CodeFileView.swift */; };
 		2BDFA90A28D107B200980385 /* CodeFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA90128D107B200980385 /* CodeFile.swift */; };
 		2BDFA90B28D107B200980385 /* CodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA90228D107B200980385 /* CodeEditor.swift */; };
+		2BDFA91528D10B9200980385 /* FileCreationNamingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA90E28D10B9200980385 /* FileCreationNamingView.swift */; };
+		2BDFA91628D10B9200980385 /* FileCreationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA90F28D10B9200980385 /* FileCreationSelectionView.swift */; };
+		2BDFA91728D10B9200980385 /* FileCreationGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA91028D10B9200980385 /* FileCreationGridView.swift */; };
+		2BDFA91828D10B9200980385 /* FileCreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA91228D10B9200980385 /* FileCreationModel.swift */; };
+		2BDFA91928D10B9200980385 /* NewFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA91328D10B9200980385 /* NewFileModel.swift */; };
+		2BDFA91A28D10B9200980385 /* FileSelectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA91428D10B9200980385 /* FileSelectionItem.swift */; };
 		2BE487EF28245162003F3F64 /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE487EE28245162003F3F64 /* FinderSync.swift */; };
 		2BE487F428245162003F3F64 /* OpenWithAuroraEditor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BE487EC28245162003F3F64 /* OpenWithAuroraEditor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */; };
@@ -540,7 +541,6 @@
 		2BF983FF289D8B3C004F1A60 /* SharedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF983FE289D8B3C004F1A60 /* SharedObjects.swift */; };
 		6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */; };
 		9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */; };
-		932A313E28C9BD410084464F /* NewFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932A313D28C9BD410084464F /* NewFileModel.swift */; };
 		9336833928C5EAD7009F7B44 /* GitCloneViewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9336833828C5EAD7009F7B44 /* GitCloneViewWindow.swift */; };
 		934D2F0328C4A5690034E5C8 /* GitClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D2F0228C4A5690034E5C8 /* GitClientError.swift */; };
 		934D2F0828C4EC7E0034E5C8 /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D2F0728C4EC7E0034E5C8 /* StatusItem.swift */; };
@@ -1065,11 +1065,6 @@
 		20EBB506280C32D300F3A5DA /* QuickHelpInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickHelpInspector.swift; sourceTree = "<group>"; };
 		20EBB50C280C383700F3A5DA /* LanguageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageType.swift; sourceTree = "<group>"; };
 		20EBB50E280C389300F3A5DA /* FileInspectorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInspectorModel.swift; sourceTree = "<group>"; };
-		20F8377E28C7769B00EAE842 /* FileCreationNamingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCreationNamingView.swift; sourceTree = "<group>"; };
-		20F8378028C776EF00EAE842 /* FileCreationGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCreationGridView.swift; sourceTree = "<group>"; };
-		20F8378228C776FF00EAE842 /* FileCreationSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCreationSelectionView.swift; sourceTree = "<group>"; };
-		20F8378428C7776A00EAE842 /* FileCreationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCreationModel.swift; sourceTree = "<group>"; };
-		20F8378628C7777700EAE842 /* FileSelectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSelectionItem.swift; sourceTree = "<group>"; };
 		20F8378F28C7B45700EAE842 /* WorkspaceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceExtension.swift; sourceTree = "<group>"; };
 		20FDB4E228BD06CB00FDD8C3 /* Diff-Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Diff-Data.swift"; sourceTree = "<group>"; };
 		20FDB4E428BD17FB00FDD8C3 /* Diff-Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Diff-Parser.swift"; sourceTree = "<group>"; };
@@ -1153,6 +1148,12 @@
 		2BDFA90028D107B200980385 /* CodeFileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeFileView.swift; sourceTree = "<group>"; };
 		2BDFA90128D107B200980385 /* CodeFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeFile.swift; sourceTree = "<group>"; };
 		2BDFA90228D107B200980385 /* CodeEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeEditor.swift; sourceTree = "<group>"; };
+		2BDFA90E28D10B9200980385 /* FileCreationNamingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCreationNamingView.swift; sourceTree = "<group>"; };
+		2BDFA90F28D10B9200980385 /* FileCreationSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCreationSelectionView.swift; sourceTree = "<group>"; };
+		2BDFA91028D10B9200980385 /* FileCreationGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCreationGridView.swift; sourceTree = "<group>"; };
+		2BDFA91228D10B9200980385 /* FileCreationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCreationModel.swift; sourceTree = "<group>"; };
+		2BDFA91328D10B9200980385 /* NewFileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFileModel.swift; sourceTree = "<group>"; };
+		2BDFA91428D10B9200980385 /* FileSelectionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSelectionItem.swift; sourceTree = "<group>"; };
 		2BE487EC28245162003F3F64 /* OpenWithAuroraEditor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OpenWithAuroraEditor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE487EE28245162003F3F64 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
 		2BE487F028245162003F3F64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1161,7 +1162,6 @@
 		6CDA84AA284C0E4A00C1CC3A /* TabBarItemButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemButtonStyle.swift; sourceTree = "<group>"; };
 		6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContextMenu.swift; sourceTree = "<group>"; };
 		9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorToolbarBottom.swift; sourceTree = "<group>"; };
-		932A313D28C9BD410084464F /* NewFileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFileModel.swift; sourceTree = "<group>"; };
 		9336833828C5EAD7009F7B44 /* GitCloneViewWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCloneViewWindow.swift; sourceTree = "<group>"; };
 		934D2F0228C4A5690034E5C8 /* GitClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitClientError.swift; sourceTree = "<group>"; };
 		934D2F0728C4EC7E0034E5C8 /* StatusItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
@@ -1584,6 +1584,7 @@
 		20D83712289A7A9200D91D05 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				2BDFA90C28D10B9200980385 /* FileCreation */,
 				20752E3928CA4C1100935487 /* Source Control */,
 				20F8377628C7764700EAE842 /* Creation */,
 				209D024F289ABF520082441F /* Editor */,
@@ -3011,38 +3012,8 @@
 		20F8377628C7764700EAE842 /* Creation */ = {
 			isa = PBXGroup;
 			children = (
-				20F8377728C7764F00EAE842 /* FileCreation */,
 			);
 			path = Creation;
-			sourceTree = "<group>";
-		};
-		20F8377728C7764F00EAE842 /* FileCreation */ = {
-			isa = PBXGroup;
-			children = (
-				20F8377928C7766100EAE842 /* UI */,
-				20F8377828C7765C00EAE842 /* Model */,
-			);
-			path = FileCreation;
-			sourceTree = "<group>";
-		};
-		20F8377828C7765C00EAE842 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				20F8378428C7776A00EAE842 /* FileCreationModel.swift */,
-				20F8378628C7777700EAE842 /* FileSelectionItem.swift */,
-				932A313D28C9BD410084464F /* NewFileModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		20F8377928C7766100EAE842 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				20F8377E28C7769B00EAE842 /* FileCreationNamingView.swift */,
-				20F8378028C776EF00EAE842 /* FileCreationGridView.swift */,
-				20F8378228C776FF00EAE842 /* FileCreationSelectionView.swift */,
-			);
-			path = UI;
 			sourceTree = "<group>";
 		};
 		20FDB4E628BD26A100FDD8C3 /* Helper */ = {
@@ -3138,6 +3109,35 @@
 				2B4C132A289D56F9000ED796 /* STCALayer.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		2BDFA90C28D10B9200980385 /* FileCreation */ = {
+			isa = PBXGroup;
+			children = (
+				2BDFA90D28D10B9200980385 /* UI */,
+				2BDFA91128D10B9200980385 /* Model */,
+			);
+			path = FileCreation;
+			sourceTree = "<group>";
+		};
+		2BDFA90D28D10B9200980385 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2BDFA90E28D10B9200980385 /* FileCreationNamingView.swift */,
+				2BDFA90F28D10B9200980385 /* FileCreationSelectionView.swift */,
+				2BDFA91028D10B9200980385 /* FileCreationGridView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		2BDFA91128D10B9200980385 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2BDFA91228D10B9200980385 /* FileCreationModel.swift */,
+				2BDFA91328D10B9200980385 /* NewFileModel.swift */,
+				2BDFA91428D10B9200980385 /* FileSelectionItem.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		2BE487ED28245162003F3F64 /* OpenWithAuroraEditor */ = {
@@ -3750,6 +3750,7 @@
 				2086334F28A530AF00E29A22 /* CommitChangesView.swift in Sources */,
 				9354D4B328ACEDDE004C6D18 /* RepositoriesWrapperView.swift in Sources */,
 				2093CDDF289AA522003A88DD /* Bundle+Info.swift in Sources */,
+				2BDFA91528D10B9200980385 /* FileCreationNamingView.swift in Sources */,
 				2093CD52289AA0AE003A88DD /* FeedbackType.swift in Sources */,
 				20E8749028A3ABA8002CE758 /* SourceControlController.swift in Sources */,
 				0463E51327FCC1FB00806D5C /* AuroraEditorTargetsAPI.swift in Sources */,
@@ -3763,7 +3764,6 @@
 				2B4C1352289D56F9000ED796 /* STCALayer.swift in Sources */,
 				93672E8528B2684F0086132E /* ToolbarPlusMenu.swift in Sources */,
 				2093CDB8289AA1A6003A88DD /* GithubEnterpriseLoginView.swift in Sources */,
-				20F8378128C776EF00EAE842 /* FileCreationGridView.swift in Sources */,
 				2093CD44289AA095003A88DD /* Permissions.swift in Sources */,
 				2093CCA2289AA00B003A88DD /* WelcomeActionView.swift in Sources */,
 				2093CDC7289AA260003A88DD /* TabBarAccessory.swift in Sources */,
@@ -3857,7 +3857,6 @@
 				2093CD45289AA095003A88DD /* ProjectAccess.swift in Sources */,
 				2B4C1348289D56F9000ED796 /* STTextLayoutManager.swift in Sources */,
 				20B5BDA528B130F300B2A02F /* SplitViewDropDelegate.swift in Sources */,
-				20F8378328C776FF00EAE842 /* FileCreationSelectionView.swift in Sources */,
 				200412EF280F3EAC00BCAF5C /* NoCommitHistoryView.swift in Sources */,
 				20DF979F28ABAA72009CE1E9 /* RepositoryModel.swift in Sources */,
 				2B4C1354289D6457000ED796 /* STTextView+Select2.swift in Sources */,
@@ -3875,6 +3874,7 @@
 				20B5BDA928B130FF00B2A02F /* SplitViewModifier.swift in Sources */,
 				20EBB503280C327C00F3A5DA /* HistoryInspector.swift in Sources */,
 				2093CD2C289AA089003A88DD /* PullRequest.swift in Sources */,
+				2BDFA91628D10B9200980385 /* FileCreationSelectionView.swift in Sources */,
 				2041B8B428A674FD005F03D8 /* Checkout.swift in Sources */,
 				2093CDB9289AA1AB003A88DD /* LocationsPreferencesView.swift in Sources */,
 				20D2A44828A7D1B00073F7BD /* Reflog.swift in Sources */,
@@ -3893,6 +3893,7 @@
 				2093CD2A289AA084003A88DD /* GistRouter.swift in Sources */,
 				2093CD6A289AA0F2003A88DD /* BreadcrumbsView.swift in Sources */,
 				2093CD70289AA0FC003A88DD /* FontPickerView.swift in Sources */,
+				2BDFA91A28D10B9200980385 /* FileSelectionItem.swift in Sources */,
 				2093CDAE289AA185003A88DD /* ThemePreferencesView.swift in Sources */,
 				2041B8C028A694FE005F03D8 /* Reset.swift in Sources */,
 				2093CDB1289AA19B003A88DD /* AccountListItem.swift in Sources */,
@@ -3914,7 +3915,6 @@
 				20EBB507280C32D300F3A5DA /* QuickHelpInspector.swift in Sources */,
 				2093CC91289A9FF5003A88DD /* StatusBarIndentSelector.swift in Sources */,
 				2B89F85428B13E9D007CB9C1 /* auroraMessageBox.swift in Sources */,
-				20F8377F28C7769B00EAE842 /* FileCreationNamingView.swift in Sources */,
 				2093CD26289AA084003A88DD /* PreviewHeader.swift in Sources */,
 				2B4C1332289D56F9000ED796 /* STTextView+Delete.swift in Sources */,
 				2093CD33289AA089003A88DD /* Comment.swift in Sources */,
@@ -3936,6 +3936,7 @@
 				2093CC9B289A9FFD003A88DD /* StatusBarSplitTerminalButton.swift in Sources */,
 				93DD4FF328AFD0F100B664D4 /* PreferencesWindowController.swift in Sources */,
 				93CB9AE028C72BC20068074A /* GitCloneView+Helpers.swift in Sources */,
+				2BDFA91828D10B9200980385 /* FileCreationModel.swift in Sources */,
 				20D839AE280E0CA700B27357 /* PopoverView.swift in Sources */,
 				2BDFA90B28D107B200980385 /* CodeEditor.swift in Sources */,
 				2093CC95289A9FF5003A88DD /* StatusBarToggleDrawerButton.swift in Sources */,
@@ -3977,6 +3978,7 @@
 				0485EB1F27E7458B00138301 /* WorkspaceCodeFileView.swift in Sources */,
 				2093CD4D289AA0A2003A88DD /* Session.swift in Sources */,
 				2093CD42289AA095003A88DD /* ProjectHook.swift in Sources */,
+				2BDFA91728D10B9200980385 /* FileCreationGridView.swift in Sources */,
 				2093CD1C289AA079003A88DD /* BitbucketRepositoryRouter.swift in Sources */,
 				939C109528AE7D0700403A97 /* RepositoryContainers&Items.swift in Sources */,
 				2093CDBB289AA1B9003A88DD /* AcknowledgementsView.swift in Sources */,
@@ -4032,6 +4034,7 @@
 				2093CD18289AA079003A88DD /* OAuthRouter.swift in Sources */,
 				2093CDB0289AA185003A88DD /* EditorThemeView.swift in Sources */,
 				04660F6A27E51E5C00477777 /* AuroraEditorWindowController.swift in Sources */,
+				2BDFA91928D10B9200980385 /* NewFileModel.swift in Sources */,
 				206729B228AE6AC900EB0957 /* GroupBox.swift in Sources */,
 				20D2A44028A7CE300073F7BD /* Stage.swift in Sources */,
 				2B4C132B289D56F9000ED796 /* STTextView+InsertionPoint.swift in Sources */,
@@ -4065,14 +4068,11 @@
 				2BDFA90428D107B200980385 /* WebWKView.swift in Sources */,
 				2093CD8B289AA12B003A88DD /* NotificationData.swift in Sources */,
 				2093CD4E289AA0A9003A88DD /* FeedbackToolbar.swift in Sources */,
-				20F8378728C7777700EAE842 /* FileSelectionItem.swift in Sources */,
-				20F8378528C7776A00EAE842 /* FileCreationModel.swift in Sources */,
 				93F73D0D28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift in Sources */,
 				2B4C1351289D56F9000ED796 /* CoalescingUndoManager.swift in Sources */,
 				9C3E1A07284E8E020042BEC0 /* WelcomeModuleExtensions.swift in Sources */,
 				207D295828CCDE4300D31530 /* BranchCommitHistoryView.swift in Sources */,
 				2093CDBA289AA1AF003A88DD /* PreferencesPlaceholderView.swift in Sources */,
-				932A313E28C9BD410084464F /* NewFileModel.swift in Sources */,
 				2093CD68289AA0F2003A88DD /* BreadcrumbsComponent.swift in Sources */,
 				2B4C134C289D56F9000ED796 /* STAnnotationLabelView.swift in Sources */,
 				201169D72837B2E300F92B46 /* SourceControlNavigatorView.swift in Sources */,
