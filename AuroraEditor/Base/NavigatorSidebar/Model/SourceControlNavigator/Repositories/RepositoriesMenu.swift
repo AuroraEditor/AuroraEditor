@@ -53,7 +53,7 @@ final class RepositoriesMenu: NSMenu {
             menuItem("New Branch from \"\(branch.name)\"", action: nil),
             menuItem("Rename \"\(branch.name)\"", action: #selector(renameBranch)),
             menuItem("Tag \"\(branch.name)\"", action: nil),
-            menuItem("Switch...", action: item is RepoBranch ? #selector(switchToBranch(_:)) : nil),
+            menuItem("Switch...", action: isSelectedBranchCurrentOne() ? nil : #selector(switchToBranch(_:))),
             NSMenuItem.separator(),
             menuItem("Merge from Branch...", action: nil),
             menuItem("Merge into Branch...", action: nil),
