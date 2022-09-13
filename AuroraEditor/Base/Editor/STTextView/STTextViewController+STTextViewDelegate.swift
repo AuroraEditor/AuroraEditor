@@ -8,18 +8,18 @@
 import AppKit
 
 extension STTextViewController {
-    /// <#Description#>
-    /// - Parameter notification: <#notification description#>
+    /// Description
+    /// - Parameter notification: notification description
     public func textDidChange(_ notification: Notification) {
         print("Text did change")
     }
 
-    /// <#Description#>
+    /// Description
     /// - Parameters:
-    ///   - textView: <#textView description#>
-    ///   - affectedCharRange: <#affectedCharRange description#>
-    ///   - replacementString: <#replacementString description#>
-    /// - Returns: <#description#>
+    ///   - textView: textView description
+    ///   - affectedCharRange: affectedCharRange description
+    ///   - replacementString: replacementString description
+    /// - Returns: description
     public func textView(
         _ textView: STTextView,
         shouldChangeTextIn affectedCharRange: NSTextRange,
@@ -32,11 +32,11 @@ extension STTextViewController {
         return true
     }
 
-    /// <#Description#>
+    /// Description
     /// - Parameters:
-    ///   - textView: <#textView description#>
-    ///   - affectedCharRange: <#affectedCharRange description#>
-    ///   - replacementString: <#replacementString description#>
+    ///   - textView: textView description
+    ///   - affectedCharRange: affectedCharRange description
+    ///   - replacementString: replacementString description
     public func textView(
         _ textView: STTextView,
         didChangeTextIn affectedCharRange: NSTextRange,

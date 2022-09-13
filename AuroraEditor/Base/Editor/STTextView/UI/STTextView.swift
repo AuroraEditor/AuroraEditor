@@ -421,7 +421,7 @@ open class STTextView: NSView, CALayerDelegate, NSTextInput { // swiftlint:disab
         guard let carretPosStr = textLayoutManager.insertionPointLocation?.description as? String,
               let carretPos = Int.init(carretPosStr)
         else {
-            print("Failed to get position")
+            Log.info("Failed to get position")
             return
         }
 
@@ -439,7 +439,7 @@ open class STTextView: NSView, CALayerDelegate, NSTextInput { // swiftlint:disab
         // Check on what row we are
         row = splitValue.count
 
-        if splitValue.count > 0 {
+        if !splitValue.isEmpty {
             // We are > row 0, so count with the correct row
             // splitValue[row - 1], is the row contents.
             // .utf8.count gives us the (current) length of the string

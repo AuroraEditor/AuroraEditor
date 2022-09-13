@@ -67,7 +67,7 @@ public extension STTextViewDelegate {
     func textView(_ textView: STTextView, didChangeTextIn affectedCharRange: NSTextRange, replacementString: String) {
 
     }
-    
+
     func textView(_ textView: STTextView, didMoveCaretTo row: Int, column: Int) {
 
     }
