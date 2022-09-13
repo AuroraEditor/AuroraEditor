@@ -22,6 +22,8 @@ public enum TabBarItemID: Codable, Identifiable, Hashable {
             return project
         case .branchHistory(let branch):
             return branch
+        case .actionsWorkflow(let workflow):
+            return workflow
         }
     }
 
@@ -37,4 +39,6 @@ public enum TabBarItemID: Codable, Identifiable, Hashable {
     case projectHistory(String)
 
     case branchHistory(String)
+
+    case actionsWorkflow(String)
 }

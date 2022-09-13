@@ -22,7 +22,7 @@ struct SourceControlNavigatorView: View {
     var body: some View {
         VStack {
             SegmentedControl($selectedSection,
-                             options: ["Changes", "Repositories"],
+                             options: ["Changes", "Repositories", "Actions"],
                              prominent: true)
             .frame(maxWidth: .infinity)
             .frame(height: 27)
@@ -39,6 +39,10 @@ struct SourceControlNavigatorView: View {
 
             if selectedSection == 1 {
                 RepositoriesView(workspace: workspace)
+            }
+
+            if selectedSection == 2 {
+                ActionsListView(workspace: workspace)
             }
         }
     }

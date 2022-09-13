@@ -95,6 +95,11 @@ struct WorkspaceView: View {
                     BranchCommitHistoryView(branchCommitModel: branchHistoryTab,
                                             workspace: workspace)
                 }
+            case .actionsWorkflow:
+                if let actionsWorkflowTab = workspace.selectionState.selected as? Workflow {
+                    WorkflowRunsView(workspace: workspace,
+                                     workflowId: String(actionsWorkflowTab.id))
+                }
             }
         } else {
             noEditor
