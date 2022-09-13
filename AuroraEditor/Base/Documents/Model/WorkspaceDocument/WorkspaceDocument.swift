@@ -12,7 +12,7 @@ import Combine
 import AEExtensionKit
 
 @objc(WorkspaceDocument)
-final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
+class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     /// The FileSystemClient instance that manages the project's file system
     var fileSystemClient: FileSystemClient?
 
@@ -27,7 +27,13 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     @Published
     var showAddRemoteView: Bool = false
     @Published
+    var showBranchCreationSheet: Bool = false
+    @Published
     var currentlySelectedBranch: String = ""
+    @Published
+    var branchRevision: String = ""
+    @Published
+    var branchRevisionDescription: String = ""
 
     @Published
     var selectionState: WorkspaceSelectionState = .init()
