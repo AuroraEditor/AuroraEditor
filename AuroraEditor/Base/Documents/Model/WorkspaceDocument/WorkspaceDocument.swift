@@ -25,6 +25,8 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     @Published
     var showRenameBranchSheet: Bool = false
     @Published
+    var showAddRemoteView: Bool = false
+    @Published
     var currentlySelectedBranch: String = ""
 
     @Published

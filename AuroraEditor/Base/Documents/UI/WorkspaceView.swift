@@ -189,6 +189,9 @@ struct WorkspaceView: View {
                              currentBranchName: workspace.currentlySelectedBranch,
                              newBranchName: workspace.currentlySelectedBranch)
         }
+        .sheet(isPresented: $workspace.showAddRemoteView) {
+            AddRemoteView(workspace: workspace)
+        }
     }
 }
 
