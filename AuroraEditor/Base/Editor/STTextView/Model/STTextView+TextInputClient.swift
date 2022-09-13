@@ -32,12 +32,12 @@ extension STTextView: NSTextInputClient {
     /// When string is an NSString, the receiver is expected to render the marked text with
     /// distinguishing appearance (i.e. NSTextView renders with -markedTextAttributes).
     public func setMarkedText(_ string: Any, selectedRange: NSRange, replacementRange: NSRange) {
-        // print("setMarkedText")
+        // log.info("setMarkedText")
     }
 
     /// The receiver unmarks the marked text. If no marked text, the invocation of this method has no effect.
     public func unmarkText() {
-        // print("unmarkText")
+        // log.info("unmarkText")
 
     }
 
@@ -124,7 +124,7 @@ extension STTextView: NSTextInputClient {
         )
     }
 
-    // swiftlint:disable:next cyclomatic_complexity function_body_length
+    // swiftlint:disable:next function_body_length
     open func insertText(_ string: Any, replacementRange: NSRange) {
         guard isEditable else { return }
 
