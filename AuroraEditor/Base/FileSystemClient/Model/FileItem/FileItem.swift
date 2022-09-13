@@ -58,9 +58,8 @@ public extension FileSystemClient {
             source.resume()
             self.watcher = source
 
-            // reindex the current item, because the files in the item may have changed
+            // TODO: reindex the current item, because the files in the item may have changed
             // since the initial load on startup.
-            fileSystemClient?.reloadFromWatcher(sourceFileItem: self)
             return true
         }
 
