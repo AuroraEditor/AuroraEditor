@@ -89,21 +89,22 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
             if let itemCategory = item as? TabHierarchyCategory { // if the item is a header
                 switch itemCategory {
                 case .savedTabs:
-                    return 0
+                    return workspace?.selectionState.savedTabs.count ?? 0
                 case .openTabs:
                     return workspace?.selectionState.openedTabs.count ?? 0
                 case .unknown:
-                    return 0
+                    break
                 }
-            } else {
-                // the child is a tab. In the future might want to support nested tabs.
-                return 0
+            } else if let item = item as? TabBarItemStorage {
+                // the item is a tab. If it has children, return the children.
+                return item.children?.count ?? 0
             }
         } else {
             // number of children in root view
             // one for the tabs in the hierarchy, one for the currently open tabs
             return 2
         }
+        return 0
     }
 
     // TODO: Return the child at index of item
@@ -168,21 +169,62 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
 
         // encode the item using jsonencoder
         let pboarditem = NSPasteboardItem()
-        // TODO: Encode the item
-        pboarditem.setString("hi", forType: .string)
+        let jsonEncoder = JSONEncoder()
+        guard let jsonData = try? jsonEncoder.encode(item),
+              let json = String(data: jsonData, encoding: String.Encoding.utf8) else { return nil }
+
+        pboarditem.setString(json, forType: .string)
         return pboarditem
     }
 
     func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo,
                      proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
-//        guard let draggedData = info.draggingPasteboard.data(forType: .tabStorage)
-//              else { return NSDragOperation(arrayLiteral: [])}
+
+        let jsonDecoder = JSONDecoder()
+
+        guard let draggedData = info.draggingPasteboard.data(forType: .string),
+              (try? jsonDecoder.decode(TabBarItemStorage.self, from: draggedData)) != nil
+              else { return NSDragOperation(arrayLiteral: [])}
 
         return NSDragOperation.move
     }
 
     func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo,
                      item: Any?, childIndex index: Int) -> Bool {
+
+        let jsonDecoder = JSONDecoder()
+
+        guard let draggedData = info.draggingPasteboard.data(forType: .string),
+              let recievedItem = try? jsonDecoder.decode(TabBarItemStorage.self, from: draggedData)
+              else { return false }
+
+        Log.info("Recieved item: \(recievedItem.tabBarID)")
+
+        if let item = item as? TabHierarchyCategory {
+            switch item {
+            case .savedTabs:
+                if index >= 0 {
+                    workspace?.selectionState.savedTabs.insert(recievedItem, at: index)
+                } else {
+                    workspace?.selectionState.savedTabs.append(recievedItem)
+                }
+            case .openTabs:
+                guard let itemTab = workspace?.selectionState
+                    .getItemByTab(id: recievedItem.tabBarID) else { return false }
+                workspace?.openTab(item: itemTab)
+            case .unknown:
+                break
+            }
+        } else if let item = item as? TabBarItemStorage {
+            if item.children != nil && index >= 0 {
+                item.children?.insert(recievedItem, at: index)
+            } else {
+                item.children = [recievedItem]
+                outlineView.reloadItem(item)
+                outlineView.expandItem(item)
+            }
+        }
+
         return true
     }
 }
@@ -229,8 +271,8 @@ extension TabHierarchyViewController: NSOutlineViewDelegate {
 
     func outlineViewSelectionDidChange(_ notification: Notification) {
         let selectedIndex = outlineView.selectedRow
-        guard let item = outlineView.item(atRow: selectedIndex) as? TabBarItemID,
-              let itemTab = workspace?.selectionState.getItemByTab(id: item) else { return }
+        guard let item = outlineView.item(atRow: selectedIndex) as? TabBarItemStorage,
+              let itemTab = workspace?.selectionState.getItemByTab(id: item.tabBarID) else { return }
         workspace?.openTab(item: itemTab)
     }
 

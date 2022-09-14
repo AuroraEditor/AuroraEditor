@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-class TabBarItemStorage: NSObject, NSCoding, Encodable, Decodable {
+class TabBarItemStorage: NSObject, Codable {
 
     var tabBarID: TabBarItemID
     var children: [TabBarItemStorage]?
@@ -16,26 +16,6 @@ class TabBarItemStorage: NSObject, NSCoding, Encodable, Decodable {
     init(tabBarID: TabBarItemID, children: [TabBarItemStorage]? = nil) {
         self.tabBarID = tabBarID
         self.children = children
-    }
-
-    required convenience init?(pasteboardPropertyList propertyList: Any, ofType type: NSPasteboard.PasteboardType) {
-        guard let data = propertyList as? Data,
-              let tabBarItemStorage = try? PropertyListDecoder()
-                .decode(TabBarItemStorage.self, from: data) else { return nil }
-        self.init(tabBarID: tabBarItemStorage.tabBarID, children: tabBarItemStorage.children)
-    }
-
-    required init?(coder: NSCoder) {
-        guard let tabBarID = coder.decodeObject(forKey: "tabBarID") as? TabBarItemID,
-              let children = coder.decodeObject(forKey: "children") as? [TabBarItemStorage] else { return nil }
-
-        self.tabBarID = tabBarID
-        self.children = children
-    }
-
-    func encode(with coder: NSCoder) {
-        coder.encode(tabBarID, forKey: "tabBarID")
-        coder.encode(children, forKey: "children")
     }
 
     var itemCount: Int {
