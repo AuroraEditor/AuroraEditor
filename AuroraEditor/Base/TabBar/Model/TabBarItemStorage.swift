@@ -13,9 +13,33 @@ class TabBarItemStorage: NSObject, Codable {
     var tabBarID: TabBarItemID
     var children: [TabBarItemStorage]?
 
-    init(tabBarID: TabBarItemID, children: [TabBarItemStorage]? = nil) {
+    var category: TabHierarchyCategory
+    var parentItem: TabBarItemStorage?
+
+    private enum Keys: CodingKey {
+        case tabBarID, children, category, parentItem
+    }
+
+    init(tabBarID: TabBarItemID, category: TabHierarchyCategory, children: [TabBarItemStorage]? = nil) {
+        self.category = category
         self.tabBarID = tabBarID
         self.children = children
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        self.tabBarID = try container.decode(TabBarItemID.self, forKey: Keys.tabBarID)
+        self.children = try container.decode([TabBarItemStorage]?.self, forKey: Keys.children)
+        self.category = try container.decode(TabHierarchyCategory.self, forKey: Keys.category)
+        self.parentItem = try container.decode(TabBarItemStorage?.self, forKey: Keys.parentItem)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Keys.self)
+        try container.encode(self.tabBarID, forKey: Keys.tabBarID)
+        try container.encode(self.children, forKey: Keys.children)
+        try container.encode(self.category, forKey: Keys.category)
+        try container.encode(self.parentItem, forKey: Keys.parentItem)
     }
 
     var itemCount: Int {
@@ -39,4 +63,10 @@ extension Array<TabBarItemStorage> {
             return soFar + (tab.itemCount)
         })
     }
+}
+
+enum TabHierarchyCategory: Codable {
+    case savedTabs
+    case openTabs
+    case unknown
 }

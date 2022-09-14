@@ -130,7 +130,7 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
                 }
             case .openTabs:
                 if let itemTab = workspace?.selectionState.openedTabs[index] {
-                    return TabBarItemStorage(tabBarID: itemTab)
+                    return TabBarItemStorage(tabBarID: itemTab, category: .openTabs)
                 }
             case .unknown:
                 break
@@ -334,10 +334,4 @@ extension TabHierarchyViewController: NSMenuDelegate {
         }
         menu.update()
     }
-}
-
-enum TabHierarchyCategory {
-    case savedTabs
-    case openTabs
-    case unknown
 }
