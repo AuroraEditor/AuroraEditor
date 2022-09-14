@@ -41,7 +41,7 @@ class TabHierarchyViewController: NSViewController {
         outlineView.autosaveExpandedItems = true
         outlineView.autosaveName = workspace?.fileSystemClient?.folderURL?.path ?? ""
         outlineView.headerView = nil
-        outlineView.menu = RepositoriesMenu(sender: self.outlineView, workspaceURL: (workspace?.fileURL)!)
+        outlineView.menu = TabHierarchyMenu(sender: self.outlineView)
         outlineView.menu?.delegate = self
         outlineView.doubleAction = #selector(onItemDoubleClicked)
 
@@ -180,13 +180,51 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo,
                      proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
 
+        // decode the data
         let jsonDecoder = JSONDecoder()
-
         guard let draggedData = info.draggingPasteboard.data(forType: .string),
-              (try? jsonDecoder.decode(TabBarItemStorage.self, from: draggedData)) != nil
-              else { return NSDragOperation(arrayLiteral: [])}
+              let recievedItem = try? jsonDecoder.decode(TabBarItemStorage.self, from: draggedData)
+        else { return .deny}
 
-        return NSDragOperation.move
+        // Currently, only FileItem tabs are supported. This is because the rest of the tabs get de-init'd
+        // when they get closed, meaning that the title for the tab gets bugged out.
+        switch recievedItem.tabBarID {
+        case .codeEditor:
+            break
+        default:
+            return .deny
+        }
+
+        // if the proposedItem already contains a child tab with the same tab
+        // id but different UUID, do not allow movement.
+        if let destinationItem = item as? TabHierarchyCategory {
+            switch destinationItem {
+            case .savedTabs:
+                // check that the item is not already in savedTabs
+                for savedItem in workspace?.selectionState.savedTabs ?? [] {
+                    if recievedItem.tabBarID == savedItem.tabBarID && recievedItem.id == savedItem.id {
+                        return .deny
+                    }
+                }
+            case .openTabs:
+                // don't have to check if there are multiple instances of the same
+                // tab, because the WorkspaceDocument handles that.
+                break
+            case .unknown:
+                return .deny
+            }
+        } else if let destinationItem = item as? TabBarItemStorage {
+            // check that the item is not already in savedTabs
+            for savedItem in destinationItem.children ?? [] {
+                if recievedItem.tabBarID == savedItem.tabBarID && recievedItem.id == savedItem.id {
+                    return .deny
+                }
+            }
+        } else {
+            return .deny
+        }
+
+        return .move
     }
 
     func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo,
@@ -196,49 +234,80 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
 
         guard let draggedData = info.draggingPasteboard.data(forType: .string),
               let recievedItem = try? jsonDecoder.decode(TabBarItemStorage.self, from: draggedData)
-              else { return false }
+        else { return false }
 
-        // Get the ID string
-        var idString = recievedItem.tabBarID.id
-        if let underscoreRange = idString.range(of: "_") {
-            idString.removeSubrange(underscoreRange.lowerBound..<idString.endIndex)
-        }
+        guard self.outlineView(outlineView, validateDrop: info, proposedItem: item,
+                               proposedChildIndex: index) == .move else { return false }
 
-        // Currently only FileItems work with the tab hierarchy view. This is because when tabs close,
-        // they get removed and de-init'd, which causes the item's title to go haywire.
-        if !recievedItem.tabBarID.id.hasPrefix("codeEditor") {
-            Log.error("\(idString) not supported")
-            return false
-        }
+        // Remove the item from its old location
+        if let parentItem = recievedItem.parentItem {
+            parentItem.children?.removeAll(where: { $0.id == recievedItem.id })
 
-        Log.info("Recieved item: \(recievedItem.tabBarID)")
-
-        if let item = item as? TabHierarchyCategory {
-            switch item {
+        // if the item does not have a parent, it is a top level item
+        } else {
+            switch recievedItem.category {
             case .savedTabs:
-                if index >= 0 {
-                    workspace?.selectionState.savedTabs.insert(recievedItem, at: index)
-                } else {
-                    workspace?.selectionState.savedTabs.append(recievedItem)
+                // remove the item from saved tabs
+                Log.info("Item: \(recievedItem.id), \(recievedItem.tabBarID.id)")
+                for savedTab in workspace?.selectionState.savedTabs ?? [] {
+                    Log.info("Saved Item: \(savedTab.id), \(savedTab.tabBarID.id)")
                 }
+                workspace?.selectionState.savedTabs.removeAll(where: { $0.id == recievedItem.id })
             case .openTabs:
-                guard let itemTab = workspace?.selectionState
-                    .getItemByTab(id: recievedItem.tabBarID) else { return false }
-                workspace?.openTab(item: itemTab)
-            case .unknown:
+                // do not remove it from openTabs, as the user may want those tabs open.
                 break
+            case .unknown:
+                return false
             }
-        } else if let item = item as? TabBarItemStorage {
-            if item.children != nil && index >= 0 {
-                item.children?.insert(recievedItem, at: index)
+        }
+
+        return moveItemToNewLocation(item: recievedItem, to: item, at: index)
+    }
+
+    func moveItemToNewLocation(item recievedItem: TabBarItemStorage, to item: Any?, at index: Int) -> Bool {
+        // Add the item to its new location
+        if let destinationItem = item as? TabHierarchyCategory {
+            switch destinationItem {
+            case .savedTabs:
+                recievedItem.category = .savedTabs
+                workspace?.selectionState.savedTabs.safeInsert(recievedItem, at: index)
+            case .openTabs:
+                // open the tab, do NOT insert it to avoid duplicates.
+                if let itemTab = workspace?.selectionState.getItemByTab(id: recievedItem.tabBarID) {
+                    workspace?.openTab(item: itemTab)
+                } else {
+                    return false
+                }
+            case .unknown:
+                return false
+            }
+        } else if let destinationItem = item as? TabBarItemStorage {
+            recievedItem.parentItem = destinationItem
+            recievedItem.category = destinationItem.category
+            if destinationItem.children == nil {
+                destinationItem.children = [recievedItem]
             } else {
-                item.children = [recievedItem]
-                outlineView.reloadItem(item)
-                outlineView.expandItem(item)
+                destinationItem.children?.safeInsert(recievedItem, at: index)
             }
+            outlineView.expandItem(destinationItem)
+            outlineView.reloadData()
         }
 
         return true
+    }
+}
+
+extension NSDragOperation {
+    static let deny: NSDragOperation = NSDragOperation(arrayLiteral: [])
+}
+
+fileprivate extension Array {
+    mutating func safeInsert(_ element: Self.Element, at index: Int) {
+        if index >= 0 && index < count {
+            self.insert(element, at: index)
+        } else {
+            self.append(element)
+        }
     }
 }
 
@@ -254,7 +323,6 @@ extension TabHierarchyViewController: NSOutlineViewDelegate {
         true
     }
 
-    // TODO: View for item
     func outlineView(_ outlineView: NSOutlineView,
                      viewFor tableColumn: NSTableColumn?,
                      item: Any) -> NSView? {
@@ -289,7 +357,7 @@ extension TabHierarchyViewController: NSOutlineViewDelegate {
         workspace?.openTab(item: itemTab)
     }
 
-    // TODO: Don't allow selecting a header
+    // Do not allow a header to be selected
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
         if item is TabHierarchyCategory {
             return false
@@ -301,19 +369,12 @@ extension TabHierarchyViewController: NSOutlineViewDelegate {
         rowHeight // This can be changed to 20 to match Xcode's row height.
     }
 
-    // TODO: Return item for persistent object
     func outlineView(_ outlineView: NSOutlineView, itemForPersistentObject object: Any) -> Any? {
         return nil
-//        guard let id = object as? Item.ID,
-//              let item = try? workspace?.fileSystemClient?.getFileItem(id) else { return nil }
-//        return item
     }
 
-    // TODO: Return object for persistent item
     func outlineView(_ outlineView: NSOutlineView, persistentObjectForItem item: Any?) -> Any? {
         return nil
-//        guard let item = item as? Item else { return nil }
-//        return item.id
     }
 }
 

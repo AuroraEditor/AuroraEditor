@@ -8,7 +8,9 @@
 
 import SwiftUI
 
-class TabBarItemStorage: NSObject, Codable {
+class TabBarItemStorage: NSObject, Codable, Identifiable {
+
+    var id = UUID()
 
     var tabBarID: TabBarItemID
     var children: [TabBarItemStorage]?
@@ -17,7 +19,7 @@ class TabBarItemStorage: NSObject, Codable {
     var parentItem: TabBarItemStorage?
 
     private enum Keys: CodingKey {
-        case tabBarID, children, category, parentItem
+        case tabBarID, children, category, parentItem, id
     }
 
     init(tabBarID: TabBarItemID, category: TabHierarchyCategory, children: [TabBarItemStorage]? = nil) {
@@ -32,6 +34,7 @@ class TabBarItemStorage: NSObject, Codable {
         self.children = try container.decode([TabBarItemStorage]?.self, forKey: Keys.children)
         self.category = try container.decode(TabHierarchyCategory.self, forKey: Keys.category)
         self.parentItem = try container.decode(TabBarItemStorage?.self, forKey: Keys.parentItem)
+        self.id = try container.decode(UUID.self, forKey: Keys.id)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -40,6 +43,7 @@ class TabBarItemStorage: NSObject, Codable {
         try container.encode(self.children, forKey: Keys.children)
         try container.encode(self.category, forKey: Keys.category)
         try container.encode(self.parentItem, forKey: Keys.parentItem)
+        try container.encode(self.id, forKey: Keys.id)
     }
 
     var itemCount: Int {
