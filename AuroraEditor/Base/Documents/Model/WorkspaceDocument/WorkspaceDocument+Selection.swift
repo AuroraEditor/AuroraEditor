@@ -10,6 +10,7 @@ import Foundation
 struct WorkspaceSelectionState: Codable {
     var selectedId: TabBarItemID?
     var openedTabs: [TabBarItemID] = []
+    var savedTabs: [TabBarItemStorage] = []
     var temporaryTab: TabBarItemID?
     var previousTemporaryTab: TabBarItemID?
 

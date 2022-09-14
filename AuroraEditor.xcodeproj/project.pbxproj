@@ -533,6 +533,7 @@
 		2BF86A4228AF9EA400079705 /* AEExtensionKit in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */; };
 		2BF983FF289D8B3C004F1A60 /* SharedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF983FE289D8B3C004F1A60 /* SharedObjects.swift */; };
 		6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */; };
+		9302A22428D183E300648D63 /* TabBarItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9302A22328D183E300648D63 /* TabBarItemStorage.swift */; };
 		9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */; };
 		9327701128CE1B6300871190 /* TabHierarchyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9327701028CE1B6300871190 /* TabHierarchyTableViewCell.swift */; };
 		932A313E28C9BD410084464F /* NewFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932A313D28C9BD410084464F /* NewFileModel.swift */; };
@@ -1158,6 +1159,7 @@
 		6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceDocument+Listeners.swift"; sourceTree = "<group>"; };
 		6CDA84AA284C0E4A00C1CC3A /* TabBarItemButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemButtonStyle.swift; sourceTree = "<group>"; };
 		6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContextMenu.swift; sourceTree = "<group>"; };
+		9302A22328D183E300648D63 /* TabBarItemStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemStorage.swift; sourceTree = "<group>"; };
 		9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorToolbarBottom.swift; sourceTree = "<group>"; };
 		9327701028CE1B6300871190 /* TabHierarchyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyTableViewCell.swift; sourceTree = "<group>"; };
 		932A313D28C9BD410084464F /* NewFileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFileModel.swift; sourceTree = "<group>"; };
@@ -2628,6 +2630,7 @@
 			children = (
 				20D83863289A7ACE00D91D05 /* TabBarItemRepresentable.swift */,
 				20D83865289A7ACE00D91D05 /* TabBarItemID.swift */,
+				9302A22328D183E300648D63 /* TabBarItemStorage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4065,6 +4068,7 @@
 				2093CDCA289AA260003A88DD /* TabBarXcode.swift in Sources */,
 				20752E4628CA54B200935487 /* CommitHistoryCellView.swift in Sources */,
 				2093CC96289A9FF5003A88DD /* StatusBarCursorLocationLabel.swift in Sources */,
+				9302A22428D183E300648D63 /* TabBarItemStorage.swift in Sources */,
 				2093CD95289AA13F003A88DD /* AppPreferencesModel.swift in Sources */,
 				93D5F5D928CE123200286EBD /* TextTableViewCell.swift in Sources */,
 				20BCB0C628AAA1C00064C7C0 /* GitCommit.swift in Sources */,

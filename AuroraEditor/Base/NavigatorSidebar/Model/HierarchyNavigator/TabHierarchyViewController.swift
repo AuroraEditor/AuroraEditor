@@ -56,6 +56,7 @@ class TabHierarchyViewController: NSViewController {
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = false
         scrollView.autohidesScrollers = true
+        outlineView.registerForDraggedTypes([.string])
 
         outlineView.expandItem(outlineView.item(atRow: 0))
         outlineView.expandItem(outlineView.item(atRow: 1))
@@ -107,6 +108,7 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
 
     // TODO: Return the child at index of item
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
+        // Top level, return the sections
         if item == nil {
             switch index {
             case 0:
@@ -116,29 +118,72 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
             default:
                 return TabHierarchyCategory.unknown
             }
+
+        // Secondary level, one layer down from the sections. Return the appropriate tabs.
         } else if let itemCategory = item as? TabHierarchyCategory {
             // TODO: return the appropriate tab
             switch itemCategory {
             case .savedTabs:
-                break
+                if let itemStorage = workspace?.selectionState.savedTabs[index] {
+                    return itemStorage
+                }
             case .openTabs:
                 if let itemTab = workspace?.selectionState.openedTabs[index] {
-                    return itemTab
+                    return TabBarItemStorage(tabBarID: itemTab)
                 }
             case .unknown:
                 break
             }
+
+        // Other levels, one layer down from other tabs. Return the appropriate subtab.
+        } else if let itemChildren = (item as? TabBarItemStorage)?.children {
+            return itemChildren[index]
         }
         return 0
     }
 
     // TODO: Return if a certain item is expandable
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        if item is TabHierarchyCategory { // if it is a header, return true
+        // if it is a header, return true
+        if item is TabHierarchyCategory {
             return true
+
+        // if it is a tab with children, return true
+        } else if let item = item as? TabBarItemStorage, item.children != nil {
+            return true
+
+        // If it is anything else (eg. tab with no children), return false.
         } else {
             return false
         }
+    }
+
+    // MARK: Drag and Drop
+
+    func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
+        guard let item = item as? TabBarItemStorage else {
+            Log.error("Item \(item) is not a tab storage item")
+            return nil
+        }
+
+        // encode the item using jsonencoder
+        let pboarditem = NSPasteboardItem()
+        // TODO: Encode the item
+        pboarditem.setString("hi", forType: .string)
+        return pboarditem
+    }
+
+    func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo,
+                     proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
+//        guard let draggedData = info.draggingPasteboard.data(forType: .tabStorage)
+//              else { return NSDragOperation(arrayLiteral: [])}
+
+        return NSDragOperation.move
+    }
+
+    func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo,
+                     item: Any?, childIndex index: Int) -> Bool {
+        return true
     }
 }
 
@@ -165,7 +210,7 @@ extension TabHierarchyViewController: NSOutlineViewDelegate {
             var itemText = ""
             switch itemCategory {
             case .savedTabs:
-                itemText = "Saved Tabs: 0"
+                itemText = "Saved Tabs: \(workspace?.selectionState.savedTabs.allTabs ?? 0)"
             case .openTabs:
                 itemText = "Open Tabs: \(workspace?.selectionState.openedTabs.count ?? 0)"
             case .unknown:
@@ -173,10 +218,10 @@ extension TabHierarchyViewController: NSOutlineViewDelegate {
             }
             let textField = TextTableViewCell(frame: frameRect, isEditable: false, startingText: itemText)
             return textField
-        } else if let itemTab = item as? TabBarItemID { // tab items
+        } else if let itemTab = item as? TabBarItemStorage { // tab items
             let tabView = TabHierarchyTableViewCell(frame: frameRect)
             tabView.workspace = workspace
-            tabView.addTabItem(tabItem: itemTab)
+            tabView.addTabItem(tabItem: itemTab.tabBarID)
             return tabView
         }
         return nil
@@ -199,6 +244,21 @@ extension TabHierarchyViewController: NSOutlineViewDelegate {
 
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
         rowHeight // This can be changed to 20 to match Xcode's row height.
+    }
+
+    // TODO: Return item for persistent object
+    func outlineView(_ outlineView: NSOutlineView, itemForPersistentObject object: Any) -> Any? {
+        return nil
+//        guard let id = object as? Item.ID,
+//              let item = try? workspace?.fileSystemClient?.getFileItem(id) else { return nil }
+//        return item
+    }
+
+    // TODO: Return object for persistent item
+    func outlineView(_ outlineView: NSOutlineView, persistentObjectForItem item: Any?) -> Any? {
+        return nil
+//        guard let item = item as? Item else { return nil }
+//        return item.id
     }
 }
 
