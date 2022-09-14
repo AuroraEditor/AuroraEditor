@@ -198,6 +198,19 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
               let recievedItem = try? jsonDecoder.decode(TabBarItemStorage.self, from: draggedData)
               else { return false }
 
+        // Get the ID string
+        var idString = recievedItem.tabBarID.id
+        if let underscoreRange = idString.range(of: "_") {
+            idString.removeSubrange(underscoreRange.lowerBound..<idString.endIndex)
+        }
+
+        // Currently only FileItems work with the tab hierarchy view. This is because when tabs close,
+        // they get removed and de-init'd, which causes the item's title to go haywire.
+        if !recievedItem.tabBarID.id.hasPrefix("codeEditor") {
+            Log.error("\(idString) not supported")
+            return false
+        }
+
         Log.info("Recieved item: \(recievedItem.tabBarID)")
 
         if let item = item as? TabHierarchyCategory {
