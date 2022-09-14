@@ -11,19 +11,16 @@ import Foundation
 
 public struct Checkout {
 
-    ///
     /// Check out the given branch.
     ///
     /// @param repository - The repository in which the branch checkout should
     ///                take place
     /// @param branch - The branch name that should be checked out
-    /// @param progressCallback - An optional function which will be invoked
-    ///                     with information about the current progress
-    ///                     of the checkout operation. When provided this
-    ///                     enables the '--progress' command line flag for
-    ///                     'git checkout'.
-    ///
-    func checkoutBranch() {}
+    func checkoutBranch(directoryURL: URL, branch: String) throws {
+        try ShellClient.live().run(
+            "cd \(directoryURL.relativePath.escapedWhiteSpaces());git checkout \(branch)"
+        )
+    }
 
     /// Check out the paths at HEAD.
     func checkoutPaths(directoryURL: URL, paths: [String]) throws {

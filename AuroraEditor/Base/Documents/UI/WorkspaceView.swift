@@ -88,11 +88,13 @@ struct WorkspaceView: View {
                 }
             case .projectHistory:
                 if let projectHistoryTab = workspace.selectionState.selected as? ProjectCommitHistory {
-                    ProjectCommitHistoryView(projectHistoryModel: projectHistoryTab)
+                    ProjectCommitHistoryView(projectHistoryModel: projectHistoryTab,
+                                             workspace: workspace)
                 }
             case .branchHistory:
                 if let branchHistoryTab = workspace.selectionState.selected as? BranchCommitHistory {
-                    BranchCommitHistoryView(branchCommitModel: branchHistoryTab)
+                    BranchCommitHistoryView(branchCommitModel: branchHistoryTab,
+                                            workspace: workspace)
                 }
             }
         } else {
@@ -191,6 +193,11 @@ struct WorkspaceView: View {
         }
         .sheet(isPresented: $workspace.showAddRemoteView) {
             AddRemoteView(workspace: workspace)
+        }
+        .sheet(isPresented: $workspace.showBranchCreationSheet) {
+            CreateNewBranchView(workspace: workspace,
+                                revision: workspace.branchRevision,
+                                revisionDesciption: workspace.branchRevisionDescription)
         }
     }
 }
