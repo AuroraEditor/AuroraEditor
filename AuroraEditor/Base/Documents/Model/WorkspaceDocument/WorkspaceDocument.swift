@@ -127,6 +127,7 @@ final class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         // Initialize Workspace
         do {
             selectionState = try readSelectionState()
+            selectionState.workspace = self
         } catch {
             Log.warning("Couldn't retrieve selection state from user defaults")
         }
