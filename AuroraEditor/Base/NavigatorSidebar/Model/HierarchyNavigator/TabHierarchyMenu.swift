@@ -45,10 +45,14 @@ final class TabHierarchyMenu: NSMenu {
     /// Setup the menu and disables certain items when `isFile` is false
     /// - Parameter isFile: A flag indicating that the item is a file instead of a directory
     private func setupMenu() {
-        items = [
-            menuItem("Open Item", action: #selector(openItem)),
-            menuItem("Remove Item", action: #selector(deleteItem))
-        ]
+        if item != nil {
+            items = [
+                menuItem("Open Item", action: #selector(openItem)),
+                menuItem("Remove Item", action: #selector(deleteItem))
+            ]
+        } else {
+            items = []
+        }
     }
 
     /// Updates the menu for the selected item and hides it if no item is provided.

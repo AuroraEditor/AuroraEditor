@@ -12,13 +12,29 @@ class TabHierarchyTableViewCell: StandardTableViewCell {
 
     var tabItem: TabBarItemID?
 
+    private let prefs = AppPreferencesModel.shared.preferences.general
+
     func addTabItem(tabItem: TabBarItemID) {
         self.tabItem = tabItem
         let tabItemRepresentable = workspace?.selectionState.getItemByTab(id: tabItem)
         switch tabItem {
         case .codeEditor:
-            icon.image = NSImage(systemSymbolName: "folder", accessibilityDescription: nil)
+            // set the image
+            guard let fileItem = tabItemRepresentable as? FileItem else { break }
+            let image = NSImage(systemSymbolName: fileItem.systemImage, accessibilityDescription: nil)!
+            icon.image = image
+
+            // set the image color and tooltip
+            if fileItem.children == nil && prefs.fileIconStyle == .color {
+                icon.contentTintColor = NSColor(fileItem.iconColor)
+            } else {
+                icon.contentTintColor = .secondaryLabelColor
+            }
+            toolTip = fileItem.fileName
             textField?.stringValue = "Unknown Code File"
+
+            // TODO: get and then set the line number
+            secondaryLabel.stringValue = "Line X"
         case .extensionInstallation:
             icon.image = NSImage(systemSymbolName: "puzzlepiece.extension", accessibilityDescription: nil)
             textField?.stringValue = "Unknown Extension"
