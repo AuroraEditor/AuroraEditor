@@ -10,14 +10,15 @@ import SwiftUI
 
 extension TabHierarchyViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
+        guard let workspace = workspace else { return 0 }
         if let item = item {
             // number of children for an item
             if let itemCategory = item as? TabHierarchyCategory { // if the item is a header
                 switch itemCategory {
                 case .savedTabs:
-                    return workspace?.selectionState.savedTabs.count ?? 0
+                    return workspace.selectionState.savedTabs.count ?? 0
                 case .openTabs:
-                    return workspace?.selectionState.openedTabs.count ?? 0
+                    return workspace.selectionState.openedTabs.count ?? 0
                 case .unknown:
                     break
                 }
@@ -34,6 +35,8 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
     }
 
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
+        guard let workspace = workspace else { return 0 }
+
         // Top level, return the sections
         if item == nil {
             switch index {
@@ -49,13 +52,10 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
         } else if let itemCategory = item as? TabHierarchyCategory {
             switch itemCategory {
             case .savedTabs:
-                if let itemStorage = workspace?.selectionState.savedTabs[index] {
-                    return itemStorage
-                }
+                return workspace.selectionState.savedTabs[index]
             case .openTabs:
-                if let itemTab = workspace?.selectionState.openedTabs[index] {
-                    return TabBarItemStorage(tabBarID: itemTab, category: .openTabs)
-                }
+                return TabBarItemStorage(tabBarID: workspace.selectionState.openedTabs[index],
+                                         category: .openTabs)
             case .unknown:
                 break
             }
