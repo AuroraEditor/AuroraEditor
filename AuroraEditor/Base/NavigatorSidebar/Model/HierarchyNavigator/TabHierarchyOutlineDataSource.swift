@@ -135,11 +135,7 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
 
         // Remove the item from its old location
         if let recievedParentID = recievedItem.parentItem?.id {
-            // TODO: Remove item from its old location
-            Log.info("Recieved item's parent: \(recievedParentID)")
-            Log.info("Flattened IDs: \((workspace?.selectionState.flattenedSavedTabs ?? []).map({ $0.id }))")
             for tab in workspace?.selectionState.flattenedSavedTabs ?? [] where tab.id == recievedParentID {
-                Log.info("Found old location")
                 tab.children.removeAll(where: {
                     $0.id == recievedItem.id
                 })
@@ -150,10 +146,6 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
             switch recievedItem.category {
             case .savedTabs:
                 // remove the item from saved tabs
-                Log.info("Item: \(recievedItem.id), \(recievedItem.tabBarID.id)")
-                for savedTab in workspace?.selectionState.savedTabs ?? [] {
-                    Log.info("Saved Item: \(savedTab.id), \(savedTab.tabBarID.id)")
-                }
                 workspace?.selectionState.savedTabs.removeAll(where: { $0.id == recievedItem.id })
             case .openTabs:
                 // do not remove it from openTabs, as the user may want those tabs open.

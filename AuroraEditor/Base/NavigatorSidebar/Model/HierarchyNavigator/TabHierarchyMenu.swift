@@ -68,5 +68,29 @@ final class TabHierarchyMenu: NSMenu {
 
     @objc
     func deleteItem() {
+        guard let item = item else { return }
+        // Remove the item from its old location
+        if let recievedParentID = item.parentItem?.id {
+            for tab in workspace?.selectionState.flattenedSavedTabs ?? [] where tab.id == recievedParentID {
+                tab.children.removeAll(where: {
+                    $0.id == item.id
+                })
+            }
+
+        // if the item does not have a parent, it is a top level item
+        } else {
+            switch item.category {
+            case .savedTabs:
+                // remove the item from saved tabs
+                workspace?.selectionState.savedTabs.removeAll(where: { $0.id == item.id })
+            case .openTabs:
+                // do not remove it from openTabs, as the user may want those tabs open.
+                break
+            case .unknown:
+                return
+            }
+        }
+
+        outlineView.reloadData()
     }
 }
