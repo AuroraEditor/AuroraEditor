@@ -17,8 +17,7 @@ final class TabHierarchyMenu: NSMenu {
 
     var outlineView: NSOutlineView
 
-    // TODO: Change item to a specific type
-    var item: Any?
+    var item: TabBarItemStorage?
 
     init(sender: NSOutlineView) {
         outlineView = sender
@@ -47,8 +46,8 @@ final class TabHierarchyMenu: NSMenu {
     /// - Parameter isFile: A flag indicating that the item is a file instead of a directory
     private func setupMenu() {
         items = [
-            menuItem("Open Item", action: nil),
-            menuItem("Remove Item", action: nil)
+            menuItem("Open Item", action: #selector(openItem)),
+            menuItem("Remove Item", action: #selector(deleteItem))
         ]
     }
 
@@ -56,5 +55,18 @@ final class TabHierarchyMenu: NSMenu {
     override func update() {
         removeAllItems()
         setupMenu()
+    }
+
+    @objc
+    func openItem() {
+        guard let item = item,
+              let itemTab = workspace?.selectionState.getItemByTab(id: item.tabBarID) else { return }
+        DispatchQueue.main.async {
+            self.workspace?.openTab(item: itemTab)
+        }
+    }
+
+    @objc
+    func deleteItem() {
     }
 }

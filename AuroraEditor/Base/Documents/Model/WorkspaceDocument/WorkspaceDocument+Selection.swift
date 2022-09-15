@@ -11,6 +11,14 @@ struct WorkspaceSelectionState: Codable {
     var selectedId: TabBarItemID?
     var openedTabs: [TabBarItemID] = []
     var savedTabs: [TabBarItemStorage] = []
+    var flattenedSavedTabs: [TabBarItemStorage] {
+        var flat = [TabBarItemStorage]()
+        for tab in savedTabs {
+            flat.append(tab)
+            flat.append(contentsOf: tab.flattenedChildren)
+        }
+        return flat
+    }
     var temporaryTab: TabBarItemID?
     var previousTemporaryTab: TabBarItemID?
 

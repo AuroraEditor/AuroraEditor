@@ -10,7 +10,6 @@ import SwiftUI
 
 extension TabHierarchyViewController: NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        // TODO: Number of children
         if let item = item {
             // number of children for an item
             if let itemCategory = item as? TabHierarchyCategory { // if the item is a header
@@ -24,7 +23,7 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
                 }
             } else if let item = item as? TabBarItemStorage {
                 // the item is a tab. If it has children, return the children.
-                return item.children?.count ?? 0
+                return item.children.count
             }
         } else {
             // number of children in root view
@@ -34,7 +33,6 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
         return 0
     }
 
-    // TODO: Return the child at index of item
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         // Top level, return the sections
         if item == nil {
@@ -49,7 +47,6 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
 
         // Secondary level, one layer down from the sections. Return the appropriate tabs.
         } else if let itemCategory = item as? TabHierarchyCategory {
-            // TODO: return the appropriate tab
             switch itemCategory {
             case .savedTabs:
                 if let itemStorage = workspace?.selectionState.savedTabs[index] {
@@ -70,14 +67,13 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
         return 0
     }
 
-    // TODO: Return if a certain item is expandable
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         // if it is a header, return true
         if item is TabHierarchyCategory {
             return true
 
         // if it is a tab with children, return true
-        } else if let item = item as? TabBarItemStorage, item.children != nil {
+        } else if let item = item as? TabBarItemStorage, !item.children.isEmpty {
             return true
 
         // If it is anything else (eg. tab with no children), return false.
@@ -122,35 +118,6 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
             return .deny
         }
 
-        // if the proposedItem already contains a child tab with the same tab
-        // id but different UUID, do not allow movement.
-        if let destinationItem = item as? TabHierarchyCategory {
-            switch destinationItem {
-            case .savedTabs:
-                // check that the item is not already in savedTabs
-                for savedItem in workspace?.selectionState.savedTabs ?? [] {
-                    if recievedItem.tabBarID == savedItem.tabBarID && recievedItem.id == savedItem.id {
-                        return .deny
-                    }
-                }
-            case .openTabs:
-                // don't have to check if there are multiple instances of the same
-                // tab, because the WorkspaceDocument handles that.
-                break
-            case .unknown:
-                return .deny
-            }
-        } else if let destinationItem = item as? TabBarItemStorage {
-            // check that the item is not already in savedTabs
-            for savedItem in destinationItem.children ?? [] {
-                if recievedItem.tabBarID == savedItem.tabBarID && recievedItem.id == savedItem.id {
-                    return .deny
-                }
-            }
-        } else {
-            return .deny
-        }
-
         return .move
     }
 
@@ -167,8 +134,16 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
                                proposedChildIndex: index) == .move else { return false }
 
         // Remove the item from its old location
-        if let parentItem = recievedItem.parentItem {
-            parentItem.children?.removeAll(where: { $0.id == recievedItem.id })
+        if let recievedParentID = recievedItem.parentItem?.id {
+            // TODO: Remove item from its old location
+            Log.info("Recieved item's parent: \(recievedParentID)")
+            Log.info("Flattened IDs: \((workspace?.selectionState.flattenedSavedTabs ?? []).map({ $0.id }))")
+            for tab in workspace?.selectionState.flattenedSavedTabs ?? [] where tab.id == recievedParentID {
+                Log.info("Found old location")
+                tab.children.removeAll(where: {
+                    $0.id == recievedItem.id
+                })
+            }
 
         // if the item does not have a parent, it is a top level item
         } else {
@@ -197,6 +172,7 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
             switch destinationItem {
             case .savedTabs:
                 recievedItem.category = .savedTabs
+                recievedItem.parentItem = nil
                 workspace?.selectionState.savedTabs.safeInsert(recievedItem, at: index)
             case .openTabs:
                 // open the tab, do NOT insert it to avoid duplicates.
@@ -211,11 +187,7 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
         } else if let destinationItem = item as? TabBarItemStorage {
             recievedItem.parentItem = destinationItem
             recievedItem.category = destinationItem.category
-            if destinationItem.children == nil {
-                destinationItem.children = [recievedItem]
-            } else {
-                destinationItem.children?.safeInsert(recievedItem, at: index)
-            }
+            destinationItem.children.safeInsert(recievedItem, at: index)
             outlineView.expandItem(destinationItem)
             outlineView.reloadData()
         }

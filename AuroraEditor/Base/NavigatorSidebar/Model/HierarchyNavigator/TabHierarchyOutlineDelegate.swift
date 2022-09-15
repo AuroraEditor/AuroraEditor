@@ -83,7 +83,7 @@ extension TabHierarchyViewController: NSMenuDelegate {
 
         if row != -1 {
             menu.workspace = workspace
-            menu.item = outlineView.item(atRow: row)
+            menu.item = outlineView.item(atRow: row) as? TabBarItemStorage
         }
         menu.update()
     }
