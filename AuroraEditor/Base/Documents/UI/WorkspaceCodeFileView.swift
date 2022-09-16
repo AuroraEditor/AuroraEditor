@@ -239,10 +239,22 @@ public struct AECodeView: View {
                 ) ?? .monospacedSystemFont(ofSize: 12, weight: .regular)
             }
 
-            ZStack {
+            ZStack(alignment: .topLeading) {
                 Color.black.opacity(0.2)
+                ForEach(attributedTextItems) { textItem in
+                    if let color = textItem.attributes[.foregroundColor] as? NSColor {
+                        Color(nsColor: color)
+                            .frame(width: CGFloat(textItem.text.count * minimapMultiplier),
+                                   height: CGFloat(minimapLineHeight))
+                            .offset(x: CGFloat(textItem.charactersFromStart * minimapMultiplier),
+                                    y: CGFloat(textItem.lineNumber * minimapLineHeight))
+                    }
+                }
             }
-            .frame(width: 200)
+            .frame(width: 150)
         }
     }
+
+    let minimapMultiplier = 1
+    let minimapLineHeight = 3
 }

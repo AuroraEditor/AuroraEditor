@@ -99,6 +99,8 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
             Log.info("Length: \(attributedText.length)")
             let length = attributedText.length
 
+            var newAttributedTextItems: [AttributedStringItem] = []
+
             var position = 0
             while position < length {
                 // get the attributes
@@ -109,33 +111,63 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
                 // get the line number by counting the number of newlines until the string starts
                 let rangeSoFar = atString.startIndex..<atString.index(atString.startIndex, offsetBy: position)
                 let stringSoFar = String(attributedText.string[rangeSoFar])
-                let newLines = stringSoFar.components(separatedBy: "\n").count - 1
+                let separatedComponents = stringSoFar.components(separatedBy: "\n")
+                let newLines = separatedComponents.count - 1
+                let charFromStart = separatedComponents.last?.count ?? 0
 
                 // get the contents of the range
                 let rangeContents = atString[range] ?? ""
-                Log.info("range: \(range), newlines \(newLines), content \(rangeContents)")
-                Log.info(attributes[.foregroundColor])
+                Log.info("range: \(range), position \(newLines),\(charFromStart), content \(rangeContents)")
+                Log.info(attributes[.foregroundColor]!)
 
-                AttributedStringItem(text: String(rangeContents), lineNumber: newLines,
-                                     range: range, attributes: attributes)
+                newAttributedTextItems.append(AttributedStringItem(text: String(rangeContents),
+                                                                   lineNumber: newLines,
+                                                                   charactersFromStart: charFromStart,
+                                                                   range: range,
+                                                                   attributes: attributes))
 
                 position = range.upperBound
             }
+
+            attributedTextItems = newAttributedTextItems
         }
         controller.reloadUI()
         return
     }
 }
 
-public class AttributedStringItem {
+public class AttributedStringItem: Identifiable, Hashable {
+    public let id = UUID()
+
+    public static func == (lhs: AttributedStringItem, rhs: AttributedStringItem) -> Bool {
+        lhs.text == rhs.text &&
+        lhs.lineNumber == rhs.lineNumber &&
+        lhs.charactersFromStart == rhs.charactersFromStart &&
+        lhs.range == rhs.range
+        // attributes are a bit hard to compare so they're not included
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(text)
+        hasher.combine(lineNumber)
+        hasher.combine(charactersFromStart)
+        hasher.combine(range)
+    }
+
     var text: String
     var lineNumber: Int
+    var charactersFromStart: Int
     var range: NSRange
     var attributes: [NSAttributedString.Key: Any]
 
-    init(text: String, lineNumber: Int, range: NSRange, attributes: [NSAttributedString.Key: Any]) {
+    init(text: String,
+         lineNumber: Int,
+         charactersFromStart: Int,
+         range: NSRange,
+         attributes: [NSAttributedString.Key: Any]) {
         self.text = text
         self.lineNumber = lineNumber
+        self.charactersFromStart = charactersFromStart
         self.range = range
         self.attributes = attributes
     }
