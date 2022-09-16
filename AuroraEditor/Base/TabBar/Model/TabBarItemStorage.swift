@@ -59,7 +59,7 @@ class TabBarItemStorage: NSObject, Codable, Identifiable {
 
     var flattenedChildren: [TabBarItemStorage] {
         var flat = [TabBarItemStorage]()
-        for child in children ?? [] {
+        for child in children {
             flat.append(child)
             flat.append(contentsOf: child.flattenedChildren)
         }
@@ -67,7 +67,7 @@ class TabBarItemStorage: NSObject, Codable, Identifiable {
     }
 }
 
-extension Array<TabBarItemStorage> {
+extension Array where Iterator.Element: TabBarItemStorage {
     var allTabs: Int {
         return reduce(0, { soFar, tab in
             return soFar + (tab.itemCount)
