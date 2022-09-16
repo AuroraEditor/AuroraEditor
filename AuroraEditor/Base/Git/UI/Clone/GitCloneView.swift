@@ -43,9 +43,10 @@ public struct GitCloneView: View {
     @State var activeSheet: ActiveSheet?
 
     enum ActiveSheet: Identifiable {
-        case verify, select, error
-        var id: Int {
-            hashValue
+        case verify, select, error(String)
+
+        var id: UUID {
+            UUID()
         }
     }
 
@@ -63,8 +64,8 @@ public struct GitCloneView: View {
         do {
             let branch = try Remote().getRemoteHEAD(url: url)
             if branch[0].contains("fatal:") {
-                Log.info("Error: getRemoteHead")
-                activeSheet = .error
+                Log.warning("Error: getRemoteHead")
+                activeSheet = .error("Error: getRemoteHead")
             } else {
                 self.mainBranch = branch[0]
                 self.selectedBranch = branch[0]
@@ -83,8 +84,8 @@ public struct GitCloneView: View {
         do {
             let branches = try Remote().getRemoteBranch(url: url)
             if branches[0].contains("fatal:") {
-                Log.info("Error: getRemoteBranch")
-                activeSheet = .error
+                Log.warning("Error: getRemoteBranch")
+                activeSheet = .error("Error: getRemoteBranch")
             } else {
                 self.arrayBranch = branches
                 self.check += 1
@@ -153,8 +154,10 @@ public struct GitCloneView: View {
                             progressVerifyView
                         case .select:
                             selectView
-                        case .error:
-                            errorView
+                        case .error(let error):
+                            ErrorView(errorMessage: error) {
+                                activeSheet = nil // On close action
+                            }
                         }
                     }.keyboardShortcut(.defaultAction)
                         .disabled(!isValid(url: repoUrlStr))
@@ -301,8 +304,13 @@ public struct GitCloneView: View {
         .padding(.horizontal, 20)
         .padding(.bottom, 16)
     }
+}
 
-    public var errorView: some View {
+struct ErrorView: View {
+    var errorMessage: String
+    var onClose: () -> Void
+
+    public var body: some View {
         HStack {
             Image(nsImage: NSApp.applicationIconImage)
                 .resizable()
@@ -313,9 +321,12 @@ public struct GitCloneView: View {
                     .bold()
                     .padding(.bottom, 2)
 
+                Text("\(errorMessage)")
+                    .padding(.bottom, 2)
+
                 HStack {
                     Button("Cancel") {
-                        activeSheet = nil
+                        onClose()
                     }.keyboardShortcut(.defaultAction)
                 }
                 .alignmentGuide(.leading) { context in
