@@ -74,6 +74,7 @@ final class TabHierarchyMenu: NSMenu {
     func deleteItem() {
         guard let item = item,
               let workspace = workspace else { return }
+
         // Remove the item from its old location
         if let recievedParentID = item.parentItem?.id {
             for tab in workspace.selectionState.flattenedSavedTabs where tab.id == recievedParentID {
@@ -87,7 +88,7 @@ final class TabHierarchyMenu: NSMenu {
             switch item.category {
             case .savedTabs:
                 // remove the item from saved tabs
-                workspace?.selectionState.savedTabs.removeAll(where: { $0.id == item.id })
+                workspace.selectionState.savedTabs.removeAll(where: { $0.id == item.id })
             case .openTabs:
                 // do not remove it from openTabs, as the user may want those tabs open.
                 break
