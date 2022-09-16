@@ -124,28 +124,34 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
             let rangeSoFar = atString.startIndex..<atString.index(atString.startIndex, offsetBy: position)
             let stringSoFar = String(attributedText.string[rangeSoFar])
             let separatedComponents = stringSoFar.components(separatedBy: "\n")
-            let newLines = separatedComponents.count - 1
+            var newLines = separatedComponents.count - 1
             var charFromStart = separatedComponents.last?.count ?? 0
 
             // get the contents of the range
             let rangeContents = atString[range] ?? ""
             Log.info("range: \(range), position \(newLines),\(charFromStart), content \(rangeContents)")
-            Log.info(attributes[.foregroundColor]!)
 
-            // split by spaces
-            let words = String(rangeContents).components(separatedBy: " ")
+            // split by \n characters and spaces
+            let lines = String(rangeContents).components(separatedBy: "\n")
 
-            for word in words {
-                if !word.isEmpty {
-                    newAttributedTextItems.append(AttributedStringItem(text: word,
-                                                                       lineNumber: newLines,
-                                                                       charactersFromStart: charFromStart,
-                                                                       range: range,
-                                                                       attributes: attributes))
+            for line in lines {
+                let words = line.components(separatedBy: " ")
+                for word in words {
+                    if !word.isEmpty {
+                        newAttributedTextItems.append(AttributedStringItem(text: word,
+                                                                           lineNumber: newLines,
+                                                                           charactersFromStart: charFromStart,
+                                                                           range: range,
+                                                                           attributes: attributes))
+                    }
+
+                    // modify the charactersFromStart for each word
+                    charFromStart += word.count + 1
                 }
 
-                // modify the charactersFromStart and range for each word
-                charFromStart += word.count + 1
+                // modify the line number and charactersFromStart for each line
+                charFromStart = 0
+                newLines += 1
             }
 
             position = range.upperBound
