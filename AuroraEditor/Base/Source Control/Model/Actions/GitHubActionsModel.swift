@@ -82,15 +82,23 @@ class GitHubActions: ObservableObject {
             let remote = try Remote().getRemoteURL(directoryURL: workspace.workspaceURL(),
                                                    name: "origin")
             let remoteURL = URL(string: remote!)
-            let remoteSplit = remoteURL?.pathComponents
 
-            repoOwner = remoteSplit?[1] ?? ""
+            // As caution we check if the origin contains git@ so we can fetch the repo
+            // info in one of two ways.
+            if remote?.contains("git@") ?? false {
+                // git@github.com-angelk90:AuroraEditor/AuroraEditor.git
+                let splitGit = remote?.split(separator: ":")
+                let splitRepoDetails = splitGit?[1].split(separator: "/")
 
-            let repoValue = remoteSplit?[2] ?? ""
+                repoOwner = splitRepoDetails?[0].description ?? ""
+                repo = splitRepoDetails?[1].description.replacingOccurrences(of: ".git", with: "") ?? ""
+            } else {
+                let remoteSplit = remoteURL?.pathComponents
+                repoOwner = remoteSplit?[1] ?? ""
 
-            repo = repoValue.replacingOccurrences(of: ".git", with: "")
-
-            Log.debug("Repo Owner: \(repoOwner), Repo: \(repo)")
+                let repoValue = remoteSplit?[2] ?? ""
+                repo = repoValue.replacingOccurrences(of: ".git", with: "")
+            }
         } catch {
             Log.error("Failed to get project remote URL.")
         }
