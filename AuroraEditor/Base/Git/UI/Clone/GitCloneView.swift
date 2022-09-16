@@ -149,16 +149,23 @@ public struct GitCloneView: View {
                         check = 0
                         activeSheet = .verify
                     }.sheet(item: $activeSheet) { item in
-                        switch item {
-                        case .verify:
-                            progressVerifyView
-                        case .select:
-                            selectView
-                        case .error(let error):
-                            ErrorView(errorMessage: error) {
-                                activeSheet = nil // On close action
+                        VStack {
+                            switch item {
+                            case .verify:
+                                progressVerifyView
+                            case .select:
+                                selectView
+                            case .error(let error):
+                                ErrorView(errorMessage: error) {
+                                    activeSheet = nil // On close action
+                                }
                             }
                         }
+                        .frame(
+                            maxWidth: .infinity,
+                            maxHeight: .infinity,
+                            alignment: .topLeading
+                        )
                     }.keyboardShortcut(.defaultAction)
                         .disabled(!isValid(url: repoUrlStr))
                 }
@@ -224,6 +231,7 @@ public struct GitCloneView: View {
                 .resizable()
                 .frame(width: 64, height: 64)
                 .padding(.bottom, 50)
+
             VStack(alignment: .leading) {
                 Text("Clone a repository")
                     .bold()
@@ -247,6 +255,8 @@ public struct GitCloneView: View {
                     }
                 }
 
+                Spacer()
+
                 HStack {
                     Button("Cancel") {
                         activeSheet = nil
@@ -266,7 +276,6 @@ public struct GitCloneView: View {
         .padding(.top, 20)
         .padding(.horizontal, 20)
         .padding(.bottom, 16)
-        .frame(width: 400, height: 150)
     }
 
     public var progressView: some View {
@@ -316,6 +325,7 @@ struct ErrorView: View {
                 .resizable()
                 .frame(width: 64, height: 64)
                 .padding(.bottom, 50)
+
             VStack(alignment: .leading) {
                 Text("Error")
                     .bold()
@@ -324,11 +334,14 @@ struct ErrorView: View {
                 Text("\(errorMessage)")
                     .padding(.bottom, 2)
 
+                Spacer()
+
                 HStack {
                     Button("Cancel") {
                         onClose()
-                    }.keyboardShortcut(.defaultAction)
+                    }
                 }
+                .offset(x: 235)
                 .alignmentGuide(.leading) { context in
                     context[.leading]
                 }
@@ -337,6 +350,5 @@ struct ErrorView: View {
         .padding(.top, 20)
         .padding(.horizontal, 20)
         .padding(.bottom, 16)
-        .frame(width: 400, height: 150)
     }
 }
