@@ -15,15 +15,12 @@ extension WorkspaceDocument {
     /// Opens new tab
     /// - Parameter item: any item which can be represented as a tab
     func openTab(item: TabBarItemRepresentable) {
-        do {
-            updateNewlyOpenedTabs(item: item)
-            if selectionState.selectedId != item.tabID {
-                selectionState.selectedId = item.tabID
-            }
+        // open the tab if it isn't already open
+        if !selectionState.openedTabs.contains(item.tabID) {
             switch item.tabID {
             case .codeEditor:
                 guard let file = item as? FileSystemClient.FileItem else { return }
-                try self.openFile(item: file)
+                self.openFile(item: file)
             case .extensionInstallation:
                 guard let plugin = item as? Plugin else { return }
                 self.openExtension(item: plugin)
@@ -40,10 +37,10 @@ extension WorkspaceDocument {
                 guard let actionsWorkflowTab = item as? Workflow else { return }
                 self.openActionsWorkflow(item: actionsWorkflowTab)
             }
-
-        } catch let err {
-            Log.error(err)
         }
+        updateNewlyOpenedTabs(item: item)
+        // select the tab
+        selectionState.selectedId = item.tabID
     }
 
     /// Updates the opened tabs and temporary tab.
@@ -69,17 +66,23 @@ extension WorkspaceDocument {
         }
     }
 
-    private func openFile(item: FileSystemClient.FileItem) throws {
+    private func openFile(item: FileSystemClient.FileItem) {
         if !selectionState.openFileItems.contains(item) {
             selectionState.openFileItems.append(item)
         }
-        let pathExtention = item.url.pathExtension
-        let codeFile = try CodeFileDocument(
-            for: item.url,
-            withContentsOf: item.url,
-            ofType: pathExtention
-        )
-        selectionState.openedCodeFiles[item] = codeFile
+        DispatchQueue.main.async {
+            let pathExtention = item.url.pathExtension
+            do {
+                let codeFile = try CodeFileDocument(
+                    for: item.url,
+                    withContentsOf: item.url,
+                    ofType: pathExtention
+                )
+                self.selectionState.openedCodeFiles[item] = codeFile
+            } catch let err {
+                Log.error(err)
+            }
+        }
     }
 
     private func openExtension(item: Plugin) {
@@ -192,6 +195,10 @@ extension WorkspaceDocument {
             guard let item = selectionState.getItemByTab(id: id)
                     as? FileSystemClient.FileItem else { return }
             selectionState.openedCodeFiles.removeValue(forKey: item)
+            if let idx = selectionState.openFileItems.firstIndex(of: item) {
+                Log.info("Removing temp tab \(item)")
+                selectionState.openFileItems.remove(at: idx)
+            }
         case .extensionInstallation:
             guard let item = selectionState.getItemByTab(id: id)
                     as? Plugin else { return }
