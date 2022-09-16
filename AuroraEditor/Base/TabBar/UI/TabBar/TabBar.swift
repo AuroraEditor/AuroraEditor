@@ -183,8 +183,6 @@ struct TabBar: View {
                                             tabWidth: $tabWidth
                                         )
                                     )
-                                } else {
-                                    Text("Unknown Item")
                                 }
                             }
                         }

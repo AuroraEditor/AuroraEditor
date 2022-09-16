@@ -30,20 +30,19 @@ extension ProjectNavigatorViewController: NSOutlineViewDelegate {
     }
 
     func outlineViewSelectionDidChange(_ notification: Notification) {
-        guard let outlineView = notification.object as? NSOutlineView else {
+        guard let workspace = workspace,
+              let outlineView = notification.object as? NSOutlineView,
+              let navigatorItem = outlineView.item(atRow: outlineView.selectedRow) as? Item else {
             return
         }
 
-        let selectedIndex = outlineView.selectedRow
-
-        guard let navigatorItem = outlineView.item(atRow: selectedIndex) as? Item else { return }
-
         // update the outlineview selection in the workspace. This is used by the bottom toolbar
         // when the + button is clicked to create a new file.
-        workspace?.newFileModel.outlineViewSelection = navigatorItem
+        workspace.newFileModel.outlineViewSelection = navigatorItem
 
-        if !navigatorItem.isFolder && shouldSendSelectionUpdate {
-            workspace?.openTab(item: navigatorItem)
+        if !workspace.selectionState.openedTabs.contains(navigatorItem.tabID) &&
+            !navigatorItem.isFolder && shouldSendSelectionUpdate {
+            workspace.openTab(item: navigatorItem)
             Log.info("Opened a new tab for: \(navigatorItem.url)")
         }
     }
