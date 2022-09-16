@@ -27,7 +27,6 @@ struct RepositoriesWrapperView: NSViewControllerRepresentable {
         let controller = RepositoriesViewController()
         controller.workspace = workspace
         controller.repository = repository
-        controller.iconColor = prefs.preferences.general.fileIconStyle
 
         context.coordinator.controller = controller
 
@@ -35,11 +34,7 @@ struct RepositoriesWrapperView: NSViewControllerRepresentable {
     }
 
     func updateNSViewController(_ nsViewController: RepositoriesViewController, context: Context) {
-        nsViewController.iconColor = prefs.preferences.general.fileIconStyle
         nsViewController.rowHeight = prefs.preferences.general.projectNavigatorSize.rowHeight
-        nsViewController.fileExtensionsVisibility = prefs.preferences.general.fileExtensionsVisibility
-        nsViewController.shownFileExtensions = prefs.preferences.general.shownFileExtensions
-        nsViewController.hiddenFileExtensions = prefs.preferences.general.hiddenFileExtensions
         nsViewController.updateSelection()
         return
     }
