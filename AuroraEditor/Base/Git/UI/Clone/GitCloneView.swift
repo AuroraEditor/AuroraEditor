@@ -183,7 +183,7 @@ public struct GitCloneView: View {
                 .frame(width: 64, height: 64)
                 .padding(.bottom, 50)
             VStack(alignment: .leading) {
-                Text("Verifying \""+repoUrlStr+"\"")
+                Text("Verifying \(repoUrlStr")
                     .bold()
                     .padding(.bottom, 2)
 
@@ -271,7 +271,7 @@ public struct GitCloneView: View {
 
     public var progressView: some View {
         VStack(alignment: .leading) {
-            Text("Cloning \""+repoUrlStr+"\"")
+            Text("Cloning \(repoUrlStr)")
                 .bold()
                 .padding(.bottom, 2)
 
