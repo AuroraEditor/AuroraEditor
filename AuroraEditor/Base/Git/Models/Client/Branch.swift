@@ -21,14 +21,14 @@ public struct Branches {
             return try ShellClient.live().run(
                 "cd \(directoryURL.relativePath.escapedWhiteSpaces());git branch -a --format \"%(refname:short)\""
             )
-                .components(separatedBy: "\n")
-                .filter { !$0.isEmpty }
+            .components(separatedBy: "\n")
+            .filter { !$0.isEmpty }
         }
         return try ShellClient.live().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git branch --format \"%(refname:short)\""
         )
-            .components(separatedBy: "\n")
-            .filter { !$0.isEmpty }
+        .components(separatedBy: "\n")
+        .filter { !$0.isEmpty }
     }
 
     /// Create a new branch from the given start point.
@@ -42,14 +42,14 @@ public struct Branches {
                       name: String,
                       startPoint: String?,
                       noTrack: Bool?) throws {
-        var args = startPoint != nil ? ["branch", name, startPoint] : ["branch", name]
+        var args: [String] = startPoint != nil ? ["branch", name, startPoint!] : ["branch", name]
 
         if noTrack != nil {
             args.append("--no-track")
         }
 
         try ShellClient().run(
-            "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)")
+            "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args.joined(separator: " "))")
     }
 
     /// Rename the given branch to a new name.

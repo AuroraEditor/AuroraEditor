@@ -50,16 +50,17 @@ final class RepositoriesMenu: NSMenu {
         guard let branch = item as? RepoBranch else { return }
 
         items = [
-            menuItem("New Branch from \"\(branch.name)\"", action: nil),
-            menuItem("Rename \"\(branch.name)\"", action: nil),
+            menuItem("New Branch from \"\(branch.name)\"", action: #selector(createNewBranch)),
+            menuItem("Rename \"\(branch.name)\"", action: #selector(renameBranch)),
             menuItem("Tag \"\(branch.name)\"", action: nil),
-            menuItem("Switch...", action: item is RepoBranch ? #selector(switchToBranch(_:)) : nil),
+            menuItem("Switch...", action: isSelectedBranchCurrentOne() ? nil : #selector(switchToBranch(_:))),
             NSMenuItem.separator(),
             menuItem("Merge from Branch...", action: nil),
             menuItem("Merge into Branch...", action: nil),
             NSMenuItem.separator(),
-            menuItem("New \"\(repository?.repoName ?? "Unknown Repository")\" Remote...", action: nil),
-            menuItem("Add Existing Remote...", action: nil),
+            menuItem("New \"\(repository?.repoName ?? "Unknown Repository")\" Remote...",
+                     action: nil),
+            menuItem("Add Existing Remote...", action: #selector(addNewRemote)),
             NSMenuItem.separator(),
             menuItem("View on [Remote Provider]", action: nil),
             menuItem("Apply Stashed Changes...", action: nil),
@@ -69,10 +70,31 @@ final class RepositoriesMenu: NSMenu {
         ]
     }
 
+    @objc
+    private func createNewBranch() {
+        guard let branch = item as? RepoBranch else { return }
+
+        workspace?.showBranchCreationSheet.toggle()
+        workspace?.branchRevision = branch.name
+    }
+
+    @objc
+    func addNewRemote() {
+        workspace?.showAddRemoteView.toggle()
+    }
+
     @objc func switchToBranch(_ sender: Any?) {
         guard let branch = item as? RepoBranch else { return }
         try? workspace?.fileSystemClient?.model?.gitClient.checkoutBranch(name: branch.name)
         self.outlineView.reloadData()
+    }
+
+    @objc
+    private func renameBranch() {
+        guard let branch = item as? RepoBranch else { return }
+
+        workspace?.currentlySelectedBranch = branch.name
+        workspace?.showRenameBranchSheet.toggle()
     }
 
     @objc

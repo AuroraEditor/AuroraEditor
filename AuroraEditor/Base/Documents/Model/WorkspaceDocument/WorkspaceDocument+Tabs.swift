@@ -15,26 +15,29 @@ extension WorkspaceDocument {
     /// Opens new tab
     /// - Parameter item: any item which can be represented as a tab
     func openTab(item: TabBarItemRepresentable) {
-        do {
-            updateNewlyOpenedTabs(item: item)
-            if selectionState.selectedId != item.tabID {
-                selectionState.selectedId = item.tabID
-            }
+        // open the tab if it isn't already open
+        if !selectionState.openedTabs.contains(item.tabID) {
             switch item.tabID {
             case .codeEditor:
                 guard let file = item as? FileSystemClient.FileItem else { return }
-                try self.openFile(item: file)
+                self.openFile(item: file)
             case .extensionInstallation:
                 guard let plugin = item as? Plugin else { return }
                 self.openExtension(item: plugin)
             case .webTab:
                 guard let webTab = item as? WebTab else { return }
                 self.openWebTab(item: webTab)
+            case .projectHistory:
+                guard let projectCommitHistoryTab = item as? ProjectCommitHistory else { return }
+                self.openProjectCommitHistory(item: projectCommitHistoryTab)
+            case .branchHistory:
+                guard let branchCommitHistoryTab = item as? BranchCommitHistory else { return }
+                self.openBranchCommitHistory(item: branchCommitHistoryTab)
             }
-
-        } catch let err {
-            Log.error(err)
         }
+        updateNewlyOpenedTabs(item: item)
+        // select the tab
+        selectionState.selectedId = item.tabID
     }
 
     /// Updates the opened tabs and temporary tab.
@@ -60,17 +63,23 @@ extension WorkspaceDocument {
         }
     }
 
-    private func openFile(item: FileSystemClient.FileItem) throws {
+    private func openFile(item: FileSystemClient.FileItem) {
         if !selectionState.openFileItems.contains(item) {
             selectionState.openFileItems.append(item)
         }
-        let pathExtention = item.url.pathExtension
-        let codeFile = try CodeFileDocument(
-            for: item.url,
-            withContentsOf: item.url,
-            ofType: pathExtention
-        )
-        selectionState.openedCodeFiles[item] = codeFile
+        DispatchQueue.main.async {
+            let pathExtention = item.url.pathExtension
+            do {
+                let codeFile = try CodeFileDocument(
+                    for: item.url,
+                    withContentsOf: item.url,
+                    ofType: pathExtention
+                )
+                self.selectionState.openedCodeFiles[item] = codeFile
+            } catch let err {
+                Log.error(err)
+            }
+        }
     }
 
     private func openExtension(item: Plugin) {
@@ -84,10 +93,19 @@ extension WorkspaceDocument {
         selectionState.openedWebTabs.append(item)
     }
 
+    private func openProjectCommitHistory(item: ProjectCommitHistory) {
+        selectionState.openedProjectCommitHistory.append(item)
+    }
+
+    private func openBranchCommitHistory(item: BranchCommitHistory) {
+        selectionState.openedBranchCommitHistory.append(item)
+    }
+
     // MARK: Close Tabs
 
     /// Closes single tab
     /// - Parameter id: tab bar item's identifier to be closed
+    // swiftlint:disable:next cyclomatic_complexity
     func closeTab(item id: TabBarItemID) {
         if id == selectionState.temporaryTab {
             selectionState.previousTemporaryTab = selectionState.temporaryTab
@@ -108,6 +126,12 @@ extension WorkspaceDocument {
         case .webTab:
             guard let item = selectionState.getItemByTab(id: id) as? WebTab else { return }
             closeWebTab(item: item)
+        case .projectHistory:
+            guard let item = selectionState.getItemByTab(id: id) as? ProjectCommitHistory else { return }
+            closeProjectCommitHistoryTab(item: item)
+        case .branchHistory:
+            guard let item = selectionState.getItemByTab(id: id) as? BranchCommitHistory else { return }
+            closeBranchCommitHistoryTab(item: item)
         }
 
         if selectionState.openedTabs.isEmpty {
@@ -161,6 +185,10 @@ extension WorkspaceDocument {
             guard let item = selectionState.getItemByTab(id: id)
                     as? FileSystemClient.FileItem else { return }
             selectionState.openedCodeFiles.removeValue(forKey: item)
+            if let idx = selectionState.openFileItems.firstIndex(of: item) {
+                Log.info("Removing temp tab \(item)")
+                selectionState.openFileItems.remove(at: idx)
+            }
         case .extensionInstallation:
             guard let item = selectionState.getItemByTab(id: id)
                     as? Plugin else { return }
@@ -169,6 +197,14 @@ extension WorkspaceDocument {
             guard let item = selectionState.getItemByTab(id: id)
                     as? WebTab else { return }
             closeWebTab(item: item)
+        case .projectHistory:
+            guard let item = selectionState.getItemByTab(id: id)
+                    as? ProjectCommitHistory else { return }
+            closeProjectCommitHistoryTab(item: item)
+        case .branchHistory:
+            guard let item = selectionState.getItemByTab(id: id)
+                    as? BranchCommitHistory else { return }
+            closeBranchCommitHistoryTab(item: item)
         }
 
         guard let openFileItemIdx = selectionState
@@ -197,6 +233,16 @@ extension WorkspaceDocument {
     private func closeWebTab(item: WebTab) {
         guard let idx = selectionState.openedWebTabs.firstIndex(of: item) else { return }
         selectionState.openedWebTabs.remove(at: idx)
+    }
+
+    private func closeProjectCommitHistoryTab(item: ProjectCommitHistory) {
+        guard let idx = selectionState.openedProjectCommitHistory.firstIndex(of: item) else { return }
+        selectionState.openedProjectCommitHistory.remove(at: idx)
+    }
+
+    private func closeBranchCommitHistoryTab(item: BranchCommitHistory) {
+        guard let idx = selectionState.openedBranchCommitHistory.firstIndex(of: item) else { return }
+        selectionState.openedBranchCommitHistory.remove(at: idx)
     }
 
     /// Makes the temporary tab permanent when a file save or edit happens.

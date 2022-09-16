@@ -4,6 +4,7 @@ on:
     branches: [ main ]
 jobs:
   build_nightly_editor:
+    if: github.repository_owner == 'AuroraEditor'
     runs-on: macos-12
     timeout-minutes: 30 # If a build exceeds 30 mins, it probably isn't ever going to complete
     steps:
@@ -11,20 +12,41 @@ jobs:
       
       - name: "Select Xcode 14.0"
         run: sudo xcode-select -s /Applications/Xcode_14.0.app
-
+        
+        ### Certs
       - name: "Import Certificate: Development"
-        uses: devbotsxyz/import-signing-certificate@main
-        with:
-          certificate-data: ${{ secrets.DEVELOPMENT_CERTIFICATE_DATA }}
-          certificate-passphrase: ${{ secrets.DEVELOPMENT_CERTIFICATE_PASSPHRASE }}
-          keychain-password: ${{ secrets.KEYCHAIN_PASSWORD }}
-
+        env:
+          BUILD_CERTIFICATE_BASE64: ${{ secrets.DEVELOPMENT_CERTIFICATE_DATA }}
+          P12_PASSWORD: ${{ secrets.DEVELOPMENT_CERTIFICATE_PASSPHRASE }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          # create variables
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+          # import certificate and provisioning profile from secrets
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode --output $CERTIFICATE_PATH
+          # create temporary keychain
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          # import certificate to keychain
+          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+      
       - name: "Import Certificate: Distribution"
-        uses: devbotsxyz/import-signing-certificate@main
-        with:
-          certificate-data: ${{ secrets.DISTRIBUTION_CERTIFICATE_DATA }}
-          certificate-passphrase: ${{ secrets.DISTRIBUTION_CERTIFICATE_PASSPHRASE }}
-          keychain-password: ${{ secrets.KEYCHAIN_PASSWORD }}
+        env:
+          BUILD_CERTIFICATE_BASE64: ${{ secrets.DISTRIBUTION_CERTIFICATE_DATA }}
+          P12_PASSWORD: ${{ secrets.DISTRIBUTION_CERTIFICATE_PASSPHRASE }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          # create variables
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+          # import certificate and provisioning profile from secrets
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode --output $CERTIFICATE_PATH
+          # import certificate to keychain
+          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
 
       - name: "Create Release Build Archive"
         run: | 
@@ -53,3 +75,8 @@ jobs:
           name: AuroraEditor_Nightly # optional, default is artifact
           # A file, directory or wildcard pattern that describes what to upload
           path: "Aurora Editor 1.0.dmg"
+        
+      - name: Clean up keychain and provisioning profile
+        if: ${{ always() }}
+        run: |
+          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db

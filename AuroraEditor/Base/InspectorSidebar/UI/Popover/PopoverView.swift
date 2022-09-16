@@ -22,18 +22,7 @@ struct PopoverView: View {
         VStack {
             VStack(alignment: .leading, spacing: 10) {
                 HStack(alignment: .top) {
-                    AsyncImage(url: URL(string: "https://www.gravatar.com/avatar/\(generateAvatarHash())")) { phase in
-                        if let image = phase.image {
-                            image
-                                .resizable()
-                                .clipShape(Circle())
-                                .frame(width: 42, height: 42)
-                        } else if phase.error != nil {
-                            defaultAvatar
-                        } else {
-                            defaultAvatar
-                        }
-                    }
+                    Avatar().gitAvatar(authorEmail: commit.authorEmail)
 
                     VStack(alignment: .leading) {
                         Text(commit.author)
@@ -73,14 +62,6 @@ struct PopoverView: View {
         .padding(.top)
         .padding(.bottom, 5)
         .frame(width: 310)
-    }
-
-    private var defaultAvatar: some View {
-        Image(systemName: "person.crop.circle.fill")
-            .symbolRenderingMode(.hierarchical)
-            .resizable()
-            .foregroundColor(avatarColor)
-            .frame(width: 42, height: 42)
     }
 
     private struct ActionButton: View {
@@ -139,30 +120,5 @@ struct PopoverView: View {
             return "Co-authored-by: \(commit.commiter)\n<\(commit.commiterEmail)>"
         }
         return ""
-    }
-
-    private func generateAvatarHash() -> String {
-        let hash = commit.authorEmail.md5(trim: true, caseSensitive: false)
-        return "\(hash)?d=404&s=84" // send 404 if no image available, image size 84x84 (42x42 @2x)
-    }
-
-    // Randomly chooses an avatar colour
-    private var avatarColor: Color {
-        let hash = generateAvatarHash().hash
-        switch hash % 12 {
-        case 0: return .red
-        case 1: return .orange
-        case 2: return .yellow
-        case 3: return .green
-        case 4: return .mint
-        case 5: return .teal
-        case 6: return .cyan
-        case 7: return .blue
-        case 8: return .indigo
-        case 9: return .purple
-        case 10: return .brown
-        case 11: return .pink
-        default: return .teal
-        }
     }
 }

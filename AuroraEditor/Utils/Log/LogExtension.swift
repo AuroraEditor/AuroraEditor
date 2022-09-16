@@ -54,42 +54,42 @@ extension Log {
 
 extension View {
 
-    public static func info(_ logMessage: Any...,
-                            file: String = #file,
-                            line: Int = #line,
-                            funct: String = #function) -> some View {
+    public func info(_ logMessage: Any...,
+                     file: String = #file,
+                     line: Int = #line,
+                     funct: String = #function) -> some View {
         log.info(logMessage, file: file, line: line, function: funct)
         return EmptyView()
     }
 
-    public static func debug(_ logMessage: Any...,
-                             file: String = #file,
-                             line: Int = #line,
-                             funct: String = #function) -> some View {
+    public func debug(_ logMessage: Any...,
+                      file: String = #file,
+                      line: Int = #line,
+                      funct: String = #function) -> some View {
         log.debug(logMessage, file: file, line: line, function: funct)
         return EmptyView()
     }
 
-    public static func warning(_ logMessage: Any...,
-                               file: String = #file,
-                               line: Int = #line,
-                               funct: String = #function) -> some View {
+    public func warning(_ logMessage: Any...,
+                        file: String = #file,
+                        line: Int = #line,
+                        funct: String = #function) -> some View {
         log.warning(logMessage, file: file, line: line, function: funct)
         return EmptyView()
     }
 
-    public static func trace(_ logMessage: Any...,
-                             file: String = #file,
-                             line: Int = #line,
-                             funct: String = #function) -> some View {
+    public func trace(_ logMessage: Any...,
+                      file: String = #file,
+                      line: Int = #line,
+                      funct: String = #function) -> some View {
         log.trace(logMessage, file: file, line: line, function: funct)
         return EmptyView()
     }
 
-    public static func error(_ logMessage: Any...,
-                             file: String = #file,
-                             line: Int = #line,
-                             funct: String = #function) -> some View {
+    public func error(_ logMessage: Any...,
+                      file: String = #file,
+                      line: Int = #line,
+                      funct: String = #function) -> some View {
         log.error(logMessage, file: file, line: line, function: funct)
         return EmptyView()
     }

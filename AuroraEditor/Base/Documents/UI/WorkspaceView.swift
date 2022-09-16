@@ -85,6 +85,16 @@ struct WorkspaceView: View {
                 if let webTab = workspace.selectionState.selected as? WebTab {
                     WebTabView(webTab: webTab)
                 }
+            case .projectHistory:
+                if let projectHistoryTab = workspace.selectionState.selected as? ProjectCommitHistory {
+                    ProjectCommitHistoryView(projectHistoryModel: projectHistoryTab,
+                                             workspace: workspace)
+                }
+            case .branchHistory:
+                if let branchHistoryTab = workspace.selectionState.selected as? BranchCommitHistory {
+                    BranchCommitHistoryView(branchCommitModel: branchHistoryTab,
+                                            workspace: workspace)
+                }
             }
         } else {
             noEditor
@@ -174,6 +184,19 @@ struct WorkspaceView: View {
         }
         .sheet(isPresented: $workspace.showStashChangesSheet) {
             StashChangesSheet(workspaceURL: workspace.workspaceURL())
+        }
+        .sheet(isPresented: $workspace.showRenameBranchSheet) {
+            RenameBranchView(workspace: workspace,
+                             currentBranchName: workspace.currentlySelectedBranch,
+                             newBranchName: workspace.currentlySelectedBranch)
+        }
+        .sheet(isPresented: $workspace.showAddRemoteView) {
+            AddRemoteView(workspace: workspace)
+        }
+        .sheet(isPresented: $workspace.showBranchCreationSheet) {
+            CreateNewBranchView(workspace: workspace,
+                                revision: workspace.branchRevision,
+                                revisionDesciption: workspace.branchRevisionDescription)
         }
     }
 }
