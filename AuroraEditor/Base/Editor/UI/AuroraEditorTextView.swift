@@ -71,6 +71,8 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
     @Binding private var lineHeight: Double
     @Binding private var attributedTextItems: [AttributedStringItem]
 
+    @State private var lastText: String = ""
+
     public typealias NSViewControllerType = STTextViewController
 
     public func makeNSViewController(context: Context) -> NSViewControllerType {
@@ -94,45 +96,62 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
         controller.font = font
         controller.tabWidth = tabWidth
         controller.lineHeightMultiple = lineHeight
-        DispatchQueue.main.async {
-            let attributedText = controller.textView.attributedString()
-            Log.info("Length: \(attributedText.length)")
-            let length = attributedText.length
-
-            var newAttributedTextItems: [AttributedStringItem] = []
-
-            var position = 0
-            while position < length {
-                // get the attributes
-                var range = NSRange()
-                let attributes = attributedText.attributes(at: position, effectiveRange: &range)
-                let atString = attributedText.string
-
-                // get the line number by counting the number of newlines until the string starts
-                let rangeSoFar = atString.startIndex..<atString.index(atString.startIndex, offsetBy: position)
-                let stringSoFar = String(attributedText.string[rangeSoFar])
-                let separatedComponents = stringSoFar.components(separatedBy: "\n")
-                let newLines = separatedComponents.count - 1
-                let charFromStart = separatedComponents.last?.count ?? 0
-
-                // get the contents of the range
-                let rangeContents = atString[range] ?? ""
-                Log.info("range: \(range), position \(newLines),\(charFromStart), content \(rangeContents)")
-                Log.info(attributes[.foregroundColor]!)
-
-                newAttributedTextItems.append(AttributedStringItem(text: String(rangeContents),
-                                                                   lineNumber: newLines,
-                                                                   charactersFromStart: charFromStart,
-                                                                   range: range,
-                                                                   attributes: attributes))
-
-                position = range.upperBound
+        let attributedText = controller.textView.attributedString()
+        if attributedText.string != lastText {
+            DispatchQueue.main.async {
+                lastText = attributedText.string
+                updateTextItems(attributedText: attributedText)
             }
-
-            attributedTextItems = newAttributedTextItems
         }
         controller.reloadUI()
         return
+    }
+
+    func updateTextItems(attributedText: NSAttributedString) {
+        Log.info("Length: \(attributedText.length)")
+        let length = attributedText.length
+
+        var newAttributedTextItems: [AttributedStringItem] = []
+
+        var position = 0
+        while position < length {
+            // get the attributes
+            var range = NSRange()
+            let attributes = attributedText.attributes(at: position, effectiveRange: &range)
+            let atString = attributedText.string
+
+            // get the line number by counting the number of newlines until the string starts
+            let rangeSoFar = atString.startIndex..<atString.index(atString.startIndex, offsetBy: position)
+            let stringSoFar = String(attributedText.string[rangeSoFar])
+            let separatedComponents = stringSoFar.components(separatedBy: "\n")
+            let newLines = separatedComponents.count - 1
+            var charFromStart = separatedComponents.last?.count ?? 0
+
+            // get the contents of the range
+            let rangeContents = atString[range] ?? ""
+            Log.info("range: \(range), position \(newLines),\(charFromStart), content \(rangeContents)")
+            Log.info(attributes[.foregroundColor]!)
+
+            // split by spaces
+            let words = String(rangeContents).components(separatedBy: " ")
+
+            for word in words {
+                if !word.isEmpty {
+                    newAttributedTextItems.append(AttributedStringItem(text: word,
+                                                                       lineNumber: newLines,
+                                                                       charactersFromStart: charFromStart,
+                                                                       range: range,
+                                                                       attributes: attributes))
+                }
+
+                // modify the charactersFromStart and range for each word
+                charFromStart += word.count + 1
+            }
+
+            position = range.upperBound
+        }
+
+        attributedTextItems = newAttributedTextItems
     }
 }
 
