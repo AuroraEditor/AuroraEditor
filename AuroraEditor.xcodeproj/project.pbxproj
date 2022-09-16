@@ -1736,7 +1736,6 @@
 			children = (
 				2BDFA90C28D10B9200980385 /* FileCreation */,
 				20752E3928CA4C1100935487 /* Source Control */,
-				20F8377628C7764700EAE842 /* Creation */,
 				209D024F289ABF520082441F /* Editor */,
 				287776EB27E350BA00D46668 /* TabBar */,
 				287776EA27E350A100D46668 /* NavigatorSidebar */,
@@ -3159,13 +3158,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		20F8377628C7764700EAE842 /* Creation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Creation;
-			sourceTree = "<group>";
-		};
 		20FDB4E628BD26A100FDD8C3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -4098,7 +4090,6 @@
 				2093CC91289A9FF5003A88DD /* StatusBarIndentSelector.swift in Sources */,
 				2B89F85428B13E9D007CB9C1 /* auroraMessageBox.swift in Sources */,
 				20BE729428D08AC600EEDE5F /* JobSteps.swift in Sources */,
-				20F8377F28C7769B00EAE842 /* FileCreationNamingView.swift in Sources */,
 				2093CD26289AA084003A88DD /* PreviewHeader.swift in Sources */,
 				2B4C1332289D56F9000ED796 /* STTextView+Delete.swift in Sources */,
 				2093CD33289AA089003A88DD /* Comment.swift in Sources */,

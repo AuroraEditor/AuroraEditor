@@ -86,8 +86,9 @@ class GitHubActions: ObservableObject {
 
             repoOwner = remoteSplit?[1] ?? ""
 
-            let repoValue = remoteSplit?[2].split(separator: ".")
-            repo = repoValue?[0].description ?? ""
+            let repoValue = remoteSplit?[2] ?? ""
+
+            repo = repoValue.replacingOccurrences(of: ".git", with: "")
 
             Log.debug("Repo Owner: \(repoOwner), Repo: \(repo)")
         } catch {
