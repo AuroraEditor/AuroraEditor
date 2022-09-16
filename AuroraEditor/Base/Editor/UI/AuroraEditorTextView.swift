@@ -52,6 +52,7 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
         font: Binding<NSFont>,
         tabWidth: Binding<Int>,
         lineHeight: Binding<Double>,
+        attributedTextItems: Binding<[AttributedStringItem]>,
         language: CodeLanguage?,
         themeString: String?
     ) {
@@ -59,6 +60,7 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
         self._font = font
         self._tabWidth = tabWidth
         self._lineHeight = lineHeight
+        self._attributedTextItems = attributedTextItems
         self.language = language
         self.themeString = themeString
     }
@@ -67,6 +69,7 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
     @Binding private var font: NSFont
     @Binding private var tabWidth: Int
     @Binding private var lineHeight: Double
+    @Binding private var attributedTextItems: [AttributedStringItem]
 
     public typealias NSViewControllerType = STTextViewController
 
@@ -91,7 +94,49 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
         controller.font = font
         controller.tabWidth = tabWidth
         controller.lineHeightMultiple = lineHeight
+        DispatchQueue.main.async {
+            let attributedText = controller.textView.attributedString()
+            Log.info("Length: \(attributedText.length)")
+            let length = attributedText.length
+
+            var position = 0
+            while position < length {
+                // get the attributes
+                var range = NSRange()
+                let attributes = attributedText.attributes(at: position, effectiveRange: &range)
+                let atString = attributedText.string
+
+                // get the line number by counting the number of newlines until the string starts
+                let rangeSoFar = atString.startIndex..<atString.index(atString.startIndex, offsetBy: position)
+                let stringSoFar = String(attributedText.string[rangeSoFar])
+                let newLines = stringSoFar.components(separatedBy: "\n").count - 1
+
+                // get the contents of the range
+                let rangeContents = atString[range] ?? ""
+                Log.info("range: \(range), newlines \(newLines), content \(rangeContents)")
+                Log.info(attributes[.foregroundColor])
+
+                AttributedStringItem(text: String(rangeContents), lineNumber: newLines,
+                                     range: range, attributes: attributes)
+
+                position = range.upperBound
+            }
+        }
         controller.reloadUI()
         return
+    }
+}
+
+public class AttributedStringItem {
+    var text: String
+    var lineNumber: Int
+    var range: NSRange
+    var attributes: [NSAttributedString.Key: Any]
+
+    init(text: String, lineNumber: Int, range: NSRange, attributes: [NSAttributedString.Key: Any]) {
+        self.text = text
+        self.lineNumber = lineNumber
+        self.range = range
+        self.attributes = attributes
     }
 }

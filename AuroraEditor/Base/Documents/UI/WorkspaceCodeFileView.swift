@@ -20,6 +20,8 @@ struct WorkspaceCodeFileView: View {
     @State
     private var dropProposal: SplitViewProposalDropPosition?
 
+    @State var attributedTextItems: [AttributedStringItem] = []
+
     @State
     private var font: NSFont = {
         let size = AppPreferencesModel.shared.preferences.textEditing.font.size
@@ -122,7 +124,7 @@ struct WorkspaceCodeFileView: View {
         for item: FileSystemClient.FileItem
     ) -> some View {
         // TODO: Wesley - implement new editor.
-        AECodeView(codeFile: codeFile)
+        AECodeView(codeFile: codeFile, attributedTextItems: $attributedTextItems)
             .safeAreaInset(edge: .top, spacing: 0) {
                 VStack(spacing: 0) {
                     BreadcrumbsView(file: item, tappedOpenFile: workspace.openTab(item:))
@@ -171,17 +173,22 @@ public struct AECodeView: View {
     @ObservedObject
     private var codeFile: CodeFileDocument
 
+    private let editable: Bool
+
+    @Binding
+    private var attributedTextItems: [AttributedStringItem]
+
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
     @Environment(\.colorScheme)
     private var colorScheme
 
-    private let editable: Bool
-
-    public init(codeFile: CodeFileDocument, editable: Bool = true) {
+    public init(codeFile: CodeFileDocument, editable: Bool = true,
+                attributedTextItems: Binding<[AttributedStringItem]>) {
         self.codeFile = codeFile
         self.editable = editable
+        self._attributedTextItems = attributedTextItems
     }
 
     @State
@@ -207,27 +214,35 @@ public struct AECodeView: View {
     }
 
     public var body: some View {
-        AuroraEditorTextView(
-            $codeFile.content,
-            font: $font,
-            tabWidth: $prefs.preferences.textEditing.defaultTabWidth,
-            lineHeight: .constant(1.2),
-            language: getLanguage(),
-            themeString: themeString
-        )
-        .id(codeFile.fileURL)
-        .background(selectedTheme.editor.background.swiftColor)
-        .disabled(!editable)
-        .frame(maxHeight: .infinity)
-        .onChange(of: ThemeModel.shared.selectedTheme) { newValue in
-            guard let theme = newValue else { return }
-            self.selectedTheme = theme
-        }
-        .onChange(of: prefs.preferences.textEditing.font) { _ in
-            font = NSFont(
-                name: prefs.preferences.textEditing.font.name,
-                size: Double(prefs.preferences.textEditing.font.size)
-            ) ?? .monospacedSystemFont(ofSize: 12, weight: .regular)
+        ZStack(alignment: .trailing) {
+            AuroraEditorTextView(
+                $codeFile.content,
+                font: $font,
+                tabWidth: $prefs.preferences.textEditing.defaultTabWidth,
+                lineHeight: .constant(1.2),
+                attributedTextItems: $attributedTextItems,
+                language: getLanguage(),
+                themeString: themeString
+            )
+            .id(codeFile.fileURL)
+            .background(selectedTheme.editor.background.swiftColor)
+            .disabled(!editable)
+            .frame(maxHeight: .infinity)
+            .onChange(of: ThemeModel.shared.selectedTheme) { newValue in
+                guard let theme = newValue else { return }
+                self.selectedTheme = theme
+            }
+            .onChange(of: prefs.preferences.textEditing.font) { _ in
+                font = NSFont(
+                    name: prefs.preferences.textEditing.font.name,
+                    size: Double(prefs.preferences.textEditing.font.size)
+                ) ?? .monospacedSystemFont(ofSize: 12, weight: .regular)
+            }
+
+            ZStack {
+                Color.black.opacity(0.2)
+            }
+            .frame(width: 200)
         }
     }
 }
