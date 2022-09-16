@@ -541,6 +541,7 @@
 		2BF983FF289D8B3C004F1A60 /* SharedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF983FE289D8B3C004F1A60 /* SharedObjects.swift */; };
 		6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */; };
 		9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */; };
+		93159F5E28D4B43400C55C5A /* MinimapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93159F5D28D4B43400C55C5A /* MinimapView.swift */; };
 		9336833928C5EAD7009F7B44 /* GitCloneViewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9336833828C5EAD7009F7B44 /* GitCloneViewWindow.swift */; };
 		934D2F0328C4A5690034E5C8 /* GitClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D2F0228C4A5690034E5C8 /* GitClientError.swift */; };
 		934D2F0828C4EC7E0034E5C8 /* StatusItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D2F0728C4EC7E0034E5C8 /* StatusItem.swift */; };
@@ -1165,6 +1166,7 @@
 		6CDA84AA284C0E4A00C1CC3A /* TabBarItemButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemButtonStyle.swift; sourceTree = "<group>"; };
 		6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContextMenu.swift; sourceTree = "<group>"; };
 		9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorToolbarBottom.swift; sourceTree = "<group>"; };
+		93159F5D28D4B43400C55C5A /* MinimapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimapView.swift; sourceTree = "<group>"; };
 		9336833828C5EAD7009F7B44 /* GitCloneViewWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCloneViewWindow.swift; sourceTree = "<group>"; };
 		934D2F0228C4A5690034E5C8 /* GitClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitClientError.swift; sourceTree = "<group>"; };
 		934D2F0728C4EC7E0034E5C8 /* StatusItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItem.swift; sourceTree = "<group>"; };
@@ -1275,6 +1277,7 @@
 			isa = PBXGroup;
 			children = (
 				0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */,
+				93159F5D28D4B43400C55C5A /* MinimapView.swift */,
 				B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */,
 			);
 			path = UI;
@@ -3861,6 +3864,7 @@
 				2093CD96289AA144003A88DD /* Theme+Highlightr.swift in Sources */,
 				2093CD6B289AA0F7003A88DD /* UIDocumentation.docc in Sources */,
 				2093CD14289AA054003A88DD /* GitType.swift in Sources */,
+				93159F5E28D4B43400C55C5A /* MinimapView.swift in Sources */,
 				2B4C132D289D56F9000ED796 /* STTextView+Find.swift in Sources */,
 				2093CDA7289AA179003A88DD /* IgnoredFileView.swift in Sources */,
 				2BD8A21428ACFA6D00282989 /* ShellClient.swift in Sources */,
