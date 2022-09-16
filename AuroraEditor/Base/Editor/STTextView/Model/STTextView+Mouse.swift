@@ -54,8 +54,8 @@ extension STTextView {
             super.mouseDragged(with: event)
         }
     }
-    
-    open override func resetCursorRects() {
+
+    override open func resetCursorRects() {
         self.addCursorRect(self.bounds, cursor: NSCursor.iBeam)
     }
 

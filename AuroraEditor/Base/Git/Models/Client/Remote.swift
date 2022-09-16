@@ -37,9 +37,9 @@ public struct Remote {
     /// Add a new remote with the given URL.
     func addRemote(directoryURL: URL,
                    name: String,
-                   url: String) throws -> IRemote? {
+                   url: String) throws -> GitRemote? {
         try ShellClient.live().run(
-            "cd \(directoryURL.relativePath.escapedWhiteSpaces());git remote add"
+            "cd \(directoryURL.relativePath.escapedWhiteSpaces());git remote add \(name) \(url)"
         )
 
         return GitRemote(name: name, url: url)

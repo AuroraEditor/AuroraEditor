@@ -74,6 +74,7 @@ struct WorkspaceView: View {
         if let tabID = workspace.selectionState.selectedId {
             switch tabID {
             case .codeEditor:
+                Text("Loading")
                 WorkspaceCodeFileView(windowController: windowController, workspace: workspace)
             case .extensionInstallation:
                 if let plugin = workspace.selectionState.selected as? Plugin {
@@ -87,11 +88,13 @@ struct WorkspaceView: View {
                 }
             case .projectHistory:
                 if let projectHistoryTab = workspace.selectionState.selected as? ProjectCommitHistory {
-                    ProjectCommitHistoryView(projectHistoryModel: projectHistoryTab)
+                    ProjectCommitHistoryView(projectHistoryModel: projectHistoryTab,
+                                             workspace: workspace)
                 }
             case .branchHistory:
                 if let branchHistoryTab = workspace.selectionState.selected as? BranchCommitHistory {
-                    BranchCommitHistoryView(branchCommitModel: branchHistoryTab)
+                    BranchCommitHistoryView(branchCommitModel: branchHistoryTab,
+                                            workspace: workspace)
                 }
             }
         } else {
@@ -187,6 +190,14 @@ struct WorkspaceView: View {
             RenameBranchView(workspace: workspace,
                              currentBranchName: workspace.currentlySelectedBranch,
                              newBranchName: workspace.currentlySelectedBranch)
+        }
+        .sheet(isPresented: $workspace.showAddRemoteView) {
+            AddRemoteView(workspace: workspace)
+        }
+        .sheet(isPresented: $workspace.showBranchCreationSheet) {
+            CreateNewBranchView(workspace: workspace,
+                                revision: workspace.branchRevision,
+                                revisionDesciption: workspace.branchRevisionDescription)
         }
     }
 }

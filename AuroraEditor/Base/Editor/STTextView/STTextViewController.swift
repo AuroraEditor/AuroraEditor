@@ -173,7 +173,7 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
         if event.specialKey == .tab {
             textView?.insertText(String(repeating: " ", count: tabWidth))
         }
-//        print(event.keyCode)
+//        log.info(event.keyCode)
     }
 
     /// Handles `keyUp` events in the `textView`
