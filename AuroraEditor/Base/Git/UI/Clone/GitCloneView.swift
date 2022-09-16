@@ -183,7 +183,7 @@ public struct GitCloneView: View {
                 .frame(width: 64, height: 64)
                 .padding(.bottom, 50)
             VStack(alignment: .leading) {
-                Text("Verifying \(repoUrlStr")
+                Text("Verifying \(repoUrlStr)")
                     .bold()
                     .padding(.bottom, 2)
 
