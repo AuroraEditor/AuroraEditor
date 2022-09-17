@@ -549,4 +549,4 @@ extension CodeStorageDelegate {
     info.messages = nil
     lineMap.setInfoOf(line: line, to: info)
   }
-}
+} // swiftlint:disable:this file_length

@@ -594,4 +594,4 @@ struct MessageViews_Previews: PreviewProvider {
 //    .preferredColorScheme(.light)
 
   }
-}
+} // swiftlint:disable:this file_length

@@ -322,17 +322,22 @@ extension LanguageConfiguration {
 
   func incNestedComment(state: LanguageConfiguration.State) -> LanguageConfiguration.State {
     switch state {
-    case .tokenisingCode:           return .tokenisingComment(1)
-    case .tokenisingComment(let n): return .tokenisingComment(n + 1)
+    case .tokenisingCode:
+        return .tokenisingComment(1)
+    case .tokenisingComment(let number):
+        return .tokenisingComment(number + 1)
     }
   }
 
   func decNestedComment(state: LanguageConfiguration.State) -> LanguageConfiguration.State {
     switch state {
-    case .tokenisingCode:          return .tokenisingCode
-    case .tokenisingComment(let n)
-          where n > 1:             return .tokenisingComment(n - 1)
-    case .tokenisingComment:    return .tokenisingCode
+    case .tokenisingCode:
+        return .tokenisingCode
+    case .tokenisingComment(let number)
+          where number > 1:
+        return .tokenisingComment(number - 1)
+    case .tokenisingComment:
+        return .tokenisingCode
     }
   }
 
