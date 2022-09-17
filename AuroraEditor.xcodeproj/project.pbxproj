@@ -1277,7 +1277,6 @@
 			isa = PBXGroup;
 			children = (
 				0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */,
-				93159F5D28D4B43400C55C5A /* MinimapView.swift */,
 				B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */,
 			);
 			path = UI;
@@ -1328,6 +1327,7 @@
 				209D0256289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift */,
 				209D0254289ABFCC0082441F /* STTextViewController.swift */,
 				209D0252289ABFB60082441F /* STTextView+Menu.swift */,
+				93159F5D28D4B43400C55C5A /* MinimapView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
