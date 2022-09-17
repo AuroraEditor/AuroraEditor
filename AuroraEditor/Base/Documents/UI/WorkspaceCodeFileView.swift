@@ -20,8 +20,6 @@ struct WorkspaceCodeFileView: View {
     @State
     private var dropProposal: SplitViewProposalDropPosition?
 
-    @State var attributedTextItems: [AttributedStringItem] = []
-
     @State
     private var font: NSFont = {
         let size = AppPreferencesModel.shared.preferences.textEditing.font.size
@@ -124,7 +122,7 @@ struct WorkspaceCodeFileView: View {
         for item: FileSystemClient.FileItem
     ) -> some View {
         // TODO: Wesley - implement new editor.
-        AECodeView(codeFile: codeFile, attributedTextItems: $attributedTextItems)
+        AECodeView(codeFile: codeFile)
             .safeAreaInset(edge: .top, spacing: 0) {
                 VStack(spacing: 0) {
                     BreadcrumbsView(file: item, tappedOpenFile: workspace.openTab(item:))
@@ -175,20 +173,15 @@ public struct AECodeView: View {
 
     private let editable: Bool
 
-    @Binding
-    private var attributedTextItems: [AttributedStringItem]
-
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
     @Environment(\.colorScheme)
     private var colorScheme
 
-    public init(codeFile: CodeFileDocument, editable: Bool = true,
-                attributedTextItems: Binding<[AttributedStringItem]>) {
+    public init(codeFile: CodeFileDocument, editable: Bool = true) {
         self.codeFile = codeFile
         self.editable = editable
-        self._attributedTextItems = attributedTextItems
     }
 
     @State
@@ -220,7 +213,6 @@ public struct AECodeView: View {
                 font: $font,
                 tabWidth: $prefs.preferences.textEditing.defaultTabWidth,
                 lineHeight: .constant(1.2),
-                attributedTextItems: $attributedTextItems,
                 language: getLanguage(),
                 themeString: themeString
             )

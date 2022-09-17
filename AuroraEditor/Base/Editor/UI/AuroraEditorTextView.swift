@@ -35,7 +35,11 @@ class AEHighlight {
     }
 }
 /// A `SwiftUI` wrapper for a ``STTextViewController``.
-public struct AuroraEditorTextView: NSViewControllerRepresentable {
+public struct AuroraEditorTextView: NSViewControllerRepresentable, Equatable {
+    public static func == (lhs: AuroraEditorTextView, rhs: AuroraEditorTextView) -> Bool {
+        lhs.viewController == rhs.viewController
+    }
+
     var language: CodeLanguage? = CodeLanguage.default
     var themeString: String?
 
@@ -52,7 +56,6 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
         font: Binding<NSFont>,
         tabWidth: Binding<Int>,
         lineHeight: Binding<Double>,
-        attributedTextItems: Binding<[AttributedStringItem]>,
         language: CodeLanguage?,
         themeString: String?
     ) {
@@ -60,7 +63,6 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
         self._font = font
         self._tabWidth = tabWidth
         self._lineHeight = lineHeight
-        self._attributedTextItems = attributedTextItems
         self.language = language
         self.themeString = themeString
     }
@@ -69,7 +71,8 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
     @Binding private var font: NSFont
     @Binding private var tabWidth: Int
     @Binding private var lineHeight: Double
-    @Binding private var attributedTextItems: [AttributedStringItem]
+    @State private var attributedTextItems: [AttributedStringItem] = []
+    @State private var scrollAmount: CGFloat = 0
 
     public typealias NSViewControllerType = STTextViewController
 
@@ -101,19 +104,19 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
         controller.tabWidth = tabWidth
         controller.lineHeightMultiple = lineHeight
 
-        updateProperties(controller: controller)
-
         let attributedText = controller.textView.attributedString()
         if attributedText.string != lastText {
             DispatchQueue.main.async {
                 lastText = attributedText.string
                 updateTextItems(attributedText: attributedText)
+                addMinimapView(to: controller)
             }
+        } else if viewController != controller {
+            minimapView?.removeFromSuperview()
+            addMinimapView(to: controller)
         }
 
-        minimapView?.removeFromSuperview()
-        addMinimapView(to: controller)
-
+        updateProperties(controller: controller)
         controller.reloadUI()
         return
     }
@@ -134,7 +137,8 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
                 scrollContent.addSubview(minimapView)
             }
         } else {
-            let minimapView = NSHostingView(rootView: MinimapView(attributedTextItems: $attributedTextItems))
+            let minimapView = NSHostingView(rootView: MinimapView(attributedTextItems: $attributedTextItems,
+                                                                  scrollAmount: $scrollAmount))
             DispatchQueue.main.async {
                 self.minimapView = minimapView
             }
@@ -222,11 +226,10 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
             let clipView = scrollView.contentView
 
             Log.info("Bounds changed to \(clipView.bounds.origin.y)")
+            let maxScroll = documentView.bounds.height - clipView.bounds.height
 
-            if clipView.bounds.origin.y == -5 { // the clipview, very oddly, starts at y = -5
-                Log.info("top")
-            } else if clipView.bounds.origin.y + clipView.bounds.height == documentView.bounds.height {
-                Log.info("bottom")
+            DispatchQueue.main.async {
+                self.parent.scrollAmount = clipView.bounds.origin.y / maxScroll
             }
         }
     }

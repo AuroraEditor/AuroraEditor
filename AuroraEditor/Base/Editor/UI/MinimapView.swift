@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MinimapView: View {
     @Binding var attributedTextItems: [AttributedStringItem]
+    @Binding var scrollAmount: CGFloat
 
     @ObservedObject
     private var sharedObjects: SharedObjects = .shared
