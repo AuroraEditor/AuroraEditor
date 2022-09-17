@@ -62,4 +62,10 @@ struct NetworkingConstant {
                              runId: String) -> String {
         return "repos/\(owner)/\(repo)/actions/runs/\(runId)/jobs"
     }
+
+    static func downloadWorkflowJobLog(_ owner: String,
+                                       _ repo: String,
+                                       jobId: String) -> String {
+        return "repos/\(owner)/\(repo)/actions/jobs/\(jobId)/logs"
+    }
 }

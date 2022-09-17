@@ -19,6 +19,12 @@ class GitHubActions: ObservableObject {
     var workflowRuns: [WorkflowRun] = []
 
     @Published
+    var workflowJobs: [JobSteps] = []
+
+    @Published
+    private var workflowJob: [Jobs] = []
+
+    @Published
     private var repoOwner: String = ""
 
     @Published
@@ -74,6 +80,65 @@ class GitHubActions: ObservableObject {
                 Log.error(error)
             }
 
+        })
+    }
+
+    func fetchWorkflowJobs(runId: String) {
+        AuroraNetworking().request(path: NetworkingConstant.workflowJobs(repoOwner,
+                                                                         repo,
+                                                                         runId: runId),
+                                   method: .GET,
+                                   parameters: nil,
+                                   completionHandler: { result in
+            switch result {
+            case .success(let data):
+                do {
+                    let decoder = JSONDecoder()
+                    let jobs = try decoder.decode(Job.self, from: data)
+                    DispatchQueue.main.async {
+                        self.workflowJob = jobs.jobs
+                        for job in jobs.jobs {
+                            self.workflowJobs = job.steps
+                        }
+                    }
+                } catch {
+                    Log.debug("Error: \(error)")
+                }
+            case .failure(let error):
+                Log.error(error)
+            }
+        })
+    }
+
+    func reRunWorkflowJobs() {
+        AuroraNetworking().request(path: NetworkingConstant.reRunJob(repoOwner,
+                                                                     repo,
+                                                                     jobId: String(workflowJob[0].id)),
+                                   method: .POST,
+                                   parameters: nil,
+                                   completionHandler: { result in
+            switch result {
+            case .success:
+                Log.debug("Succeffully Re-Run job: \(self.workflowJob[0].id)")
+            case .failure(let error):
+                Log.error(error)
+            }
+        })
+    }
+
+    func downloadWorkflowLogs(jobId: String) {
+        AuroraNetworking().request(path: NetworkingConstant.reRunJob(repoOwner,
+                                                                     repo,
+                                                                     jobId: jobId),
+                                   method: .POST,
+                                   parameters: nil,
+                                   completionHandler: { result in
+            switch result {
+            case .success:
+                Log.debug("Succeffully Downloaded Workflow Logs for: \(jobId)")
+            case .failure(let error):
+                Log.error(error)
+            }
         })
     }
 

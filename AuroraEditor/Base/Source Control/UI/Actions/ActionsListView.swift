@@ -13,17 +13,24 @@ struct ActionsListView: View {
     @ObservedObject
     private var actionsModel: GitHubActions
 
+    @State
+    private var actionSelection: Workflow.ID?
+
     init(workspace: WorkspaceDocument) {
         self.actionsModel = .init(workspace: workspace)
     }
 
     var body: some View {
         VStack(alignment: .leading) {
-            List(actionsModel.workflows, id: \.id) { workflow in
-                WorkflowCellView(workflow: workflow)
-                    .onTapGesture {
+            List(selection: $actionSelection) {
+                ForEach(actionsModel.workflows) { workflow in
+                    Button {
                         actionsModel.workspace.openTab(item: workflow)
+                    } label: {
+                        WorkflowCellView(workflow: workflow)
                     }
+                    .buttonStyle(.plain)
+                }
             }
             .padding(.top, -5)
             .listStyle(.plain)

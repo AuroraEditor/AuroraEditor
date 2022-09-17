@@ -22,17 +22,23 @@ struct WorkflowRunsView: View {
     }
 
     var body: some View {
-        NavigationView {
-            VStack {
-                List(actionsModel.workflowRuns, id: \.id) { run in
-                    NavigationLink {
-                        Text(run.name)
-                    } label: {
-                        WorkflowRunCell(workflowRun: run)
+        VStack {
+            Spacer()
+            NavigationView {
+                VStack {
+                    List(actionsModel.workflowRuns, id: \.id) { run in
+                        NavigationLink {
+                            WorkflowJobsView(workspace: actionsModel.workspace,
+                                             runId: String(run.id),
+                                             jobName: run.name)
+                        } label: {
+                            WorkflowRunCell(workflowRun: run)
+                        }
                     }
+                    .frame(minWidth: 450)
                 }
-                .frame(minWidth: 450)
             }
+            .navigationViewStyle(.columns)
         }
         .onAppear {
             actionsModel.fetchWorkflowRuns(workflowId: workflowId)

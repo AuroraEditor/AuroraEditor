@@ -9,9 +9,10 @@
 import Foundation
 
 struct Jobs: Codable {
-    let id: String
-    let runId: String
+    let id: Int
+    let run_id: Int
     let run_url: String
+    let run_attempt: Int
     let url: String
     let html_url: String
     let status: String
@@ -20,6 +21,6 @@ struct Jobs: Codable {
     let completed_at: String
     let name: String
     let steps: [JobSteps]
-    let runner_name: String
-    let runner_group_name: String
+    let runner_name: String?
+    let runner_group_name: String?
 }

@@ -37,6 +37,9 @@
 		2021267F289BF7EF00246DD7 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021267E289BF7EF00246DD7 /* Formatter.swift */; };
 		20212683289BF84B00246DD7 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20212682289BF84B00246DD7 /* String.swift */; };
 		20212685289BF87600246DD7 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20212684289BF87600246DD7 /* Formatters.swift */; };
+		202327D628D5CA970031FFB6 /* WorkflowJobsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */; };
+		202327D828D5CB200031FFB6 /* WorkflowJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327D728D5CB200031FFB6 /* WorkflowJobCell.swift */; };
+		202327E028D607B20031FFB6 /* ReRunJobSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */; };
 		202F2E35289E7277000D3CAD /* SearchResultMatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E34289E7277000D3CAD /* SearchResultMatchModel.swift */; };
 		202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E36289E740D000D3CAD /* FindNavigatorResultList.swift */; };
 		202F2E39289E7444000D3CAD /* FindNavigatorListMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E38289E7444000D3CAD /* FindNavigatorListMatchCell.swift */; };
@@ -694,6 +697,9 @@
 		20212682289BF84B00246DD7 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		20212684289BF87600246DD7 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		20212688289C055E00246DD7 /* Using Logger.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Using Logger.md"; sourceTree = "<group>"; };
+		202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowJobsView.swift; sourceTree = "<group>"; };
+		202327D728D5CB200031FFB6 /* WorkflowJobCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowJobCell.swift; sourceTree = "<group>"; };
+		202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReRunJobSheetView.swift; sourceTree = "<group>"; };
 		202F2E34289E7277000D3CAD /* SearchResultMatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultMatchModel.swift; sourceTree = "<group>"; };
 		202F2E36289E740D000D3CAD /* FindNavigatorResultList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorResultList.swift; sourceTree = "<group>"; };
 		202F2E38289E7444000D3CAD /* FindNavigatorListMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorListMatchCell.swift; sourceTree = "<group>"; };
@@ -1632,6 +1638,8 @@
 				20BE727428D0761200EEDE5F /* ActionsListView.swift */,
 				20BE727A28D07EFC00EEDE5F /* ActionsPopoverView.swift */,
 				20BE729B28D0BB2000EEDE5F /* WorkflowRunsView.swift */,
+				202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */,
+				202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -1643,6 +1651,7 @@
 				20BE727C28D07FF200EEDE5F /* ActionsPopoverCellView.swift */,
 				20BE729928D0A25900EEDE5F /* WorkflowCellView.swift */,
 				20BE729D28D0BB6F00EEDE5F /* WorkflowRunCell.swift */,
+				202327D728D5CB200031FFB6 /* WorkflowJobCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -3950,6 +3959,7 @@
 				D7012EE827E757850001E1EF /* FindNavigator.swift in Sources */,
 				2B4C1343289D56F9000ED796 /* NSTextContentManager+Helpers.swift in Sources */,
 				207D295D28CCE72F00D31530 /* RenameBranchView.swift in Sources */,
+				202327D628D5CA970031FFB6 /* WorkflowJobsView.swift in Sources */,
 				2093CD17289AA079003A88DD /* TokenRouter.swift in Sources */,
 				2093CCA0289AA00B003A88DD /* WelcomeWindowView.swift in Sources */,
 				2093CD21289AA084003A88DD /* GithubUserRouter.swift in Sources */,
@@ -4144,6 +4154,7 @@
 				2093CC91289A9FF5003A88DD /* StatusBarIndentSelector.swift in Sources */,
 				2B89F85428B13E9D007CB9C1 /* auroraMessageBox.swift in Sources */,
 				20BE729428D08AC600EEDE5F /* JobSteps.swift in Sources */,
+				202327D828D5CB200031FFB6 /* WorkflowJobCell.swift in Sources */,
 				2093CD26289AA084003A88DD /* PreviewHeader.swift in Sources */,
 				2B4C1332289D56F9000ED796 /* STTextView+Delete.swift in Sources */,
 				2093CD33289AA089003A88DD /* Comment.swift in Sources */,
@@ -4280,6 +4291,7 @@
 				20D2A44E28A7D9CE0073F7BD /* Description.swift in Sources */,
 				2B4C1340289D56F9000ED796 /* NSTextLocation+Equatable.swift in Sources */,
 				2093CD39289AA08F003A88DD /* GitlabOAuthConfiguration.swift in Sources */,
+				202327E028D607B20031FFB6 /* ReRunJobSheetView.swift in Sources */,
 				20D2A43E28A7CB510073F7BD /* Submodule.swift in Sources */,
 				2093CC9C289A9FFD003A88DD /* StatusBarClearButton.swift in Sources */,
 				2072FA18280D871200C7F8D4 /* TextEncoding.swift in Sources */,

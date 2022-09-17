@@ -47,6 +47,9 @@ class TabHierarchyTableViewCell: StandardTableViewCell {
         case .branchHistory:
             icon.image = NSImage(named: "vault")
             textField?.stringValue = "Branch History"
+        case .actionsWorkflow:
+            icon.image = NSImage(named: "diamond")
+            textField?.stringValue = "GitHub Workflows"
         }
 
         if let tabItemRepresentable = tabItemRepresentable {
