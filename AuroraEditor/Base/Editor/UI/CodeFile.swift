@@ -23,13 +23,11 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
     @Published
     var content = ""
 
-    /*
-     This is the main type of the document.
-     For example, if the file is end with '.png', it will be an image,
-     if the file is end with '.py', it will be a text file.
-     If text content is not empty, return text
-     If its neither image or text, this could be nil.
-    */
+    /// This is the main type of the document.
+    /// For example, if the file is end with '.png', it will be an image,
+    /// if the file is end with '.py', it will be a text file.
+    /// If text content is not empty, return text
+    /// If its neither image or text, this could be nil.
     public var typeOfFile: UTType? {
         if !self.content.isEmpty {
             return UTType.text
@@ -46,9 +44,7 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
         return nil
     }
 
-    /*
-     This is the QLPreviewItemURL
-     */
+    /// This is the QLPreviewItemURL
     public var previewItemURL: URL? {
         fileURL
     }
@@ -57,7 +53,6 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
 
     override public class var autosavesInPlace: Bool {
         false
-//        true
     }
 
     override public func makeWindowControllers() {
