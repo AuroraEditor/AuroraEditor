@@ -141,7 +141,7 @@ extension NSMutableAttributedString {
             // expression. (We must re-order due to eager matching as explained in the documentation
             // of this function.)
             let orderedMap = stateMap.sorted { (lhs, rhs) in return lhs.key > rhs.key },
-                pattern    = orderedMap.reduce("") { (regexp, mapEntry) in
+                pattern = orderedMap.reduce("") { (regexp, mapEntry) in
 
                     let regexpPattern: String
                     switch mapEntry.key {
@@ -199,7 +199,7 @@ extension NSMutableAttributedString {
                                                                    with tokeniser: Tokeniser<TokenType, StateType>,
                                                                    state startState: StateType,
                                                                    in range: NSRange) {
-        var state        = startState
+        var state = startState
         var currentRange = range
 
         // Clear existing attributes

@@ -621,7 +621,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
             minimapView?.frame.origin.y = newOriginY
         }  // don't update frames in vain
 
-        let minimapVisibleY      = (visibleRect.origin.y / frame.size.height) * minimapHeight,
+        let minimapVisibleY = (visibleRect.origin.y / frame.size.height) * minimapHeight,
             minimapVisibleHeight = documentVisibleRect.size.height * minimapHeight / frame.size.height,
             documentVisibleFrame = CGRect(x: 0,
                                           y: minimapVisibleY,
@@ -668,9 +668,9 @@ extension CodeView {
         identifiedBy id: UUID
     ) {
         guard let codeLayoutManager = layoutManager as? CodeLayoutManager,
-              let codeStorage       = textStorage as? CodeStorage,
-              let codeContainer     = optTextContainer,
-              let messageBundle     = messageViews[id]
+              let codeStorage = textStorage as? CodeStorage,
+              let codeContainer = optTextContainer,
+              let messageBundle = messageViews[id]
         else { return }
 
         if messageBundle.geometry == nil {
@@ -902,7 +902,7 @@ class CodeLayoutManager: NSLayoutManager {
 
         // Remove all messages in the edited range.
         if let codeStorageDelegate = textStorage.delegate as? CodeStorageDelegate,
-           let codeView            = gutterView?.textView as? CodeView {
+           let codeView = gutterView?.textView as? CodeView {
 
             codeView.removeMessageViews(withIDs: codeStorageDelegate.lastEvictedMessageIDs)
 
@@ -926,15 +926,15 @@ class CodeLayoutManagerDelegate: NSObject, NSLayoutManagerDelegate {
 func selectionDidChange<TV: TextView>(_ textView: TV) {
     guard let layoutManager = textView.optLayoutManager,
           let textContainer = textView.optTextContainer,
-          let codeStorage   = textView.optCodeStorage
+          let codeStorage = textView.optCodeStorage
     else { return }
 
     let visibleRect = textView.documentVisibleRect,
-        glyphRange  = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: visibleRect,
+        glyphRange = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: visibleRect,
                                                in: textContainer),
-        charRange   = layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
+        charRange = layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
 
-    if let location             = textView.insertionPoint,
+    if let location = textView.insertionPoint,
        location > 0,
        let matchingBracketRange = codeStorage.matchingBracket(forLocationAt: location - 1, in: charRange) {
         textView.showFindIndicator(for: matchingBracketRange)

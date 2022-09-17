@@ -74,7 +74,7 @@ private let highlightingAttributes = [NSAttributedString.Key.foregroundColor: UI
 
 extension UITextView: TextView {
   typealias Color = UIColor
-  typealias Font  = UIFont
+  typealias Font = UIFont
 
   var optLayoutManager: NSLayoutManager? { layoutManager }
   var optTextContainer: NSTextContainer? { textContainer }
@@ -102,22 +102,22 @@ extension UITextView: TextView {
     // Determine the visible portion of the range
     let visibleGlyphRange = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: documentVisibleRect,
                                                      in: textContainer),
-        visibleCharRange  = layoutManager.characterRange(forGlyphRange: visibleGlyphRange, actualGlyphRange: nil),
-        visibleRange      = NSIntersectionRange(visibleCharRange, range)
+        visibleCharRange = layoutManager.characterRange(forGlyphRange: visibleGlyphRange, actualGlyphRange: nil),
+        visibleRange = NSIntersectionRange(visibleCharRange, range)
 
     // Set up a label view to animate as the indicator view
     let glyphRange = layoutManager.glyphRange(forCharacterRange: visibleRange, actualCharacterRange: nil),
-        glyphRect  = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer),
-        label      = UILabel(frame: glyphRect.offsetBy(dx: textContainerOrigin.x, dy: textContainerOrigin.y)),
-        text       = NSMutableAttributedString(attributedString: textStorage.attributedSubstring(from: visibleRange))
+        glyphRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer),
+        label = UILabel(frame: glyphRect.offsetBy(dx: textContainerOrigin.x, dy: textContainerOrigin.y)),
+        text = NSMutableAttributedString(attributedString: textStorage.attributedSubstring(from: visibleRange))
     text.addAttributes(highlightingAttributes, range: NSRange(location: 0, length: text.length))
-    label.attributedText      = text
-    label.layer.cornerRadius  = 3
+    label.attributedText = text
+    label.layer.cornerRadius = 3
     label.layer.masksToBounds = true
     addSubview(label)
 
     // We animate the label in with a spring effect, and remove it with a delay.
-    label.alpha     = 0
+    label.alpha = 0
     label.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
     UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.1, initialSpringVelocity: 1) {
       label.alpha = 1

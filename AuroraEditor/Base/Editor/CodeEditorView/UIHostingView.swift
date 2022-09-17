@@ -26,7 +26,7 @@ class UIHostingView<Content: View>: UIView {
     if let view = hostingViewController.view {
 
       view.backgroundColor = .clear
-      view.isOpaque        = false
+      view.isOpaque = false
       addSubview(view)
       let constraints = [
         view.topAnchor.constraint(equalTo: self.topAnchor),
