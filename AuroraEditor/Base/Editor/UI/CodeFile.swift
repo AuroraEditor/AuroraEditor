@@ -56,15 +56,29 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
     }
 
     override public func makeWindowControllers() {
-        // Returns the Storyboard that contains your Document window.
-        let contentView = CodeEditorViewWrapper(codeFile: self, editable: true)
+        /// [SwiftUI] Add a "hidden" button to be able to close it with `⌘W`
+        var view: some View {
+            ZStack {
+                Button(
+                    action: { self.close() },
+                    label: { EmptyView() }
+                )
+                .frame(width: 0, height: 0)
+                .padding(0)
+                .opacity(0)
+                .keyboardShortcut("w", modifiers: [.command])
+
+                CodeEditorViewWrapper(codeFile: self, editable: true)
+            }
+        }
+
         let window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 1400, height: 600),
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
             backing: .buffered, defer: false
         )
         window.center()
-        window.contentView = NSHostingView(rootView: contentView)
+        window.contentView = NSHostingView(rootView: view)
         let windowController = NSWindowController(window: window)
         addWindowController(windowController)
     }
