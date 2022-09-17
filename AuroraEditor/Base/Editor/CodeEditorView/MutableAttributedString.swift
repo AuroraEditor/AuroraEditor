@@ -159,8 +159,7 @@ extension NSMutableAttributedString {
             ] = orderedMap.compactMap { (pattern, type) in
                 if case .string(let lexeme) = pattern {
                     return (lexeme, type)
-                }
-                else if case .word(let lexeme) = pattern {
+                } else if case .word(let lexeme) = pattern {
                     return (lexeme, type)
                 } else {
                     return nil
