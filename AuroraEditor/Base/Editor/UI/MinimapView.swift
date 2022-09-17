@@ -25,7 +25,7 @@ struct MinimapView: View {
                         .offset(y: CGFloat(sharedObjects.caretPos.line) * minimapLineHeight * 1.5)
                     ForEach(attributedTextItems) { textItem in
                         if let color = textItem.attributes[.foregroundColor] as? NSColor {
-                            Color(nsColor: color)
+                            Color(nsColor: color).opacity(0.7)
                                 .frame(width: CGFloat(textItem.text.count) * minimapMultiplier,
                                        height: minimapLineHeight)
                                 .offset(x: CGFloat(textItem.charactersFromStart) * minimapMultiplier,
