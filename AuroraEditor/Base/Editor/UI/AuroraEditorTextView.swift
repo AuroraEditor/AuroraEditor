@@ -71,8 +71,6 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
     @Binding private var lineHeight: Double
     @Binding private var attributedTextItems: [AttributedStringItem]
 
-    @State private var lastText: String = ""
-
     public typealias NSViewControllerType = STTextViewController
 
     public func makeNSViewController(context: Context) -> NSViewControllerType {
@@ -92,6 +90,9 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
         return controller
     }
 
+    @State private var lastText: String = ""
+    @State private var minimapView: NSHostingView<MinimapView>?
+
     public func updateNSViewController(_ controller: NSViewControllerType, context: Context) {
         controller.font = font
         controller.tabWidth = tabWidth
@@ -103,10 +104,40 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
                 updateTextItems(attributedText: attributedText)
             }
         }
+
+        minimapView?.removeFromSuperview()
+        addMinimapView(to: controller)
+
         controller.reloadUI()
         return
     }
 
+    /// Adds a minimap view to a controller, creating one if it doesn't exist
+    /// - Parameters:
+    ///   - controller: The controller to add the minimap view to
+    ///   - overrideMinimap: The minimap to add. If nil, it tries to look for a saved one.
+    ///   If there are no saved minimaps, it creates one.
+    func addMinimapView(to controller: NSViewControllerType,
+                        minimapView overrideMinimap: NSHostingView<MinimapView>? = nil) {
+        if let minimapView = overrideMinimap ?? self.minimapView {
+            if let scrollContent = controller.textView.scrollView {
+                minimapView.frame = NSRect(x: scrollContent.frame.width-150,
+                                            y: 0,
+                                            width: 150,
+                                            height: scrollContent.frame.height)
+                scrollContent.addSubview(minimapView)
+            }
+        } else {
+            let minimapView = NSHostingView(rootView: MinimapView(attributedTextItems: $attributedTextItems))
+            DispatchQueue.main.async {
+                self.minimapView = minimapView
+            }
+            addMinimapView(to: controller, minimapView: minimapView)
+        }
+    }
+
+    /// Takes an attributed string and turns it into an array of ``AttributedStringItem``s
+    /// - Parameter attributedText: The attributed string to parse
     func updateTextItems(attributedText: NSAttributedString) {
         Log.info("Length: \(attributedText.length)")
         let length = attributedText.length
@@ -161,6 +192,8 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
     }
 }
 
+/// A class that manages a single minimap attributed string item. Includes data
+/// like the line number, length, and characters from start.
 public class AttributedStringItem: Identifiable, Hashable {
     public let id = UUID()
 

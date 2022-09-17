@@ -238,10 +238,6 @@ public struct AECodeView: View {
                     size: Double(prefs.preferences.textEditing.font.size)
                 ) ?? .monospacedSystemFont(ofSize: 12, weight: .regular)
             }
-
-            // Minimap
-            MinimapView(attributedTextItems: $attributedTextItems)
-            .frame(width: 150)
         }
     }
 }
