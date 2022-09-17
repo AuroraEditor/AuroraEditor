@@ -19,7 +19,7 @@ import UIKit
 private typealias FontDescriptor = UIFontDescriptor
 
 private let fontDescriptorFeatureIdentifier = FontDescriptor.FeatureKey.featureIdentifier
-private let fontDescriptorTypeIdentifier    = FontDescriptor.FeatureKey.typeIdentifier
+private let fontDescriptorTypeIdentifier = FontDescriptor.FeatureKey.typeIdentifier
 
 private let lineNumberColour = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
 
@@ -49,8 +49,8 @@ class GutterView: UIView {
   /// text container.
   ///
   init(frame: CGRect, textView: UITextView, theme: Theme, getMessageViews: @escaping () -> MessageViews) {
-    self.textView        = textView
-    self.theme           = theme
+    self.textView = textView
+    self.theme = theme
     self.getMessageViews = getMessageViews
     super.init(frame: frame)
     let gutterExclusionPath = UIBezierPath(rect: CGRect(origin: frame.origin,
@@ -75,7 +75,7 @@ import AppKit
 private typealias FontDescriptor = NSFontDescriptor
 
 private let fontDescriptorFeatureIdentifier = FontDescriptor.FeatureKey.typeIdentifier
-private let fontDescriptorTypeIdentifier    = FontDescriptor.FeatureKey.selectorIdentifier
+private let fontDescriptorTypeIdentifier = FontDescriptor.FeatureKey.selectorIdentifier
 
 private let lineNumberColour = NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
 
@@ -169,10 +169,10 @@ extension GutterView {
     } else {
 
       // We call `paragraphRange(for:_)` safely by boxing `charRange` to the allowed range.
-      let extendedCharRange   = string.paragraphRange(for: NSIntersectionRange(charRange,
-                                                                               NSRange(location: 0,
-                                                                                       length: string.length))),
-          glyphRange          = layoutManager.glyphRange(forCharacterRange: extendedCharRange,
+      let extendedCharRange = string.paragraphRange(
+        for: NSIntersectionRange(charRange, NSRange(location: 0, length: string.length))
+      ),
+          glyphRange = layoutManager.glyphRange(forCharacterRange: extendedCharRange,
                                                          actualCharacterRange: nil)
       textRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
 
@@ -198,7 +198,7 @@ extension GutterView {
   override func draw(_ rect: CGRect) { // swiftlint:disable:this function_body_length
     guard let layoutManager = optLayoutManager,
           let textContainer = optTextContainer,
-          let lineMap       = optLineMap
+          let lineMap = optLineMap
     else { return }
 
     // This is not particularily nice, but there is no point in trying to draw the gutter, before the layout manager
@@ -285,7 +285,7 @@ extension GutterView {
     // All visible glyphs and all visible characters that are in the text area to the right of the gutter view
     let glyphRange = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: textRectFrom(gutterRect: rect),
                                               in: textContainer),
-        charRange  = layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
+        charRange = layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
 
     // Draw line numbers unless this is a gutter for a minimap
     if !isMinimapGutter {
@@ -296,7 +296,7 @@ extension GutterView {
       let lineNumberStyle = NSMutableParagraphStyle()
       lineNumberStyle.alignment = .right
       lineNumberStyle.tailIndent = -theme.fontSize / 11
-      let textAttributesDefault  = [NSAttributedString.Key.font: font,
+      let textAttributesDefault = [NSAttributedString.Key.font: font,
                                     .foregroundColor: lineNumberColour,
                                     .paragraphStyle: lineNumberStyle,
                                     .kern: NSNumber(value: Float(-theme.fontSize / 11))],
@@ -313,10 +313,10 @@ extension GutterView {
         // NB: We adjust the range, so that in case of a trailing empty line that last line break is not included in
         //     the second to last line (as otherwise, the bounding rect will contain both the second to last and last
         //     line together).
-        let lineCharRange     = lineMap.lines[line].range,
-            lineGlyphRange    = layoutManager.glyphRange(forCharacterRange: lineCharRange, actualCharacterRange: nil),
-            lineGlyphRect     = layoutManager.boundingRect(forGlyphRange: lineGlyphRange, in: textContainer),
-            gutterRect        = gutterRectForLineNumbersFrom(textRect: lineGlyphRect)
+        let lineCharRange = lineMap.lines[line].range,
+            lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineCharRange, actualCharacterRange: nil),
+            lineGlyphRect = layoutManager.boundingRect(forGlyphRange: lineGlyphRange, in: textContainer),
+            gutterRect = gutterRectForLineNumbersFrom(textRect: lineGlyphRect)
 
         var attributes = selectedLines.contains(line) ? textAttributesSelected : textAttributesDefault
 
@@ -325,7 +325,7 @@ extension GutterView {
         // Highlight line numbers as we don't have line background highlighting on iOS.
         if let messageBundle = lineMap.lines[line].info?.messages {
           let themeColour = theme(messagesByCategory(messageBundle.messages)[0].key).colour,
-              colour      = selectedLines.contains(line) ? themeColour : themeColour.withAlphaComponent(0.5)
+              colour = selectedLines.contains(line) ? themeColour : themeColour.withAlphaComponent(0.5)
           attributes.updateValue(colour, forKey: .foregroundColor)
         }
 

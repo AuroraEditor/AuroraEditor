@@ -43,7 +43,7 @@ class CodeStorage: NSTextStorage {
 #endif
 
     override func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [NSAttributedString.Key: Any] {
-        var attributes       = textStorage.attributes(at: location, effectiveRange: range)
+        var attributes = textStorage.attributes(at: location, effectiveRange: range)
         var foregroundColour = theme.textColour
 
         // Translate attributes indicating text highlighting to the foreground colour determined by the current theme.
@@ -75,10 +75,10 @@ class CodeStorage: NSTextStorage {
            let token = tokenAttribute(at: range.location),
            let language = (delegate as? CodeStorageDelegate)?.language {
 
-            let isOpen    = token.token.isOpenBracket,
+            let isOpen = token.token.isOpenBracket,
                 isBracket = isOpen || token.token.isCloseBracket,
-                isSafe    = (isOpen && range.location + 1 < string.utf16.count) || range.location > 0,
-                offset    = isOpen ? 1 : -1
+                isSafe = (isOpen && range.location + 1 < string.utf16.count) || range.location > 0,
+                offset = isOpen ? 1 : -1
             if isBracket && isSafe && language.lexeme(of: token.token)?.count == 1 &&
                 tokenAttribute(at: range.location + offset)?.token == token.token.matchingBracket {
 
@@ -162,7 +162,7 @@ extension CodeStorage {
             for textContainer in layoutManager.textContainers {
 
                 if let codeContainer = textContainer as? CodeContainer,
-                   let textView      = codeContainer.textView,
+                   let textView = codeContainer.textView,
                    NSIntersectionRange(textView.selectedRange, range).length != 0 {
                     Dispatch.DispatchQueue.main.async {
                         textView.selectedRange = NSRange(location: range.location, length: 0)
@@ -287,7 +287,7 @@ extension CodeStorage {
 
         }
 
-        var level                   = 1
+        var level = 1
         var matchingRange: NSRange?
         enumerateTokens(in: searchRange, reverse: bracketToken.type.isCloseBracket) { (tokenType, range, stop) in
 

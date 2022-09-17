@@ -19,11 +19,11 @@ import AppKit
 // MARK: Visual debugging support
 
 // FIXME: It should be possible to enable this via a defaults setting.
-private let visualDebugging               = false
-private let visualDebuggingEditedColour   = OSColor(red: 0.5, green: 1.0, blue: 0.5, alpha: 0.3)
-private let visualDebuggingLinesColour    = OSColor(red: 0.5, green: 0.5, blue: 1.0, alpha: 0.3)
+private let visualDebugging = false
+private let visualDebuggingEditedColour = OSColor(red: 0.5, green: 1.0, blue: 0.5, alpha: 0.3)
+private let visualDebuggingLinesColour = OSColor(red: 0.5, green: 0.5, blue: 1.0, alpha: 0.3)
 private let visualDebuggingTrailingColour = OSColor(red: 1.0, green: 0.5, blue: 0.5, alpha: 0.3)
-private let visualDebuggingTokenColour    = OSColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5)
+private let visualDebuggingTokenColour = OSColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5)
 
 // MARK: -
 // MARK: Tokens
@@ -67,7 +67,7 @@ struct LineInfo {
     var messages: [Message]
 
     init(messages: [Message]) {
-      self.id       = UUID()
+      self.id = UUID()
       self.messages = messages
     }
   }
@@ -113,7 +113,7 @@ class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
   private var processingOneCharacterEdit: Bool?
 
   init(with language: LanguageConfiguration) {
-    self.language  = language
+    self.language = language
     self.tokeniser = NSMutableAttributedString.tokeniser(for: language.tokenDictionary)
     super.init()
   }
@@ -305,11 +305,13 @@ extension CodeStorageDelegate {
     // Determine the comment depth as determined by the preceeeding code. This is needed to determine the correct
     // tokeniser and to compute attribute information from the resulting tokens. NB: We need to get that info from
     // the previous line, because the line info of the current line was set to `nil` during updating the line map.
-    let initialCommentDepth  = lineMap.lookup(line: lines.startIndex - 1)?.info?.commentDepthEnd ?? 0
+    let initialCommentDepth = lineMap.lookup(line: lines.startIndex - 1)?.info?.commentDepthEnd ?? 0
 
     // Set the token attribute in range.
-    let initialTokeniserState: LanguageConfiguration.State
-      = initialCommentDepth > 0 ? .tokenisingComment(initialCommentDepth) : .tokenisingCode
+    let initialTokeniserState: LanguageConfiguration.State = initialCommentDepth > 0
+      ? .tokenisingComment(initialCommentDepth)
+      : .tokenisingCode
+
     textStorage.tokeniseAndSetTokenAttribute(attribute: .token,
                                              with: tokeniser,
                                              state: initialTokeniserState,
@@ -319,8 +321,11 @@ extension CodeStorageDelegate {
     //
     // - `lastCommentStart` keeps track of the last start of an *outermost* nested comment.
     //
-    var commentDepth     = initialCommentDepth
-    var lastCommentStart = initialCommentDepth > 0 ? lineMap.lookup(line: lines.startIndex)?.range.location : nil
+    var commentDepth = initialCommentDepth
+    var lastCommentStart = initialCommentDepth > 0
+      ? lineMap.lookup(line: lines.startIndex)?.range.location
+      : nil
+
     for line in lines {
       tokeniseAndUpdateInfo(for: line, commentDepth: &commentDepth, lastCommentStart: &lastCommentStart)
     }
@@ -328,7 +333,7 @@ extension CodeStorageDelegate {
     // Continue to re-process line by line until there is no longer a change in the comment depth before and after
     // re-processing
     //
-    var currentLine       = lines.endIndex
+    var currentLine = lines.endIndex
     var highlightingRange = range
     trailingLineLoop: while currentLine < lineMap.lines.count {
 
@@ -339,8 +344,10 @@ extension CodeStorageDelegate {
         if let depth = lineEntry.info?.commentDepthStart, depth == commentDepth { break trailingLineLoop }
 
         // Re-tokenise line
-        let initialTokeniserState: LanguageConfiguration.State
-          = commentDepth > 0 ? .tokenisingComment(commentDepth) : .tokenisingCode
+        let initialTokeniserState: LanguageConfiguration.State = commentDepth > 0
+          ? .tokenisingComment(commentDepth)
+          : .tokenisingCode
+
         textStorage.tokeniseAndSetTokenAttribute(attribute: .token,
                                                  with: tokeniser,
                                                  state: initialTokeniserState,
@@ -398,8 +405,8 @@ extension CodeStorageDelegate {
       } else { return false }
     }
 
-    let string             = codeStorage.string,
-        char               = string.utf16[string.index(string.startIndex, offsetBy: index)],
+    let string = codeStorage.string,
+        char = string.utf16[string.index(string.startIndex, offsetBy: index)],
         previousTypedToken = lastTypedToken,
         currentTypedToken: (type: LanguageConfiguration.Token, range: NSRange)?
 

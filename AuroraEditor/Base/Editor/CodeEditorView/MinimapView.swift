@@ -92,12 +92,12 @@ class MinimapTypeSetter: NSATSTypesetter {
   ) -> Int {
 
     let padding = currentTextContainer?.lineFragmentPadding ?? 0,
-        width   = currentTextContainer?.size.width ?? 100
+        width = currentTextContainer?.size.width ?? 100
 
     // Determine the size of the rectangles to layout. (They are always twice as high as wide.)
     var fontHeight: CGFloat
     if let charIndex = layoutManager?.characterIndexForGlyph(at: paragraphGlyphRange.location),
-       let font      = layoutManager?.textStorage?.attribute(.font, at: charIndex, effectiveRange: nil) as? NSFont {
+       let font = layoutManager?.textStorage?.attribute(.font, at: charIndex, effectiveRange: nil) as? NSFont {
 
       fontHeight = minimapFontSize(for: font.pointSize)
 
@@ -105,7 +105,7 @@ class MinimapTypeSetter: NSATSTypesetter {
 
     // We always leave one point of space between lines
     let lineHeight = fontHeight + 1,
-        fontWidth  = fontHeight / 2   // NB: This is always going to be an integral number
+        fontWidth = fontHeight / 2   // NB: This is always going to be an integral number
 
     beginParagraph()
 
@@ -174,7 +174,7 @@ class MinimapTypeSetter: NSATSTypesetter {
 
         } else {
 
-          numberOfGlyphs       = remainingGlyphRange.length
+          numberOfGlyphs = remainingGlyphRange.length
           lineGlyphRangeLength = numberOfGlyphs + paragraphSeparatorGlyphRange.length
 
         }
@@ -185,7 +185,7 @@ class MinimapTypeSetter: NSATSTypesetter {
 
         // The glyph range covered by this line fragement — this may include the paragraph separator glyphs
         let remainingLength = remainingGlyphRange.length - numberOfGlyphs,
-            lineGlyphRange  = NSRange(location: remainingGlyphRange.location, length: lineGlyphRangeLength)
+            lineGlyphRange = NSRange(location: remainingGlyphRange.location, length: lineGlyphRangeLength)
 
         // The rest of what remains of this paragraph
         remainingGlyphRange = NSRange(location: remainingGlyphRange.location + numberOfGlyphs, length: remainingLength)
@@ -217,7 +217,7 @@ class MinimapTypeSetter: NSATSTypesetter {
 
       beginLine(withGlyphAt: paragraphSeparatorGlyphRange.location)
 
-      var lineFragmentRect      = NSRect.zero,
+      var lineFragmentRect = NSRect.zero,
           lineFragementUsedRect = NSRect.zero
 
       getLineFragmentRect(&lineFragmentRect,
@@ -254,7 +254,7 @@ class MinimapTypeSetter: NSATSTypesetter {
     if let glyphIndex = (paragraphSeparatorGlyphRange.length > 0   ? paragraphSeparatorGlyphRange.location : nil) ??
                         (paragraphSeparatorGlyphRange.location > 0 ? paragraphSeparatorGlyphRange.location - 1 : nil),
        let charIndex = layoutManager?.characterIndexForGlyph(at: glyphIndex),
-       let font      = layoutManager?.textStorage?.attribute(.font, at: charIndex, effectiveRange: nil) as? NSFont {
+       let font = layoutManager?.textStorage?.attribute(.font, at: charIndex, effectiveRange: nil) as? NSFont {
 
       fontHeight = minimapFontSize(for: font.pointSize)
 
@@ -267,7 +267,7 @@ class MinimapTypeSetter: NSATSTypesetter {
                               usedRect: lineFragmentUsedRect,
                               forParagraphSeparatorGlyphRange: paragraphSeparatorGlyphRange,
                               atProposedOrigin: lineOrigin)
-    lineFragmentRect.pointee.size.height     = lineHeight
+    lineFragmentRect.pointee.size.height = lineHeight
     lineFragmentUsedRect.pointee.size.height = fontHeight
   }
 }
