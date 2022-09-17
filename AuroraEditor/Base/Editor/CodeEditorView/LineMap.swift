@@ -100,8 +100,8 @@ struct LineMap<LineInfo> {
     /// conditions by clipping to the front and end of the line range, respectively.
     ///
     /// - Parameter range: The character range for which we want to know the line range.
-    /// - Returns: The smallest range of lines that includes all characters in the given character range. The start value
-    ///     of that range is greater or equal 1.
+    /// - Returns: The smallest range of lines that includes all characters in the given character range.\
+    ///            The start value of that range is greater or equal 1.
     ///
     /// There are two special cases:
     /// - If (1) the range is empty, (2) its location (= insertion) at the end of the string, and (3) the text ends on a
