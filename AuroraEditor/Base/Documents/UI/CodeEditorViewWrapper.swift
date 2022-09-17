@@ -42,14 +42,6 @@ public struct CodeEditorViewWrapper: View {
         return ThemeModel.shared.selectedTheme?.highlightrThemeString
     }
 
-    private func getLanguage() -> CodeLanguage? {
-        if let url = codeFile.fileURL {
-            return .detectLanguageFromUrl(url: url)
-        } else {
-            return .default
-        }
-    }
-
     @State private var position: CodeEditor.Position = CodeEditor.Position()
     @State private var messages: Set<Located<Message>> = Set()
 
