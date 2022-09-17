@@ -52,7 +52,7 @@ public struct CodeEditor {
     public var verticalScrollFraction: CGFloat
 
     public init(selections: [NSRange], verticalScrollFraction: CGFloat) {
-      self.selections             = selections
+      self.selections = selections
       self.verticalScrollFraction = verticalScrollFraction
     }
 
@@ -84,11 +84,11 @@ public struct CodeEditor {
               messages: Binding<Set<Located<Message>>>,
               language: LanguageConfiguration = .none,
               layout: LayoutConfiguration = .standard) {
-    self._text     = text
+    self._text = text
     self._position = position
     self._messages = messages
-    self.language  = language
-    self.layout    = layout
+    self.language = language
+    self.layout = layout
   }
 
   public class TCoordinator {
@@ -106,7 +106,7 @@ public struct CodeEditor {
     fileprivate var lastMessages: Set<Located<Message>> = Set()
 
     init(_ text: Binding<String>, _ position: Binding<Position>) {
-      self._text     = text
+      self._text = text
       self._position = position
     }
   }
@@ -128,7 +128,7 @@ extension CodeEditor: UIViewRepresentable {
     codeView.text = text
     if let delegate = codeView.delegate as? CodeViewDelegate {
 
-      delegate.textDidChange      = context.coordinator.textDidChange
+      delegate.textDidChange = context.coordinator.textDidChange
       delegate.selectionDidChange = { textView in
         selectionDidChange(textView)
         context.coordinator.selectionDidChange(textView)
@@ -157,7 +157,7 @@ extension CodeEditor: UIViewRepresentable {
     guard let codeView = textView as? CodeView else { return }
     context.coordinator.updatingView = true
 
-    let theme     = context.environment.codeEditorTheme,
+    let theme = context.environment.codeEditorTheme,
         selection = position.selections.first ?? NSRange(location: 0, length: 0)
 
     updateMessages(in: codeView, with: context)
@@ -212,19 +212,19 @@ extension CodeEditor: NSViewRepresentable {
 
     // Set up scroll view
     let scrollView = NSScrollView(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-    scrollView.borderType          = .noBorder
+    scrollView.borderType = .noBorder
     scrollView.hasVerticalScroller = true
-    scrollView.hasHorizontalRuler  = false
-    scrollView.autoresizingMask    = [.width, .height]
+    scrollView.hasHorizontalRuler = false
+    scrollView.autoresizingMask = [.width, .height]
 
     // Set up text view with gutter
     let codeView = CodeView(frame: CGRect(x: 0, y: 0, width: 100, height: 40),
                             with: language,
                             viewLayout: layout,
                             theme: context.environment.codeEditorTheme)
-    codeView.isVerticallyResizable   = true
+    codeView.isVerticallyResizable = true
     codeView.isHorizontallyResizable = false
-    codeView.autoresizingMask        = .width
+    codeView.autoresizingMask = .width
 
     // Embed text view in scroll view
     scrollView.documentView = codeView
@@ -232,7 +232,7 @@ extension CodeEditor: NSViewRepresentable {
     codeView.string = text
     if let delegate = codeView.delegate as? CodeViewDelegate {
 
-      delegate.textDidChange      = context.coordinator.textDidChange
+      delegate.textDidChange = context.coordinator.textDidChange
       delegate.selectionDidChange = { textView in
         selectionDidChange(textView)
         context.coordinator.selectionDidChange(textView)
@@ -272,8 +272,8 @@ extension CodeEditor: NSViewRepresentable {
     guard let codeView = scrollView.documentView as? CodeView else { return }
     context.coordinator.updatingView = true
 
-    let theme                      = context.environment.codeEditorTheme,
-        selections                 = position.selections.map { NSValue(range: $0) }
+    let theme = context.environment.codeEditorTheme,
+        selections = position.selections.map { NSValue(range: $0) }
 
     updateMessages(in: codeView, with: context)
     if text != codeView.string { codeView.string = text }  // Hoping for the string comparison fast path...
@@ -339,7 +339,7 @@ extension CodeEditor {
   private func update(oldMessages: Set<Located<Message>>,
                       to updatedMessages: Set<Located<Message>>,
                       in codeView: CodeView) {
-    let messagesToAdd    = updatedMessages.subtracting(oldMessages),
+    let messagesToAdd = updatedMessages.subtracting(oldMessages),
         messagesToRemove = oldMessages.subtracting(updatedMessages)
 
     for message in messagesToRemove { codeView.retract(message: message.entity) }
@@ -368,7 +368,7 @@ extension CodeEditor.Position: RawRepresentable, Codable {
       let components = lexeme.components(separatedBy: ":")
       guard components.count == 2,
             let location = Int(components[0]),
-            let length   = Int(components[1])
+            let length = Int(components[1])
       else { return nil }
       return NSRange(location: location, length: length)
     }

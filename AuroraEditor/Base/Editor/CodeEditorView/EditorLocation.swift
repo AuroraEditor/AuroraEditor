@@ -30,7 +30,7 @@ public struct Located<Entity> {
 
   public init(location: Location, entity: Entity) {
     self.location = location
-    self.entity   = entity
+    self.entity = entity
   }
 }
 
