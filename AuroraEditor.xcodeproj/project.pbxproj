@@ -538,6 +538,9 @@
 		6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */; };
 		9302A22428D183E300648D63 /* TabBarItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9302A22328D183E300648D63 /* TabBarItemStorage.swift */; };
 		9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */; };
+		93159FD828D5F2E800C55C5A /* CodeEditorView in Frameworks */ = {isa = PBXBuildFile; productRef = 93159FD728D5F2E800C55C5A /* CodeEditorView */; };
+		93159FDA28D5F3D500C55C5A /* AECodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93159FD928D5F3D500C55C5A /* AECodeView.swift */; };
+		93159FDC28D5F40C00C55C5A /* CodeEditorViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93159FDB28D5F40C00C55C5A /* CodeEditorViewWrapper.swift */; };
 		9327701128CE1B6300871190 /* TabHierarchyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9327701028CE1B6300871190 /* TabHierarchyTableViewCell.swift */; };
 		9336833928C5EAD7009F7B44 /* GitCloneViewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9336833828C5EAD7009F7B44 /* GitCloneViewWindow.swift */; };
 		934D2CD928D207BD00F22E38 /* TabHierarchyOutlineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D2CD828D207BD00F22E38 /* TabHierarchyOutlineDelegate.swift */; };
@@ -1168,6 +1171,8 @@
 		6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContextMenu.swift; sourceTree = "<group>"; };
 		9302A22328D183E300648D63 /* TabBarItemStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemStorage.swift; sourceTree = "<group>"; };
 		9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorToolbarBottom.swift; sourceTree = "<group>"; };
+		93159FD928D5F3D500C55C5A /* AECodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AECodeView.swift; sourceTree = "<group>"; };
+		93159FDB28D5F40C00C55C5A /* CodeEditorViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditorViewWrapper.swift; sourceTree = "<group>"; };
 		9327701028CE1B6300871190 /* TabHierarchyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyTableViewCell.swift; sourceTree = "<group>"; };
 		9336833828C5EAD7009F7B44 /* GitCloneViewWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCloneViewWindow.swift; sourceTree = "<group>"; };
 		934D2CD828D207BD00F22E38 /* TabHierarchyOutlineDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyOutlineDelegate.swift; sourceTree = "<group>"; };
@@ -1242,6 +1247,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93159FD828D5F2E800C55C5A /* CodeEditorView in Frameworks */,
 				209D0246289AB9750082441F /* SwiftTerm in Frameworks */,
 				2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */,
 			);
@@ -1287,6 +1293,8 @@
 			isa = PBXGroup;
 			children = (
 				0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */,
+				93159FD928D5F3D500C55C5A /* AECodeView.swift */,
+				93159FDB28D5F40C00C55C5A /* CodeEditorViewWrapper.swift */,
 				B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */,
 			);
 			path = UI;
@@ -1529,8 +1537,8 @@
 			isa = PBXGroup;
 			children = (
 				20D83754289A7ACD00D91D05 /* Assets */,
-				202F2E2E289E6637000D3CAD /* Model */,
 				20D83919289A81D000D91D05 /* Model */,
+				202F2E2E289E6637000D3CAD /* Model */,
 				202F2E2C289E6608000D3CAD /* UI */,
 				2B4C12FE289D56F9000ED796 /* STTextView */,
 			);
@@ -3402,6 +3410,7 @@
 			packageProductDependencies = (
 				209D0245289AB9750082441F /* SwiftTerm */,
 				2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */,
+				93159FD728D5F2E800C55C5A /* CodeEditorView */,
 			);
 			productName = CodeEdit;
 			productReference = B658FB2C27DA9E0F00EA4DBD /* AuroraEditor.app */;
@@ -3482,6 +3491,7 @@
 			packageReferences = (
 				209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */,
 				2BE5EDAB28AE64A700C0A4AE /* XCRemoteSwiftPackageReference "AEExtensionKit" */,
+				93159FD628D5F2E700C55C5A /* XCRemoteSwiftPackageReference "CodeEditorView" */,
 			);
 			productRefGroup = B658FB2D27DA9E0F00EA4DBD /* Products */;
 			projectDirPath = "";
@@ -3945,6 +3955,7 @@
 				2093CD30289AA089003A88DD /* GithubAccount.swift in Sources */,
 				2B4C133A289D56F9000ED796 /* STCompletion.swift in Sources */,
 				93983D2D28CE012500E54409 /* NavigatorModeSelectModel.swift in Sources */,
+				93159FDA28D5F3D500C55C5A /* AECodeView.swift in Sources */,
 				209D0259289ABFF70082441F /* AuroraEditorTextView.swift in Sources */,
 				2B4C133E289D56F9000ED796 /* NSResponder+debug.swift in Sources */,
 				20F8379028C7B45700EAE842 /* WorkspaceExtension.swift in Sources */,
@@ -4043,6 +4054,7 @@
 				202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */,
 				2093CDE0289AA522003A88DD /* Date+Formatted.swift in Sources */,
 				2847019E27FDDF7600F87B6B /* ProjectNavigatorView.swift in Sources */,
+				93159FDC28D5F40C00C55C5A /* CodeEditorViewWrapper.swift in Sources */,
 				2093CD37289AA08F003A88DD /* ProjectRouter.swift in Sources */,
 				93C43E8228B0DBF0002E23DC /* NavigatorSidebarToolbarLeft.swift in Sources */,
 				20EBB501280C325D00F3A5DA /* FileInspectorView.swift in Sources */,
@@ -4689,6 +4701,14 @@
 				kind = branch;
 			};
 		};
+		93159FD628D5F2E700C55C5A /* XCRemoteSwiftPackageReference "CodeEditorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mchakravarty/CodeEditorView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -4701,6 +4721,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2BE5EDAB28AE64A700C0A4AE /* XCRemoteSwiftPackageReference "AEExtensionKit" */;
 			productName = AEExtensionKit;
+		};
+		93159FD728D5F2E800C55C5A /* CodeEditorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93159FD628D5F2E700C55C5A /* XCRemoteSwiftPackageReference "CodeEditorView" */;
+			productName = CodeEditorView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
