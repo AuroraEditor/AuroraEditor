@@ -21,11 +21,6 @@ final class RepositoriesViewController: NSViewController {
 
     var workspace: WorkspaceDocument?
 
-    var iconColor: AppPreferences.FileIconStyle = .color
-    var fileExtensionsVisibility: AppPreferences.FileExtensionsVisibility = .showAll
-    var shownFileExtensions: AppPreferences.FileExtensions = .default
-    var hiddenFileExtensions: AppPreferences.FileExtensions = .default
-
     var rowHeight: Double = 22 {
         didSet {
             outlineView.rowHeight = rowHeight
