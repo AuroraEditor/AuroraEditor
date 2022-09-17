@@ -128,13 +128,19 @@ struct LineMap<LineInfo> {
       lastLineRange = lines[lastLine].range
 
     if let startLine = startLine {
-
-      if range.length < 0 { return startLine..<startLine } else if range == lastLineRange { return Range<Int>(lastLine...lastLine) } else { return Range<Int>(startLine...(endLine ?? lastLine)) }
-
+      if range.length < 0 {
+          return startLine..<startLine
+      } else if range == lastLineRange {
+          return Range<Int>(lastLine...lastLine)
+      } else {
+          return Range<Int>(startLine...(endLine ?? lastLine))
+      }
     } else {
-
-      if range.location < 0 { return 0..<0 } else { return lastLine..<lastLine }
-
+      if range.location < 0 {
+          return 0..<0
+      } else {
+          return lastLine..<lastLine
+      }
     }
   }
 

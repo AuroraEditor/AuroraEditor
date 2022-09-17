@@ -113,7 +113,7 @@ private struct PopupWidth: PreferenceKey, EnvironmentKey {
 
   static let defaultValue: CGFloat? = nil
   static func reduce(value: inout CGFloat?, nextValue: () -> CGFloat?) {
-    if let nv = nextValue() { value = value.flatMap { max(nv, $0) } ?? nv }
+    if let next = nextValue() { value = value.flatMap { max(next, $0) } ?? next }
   }
 }
 
