@@ -10,8 +10,19 @@ import Foundation
 struct WorkspaceSelectionState: Codable {
     var selectedId: TabBarItemID?
     var openedTabs: [TabBarItemID] = []
+    var savedTabs: [TabBarItemStorage] = []
+    var flattenedSavedTabs: [TabBarItemStorage] {
+        var flat = [TabBarItemStorage]()
+        for tab in savedTabs {
+            flat.append(tab)
+            flat.append(contentsOf: tab.flattenedChildren)
+        }
+        return flat
+    }
     var temporaryTab: TabBarItemID?
     var previousTemporaryTab: TabBarItemID?
+
+    var workspace: WorkspaceDocument?
 
     var selected: TabBarItemRepresentable? {
         guard let selectedId = selectedId else { return nil }
@@ -68,9 +79,12 @@ struct WorkspaceSelectionState: Codable {
     func getItemByTab(id: TabBarItemID) -> TabBarItemRepresentable? {
         switch id {
         case .codeEditor:
-            return self.openFileItems.first { item in
-                item.tabID == id
+            let path = id.id.replacingOccurrences(of: "codeEditor_", with: "")
+            // get it from the open file items, else fallback to the whole index
+            if let fileItem = self.openFileItems.first(where: { $0.tabID == id }) {
+                return fileItem
             }
+            return try? workspace?.fileSystemClient?.getFileItem(path)
         case .extensionInstallation:
             return self.openedExtensions.first { item in
                 item.tabID == id
