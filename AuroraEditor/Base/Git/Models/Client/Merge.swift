@@ -50,7 +50,7 @@ let noopMergeMessage = "Already up to date.\n"
 func getMergeBase(directoryURL: URL,
                   firstCommitish: String,
                   secondCommitish: String) throws -> String? {
-    let process  = try ShellClient.live().run(
+    let process = try ShellClient.live().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git merge-base \(firstCommitish) \(secondCommitish)"
     )
 

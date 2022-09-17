@@ -137,13 +137,13 @@ public struct LanguageConfiguration {
               nestedComment: LanguageConfiguration.BracketPair?,
               identifierRegexp: String?,
               reservedIdentifiers: [String]) {
-    self.stringRegexp         = stringRegexp
-    self.characterRegexp      = characterRegexp
-    self.numberRegexp         = numberRegexp
-    self.singleLineComment    = singleLineComment
-    self.nestedComment        = nestedComment
-    self.identifierRegexp     = identifierRegexp
-    self.reservedIdentifiers  = reservedIdentifiers
+    self.stringRegexp = stringRegexp
+    self.characterRegexp = characterRegexp
+    self.numberRegexp = numberRegexp
+    self.singleLineComment = singleLineComment
+    self.nestedComment = nestedComment
+    self.identifierRegexp = identifierRegexp
+    self.reservedIdentifiers = reservedIdentifiers
   }
 
   /// Yields the lexeme of the given token under this language configuration if the token has got a unique lexeme.
@@ -185,12 +185,12 @@ extension LanguageConfiguration {
 extension LanguageConfiguration {
 
   // General purpose numeric literals
-  public static let binaryLit    = "(?:[01]_*)+"
-  public static let octalLit     = "(?:[0-7]_*)+"
-  public static let decimalLit   = "(?:[0-9]_*)+"
-  public static let hexalLit     = "(?:[0-9A-Fa-f]_*)+"
-  public static let optNegation  = "(?:\\B-|\\b)"
-  public static let exponentLit  = "[eE](?:[+-])?" + decimalLit
+  public static let binaryLit = "(?:[01]_*)+"
+  public static let octalLit = "(?:[0-7]_*)+"
+  public static let decimalLit = "(?:[0-9]_*)+"
+  public static let hexalLit = "(?:[0-9A-Fa-f]_*)+"
+  public static let optNegation = "(?:\\B-|\\b)"
+  public static let exponentLit = "[eE](?:[+-])?" + decimalLit
   public static let hexponentLit = "[pP](?:[+-])?" + decimalLit
 
   // Identifier components following the Swift 5.4 reference

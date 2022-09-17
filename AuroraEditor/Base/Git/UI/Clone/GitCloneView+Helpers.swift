@@ -11,8 +11,8 @@ import SwiftUI
 extension GitCloneView {
     func getPath(modifiable: inout String, saveName: String) -> String? {
         let dialog = NSSavePanel()
-        dialog.showsResizeIndicator    = true
-        dialog.showsHiddenFiles        = false
+        dialog.showsResizeIndicator = true
+        dialog.showsHiddenFiles = false
         dialog.showsTagField = false
         dialog.prompt = "Clone"
         dialog.nameFieldStringValue = saveName

@@ -178,7 +178,7 @@ private struct MessagePopupCategoryView: View {
   var body: some View {
 
     let backgroundColour = colourScheme == .dark ? Color.black : Color.white
-    let colour           = Color(theme(category).colour)
+    let colour = Color(theme(category).colour)
 
     let theActualView =
       HStack(spacing: 0) {
@@ -382,12 +382,12 @@ extension StatefulMessageView {
 
     init(messages: [Message], theme: @escaping Message.Theme, geometry: MessageView.Geometry, fontSize: CGFloat) {
       self.messages = messages
-      self.theme    = theme
+      self.theme = theme
       self.geometry = geometry
       self.fontSize = fontSize
       super.init(frame: .zero)
 
-      isOpaque                                  = false
+      isOpaque = false
       translatesAutoresizingMaskIntoConstraints = false
 
       hostingView = UIHostingView(rootView: StatefulMessageView(messages: messages,
@@ -395,7 +395,7 @@ extension StatefulMessageView {
                                                                 geometry: geometry,
                                                                 fontSize: fontSize,
                                                                 unfolded: unfoldedState))
-      hostingView?.isOpaque                                  = false
+      hostingView?.isOpaque = false
       hostingView?.translatesAutoresizingMaskIntoConstraints = false
       if let view = hostingView {
 
@@ -450,7 +450,7 @@ extension StatefulMessageView {
 
     init(messages: [Message], theme: @escaping Message.Theme, geometry: MessageView.Geometry, fontSize: CGFloat) {
       self.messages = messages
-      self.theme    = theme
+      self.theme = theme
       self.geometry = geometry
       self.fontSize = fontSize
       super.init(frame: .zero)

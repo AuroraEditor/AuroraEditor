@@ -47,7 +47,7 @@ public struct CodeEditorViewWrapper: View {
         }
     }
 
-    @State private var position: CodeEditor.Position  = CodeEditor.Position()
+    @State private var position: CodeEditor.Position = CodeEditor.Position()
     @State private var messages: Set<Located<Message>> = Set()
 
     public var body: some View {
