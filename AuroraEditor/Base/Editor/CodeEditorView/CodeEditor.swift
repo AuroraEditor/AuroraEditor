@@ -91,7 +91,7 @@ public struct CodeEditor {
     self.layout    = layout
   }
 
-  public class _Coordinator {
+  public class TCoordinator {
     @Binding fileprivate var text: String
     @Binding fileprivate var position: Position
 
@@ -174,7 +174,7 @@ extension CodeEditor: UIViewRepresentable {
     return Coordinator($text, $position)
   }
 
-  public final class Coordinator: _Coordinator {
+  public final class Coordinator: TCoordinator {
 
     func textDidChange(_ textView: UITextView) {
       guard !updatingView else { return }
@@ -286,7 +286,7 @@ extension CodeEditor: NSViewRepresentable {
     return Coordinator($text, $position)
   }
 
-  public final class Coordinator: _Coordinator {
+  public final class Coordinator: TCoordinator {
     var boundsChangedNotificationObserver: NSObjectProtocol?
 
     deinit {
