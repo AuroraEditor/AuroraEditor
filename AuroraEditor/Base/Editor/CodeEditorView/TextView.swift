@@ -157,7 +157,11 @@ extension NSTextView: TextView {
   }
 
   var insertionPoint: Int? {
-    if let selection = selectedRanges.first as? NSRange, selection.length == 0 { return selection.location } else { return nil }
+    if let selection = selectedRanges.first as? NSRange, selection.length == 0 {
+        return selection.location
+    } else {
+        return nil
+    }
   }
 
   var selectedLines: Set<Int> {

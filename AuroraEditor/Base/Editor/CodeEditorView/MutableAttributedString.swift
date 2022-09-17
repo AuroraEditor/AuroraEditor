@@ -127,8 +127,9 @@ extension NSMutableAttributedString {
   /// the token body— are marked with the same token attribute, but without being identified as a lexeme head. This
   /// distinction is crucial to be able to distinguish the boundaries of multiple successive tokens of the same type.
   ///
-  public static func tokeniser<TokenType, StateType: TokeniserState>(for tokenMap: TokenDictionary<TokenType, StateType>)
-  -> Tokeniser<TokenType, StateType>? {
+  public static func tokeniser<TokenType, StateType: TokeniserState>(
+    for tokenMap: TokenDictionary<TokenType, StateType>
+  ) -> Tokeniser<TokenType, StateType>? {
     func tokeniser(for stateMap: [TokenPattern: TokenAction<TokenType, StateType>])
     throws -> Tokeniser<TokenType, StateType>.State {
 
