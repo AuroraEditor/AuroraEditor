@@ -434,7 +434,7 @@ open class STTextView: NSView, CALayerDelegate, NSTextInput { // swiftlint:disab
         }
 
         /// Split newlines
-        let splitValue = txtStr.split(separator: "\n")
+        let splitValue = txtStr.components(separatedBy: "\n")
 
         // Check on what row we are
         row = splitValue.count
@@ -447,15 +447,6 @@ open class STTextView: NSView, CALayerDelegate, NSTextInput { // swiftlint:disab
         } else {
             // .count gives us the (current) length of the string
             col = txtStr.count
-        }
-
-        // This seems weird, but if we split \n into an empty line,
-        // it doesn't count, so we check if the character in range
-        // before the caret has a \n, in that case we are on a new
-        // row, without any contents. (row + 1, col = 0)
-        if txtStr.hasSuffix("\n") {
-            row += 1
-            col = 0
         }
 
         // Update value to delegate
