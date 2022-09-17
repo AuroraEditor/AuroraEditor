@@ -84,14 +84,14 @@ public final class ThemeModel: ObservableObject {
         }
     }
 
-    /// Loads all available themes from `~/.config/auroraeditor/themes/`
+    /// Loads all available themes from `~/Library/com.auroraeditor/themes/`
     ///
     /// If no themes are available, it will create a default theme and save
     /// it to the location mentioned above.
     ///
-    /// When overrides are found in `~/.config/auroraeditor/preferences.json`
+    /// When overrides are found in `~/Library/com.auroraeditor/preferences.json`
     /// they are applied to the loaded themes without altering the original
-    /// the files in `~/.config/auroraeditor/themes/`.
+    /// the files in `~/Library/com.auroraeditor/themes/`.
     public func loadThemes() throws {
         // remove all themes from memory
         themes.removeAll()
@@ -171,10 +171,10 @@ public final class ThemeModel: ObservableObject {
     }
 
     /// Removes all overrides of the given theme in
-    /// `~/.config/auroraeditor/preferences.json`
+    /// `~/Library/com.auroraeditor/preferences.json`
     ///
     /// After removing overrides, themes are reloaded
-    /// from `~/.config/auroraeditor/themes`. See ``loadThemes()``
+    /// from `~/Library/com.auroraeditor/themes`. See ``loadThemes()``
     /// for more information.
     ///
     /// - Parameter theme: The theme to reset
@@ -187,10 +187,10 @@ public final class ThemeModel: ObservableObject {
         }
     }
 
-    /// Removes the given theme from `–/.config/auroraeditor/themes`
+    /// Removes the given theme from `–/Library/com.auroraeditor/themes`
     ///
     /// After removing the theme, themes are reloaded
-    /// from `~/.config/auroraeditor/themes`. See ``loadThemes()``
+    /// from `~/Library/com.auroraeditor/themes`. See ``loadThemes()``
     /// for more information.
     ///
     /// - Parameter theme: The theme to delete
@@ -213,12 +213,12 @@ public final class ThemeModel: ObservableObject {
     }
 
     /// Saves changes on theme properties to `overrides`
-    /// in `~/.codeedit/preferences.json`.
+    /// in `~/Library/com.auroraeditor/preferences.json`.
     private func saveThemes() {
         let url = themesURL
         themes.forEach { theme in
             do {
-                // load the original theme from `~/.config/auroraeditor/themes/`
+                // load the original theme from `~/Library/com.auroraeditor/themes/`
                 let originalUrl = url.appendingPathComponent(theme.name).appendingPathExtension("json")
                 let originalData = try Data(contentsOf: originalUrl)
                 let originalTheme = try JSONDecoder().decode(AuroraTheme.self, from: originalData)
@@ -259,9 +259,11 @@ public final class ThemeModel: ObservableObject {
     /// Default instance of the `FileManager`
     private let filemanager = FileManager.default
 
-    /// The base folder url `~/.config/auroraeditor/`
+    /// The base folder url `~/Library/com.auroraeditor/`
     private var baseURL: URL {
-        filemanager.homeDirectoryForCurrentUser.appendingPathComponent(".config").appendingPathComponent("auroraeditor")
+        filemanager.homeDirectoryForCurrentUser
+            .appendingPathComponent("Library")
+            .appendingPathComponent("com.auroraeditor")
     }
 
     /// The URL of the `themes` folder
