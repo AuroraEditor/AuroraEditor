@@ -87,7 +87,9 @@ class MinimapTypeSetter: NSATSTypesetter {
   // ignores some features of text views, such as areas to exclude, where `remainingRect` would be non-empty. It
   // currently also ignores all extra line and paragraph spacing and fails to call some methods that might adjust
   // layout decisions.
-  override func layoutParagraph(at lineFragmentOrigin: UnsafeMutablePointer<NSPoint>) -> Int {
+  override func layoutParagraph( // swiftlint:disable:this function_body_length
+    at lineFragmentOrigin: UnsafeMutablePointer<NSPoint>
+  ) -> Int {
 
     let padding = currentTextContainer?.lineFragmentPadding ?? 0,
         width   = currentTextContainer?.size.width ?? 100

@@ -183,10 +183,17 @@ extension CodeStorageDelegate {
   ///
   /// Tokenisation happens at line granularity. Hence, the range is correspondingly extended.
   ///
-  func tokeniseAttributesFor(range originalRange: NSRange, in textStorage: NSTextStorage) {
+  func tokeniseAttributesFor( // swiftlint:disable:this function_body_length
+    range originalRange: NSRange,
+    in textStorage: NSTextStorage
+  ) {
     guard let codeStorage = textStorage as? CodeStorage else { return }
 
-    func tokeniseAndUpdateInfo(for line: Int, commentDepth: inout Int, lastCommentStart: inout Int?) {
+    func tokeniseAndUpdateInfo( // swiftlint:disable:this function_body_length
+        for line: Int,
+        commentDepth: inout Int,
+        lastCommentStart: inout Int?
+    ) {
 
       if let lineRange = lineMap.lookup(line: line)?.range {
 

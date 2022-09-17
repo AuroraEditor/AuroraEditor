@@ -236,7 +236,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
     /// Designated initialiser for code views with a gutter.
     ///
-    init(frame: CGRect, // swiftlint:disable:this type_body_length
+    init(frame: CGRect,
          with language: LanguageConfiguration,
          viewLayout: CodeEditor.LayoutConfiguration,
          theme: Theme) {
@@ -664,7 +664,9 @@ extension CodeView {
     /// Update the layout of the specified message view if its geometry got invalidated by
     /// `CodeTextContainer.lineFragmentRect(forProposedRect:at:writingDirection:remaining:)`.
     ///
-    fileprivate func layoutMessageView(identifiedBy id: UUID) {
+    fileprivate func layoutMessageView( // swiftlint:disable:this function_body_length
+        identifiedBy id: UUID
+    ) {
         guard let codeLayoutManager = layoutManager as? CodeLayoutManager,
               let codeStorage       = textStorage as? CodeStorage,
               let codeContainer     = optTextContainer,
