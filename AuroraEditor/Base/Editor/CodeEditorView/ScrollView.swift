@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 #if os(iOS)
 
 // MARK: -
@@ -26,7 +25,6 @@ extension UIScrollView {
     }
   }
 }
-
 
 #elseif os(macOS)
 

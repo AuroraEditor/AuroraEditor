@@ -15,7 +15,6 @@ import UIKit
 import AppKit
 #endif
 
-
 // MARK: -
 // MARK: Visual debugging support
 
@@ -25,7 +24,6 @@ private let visualDebuggingEditedColour   = OSColor(red: 0.5, green: 1.0, blue: 
 private let visualDebuggingLinesColour    = OSColor(red: 0.5, green: 0.5, blue: 1.0, alpha: 0.3)
 private let visualDebuggingTrailingColour = OSColor(red: 1.0, green: 0.5, blue: 0.5, alpha: 0.3)
 private let visualDebuggingTokenColour    = OSColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5)
-
 
 // MARK: -
 // MARK: Tokens
@@ -65,7 +63,7 @@ struct LineInfo {
   ///     increase and decrease the line number of a given bundle. We need a stable identifier.
   ///
   struct MessageBundle: Identifiable {
-    let id:       UUID
+    let id: UUID
     var messages: [Message]
 
     init(messages: [Message]) {
@@ -75,27 +73,26 @@ struct LineInfo {
   }
 
   var commentDepthStart: Int   // nesting depth for nested comments at the start of this line
-  var commentDepthEnd:   Int   // nesting depth for nested comments at the end of this line
+  var commentDepthEnd: Int   // nesting depth for nested comments at the end of this line
 
   // FIXME: we are not currently using the following three variables (they are maintained, but they are never useful).
-  var roundBracketDiff:  Int   // increase or decrease of the nesting level of round brackets on this line
+  var roundBracketDiff: Int   // increase or decrease of the nesting level of round brackets on this line
   var squareBracketDiff: Int   // increase or decrease of the nesting level of square brackets on this line
-  var curlyBracketDiff:  Int   // increase or decrease of the nesting level of curly brackets on this line
+  var curlyBracketDiff: Int   // increase or decrease of the nesting level of curly brackets on this line
 
   /// The messages reported for this line.
   ///
   /// NB: The bundle may be non-nil, but still contain no messages (after all messages have been removed).
   ///
-  var messages: MessageBundle? = nil
+  var messages: MessageBundle?
 }
-
 
 // MARK: -
 // MARK: Delegate class
 
 class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
 
-  let language:          LanguageConfiguration
+  let language: LanguageConfiguration
   private let tokeniser: Tokeniser<LanguageConfiguration.Token, LanguageConfiguration.State>? // cache the tokeniser
 
   private(set) var lineMap = LineMap<LineInfo>(string: "")
@@ -124,8 +121,7 @@ class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
   func textStorage(_ textStorage: NSTextStorage,
                    willProcessEditing editedMask: TextStorageEditActions,
                    range editedRange: NSRange,
-                   changeInLength delta: Int)
-  {
+                   changeInLength delta: Int) {
     processingOneCharacterEdit = delta == 1 && editedRange.length == 1
   }
 
@@ -141,8 +137,7 @@ class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
   func textStorage(_ textStorage: NSTextStorage,
                    didProcessEditing editedMask: TextStorageEditActions,
                    range editedRange: NSRange,  // Apple docs are incorrect here: this is the range *after* editing
-                   changeInLength delta: Int)
-  {
+                   changeInLength delta: Int) {
     guard let codeStorage = textStorage as? CodeStorage else { return }
 
     // If only attributes change, the line map and syntax highlighting remains the same => nothing for us to do
@@ -157,7 +152,7 @@ class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
 
     // Determine the ids of message bundles that are removed by this edit.
     let lines = lineMap.linesAffected(by: editedRange, changeInLength: delta)
-    lastEvictedMessageIDs = lines.compactMap{ lineMap.lookup(line: $0)?.info?.messages?.id  }
+    lastEvictedMessageIDs = lines.compactMap { lineMap.lookup(line: $0)?.info?.messages?.id   }
 
     lineMap.updateAfterEditing(string: textStorage.string, range: editedRange, changeInLength: delta)
     tokeniseAttributesFor(range: editedRange, in: textStorage)
@@ -173,7 +168,6 @@ class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
     processingOneCharacterEdit = nil
   }
 }
-
 
 // MARK: -
 // MARK: Tokenisation
@@ -201,8 +195,8 @@ extension CodeStorageDelegate {
 
         // Collect all tokens on this line.
         // (NB: In the block, we are not supposed to mutate outside the attribute range; hence, we only collect tokens.)
-        var tokens = Array<(token: LanguageConfiguration.Token, range: NSRange)>()
-        codeStorage.enumerateTokens(in: lineRange){ (tokenValue, range, _) in
+        var tokens = [(token: LanguageConfiguration.Token, range: NSRange)]()
+        codeStorage.enumerateTokens(in: lineRange) { (tokenValue, range, _) in
 
           tokens.append((token: tokenValue, range: range))
 
@@ -265,8 +259,7 @@ extension CodeStorageDelegate {
               commentDepth -= 1
 
               // If we just closed an outermost nested comment, attribute the comment range
-              if let start = lastCommentStart, commentDepth == 0
-              {
+              if let start = lastCommentStart, commentDepth == 0 {
                 textStorage.addAttribute(.comment,
                                          value: CommentStyle.nestedComment,
                                          range: NSRange(location: start, length: NSMaxRange(token.range) - start))
@@ -363,7 +356,6 @@ extension CodeStorageDelegate {
   }
 }
 
-
 // MARK: -
 // MARK: Token completion
 
@@ -383,8 +375,7 @@ extension CodeStorageDelegate {
     /// If the given token is an opening bracket, return the lexeme of its matching closing bracket.
     ///
     func matchingLexemeForOpeningBracket(_ token: LanguageConfiguration.Token) -> String? {
-      if token.isOpenBracket, let matching = token.matchingBracket, let lexeme = language.lexeme(of: matching)
-      {
+      if token.isOpenBracket, let matching = token.matchingBracket, let lexeme = language.lexeme(of: matching) {
         return lexeme
       } else {
         return nil
@@ -394,18 +385,16 @@ extension CodeStorageDelegate {
     /// Determine whether the ranges of the two tokens are overlapping.
     ///
     func overlapping(_ previousToken: (type: LanguageConfiguration.Token, range: NSRange),
-                     _ currentToken: (type: LanguageConfiguration.Token, range: NSRange)?) -> Bool
-    {
+                     _ currentToken: (type: LanguageConfiguration.Token, range: NSRange)?) -> Bool {
       if let currentToken = currentToken {
         return NSIntersectionRange(previousToken.range, currentToken.range).length != 0
       } else { return false }
     }
 
-
     let string             = codeStorage.string,
         char               = string.utf16[string.index(string.startIndex, offsetBy: index)],
         previousTypedToken = lastTypedToken,
-        currentTypedToken  : (type: LanguageConfiguration.Token, range: NSRange)?
+        currentTypedToken: (type: LanguageConfiguration.Token, range: NSRange)?
 
     // Determine the token (if any) that the right now inserted character belongs to
     currentTypedToken = codeStorage.token(at: index)
@@ -421,8 +410,7 @@ extension CodeStorageDelegate {
 
       // If the previous token was an opening bracket, we may have to autocomplete by inserting a matching closing
       // bracket
-      if let matchingPreviousLexeme = matchingLexemeForOpeningBracket(previousToken.type)
-      {
+      if let matchingPreviousLexeme = matchingLexemeForOpeningBracket(previousToken.type) {
 
         if let currentToken = currentTypedToken {
 
@@ -450,8 +438,7 @@ extension CodeStorageDelegate {
           // before the matching closing bracket.
           if let unichar = Unicode.Scalar(char),
              CharacterSet.newlines.contains(unichar),
-             previousToken.type == .curlyBracketOpen || previousToken.type == .nestedCommentOpen
-          {
+             previousToken.type == .curlyBracketOpen || previousToken.type == .nestedCommentOpen {
 
             // Insertion of a newline after a curly bracket => complete the previous opening bracket prefixed with an extra newline
             completingString = String(unichar) + matchingPreviousLexeme
@@ -476,7 +463,6 @@ extension CodeStorageDelegate {
     }
   }
 }
-
 
 // MARK: -
 // MARK: Messages
@@ -549,7 +535,7 @@ extension CodeStorageDelegate {
   /// - Parameter line: The line whose messages ought ot be removed.
   ///
   func removeMessages(at line: Int) {
-    guard var info = lineMap.lookup(line: line)?.info else  { return }
+    guard var info = lineMap.lookup(line: line)?.info else { return }
 
     info.messages = nil
     lineMap.setInfoOf(line: line, to: info)

@@ -12,4 +12,4 @@ import AppKit
 /// AttributedStringKey
 public typealias AttributedStringKey = NSAttributedString.Key
 /// AttributedStringKey
-//public typealias TextStorageEditActions = NSTextStorageEditActions
+// public typealias TextStorageEditActions = NSTextStorageEditActions

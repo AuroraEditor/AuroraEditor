@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 /// SwiftUI code editor based on TextKit.
 ///
 /// SwiftUI `Environment`:
@@ -63,9 +62,9 @@ public struct CodeEditor {
   }
 
   let language: LanguageConfiguration
-  let layout  : LayoutConfiguration
+  let layout: LayoutConfiguration
 
-  @Binding private var text:     String
+  @Binding private var text: String
   @Binding private var position: Position
   @Binding private var messages: Set<Located<Message>>
 
@@ -80,12 +79,11 @@ public struct CodeEditor {
   ///   - language: Language configuration for highlighting and similar.
   ///   - layout: Layout configuration determining the visible elements of the editor view.
   ///
-  public init(text:     Binding<String>,
+  public init(text: Binding<String>,
               position: Binding<Position>,
               messages: Binding<Set<Located<Message>>>,
               language: LanguageConfiguration = .none,
-              layout:   LayoutConfiguration = .standard)
-  {
+              layout: LayoutConfiguration = .standard) {
     self._text     = text
     self._position = position
     self._messages = messages
@@ -94,7 +92,7 @@ public struct CodeEditor {
   }
 
   public class _Coordinator {
-    @Binding fileprivate var text:     String
+    @Binding fileprivate var text: String
     @Binding fileprivate var position: Position
 
     /// In order to avoid update cycles, where view code tries to update SwiftUI state variables (such as the view's
@@ -239,7 +237,7 @@ extension CodeEditor: NSViewRepresentable {
       }
 
     }
-    codeView.selectedRanges = position.selections.map{ NSValue(range: $0) }
+    codeView.selectedRanges = position.selections.map { NSValue(range: $0) }
 
     // We can't set the scroll position right away as the views are not properly sized yet. Thus, this needs to be
     // delayed.
@@ -253,14 +251,14 @@ extension CodeEditor: NSViewRepresentable {
     context.coordinator.boundsChangedNotificationObserver
       = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification,
                                                object: scrollView.contentView,
-                                               queue: .main){ _ in
+                                               queue: .main) { _ in
 
         codeView.adjustScrollPositionOfMinimap()
         context.coordinator.scrollPositionDidChange(scrollView)
       }
 
     // Report the initial message set
-    DispatchQueue.main.async{ updateMessages(in: codeView, with: context) }
+    DispatchQueue.main.async { updateMessages(in: codeView, with: context) }
 
     return scrollView
   }
@@ -268,9 +266,9 @@ extension CodeEditor: NSViewRepresentable {
   public func updateNSView(_ scrollView: NSScrollView, context: Context) {
     guard let codeView = scrollView.documentView as? CodeView else { return }
     context.coordinator.updatingView = true
-    
+
     let theme                      = context.environment.codeEditorTheme,
-        selections                 = position.selections.map{ NSValue(range: $0) }
+        selections                 = position.selections.map { NSValue(range: $0) }
 
     updateMessages(in: codeView, with: context)
     if text != codeView.string { codeView.string = text }  // Hoping for the string comparison fast path...
@@ -304,7 +302,7 @@ extension CodeEditor: NSViewRepresentable {
     func selectionDidChange(_ textView: NSTextView) {
       guard !updatingView else { return }
 
-      let newValue = textView.selectedRanges.map{ $0.rangeValue }
+      let newValue = textView.selectedRanges.map { $0.rangeValue }
       if self.position.selections != newValue { self.position.selections = newValue }
     }
 
@@ -319,7 +317,6 @@ extension CodeEditor: NSViewRepresentable {
 }
 
 #endif
-
 
 // MARK: -
 // MARK: Shared code
@@ -336,13 +333,12 @@ extension CodeEditor {
   ///
   private func update(oldMessages: Set<Located<Message>>,
                       to updatedMessages: Set<Located<Message>>,
-                      in codeView: CodeView)
-  {
+                      in codeView: CodeView) {
     let messagesToAdd    = updatedMessages.subtracting(oldMessages),
         messagesToRemove = oldMessages.subtracting(updatedMessages)
 
     for message in messagesToRemove { codeView.retract(message: message.entity) }
-    for message in messagesToAdd    { codeView.report(message: message) }
+    for message in messagesToAdd { codeView.report(message: message) }
   }
 }
 
@@ -377,19 +373,18 @@ extension CodeEditor.Position: RawRepresentable, Codable {
     let components = rawValue.components(separatedBy: "|")
     if components.count == 2 {
 
-      selections             = components[0].components(separatedBy: ";").compactMap{ parseNSRange(lexeme: $0) }
+      selections             = components[0].components(separatedBy: ";").compactMap { parseNSRange(lexeme: $0) }
       verticalScrollFraction = CGFloat(Double(components[1]) ?? 0)
 
     } else { self = CodeEditor.Position() }
   }
 
   public var rawValue: String {
-    let selectionsString             = selections.map{ "\($0.location):\($0.length)" }.joined(separator: ";"),
+    let selectionsString             = selections.map { "\($0.location):\($0.length)" }.joined(separator: ";"),
         verticalScrollFractionString = String(describing: verticalScrollFraction)
     return selectionsString + "|" + verticalScrollFractionString
   }
 }
-
 
 // MARK: -
 // MARK: Previews

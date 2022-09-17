@@ -15,7 +15,6 @@ import AppKit
 
 #endif
 
-
 // MARK: -
 // MARK: `NSTextStorage` subclass
 
@@ -43,13 +42,12 @@ class CodeStorage: NSTextStorage {
   }
   #endif
 
-  override func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [NSAttributedString.Key : Any] {
+  override func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [NSAttributedString.Key: Any] {
     var attributes       = textStorage.attributes(at: location, effectiveRange: range)
     var foregroundColour = theme.textColour
 
     // Translate attributes indicating text highlighting to the foreground colour determined by the current theme.
-    if attributes[.comment] != nil { foregroundColour = theme.commentColour }
-    else if let tokenAttr = attributes[.token] as? TokenAttribute<LanguageConfiguration.Token> {
+    if attributes[.comment] != nil { foregroundColour = theme.commentColour } else if let tokenAttr = attributes[.token] as? TokenAttribute<LanguageConfiguration.Token> {
 
       switch tokenAttr.token {
       case .string:     foregroundColour = theme.stringColour
@@ -74,16 +72,14 @@ class CodeStorage: NSTextStorage {
     // bracket if it is directly adjascent
     if range.length == 1 && str == "",
        let token = tokenAttribute(at: range.location),
-       let language = (delegate as? CodeStorageDelegate)?.language
-    {
+       let language = (delegate as? CodeStorageDelegate)?.language {
 
       let isOpen    = token.token.isOpenBracket,
           isBracket = isOpen || token.token.isCloseBracket,
           isSafe    = (isOpen && range.location + 1 < string.utf16.count) || range.location > 0,
           offset    = isOpen ? 1 : -1
       if isBracket && isSafe && language.lexeme(of: token.token)?.count == 1 &&
-          tokenAttribute(at: range.location + offset)?.token == token.token.matchingBracket
-      {
+          tokenAttribute(at: range.location + offset)?.token == token.token.matchingBracket {
 
         let extendedRange = NSRange(location: isOpen ? range.location : range.location - 1, length: 2)
         textStorage.replaceCharacters(in: extendedRange, with: "")
@@ -106,14 +102,13 @@ class CodeStorage: NSTextStorage {
     endEditing()
   }
 
-  override func setAttributes(_ attrs: [NSAttributedString.Key : Any]?, range: NSRange) {
+  override func setAttributes(_ attrs: [NSAttributedString.Key: Any]?, range: NSRange) {
     beginEditing()
     textStorage.setAttributes(attrs, range: range)
     edited(.editedAttributes, range: range, changeInLength: 0)
     endEditing()
   }
 }
-
 
 // MARK: -
 // MARK: Custom handling of the insertion point
@@ -125,7 +120,7 @@ extension CodeStorage {
   ///
   func cursorInsert(string: String, at index: Int) {
 
-    Dispatch.DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(10)){
+    Dispatch.DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(10)) {
 
       #if os(iOS)
 
@@ -166,15 +161,13 @@ extension CodeStorage {
 
         if let codeContainer = textContainer as? CodeContainer,
            let textView      = codeContainer.textView,
-           NSIntersectionRange(textView.selectedRange, range).length != 0
-        {
-          Dispatch.DispatchQueue.main.async{ textView.selectedRange = NSRange(location: range.location, length: 0) }
+           NSIntersectionRange(textView.selectedRange, range).length != 0 {
+          Dispatch.DispatchQueue.main.async { textView.selectedRange = NSRange(location: range.location, length: 0) }
         }
       }
     }
   }
 }
-
 
 // MARK: -
 // MARK: Token attributes
@@ -198,8 +191,7 @@ extension CodeStorage {
   func token(at location: Int) -> (type: LanguageConfiguration.Token, range: NSRange)? {
 
     func determineTokenLength(type: LanguageConfiguration.Token, start: Int)
-      -> (type: LanguageConfiguration.Token, range: NSRange)?
-    {
+      -> (type: LanguageConfiguration.Token, range: NSRange)? {
       var idx = location + 1
       while idx < length, tokenAttribute(at: idx)?.isHead == false { idx += 1 }
       return (type: type, range: NSRange(location: start, length: idx - start))
@@ -232,11 +224,10 @@ extension CodeStorage {
   ///
   func enumerateTokens(in enumerationRange: NSRange,
                        reverse reverseEnumeration: Bool = false,
-                       using block: (LanguageConfiguration.Token, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
-  {
+                       using block: (LanguageConfiguration.Token, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
     let opts: NSAttributedString.EnumerationOptions = reverseEnumeration ? [.longestEffectiveRangeNotRequired, .reverse]
                                                                          : [.longestEffectiveRangeNotRequired]
-    enumerateAttribute(.token, in: enumerationRange, options: opts){ (value, range, stop) in
+    enumerateAttribute(.token, in: enumerationRange, options: opts) { (value, range, stop) in
 
       // we are only interested in non-token body matches
       guard let tokenType = value as? TokenAttribute<LanguageConfiguration.Token>, tokenType.isHead else { return }
@@ -290,8 +281,8 @@ extension CodeStorage {
     }
 
     var level                   = 1
-    var matchingRange: NSRange? = nil
-    enumerateTokens(in: searchRange, reverse: bracketToken.type.isCloseBracket){ (tokenType, range, stop) in
+    var matchingRange: NSRange?
+    enumerateTokens(in: searchRange, reverse: bracketToken.type.isCloseBracket) { (tokenType, range, stop) in
 
       if tokenType == bracketToken.type { level += 1 }  // nesting just got deeper
       else if tokenType == matchingBracketTokenType {   // matching bracket found

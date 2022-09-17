@@ -7,17 +7,14 @@
 
 import os
 
-
 private let logger = Logger(subsystem: "org.justtesting.CodeEditorView", category: "GutterView")
 
 #if os(iOS)
-
 
 // MARK: -
 // MARK: UIKit version
 
 import UIKit
-
 
 private typealias FontDescriptor = UIFontDescriptor
 
@@ -70,12 +67,10 @@ class GutterView: UIView {
 
 #elseif os(macOS)
 
-
 // MARK: -
 // MARK: AppKit version
 
 import AppKit
-
 
 private typealias FontDescriptor = NSFontDescriptor
 
@@ -128,16 +123,14 @@ class GutterView: NSView {
 
 #endif
 
-
 // MARK: -
 // MARK: Shared code
 
-
 extension GutterView {
 
-  var optLayoutManager: NSLayoutManager?   { textView.optLayoutManager }
-  var optTextContainer: NSTextContainer?   { textView.optTextContainer }
-  var optLineMap:       LineMap<LineInfo>? { textView.optLineMap }
+  var optLayoutManager: NSLayoutManager? { textView.optLayoutManager }
+  var optTextContainer: NSTextContainer? { textView.optTextContainer }
+  var optLineMap: LineMap<LineInfo>? { textView.optLineMap }
 
   // MARK: -
   // MARK: Gutter notifications
@@ -206,8 +199,7 @@ extension GutterView {
     // reliably whether enough text has been laid out to draw that part of the gutter that is being requested. Hence,
     // we defer drawing the gutter until all characters have been laid out.
     if layoutManager.firstUnlaidCharacterIndex() < NSMaxRange(lineMap.lines.last?.range ?? NSRange(location: 0,
-                                                                                                   length: 0))
-    {
+                                                                                                   length: 0)) {
 
       pendingDrawRect = rect.union(pendingDrawRect ?? CGRect.null)
       return
@@ -221,15 +213,15 @@ extension GutterView {
           [
             [
               fontDescriptorFeatureIdentifier: kNumberSpacingType,
-              fontDescriptorTypeIdentifier: kMonospacedNumbersSelector,
+              fontDescriptorTypeIdentifier: kMonospacedNumbersSelector
             ],
             [
               fontDescriptorFeatureIdentifier: kStylisticAlternativesType,
-              fontDescriptorTypeIdentifier: kStylisticAltOneOnSelector,  // alt 6 and 9
+              fontDescriptorTypeIdentifier: kStylisticAltOneOnSelector  // alt 6 and 9
             ],
             [
               fontDescriptorFeatureIdentifier: kStylisticAlternativesType,
-              fontDescriptorTypeIdentifier: kStylisticAltTwoOnSelector,  // alt 4
+              fontDescriptorTypeIdentifier: kStylisticAltTwoOnSelector  // alt 4
             ]
           ]
       ]
@@ -249,7 +241,7 @@ extension GutterView {
     if let location = textView.insertionPoint {
 
       theme.currentLineColour.setFill()
-      layoutManager.enumerateFragmentRects(forLineContaining: location){ fragmentRect in
+      layoutManager.enumerateFragmentRects(forLineContaining: location) { fragmentRect in
         let intersectionRect = rect.intersection(self.gutterRectFrom(textRect: fragmentRect))
         if !intersectionRect.isEmpty { NSBezierPath(rect: intersectionRect).fill() }
       }
@@ -269,7 +261,7 @@ extension GutterView {
         //      if charRange.contains(index) {
 
         messageView.value.colour.withAlphaComponent(0.1).setFill()
-        layoutManager.enumerateFragmentRects(forLineContaining: index){ fragmentRect in
+        layoutManager.enumerateFragmentRects(forLineContaining: index) { fragmentRect in
           let intersectionRect = rect.intersection(self.gutterRectFrom(textRect: fragmentRect))
           if !intersectionRect.isEmpty { NSBezierPath(rect: intersectionRect).fill() }
         }
@@ -321,8 +313,7 @@ extension GutterView {
         #if os(iOS)
 
         // Highlight line numbers as we don't have line background highlighting on iOS.
-        if let messageBundle = lineMap.lines[line].info?.messages
-        {
+        if let messageBundle = lineMap.lines[line].info?.messages {
           let themeColour = theme(messagesByCategory(messageBundle.messages)[0].key).colour,
               colour      = selectedLines.contains(line) ? themeColour : themeColour.withAlphaComponent(0.5)
           attributes.updateValue(colour, forKey: .foregroundColor)

@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 // MARK: -
 // MARK: Message category themes
 
@@ -34,7 +33,6 @@ extension Message {
   }
 }
 
-
 // MARK: -
 // MARK: Inline view
 
@@ -45,11 +43,11 @@ extension Message {
 ///
 struct MessageInlineView: View {
   let messages: [Message]
-  let theme:    Message.Theme
+  let theme: Message.Theme
 
   var body: some View {
 
-    let categories = messagesByCategory(messages).map{ $0.key }
+    let categories = messagesByCategory(messages).map { $0.key }
 
     GeometryReader { geometryProxy in
 
@@ -74,7 +72,7 @@ struct MessageInlineView: View {
 
             // All category icons
             HStack(alignment: .center, spacing: 0) {
-              ForEach(0..<categories.count){ i in
+              ForEach(0..<categories.count) { i in
                 HStack(alignment: .center, spacing: 0) {
                   theme(categories[i]).icon
                     .padding([.leading, .trailing], 2)
@@ -94,7 +92,7 @@ struct MessageInlineView: View {
 
           // Topmost message of the highest priority category
           HStack {
-            Text(messages.filter{ $0.category == categories[0] }.first?.summary ?? "")
+            Text(messages.filter { $0.category == categories[0] }.first?.summary ?? "")
               .padding([.leading, .trailing], 5)
           }
           .frame(height: height)
@@ -106,10 +104,8 @@ struct MessageInlineView: View {
   }
 }
 
-
 // MARK: -
 // MARK: Popup view
-
 
 /// Key to track the width for a set of message popup views.
 ///
@@ -117,7 +113,7 @@ private struct PopupWidth: PreferenceKey, EnvironmentKey {
 
   static let defaultValue: CGFloat? = nil
   static func reduce(value: inout CGFloat?, nextValue: () -> CGFloat?) {
-    if let nv = nextValue() { value = value.flatMap{ max(nv, $0) } ?? nv }
+    if let nv = nextValue() { value = value.flatMap { max(nv, $0) } ?? nv }
   }
 }
 
@@ -169,15 +165,15 @@ extension View {
 ///
 /// NB: The array of messages may not be empty.
 ///
-fileprivate struct MessagePopupCategoryView: View {
+private struct MessagePopupCategoryView: View {
   let category: Message.Category
   let messages: [Message]
-  let theme:    Message.Theme
+  let theme: Message.Theme
 
   let cornerRadius: CGFloat = 10
 
   @Environment(\.colorScheme) var colourScheme: ColorScheme
-  @Environment(\.popupWidth)  var popupWidth:   CGFloat?
+  @Environment(\.popupWidth)  var popupWidth: CGFloat?
 
   var body: some View {
 
@@ -188,7 +184,7 @@ fileprivate struct MessagePopupCategoryView: View {
       HStack(spacing: 0) {
 
         // Category icon
-        ZStack (alignment: .top) {
+        ZStack(alignment: .top) {
           colour.opacity(0.5)
           Text("XX")       // We want the icon to have the height of text
             .hidden()
@@ -230,11 +226,11 @@ fileprivate struct MessagePopupCategoryView: View {
 
 struct MessagePopupView: View {
   let messages: [Message]
-  let theme:    Message.Theme
+  let theme: Message.Theme
 
   /// The width of the text in the message category with the widest text.
   ///
-  @State private var popupWidth: CGFloat?  = nil
+  @State private var popupWidth: CGFloat?
 
   var body: some View {
 
@@ -251,7 +247,6 @@ struct MessagePopupView: View {
   }
 }
 
-
 // MARK: -
 // MARK: Combined view
 
@@ -263,24 +258,24 @@ struct MessageView: View {
 
     /// The maximum width that the inline view may use.
     ///
-    let lineWidth:   CGFloat
+    let lineWidth: CGFloat
 
     /// The height of the inline view
     ///
-    let lineHeight:  CGFloat
+    let lineHeight: CGFloat
 
     /// The maximum width that the popup view may use.
     ///
-    let popupWidth:  CGFloat
+    let popupWidth: CGFloat
 
     /// The distance from the top where the popup view must be placed.
     ///
     let popupOffset: CGFloat
   }
 
-  let messages:    [Message]        // The array of messages that are displayed by this view
-  let theme:       Message.Theme    // The message display theme to use
-  let geometry:    Geometry
+  let messages: [Message]        // The array of messages that are displayed by this view
+  let theme: Message.Theme    // The message display theme to use
+  let geometry: Geometry
 
   @Binding var unfolded: Bool       // False => inline view; true => popup view
 
@@ -323,7 +318,6 @@ extension MessageView {
   static let popupRightSideOffset = CGFloat(20)
 }
 
-
 // MARK: -
 // MARK: Stateful combined view
 
@@ -331,10 +325,10 @@ extension MessageView {
 /// and popup view by tapping.
 ///
 struct StatefulMessageView: View {
-  let messages:    [Message]              // The array of messages that are displayed by this view
-  let theme:       Message.Theme          // The message display theme to use
-  let geometry:    MessageView.Geometry   // The geometry constrains for the view
-  let fontSize:    CGFloat                // Font size to use for messages
+  let messages: [Message]              // The array of messages that are displayed by this view
+  let theme: Message.Theme          // The message display theme to use
+  let geometry: MessageView.Geometry   // The geometry constrains for the view
+  let fontSize: CGFloat                // Font size to use for messages
 
   @ObservedObject var unfolded: ObservableBool  // `true` iff the view shows the popup flavour
 
@@ -367,7 +361,7 @@ extension StatefulMessageView {
     private var hostingView: UIHostingView<StatefulMessageView>?
 
     private let messages: [Message]
-    private let theme   : Message.Theme
+    private let theme: Message.Theme
     private let fontSize: CGFloat
 
     /// Unfolding status as sharable state.
@@ -382,8 +376,7 @@ extension StatefulMessageView {
       set { unfoldedState.bool = newValue }
     }
 
-    init(messages: [Message], theme: @escaping Message.Theme, geometry: MessageView.Geometry, fontSize: CGFloat)
-    {
+    init(messages: [Message], theme: @escaping Message.Theme, geometry: MessageView.Geometry, fontSize: CGFloat) {
       self.messages = messages
       self.theme    = theme
       self.geometry = geometry
@@ -414,7 +407,7 @@ extension StatefulMessageView {
       }
     }
 
-    @objc required dynamic init?(coder aDecoder: NSCoder) {
+    @objc dynamic required init?(coder aDecoder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
     }
 
@@ -436,7 +429,7 @@ extension StatefulMessageView {
     private var hostingView: NSHostingView<StatefulMessageView>?
 
     private let messages: [Message]
-    private let theme   : Message.Theme
+    private let theme: Message.Theme
     private let fontSize: CGFloat
 
     /// Unfolding status as sharable state.
@@ -451,8 +444,7 @@ extension StatefulMessageView {
       set { unfoldedState.bool = newValue }
     }
 
-    init(messages: [Message], theme: @escaping Message.Theme, geometry: MessageView.Geometry, fontSize: CGFloat)
-    {
+    init(messages: [Message], theme: @escaping Message.Theme, geometry: MessageView.Geometry, fontSize: CGFloat) {
       self.messages = messages
       self.theme    = theme
       self.geometry = geometry
@@ -481,7 +473,7 @@ extension StatefulMessageView {
       }
     }
 
-    @objc required dynamic init?(coder aDecoder: NSCoder) {
+    @objc dynamic required init?(coder aDecoder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
     }
 
@@ -497,8 +489,6 @@ extension StatefulMessageView {
 
 #endif
 
-
-
 // MARK: -
 // MARK: Previews
 
@@ -511,9 +501,9 @@ let message1 = Message(category: .error, length: 1, summary: "It's wrong!", desc
     message5 = Message(category: .informational, length: 1, summary: "Cool stuff!", description: nil)
 
 struct MessageViewPreview: View {
-  let messages:    [Message]
-  let theme:       Message.Theme
-  let geometry:    MessageView.Geometry
+  let messages: [Message]
+  let theme: Message.Theme
+  let geometry: MessageView.Geometry
 
   @State private var unfolded: Bool = false
 
@@ -539,7 +529,7 @@ struct MessageViews_Previews: PreviewProvider {
       .frame(width: 80, height: 25, alignment: .center)
       .preferredColorScheme(.dark)
 
-    VStack{
+    VStack {
 
       MessageInlineView(messages: [message1, message2], theme: Message.defaultTheme)
         .frame(width: 180, height: 15, alignment: .center)

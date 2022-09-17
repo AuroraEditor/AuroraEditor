@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 /// A code highlighting theme. Different syntactic elements are purely distinguished by colour.
 ///
 public struct Theme: Identifiable {
@@ -83,8 +82,7 @@ public struct Theme: Identifiable {
               currentLineColour: OSColor,
               selectionColour: OSColor,
               cursorColour: OSColor,
-              invisiblesColour: OSColor)
-  {
+              invisiblesColour: OSColor) {
     self.fontName = fontName
     self.fontSize = fontSize
     self.textColour = textColour
@@ -149,7 +147,7 @@ extension Theme {
     if fontName.hasPrefix("SFMono") {
 
       let weightString = fontName.dropFirst("SFMono".count)
-      let weight       : OSFont.Weight
+      let weight: OSFont.Weight
       switch weightString {
       case "UltraLight": weight = .ultraLight
       case "Thin":       weight = .thin

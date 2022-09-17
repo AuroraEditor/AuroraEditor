@@ -9,7 +9,6 @@
 
 import SwiftUI
 
-
 // MARK: -
 // MARK: Message info
 
@@ -21,19 +20,18 @@ import SwiftUI
 ///     The `geomtry` will be determined after text layout is complete.
 ///
 struct MessageInfo {
-  let view:               StatefulMessageView.HostingView
-  var lineFragementRect:  CGRect                            // The *full* line fragement rectangle (incl. message)
-  var geometry:           MessageView.Geometry?
-  var colour:             OSColor                           // The category colour of the most severe category
+  let view: StatefulMessageView.HostingView
+  var lineFragementRect: CGRect                            // The *full* line fragement rectangle (incl. message)
+  var geometry: MessageView.Geometry?
+  var colour: OSColor                           // The category colour of the most severe category
 
-  var topAnchorConstraint:   NSLayoutConstraint?
+  var topAnchorConstraint: NSLayoutConstraint?
   var rightAnchorConstraint: NSLayoutConstraint?
 }
 
 /// Dictionary of message views.
 ///
 typealias MessageViews = [LineInfo.MessageBundle.ID: MessageInfo]
-
 
 #if os(iOS)
 
@@ -45,8 +43,8 @@ typealias MessageViews = [LineInfo.MessageBundle.ID: MessageInfo]
 class CodeView: UITextView {
 
   // Delegates
-  fileprivate var codeViewDelegate:           CodeViewDelegate?
-  fileprivate var codeStorageDelegate:        CodeStorageDelegate
+  fileprivate var codeViewDelegate: CodeViewDelegate?
+  fileprivate var codeStorageDelegate: CodeStorageDelegate
   fileprivate let codeLayoutManagerDelegate = CodeLayoutManagerDelegate()
 
   // Subviews
@@ -143,9 +141,9 @@ class CodeViewDelegate: NSObject, UITextViewDelegate {
 
   // Hooks for events
   //
-  var textDidChange:      ((UITextView) -> ())?
-  var selectionDidChange: ((UITextView) -> ())?
-  var didScroll:          ((UIScrollView) -> ())?
+  var textDidChange: ((UITextView) -> Void)?
+  var selectionDidChange: ((UITextView) -> Void)?
+  var didScroll: ((UIScrollView) -> Void)?
 
   /// Caching the last set selected range.
   ///
@@ -188,12 +186,12 @@ class CodeView: NSTextView {
   // Delegates
   fileprivate let codeViewDelegate =          CodeViewDelegate()
   fileprivate let codeLayoutManagerDelegate = CodeLayoutManagerDelegate()
-  fileprivate var codeStorageDelegate:        CodeStorageDelegate
+  fileprivate var codeStorageDelegate: CodeStorageDelegate
 
   // Subviews
-  var gutterView:         GutterView?
-  var minimapView:        NSTextView?
-  var minimapGutterView:  GutterView?
+  var gutterView: GutterView?
+  var minimapView: NSTextView?
+  var minimapGutterView: GutterView?
   var documentVisibleBox: NSBox?
   var minimapDividerView: NSBox?
 
@@ -361,13 +359,12 @@ class CodeView: NSTextView {
 
   override func setSelectedRanges(_ ranges: [NSValue],
                                   affinity: NSSelectionAffinity,
-                                  stillSelecting stillSelectingFlag: Bool)
-  {
+                                  stillSelecting stillSelectingFlag: Bool) {
     let oldSelectedRanges = selectedRanges
     super.setSelectedRanges(ranges, affinity: affinity, stillSelecting: stillSelectingFlag)
     minimapView?.selectedRanges = selectedRanges    // minimap mirrors the selection of the main code view
 
-    let lineOfInsertionPoint = insertionPoint.flatMap{ optLineMap?.lineOf(index: $0) }
+    let lineOfInsertionPoint = insertionPoint.flatMap { optLineMap?.lineOf(index: $0) }
 
     // If the insertion point changed lines, we need to redraw at the old and new location to fix the line highlighting.
     // NB: We retain the last line and not the character index as the latter may be inaccurate due to editing that let
@@ -375,13 +372,12 @@ class CodeView: NSTextView {
     if lineOfInsertionPoint != oldLastLineOfInsertionPoint {
 
       if let oldLine      = oldLastLineOfInsertionPoint,
-         let oldLineRange = optLineMap?.lookup(line: oldLine)?.range
-      {
+         let oldLineRange = optLineMap?.lookup(line: oldLine)?.range {
 
         // We need to invalidate the whole background (incl message views); hence, we need to employ
         // `lineBackgroundRect(_:)`, which is why `NSLayoutManager.invalidateDisplay(forCharacterRange:)` is not
         // sufficient.
-        layoutManager?.enumerateFragmentRects(forLineContaining: oldLineRange.location){ fragmentRect in
+        layoutManager?.enumerateFragmentRects(forLineContaining: oldLineRange.location) { fragmentRect in
 
           self.setNeedsDisplay(self.lineBackgroundRect(fragmentRect))
         }
@@ -389,13 +385,12 @@ class CodeView: NSTextView {
 
       }
       if let newLine      = lineOfInsertionPoint,
-         let newLineRange = optLineMap?.lookup(line: newLine)?.range
-      {
+         let newLineRange = optLineMap?.lookup(line: newLine)?.range {
 
         // We need to invalidate the whole background (incl message views); hence, we need to employ
         // `lineBackgroundRect(_:)`, which is why `NSLayoutManager.invalidateDisplay(forCharacterRange:)` is not
         // sufficient.
-        layoutManager?.enumerateFragmentRects(forLineContaining: newLineRange.location){ fragmentRect in
+        layoutManager?.enumerateFragmentRects(forLineContaining: newLineRange.location) { fragmentRect in
 
           self.setNeedsDisplay(self.lineBackgroundRect(fragmentRect))
         }
@@ -462,7 +457,7 @@ class CodeView: NSTextView {
     guard let layoutManager = layoutManager else { return }
 
     colour.setFill()
-    layoutManager.enumerateFragmentRects(forLineContaining: charIndex){ fragmentRect in
+    layoutManager.enumerateFragmentRects(forLineContaining: charIndex) { fragmentRect in
 
       let drawRect = self.lineBackgroundRect(fragmentRect).intersection(rect)
       if !drawRect.isNull { NSBezierPath(rect: drawRect).fill() }
@@ -606,8 +601,8 @@ class CodeViewDelegate: NSObject, NSTextViewDelegate {
 
   // Hooks for events
   //
-  var textDidChange:      ((NSTextView) -> ())?
-  var selectionDidChange: ((NSTextView) -> ())?
+  var textDidChange: ((NSTextView) -> Void)?
+  var selectionDidChange: ((NSTextView) -> Void)?
 
   // MARK: NSTextViewDelegate protocol
 
@@ -625,7 +620,6 @@ class CodeViewDelegate: NSObject, NSTextViewDelegate {
 }
 
 #endif
-
 
 // MARK: -
 // MARK: Shared code
@@ -674,7 +668,6 @@ extension CodeView {
         messageViews[id]?.topAnchorConstraint   = topAnchorConstraint
         messageViews[id]?.rightAnchorConstraint = rightAnchorConstraint
         NSLayoutConstraint.activate([topAnchorConstraint, rightAnchorConstraint])
-
 
       } else {
 
@@ -770,7 +763,7 @@ extension CodeView {
   ///
   fileprivate func removeMessageViews(withIDs ids: [LineInfo.MessageBundle.ID]? = nil) {
 
-    for id in ids ?? Array<LineInfo.MessageBundle.ID>(messageViews.keys) {
+    for id in ids ?? [LineInfo.MessageBundle.ID](messageViews.keys) {
 
       if let info = messageViews[id] { info.view.removeFromSuperview() }
       messageViews.removeValue(forKey: id)
@@ -816,8 +809,7 @@ class CodeContainer: NSTextContainer {
     // On lines that contain messages, we reduce the width of the available line fragement rect such that there is
     // always space for a minimal truncated message (provided the text container is wide enough to accomodate that).
     if let messageBundleId = delegate.messages(at: line)?.id,
-       calculatedRect.width > 2 * MessageView.minimumInlineWidth
-    {
+       calculatedRect.width > 2 * MessageView.minimumInlineWidth {
 
       codeView.messageViews[messageBundleId]?.lineFragementRect = calculatedRect
       codeView.messageViews[messageBundleId]?.geometry = nil                      // invalidate the geometry
@@ -860,8 +852,7 @@ class CodeLayoutManager: NSLayoutManager {
 
     // Remove all messages in the edited range.
     if let codeStorageDelegate = textStorage.delegate as? CodeStorageDelegate,
-       let codeView            = gutterView?.textView as? CodeView
-    {
+       let codeView            = gutterView?.textView as? CodeView {
 
       codeView.removeMessageViews(withIDs: codeStorageDelegate.lastEvictedMessageIDs)
 
@@ -873,8 +864,7 @@ class CodeLayoutManagerDelegate: NSObject, NSLayoutManagerDelegate {
 
   func layoutManager(_ layoutManager: NSLayoutManager,
                      didCompleteLayoutFor textContainer: NSTextContainer?,
-                     atEnd layoutFinishedFlag: Bool)
-  {
+                     atEnd layoutFinishedFlag: Bool) {
     guard let layoutManager = layoutManager as? CodeLayoutManager else { return }
 
     if layoutFinishedFlag { layoutManager.gutterView?.layoutFinished() }
@@ -896,8 +886,7 @@ func selectionDidChange<TV: TextView>(_ textView: TV) {
 
   if let location             = textView.insertionPoint,
      location > 0,
-     let matchingBracketRange = codeStorage.matchingBracket(forLocationAt: location - 1, in: charRange)
-  {
+     let matchingBracketRange = codeStorage.matchingBracket(forLocationAt: location - 1, in: charRange) {
     textView.showFindIndicator(for: matchingBracketRange)
   }
 }
@@ -918,7 +907,7 @@ extension NSLayoutManager {
     if currentLineCharRange.length > 0 {  // all, but the last line (if it is an empty line)
 
       let currentLineGlyphRange = glyphRange(forCharacterRange: currentLineCharRange, actualCharacterRange: nil)
-      enumerateLineFragments(forGlyphRange: currentLineGlyphRange){ (rect, _, _, _, _) in block(rect) }
+      enumerateLineFragments(forGlyphRange: currentLineGlyphRange) { (rect, _, _, _, _) in block(rect) }
 
     } else {                              // the last line if it is an empty line
 
@@ -931,10 +920,8 @@ extension NSLayoutManager {
 /// Combine selection ranges into the smallest ranges encompassing them all.
 ///
 private func combinedRanges(ranges: [NSValue]) -> NSRange {
-  let actualranges = ranges.compactMap{ $0 as? NSRange }
+  let actualranges = ranges.compactMap { $0 as? NSRange }
   return actualranges.dropFirst().reduce(actualranges.first ?? NSRange(location: 0, length: 0)) {
     NSUnionRange($0, $1)
   }
 }
-
-

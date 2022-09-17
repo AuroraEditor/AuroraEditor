@@ -10,7 +10,6 @@
 
 import Foundation
 
-
 /// A message that can be displayed in a code view.
 ///
 public struct Message: Identifiable, Hashable {
@@ -68,5 +67,5 @@ public struct Message: Identifiable, Hashable {
 /// Order and sort an array of messages by categories.
 ///
 func messagesByCategory(_ messages: [Message]) -> [(key: Message.Category, value: [Message])] {
-  Array(Dictionary(grouping: messages){ $0.category }).sorted{ $0.key < $1.key }
+  Array(Dictionary(grouping: messages) { $0.category }).sorted { $0.key < $1.key }
 }

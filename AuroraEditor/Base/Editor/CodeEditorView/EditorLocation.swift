@@ -8,7 +8,6 @@
 import Foundation
 import System
 
-
 /// Location in a text file.
 ///
 public struct Location {
@@ -27,7 +26,7 @@ public struct Location {
 ///
 public struct Located<Entity> {
   public let location: Location
-  public let entity:   Entity
+  public let entity: Entity
 
   public init(location: Location, entity: Entity) {
     self.location = location
@@ -36,7 +35,7 @@ public struct Located<Entity> {
 }
 
 extension Located: Equatable where Entity: Equatable {
-  static public func == (lhs: Located<Entity>, rhs: Located<Entity>) -> Bool {
+  public static func == (lhs: Located<Entity>, rhs: Located<Entity>) -> Bool {
     lhs.entity == rhs.entity
   }
 }

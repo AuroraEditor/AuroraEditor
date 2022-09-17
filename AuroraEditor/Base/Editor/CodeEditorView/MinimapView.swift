@@ -9,7 +9,6 @@
 
 import SwiftUI
 
-
 #if os(macOS)
 
 /// Customised text view for the minimap.
@@ -28,7 +27,7 @@ class MinimapView: NSTextView {
     codeView?.theme.currentLineColour.setFill()
     if let location = insertionPoint {
 
-      layoutManager.enumerateFragmentRects(forLineContaining: location){ rect in NSBezierPath(rect: rect).fill() }
+      layoutManager.enumerateFragmentRects(forLineContaining: location) { rect in NSBezierPath(rect: rect).fill() }
 
     }
   }
@@ -53,7 +52,7 @@ class MinimapLayoutManager: NSLayoutManager {
 
     } else { width = 1 }
 
-    enumerateLineFragments(forGlyphRange: glyphsToShow){ (_rect, usedRect, _textContainer, glyphRange, _) in
+    enumerateLineFragments(forGlyphRange: glyphsToShow) { (_, usedRect, _, glyphRange, _) in
 
       let origin = usedRect.origin
       for index in 0..<glyphRange.length {
@@ -95,8 +94,7 @@ class MinimapTypeSetter: NSATSTypesetter {
     // Determine the size of the rectangles to layout. (They are always twice as high as wide.)
     var fontHeight: CGFloat
     if let charIndex = layoutManager?.characterIndexForGlyph(at: paragraphGlyphRange.location),
-       let font      = layoutManager?.textStorage?.attribute(.font, at: charIndex, effectiveRange: nil) as? NSFont
-    {
+       let font      = layoutManager?.textStorage?.attribute(.font, at: charIndex, effectiveRange: nil) as? NSFont {
 
       fontHeight = minimapFontSize(for: font.pointSize)
 
@@ -132,14 +130,13 @@ class MinimapTypeSetter: NSATSTypesetter {
         let lineFragementRectEffectiveWidth = max(lineFragmentRect.size.width - 2 * padding, 0)
 
         // Determine how many glyphs we can fit into the `lineFragementRect`; must be at least one to make progress
-        var numberOfGlyphs:       Int,
+        var numberOfGlyphs: Int,
             lineGlyphRangeLength: Int
         var numberOfGlyphsThatFit = max(Int(floor(lineFragementRectEffectiveWidth / fontWidth)), 1)
 
         // Add any elastic glyphs that follow (they can be compacted)
         while numberOfGlyphsThatFit < remainingGlyphRange.length
-                && layoutManager?.propertyForGlyph(at: remainingGlyphRange.location + numberOfGlyphsThatFit) == .elastic
-        {
+                && layoutManager?.propertyForGlyph(at: remainingGlyphRange.location + numberOfGlyphsThatFit) == .elastic {
           numberOfGlyphsThatFit += 1
         }
 
@@ -159,8 +156,7 @@ class MinimapTypeSetter: NSATSTypesetter {
             if actualGlyphRange.location < glyphIndex { continue }  // we are not yet at a character boundary
 
             if layoutManager?.propertyForGlyph(at: glyphIndex) == .elastic
-                && shouldBreakLine(byWordBeforeCharacterAt: charIndex.location)
-            {
+                && shouldBreakLine(byWordBeforeCharacterAt: charIndex.location) {
 
               // Found a valid break point
               numberOfGlyphs = glyphs
@@ -194,12 +190,12 @@ class MinimapTypeSetter: NSATSTypesetter {
                             usedRect: lineFragementUsedRect,
                             baselineOffset: 0)
         setLocation(NSPoint(x: padding, y: 0),
-                    withAdvancements: nil, //Array(repeating: 1, count: numberOfGlyphs),
+                    withAdvancements: nil, // Array(repeating: 1, count: numberOfGlyphs),
                     forStartOfGlyphRange: NSRange(location: lineGlyphRange.location, length: numberOfGlyphs))
 
         if remainingGlyphRange.length == 0 {
 
-          setLocation(NSPoint(x: NSMaxX(lineFragementUsedRect), y: 0),
+          setLocation(NSPoint(x: lineFragementUsedRect.maxX, y: 0),
                       withAdvancements: nil,
                       forStartOfGlyphRange: paragraphSeparatorGlyphRange)
           setNotShownAttribute(true, forGlyphRange: paragraphSeparatorGlyphRange)
@@ -247,15 +243,13 @@ class MinimapTypeSetter: NSATSTypesetter {
   override func getLineFragmentRect(_ lineFragmentRect: UnsafeMutablePointer<NSRect>,
                                     usedRect lineFragmentUsedRect: UnsafeMutablePointer<NSRect>,
                                     forParagraphSeparatorGlyphRange paragraphSeparatorGlyphRange: NSRange,
-                                    atProposedOrigin lineOrigin: NSPoint)
-  {
+                                    atProposedOrigin lineOrigin: NSPoint) {
     // Determine the size of the rectangles to layout. (They are always twice as high as wide.)
     var fontHeight: CGFloat
     if let glyphIndex = (paragraphSeparatorGlyphRange.length > 0   ? paragraphSeparatorGlyphRange.location : nil) ??
                         (paragraphSeparatorGlyphRange.location > 0 ? paragraphSeparatorGlyphRange.location - 1 : nil),
        let charIndex = layoutManager?.characterIndexForGlyph(at: glyphIndex),
-       let font      = layoutManager?.textStorage?.attribute(.font, at: charIndex, effectiveRange: nil) as? NSFont
-    {
+       let font      = layoutManager?.textStorage?.attribute(.font, at: charIndex, effectiveRange: nil) as? NSFont {
 
       fontHeight = minimapFontSize(for: font.pointSize)
 

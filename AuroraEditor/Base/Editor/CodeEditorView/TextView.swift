@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 // MARK: -
 // MARK: The protocol
 
@@ -21,10 +20,10 @@ protocol TextView {
   // This is necessary as these members are optional in AppKit and not optional in UIKit.
   var optLayoutManager: NSLayoutManager? { get }
   var optTextContainer: NSTextContainer? { get }
-  var optCodeStorage:   CodeStorage?     { get }
+  var optCodeStorage: CodeStorage? { get }
 
   var textBackgroundColor: Color? { get }
-  var textFont:            Font? { get }
+  var textFont: Font? { get }
   var textContainerOrigin: CGPoint { get }
 
   /// The text displayed by the text view.
@@ -63,7 +62,6 @@ extension TextView {
   }
 }
 
-
 #if os(iOS)
 
 // MARK: -
@@ -80,10 +78,10 @@ extension UITextView: TextView {
 
   var optLayoutManager: NSLayoutManager? { layoutManager }
   var optTextContainer: NSTextContainer? { textContainer }
-  var optCodeStorage:   CodeStorage?     { textStorage as? CodeStorage }
+  var optCodeStorage: CodeStorage? { textStorage as? CodeStorage }
 
   var textBackgroundColor: Color? { backgroundColor }
-  var textFont:            Font? { font }
+  var textFont: Font? { font }
   var textContainerOrigin: CGPoint { return CGPoint(x: textContainerInset.left, y: textContainerInset.top) }
 
   var insertionPoint: Int? { selectedRange.length == 0 ? selectedRange.location : nil }
@@ -121,11 +119,11 @@ extension UITextView: TextView {
     // We animate the label in with a spring effect, and remove it with a delay.
     label.alpha     = 0
     label.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
-    UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.1, initialSpringVelocity: 1){
+    UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.1, initialSpringVelocity: 1) {
       label.alpha = 1
       label.transform = CGAffineTransform.identity
     } completion: { _ in
-      UIView.animate(withDuration: 0.2, delay: 0.4){
+      UIView.animate(withDuration: 0.2, delay: 0.4) {
         label.alpha = 0
       } completion: { _ in
         label.removeFromSuperview()
@@ -133,7 +131,6 @@ extension UITextView: TextView {
     }
   }
 }
-
 
 #elseif os(macOS)
 
@@ -148,10 +145,10 @@ extension NSTextView: TextView {
 
   var optLayoutManager: NSLayoutManager? { layoutManager }
   var optTextContainer: NSTextContainer? { textContainer }
-  var optCodeStorage:   CodeStorage?     { textStorage as? CodeStorage }
+  var optCodeStorage: CodeStorage? { textStorage as? CodeStorage }
 
   var textBackgroundColor: Color? { backgroundColor }
-  var textFont:            Font? { font }
+  var textFont: Font? { font }
   var textContainerOrigin: CGPoint { return CGPoint(x: textContainerInset.width, y: textContainerInset.height) }
 
   var text: String! {
@@ -160,18 +157,16 @@ extension NSTextView: TextView {
   }
 
   var insertionPoint: Int? {
-    if let selection = selectedRanges.first as? NSRange, selection.length == 0 { return selection.location }
-    else { return nil }
+    if let selection = selectedRanges.first as? NSRange, selection.length == 0 { return selection.location } else { return nil }
   }
 
   var selectedLines: Set<Int> {
     guard let codeStorageDelegate = optCodeStorage?.delegate as? CodeStorageDelegate else { return Set() }
 
-    let lineRanges: [Range<Int>] = selectedRanges.map{ range in
-      if let range = range as? NSRange { return codeStorageDelegate.lineMap.linesContaining(range: range) }
-      else { return 0..<0 }
+    let lineRanges: [Range<Int>] = selectedRanges.map { range in
+      if let range = range as? NSRange { return codeStorageDelegate.lineMap.linesContaining(range: range) } else { return 0..<0 }
     }
-    return lineRanges.reduce(Set<Int>()){ $0.union($1) }
+    return lineRanges.reduce(Set<Int>()) { $0.union($1) }
   }
 
   var documentVisibleRect: CGRect { enclosingScrollView?.documentVisibleRect ?? bounds }

@@ -13,9 +13,7 @@ import UIKit
 import AppKit
 #endif
 
-
 private let logger = Logger(subsystem: "org.justtesting.CodeEditorView", category: "MutableAttributedString")
-
 
 // MARK: -
 // MARK: Regular expression-based tokenisers with explicit state management for context-free constructs
@@ -130,16 +128,14 @@ extension NSMutableAttributedString {
   /// distinction is crucial to be able to distinguish the boundaries of multiple successive tokens of the same type.
   ///
   public static func tokeniser<TokenType, StateType: TokeniserState>(for tokenMap: TokenDictionary<TokenType, StateType>)
-  -> Tokeniser<TokenType, StateType>?
-  {
+  -> Tokeniser<TokenType, StateType>? {
     func tokeniser(for stateMap: [TokenPattern: TokenAction<TokenType, StateType>])
-    throws -> Tokeniser<TokenType, StateType>.State
-    {
+    throws -> Tokeniser<TokenType, StateType>.State {
 
       // NB: Be careful with the re-ordering, because the order in `patternTokenTypes` below must match the order of
       //     the patterns in the alternatives of the regular expression. (We must re-order due to eager matching as
       //     explained in the documentation of this function.)
-      let orderedMap = stateMap.sorted{ (lhs, rhs) in return lhs.key > rhs.key },
+      let orderedMap = stateMap.sorted { (lhs, rhs) in return lhs.key > rhs.key },
           pattern    = orderedMap.reduce("") { (regexp, mapEntry) in
 
             let regexpPattern: String
@@ -150,25 +146,23 @@ extension NSMutableAttributedString {
             }
             if regexp.isEmpty { return regexpPattern } else { return regexp + "|" + regexpPattern}
           }
-      let stringTokenTypes: [(String, TokenAction<TokenType, StateType>)] = orderedMap.compactMap{ (pattern, type) in
-        if case .string(let lexeme) = pattern { return (lexeme, type)  }
-        else if case .word(let lexeme) = pattern { return (lexeme, type)  }
-        else { return nil }
+      let stringTokenTypes: [(String, TokenAction<TokenType, StateType>)] = orderedMap.compactMap { (pattern, type) in
+        if case .string(let lexeme) = pattern { return (lexeme, type)  } else if case .word(let lexeme) = pattern { return (lexeme, type)  } else { return nil }
       }
-      let patternTokenTypes: [TokenAction<TokenType, StateType>] = orderedMap.compactMap{ (pattern, type) in
-        if case .pattern(_) = pattern { return type } else { return nil }
+      let patternTokenTypes: [TokenAction<TokenType, StateType>] = orderedMap.compactMap { (pattern, type) in
+        if case .pattern = pattern { return type } else { return nil }
       }
 
       let regexp = try NSRegularExpression(pattern: pattern, options: [])
       return Tokeniser.State(regexp: regexp,
-                             stringTokenTypes: [String: TokenAction<TokenType, StateType>](stringTokenTypes){
-                              (left, right) in return left },
+                             stringTokenTypes: [String: TokenAction<TokenType, StateType>](stringTokenTypes) {
+                              (left, _) in return left },
                              patternTokenTypes: patternTokenTypes)
     }
 
     do {
 
-      let states = try tokenMap.mapValues{ try tokeniser(for: $0) }
+      let states = try tokenMap.mapValues { try tokeniser(for: $0) }
       return Tokeniser(states: states)
 
     } catch let err { logger.error("failed to compile regexp: \(err.localizedDescription)"); return nil }
@@ -187,8 +181,7 @@ extension NSMutableAttributedString {
   public func tokeniseAndSetTokenAttribute<TokenType, StateType>(attribute: NSAttributedString.Key,
                                                                  with tokeniser: Tokeniser<TokenType, StateType>,
                                                                  state startState: StateType,
-                                                                 in range: NSRange)
-  {
+                                                                 in range: NSRange) {
     var state        = startState
     var currentRange = range
 

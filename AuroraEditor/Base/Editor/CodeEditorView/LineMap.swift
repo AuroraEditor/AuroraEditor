@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /// Keeps track of the character ranges and parametric `LineInfo` for all lines in a string.
 ///
 struct LineMap<LineInfo> {
@@ -21,8 +20,8 @@ struct LineMap<LineInfo> {
   ///
   var lines: [OneLine] = [(range: NSRange(location: 0, length: 0), info: nil)]
 
-  /// MARK: -
-  /// MARK: Initialisation
+  // MARK: -
+  // MARK: Initialisation
 
   /// Direct initialisation for testing.
   ///
@@ -99,8 +98,7 @@ struct LineMap<LineInfo> {
   ///               map.
   ///
   func lineOf(index: Int) -> Int? {
-    if let lastLine = lines.last, NSMaxRange(lastLine.range) == index { return lines.count - 1 }
-    else { return lineContaining(index: index) }
+    if let lastLine = lines.last, NSMaxRange(lastLine.range) == index { return lines.count - 1 } else { return lineContaining(index: index) }
   }
 
   /// Given a character range, return the smallest line range that includes the characters. Deal with out of bounds
@@ -127,9 +125,7 @@ struct LineMap<LineInfo> {
 
     if let startLine = startLine {
 
-      if range.length < 0 { return startLine..<startLine }
-      else if range == lastLineRange { return Range<Int>(lastLine...lastLine) }
-      else { return Range<Int>(startLine...(endLine ?? lastLine)) }
+      if range.length < 0 { return startLine..<startLine } else if range == lastLineRange { return Range<Int>(lastLine...lastLine) } else { return Range<Int>(startLine...(endLine ?? lastLine)) }
 
     } else {
 
@@ -227,7 +223,7 @@ struct LineMap<LineInfo> {
         newLinesRange  = nsString.lineRange(for: extend(range: editedRange,
                                                         clippingTo: newStringRange)),
         newLinesString = nsString.substring(with: newLinesRange),
-        newLines       = linesOf(string: newLinesString).map{ shift(line: $0, by: newLinesRange.location) }
+        newLines       = linesOf(string: newLinesString).map { shift(line: $0, by: newLinesRange.location) }
 
     // If the newly inserted text ends on a new line, we need to remove the empty trailing line in the new lines array
     // unless the range of those lines extends until the end of the string.

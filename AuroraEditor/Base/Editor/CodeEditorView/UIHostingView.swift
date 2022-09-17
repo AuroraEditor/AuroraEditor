@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 #if os(iOS)
 
 class UIHostingView<Content: View>: UIView {
@@ -18,7 +17,7 @@ class UIHostingView<Content: View>: UIView {
     set { hostingViewController.rootView = newValue }
   }
 
-  init(rootView:Content) {
+  init(rootView: Content) {
     hostingViewController = UIHostingController(rootView: rootView)
     super.init(frame: .zero)
 

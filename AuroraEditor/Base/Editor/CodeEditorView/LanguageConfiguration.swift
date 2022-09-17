@@ -20,7 +20,6 @@ import UIKit
 import AppKit
 #endif
 
-
 /// Specifies the language-dependent aspects of a code editor.
 ///
 public struct LanguageConfiguration {
@@ -94,7 +93,7 @@ public struct LanguageConfiguration {
     var tag: Tag {
       switch self {
       case .tokenisingCode:       return .tokenisingCode
-      case .tokenisingComment(_): return .tokenisingComment
+      case .tokenisingComment: return .tokenisingComment
       }
     }
   }
@@ -137,8 +136,7 @@ public struct LanguageConfiguration {
               singleLineComment: String?,
               nestedComment: LanguageConfiguration.BracketPair?,
               identifierRegexp: String?,
-              reservedIdentifiers: [String])
-  {
+              reservedIdentifiers: [String]) {
     self.stringRegexp         = stringRegexp
     self.characterRegexp      = characterRegexp
     self.numberRegexp         = numberRegexp
@@ -226,9 +224,8 @@ extension LanguageConfiguration {
 
   /// COmpose an array of regular expressions as alternatives.
   ///
-  public static func alternatives(_ alts: [String]) -> String { alts.map{ group($0) }.joined(separator: "|") }
+  public static func alternatives(_ alts: [String]) -> String { alts.map { group($0) }.joined(separator: "|") }
 }
-
 
 private let haskellReservedIds =
   ["case", "class", "data", "default", "deriving", "do", "else", "foreign", "if", "import", "in", "infix", "infixl",
@@ -295,18 +292,18 @@ extension LanguageConfiguration {
                                                       identifierHeadCharSwift +
                                                         group(alternatives([
                                                           identifierHeadCharSwift,
-                                                          identifierBodyCharSwift,
+                                                          identifierBodyCharSwift
                                                         ])) + "*",
                                                       "`" + identifierHeadCharSwift +
                                                         group(alternatives([
                                                           identifierHeadCharSwift,
-                                                          identifierBodyCharSwift,
+                                                          identifierBodyCharSwift
                                                         ])) + "*`",
                                                       "\\\\$" + decimalLit,
                                                       "\\\\$" + identifierHeadCharSwift +
                                                         group(alternatives([
                                                           identifierHeadCharSwift,
-                                                          identifierBodyCharSwift,
+                                                          identifierBodyCharSwift
                                                         ])) + "*"
                                                     ]),
                                                   reservedIdentifiers: swiftReservedIds)
@@ -316,8 +313,7 @@ extension LanguageConfiguration {
 extension LanguageConfiguration {
 
   func token(_ token: LanguageConfiguration.Token)
-    -> (token: LanguageConfiguration.Token, transition: ((LanguageConfiguration.State) -> LanguageConfiguration.State)?)
-  {
+    -> (token: LanguageConfiguration.Token, transition: ((LanguageConfiguration.State) -> LanguageConfiguration.State)?) {
     return (token: token, transition: nil)
   }
 
@@ -333,7 +329,7 @@ extension LanguageConfiguration {
     case .tokenisingCode:          return .tokenisingCode
     case .tokenisingComment(let n)
           where n > 1:             return .tokenisingComment(n - 1)
-    case .tokenisingComment(_):    return .tokenisingCode
+    case .tokenisingComment:    return .tokenisingCode
     }
   }
 
