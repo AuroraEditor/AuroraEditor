@@ -141,7 +141,7 @@ import AppKit
 
 extension NSTextView: TextView {
   typealias Color = NSColor
-  typealias Font  = NSFont
+  typealias Font = NSFont
 
   var optLayoutManager: NSLayoutManager? { layoutManager }
   var optTextContainer: NSTextContainer? { textContainer }

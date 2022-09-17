@@ -254,7 +254,7 @@ extension CodeEditor: NSViewRepresentable {
     // The minimap needs to be vertically positioned in dependence on the scroll position of the main code view and
     // we need to keep track of the scroll position.
     context.coordinator.boundsChangedNotificationObserver
-      = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification,
+ = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification,
                                                object: scrollView.contentView,
                                                queue: .main) { _ in
 

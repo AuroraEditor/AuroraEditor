@@ -31,7 +31,7 @@ func merge(directoryURL: URL,
 
     args.append(branch)
 
-    let result  = try ShellClient.live().run(
+    let result = try ShellClient.live().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)"
     )
 
@@ -59,7 +59,7 @@ func getMergeBase(directoryURL: URL,
 
 /// Abort a mid-flight (conflicted) merge
 func abortMerge(directoryURL: URL) throws {
-    _  = try ShellClient.live().run(
+    _ = try ShellClient.live().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git merge --abort"
     )
 }

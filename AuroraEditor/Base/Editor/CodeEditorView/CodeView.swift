@@ -54,11 +54,11 @@ class CodeView: UITextView {
     ///
     var theme: Theme {
         didSet {
-            font                                 = UIFont(name: theme.fontName, size: theme.fontSize)
-            backgroundColor                      = theme.backgroundColour
-            tintColor                            = theme.tintColour
+            font = UIFont(name: theme.fontName, size: theme.fontSize)
+            backgroundColor = theme.backgroundColour
+            tintColor = theme.tintColour
             (textStorage as? CodeStorage)?.theme = theme
-            gutterView?.theme                    = theme
+            gutterView?.theme = theme
             setNeedsDisplay(bounds)
         }
     }
@@ -101,26 +101,26 @@ class CodeView: UITextView {
             codeContainer.textView = self
 
             // Set basic display and input properties
-            font                   = theme.font
-            backgroundColor        = theme.backgroundColour
-            tintColor              = theme.tintColour
+            font = theme.font
+            backgroundColor = theme.backgroundColour
+            tintColor = theme.tintColour
             autocapitalizationType = .none
-            autocorrectionType     = .no
-            spellCheckingType      = .no
-            smartQuotesType        = .no
-            smartDashesType        = .no
-            smartInsertDeleteType  = .no
+            autocorrectionType = .no
+            spellCheckingType = .no
+            smartQuotesType = .no
+            smartDashesType = .no
+            smartInsertDeleteType = .no
 
             // Add the view delegate
             codeViewDelegate = CodeViewDelegate(codeView: self)
-            delegate         = codeViewDelegate
+            delegate = codeViewDelegate
 
             // Add a text storage delegate that maintains a line map
             codeStorage.delegate = self.codeStorageDelegate
 
             // Add a gutter view
             let gutterWidth = ceil(theme.fontSize) * 3,
-                gutterView  = GutterView(frame: CGRect(x: 0,
+                gutterView = GutterView(frame: CGRect(x: 0,
                                                        y: 0,
                                                        width: gutterWidth,
                                                        height: CGFloat.greatestFiniteMagnitude),
@@ -128,7 +128,7 @@ class CodeView: UITextView {
                                          theme: theme,
                                          getMessageViews: { self.messageViews })
             addSubview(gutterView)
-            self.gutterView              = gutterView
+            self.gutterView = gutterView
             codeLayoutManager.gutterView = gutterView
         }
 
@@ -210,15 +210,15 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     ///
     var theme: Theme {
         didSet {
-            font                                 = theme.font
-            backgroundColor                      = theme.backgroundColour
-            insertionPointColor                  = theme.cursorColour
-            selectedTextAttributes               = [.backgroundColor: theme.selectionColour]
+            font = theme.font
+            backgroundColor = theme.backgroundColour
+            insertionPointColor = theme.cursorColour
+            selectedTextAttributes = [.backgroundColor: theme.selectionColour]
             (textStorage as? CodeStorage)?.theme = theme
-            gutterView?.theme                    = theme
-            minimapView?.backgroundColor         = theme.backgroundColour
-            minimapGutterView?.theme             = theme
-            documentVisibleBox?.fillColor        = theme.textColour.withAlphaComponent(0.1)
+            gutterView?.theme = theme
+            minimapView?.backgroundColor = theme.backgroundColour
+            minimapGutterView?.theme = theme
+            documentVisibleBox?.fillColor = theme.textColour.withAlphaComponent(0.1)
             tile()
             setNeedsDisplay(visibleRect)
         }
@@ -241,49 +241,49 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
          viewLayout: CodeEditor.LayoutConfiguration,
          theme: Theme) {
 
-        self.theme      = theme
+        self.theme = theme
         self.viewLayout = viewLayout
 
         // Use custom components that are gutter-aware and support code-specific editing actions and highlighting.
         let codeLayoutManager = CodeLayoutManager(),
-            codeContainer     = CodeContainer(),
-            codeStorage       = CodeStorage(theme: theme)
+            codeContainer = CodeContainer(),
+            codeStorage = CodeStorage(theme: theme)
         codeStorage.addLayoutManager(codeLayoutManager)
         codeContainer.layoutManager = codeLayoutManager
         codeLayoutManager.addTextContainer(codeContainer)
         codeLayoutManager.delegate = codeLayoutManagerDelegate
 
-        codeStorageDelegate  = CodeStorageDelegate(with: language)
+        codeStorageDelegate = CodeStorageDelegate(with: language)
 
         super.init(frame: frame, textContainer: codeContainer)
 
         // Set basic display and input properties
-        font                                 = theme.font
-        backgroundColor                      = theme.backgroundColour
-        insertionPointColor                  = theme.cursorColour
-        selectedTextAttributes               = [.backgroundColor: theme.selectionColour]
-        isRichText                           = false
-        isAutomaticQuoteSubstitutionEnabled  = false
-        isAutomaticLinkDetectionEnabled      = false
-        smartInsertDeleteEnabled             = false
-        isContinuousSpellCheckingEnabled     = false
-        isGrammarCheckingEnabled             = false
-        isAutomaticDashSubstitutionEnabled   = false
-        isAutomaticDataDetectionEnabled      = false
+        font = theme.font
+        backgroundColor = theme.backgroundColour
+        insertionPointColor = theme.cursorColour
+        selectedTextAttributes = [.backgroundColor: theme.selectionColour]
+        isRichText = false
+        isAutomaticQuoteSubstitutionEnabled = false
+        isAutomaticLinkDetectionEnabled = false
+        smartInsertDeleteEnabled = false
+        isContinuousSpellCheckingEnabled = false
+        isGrammarCheckingEnabled = false
+        isAutomaticDashSubstitutionEnabled = false
+        isAutomaticDataDetectionEnabled = false
         isAutomaticSpellingCorrectionEnabled = false
-        isAutomaticTextReplacementEnabled    = false
-        usesFontPanel                        = false
+        isAutomaticTextReplacementEnabled = false
+        usesFontPanel = false
 
         // Line wrapping
-        isHorizontallyResizable             = false
-        isVerticallyResizable               = true
-        textContainerInset                  = CGSize(width: 0, height: 0)
-        textContainer?.widthTracksTextView  = false   // we need to be able to control the size (see `tile()`)
+        isHorizontallyResizable = false
+        isVerticallyResizable = true
+        textContainerInset = CGSize(width: 0, height: 0)
+        textContainer?.widthTracksTextView = false   // we need to be able to control the size (see `tile()`)
         textContainer?.heightTracksTextView = false
-        textContainer?.lineBreakMode        = .byWordWrapping
+        textContainer?.lineBreakMode = .byWordWrapping
 
         // FIXME: properties that ought to be configurable
-        usesFindBar                   = true
+        usesFindBar = true
         isIncrementalSearchingEnabled = true
 
         // Enable undo support
@@ -303,19 +303,19 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
                                     isMinimapGutter: false)
         gutterView.autoresizingMask = .none
         addSubview(gutterView)
-        self.gutterView              = gutterView
+        self.gutterView = gutterView
         codeLayoutManager.gutterView = gutterView
 
         // Add the minimap with its own gutter, but sharing the code storage with the code view
         //
         let minimapLayoutManager = MinimapLayoutManager(),
-            minimapView          = MinimapView(),
-            minimapGutterView    = GutterView(frame: CGRect.zero,
+            minimapView = MinimapView(),
+            minimapGutterView = GutterView(frame: CGRect.zero,
                                               textView: minimapView,
                                               theme: theme,
                                               getMessageViews: { self.messageViews },
                                               isMinimapGutter: true),
-            minimapDividerView   = NSBox()
+            minimapDividerView = NSBox()
         minimapView.codeView = self
 
         minimapDividerView.boxType = .separator
@@ -324,16 +324,16 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
         minimapView.textContainer?.replaceLayoutManager(minimapLayoutManager)
         codeStorage.addLayoutManager(minimapLayoutManager)
-        minimapView.backgroundColor                     = backgroundColor
-        minimapView.autoresizingMask                    = .none
-        minimapView.isEditable                          = false
-        minimapView.isSelectable                        = false
-        minimapView.isHorizontallyResizable             = false
-        minimapView.isVerticallyResizable               = true
-        minimapView.textContainerInset                  = CGSize(width: 0, height: 0)
-        minimapView.textContainer?.widthTracksTextView  = true
+        minimapView.backgroundColor = backgroundColor
+        minimapView.autoresizingMask = .none
+        minimapView.isEditable = false
+        minimapView.isSelectable = false
+        minimapView.isHorizontallyResizable = false
+        minimapView.isVerticallyResizable = true
+        minimapView.textContainerInset = CGSize(width: 0, height: 0)
+        minimapView.textContainer?.widthTracksTextView = true
         minimapView.textContainer?.heightTracksTextView = false
-        minimapView.textContainer?.lineBreakMode        = .byWordWrapping
+        minimapView.textContainer?.lineBreakMode = .byWordWrapping
         addSubview(minimapView)
         self.minimapView = minimapView
 
@@ -343,8 +343,8 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         minimapView.layoutManager?.typesetter = MinimapTypeSetter()
 
         let documentVisibleBox = NSBox()
-        documentVisibleBox.boxType     = .custom
-        documentVisibleBox.fillColor   = theme.textColour.withAlphaComponent(0.1)
+        documentVisibleBox.boxType = .custom
+        documentVisibleBox.fillColor = theme.textColour.withAlphaComponent(0.1)
         documentVisibleBox.borderWidth = 0
         minimapView.addSubview(documentVisibleBox)
         self.documentVisibleBox = documentVisibleBox
@@ -382,7 +382,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         //     to the selected range change.
         if lineOfInsertionPoint != oldLastLineOfInsertionPoint {
 
-            if let oldLine      = oldLastLineOfInsertionPoint,
+            if let oldLine = oldLastLineOfInsertionPoint,
                let oldLineRange = optLineMap?.lookup(line: oldLine)?.range {
 
                 // We need to invalidate the whole background (incl message views); hence, we need to employ
@@ -395,7 +395,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
                 minimapGutterView?.optLayoutManager?.invalidateDisplay(forCharacterRange: oldLineRange)
 
             }
-            if let newLine      = lineOfInsertionPoint,
+            if let newLine = lineOfInsertionPoint,
                let newLineRange = optLineMap?.lookup(line: newLine)?.range {
 
                 // We need to invalidate the whole background (incl message views); hence, we need to employ
@@ -437,7 +437,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         else { return }
 
         let glyphRange = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: rect, in: textContainer),
-            charRange  = layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
+            charRange = layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
 
         // If the selection is an insertion point, highlight the corresponding line
         if let location = insertionPoint, charRange.contains(location) || location == NSMaxRange(charRange) {
@@ -522,48 +522,48 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
         // Compute size of the main view gutter
         //
-        let theFont                = font ?? NSFont.systemFont(ofSize: 0),
-            fontSize               = theFont.pointSize,
-            fontWidth              = theFont.maximumAdvancement.width,
+        let theFont = font ?? NSFont.systemFont(ofSize: 0),
+            fontSize = theFont.pointSize,
+            fontWidth = theFont.maximumAdvancement.width,
             // NB: we deal only with fixed width fonts
             gutterWithInCharacters = CGFloat(6),
-            gutterWidth            = ceil(fontWidth * gutterWithInCharacters),
-            gutterRect             = CGRect(
+            gutterWidth = ceil(fontWidth * gutterWithInCharacters),
+            gutterRect = CGRect(
                 origin: CGPoint.zero,
                 size: CGSize(width: gutterWidth, height: frame.height)
             ),
-            gutterExclusionPath    = OSBezierPath(rect: gutterRect),
+            gutterExclusionPath = OSBezierPath(rect: gutterRect),
             minLineFragmentPadding = CGFloat(6)
 
         gutterView?.frame = gutterRect
 
         // Compute sizes of the minimap text view and gutter
         //
-        let minimapFontWidth     = minimapFontSize(for: fontSize) / 2,
-            minimapGutterWidth   = minimapFontWidth * gutterWithInCharacters,
-            dividerWidth         = CGFloat(1),
-            minimapGutterRect    = CGRect(origin: CGPoint.zero,
+        let minimapFontWidth = minimapFontSize(for: fontSize) / 2,
+            minimapGutterWidth = minimapFontWidth * gutterWithInCharacters,
+            dividerWidth = CGFloat(1),
+            minimapGutterRect = CGRect(origin: CGPoint.zero,
                                           size: CGSize(width: minimapGutterWidth, height: frame.height)),
-            widthWithoutGutters  = frame.width - gutterWidth - minimapGutterWidth
+            widthWithoutGutters = frame.width - gutterWidth - minimapGutterWidth
         - minLineFragmentPadding * 2 + minimapFontWidth * 2 - dividerWidth,
-        numberOfCharacters   = codeWidthInCharacters(for: widthWithoutGutters,
+        numberOfCharacters = codeWidthInCharacters(for: widthWithoutGutters,
                                                      with: theFont,
                                                      withMinimap: viewLayout.showMinimap),
-        minimapWidth         = minimapGutterWidth + minimapFontWidth * 2 + numberOfCharacters * minimapFontWidth,
-        codeViewWidth        = viewLayout.showMinimap ? frame.width - minimapWidth - dividerWidth : frame.width,
-        padding              = codeViewWidth - (gutterWidth + ceil(numberOfCharacters * fontWidth)),
-        minimapX             = floor(frame.width - minimapWidth),
-        minimapRect          = CGRect(x: minimapX, y: 0, width: minimapWidth, height: frame.height),
+        minimapWidth = minimapGutterWidth + minimapFontWidth * 2 + numberOfCharacters * minimapFontWidth,
+        codeViewWidth = viewLayout.showMinimap ? frame.width - minimapWidth - dividerWidth : frame.width,
+        padding = codeViewWidth - (gutterWidth + ceil(numberOfCharacters * fontWidth)),
+        minimapX = floor(frame.width - minimapWidth),
+        minimapRect = CGRect(x: minimapX, y: 0, width: minimapWidth, height: frame.height),
         minimapExclusionPath = OSBezierPath(rect: minimapGutterRect),
-        minimapDividerRect   = CGRect(x: minimapX - dividerWidth, y: 0, width: dividerWidth, height: frame.height)
+        minimapDividerRect = CGRect(x: minimapX - dividerWidth, y: 0, width: dividerWidth, height: frame.height)
 
         minimapDividerView?.isHidden = !viewLayout.showMinimap
-        minimapView?.isHidden        = !viewLayout.showMinimap
+        minimapView?.isHidden = !viewLayout.showMinimap
         if viewLayout.showMinimap {
 
             minimapDividerView?.frame = minimapDividerRect
-            minimapView?.frame        = minimapRect
-            minimapGutterView?.frame  = minimapGutterRect
+            minimapView?.frame = minimapRect
+            minimapGutterView?.frame = minimapGutterRect
 
         }
 
@@ -576,14 +576,14 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         //     Adding the slack to the code view's text container doesn't work
         //     as the line breaks of the minimap and main code view are then
         //     sometimes not entirely in sync.
-        textContainerInset                 = NSSize(width: 0, height: 0)
-        textContainer?.size                = NSSize(width: codeViewWidth, height: CGFloat.greatestFiniteMagnitude)
+        textContainerInset = NSSize(width: 0, height: 0)
+        textContainer?.size = NSSize(width: codeViewWidth, height: CGFloat.greatestFiniteMagnitude)
         textContainer?.lineFragmentPadding = padding / 2
-        textContainer?.exclusionPaths      = [gutterExclusionPath]
+        textContainer?.exclusionPaths = [gutterExclusionPath]
 
         // Set the text container area of the minimap text view
-        minimapView?.textContainer?.exclusionPaths      = [minimapExclusionPath]
-        minimapView?.textContainer?.size                = CGSize(width: minimapWidth,
+        minimapView?.textContainer?.exclusionPaths = [minimapExclusionPath]
+        minimapView?.textContainer?.size = CGSize(width: minimapWidth,
                                                                  height: CGFloat.greatestFiniteMagnitude)
         minimapView?.textContainer?.lineFragmentPadding = minimapFontWidth
 
@@ -599,8 +599,8 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         guard viewLayout.showMinimap else { return }
 
         let codeViewHeight = frame.size.height,
-            minimapHeight  = minimapView?.frame.size.height ?? 0,
-            visibleHeight  = documentVisibleRect.size.height
+            minimapHeight = minimapView?.frame.size.height ?? 0,
+            visibleHeight = documentVisibleRect.size.height
 
         let scrollFactor: CGFloat
         if minimapHeight < visibleHeight { scrollFactor = 1 } else {
@@ -714,14 +714,14 @@ extension CodeView {
                 let leftOffset = textContainerOrigin.x + messageBundle.lineFragementRect.maxX,
                     rightAnchorConstraint = messageBundle.view.rightAnchor.constraint(equalTo: self.leftAnchor,
                                                                                       constant: leftOffset)
-                messageViews[id]?.topAnchorConstraint   = topAnchorConstraint
+                messageViews[id]?.topAnchorConstraint = topAnchorConstraint
                 messageViews[id]?.rightAnchorConstraint = rightAnchorConstraint
                 NSLayoutConstraint.activate([topAnchorConstraint, rightAnchorConstraint])
 
             } else {
 
                 // Update the messages view constraints
-                messageViews[id]?.topAnchorConstraint?.constant   = messageBundle.lineFragementRect.minY
+                messageViews[id]?.topAnchorConstraint?.constant = messageBundle.lineFragementRect.minY
                 messageViews[id]?.rightAnchorConstraint?.constant = messageBundle.lineFragementRect.maxX
 
             }
@@ -766,7 +766,7 @@ extension CodeView {
                                                                                          popupOffset: 16),
                                                           fontSize: font?.pointSize ?? OSFont.systemFontSize),
             principalCategory = messagesByCategory(messageBundle.messages)[0].key,
-            colour            = theme(principalCategory).colour
+            colour = theme(principalCategory).colour
 
         messageViews[messageBundle.id] = MessageInfo(view: messageView,
                                                      lineFragementRect: CGRect.zero,
@@ -847,11 +847,11 @@ class CodeContainer: NSTextContainer {
                                                     writingDirection: baseWritingDirection,
                                                     remaining: remainingRect)
 
-        guard let codeView    = textView as? CodeView,
+        guard let codeView = textView as? CodeView,
               let codeStorage = layoutManager?.textStorage as? CodeStorage,
-              let delegate    = codeStorage.delegate as? CodeStorageDelegate,
-              let line        = delegate.lineMap.lineOf(index: characterIndex),
-              let oneLine     = delegate.lineMap.lookup(line: line),
+              let delegate = codeStorage.delegate as? CodeStorageDelegate,
+              let line = delegate.lineMap.lineOf(index: characterIndex),
+              let oneLine = delegate.lineMap.lookup(line: line),
               characterIndex == oneLine.range.location    // we are only interested in the first line fragment of a line
         else { return calculatedRect }
 

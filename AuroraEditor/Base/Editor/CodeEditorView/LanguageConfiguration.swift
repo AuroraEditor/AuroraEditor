@@ -195,7 +195,7 @@ extension LanguageConfiguration {
 
   // Identifier components following the Swift 5.4 reference
   public static let identifierHeadCharSwift
-    = "["
+ = "["
     + "[a-zA-Z_]"
     + "[\u{00A8}\u{00AA}\u{00AD}\u{00AF}\u{00B2}–\u{00B5}\u{00B7}–\u{00BA}]"
     + "[\u{00BC}–\u{00BE}\u{00C0}–\u{00D6}\u{00D8}–\u{00F6}\u{00F8}–\u{00FF}]"
@@ -213,7 +213,7 @@ extension LanguageConfiguration {
     + "[\u{D0000}–\u{DFFFD}\u{E0000}–\u{EFFFD}]"
     + "]"
   public static let identifierBodyCharSwift
-    = "["
+ = "["
     + "[0-9]"
     + "[\u{0300}–\u{036F}\u{1DC0}–\u{1DFF}\u{20D0}–\u{20FF}\u{FE20}–\u{FE2F}]"
     + "]"

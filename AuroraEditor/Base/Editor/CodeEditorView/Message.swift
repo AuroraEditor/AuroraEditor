@@ -57,9 +57,9 @@ public struct Message: Identifiable, Hashable {
   public let description: NSAttributedString?
 
   public init(category: Message.Category, length: Int, summary: String, description: NSAttributedString?) {
-    self.category    = category
-    self.length      = length
-    self.summary     = summary
+    self.category = category
+    self.length = length
+    self.summary = summary
     self.description = description
   }
 }
