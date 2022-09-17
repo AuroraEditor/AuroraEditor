@@ -18,17 +18,26 @@ struct MinimapView: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             Color.black.opacity(0.2)
-                Color.gray.opacity(0.5)
-                    .frame(height: minimapLineHeight)
-                    .offset(y: CGFloat(sharedObjects.caretPos.line) * minimapLineHeight * 1.5)
-            ForEach(attributedTextItems) { textItem in
-                if let color = textItem.attributes[.foregroundColor] as? NSColor {
-                    Color(nsColor: color)
-                        .frame(width: CGFloat(textItem.text.count) * minimapMultiplier,
-                               height: minimapLineHeight)
-                        .offset(x: CGFloat(textItem.charactersFromStart) * minimapMultiplier,
-                                y: CGFloat(textItem.lineNumber) * (minimapLineHeight * 1.5))
+            GeometryReader { proxy in
+                ZStack(alignment: .topLeading) {
+                    Color.gray.opacity(0.5)
+                        .frame(height: minimapLineHeight)
+                        .offset(y: CGFloat(sharedObjects.caretPos.line) * minimapLineHeight * 1.5)
+                    ForEach(attributedTextItems) { textItem in
+                        if let color = textItem.attributes[.foregroundColor] as? NSColor {
+                            Color(nsColor: color)
+                                .frame(width: CGFloat(textItem.text.count) * minimapMultiplier,
+                                       height: minimapLineHeight)
+                                .offset(x: CGFloat(textItem.charactersFromStart) * minimapMultiplier,
+                                        y: CGFloat(textItem.lineNumber) * (minimapLineHeight * 1.5))
+                        }
+                    }
                 }
+                // the scrollable area is the total number of lines * line height, minus the view height
+                .offset(y: (CGFloat(attributedTextItems.last?.lineNumber ?? 0) * minimapLineHeight * 1.5
+                            - proxy.size.height) *
+                // the offset is the scrollable area * scrollAmount, inverted
+                            scrollAmount * -1)
             }
         }
     }

@@ -174,7 +174,7 @@ public class STTextViewController: NSViewController, STTextViewDelegate {
 
     /// Reloads the UI to apply changes to ``STTextViewController/font``, ``STTextViewController/theme``, ...
     internal func reloadUI() {
-        Log.info("Reloading UI")
+//        Log.info("Reloading UI")
         textView?.font = font
         textView?.textColor = .textColor
         textView?.backgroundColor = textViewBackgroundColor()

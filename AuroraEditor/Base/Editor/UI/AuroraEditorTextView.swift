@@ -67,12 +67,26 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable, Equatable {
         self.themeString = themeString
     }
 
-    @Binding private var text: String
-    @Binding private var font: NSFont
-    @Binding private var tabWidth: Int
-    @Binding private var lineHeight: Double
-    @State private var attributedTextItems: [AttributedStringItem] = []
-    @State private var scrollAmount: CGFloat = 0
+    @Binding var text: String
+    @Binding var font: NSFont
+    @Binding var tabWidth: Int
+    @Binding var lineHeight: Double
+
+    /// The last text that was processed
+    @State var lastText: String = ""
+
+    /// The minimap view that the AuroraEditorTextView contains
+    @State var minimapView: NSHostingView<MinimapView>?
+
+    /// The view controller that the AuroraEditorTextView contains
+    @State var viewController: NSViewControllerType?
+    @State var coordinator: Coordinator?
+
+    /// The parsed items from the text view's AttributedString
+    @State var attributedTextItems: [AttributedStringItem] = []
+
+    /// How far the text view has scrolled, in decimal (eg. 0.3 = 30%)
+    @State var scrollAmount: CGFloat = 0
 
     public typealias NSViewControllerType = STTextViewController
 
@@ -93,11 +107,6 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable, Equatable {
         updateProperties(controller: controller)
         return controller
     }
-
-    @State private var lastText: String = ""
-    @State private var minimapView: NSHostingView<MinimapView>?
-    @State var viewController: NSViewControllerType?
-    @State var coordinator: Coordinator?
 
     public func updateNSViewController(_ controller: NSViewControllerType, context: Context) {
         controller.font = font
@@ -121,84 +130,6 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable, Equatable {
         return
     }
 
-    /// Adds a minimap view to a controller, creating one if it doesn't exist
-    /// - Parameters:
-    ///   - controller: The controller to add the minimap view to
-    ///   - overrideMinimap: The minimap to add. If nil, it tries to look for a saved one.
-    ///   If there are no saved minimaps, it creates one.
-    func addMinimapView(to controller: NSViewControllerType,
-                        minimapView overrideMinimap: NSHostingView<MinimapView>? = nil) {
-        if let minimapView = overrideMinimap ?? self.minimapView {
-            if let scrollContent = controller.textView.scrollView {
-                minimapView.frame = NSRect(x: scrollContent.frame.width-150,
-                                            y: 0,
-                                            width: 150,
-                                            height: scrollContent.frame.height)
-                scrollContent.addSubview(minimapView)
-            }
-        } else {
-            let minimapView = NSHostingView(rootView: MinimapView(attributedTextItems: $attributedTextItems,
-                                                                  scrollAmount: $scrollAmount))
-            DispatchQueue.main.async {
-                self.minimapView = minimapView
-            }
-            addMinimapView(to: controller, minimapView: minimapView)
-        }
-    }
-
-    /// Takes an attributed string and turns it into an array of ``AttributedStringItem``s
-    /// - Parameter attributedText: The attributed string to parse
-    func updateTextItems(attributedText: NSAttributedString) {
-        let length = attributedText.length
-
-        var newAttributedTextItems: [AttributedStringItem] = []
-
-        var position = 0
-        while position < length {
-            // get the attributes
-            var range = NSRange()
-            let attributes = attributedText.attributes(at: position, effectiveRange: &range)
-            let atString = attributedText.string
-
-            // get the line number by counting the number of newlines until the string starts
-            let rangeSoFar = atString.startIndex..<atString.index(atString.startIndex, offsetBy: position)
-            let stringSoFar = String(attributedText.string[rangeSoFar])
-            let separatedComponents = stringSoFar.components(separatedBy: "\n")
-            var newLines = separatedComponents.count - 1
-            var charFromStart = separatedComponents.last?.count ?? 0
-
-            // get the contents of the range
-            let rangeContents = atString[range] ?? ""
-
-            // split by \n characters and spaces
-            let lines = String(rangeContents).components(separatedBy: "\n")
-
-            for line in lines {
-                let words = line.components(separatedBy: " ")
-                for word in words {
-                    if !word.isEmpty {
-                        newAttributedTextItems.append(AttributedStringItem(text: word,
-                                                                           lineNumber: newLines,
-                                                                           charactersFromStart: charFromStart,
-                                                                           range: range,
-                                                                           attributes: attributes))
-                    }
-
-                    // modify the charactersFromStart for each word
-                    charFromStart += word.count + 1
-                }
-
-                // modify the line number and charactersFromStart for each line
-                charFromStart = 0
-                newLines += 1
-            }
-
-            position = range.upperBound
-        }
-
-        attributedTextItems = newAttributedTextItems
-    }
-
     public class Coordinator: NSObject {
         let parent: AuroraEditorTextView
         init(parent: AuroraEditorTextView) {
@@ -211,7 +142,6 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable, Equatable {
         }
 
         private func configureScrollView(scrollView: NSScrollView) {
-            Log.info("Config scroll view")
             scrollView.contentView.postsBoundsChangedNotifications = true
             NotificationCenter.default.addObserver(self, selector: #selector(contentViewDidChangeBounds),
                                                    name: NSView.boundsDidChangeNotification,
@@ -225,11 +155,12 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable, Equatable {
 
             let clipView = scrollView.contentView
 
-            Log.info("Bounds changed to \(clipView.bounds.origin.y)")
+            // get the percentage of the document that has been scrolled
             let maxScroll = documentView.bounds.height - clipView.bounds.height
+            let scrollPercent = min(1, max(0, clipView.bounds.origin.y / maxScroll))
 
             DispatchQueue.main.async {
-                self.parent.scrollAmount = clipView.bounds.origin.y / maxScroll
+                self.parent.scrollAmount = scrollPercent
             }
         }
     }
