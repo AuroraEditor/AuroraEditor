@@ -176,6 +176,8 @@ public struct AECodeView: View {
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
+    @State var size: NSSize = .zero
+
     @Environment(\.colorScheme)
     private var colorScheme
 
@@ -207,29 +209,35 @@ public struct AECodeView: View {
     }
 
     public var body: some View {
-        ZStack(alignment: .trailing) {
-            AuroraEditorTextView(
-                $codeFile.content,
-                font: $font,
-                tabWidth: $prefs.preferences.textEditing.defaultTabWidth,
-                lineHeight: .constant(1.2),
-                language: getLanguage(),
-                themeString: themeString
-            )
-            .id(codeFile.fileURL)
-            .background(selectedTheme.editor.background.swiftColor)
-            .disabled(!editable)
-            .frame(maxHeight: .infinity)
-            .onChange(of: ThemeModel.shared.selectedTheme) { newValue in
-                guard let theme = newValue else { return }
-                self.selectedTheme = theme
+        GeometryReader { proxy in
+            ZStack(alignment: .trailing) {
+                AuroraEditorTextView(
+                    $codeFile.content,
+                    font: $font,
+                    tabWidth: $prefs.preferences.textEditing.defaultTabWidth,
+                    lineHeight: .constant(1.2),
+                    size: $size,
+                    language: getLanguage(),
+                    themeString: themeString
+                )
+                .id(codeFile.fileURL)
+                .background(selectedTheme.editor.background.swiftColor)
+                .disabled(!editable)
+                .frame(maxHeight: .infinity)
+                .onChange(of: ThemeModel.shared.selectedTheme) { newValue in
+                    guard let theme = newValue else { return }
+                    self.selectedTheme = theme
+                }
+                .onChange(of: prefs.preferences.textEditing.font) { _ in
+                    font = NSFont(
+                        name: prefs.preferences.textEditing.font.name,
+                        size: Double(prefs.preferences.textEditing.font.size)
+                    ) ?? .monospacedSystemFont(ofSize: 12, weight: .regular)
+                }
             }
-            .onChange(of: prefs.preferences.textEditing.font) { _ in
-                font = NSFont(
-                    name: prefs.preferences.textEditing.font.name,
-                    size: Double(prefs.preferences.textEditing.font.size)
-                ) ?? .monospacedSystemFont(ofSize: 12, weight: .regular)
-            }
+            .onChange(of: proxy.size, perform: { _ in
+                self.size = proxy.size
+            })
         }
     }
 }

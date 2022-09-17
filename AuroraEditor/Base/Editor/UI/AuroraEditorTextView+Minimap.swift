@@ -16,13 +16,18 @@ extension AuroraEditorTextView {
     ///   - overrideMinimap: The minimap to add. If nil, it tries to look for a saved one.
     ///   If there are no saved minimaps, it creates one.
     func addMinimapView(to controller: NSViewControllerType,
-                        minimapView overrideMinimap: NSHostingView<MinimapView>? = nil) {
+                        minimapView overrideMinimap: NSHostingView<MinimapView>? = nil,
+                        onlyFrame: Bool = false
+    ) {
         if let minimapView = overrideMinimap ?? self.minimapView {
             if let scrollContent = controller.textView.scrollView {
                 minimapView.frame = NSRect(x: scrollContent.frame.width-150,
                                             y: 0,
                                             width: 150,
                                             height: scrollContent.frame.height)
+                if onlyFrame {
+                    scrollContent.subviews.removeAll(where: { $0 is NSHostingView<MinimapView> })
+                }
                 scrollContent.addSubview(minimapView)
             }
         } else {

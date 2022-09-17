@@ -56,6 +56,7 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable, Equatable {
         font: Binding<NSFont>,
         tabWidth: Binding<Int>,
         lineHeight: Binding<Double>,
+        size: Binding<NSSize>,
         language: CodeLanguage?,
         themeString: String?
     ) {
@@ -63,6 +64,7 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable, Equatable {
         self._font = font
         self._tabWidth = tabWidth
         self._lineHeight = lineHeight
+        self._size = size
         self.language = language
         self.themeString = themeString
     }
@@ -71,6 +73,7 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable, Equatable {
     @Binding var font: NSFont
     @Binding var tabWidth: Int
     @Binding var lineHeight: Double
+    @Binding var size: NSSize
 
     /// The last text that was processed
     @State var lastText: String = ""
@@ -123,6 +126,8 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable, Equatable {
         } else if viewController != controller {
             minimapView?.removeFromSuperview()
             addMinimapView(to: controller)
+        } else if controller.textView.frame.size != size {
+            addMinimapView(to: controller, onlyFrame: true)
         }
 
         updateProperties(controller: controller)
