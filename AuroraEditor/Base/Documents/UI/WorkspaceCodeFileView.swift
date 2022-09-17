@@ -7,7 +7,6 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
-import CodeEditorView
 
 struct WorkspaceCodeFileView: View {
     var windowController: NSWindowController

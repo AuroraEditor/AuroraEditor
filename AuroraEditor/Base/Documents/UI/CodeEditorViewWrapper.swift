@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import CodeEditorView
 
 public struct CodeEditorViewWrapper: View {
     @ObservedObject

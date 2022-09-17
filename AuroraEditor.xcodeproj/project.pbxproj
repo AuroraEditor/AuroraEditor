@@ -515,6 +515,24 @@
 		2B7AC06B282452FB0082A5B8 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7AC06A282452FB0082A5B8 /* Media.xcassets */; };
 		2B89F85428B13E9D007CB9C1 /* auroraMessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B89F85328B13E9D007CB9C1 /* auroraMessageBox.swift */; };
 		2BA19F252896F721000B9543 /* .githash in Resources */ = {isa = PBXBuildFile; fileRef = 2BA19F242896F721000B9543 /* .githash */; };
+		2BD5CF1E28D602CE00F95E5A /* EditorLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF0C28D602CE00F95E5A /* EditorLocation.swift */; };
+		2BD5CF1F28D602CE00F95E5A /* CodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF0D28D602CE00F95E5A /* CodeEditor.swift */; };
+		2BD5CF2028D602CE00F95E5A /* MinimapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF0E28D602CE00F95E5A /* MinimapView.swift */; };
+		2BD5CF2128D602CE00F95E5A /* CodeStorageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF0F28D602CE00F95E5A /* CodeStorageDelegate.swift */; };
+		2BD5CF2228D602CE00F95E5A /* CodeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1028D602CE00F95E5A /* CodeStorage.swift */; };
+		2BD5CF2328D602CE00F95E5A /* GutterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1128D602CE00F95E5A /* GutterView.swift */; };
+		2BD5CF2428D602CE00F95E5A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1228D602CE00F95E5A /* Message.swift */; };
+		2BD5CF2528D602CE00F95E5A /* LineMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1328D602CE00F95E5A /* LineMap.swift */; };
+		2BD5CF2628D602CE00F95E5A /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1428D602CE00F95E5A /* ViewModifiers.swift */; };
+		2BD5CF2728D602CE00F95E5A /* OSDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1528D602CE00F95E5A /* OSDefinitions.swift */; };
+		2BD5CF2828D602CE00F95E5A /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1628D602CE00F95E5A /* ScrollView.swift */; };
+		2BD5CF2928D602CE00F95E5A /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1728D602CE00F95E5A /* CodeView.swift */; };
+		2BD5CF2A28D602CE00F95E5A /* MutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1828D602CE00F95E5A /* MutableAttributedString.swift */; };
+		2BD5CF2B28D602CE00F95E5A /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1928D602CE00F95E5A /* TextView.swift */; };
+		2BD5CF2C28D602CE00F95E5A /* UIHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1A28D602CE00F95E5A /* UIHostingView.swift */; };
+		2BD5CF2D28D602CE00F95E5A /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1B28D602CE00F95E5A /* Theme.swift */; };
+		2BD5CF2E28D602CE00F95E5A /* MessageViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1C28D602CE00F95E5A /* MessageViews.swift */; };
+		2BD5CF2F28D602CE00F95E5A /* LanguageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1D28D602CE00F95E5A /* LanguageConfiguration.swift */; };
 		2BD8A21428ACFA6D00282989 /* ShellClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8A21328ACFA6D00282989 /* ShellClient.swift */; };
 		2BDFA8F528D1078900980385 /* CodeLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8F428D1078800980385 /* CodeLanguage.swift */; };
 		2BDFA8F828D1079700980385 /* HighlightrLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8F628D1079600980385 /* HighlightrLanguage.swift */; };
@@ -538,7 +556,6 @@
 		6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */; };
 		9302A22428D183E300648D63 /* TabBarItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9302A22328D183E300648D63 /* TabBarItemStorage.swift */; };
 		9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */; };
-		93159FD828D5F2E800C55C5A /* CodeEditorView in Frameworks */ = {isa = PBXBuildFile; productRef = 93159FD728D5F2E800C55C5A /* CodeEditorView */; };
 		93159FDA28D5F3D500C55C5A /* AECodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93159FD928D5F3D500C55C5A /* AECodeView.swift */; };
 		93159FDC28D5F40C00C55C5A /* CodeEditorViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93159FDB28D5F40C00C55C5A /* CodeEditorViewWrapper.swift */; };
 		9327701128CE1B6300871190 /* TabHierarchyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9327701028CE1B6300871190 /* TabHierarchyTableViewCell.swift */; };
@@ -1147,6 +1164,24 @@
 		2B7AC06A282452FB0082A5B8 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		2B89F85328B13E9D007CB9C1 /* auroraMessageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = auroraMessageBox.swift; sourceTree = "<group>"; };
 		2BA19F242896F721000B9543 /* .githash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .githash; sourceTree = "<group>"; };
+		2BD5CF0C28D602CE00F95E5A /* EditorLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorLocation.swift; sourceTree = "<group>"; };
+		2BD5CF0D28D602CE00F95E5A /* CodeEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeEditor.swift; sourceTree = "<group>"; };
+		2BD5CF0E28D602CE00F95E5A /* MinimapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimapView.swift; sourceTree = "<group>"; };
+		2BD5CF0F28D602CE00F95E5A /* CodeStorageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeStorageDelegate.swift; sourceTree = "<group>"; };
+		2BD5CF1028D602CE00F95E5A /* CodeStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeStorage.swift; sourceTree = "<group>"; };
+		2BD5CF1128D602CE00F95E5A /* GutterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GutterView.swift; sourceTree = "<group>"; };
+		2BD5CF1228D602CE00F95E5A /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		2BD5CF1328D602CE00F95E5A /* LineMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineMap.swift; sourceTree = "<group>"; };
+		2BD5CF1428D602CE00F95E5A /* ViewModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
+		2BD5CF1528D602CE00F95E5A /* OSDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSDefinitions.swift; sourceTree = "<group>"; };
+		2BD5CF1628D602CE00F95E5A /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
+		2BD5CF1728D602CE00F95E5A /* CodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
+		2BD5CF1828D602CE00F95E5A /* MutableAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableAttributedString.swift; sourceTree = "<group>"; };
+		2BD5CF1928D602CE00F95E5A /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		2BD5CF1A28D602CE00F95E5A /* UIHostingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHostingView.swift; sourceTree = "<group>"; };
+		2BD5CF1B28D602CE00F95E5A /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		2BD5CF1C28D602CE00F95E5A /* MessageViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViews.swift; sourceTree = "<group>"; };
+		2BD5CF1D28D602CE00F95E5A /* LanguageConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageConfiguration.swift; sourceTree = "<group>"; };
 		2BD8A21328ACFA6D00282989 /* ShellClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShellClient.swift; sourceTree = "<group>"; };
 		2BDFA8F428D1078800980385 /* CodeLanguage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeLanguage.swift; sourceTree = "<group>"; };
 		2BDFA8F628D1079600980385 /* HighlightrLanguage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightrLanguage.swift; sourceTree = "<group>"; };
@@ -1247,7 +1282,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93159FD828D5F2E800C55C5A /* CodeEditorView in Frameworks */,
 				209D0246289AB9750082441F /* SwiftTerm in Frameworks */,
 				2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */,
 			);
@@ -1536,6 +1570,7 @@
 		209D024F289ABF520082441F /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				2BD5CF0B28D602CE00F95E5A /* CodeEditorView */,
 				20D83754289A7ACD00D91D05 /* Assets */,
 				20D83919289A81D000D91D05 /* Model */,
 				202F2E2E289E6637000D3CAD /* Model */,
@@ -3130,6 +3165,31 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		2BD5CF0B28D602CE00F95E5A /* CodeEditorView */ = {
+			isa = PBXGroup;
+			children = (
+				2BD5CF0C28D602CE00F95E5A /* EditorLocation.swift */,
+				2BD5CF0D28D602CE00F95E5A /* CodeEditor.swift */,
+				2BD5CF0E28D602CE00F95E5A /* MinimapView.swift */,
+				2BD5CF0F28D602CE00F95E5A /* CodeStorageDelegate.swift */,
+				2BD5CF1028D602CE00F95E5A /* CodeStorage.swift */,
+				2BD5CF1128D602CE00F95E5A /* GutterView.swift */,
+				2BD5CF1228D602CE00F95E5A /* Message.swift */,
+				2BD5CF1328D602CE00F95E5A /* LineMap.swift */,
+				2BD5CF1428D602CE00F95E5A /* ViewModifiers.swift */,
+				2BD5CF1528D602CE00F95E5A /* OSDefinitions.swift */,
+				2BD5CF1628D602CE00F95E5A /* ScrollView.swift */,
+				2BD5CF1728D602CE00F95E5A /* CodeView.swift */,
+				2BD5CF1828D602CE00F95E5A /* MutableAttributedString.swift */,
+				2BD5CF1928D602CE00F95E5A /* TextView.swift */,
+				2BD5CF1A28D602CE00F95E5A /* UIHostingView.swift */,
+				2BD5CF1B28D602CE00F95E5A /* Theme.swift */,
+				2BD5CF1C28D602CE00F95E5A /* MessageViews.swift */,
+				2BD5CF1D28D602CE00F95E5A /* LanguageConfiguration.swift */,
+			);
+			path = CodeEditorView;
+			sourceTree = "<group>";
+		};
 		2BDFA90C28D10B9200980385 /* FileCreation */ = {
 			isa = PBXGroup;
 			children = (
@@ -3410,7 +3470,6 @@
 			packageProductDependencies = (
 				209D0245289AB9750082441F /* SwiftTerm */,
 				2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */,
-				93159FD728D5F2E800C55C5A /* CodeEditorView */,
 			);
 			productName = CodeEdit;
 			productReference = B658FB2C27DA9E0F00EA4DBD /* AuroraEditor.app */;
@@ -3491,7 +3550,6 @@
 			packageReferences = (
 				209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */,
 				2BE5EDAB28AE64A700C0A4AE /* XCRemoteSwiftPackageReference "AEExtensionKit" */,
-				93159FD628D5F2E700C55C5A /* XCRemoteSwiftPackageReference "CodeEditorView" */,
 			);
 			productRefGroup = B658FB2D27DA9E0F00EA4DBD /* Products */;
 			projectDirPath = "";
@@ -3787,6 +3845,7 @@
 				0483E35027FDB17700354AC0 /* ExtensionNavigator.swift in Sources */,
 				2093CD35289AA089003A88DD /* Git.swift in Sources */,
 				2093CD34289AA089003A88DD /* Issue.swift in Sources */,
+				2BD5CF2D28D602CE00F95E5A /* Theme.swift in Sources */,
 				2041B8C728A6A904005F03D8 /* Refs.swift in Sources */,
 				20752E4928CA54F000935487 /* Avatar.swift in Sources */,
 				2093CD12289AA054003A88DD /* ChangedFile.swift in Sources */,
@@ -3827,6 +3886,7 @@
 				2B4C1352289D56F9000ED796 /* STCALayer.swift in Sources */,
 				93672E8528B2684F0086132E /* ToolbarPlusMenu.swift in Sources */,
 				2093CDB8289AA1A6003A88DD /* GithubEnterpriseLoginView.swift in Sources */,
+				2BD5CF2028D602CE00F95E5A /* MinimapView.swift in Sources */,
 				2093CD44289AA095003A88DD /* Permissions.swift in Sources */,
 				2093CCA2289AA00B003A88DD /* WelcomeActionView.swift in Sources */,
 				2093CDC7289AA260003A88DD /* TabBarAccessory.swift in Sources */,
@@ -3888,7 +3948,10 @@
 				9354D4B728ACEE04004C6D18 /* RepositoriesTableViewCell.swift in Sources */,
 				2B4C1347289D56F9000ED796 /* STTextView+Insert.swift in Sources */,
 				20C22DAA28BCE18F004973CA /* Diff-Check.swift in Sources */,
+				2BD5CF2228D602CE00F95E5A /* CodeStorage.swift in Sources */,
 				20BCB0C228AA9AA00064C7C0 /* Stash-Entry.swift in Sources */,
+				2BD5CF2C28D602CE00F95E5A /* UIHostingView.swift in Sources */,
+				2BD5CF1F28D602CE00F95E5A /* CodeEditor.swift in Sources */,
 				2093CDCB289AA260003A88DD /* TabBarItem.swift in Sources */,
 				2093CDAF289AA185003A88DD /* PreviewThemeView.swift in Sources */,
 				939C2CC6289E345900BBB345 /* FileItemFileSystemFunctions.swift in Sources */,
@@ -3969,6 +4032,7 @@
 				2041B8C028A694FE005F03D8 /* Reset.swift in Sources */,
 				2093CDB1289AA19B003A88DD /* AccountListItem.swift in Sources */,
 				209D0251289ABF9A0082441F /* STTextView+AutoComplete.swift in Sources */,
+				2BD5CF2828D602CE00F95E5A /* ScrollView.swift in Sources */,
 				2BDFA90A28D107B200980385 /* CodeFile.swift in Sources */,
 				2093CC99289A9FFD003A88DD /* FilterTextField.swift in Sources */,
 				20FDB4E328BD06CB00FDD8C3 /* Diff-Data.swift in Sources */,
@@ -4009,6 +4073,7 @@
 				2BDFA91828D10B9200980385 /* FileCreationModel.swift in Sources */,
 				20D839AE280E0CA700B27357 /* PopoverView.swift in Sources */,
 				2093CC95289A9FF5003A88DD /* StatusBarToggleDrawerButton.swift in Sources */,
+				2BD5CF2928D602CE00F95E5A /* CodeView.swift in Sources */,
 				2072FA1E280D891500C7F8D4 /* Location.swift in Sources */,
 				2093CD28289AA084003A88DD /* GithubRepositoryRouter.swift in Sources */,
 				D7E201B227E8D50000CB86D0 /* FindNavigatorModeSelector.swift in Sources */,
@@ -4044,6 +4109,8 @@
 				2093CDE8289AAE87003A88DD /* StashChangesSheet.swift in Sources */,
 				2093CD6C289AA0FC003A88DD /* EffectView.swift in Sources */,
 				2093CDB3289AA19B003A88DD /* AccountSelectionDialog.swift in Sources */,
+				2BD5CF2A28D602CE00F95E5A /* MutableAttributedString.swift in Sources */,
+				2BD5CF2E28D602CE00F95E5A /* MessageViews.swift in Sources */,
 				0485EB1F27E7458B00138301 /* WorkspaceCodeFileView.swift in Sources */,
 				2093CD4D289AA0A2003A88DD /* Session.swift in Sources */,
 				2093CD42289AA095003A88DD /* ProjectHook.swift in Sources */,
@@ -4053,6 +4120,7 @@
 				2093CDBB289AA1B9003A88DD /* AcknowledgementsView.swift in Sources */,
 				202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */,
 				2093CDE0289AA522003A88DD /* Date+Formatted.swift in Sources */,
+				2BD5CF2528D602CE00F95E5A /* LineMap.swift in Sources */,
 				2847019E27FDDF7600F87B6B /* ProjectNavigatorView.swift in Sources */,
 				93159FDC28D5F40C00C55C5A /* CodeEditorViewWrapper.swift in Sources */,
 				2093CD37289AA08F003A88DD /* ProjectRouter.swift in Sources */,
@@ -4074,6 +4142,7 @@
 				209D0255289ABFCC0082441F /* STTextViewController.swift in Sources */,
 				2093CDCA289AA260003A88DD /* TabBarXcode.swift in Sources */,
 				20752E4628CA54B200935487 /* CommitHistoryCellView.swift in Sources */,
+				2BD5CF1E28D602CE00F95E5A /* EditorLocation.swift in Sources */,
 				2093CC96289A9FF5003A88DD /* StatusBarCursorLocationLabel.swift in Sources */,
 				9302A22428D183E300648D63 /* TabBarItemStorage.swift in Sources */,
 				2093CD95289AA13F003A88DD /* AppPreferencesModel.swift in Sources */,
@@ -4136,6 +4205,7 @@
 				936312EA28CCCAD9004CD24B /* TabBarAccessories.swift in Sources */,
 				2093CD11289AA054003A88DD /* GitUIModel.swift in Sources */,
 				2093CDD0289AA503003A88DD /* String+RemoveOccurrences.swift in Sources */,
+				2BD5CF2628D602CE00F95E5A /* ViewModifiers.swift in Sources */,
 				2093CD56289AA0C0003A88DD /* Page.swift in Sources */,
 				2093CD4B289AA0A2003A88DD /* Router.swift in Sources */,
 				B6EE989027E8879A00CDD8AB /* InspectorSidebar.swift in Sources */,
@@ -4147,6 +4217,7 @@
 				9C3E1A07284E8E020042BEC0 /* WelcomeModuleExtensions.swift in Sources */,
 				207D295828CCDE4300D31530 /* BranchCommitHistoryView.swift in Sources */,
 				2093CDBA289AA1AF003A88DD /* PreferencesPlaceholderView.swift in Sources */,
+				2BD5CF2328D602CE00F95E5A /* GutterView.swift in Sources */,
 				2093CD68289AA0F2003A88DD /* BreadcrumbsComponent.swift in Sources */,
 				2B4C134C289D56F9000ED796 /* STAnnotationLabelView.swift in Sources */,
 				201169D72837B2E300F92B46 /* SourceControlNavigatorView.swift in Sources */,
@@ -4167,6 +4238,7 @@
 				20C22DB128BCE869004973CA /* Diff-Line.swift in Sources */,
 				2093CD27289AA084003A88DD /* PublicKey.swift in Sources */,
 				043C321627E3201F006AE443 /* WorkspaceDocument.swift in Sources */,
+				2BD5CF2728D602CE00F95E5A /* OSDefinitions.swift in Sources */,
 				2041B8B628A67631005F03D8 /* Cherry-Pick.swift in Sources */,
 				2093CD5D289AA0DD003A88DD /* AuroraCrashlytics.swift in Sources */,
 				2041B8BC28A680CF005F03D8 /* Tag.swift in Sources */,
@@ -4196,7 +4268,9 @@
 				2093CD58289AA0C6003A88DD /* Plugin.swift in Sources */,
 				20D2A44428A7CFB40073F7BD /* RM.swift in Sources */,
 				2093CD23289AA084003A88DD /* GitRouter.swift in Sources */,
+				2BD5CF2428D602CE00F95E5A /* Message.swift in Sources */,
 				2093CD98289AA144003A88DD /* ThemeModel.swift in Sources */,
+				2BD5CF2F28D602CE00F95E5A /* LanguageConfiguration.swift in Sources */,
 				28B0A19827E385C300B73177 /* NavigatorSidebarToolbarTop.swift in Sources */,
 				2B4C1334289D56F9000ED796 /* STTextFinderClient.swift in Sources */,
 				2093CDBD289AA1BD003A88DD /* ParsePackagesResolved.swift in Sources */,
@@ -4206,6 +4280,7 @@
 				93532A7E28C736AA007588B4 /* DockProgress.swift in Sources */,
 				93ACA43728C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift in Sources */,
 				2093CDC0289AA247003A88DD /* SearchResultModel.swift in Sources */,
+				2BD5CF2128D602CE00F95E5A /* CodeStorageDelegate.swift in Sources */,
 				2093CD2E289AA089003A88DD /* Files.swift in Sources */,
 				9336833928C5EAD7009F7B44 /* GitCloneViewWindow.swift in Sources */,
 				209D0257289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift in Sources */,
@@ -4224,6 +4299,7 @@
 				2093CDE5289AAE7F003A88DD /* CheckoutBranch.swift in Sources */,
 				2093CD97289AA144003A88DD /* AuroraTheme.swift in Sources */,
 				2093CCB0289AA02D003A88DD /* QuickOpenPreviewView.swift in Sources */,
+				2BD5CF2B28D602CE00F95E5A /* TextView.swift in Sources */,
 				28FFE1BF27E3A441001939DB /* NavigatorSidebarToolbarBottom.swift in Sources */,
 				2B4C134B289D56F9000ED796 /* STTextView+NSTextViewportLayoutControllerDelegate.swift in Sources */,
 			);
@@ -4701,14 +4777,6 @@
 				kind = branch;
 			};
 		};
-		93159FD628D5F2E700C55C5A /* XCRemoteSwiftPackageReference "CodeEditorView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mchakravarty/CodeEditorView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -4721,11 +4789,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2BE5EDAB28AE64A700C0A4AE /* XCRemoteSwiftPackageReference "AEExtensionKit" */;
 			productName = AEExtensionKit;
-		};
-		93159FD728D5F2E800C55C5A /* CodeEditorView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 93159FD628D5F2E700C55C5A /* XCRemoteSwiftPackageReference "CodeEditorView" */;
-			productName = CodeEditorView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
