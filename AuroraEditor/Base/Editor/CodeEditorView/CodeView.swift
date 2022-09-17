@@ -571,9 +571,11 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         maxSize = CGSize(width: codeViewWidth, height: CGFloat.greatestFiniteMagnitude)
 
         // Set the text container area of the main text view to reach up to the minimap
-        // NB: We use the `lineFragmentPadding` to capture the slack that arises when the window width admits a fractional
-        //     number of characters. Adding the slack to the code view's text container doesn't work as the line breaks
-        //     of the minimap and main code view are then sometimes not entirely in sync.
+        // NB: We use the `lineFragmentPadding` to capture the slack that arises
+        //     when the window width admits a fractional number of characters.
+        //     Adding the slack to the code view's text container doesn't work
+        //     as the line breaks of the minimap and main code view are then
+        //     sometimes not entirely in sync.
         textContainerInset                 = NSSize(width: 0, height: 0)
         textContainer?.size                = NSSize(width: codeViewWidth, height: CGFloat.greatestFiniteMagnitude)
         textContainer?.lineFragmentPadding = padding / 2
@@ -769,8 +771,9 @@ extension CodeView {
                                                      geometry: nil,
                                                      colour: colour)
 
-        // We invalidate the layout of the line where the message belongs as their may be less space for the text now and
-        // because the layout process for the text fills the `lineFragmentRect` property of the above `MessageInfo`.
+        // We invalidate the layout of the line where the message belongs as their may be
+        // less space for the text now and because the layout process for the text fills
+        // the `lineFragmentRect` property of the above `MessageInfo`.
         optLayoutManager?.invalidateLayout(forCharacterRange: charRange, actualCharacterRange: nil)
         self.optLayoutManager?.invalidateDisplay(forCharacterRange: charRange)
         gutterView?.invalidateGutter(forCharRange: charRange)

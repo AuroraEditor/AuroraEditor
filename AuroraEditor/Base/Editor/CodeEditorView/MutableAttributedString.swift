@@ -209,7 +209,11 @@ extension NSMutableAttributedString {
         while currentRange.length > 0 {
 
             guard let stateTokeniser = tokeniser.states[state.tag],
-                  let result         = stateTokeniser.regexp.firstMatch(in: self.string, options: [], range: currentRange)
+                  let result = stateTokeniser.regexp.firstMatch(
+                    in: self.string,
+                    options: [],
+                    range: currentRange
+                  )
             else { break }  // no more match => stop
 
             // The next lexeme we look for from just after the one we just found

@@ -134,7 +134,8 @@ extension CodeStorage {
             for layoutManager in self.layoutManagers {
                 for textContainer in layoutManager.textContainers {
 
-                    if let textView = textContainer.textView, textView.selectedRange() == NSRange(location: index, length: 0) {
+                    if let textView = textContainer.textView,
+                       textView.selectedRange() == NSRange(location: index, length: 0) {
                         affectedTextViews.append(textView)
                     }
                 }
