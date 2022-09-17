@@ -139,15 +139,15 @@ struct LineMap<LineInfo> {
     /// line. Deal with out of bounds conditions by clipping to the front and end of the line range, respectively.
     ///
     /// - Parameter range: The character range for which we want to know the line range.
-    /// - Returns: The smallest range of lines that includes all characters in the given character range. The start value
-    ///     of that range is greater or equal 1.
+    /// - Returns: The smallest range of lines that includes all characters in the given character range.\
+    ///   The start value of that range is greater or equal 1.
     ///
     /// There are two special cases:
     /// - If the character range extends until the end of the text and the last line is a trailing empty line, that
     ///   trailing empty line is also included in the result. This behaviour distinguished the present function from
     ///   `linesContaining(range:)`, on which it is based.
-    /// - If the character range is of length zero, we return the line of the start location. We do that also if the start
-    ///   location is just behind the last character of the text.
+    /// - If the character range is of length zero, we return the line of the start location. \
+    ///   We do that also if the start location is just behind the last character of the text.
     ///
     func linesOf(range: NSRange) -> Range<Int> {
         let lastLine      = lines.count - 1,
@@ -174,14 +174,25 @@ struct LineMap<LineInfo> {
     ///
     func linesAffected(by editedRange: NSRange, changeInLength delta: Int) -> Range<Int> {
 
-        // To compute the line range, we extend the character range by one extra character. This is crucial as, if the
-        // edited range ends on a newline, this may insert a new line break, which means, line *after* the new line break
+        // To compute the line range, we extend the character range by one extra character.
+        // This is crucial as, if the
+        // edited range ends on a newline, this may insert a new line break,
+        // which means, line *after* the new line break
         // also belongs to the affected lines.
         //
-        let oldStringRange = NSRange(location: 0, length: NSMaxRange(lines.last?.range ?? NSRange(location: 0, length: 0)))
+        let oldStringRange = NSRange(
+            location: 0,
+            length: NSMaxRange(lines.last?.range ?? NSRange(location: 0, length: 0))
+        )
 
-        return linesOf(range: extend(range: NSRange(location: editedRange.location,
-                                                    length: editedRange.length - delta), clippingTo: oldStringRange))
+        return linesOf(
+            range: extend(
+                range: NSRange(
+                    location: editedRange.location,
+                    length: editedRange.length - delta),
+                clippingTo: oldStringRange
+            )
+        )
     }
 
     // MARK: -
@@ -209,14 +220,14 @@ struct LineMap<LineInfo> {
     ///   - editedRange: The character range that was affected by editing (after the edit).
     ///   - delta: The length increase of the edited string (negative if it got shorter).
     ///
-    /// NB: The line after the `editedRange` will be updated (and info fields be invalidated) if the `editedRange` ends on
-    ///     a newline.
+    /// NB: The line after the `editedRange` will be updated (and info fields be invalidated) if the \
+    /// `editedRange` ends on a newline.
     ///
     mutating func updateAfterEditing(string: String, range editedRange: NSRange, changeInLength delta: Int) {
 
         // To compute line ranges, we extend all character ranges by one extra character. This is crucial as, if the
-        // edited range ends on a newline, this may insert a new line break, which means, we also need to update the line
-        // *after* the new line break.
+        // edited range ends on a newline, this may insert a new line break,
+        // which means, we also need to update the line *after* the new line break.
         //
         let newStringRange = NSRange(location: 0, length: string.count),
             nsString       = string as NSString,
@@ -226,10 +237,12 @@ struct LineMap<LineInfo> {
             newLinesString = nsString.substring(with: newLinesRange),
             newLines       = linesOf(string: newLinesString).map { shift(line: $0, by: newLinesRange.location) }
 
-        // If the newly inserted text ends on a new line, we need to remove the empty trailing line in the new lines array
+        // If the newly inserted text ends on a new line,
+        // we need to remove the empty trailing line in the new lines array
         // unless the range of those lines extends until the end of the string.
-        let dropEmptyNewLine = newLines.last?.range.length == 0 && NSMaxRange(newLinesRange) < string.count,
-                                                                                               adjustedNewLines = dropEmptyNewLine ? newLines.dropLast() : newLines
+        let dropEmptyNewLine = newLines.last?.range.length == 0
+            && NSMaxRange(newLinesRange) < string.count,
+            adjustedNewLines = dropEmptyNewLine ? newLines.dropLast() : newLines
 
         lines.replaceSubrange(oldLinesRange, with: adjustedNewLines)
 
@@ -282,9 +295,13 @@ struct LineMap<LineInfo> {
     /// end of the string is preserved.
     ///
     private func extend(range: NSRange, clippingTo stringRange: NSRange) -> NSRange {
-        return
-        range.location == NSMaxRange(stringRange)
-        ? NSRange(location: range.location, length: 0)
-        : NSIntersectionRange(NSRange(location: range.location, length: range.length + 1), stringRange)
+        if range.location == NSMaxRange(stringRange) {
+            return NSRange(location: range.location, length: 0)
+        } else {
+            return NSIntersectionRange(
+                NSRange(location: range.location, length: range.length + 1),
+                stringRange
+            )
+        }
     }
 }

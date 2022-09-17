@@ -69,8 +69,8 @@ class CodeStorage: NSTextStorage {
 
         beginEditing()
 
-        // We are deleting one character => check whether it is a one-character bracket and if so also delete its matching
-        // bracket if it is directly adjascent
+        // We are deleting one character => check whether it is a one-character
+        // bracket and if so also delete its matching bracket if it is directly adjascent
         if range.length == 1 && str.isEmpty,
            let token = tokenAttribute(at: range.location),
            let language = (delegate as? CodeStorageDelegate)?.language {
@@ -142,8 +142,8 @@ extension CodeStorage {
 
             self.replaceCharacters(in: NSRange(location: index, length: 0), with: string)
 
-            // Reset the insertion point to the original (pre-insertion) position (as it will move after the inserted text on
-            // macOS otherwise)
+            // Reset the insertion point to the original (pre-insertion) position
+            // (as it will move after the inserted text on macOS otherwise)
             for textView in affectedTextViews { textView.setSelectedRange(NSRange(location: index, length: 0)) }
 
 #endif
@@ -163,7 +163,9 @@ extension CodeStorage {
                 if let codeContainer = textContainer as? CodeContainer,
                    let textView      = codeContainer.textView,
                    NSIntersectionRange(textView.selectedRange, range).length != 0 {
-                    Dispatch.DispatchQueue.main.async { textView.selectedRange = NSRange(location: range.location, length: 0) }
+                    Dispatch.DispatchQueue.main.async {
+                        textView.selectedRange = NSRange(location: range.location, length: 0)
+                    }
                 }
             }
         }
@@ -226,12 +228,15 @@ extension CodeStorage {
     func enumerateTokens(in enumerationRange: NSRange,
                          reverse reverseEnumeration: Bool = false,
                          using block: (LanguageConfiguration.Token, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
-        let opts: NSAttributedString.EnumerationOptions = reverseEnumeration ? [.longestEffectiveRangeNotRequired, .reverse]
-        : [.longestEffectiveRangeNotRequired]
+        let opts: NSAttributedString.EnumerationOptions = reverseEnumeration
+            ? [.longestEffectiveRangeNotRequired, .reverse]
+            : [.longestEffectiveRangeNotRequired]
+
         enumerateAttribute(.token, in: enumerationRange, options: opts) { (value, range, stop) in
 
             // we are only interested in non-token body matches
-            guard let tokenType = value as? TokenAttribute<LanguageConfiguration.Token>, tokenType.isHead else { return }
+            guard let tokenType = value as? TokenAttribute<LanguageConfiguration.Token>,
+                  tokenType.isHead else { return }
 
         theSwitch: switch range.length {
         case 0:

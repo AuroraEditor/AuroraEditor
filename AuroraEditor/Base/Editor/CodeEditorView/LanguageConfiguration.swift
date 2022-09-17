@@ -313,7 +313,10 @@ extension LanguageConfiguration {
 extension LanguageConfiguration {
 
   func token(_ token: LanguageConfiguration.Token)
-    -> (token: LanguageConfiguration.Token, transition: ((LanguageConfiguration.State) -> LanguageConfiguration.State)?) {
+    -> (
+        token: LanguageConfiguration.Token,
+        transition: ((LanguageConfiguration.State) -> LanguageConfiguration.State)?
+    ) {
     return (token: token, transition: nil)
   }
 
@@ -359,7 +362,9 @@ extension LanguageConfiguration {
       codeTokenDictionary.updateValue((token: .nestedCommentClose, transition: decNestedComment),
                                       forKey: .string(lexemes.close))
     }
-    if let lexeme = identifierRegexp { codeTokenDictionary.updateValue(token(Token.identifier), forKey: .pattern(lexeme)) }
+    if let lexeme = identifierRegexp {
+        codeTokenDictionary.updateValue(token(Token.identifier), forKey: .pattern(lexeme))
+    }
     for reserved in reservedIdentifiers {
       codeTokenDictionary.updateValue(token(.keyword), forKey: .word(reserved))
     }

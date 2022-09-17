@@ -104,13 +104,20 @@ class GutterView: NSView {
   /// Create and configure a gutter view for the given text view. This will also set the appropiate exclusion path for
   /// text container.
   ///
-  init(frame: CGRect, textView: NSTextView, theme: Theme, getMessageViews: @escaping () -> MessageViews, isMinimapGutter: Bool) {
-    self.textView        = textView
-    self.theme           = theme
+  init(
+    frame: CGRect,
+    textView: NSTextView,
+    theme: Theme,
+    getMessageViews: @escaping () -> MessageViews,
+    isMinimapGutter: Bool
+  ) {
+    self.textView = textView
+    self.theme = theme
     self.getMessageViews = getMessageViews
     self.isMinimapGutter = isMinimapGutter
     super.init(frame: frame)
-    // NB: If were decide to use layer backing, we need to set the `layerContentsRedrawPolicy` to redraw on resizing
+    // NB: If were decide to use layer backing,
+    // we need to set the `layerContentsRedrawPolicy` to redraw on resizing
   }
 
   required init(coder: NSCoder) {
@@ -255,8 +262,11 @@ extension GutterView {
       // Highlight lines with messages
       for messageView in getMessageViews() {
 
-        let glyphRange = layoutManager.glyphRange(forBoundingRect: messageView.value.lineFragementRect, in: textContainer),
-            index      = layoutManager.characterIndexForGlyph(at: glyphRange.location)
+        let glyphRange = layoutManager.glyphRange(
+            forBoundingRect: messageView.value.lineFragementRect,
+            in: textContainer
+        ),
+            index = layoutManager.characterIndexForGlyph(at: glyphRange.location)
         // TODO: should be filter by char range
         //      if charRange.contains(index) {
 
