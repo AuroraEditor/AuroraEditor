@@ -27,7 +27,7 @@ public struct QuickOpenPreviewView: View {
                 withContentsOf: item.url,
                 ofType: "public.source-code"
             ), loaded {
-                CodeFileView(codeFile: codeFile, editable: false)
+                AECodeView(codeFile: codeFile, editable: false)
             } else if let error = error {
                 Text(error)
             } else {

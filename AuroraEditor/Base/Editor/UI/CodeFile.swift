@@ -62,7 +62,7 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
 
     override public func makeWindowControllers() {
         // Returns the Storyboard that contains your Document window.
-        let contentView = CodeFileView(codeFile: self)
+        let contentView = AECodeView(codeFile: self)
         let window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 1400, height: 600),
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],

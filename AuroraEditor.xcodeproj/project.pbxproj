@@ -519,15 +519,11 @@
 		2BDFA8F528D1078900980385 /* CodeLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8F428D1078800980385 /* CodeLanguage.swift */; };
 		2BDFA8F828D1079700980385 /* HighlightrLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8F628D1079600980385 /* HighlightrLanguage.swift */; };
 		2BDFA8F928D1079700980385 /* WebTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8F728D1079600980385 /* WebTab.swift */; };
-		2BDFA90328D107B200980385 /* LineGutter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8FA28D107B200980385 /* LineGutter.swift */; };
 		2BDFA90428D107B200980385 /* WebWKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8FB28D107B200980385 /* WebWKView.swift */; };
 		2BDFA90528D107B200980385 /* OtherFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8FC28D107B200980385 /* OtherFileView.swift */; };
 		2BDFA90628D107B200980385 /* WebTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8FD28D107B200980385 /* WebTabView.swift */; };
 		2BDFA90728D107B200980385 /* ImageFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8FE28D107B200980385 /* ImageFileView.swift */; };
-		2BDFA90828D107B200980385 /* CodeEditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8FF28D107B200980385 /* CodeEditorTextView.swift */; };
-		2BDFA90928D107B200980385 /* CodeFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA90028D107B200980385 /* CodeFileView.swift */; };
 		2BDFA90A28D107B200980385 /* CodeFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA90128D107B200980385 /* CodeFile.swift */; };
-		2BDFA90B28D107B200980385 /* CodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA90228D107B200980385 /* CodeEditor.swift */; };
 		2BDFA91528D10B9200980385 /* FileCreationNamingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA90E28D10B9200980385 /* FileCreationNamingView.swift */; };
 		2BDFA91628D10B9200980385 /* FileCreationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA90F28D10B9200980385 /* FileCreationSelectionView.swift */; };
 		2BDFA91728D10B9200980385 /* FileCreationGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA91028D10B9200980385 /* FileCreationGridView.swift */; };
@@ -1152,15 +1148,11 @@
 		2BDFA8F428D1078800980385 /* CodeLanguage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeLanguage.swift; sourceTree = "<group>"; };
 		2BDFA8F628D1079600980385 /* HighlightrLanguage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightrLanguage.swift; sourceTree = "<group>"; };
 		2BDFA8F728D1079600980385 /* WebTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebTab.swift; sourceTree = "<group>"; };
-		2BDFA8FA28D107B200980385 /* LineGutter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGutter.swift; sourceTree = "<group>"; };
 		2BDFA8FB28D107B200980385 /* WebWKView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebWKView.swift; sourceTree = "<group>"; };
 		2BDFA8FC28D107B200980385 /* OtherFileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherFileView.swift; sourceTree = "<group>"; };
 		2BDFA8FD28D107B200980385 /* WebTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebTabView.swift; sourceTree = "<group>"; };
 		2BDFA8FE28D107B200980385 /* ImageFileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFileView.swift; sourceTree = "<group>"; };
-		2BDFA8FF28D107B200980385 /* CodeEditorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeEditorTextView.swift; sourceTree = "<group>"; };
-		2BDFA90028D107B200980385 /* CodeFileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeFileView.swift; sourceTree = "<group>"; };
 		2BDFA90128D107B200980385 /* CodeFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeFile.swift; sourceTree = "<group>"; };
-		2BDFA90228D107B200980385 /* CodeEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeEditor.swift; sourceTree = "<group>"; };
 		2BDFA90E28D10B9200980385 /* FileCreationNamingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCreationNamingView.swift; sourceTree = "<group>"; };
 		2BDFA90F28D10B9200980385 /* FileCreationSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCreationSelectionView.swift; sourceTree = "<group>"; };
 		2BDFA91028D10B9200980385 /* FileCreationGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCreationGridView.swift; sourceTree = "<group>"; };
@@ -1332,12 +1324,8 @@
 		202F2E2C289E6608000D3CAD /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				2BDFA90228D107B200980385 /* CodeEditor.swift */,
-				2BDFA8FF28D107B200980385 /* CodeEditorTextView.swift */,
 				2BDFA90128D107B200980385 /* CodeFile.swift */,
-				2BDFA90028D107B200980385 /* CodeFileView.swift */,
 				2BDFA8FE28D107B200980385 /* ImageFileView.swift */,
-				2BDFA8FA28D107B200980385 /* LineGutter.swift */,
 				2BDFA8FC28D107B200980385 /* OtherFileView.swift */,
 				2BDFA8FD28D107B200980385 /* WebTabView.swift */,
 				2BDFA8FB28D107B200980385 /* WebWKView.swift */,
@@ -3978,7 +3966,6 @@
 				2093CDA0289AA163003A88DD /* ThemePreferences.swift in Sources */,
 				2072FA1A280D872600C7F8D4 /* LineEndings.swift in Sources */,
 				2B4C133C289D56F9000ED796 /* STTextView+Mouse.swift in Sources */,
-				2BDFA90828D107B200980385 /* CodeEditorTextView.swift in Sources */,
 				9354D4B928ACEE20004C6D18 /* RepositoriesMenu.swift in Sources */,
 				201169E22837B3D800F92B46 /* ChangesView.swift in Sources */,
 				20DF97A128ABB30D009CE1E9 /* FileManger.swift in Sources */,
@@ -4010,7 +3997,6 @@
 				93CB9AE028C72BC20068074A /* GitCloneView+Helpers.swift in Sources */,
 				2BDFA91828D10B9200980385 /* FileCreationModel.swift in Sources */,
 				20D839AE280E0CA700B27357 /* PopoverView.swift in Sources */,
-				2BDFA90B28D107B200980385 /* CodeEditor.swift in Sources */,
 				2093CC95289A9FF5003A88DD /* StatusBarToggleDrawerButton.swift in Sources */,
 				2072FA1E280D891500C7F8D4 /* Location.swift in Sources */,
 				2093CD28289AA084003A88DD /* GithubRepositoryRouter.swift in Sources */,
@@ -4162,7 +4148,6 @@
 				20D839AB280DEB2900B27357 /* NoSelectionView.swift in Sources */,
 				209D0253289ABFB60082441F /* STTextView+Menu.swift in Sources */,
 				2093CDA5289AA170003A88DD /* GeneralPreferencesView.swift in Sources */,
-				2BDFA90928D107B200980385 /* CodeFileView.swift in Sources */,
 				20EBB505280C329800F3A5DA /* HistoryItem.swift in Sources */,
 				2093CD4C289AA0A2003A88DD /* JSONPostRouter.swift in Sources */,
 				2041B8AF28A67091005F03D8 /* Branch.swift in Sources */,
@@ -4200,7 +4185,6 @@
 				20D2A44428A7CFB40073F7BD /* RM.swift in Sources */,
 				2093CD23289AA084003A88DD /* GitRouter.swift in Sources */,
 				2093CD98289AA144003A88DD /* ThemeModel.swift in Sources */,
-				2BDFA90328D107B200980385 /* LineGutter.swift in Sources */,
 				28B0A19827E385C300B73177 /* NavigatorSidebarToolbarTop.swift in Sources */,
 				2B4C1334289D56F9000ED796 /* STTextFinderClient.swift in Sources */,
 				2093CDBD289AA1BD003A88DD /* ParsePackagesResolved.swift in Sources */,
