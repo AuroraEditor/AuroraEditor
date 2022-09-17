@@ -164,7 +164,11 @@ extension NSTextView: TextView {
     guard let codeStorageDelegate = optCodeStorage?.delegate as? CodeStorageDelegate else { return Set() }
 
     let lineRanges: [Range<Int>] = selectedRanges.map { range in
-      if let range = range as? NSRange { return codeStorageDelegate.lineMap.linesContaining(range: range) } else { return 0..<0 }
+      if let range = range as? NSRange {
+          return codeStorageDelegate.lineMap.linesContaining(range: range)
+      } else {
+          return 0..<0
+      }
     }
     return lineRanges.reduce(Set<Int>()) { $0.union($1) }
   }
