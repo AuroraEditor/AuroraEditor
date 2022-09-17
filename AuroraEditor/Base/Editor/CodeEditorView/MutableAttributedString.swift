@@ -156,8 +156,9 @@ extension NSMutableAttributedString {
 
       let regexp = try NSRegularExpression(pattern: pattern, options: [])
       return Tokeniser.State(regexp: regexp,
-                             stringTokenTypes: [String: TokenAction<TokenType, StateType>](stringTokenTypes) {
-                              (left, _) in return left },
+                             stringTokenTypes: [
+                                String: TokenAction<TokenType, StateType>
+                             ](stringTokenTypes) { (left, _) in return left },
                              patternTokenTypes: patternTokenTypes)
     }
 

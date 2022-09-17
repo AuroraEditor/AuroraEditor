@@ -47,8 +47,9 @@ class CodeStorage: NSTextStorage {
     var foregroundColour = theme.textColour
 
     // Translate attributes indicating text highlighting to the foreground colour determined by the current theme.
-    if attributes[.comment] != nil { foregroundColour = theme.commentColour } else if let tokenAttr = attributes[.token] as? TokenAttribute<LanguageConfiguration.Token> {
-
+    if attributes[.comment] != nil {
+        foregroundColour = theme.commentColour
+    } else if let tokenAttr = attributes[.token] as? TokenAttribute<LanguageConfiguration.Token> {
       switch tokenAttr.token {
       case .string:     foregroundColour = theme.stringColour
       case .character:  foregroundColour = theme.characterColour

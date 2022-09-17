@@ -140,7 +140,9 @@ extension CodeEditor: UIViewRepresentable {
 
     // We can't set the scroll position right away as the views are not properly sized yet. Thus, this needs to be
     // delayed.
-    // TODO: The scroll fraction assignment still happens to soon if the initialisisation takes a long time, because we loaded a large file. It be better if we could deterministically determine when initialisation is entirely finished and then set the scroll fraction at that point.
+    // TODO: The scroll fraction assignment still happens to soon if the initialisisation takes a\
+    // long time, because we loaded a large file. It be better if we could deterministically\
+    // determine when initialisation is entirely finished and then set the scroll fraction at that point.
     DispatchQueue.main.async {
       codeView.verticalScrollFraction = position.verticalScrollFraction
     }
@@ -241,7 +243,10 @@ extension CodeEditor: NSViewRepresentable {
 
     // We can't set the scroll position right away as the views are not properly sized yet. Thus, this needs to be
     // delayed.
-    // TODO: The scroll fraction assignment still happens to soon if the initialisisation takes a long time, because we loaded a large file.  It be better if we could deterministically determine when initialisation is entirely finished and then set the scroll fraction at that point.
+    // TODO: The scroll fraction assignment still happens to soon if the initialisisation \
+    // takes a long time, because we loaded a large file.
+    // It be better if we could deterministically determine when initialisation is entirely \
+    // finished and then set the scroll fraction at that point.
     DispatchQueue.main.async {
       scrollView.verticalScrollFraction = position.verticalScrollFraction
     }
