@@ -54,8 +54,6 @@ public struct CodeEditorViewWrapper: View {
     @State private var messages: Set<Located<Message>> = Set()
 
     public var body: some View {
-        let _ = self.tempLog() // swiftlint:disable:this redundant_discardable_let
-
         CodeEditor(
             text: $codeFile.content,
             position: $position,
@@ -65,13 +63,5 @@ public struct CodeEditorViewWrapper: View {
         )
         .environment(\.codeEditorTheme,
                       colorScheme == .dark ? Theme.defaultDark : Theme.defaultLight)
-    }
-
-    func tempLog() {
-        Log.info("Position: ", $position)
-
-        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 5) {
-            tempLog()
-        }
     }
 }
