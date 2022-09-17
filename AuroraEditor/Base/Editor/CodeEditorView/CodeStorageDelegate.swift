@@ -136,7 +136,7 @@ class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
   //     (In particular, changing the font attribute at this point is potentially dangerous.)
   func textStorage(_ textStorage: NSTextStorage,
                    didProcessEditing editedMask: TextStorageEditActions,
-                   range editedRange: NSRange,  // Apple docs are incorrect here: this is the range *after* editing
+                   range editedRange: NSRange, // Apple docs are incorrect here: this is the range *after* editing
                    changeInLength delta: Int) {
     guard let codeStorage = textStorage as? CodeStorage else { return }
 
@@ -152,7 +152,7 @@ class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
 
     // Determine the ids of message bundles that are removed by this edit.
     let lines = lineMap.linesAffected(by: editedRange, changeInLength: delta)
-    lastEvictedMessageIDs = lines.compactMap { lineMap.lookup(line: $0)?.info?.messages?.id   }
+    lastEvictedMessageIDs = lines.compactMap { lineMap.lookup(line: $0)?.info?.messages?.id }
 
     lineMap.updateAfterEditing(string: textStorage.string, range: editedRange, changeInLength: delta)
     tokeniseAttributesFor(range: editedRange, in: textStorage)
@@ -416,7 +416,8 @@ extension CodeStorageDelegate {
 
           if currentToken.type == previousToken.type.matchingBracket {
 
-            // The current token is a matching closing bracket for the opening bracket of the last token => nothing to do
+            // The current token is a matching closing bracket for the opening bracket\
+            // of the last token => nothing to do
             completingString = nil
 
           } else if let matchingCurrentLexeme = matchingLexemeForOpeningBracket(currentToken.type) {
@@ -440,7 +441,8 @@ extension CodeStorageDelegate {
              CharacterSet.newlines.contains(unichar),
              previousToken.type == .curlyBracketOpen || previousToken.type == .nestedCommentOpen {
 
-            // Insertion of a newline after a curly bracket => complete the previous opening bracket prefixed with an extra newline
+            // Insertion of a newline after a curly bracket => complete\
+            // the previous opening bracket prefixed with an extra newline
             completingString = String(unichar) + matchingPreviousLexeme
 
           } else {

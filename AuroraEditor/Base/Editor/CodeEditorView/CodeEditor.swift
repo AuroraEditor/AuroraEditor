@@ -363,9 +363,7 @@ extension EnvironmentValues {
 }
 
 extension CodeEditor.Position: RawRepresentable, Codable {
-
   public init?(rawValue: String) {
-
     func parseNSRange(lexeme: String) -> NSRange? {
       let components = lexeme.components(separatedBy: ":")
       guard components.count == 2,
@@ -377,15 +375,13 @@ extension CodeEditor.Position: RawRepresentable, Codable {
 
     let components = rawValue.components(separatedBy: "|")
     if components.count == 2 {
-
-      selections             = components[0].components(separatedBy: ";").compactMap { parseNSRange(lexeme: $0) }
+      selections = components[0].components(separatedBy: ";").compactMap { parseNSRange(lexeme: $0) }
       verticalScrollFraction = CGFloat(Double(components[1]) ?? 0)
-
     } else { self = CodeEditor.Position() }
   }
 
   public var rawValue: String {
-    let selectionsString             = selections.map { "\($0.location):\($0.length)" }.joined(separator: ";"),
+    let selectionsString = selections.map { "\($0.location):\($0.length)" }.joined(separator: ";"),
         verticalScrollFractionString = String(describing: verticalScrollFraction)
     return selectionsString + "|" + verticalScrollFractionString
   }
@@ -393,9 +389,7 @@ extension CodeEditor.Position: RawRepresentable, Codable {
 
 // MARK: -
 // MARK: Previews
-
 struct CodeEditor_Previews: PreviewProvider {
-
   static var previews: some View {
     CodeEditor(text: .constant("-- Hello World!"),
                position: .constant(CodeEditor.Position()),
