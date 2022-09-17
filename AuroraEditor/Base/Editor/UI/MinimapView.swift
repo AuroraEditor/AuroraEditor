@@ -34,8 +34,10 @@ struct MinimapView: View {
                     }
                 }
                 // the scrollable area is the total number of lines * line height, minus the view height
-                .offset(y: (CGFloat(attributedTextItems.last?.lineNumber ?? 0) * minimapLineHeight * 1.5
-                            - proxy.size.height) *
+                // however, if the view height is > the scrollable area, do not scroll.
+                .offset(y: max(0,
+                            (CGFloat(attributedTextItems.last?.lineNumber ?? 0) * minimapLineHeight * 1.5
+                            - proxy.size.height)) *
                 // the offset is the scrollable area * scrollAmount, inverted
                             scrollAmount * -1)
             }
