@@ -87,16 +87,22 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
             tabWidth: tabWidth
         )
         controller.lineHeightMultiple = lineHeight
+        updateProperties(controller: controller)
         return controller
     }
 
     @State private var lastText: String = ""
     @State private var minimapView: NSHostingView<MinimapView>?
+    @State var viewController: NSViewControllerType?
+    @State var coordinator: Coordinator?
 
     public func updateNSViewController(_ controller: NSViewControllerType, context: Context) {
         controller.font = font
         controller.tabWidth = tabWidth
         controller.lineHeightMultiple = lineHeight
+
+        updateProperties(controller: controller)
+
         let attributedText = controller.textView.attributedString()
         if attributedText.string != lastText {
             DispatchQueue.main.async {
@@ -139,7 +145,6 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
     /// Takes an attributed string and turns it into an array of ``AttributedStringItem``s
     /// - Parameter attributedText: The attributed string to parse
     func updateTextItems(attributedText: NSAttributedString) {
-        Log.info("Length: \(attributedText.length)")
         let length = attributedText.length
 
         var newAttributedTextItems: [AttributedStringItem] = []
@@ -160,7 +165,6 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
 
             // get the contents of the range
             let rangeContents = atString[range] ?? ""
-            Log.info("range: \(range), position \(newLines),\(charFromStart), content \(rangeContents)")
 
             // split by \n characters and spaces
             let lines = String(rangeContents).components(separatedBy: "\n")
@@ -189,6 +193,58 @@ public struct AuroraEditorTextView: NSViewControllerRepresentable {
         }
 
         attributedTextItems = newAttributedTextItems
+    }
+
+    public class Coordinator: NSObject {
+        let parent: AuroraEditorTextView
+        init(parent: AuroraEditorTextView) {
+            self.parent = parent
+            super.init()
+
+            if let scrollView = parent.viewController?.textView.scrollView {
+                configureScrollView(scrollView: scrollView)
+            }
+        }
+
+        private func configureScrollView(scrollView: NSScrollView) {
+            Log.info("Config scroll view")
+            scrollView.contentView.postsBoundsChangedNotifications = true
+            NotificationCenter.default.addObserver(self, selector: #selector(contentViewDidChangeBounds),
+                                                   name: NSView.boundsDidChangeNotification,
+                                                   object: scrollView.contentView)
+        }
+
+        @objc
+        func contentViewDidChangeBounds(_ notification: Notification) {
+            guard let scrollView = parent.viewController?.textView.scrollView,
+                  let documentView = scrollView.documentView else { return }
+
+            let clipView = scrollView.contentView
+
+            Log.info("Bounds changed to \(clipView.bounds.origin.y)")
+
+            if clipView.bounds.origin.y == -5 { // the clipview, very oddly, starts at y = -5
+                Log.info("top")
+            } else if clipView.bounds.origin.y + clipView.bounds.height == documentView.bounds.height {
+                Log.info("bottom")
+            }
+        }
+    }
+
+    public func makeCoordinator() -> Coordinator {
+        let coordinator = Coordinator(parent: self)
+        return coordinator
+    }
+
+    private func updateProperties(controller: NSViewControllerType) {
+        DispatchQueue.main.async {
+            if self.viewController != controller {
+                self.viewController = controller
+                self.coordinator = makeCoordinator()
+            } else if self.coordinator == nil {
+                self.coordinator = makeCoordinator()
+            }
+        }
     }
 }
 
