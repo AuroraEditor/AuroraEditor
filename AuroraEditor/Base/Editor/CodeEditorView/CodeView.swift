@@ -236,7 +236,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
     /// Designated initialiser for code views with a gutter.
     ///
-    init(frame: CGRect,
+    init(frame: CGRect, // swiftlint:disable:this function_body_length
          with language: LanguageConfiguration,
          viewLayout: CodeEditor.LayoutConfiguration,
          theme: Theme) {
@@ -664,7 +664,7 @@ extension CodeView {
     /// Update the layout of the specified message view if its geometry got invalidated by
     /// `CodeTextContainer.lineFragmentRect(forProposedRect:at:writingDirection:remaining:)`.
     ///
-    fileprivate func layoutMessageView( // swiftlint:disable:this function_body_length
+    fileprivate func layoutMessageView(
         identifiedBy id: UUID
     ) {
         guard let codeLayoutManager = layoutManager as? CodeLayoutManager,
@@ -974,4 +974,4 @@ private func combinedRanges(ranges: [NSValue]) -> NSRange {
     return actualranges.dropFirst().reduce(actualranges.first ?? NSRange(location: 0, length: 0)) {
         NSUnionRange($0, $1)
     }
-}
+} // swiftlint:disable:this file_length

@@ -195,7 +195,7 @@ extension GutterView {
   // MARK: -
   // MARK: Gutter drawing
 
-  override func draw(_ rect: CGRect) {
+  override func draw(_ rect: CGRect) { // swiftlint:disable:this function_body_length
     guard let layoutManager = optLayoutManager,
           let textContainer = optTextContainer,
           let lineMap       = optLineMap
