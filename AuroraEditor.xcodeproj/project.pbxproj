@@ -388,11 +388,6 @@
 		2096A82428CF76D400F6ED39 /* CreateNewBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2096A82328CF76D400F6ED39 /* CreateNewBranchView.swift */; };
 		209D0246289AB9750082441F /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = 209D0245289AB9750082441F /* SwiftTerm */; };
 		209D024B289ABC340082441F /* Package.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 209D024A289ABC340082441F /* Package.resolved */; };
-		209D0251289ABF9A0082441F /* STTextView+AutoComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0250289ABF9A0082441F /* STTextView+AutoComplete.swift */; };
-		209D0253289ABFB60082441F /* STTextView+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0252289ABFB60082441F /* STTextView+Menu.swift */; };
-		209D0255289ABFCC0082441F /* STTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0254289ABFCC0082441F /* STTextViewController.swift */; };
-		209D0257289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0256289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift */; };
-		209D0259289ABFF70082441F /* AuroraEditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D0258289ABFF70082441F /* AuroraEditorTextView.swift */; };
 		20B5BD9C28B11C6200B2A02F /* WelcomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BD9B28B11C6200B2A02F /* WelcomeModel.swift */; };
 		20B5BDA128B130EA00B2A02F /* DropProposalPositionCalculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BDA028B130EA00B2A02F /* DropProposalPositionCalculations.swift */; };
 		20B5BDA328B130F000B2A02F /* SplitEditorDropProposalPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BDA228B130F000B2A02F /* SplitEditorDropProposalPosition.swift */; };
@@ -467,47 +462,6 @@
 		28FFE1BF27E3A441001939DB /* NavigatorSidebarToolbarBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FFE1BE27E3A441001939DB /* NavigatorSidebarToolbarBottom.swift */; };
 		2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B18EC4528AEC84900494768 /* Symbols.xcassets */; };
 		2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */; };
-		2B4C132B289D56F9000ED796 /* STTextView+InsertionPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C12FF289D56F9000ED796 /* STTextView+InsertionPoint.swift */; };
-		2B4C132C289D56F9000ED796 /* STTextView+Undo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1300289D56F9000ED796 /* STTextView+Undo.swift */; };
-		2B4C132D289D56F9000ED796 /* STTextView+Find.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1301289D56F9000ED796 /* STTextView+Find.swift */; };
-		2B4C132E289D56F9000ED796 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 2B4C1302289D56F9000ED796 /* LICENSE.md */; };
-		2B4C132F289D56F9000ED796 /* STTextView+Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1303289D56F9000ED796 /* STTextView+Annotations.swift */; };
-		2B4C1330289D56F9000ED796 /* STLineNumberRulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1304289D56F9000ED796 /* STLineNumberRulerView.swift */; };
-		2B4C1331289D56F9000ED796 /* STTextLayoutFragmentLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1305289D56F9000ED796 /* STTextLayoutFragmentLayer.swift */; };
-		2B4C1332289D56F9000ED796 /* STTextView+Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1306289D56F9000ED796 /* STTextView+Delete.swift */; };
-		2B4C1333289D56F9000ED796 /* STTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1307289D56F9000ED796 /* STTextViewDelegate.swift */; };
-		2B4C1334289D56F9000ED796 /* STTextFinderClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1308289D56F9000ED796 /* STTextFinderClient.swift */; };
-		2B4C1335289D56F9000ED796 /* STTextView+Scrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1309289D56F9000ED796 /* STTextView+Scrolling.swift */; };
-		2B4C1336289D56F9000ED796 /* STTextView+NSUserInterfaceValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C130A289D56F9000ED796 /* STTextView+NSUserInterfaceValidations.swift */; };
-		2B4C1337289D56F9000ED796 /* CompletionWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C130D289D56F9000ED796 /* CompletionWindowController.swift */; };
-		2B4C1338289D56F9000ED796 /* CompletionWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C130E289D56F9000ED796 /* CompletionWindow.swift */; };
-		2B4C1339289D56F9000ED796 /* STCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C130F289D56F9000ED796 /* STCompletionViewController.swift */; };
-		2B4C133A289D56F9000ED796 /* STCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1310289D56F9000ED796 /* STCompletion.swift */; };
-		2B4C133B289D56F9000ED796 /* STTextView+CopyPaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1311289D56F9000ED796 /* STTextView+CopyPaste.swift */; };
-		2B4C133C289D56F9000ED796 /* STTextView+Mouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1312289D56F9000ED796 /* STTextView+Mouse.swift */; };
-		2B4C133D289D56F9000ED796 /* STTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1313289D56F9000ED796 /* STTextView.swift */; };
-		2B4C133E289D56F9000ED796 /* NSResponder+debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1315289D56F9000ED796 /* NSResponder+debug.swift */; };
-		2B4C133F289D56F9000ED796 /* Geometric+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1316289D56F9000ED796 /* Geometric+Helpers.swift */; };
-		2B4C1340289D56F9000ED796 /* NSTextLocation+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1317289D56F9000ED796 /* NSTextLocation+Equatable.swift */; };
-		2B4C1341289D56F9000ED796 /* NSRange+TextKit2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1318289D56F9000ED796 /* NSRange+TextKit2.swift */; };
-		2B4C1342289D56F9000ED796 /* NSTextLayoutManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1319289D56F9000ED796 /* NSTextLayoutManager+Helpers.swift */; };
-		2B4C1343289D56F9000ED796 /* NSTextContentManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C131A289D56F9000ED796 /* NSTextContentManager+Helpers.swift */; };
-		2B4C1344289D56F9000ED796 /* STTextView+TextInputClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C131B289D56F9000ED796 /* STTextView+TextInputClient.swift */; };
-		2B4C1345289D56F9000ED796 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2B4C131C289D56F9000ED796 /* README.md */; };
-		2B4C1346289D56F9000ED796 /* STTextView+Select.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C131D289D56F9000ED796 /* STTextView+Select.swift */; };
-		2B4C1347289D56F9000ED796 /* STTextView+Insert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C131E289D56F9000ED796 /* STTextView+Insert.swift */; };
-		2B4C1348289D56F9000ED796 /* STTextLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C131F289D56F9000ED796 /* STTextLayoutManager.swift */; };
-		2B4C1349289D56F9000ED796 /* STTextView+Complete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1320289D56F9000ED796 /* STTextView+Complete.swift */; };
-		2B4C134A289D56F9000ED796 /* STTextContentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1321289D56F9000ED796 /* STTextContentStorage.swift */; };
-		2B4C134B289D56F9000ED796 /* STTextView+NSTextViewportLayoutControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1322289D56F9000ED796 /* STTextView+NSTextViewportLayoutControllerDelegate.swift */; };
-		2B4C134C289D56F9000ED796 /* STAnnotationLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1323289D56F9000ED796 /* STAnnotationLabelView.swift */; };
-		2B4C134D289D56F9000ED796 /* STInsertionPointLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1324289D56F9000ED796 /* STInsertionPointLayer.swift */; };
-		2B4C134E289D56F9000ED796 /* TypingTextUndo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1326289D56F9000ED796 /* TypingTextUndo.swift */; };
-		2B4C134F289D56F9000ED796 /* ApproximateEquality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1327289D56F9000ED796 /* ApproximateEquality.swift */; };
-		2B4C1350289D56F9000ED796 /* PixelAlign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1328289D56F9000ED796 /* PixelAlign.swift */; };
-		2B4C1351289D56F9000ED796 /* CoalescingUndoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1329289D56F9000ED796 /* CoalescingUndoManager.swift */; };
-		2B4C1352289D56F9000ED796 /* STCALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C132A289D56F9000ED796 /* STCALayer.swift */; };
-		2B4C1354289D6457000ED796 /* STTextView+Select2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C1353289D6457000ED796 /* STTextView+Select2.swift */; };
 		2B5B25532885D9BA009C7384 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B25522885D9B9009C7384 /* .swiftlint.yml */; };
 		2B5B25552885D9C3009C7384 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B25542885D9C3009C7384 /* .gitignore */; };
 		2B5B255D288ADABA009C7384 /* shellClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5B255C288ADABA009C7384 /* shellClient.swift */; };
@@ -556,7 +510,6 @@
 		6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */; };
 		9302A22428D183E300648D63 /* TabBarItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9302A22328D183E300648D63 /* TabBarItemStorage.swift */; };
 		9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */; };
-		93159FDA28D5F3D500C55C5A /* AECodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93159FD928D5F3D500C55C5A /* AECodeView.swift */; };
 		93159FDC28D5F40C00C55C5A /* CodeEditorViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93159FDB28D5F40C00C55C5A /* CodeEditorViewWrapper.swift */; };
 		9327701128CE1B6300871190 /* TabHierarchyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9327701028CE1B6300871190 /* TabHierarchyTableViewCell.swift */; };
 		9336833928C5EAD7009F7B44 /* GitCloneViewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9336833828C5EAD7009F7B44 /* GitCloneViewWindow.swift */; };
@@ -735,11 +688,6 @@
 		2093CDE3289AA881003A88DD /* IgnoredFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredFiles.swift; sourceTree = "<group>"; };
 		2096A82328CF76D400F6ED39 /* CreateNewBranchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewBranchView.swift; sourceTree = "<group>"; };
 		209D024A289ABC340082441F /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; name = Package.resolved; path = ../Package.resolved; sourceTree = "<group>"; };
-		209D0250289ABF9A0082441F /* STTextView+AutoComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STTextView+AutoComplete.swift"; sourceTree = "<group>"; };
-		209D0252289ABFB60082441F /* STTextView+Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STTextView+Menu.swift"; sourceTree = "<group>"; };
-		209D0254289ABFCC0082441F /* STTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTextViewController.swift; sourceTree = "<group>"; };
-		209D0256289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STTextViewController+STTextViewDelegate.swift"; sourceTree = "<group>"; };
-		209D0258289ABFF70082441F /* AuroraEditorTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorTextView.swift; sourceTree = "<group>"; };
 		20B5BD9B28B11C6200B2A02F /* WelcomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeModel.swift; sourceTree = "<group>"; };
 		20B5BDA028B130EA00B2A02F /* DropProposalPositionCalculations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropProposalPositionCalculations.swift; sourceTree = "<group>"; };
 		20B5BDA228B130F000B2A02F /* SplitEditorDropProposalPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitEditorDropProposalPosition.swift; sourceTree = "<group>"; };
@@ -1116,47 +1064,6 @@
 		2B15CA0028254139004E8F22 /* OpenWithAuroraEditor.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = OpenWithAuroraEditor.entitlements; sourceTree = "<group>"; };
 		2B18EC4528AEC84900494768 /* Symbols.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Symbols.xcassets; sourceTree = "<group>"; };
 		2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuroraEditorSymbols.swift; sourceTree = "<group>"; };
-		2B4C12FF289D56F9000ED796 /* STTextView+InsertionPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STTextView+InsertionPoint.swift"; sourceTree = "<group>"; };
-		2B4C1300289D56F9000ED796 /* STTextView+Undo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STTextView+Undo.swift"; sourceTree = "<group>"; };
-		2B4C1301289D56F9000ED796 /* STTextView+Find.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STTextView+Find.swift"; sourceTree = "<group>"; };
-		2B4C1302289D56F9000ED796 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
-		2B4C1303289D56F9000ED796 /* STTextView+Annotations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STTextView+Annotations.swift"; sourceTree = "<group>"; };
-		2B4C1304289D56F9000ED796 /* STLineNumberRulerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STLineNumberRulerView.swift; sourceTree = "<group>"; };
-		2B4C1305289D56F9000ED796 /* STTextLayoutFragmentLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STTextLayoutFragmentLayer.swift; sourceTree = "<group>"; };
-		2B4C1306289D56F9000ED796 /* STTextView+Delete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STTextView+Delete.swift"; sourceTree = "<group>"; };
-		2B4C1307289D56F9000ED796 /* STTextViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STTextViewDelegate.swift; sourceTree = "<group>"; };
-		2B4C1308289D56F9000ED796 /* STTextFinderClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STTextFinderClient.swift; sourceTree = "<group>"; };
-		2B4C1309289D56F9000ED796 /* STTextView+Scrolling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STTextView+Scrolling.swift"; sourceTree = "<group>"; };
-		2B4C130A289D56F9000ED796 /* STTextView+NSUserInterfaceValidations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STTextView+NSUserInterfaceValidations.swift"; sourceTree = "<group>"; };
-		2B4C130D289D56F9000ED796 /* CompletionWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionWindowController.swift; sourceTree = "<group>"; };
-		2B4C130E289D56F9000ED796 /* CompletionWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionWindow.swift; sourceTree = "<group>"; };
-		2B4C130F289D56F9000ED796 /* STCompletionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STCompletionViewController.swift; sourceTree = "<group>"; };
-		2B4C1310289D56F9000ED796 /* STCompletion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STCompletion.swift; sourceTree = "<group>"; };
-		2B4C1311289D56F9000ED796 /* STTextView+CopyPaste.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STTextView+CopyPaste.swift"; sourceTree = "<group>"; };
-		2B4C1312289D56F9000ED796 /* STTextView+Mouse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STTextView+Mouse.swift"; sourceTree = "<group>"; };
-		2B4C1313289D56F9000ED796 /* STTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STTextView.swift; sourceTree = "<group>"; };
-		2B4C1315289D56F9000ED796 /* NSResponder+debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSResponder+debug.swift"; sourceTree = "<group>"; };
-		2B4C1316289D56F9000ED796 /* Geometric+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Geometric+Helpers.swift"; sourceTree = "<group>"; };
-		2B4C1317289D56F9000ED796 /* NSTextLocation+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextLocation+Equatable.swift"; sourceTree = "<group>"; };
-		2B4C1318289D56F9000ED796 /* NSRange+TextKit2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+TextKit2.swift"; sourceTree = "<group>"; };
-		2B4C1319289D56F9000ED796 /* NSTextLayoutManager+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextLayoutManager+Helpers.swift"; sourceTree = "<group>"; };
-		2B4C131A289D56F9000ED796 /* NSTextContentManager+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextContentManager+Helpers.swift"; sourceTree = "<group>"; };
-		2B4C131B289D56F9000ED796 /* STTextView+TextInputClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STTextView+TextInputClient.swift"; sourceTree = "<group>"; };
-		2B4C131C289D56F9000ED796 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		2B4C131D289D56F9000ED796 /* STTextView+Select.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STTextView+Select.swift"; sourceTree = "<group>"; };
-		2B4C131E289D56F9000ED796 /* STTextView+Insert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STTextView+Insert.swift"; sourceTree = "<group>"; };
-		2B4C131F289D56F9000ED796 /* STTextLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STTextLayoutManager.swift; sourceTree = "<group>"; };
-		2B4C1320289D56F9000ED796 /* STTextView+Complete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STTextView+Complete.swift"; sourceTree = "<group>"; };
-		2B4C1321289D56F9000ED796 /* STTextContentStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STTextContentStorage.swift; sourceTree = "<group>"; };
-		2B4C1322289D56F9000ED796 /* STTextView+NSTextViewportLayoutControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "STTextView+NSTextViewportLayoutControllerDelegate.swift"; sourceTree = "<group>"; };
-		2B4C1323289D56F9000ED796 /* STAnnotationLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STAnnotationLabelView.swift; sourceTree = "<group>"; };
-		2B4C1324289D56F9000ED796 /* STInsertionPointLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STInsertionPointLayer.swift; sourceTree = "<group>"; };
-		2B4C1326289D56F9000ED796 /* TypingTextUndo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypingTextUndo.swift; sourceTree = "<group>"; };
-		2B4C1327289D56F9000ED796 /* ApproximateEquality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproximateEquality.swift; sourceTree = "<group>"; };
-		2B4C1328289D56F9000ED796 /* PixelAlign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PixelAlign.swift; sourceTree = "<group>"; };
-		2B4C1329289D56F9000ED796 /* CoalescingUndoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingUndoManager.swift; sourceTree = "<group>"; };
-		2B4C132A289D56F9000ED796 /* STCALayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STCALayer.swift; sourceTree = "<group>"; };
-		2B4C1353289D6457000ED796 /* STTextView+Select2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STTextView+Select2.swift"; sourceTree = "<group>"; };
 		2B5B25522885D9B9009C7384 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		2B5B25542885D9C3009C7384 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		2B5B255C288ADABA009C7384 /* shellClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shellClient.swift; sourceTree = "<group>"; };
@@ -1206,7 +1113,6 @@
 		6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContextMenu.swift; sourceTree = "<group>"; };
 		9302A22328D183E300648D63 /* TabBarItemStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemStorage.swift; sourceTree = "<group>"; };
 		9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorToolbarBottom.swift; sourceTree = "<group>"; };
-		93159FD928D5F3D500C55C5A /* AECodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AECodeView.swift; sourceTree = "<group>"; };
 		93159FDB28D5F40C00C55C5A /* CodeEditorViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditorViewWrapper.swift; sourceTree = "<group>"; };
 		9327701028CE1B6300871190 /* TabHierarchyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyTableViewCell.swift; sourceTree = "<group>"; };
 		9336833828C5EAD7009F7B44 /* GitCloneViewWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCloneViewWindow.swift; sourceTree = "<group>"; };
@@ -1327,7 +1233,6 @@
 			isa = PBXGroup;
 			children = (
 				0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */,
-				93159FD928D5F3D500C55C5A /* AECodeView.swift */,
 				93159FDB28D5F40C00C55C5A /* CodeEditorViewWrapper.swift */,
 				B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */,
 			);
@@ -1371,10 +1276,6 @@
 				2BDFA8FC28D107B200980385 /* OtherFileView.swift */,
 				2BDFA8FD28D107B200980385 /* WebTabView.swift */,
 				2BDFA8FB28D107B200980385 /* WebWKView.swift */,
-				209D0258289ABFF70082441F /* AuroraEditorTextView.swift */,
-				209D0256289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift */,
-				209D0254289ABFCC0082441F /* STTextViewController.swift */,
-				209D0252289ABFB60082441F /* STTextView+Menu.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1385,56 +1286,8 @@
 				2BDFA8F628D1079600980385 /* HighlightrLanguage.swift */,
 				2BDFA8F728D1079600980385 /* WebTab.swift */,
 				2BDFA8F428D1078800980385 /* CodeLanguage.swift */,
-				209D0250289ABF9A0082441F /* STTextView+AutoComplete.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		202F2E2F289E665C000D3CAD /* Legal */ = {
-			isa = PBXGroup;
-			children = (
-				2B4C131C289D56F9000ED796 /* README.md */,
-				2B4C1302289D56F9000ED796 /* LICENSE.md */,
-			);
-			path = Legal;
-			sourceTree = "<group>";
-		};
-		202F2E30289E669D000D3CAD /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				2B4C130A289D56F9000ED796 /* STTextView+NSUserInterfaceValidations.swift */,
-				2B4C131B289D56F9000ED796 /* STTextView+TextInputClient.swift */,
-				2B4C131E289D56F9000ED796 /* STTextView+Insert.swift */,
-				2B4C1320289D56F9000ED796 /* STTextView+Complete.swift */,
-				2B4C1321289D56F9000ED796 /* STTextContentStorage.swift */,
-				2B4C1322289D56F9000ED796 /* STTextView+NSTextViewportLayoutControllerDelegate.swift */,
-				2B4C1324289D56F9000ED796 /* STInsertionPointLayer.swift */,
-				2B4C131F289D56F9000ED796 /* STTextLayoutManager.swift */,
-				2B4C1308289D56F9000ED796 /* STTextFinderClient.swift */,
-				2B4C1307289D56F9000ED796 /* STTextViewDelegate.swift */,
-				2B4C1306289D56F9000ED796 /* STTextView+Delete.swift */,
-				2B4C1305289D56F9000ED796 /* STTextLayoutFragmentLayer.swift */,
-				2B4C1303289D56F9000ED796 /* STTextView+Annotations.swift */,
-				2B4C1301289D56F9000ED796 /* STTextView+Find.swift */,
-				2B4C1300289D56F9000ED796 /* STTextView+Undo.swift */,
-				2B4C12FF289D56F9000ED796 /* STTextView+InsertionPoint.swift */,
-				2B4C1311289D56F9000ED796 /* STTextView+CopyPaste.swift */,
-				2B4C1353289D6457000ED796 /* STTextView+Select2.swift */,
-				2B4C131D289D56F9000ED796 /* STTextView+Select.swift */,
-				2B4C1312289D56F9000ED796 /* STTextView+Mouse.swift */,
-				2B4C1309289D56F9000ED796 /* STTextView+Scrolling.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		202F2E31289E66A2000D3CAD /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				2B4C1323289D56F9000ED796 /* STAnnotationLabelView.swift */,
-				2B4C1304289D56F9000ED796 /* STLineNumberRulerView.swift */,
-				2B4C1313289D56F9000ED796 /* STTextView.swift */,
-			);
-			path = UI;
 			sourceTree = "<group>";
 		};
 		2032B51128A26B2D0089EBB6 /* Controller */ = {
@@ -1575,7 +1428,6 @@
 				20D83919289A81D000D91D05 /* Model */,
 				202F2E2E289E6637000D3CAD /* Model */,
 				202F2E2C289E6608000D3CAD /* UI */,
-				2B4C12FE289D56F9000ED796 /* STTextView */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -3108,63 +2960,6 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		2B4C12FE289D56F9000ED796 /* STTextView */ = {
-			isa = PBXGroup;
-			children = (
-				202F2E31289E66A2000D3CAD /* UI */,
-				202F2E30289E669D000D3CAD /* Model */,
-				202F2E2F289E665C000D3CAD /* Legal */,
-				2B4C1314289D56F9000ED796 /* Extensions */,
-				2B4C130B289D56F9000ED796 /* Completion */,
-				2B4C1325289D56F9000ED796 /* Utils */,
-			);
-			path = STTextView;
-			sourceTree = "<group>";
-		};
-		2B4C130B289D56F9000ED796 /* Completion */ = {
-			isa = PBXGroup;
-			children = (
-				2B4C130C289D56F9000ED796 /* Window */,
-				2B4C1310289D56F9000ED796 /* STCompletion.swift */,
-			);
-			path = Completion;
-			sourceTree = "<group>";
-		};
-		2B4C130C289D56F9000ED796 /* Window */ = {
-			isa = PBXGroup;
-			children = (
-				2B4C130D289D56F9000ED796 /* CompletionWindowController.swift */,
-				2B4C130E289D56F9000ED796 /* CompletionWindow.swift */,
-				2B4C130F289D56F9000ED796 /* STCompletionViewController.swift */,
-			);
-			path = Window;
-			sourceTree = "<group>";
-		};
-		2B4C1314289D56F9000ED796 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				2B4C1315289D56F9000ED796 /* NSResponder+debug.swift */,
-				2B4C1316289D56F9000ED796 /* Geometric+Helpers.swift */,
-				2B4C1317289D56F9000ED796 /* NSTextLocation+Equatable.swift */,
-				2B4C1318289D56F9000ED796 /* NSRange+TextKit2.swift */,
-				2B4C1319289D56F9000ED796 /* NSTextLayoutManager+Helpers.swift */,
-				2B4C131A289D56F9000ED796 /* NSTextContentManager+Helpers.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		2B4C1325289D56F9000ED796 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				2B4C1326289D56F9000ED796 /* TypingTextUndo.swift */,
-				2B4C1327289D56F9000ED796 /* ApproximateEquality.swift */,
-				2B4C1328289D56F9000ED796 /* PixelAlign.swift */,
-				2B4C1329289D56F9000ED796 /* CoalescingUndoManager.swift */,
-				2B4C132A289D56F9000ED796 /* STCALayer.swift */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
 		2BD5CF0B28D602CE00F95E5A /* CodeEditorView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3589,7 +3384,6 @@
 				2093CD0A289AA044003A88DD /* vs.min.css in Resources */,
 				2093CCD9289AA044003A88DD /* atelier-forest-light.min.css in Resources */,
 				2BA19F252896F721000B9543 /* .githash in Resources */,
-				2B4C1345289D56F9000ED796 /* README.md in Resources */,
 				2093CCCA289AA044003A88DD /* atelier-savanna-dark.min.css in Resources */,
 				2093CCD0289AA044003A88DD /* zenburn.min.css in Resources */,
 				2093CCBA289AA044003A88DD /* atom-one-dark-reasonable.min.css in Resources */,
@@ -3632,7 +3426,6 @@
 				2093CCE3289AA044003A88DD /* atelier-cave-light.min.css in Resources */,
 				2093CCFD289AA044003A88DD /* mono-blue.min.css in Resources */,
 				28A51005281701B40087B0CC /* auroraeditor-github-light.json in Resources */,
-				2B4C132E289D56F9000ED796 /* LICENSE.md in Resources */,
 				2093CD08289AA044003A88DD /* hybrid.min.css in Resources */,
 				2093CCF3289AA044003A88DD /* highlight.min.js in Resources */,
 				2093CCC0289AA044003A88DD /* nord.min.css in Resources */,
@@ -3814,7 +3607,6 @@
 			files = (
 				2093CD0D289AA04C003A88DD /* CodeAttributedString.swift in Sources */,
 				2093CDC3289AA25B003A88DD /* TabBarItemID.swift in Sources */,
-				2B4C1344289D56F9000ED796 /* STTextView+TextInputClient.swift in Sources */,
 				2B5B255D288ADABA009C7384 /* shellClient.swift in Sources */,
 				2093CD54289AA0C0003A88DD /* ExtensionsStoreAPI.swift in Sources */,
 				2093CD0F289AA04C003A88DD /* Highlightr.swift in Sources */,
@@ -3828,10 +3620,8 @@
 				2813F93927ECC4C300E305E4 /* NavigatorSidebar.swift in Sources */,
 				2093CD3C289AA08F003A88DD /* GitlabOAuthRouter.swift in Sources */,
 				2093CD51289AA0AE003A88DD /* IssueArea.swift in Sources */,
-				2B4C1335289D56F9000ED796 /* STTextView+Scrolling.swift in Sources */,
 				2093CDAA289AA179003A88DD /* SourceControlGitView.swift in Sources */,
 				93D5F5D028CE05BC00286EBD /* HierarchyNavigator.swift in Sources */,
-				2B4C134F289D56F9000ED796 /* ApproximateEquality.swift in Sources */,
 				202F2E39289E7444000D3CAD /* FindNavigatorListMatchCell.swift in Sources */,
 				20EBB50D280C383700F3A5DA /* LanguageType.swift in Sources */,
 				2093CDD8289AA511003A88DD /* URL+URLParameters.swift in Sources */,
@@ -3858,7 +3648,6 @@
 				2093CD32289AA089003A88DD /* Openness.swift in Sources */,
 				2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */,
 				D7012EE827E757850001E1EF /* FindNavigator.swift in Sources */,
-				2B4C1343289D56F9000ED796 /* NSTextContentManager+Helpers.swift in Sources */,
 				207D295D28CCE72F00D31530 /* RenameBranchView.swift in Sources */,
 				2093CD17289AA079003A88DD /* TokenRouter.swift in Sources */,
 				2093CCA0289AA00B003A88DD /* WelcomeWindowView.swift in Sources */,
@@ -3882,8 +3671,6 @@
 				2093CD10289AA04C003A88DD /* Shims.swift in Sources */,
 				2093CD50289AA0AE003A88DD /* FeedbackModel.swift in Sources */,
 				2093CD2F289AA089003A88DD /* GithubUser.swift in Sources */,
-				2B4C1330289D56F9000ED796 /* STLineNumberRulerView.swift in Sources */,
-				2B4C1352289D56F9000ED796 /* STCALayer.swift in Sources */,
 				93672E8528B2684F0086132E /* ToolbarPlusMenu.swift in Sources */,
 				2093CDB8289AA1A6003A88DD /* GithubEnterpriseLoginView.swift in Sources */,
 				2BD5CF2028D602CE00F95E5A /* MinimapView.swift in Sources */,
@@ -3905,7 +3692,6 @@
 				D7E201B027E8C07300CB86D0 /* FindNavigatorSearchBar.swift in Sources */,
 				2072FA1C280D874000C7F8D4 /* IndentUsing.swift in Sources */,
 				2093CD71289AA0FC003A88DD /* HelpButton.swift in Sources */,
-				2B4C1338289D56F9000ED796 /* CompletionWindow.swift in Sources */,
 				93B1D10C28CD907A005A8C24 /* TabBar+Drag.swift in Sources */,
 				2041B8C228A69B8A005F03D8 /* Remote.swift in Sources */,
 				20D2A44628A7D13C0073F7BD /* Revert.swift in Sources */,
@@ -3919,17 +3705,14 @@
 				2093CDE9289AAE8B003A88DD /* StashWindowsChanges.swift in Sources */,
 				2093CC98289A9FF8003A88DD /* StatusBarDrawer.swift in Sources */,
 				2093CD2D289AA089003A88DD /* GithubRepositories.swift in Sources */,
-				2B4C132F289D56F9000ED796 /* STTextView+Annotations.swift in Sources */,
 				2041B8B828A6796C005F03D8 /* Clone.swift in Sources */,
 				2093CD1D289AA079003A88DD /* BitbucketAccount.swift in Sources */,
 				2041B8B228A67498005F03D8 /* Add.swift in Sources */,
-				2B4C133D289D56F9000ED796 /* STTextView.swift in Sources */,
 				20B5BDA728B130FA00B2A02F /* SplitViewDropProposalOverlay.swift in Sources */,
 				2093CCB1289AA032003A88DD /* LSPClient.swift in Sources */,
 				2093CD1F289AA07D003A88DD /* Token.swift in Sources */,
 				2093CD31289AA089003A88DD /* Gist.swift in Sources */,
 				2093CD8C289AA12B003A88DD /* BannerModule.swift in Sources */,
-				2B4C133F289D56F9000ED796 /* Geometric+Helpers.swift in Sources */,
 				2093CD36289AA08F003A88DD /* UserRouter.swift in Sources */,
 				2093CD20289AA07D003A88DD /* BitbucketUser.swift in Sources */,
 				2093CD92289AA134003A88DD /* AppPreferencesDocumentation.docc in Sources */,
@@ -3940,13 +3723,11 @@
 				20212683289BF84B00246DD7 /* String.swift in Sources */,
 				2093CD84289AA11A003A88DD /* String+NSRange.swift in Sources */,
 				934D2CDB28D207E100F22E38 /* TabHierarchyOutlineDataSource.swift in Sources */,
-				2B4C1333289D56F9000ED796 /* STTextViewDelegate.swift in Sources */,
 				2093CD85289AA11A003A88DD /* NSFont+LineHeight.swift in Sources */,
 				2093CD41289AA095003A88DD /* Event.swift in Sources */,
 				20E8748C28A3AB89002CE758 /* SourceControlTableViewCell.swift in Sources */,
 				2093CD16289AA054003A88DD /* CommitHistory.swift in Sources */,
 				9354D4B728ACEE04004C6D18 /* RepositoriesTableViewCell.swift in Sources */,
-				2B4C1347289D56F9000ED796 /* STTextView+Insert.swift in Sources */,
 				20C22DAA28BCE18F004973CA /* Diff-Check.swift in Sources */,
 				2BD5CF2228D602CE00F95E5A /* CodeStorage.swift in Sources */,
 				20BCB0C228AA9AA00064C7C0 /* Stash-Entry.swift in Sources */,
@@ -3965,14 +3746,12 @@
 				2093CD96289AA144003A88DD /* Theme+Highlightr.swift in Sources */,
 				2093CD6B289AA0F7003A88DD /* UIDocumentation.docc in Sources */,
 				2093CD14289AA054003A88DD /* GitType.swift in Sources */,
-				2B4C132D289D56F9000ED796 /* STTextView+Find.swift in Sources */,
 				2093CDA7289AA179003A88DD /* IgnoredFileView.swift in Sources */,
 				2BD8A21428ACFA6D00282989 /* ShellClient.swift in Sources */,
 				20BCB0B828AA561F0064C7C0 /* Update-Index.swift in Sources */,
 				2093CC9E289AA004003A88DD /* TerminalEmulatorView.swift in Sources */,
 				B6EE989227E887C600CDD8AB /* InspectorSidebarToolbar.swift in Sources */,
 				934D2F0828C4EC7E0034E5C8 /* StatusItem.swift in Sources */,
-				2B4C1331289D56F9000ED796 /* STTextLayoutFragmentLayer.swift in Sources */,
 				2093CD0E289AA04C003A88DD /* HighlighrTheme.swift in Sources */,
 				201169E72837B5CA00F92B46 /* SourceControlModel.swift in Sources */,
 				93EF415C28C1D21E004083AD /* CommandPaletteView.swift in Sources */,
@@ -3986,11 +3765,9 @@
 				2093CDD1289AA503003A88DD /* String+MD5.swift in Sources */,
 				2093CD90289AA130003A88DD /* NotificationWithProgress.swift in Sources */,
 				2093CD45289AA095003A88DD /* ProjectAccess.swift in Sources */,
-				2B4C1348289D56F9000ED796 /* STTextLayoutManager.swift in Sources */,
 				20B5BDA528B130F300B2A02F /* SplitViewDropDelegate.swift in Sources */,
 				200412EF280F3EAC00BCAF5C /* NoCommitHistoryView.swift in Sources */,
 				20DF979F28ABAA72009CE1E9 /* RepositoryModel.swift in Sources */,
-				2B4C1354289D6457000ED796 /* STTextView+Select2.swift in Sources */,
 				043C321427E31FF6006AE443 /* AuroraEditorDocumentController.swift in Sources */,
 				2093CCAA289AA01A003A88DD /* FileItem+Array.swift in Sources */,
 				2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */,
@@ -4013,14 +3790,9 @@
 				2093CD8F289AA130003A88DD /* NotificationCentreView.swift in Sources */,
 				2093CDDE289AA522003A88DD /* Color+HEX.swift in Sources */,
 				2093CDA6289AA173003A88DD /* TerminalPreferencesView.swift in Sources */,
-				2B4C1349289D56F9000ED796 /* STTextView+Complete.swift in Sources */,
 				2093CD99289AA148003A88DD /* SourceControlPreferences.swift in Sources */,
 				2093CD30289AA089003A88DD /* GithubAccount.swift in Sources */,
-				2B4C133A289D56F9000ED796 /* STCompletion.swift in Sources */,
 				93983D2D28CE012500E54409 /* NavigatorModeSelectModel.swift in Sources */,
-				93159FDA28D5F3D500C55C5A /* AECodeView.swift in Sources */,
-				209D0259289ABFF70082441F /* AuroraEditorTextView.swift in Sources */,
-				2B4C133E289D56F9000ED796 /* NSResponder+debug.swift in Sources */,
 				20F8379028C7B45700EAE842 /* WorkspaceExtension.swift in Sources */,
 				20E8749228A3ABB6002CE758 /* SourceControlView.swift in Sources */,
 				2093CD9E289AA15F003A88DD /* Providers.swift in Sources */,
@@ -4031,7 +3803,6 @@
 				2093CDAE289AA185003A88DD /* ThemePreferencesView.swift in Sources */,
 				2041B8C028A694FE005F03D8 /* Reset.swift in Sources */,
 				2093CDB1289AA19B003A88DD /* AccountListItem.swift in Sources */,
-				209D0251289ABF9A0082441F /* STTextView+AutoComplete.swift in Sources */,
 				2BD5CF2828D602CE00F95E5A /* ScrollView.swift in Sources */,
 				2BDFA90A28D107B200980385 /* CodeFile.swift in Sources */,
 				2093CC99289A9FFD003A88DD /* FilterTextField.swift in Sources */,
@@ -4040,7 +3811,6 @@
 				2093CD6F289AA0FC003A88DD /* SettingsTextEditor.swift in Sources */,
 				2093CDA0289AA163003A88DD /* ThemePreferences.swift in Sources */,
 				2072FA1A280D872600C7F8D4 /* LineEndings.swift in Sources */,
-				2B4C133C289D56F9000ED796 /* STTextView+Mouse.swift in Sources */,
 				9354D4B928ACEE20004C6D18 /* RepositoriesMenu.swift in Sources */,
 				201169E22837B3D800F92B46 /* ChangesView.swift in Sources */,
 				20DF97A128ABB30D009CE1E9 /* FileManger.swift in Sources */,
@@ -4050,7 +3820,6 @@
 				2093CC91289A9FF5003A88DD /* StatusBarIndentSelector.swift in Sources */,
 				2B89F85428B13E9D007CB9C1 /* auroraMessageBox.swift in Sources */,
 				2093CD26289AA084003A88DD /* PreviewHeader.swift in Sources */,
-				2B4C1332289D56F9000ED796 /* STTextView+Delete.swift in Sources */,
 				2093CD33289AA089003A88DD /* Comment.swift in Sources */,
 				04C3255C2801F86900C8DA2D /* ProjectNavigatorMenu.swift in Sources */,
 				93EF415F28C1D2DB004083AD /* CommandPaletteState.swift in Sources */,
@@ -4060,10 +3829,7 @@
 				2093CDC5289AA260003A88DD /* TabBarDivider.swift in Sources */,
 				2093CD9F289AA15F003A88DD /* AccountsPreferences.swift in Sources */,
 				2093CDB7289AA1A6003A88DD /* GithubLoginView.swift in Sources */,
-				2B4C134D289D56F9000ED796 /* STInsertionPointLayer.swift in Sources */,
-				2B4C133B289D56F9000ED796 /* STTextView+CopyPaste.swift in Sources */,
 				2093CD4F289AA0A9003A88DD /* FeedbackView.swift in Sources */,
-				2B4C134A289D56F9000ED796 /* STTextContentStorage.swift in Sources */,
 				2093CDE6289AAE81003A88DD /* GitCloneView.swift in Sources */,
 				2093CDAC289AA185003A88DD /* TerminalThemeView.swift in Sources */,
 				D7211D4327E066CE008F2ED7 /* Localized+Ex.swift in Sources */,
@@ -4082,7 +3848,6 @@
 				2093CD5B289AA0D5003A88DD /* CrashReportView.swift in Sources */,
 				2093CDCC289AA4F4003A88DD /* StatusBarTabType.swift in Sources */,
 				9354D4B528ACEDEF004C6D18 /* RepositoriesViewController.swift in Sources */,
-				2B4C1342289D56F9000ED796 /* NSTextLayoutManager+Helpers.swift in Sources */,
 				20D2A43828A7AF810073F7BD /* GitIgnore.swift in Sources */,
 				20D2A45028A7DFE60073F7BD /* IProgress.swift in Sources */,
 				2093CD43289AA095003A88DD /* EventNote.swift in Sources */,
@@ -4103,7 +3868,6 @@
 				2093CD3E289AA095003A88DD /* GitlabUser.swift in Sources */,
 				2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */,
 				20C22DB328BCEB4D004973CA /* Diff-Selection.swift in Sources */,
-				2B4C1337289D56F9000ED796 /* CompletionWindowController.swift in Sources */,
 				2030964428AD06C60083D725 /* GitBranch.swift in Sources */,
 				20B6A1FE28AFE107004EC8D7 /* SettingItem.swift in Sources */,
 				2093CDE8289AAE87003A88DD /* StashChangesSheet.swift in Sources */,
@@ -4131,7 +3895,6 @@
 				20BCB0B628AA53CC0064C7C0 /* Core.swift in Sources */,
 				2093CD73289AA0FF003A88DD /* PressActionsModifier.swift in Sources */,
 				2093CC90289A9FEE003A88DD /* StatusBar.swift in Sources */,
-				2B4C1341289D56F9000ED796 /* NSRange+TextKit2.swift in Sources */,
 				20D2A43A28A7BAF20073F7BD /* Interpret-Trailers.swift in Sources */,
 				2093CD8E289AA130003A88DD /* NotificationWithButton.swift in Sources */,
 				20752E4128CA4C6500935487 /* ProjectCommitHistory.swift in Sources */,
@@ -4139,7 +3902,6 @@
 				2032B50E28A256130089EBB6 /* Collection.swift in Sources */,
 				286471AB27ED51FD0039369D /* ProjectNavigator.swift in Sources */,
 				2093CDC1289AA258003A88DD /* TabBarDocumentation.docc in Sources */,
-				209D0255289ABFCC0082441F /* STTextViewController.swift in Sources */,
 				2093CDCA289AA260003A88DD /* TabBarXcode.swift in Sources */,
 				20752E4628CA54B200935487 /* CommitHistoryCellView.swift in Sources */,
 				2BD5CF1E28D602CE00F95E5A /* EditorLocation.swift in Sources */,
@@ -4179,14 +3941,10 @@
 				2BDFA91928D10B9200980385 /* NewFileModel.swift in Sources */,
 				206729B228AE6AC900EB0957 /* GroupBox.swift in Sources */,
 				20D2A44028A7CE300073F7BD /* Stage.swift in Sources */,
-				2B4C132B289D56F9000ED796 /* STTextView+InsertionPoint.swift in Sources */,
-				2B4C1339289D56F9000ED796 /* STCompletionViewController.swift in Sources */,
 				043BCF05281DA19A000AC47C /* WorkspaceDocument+Selection.swift in Sources */,
 				2093CDD7289AA511003A88DD /* String+PercentEncoding.swift in Sources */,
 				2093CD3A289AA08F003A88DD /* CommitRouter.swift in Sources */,
-				2B4C1346289D56F9000ED796 /* STTextView+Select.swift in Sources */,
 				20D2A44E28A7D9CE0073F7BD /* Description.swift in Sources */,
-				2B4C1340289D56F9000ED796 /* NSTextLocation+Equatable.swift in Sources */,
 				2093CD39289AA08F003A88DD /* GitlabOAuthConfiguration.swift in Sources */,
 				20D2A43E28A7CB510073F7BD /* Submodule.swift in Sources */,
 				2093CC9C289A9FFD003A88DD /* StatusBarClearButton.swift in Sources */,
@@ -4213,23 +3971,18 @@
 				2093CD8B289AA12B003A88DD /* NotificationData.swift in Sources */,
 				2093CD4E289AA0A9003A88DD /* FeedbackToolbar.swift in Sources */,
 				93F73D0D28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift in Sources */,
-				2B4C1351289D56F9000ED796 /* CoalescingUndoManager.swift in Sources */,
 				9C3E1A07284E8E020042BEC0 /* WelcomeModuleExtensions.swift in Sources */,
 				207D295828CCDE4300D31530 /* BranchCommitHistoryView.swift in Sources */,
 				2093CDBA289AA1AF003A88DD /* PreferencesPlaceholderView.swift in Sources */,
 				2BD5CF2328D602CE00F95E5A /* GutterView.swift in Sources */,
 				2093CD68289AA0F2003A88DD /* BreadcrumbsComponent.swift in Sources */,
-				2B4C134C289D56F9000ED796 /* STAnnotationLabelView.swift in Sources */,
 				201169D72837B2E300F92B46 /* SourceControlNavigatorView.swift in Sources */,
 				2093CCAD289AA028003A88DD /* QuickOpenState.swift in Sources */,
-				2B4C134E289D56F9000ED796 /* TypingTextUndo.swift in Sources */,
 				2093CD94289AA13D003A88DD /* AppPreferences.swift in Sources */,
-				2B4C1350289D56F9000ED796 /* PixelAlign.swift in Sources */,
 				2093CD1B289AA079003A88DD /* BitbucketOAuthConfiguration.swift in Sources */,
 				2093CD3F289AA095003A88DD /* Project.swift in Sources */,
 				20D9E32C28CB68DE00FE3339 /* FilterCommitHistoryView.swift in Sources */,
 				20D839AB280DEB2900B27357 /* NoSelectionView.swift in Sources */,
-				209D0253289ABFB60082441F /* STTextView+Menu.swift in Sources */,
 				2093CDA5289AA170003A88DD /* GeneralPreferencesView.swift in Sources */,
 				20EBB505280C329800F3A5DA /* HistoryItem.swift in Sources */,
 				2093CD4C289AA0A2003A88DD /* JSONPostRouter.swift in Sources */,
@@ -4244,9 +3997,7 @@
 				2041B8BC28A680CF005F03D8 /* Tag.swift in Sources */,
 				2093CDC9289AA260003A88DD /* TabBarContextMenu.swift in Sources */,
 				2021267C289BF7BA00246DD7 /* Log.swift in Sources */,
-				2B4C132C289D56F9000ED796 /* STTextView+Undo.swift in Sources */,
 				2093CD9B289AA14F003A88DD /* TextEditingPreferences.swift in Sources */,
-				2B4C1336289D56F9000ED796 /* STTextView+NSUserInterfaceValidations.swift in Sources */,
 				207D295A28CCDEDC00D31530 /* BranchCommitHistory.swift in Sources */,
 				2076DF1128C9F0900031DDB1 /* Check.swift in Sources */,
 				2093CDA8289AA179003A88DD /* PreferenceSourceControlView.swift in Sources */,
@@ -4272,7 +4023,6 @@
 				2093CD98289AA144003A88DD /* ThemeModel.swift in Sources */,
 				2BD5CF2F28D602CE00F95E5A /* LanguageConfiguration.swift in Sources */,
 				28B0A19827E385C300B73177 /* NavigatorSidebarToolbarTop.swift in Sources */,
-				2B4C1334289D56F9000ED796 /* STTextFinderClient.swift in Sources */,
 				2093CDBD289AA1BD003A88DD /* ParsePackagesResolved.swift in Sources */,
 				0463E51127FCC1DF00806D5C /* AuroraEditorAPI.swift in Sources */,
 				2093CDD4289AA50C003A88DD /* HTMLUtils.swift in Sources */,
@@ -4283,7 +4033,6 @@
 				2BD5CF2128D602CE00F95E5A /* CodeStorageDelegate.swift in Sources */,
 				2093CD2E289AA089003A88DD /* Files.swift in Sources */,
 				9336833928C5EAD7009F7B44 /* GitCloneViewWindow.swift in Sources */,
-				209D0257289ABFE00082441F /* STTextViewController+STTextViewDelegate.swift in Sources */,
 				6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */,
 				2093CD55289AA0C0003A88DD /* Response.swift in Sources */,
 				2093CDD9289AA511003A88DD /* Time.swift in Sources */,
@@ -4301,7 +4050,6 @@
 				2093CCB0289AA02D003A88DD /* QuickOpenPreviewView.swift in Sources */,
 				2BD5CF2B28D602CE00F95E5A /* TextView.swift in Sources */,
 				28FFE1BF27E3A441001939DB /* NavigatorSidebarToolbarBottom.swift in Sources */,
-				2B4C134B289D56F9000ED796 /* STTextView+NSTextViewportLayoutControllerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

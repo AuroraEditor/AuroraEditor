@@ -15,6 +15,9 @@ public struct CodeEditorViewWrapper: View {
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
+    @ObservedObject
+    private var sharedObjects: SharedObjects = .shared
+
     @Environment(\.colorScheme)
     private var colorScheme
 
@@ -51,11 +54,24 @@ public struct CodeEditorViewWrapper: View {
     @State private var messages: Set<Located<Message>> = Set()
 
     public var body: some View {
-        CodeEditor(text: $codeFile.content,
-                   position: $position,
-                   messages: $messages,
-                   language: .swift)
-              .environment(\.codeEditorTheme,
-                           colorScheme == .dark ? Theme.defaultDark : Theme.defaultLight)
+        let _ = self.tempLog() // swiftlint:disable:this redundant_discardable_let
+
+        CodeEditor(
+            text: $codeFile.content,
+            position: $position,
+            caretPosition: $sharedObjects.caretPos,
+            messages: $messages,
+            language: .swift
+        )
+        .environment(\.codeEditorTheme,
+                      colorScheme == .dark ? Theme.defaultDark : Theme.defaultLight)
+    }
+
+    func tempLog() {
+        Log.info("Position: ", $position)
+
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 5) {
+            tempLog()
+        }
     }
 }

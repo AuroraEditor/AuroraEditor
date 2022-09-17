@@ -102,21 +102,6 @@ struct WorkspaceCodeFileView: View {
     }
 
     @ViewBuilder
-    private func aeCodeView(
-        _ codeFile: CodeFileDocument,
-        for item: FileSystemClient.FileItem
-    ) -> some View {
-        // TODO: Wesley - implement new editor.
-        AECodeView(codeFile: codeFile)
-            .safeAreaInset(edge: .top, spacing: 0) {
-                VStack(spacing: 0) {
-                    BreadcrumbsView(file: item, tappedOpenFile: workspace.openTab(item:))
-                    Divider()
-                }
-            }
-    }
-
-    @ViewBuilder
     private func codeEditorView(
         _ codeFile: CodeFileDocument,
         for item: FileSystemClient.FileItem
