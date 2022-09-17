@@ -98,7 +98,11 @@ struct LineMap<LineInfo> {
   ///               map.
   ///
   func lineOf(index: Int) -> Int? {
-    if let lastLine = lines.last, NSMaxRange(lastLine.range) == index { return lines.count - 1 } else { return lineContaining(index: index) }
+    if let lastLine = lines.last, NSMaxRange(lastLine.range) == index {
+        return lines.count - 1
+    } else {
+        return lineContaining(index: index)
+    }
   }
 
   /// Given a character range, return the smallest line range that includes the characters. Deal with out of bounds

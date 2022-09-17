@@ -167,8 +167,10 @@ class CodeViewDelegate: NSObject, UITextViewDelegate {
 
         selectionDidChange?(textView)
 
-        // NB: Invalidation of the two ranges needs to happen separately. If we were to union them, an insertion point
-        //     (range length = 0) at the start of a line would be absorbed into the previous line, which results in a lack
+        // NB: Invalidation of the two ranges needs to happen separately.
+        // If we were to union them, an insertion point
+        //     (range length = 0) at the start of a line would be absorbed into the previous line,
+        // which results in a lack
         //     of invalidation of the line on which the insertion point is located.
         codeView.gutterView?.invalidateGutter(forCharRange: codeView.selectedRange)
         codeView.gutterView?.invalidateGutter(forCharRange: oldSelectedRange)
@@ -185,7 +187,7 @@ class CodeViewDelegate: NSObject, UITextViewDelegate {
 
 /// `NSTextView` with a gutter
 ///
-class CodeView: NSTextView {
+class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
     // Delegates
     fileprivate let codeViewDelegate = CodeViewDelegate()
@@ -234,7 +236,7 @@ class CodeView: NSTextView {
 
     /// Designated initialiser for code views with a gutter.
     ///
-    init(frame: CGRect, with language: LanguageConfiguration, viewLayout: CodeEditor.LayoutConfiguration, theme: Theme) {
+    init(frame: CGRect, with language: LanguageConfiguration, viewLayout: CodeEditor.LayoutConfiguration, theme: Theme) { // swiftlint:disable:this type_body_length
 
         self.theme      = theme
         self.viewLayout = viewLayout

@@ -195,9 +195,9 @@ private struct MessagePopupCategoryView: View {
 
         // Vertical stack of message
         VStack(alignment: .leading, spacing: 6) {
-          ForEach(0..<messages.count) { i in
-            Text(messages[i].summary)
-            if let description = messages[i].description { Text(description.string) }
+          ForEach(0..<messages.count) { message in
+            Text(messages[message].summary)
+            if let description = messages[message].description { Text(description.string) }
           }
         }
         .padding([.leading, .trailing], 5)
