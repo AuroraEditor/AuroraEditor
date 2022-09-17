@@ -183,7 +183,6 @@ extension Theme {
         cursorSaturation = CGFloat(0.0),
         cursorBrigthness = CGFloat(0.0)
 
-    // TODO: This is awkward...
     selectionColour.getHue(&selectionHue,
                            saturation: &selectionSaturation,
                            brightness: &selectionBrigthness,

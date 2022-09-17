@@ -27,8 +27,7 @@ public struct QuickOpenPreviewView: View {
                 withContentsOf: item.url,
                 ofType: "public.source-code"
             ), loaded {
-                // TODO: Open Code Viewer.
-//                AECodeView(codeFile: codeFile, editable: false)
+                CodeEditorViewWrapper(codeFile: codeFile, editable: false)
             } else if let error = error {
                 Text(error)
             } else {

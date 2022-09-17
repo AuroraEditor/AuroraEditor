@@ -106,7 +106,6 @@ struct WorkspaceCodeFileView: View {
         _ codeFile: CodeFileDocument,
         for item: FileSystemClient.FileItem
     ) -> some View {
-        // TODO: Wesley - implement new editor.
         CodeEditorViewWrapper(codeFile: codeFile)
             .safeAreaInset(edge: .top, spacing: 0) {
                 VStack(spacing: 0) {
