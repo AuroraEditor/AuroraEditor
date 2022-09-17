@@ -62,7 +62,8 @@ class MinimapLayoutManager: NSLayoutManager {
         let property = self.propertyForGlyph(at: glyphRange.location + index)
         if property != .null && property != .controlCharacter && property != .elastic {
 
-          // TODO: could try to optimise by using the `effectiveRange` of the attribute lookup to compute an entire glyph run to draw as one rectangle
+          // TODO: could try to optimise by using the `effectiveRange` of \
+          // the attribute lookup to compute an entire glyph run to draw as one rectangle
           let charIndex = self.characterIndexForGlyph(at: glyphRange.location + index)
           if let colour = textStorage.attribute(.foregroundColor, at: charIndex, effectiveRange: nil) as? NSColor {
             colour.withAlphaComponent(0.30).setFill()
@@ -136,7 +137,9 @@ class MinimapTypeSetter: NSATSTypesetter {
 
         // Add any elastic glyphs that follow (they can be compacted)
         while numberOfGlyphsThatFit < remainingGlyphRange.length
-                && layoutManager?.propertyForGlyph(at: remainingGlyphRange.location + numberOfGlyphsThatFit) == .elastic {
+                && layoutManager?.propertyForGlyph(
+                    at: remainingGlyphRange.location + numberOfGlyphsThatFit
+                ) == .elastic {
           numberOfGlyphsThatFit += 1
         }
 

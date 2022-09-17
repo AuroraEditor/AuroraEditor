@@ -72,9 +72,9 @@ struct MessageInlineView: View {
 
             // All category icons
             HStack(alignment: .center, spacing: 0) {
-              ForEach(0..<categories.count) { i in
+              ForEach(0..<categories.count) { cat in
                 HStack(alignment: .center, spacing: 0) {
-                  theme(categories[i]).icon
+                  theme(categories[cat]).icon
                     .padding([.leading, .trailing], 2)
                 }
               }
@@ -237,8 +237,12 @@ struct MessagePopupView: View {
     let categories = messagesByCategory(messages)
 
     VStack(spacing: 4) {
-      ForEach(0..<categories.count) { i in
-        MessagePopupCategoryView(category: categories[i].0, messages: categories[i].1, theme: theme)
+      ForEach(0..<categories.count) { category in
+        MessagePopupCategoryView(
+            category: categories[category].0,
+            messages: categories[category].1,
+            theme: theme
+        )
       }
     }
     .background(Color.clear)

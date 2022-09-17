@@ -234,8 +234,8 @@ struct LineMap<LineInfo> {
 
     // All ranges after the edited range of lines need to be adjusted.
     //
-    for i in oldLinesRange.startIndex.advanced(by: adjustedNewLines.count) ..< lines.count {
-      lines[i] = shift(line: lines[i], by: delta)
+    for number in oldLinesRange.startIndex.advanced(by: adjustedNewLines.count) ..< lines.count {
+      lines[number] = shift(line: lines[i], by: delta)
     }
   }
 
