@@ -24,7 +24,8 @@ public enum TokenPattern: Hashable, Equatable, Comparable {
 
     /// The token has multiple lexemes, specified in the form of a regular expression string.
     ///
-    case pattern(String)  // This case needs to be the first one as we want it to compare as being smaller than the rest;
+    case pattern(String)
+    // This case needs to be the first one as we want it to compare as being smaller than the rest;
     // that ensures that it will appear last in the generated tokeniser regexp and hence match last
     // in case of overlap.
 

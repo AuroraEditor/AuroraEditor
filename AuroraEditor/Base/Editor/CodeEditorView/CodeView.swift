@@ -236,7 +236,10 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
     /// Designated initialiser for code views with a gutter.
     ///
-    init(frame: CGRect, with language: LanguageConfiguration, viewLayout: CodeEditor.LayoutConfiguration, theme: Theme) { // swiftlint:disable:this type_body_length
+    init(frame: CGRect, // swiftlint:disable:this type_body_length
+         with language: LanguageConfiguration,
+         viewLayout: CodeEditor.LayoutConfiguration,
+         theme: Theme) {
 
         self.theme      = theme
         self.viewLayout = viewLayout
@@ -372,8 +375,10 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
         let lineOfInsertionPoint = insertionPoint.flatMap { optLineMap?.lineOf(index: $0) }
 
-        // If the insertion point changed lines, we need to redraw at the old and new location to fix the line highlighting.
-        // NB: We retain the last line and not the character index as the latter may be inaccurate due to editing that let
+        // If the insertion point changed lines, we need to redraw at the\
+        // old and new location to fix the line highlighting.
+        // NB: We retain the last line and not the character index as the
+        // latter may be inaccurate due to editing that let
         //     to the selected range change.
         if lineOfInsertionPoint != oldLastLineOfInsertionPoint {
 
@@ -410,8 +415,10 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         DispatchQueue.main.async {
 
             // Needed as the selection affects line number highlighting.
-            // NB: Invalidation of the old and new ranges needs to happen separately. If we were to union them, an insertion
-            //     point (range length = 0) at the start of a line would be absorbed into the previous line, which results in
+            // NB: Invalidation of the old and new ranges needs to happen separately.
+            // If we were to union them, an insertion
+            //     point (range length = 0) at the start of a line would be absorbed \
+            // into the previous line, which results in
             //     a lack of invalidation of the line on which the insertion point is located.
             self.gutterView?.invalidateGutter(forCharRange: combinedRanges(ranges: oldSelectedRanges))
             self.gutterView?.invalidateGutter(forCharRange: combinedRanges(ranges: ranges))
@@ -442,10 +449,13 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         // Highlight each line that has a message view
         for messageView in messageViews {
 
-            let glyphRange = layoutManager.glyphRange(forBoundingRect: messageView.value.lineFragementRect, in: textContainer),
-                index      = layoutManager.characterIndexForGlyph(at: glyphRange.location)
+            let glyphRange = layoutManager.glyphRange(
+                forBoundingRect: messageView.value.lineFragementRect,
+                in: textContainer),
+                index = layoutManager.characterIndexForGlyph(at: glyphRange.location)
 
-            // This seems like a worthwhile optimisation, but sometimes we are called in a situation, where `charRange` computes
+            // This seems like a worthwhile optimisation,
+            // but sometimes we are called in a situation, where `charRange` computes
             // to be the empty range although the whole visible area is being redrawn.
             //      if charRange.contains(index) {
 
@@ -459,7 +469,10 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
     /// Draw the background of an entire line of text with a highlight colour, including below any messages views.
     ///
-    private func drawBackgroundHighlight(in rect: NSRect, forLineContaining charIndex: Int, withColour colour: NSColor) {
+    private func drawBackgroundHighlight(
+        in rect: NSRect,
+        forLineContaining charIndex: Int,
+        withColour colour: NSColor) {
         guard let layoutManager = layoutManager else { return }
 
         colour.setFill()
