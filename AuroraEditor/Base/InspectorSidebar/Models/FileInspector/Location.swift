@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Location: Identifiable, Hashable {
+struct FileLocation: Identifiable, Hashable {
     let name: String
     let id: String
 }

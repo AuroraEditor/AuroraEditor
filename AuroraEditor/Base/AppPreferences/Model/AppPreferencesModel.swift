@@ -39,7 +39,7 @@ public final class AppPreferencesModel: ObservableObject {
     }
 
     /// Load and construct ``AppPreferences`` model from
-    /// `~/.config/auroraeditor/preferences.json`
+    /// `~/Library/com.auroraeditor/preferences.json`
     private func loadPreferences() -> AppPreferences {
         if !filemanager.fileExists(atPath: preferencesURL.path) {
             let auroraEditorURL = filemanager
@@ -59,7 +59,7 @@ public final class AppPreferencesModel: ObservableObject {
     }
 
     /// Save``AppPreferences`` model to
-    /// `~/.config/auroraeditor/preferences.json`
+    /// `~/Library/com.auroraeditor/preferences.json`
     private func savePreferences() throws {
         let data = try JSONEncoder().encode(preferences)
         let json = try JSONSerialization.jsonObject(with: data)
@@ -72,17 +72,17 @@ public final class AppPreferencesModel: ObservableObject {
 
     /// The base URL of preferences.
     ///
-    /// Points to `~/.config/auroraeditor/`
+    /// Points to `~/Library/com.auroraeditor/`
     internal var baseURL: URL {
         filemanager
             .homeDirectoryForCurrentUser
-            .appendingPathComponent(".config", isDirectory: true)
-            .appendingPathComponent("auroraeditor", isDirectory: true)
+            .appendingPathComponent("Library", isDirectory: true)
+            .appendingPathComponent("com.auroraeditor", isDirectory: true)
     }
 
     /// The URL of the `preferences.json` settings file.
     ///
-    /// Points to `~/.config/auroraeditor/preferences.json`
+    /// Points to `~/Library/com.auroraeditor/preferences.json`
     private var preferencesURL: URL {
         baseURL
             .appendingPathComponent("preferences")

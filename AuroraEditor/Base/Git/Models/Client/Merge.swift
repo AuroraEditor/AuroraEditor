@@ -31,7 +31,7 @@ func merge(directoryURL: URL,
 
     args.append(branch)
 
-    let result  = try ShellClient.live().run(
+    let result = try ShellClient.live().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)"
     )
 
@@ -50,7 +50,7 @@ let noopMergeMessage = "Already up to date.\n"
 func getMergeBase(directoryURL: URL,
                   firstCommitish: String,
                   secondCommitish: String) throws -> String? {
-    let process  = try ShellClient.live().run(
+    let process = try ShellClient.live().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git merge-base \(firstCommitish) \(secondCommitish)"
     )
 
@@ -59,7 +59,7 @@ func getMergeBase(directoryURL: URL,
 
 /// Abort a mid-flight (conflicted) merge
 func abortMerge(directoryURL: URL) throws {
-    _  = try ShellClient.live().run(
+    _ = try ShellClient.live().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git merge --abort"
     )
 }
