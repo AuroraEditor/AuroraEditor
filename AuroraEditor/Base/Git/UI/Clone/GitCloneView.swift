@@ -89,8 +89,10 @@ public struct GitCloneView: View {
                 self.arrayBranch = branches
                 self.check += 1
                 if check == 2 {
-                    check = 0
-                    activeSheet = .select
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                      check = 0
+                      activeSheet = .select
+                    }
                 }
             }
         } catch {
