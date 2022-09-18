@@ -106,7 +106,6 @@
 		2093CCAF289AA02D003A88DD /* QuickOpenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838EF289A7ACE00D91D05 /* QuickOpenItem.swift */; };
 		2093CCB0289AA02D003A88DD /* QuickOpenPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838ED289A7ACE00D91D05 /* QuickOpenPreviewView.swift */; };
 		2093CCB1289AA032003A88DD /* LSPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83853289A7ACE00D91D05 /* LSPClient.swift */; };
-		2093CD10289AA04C003A88DD /* Shims.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837B0289A7ACD00D91D05 /* Shims.swift */; };
 		2093CD11289AA054003A88DD /* GitUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8387A289A7ACE00D91D05 /* GitUIModel.swift */; };
 		2093CD12289AA054003A88DD /* ChangedFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838CA289A7ACE00D91D05 /* ChangedFile.swift */; };
 		2093CD14289AA054003A88DD /* GitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838CB289A7ACE00D91D05 /* GitType.swift */; };
@@ -389,7 +388,7 @@
 		2BD5CF2A28D602CE00F95E5A /* MutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1828D602CE00F95E5A /* MutableAttributedString.swift */; };
 		2BD5CF2B28D602CE00F95E5A /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1928D602CE00F95E5A /* TextView.swift */; };
 		2BD5CF2D28D602CE00F95E5A /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1B28D602CE00F95E5A /* Theme.swift */; };
-		2BD5CF2E28D602CE00F95E5A /* MessageViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1C28D602CE00F95E5A /* MessageViews.swift */; };
+		2BD5CF2E28D602CE00F95E5A /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1C28D602CE00F95E5A /* MessageView.swift */; };
 		2BD5CF2F28D602CE00F95E5A /* LanguageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1D28D602CE00F95E5A /* LanguageConfiguration.swift */; };
 		2BD8A21428ACFA6D00282989 /* ShellClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8A21328ACFA6D00282989 /* ShellClient.swift */; };
 		2BDFA8F928D1079700980385 /* WebTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8F728D1079600980385 /* WebTab.swift */; };
@@ -445,6 +444,9 @@
 		93ACA43728C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACA43628C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift */; };
 		93B1D10C28CD907A005A8C24 /* TabBar+Drag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B1D10B28CD907A005A8C24 /* TabBar+Drag.swift */; };
 		93C43E8228B0DBF0002E23DC /* NavigatorSidebarToolbarLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C43E8128B0DBF0002E23DC /* NavigatorSidebarToolbarLeft.swift */; };
+		93CACA2328D7515F00978753 /* StatefulMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CACA2228D7515F00978753 /* StatefulMessageView.swift */; };
+		93CACA2528D751CF00978753 /* MessageInlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CACA2428D751CF00978753 /* MessageInlineView.swift */; };
+		93CACA2728D7524800978753 /* MessagePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CACA2628D7524800978753 /* MessagePopupView.swift */; };
 		93CB9AE028C72BC20068074A /* GitCloneView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CB9ADF28C72BC20068074A /* GitCloneView+Helpers.swift */; };
 		93D5F5D028CE05BC00286EBD /* HierarchyNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F5CF28CE05BC00286EBD /* HierarchyNavigator.swift */; };
 		93D5F5D328CE064700286EBD /* TabHierarchyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F5D228CE064700286EBD /* TabHierarchyView.swift */; };
@@ -667,7 +669,6 @@
 		20D8374B289A7ACD00D91D05 /* BreadcrumbsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadcrumbsMenu.swift; sourceTree = "<group>"; };
 		20D8374C289A7ACD00D91D05 /* BreadcrumbsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadcrumbsComponent.swift; sourceTree = "<group>"; };
 		20D8374D289A7ACD00D91D05 /* BreadcrumbsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadcrumbsView.swift; sourceTree = "<group>"; };
-		20D837B0289A7ACD00D91D05 /* Shims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shims.swift; sourceTree = "<group>"; };
 		20D837B4289A7ACD00D91D05 /* FeedbackToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackToolbar.swift; sourceTree = "<group>"; };
 		20D837B6289A7ACD00D91D05 /* IssueArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueArea.swift; sourceTree = "<group>"; };
 		20D837B7289A7ACD00D91D05 /* FeedbackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackModel.swift; sourceTree = "<group>"; };
@@ -900,7 +901,7 @@
 		2BD5CF1828D602CE00F95E5A /* MutableAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableAttributedString.swift; sourceTree = "<group>"; };
 		2BD5CF1928D602CE00F95E5A /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		2BD5CF1B28D602CE00F95E5A /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		2BD5CF1C28D602CE00F95E5A /* MessageViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViews.swift; sourceTree = "<group>"; };
+		2BD5CF1C28D602CE00F95E5A /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		2BD5CF1D28D602CE00F95E5A /* LanguageConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageConfiguration.swift; sourceTree = "<group>"; };
 		2BD8A21328ACFA6D00282989 /* ShellClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShellClient.swift; sourceTree = "<group>"; };
 		2BDFA8F728D1079600980385 /* WebTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebTab.swift; sourceTree = "<group>"; };
@@ -957,6 +958,9 @@
 		93ACA43628C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuroraEditorWindowController+NSToolbarDelegate.swift"; sourceTree = "<group>"; };
 		93B1D10B28CD907A005A8C24 /* TabBar+Drag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBar+Drag.swift"; sourceTree = "<group>"; };
 		93C43E8128B0DBF0002E23DC /* NavigatorSidebarToolbarLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorSidebarToolbarLeft.swift; sourceTree = "<group>"; };
+		93CACA2228D7515F00978753 /* StatefulMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulMessageView.swift; sourceTree = "<group>"; };
+		93CACA2428D751CF00978753 /* MessageInlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInlineView.swift; sourceTree = "<group>"; };
+		93CACA2628D7524800978753 /* MessagePopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePopupView.swift; sourceTree = "<group>"; };
 		93CB9ADF28C72BC20068074A /* GitCloneView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GitCloneView+Helpers.swift"; sourceTree = "<group>"; };
 		93D5F5CF28CE05BC00286EBD /* HierarchyNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyNavigator.swift; sourceTree = "<group>"; };
 		93D5F5D228CE064700286EBD /* TabHierarchyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyView.swift; sourceTree = "<group>"; };
@@ -1240,7 +1244,6 @@
 			isa = PBXGroup;
 			children = (
 				2BD5CF0B28D602CE00F95E5A /* CodeEditorView */,
-				20D83919289A81D000D91D05 /* Model */,
 				202F2E2E289E6637000D3CAD /* Model */,
 				202F2E2C289E6608000D3CAD /* UI */,
 			);
@@ -2487,15 +2490,6 @@
 			path = Stash;
 			sourceTree = "<group>";
 		};
-		20D83919289A81D000D91D05 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				20D837B0289A7ACD00D91D05 /* Shims.swift */,
-			);
-			name = Model;
-			path = ../AuroraEditorTextView/Model;
-			sourceTree = "<group>";
-		};
 		20D8391B289A822A00D91D05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -2795,7 +2789,10 @@
 			children = (
 				2BD5CF1228D602CE00F95E5A /* Message.swift */,
 				93813D2A28D74B6400A492D4 /* CodeView+Messages.swift */,
-				2BD5CF1C28D602CE00F95E5A /* MessageViews.swift */,
+				2BD5CF1C28D602CE00F95E5A /* MessageView.swift */,
+				93CACA2228D7515F00978753 /* StatefulMessageView.swift */,
+				93CACA2428D751CF00978753 /* MessageInlineView.swift */,
+				93CACA2628D7524800978753 /* MessagePopupView.swift */,
 				93813D3428D74E5400A492D4 /* CodeStorageDelegate+Messages.swift */,
 			);
 			path = Messages;
@@ -3349,7 +3346,6 @@
 				2093CCA5289AA015003A88DD /* FileIcon.swift in Sources */,
 				93D5F5D528CE074100286EBD /* TabHierarchyViewController.swift in Sources */,
 				201169DD2837B3AC00F92B46 /* SourceControlToolbarBottom.swift in Sources */,
-				2093CD10289AA04C003A88DD /* Shims.swift in Sources */,
 				2093CD50289AA0AE003A88DD /* FeedbackModel.swift in Sources */,
 				2093CD2F289AA089003A88DD /* GithubUser.swift in Sources */,
 				93672E8528B2684F0086132E /* ToolbarPlusMenu.swift in Sources */,
@@ -3386,6 +3382,7 @@
 				2093CD5A289AA0C6003A88DD /* PluginRelease.swift in Sources */,
 				2093CDE9289AAE8B003A88DD /* StashWindowsChanges.swift in Sources */,
 				2093CC98289A9FF8003A88DD /* StatusBarDrawer.swift in Sources */,
+				93CACA2328D7515F00978753 /* StatefulMessageView.swift in Sources */,
 				2093CD2D289AA089003A88DD /* GithubRepositories.swift in Sources */,
 				2041B8B828A6796C005F03D8 /* Clone.swift in Sources */,
 				2093CD1D289AA079003A88DD /* BitbucketAccount.swift in Sources */,
@@ -3558,7 +3555,7 @@
 				2093CD6C289AA0FC003A88DD /* EffectView.swift in Sources */,
 				2093CDB3289AA19B003A88DD /* AccountSelectionDialog.swift in Sources */,
 				2BD5CF2A28D602CE00F95E5A /* MutableAttributedString.swift in Sources */,
-				2BD5CF2E28D602CE00F95E5A /* MessageViews.swift in Sources */,
+				2BD5CF2E28D602CE00F95E5A /* MessageView.swift in Sources */,
 				0485EB1F27E7458B00138301 /* WorkspaceCodeFileView.swift in Sources */,
 				2093CD4D289AA0A2003A88DD /* Session.swift in Sources */,
 				2093CD42289AA095003A88DD /* ProjectHook.swift in Sources */,
@@ -3631,6 +3628,7 @@
 				2093CD39289AA08F003A88DD /* GitlabOAuthConfiguration.swift in Sources */,
 				20D2A43E28A7CB510073F7BD /* Submodule.swift in Sources */,
 				2093CC9C289A9FFD003A88DD /* StatusBarClearButton.swift in Sources */,
+				93CACA2528D751CF00978753 /* MessageInlineView.swift in Sources */,
 				2072FA18280D871200C7F8D4 /* TextEncoding.swift in Sources */,
 				2072FA16280D83A500C7F8D4 /* FileTypeList.swift in Sources */,
 				2093CCA3289AA00B003A88DD /* RecentProjectsView.swift in Sources */,
@@ -3707,6 +3705,7 @@
 				2093CD98289AA144003A88DD /* ThemeModel.swift in Sources */,
 				2BD5CF2F28D602CE00F95E5A /* LanguageConfiguration.swift in Sources */,
 				28B0A19827E385C300B73177 /* NavigatorSidebarToolbarTop.swift in Sources */,
+				93CACA2728D7524800978753 /* MessagePopupView.swift in Sources */,
 				2093CDBD289AA1BD003A88DD /* ParsePackagesResolved.swift in Sources */,
 				0463E51127FCC1DF00806D5C /* AuroraEditorAPI.swift in Sources */,
 				04C3255B2801F86400C8DA2D /* ProjectNavigatorViewController.swift in Sources */,
