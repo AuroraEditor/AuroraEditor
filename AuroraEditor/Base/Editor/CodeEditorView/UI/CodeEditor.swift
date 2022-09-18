@@ -117,103 +117,6 @@ public struct CodeEditor {
     }
 }
 
-#if os(iOS)
-
-// MARK: -
-// MARK: UIKit version
-
-extension CodeEditor: UIViewRepresentable {
-
-    public func makeUIView(context: Context) -> UITextView {
-        let codeView = CodeView(frame: CGRect(x: 0, y: 0, width: 100, height: 40),
-                                with: language,
-                                viewLayout: layout,
-                                theme: context.environment.codeEditorTheme)
-
-        codeView.text = text
-        if let delegate = codeView.delegate as? CodeViewDelegate {
-
-            delegate.textDidChange = context.coordinator.textDidChange
-            delegate.selectionDidChange = { textView in
-                selectionDidChange(textView)
-                context.coordinator.selectionDidChange(textView)
-            }
-            delegate.didScroll = context.coordinator.scrollPositionDidChange
-
-        }
-        codeView.selectedRange = position.selections.first ?? NSRange(location: 0, length: 0)
-
-        // We can't set the scroll position right away as the views are not properly sized yet. Thus, this needs to be
-        // delayed.
-        // TODO: The scroll fraction assignment still happens to soon if the initialisisation takes a\
-        // long time, because we loaded a large file. It be better if we could deterministically\
-        // determine when initialisation is entirely finished and then set the scroll fraction at that point.
-        DispatchQueue.main.async {
-            codeView.verticalScrollFraction = position.verticalScrollFraction
-        }
-
-        // Report the initial message set
-        DispatchQueue.main.async { updateMessages(in: codeView, with: context) }
-
-        return codeView
-    }
-
-    public func updateUIView(_ textView: UITextView, context: Context) {
-        guard let codeView = textView as? CodeView else { return }
-        context.coordinator.updatingView = true
-
-        let theme = context.environment.codeEditorTheme,
-            selection = position.selections.first ?? NSRange(location: 0, length: 0)
-
-        updateMessages(in: codeView, with: context)
-        if text != textView.text { textView.text = text }  // Hoping for the string comparison fast path...
-        if selection != codeView.selectedRange { codeView.selectedRange = selection }
-        if abs(position.verticalScrollFraction - textView.verticalScrollFraction) > 0.0001 {
-            textView.verticalScrollFraction = position.verticalScrollFraction
-        }
-        if theme.id != codeView.theme.id { codeView.theme = theme }
-        if layout != codeView.viewLayout { codeView.viewLayout = layout }
-
-        context.coordinator.updatingView = false
-    }
-
-    public func makeCoordinator() -> Coordinator {
-        return Coordinator($text, $position, $caretPosition)
-    }
-
-    public final class Coordinator: TCoordinator {
-        func textDidChange(_ textView: UITextView) {
-            guard !updatingView else { return }
-
-            if self.text != textView.text {
-                self.text = textView.text
-            }
-        }
-
-        func selectionDidChange(_ textView: UITextView) {
-            guard !updatingView else { return }
-
-            let newValue = [textView.selectedRange]
-            if self.position.selections != newValue {
-                self.position.selections = newValue
-            }
-        }
-
-        func scrollPositionDidChange(_ scrollView: UIScrollView) {
-            guard !updatingView else { return }
-
-            if abs(position.verticalScrollFraction - scrollView.verticalScrollFraction) > 0.0001 {
-                position.verticalScrollFraction = scrollView.verticalScrollFraction
-            }
-        }
-    }
-}
-
-#elseif os(macOS)
-
-// MARK: -
-// MARK: AppKit version
-
 extension CodeEditor: NSViewRepresentable {
 
     public func makeNSView(context: Context) -> NSScrollView {
@@ -367,14 +270,7 @@ extension CodeEditor: NSViewRepresentable {
             }
         }
     }
-}
 
-#endif
-
-// MARK: -
-// MARK: Shared code
-
-extension CodeEditor {
     /// Update messages for a code view in the given context.
     ///
     private func updateMessages(in codeView: CodeView, with context: Context) {
@@ -435,7 +331,6 @@ extension CodeEditor.Position: RawRepresentable, Codable {
     }
 }
 
-// MARK: -
 // MARK: Previews
 struct CodeEditor_Previews: PreviewProvider {
     static var previews: some View {
@@ -447,4 +342,4 @@ struct CodeEditor_Previews: PreviewProvider {
             language: .swift
         )
     }
-} // swiftlint:disable:this file_length
+}

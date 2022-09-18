@@ -112,11 +112,11 @@ struct LineMap<LineInfo> {
     func linesContaining(range: NSRange) -> Range<Int> {
         let
         start = range.location < 0 ? 0 : range.location,
-                                         end = range.length <= 0 ? start : NSMaxRange(range) - 1,
-                                                                       startLine = lineOf(index: start),
-                                                                       endLine = lineContaining(index: end),
-                                                                       lastLine = lines.count - 1,
-                                                                       lastLineRange = lines[lastLine].range
+                                 end = range.length <= 0 ? start : NSMaxRange(range) - 1,
+                                                     startLine = lineOf(index: start),
+                                                     endLine = lineContaining(index: end),
+                                                     lastLine = lines.count - 1,
+                                                     lastLineRange = lines[lastLine].range
 
         if let startLine = startLine {
             if range.length < 0 {
@@ -233,7 +233,7 @@ struct LineMap<LineInfo> {
             nsString = string as NSString,
             oldLinesRange = linesAffected(by: editedRange, changeInLength: delta),
             newLinesRange = nsString.lineRange(for: extend(range: editedRange,
-                                                            clippingTo: newStringRange)),
+                                                           clippingTo: newStringRange)),
             newLinesString = nsString.substring(with: newLinesRange),
             newLines = linesOf(string: newLinesString).map { shift(line: $0, by: newLinesRange.location) }
 
@@ -241,8 +241,8 @@ struct LineMap<LineInfo> {
         // we need to remove the empty trailing line in the new lines array
         // unless the range of those lines extends until the end of the string.
         let dropEmptyNewLine = newLines.last?.range.length == 0
-            && NSMaxRange(newLinesRange) < string.count,
-            adjustedNewLines = dropEmptyNewLine ? newLines.dropLast() : newLines
+        && NSMaxRange(newLinesRange) < string.count,
+                                       adjustedNewLines = dropEmptyNewLine ? newLines.dropLast() : newLines
 
         lines.replaceSubrange(oldLinesRange, with: adjustedNewLines)
 
