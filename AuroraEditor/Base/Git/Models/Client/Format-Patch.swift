@@ -13,7 +13,7 @@ import Foundation
 func formatPatch(directoryURL: URL,
                  base: String,
                  head: String) throws -> String {
-    let result  = try ShellClient.live().run(
+    let result = try ShellClient.live().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git format-path --unified=1 --minimal --stdout"
     )
 
