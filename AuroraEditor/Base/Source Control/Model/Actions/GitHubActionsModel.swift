@@ -10,6 +10,16 @@ import Foundation
 
 class GitHubActions: ObservableObject {
 
+    enum State {
+        case loading
+        case error
+        case success
+        case repoFailure
+    }
+
+    @Published
+    var state: State = .loading
+
     let workspace: WorkspaceDocument
 
     @Published
@@ -25,10 +35,10 @@ class GitHubActions: ObservableObject {
     private var workflowJob: [Jobs] = []
 
     @Published
-    private var repoOwner: String = ""
+    var repoOwner: String = ""
 
     @Published
-    private var repo: String = ""
+    var repo: String = ""
 
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
@@ -49,12 +59,15 @@ class GitHubActions: ObservableObject {
                     return
                 }
                 DispatchQueue.main.async {
+                    self.state = .success
                     self.workflows = workflows.workflows
                 }
             case .failure(let error):
+                DispatchQueue.main.async {
+                    self.state = .error
+                }
                 Log.error(error)
             }
-
         })
     }
 
@@ -166,6 +179,9 @@ class GitHubActions: ObservableObject {
             }
         } catch {
             Log.error("Failed to get project remote URL.")
+            DispatchQueue.main.async {
+                self.state = .repoFailure
+            }
         }
     }
 }

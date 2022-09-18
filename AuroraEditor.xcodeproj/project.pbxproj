@@ -62,6 +62,10 @@
 		2041B8C528A69D12005F03D8 /* IRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2041B8C428A69D12005F03D8 /* IRemote.swift */; };
 		2041B8C728A6A904005F03D8 /* Refs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2041B8C628A6A904005F03D8 /* Refs.swift */; };
 		204CD3E628AB87640003D082 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204CD3E528AB87640003D082 /* Config.swift */; };
+		204F7BB328D7905C00F49092 /* WorkflowMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7BB228D7905C00F49092 /* WorkflowMenu.swift */; };
+		204F7BB528D7906A00F49092 /* WorkflowWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7BB428D7906A00F49092 /* WorkflowWrapperView.swift */; };
+		204F7BB728D7907A00F49092 /* WorkflowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7BB628D7907A00F49092 /* WorkflowViewController.swift */; };
+		204F7BB928D7908700F49092 /* WorkflowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7BB828D7908700F49092 /* WorkflowTableViewCell.swift */; };
 		206729AF28AE69DC00EB0957 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206729AE28AE69DC00EB0957 /* PreferencesView.swift */; };
 		206729B228AE6AC900EB0957 /* GroupBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206729B128AE6AC900EB0957 /* GroupBox.swift */; };
 		2072FA13280D74ED00C7F8D4 /* HistoryInspectorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072FA12280D74ED00C7F8D4 /* HistoryInspectorModel.swift */; };
@@ -314,7 +318,6 @@
 		20BCB0C628AAA1C00064C7C0 /* GitCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0C528AAA1C00064C7C0 /* GitCommit.swift */; };
 		20BCB0C828AAA3190064C7C0 /* GitAuthor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0C728AAA3190064C7C0 /* GitAuthor.swift */; };
 		20BE727528D0761200EEDE5F /* ActionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE727428D0761200EEDE5F /* ActionsListView.swift */; };
-		20BE727828D0762400EEDE5F /* ActionsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE727728D0762400EEDE5F /* ActionsCellView.swift */; };
 		20BE727B28D07EFC00EEDE5F /* ActionsPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE727A28D07EFC00EEDE5F /* ActionsPopoverView.swift */; };
 		20BE727D28D07FF200EEDE5F /* ActionsPopoverCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE727C28D07FF200EEDE5F /* ActionsPopoverCellView.swift */; };
 		20BE728328D083D800EEDE5F /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE728228D083D800EEDE5F /* HTTPMethod.swift */; };
@@ -602,6 +605,10 @@
 		2041B8C428A69D12005F03D8 /* IRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRemote.swift; sourceTree = "<group>"; };
 		2041B8C628A6A904005F03D8 /* Refs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refs.swift; sourceTree = "<group>"; };
 		204CD3E528AB87640003D082 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		204F7BB228D7905C00F49092 /* WorkflowMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowMenu.swift; sourceTree = "<group>"; };
+		204F7BB428D7906A00F49092 /* WorkflowWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowWrapperView.swift; sourceTree = "<group>"; };
+		204F7BB628D7907A00F49092 /* WorkflowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowViewController.swift; sourceTree = "<group>"; };
+		204F7BB828D7908700F49092 /* WorkflowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowTableViewCell.swift; sourceTree = "<group>"; };
 		206729AE28AE69DC00EB0957 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		206729B128AE6AC900EB0957 /* GroupBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupBox.swift; sourceTree = "<group>"; };
 		2072FA12280D74ED00C7F8D4 /* HistoryInspectorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInspectorModel.swift; sourceTree = "<group>"; };
@@ -643,7 +650,6 @@
 		20BCB0C528AAA1C00064C7C0 /* GitCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommit.swift; sourceTree = "<group>"; };
 		20BCB0C728AAA3190064C7C0 /* GitAuthor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitAuthor.swift; sourceTree = "<group>"; };
 		20BE727428D0761200EEDE5F /* ActionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsListView.swift; sourceTree = "<group>"; };
-		20BE727728D0762400EEDE5F /* ActionsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsCellView.swift; sourceTree = "<group>"; };
 		20BE727A28D07EFC00EEDE5F /* ActionsPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsPopoverView.swift; sourceTree = "<group>"; };
 		20BE727C28D07FF200EEDE5F /* ActionsPopoverCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsPopoverCellView.swift; sourceTree = "<group>"; };
 		20BE728228D083D800EEDE5F /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
@@ -1172,6 +1178,17 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		204F7BB128D7903000F49092 /* Workflow */ = {
+			isa = PBXGroup;
+			children = (
+				204F7BB228D7905C00F49092 /* WorkflowMenu.swift */,
+				204F7BB428D7906A00F49092 /* WorkflowWrapperView.swift */,
+				204F7BB628D7907A00F49092 /* WorkflowViewController.swift */,
+				204F7BB828D7908700F49092 /* WorkflowTableViewCell.swift */,
+			);
+			path = Workflow;
+			sourceTree = "<group>";
+		};
 		2072FA14280D838800C7F8D4 /* Lists */ = {
 			isa = PBXGroup;
 			children = (
@@ -1348,7 +1365,7 @@
 		20BE727628D0761500EEDE5F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				20BE727728D0762400EEDE5F /* ActionsCellView.swift */,
+				204F7BB128D7903000F49092 /* Workflow */,
 				20BE727C28D07FF200EEDE5F /* ActionsPopoverCellView.swift */,
 				20BE729928D0A25900EEDE5F /* WorkflowCellView.swift */,
 				20BE729D28D0BB6F00EEDE5F /* WorkflowRunCell.swift */,
@@ -3441,10 +3458,10 @@
 			files = (
 				93813D2828D74AC400A492D4 /* CodeLayoutManager.swift in Sources */,
 				2093CDC3289AA25B003A88DD /* TabBarItemID.swift in Sources */,
+				204F7BB528D7906A00F49092 /* WorkflowWrapperView.swift in Sources */,
 				2B5B255D288ADABA009C7384 /* shellClient.swift in Sources */,
 				2093CD54289AA0C0003A88DD /* ExtensionsStoreAPI.swift in Sources */,
 				20BE729A28D0A25900EEDE5F /* WorkflowCellView.swift in Sources */,
-				2093CD0F289AA04C003A88DD /* Highlightr.swift in Sources */,
 				935EB99C28A8F26900E8F798 /* FileSystemTableViewCell.swift in Sources */,
 				20BCB0C028AA71760064C7C0 /* GitError.swift in Sources */,
 				2072FA13280D74ED00C7F8D4 /* HistoryInspectorModel.swift in Sources */,
@@ -3554,7 +3571,6 @@
 				20BE727D28D07FF200EEDE5F /* ActionsPopoverCellView.swift in Sources */,
 				20BE728D28D0855500EEDE5F /* Workflows.swift in Sources */,
 				2093CD8C289AA12B003A88DD /* BannerModule.swift in Sources */,
-				2B4C133F289D56F9000ED796 /* Geometric+Helpers.swift in Sources */,
 				20BE728328D083D800EEDE5F /* HTTPMethod.swift in Sources */,
 				2093CD36289AA08F003A88DD /* UserRouter.swift in Sources */,
 				2093CD20289AA07D003A88DD /* BitbucketUser.swift in Sources */,
@@ -3656,9 +3672,7 @@
 				2093CD6F289AA0FC003A88DD /* SettingsTextEditor.swift in Sources */,
 				2093CDA0289AA163003A88DD /* ThemePreferences.swift in Sources */,
 				2072FA1A280D872600C7F8D4 /* LineEndings.swift in Sources */,
-				2B4C133C289D56F9000ED796 /* STTextView+Mouse.swift in Sources */,
 				20BE728B28D0854900EEDE5F /* Workflow.swift in Sources */,
-				2BDFA90828D107B200980385 /* CodeEditorTextView.swift in Sources */,
 				9354D4B928ACEE20004C6D18 /* RepositoriesMenu.swift in Sources */,
 				201169E22837B3D800F92B46 /* ChangesView.swift in Sources */,
 				20DF97A128ABB30D009CE1E9 /* FileManger.swift in Sources */,
@@ -3736,6 +3750,7 @@
 				939C109528AE7D0700403A97 /* RepositoryContainers&Items.swift in Sources */,
 				2093CDBB289AA1B9003A88DD /* AcknowledgementsView.swift in Sources */,
 				202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */,
+				204F7BB328D7905C00F49092 /* WorkflowMenu.swift in Sources */,
 				2093CDE0289AA522003A88DD /* Date+Formatted.swift in Sources */,
 				2BD5CF2528D602CE00F95E5A /* LineMap.swift in Sources */,
 				2847019E27FDDF7600F87B6B /* ProjectNavigatorView.swift in Sources */,
@@ -3810,6 +3825,7 @@
 				2093CC9D289AA001003A88DD /* TerminalEmulatorView+Coordinator.swift in Sources */,
 				2093CDDA289AA51A003A88DD /* Documentation.docc in Sources */,
 				04C3254F2800AA4700C8DA2D /* ExtensionInstallationView.swift in Sources */,
+				204F7BB728D7907A00F49092 /* WorkflowViewController.swift in Sources */,
 				2093CD3B289AA08F003A88DD /* GitlabConfiguration.swift in Sources */,
 				2093CDC6289AA260003A88DD /* TabBarNative.swift in Sources */,
 				2093CDB2289AA19B003A88DD /* PreferenceAccountsView.swift in Sources */,
@@ -3820,6 +3836,7 @@
 				2093CD11289AA054003A88DD /* GitUIModel.swift in Sources */,
 				2093CDD0289AA503003A88DD /* String+RemoveOccurrences.swift in Sources */,
 				2BD5CF2628D602CE00F95E5A /* ViewModifiers.swift in Sources */,
+				204F7BB928D7908700F49092 /* WorkflowTableViewCell.swift in Sources */,
 				2093CD56289AA0C0003A88DD /* Page.swift in Sources */,
 				2093CD4B289AA0A2003A88DD /* Router.swift in Sources */,
 				B6EE989027E8879A00CDD8AB /* InspectorSidebar.swift in Sources */,
@@ -3839,7 +3856,6 @@
 				2093CD1B289AA079003A88DD /* BitbucketOAuthConfiguration.swift in Sources */,
 				2093CD3F289AA095003A88DD /* Project.swift in Sources */,
 				20D9E32C28CB68DE00FE3339 /* FilterCommitHistoryView.swift in Sources */,
-				20BE727828D0762400EEDE5F /* ActionsCellView.swift in Sources */,
 				20D839AB280DEB2900B27357 /* NoSelectionView.swift in Sources */,
 				2093CDA5289AA170003A88DD /* GeneralPreferencesView.swift in Sources */,
 				20EBB505280C329800F3A5DA /* HistoryItem.swift in Sources */,
