@@ -38,13 +38,13 @@ struct NavigatorSidebar: View {
                 SourceControlNavigatorView(workspace: workspace)
             case 2:
                 FindNavigator(workspace: workspace, state: workspace.searchState ?? .init(workspace))
-            case 3, 4, 5, 6:
-                needsImplementation
+            case 6:
+                HierarchyNavigator(workspace: workspace)
             case 7:
                 ExtensionNavigator(data: workspace.extensionNavigatorData!)
                     .environmentObject(workspace)
             default:
-                Spacer()
+                needsImplementation
             }
         }
         .splitView(availablePositions: [.top, .bottom, .center],

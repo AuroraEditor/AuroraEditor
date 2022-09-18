@@ -23,13 +23,11 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
     @Published
     var content = ""
 
-    /*
-     This is the main type of the document.
-     For example, if the file is end with '.png', it will be an image,
-     if the file is end with '.py', it will be a text file.
-     If text content is not empty, return text
-     If its neither image or text, this could be nil.
-    */
+    /// This is the main type of the document.
+    /// For example, if the file is end with '.png', it will be an image,
+    /// if the file is end with '.py', it will be a text file.
+    /// If text content is not empty, return text
+    /// If its neither image or text, this could be nil.
     public var typeOfFile: UTType? {
         if !self.content.isEmpty {
             return UTType.text
@@ -46,9 +44,7 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
         return nil
     }
 
-    /*
-     This is the QLPreviewItemURL
-     */
+    /// This is the QLPreviewItemURL
     public var previewItemURL: URL? {
         fileURL
     }
@@ -57,19 +53,32 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
 
     override public class var autosavesInPlace: Bool {
         false
-//        true
     }
 
     override public func makeWindowControllers() {
-        // Returns the Storyboard that contains your Document window.
-        let contentView = CodeFileView(codeFile: self)
+        /// [SwiftUI] Add a "hidden" button to be able to close it with `⌘W`
+        var view: some View {
+            ZStack {
+                Button(
+                    action: { self.close() },
+                    label: { EmptyView() }
+                )
+                .frame(width: 0, height: 0)
+                .padding(0)
+                .opacity(0)
+                .keyboardShortcut("w", modifiers: [.command])
+
+                CodeEditorViewWrapper(codeFile: self, editable: true)
+            }
+        }
+
         let window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 1400, height: 600),
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
             backing: .buffered, defer: false
         )
         window.center()
-        window.contentView = NSHostingView(rootView: contentView)
+        window.contentView = NSHostingView(rootView: view)
         let windowController = NSWindowController(window: window)
         addWindowController(windowController)
     }

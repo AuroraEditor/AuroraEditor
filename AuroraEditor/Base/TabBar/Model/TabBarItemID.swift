@@ -5,7 +5,7 @@
 //  Created by Pavel Kasila on 30.04.22.
 //
 
-import Foundation
+import SwiftUI
 
 /// Enum to represent item's ID to tab bar
 public enum TabBarItemID: Codable, Identifiable, Hashable {
