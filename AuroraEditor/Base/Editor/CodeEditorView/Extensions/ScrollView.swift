@@ -12,14 +12,14 @@ import SwiftUI
 
 extension NSScrollView {
 
-  var verticalScrollFraction: CGFloat {
-    get {
-      let verticalScrollRange = (documentView?.bounds.height ?? 0) - documentVisibleRect.height
-      return verticalScrollRange > 0 ? min(max(0, documentVisibleRect.origin.y / verticalScrollRange), 1) : 0
+    var verticalScrollFraction: CGFloat {
+        get {
+            let verticalScrollRange = (documentView?.bounds.height ?? 0) - documentVisibleRect.height
+            return verticalScrollRange > 0 ? min(max(0, documentVisibleRect.origin.y / verticalScrollRange), 1) : 0
+        }
+        set {
+            let visibleRectY = newValue * max(0, (documentView?.bounds.height ?? 0) - documentVisibleRect.height)
+            contentView.scroll(to: CGPoint(x: documentVisibleRect.origin.x, y: visibleRectY))
+        }
     }
-    set {
-      let visibleRectY = newValue * max(0, (documentView?.bounds.height ?? 0) - documentVisibleRect.height)
-      contentView.scroll(to: CGPoint(x: documentVisibleRect.origin.x, y: visibleRectY))
-    }
-  }
 }

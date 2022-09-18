@@ -14,58 +14,58 @@ import Foundation
 ///
 public struct Message: Identifiable, Hashable {
 
-  /// The various category that a message can be in. The earlier in the enumeration, the higher priority in the sense
-  /// that in the one-line view, the colour of the highest priority message will be used.
-  ///
-  public enum Category: Equatable, Comparable, CaseIterable {
-
-    /// A message related to live execution (e.g., debugger stepping position).
+    /// The various category that a message can be in. The earlier in the enumeration, the higher priority in the sense
+    /// that in the one-line view, the colour of the highest priority message will be used.
     ///
-    case live
+    public enum Category: Equatable, Comparable, CaseIterable {
 
-    /// An error — the program cannot be executed.
+        /// A message related to live execution (e.g., debugger stepping position).
+        ///
+        case live
+
+        /// An error — the program cannot be executed.
+        ///
+        case error
+
+        /// A warning — indicating a possible problem that doesn't prevent execution.
+        ///
+        case warning
+
+        /// A message without any direct impact on the validity of the program.
+        ///
+        case informational
+    }
+
+    /// Unique identity of the message.
     ///
-    case error
+    public let id: UUID = UUID()
 
-    /// A warning — indicating a possible problem that doesn't prevent execution.
+    /// The message category
     ///
-    case warning
+    public let category: Category
 
-    /// A message without any direct impact on the validity of the program.
+    /// The number of characters that the message is related to and which ought to be underlined.
     ///
-    case informational
-  }
+    public let length: Int
 
-  /// Unique identity of the message.
-  ///
-  public let id: UUID = UUID()
+    /// Short version of the message (displayed inline and in the popup) — one line only.
+    ///
+    public let summary: String
 
-  /// The message category
-  ///
-  public let category: Category
+    /// Optional long message (only displayed in the popup, but may extend over multiple lines).
+    ///
+    public let description: NSAttributedString?
 
-  /// The number of characters that the message is related to and which ought to be underlined.
-  ///
-  public let length: Int
-
-  /// Short version of the message (displayed inline and in the popup) — one line only.
-  ///
-  public let summary: String
-
-  /// Optional long message (only displayed in the popup, but may extend over multiple lines).
-  ///
-  public let description: NSAttributedString?
-
-  public init(category: Message.Category, length: Int, summary: String, description: NSAttributedString?) {
-    self.category = category
-    self.length = length
-    self.summary = summary
-    self.description = description
-  }
+    public init(category: Message.Category, length: Int, summary: String, description: NSAttributedString?) {
+        self.category = category
+        self.length = length
+        self.summary = summary
+        self.description = description
+    }
 }
 
 /// Order and sort an array of messages by categories.
 ///
 func messagesByCategory(_ messages: [Message]) -> [(key: Message.Category, value: [Message])] {
-  Array(Dictionary(grouping: messages) { $0.category }).sorted { $0.key < $1.key }
+    Array(Dictionary(grouping: messages) { $0.category }).sorted { $0.key < $1.key }
 }

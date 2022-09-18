@@ -18,10 +18,10 @@ typealias TextStorageEditActions = NSTextStorageEditActions
 
 extension NSColor {
 
-  /// Create an AppKit colour from a SwiftUI colour if possible.
-  ///
-  convenience init?(color: Color) {
-    guard let cgColor = color.cgColor else { return nil }
-    self.init(cgColor: cgColor)
-  }
+    /// Create an AppKit colour from a SwiftUI colour if possible.
+    ///
+    convenience init?(color: Color) {
+        guard let cgColor = color.cgColor else { return nil }
+        self.init(cgColor: cgColor)
+    }
 }
