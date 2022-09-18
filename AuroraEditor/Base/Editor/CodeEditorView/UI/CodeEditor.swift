@@ -117,9 +117,6 @@ public struct CodeEditor {
     }
 }
 
-// MARK: -
-// MARK: AppKit version
-
 extension CodeEditor: NSViewRepresentable {
 
     public func makeNSView(context: Context) -> NSScrollView {
@@ -273,12 +270,7 @@ extension CodeEditor: NSViewRepresentable {
             }
         }
     }
-}
 
-// MARK: -
-// MARK: Shared code
-
-extension CodeEditor {
     /// Update messages for a code view in the given context.
     ///
     private func updateMessages(in codeView: CodeView, with context: Context) {
@@ -339,7 +331,6 @@ extension CodeEditor.Position: RawRepresentable, Codable {
     }
 }
 
-// MARK: -
 // MARK: Previews
 struct CodeEditor_Previews: PreviewProvider {
     static var previews: some View {

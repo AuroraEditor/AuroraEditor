@@ -8,7 +8,6 @@
 //  stored in the 'NSTextStorage' that they serve. This is needed to quickly navigate the text (e.g., at which character
 //  position does a particular line start) and to support code-specific rendering (e.g., syntax highlighting).
 
-// FIXME: the aliases ought to be moved to some central place for os impedance matching
 import AppKit
 
 // MARK: -

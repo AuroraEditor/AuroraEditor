@@ -432,6 +432,11 @@
 		936312E728CCC7AE004CD24B /* TabBarItemIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936312E628CCC7AE004CD24B /* TabBarItemIcon.swift */; };
 		936312EA28CCCAD9004CD24B /* TabBarAccessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936312E928CCCAD9004CD24B /* TabBarAccessories.swift */; };
 		93672E8528B2684F0086132E /* ToolbarPlusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93672E8428B2684F0086132E /* ToolbarPlusMenu.swift */; };
+		93813D2428D749CC00A492D4 /* CodeViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D2328D749CC00A492D4 /* CodeViewDelegate.swift */; };
+		93813D2628D74AA500A492D4 /* CodeLayoutManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D2528D74AA500A492D4 /* CodeLayoutManagerDelegate.swift */; };
+		93813D2828D74AC400A492D4 /* CodeLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D2728D74AC400A492D4 /* CodeLayoutManager.swift */; };
+		93813D2B28D74B6400A492D4 /* CodeView+Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D2A28D74B6400A492D4 /* CodeView+Messages.swift */; };
+		93813D2E28D74BB900A492D4 /* CodeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D2D28D74BB900A492D4 /* CodeContainer.swift */; };
 		93983D2D28CE012500E54409 /* NavigatorModeSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93983D2C28CE012500E54409 /* NavigatorModeSelectModel.swift */; };
 		939C109528AE7D0700403A97 /* RepositoryContainers&Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */; };
 		939C2CC6289E345900BBB345 /* FileItemFileSystemFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */; };
@@ -937,6 +942,11 @@
 		936312E628CCC7AE004CD24B /* TabBarItemIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemIcon.swift; sourceTree = "<group>"; };
 		936312E928CCCAD9004CD24B /* TabBarAccessories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAccessories.swift; sourceTree = "<group>"; };
 		93672E8428B2684F0086132E /* ToolbarPlusMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarPlusMenu.swift; sourceTree = "<group>"; };
+		93813D2328D749CC00A492D4 /* CodeViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewDelegate.swift; sourceTree = "<group>"; };
+		93813D2528D74AA500A492D4 /* CodeLayoutManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeLayoutManagerDelegate.swift; sourceTree = "<group>"; };
+		93813D2728D74AC400A492D4 /* CodeLayoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeLayoutManager.swift; sourceTree = "<group>"; };
+		93813D2A28D74B6400A492D4 /* CodeView+Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeView+Messages.swift"; sourceTree = "<group>"; };
+		93813D2D28D74BB900A492D4 /* CodeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeContainer.swift; sourceTree = "<group>"; };
 		93983D2C28CE012500E54409 /* NavigatorModeSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorModeSelectModel.swift; sourceTree = "<group>"; };
 		939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoryContainers&Items.swift"; sourceTree = "<group>"; };
 		939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileItemFileSystemFunctions.swift; sourceTree = "<group>"; };
@@ -2653,23 +2663,9 @@
 		2BD5CF0B28D602CE00F95E5A /* CodeEditorView */ = {
 			isa = PBXGroup;
 			children = (
-				2BD5CF0C28D602CE00F95E5A /* EditorLocation.swift */,
-				2BD5CF0D28D602CE00F95E5A /* CodeEditor.swift */,
-				2BD5CF0E28D602CE00F95E5A /* MinimapView.swift */,
-				2BD5CF0F28D602CE00F95E5A /* CodeStorageDelegate.swift */,
-				2BD5CF1028D602CE00F95E5A /* CodeStorage.swift */,
-				2BD5CF1128D602CE00F95E5A /* GutterView.swift */,
-				2BD5CF1228D602CE00F95E5A /* Message.swift */,
-				2BD5CF1328D602CE00F95E5A /* LineMap.swift */,
-				2BD5CF1428D602CE00F95E5A /* ViewModifiers.swift */,
-				2BD5CF1528D602CE00F95E5A /* OSDefinitions.swift */,
-				2BD5CF1628D602CE00F95E5A /* ScrollView.swift */,
-				2BD5CF1728D602CE00F95E5A /* CodeView.swift */,
-				2BD5CF1828D602CE00F95E5A /* MutableAttributedString.swift */,
-				2BD5CF1928D602CE00F95E5A /* TextView.swift */,
-				2BD5CF1B28D602CE00F95E5A /* Theme.swift */,
-				2BD5CF1C28D602CE00F95E5A /* MessageViews.swift */,
-				2BD5CF1D28D602CE00F95E5A /* LanguageConfiguration.swift */,
+				93813D2028D747EC00A492D4 /* UI */,
+				93813D2128D747F500A492D4 /* Model */,
+				93813D3028D74C7D00A492D4 /* Extensions */,
 			);
 			path = CodeEditorView;
 			sourceTree = "<group>";
@@ -2746,6 +2742,89 @@
 				936312E928CCCAD9004CD24B /* TabBarAccessories.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		93813D1F28D747C100A492D4 /* EditorAccessories */ = {
+			isa = PBXGroup;
+			children = (
+				2BD5CF0E28D602CE00F95E5A /* MinimapView.swift */,
+				2BD5CF1128D602CE00F95E5A /* GutterView.swift */,
+			);
+			path = EditorAccessories;
+			sourceTree = "<group>";
+		};
+		93813D2028D747EC00A492D4 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2BD5CF0D28D602CE00F95E5A /* CodeEditor.swift */,
+				2BD5CF1728D602CE00F95E5A /* CodeView.swift */,
+				2BD5CF1428D602CE00F95E5A /* ViewModifiers.swift */,
+				2BD5CF1928D602CE00F95E5A /* TextView.swift */,
+				93813D1F28D747C100A492D4 /* EditorAccessories */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		93813D2128D747F500A492D4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				93813D2F28D74C1B00A492D4 /* Storage+Language */,
+				93813D2C28D74BAB00A492D4 /* Editor */,
+				93813D2228D749A600A492D4 /* LayoutDelegates */,
+				93813D2928D74B3500A492D4 /* Messages */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		93813D2228D749A600A492D4 /* LayoutDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				93813D2328D749CC00A492D4 /* CodeViewDelegate.swift */,
+				93813D2528D74AA500A492D4 /* CodeLayoutManagerDelegate.swift */,
+				93813D2728D74AC400A492D4 /* CodeLayoutManager.swift */,
+			);
+			path = LayoutDelegates;
+			sourceTree = "<group>";
+		};
+		93813D2928D74B3500A492D4 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				2BD5CF1228D602CE00F95E5A /* Message.swift */,
+				93813D2A28D74B6400A492D4 /* CodeView+Messages.swift */,
+				2BD5CF1C28D602CE00F95E5A /* MessageViews.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		93813D2C28D74BAB00A492D4 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				93813D2D28D74BB900A492D4 /* CodeContainer.swift */,
+				2BD5CF0C28D602CE00F95E5A /* EditorLocation.swift */,
+				2BD5CF1328D602CE00F95E5A /* LineMap.swift */,
+				2BD5CF1B28D602CE00F95E5A /* Theme.swift */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		93813D2F28D74C1B00A492D4 /* Storage+Language */ = {
+			isa = PBXGroup;
+			children = (
+				2BD5CF1028D602CE00F95E5A /* CodeStorage.swift */,
+				2BD5CF0F28D602CE00F95E5A /* CodeStorageDelegate.swift */,
+				2BD5CF1828D602CE00F95E5A /* MutableAttributedString.swift */,
+				2BD5CF1D28D602CE00F95E5A /* LanguageConfiguration.swift */,
+			);
+			path = "Storage+Language";
+			sourceTree = "<group>";
+		};
+		93813D3028D74C7D00A492D4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2BD5CF1528D602CE00F95E5A /* OSDefinitions.swift */,
+				2BD5CF1628D602CE00F95E5A /* ScrollView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		93983D2E28CE053800E54409 /* HierarchyNavigator */ = {
@@ -3203,6 +3282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93813D2828D74AC400A492D4 /* CodeLayoutManager.swift in Sources */,
 				2093CDC3289AA25B003A88DD /* TabBarItemID.swift in Sources */,
 				2B5B255D288ADABA009C7384 /* shellClient.swift in Sources */,
 				2093CD54289AA0C0003A88DD /* ExtensionsStoreAPI.swift in Sources */,
@@ -3276,6 +3356,7 @@
 				2093CD49289AA095003A88DD /* EventData.swift in Sources */,
 				2093CDD6289AA511003A88DD /* Dictionary+Additions.swift in Sources */,
 				2093CDA3289AA16C003A88DD /* PreferencesColorPicker.swift in Sources */,
+				93813D2628D74AA500A492D4 /* CodeLayoutManagerDelegate.swift in Sources */,
 				2093CD6D289AA0FC003A88DD /* PanelDivider.swift in Sources */,
 				04C3254D27FF331B00C8DA2D /* ExtensionNavigatorItem.swift in Sources */,
 				2093CC94289A9FF5003A88DD /* StatusBarLineEndSelector.swift in Sources */,
@@ -3409,7 +3490,9 @@
 				20DF97A128ABB30D009CE1E9 /* FileManger.swift in Sources */,
 				20FDB4E828BD26B500FDD8C3 /* Diff-Helper.swift in Sources */,
 				2093CDD5289AA511003A88DD /* String+QueryParameters.swift in Sources */,
+				93813D2E28D74BB900A492D4 /* CodeContainer.swift in Sources */,
 				20EBB507280C32D300F3A5DA /* QuickHelpInspector.swift in Sources */,
+				93813D2B28D74B6400A492D4 /* CodeView+Messages.swift in Sources */,
 				2093CC91289A9FF5003A88DD /* StatusBarIndentSelector.swift in Sources */,
 				2B89F85428B13E9D007CB9C1 /* auroraMessageBox.swift in Sources */,
 				2093CD26289AA084003A88DD /* PreviewHeader.swift in Sources */,
@@ -3419,6 +3502,7 @@
 				2093CDE1289AA522003A88DD /* AuroraProject.swift in Sources */,
 				04540D5E27DD08C300E91B77 /* WorkspaceView.swift in Sources */,
 				20D2A44C28A7D8D00073F7BD /* Format-Patch.swift in Sources */,
+				93813D2428D749CC00A492D4 /* CodeViewDelegate.swift in Sources */,
 				2093CDC5289AA260003A88DD /* TabBarDivider.swift in Sources */,
 				2093CD9F289AA15F003A88DD /* AccountsPreferences.swift in Sources */,
 				2093CDB7289AA1A6003A88DD /* GithubLoginView.swift in Sources */,

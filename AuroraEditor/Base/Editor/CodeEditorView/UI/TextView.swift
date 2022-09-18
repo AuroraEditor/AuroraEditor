@@ -62,9 +62,6 @@ extension TextView {
   }
 }
 
-// MARK: -
-// MARK: AppKit version
-
 import AppKit
 
 extension NSTextView: TextView {
