@@ -200,7 +200,6 @@ extension GitCloneView {
                                               shellClient: shellClient).getBranches(allBranches: true)
             let filtered = branches.filter { !$0.contains("HEAD") }
             if filtered.count > 1 {
-                showCheckout = true
             }
         } catch {
             return

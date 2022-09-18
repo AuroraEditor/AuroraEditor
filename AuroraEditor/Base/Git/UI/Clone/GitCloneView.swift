@@ -14,7 +14,6 @@ public struct GitCloneView: View {
     let shellClient: ShellClient
     @Binding var isPresented: Bool
     @Binding var repoPath: String
-    @State var showCheckout: Bool = false
     @State var repoUrlStr: String = ""                      // the repo string that the user inputs
     @State var gitClient: GitClient?
     @State var cloneCancellable: AnyCancellable?    // the publisher for the cloning progress
@@ -44,7 +43,6 @@ public struct GitCloneView: View {
 
     enum ActiveSheet: Identifiable {
         case verify, select, error(String)
-
         var id: UUID {
             UUID()
         }
@@ -58,6 +56,7 @@ public struct GitCloneView: View {
         self.shellClient = shellClient
         self._isPresented = isPresented
         self._repoPath = repoPath
+        // self._arrayBranch = .constant([])
     }
 
     func getRemoteHead(url: String) {
@@ -100,18 +99,10 @@ public struct GitCloneView: View {
     }
 
     public var body: some View {
-        if showCheckout {
-            CheckoutBranchView(
-                isPresented: $showCheckout,
-                repoPath: $repoPath,
-                shellClient: shellClient
-            )
+        if !isCloning {
+            cloneView
         } else {
-            if !isCloning {
-                cloneView
-            } else {
-                progressView
-            }
+            progressView
         }
     }
 
@@ -233,11 +224,11 @@ public struct GitCloneView: View {
                 .padding(.bottom, 50)
 
             VStack(alignment: .leading) {
-                Text("Clone a repository")
+                Text("Clone a repository  \(allBranches.description)")
                     .bold()
                     .padding(.bottom, 2)
 
-                Toggle("Clone all branches", isOn: $allBranches)
+                Toggle("Clone all branches \(arrayBranch.count)", isOn: $allBranches)
 
                 if  allBranches  && !arrayBranch.isEmpty {
                     Picker("Checkout", selection: $selectedBranch) {
@@ -258,6 +249,7 @@ public struct GitCloneView: View {
                 Spacer()
 
                 HStack {
+                    Spacer()
                     Button("Cancel") {
                         activeSheet = nil
                     }
@@ -267,15 +259,12 @@ public struct GitCloneView: View {
                     .keyboardShortcut(.defaultAction)
                     .disabled(!isValid(url: repoUrlStr))
                 }
-                .offset(x: 170)
-                .alignmentGuide(.leading) { context in
-                    context[.leading]
-                }
             }
         }
         .padding(.top, 20)
         .padding(.horizontal, 20)
-        .padding(.bottom, 16)
+        .padding(.bottom, 20)
+        .frame(width: 400, height: 140)
     }
 
     public var progressView: some View {
@@ -300,18 +289,16 @@ public struct GitCloneView: View {
                 .progressViewStyle(LinearProgressViewStyle())
 
             HStack {
+                Spacer()
                 Button("Cancel") {
                     cancelClone(deleteRemains: true)
                 }
             }
-            .offset(x: 315)
-            .alignmentGuide(.leading) { context in
-                context[.leading]
-            }
         }
         .padding(.top, 20)
         .padding(.horizontal, 20)
-        .padding(.bottom, 16)
+        .padding(.bottom, 20)
+        .frame(width: 400, height: 140)
     }
 }
 
@@ -337,18 +324,16 @@ struct ErrorView: View {
                 Spacer()
 
                 HStack {
+                    Spacer()
                     Button("Cancel") {
                         onClose()
                     }
-                }
-                .offset(x: 235)
-                .alignmentGuide(.leading) { context in
-                    context[.leading]
                 }
             }
         }
         .padding(.top, 20)
         .padding(.horizontal, 20)
-        .padding(.bottom, 16)
+        .padding(.bottom, 20)
+        .frame(width: 400, height: 140)
     }
 }
