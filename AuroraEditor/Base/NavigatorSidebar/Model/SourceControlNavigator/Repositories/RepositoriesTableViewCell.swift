@@ -23,8 +23,9 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
         switch cellType {
         case .repo:
             label.stringValue = "\(repository.repoName ?? "Unknown Repo")"
-            if repository.branches?.contents.count ?? -2 > repository.branches?.current ?? -1 {
-                let currentBranch = (repository.branches?.contents[repository.branches?.current ?? -1] as? RepoBranch)?
+            if let branches = repository.branches,
+               branches.contents.count  > branches.current {
+                let currentBranch = (branches.contents[branches.current] as? RepoBranch)?
                     .name ?? "Unknown Main Branch"
                 secondaryLabel.stringValue = "\(currentBranch)"
             } else {
