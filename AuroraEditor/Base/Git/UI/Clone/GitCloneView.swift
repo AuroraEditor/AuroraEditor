@@ -33,7 +33,7 @@ public struct GitCloneView: View {
         "Resolving Progress"
     ]
 
-    @State var allBranches = true
+    @State var allBranches = false
     @State var arrayBranch: [String] = []
     @State var mainBranch: String = ""
     @State var selectedBranch: String = ""
@@ -89,9 +89,11 @@ public struct GitCloneView: View {
                 self.arrayBranch = branches
                 self.check += 1
                 if check == 2 {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                      check = 0
-                      activeSheet = .select
+                    check = 0
+                    activeSheet = .select
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        // Force a UI Update.
+                        allBranches.toggle()
                     }
                 }
             }
