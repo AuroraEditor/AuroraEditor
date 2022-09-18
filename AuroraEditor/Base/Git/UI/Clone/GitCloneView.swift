@@ -213,6 +213,7 @@ public struct GitCloneView: View {
         .frame(width: 400, height: 150)
         .onAppear {
             DispatchQueue.global(qos: .background).async {
+                allBranches = false
                 getRemoteHead(url: repoUrlStr)
                 getRemoteBranch(url: repoUrlStr)
             }
