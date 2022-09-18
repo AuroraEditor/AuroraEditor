@@ -7,11 +7,7 @@
 //  Extensions to `NSMutableAttributedString`
 
 import os
-#if os(iOS)
-import UIKit
-#elseif os(macOS)
 import AppKit
-#endif
 
 private let logger = Logger(subsystem: "org.justtesting.CodeEditorView", category: "MutableAttributedString")
 

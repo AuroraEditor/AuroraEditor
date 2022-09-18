@@ -5,15 +5,7 @@
 //
 //  This file contains `NSTextStorage` extensions for code editing.
 
-#if os(iOS)
-
-import UIKit
-
-#elseif os(macOS)
-
 import AppKit
-
-#endif
 
 // MARK: -
 // MARK: `NSTextStorage` subclass
@@ -36,11 +28,9 @@ class CodeStorage: NSTextStorage {
         fatalError("init(coder:) has not been implemented")
     }
 
-#if os(macOS)
     required init?(pasteboardPropertyList propertyList: Any, ofType type: NSPasteboard.PasteboardType) {
         fatalError("init(pasteboardPropertyList:ofType:) has not been implemented")
     }
-#endif
 
     override func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [NSAttributedString.Key: Any] {
         var attributes = textStorage.attributes(at: location, effectiveRange: range)
@@ -122,13 +112,6 @@ extension CodeStorage {
     func cursorInsert(string: String, at index: Int) {
 
         Dispatch.DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(10)) {
-
-#if os(iOS)
-
-            self.replaceCharacters(in: NSRange(location: index, length: 0), with: string)
-
-#elseif os(macOS)
-
             // Collect the text views, where we insert at the insertion point
             var affectedTextViews: [NSTextView] = []
             for layoutManager in self.layoutManagers {
@@ -146,8 +129,6 @@ extension CodeStorage {
             // Reset the insertion point to the original (pre-insertion) position
             // (as it will move after the inserted text on macOS otherwise)
             for textView in affectedTextViews { textView.setSelectedRange(NSRange(location: index, length: 0)) }
-
-#endif
         }
     }
 
