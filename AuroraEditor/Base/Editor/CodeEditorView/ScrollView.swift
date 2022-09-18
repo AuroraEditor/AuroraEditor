@@ -7,27 +7,6 @@
 
 import SwiftUI
 
-#if os(iOS)
-
-// MARK: -
-// MARK: UIKit version
-
-extension UIScrollView {
-
-  var verticalScrollFraction: CGFloat {
-    get {
-      let verticalScrollRange = contentSize.height - bounds.height
-      return verticalScrollRange > 0 ? min(max(0, contentOffset.y / verticalScrollRange), 1) : 0
-    }
-    set {
-      let visibleRectY = newValue * max(0, contentSize.height - bounds.height)
-      setContentOffset(CGPoint(x: contentOffset.x, y: visibleRectY), animated: false)
-    }
-  }
-}
-
-#elseif os(macOS)
-
 // MARK: -
 // MARK: AppKit version
 
@@ -44,5 +23,3 @@ extension NSScrollView {
     }
   }
 }
-
-#endif

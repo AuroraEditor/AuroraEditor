@@ -9,8 +9,6 @@
 
 import SwiftUI
 
-#if os(macOS)
-
 /// Customised text view for the minimap.
 ///
 class MinimapView: NSTextView {
@@ -296,5 +294,3 @@ func codeWidthInCharacters(for width: CGFloat, with font: NSFont, withMinimap: B
 func minimapFontSize(for fontSize: CGFloat) -> CGFloat {
   return max(1, ceil(fontSize / 20)) * 2
 }
-
-#endif

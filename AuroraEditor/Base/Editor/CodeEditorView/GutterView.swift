@@ -9,64 +9,6 @@ import os
 
 private let logger = Logger(subsystem: "org.justtesting.CodeEditorView", category: "GutterView")
 
-#if os(iOS)
-
-// MARK: -
-// MARK: UIKit version
-
-import UIKit
-
-private typealias FontDescriptor = UIFontDescriptor
-
-private let fontDescriptorFeatureIdentifier = FontDescriptor.FeatureKey.featureIdentifier
-private let fontDescriptorTypeIdentifier = FontDescriptor.FeatureKey.typeIdentifier
-
-private let lineNumberColour = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-
-class GutterView: UIView {
-
-  /// The text view that this gutter belongs to.
-  ///
-  let textView: UITextView
-
-  /// The current code editor theme
-  ///
-  var theme: Theme
-
-  /// Accessor for the associated text view's message views.
-  ///
-  let getMessageViews: () -> MessageViews
-
-  /// Determines whether this gutter is for a main code view or for the minimap of a code view.
-  ///
-  let isMinimapGutter: Bool = false
-
-  /// Dirty rectangle whose drawing has been delayed as the code layout wasn't finished yet.
-  ///
-  var pendingDrawRect: CGRect?
-
-  /// Create and configure a gutter view for the given text view. This will also set the appropiate exclusion path for
-  /// text container.
-  ///
-  init(frame: CGRect, textView: UITextView, theme: Theme, getMessageViews: @escaping () -> MessageViews) {
-    self.textView = textView
-    self.theme = theme
-    self.getMessageViews = getMessageViews
-    super.init(frame: frame)
-    let gutterExclusionPath = UIBezierPath(rect: CGRect(origin: frame.origin,
-                                                        size: CGSize(width: frame.width,
-                                                                     height: CGFloat.greatestFiniteMagnitude)))
-    optTextContainer?.exclusionPaths = [gutterExclusionPath]
-    contentMode = .redraw
-  }
-
-  required init(coder: NSCoder) {
-    fatalError("CodeEditorView.GutterView.init(coder:) not implemented")
-  }
-}
-
-#elseif os(macOS)
-
 // MARK: -
 // MARK: AppKit version
 
@@ -127,8 +69,6 @@ class GutterView: NSView {
   // Imitate the coordinate system of the associated text view.
   override var isFlipped: Bool { textView.isFlipped }
 }
-
-#endif
 
 // MARK: -
 // MARK: Shared code
@@ -233,16 +173,9 @@ extension GutterView {
           ]
       ]
     )
-    #if os(iOS)
-    let font = OSFont(descriptor: desc, size: 0)
-    #elseif os(macOS)
     let font = OSFont(descriptor: desc, size: 0) ?? OSFont.systemFont(ofSize: 0)
-    #endif
 
     let selectedLines = textView.selectedLines
-
-    // Currently only supported on macOS as `UITextView` is less configurable
-    #if os(macOS)
 
     // Highlight the current line in the gutter
     if let location = textView.insertionPoint {
@@ -275,12 +208,8 @@ extension GutterView {
           let intersectionRect = rect.intersection(self.gutterRectFrom(textRect: fragmentRect))
           if !intersectionRect.isEmpty { NSBezierPath(rect: intersectionRect).fill() }
         }
-
-  //      }
       }
     }
-
-    #endif
 
     // All visible glyphs and all visible characters that are in the text area to the right of the gutter view
     let glyphRange = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: textRectFrom(gutterRect: rect),
@@ -319,17 +248,6 @@ extension GutterView {
             gutterRect = gutterRectForLineNumbersFrom(textRect: lineGlyphRect)
 
         var attributes = selectedLines.contains(line) ? textAttributesSelected : textAttributesDefault
-
-        #if os(iOS)
-
-        // Highlight line numbers as we don't have line background highlighting on iOS.
-        if let messageBundle = lineMap.lines[line].info?.messages {
-          let themeColour = theme(messagesByCategory(messageBundle.messages)[0].key).colour,
-              colour = selectedLines.contains(line) ? themeColour : themeColour.withAlphaComponent(0.5)
-          attributes.updateValue(colour, forKey: .foregroundColor)
-        }
-
-        #endif
 
         ("\(line)" as NSString).draw(in: gutterRect, withAttributes: attributes)
       }

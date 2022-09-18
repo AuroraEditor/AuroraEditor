@@ -14,11 +14,7 @@
 //
 //  Curent support here is only for the first stage.
 
-#if os(iOS)
-import UIKit
-#elseif os(macOS)
 import AppKit
-#endif
 
 /// Specifies the language-dependent aspects of a code editor.
 ///

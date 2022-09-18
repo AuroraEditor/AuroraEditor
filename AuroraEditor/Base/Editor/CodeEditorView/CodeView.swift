@@ -33,155 +33,6 @@ struct MessageInfo {
 ///
 typealias MessageViews = [LineInfo.MessageBundle.ID: MessageInfo]
 
-#if os(iOS)
-
-// MARK: -
-// MARK: UIKit version
-
-/// `UITextView` with a gutter
-///
-class CodeView: UITextView {
-
-    // Delegates
-    fileprivate var codeViewDelegate: CodeViewDelegate?
-    fileprivate var codeStorageDelegate: CodeStorageDelegate
-    fileprivate let codeLayoutManagerDelegate = CodeLayoutManagerDelegate()
-
-    // Subviews
-    fileprivate var gutterView: GutterView?
-
-    /// The current highlighting theme
-    ///
-    var theme: Theme {
-        didSet {
-            font = UIFont(name: theme.fontName, size: theme.fontSize)
-            backgroundColor = theme.backgroundColour
-            tintColor = theme.tintColour
-            (textStorage as? CodeStorage)?.theme = theme
-            gutterView?.theme = theme
-            setNeedsDisplay(bounds)
-        }
-    }
-
-    /// The current view layout.
-    ///
-    var viewLayout: CodeEditor.LayoutConfiguration {
-        didSet {
-            // Nothing to do, but that may change in the future
-        }
-    }
-
-    /// Keeps track of the set of message views.
-    ///
-    var messageViews: MessageViews = [:]
-
-    /// Designated initializer for code views with a gutter.
-    ///
-    init(
-        frame: CGRect,
-        with language: LanguageConfiguration,
-        iewLayout: CodeEditor.LayoutConfiguration,
-        theme: Theme) {
-
-            self.viewLayout = viewLayout
-            self.theme = theme
-
-            // Use custom components that are gutter-aware and support code-specific editing actions and highlighting.
-            let codeLayoutManager = CodeLayoutManager()
-            let codeContainer = CodeContainer()
-            let codeStorage = CodeStorage(theme: theme)
-            codeStorage.addLayoutManager(codeLayoutManager)
-            codeContainer.layoutManager = codeLayoutManager
-            codeLayoutManager.addTextContainer(codeContainer)
-            codeLayoutManager.delegate = codeLayoutManagerDelegate
-
-            codeStorageDelegate = CodeStorageDelegate(with: language)
-
-            super.init(frame: frame, textContainer: codeContainer)
-            codeContainer.textView = self
-
-            // Set basic display and input properties
-            font = theme.font
-            backgroundColor = theme.backgroundColour
-            tintColor = theme.tintColour
-            autocapitalizationType = .none
-            autocorrectionType = .no
-            spellCheckingType = .no
-            smartQuotesType = .no
-            smartDashesType = .no
-            smartInsertDeleteType = .no
-
-            // Add the view delegate
-            codeViewDelegate = CodeViewDelegate(codeView: self)
-            delegate = codeViewDelegate
-
-            // Add a text storage delegate that maintains a line map
-            codeStorage.delegate = self.codeStorageDelegate
-
-            // Add a gutter view
-            let gutterWidth = ceil(theme.fontSize) * 3,
-                gutterView = GutterView(frame: CGRect(x: 0,
-                                                       y: 0,
-                                                       width: gutterWidth,
-                                                       height: CGFloat.greatestFiniteMagnitude),
-                                         textView: self,
-                                         theme: theme,
-                                         getMessageViews: { self.messageViews })
-            addSubview(gutterView)
-            self.gutterView = gutterView
-            codeLayoutManager.gutterView = gutterView
-        }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func layoutSubviews() {
-        gutterView?.frame.size.height = contentSize.height
-    }
-}
-
-class CodeViewDelegate: NSObject, UITextViewDelegate {
-
-    // Hooks for events
-    //
-    var textDidChange: ((UITextView) -> Void)?
-    var selectionDidChange: ((UITextView) -> Void)?
-    var didScroll: ((UIScrollView) -> Void)?
-
-    /// Caching the last set selected range.
-    ///
-    var oldSelectedRange: NSRange
-
-    init(codeView: CodeView) {
-        oldSelectedRange = codeView.selectedRange
-    }
-
-    // MARK: -
-    // MARK: UITextViewDelegate protocol
-
-    func textViewDidChange(_ textView: UITextView) { textDidChange?(textView) }
-
-    func textViewDidChangeSelection(_ textView: UITextView) {
-        guard let codeView = textView as? CodeView else { return }
-
-        selectionDidChange?(textView)
-
-        // NB: Invalidation of the two ranges needs to happen separately.
-        // If we were to union them, an insertion point
-        //     (range length = 0) at the start of a line would be absorbed into the previous line,
-        // which results in a lack
-        //     of invalidation of the line on which the insertion point is located.
-        codeView.gutterView?.invalidateGutter(forCharRange: codeView.selectedRange)
-        codeView.gutterView?.invalidateGutter(forCharRange: oldSelectedRange)
-        oldSelectedRange = textView.selectedRange
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) { didScroll?(scrollView) }
-}
-
-#elseif os(macOS)
-
 // MARK: -
 // MARK: AppKit version
 
@@ -654,8 +505,6 @@ class CodeViewDelegate: NSObject, NSTextViewDelegate {
     }
 }
 
-#endif
-
 // MARK: -
 // MARK: Shared code
 
@@ -832,16 +681,11 @@ extension CodeView {
 
 class CodeContainer: NSTextContainer {
 
-#if os(iOS)
-    weak var textView: UITextView?
-#endif
-
     override func lineFragmentRect(forProposedRect proposedRect: CGRect,
                                    at characterIndex: Int,
                                    writingDirection baseWritingDirection: NSWritingDirection,
                                    remaining remainingRect: UnsafeMutablePointer<CGRect>?)
-    -> CGRect
-    {
+    -> CGRect {
         let calculatedRect = super.lineFragmentRect(forProposedRect: proposedRect,
                                                     at: characterIndex,
                                                     writingDirection: baseWritingDirection,

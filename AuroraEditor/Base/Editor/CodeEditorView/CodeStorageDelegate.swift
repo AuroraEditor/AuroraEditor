@@ -9,11 +9,7 @@
 //  position does a particular line start) and to support code-specific rendering (e.g., syntax highlighting).
 
 // FIXME: the aliases ought to be moved to some central place for os impedance matching
-#if os(iOS)
-import UIKit
-#elseif os(macOS)
 import AppKit
-#endif
 
 // MARK: -
 // MARK: Visual debugging support
