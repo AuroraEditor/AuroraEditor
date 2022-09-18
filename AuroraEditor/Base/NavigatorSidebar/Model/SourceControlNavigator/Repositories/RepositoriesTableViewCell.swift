@@ -57,8 +57,12 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
             image = NSImage(named: "vault")!
 
         case .branch:
-            let currentBranch = (repository.branches?.contents[repository.branches?.current ?? -1] as? RepoBranch)?
-                .name ?? "Unknown Main Branch"
+            var currentBranch = "Unknown Main Branch"
+            if let branches = repository.branches,
+               let unsafeCurrentBranch = branches.contents[branches.current] as? RepoBranch {
+                currentBranch = unsafeCurrentBranch.name
+            }
+
             label.stringValue = item?.name ?? "Unknown Branch"
             if label.stringValue == currentBranch {
                 secondaryLabel.stringValue = "*"
