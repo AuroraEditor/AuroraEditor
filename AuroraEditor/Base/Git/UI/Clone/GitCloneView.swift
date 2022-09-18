@@ -56,7 +56,6 @@ public struct GitCloneView: View {
         self.shellClient = shellClient
         self._isPresented = isPresented
         self._repoPath = repoPath
-        // self._arrayBranch = .constant([])
     }
 
     func getRemoteHead(url: String) {
@@ -228,11 +227,11 @@ public struct GitCloneView: View {
                 .padding(.bottom, 50)
 
             VStack(alignment: .leading) {
-                Text("Clone a repository  \(allBranches.description)")
+                Text("Clone a repository")
                     .bold()
                     .padding(.bottom, 2)
 
-                Toggle("Clone all branches \(arrayBranch.count)", isOn: $allBranches)
+                Toggle("Clone all branches", isOn: $allBranches)
 
                 if  allBranches  && !arrayBranch.isEmpty {
                     Picker("Checkout", selection: $selectedBranch) {
