@@ -155,7 +155,6 @@ private struct MessageBorder: ViewModifier {
 }
 
 extension View {
-
   fileprivate func messageBorder(cornerRadius: CGFloat) -> some View {
     modifier(MessageBorder(cornerRadius: cornerRadius))
   }
