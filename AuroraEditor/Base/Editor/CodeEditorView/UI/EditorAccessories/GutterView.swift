@@ -107,6 +107,10 @@ class GutterView: NSView {
 
     // Imitate the coordinate system of the associated text view.
     override var isFlipped: Bool { textView.isFlipped }
+
+    var lines: [NSString] = []
+    var gutterRects: [CGRect] = []
+    var lineAttributes: [[NSAttributedString.Key: NSObject]] = []
 }
 
 // MARK: -
@@ -171,7 +175,6 @@ extension GutterView {
         }
     }
 
-    // MARK: -
     // MARK: Gutter drawing
 
     override func draw(_ rect: CGRect) {
@@ -196,13 +199,11 @@ extension GutterView {
 
         // Highlight the current line in the gutter
         if let location = textView.insertionPoint {
-
             theme.currentLineColour.setFill()
             layoutManager.enumerateFragmentRects(forLineContaining: location) { fragmentRect in
                 let intersectionRect = rect.intersection(self.gutterRectFrom(textRect: fragmentRect))
                 if !intersectionRect.isEmpty { NSBezierPath(rect: intersectionRect).fill() }
             }
-
         }
 
         // all functionality below is not for the minimap gutter, so if it is a minimap gutter then stop here.
@@ -230,6 +231,37 @@ extension GutterView {
             }
         }
 
+        updateGutter(for: rect)
+
+        for itemIndex in 0..<lines.count {
+            lines[itemIndex].draw(in: gutterRects[itemIndex],
+                                          withAttributes: lineAttributes[itemIndex])
+        }
+    }
+
+    func updateGutter(for rect: CGRect) {
+        guard let layoutManager = optLayoutManager,
+              let textContainer = optTextContainer,
+              let lineMap = optLineMap,
+              !isMinimapGutter // no need to update the gutter for a minimap
+        else { return }
+
+        // This is not particularily nice, but there is no point in trying to draw the gutter, before the layout manager
+        // has finished laying out the *entire* text. Given that all we got here is a rectangle, we can't even figure
+        // out reliably whether enough text has been laid out to draw that part of the gutter that is being requested.
+        // Hence, we defer drawing the gutter until all characters have been laid out.
+        if layoutManager.firstUnlaidCharacterIndex() < NSMaxRange(lineMap.lines.last?.range ?? NSRange(location: 0,
+                                                                                                       length: 0)) {
+            pendingDrawRect = rect.union(pendingDrawRect ?? CGRect.null)
+            return
+        }
+
+        let selectedLines = textView.selectedLines
+
+        // FIXME: Eventually, we want this in the minimap
+        //        but `messageView.value.lineFragementRect` is of course
+        //        incorrect for the minimap, so we need a more general set up.
+
         // All visible glyphs and all visible characters that are in the text area to the right of the gutter view
         let boundingRect = textRectFrom(gutterRect: rect)
         let glyphRange = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: boundingRect,
@@ -241,6 +273,10 @@ extension GutterView {
 
         // TODO: CodeEditor needs to be parameterised by message theme
         //            let theme = Message.defaultTheme
+
+        lines = []
+        gutterRects = []
+        lineAttributes = []
 
         for line in lineRange {
 
@@ -255,7 +291,9 @@ extension GutterView {
 
             let attributes = selectedLines.contains(line) ? textAttributesSelected : textAttributesDefault
 
-            ("\(line)" as NSString).draw(in: gutterRect, withAttributes: attributes)
+            lines.append("\(line)" as NSString)
+            gutterRects.append(gutterRect)
+            lineAttributes.append(attributes)
         }
     }
 }
