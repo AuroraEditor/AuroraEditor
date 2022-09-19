@@ -10,7 +10,6 @@
 import Foundation
 
 public struct Branches {
-
     func getCurrentBranch(directoryURL: URL) throws -> String {
         return try ShellClient.live().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git rev-parse --abbrev-ref HEAD"

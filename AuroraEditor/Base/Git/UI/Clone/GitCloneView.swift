@@ -9,12 +9,12 @@ import SwiftUI
 import Foundation
 import Combine
 
+// swiftlint:disable:next type_body_length
 public struct GitCloneView: View {
     let shellClient: ShellClient
     @Binding var isPresented: Bool
     @Binding var repoPath: String
-    @State var showCheckout: Bool = false
-    @State var repoUrlStr = ""                      // the repo string that the user inputs
+    @State var repoUrlStr: String = ""                      // the repo string that the user inputs
     @State var gitClient: GitClient?
     @State var cloneCancellable: AnyCancellable?    // the publisher for the cloning progress
 
@@ -33,6 +33,21 @@ public struct GitCloneView: View {
         "Resolving Progress"
     ]
 
+    @State var allBranches = false
+    @State var arrayBranch: [String] = []
+    @State var mainBranch: String = ""
+    @State var selectedBranch: String = ""
+    @State private var check = 0
+
+    @State var activeSheet: ActiveSheet?
+
+    enum ActiveSheet: Identifiable {
+        case verify, select, error(String)
+        var id: UUID {
+            UUID()
+        }
+    }
+
     public init(
         shellClient: ShellClient,
         isPresented: Binding<Bool>,
@@ -43,19 +58,54 @@ public struct GitCloneView: View {
         self._repoPath = repoPath
     }
 
-    public var body: some View {
-        if showCheckout {
-            CheckoutBranchView(
-                isPresented: $showCheckout,
-                repoPath: $repoPath,
-                shellClient: shellClient
-            )
-        } else {
-            if !isCloning {
-                cloneView
+    func getRemoteHead(url: String) {
+        do {
+            let branch = try Remote().getRemoteHEAD(url: url)
+            if branch[0].contains("fatal:") {
+                Log.warning("Error: getRemoteHead")
+                activeSheet = .error("Error: getRemoteHead")
             } else {
-                progressView
+                self.mainBranch = branch[0]
+                self.selectedBranch = branch[0]
+                self.check += 1
+                if check == 2 {
+                    check = 0
+                    activeSheet = .select
+                }
             }
+        } catch {
+            Log.error("Failed to find main branch name.")
+        }
+    }
+
+    func getRemoteBranch(url: String) {
+        do {
+            let branches = try Remote().getRemoteBranch(url: url)
+            if branches[0].contains("fatal:") {
+                Log.warning("Error: getRemoteBranch")
+                activeSheet = .error("Error: getRemoteBranch")
+            } else {
+                self.arrayBranch = branches
+                self.check += 1
+                if check == 2 {
+                    check = 0
+                    activeSheet = .select
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        // Force a UI Update.
+                        allBranches.toggle()
+                    }
+                }
+            }
+        } catch {
+            Log.error("Failed to find branches.")
+        }
+    }
+
+    public var body: some View {
+        if !isCloning {
+            cloneView
+        } else {
+            progressView
         }
     }
 
@@ -69,28 +119,49 @@ public struct GitCloneView: View {
                 Text("Clone a repository")
                     .bold()
                     .padding(.bottom, 2)
+
                 Text("Enter a git repository URL:")
                     .font(.system(size: 11))
                     .foregroundColor(.secondary)
                     .alignmentGuide(.trailing) { context in
                         context[.trailing]
                     }
+
                 TextField("Git Repository URL", text: $repoUrlStr)
                     .lineLimit(1)
-                    .padding(.bottom, 15)
+                    .padding(.bottom, 5)
                     .frame(width: 300)
                     .onSubmit {
                         cloneRepository()
                     }
+
                 HStack {
                     Button("Cancel") {
                         cancelClone()
                     }
                     Button("Clone") {
-                        cloneRepository()
-                    }
-                    .keyboardShortcut(.defaultAction)
-                    .disabled(!isValid(url: repoUrlStr))
+                        check = 0
+                        activeSheet = .verify
+                    }.sheet(item: $activeSheet) { item in
+                        VStack {
+                            switch item {
+                            case .verify:
+                                progressVerifyView
+                            case .select:
+                                selectView
+                            case .error(let error):
+                                ErrorView(errorMessage: error) {
+                                    activeSheet = nil // On close action
+                                }
+                            }
+                        }
+                        .frame(
+                            maxWidth: .infinity,
+                            maxHeight: .infinity,
+                            alignment: .topLeading
+                        )
+                    }.keyboardShortcut(.defaultAction)
+                        .disabled(!isValid(url: repoUrlStr))
                 }
                 .offset(x: 185)
                 .alignmentGuide(.leading) { context in
@@ -106,9 +177,103 @@ public struct GitCloneView: View {
         }
     }
 
+    public var progressVerifyView: some View {
+        HStack {
+            Image(nsImage: NSApp.applicationIconImage)
+                .resizable()
+                .frame(width: 64, height: 64)
+                .padding(.bottom, 50)
+            VStack(alignment: .leading) {
+                Text("Verifying \(repoUrlStr)")
+                    .bold()
+                    .padding(.bottom, 2)
+
+                Text("Preparing to clone...")
+                    .font(.system(size: 11))
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.leading)
+
+                ProgressView()
+                    .progressViewStyle(LinearProgressViewStyle())
+
+                HStack {
+                    Button("Cancel") {
+                        activeSheet = nil
+                    }
+                }
+                .offset(x: 230)
+                .alignmentGuide(.leading) { context in
+                    context[.leading]
+                }
+            }
+        }
+        .padding(.top, 20)
+        .padding(.horizontal, 20)
+        .padding(.bottom, 16)
+        .frame(width: 400, height: 150)
+        .onAppear {
+            DispatchQueue.global(qos: .background).async {
+                allBranches = false
+                getRemoteHead(url: repoUrlStr)
+                getRemoteBranch(url: repoUrlStr)
+            }
+        }
+    }
+
+    public var selectView: some View {
+        HStack {
+            Image(nsImage: NSApp.applicationIconImage)
+                .resizable()
+                .frame(width: 64, height: 64)
+                .padding(.bottom, 50)
+
+            VStack(alignment: .leading) {
+                Text("Clone a repository")
+                    .bold()
+                    .padding(.bottom, 2)
+
+                Toggle("Clone all branches", isOn: $allBranches)
+
+                if  allBranches  && !arrayBranch.isEmpty {
+                    Picker("Checkout", selection: $selectedBranch) {
+                        ForEach(arrayBranch, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                }
+
+                if  !allBranches  && !arrayBranch.isEmpty {
+                    Picker("Branch", selection: $selectedBranch) {
+                        ForEach(arrayBranch, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                }
+
+                Spacer()
+
+                HStack {
+                    Spacer()
+                    Button("Cancel") {
+                        activeSheet = nil
+                    }
+                    Button("Clone") {
+                        cloneRepository()
+                    }
+                    .keyboardShortcut(.defaultAction)
+                    .disabled(!isValid(url: repoUrlStr))
+                }
+            }
+        }
+        .padding(.top, 20)
+        .padding(.horizontal, 20)
+        .padding(.bottom, 20)
+        .frame(width: 400, height: 140)
+    }
+
     public var progressView: some View {
         VStack(alignment: .leading) {
-            Text("Cloning \""+repoUrlStr+"\"")
+            Text("Cloning \(repoUrlStr)")
                 .bold()
                 .padding(.bottom, 2)
 
@@ -128,17 +293,51 @@ public struct GitCloneView: View {
                 .progressViewStyle(LinearProgressViewStyle())
 
             HStack {
+                Spacer()
                 Button("Cancel") {
                     cancelClone(deleteRemains: true)
                 }
             }
-            .offset(x: 315)
-            .alignmentGuide(.leading) { context in
-                context[.leading]
+        }
+        .padding(.top, 20)
+        .padding(.horizontal, 20)
+        .padding(.bottom, 20)
+        .frame(width: 400, height: 140)
+    }
+}
+
+struct ErrorView: View {
+    var errorMessage: String
+    var onClose: () -> Void
+
+    public var body: some View {
+        HStack {
+            Image(nsImage: NSApp.applicationIconImage)
+                .resizable()
+                .frame(width: 64, height: 64)
+                .padding(.bottom, 50)
+
+            VStack(alignment: .leading) {
+                Text("Error")
+                    .bold()
+                    .padding(.bottom, 2)
+
+                Text("\(errorMessage)")
+                    .padding(.bottom, 2)
+
+                Spacer()
+
+                HStack {
+                    Spacer()
+                    Button("Cancel") {
+                        onClose()
+                    }
+                }
             }
         }
         .padding(.top, 20)
         .padding(.horizontal, 20)
-        .padding(.bottom, 16)
+        .padding(.bottom, 20)
+        .frame(width: 400, height: 140)
     }
 }

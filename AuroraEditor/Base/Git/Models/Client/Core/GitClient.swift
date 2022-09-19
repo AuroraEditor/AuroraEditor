@@ -96,10 +96,14 @@ public class GitClient: ObservableObject {
         }
     }
 
-    public func cloneRepository(path: String) -> AnyPublisher<CloneProgressResult, GitClientError> {
-        shellClient
-            .runLive("git clone \(path) \(directoryURL.relativePath.escapedWhiteSpaces()) --progress")
-            .tryMap { output -> String in
+    public func cloneRepository(path: String, branch: String, allBranches: Bool) ->
+    AnyPublisher<CloneProgressResult, GitClientError> {
+        let command = allBranches ?
+        // swiftlint:disable:next line_length
+        "git clone \(path) \(directoryURL.relativePath.escapedWhiteSpaces()) --progress && cd \(directoryURL.relativePath.escapedWhiteSpaces()) && git checkout \(branch)" :
+        "git clone -b \(branch) --single-branch \(path) \(directoryURL.relativePath.escapedWhiteSpaces()) --progress"
+        return shellClient
+            .runLive(command).tryMap { output -> String in
                 if output.contains("fatal: not a git repository") {
                     throw GitClientError.notGitRepository
                 }
