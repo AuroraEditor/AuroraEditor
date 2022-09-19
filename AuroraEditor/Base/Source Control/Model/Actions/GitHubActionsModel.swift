@@ -64,10 +64,12 @@ class GitHubActions: ObservableObject {
                 DispatchQueue.main.async {
                     self.state = .success
                     self.workflows = workflows.workflows
+                    self.objectWillChange.send()
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.state = .error
+                    self.objectWillChange.send()
                 }
                 Log.error(error)
             }
@@ -88,6 +90,7 @@ class GitHubActions: ObservableObject {
                     let workflowRuns = try decoder.decode(WorkflowRuns.self, from: data)
                     DispatchQueue.main.async {
                         self.workflowRuns = workflowRuns.workflowRuns
+                        self.objectWillChange.send()
                     }
                 } catch {
                     Log.debug("Error: \(error)")
@@ -113,9 +116,11 @@ class GitHubActions: ObservableObject {
                     let jobs = try decoder.decode(Job.self, from: data)
                     DispatchQueue.main.async {
                         self.workflowJob = jobs.jobs
+                        self.jobId = String(jobs.jobs.first?.id ?? 0)
                         for job in self.workflowJob {
                             self.workflowJobs = job.steps
                         }
+                        self.objectWillChange.send()
                     }
                 } catch {
                     Log.debug("Error: \(error)")
@@ -127,6 +132,10 @@ class GitHubActions: ObservableObject {
     }
 
     func reRunWorkflowJobs(jobId: String, enableDebugging: Bool) {
+        guard !jobId.isEmpty else {
+            Log.error("No job id provided")
+            return
+        }
 
         let parameter: [String: Bool] = [
             "enable_debug_logging": enableDebugging
@@ -172,7 +181,7 @@ class GitHubActions: ObservableObject {
             // As caution we check if the origin contains git@ so we can fetch the repo
             // info in one of two ways.
             if remote?.contains("git@") ?? false {
-                // git@github.com-angelk90:AuroraEditor/AuroraEditor.git
+                // git@github.com:AuroraEditor/AuroraEditor.git
                 let splitGit = remote?.split(separator: ":")
                 let splitRepoDetails = splitGit?[1].split(separator: "/")
 
@@ -185,10 +194,12 @@ class GitHubActions: ObservableObject {
                 let repoValue = remoteSplit?[2] ?? ""
                 repo = repoValue.replacingOccurrences(of: ".git", with: "")
             }
+            self.objectWillChange.send()
         } catch {
             Log.error("Failed to get project remote URL.")
             DispatchQueue.main.async {
                 self.state = .repoFailure
+                self.objectWillChange.send()
             }
         }
     }

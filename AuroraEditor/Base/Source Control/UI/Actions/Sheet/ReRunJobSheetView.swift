@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct ReRunJobSheetView: View {
-
     @Environment(\.dismiss)
     private var dismiss
 
@@ -19,8 +18,16 @@ struct ReRunJobSheetView: View {
     @State
     private var enableDebugging: Bool = false
 
+    @State var ghJobId: String = ""
+
     init(workspace: WorkspaceDocument, jobId: String) {
         self.actions = .init(workspace: workspace)
+
+        // This @State will not update for a strange reason.
+        self.ghJobId = jobId
+
+        // We set the id on a @ObservedObject to bypass this issue.
+        actions.jobId = jobId
     }
 
     var body: some View {
@@ -47,8 +54,11 @@ struct ReRunJobSheetView: View {
                 }
 
                 Button {
-                    actions.reRunWorkflowJobs(jobId: actions.jobId,
-                                              enableDebugging: enableDebugging)
+                    actions.reRunWorkflowJobs(
+                        jobId: actions.jobId,
+                        enableDebugging: enableDebugging
+                    )
+
                     dismiss()
                 } label: {
                     Text("Re-Run Jobs")

@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct WorkflowJobsView: View {
-
     @ObservedObject
     private var actionsModel: GitHubActions
 
@@ -28,9 +27,14 @@ struct WorkflowJobsView: View {
         self.actionsModel = .init(workspace: workspace)
         self.runId = runId
         self.jobName = jobName
+        actionsModel.fetchWorkflowJobs(runId: runId)
     }
 
     var body: some View {
+        Divider()
+            .padding()
+        Text("TOP")
+            .padding()
         VStack {
             HStack(spacing: 15) {
                 Text(jobName)
@@ -50,7 +54,7 @@ struct WorkflowJobsView: View {
                     ReRunJobSheetView(workspace: actionsModel.workspace,
                                       jobId: actionsModel.jobId)
                 }
-                .disabled(true)
+//                .disabled(true)
 
                 // TODO: Find a way to show it for each job
                 Button {
@@ -71,18 +75,5 @@ struct WorkflowJobsView: View {
             }
             .listStyle(.plain)
         }
-        .onAppear {
-            actionsModel.fetchWorkflowJobs(runId: runId)
-        }
-    }
-
-    // A very hacky way of setting the job id
-    private func setJobID(id: String) -> some View {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            actionsModel.jobId = id
-        }
-        // DON'T REMOVE THIS AS IT FORCES A REFRESH OF THE VIEW
-        Log.debug(actionsModel.jobId)
-        return EmptyView()
     }
 }
