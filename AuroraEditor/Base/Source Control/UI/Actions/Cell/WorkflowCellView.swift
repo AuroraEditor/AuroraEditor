@@ -29,17 +29,3 @@ struct WorkflowCellView: View {
         .padding(.horizontal, 10)
     }
 }
-
-struct WorkflowCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        WorkflowCellView(workflow: Workflow(id: 0,
-                                            node_id: "",
-                                            name: "Nighlty Build",
-                                            path: "./workflows/build.yml",
-                                            state: "",
-                                            created_at: "",
-                                            updated_at: "",
-                                            url: "",
-                                            html_url: ""))
-    }
-}

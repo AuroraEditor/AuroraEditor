@@ -11,26 +11,49 @@ import Foundation
 struct WorkflowRun: Codable {
     let id: Int
     let name: String
-    let node_id: String
-    let head_branch: String
-    let run_number: Int
+    let nodeId: String
+    let headBranch: String
+    let runNumber: Int
     let status: String
     let conclusion: String
-    let workflow_id: Int
+    let workflowId: Int
     let url: String
-    let html_url: String
-    let created_at: String
-    let updated_at: String
-    let head_commit: WorkflowRunCommit
+    let htmlURL: String
+    let createdAt: String
+    let updatedAt: String
+    let headCommit: WorkflowRunCommit
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case nodeId = "node_id"
+        case headBranch = "head_branch"
+        case runNumber = "run_number"
+        case status
+        case conclusion
+        case workflowId = "workflow_id"
+        case url
+        case htmlURL = "html_url"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case headCommit = "head_commit"
+    }
 }
 
 struct WorkflowRunCommit: Codable {
     let id: String
-    let tree_id: String
+    let treeId: String
     let message: String
     let timestamp: String
     let author: CommitAuthor
 
+    enum CodingKeys: String, CodingKey {
+        case id
+        case treeId = "tree_id"
+        case message
+        case timestamp
+        case author
+    }
 }
 
 struct CommitAuthor: Codable {

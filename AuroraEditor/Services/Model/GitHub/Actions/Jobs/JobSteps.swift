@@ -13,6 +13,15 @@ struct JobSteps: Codable {
     let status: String
     let conclusion: String
     let number: Int
-    let started_at: String
-    let completed_at: String
+    let startedAt: String
+    let completedAt: String
+
+    enum CodingKeys: String, CodingKey {
+        case name
+        case status
+        case conclusion
+        case number
+        case startedAt = "started_at"
+        case completedAt = "completed_at"
+    }
 }

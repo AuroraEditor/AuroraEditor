@@ -34,12 +34,24 @@ struct Workflow: Codable, Hashable, Identifiable, TabBarItemRepresentable {
     }
 
     let id: Int
-    let node_id: String
+    let nodeId: String
     let name: String
     let path: String
     let state: String
-    let created_at: String
-    let updated_at: String
+    let createdAt: String
+    let updatedAt: String
     let url: String
-    let html_url: String
+    let htmlURL: String
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case nodeId = "node_id"
+        case name
+        case path
+        case state
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case url
+        case htmlURL = "html_url"
+    }
 }

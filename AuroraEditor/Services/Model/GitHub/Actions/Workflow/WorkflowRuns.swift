@@ -9,6 +9,11 @@
 import Foundation
 
 struct WorkflowRuns: Codable {
-    let total_count: Int
-    let workflow_runs: [WorkflowRun]
+    let totalCount: Int
+    let workflowRuns: [WorkflowRun]
+
+    enum CodingKeys: String, CodingKey {
+        case totalCount = "total_count"
+        case workflowRuns = "workflow_runs"
+    }
 }

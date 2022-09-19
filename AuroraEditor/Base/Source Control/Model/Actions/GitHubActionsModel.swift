@@ -87,7 +87,7 @@ class GitHubActions: ObservableObject {
                     let decoder = JSONDecoder()
                     let workflowRuns = try decoder.decode(WorkflowRuns.self, from: data)
                     DispatchQueue.main.async {
-                        self.workflowRuns = workflowRuns.workflow_runs
+                        self.workflowRuns = workflowRuns.workflowRuns
                     }
                 } catch {
                     Log.debug("Error: \(error)")

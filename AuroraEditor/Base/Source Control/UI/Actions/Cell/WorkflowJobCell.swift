@@ -43,7 +43,7 @@ struct WorkflowJobCell: View {
 
             Spacer()
 
-            Text(job.completed_at)
+            Text(job.completedAt)
                 .font(.system(size: 11))
                 .foregroundColor(.secondary)
         }

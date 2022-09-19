@@ -49,6 +49,6 @@ struct WorkflowRunCell: View {
     }
 
     private func getCommitName() -> String {
-        return workflowRun.head_commit.message.split(separator: "\n")[0].description
+        return workflowRun.headCommit.message.split(separator: "\n")[0].description
     }
 }
