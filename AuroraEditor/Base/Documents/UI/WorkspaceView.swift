@@ -122,7 +122,7 @@ struct WorkspaceView: View {
                         }
                     }
                     .safeAreaInset(edge: .bottom) {
-                        StatusBarView(model: model)
+                        StatusBarView(model: model, workspace: workspace)
                     }
             } else {
                 EmptyView()
