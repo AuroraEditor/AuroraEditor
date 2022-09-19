@@ -23,10 +23,14 @@ public struct StatusBarView: View {
     @ObservedObject
     private var model: StatusBarModel
 
+    @ObservedObject
+    private var workspace: WorkspaceDocument
+
     /// Initialize with model
     /// - Parameter model: The statusbar model
-    public init(model: StatusBarModel) {
+    init(model: StatusBarModel, workspace: WorkspaceDocument) {
         self.model = model
+        self.workspace = workspace
     }
 
     public var body: some View {
@@ -57,11 +61,13 @@ public struct StatusBarView: View {
                         .opacity(model.isExpanded ? 1 : 0)
                 }
                 Spacer()
-                StatusBarCursorLocationLabel(model: model)
-                StatusBarIndentSelector(model: model)
-                StatusBarEncodingSelector(model: model)
-                StatusBarLineEndSelector(model: model)
-                StatusBarToggleDrawerButton(model: model)
+                if workspace.selectionState.selectedId?.id.contains("codeEditor_") ?? false {
+                    StatusBarCursorLocationLabel(model: model)
+                    StatusBarIndentSelector(model: model)
+                    StatusBarEncodingSelector(model: model)
+                    StatusBarLineEndSelector(model: model)
+                    StatusBarToggleDrawerButton(model: model)
+                }
             }
             .padding(.horizontal, 10)
         }
@@ -106,9 +112,10 @@ struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack(alignment: .bottom) {
             Color.white
-            StatusBarView(model: StatusBarModel(workspaceURL: URL(fileURLWithPath: "")))
-                .previewLayout(.fixed(width: 1.336, height: 500.0))
-                .preferredColorScheme(.light)
+            StatusBarView(model: StatusBarModel(workspaceURL: URL(fileURLWithPath: "")),
+                          workspace: WorkspaceDocument())
+            .previewLayout(.fixed(width: 1.336, height: 500.0))
+            .preferredColorScheme(.light)
         }
     }
 }
