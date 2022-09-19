@@ -189,11 +189,11 @@ extension GutterView {
         // Hence, we defer drawing the gutter until all characters have been laid out.
         if layoutManager.firstUnlaidCharacterIndex() < NSMaxRange(lineMap.lines.last?.range ?? NSRange(location: 0,
                                                                                                        length: 0)) {
-
             pendingDrawRect = rect.union(pendingDrawRect ?? CGRect.null)
             return
-
         }
+
+        updateGutter(for: rect)
 
         let selectedLines = textView.selectedLines
 
@@ -231,8 +231,6 @@ extension GutterView {
             }
         }
 
-        updateGutter(for: rect)
-
         for itemIndex in 0..<lines.count {
             lines[itemIndex].draw(in: gutterRects[itemIndex],
                                           withAttributes: lineAttributes[itemIndex])
@@ -245,16 +243,6 @@ extension GutterView {
               let lineMap = optLineMap,
               !isMinimapGutter // no need to update the gutter for a minimap
         else { return }
-
-        // This is not particularily nice, but there is no point in trying to draw the gutter, before the layout manager
-        // has finished laying out the *entire* text. Given that all we got here is a rectangle, we can't even figure
-        // out reliably whether enough text has been laid out to draw that part of the gutter that is being requested.
-        // Hence, we defer drawing the gutter until all characters have been laid out.
-        if layoutManager.firstUnlaidCharacterIndex() < NSMaxRange(lineMap.lines.last?.range ?? NSRange(location: 0,
-                                                                                                       length: 0)) {
-            pendingDrawRect = rect.union(pendingDrawRect ?? CGRect.null)
-            return
-        }
 
         let selectedLines = textView.selectedLines
 
