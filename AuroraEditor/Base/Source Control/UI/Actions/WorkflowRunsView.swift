@@ -23,7 +23,6 @@ struct WorkflowRunsView: View {
 
     var body: some View {
         VStack {
-            Spacer()
             NavigationView {
                 VStack {
                     List(actionsModel.workflowRuns, id: \.id) { run in
@@ -38,7 +37,6 @@ struct WorkflowRunsView: View {
                     .frame(minWidth: 450)
                 }
             }
-            .navigationViewStyle(.columns)
         }
         .onAppear {
             actionsModel.fetchWorkflowRuns(workflowId: workflowId)

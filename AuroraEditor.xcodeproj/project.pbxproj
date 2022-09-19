@@ -1129,6 +1129,14 @@
 			path = Remote;
 			sourceTree = "<group>";
 		};
+		2015FE3E28D87D7B006EC287 /* Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */,
+			);
+			path = Sheet;
+			sourceTree = "<group>";
+		};
 		20212679289BF7A800246DD7 /* Log */ = {
 			isa = PBXGroup;
 			children = (
@@ -1352,12 +1360,12 @@
 		20BE727328D0758E00EEDE5F /* Actions */ = {
 			isa = PBXGroup;
 			children = (
+				2015FE3E28D87D7B006EC287 /* Sheet */,
 				20BE727628D0761500EEDE5F /* Cell */,
 				20BE727428D0761200EEDE5F /* ActionsListView.swift */,
 				20BE727A28D07EFC00EEDE5F /* ActionsPopoverView.swift */,
 				20BE729B28D0BB2000EEDE5F /* WorkflowRunsView.swift */,
 				202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */,
-				202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";

@@ -13,8 +13,15 @@ struct ReRunJobSheetView: View {
     @Environment(\.dismiss)
     private var dismiss
 
+    @ObservedObject
+    var actions: GitHubActions
+
     @State
     private var enableDebugging: Bool = false
+
+    init(workspace: WorkspaceDocument, jobId: String) {
+        self.actions = .init(workspace: workspace)
+    }
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -40,6 +47,8 @@ struct ReRunJobSheetView: View {
                 }
 
                 Button {
+                    actions.reRunWorkflowJobs(jobId: actions.jobId,
+                                              enableDebugging: enableDebugging)
                     dismiss()
                 } label: {
                     Text("Re-Run Jobs")
@@ -50,11 +59,5 @@ struct ReRunJobSheetView: View {
             .padding(.top)
         }
         .padding()
-    }
-}
-
-struct ReRunJobSheetView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReRunJobSheetView()
     }
 }

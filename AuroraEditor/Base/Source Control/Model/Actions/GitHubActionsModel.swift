@@ -32,13 +32,16 @@ class GitHubActions: ObservableObject {
     var workflowJobs: [JobSteps] = []
 
     @Published
-    private var workflowJob: [Jobs] = []
+    var workflowJob: [Jobs] = []
 
     @Published
     var repoOwner: String = ""
 
     @Published
     var repo: String = ""
+
+    @Published
+    var jobId: String = ""
 
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
@@ -110,7 +113,7 @@ class GitHubActions: ObservableObject {
                     let jobs = try decoder.decode(Job.self, from: data)
                     DispatchQueue.main.async {
                         self.workflowJob = jobs.jobs
-                        for job in jobs.jobs {
+                        for job in self.workflowJob {
                             self.workflowJobs = job.steps
                         }
                     }
@@ -123,16 +126,21 @@ class GitHubActions: ObservableObject {
         })
     }
 
-    func reRunWorkflowJobs() {
+    func reRunWorkflowJobs(jobId: String, enableDebugging: Bool) {
+
+        let parameter: [String: Bool] = [
+            "enable_debug_logging": enableDebugging
+        ]
+
         AuroraNetworking().request(path: NetworkingConstant.reRunJob(repoOwner,
                                                                      repo,
-                                                                     jobId: String(workflowJob[0].id)),
+                                                                     jobId: jobId),
                                    method: .POST,
-                                   parameters: nil,
+                                   parameters: parameter,
                                    completionHandler: { result in
             switch result {
             case .success:
-                Log.debug("Succeffully Re-Run job: \(self.workflowJob[0].id)")
+                Log.debug("Succeffully Re-Run job: \(jobId)")
             case .failure(let error):
                 Log.error(error)
             }

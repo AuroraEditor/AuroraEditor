@@ -46,26 +46,43 @@ struct WorkflowJobsView: View {
                 .buttonStyle(.plain)
                 .help("Re-run this job")
                 .sheet(isPresented: $reRunJobs) {
-                    ReRunJobSheetView()
+                    debug("Currently selected job id: \(actionsModel.jobId)")
+                    ReRunJobSheetView(workspace: actionsModel.workspace,
+                                      jobId: actionsModel.jobId)
                 }
+                .disabled(true)
 
+                // TODO: Find a way to show it for each job
                 Button {
-                    actionsModel.downloadWorkflowLogs(jobId: "")
+                    actionsModel.downloadWorkflowLogs(jobId: actionsModel.jobId)
                 } label: {
                     Image(systemName: "square.and.arrow.down")
                 }
                 .buttonStyle(.plain)
                 .help("Download log archive")
+                .disabled(true)
             }
             .padding(.horizontal)
 
-            List(actionsModel.workflowJobs, id: \.number) { job in
-                WorkflowJobCell(job: job)
+            List(actionsModel.workflowJob, id: \.id) { job in
+                ForEach(job.steps, id: \.number) { step in
+                    WorkflowJobCell(job: step)
+                }
             }
             .listStyle(.plain)
         }
         .onAppear {
             actionsModel.fetchWorkflowJobs(runId: runId)
         }
+    }
+
+    // A very hacky way of setting the job id
+    private func setJobID(id: String) -> some View {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            actionsModel.jobId = id
+        }
+        // DON'T REMOVE THIS AS IT FORCES A REFRESH OF THE VIEW
+        Log.debug(actionsModel.jobId)
+        return EmptyView()
     }
 }

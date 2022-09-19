@@ -46,7 +46,7 @@ final class WorkflowViewController: NSViewController {
 
         scrollView.documentView = outlineView
         scrollView.contentView.automaticallyAdjustsContentInsets = false
-        scrollView.contentView.contentInsets = .init(top: 10, left: 0, bottom: 0, right: 0)
+        scrollView.contentView.contentInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
         scrollView.scrollerStyle = .overlay
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = false
