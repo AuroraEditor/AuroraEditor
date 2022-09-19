@@ -108,6 +108,7 @@ class GutterView: NSView {
     // Imitate the coordinate system of the associated text view.
     override var isFlipped: Bool { textView.isFlipped }
 
+    var lastRefreshedFrame: CGRect = .zero
     var lines: [NSString] = []
     var gutterRects: [CGRect] = []
     var lineAttributes: [[NSAttributedString.Key: NSObject]] = []
@@ -166,12 +167,10 @@ extension GutterView {
     /// Trigger drawing any pending gutter draw rectangle.
     ///
     func layoutFinished() {
-
         if let rect = pendingDrawRect {
-
             setNeedsDisplay(rect)
+            updateGutter(for: rect)
             pendingDrawRect = nil
-
         }
     }
 
@@ -190,10 +189,9 @@ extension GutterView {
         if layoutManager.firstUnlaidCharacterIndex() < NSMaxRange(lineMap.lines.last?.range ?? NSRange(location: 0,
                                                                                                        length: 0)) {
             pendingDrawRect = rect.union(pendingDrawRect ?? CGRect.null)
-            return
+        } else if lastRefreshedFrame != rect {
+            updateGutter(for: rect)
         }
-
-        updateGutter(for: rect)
 
         let selectedLines = textView.selectedLines
 
@@ -246,10 +244,6 @@ extension GutterView {
 
         let selectedLines = textView.selectedLines
 
-        // FIXME: Eventually, we want this in the minimap
-        //        but `messageView.value.lineFragementRect` is of course
-        //        incorrect for the minimap, so we need a more general set up.
-
         // All visible glyphs and all visible characters that are in the text area to the right of the gutter view
         let boundingRect = textRectFrom(gutterRect: rect)
         let glyphRange = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: boundingRect,
@@ -283,6 +277,8 @@ extension GutterView {
             gutterRects.append(gutterRect)
             lineAttributes.append(attributes)
         }
+
+        lastRefreshedFrame = rect
     }
 }
 
