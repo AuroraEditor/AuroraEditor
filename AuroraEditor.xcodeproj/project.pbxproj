@@ -3016,12 +3016,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B658FB5127DA9E1000EA4DBD /* Build configuration list for PBXNativeTarget "AuroraEditor" */;
 			buildPhases = (
+				2BA119D327E5274D00A996FF /* SwiftLint Run Script */,
 				B658FB2827DA9E0F00EA4DBD /* Sources */,
 				B658FB2927DA9E0F00EA4DBD /* Frameworks */,
 				B658FB2A27DA9E0F00EA4DBD /* Resources */,
 				2B1A76FC27F628BD008ED4A2 /* Update commit hash */,
 				2B18499A27F8A7A0005119F0 /* Mark // swiftlint:disable:all as errors | Run Script */,
-				2BA119D327E5274D00A996FF /* SwiftLint Run Script */,
 				04ADA0CC27E6043B00BF00B2 /* Add TODO/FIXME as warnings | Run Script */,
 				FDF7C12027FAE90F0039BA76 /* Copy Package.resolved into Project Directory */,
 				04C3255A2801B43A00C8DA2D /* Embed Frameworks */,
