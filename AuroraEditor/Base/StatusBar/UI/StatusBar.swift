@@ -61,7 +61,8 @@ public struct StatusBarView: View {
                         .opacity(model.isExpanded ? 1 : 0)
                 }
                 Spacer()
-                if workspace.selectionState.selectedId?.id.contains("codeEditor_") ?? false {
+                if let selectedId = workspace.selectionState.selectedId,
+                   selectedId.id.contains("codeEditor_") {
                     StatusBarCursorLocationLabel(model: model)
                     StatusBarIndentSelector(model: model)
                     StatusBarEncodingSelector(model: model)

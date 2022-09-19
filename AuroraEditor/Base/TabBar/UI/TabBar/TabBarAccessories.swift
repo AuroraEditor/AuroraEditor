@@ -67,7 +67,8 @@ extension TabBar {
     // TabBar items on right
     var trailingAccessories: some View {
         HStack(spacing: 2) {
-            if workspace.selectionState.selectedId?.id.contains("codeEditor_") ?? false {
+            if let selectedId = workspace.selectionState.selectedId,
+               selectedId.id.contains("codeEditor_") {
                 TabBarAccessoryIcon(
                     icon: .init(systemName: "arrow.left.arrow.right"),
                     action: {
