@@ -59,6 +59,11 @@ class GitHubActions: ObservableObject {
             case .success(let data):
                 let decoder = JSONDecoder()
                 guard let workflows = try? decoder.decode(Workflows.self, from: data) else {
+                    Log.debug(
+                        "Error: Unable to decode",
+                        String.init(data: data, encoding: .utf8) ?? ""
+                    )
+                    self.state = .error
                     return
                 }
                 DispatchQueue.main.async {
@@ -93,7 +98,11 @@ class GitHubActions: ObservableObject {
                         self.objectWillChange.send()
                     }
                 } catch {
-                    Log.debug("Error: \(error)")
+                    Log.debug(
+                        "Error: \(error)",
+                        String.init(data: data, encoding: .utf8) ?? ""
+                    )
+                    self.state = .error
                 }
             case .failure(let error):
                 Log.error(error)
@@ -123,7 +132,11 @@ class GitHubActions: ObservableObject {
                         self.objectWillChange.send()
                     }
                 } catch {
-                    Log.debug("Error: \(error)")
+                    Log.debug(
+                        "Error: \(error)",
+                        String.init(data: data, encoding: .utf8) ?? ""
+                    )
+                    self.state = .error
                 }
             case .failure(let error):
                 Log.error(error)
