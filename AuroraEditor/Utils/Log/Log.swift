@@ -172,10 +172,12 @@ public class Log {
             message.append("\r\n")
         }
 
-        auroraMessageBox(
-            type: .critical,
-            message: message
-        )
+        DispatchQueue.main.async {
+            auroraMessageBox(
+                type: .critical,
+                message: message
+            )
+        }
 
         log(.error, items, separator, terminator, file, line, column, function)
     }
