@@ -56,10 +56,16 @@ struct ReRunJobSheetView: View {
                 Button {
                     actions.reRunWorkflowJobs(
                         jobId: actions.jobId,
-                        enableDebugging: enableDebugging
+                        enableDebugging: enableDebugging,
+                        completion: { completed in
+                            switch completed {
+                            case .success:
+                                dismiss()
+                            case .failure(let failure):
+                                Log.error(failure)
+                            }
+                        }
                     )
-
-                    dismiss()
                 } label: {
                     Text("Re-Run Jobs")
                         .foregroundColor(.white)

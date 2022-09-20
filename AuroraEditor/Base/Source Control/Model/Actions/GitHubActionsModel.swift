@@ -131,7 +131,9 @@ class GitHubActions: ObservableObject {
         })
     }
 
-    func reRunWorkflowJobs(jobId: String, enableDebugging: Bool) {
+    func reRunWorkflowJobs(jobId: String,
+                           enableDebugging: Bool,
+                           completion: @escaping (Result<String, Error>) -> Void) {
         guard !jobId.isEmpty else {
             Log.error("No job id provided")
             return
@@ -150,8 +152,10 @@ class GitHubActions: ObservableObject {
             switch result {
             case .success:
                 Log.debug("Succeffully Re-Run job: \(jobId)")
+                completion(.success("Succeffully Re-Run job: \(jobId)"))
             case .failure(let error):
                 Log.error(error)
+                completion(.failure(error))
             }
         })
     }

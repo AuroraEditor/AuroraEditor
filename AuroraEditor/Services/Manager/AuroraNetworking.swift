@@ -94,7 +94,7 @@ class AuroraNetworking {
                     )
 
                     switch httpResponse.statusCode {
-                    case 200:
+                    case 200, 201:
                         completionHandler(
                             .success(sitedata)
                         )
@@ -120,7 +120,6 @@ class AuroraNetworking {
     ///   - url: A value that identifies the location of a resource, \
     ///   such as an item on a remote server or the path to a local file.
     ///   - method: The HTTP request method.
-    ///   - useAuthToken: Use auth token?
     ///   - parameters: POST values (if any)
     ///   - completionHandler: This completion handler takes the following parameters:
     ///   `Result<Data, Error>`
@@ -302,7 +301,7 @@ class AuroraNetworking {
                     }
                 }
             } catch {
-                Log.error(error.localizedDescription)
+                Log.debug(error.localizedDescription)
             }
         }
     }
