@@ -8,6 +8,7 @@
 
 import Foundation
 import AppKit
+import CryptoKit
 
 extension String {
 
@@ -27,6 +28,8 @@ extension String {
     func withColor(_ color: String?) -> String {
         return ""
     }
+
+    // MARK: Offsets
 
     /// Safely returns an offset index in a string.
     /// Use ``safeOffset(_:offsetBy:)`` to default to limiting to the start or end indexes.
@@ -120,5 +123,105 @@ extension String {
 
     func abbreviatingWithTildeInPath() -> String {
         (self as NSString).abbreviatingWithTildeInPath
+    }
+
+    // MARK: Occurences
+
+    /// Removes all `new-line` characters in a `String`
+    /// - Returns: A String
+    func removingNewLines() -> String {
+        self.replacingOccurrences(of: "\n", with: "")
+    }
+
+    /// Removes all `space` characters in a `String`
+    /// - Returns: A String
+    func removingSpaces() -> String {
+        self.replacingOccurrences(of: " ", with: "")
+    }
+
+    // MARK: Crypto
+
+    /// Returns a MD5 encrypted String of the input String
+    ///
+    /// - Parameters:
+    ///   - trim: If `true` the input string will be trimmed from whitespaces and new-lines. Defaults to `false`.
+    ///   - caseSensitive: If `false` the input string will be converted to lowercase characters. Defaults to `true`.
+    /// - Returns: A String in HEX format
+    func md5(trim: Bool = false, caseSensitive: Bool = true) -> String {
+        var string = self
+
+        // trim whitespaces & new lines if specifiedå
+        if trim { string = string.trimmingCharacters(in: .whitespacesAndNewlines) }
+
+        // make string lowercased if not case sensitive
+        if !caseSensitive { string = string.lowercased() }
+
+        // compute the hash
+        // (note that `String.data(using: .utf8)!` is safe since it will never fail)
+        let computed = Insecure.MD5.hash(data: string.data(using: .utf8)!)
+
+        // map the result to a hex string and return
+        return computed.compactMap { String(format: "%02x", $0) }.joined()
+    }
+
+    /// Returns a SHA256 encrypted String of the input String
+    ///
+    /// - Parameters:
+    ///   - trim: If `true` the input string will be trimmed from whitespaces and new-lines. Defaults to `false`.
+    ///   - caseSensitive: If `false` the input string will be converted to lowercase characters. Defaults to `true`.
+    /// - Returns: A String in HEX format
+    func sha256(trim: Bool = false, caseSensitive: Bool = true) -> String {
+        var string = self
+
+        // trim whitespaces & new lines if specified
+        if trim { string = string.trimmingCharacters(in: .whitespacesAndNewlines) }
+
+        // make string lowercased if not case sensitive
+        if !caseSensitive { string = string.lowercased() }
+
+        // compute the hash
+        // (note that `String.data(using: .utf8)!` is safe since it will never fail)
+        let computed = SHA256.hash(data: string.data(using: .utf8)!)
+
+        // map the result to a hex string and return
+        return computed.compactMap { String(format: "%02x", $0) }.joined()
+    }
+
+    // MARK: Range
+
+    // make string subscriptable with NSRange
+    subscript(value: NSRange) -> Substring? {
+        let upperBound = String.Index(utf16Offset: Int(value.upperBound), in: self)
+        let lowerBound = String.Index(utf16Offset: Int(value.lowerBound), in: self)
+        if upperBound <= self.endIndex {
+            return self[lowerBound..<upperBound]
+        } else {
+            return nil
+        }
+    }
+
+    // MARK: Version Control
+    /// Percent-encodes a string to be URL-safe
+    ///
+    /// See https://useyourloaf.com/blog/how-to-percent-encode-a-url-string/ for more info
+    /// - returns: An optional string, with percent encoding to match RFC3986
+    func stringByAddingPercentEncodingForRFC3986() -> String? {
+        let unreserved = "-._~/?"
+        var allowed = CharacterSet.alphanumerics
+        allowed.insert(charactersIn: unreserved)
+        return addingPercentEncoding(withAllowedCharacters: allowed)
+    }
+
+    var bitbucketQueryParameters: [String: String] {
+        let parametersArray = components(separatedBy: "&")
+        var parameters = [String: String]()
+        parametersArray.forEach { parameter in
+            let keyValueArray = parameter.components(separatedBy: "=")
+            let (key, value) = (keyValueArray.first, keyValueArray.last)
+            if let key = key?.removingPercentEncoding, let value = value?.removingPercentEncoding {
+                parameters[key] = value
+            }
+        }
+        return parameters
     }
 }

@@ -1,5 +1,5 @@
 //
-//  View+isHovering.swift
+//  View.swift
 //  AuroraEditorModules/StatusBar
 //
 //  Created by Lukas Pistrol on 22.03.22.

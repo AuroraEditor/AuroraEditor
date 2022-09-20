@@ -1,5 +1,5 @@
 //
-//  auroraMessageBox.swift
+//  AuroraMessageBox.swift
 //  AuroraEditor
 //
 //  Created by Wesley de Groot on 20/08/2022.
