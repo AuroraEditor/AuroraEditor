@@ -144,7 +144,7 @@ struct GithubLoginView: View {
                                                   gitCloningProtocol: true,
                                                   gitSSHKey: "",
                                                   isTokenValid: true))
-                        keychain.set(accountToken, forKey: "github_\(accountName)")
+                        keychain.set(accountToken, forKey: "github_\(user.login!)")
                     }
                     dismissDialog.toggle()
                 }

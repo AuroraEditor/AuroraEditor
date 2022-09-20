@@ -40,6 +40,8 @@ struct WorkspaceSelectionState: Codable {
 
     var openedBranchCommitHistory: [BranchCommitHistory] = []
 
+    var openedActionsWorkflow: [Workflow] = []
+
     enum CodingKeys: String, CodingKey {
         case selectedId,
              openedTabs,
@@ -97,6 +99,10 @@ struct WorkspaceSelectionState: Codable {
             }
         case .branchHistory:
             return self.openedBranchCommitHistory.first { item in
+                item.tabID == id
+            }
+        case .actionsWorkflow:
+            return self.openedActionsWorkflow.first { item in
                 item.tabID == id
             }
         }

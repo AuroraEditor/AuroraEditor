@@ -37,6 +37,9 @@
 		2021267F289BF7EF00246DD7 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021267E289BF7EF00246DD7 /* Formatter.swift */; };
 		20212683289BF84B00246DD7 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20212682289BF84B00246DD7 /* String.swift */; };
 		20212685289BF87600246DD7 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20212684289BF87600246DD7 /* Formatters.swift */; };
+		202327D628D5CA970031FFB6 /* WorkflowJobsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */; };
+		202327D828D5CB200031FFB6 /* WorkflowJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327D728D5CB200031FFB6 /* WorkflowJobCell.swift */; };
+		202327E028D607B20031FFB6 /* ReRunJobSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */; };
 		202F2E35289E7277000D3CAD /* SearchResultMatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E34289E7277000D3CAD /* SearchResultMatchModel.swift */; };
 		202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E36289E740D000D3CAD /* FindNavigatorResultList.swift */; };
 		202F2E39289E7444000D3CAD /* FindNavigatorListMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E38289E7444000D3CAD /* FindNavigatorListMatchCell.swift */; };
@@ -59,6 +62,10 @@
 		2041B8C528A69D12005F03D8 /* IRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2041B8C428A69D12005F03D8 /* IRemote.swift */; };
 		2041B8C728A6A904005F03D8 /* Refs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2041B8C628A6A904005F03D8 /* Refs.swift */; };
 		204CD3E628AB87640003D082 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204CD3E528AB87640003D082 /* Config.swift */; };
+		204F7BB328D7905C00F49092 /* WorkflowMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7BB228D7905C00F49092 /* WorkflowMenu.swift */; };
+		204F7BB528D7906A00F49092 /* WorkflowWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7BB428D7906A00F49092 /* WorkflowWrapperView.swift */; };
+		204F7BB728D7907A00F49092 /* WorkflowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7BB628D7907A00F49092 /* WorkflowViewController.swift */; };
+		204F7BB928D7908700F49092 /* WorkflowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7BB828D7908700F49092 /* WorkflowTableViewCell.swift */; };
 		206729AF28AE69DC00EB0957 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206729AE28AE69DC00EB0957 /* PreferencesView.swift */; };
 		206729B228AE6AC900EB0957 /* GroupBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206729B128AE6AC900EB0957 /* GroupBox.swift */; };
 		2072FA13280D74ED00C7F8D4 /* HistoryInspectorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072FA12280D74ED00C7F8D4 /* HistoryInspectorModel.swift */; };
@@ -310,6 +317,24 @@
 		20BCB0C428AA9FFA0064C7C0 /* ManualConflictResolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0C328AA9FFA0064C7C0 /* ManualConflictResolution.swift */; };
 		20BCB0C628AAA1C00064C7C0 /* GitCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0C528AAA1C00064C7C0 /* GitCommit.swift */; };
 		20BCB0C828AAA3190064C7C0 /* GitAuthor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCB0C728AAA3190064C7C0 /* GitAuthor.swift */; };
+		20BE727528D0761200EEDE5F /* ActionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE727428D0761200EEDE5F /* ActionsListView.swift */; };
+		20BE727B28D07EFC00EEDE5F /* ActionsPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE727A28D07EFC00EEDE5F /* ActionsPopoverView.swift */; };
+		20BE727D28D07FF200EEDE5F /* ActionsPopoverCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE727C28D07FF200EEDE5F /* ActionsPopoverCellView.swift */; };
+		20BE728328D083D800EEDE5F /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE728228D083D800EEDE5F /* HTTPMethod.swift */; };
+		20BE728528D0841A00EEDE5F /* HTTPErros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE728428D0841A00EEDE5F /* HTTPErros.swift */; };
+		20BE728728D0845000EEDE5F /* AuroraNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE728628D0845000EEDE5F /* AuroraNetworking.swift */; };
+		20BE728B28D0854900EEDE5F /* Workflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE728A28D0854900EEDE5F /* Workflow.swift */; };
+		20BE728D28D0855500EEDE5F /* Workflows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE728C28D0855500EEDE5F /* Workflows.swift */; };
+		20BE728F28D0878E00EEDE5F /* NetworkingConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE728E28D0878E00EEDE5F /* NetworkingConstant.swift */; };
+		20BE729228D08ABB00EEDE5F /* Jobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE729128D08ABB00EEDE5F /* Jobs.swift */; };
+		20BE729428D08AC600EEDE5F /* JobSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE729328D08AC600EEDE5F /* JobSteps.swift */; };
+		20BE729628D08B0A00EEDE5F /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE729528D08B0A00EEDE5F /* Job.swift */; };
+		20BE729828D08C5000EEDE5F /* GitHubActionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE729728D08C5000EEDE5F /* GitHubActionsModel.swift */; };
+		20BE729A28D0A25900EEDE5F /* WorkflowCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE729928D0A25900EEDE5F /* WorkflowCellView.swift */; };
+		20BE729C28D0BB2000EEDE5F /* WorkflowRunsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE729B28D0BB2000EEDE5F /* WorkflowRunsView.swift */; };
+		20BE729E28D0BB6F00EEDE5F /* WorkflowRunCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE729D28D0BB6F00EEDE5F /* WorkflowRunCell.swift */; };
+		20BE72A128D0BD9300EEDE5F /* WorkflowRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE72A028D0BD9300EEDE5F /* WorkflowRun.swift */; };
+		20BE72A528D0BEA800EEDE5F /* WorkflowRuns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE72A428D0BEA800EEDE5F /* WorkflowRuns.swift */; };
 		20C22DA828BCD2A3004973CA /* Diff-Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C22DA728BCD2A3004973CA /* Diff-Index.swift */; };
 		20C22DAA28BCE18F004973CA /* Diff-Check.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C22DA928BCE18F004973CA /* Diff-Check.swift */; };
 		20C22DAF28BCE339004973CA /* Raw-Diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C22DAE28BCE339004973CA /* Raw-Diff.swift */; };
@@ -555,6 +580,9 @@
 		20212682289BF84B00246DD7 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		20212684289BF87600246DD7 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		20212688289C055E00246DD7 /* Using Logger.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Using Logger.md"; sourceTree = "<group>"; };
+		202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowJobsView.swift; sourceTree = "<group>"; };
+		202327D728D5CB200031FFB6 /* WorkflowJobCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowJobCell.swift; sourceTree = "<group>"; };
+		202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReRunJobSheetView.swift; sourceTree = "<group>"; };
 		202F2E34289E7277000D3CAD /* SearchResultMatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultMatchModel.swift; sourceTree = "<group>"; };
 		202F2E36289E740D000D3CAD /* FindNavigatorResultList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorResultList.swift; sourceTree = "<group>"; };
 		202F2E38289E7444000D3CAD /* FindNavigatorListMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorListMatchCell.swift; sourceTree = "<group>"; };
@@ -577,6 +605,10 @@
 		2041B8C428A69D12005F03D8 /* IRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRemote.swift; sourceTree = "<group>"; };
 		2041B8C628A6A904005F03D8 /* Refs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refs.swift; sourceTree = "<group>"; };
 		204CD3E528AB87640003D082 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		204F7BB228D7905C00F49092 /* WorkflowMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowMenu.swift; sourceTree = "<group>"; };
+		204F7BB428D7906A00F49092 /* WorkflowWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowWrapperView.swift; sourceTree = "<group>"; };
+		204F7BB628D7907A00F49092 /* WorkflowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowViewController.swift; sourceTree = "<group>"; };
+		204F7BB828D7908700F49092 /* WorkflowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowTableViewCell.swift; sourceTree = "<group>"; };
 		206729AE28AE69DC00EB0957 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		206729B128AE6AC900EB0957 /* GroupBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupBox.swift; sourceTree = "<group>"; };
 		2072FA12280D74ED00C7F8D4 /* HistoryInspectorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInspectorModel.swift; sourceTree = "<group>"; };
@@ -617,6 +649,24 @@
 		20BCB0C328AA9FFA0064C7C0 /* ManualConflictResolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualConflictResolution.swift; sourceTree = "<group>"; };
 		20BCB0C528AAA1C00064C7C0 /* GitCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCommit.swift; sourceTree = "<group>"; };
 		20BCB0C728AAA3190064C7C0 /* GitAuthor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitAuthor.swift; sourceTree = "<group>"; };
+		20BE727428D0761200EEDE5F /* ActionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsListView.swift; sourceTree = "<group>"; };
+		20BE727A28D07EFC00EEDE5F /* ActionsPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsPopoverView.swift; sourceTree = "<group>"; };
+		20BE727C28D07FF200EEDE5F /* ActionsPopoverCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsPopoverCellView.swift; sourceTree = "<group>"; };
+		20BE728228D083D800EEDE5F /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		20BE728428D0841A00EEDE5F /* HTTPErros.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPErros.swift; sourceTree = "<group>"; };
+		20BE728628D0845000EEDE5F /* AuroraNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraNetworking.swift; sourceTree = "<group>"; };
+		20BE728A28D0854900EEDE5F /* Workflow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workflow.swift; sourceTree = "<group>"; };
+		20BE728C28D0855500EEDE5F /* Workflows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workflows.swift; sourceTree = "<group>"; };
+		20BE728E28D0878E00EEDE5F /* NetworkingConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingConstant.swift; sourceTree = "<group>"; };
+		20BE729128D08ABB00EEDE5F /* Jobs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jobs.swift; sourceTree = "<group>"; };
+		20BE729328D08AC600EEDE5F /* JobSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSteps.swift; sourceTree = "<group>"; };
+		20BE729528D08B0A00EEDE5F /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
+		20BE729728D08C5000EEDE5F /* GitHubActionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubActionsModel.swift; sourceTree = "<group>"; };
+		20BE729928D0A25900EEDE5F /* WorkflowCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowCellView.swift; sourceTree = "<group>"; };
+		20BE729B28D0BB2000EEDE5F /* WorkflowRunsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowRunsView.swift; sourceTree = "<group>"; };
+		20BE729D28D0BB6F00EEDE5F /* WorkflowRunCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowRunCell.swift; sourceTree = "<group>"; };
+		20BE72A028D0BD9300EEDE5F /* WorkflowRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowRun.swift; sourceTree = "<group>"; };
+		20BE72A428D0BEA800EEDE5F /* WorkflowRuns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowRuns.swift; sourceTree = "<group>"; };
 		20C22DA728BCD2A3004973CA /* Diff-Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Diff-Index.swift"; sourceTree = "<group>"; };
 		20C22DA928BCE18F004973CA /* Diff-Check.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Diff-Check.swift"; sourceTree = "<group>"; };
 		20C22DAE28BCE339004973CA /* Raw-Diff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Raw-Diff.swift"; sourceTree = "<group>"; };
@@ -1079,6 +1129,14 @@
 			path = Remote;
 			sourceTree = "<group>";
 		};
+		2015FE3E28D87D7B006EC287 /* Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */,
+			);
+			path = Sheet;
+			sourceTree = "<group>";
+		};
 		20212679289BF7A800246DD7 /* Log */ = {
 			isa = PBXGroup;
 			children = (
@@ -1128,6 +1186,17 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		204F7BB128D7903000F49092 /* Workflow */ = {
+			isa = PBXGroup;
+			children = (
+				204F7BB228D7905C00F49092 /* WorkflowMenu.swift */,
+				204F7BB428D7906A00F49092 /* WorkflowWrapperView.swift */,
+				204F7BB628D7907A00F49092 /* WorkflowViewController.swift */,
+				204F7BB828D7908700F49092 /* WorkflowTableViewCell.swift */,
+			);
+			path = Workflow;
+			sourceTree = "<group>";
+		};
 		2072FA14280D838800C7F8D4 /* Lists */ = {
 			isa = PBXGroup;
 			children = (
@@ -1148,6 +1217,7 @@
 		20752E3A28CA4C1E00935487 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				20BE727328D0758E00EEDE5F /* Actions */,
 				2096A82228CF76C500F6ED39 /* Branch */,
 				20130BDC28CF30EB0000B634 /* Remote */,
 				207D295B28CCE72100D31530 /* Rename */,
@@ -1161,6 +1231,7 @@
 		20752E3B28CA4C2200935487 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				20BE727928D0762D00EEDE5F /* Actions */,
 				20752E3F28CA4C4B00935487 /* Project History */,
 			);
 			path = Model;
@@ -1284,6 +1355,113 @@
 				93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		20BE727328D0758E00EEDE5F /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				2015FE3E28D87D7B006EC287 /* Sheet */,
+				20BE727628D0761500EEDE5F /* Cell */,
+				20BE727428D0761200EEDE5F /* ActionsListView.swift */,
+				20BE727A28D07EFC00EEDE5F /* ActionsPopoverView.swift */,
+				20BE729B28D0BB2000EEDE5F /* WorkflowRunsView.swift */,
+				202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
+		20BE727628D0761500EEDE5F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				204F7BB128D7903000F49092 /* Workflow */,
+				20BE727C28D07FF200EEDE5F /* ActionsPopoverCellView.swift */,
+				20BE729928D0A25900EEDE5F /* WorkflowCellView.swift */,
+				20BE729D28D0BB6F00EEDE5F /* WorkflowRunCell.swift */,
+				202327D728D5CB200031FFB6 /* WorkflowJobCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		20BE727928D0762D00EEDE5F /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				20BE72A228D0BE4F00EEDE5F /* Workflow */,
+				20BE729728D08C5000EEDE5F /* GitHubActionsModel.swift */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
+		20BE727F28D0834800EEDE5F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				20BE728128D0836200EEDE5F /* Model */,
+				20BE728028D0835A00EEDE5F /* Manager */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		20BE728028D0835A00EEDE5F /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				20BE728228D083D800EEDE5F /* HTTPMethod.swift */,
+				20BE728428D0841A00EEDE5F /* HTTPErros.swift */,
+				20BE728628D0845000EEDE5F /* AuroraNetworking.swift */,
+				20BE728E28D0878E00EEDE5F /* NetworkingConstant.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		20BE728128D0836200EEDE5F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				20BE728828D0852600EEDE5F /* GitHub */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		20BE728828D0852600EEDE5F /* GitHub */ = {
+			isa = PBXGroup;
+			children = (
+				20BE728928D0852D00EEDE5F /* Actions */,
+			);
+			path = GitHub;
+			sourceTree = "<group>";
+		};
+		20BE728928D0852D00EEDE5F /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				20BE729F28D0BD8000EEDE5F /* Workflow */,
+				20BE729028D08AA600EEDE5F /* Jobs */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
+		20BE729028D08AA600EEDE5F /* Jobs */ = {
+			isa = PBXGroup;
+			children = (
+				20BE729128D08ABB00EEDE5F /* Jobs.swift */,
+				20BE729328D08AC600EEDE5F /* JobSteps.swift */,
+				20BE729528D08B0A00EEDE5F /* Job.swift */,
+			);
+			path = Jobs;
+			sourceTree = "<group>";
+		};
+		20BE729F28D0BD8000EEDE5F /* Workflow */ = {
+			isa = PBXGroup;
+			children = (
+				20BE728A28D0854900EEDE5F /* Workflow.swift */,
+				20BE728C28D0855500EEDE5F /* Workflows.swift */,
+				20BE72A028D0BD9300EEDE5F /* WorkflowRun.swift */,
+				20BE72A428D0BEA800EEDE5F /* WorkflowRuns.swift */,
+			);
+			path = Workflow;
+			sourceTree = "<group>";
+		};
+		20BE72A228D0BE4F00EEDE5F /* Workflow */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Workflow;
 			sourceTree = "<group>";
 		};
 		20C22DAD28BCE321004973CA /* Diff */ = {
@@ -2956,6 +3134,7 @@
 		B658FB2E27DA9E0F00EA4DBD /* AuroraEditor */ = {
 			isa = PBXGroup;
 			children = (
+				20BE727F28D0834800EEDE5F /* Services */,
 				20D83713289A7A9900D91D05 /* Utils */,
 				20D83712289A7A9200D91D05 /* Base */,
 				D7211D4427E066D4008F2ED7 /* Localization */,
@@ -3287,8 +3466,10 @@
 			files = (
 				93813D2828D74AC400A492D4 /* CodeLayoutManager.swift in Sources */,
 				2093CDC3289AA25B003A88DD /* TabBarItemID.swift in Sources */,
+				204F7BB528D7906A00F49092 /* WorkflowWrapperView.swift in Sources */,
 				2B5B255D288ADABA009C7384 /* shellClient.swift in Sources */,
 				2093CD54289AA0C0003A88DD /* ExtensionsStoreAPI.swift in Sources */,
+				20BE729A28D0A25900EEDE5F /* WorkflowCellView.swift in Sources */,
 				935EB99C28A8F26900E8F798 /* FileSystemTableViewCell.swift in Sources */,
 				20BCB0C028AA71760064C7C0 /* GitError.swift in Sources */,
 				2072FA13280D74ED00C7F8D4 /* HistoryInspectorModel.swift in Sources */,
@@ -3305,6 +3486,7 @@
 				20EBB50D280C383700F3A5DA /* LanguageType.swift in Sources */,
 				2093CDD8289AA511003A88DD /* URL+URLParameters.swift in Sources */,
 				2093CD46289AA095003A88DD /* AvatarURL.swift in Sources */,
+				20BE728728D0845000EEDE5F /* AuroraNetworking.swift in Sources */,
 				20C22DA828BCD2A3004973CA /* Diff-Index.swift in Sources */,
 				2BDFA90528D107B200980385 /* OtherFileView.swift in Sources */,
 				2093CDA9289AA179003A88DD /* SourceControlGeneralView.swift in Sources */,
@@ -3327,6 +3509,7 @@
 				2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */,
 				D7012EE827E757850001E1EF /* FindNavigator.swift in Sources */,
 				207D295D28CCE72F00D31530 /* RenameBranchView.swift in Sources */,
+				202327D628D5CA970031FFB6 /* WorkflowJobsView.swift in Sources */,
 				2093CD17289AA079003A88DD /* TokenRouter.swift in Sources */,
 				2093CCA0289AA00B003A88DD /* WelcomeWindowView.swift in Sources */,
 				2093CD21289AA084003A88DD /* GithubUserRouter.swift in Sources */,
@@ -3337,6 +3520,7 @@
 				2093CC9A289A9FFD003A88DD /* StatusBarMaximizeButton.swift in Sources */,
 				2086334F28A530AF00E29A22 /* CommitChangesView.swift in Sources */,
 				9354D4B328ACEDDE004C6D18 /* RepositoriesWrapperView.swift in Sources */,
+				20BE729C28D0BB2000EEDE5F /* WorkflowRunsView.swift in Sources */,
 				2093CDDF289AA522003A88DD /* Bundle+Info.swift in Sources */,
 				2BDFA91528D10B9200980385 /* FileCreationNamingView.swift in Sources */,
 				2093CD52289AA0AE003A88DD /* FeedbackType.swift in Sources */,
@@ -3354,6 +3538,7 @@
 				2093CD44289AA095003A88DD /* Permissions.swift in Sources */,
 				2093CCA2289AA00B003A88DD /* WelcomeActionView.swift in Sources */,
 				2093CDC7289AA260003A88DD /* TabBarAccessory.swift in Sources */,
+				20BE729228D08ABB00EEDE5F /* Jobs.swift in Sources */,
 				20C22DAF28BCE339004973CA /* Raw-Diff.swift in Sources */,
 				2093CD49289AA095003A88DD /* EventData.swift in Sources */,
 				2093CDD6289AA511003A88DD /* Dictionary+Additions.swift in Sources */,
@@ -3391,10 +3576,14 @@
 				2093CCB1289AA032003A88DD /* LSPClient.swift in Sources */,
 				2093CD1F289AA07D003A88DD /* Token.swift in Sources */,
 				2093CD31289AA089003A88DD /* Gist.swift in Sources */,
+				20BE727D28D07FF200EEDE5F /* ActionsPopoverCellView.swift in Sources */,
+				20BE728D28D0855500EEDE5F /* Workflows.swift in Sources */,
 				2093CD8C289AA12B003A88DD /* BannerModule.swift in Sources */,
+				20BE728328D083D800EEDE5F /* HTTPMethod.swift in Sources */,
 				2093CD36289AA08F003A88DD /* UserRouter.swift in Sources */,
 				2093CD20289AA07D003A88DD /* BitbucketUser.swift in Sources */,
 				2093CD92289AA134003A88DD /* AppPreferencesDocumentation.docc in Sources */,
+				20BE728528D0841A00EEDE5F /* HTTPErros.swift in Sources */,
 				2093CDCE289AA4F4003A88DD /* CursorLocation.swift in Sources */,
 				2093CD3D289AA095003A88DD /* GroupAccess.swift in Sources */,
 				202F2E3B289E7483000D3CAD /* FindNavigatorListViewController.swift in Sources */,
@@ -3467,6 +3656,7 @@
 				93D5F5D728CE0EF500286EBD /* TabHierarchyMenu.swift in Sources */,
 				2093CD8F289AA130003A88DD /* NotificationCentreView.swift in Sources */,
 				2093CDDE289AA522003A88DD /* Color+HEX.swift in Sources */,
+				20BE727B28D07EFC00EEDE5F /* ActionsPopoverView.swift in Sources */,
 				2093CDA6289AA173003A88DD /* TerminalPreferencesView.swift in Sources */,
 				2093CD99289AA148003A88DD /* SourceControlPreferences.swift in Sources */,
 				2093CD30289AA089003A88DD /* GithubAccount.swift in Sources */,
@@ -3476,6 +3666,7 @@
 				2093CD9E289AA15F003A88DD /* Providers.swift in Sources */,
 				2093CD2A289AA084003A88DD /* GistRouter.swift in Sources */,
 				2093CD6A289AA0F2003A88DD /* BreadcrumbsView.swift in Sources */,
+				20BE72A128D0BD9300EEDE5F /* WorkflowRun.swift in Sources */,
 				2093CD70289AA0FC003A88DD /* FontPickerView.swift in Sources */,
 				2BDFA91A28D10B9200980385 /* FileSelectionItem.swift in Sources */,
 				2093CDAE289AA185003A88DD /* ThemePreferencesView.swift in Sources */,
@@ -3489,6 +3680,7 @@
 				2093CD6F289AA0FC003A88DD /* SettingsTextEditor.swift in Sources */,
 				2093CDA0289AA163003A88DD /* ThemePreferences.swift in Sources */,
 				2072FA1A280D872600C7F8D4 /* LineEndings.swift in Sources */,
+				20BE728B28D0854900EEDE5F /* Workflow.swift in Sources */,
 				9354D4B928ACEE20004C6D18 /* RepositoriesMenu.swift in Sources */,
 				201169E22837B3D800F92B46 /* ChangesView.swift in Sources */,
 				20DF97A128ABB30D009CE1E9 /* FileManger.swift in Sources */,
@@ -3499,6 +3691,8 @@
 				93813D2B28D74B6400A492D4 /* CodeView+Messages.swift in Sources */,
 				2093CC91289A9FF5003A88DD /* StatusBarIndentSelector.swift in Sources */,
 				2B89F85428B13E9D007CB9C1 /* auroraMessageBox.swift in Sources */,
+				20BE729428D08AC600EEDE5F /* JobSteps.swift in Sources */,
+				202327D828D5CB200031FFB6 /* WorkflowJobCell.swift in Sources */,
 				2093CD26289AA084003A88DD /* PreviewHeader.swift in Sources */,
 				2093CD33289AA089003A88DD /* Comment.swift in Sources */,
 				04C3255C2801F86900C8DA2D /* ProjectNavigatorMenu.swift in Sources */,
@@ -3564,6 +3758,7 @@
 				939C109528AE7D0700403A97 /* RepositoryContainers&Items.swift in Sources */,
 				2093CDBB289AA1B9003A88DD /* AcknowledgementsView.swift in Sources */,
 				202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */,
+				204F7BB328D7905C00F49092 /* WorkflowMenu.swift in Sources */,
 				2093CDE0289AA522003A88DD /* Date+Formatted.swift in Sources */,
 				2BD5CF2528D602CE00F95E5A /* LineMap.swift in Sources */,
 				2847019E27FDDF7600F87B6B /* ProjectNavigatorView.swift in Sources */,
@@ -3572,6 +3767,7 @@
 				93C43E8228B0DBF0002E23DC /* NavigatorSidebarToolbarLeft.swift in Sources */,
 				20EBB501280C325D00F3A5DA /* FileInspectorView.swift in Sources */,
 				2093CD22289AA084003A88DD /* ReviewsRouter.swift in Sources */,
+				20BE729828D08C5000EEDE5F /* GitHubActionsModel.swift in Sources */,
 				20D2A43628A7AAF30073F7BD /* DefaultBranch.swift in Sources */,
 				20BCB0B628AA53CC0064C7C0 /* Core.swift in Sources */,
 				2093CD73289AA0FF003A88DD /* PressActionsModifier.swift in Sources */,
@@ -3618,6 +3814,7 @@
 				2093CD18289AA079003A88DD /* OAuthRouter.swift in Sources */,
 				2093CDB0289AA185003A88DD /* EditorThemeView.swift in Sources */,
 				04660F6A27E51E5C00477777 /* AuroraEditorWindowController.swift in Sources */,
+				20BE727528D0761200EEDE5F /* ActionsListView.swift in Sources */,
 				2BDFA91928D10B9200980385 /* NewFileModel.swift in Sources */,
 				206729B228AE6AC900EB0957 /* GroupBox.swift in Sources */,
 				20D2A44028A7CE300073F7BD /* Stage.swift in Sources */,
@@ -3626,6 +3823,7 @@
 				2093CD3A289AA08F003A88DD /* CommitRouter.swift in Sources */,
 				20D2A44E28A7D9CE0073F7BD /* Description.swift in Sources */,
 				2093CD39289AA08F003A88DD /* GitlabOAuthConfiguration.swift in Sources */,
+				202327E028D607B20031FFB6 /* ReRunJobSheetView.swift in Sources */,
 				20D2A43E28A7CB510073F7BD /* Submodule.swift in Sources */,
 				2093CC9C289A9FFD003A88DD /* StatusBarClearButton.swift in Sources */,
 				93CACA2528D751CF00978753 /* MessageInlineView.swift in Sources */,
@@ -3635,6 +3833,7 @@
 				2093CC9D289AA001003A88DD /* TerminalEmulatorView+Coordinator.swift in Sources */,
 				2093CDDA289AA51A003A88DD /* Documentation.docc in Sources */,
 				04C3254F2800AA4700C8DA2D /* ExtensionInstallationView.swift in Sources */,
+				204F7BB728D7907A00F49092 /* WorkflowViewController.swift in Sources */,
 				2093CD3B289AA08F003A88DD /* GitlabConfiguration.swift in Sources */,
 				2093CDC6289AA260003A88DD /* TabBarNative.swift in Sources */,
 				2093CDB2289AA19B003A88DD /* PreferenceAccountsView.swift in Sources */,
@@ -3645,6 +3844,7 @@
 				2093CD11289AA054003A88DD /* GitUIModel.swift in Sources */,
 				2093CDD0289AA503003A88DD /* String+RemoveOccurrences.swift in Sources */,
 				2BD5CF2628D602CE00F95E5A /* ViewModifiers.swift in Sources */,
+				204F7BB928D7908700F49092 /* WorkflowTableViewCell.swift in Sources */,
 				2093CD56289AA0C0003A88DD /* Page.swift in Sources */,
 				2093CD4B289AA0A2003A88DD /* Router.swift in Sources */,
 				B6EE989027E8879A00CDD8AB /* InspectorSidebar.swift in Sources */,
@@ -3679,6 +3879,7 @@
 				2041B8BC28A680CF005F03D8 /* Tag.swift in Sources */,
 				2093CDC9289AA260003A88DD /* TabBarContextMenu.swift in Sources */,
 				2021267C289BF7BA00246DD7 /* Log.swift in Sources */,
+				20BE72A528D0BEA800EEDE5F /* WorkflowRuns.swift in Sources */,
 				2093CD9B289AA14F003A88DD /* TextEditingPreferences.swift in Sources */,
 				207D295A28CCDEDC00D31530 /* BranchCommitHistory.swift in Sources */,
 				2076DF1128C9F0900031DDB1 /* Check.swift in Sources */,
@@ -3715,6 +3916,7 @@
 				2BD5CF2128D602CE00F95E5A /* CodeStorageDelegate.swift in Sources */,
 				2093CD2E289AA089003A88DD /* Files.swift in Sources */,
 				9336833928C5EAD7009F7B44 /* GitCloneViewWindow.swift in Sources */,
+				20BE729E28D0BB6F00EEDE5F /* WorkflowRunCell.swift in Sources */,
 				6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */,
 				2093CD55289AA0C0003A88DD /* Response.swift in Sources */,
 				2093CDD9289AA511003A88DD /* Time.swift in Sources */,
@@ -3730,6 +3932,8 @@
 				2093CDE5289AAE7F003A88DD /* CheckoutBranch.swift in Sources */,
 				2093CD97289AA144003A88DD /* AuroraTheme.swift in Sources */,
 				2093CCB0289AA02D003A88DD /* QuickOpenPreviewView.swift in Sources */,
+				20BE729628D08B0A00EEDE5F /* Job.swift in Sources */,
+				20BE728F28D0878E00EEDE5F /* NetworkingConstant.swift in Sources */,
 				2BD5CF2B28D602CE00F95E5A /* TextView.swift in Sources */,
 				28FFE1BF27E3A441001939DB /* NavigatorSidebarToolbarBottom.swift in Sources */,
 			);

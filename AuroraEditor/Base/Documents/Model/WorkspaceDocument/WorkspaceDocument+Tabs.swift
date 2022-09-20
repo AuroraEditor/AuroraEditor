@@ -33,6 +33,9 @@ extension WorkspaceDocument {
             case .branchHistory:
                 guard let branchCommitHistoryTab = item as? BranchCommitHistory else { return }
                 self.openBranchCommitHistory(item: branchCommitHistoryTab)
+            case .actionsWorkflow:
+                guard let actionsWorkflowTab = item as? Workflow else { return }
+                self.openActionsWorkflow(item: actionsWorkflowTab)
             }
         }
         updateNewlyOpenedTabs(item: item)
@@ -101,6 +104,10 @@ extension WorkspaceDocument {
         selectionState.openedBranchCommitHistory.append(item)
     }
 
+    private func openActionsWorkflow(item: Workflow) {
+        selectionState.openedActionsWorkflow.append(item)
+    }
+
     // MARK: Close Tabs
 
     /// Closes single tab
@@ -132,6 +139,9 @@ extension WorkspaceDocument {
         case .branchHistory:
             guard let item = selectionState.getItemByTab(id: id) as? BranchCommitHistory else { return }
             closeBranchCommitHistoryTab(item: item)
+        case .actionsWorkflow:
+            guard let item = selectionState.getItemByTab(id: id) as? Workflow else { return }
+            closeActionsWorkflowTab(item: item)
         }
 
         if selectionState.openedTabs.isEmpty {
@@ -205,6 +215,10 @@ extension WorkspaceDocument {
             guard let item = selectionState.getItemByTab(id: id)
                     as? BranchCommitHistory else { return }
             closeBranchCommitHistoryTab(item: item)
+        case .actionsWorkflow:
+            guard let item = selectionState.getItemByTab(id: id)
+                    as? Workflow else { return }
+            closeActionsWorkflowTab(item: item)
         }
 
         guard let openFileItemIdx = selectionState
@@ -243,6 +257,11 @@ extension WorkspaceDocument {
     private func closeBranchCommitHistoryTab(item: BranchCommitHistory) {
         guard let idx = selectionState.openedBranchCommitHistory.firstIndex(of: item) else { return }
         selectionState.openedBranchCommitHistory.remove(at: idx)
+    }
+
+    private func closeActionsWorkflowTab(item: Workflow) {
+        guard let idx = selectionState.openedActionsWorkflow.firstIndex(of: item) else { return }
+        selectionState.openedActionsWorkflow.remove(at: idx)
     }
 
     /// Makes the temporary tab permanent when a file save or edit happens.

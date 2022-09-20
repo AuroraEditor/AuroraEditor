@@ -10,10 +10,6 @@
 import Foundation
 
 // TODO: DOCS (Nanashi Li)
-public enum HTTPMethod: String {
-    case GET, POST, PUT, PATCH, DELETE
-}
-
 public enum HTTPEncoding: Int {
     case url, form, json
 }
