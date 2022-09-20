@@ -1,5 +1,5 @@
 //
-//  Color+HEX.swift
+//  Color.swift
 //  AuroraEditorModules/AuroraEditorUtils
 //
 //  Created by Lukas Pistrol on 23.03.22.

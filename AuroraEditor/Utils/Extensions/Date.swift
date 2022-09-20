@@ -1,5 +1,5 @@
 //
-//  Date+Formatted.swift
+//  Date.swift
 //  AuroraEditorModules/AuroraEditorUtils
 //
 //  Created by Lukas Pistrol on 20.04.22.
