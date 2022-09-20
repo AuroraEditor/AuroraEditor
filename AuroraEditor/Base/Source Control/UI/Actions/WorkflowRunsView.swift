@@ -25,6 +25,8 @@ struct WorkflowRunsView: View {
         VStack {
             NavigationView {
                 VStack {
+                    Divider()
+                        .padding()
                     List(actionsModel.workflowRuns, id: \.id) { run in
                         NavigationLink {
                             WorkflowJobsView(workspace: actionsModel.workspace,

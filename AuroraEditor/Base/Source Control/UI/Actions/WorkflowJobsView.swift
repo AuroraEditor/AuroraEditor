@@ -33,8 +33,6 @@ struct WorkflowJobsView: View {
     var body: some View {
         Divider()
             .padding()
-        Text("TOP")
-            .padding()
         VStack {
             HStack(spacing: 15) {
                 Text(jobName)
