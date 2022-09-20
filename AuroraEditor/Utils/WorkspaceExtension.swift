@@ -11,14 +11,9 @@ import Foundation
 extension WorkspaceDocument {
 
     func workspaceURL() -> URL {
-        do {
-            guard let workspaceFolder = self.fileSystemClient?.folderURL else {
-                throw URLError(.fileDoesNotExist)
-            }
-            return workspaceFolder
-        } catch {
-            Log.error("Unable to get workspace url")
+        guard let workspaceFolder = self.fileSystemClient?.folderURL else {
+            fatalError("Unconstructable URL")
         }
-        return URL(string: "")!
+        return workspaceFolder
     }
 }
