@@ -88,10 +88,18 @@ class MinimapTypeSetter: NSATSTypesetter {
     // ignores some features of text views, such as areas to exclude, where `remainingRect` would be non-empty. It
     // currently also ignores all extra line and paragraph spacing and fails to call some methods that might adjust
     // layout decisions.
-    override func layoutParagraph( // swiftlint:disable:this function_body_length
+    override func layoutParagraph(
         at lineFragmentOrigin: UnsafeMutablePointer<NSPoint>
     ) -> Int {
+        updateParagraphLayout(at: lineFragmentOrigin)
+        return NSMaxRange(paragraphSeparatorGlyphRange)
+    }
 
+    // TODO: Heavy optimisation since this is really slow, especially for large files
+    func updateParagraphLayout( // swiftlint:disable:this function_body_length
+        at lineFragmentOrigin: UnsafeMutablePointer<NSPoint>
+    ) {
+        Log.info("Updating layout for \(lineFragmentOrigin.pointee)")
         let padding = currentTextContainer?.lineFragmentPadding ?? 0,
             width = currentTextContainer?.size.width ?? 100
 
@@ -241,8 +249,6 @@ class MinimapTypeSetter: NSATSTypesetter {
         }
 
         endParagraph()
-
-        return NSMaxRange(paragraphSeparatorGlyphRange)
     }
 
     // Adjust the height of the fragment rectangles for empty lines.
