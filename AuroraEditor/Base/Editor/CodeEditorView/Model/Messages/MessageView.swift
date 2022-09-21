@@ -10,7 +10,6 @@ import SwiftUI
 
 /// SwiftUI view that displays an array of messages that lie on the same line. It supports switching between an inline
 /// format and a full popup format by clicking/tapping on the message.
-///
 struct MessageView: View {
     struct Geometry {
 
@@ -73,9 +72,7 @@ extension MessageView {
     static let popupRightSideOffset = CGFloat(20)
 }
 
-// MARK: -
-// MARK: Message category themes
-
+// MARK: - Message category themes
 extension Message {
 
     /// Defines the colours and icons that identify each of the various message categories.
@@ -97,7 +94,6 @@ extension Message {
 }
 
 // MARK: - Previews
-
 let message1 = Message(category: .error, length: 1, summary: "It's wrong!", description: nil),
     message2 = Message(category: .error, length: 1, summary: "Need to fix this.", description: nil),
     message3 = Message(category: .warning, length: 1, summary: "Looks dodgy.",
