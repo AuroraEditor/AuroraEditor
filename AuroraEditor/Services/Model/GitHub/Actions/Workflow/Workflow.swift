@@ -9,7 +9,10 @@
 import Foundation
 import SwiftUI
 
-struct Workflow: Codable, Hashable, Identifiable, TabBarItemRepresentable {
+struct Workflow: Codable, Hashable, Identifiable, Comparable, TabBarItemRepresentable {
+    static func < (lhs: Workflow, rhs: Workflow) -> Bool {
+        return lhs.name < rhs.name
+    }
 
     static func == (lhs: Workflow, rhs: Workflow) -> Bool {
         guard lhs.tabID == rhs.tabID else { return false }

@@ -17,8 +17,28 @@ class GitHubActions: ObservableObject {
         case repoFailure
     }
 
+    enum WorkflowRunState {
+        case loading
+        case error
+        case success
+        case empty
+    }
+
+    enum JobsState {
+        case loading
+        case error
+        case success
+        case empty
+    }
+
     @Published
     var state: State = .loading
+
+    @Published
+    var workflowRunState: WorkflowRunState = .loading
+
+    @Published
+    var jobsState: JobsState = .loading
 
     let workspace: WorkspaceDocument
 
@@ -63,18 +83,19 @@ class GitHubActions: ObservableObject {
                         "Error: Unable to decode",
                         String.init(data: data, encoding: .utf8) ?? ""
                     )
-                    self.state = .error
+                    DispatchQueue.main.async {
+                        self.state = .error
+                    }
                     return
                 }
                 DispatchQueue.main.async {
                     self.state = .success
-                    self.workflows = workflows.workflows
+                    self.workflows = workflows.workflows.sorted()
                     self.objectWillChange.send()
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.state = .error
-                    self.objectWillChange.send()
                 }
                 Log.error(error)
             }
@@ -82,6 +103,10 @@ class GitHubActions: ObservableObject {
     }
 
     func fetchWorkflowRuns(workflowId: String) {
+        DispatchQueue.main.async {
+            self.workflowRunState = .loading
+            self.objectWillChange.send()
+        }
         AuroraNetworking().request(path: NetworkingConstant.workflowRuns(repoOwner,
                                                                          repo,
                                                                          workflowId: workflowId),
@@ -94,17 +119,27 @@ class GitHubActions: ObservableObject {
                     let decoder = JSONDecoder()
                     let workflowRuns = try decoder.decode(WorkflowRuns.self, from: data)
                     DispatchQueue.main.async {
-                        self.workflowRuns = workflowRuns.workflowRuns
-                        self.objectWillChange.send()
+                        if workflowRuns.workflowRuns?.isEmpty ?? true {
+                            self.workflowRunState = .empty
+                            return
+                        }
+
+                        self.workflowRuns = workflowRuns.workflowRuns ?? []
+                        self.workflowRunState = .success
                     }
                 } catch {
+                    DispatchQueue.main.async {
+                        self.workflowRunState = .error
+                    }
                     Log.debug(
                         "Error: \(error)",
                         String.init(data: data, encoding: .utf8) ?? ""
                     )
-                    self.state = .error
                 }
             case .failure(let error):
+                DispatchQueue.main.async {
+                    self.workflowRunState = .error
+                }
                 Log.error(error)
             }
 
@@ -112,6 +147,9 @@ class GitHubActions: ObservableObject {
     }
 
     func fetchWorkflowJobs(runId: String) {
+        DispatchQueue.main.async {
+            self.jobsState = .loading
+        }
         AuroraNetworking().request(path: NetworkingConstant.workflowJobs(repoOwner,
                                                                          repo,
                                                                          runId: runId),
@@ -126,19 +164,31 @@ class GitHubActions: ObservableObject {
                     DispatchQueue.main.async {
                         self.workflowJob = jobs.jobs
                         self.jobId = String(jobs.jobs.first?.id ?? 0)
+
                         for job in self.workflowJob {
+                            if job.steps.isEmpty {
+                                self.jobsState = .empty
+                                return
+                            }
+
                             self.workflowJobs = job.steps
+                            self.jobsState = .success
                         }
                         self.objectWillChange.send()
                     }
                 } catch {
+                    DispatchQueue.main.async {
+                        self.jobsState = .error
+                    }
                     Log.debug(
                         "Error: \(error)",
                         String.init(data: data, encoding: .utf8) ?? ""
                     )
-                    self.state = .error
                 }
             case .failure(let error):
+                DispatchQueue.main.async {
+                    self.jobsState = .error
+                }
                 Log.error(error)
             }
         })
