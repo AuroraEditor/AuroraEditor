@@ -12,6 +12,8 @@ and orientation.
 We pledge to act and interact in ways that contribute to an open, welcoming,
 diverse, inclusive, and healthy community.
 
+If you feel unwelcome, or feel like you are not being treated properly, please contact an [@Founder](https://github.com/orgs/AuroraEditor/teams/founders/members) and we will do everything we can to resolve this. 
+
 ## Our Standards
 
 Examples of behavior that contributes to a positive environment for our
