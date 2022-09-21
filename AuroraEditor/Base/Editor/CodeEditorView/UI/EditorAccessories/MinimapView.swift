@@ -51,29 +51,31 @@ class MinimapLayoutManager: NSLayoutManager {
 
         } else { width = 1 }
 
-        enumerateLineFragments(forGlyphRange: glyphsToShow) { (_, usedRect, _, glyphRange, _) in
+        globalMainQueue.async {
+            self.enumerateLineFragments(forGlyphRange: glyphsToShow) { (_, usedRect, _, glyphRange, _) in
 
-            let origin = usedRect.origin
-            for index in 0..<glyphRange.length {
+                let origin = usedRect.origin
+                for index in 0..<glyphRange.length {
 
-                // We don't draw hiden glyphs (`.null`), control chracters, and "elastic" glyphs, where the latter
-                // serve as a proxy for white space
-                let property = self.propertyForGlyph(at: glyphRange.location + index)
-                if property != .null && property != .controlCharacter && property != .elastic {
+                    // We don't draw hiden glyphs (`.null`), control chracters, and "elastic" glyphs, where the latter
+                    // serve as a proxy for white space
+                    let property = self.propertyForGlyph(at: glyphRange.location + index)
+                    if property != .null && property != .controlCharacter && property != .elastic {
 
-                    // TODO: could try to optimise by using the `effectiveRange` of \
-                    // the attribute lookup to compute an entire glyph run to draw as one rectangle
-                    let charIndex = self.characterIndexForGlyph(at: glyphRange.location + index)
-                    if let colour = textStorage.attribute(.foregroundColor,
-                                                          at: charIndex,
-                                                          effectiveRange: nil) as? NSColor {
-                        colour.withAlphaComponent(0.30).setFill()
+                        // TODO: could try to optimise by using the `effectiveRange` of \
+                        // the attribute lookup to compute an entire glyph run to draw as one rectangle
+                        let charIndex = self.characterIndexForGlyph(at: glyphRange.location + index)
+                        if let colour = textStorage.attribute(.foregroundColor,
+                                                              at: charIndex,
+                                                              effectiveRange: nil) as? NSColor {
+                            colour.withAlphaComponent(0.30).setFill()
+                        }
+                        NSBezierPath(rect: CGRect(x: origin.x + CGFloat(index),
+                                                  y: origin.y,
+                                                  width: width,
+                                                  height: usedRect.size.height))
+                        .fill()
                     }
-                    NSBezierPath(rect: CGRect(x: origin.x + CGFloat(index),
-                                              y: origin.y,
-                                              width: width,
-                                              height: usedRect.size.height))
-                    .fill()
                 }
             }
         }
@@ -91,7 +93,9 @@ class MinimapTypeSetter: NSATSTypesetter {
     override func layoutParagraph(
         at lineFragmentOrigin: UnsafeMutablePointer<NSPoint>
     ) -> Int {
-        updateParagraphLayout(at: lineFragmentOrigin)
+        globalMainQueue.async {
+            self.updateParagraphLayout(at: lineFragmentOrigin)
+        }
         return NSMaxRange(paragraphSeparatorGlyphRange)
     }
 
@@ -99,7 +103,6 @@ class MinimapTypeSetter: NSATSTypesetter {
     func updateParagraphLayout( // swiftlint:disable:this function_body_length
         at lineFragmentOrigin: UnsafeMutablePointer<NSPoint>
     ) {
-        Log.info("Updating layout for \(lineFragmentOrigin.pointee)")
         let padding = currentTextContainer?.lineFragmentPadding ?? 0,
             width = currentTextContainer?.size.width ?? 100
 

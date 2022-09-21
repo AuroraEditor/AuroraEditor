@@ -130,10 +130,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         textContainer?.heightTracksTextView = false
         textContainer?.lineBreakMode = .byWordWrapping
 
-        // FIXME: properties that ought to be configurable
-        usesFindBar = true
-        isIncrementalSearchingEnabled = true
-
         // Enable undo support
         allowsUndo = true
 
@@ -155,14 +151,13 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         codeLayoutManager.gutterView = gutterView
 
         // Add the minimap with its own gutter, but sharing the code storage with the code view
-        //
         let minimapLayoutManager = MinimapLayoutManager(),
             minimapView = MinimapView(),
             minimapGutterView = GutterView(frame: CGRect.zero,
-                                              textView: minimapView,
-                                              theme: theme,
-                                              getMessageViews: { self.messageViews },
-                                              isMinimapGutter: true),
+                                           textView: minimapView,
+                                           theme: theme,
+                                           getMessageViews: { self.messageViews },
+                                           isMinimapGutter: true),
             minimapDividerView = NSBox()
         minimapView.codeView = self
 
@@ -170,6 +165,8 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         addSubview(minimapDividerView)
         self.minimapDividerView = minimapDividerView
 
+        // Note: TextContainer passes the text from the file into the minimap to
+        // be converted to glyphs
         minimapView.textContainer?.replaceLayoutManager(minimapLayoutManager)
         codeStorage.addLayoutManager(minimapLayoutManager)
         minimapView.backgroundColor = backgroundColor
@@ -179,9 +176,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         minimapView.isHorizontallyResizable = false
         minimapView.isVerticallyResizable = true
         minimapView.textContainerInset = CGSize(width: 0, height: 0)
-        minimapView.textContainer?.widthTracksTextView = true
-        minimapView.textContainer?.heightTracksTextView = false
-        minimapView.textContainer?.lineBreakMode = .byWordWrapping
         addSubview(minimapView)
         self.minimapView = minimapView
 
