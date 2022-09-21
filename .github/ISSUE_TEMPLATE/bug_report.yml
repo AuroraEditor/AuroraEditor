@@ -40,7 +40,7 @@ body:
          click on the version number on the welcome screen
       value: |
         Aurora Editor: [e.g. 1.0]
-        Hash: [e.g. d06fb30e72634048395b5dbcdbc756b7f8ecc2f0]
+        Commit: [e.g. d06fb30e72634048395b5dbcdbc756b7f8ecc2f0]
         MacOS: [e.g. 12.3.0]
         Xcode: [e.g. 13.3]
     validations:
