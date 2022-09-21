@@ -111,28 +111,32 @@ public struct CodeEditor {
 
 extension CodeEditor: NSViewRepresentable {
 
+    /// Generates and returns a scroll view with a CodeView set as its document view.
     public func makeNSView(context: Context) -> NSScrollView {
-
-        // Set up scroll view
-        let scrollView = NSScrollView(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-        scrollView.borderType = .noBorder
-        scrollView.hasVerticalScroller = true
-        scrollView.hasHorizontalRuler = false
-        scrollView.autoresizingMask = [.width, .height]
 
         // Set up text view with gutter
         let codeView = CodeView(frame: CGRect(x: 0, y: 0, width: 100, height: 40),
                                 with: language,
                                 viewLayout: layout,
                                 theme: context.environment.codeEditorTheme)
-        codeView.isVerticallyResizable = true
-        codeView.isHorizontallyResizable = false
+
+        globalMainQueue.async {
+            codeView.string = text
+        }
+        codeView.selectedRanges = position.selections.map { NSValue(range: $0) }
+
+        let textContainer = codeView.textContainer
+        textContainer?.widthTracksTextView = true
+        textContainer?.heightTracksTextView = false
         codeView.autoresizingMask = .width
 
-        // Embed text view in scroll view
+        // Set up scroll view
+        let scrollView = NSScrollView()
+        scrollView.hasVerticalScroller = true
+        scrollView.hasHorizontalRuler = false
+        scrollView.drawsBackground = false
         scrollView.documentView = codeView
 
-        codeView.string = text
         if let delegate = codeView.delegate as? CodeViewDelegate {
 
             delegate.textDidChange = context.coordinator.textDidChange
@@ -142,7 +146,6 @@ extension CodeEditor: NSViewRepresentable {
             }
 
         }
-        codeView.selectedRanges = position.selections.map { NSValue(range: $0) }
 
         // We can't set the scroll position right away as the views are not properly sized yet. Thus, this needs to be
         // delayed.

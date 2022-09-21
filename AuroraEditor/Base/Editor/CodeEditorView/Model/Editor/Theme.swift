@@ -102,7 +102,7 @@ extension Theme {
         numberColour: OSColor(red: 0.84, green: 0.79, blue: 0.53, alpha: 1.0),
         identifierColour: OSColor(red: 0.89, green: 0.89, blue: 0.89, alpha: 1.0),
         keywordColour: OSColor(red: 0.94, green: 0.51, blue: 0.69, alpha: 1.0),
-        backgroundColour: OSColor(red: 0.16, green: 0.16, blue: 0.18, alpha: 1.0),
+        backgroundColour: NSColor(hex: "#292a30"),
         currentLineColour: OSColor(red: 0.19, green: 0.20, blue: 0.22, alpha: 1.0),
         selectionColour: OSColor(red: 0.40, green: 0.44, blue: 0.51, alpha: 1.0),
         cursorColour: OSColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0),
