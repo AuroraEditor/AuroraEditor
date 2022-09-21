@@ -19,7 +19,6 @@ private let logger = Logger(subsystem: "org.justtesting.CodeEditorView", categor
 public enum TokenPattern: Hashable, Equatable, Comparable {
 
     /// The token has multiple lexemes, specified in the form of a regular expression string.
-    ///
     case pattern(String)
     // This case needs to be the first one as we want it to compare as being smaller than the rest;
     // that ensures that it will appear last in the generated tokeniser regexp and hence match last
@@ -27,35 +26,28 @@ public enum TokenPattern: Hashable, Equatable, Comparable {
 
     /// The token has only one lexeme, given as a simple string. We only match this string if it starts and ends at a
     /// word boundary (as per the "\b" regular expression metacharacter).
-    ///
     case word(String)
 
     /// The token has only one lexeme, given as a simple string.
-    ///
     case string(String)
 }
 
 public protocol TokeniserState {
 
     /// Finite projection of tokeniser state to determine sub-tokenisers (and hence, the regular expression to use)
-    ///
     associatedtype StateTag: Hashable
 
     /// Project the tag out of a full state
-    ///
     var tag: StateTag { get }
 }
 
 /// Type used to attribute characters with their token value.
-///
 public struct TokenAttribute<TokenType> {
 
     /// `true` iff this is the first character of a tokens lexeme.
-    ///
     public let isHead: Bool
 
     /// The type of tokens that this character is a part of.
-    ///
     public let token: TokenType
 }
 
@@ -64,43 +56,35 @@ public struct TokenAttribute<TokenType> {
 /// The `token` component determines the token type of the matched pattern and `transition` determines the state
 /// transition implied by the matched token. If the `transition` component is `nil`, the tokeniser stays in the current
 /// state.
-///
 public typealias TokenAction<TokenType, StateType> = (token: TokenType, transition: ((StateType) -> StateType)?)
 
 /// For each possible state tag of the underlying tokeniser state, a mapping from token patterns to token kinds and
 /// maybe a state transition to determine a new tokeniser state
-///
 public typealias TokenDictionary<TokenType, StateType: TokeniserState>
 = [StateType.StateTag: [TokenPattern: TokenAction<TokenType, StateType>]]
 
 /// Pre-compiled regular expression tokeniser.
 ///
 /// The `TokenType` identifies the various tokens that can be recognised by the tokeniser.
-///
 public struct Tokeniser<TokenType, StateType: TokeniserState> {
 
     /// Tokeniser for one state of the compound tokeniser
-    ///
     struct State {
 
         /// The matching regular expression
-        ///
         let regexp: NSRegularExpression
 
         /// The lookup table for single-lexeme tokens
-        ///
         let stringTokenTypes: [String: TokenAction<TokenType, StateType>]
 
         /// The token types for multi-lexeme tokens
         ///
         /// The order of the token types in the array is the same as that of the matching groups for those tokens in the
         /// regular expression.
-        ///
         let patternTokenTypes: [TokenAction<TokenType, StateType>]
     }
 
     /// Sub-tokeniser for all states of the compound tokeniser
-    ///
     let states: [StateType.StateTag: State]
 }
 
@@ -125,7 +109,6 @@ extension NSMutableAttributedString {
     /// what we call the token body— are marked with the same token attribute,\
     /// but without being identified as a lexeme head. This
     /// distinction is crucial to be able to distinguish the boundaries of multiple successive tokens of the same type.
-    ///
     public static func tokeniser<TokenType, StateType: TokeniserState>(
         for tokenMap: TokenDictionary<TokenType, StateType>
     ) -> Tokeniser<TokenType, StateType>? {
@@ -190,7 +173,6 @@ extension NSMutableAttributedString {
     ///   - range: The range in the receiver that is to be parsed and attributed.
     ///
     /// All previously existing occurences of `attribute` in the given range are removed.
-    ///
     public func tokeniseAndSetTokenAttribute<TokenType, StateType>(attribute: NSAttributedString.Key,
                                                                    with tokeniser: Tokeniser<TokenType, StateType>,
                                                                    state startState: StateType,

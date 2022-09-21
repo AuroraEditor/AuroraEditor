@@ -8,11 +8,9 @@
 
 import SwiftUI
 
-// MARK: -
-// MARK: Popup view
+// MARK: - Popup view
 
 /// Key to track the width for a set of message popup views.
-///
 private struct PopupWidth: PreferenceKey, EnvironmentKey {
 
     static let defaultValue: CGFloat? = nil
@@ -22,7 +20,6 @@ private struct PopupWidth: PreferenceKey, EnvironmentKey {
 }
 
 /// Accessor for the environment value identified by the key.
-///
 extension EnvironmentValues {
 
     var popupWidth: CGFloat? {
@@ -67,7 +64,6 @@ extension View {
 /// A view that display all the information of a list of messages.
 ///
 /// NB: The array of messages may not be empty.
-///
 private struct MessagePopupCategoryView: View {
     let category: Message.Category
     let messages: [Message]
@@ -132,7 +128,6 @@ struct MessagePopupView: View {
     let theme: Message.Theme
 
     /// The width of the text in the message category with the widest text.
-    ///
     @State private var popupWidth: CGFloat?
 
     var body: some View {

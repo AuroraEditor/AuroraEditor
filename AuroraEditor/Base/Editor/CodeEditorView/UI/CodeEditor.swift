@@ -12,11 +12,9 @@ import SwiftUI
 /// SwiftUI `Environment`:
 /// * Environment value `codeEditorTheme`: determines the code highlighting theme to use
 /// * Text-related values: affect the rendering of message views
-///
 public struct CodeEditor {
 
     /// Specification of the editor layout.
-    ///
     public struct LayoutConfiguration: Equatable {
 
         /// Show the minimap if possible. (Currently only supported on macOS.)
@@ -27,7 +25,6 @@ public struct CodeEditor {
         ///
         /// - Parameter showMinimap: Whether to show the minimap if possible.\
         /// It may not be possible on all supported OSes.
-        ///
         public init(showMinimap: Bool) {
             self.showMinimap = showMinimap
         }
@@ -36,7 +33,6 @@ public struct CodeEditor {
     }
 
     /// Specification of a text editing position; i.e., text selection and scroll position.
-    ///
     public struct Position: Equatable {
 
         /// Specification of a list of selection ranges.
@@ -44,7 +40,6 @@ public struct CodeEditor {
         /// * A range with a zero length indicates an insertion point.
         /// * An empty array, corresponds to an insertion point at position 0.
         /// * On iOS, this can only always be one range.
-        ///
         public var selections: [NSRange]
 
         /// The editor vertical scroll position. The value is between 0 and 1,
@@ -79,7 +74,6 @@ public struct CodeEditor {
     ///               simultaneous messages and they shouldn't change to frequently.
     ///   - language: Language configuration for highlighting and similar.
     ///   - layout: Layout configuration determining the visible elements of the editor view.
-    ///
     public init(text: Binding<String>,
                 position: Binding<Position>,
                 caretPosition: Binding<CursorLocation>,
@@ -102,11 +96,9 @@ public struct CodeEditor {
         /// In order to avoid update cycles, where view code tries to update SwiftUI state variables (such as the view's
         /// bindings) during a SwiftUI view update, we use `updatingView` as a flag that indicates whether the view is
         /// being updated, and hence, whether state updates ought to be avoided or delayed.
-        ///
         fileprivate var updatingView = false
 
         /// This is the last observed value of `messages`, to enable us to compute the difference in the next update.
-        ///
         fileprivate var lastMessages: Set<Located<Message>> = Set()
 
         init(_ text: Binding<String>, _ position: Binding<Position>, _ caretPosition: Binding<CursorLocation>) {
@@ -272,14 +264,12 @@ extension CodeEditor: NSViewRepresentable {
     }
 
     /// Update messages for a code view in the given context.
-    ///
     private func updateMessages(in codeView: CodeView, with context: Context) {
         update(oldMessages: context.coordinator.lastMessages, to: messages, in: codeView)
         context.coordinator.lastMessages = messages
     }
 
     /// Update the message set of the given code view.
-    ///
     private func update(oldMessages: Set<Located<Message>>,
                         to updatedMessages: Set<Located<Message>>,
                         in codeView: CodeView) {
@@ -292,14 +282,12 @@ extension CodeEditor: NSViewRepresentable {
 }
 
 /// Environment key for the current code editor theme.
-///
 public struct CodeEditorTheme: EnvironmentKey {
     public static var defaultValue: Theme = Theme.defaultLight
 }
 
 extension EnvironmentValues {
     /// The current code editor theme.
-    ///
     public var codeEditorTheme: Theme {
         get { self[CodeEditorTheme.self] }
         set { self[CodeEditorTheme.self] = newValue }
@@ -331,7 +319,7 @@ extension CodeEditor.Position: RawRepresentable, Codable {
     }
 }
 
-// MARK: Previews
+// MARK: - Previews
 struct CodeEditor_Previews: PreviewProvider {
     static var previews: some View {
         CodeEditor(

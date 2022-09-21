@@ -101,14 +101,12 @@ class CodeStorage: NSTextStorage {
     }
 }
 
-// MARK: -
-// MARK: Custom handling of the insertion point
+// MARK: - Custom handling of the insertion point
 
 extension CodeStorage {
 
     /// Insert the given string, such that it safe in an ongoing insertion cycle and does leave the cursor (insertion
     /// point) in place if the insertion is at the location of the insertion point.
-    ///
     func cursorInsert(string: String, at index: Int) {
 
         Dispatch.DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(10)) {
@@ -136,7 +134,6 @@ extension CodeStorage {
     /// of the range. This is safe in an editing cycle, as the selection setting is deferred until completion.
     ///
     /// - Parameter range: The deleted chracter range.
-    ///
     func setInsertionPointAfterDeletion(of range: NSRange) {
 
         for layoutManager in self.layoutManagers {
@@ -154,14 +151,12 @@ extension CodeStorage {
     }
 }
 
-// MARK: -
-// MARK: Token attributes
+// MARK: - Token attributes
 
 extension CodeStorage {
 
     /// Determine the token attribute value at the given character index. This will be `.tokenBody` if the indexed
     /// character is a body character (i.e., second or later) of a token lexeme.
-    ///
     func tokenAttribute(at location: Int) -> TokenAttribute<LanguageConfiguration.Token>? {
 
         // Use the concrete text storage here as `CodeStorage.attributes(_:at:effectiveRange:)` does attribute synthesis
@@ -172,7 +167,6 @@ extension CodeStorage {
 
     /// Determine the type and range of the token to which the character at the given index belongs, if it is part of a
     /// token at all.
-    ///
     func token(at location: Int) -> (type: LanguageConfiguration.Token, range: NSRange)? {
 
         func determineTokenLength(type: LanguageConfiguration.Token, start: Int)
@@ -206,7 +200,6 @@ extension CodeStorage {
     ///   - block: The closure to apply to the token types and ranges found.
     ///
     /// See `NSAttributedString.enumerateAttribute(_:in:options:using:)` for further details of the parameters.
-    ///
     func enumerateTokens(in enumerationRange: NSRange,
                          reverse reverseEnumeration: Bool = false,
                          using block: (LanguageConfiguration.Token, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
@@ -215,7 +208,6 @@ extension CodeStorage {
             : [.longestEffectiveRangeNotRequired]
 
         enumerateAttribute(.token, in: enumerationRange, options: opts) { (value, range, stop) in
-
             // we are only interested in non-token body matches
             guard let tokenType = value as? TokenAttribute<LanguageConfiguration.Token>,
                   tokenType.isHead else { return }
@@ -223,11 +215,9 @@ extension CodeStorage {
         theSwitch: switch range.length {
         case 0:
             break
-
         case 1:   // we report one token (that possibly extents across mutliple characters
             guard let theToken = token(at: range.location) else { break theSwitch }
             block(theToken.type, theToken.range, stop)
-
         default:  // we report as many one-character tokens as the length of the `range` specifies
             guard let theRange: Range<Int> = Range(range) else { break theSwitch }
 
@@ -248,7 +238,6 @@ extension CodeStorage {
     ///   - location: Location of the original bracket (maybe opening or closing).
     ///   - range: Range of locations to consider for the matching bracket.
     /// - Returns: Character range of the lexeme of the matching bracket if it exists in the given `range`.
-    ///
     func matchingBracket(forLocationAt location: Int, in range: NSRange) -> NSRange? {
         guard let bracketToken = token(at: location),
               bracketToken.type.isOpenBracket || bracketToken.type.isCloseBracket
@@ -257,15 +246,12 @@ extension CodeStorage {
         let matchingBracketTokenType = bracketToken.type.matchingBracket
         let searchRange: NSRange
         if bracketToken.type.isOpenBracket {
-
             // searching to the right
             searchRange = NSRange(location: location + 1, length: max(NSMaxRange(range) - location - 1, 0))
 
         } else {
-
             // searching to the left
             searchRange = NSRange(location: range.location, length: max(location - range.location, 0))
-
         }
 
         var level = 1
@@ -277,7 +263,6 @@ extension CodeStorage {
 
                 if level > 1 { level -= 1 }     // but we are not yet at the topmost nesting level
                 else {                          // this is the one actually matching the original bracket
-
                     matchingRange = range
                     stop.pointee = true
 

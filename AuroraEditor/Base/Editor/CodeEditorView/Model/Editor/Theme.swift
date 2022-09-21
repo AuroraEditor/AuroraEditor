@@ -14,7 +14,6 @@ public struct Theme: Identifiable {
   public let id = UUID()
 
   /// The name of the font to use.
-  ///
   public var fontName: String
 
   /// The point size of the font to use.
@@ -22,51 +21,39 @@ public struct Theme: Identifiable {
   public var fontSize: CGFloat
 
   /// The default foreground text colour.
-  ///
   public var textColour: OSColor
 
   /// The colour for (all kinds of) comments.
-  ///
   public var commentColour: OSColor
 
   /// The colour for string literals.
-  ///
   public var stringColour: OSColor
 
   /// The colour for character literals.
-  ///
   public var characterColour: OSColor
 
   /// The colour for number literals.
-  ///
   public var numberColour: OSColor
 
   /// The colour for identifiers.
-  ///
   public var identifierColour: OSColor
 
   /// The colour for keywords.
-  ///
   public var keywordColour: OSColor
 
   /// The background colour.
-  ///
   public var backgroundColour: OSColor
 
   /// The colour of the current line highlight.
-  ///
   public var currentLineColour: OSColor
 
   /// The colour to use for the selection highlight.
-  ///
   public var selectionColour: OSColor
 
   /// The cursor colour.
-  ///
   public var cursorColour: OSColor
 
   /// The colour to use if invisibles are drawn.
-  ///
   public var invisiblesColour: OSColor
 
   public init(fontName: String,
@@ -101,7 +88,6 @@ public struct Theme: Identifiable {
 }
 
 /// A theme catalog indexing themes by name
-///
 typealias Themes = [String: Theme]
 
 extension Theme {
@@ -144,7 +130,6 @@ extension Theme {
 extension Theme {
 
   /// Font object on the basis of the font name and size of the theme.
-  ///
   var font: OSFont {
     if fontName.hasPrefix("SFMono") {
 

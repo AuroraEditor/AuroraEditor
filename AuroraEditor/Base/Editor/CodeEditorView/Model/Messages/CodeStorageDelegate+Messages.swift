@@ -17,7 +17,6 @@ extension CodeStorageDelegate {
     ///     intended doesn't exist.
     ///
     /// NB: Ignores messages for lines that do not exist in the line map. A message may not be added to multiple lines.
-    ///
     func add(message: Located<Message>) -> LineInfo.MessageBundle? {
         guard var info = lineMap.lookup(line: message.location.line)?.info else { return nil }
 
@@ -44,7 +43,6 @@ extension CodeStorageDelegate {
     ///
     /// NB: Ignores messages that do not exist in the line map. It is considered an error if a message exists at
     ///     multiple lines. In this case, the occurences at the first such line will be used.
-    ///
     func remove(message: Message) -> (LineInfo.MessageBundle, Int)? {
 
         for line in lineMap.lines.indices {
@@ -68,13 +66,11 @@ extension CodeStorageDelegate {
     /// - Returns: The message bundle associated with the given line or `nil`.
     ///
     /// NB: In case that the line does not exist, an empty array is returned.
-    ///
     func messages(at line: Int) -> LineInfo.MessageBundle? { return lineMap.lookup(line: line)?.info?.messages }
 
     /// Remove all messages associated with a given line.
     ///
     /// - Parameter line: The line whose messages ought ot be removed.
-    ///
     func removeMessages(at line: Int) {
         guard var info = lineMap.lookup(line: line)?.info else { return }
 

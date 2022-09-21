@@ -9,16 +9,14 @@
 
 import SwiftUI
 
-// MARK: -
-// MARK: Message info
+// MARK: - Message info
 
 /// Information required to layout message views.
 ///
 /// NB: This information is computed incrementally. We get the `lineFragementRect` from the text container during the
-///     type setting processes. This indicates that the message layout may have to change (if it was already
-///     computed), but at this point, we cannot determine the new geometry yet; hence, `geometry` will be `nil`.
-///     The `geomtry` will be determined after text layout is complete.
-///
+///    type setting processes. This indicates that the message layout may have to change (if it was already
+///    computed), but at this point, we cannot determine the new geometry yet; hence, `geometry` will be `nil`.
+///    The `geomtry` will be determined after text layout is complete.
 struct MessageInfo {
     let view: StatefulMessageView.HostingView
     var lineFragementRect: CGRect                            // The *full* line fragement rectangle (incl. message)
@@ -30,11 +28,9 @@ struct MessageInfo {
 }
 
 /// Dictionary of message views.
-///
 typealias MessageViews = [LineInfo.MessageBundle.ID: MessageInfo]
 
 /// `NSTextView` with a gutter
-///
 class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
     // Delegates
@@ -51,11 +47,9 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
     /// Contains the line on which the insertion point was located, the last time the selection range got set (if the
     /// selection was an insetion point at all; i.e., it's length was 0).
-    ///
     var oldLastLineOfInsertionPoint: Int? = 1
 
     /// The current highlighting theme
-    ///
     var theme: Theme {
         didSet {
             font = theme.font
@@ -73,17 +67,14 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     }
 
     /// The current view layout.
-    ///
     var viewLayout: CodeEditor.LayoutConfiguration {
         didSet { tile() }
     }
 
     /// Keeps track of the set of message views.
-    ///
     var messageViews: MessageViews = [:]
 
     /// Designated initialiser for code views with a gutter.
-    ///
     init(frame: CGRect, // swiftlint:disable:this function_body_length
          with language: LanguageConfiguration,
          viewLayout: CodeEditor.LayoutConfiguration,
@@ -221,7 +212,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         // old and new location to fix the line highlighting.
         // NB: We retain the last line and not the character index as the
         // latter may be inaccurate due to editing that let
-        //     to the selected range change.
+        // to the selected range change.
         if lineOfInsertionPoint != oldLastLineOfInsertionPoint {
 
             if let oldLine = oldLastLineOfInsertionPoint,
@@ -259,9 +250,9 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
             // Needed as the selection affects line number highlighting.
             // NB: Invalidation of the old and new ranges needs to happen separately.
             // If we were to union them, an insertion
-            //     point (range length = 0) at the start of a line would be absorbed \
+            // point (range length = 0) at the start of a line would be absorbed \
             // into the previous line, which results in
-            //     a lack of invalidation of the line on which the insertion point is located.
+            // a lack of invalidation of the line on which the insertion point is located.
             self.gutterView?.invalidateGutter(forCharRange: combinedRanges(ranges: oldSelectedRanges))
             self.gutterView?.invalidateGutter(forCharRange: combinedRanges(ranges: ranges))
             self.minimapGutterView?.invalidateGutter(forCharRange: combinedRanges(ranges: oldSelectedRanges))
@@ -299,7 +290,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
             // This seems like a worthwhile optimisation,
             // but sometimes we are called in a situation, where `charRange` computes
             // to be the empty range although the whole visible area is being redrawn.
-            //      if charRange.contains(index) {
+            // if charRange.contains(index) {
 
             drawBackgroundHighlight(in: rect,
                                     forLineContaining: index,
@@ -310,7 +301,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     }
 
     /// Draw the background of an entire line of text with a highlight colour, including below any messages views.
-    ///
     private func drawBackgroundHighlight(
         in rect: NSRect,
         forLineContaining charIndex: Int,
@@ -327,7 +317,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
     /// Compute the background rect from a line's fragement rect. On lines that contain a message view, the fragement
     /// rect doesn't cover the entire background.
-    ///
     private func lineBackgroundRect(_ lineFragementRect: CGRect) -> CGRect {
 
         if let textContainerWidth = textContainer?.size.width {
@@ -359,7 +348,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     ///   characters, so that line breaking procceds in the exact same way.
     ///
     /// NB: We don't use a ruler view for the gutter on macOS to be able to use the same setup on macOS and iOS.
-    ///
     private func tile() { // swiftlint:disable:this function_body_length
 
         // Compute size of the main view gutter
@@ -380,7 +368,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         gutterView?.frame = gutterRect
 
         // Compute sizes of the minimap text view and gutter
-        //
         let minimapFontWidth = minimapFontSize(for: fontSize) / 2,
             minimapGutterWidth = minimapFontWidth * gutterWithInCharacters,
             dividerWidth = CGFloat(1),
@@ -436,7 +423,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     }
 
     /// Sets the scrolling position of the minimap in dependence of the scroll position of the main code view.
-    ///
     func adjustScrollPositionOfMinimap() {
         guard viewLayout.showMinimap else { return }
 
@@ -475,7 +461,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 }
 
 /// Common code view actions triggered on a selection change.
-///
 func selectionDidChange<TV: TextView>(_ textView: TV) {
     guard let layoutManager = textView.optLayoutManager,
           let textContainer = textView.optTextContainer,
@@ -495,7 +480,6 @@ func selectionDidChange<TV: TextView>(_ textView: TV) {
 }
 
 /// Combine selection ranges into the smallest ranges encompassing them all.
-///
 private func combinedRanges(ranges: [NSValue]) -> NSRange {
     let actualranges = ranges.compactMap { $0 as? NSRange }
     return actualranges.dropFirst().reduce(actualranges.first ?? NSRange(location: 0, length: 0)) {

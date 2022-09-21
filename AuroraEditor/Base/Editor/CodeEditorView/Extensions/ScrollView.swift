@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-// MARK: -
-// MARK: AppKit version
-
+// MARK: - AppKit version
 extension NSScrollView {
 
     var verticalScrollFraction: CGFloat {

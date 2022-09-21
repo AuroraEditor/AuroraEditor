@@ -12,7 +12,6 @@ import SwiftUI
 /// The view uses the entire height offered.
 ///
 /// NB: The array of messages may not be empty.
-///
 struct MessageInlineView: View {
     let messages: [Message]
     let theme: Message.Theme

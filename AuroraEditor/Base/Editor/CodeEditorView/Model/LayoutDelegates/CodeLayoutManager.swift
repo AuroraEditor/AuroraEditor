@@ -9,7 +9,6 @@
 import AppKit
 
 /// Customised layout manager for code layout.
-///
 class CodeLayoutManager: NSLayoutManager {
 
     weak var gutterView: GutterView?
@@ -49,7 +48,6 @@ extension NSLayoutManager {
     /// - Parameters:
     ///   - charIndex: The character index determining the line whose rectangles we want to enumerate.
     ///   - block: Block that gets invoked once for every fragement rectangles on that line.
-    ///
     func enumerateFragmentRects(forLineContaining charIndex: Int, using block: @escaping (CGRect) -> Void) {
         guard let text = textStorage?.string as NSString? else { return }
 

@@ -10,8 +10,7 @@
 
 import AppKit
 
-// MARK: -
-// MARK: Visual debugging support
+// MARK: - Visual debugging support
 
 // FIXME: It should be possible to enable this via a defaults setting.
 let visualDebugging = false
@@ -20,24 +19,19 @@ let visualDebuggingLinesColour = OSColor(red: 0.5, green: 0.5, blue: 1.0, alpha:
 let visualDebuggingTrailingColour = OSColor(red: 1.0, green: 0.5, blue: 0.5, alpha: 0.3)
 let visualDebuggingTokenColour = OSColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5)
 
-// MARK: -
-// MARK: Tokens
+// MARK: - Tokens
 
 // Custom token attributes
-//
 extension NSAttributedString.Key {
 
     /// Custom attribute marking comment ranges.
-    ///
     static let comment = NSAttributedString.Key("comment")
 
     /// Custom attribute marking lexical tokens.
-    ///
     static let token = NSAttributedString.Key("token")
 }
 
 /// The supported comment styles.
-///
 enum CommentStyle {
     case singleLineComment
     case nestedComment
@@ -46,17 +40,15 @@ enum CommentStyle {
 /// Information that is tracked on a line by line basis in the line map.
 ///
 /// NB: We need the comment depth at the start and the end of each line as, during editing, lines are replaced in the
-///     line map before comment attributes are recalculated. During this replacement, we lose the line info of all the
-///     replaced lines.
-///
+///    line map before comment attributes are recalculated. During this replacement, we lose the line info of all the
+///    replaced lines.
 struct LineInfo {
 
     /// Structure characterising a bundle of messages reported for a single line. It features
     /// a stable identity to be able to associate display information in separate structures.
     ///
     /// NB: We don't identify a message bundle by the line number on which it appears, because edits further up can
-    ///     increase and decrease the line number of a given bundle. We need a stable identifier.
-    ///
+    ///    increase and decrease the line number of a given bundle. We need a stable identifier.
     struct MessageBundle: Identifiable {
         let id: UUID
         var messages: [Message]
@@ -78,13 +70,10 @@ struct LineInfo {
     /// The messages reported for this line.
     ///
     /// NB: The bundle may be non-nil, but still contain no messages (after all messages have been removed).
-    ///
     var messages: MessageBundle?
 }
 
-// MARK: -
-// MARK: Delegate class
-
+// MARK: - Delegate class
 class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
 
     let language: LanguageConfiguration
@@ -94,17 +83,14 @@ class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
 
     /// The message bundle IDs that got invalidated by the last editing operation because the lines to which they were
     /// attached got changed.
-    ///
     var lastEvictedMessageIDs: [LineInfo.MessageBundle.ID] = []
 
     /// If the last text change was a one-character addition, which completed a token, then
     /// that token is remembered here together with its range until the next text change.
-    ///
     var lastTypedToken: (type: LanguageConfiguration.Token, range: NSRange)?
 
     /// Flag that indicates that the current editing round is for a one-character addition to the text. This property
     /// needs to be determined before attribute fixing and the like.
-    ///
     private var processingOneCharacterEdit: Bool?
 
     init(with language: LanguageConfiguration) {

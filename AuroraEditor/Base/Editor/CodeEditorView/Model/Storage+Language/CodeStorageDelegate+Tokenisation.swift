@@ -18,7 +18,6 @@ extension CodeStorageDelegate {
     ///   - textStorage: The text storage that contains the changed characters.
     ///
     /// Tokenisation happens at line granularity. Hence, the range is correspondingly extended.
-    ///
     func tokeniseAttributesFor( // swiftlint:disable:this function_body_length
         range originalRange: NSRange,
         in textStorage: NSTextStorage
@@ -163,7 +162,6 @@ extension CodeStorageDelegate {
         // For all lines in range, collect the tokens line by line, while keeping track of nested comments
         //
         // - `lastCommentStart` keeps track of the last start of an *outermost* nested comment.
-        //
         var commentDepth = initialCommentDepth
         var lastCommentStart = initialCommentDepth > 0
         ? lineMap.lookup(line: lines.startIndex)?.range.location
@@ -175,7 +173,6 @@ extension CodeStorageDelegate {
 
         // Continue to re-process line by line until there is no longer a change in the comment depth before and after
         // re-processing
-        //
         var currentLine = lines.endIndex
         var highlightingRange = range
     trailingLineLoop: while currentLine < lineMap.lines.count {
@@ -214,8 +211,7 @@ extension CodeStorageDelegate {
     }
 }
 
-// MARK: Completions
-
+// MARK: - Completions
 extension CodeStorageDelegate {
 
     /// Handle token completion actions after a single character was inserted.
@@ -226,11 +222,9 @@ extension CodeStorageDelegate {
     ///
     /// Any change to the `textStorage` is deferred, so that this function can also be used in the middle of an
     /// in-progress, but not yet completed edit.
-    ///
     func tokenCompletion(for codeStorage: CodeStorage, at index: Int) {
 
         /// If the given token is an opening bracket, return the lexeme of its matching closing bracket.
-        ///
         func matchingLexemeForOpeningBracket(_ token: LanguageConfiguration.Token) -> String? {
             if token.isOpenBracket, let matching = token.matchingBracket, let lexeme = language.lexeme(of: matching) {
                 return lexeme
@@ -240,7 +234,6 @@ extension CodeStorageDelegate {
         }
 
         /// Determine whether the ranges of the two tokens are overlapping.
-        ///
         func overlapping(_ previousToken: (type: LanguageConfiguration.Token, range: NSRange),
                          _ currentToken: (type: LanguageConfiguration.Token, range: NSRange)?) -> Bool {
             if let currentToken = currentToken {

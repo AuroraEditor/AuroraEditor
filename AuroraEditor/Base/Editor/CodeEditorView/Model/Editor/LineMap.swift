@@ -8,16 +8,13 @@
 import Foundation
 
 /// Keeps track of the character ranges and parametric `LineInfo` for all lines in a string.
-///
 struct LineMap<LineInfo> {
 
     /// The character range of the line in the underlying string together with additional information if available.
-    ///
     typealias OneLine = (range: NSRange, info: LineInfo?)
 
     /// One entry per line of the underlying string, where `lineMap[0]` is always `NSRange(location: 0, length: 0)` with
     /// no extra info.
-    ///
     var lines: [OneLine] = [(range: NSRange(location: 0, length: 0), info: nil)]
 
     // MARK: -
@@ -28,7 +25,6 @@ struct LineMap<LineInfo> {
     init(lines: [OneLine]) { self.lines = lines }
 
     /// Initialise a line map with the string to be mapped.
-    ///
     init(string: String) { lines.append(contentsOf: linesOf(string: string)) }
 
     // MARK: -
@@ -38,11 +34,9 @@ struct LineMap<LineInfo> {
     ///
     /// - Parameter line: The line to look up.
     /// - Returns: The description of the given line if it is within the valid range of the line map.
-    ///
     func lookup(line: Int) -> OneLine? { return line < lines.count ? lines[line] : nil }
 
     /// Return the character range covered by the given range of lines. Safely handles out of bounds situations.
-    ///
     func charRangeOf(lines: Range<Int>) -> NSRange {
         let startRange = lookup(line: lines.first ?? 1)?.range ?? NSRange(location: 0, length: 0),
             endRange = lookup(line: lines.last ?? 1)?.range ?? NSRange(location: 0, length: 0)
@@ -57,7 +51,6 @@ struct LineMap<LineInfo> {
     ///
     /// - Complexity: This functions asymptotic complexity is logarithmic in the number of\
     ///  lines contained in the line map
-    ///
     func lineContaining(index: Int) -> Int? {
         var lineRange = 1..<lines.count
         while lineRange.count > 1 {
@@ -87,7 +80,6 @@ struct LineMap<LineInfo> {
     ///
     /// - Complexity: This functions asymptotic complexity is logarithmic in the number of lines contained in the line
     ///               map.
-    ///
     func lineOf(index: Int) -> Int? {
         if let lastLine = lines.last, NSMaxRange(lastLine.range) == index {
             return lines.count - 1
@@ -108,7 +100,6 @@ struct LineMap<LineInfo> {
     ///   trailing empty line, the result is the trailing line on its own.
     /// - If the character range is of length zero, we return the line of the start location. \
     ///   We do that also if the start location is just behind the last character of the text.
-    ///
     func linesContaining(range: NSRange) -> Range<Int> {
         let
         start = range.location < 0 ? 0 : range.location,
@@ -148,7 +139,6 @@ struct LineMap<LineInfo> {
     ///   `linesContaining(range:)`, on which it is based.
     /// - If the character range is of length zero, we return the line of the start location. \
     ///   We do that also if the start location is just behind the last character of the text.
-    ///
     func linesOf(range: NSRange) -> Range<Int> {
         let lastLine = lines.count - 1,
             lastLineRange = lines[lastLine].range
@@ -171,7 +161,6 @@ struct LineMap<LineInfo> {
     ///   - editedRange: The character range that was affected by editing (after the edit).
     ///   - delta: The length increase of the edited string (negative if it got shorter).
     /// - Returns: The range of lines (of the original string) that is affected by the editing action.
-    ///
     func linesAffected(by editedRange: NSRange, changeInLength delta: Int) -> Range<Int> {
 
         // To compute the line range, we extend the character range by one extra character.
@@ -179,7 +168,6 @@ struct LineMap<LineInfo> {
         // edited range ends on a newline, this may insert a new line break,
         // which means, line *after* the new line break
         // also belongs to the affected lines.
-        //
         let oldStringRange = NSRange(
             location: 0,
             length: NSMaxRange(lines.last?.range ?? NSRange(location: 0, length: 0))
@@ -195,8 +183,7 @@ struct LineMap<LineInfo> {
         )
     }
 
-    // MARK: -
-    // MARK: Editing
+    // MARK: - Editing
 
     /// Set the info field for the given line.
     ///
@@ -205,7 +192,6 @@ struct LineMap<LineInfo> {
     ///   - info: The new info value for that line.
     ///
     ///   NB: Ignores lines that do not exist.
-    ///
     mutating func setInfoOf(line: Int, to info: LineInfo?) {
         guard line < lines.count else { return }
 
@@ -222,13 +208,11 @@ struct LineMap<LineInfo> {
     ///
     /// NB: The line after the `editedRange` will be updated (and info fields be invalidated) if the \
     /// `editedRange` ends on a newline.
-    ///
     mutating func updateAfterEditing(string: String, range editedRange: NSRange, changeInLength delta: Int) {
 
         // To compute line ranges, we extend all character ranges by one extra character. This is crucial as, if the
         // edited range ends on a newline, this may insert a new line break,
         // which means, we also need to update the line *after* the new line break.
-        //
         let newStringRange = NSRange(location: 0, length: string.count),
             nsString = string as NSString,
             oldLinesRange = linesAffected(by: editedRange, changeInLength: delta),
@@ -247,14 +231,12 @@ struct LineMap<LineInfo> {
         lines.replaceSubrange(oldLinesRange, with: adjustedNewLines)
 
         // All ranges after the edited range of lines need to be adjusted.
-        //
         for lineNumber in oldLinesRange.startIndex.advanced(by: adjustedNewLines.count) ..< lines.count {
             lines[lineNumber] = shift(line: lines[lineNumber], by: delta)
         }
     }
 
-    // MARK: -
-    // MARK: Helpers
+    // MARK: - Helpers
 
     /// Shift the range of `line` by `delta`.
     ///
@@ -263,14 +245,12 @@ struct LineMap<LineInfo> {
     }
 
     /// Extract the corresponding array of line ranges out of the given string.
-    ///
     private func linesOf(string: String) -> [OneLine] {
         let nsString = string as NSString
 
         var resultingLines: [OneLine] = []
 
         // Enumerate all lines in `nsString`, adding them to the `resultingLines`.
-        //
         var currentIndex = 0
         while currentIndex < nsString.length {
 
@@ -282,7 +262,6 @@ struct LineMap<LineInfo> {
 
         // Check if there is an empty last line (due to a linebreak being at the end of the text), and if so, add that
         // extra empty line to the `resultingLines` as well.
-        //
         let lastRange = nsString.lineRange(for: NSRange(location: nsString.length, length: 0))
         if lastRange.length == 0 {
             resultingLines.append((range: lastRange, info: nil))
@@ -293,7 +272,6 @@ struct LineMap<LineInfo> {
 
     /// Extend the `range` by one character, clipped by the `stringRange`, but such that a zero length range after the
     /// end of the string is preserved.
-    ///
     private func extend(range: NSRange, clippingTo stringRange: NSRange) -> NSRange {
         if range.location == NSMaxRange(stringRange) {
             return NSRange(location: range.location, length: 0)
