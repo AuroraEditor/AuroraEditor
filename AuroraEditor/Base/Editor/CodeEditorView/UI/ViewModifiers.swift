@@ -8,9 +8,7 @@
 
 import SwiftUI
 
-// MARK: -
-// MARK: Views with rounded corners on the left hand side.
-
+// MARK: - Views with rounded corners on the left hand side.
 private struct RectWithRoundedCornersOnTheLeft: Shape {
     let cornerRadius: CGFloat
 
@@ -49,7 +47,6 @@ private struct RectWithRoundedCornersOnTheLeft: Shape {
 extension View {
 
     /// Clip the view such that it has rounded corners on its left hand side.
-    ///
     func roundedCornersOnTheLeft(cornerRadius: CGFloat = 5) -> some View {
         clipShape(RectWithRoundedCornersOnTheLeft(cornerRadius: cornerRadius))
     }

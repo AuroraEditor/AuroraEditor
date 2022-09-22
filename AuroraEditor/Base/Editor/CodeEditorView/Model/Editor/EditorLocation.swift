@@ -9,7 +9,6 @@ import Foundation
 import System
 
 /// Location in a text file.
-///
 public struct Location {
     public let file: FilePath
     public let line: Int
@@ -23,7 +22,6 @@ public struct Location {
 }
 
 /// Generic location attribute.
-///
 public struct Located<Entity> {
     public let location: Location
     public let entity: Entity
@@ -45,7 +43,6 @@ extension Located: Hashable where Entity: Hashable {
 }
 
 /// Character span in a text file.
-///
 public struct Span {
     public let start: Location
     public let endLine: Int

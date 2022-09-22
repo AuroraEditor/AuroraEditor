@@ -10,7 +10,6 @@ import SwiftUI
 
 /// SwiftUI view that displays an array of messages that lie on the same line. It supports switching between an inline
 /// and popup view by tapping.
-///
 struct StatefulMessageView: View {
     let messages: [Message]              // The array of messages that are displayed by this view
     let theme: Message.Theme          // The message display theme to use
@@ -21,7 +20,6 @@ struct StatefulMessageView: View {
 
     /// The unfolding state needs to be communicated between the SwiftUI view and the external world. Hence, we need to
     /// go via an `ObservableObject`.
-    ///
     class ObservableBool: ObservableObject {
         @Published var bool: Bool
 
@@ -50,7 +48,6 @@ extension StatefulMessageView {
         private let fontSize: CGFloat
 
         /// Unfolding status as sharable state.
-        ///
         private let unfoldedState = StatefulMessageView.ObservableBool(bool: false)
 
         var geometry: MessageView.Geometry {

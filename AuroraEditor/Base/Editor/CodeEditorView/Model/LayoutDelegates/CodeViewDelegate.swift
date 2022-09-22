@@ -11,7 +11,6 @@ import AppKit
 class CodeViewDelegate: NSObject, NSTextViewDelegate {
 
     // Hooks for events
-    //
     var textDidChange: ((NSTextView) -> Void)?
     var selectionDidChange: ((NSTextView) -> Void)?
 

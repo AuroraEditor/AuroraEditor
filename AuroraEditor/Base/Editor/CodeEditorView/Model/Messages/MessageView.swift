@@ -10,24 +10,19 @@ import SwiftUI
 
 /// SwiftUI view that displays an array of messages that lie on the same line. It supports switching between an inline
 /// format and a full popup format by clicking/tapping on the message.
-///
 struct MessageView: View {
     struct Geometry {
 
         /// The maximum width that the inline view may use.
-        ///
         let lineWidth: CGFloat
 
         /// The height of the inline view
-        ///
         let lineHeight: CGFloat
 
         /// The maximum width that the popup view may use.
-        ///
         let popupWidth: CGFloat
 
         /// The distance from the top where the popup view must be placed.
-        ///
         let popupOffset: CGFloat
     }
 
@@ -74,21 +69,16 @@ extension MessageView {
     static let minimumInlineWidth = CGFloat(60)
 
     /// The distance of the popup view from the right side of the text container.
-    ///
     static let popupRightSideOffset = CGFloat(20)
 }
 
-// MARK: -
-// MARK: Message category themes
-
+// MARK: - Message category themes
 extension Message {
 
     /// Defines the colours and icons that identify each of the various message categories.
-    ///
     typealias Theme = (Message.Category) -> (colour: OSColor, icon: Image)
 
     /// The default category theme
-    ///
     static func defaultTheme(for category: Message.Category) -> (colour: OSColor, icon: Image) {
         switch category {
         case .live:
@@ -103,9 +93,7 @@ extension Message {
     }
 }
 
-// MARK: -
-// MARK: Previews
-
+// MARK: - Previews
 let message1 = Message(category: .error, length: 1, summary: "It's wrong!", description: nil),
     message2 = Message(category: .error, length: 1, summary: "Need to fix this.", description: nil),
     message3 = Message(category: .warning, length: 1, summary: "Looks dodgy.",
@@ -134,7 +122,6 @@ struct MessageViews_Previews: PreviewProvider {
     static var previews: some View {
 
         // Inline view
-
         MessageInlineView(messages: [message1], theme: Message.defaultTheme)
             .frame(width: 80, height: 15, alignment: .center)
             .preferredColorScheme(.dark)
@@ -160,7 +147,6 @@ struct MessageViews_Previews: PreviewProvider {
             .preferredColorScheme(.light)
 
         // Popup view
-
         MessagePopupView(messages: [message1], theme: Message.defaultTheme)
             .font(.system(size: 32))
             .frame(maxWidth: 320, minHeight: 15)
@@ -183,7 +169,6 @@ struct MessageViews_Previews: PreviewProvider {
             .preferredColorScheme(.light)
 
         // Combined view
-
         ZStack(alignment: .topTrailing) {
 
             Rectangle()
@@ -201,7 +186,6 @@ struct MessageViews_Previews: PreviewProvider {
             .offset(y: 18)
         }
         .frame(width: 400, height: 300, alignment: .topTrailing)
-        //    .preferredColorScheme(.light)
 
     }
 }

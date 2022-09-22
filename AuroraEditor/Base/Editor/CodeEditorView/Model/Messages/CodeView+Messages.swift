@@ -12,7 +12,6 @@ extension CodeView {
 
     /// Update the layout of the specified message view if its geometry got invalidated by
     /// `CodeTextContainer.lineFragmentRect(forProposedRect:at:writingDirection:remaining:)`.
-    ///
     func layoutMessageView(
         identifiedBy id: UUID
     ) {
@@ -78,7 +77,6 @@ extension CodeView {
     }
 
     /// Adds a new message to the set of messages for this code view.
-    ///
     func report(message: Located<Message>) {
         guard let messageBundle = codeStorageDelegate.add(message: message) else { return }
 
@@ -86,7 +84,6 @@ extension CodeView {
     }
 
     /// Removes a given message. If it doesn't exist, do nothing. This function is quite expensive.
-    ///
     func retract(message: Message) {
         guard let (messageBundle, line) = codeStorageDelegate.remove(message: message) else { return }
 
@@ -158,7 +155,6 @@ extension CodeView {
     /// - Parameter ids: The IDs of the message bundles that ought to be removed. If `nil`, remove all.
     ///
     /// IDs that do not have no associated message view cause no harm.
-    ///
     func removeMessageViews(withIDs ids: [LineInfo.MessageBundle.ID]? = nil) {
 
         for id in ids ?? [LineInfo.MessageBundle.ID](messageViews.keys) {
@@ -170,7 +166,6 @@ extension CodeView {
     }
 
     /// Ensure that all message views are in their collapsed state.
-    ///
     func collapseMessageViews() {
         for messageView in messageViews {
             messageView.value.view.unfolded = false

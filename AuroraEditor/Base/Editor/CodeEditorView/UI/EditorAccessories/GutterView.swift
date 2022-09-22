@@ -5,12 +5,7 @@
 //  Created by Manuel M T Chakravarty on 23/09/2020.
 //
 
-import os
-
-private let logger = Logger(subsystem: "org.justtesting.CodeEditorView", category: "GutterView")
-
-// MARK: -
-// MARK: AppKit version
+// MARK: - AppKit version
 
 import AppKit
 
@@ -24,23 +19,18 @@ private let lineNumberColour = NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0
 class GutterView: NSView {
 
     /// The text view that this gutter belongs to.
-    ///
     let textView: NSTextView
 
     /// The current code editor theme
-    ///
     var theme: Theme
 
     /// Accessor for the associated text view's message views.
-    ///
     let getMessageViews: () -> MessageViews
 
     /// Determines whether this gutter is for a main code view or for the minimap of a code view.
-    ///
     let isMinimapGutter: Bool
 
     /// Dirty rectangle whose drawing has been delayed as the code layout wasn't finished yet.
-    ///
     var pendingDrawRect: NSRect?
 
     /// Text attributes for selection
@@ -48,14 +38,11 @@ class GutterView: NSView {
 
     /// Create and configure a gutter view for the given text view. This will also set the appropiate exclusion path for
     /// text container.
-    ///
-    init(
-        frame: CGRect,
-        textView: NSTextView,
-        theme: Theme,
-        getMessageViews: @escaping () -> MessageViews,
-        isMinimapGutter: Bool
-    ) {
+    init(frame: CGRect,
+         textView: NSTextView,
+         theme: Theme,
+         getMessageViews: @escaping () -> MessageViews,
+         isMinimapGutter: Bool) {
         self.textView = textView
         self.theme = theme
         self.getMessageViews = getMessageViews
@@ -64,35 +51,20 @@ class GutterView: NSView {
         // we need to set the `layerContentsRedrawPolicy` to redraw on resizing
 
         theme.backgroundColour.setFill()
-        OSBezierPath(rect: frame).fill()
-        let desc = OSFont.systemFont(ofSize: theme.fontSize).fontDescriptor.addingAttributes(
-            [ FontDescriptor.AttributeName.featureSettings:
-                [
-                    [
-                        fontDescriptorFeatureIdentifier: kNumberSpacingType,
-                        fontDescriptorTypeIdentifier: kMonospacedNumbersSelector
-                    ],
-                    [
-                        fontDescriptorFeatureIdentifier: kStylisticAlternativesType,
-                        fontDescriptorTypeIdentifier: kStylisticAltOneOnSelector  // alt 6 and 9
-                    ],
-                    [
-                        fontDescriptorFeatureIdentifier: kStylisticAlternativesType,
-                        fontDescriptorTypeIdentifier: kStylisticAltTwoOnSelector  // alt 4
-                    ]
-                ]
-            ]
-        )
-        let font = OSFont(descriptor: desc, size: 0) ?? OSFont.systemFont(ofSize: 0)
+
+        NSBezierPath(rect: frame).fill()
+
+        let font = NSFont(name: "SF Mono Medium", size: 11) ?? NSFont.systemFont(ofSize: 0)
 
         // Text attributes for the line numbers
         let lineNumberStyle = NSMutableParagraphStyle()
         lineNumberStyle.alignment = .right
-        lineNumberStyle.tailIndent = -theme.fontSize / 11
+
         self.textAttributesDefault = [NSAttributedString.Key.font: font,
                                      .foregroundColor: lineNumberColour,
                                      .paragraphStyle: lineNumberStyle,
                                      .kern: NSNumber(value: Float(-theme.fontSize / 11))]
+
         self.textAttributesSelected = [NSAttributedString.Key.font: font,
                                       .foregroundColor: theme.textColour,
                                       .paragraphStyle: lineNumberStyle,
@@ -114,17 +86,14 @@ class GutterView: NSView {
     var lineAttributes: [[NSAttributedString.Key: NSObject]] = []
 }
 
-// MARK: -
-// MARK: Shared code
-
+// MARK: - Shared code
 extension GutterView {
 
     var optLayoutManager: NSLayoutManager? { textView.optLayoutManager }
     var optTextContainer: NSTextContainer? { textView.optTextContainer }
     var optLineMap: LineMap<LineInfo>? { textView.optLineMap }
 
-    // MARK: -
-    // MARK: Gutter notifications
+    // MARK: - Gutter notifications
 
     /// Notifies the gutter view that a range of characters will be redrawn by the layout manager or that there are
     /// selection status changes; thus, the corresponding gutter area might require redrawing, too.
@@ -135,7 +104,6 @@ extension GutterView {
     ///
     /// We invalidate the area corresponding to entire paragraphs. This makes a difference in the presence of line
     /// breaks.
-    ///
     func invalidateGutter(forCharRange charRange: NSRange) {
 
         guard let layoutManager = optLayoutManager,
@@ -165,7 +133,6 @@ extension GutterView {
     }
 
     /// Trigger drawing any pending gutter draw rectangle.
-    ///
     func layoutFinished() {
         if let rect = pendingDrawRect {
             setNeedsDisplay(rect)
@@ -174,7 +141,7 @@ extension GutterView {
         }
     }
 
-    // MARK: Gutter drawing
+    // MARK: - Gutter drawing
 
     override func draw(_ rect: CGRect) {
         guard let layoutManager = optLayoutManager,
@@ -182,6 +149,18 @@ extension GutterView {
               let lineMap = optLineMap
         else { return }
 
+        drawMinimapGutterView(rect, layoutManager, lineMap, textContainer)
+
+        // all functionality below is not for the minimap gutter, so if it is a minimap gutter then stop here.
+        guard !isMinimapGutter else { return }
+
+        drawGutterView(rect, layoutManager, textContainer)
+    }
+
+    func drawMinimapGutterView(_ rect: CGRect,
+                               _ layoutManager: NSLayoutManager,
+                               _ lineMap: LineMap<LineInfo>,
+                               _ textContainer: NSTextContainer) {
         // This is not particularily nice, but there is no point in trying to draw the gutter, before the layout manager
         // has finished laying out the *entire* text. Given that all we got here is a rectangle, we can't even figure
         // out reliably whether enough text has been laid out to draw that part of the gutter that is being requested.
@@ -193,8 +172,6 @@ extension GutterView {
             updateGutter(for: rect)
         }
 
-        let selectedLines = textView.selectedLines
-
         // Highlight the current line in the gutter
         if let location = textView.insertionPoint {
             theme.currentLineColour.setFill()
@@ -204,9 +181,30 @@ extension GutterView {
             }
         }
 
-        // all functionality below is not for the minimap gutter, so if it is a minimap gutter then stop here.
-        guard !isMinimapGutter else { return }
+        for message in getMessageViews() {
+            let glyphRange = layoutManager.glyphRange(
+                forBoundingRect: message.value.lineFragementRect,
+                in: textContainer
+            ),
+                index = layoutManager.characterIndexForGlyph(at: glyphRange.location)
+            // TODO: should be filter by char range
+            // if charRange.contains(index) {
 
+            // NOTICE: Experimental (from Nanashi Li)
+            message.value.colour.withAlphaComponent(0.1).setFill()
+            layoutManager.enumerateFragmentRects(forLineContaining: index) { fragmentRect in
+                let intersectionRect = rect.intersection(self.gutterRectFrom(textRect: fragmentRect))
+
+                if !intersectionRect.isEmpty {
+                    NSBezierPath(rect: intersectionRect).fill()
+                }
+            }
+        }
+    }
+
+    func drawGutterView(_ rect: CGRect,
+                        _ layoutManager: NSLayoutManager,
+                        _ textContainer: NSTextContainer) {
         // FIXME: Eventually, we want this in the minimap
         //        but `messageView.value.lineFragementRect` is of course
         //        incorrect for the minimap, so we need a more general set up.
@@ -219,13 +217,18 @@ extension GutterView {
                 in: textContainer
             ),
                 index = layoutManager.characterIndexForGlyph(at: glyphRange.location)
-            // TODO: should be filter by char range
-            //      if charRange.contains(index) {
 
-            messageView.value.colour.withAlphaComponent(0.1).setFill()
-            layoutManager.enumerateFragmentRects(forLineContaining: index) { fragmentRect in
-                let intersectionRect = rect.intersection(self.gutterRectFrom(textRect: fragmentRect))
-                if !intersectionRect.isEmpty { NSBezierPath(rect: intersectionRect).fill() }
+            // TODO: should be filter by char range
+            // if charRange.contains(index) {
+            if glyphRange.contains(index) {
+                messageView.value.colour.withAlphaComponent(0.1).setFill()
+                layoutManager.enumerateFragmentRects(forLineContaining: index) { fragmentRect in
+                    let intersectionRect = rect.intersection(self.gutterRectFrom(textRect: fragmentRect))
+
+                    if !intersectionRect.isEmpty {
+                        NSBezierPath(rect: intersectionRect).fill()
+                    }
+                }
             }
         }
 
@@ -254,7 +257,7 @@ extension GutterView {
         let lineRange = lineMap.linesOf(range: charRange)
 
         // TODO: CodeEditor needs to be parameterised by message theme
-        //            let theme = Message.defaultTheme
+        // let theme = Message.defaultTheme
 
         lines = []
         gutterRects = []
@@ -286,7 +289,6 @@ extension GutterView {
 
     /// Compute the full width rectangle in the gutter from a text container rectangle, such that they both have the
     /// same vertical extension.
-    ///
     private func gutterRectFrom(textRect: CGRect) -> CGRect {
         return CGRect(origin: CGPoint(x: 0, y: textRect.origin.y + textView.textContainerOrigin.y),
                       size: CGSize(width: frame.size.width, height: textRect.size.height))
@@ -294,7 +296,6 @@ extension GutterView {
 
     /// Compute the line number glyph rectangle in the gutter from a text container rectangle, such that they both have
     /// the same vertical extension.
-    ///
     private func gutterRectForLineNumbersFrom(textRect: CGRect) -> CGRect {
         let gutterRect = gutterRectFrom(textRect: textRect)
         return CGRect(x: gutterRect.origin.x + gutterRect.size.width * 2/7,
@@ -305,7 +306,6 @@ extension GutterView {
 
     /// Compute the full width rectangle in the text container from a gutter rectangle, such that they both have the
     /// same vertical extension.
-    ///
     private func textRectFrom(gutterRect: CGRect) -> CGRect {
         let containerWidth = optTextContainer?.size.width ?? 0
         return CGRect(origin: CGPoint(x: frame.size.width, y: gutterRect.origin.y - textView.textContainerOrigin.y),

@@ -21,7 +21,6 @@ import AppKit
 public struct LanguageConfiguration {
 
     /// Supported flavours of tokens
-    ///
     enum Token {
         case roundBracketOpen
         case roundBracketClose
@@ -77,7 +76,6 @@ public struct LanguageConfiguration {
     }
 
     /// Tokeniser state
-    ///
     enum State: TokeniserState {
         case tokenisingCode
         case tokenisingComment(Int)   // the argument gives the comment nesting depth > 0
@@ -95,35 +93,27 @@ public struct LanguageConfiguration {
     }
 
     /// Lexeme pair for a bracketing construct
-    ///
     public typealias BracketPair = (open: String, close: String)
 
     /// Regular expression matching strings
-    ///
     public let stringRegexp: String?
 
     /// Regular expression matching character literals
-    ///
     public let characterRegexp: String?
 
     /// Regular expression matching numbers
-    ///
     public let numberRegexp: String?
 
     /// Lexeme that introduces a single line comment
-    ///
     public let singleLineComment: String?
 
     /// A pair of lexemes that encloses a nested comment
-    ///
     public let nestedComment: BracketPair?
 
     /// Regular expression matching all identifiers (even if they are subgroupings)
-    ///
     public let identifierRegexp: String?
 
     /// Reserved identifiers (this does not include contextual keywords)
-    ///
     public let reservedIdentifiers: [String]
 
     public init(stringRegexp: String?,
@@ -143,7 +133,6 @@ public struct LanguageConfiguration {
     }
 
     /// Yields the lexeme of the given token under this language configuration if the token has got a unique lexeme.
-    ///
     func lexeme(of token: Token) -> String? {
         switch token {
         case .roundBracketOpen:   return "("
@@ -167,7 +156,6 @@ public struct LanguageConfiguration {
 extension LanguageConfiguration {
 
     /// Empty language configuration
-    ///
     public static let none = LanguageConfiguration(stringRegexp: nil,
                                                    characterRegexp: nil,
                                                    numberRegexp: nil,
@@ -215,11 +203,9 @@ extension LanguageConfiguration {
     + "]"
 
     /// Wrap a regular expression into grouping brackets.
-    ///
     public static func group(_ regexp: String) -> String { "(?:" + regexp + ")" }
 
     /// COmpose an array of regular expressions as alternatives.
-    ///
     public static func alternatives(_ alts: [String]) -> String { alts.map { group($0) }.joined(separator: "|") }
 }
 
@@ -230,7 +216,6 @@ private let haskellReservedIds =
 extension LanguageConfiguration {
 
     /// Language configuration for Haskell (including GHC extensions)
-    ///
     public static let haskell = LanguageConfiguration(stringRegexp: "\"(?:\\\\\"|[^\"])*+\"",
                                                       characterRegexp: "'(?:\\\\'|[^']|\\\\[^']*+)'",
                                                       numberRegexp:
@@ -267,7 +252,6 @@ private let swiftReservedIds =
 extension LanguageConfiguration {
 
     /// Language configuration for Swift
-    ///
     public static let swift = LanguageConfiguration(stringRegexp: "\"(?:\\\\\"|[^\"])*+\"",
                                                     characterRegexp: nil,
                                                     numberRegexp:
@@ -342,7 +326,6 @@ extension LanguageConfiguration {
         var tokenDictionary = TokenDictionary<LanguageConfiguration.Token, LanguageConfiguration.State>()
 
         // Populate the token dictionary for the code state (tokenising plain code)
-        //
         var codeTokenDictionary = [
             TokenPattern: TokenAction<LanguageConfiguration.Token, LanguageConfiguration.State>
         ]()
@@ -375,7 +358,6 @@ extension LanguageConfiguration {
         tokenDictionary.updateValue(codeTokenDictionary, forKey: .tokenisingCode)
 
         // Populate the token dictionary for the comment state (tokenising within a nested comment)
-        //
         var commentTokenDictionary = [
             TokenPattern: TokenAction<LanguageConfiguration.Token, LanguageConfiguration.State>
         ]()
