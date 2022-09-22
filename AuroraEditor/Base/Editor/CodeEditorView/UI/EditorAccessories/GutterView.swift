@@ -38,13 +38,11 @@ class GutterView: NSView {
 
     /// Create and configure a gutter view for the given text view. This will also set the appropiate exclusion path for
     /// text container.
-    init(
-        frame: CGRect,
-        textView: NSTextView,
-        theme: Theme,
-        getMessageViews: @escaping () -> MessageViews,
-        isMinimapGutter: Bool
-    ) {
+    init(frame: CGRect,
+         textView: NSTextView,
+         theme: Theme,
+         getMessageViews: @escaping () -> MessageViews,
+         isMinimapGutter: Bool) {
         self.textView = textView
         self.theme = theme
         self.getMessageViews = getMessageViews
@@ -77,7 +75,7 @@ class GutterView: NSView {
         // Text attributes for the line numbers
         let lineNumberStyle = NSMutableParagraphStyle()
         lineNumberStyle.alignment = .right
-        lineNumberStyle.tailIndent = -theme.fontSize / 11
+
         self.textAttributesDefault = [NSAttributedString.Key.font: font,
                                      .foregroundColor: lineNumberColour,
                                      .paragraphStyle: lineNumberStyle,
@@ -166,6 +164,17 @@ extension GutterView {
               let lineMap = optLineMap
         else { return }
 
+        drawMinimapGutterView(rect, layoutManager, lineMap)
+
+        // all functionality below is not for the minimap gutter, so if it is a minimap gutter then stop here.
+        guard !isMinimapGutter else { return }
+
+        drawGutterView(rect, layoutManager, textContainer)
+    }
+
+    func drawMinimapGutterView(_ rect: CGRect,
+                               _ layoutManager: NSLayoutManager,
+                               _ lineMap: LineMap<LineInfo>) {
         // This is not particularily nice, but there is no point in trying to draw the gutter, before the layout manager
         // has finished laying out the *entire* text. Given that all we got here is a rectangle, we can't even figure
         // out reliably whether enough text has been laid out to draw that part of the gutter that is being requested.
@@ -185,10 +194,11 @@ extension GutterView {
                 if !intersectionRect.isEmpty { NSBezierPath(rect: intersectionRect).fill() }
             }
         }
+    }
 
-        // all functionality below is not for the minimap gutter, so if it is a minimap gutter then stop here.
-        guard !isMinimapGutter else { return }
-
+    func drawGutterView(_ rect: CGRect,
+                        _ layoutManager: NSLayoutManager,
+                        _ textContainer: NSTextContainer) {
         // FIXME: Eventually, we want this in the minimap
         //        but `messageView.value.lineFragementRect` is of course
         //        incorrect for the minimap, so we need a more general set up.

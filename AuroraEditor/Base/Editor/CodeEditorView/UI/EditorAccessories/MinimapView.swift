@@ -14,7 +14,6 @@ class MinimapView: NSTextView {
     weak var codeView: CodeView?
 
     // Highlight the current line.
-    //
     override func drawBackground(in rect: NSRect) {
         super.drawBackground(in: rect)
 
@@ -23,7 +22,6 @@ class MinimapView: NSTextView {
         // Highlight the current line
         codeView?.theme.currentLineColour.setFill()
         if let location = insertionPoint {
-
             layoutManager.enumerateFragmentRects(forLineContaining: location) { rect in
                 NSBezierPath(rect: rect).fill()
             }

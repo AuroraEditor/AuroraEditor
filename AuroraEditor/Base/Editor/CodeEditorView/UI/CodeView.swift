@@ -351,7 +351,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     private func tile() { // swiftlint:disable:this function_body_length
 
         // Compute size of the main view gutter
-        //
         let theFont = font ?? NSFont.systemFont(ofSize: 0),
             fontSize = theFont.pointSize,
             fontWidth = theFont.maximumAdvancement.width,
