@@ -161,7 +161,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         minimapView.textContainer?.replaceLayoutManager(minimapLayoutManager)
         codeStorage.addLayoutManager(minimapLayoutManager)
         minimapView.backgroundColor = backgroundColor
-        minimapView.autoresizingMask = .none
+        minimapView.autoresizingMask = .width
         minimapView.isEditable = false
         minimapView.isSelectable = false
         minimapView.isHorizontallyResizable = false
@@ -175,6 +175,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
         minimapView.layoutManager?.typesetter = MinimapTypeSetter()
 
+        // This handles the minimap box color, the one that moves as you scroll the document
         let documentVisibleBox = NSBox()
         documentVisibleBox.boxType = .custom
         documentVisibleBox.fillColor = theme.textColour.withAlphaComponent(0.1)
@@ -350,7 +351,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     /// NB: We don't use a ruler view for the gutter on macOS to be able to use the same setup on macOS and iOS.
     private func tile() { // swiftlint:disable:this function_body_length
 
-        // Compute size of the main view gutter
+        // Compute size of the main view gutter (Line Numbers)
         let theFont = font ?? NSFont.systemFont(ofSize: 0),
             fontSize = theFont.pointSize,
             fontWidth = theFont.maximumAdvancement.width,

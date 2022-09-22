@@ -51,26 +51,10 @@ class GutterView: NSView {
         // we need to set the `layerContentsRedrawPolicy` to redraw on resizing
 
         theme.backgroundColour.setFill()
-        OSBezierPath(rect: frame).fill()
-        let desc = OSFont.systemFont(ofSize: theme.fontSize).fontDescriptor.addingAttributes(
-            [ FontDescriptor.AttributeName.featureSettings:
-                [
-                    [
-                        fontDescriptorFeatureIdentifier: kNumberSpacingType,
-                        fontDescriptorTypeIdentifier: kMonospacedNumbersSelector
-                    ],
-                    [
-                        fontDescriptorFeatureIdentifier: kStylisticAlternativesType,
-                        fontDescriptorTypeIdentifier: kStylisticAltOneOnSelector  // alt 6 and 9
-                    ],
-                    [
-                        fontDescriptorFeatureIdentifier: kStylisticAlternativesType,
-                        fontDescriptorTypeIdentifier: kStylisticAltTwoOnSelector  // alt 4
-                    ]
-                ]
-            ]
-        )
-        let font = OSFont(descriptor: desc, size: 0) ?? OSFont.systemFont(ofSize: 0)
+
+        NSBezierPath(rect: frame).fill()
+
+        let font = NSFont(name: "SF Mono Medium", size: 11) ?? NSFont.systemFont(ofSize: 0)
 
         // Text attributes for the line numbers
         let lineNumberStyle = NSMutableParagraphStyle()
@@ -80,6 +64,7 @@ class GutterView: NSView {
                                      .foregroundColor: lineNumberColour,
                                      .paragraphStyle: lineNumberStyle,
                                      .kern: NSNumber(value: Float(-theme.fontSize / 11))]
+
         self.textAttributesSelected = [NSAttributedString.Key.font: font,
                                       .foregroundColor: theme.textColour,
                                       .paragraphStyle: lineNumberStyle,
@@ -164,7 +149,7 @@ extension GutterView {
               let lineMap = optLineMap
         else { return }
 
-        drawMinimapGutterView(rect, layoutManager, lineMap)
+        drawMinimapGutterView(rect, layoutManager, lineMap, textContainer)
 
         // all functionality below is not for the minimap gutter, so if it is a minimap gutter then stop here.
         guard !isMinimapGutter else { return }
@@ -174,7 +159,8 @@ extension GutterView {
 
     func drawMinimapGutterView(_ rect: CGRect,
                                _ layoutManager: NSLayoutManager,
-                               _ lineMap: LineMap<LineInfo>) {
+                               _ lineMap: LineMap<LineInfo>,
+                               _ textContainer: NSTextContainer) {
         // This is not particularily nice, but there is no point in trying to draw the gutter, before the layout manager
         // has finished laying out the *entire* text. Given that all we got here is a rectangle, we can't even figure
         // out reliably whether enough text has been laid out to draw that part of the gutter that is being requested.
@@ -194,6 +180,26 @@ extension GutterView {
                 if !intersectionRect.isEmpty { NSBezierPath(rect: intersectionRect).fill() }
             }
         }
+
+        for message in getMessageViews() {
+            let glyphRange = layoutManager.glyphRange(
+                forBoundingRect: message.value.lineFragementRect,
+                in: textContainer
+            ),
+                index = layoutManager.characterIndexForGlyph(at: glyphRange.location)
+            // TODO: should be filter by char range
+            // if charRange.contains(index) {
+
+            // NOTICE: Experimental (from Nanashi Li)
+            message.value.colour.withAlphaComponent(0.1).setFill()
+            layoutManager.enumerateFragmentRects(forLineContaining: index) { fragmentRect in
+                let intersectionRect = rect.intersection(self.gutterRectFrom(textRect: fragmentRect))
+
+                if !intersectionRect.isEmpty {
+                    NSBezierPath(rect: intersectionRect).fill()
+                }
+            }
+        }
     }
 
     func drawGutterView(_ rect: CGRect,
@@ -211,13 +217,18 @@ extension GutterView {
                 in: textContainer
             ),
                 index = layoutManager.characterIndexForGlyph(at: glyphRange.location)
+
             // TODO: should be filter by char range
             // if charRange.contains(index) {
+            if glyphRange.contains(index) {
+                messageView.value.colour.withAlphaComponent(0.1).setFill()
+                layoutManager.enumerateFragmentRects(forLineContaining: index) { fragmentRect in
+                    let intersectionRect = rect.intersection(self.gutterRectFrom(textRect: fragmentRect))
 
-            messageView.value.colour.withAlphaComponent(0.1).setFill()
-            layoutManager.enumerateFragmentRects(forLineContaining: index) { fragmentRect in
-                let intersectionRect = rect.intersection(self.gutterRectFrom(textRect: fragmentRect))
-                if !intersectionRect.isEmpty { NSBezierPath(rect: intersectionRect).fill() }
+                    if !intersectionRect.isEmpty {
+                        NSBezierPath(rect: intersectionRect).fill()
+                    }
+                }
             }
         }
 

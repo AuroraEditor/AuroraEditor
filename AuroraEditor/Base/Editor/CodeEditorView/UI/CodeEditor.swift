@@ -125,9 +125,8 @@ extension CodeEditor: NSViewRepresentable {
         }
         codeView.selectedRanges = position.selections.map { NSValue(range: $0) }
 
-        let textContainer = codeView.textContainer
-        textContainer?.widthTracksTextView = true
-        textContainer?.heightTracksTextView = false
+        codeView.isVerticallyResizable = true
+        codeView.isHorizontallyResizable = false
         codeView.autoresizingMask = .width
 
         // Set up scroll view
@@ -153,7 +152,7 @@ extension CodeEditor: NSViewRepresentable {
         // takes a long time, because we loaded a large file.
         // It be better if we could deterministically determine when initialisation is entirely \
         // finished and then set the scroll fraction at that point.
-        DispatchQueue.main.async {
+        globalMainQueue.async {
             scrollView.verticalScrollFraction = position.verticalScrollFraction
         }
 
@@ -169,7 +168,9 @@ extension CodeEditor: NSViewRepresentable {
         }
 
         // Report the initial message set
-        DispatchQueue.main.async { updateMessages(in: codeView, with: context) }
+        DispatchQueue.main.async {
+            updateMessages(in: codeView, with: context)
+        }
 
         return scrollView
     }
