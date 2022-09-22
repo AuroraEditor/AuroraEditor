@@ -74,7 +74,7 @@ We want to increase the rate of development, which means:
 
 ## Aurora Editor vs CodeEdit
 
-When looking at the core of both code bases there isn't to much difference between AuroraEditor (AE) and CodeEdit (CE). However, we are trying to change that, for example by following a cleaner [architecture](https://github.com/AuroraEditor/AuroraEditor/wiki/Architecture). Overtime the code base between AE and CE may barely be similar to each other. 
+When looking at the core of both code bases, there isn't much difference between AuroraEditor (AE) and CodeEdit (CE). However, we are trying to change that, for example by following a cleaner [architecture](https://github.com/AuroraEditor/AuroraEditor/wiki/Architecture). Over time, the code base between AE and CE may barely be similar to each other. 
 
 We follow a strict set of principals when developing AE, some of which includes 
 - Keeping the code as performant as possible (including build times)
