@@ -4,7 +4,7 @@
 * @AuroraEditor/team
 
 # Those files always needs approval from 'founders'
-.github @AuroraEditor/founders
+.github @AuroraEditor/founder
 
 # Commandline interface
 AuroraEditorCli @AuroraEditor/cli
