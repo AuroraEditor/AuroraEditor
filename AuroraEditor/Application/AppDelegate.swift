@@ -36,6 +36,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 
     var statusItem: NSStatusItem!
 
+    private var updateModel: UpdateObservedModel = .shared
+
     func applicationDidFinishLaunching(_ notification: Notification) {
 
         AuroraCrashlytics.add(delegate: self)
@@ -93,6 +95,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
             setup(statusItem: statusItem)
         }
+
+        // We disable checking for updates in debug builds as to not
+        // annoy our fellow contributers
+        #if !DEBUG
+        updateModel.checkForUpdates()
+        #endif
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

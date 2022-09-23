@@ -83,44 +83,51 @@ public struct GeneralPreferencesView: View {
             }
             .padding(.bottom)
 
-            Text("Navigator")
-                .fontWeight(.bold)
-                .padding(.horizontal)
+            Group {
+                Text("Navigator")
+                    .fontWeight(.bold)
+                    .padding(.horizontal)
 
-            GroupBox {
-                projectNavigatorSizeSection
-                    .padding(.vertical, 5)
-                Divider()
-                findNavigatorDetailSection
-                    .padding(.vertical, 5)
-                Divider()
-                issueNavigatorDetailSection
-                    .padding(.vertical, 5)
-                Divider()
-                revealFileOnFocusChangeToggle
-                    .padding(.vertical, 5)
+                GroupBox {
+                    projectNavigatorSizeSection
+                        .padding(.vertical, 5)
+                    Divider()
+                    findNavigatorDetailSection
+                        .padding(.vertical, 5)
+                    Divider()
+                    issueNavigatorDetailSection
+                        .padding(.vertical, 5)
+                    Divider()
+                    revealFileOnFocusChangeToggle
+                        .padding(.vertical, 5)
+                }
+                .padding(.bottom)
             }
-            .padding(.bottom)
 
-            Text("Inspector")
-                .fontWeight(.bold)
-                .padding(.horizontal)
+            Group {
+                Text("Inspector")
+                    .fontWeight(.bold)
+                    .padding(.horizontal)
 
-            GroupBox {
-                keepInspectorWindowOpen
+                GroupBox {
+                    keepInspectorWindowOpen
+                }
+                .padding(.bottom)
             }
-            .padding(.bottom)
 
-            Text("Other")
-                .fontWeight(.bold)
-                .padding(.horizontal)
+            Group {
+                Text("Other")
+                    .fontWeight(.bold)
+                    .padding(.horizontal)
 
-            GroupBox {
-                openInAuroraEditorToggle
-                    .padding(.vertical, 5)
-                Divider()
-                shellCommandSection
-                    .padding(.vertical, 5)
+                GroupBox {
+                    openInAuroraEditorToggle
+                        .padding(.vertical, 5)
+                    Divider()
+                    shellCommandSection
+                        .padding(.vertical, 5)
+                }
+                .padding(.bottom)
             }
         }
     }
