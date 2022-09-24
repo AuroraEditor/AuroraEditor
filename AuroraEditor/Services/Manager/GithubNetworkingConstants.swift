@@ -9,7 +9,7 @@
 import Foundation
 
 // swiftlint:disable:next convenience_type
-struct NetworkingConstant {
+struct GithubNetworkingConstants {
     static var baseURL: String = "https://api.github.com/"
 
     // GitHub Actions

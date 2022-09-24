@@ -38,7 +38,7 @@ class AuroraNetworking {
         }
     }
 
-    private func createRequest(url: URL) -> URLRequest {
+    private func createRequest(url: URL, useGitAuth: Bool) -> URLRequest {
         /// Create a URL Request
         var request = URLRequest(url: url)
 
@@ -48,12 +48,14 @@ class AuroraNetworking {
             forHTTPHeaderField: "Accept"
         )
 
-        let username = prefs.preferences.accounts.sourceControlAccounts.gitAccount.first?.gitAccountUsername
+        if useGitAuth {
+            let username = prefs.preferences.accounts.sourceControlAccounts.gitAccount.first?.gitAccountUsername
 
-        request.setValue(
-            "Bearer \(keychain.get("github_\(username!)")!)",
-            forHTTPHeaderField: "Authorization"
-        )
+            request.setValue(
+                "Bearer \(keychain.get("github_\(username!)")!)",
+                forHTTPHeaderField: "Authorization"
+            )
+        }
 
         return request
     }
@@ -126,14 +128,16 @@ class AuroraNetworking {
     ///     - `Data`: The data returned by the server.
     ///     - `Errror`: An error object that indicates why the request failed, or nil if the request was successful.
     public func request(
+        baseURL: String,
         path: String,
+        useAuth: Bool = true,
         method: HTTPMethod,
         parameters: [String: Any]?,
         completionHandler: @escaping (Result<Data, Error>) -> Void,
         file: String = #file, line: Int = #line, function: String = #function
     ) {
         /// Check if the URL is valid
-        guard let siteURL = URL(string: NetworkingConstant.baseURL + path) else {
+        guard let siteURL = URL(string: baseURL + path) else {
             completionHandler(
                 .failure(
                     NetworkingError(message: "Error: Request endpoint doesn't appear to be an URL")
@@ -143,7 +147,7 @@ class AuroraNetworking {
         }
 
         /// Create a URL Request
-        var request = createRequest(url: siteURL)
+        var request = createRequest(url: siteURL, useGitAuth: useAuth)
         request.httpMethod = method.rawValue
 
         if method == .POST || method == .PUT {
@@ -158,12 +162,13 @@ class AuroraNetworking {
     public func request(
         path: String,
         method: HTTPMethod,
+        useAuth: Bool = true,
         parameters: [[String: Any]],
         completionHandler: @escaping (Result<Data, Error>) -> Void,
         file: String = #file, line: Int = #line, function: String = #function
     ) {
         /// Check if the URL is valid
-        guard let siteURL = URL(string: NetworkingConstant.baseURL + path) else {
+        guard let siteURL = URL(string: GithubNetworkingConstants.baseURL + path) else {
             completionHandler(
                 .failure(
                     NetworkingError(message: "Error: Request endpoint doesn't appear to be an URL")
@@ -173,7 +178,7 @@ class AuroraNetworking {
         }
 
         /// Create a URL Request
-        var request = createRequest(url: siteURL)
+        var request = createRequest(url: siteURL, useGitAuth: useAuth)
         request.httpMethod = method.rawValue
 
         if method == .POST || method == .PUT {
@@ -201,12 +206,13 @@ class AuroraNetworking {
     public func request<T: Encodable>(
         path: String,
         method: HTTPMethod,
+        useAuth: Bool = true,
         parameters: T,
         completionHandler: @escaping (Result<Data, Error>) -> Void,
         file: String = #file, line: Int = #line, function: String = #function
     ) {
         /// Check if the URL is valid
-        guard let siteURL = URL(string: NetworkingConstant.baseURL + path) else {
+        guard let siteURL = URL(string: GithubNetworkingConstants.baseURL + path) else {
             completionHandler(
                 .failure(
                     NetworkingError(message: "Error: Request endpoint doesn't appear to be an URL")
@@ -216,7 +222,7 @@ class AuroraNetworking {
         }
 
         /// Create a URL Request
-        var request = createRequest(url: siteURL)
+        var request = createRequest(url: siteURL, useGitAuth: useAuth)
         request.httpMethod = method.rawValue
 
         if method == .POST || method == .PUT {

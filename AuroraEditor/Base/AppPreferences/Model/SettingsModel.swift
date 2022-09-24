@@ -58,6 +58,9 @@ class SettingsModel: ObservableObject {
                     colour: .purple),
         SettingItem(name: "Advanced",
                     image: NSImage(systemSymbolName: "gearshape.2", accessibilityDescription: nil)!,
-                    colour: .pink)
+                    colour: .pink),
+        SettingItem(name: "Updates",
+                    image: NSImage(systemSymbolName: "gear.badge", accessibilityDescription: nil)!,
+                    colour: .orange)
     ]
 }

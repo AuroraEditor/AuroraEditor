@@ -80,6 +80,8 @@ struct PreferencesView: View {
                     LocationsPreferencesView()      // Locations
                 } else if viewModel.selectedId == viewModel.setting[11].id {
                     PreferencesPlaceholderView()    // Advanced
+                } else if viewModel.selectedId == viewModel.setting[12].id {
+                    UpdatePreferencesView()
                 }
         }
     }

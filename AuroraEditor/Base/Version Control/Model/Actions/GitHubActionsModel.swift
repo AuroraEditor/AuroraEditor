@@ -70,7 +70,8 @@ class GitHubActions: ObservableObject {
     }
 
     func fetchWorkflows() {
-        AuroraNetworking().request(path: NetworkingConstant.workflows(repoOwner,
+        AuroraNetworking().request(baseURL: GithubNetworkingConstants.baseURL,
+                                   path: GithubNetworkingConstants.workflows(repoOwner,
                                                                       repo),
                                    method: .GET,
                                    parameters: nil,
@@ -107,7 +108,8 @@ class GitHubActions: ObservableObject {
             self.workflowRunState = .loading
             self.objectWillChange.send()
         }
-        AuroraNetworking().request(path: NetworkingConstant.workflowRuns(repoOwner,
+        AuroraNetworking().request(baseURL: GithubNetworkingConstants.baseURL,
+                                   path: GithubNetworkingConstants.workflowRuns(repoOwner,
                                                                          repo,
                                                                          workflowId: workflowId),
                                    method: .GET,
@@ -150,7 +152,8 @@ class GitHubActions: ObservableObject {
         DispatchQueue.main.async {
             self.jobsState = .loading
         }
-        AuroraNetworking().request(path: NetworkingConstant.workflowJobs(repoOwner,
+        AuroraNetworking().request(baseURL: GithubNetworkingConstants.baseURL,
+                                   path: GithubNetworkingConstants.workflowJobs(repoOwner,
                                                                          repo,
                                                                          runId: runId),
                                    method: .GET,
@@ -206,7 +209,8 @@ class GitHubActions: ObservableObject {
             "enable_debug_logging": enableDebugging
         ]
 
-        AuroraNetworking().request(path: NetworkingConstant.reRunJob(repoOwner,
+        AuroraNetworking().request(baseURL: GithubNetworkingConstants.baseURL,
+                                   path: GithubNetworkingConstants.reRunJob(repoOwner,
                                                                      repo,
                                                                      jobId: jobId),
                                    method: .POST,
@@ -224,7 +228,8 @@ class GitHubActions: ObservableObject {
     }
 
     func downloadWorkflowLogs(jobId: String) {
-        AuroraNetworking().request(path: NetworkingConstant.reRunJob(repoOwner,
+        AuroraNetworking().request(baseURL: GithubNetworkingConstants.baseURL,
+                                   path: GithubNetworkingConstants.reRunJob(repoOwner,
                                                                      repo,
                                                                      jobId: jobId),
                                    method: .POST,
