@@ -10,8 +10,8 @@ import SwiftUI
 
 public struct CheckoutBranchView: View {
     internal let shellClient: ShellClient
-    @Binding internal var isPresented: Bool
-    @Binding internal var repoPath: String
+    @Binding var isPresented: Bool
+    @Binding var repoPath: String
     // TODO: This has to be derived from git
     @State internal var selectedBranch = "main"
     public init(isPresented: Binding<Bool>,

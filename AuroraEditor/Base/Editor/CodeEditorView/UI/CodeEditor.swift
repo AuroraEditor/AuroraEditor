@@ -59,10 +59,10 @@ public struct CodeEditor {
     let language: LanguageConfiguration
     let layout: LayoutConfiguration
 
-    @Binding internal var text: String
-    @Binding internal var position: Position
-    @Binding internal var caretPosition: CursorLocation
-    @Binding internal var messages: Set<Located<Message>>
+    @Binding var text: String
+    @Binding var position: Position
+    @Binding var caretPosition: CursorLocation
+    @Binding var messages: Set<Located<Message>>
 
     /// Creates a fully configured code editor.
     ///
@@ -89,9 +89,9 @@ public struct CodeEditor {
     }
 
     public class TCoordinator {
-        @Binding internal var text: String
-        @Binding internal var position: Position
-        @Binding internal var caretPosition: CursorLocation
+        @Binding var text: String
+        @Binding var position: Position
+        @Binding var caretPosition: CursorLocation
 
         /// In order to avoid update cycles, where view code tries to update SwiftUI state variables (such as the view's
         /// bindings) during a SwiftUI view update, we use `updatingView` as a flag that indicates whether the view is
