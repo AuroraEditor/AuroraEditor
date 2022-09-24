@@ -48,6 +48,11 @@ public struct TextEditingPreferencesView: View {
                 Divider()
 
                 fontSelector
+                    .padding(.horizontal)
+
+                Divider()
+
+                minimap
                     .padding(.bottom, 5)
                     .padding(.horizontal)
             }
@@ -86,6 +91,16 @@ public struct TextEditingPreferencesView: View {
                     name: $prefs.preferences.textEditing.font.name, size: $prefs.preferences.textEditing.font.size
                 )
             }
+        }
+    }
+
+    private var minimap: some View {
+        HStack {
+            Text("Show Minimap")
+            Spacer()
+            Toggle("", isOn: $prefs.preferences.textEditing.showMinimap)
+                .toggleStyle(.switch)
+                .labelsHidden()
         }
     }
 
