@@ -21,7 +21,7 @@ extension CodeEditor: NSViewRepresentable {
                                 theme: context.environment.codeEditorTheme)
 
         globalMainQueue.async {
-            codeView.string = self.text
+            codeView.string = text
         }
         codeView.selectedRanges = position.selections.map { NSValue(range: $0) }
 
