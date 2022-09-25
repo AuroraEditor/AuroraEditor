@@ -47,29 +47,6 @@ struct WorkspaceView: View {
     @State
     private var leaveFullscreenObserver: Any?
 
-    var noEditor: some View {
-        ZStack {
-            Color("EditorBackground")
-            Text("No Editor")
-                .font(.system(size: 17))
-                .foregroundColor(.secondary)
-                .frame(minHeight: 0)
-                .clipped()
-                .overlay {
-                    Button(
-                        action: {
-                            NSApplication.shared.keyWindow?.close()
-                        },
-                        label: { EmptyView() }
-                    )
-                    .frame(width: 0, height: 0)
-                    .padding(0)
-                    .opacity(0)
-                    .keyboardShortcut("w", modifiers: [.command])
-                }
-        }
-    }
-
     @ViewBuilder var tabContent: some View {
         if let tabID = workspace.selectionState.selectedId {
             switch tabID {
@@ -102,7 +79,7 @@ struct WorkspaceView: View {
                 }
             }
         } else {
-            noEditor
+            EmptyEditorView()
         }
     }
 
