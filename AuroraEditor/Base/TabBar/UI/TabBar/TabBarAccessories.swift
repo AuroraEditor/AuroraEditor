@@ -80,12 +80,13 @@ extension TabBar {
                 .disabled(!prefs.sourceControlActive())
                 .help("Enable Code Review")
 
-                TabBarAccessoryIcon(
-                    icon: .init(systemName: "ellipsis.circle"),
-                    action: { /* TODO */ }
-                )
-                .font(Font.system(size: 14, weight: .light, design: .default))
-                .foregroundColor(.secondary)
+                Menu {
+                    textEditorMenu()
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                        .font(Font.system(size: 14, weight: .light, design: .default))
+                        .foregroundColor(.secondary)
+                }
                 .buttonStyle(.plain)
                 .help("Options")
 
@@ -232,4 +233,65 @@ extension TabBar {
             }
         }
     }
+
+    private func textEditorMenu() -> some View {
+        VStack {
+            Button {
+                prefs.preferences.textEditing.showMinimap.toggle()
+            } label: {
+                Text("Show Editor Only")
+                    .font(.system(size: 11))
+            }
+            .keyboardShortcut(.return, modifiers: [.command])
+
+            Divider()
+
+            Toggle(isOn: .constant(false)) {
+                Text("Inline Comparison")
+                    .font(.system(size: 11))
+            }
+
+            Toggle(isOn: .constant(false)) {
+                Text("Side By Side Comparison")
+                    .font(.system(size: 11))
+            }
+
+            Divider()
+
+            Group {
+                Toggle(isOn: $prefs.preferences.textEditing.showMinimap) {
+                    Text("Minimap")
+                        .font(.system(size: 11))
+                }
+                .keyboardShortcut("M", modifiers: [.control, .shift, .command])
+
+                Toggle(isOn: .constant(false)) {
+                    Text("Authors")
+                        .font(.system(size: 11))
+                }
+                .keyboardShortcut("A", modifiers: [.control, .shift, .command])
+
+                Toggle(isOn: .constant(false)) {
+                    Text("Code Coverage")
+                        .font(.system(size: 11))
+                }
+            }
+
+            Divider()
+
+            Group {
+                Toggle(isOn: .constant(false)) {
+                    Text("Invisibles")
+                        .font(.system(size: 11))
+                }
+
+                Toggle(isOn: .constant(false)) {
+                    Text("Wrap Lines")
+                        .font(.system(size: 11))
+                }
+                .keyboardShortcut("L", modifiers: [.control, .shift, .command])
+            }
+        }
+    }
+
 }

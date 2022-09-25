@@ -389,11 +389,9 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         minimapDividerView?.isHidden = !viewLayout.showMinimap
         minimapView?.isHidden = !viewLayout.showMinimap
         if viewLayout.showMinimap {
-
             minimapDividerView?.frame = minimapDividerRect
             minimapView?.frame = minimapRect
             minimapGutterView?.frame = minimapGutterRect
-
         }
 
         minSize = CGSize(width: 0, height: documentVisibleRect.height)
