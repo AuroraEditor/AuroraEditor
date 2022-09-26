@@ -64,15 +64,14 @@ public class BackgroundColorThemeAttribute: TokenThemeAttribute {
         self.color = color
         self.roundingStyle = roundingStyle
         self.coloringStyle = coloringStyle
-        self.roundedBackground = RoundedBackground(color: color,
-                                                   roundingStyle: roundingStyle,
-                                                   coloringStyle: coloringStyle)
+        self.roundedBackground = RoundedBackground(color: color, roundingStyle: roundingStyle, coloringStyle: coloringStyle)
     }
 
     public func apply(to attrStr: NSMutableAttributedString, withRange range: NSRange) {
         if roundingStyle == .none {
             attrStr.addAttribute(.backgroundColor, value: color, range: range)
-        } else {
+        }
+        else {
             attrStr.addAttribute(RoundedBackground.Key, value: self.roundedBackground, range: range)
         }
     }

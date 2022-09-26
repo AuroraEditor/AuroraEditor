@@ -49,7 +49,8 @@ public class Editor: NSObject {
         parser: Parser,
         baseGrammar: Grammar,
         theme: Theme,
-        notificationCenter: NotificationCenter = .default) {
+        notificationCenter: NotificationCenter = .default)
+    {
         self.textView = textView
         self._parser = parser
         self._grammar = baseGrammar
@@ -60,8 +61,7 @@ public class Editor: NSObject {
         textView.layoutManager.delegate = self
         textView.replace(parser: parser, baseGrammar: baseGrammar, theme: theme)
         textView.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        // Set the type attributes to base scope. This is important for the line
-        // height of the empty final line in the document and the look of an initially empty document.
+        // Set the type attributes to base scope. This is important for the line height of the empty final line in the document and the look of an initially empty document.
         textView.typingAttributes = baseGrammar.baseAttributes(forTheme: theme)
         didHighlightSyntax(textView: textView)
     }
@@ -89,11 +89,11 @@ public class Editor: NSObject {
         // Get the intersection of the invalidated range and visible range.
         // If there is no intersection, no display needed.
         if let visibleInvalid = visibleRange.intersection(storage.lastProcessedRange) {
-            // Try to get the bounding rect of the invalid range and only re-render it,
-            // otherwise re-render the entire text view.
+            // Try to get the bounding rect of the invalid range and only re-render it, otherwise re-render the entire text view.
             if let rect = textView.boundingRect(forCharacterRange: visibleInvalid) {
                 textView.setNeedsDisplay(rect)
-            } else {
+            }
+            else {
                 textView.setNeedsDisplay()
             }
         }
@@ -119,16 +119,11 @@ extension Editor: UITextViewDelegate {
         didHighlightSyntax(textView: editorTextView)
     }
 
-    public func textView(_ textView: UITextView,
-                         shouldInteractWith URL: URL,
-                         in characterRange: NSRange,
-                         interaction: UITextItemInteraction) -> Bool {
+    public func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
 
         var linkRange = NSRange(location: 0, length: 0)
 
-        guard let handler = textView.attributedText.attribute(ActionThemeAttribute.HandlerKey,
-                                                              at: characterRange.location,
-                                                              effectiveRange: &linkRange) as? ActionThemeAttribute.Handler,
+        guard let handler = textView.attributedText.attribute(ActionThemeAttribute.HandlerKey, at: characterRange.location, effectiveRange: &linkRange) as? ActionThemeAttribute.Handler,
             linkRange.length > 0 else {
             return true
         }
@@ -155,7 +150,8 @@ extension Editor: UITextViewDelegate {
                 // And re-display. This is important for rounded highlighting for full lines to ensure that rounding is not applied in the middle.
                 if let rect = editorTextView.boundingRect(forCharacterRange: rangeChanged) {
                     editorTextView.setNeedsDisplay(rect)
-                } else {
+                }
+                else {
                     editorTextView.setNeedsDisplay()
                 }
             }
@@ -204,7 +200,8 @@ public class Editor: NSObject {
         parser: Parser,
         baseGrammar: Grammar,
         theme: Theme,
-        notificationCenter: NotificationCenter = .default) {
+        notificationCenter: NotificationCenter = .default)
+    {
         self.textView = textView
         self._parser = parser
         self._grammar = baseGrammar
@@ -215,14 +212,11 @@ public class Editor: NSObject {
         textView.layoutManager?.delegate = self
         textView.replace(parser: parser, baseGrammar: baseGrammar, theme: theme)
         textView.textContainerInset = NSSize(width: 20, height: 20)
-        // Set the type attributes to base scope. This is important for the line height of the empty
-        // final line in the document and the look of an initially empty document.
+        // Set the type attributes to base scope. This is important for the line height of the empty final line in the document and the look of an initially empty document.
         textView.typingAttributes = baseGrammar.baseAttributes(forTheme: theme)
         didHighlightSyntax(textView: textView)
 
-        notificationCenter.addObserver(self,
-                                       selector: #selector(textViewDidChange(_:)),
-                                       name: NSText.didChangeNotification, object: textView)
+        notificationCenter.addObserver(self, selector: #selector(textViewDidChange(_:)), name: NSText.didChangeNotification, object: textView)
     }
 
     public func replace(parser: Parser, baseGrammar: Grammar, theme: Theme) {
@@ -253,8 +247,7 @@ public class Editor: NSObject {
         // Get the intersection of the invalidated range and visible range.
         // If there is no intersection, no display needed.
         if let visibleInvalid = visibleRange.intersection(storage.lastProcessedRange) {
-            // Try to get the bounding rect of the invalid range and only re-render it,
-            // otherwise re-render the entire text view.
+            // Try to get the bounding rect of the invalid range and only re-render it, otherwise re-render the entire text view.
             if let rect = textView.boundingRect(forCharacterRange: visibleInvalid) {
                 textView.setNeedsDisplay(rect, avoidAdditionalLayout: false)
             }
