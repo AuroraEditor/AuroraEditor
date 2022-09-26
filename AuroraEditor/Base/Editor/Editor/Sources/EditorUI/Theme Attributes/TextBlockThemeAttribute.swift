@@ -7,10 +7,6 @@
 
 import Foundation
 import EditorCore
-
-#if os(iOS)
-import UIKit
-#elseif os(macOS)
 import Cocoa
 
 public class TextBlockThemeAttribute: LineThemeAttribute {
@@ -26,4 +22,3 @@ public class TextBlockThemeAttribute: LineThemeAttribute {
         style.textBlocks = [self.textBlock]
     }
 }
-#endif

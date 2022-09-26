@@ -14,7 +14,7 @@ public class BeginEndRule: Rule, Pattern {
 
     public let id: UUID
 
-    weak public var grammar: Grammar?
+    public weak var grammar: Grammar?
 
     /// The name of the rule, i.e. the scope.
     let scopeName: ScopeName
@@ -54,17 +54,23 @@ public class BeginEndRule: Rule, Pattern {
         self.id = UUID()
         self.scopeName = ScopeName(rawValue: name)
         do {
-            self.begin = try NSRegularExpression(pattern: begin, options: .init(arrayLiteral: .anchorsMatchLines, .dotMatchesLineSeparators))
-            self.end = try NSRegularExpression(pattern: end, options: .init(arrayLiteral: .anchorsMatchLines, .dotMatchesLineSeparators))
-        }
-        catch {
-            fatalError("Could not create regex for BeginEndRule with name '\(name)' due to error: \(error.localizedDescription)")
+            self.begin = try NSRegularExpression(pattern: begin,
+                                                 options: .init(arrayLiteral: .anchorsMatchLines,
+                                                    .dotMatchesLineSeparators))
+            self.end = try NSRegularExpression(pattern: end,
+                                               options: .init(arrayLiteral: .anchorsMatchLines,
+                                                .dotMatchesLineSeparators))
+        } catch {
+            fatalError(
+"""
+Could not create regex for BeginEndRule with name '\(name)' due to error: \(error.localizedDescription)
+"""
+            )
         }
         self.patterns = patterns
         if let contentName = contentName {
             self.contentScopeName = ScopeName(rawValue: contentName)
-        }
-        else {
+        } else {
             self.contentScopeName = nil
         }
         self.beginCaptures = beginCaptures

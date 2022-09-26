@@ -7,11 +7,7 @@
 
 import Foundation
 import EditorCore
-#if os(iOS)
-import UIKit
-#elseif os(macOS)
 import Cocoa
-#endif
 
 public class TabStopsThemeAttribute: LineThemeAttribute {
 
@@ -23,7 +19,7 @@ public class TabStopsThemeAttribute: LineThemeAttribute {
     }
 
     public init(alignment: NSTextAlignment, locations: [CGFloat]) {
-        self.tabStops = locations.map{ NSTextTab(textAlignment: alignment, location: $0) }
+        self.tabStops = locations.map { NSTextTab(textAlignment: alignment, location: $0) }
     }
 
     public func apply(to style: MutableParagraphStyle) {

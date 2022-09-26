@@ -25,10 +25,14 @@ public class MatchRule: Rule, Pattern {
         self.id = UUID()
         self.scopeName = ScopeName(rawValue: name)
         do {
-            self.match = try NSRegularExpression(pattern: match, options: .init(arrayLiteral: .anchorsMatchLines, .dotMatchesLineSeparators))
-        }
-        catch {
-            fatalError("Could not create regex for MatchRule with name '\(name)' due to error: \(error.localizedDescription)")
+            self.match = try NSRegularExpression(pattern: match,
+                                                 options: .init(arrayLiteral: .anchorsMatchLines,
+                                                    .dotMatchesLineSeparators))
+        } catch {
+            fatalError(
+"""
+Could not create regex for MatchRule with name '\(name)' due to error: \(error.localizedDescription)
+""")
         }
         self.captures = captures
     }

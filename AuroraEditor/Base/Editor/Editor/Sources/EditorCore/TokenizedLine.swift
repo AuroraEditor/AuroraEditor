@@ -42,16 +42,20 @@ public class TokenizedLine {
         tokens[tokens.count - 1].range.length += len
     }
 
-    private static func applyThemeAttributes(_ attributes: [ThemeAttribute], toStr attributedString: NSMutableAttributedString, withStyle style: MutableParagraphStyle, andRange range: NSRange) {
+    private static func applyThemeAttributes(_ attributes: [ThemeAttribute],
+                                             toStr attributedString: NSMutableAttributedString,
+                                             withStyle style: MutableParagraphStyle,
+                                             andRange range: NSRange) {
         for attr in attributes {
             if let lineAttr = attr as? LineThemeAttribute {
                 lineAttr.apply(to: style)
-            }
-            else if let tokenAttr = attr as? TokenThemeAttribute {
+            } else if let tokenAttr = attr as? TokenThemeAttribute {
                 tokenAttr.apply(to: attributedString, withRange: range)
-            }
-            else {
-                print("Warning: ThemeAttribute with key \(attr.key) does not conform to either LineThemeAttribute or TokenThemeAttribtue so it will not be applied.")
+            } else {
+                print("""
+                      Warning: ThemeAttribute with key \(attr.key) does not conform \
+                      to either LineThemeAttribute or TokenThemeAttribtue so it will not be applied.
+                      """)
             }
         }
     }
@@ -71,12 +75,14 @@ public class TokenizedLine {
         applyBaseAttributes: Bool = true
     ) {
 
-        // If we are applying the base attributes we will reset the attributes of the attributed string. Otherwise, we will leave them and create a mutable copy of the paragraph style.
+        // If we are applying the base attributes we will reset the attributes of the attributed string.
+        // Otherwise, we will leave them and create a mutable copy of the paragraph style.
         var style = MutableParagraphStyle()
         if applyBaseAttributes {
             attributedString.setAttributes(nil, range: NSRange(location: loc, length: length))
-        }
-        else if let currStyle = (attributedString.attribute(.paragraphStyle, at: loc, effectiveRange: nil) as? ParagraphStyle)?.mutableCopy() as? MutableParagraphStyle {
+        } else if let currStyle = (attributedString.attribute(.paragraphStyle, at: loc,
+                                                              effectiveRange: nil)
+                                   as? ParagraphStyle)?.mutableCopy() as? MutableParagraphStyle {
             style = currStyle
         }
 
@@ -95,8 +101,7 @@ public class TokenizedLine {
                         toStr: attributedString,
                         withStyle: style,
                         andRange: NSRange(location: loc + token.range.location, length: token.range.length))
-                }
-                else {
+                } else {
                     TokenizedLine.applyThemeAttributes(
                         scope.outSelectionAttributes,
                         toStr: attributedString,

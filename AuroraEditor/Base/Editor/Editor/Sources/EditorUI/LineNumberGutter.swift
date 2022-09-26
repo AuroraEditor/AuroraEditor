@@ -7,12 +7,6 @@
 
 import Foundation
 
-#if os(iOS)
-import UIKit
-
-
-#elseif os(macOS)
-
 import Cocoa
 
 /// A line number ruler view.
@@ -102,14 +96,17 @@ public class LineNumberGutter: NSRulerView {
             let newlineRegex = try NSRegularExpression(pattern: "\n", options: [])
             // Check how many lines are out of view; From the glyph at index 0
             // to the first glyph in the visible rect.
-            lineNumber += newlineRegex.numberOfMatches(in: content, options: [], range: NSMakeRange(0, visibleGlyphsRange.location))
+            lineNumber += newlineRegex.numberOfMatches(in: content,
+                                                       options: [],
+                                                       range: NSRange(location: 0, length: visibleGlyphsRange.location))
         } catch {
             return
         }
 
         // Get the lines currently selected.
-        let currentLines = getVisibileSelectedLines(content: content, selectedRanges: textView.selectedRanges.map{$0.rangeValue}, visibleRange: visibleGlyphsRange, firstLineNumber: lineNumber)
-
+        let currentLines = getVisibileSelectedLines(content: content,
+                                                    selectedRanges: textView.selectedRanges.map { $0.rangeValue },
+                                                    visibleRange: visibleGlyphsRange, firstLineNumber: lineNumber)
 
         // Get the index of the first glyph in the visible rect, as starting point...
         var firstGlyphOfLineIndex = visibleGlyphsRange.location
@@ -117,9 +114,11 @@ public class LineNumberGutter: NSRulerView {
         // ...then loop through all visible glyphs, line by line.
         while firstGlyphOfLineIndex < NSMaxRange(visibleGlyphsRange) {
             // Get the character range of the line we're currently in.
-            let charRangeOfLine  = (content as NSString).lineRange(for: NSRange(location: layoutManager.characterIndexForGlyph(at: firstGlyphOfLineIndex), length: 0))
+            let charRangeOfLine  = (content as NSString).lineRange(for:
+                NSRange(location: layoutManager.characterIndexForGlyph(at: firstGlyphOfLineIndex), length: 0))
             // Get the glyph range of the line we're currently in.
-            let glyphRangeOfLine = layoutManager.glyphRange(forCharacterRange: charRangeOfLine, actualCharacterRange: nil)
+            let glyphRangeOfLine = layoutManager.glyphRange(forCharacterRange: charRangeOfLine,
+                                                            actualCharacterRange: nil)
 
             var firstGlyphOfRowIndex = firstGlyphOfLineIndex
             var lineWrapCount        = 0
@@ -130,7 +129,9 @@ public class LineNumberGutter: NSRulerView {
                 var effectiveRange = NSRange(location: 0, length: 0)
 
                 // Get the rect for the current line fragment.
-                let lineRect = layoutManager.lineFragmentRect(forGlyphAt: firstGlyphOfRowIndex, effectiveRange: &effectiveRange, withoutAdditionalLayout: true)
+                let lineRect = layoutManager.lineFragmentRect(forGlyphAt: firstGlyphOfRowIndex,
+                                                              effectiveRange: &effectiveRange,
+                                                              withoutAdditionalLayout: true)
 
                 // Draw the current line number;
                 // When lineWrapCount > 0 the current line spans multiple rows.
@@ -141,8 +142,7 @@ public class LineNumberGutter: NSRulerView {
                         maxHeight: lineRect.height,
                         isCurrentLine: currentLines.contains(lineNumber)
                     )
-                }
-                else {
+                } else {
                     break
                 }
 
@@ -168,17 +168,21 @@ public class LineNumberGutter: NSRulerView {
     }
 
     /// Gets the lines currently selected out of the visible range.
-    func getVisibileSelectedLines(content: String, selectedRanges: [NSRange], visibleRange: NSRange, firstLineNumber: Int) -> [Int] {
+    func getVisibileSelectedLines(content: String,
+                                  selectedRanges: [NSRange],
+                                  visibleRange: NSRange,
+                                  firstLineNumber: Int) -> [Int] {
         // Get a list of the visible lines. Including newlines!
         let startI = content.utf16.index(content.utf16.startIndex, offsetBy: visibleRange.location)
         let endI = content.utf16.index(content.utf16.startIndex, offsetBy: visibleRange.upperBound)
-        let visLines = content[startI..<endI].split(separator: "\n", omittingEmptySubsequences: false).map{$0 + "\n"}
+        let visLines = content[startI..<endI].split(separator: "\n", omittingEmptySubsequences: false).map { $0 + "\n" }
 
         // Loop through each visible line.
         var loc = visibleRange.location
         var currentLines = [Int]()
         for (i, line) in visLines.enumerated() {
-            // See if the any of the selected ranges has an intersection with the line, if so then this line is part of the selection.
+            // See if the any of the selected ranges has an intersection
+            // with the line, if so then this line is part of the selection.
             let lineRange = NSRange(location: loc, length: line.utf16.count)
             if selectedRanges.filter({
                 $0.intersection(lineRange) != nil
@@ -190,7 +194,6 @@ public class LineNumberGutter: NSRulerView {
         return currentLines
     }
 
-
     func drawLineNumber(num: Int, atY yPos: CGFloat, maxHeight: CGFloat, isCurrentLine: Bool = false) {
         // Unwrap the text view.
         guard let textView = self.clientView as? NSTextView else {
@@ -198,13 +201,15 @@ public class LineNumberGutter: NSRulerView {
         }
 
         // Define attributes for the attributed string.
-        let attrs = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: isCurrentLine ? self.currentLineForegroundColor : self.foregroundColor]
+        let attrs = [NSAttributedString.Key.font: font,
+                     NSAttributedString.Key.foregroundColor: isCurrentLine ?
+                     self.currentLineForegroundColor : self.foregroundColor]
 
         // Define the attributed string.
         let attributedString = NSAttributedString(string: "\(num)", attributes: attrs)
 
         // Get the NSZeroPoint from the text view.
-        let relativePoint = self.convert(NSZeroPoint, from: textView)
+        let relativePoint = self.convert(NSPoint.zero, from: textView)
 
         // Calculate the x position, within the gutter.
         let xPosition = ruleThickness - (attributedString.size().width + 5)
@@ -216,5 +221,3 @@ public class LineNumberGutter: NSRulerView {
         attributedString.draw(at: NSPoint(x: xPosition, y: yPosition))
     }
 }
-
-#endif

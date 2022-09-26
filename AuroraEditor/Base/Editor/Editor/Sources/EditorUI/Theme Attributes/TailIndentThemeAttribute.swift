@@ -7,12 +7,7 @@
 
 import Foundation
 import EditorCore
-
-#if os(iOS)
-import UIKit
-#elseif os(macOS)
 import Cocoa
-#endif
 
 public class TailIndentThemeAttribute: LineThemeAttribute {
 

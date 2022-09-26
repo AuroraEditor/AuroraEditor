@@ -26,8 +26,10 @@ public struct ThemeSetting {
     /// - Parameter scope: Dot separated scope to apply the theme setting to.
     /// - Parameter parentScopes: **NOT IMPLEMENTED**
     /// - Parameter attributes: Base attributes to apply to text that matches the scope.
-    /// - Parameter inSelectionAttributes: Attributes to apply to text that matches the scope on a line which has some part of the selection.
-    /// - Parameter outSelectionAttributes: Attributes to apply to text that matches the scope on a line which does not have some part of the selection.
+    /// - Parameter inSelectionAttributes: Attributes to apply to text that matches the scope
+    ///     on a line which has some part of the selection.
+    /// - Parameter outSelectionAttributes: Attributes to apply to text that matches the scope
+    ///     on a line which does not have some part of the selection.
     ///
     public init(
         scope: String,

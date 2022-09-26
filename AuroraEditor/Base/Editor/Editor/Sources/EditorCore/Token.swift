@@ -11,7 +11,7 @@ public struct Token {
     public var range: NSRange
     var scopes: [Scope]
     public var scopeNames: [ScopeName] {
-        return scopes.map({$0.name})
+        return scopes.map({ $0.name })
     }
 
     ///
@@ -19,7 +19,8 @@ public struct Token {
     ///
     /// Both tokens must have the same range.
     ///
-    /// The merging strategy is simple. The scopes of the merged token is the base tokens scopes + new tokens scopes without duplicating common contiguously in order base scopes. For example:
+    /// The merging strategy is simple. The scopes of the merged token is the base tokens scopes + new tokens scopes
+    /// without duplicating common contiguously in order base scopes. For example:
     /// - base scopes: [A, B, C, D, E]
     /// - new scopes: [A, B, C, E, F]
     /// - merged scopes: [A, B, C, D, E, E, F]

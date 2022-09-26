@@ -23,8 +23,7 @@ public class IncludeGrammarPattern: Pattern {
     public func resolve(parser: Parser, grammar: Grammar) -> [Rule] {
         if let grammar = parser.grammar(withScope: scopeName) {
             return grammar.rules
-        }
-        else {
+        } else {
             fatalError("Warning: There is no grammar in the parser with the scope name: '\(scopeName)'")
         }
     }

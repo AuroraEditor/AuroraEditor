@@ -7,12 +7,7 @@
 
 import Foundation
 import EditorCore
-
-#if os(iOS)
-import UIKit
-#elseif os(macOS)
 import Cocoa
-#endif
 
 public class EditorTextStorage: NSTextStorage {
 
@@ -21,7 +16,7 @@ public class EditorTextStorage: NSTextStorage {
     private var lineRanges: [NSRange]
 
     private var lineStartLocs: [Int] {
-        return lineRanges.map {$0.location}
+        return lineRanges.map { $0.location }
     }
 
     private var nContentLines: Int {
@@ -78,7 +73,8 @@ public class EditorTextStorage: NSTextStorage {
         return storage.string
     }
 
-    override public func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [NSAttributedString.Key: Any] {
+    override public func attributes(at location: Int,
+                                    effectiveRange range: NSRangePointer?) -> [NSAttributedString.Key: Any] {
         return storage.attributes(at: location, effectiveRange: range)
     }
 
@@ -86,7 +82,7 @@ public class EditorTextStorage: NSTextStorage {
         beginEditing()
 
         // First update the storage
-        storage.replaceCharacters(in: range, with:str)
+        storage.replaceCharacters(in: range, with: str)
 
         // Then update the line ranges
         updateLineRanges(forCharactersReplacedInRange: range, with: str)
@@ -107,11 +103,9 @@ public class EditorTextStorage: NSTextStorage {
                 if range.contains(lineRanges[line].location - 1) {
                     foundFirstMatch = true
                     lineRanges.remove(at: line)
-                }
-                else if !foundFirstMatch {
+                } else if !foundFirstMatch {
                     line += 1
-                }
-                else {
+                } else {
                     break
                 }
             }
@@ -124,11 +118,11 @@ public class EditorTextStorage: NSTextStorage {
         }
 
         // Find the new line start locations, adding the offset and 1 to get the location of the next line.
-        let newLineLocs = str.utf16.indices.filter{ str[$0] == "\n" }.map{
+        let newLineLocs = str.utf16.indices.filter { str[$0] == "\n" }.map {
             $0.utf16Offset(in: str) + 1 + range.location }
 
         // Create new line ranges with 0 length.
-        let newLineRanges = newLineLocs.map{ NSRange(location: $0, length: 0) }
+        let newLineRanges = newLineLocs.map { NSRange(location: $0, length: 0) }
         lineRanges.insert(contentsOf: newLineRanges, at: line)
 
         // Shift the start locations after inserted ranges.
@@ -158,8 +152,7 @@ public class EditorTextStorage: NSTextStorage {
 
         if let lastNewLine = storage.string.lastIndex(of: "\n")?.utf16Offset(in: storage.string) {
             assert(lineRanges.last!.length == storage.length - (lastNewLine + 1))
-        }
-        else {
+        } else {
             assert(lineRanges.last?.length == storage.length)
         }
     }
@@ -200,7 +193,8 @@ public class EditorTextStorage: NSTextStorage {
     /// - Returns: The last line that needs to be processed at a minimum.
     ///
     private func getLastProcessingLine(lastEditedLine: Int, editedRange: NSRange, text: String) -> Int {
-        // We add 1 to the last edited line if a newline was the last character of the edit to extend the edited range to enforce checking the new line as well.
+        // We add 1 to the last edited line if a newline was the last character of the
+        // edit to extend the edited range to enforce checking the new line as well.
         // Take the last edited utf16 character in the range. Since NSRanges are based on utf16 characters.
         let u16Last = text.utf16.index(text.utf16.startIndex, offsetBy: max(editedRange.upperBound - 1, 0))
         // Find it's unicode position, and see if it is a newline
@@ -214,7 +208,8 @@ public class EditorTextStorage: NSTextStorage {
     }
 
     ///
-    /// Modifies the length of the states and tokenized lines array based on the first edited line to prepare for the processing based of the previous states.
+    /// Modifies the length of the states and tokenized lines array based on the first edited
+    /// line to prepare for the processing based of the previous states.
     ///
     /// - Parameter firstEditedLine: The first line that was edited.
     /// - Parameter changeInLines: The number of lines added or deleted.
@@ -226,8 +221,7 @@ public class EditorTextStorage: NSTextStorage {
                 tokenizedLines.remove(at: firstEditedLine)
                 matchTokens.remove(at: firstEditedLine)
             }
-        }
-        else {
+        } else {
             for _ in 0..<abs(changeInLines) {
                 states.insert(nil, at: firstEditedLine + 1)
                 tokenizedLines.insert(nil, at: firstEditedLine)
@@ -281,7 +275,9 @@ public class EditorTextStorage: NSTextStorage {
     ///
     /// Processes syntax highlighting on the minimum range possible.
     ///
-    /// - Parameter editedRange: The range of the edit, if known. If the edited range is  provided the syntax highlighting will be done by processing the least amount of the document as possible using the pevious state of the document.
+    /// - Parameter editedRange: The range of the edit, if known. If the edited range is  provided
+    ///     the syntax highlighting will be done by processing the least amount of the document as possible
+    ///     using the pevious state of the document.
     /// - Returns: The processed range: the range of the string that was processed and attributes were applied.
     ///
     func processSyntaxHighlighting(editedRange: NSRange) -> NSRange {
@@ -302,14 +298,17 @@ public class EditorTextStorage: NSTextStorage {
         // Calculate the change in number of lines and adjust the states array
         let change = nContentLines - states.count + 1
 
-        // If we have cached states for the lines we do not need to process the entire string, we can simply on process the lines that have changed or lines afterwards that have been affected by the change.
+        // If we have cached states for the lines we do not need to process the entire string,
+        // we can simply on process the lines that have changed or lines afterwards
+        // that have been affected by the change.
         if !states.isEmpty && !tokenizedLines.isEmpty {
             processingLines = getEditedLines(lineStartLocs: lineStartLocs, editedRange: editedRange)
-            processingLines.last = getLastProcessingLine(lastEditedLine: processingLines.last, editedRange: editedRange, text: storage.string)
+            processingLines.last = getLastProcessingLine(lastEditedLine: processingLines.last,
+                                                         editedRange: editedRange,
+                                                         text: storage.string)
             processingLines.last = min(processingLines.last, nContentLines-1)
             adjustCache(firstEditedLine: processingLines.first, changeInLines: change)
-        }
-        else {
+        } else {
             // Either both caches are empty or the cache is in an inconsistent state, either way, init both
             tokenizedLines = .init(repeating: nil, count: nContentLines)
             matchTokens = .init(repeating: [], count: nContentLines)
@@ -334,14 +333,16 @@ public class EditorTextStorage: NSTextStorage {
 
             // See if the state (for the next line) was previously cached
             if processingLine + 1 < states.count {
-                // Check if we're not on the last line of the text, but on the last line of the processing lines and the state is different to the cache.
+                // Check if we're not on the last line of the text, but on the
+                // last line of the processing lines and the state is different to the cache.
                 // If so we need to keep caching by extending the processing lines.
-                if processingLine < nContentLines - 1 && processingLine == processingLines.last && result.state != states[processingLine + 1] {
+                if processingLine < nContentLines - 1 &&
+                    processingLine == processingLines.last &&
+                    result.state != states[processingLine + 1] {
                     processingLines.last += 1
                 }
                 states[processingLine + 1] = result.state
-            }
-            else {
+            } else {
                 // Cache the line
                 states.append(result.state)
             }
@@ -361,7 +362,8 @@ public class EditorTextStorage: NSTextStorage {
         let processingLength = lineRanges[processingLines.last].upperBound - startOfProcessing
 
         tokenizedLines.enumerated().forEach {
-            $1.applyTheme(storage, at: lineRanges[$0 + processingLines.first].location, inSelectionScope: $0 + processingLines.first == cursorLine)
+            $1.applyTheme(storage, at: lineRanges[$0 + processingLines.first].location,
+                          inSelectionScope: $0 + processingLines.first == cursorLine)
         }
 
         let processedRange = NSRange(location: startOfProcessing, length: processingLength)
@@ -389,7 +391,10 @@ public class EditorTextStorage: NSTextStorage {
         NotificationCenter.default.post(name: NSTextStorage.willProcessEditingNotification, object: self)
         NotificationCenter.default.post(name: NSTextStorage.didProcessEditingNotification, object: self)
         layoutManagers.forEach { manager in
-            manager.processEditing(for: self, edited: editedMask, range: editedRange, changeInLength: changeInLength, invalidatedRange: editedRange)
+            manager.processEditing(for: self,
+                                   edited: editedMask,
+                                   range: editedRange,
+                                   changeInLength: changeInLength, invalidatedRange: editedRange)
         }
 
         if !editedMask.contains(.editedCharacters) {
@@ -404,7 +409,11 @@ public class EditorTextStorage: NSTextStorage {
         self.lastProcessedRange = range
 
         layoutManagers.forEach { manager in
-            manager.processEditing(for: self, edited: .editedAttributes, range: range, changeInLength: 0, invalidatedRange: range)
+            manager.processEditing(for: self,
+                                   edited: .editedAttributes,
+                                   range: range,
+                                   changeInLength: 0,
+                                   invalidatedRange: range)
         }
     }
 
@@ -467,12 +476,15 @@ public class EditorTextStorage: NSTextStorage {
             })
 
             layoutManagers.forEach { manager in
-                manager.processEditing(for: self, edited: .editedAttributes, range: NSRange(location: rangeChanged.upperBound, length: 0), changeInLength: 0, invalidatedRange: rangeChanged)
+                manager.processEditing(for: self,
+                                       edited: .editedAttributes,
+                                       range: NSRange(location: rangeChanged.upperBound, length: 0),
+                                       changeInLength: 0,
+                                       invalidatedRange: rangeChanged)
             }
 
             return rangeChanged
-        }
-        else {
+        } else {
             return NSRange(location: NSNotFound, length: 0)
         }
     }
@@ -481,9 +493,10 @@ public class EditorTextStorage: NSTextStorage {
         var res = [(String, NSRange)]()
         let str = (storage.string as NSString)
         for (i, matchTokens) in self.matchTokens.enumerated() {
-            let ranges = matchTokens.filter{ $0.scopeNames.last?.rawValue == scope }.map{$0.range.shifted(by: lineRanges[i].location)}
+            let ranges = matchTokens.filter({ $0.scopeNames.last?.rawValue == scope })
+                .map({ $0.range.shifted(by: lineRanges[i].location) })
 
-            res += zip(ranges.map{ str.substring(with: $0)}, ranges)
+            res += zip(ranges.map { str.substring(with: $0) }, ranges)
         }
         return res
     }

@@ -7,7 +7,8 @@
 
 import Foundation
 
-/// Theme attribute for applying a theme to a line, specifically some mutation to an attributed strings `paragraphStyle`.
+/// Theme attribute for applying a theme to a line,
+/// specifically some mutation to an attributed strings `paragraphStyle`.
 ///
 /// The mutable paragraph style will be applied to the whole line, when any token contains the attribute.
 ///

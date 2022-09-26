@@ -10,25 +10,25 @@ import Foundation
 public class Parser {
 
     // Must be anchored to the start of the range and enforce word and line boundaries
-    static let matchingOptions = NSRegularExpression.MatchingOptions(arrayLiteral: .anchored, .withTransparentBounds, .withoutAnchoringBounds)
+    static let matchingOptions = NSRegularExpression
+        .MatchingOptions(arrayLiteral: .anchored, .withTransparentBounds, .withoutAnchoringBounds)
 
     private let grammars: [Grammar]
 
     public init(grammars: [Grammar]) {
         self.grammars = grammars
-        self.grammars.forEach{ $0.parser = self }
+        self.grammars.forEach { $0.parser = self }
     }
 
     public func grammar(withScope scope: String) -> Grammar? {
-        return grammars.first(where: {$0.scopeName == scope})
+        return grammars.first(where: { $0.scopeName == scope })
     }
 
     public func tokenize(
         line: String,
         state: LineState,
         withTheme theme: Theme = .default,
-        inRange range: NSRange? = nil
-    ) -> TokenizeResult {
+        inRange range: NSRange? = nil) -> TokenizeResult {
         debug("Tokenizing line: \(line)")
         var state = state
 
@@ -42,10 +42,12 @@ public class Parser {
         ])
 
         var matchTokens = [Token]()
-        while (loc < endLoc) {
-            // Before we apply the rules in the current scope, see if we are in a BeginEndRule and reached the end of its scope.
+        while loc < endLoc {
+            // Before we apply the rules in the current scope, see if we are
+            // in a BeginEndRule and reached the end of its scope.
             if let endPattern = state.currentScope?.end {
-                if let newPos = matches(pattern: endPattern, str: line, in: NSRange(location: loc, length: endLoc-loc)) {
+                if let newPos = matches(pattern: endPattern, str: line,
+                                        in: NSRange(location: loc, length: endLoc-loc)) {
                     // Pop off state.
                     let last = state.scopes.removeLast()
                     // If the state is a content state, pop off the next as well.
@@ -56,15 +58,14 @@ public class Parser {
                             scopes: state.scopes
                         ))
                         state.scopes.removeLast()
-                    }
-                    else {
+                    } else {
                         // Extend the length of current token to include the end match of the BeginEndRule
                         tokenizedLine.increaseLastTokenLength(by: newPos - loc)
                     }
                     // Update the location and start a new token.
                     loc = newPos
                     tokenizedLine.addToken(Token(
-                        range: NSRange(location: loc, length:0),
+                        range: NSRange(location: loc, length: 0),
                         scopes: state.scopes
                     ))
                     continue
@@ -83,7 +84,8 @@ public class Parser {
             for rule in currentScope.rules {
                 // Apply the match rule
                 if let rule = rule as? MatchRule {
-                    if let newPos = matches(pattern: rule.match, str: line, in: NSRange(location: loc, length: endLoc-loc)) {
+                    if let newPos = matches(pattern: rule.match, str: line,
+                                            in: NSRange(location: loc, length: endLoc-loc)) {
                         // Set matched flag
                         matched = true
                         // Create a new scope
@@ -106,7 +108,8 @@ public class Parser {
                         matchTokens.append(matchToken)
 
                         // Apply capture groups
-                        for (i, captureRange) in captures(pattern: rule.match, str: line, in: NSRange(location: loc, length: endLoc-loc)).enumerated() {
+                        for (i, captureRange) in captures(pattern: rule.match, str: line,
+                                                          in: NSRange(location: loc, length: endLoc-loc)).enumerated() {
                             guard i < rule.captures.count else {
                                 // No capture defined for this (or further) capture(/s).
                                 break
@@ -128,7 +131,10 @@ public class Parser {
                             let captureState = LineState(scopes: state.scopes + [captureScope])
 
                             // Use tokenize on the capture as if it was an entire line.
-                            let result = tokenize(line: line, state: captureState, withTheme: theme, inRange: captureRange)
+                            let result = tokenize(line: line,
+                                                  state: captureState,
+                                                  withTheme: theme,
+                                                  inRange: captureRange)
 
                             // Adjust and add the match tokens to our match tokens array
                             matchTokens += result.matchTokens
@@ -139,9 +145,13 @@ public class Parser {
                             // Merge the original token list with the token list from the tokenized capture line.
                             // Strategy:
                             // While both lists are not empty, take the first from each list and compare.
-                            // - If the token from the original list is before the capture list we will either just add it to the new tokens list if it completely before the other token or we will split it and add the front bit to the new list.
-                            // - Otherwise, see if the two tokens have the same range. If so, we merge them add them to the list. Otherwise we will split the larger one.
-                            // - Note: the capture line tokens will never occur before the original token because captures are applied in order.
+                            // - If the token from the original list is before the capture list we will either
+                            //   just add it to the new tokens list if it completely before the other token or
+                            //   we will split it and add the front bit to the new list.
+                            // - Otherwise, see if the two tokens have the same range. If so, we merge them add
+                            //   them to the list. Otherwise we will split the larger one.
+                            // - Note: the capture line tokens will never occur before the original token because
+                            //   captures are applied in order.
                             while var oToken = tokens.first, var cToken = result.tokenizedLine.tokens.first {
                                 // Check if the original token is before the new capture token.
                                 if oToken.range.location < cToken.range.location {
@@ -149,10 +159,10 @@ public class Parser {
                                     // See if they are disjoint
                                     if oToken.range.upperBound <= cToken.range.location {
                                         tokens.removeFirst()
-                                    }
-                                    else {
+                                    } else {
                                         new.range.length = cToken.range.location - oToken.range.location
-                                        tokens[0].range = NSRange(location: cToken.range.location, length: oToken.range.upperBound - cToken.range.location)
+                                        tokens[0].range = NSRange(location: cToken.range.location,
+                                              length: oToken.range.upperBound - cToken.range.location)
                                     }
 
                                     newTokens.append(new)
@@ -171,14 +181,14 @@ public class Parser {
                                 if oToken.range.upperBound == cToken.range.upperBound {
                                     tokens.removeFirst()
                                     result.tokenizedLine.tokens.removeFirst()
-                                }
-                                else if oToken.range.upperBound < cToken.range.upperBound {
-                                    result.tokenizedLine.tokens[0].range = NSRange(location: oToken.range.upperBound, length: cToken.range.upperBound - oToken.range.upperBound)
+                                } else if oToken.range.upperBound < cToken.range.upperBound {
+                                    result.tokenizedLine.tokens[0].range = NSRange(location: oToken.range.upperBound,
+                                        length: cToken.range.upperBound - oToken.range.upperBound)
                                     cToken.range.length = oToken.range.length
                                     tokens.removeFirst()
-                                }
-                                else {
-                                    tokens[0].range = NSRange(location: cToken.range.upperBound, length: oToken.range.upperBound - cToken.range.upperBound)
+                                } else {
+                                    tokens[0].range = NSRange(location: cToken.range.upperBound,
+                                        length: oToken.range.upperBound - cToken.range.upperBound)
                                     oToken.range.length = cToken.range.length
                                     result.tokenizedLine.tokens.removeFirst()
                                 }
@@ -205,7 +215,8 @@ public class Parser {
                 }
                 // Apply the begin end rule
                 else if let rule = rule as? BeginEndRule {
-                    if let newPos = matches(pattern: rule.begin, str: line, in: NSRange(location: loc, length: endLoc-loc)) {
+                    if let newPos = matches(pattern: rule.begin, str: line,
+                                            in: NSRange(location: loc, length: endLoc-loc)) {
                         // Set matched flag
                         matched = true
                         // Create a new scope for the BeginEndRule and add it to the state.
@@ -260,7 +271,13 @@ public class Parser {
         for token in tokenizedLine.tokens {
             let startIndex = line.utf16.index(line.utf16.startIndex, offsetBy: token.range.location)
             let endIndex = line.utf16.index(line.utf16.startIndex, offsetBy: token.range.upperBound)
-            debug(" - Token from \(token.range.location) to \(token.range.upperBound) '\(line[startIndex..<endIndex])' with scopes: [\(token.scopeNames.map{$0.rawValue}.joined(separator: ", "))]")
+            debug(
+"""
+- Token from \(token.range.location) to \(token.range.upperBound) \
+'\(line[startIndex..<endIndex])' with scopes: \
+[\(token.scopeNames.map {$0.rawValue}.joined(separator: ", "))]
+"""
+)
         }
         debug("")
 
@@ -271,8 +288,7 @@ public class Parser {
         let matchRange = pattern.rangeOfFirstMatch(in: str, options: Self.matchingOptions, range: range)
         if matchRange.location != NSNotFound {
             return matchRange.upperBound
-        }
-        else {
+        } else {
             return nil
         }
     }
@@ -286,8 +302,7 @@ public class Parser {
                 }
                 return  match.range(at: i)
             }
-        }
-        else {
+        } else {
             return []
         }
     }

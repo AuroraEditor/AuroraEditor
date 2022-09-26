@@ -44,7 +44,8 @@ class Scope {
         self.name = name
         self.rules = rules
         self.end = end
-        (self.attributes, self.inSelectionAttributes, self.outSelectionAttributes) = theme.allAttributes(forScopeName: name)
+        (self.attributes, self.inSelectionAttributes, self.outSelectionAttributes) =
+            theme.allAttributes(forScopeName: name)
         self.isContentScope = isContentScope
     }
 }

@@ -75,8 +75,7 @@ public class Theme {
             if let child = curr.children[String(comp)] {
                 prev = curr
                 curr = child
-            }
-            else {
+            } else {
                 let new = ThemeTrieElement(
                     children: [:],
                     attributes: [:],
@@ -111,16 +110,18 @@ public class Theme {
         }
     }
 
-    public func allAttributes(forScopeName scopeName: ScopeName) -> ([ThemeAttribute], [ThemeAttribute], [ThemeAttribute]) {
+    public func allAttributes(forScopeName scopeName: ScopeName
+    ) -> ([ThemeAttribute], [ThemeAttribute], [ThemeAttribute]) {
         var curr = root
         for comp in scopeName.components {
             if let child = curr.children[String(comp)] {
                 curr = child
-            }
-            else {
+            } else {
                 break
             }
         }
-        return (Array(curr.attributes.values), Array(curr.inSelectionAttributes.values), Array(curr.outSelectionAttributes.values))
+        return (Array(curr.attributes.values),
+                Array(curr.inSelectionAttributes.values),
+                Array(curr.outSelectionAttributes.values))
     }
 }

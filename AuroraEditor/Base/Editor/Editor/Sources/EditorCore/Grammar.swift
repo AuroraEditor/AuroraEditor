@@ -89,7 +89,11 @@ public class Grammar {
 
     private func resolveRules() -> [Rule] {
         guard let parser = parser else {
-            fatalError("Could not resolve rules for grammar with scope name '\(scopeName)' because it was not owned by a Parser.")
+            fatalError(
+"""
+Could not resolve rules for grammar with scope name '\(scopeName)' because it was not owned by a Parser.
+"""
+            )
         }
 
         var rules = [Rule]()

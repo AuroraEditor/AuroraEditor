@@ -6,15 +6,6 @@
 //
 
 import Foundation
-
-#if os(iOS)
-import UIKit
-public typealias ParagraphStyle = NSParagraphStyle
-public typealias MutableParagraphStyle = NSMutableParagraphStyle
-
-#elseif os(macOS)
 import Cocoa
 public typealias ParagraphStyle = NSParagraphStyle
 public typealias MutableParagraphStyle = NSMutableParagraphStyle
-
-#endif

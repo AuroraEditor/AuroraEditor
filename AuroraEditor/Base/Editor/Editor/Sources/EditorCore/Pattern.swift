@@ -22,10 +22,14 @@ public protocol Pattern {
     ///
     /// Resolves the rule that this pattern represents.
     ///
-    /// For `MatchRule`s  and `BeginEndRule`s  rules, it is as simple as returning the object as the definition of the pattern itself is enough to create the rule. However, for any of the include rules, this requires resolving the rule from the pattern. It done like this to allow cyclic refernces, such as including the current grammar with `IncludeGrammarPattern`.
+    /// For `MatchRule`s  and `BeginEndRule`s  rules, it is as simple as returning the object as the
+    /// definition of the pattern itself is enough to create the rule. However, for any of the include rules, this
+    /// requires resolving the rule from the pattern. It done like this to allow cyclic refernces, such as including
+    /// the current grammar with `IncludeGrammarPattern`.
     ///
     /// - parameter grammar: The grammar that is resolving the pattern into a rule.
     ///
-    /// - Important: It is important to note that any patterns with sub patterns should **NOT** resolve them in this method. They will be resolved as needed, doing so could lead to a resolution cycle.
+    /// - Important: It is important to note that any patterns with sub patterns should **NOT** resolve
+    /// them in this method. They will be resolved as needed, doing so could lead to a resolution cycle.
     func resolve(parser: Parser, grammar: Grammar) -> [Rule]
 }
