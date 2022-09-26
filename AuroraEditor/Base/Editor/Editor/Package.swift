@@ -15,10 +15,7 @@ let package = Package(
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
             name: "EditorCore",
-            targets: ["EditorCore"]),
-        .library(
-            name: "EditorUI",
-            targets: ["EditorUI"])
+            targets: ["EditorCore"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -33,9 +30,6 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "EditorCoreTests",
-            dependencies: ["EditorCore"]),
-        .target(
-            name: "EditorUI",
             dependencies: ["EditorCore"])
     ]
 )
