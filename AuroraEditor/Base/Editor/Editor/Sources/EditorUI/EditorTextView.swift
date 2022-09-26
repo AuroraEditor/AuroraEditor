@@ -11,6 +11,14 @@ import Cocoa
 
 public class EditorTextView: NSTextView {
 
+    override public var string: String {
+        didSet {
+            onStringChanged(string)
+        }
+    }
+
+    public var onStringChanged: (String) -> Void = { _ in }
+
     // MARK: - Attributes
 
     private var _layoutManager: NSLayoutManager?

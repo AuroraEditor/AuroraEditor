@@ -5,6 +5,6 @@
 //  Created by Matthew Davidson on 28/11/19.
 //
 
-import Foundation
+import Cocoa
 
 public typealias Color = NSColor

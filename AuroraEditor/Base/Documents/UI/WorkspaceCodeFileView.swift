@@ -58,7 +58,7 @@ struct WorkspaceCodeFileView: View {
                                 }
                             })
                     } else {
-                        codeEditorView(fileItem, for: item)
+                        editorView(fileItem, for: item)
                             .splitView(availablePositions: [.top, .bottom, .center, .leading, .trailing],
                                        proposalPosition: $dropProposal,
                                        margin: 15,
@@ -91,6 +91,20 @@ struct WorkspaceCodeFileView: View {
         for item: FileSystemClient.FileItem
     ) -> some View {
         CodeEditorViewWrapper(codeFile: codeFile)
+            .safeAreaInset(edge: .top, spacing: 0) {
+                VStack(spacing: 0) {
+                    BreadcrumbsView(file: item, tappedOpenFile: workspace.openTab(item:))
+                    Divider()
+                }
+            }
+    }
+
+    @ViewBuilder
+    private func editorView(
+        _ codeFile: CodeFileDocument,
+        for item: FileSystemClient.FileItem
+    ) -> some View {
+        EditorViewWrapper(codeFile: codeFile)
             .safeAreaInset(edge: .top, spacing: 0) {
                 VStack(spacing: 0) {
                     BreadcrumbsView(file: item, tappedOpenFile: workspace.openTab(item:))
