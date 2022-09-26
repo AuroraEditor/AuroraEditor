@@ -35,18 +35,18 @@ public struct Token {
         }
 
         // Remove common base scopes
-        var i = 0
-        while i < new.scopes.count {
-            guard i < base.scopeNames.count else {
+        var scopeIndex = 0
+        while scopeIndex < new.scopes.count {
+            guard scopeIndex < base.scopeNames.count else {
                 break
             }
-            if new.scopeNames[i] != base.scopeNames[i] {
+            if new.scopeNames[scopeIndex] != base.scopeNames[scopeIndex] {
                 break
             }
-            i += 1
+            scopeIndex += 1
         }
         var merged = new
-        merged.scopes.removeFirst(i)
+        merged.scopes.removeFirst(scopeIndex)
         merged.scopes = base.scopes + merged.scopes
 
         return merged
@@ -56,13 +56,13 @@ public struct Token {
         return Self.mergeTokens(base: self, new: token)
     }
 
-    public mutating func shift(by i: Int) {
-        range = range.shifted(by: i)
+    public mutating func shift(by amount: Int) {
+        range = range.shifted(by: amount)
     }
 
-    public func shifted(by i: Int) -> Token {
+    public func shifted(by amount: Int) -> Token {
         var new = self
-        new.range = range.shifted(by: i)
+        new.range = range.shifted(by: amount)
         return new
     }
 }

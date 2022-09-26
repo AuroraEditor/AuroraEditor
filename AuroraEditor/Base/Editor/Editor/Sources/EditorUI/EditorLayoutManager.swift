@@ -58,13 +58,13 @@ within selected character range: \(range), in text container: \(textContainer)
                 let cornerRadius = lineHeight * roundedBackground.roundingStyle.rawValue / 2
 
                 // Adjust for text container insets
-                for i in 0..<rectCount {
-                    rectArray[i] = rectArray[i].offsetBy(dx: origin.x, dy: origin.y)
+                for rectIndex in 0..<rectCount {
+                    rectArray[rectIndex] = rectArray[rectIndex].offsetBy(dx: origin.x, dy: origin.y)
                     // TODO: Move into RoundedBackground class.
                     let leftInset: CGFloat = -1
                     let rightInset: CGFloat = -1
-                    rectArray[i] = rectArray[i].insetBy(dx: leftInset + rightInset, dy: 0)
-                    rectArray[i] = rectArray[i].offsetBy(dx: (leftInset - rightInset)/2, dy: 0)
+                    rectArray[rectIndex] = rectArray[rectIndex].insetBy(dx: leftInset + rightInset, dy: 0)
+                    rectArray[rectIndex] = rectArray[rectIndex].offsetBy(dx: (leftInset - rightInset)/2, dy: 0)
                 }
 
                 self.fillRoundedBackgroundRectArray(rectArray,

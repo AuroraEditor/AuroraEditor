@@ -15,7 +15,7 @@ public struct LineState: Equatable {
     }
 
     var scopeNames: [ScopeName] {
-        return scopes.map({$0.name})
+        return scopes.map({ $0.name })
     }
 
     public static func == (lhs: LineState, rhs: LineState) -> Bool {

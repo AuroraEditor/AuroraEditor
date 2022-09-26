@@ -24,7 +24,7 @@ public class Parser {
         return grammars.first(where: { $0.scopeName == scope })
     }
 
-    public func tokenize(
+    public func tokenize( // swiftlint:disable:this cyclomatic_complexity function_body_length
         line: String,
         state: LineState,
         withTheme theme: Theme = .default,
@@ -108,14 +108,14 @@ public class Parser {
                         matchTokens.append(matchToken)
 
                         // Apply capture groups
-                        for (i, captureRange) in captures(pattern: rule.match, str: line,
+                        for (index, captureRange) in captures(pattern: rule.match, str: line,
                                                           in: NSRange(location: loc, length: endLoc-loc)).enumerated() {
-                            guard i < rule.captures.count else {
+                            guard index < rule.captures.count else {
                                 // No capture defined for this (or further) capture(/s).
                                 break
                             }
                             // Get the capture definition from the rule
-                            let capture = rule.captures[i]
+                            let capture = rule.captures[index]
 
                             guard capture.isActive else {
                                 continue
@@ -234,8 +234,6 @@ public class Parser {
                             scopes: state.scopes
                         ))
 
-                        print()
-
                         // If the BeginEndRule has a content name:
                         if let contentName = rule.contentScopeName {
                             // Add an additional scope, with the same rules and end pattern.
@@ -275,7 +273,7 @@ public class Parser {
 """
 - Token from \(token.range.location) to \(token.range.upperBound) \
 '\(line[startIndex..<endIndex])' with scopes: \
-[\(token.scopeNames.map {$0.rawValue}.joined(separator: ", "))]
+[\(token.scopeNames.map { $0.rawValue }.joined(separator: ", "))]
 """
 )
         }
@@ -295,12 +293,12 @@ public class Parser {
 
     func captures(pattern: NSRegularExpression, str: String, in range: NSRange) -> [NSRange] {
         if let match = pattern.firstMatch(in: str, options: Self.matchingOptions, range: range) {
-            return (0..<match.numberOfRanges).compactMap { i -> NSRange? in
-                let captureRange = match.range(at: i)
+            return (0..<match.numberOfRanges).compactMap { index -> NSRange? in
+                let captureRange = match.range(at: index)
                 guard captureRange.location != NSNotFound else {
                     return nil
                 }
-                return  match.range(at: i)
+                return  match.range(at: index)
             }
         } else {
             return []
@@ -311,7 +309,7 @@ public class Parser {
 
     func debug(_ str: String) {
         if shouldDebug {
-            print(str)
+            print(str) // swiftlint:disable:this disallow_print
         }
     }
 }

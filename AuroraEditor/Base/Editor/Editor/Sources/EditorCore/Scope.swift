@@ -56,10 +56,8 @@ extension Scope: Equatable {
         if lhs.name != rhs.name { return false }
         if lhs.end != rhs.end { return false }
         if lhs.rules.count != rhs.rules.count { return false }
-        for (l, r) in zip(lhs.rules, rhs.rules) {
-            if l != r {
-                return false
-            }
+        for (first, second) in zip(lhs.rules, rhs.rules) where first != second {
+            return false
         }
         return true
     }

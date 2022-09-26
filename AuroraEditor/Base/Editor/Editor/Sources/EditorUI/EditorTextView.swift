@@ -15,7 +15,7 @@ public class EditorTextView: NSTextView {
 
     private var _layoutManager: NSLayoutManager?
 
-    public override var layoutManager: NSLayoutManager? {
+    override public var layoutManager: NSLayoutManager? {
         get {
             if let m = _layoutManager {
                 return m
@@ -191,19 +191,19 @@ public class EditorTextView: NSTextView {
 
     // Courtesy of: https://christiantietze.de/posts/2017/08/nstextview-fat-caret/
     public var caretSize: CGFloat = 4
-    open override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
+    override open func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
         var rect = rect
         rect.size.width = caretSize
         super.drawInsertionPoint(in: rect, color: color, turnedOn: flag)
     }
 
-    open override func setNeedsDisplay(_ rect: NSRect, avoidAdditionalLayout flag: Bool) {
+    override open func setNeedsDisplay(_ rect: NSRect, avoidAdditionalLayout flag: Bool) {
         var rect = rect
         rect.size.width += caretSize - 1
         super.setNeedsDisplay(rect, avoidAdditionalLayout: flag)
     }
 
-    public override func insertTab(_ sender: Any?) {
+    override public func insertTab(_ sender: Any?) {
         let range = selectedRange()
         if indentUsingSpaces && tabWidth > 0,
             let storage = textStorage as? EditorTextStorage,
@@ -220,7 +220,7 @@ public class EditorTextView: NSTextView {
         }
     }
 
-    public override func insertNewline(_ sender: Any?) {
+    override public func insertNewline(_ sender: Any?) {
         let range = selectedRange()
         if autoIndent, let storage = textStorage as? EditorTextStorage, range.location != NSNotFound {
             let lineNo = storage.getLocationLine(range.location)
@@ -248,6 +248,7 @@ extension EditorTextView {
         _grammar = baseGrammar
         _theme = theme
         guard let storage = textStorage as? EditorTextStorage else {
+            // swiftlint:disable:this disallow_print
             print("Cannot set grammar and them on text storage because it is not of type EditorTextStorage")
             return
         }

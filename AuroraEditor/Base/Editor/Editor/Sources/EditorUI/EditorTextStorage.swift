@@ -9,6 +9,7 @@ import Foundation
 import EditorCore
 import Cocoa
 
+// swiftlint:disable:next type_body_length
 public class EditorTextStorage: NSTextStorage {
 
     private var storage: NSMutableAttributedString
@@ -126,13 +127,13 @@ public class EditorTextStorage: NSTextStorage {
         lineRanges.insert(contentsOf: newLineRanges, at: line)
 
         // Shift the start locations after inserted ranges.
-        for i in line+newLineRanges.count..<lineRanges.count {
-            lineRanges[i].location += str.utf16.count - range.length
+        for lineIndex in line+newLineRanges.count..<lineRanges.count {
+            lineRanges[lineIndex].location += str.utf16.count - range.length
         }
 
         // Update lengths of new ranges and the one before (as it may have changed)
-        for i in max(line-1, 0)..<min(lineRanges.count - 1, line+newLineRanges.count) {
-            lineRanges[i].length = lineRanges[i + 1].location - lineRanges[i].location
+        for lineIndex in max(line-1, 0)..<min(lineRanges.count - 1, line+newLineRanges.count) {
+            lineRanges[lineIndex].length = lineRanges[lineIndex + 1].location - lineRanges[lineIndex].location
         }
 
         // If the last line range is a new line range, we set the length based on the text storage.
@@ -144,10 +145,10 @@ public class EditorTextStorage: NSTextStorage {
     func checkLineRanges() {
         assert(!lineRanges.isEmpty)
 
-        var i = 0
-        while i < lineRanges.count-2 {
-            assert(lineRanges[i].upperBound == lineRanges[i+1].location)
-            i += 1
+        var lineIndex = 0
+        while lineIndex < lineRanges.count-2 {
+            assert(lineRanges[lineIndex].upperBound == lineRanges[lineIndex+1].location)
+            lineIndex += 1
         }
 
         if let lastNewLine = storage.string.lastIndex(of: "\n")?.utf16Offset(in: storage.string) {
@@ -242,8 +243,8 @@ public class EditorTextStorage: NSTextStorage {
         return min(line, lineRanges.count - 1)
     }
 
-    public func getLine(_ i: Int) -> String {
-        return (string as NSString).substring(with: lineRanges[i])
+    public func getLine(_ index: Int) -> String {
+        return (string as NSString).substring(with: lineRanges[index])
     }
 
     public func getLocationOnLine(_ loc: Int) -> Int {
@@ -280,7 +281,7 @@ public class EditorTextStorage: NSTextStorage {
     ///     using the pevious state of the document.
     /// - Returns: The processed range: the range of the string that was processed and attributes were applied.
     ///
-    func processSyntaxHighlighting(editedRange: NSRange) -> NSRange {
+    func processSyntaxHighlighting(editedRange: NSRange) -> NSRange { // swiftlint:disable:this function_body_length
         // Return if empty
         if string.isEmpty {
             matchTokens = []
@@ -373,14 +374,15 @@ public class EditorTextStorage: NSTextStorage {
 
         debug("Lines processed: \(processingLines.first) to \(processingLines.last)")
 
-        guard !self.tokenizedLines.contains(where: {$0==nil}) && self.tokenizedLines.count == nContentLines else {
+        guard !self.tokenizedLines.contains(where: { $0 == nil }) &&
+                self.tokenizedLines.count == nContentLines else {
             fatalError("Failed to cache tokenized lines correctly")
         }
 
         return processedRange
     }
 
-    public override func processEditing() {
+    override public func processEditing() {
         let editedRange = self.editedRange
         _isProcessingEditing = true
         defer {
@@ -435,9 +437,9 @@ public class EditorTextStorage: NSTextStorage {
         // Find the lines of selection
         var selectionLines = Set<Int>()
         for range in selectedRanges {
-            let (i, j) = getEditedLines(lineStartLocs: self.lineStartLocs, editedRange: range)
-            for x in i...j {
-                selectionLines.insert(x)
+            let (start, end) = getEditedLines(lineStartLocs: self.lineStartLocs, editedRange: range)
+            for index in start...end {
+                selectionLines.insert(index)
             }
         }
 
@@ -451,17 +453,18 @@ public class EditorTextStorage: NSTextStorage {
         // Update the selected and unselected lines
         var lineLoc = 0
         var rangesChanged = [NSRange]()
-        for (i, tokenizedLine) in tokenizedLines.enumerated() {
+        for (lineIndex, tokenizedLine) in tokenizedLines.enumerated() {
             guard let tokenizedLine = tokenizedLine else {
-                print("Warning: Unexpectedly found nil tokenized line at index \(i) in updateSelectedRanges")
+                // swiftlint:disable:this disallow_print
+                print("Warning: Unexpectedly found nil tokenized line at index \(lineIndex) in updateSelectedRanges")
                 continue
             }
 
-            if newLines.contains(i) {
+            if newLines.contains(lineIndex) {
                 tokenizedLine.applyTheme(storage, at: lineLoc, inSelectionScope: true, applyBaseAttributes: false)
                 rangesChanged.append(NSRange(location: lineLoc, length: tokenizedLine.length))
             }
-            if removedLines.contains(i) {
+            if removedLines.contains(lineIndex) {
                 tokenizedLine.applyTheme(storage, at: lineLoc, inSelectionScope: false, applyBaseAttributes: false)
                 rangesChanged.append(NSRange(location: lineLoc, length: tokenizedLine.length))
             }
@@ -492,9 +495,9 @@ public class EditorTextStorage: NSTextStorage {
     public func getTokens(forScope scope: String) -> [(String, NSRange)] {
         var res = [(String, NSRange)]()
         let str = (storage.string as NSString)
-        for (i, matchTokens) in self.matchTokens.enumerated() {
+        for (index, matchTokens) in self.matchTokens.enumerated() {
             let ranges = matchTokens.filter({ $0.scopeNames.last?.rawValue == scope })
-                .map({ $0.range.shifted(by: lineRanges[i].location) })
+                .map({ $0.range.shifted(by: lineRanges[index].location) })
 
             res += zip(ranges.map { str.substring(with: $0) }, ranges)
         }
@@ -506,4 +509,4 @@ public class EditorTextStorage: NSTextStorage {
             print(str)
         }
     }
-}
+} // swiftlint:disable:this file_length

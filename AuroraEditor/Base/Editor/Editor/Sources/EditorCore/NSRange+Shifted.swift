@@ -9,7 +9,7 @@ import Foundation
 
 public extension NSRange {
 
-    func shifted(by i: Int) -> NSRange {
-        return NSRange(location: location + i, length: length)
+    func shifted(by amount: Int) -> NSRange {
+        return NSRange(location: location + amount, length: length)
     }
 }

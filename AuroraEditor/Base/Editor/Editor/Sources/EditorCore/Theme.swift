@@ -20,11 +20,11 @@ public class Theme {
     }
 
     static func sortSettings(settings: [ThemeSetting]) -> [ThemeSetting] {
-        return settings.sorted { (a, b) -> Bool in
-            if a.scopeComponents.count != b.scopeComponents.count {
-                return a.scopeComponents.count < b.scopeComponents.count
+        return settings.sorted { (first, second) -> Bool in
+            if first.scopeComponents.count != second.scopeComponents.count {
+                return first.scopeComponents.count < second.scopeComponents.count
             }
-            return a.parentScopes.count < b.parentScopes.count
+            return first.parentScopes.count < second.parentScopes.count
         }
     }
 
@@ -38,11 +38,11 @@ public class Theme {
             parentScopeElements: [:]
         )
 
-        if settings.count == 0 {
+        if settings.isEmpty {
             return root
         }
 
-        if settings[0].scope == "" {
+        if settings[0].scope.isEmpty {
             root.attributes = settings.removeFirst().attributes.reduce([:], {
                 var res = $0
                 res[$1.key] = $1
@@ -89,7 +89,7 @@ public class Theme {
             }
         }
         guard prev != nil else {
-            print("Error: prev is nil")
+            print("Error: prev is nil") // swiftlint:disable:this disallow_print
             return
         }
         curr.attributes = (prev?.attributes ?? [:])
@@ -105,13 +105,13 @@ public class Theme {
             curr.outSelectionAttributes[attr.key] = attr
         }
 
-        if setting.parentScopes.count > 0 {
+        if !setting.parentScopes.isEmpty {
             print("Warning: Theme parent scopes not implemented")
         }
     }
 
     public func allAttributes(forScopeName scopeName: ScopeName
-    ) -> ([ThemeAttribute], [ThemeAttribute], [ThemeAttribute]) {
+    ) -> ([ThemeAttribute], [ThemeAttribute], [ThemeAttribute]) { // swiftlint:disable:this large_tuple
         var curr = root
         for comp in scopeName.components {
             if let child = curr.children[String(comp)] {

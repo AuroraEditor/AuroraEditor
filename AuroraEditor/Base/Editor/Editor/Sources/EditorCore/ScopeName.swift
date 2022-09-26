@@ -12,7 +12,7 @@ public class ScopeName: RawRepresentable {
     public let rawValue: String
     public let components: [String]
 
-    required public init(rawValue: String) {
+    public required init(rawValue: String) {
         self.rawValue = rawValue
         self.components = rawValue.split(separator: ".").map(String.init)
     }

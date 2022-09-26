@@ -17,23 +17,11 @@ public class Editor: NSObject {
 
     let textView: EditorTextView
 
-    var _parser: Parser
+    private(set) var parser: Parser
 
-    var _grammar: Grammar
+    private(set) var grammar: Grammar
 
-    var _theme: Theme
-
-    var parser: Parser {
-        _parser
-    }
-
-    var grammar: Grammar {
-        _grammar
-    }
-
-    var theme: Theme {
-        _theme
-    }
+    private(set) var theme: Theme
 
     private var fixedGlyphProperties = [NSRange: [NSLayoutManager.GlyphProperty]]()
     private var shouldResetGlyphProperties = true
@@ -48,9 +36,9 @@ public class Editor: NSObject {
         theme: Theme,
         notificationCenter: NotificationCenter = .default) {
         self.textView = textView
-        self._parser = parser
-        self._grammar = baseGrammar
-        self._theme = theme
+        self.parser = parser
+        self.grammar = baseGrammar
+        self.theme = theme
         super.init()
 
         textView.delegate = self
@@ -68,9 +56,9 @@ public class Editor: NSObject {
     }
 
     public func replace(parser: Parser, baseGrammar: Grammar, theme: Theme) {
-        _parser = parser
-        _grammar = baseGrammar
-        _theme = theme
+        self.parser = parser
+        grammar = baseGrammar
+        self.theme = theme
 
         textView.replace(parser: parser, baseGrammar: baseGrammar, theme: theme)
         textView.typingAttributes = baseGrammar.baseAttributes(forTheme: theme)
@@ -128,6 +116,7 @@ extension Editor: NSTextViewDelegate {
             return false
         }
 
+        // swiftlint:disable:this disallow_print
         print(linkRange)
         let str = (textView.string as NSString).substring(with: linkRange)
 
@@ -143,7 +132,7 @@ extension Editor: NSTextViewDelegate {
         }
 
         if !storage.isProcessingEditing {
-            let rangeChanged = storage.updateSelectedRanges(textView.selectedRanges.map {$0.rangeValue})
+            let rangeChanged = storage.updateSelectedRanges(textView.selectedRanges.map { $0.rangeValue })
 
             // If there are any lines that changed
             if rangeChanged.location != NSNotFound {
@@ -210,9 +199,9 @@ extension Editor: NSLayoutManagerDelegate {
         })
 
         // Set the glyph properties
-        for i in 0 ..< glyphRange.length {
-            let characterIndex = charIndexes[i]
-            var glyphProperties = props[i]
+        for glyphIndex in 0 ..< glyphRange.length {
+            let characterIndex = charIndexes[glyphIndex]
+            var glyphProperties = props[glyphIndex]
 
             let matchingHiddenRanges = hiddenRanges.filter { NSLocationInRange(characterIndex, $0) }
             if !matchingHiddenRanges.isEmpty {

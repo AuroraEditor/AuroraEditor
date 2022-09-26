@@ -71,7 +71,7 @@ public class LineNumberGutter: NSRulerView {
     ///  Draws the line numbers.
     ///
     ///  - parameter rect: NSRect to draw the gutter view in.
-    override public func drawHashMarksAndLabels(in rect: NSRect) {
+    override public func drawHashMarksAndLabels(in rect: NSRect) { // swiftlint:disable:this function_body_length
         // Set the current background color...
         self.backgroundColor.set()
         // ...and fill the given rect.
@@ -157,7 +157,7 @@ public class LineNumberGutter: NSRulerView {
         }
 
         // Draw another line number for the extra line fragment.
-        if let _ = layoutManager.extraLineFragmentTextContainer {
+        if layoutManager.extraLineFragmentTextContainer != nil {
             self.drawLineNumber(
                 num: lineNumber,
                 atY: layoutManager.extraLineFragmentRect.minY + textView.textContainerInset.height,
@@ -180,14 +180,14 @@ public class LineNumberGutter: NSRulerView {
         // Loop through each visible line.
         var loc = visibleRange.location
         var currentLines = [Int]()
-        for (i, line) in visLines.enumerated() {
+        for (index, line) in visLines.enumerated() {
             // See if the any of the selected ranges has an intersection
             // with the line, if so then this line is part of the selection.
             let lineRange = NSRange(location: loc, length: line.utf16.count)
             if selectedRanges.filter({
                 $0.intersection(lineRange) != nil
-            }).count > 0 {
-                currentLines.append(i + firstLineNumber)
+            }).isEmpty != true {
+                currentLines.append(index + firstLineNumber)
             }
             loc += line.utf16.count
         }

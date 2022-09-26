@@ -11,6 +11,6 @@ import EditorCore
 extension ThemeAttribute {
 
     func error(_ details: String = "") {
-        print("Failed to apply ThemeAttribute '\(key)'. \(details)")
+        print("Failed to apply ThemeAttribute '\(key)'. \(details)") // swiftlint:disable:this disallow_print
     }
 }
