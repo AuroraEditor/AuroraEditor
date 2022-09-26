@@ -221,6 +221,7 @@ public class Log {
             date: date
         )
 
-        Log.info(result)
+        // swiftlint:disable:this disallow_print
+        print(result)
     }
 }
