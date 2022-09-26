@@ -43,14 +43,14 @@ struct EditorFileView: NSViewRepresentable {
         scrollView.scrollerStyle = .overlay
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = false
-        scrollView.autohidesScrollers = true
         scrollView.contentView.automaticallyAdjustsContentInsets = false
         scrollView.contentView.contentInsets = .init(top: -10, left: 0, bottom: 0, right: 0)
 
         DispatchQueue.main.async {
             self.parser = Parser(grammars: [basicSwiftGrammar])
             parser.shouldDebug = false
-            self.editor = Editor(textView: textView, parser: parser,
+            self.editor = Editor(textView: textView,
+                                 parser: parser,
                                  baseGrammar: basicSwiftGrammar, theme: exampleTheme)
             editor.subscribe(toToken: "action") { (res) in
                 for (str, range) in res {
@@ -101,7 +101,8 @@ let basicSwiftGrammar = Grammar(
         ]),
         BeginEndRule(name: "comment.line.double-slash.swift", begin: "//", end: "\\n", patterns: [IncludeRulePattern(include: "todo")]),
         BeginEndRule(name: "comment.block", begin: "/\\*", end: "\\*/", patterns: [IncludeRulePattern(include: "todo")])
-    ], repository: Repository(patterns: [
+    ],
+    repository: Repository(patterns: [
         "todo": MatchRule(name: "comment.keyword.todo", match: "TODO")
     ])
 )

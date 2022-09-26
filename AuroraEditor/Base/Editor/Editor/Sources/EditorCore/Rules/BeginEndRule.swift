@@ -40,6 +40,8 @@ public class BeginEndRule: Rule, Pattern {
     /// TODO:
     var endCaptures: [String]
 
+    var endHasBackReferences: Bool
+
     private var rules: [Rule]?
 
     public init(
@@ -49,7 +51,8 @@ public class BeginEndRule: Rule, Pattern {
         contentName: String? = nil,
         patterns: [Pattern],
         beginCaptures: [String] = [],
-        endCaptures: [String] = []
+        endCaptures: [String] = [],
+        endHasBackReferences: Bool = false
     ) {
         self.id = UUID()
         self.scopeName = ScopeName(rawValue: name)
@@ -75,6 +78,7 @@ Could not create regex for BeginEndRule with name '\(name)' due to error: \(erro
         }
         self.beginCaptures = beginCaptures
         self.endCaptures = endCaptures
+        self.endHasBackReferences = endHasBackReferences
     }
 
     public func resolve(parser: Parser, grammar: Grammar) -> [Rule] {

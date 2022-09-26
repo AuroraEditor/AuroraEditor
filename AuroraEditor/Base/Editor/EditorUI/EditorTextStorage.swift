@@ -326,6 +326,8 @@ public class EditorTextStorage: NSTextStorage {
 
             // Tokenize the line
             let line = (storage.string as NSString).substring(with: lineRanges[processingLine])
+
+            // Hightlinting from the parser begins here
             let result = parser.tokenize(line: line, state: state, withTheme: theme)
             tokenizedLines.append(result.tokenizedLine)
 
