@@ -1036,6 +1036,7 @@
 		93D5F5D628CE0EF500286EBD /* TabHierarchyMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyMenu.swift; sourceTree = "<group>"; };
 		93D5F5D828CE123200286EBD /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
 		93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		93DFA71A28E1655B002022C7 /* Editor */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Editor; path = AuroraEditor/Base/Editor/Editor; sourceTree = "<group>"; };
 		93EF415B28C1D21E004083AD /* CommandPaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteView.swift; sourceTree = "<group>"; };
 		93EF415E28C1D2DB004083AD /* CommandPaletteState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteState.swift; sourceTree = "<group>"; };
 		93EF416028C1D38E004083AD /* CommandPaletteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteItem.swift; sourceTree = "<group>"; };
@@ -3129,6 +3130,14 @@
 			path = HierarchyNavigator;
 			sourceTree = "<group>";
 		};
+		93DFA71928E1655B002022C7 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				93DFA71A28E1655B002022C7 /* Editor */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		93EF415928C1D1BF004083AD /* CommandPalette */ = {
 			isa = PBXGroup;
 			children = (
@@ -3170,6 +3179,7 @@
 		B658FB2327DA9E0F00EA4DBD = {
 			isa = PBXGroup;
 			children = (
+				93DFA71928E1655B002022C7 /* Packages */,
 				B658FB2E27DA9E0F00EA4DBD /* AuroraEditor */,
 				2BE487ED28245162003F3F64 /* OpenWithAuroraEditor */,
 				B658FB2D27DA9E0F00EA4DBD /* Products */,
