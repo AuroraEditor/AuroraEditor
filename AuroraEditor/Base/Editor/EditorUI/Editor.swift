@@ -116,8 +116,7 @@ extension Editor: NSTextViewDelegate {
             return false
         }
 
-        // swiftlint:disable:this disallow_print
-        print(linkRange)
+        Log.info(linkRange)
         let str = (textView.string as NSString).substring(with: linkRange)
 
         handler(str, linkRange)

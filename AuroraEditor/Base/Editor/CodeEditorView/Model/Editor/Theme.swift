@@ -90,7 +90,7 @@ public struct Theme: Identifiable {
         self.selectionColour = selectionColour
         self.cursorColour = cursorColour
         self.invisiblesColour = invisiblesColour
-        self.editorTheme = editorTheme ?? exampleTheme
+        self.editorTheme = editorTheme ?? .default
     }
 }
 

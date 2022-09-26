@@ -455,8 +455,7 @@ public class EditorTextStorage: NSTextStorage {
         var rangesChanged = [NSRange]()
         for (lineIndex, tokenizedLine) in tokenizedLines.enumerated() {
             guard let tokenizedLine = tokenizedLine else {
-                // swiftlint:disable:this disallow_print
-                print("Warning: Unexpectedly found nil tokenized line at index \(lineIndex) in updateSelectedRanges")
+                Log.info("Warning: Unexpectedly found nil tokenized line at index \(lineIndex) in updateSelectedRanges")
                 continue
             }
 
@@ -506,7 +505,7 @@ public class EditorTextStorage: NSTextStorage {
 
     private func debug(_ str: String = "") {
         if shouldDebug {
-            print(str)
+            Log.info(str)
         }
     }
 } // swiftlint:disable:this file_length

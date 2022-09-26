@@ -198,7 +198,7 @@ public class EditorTextView: NSTextView {
     }
 
     // Courtesy of: https://christiantietze.de/posts/2017/08/nstextview-fat-caret/
-    public var caretSize: CGFloat = 4
+    public var caretSize: CGFloat = 1
     override open func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
         var rect = rect
         rect.size.width = caretSize
@@ -256,8 +256,7 @@ extension EditorTextView {
         _grammar = baseGrammar
         _theme = theme
         guard let storage = textStorage as? EditorTextStorage else {
-            // swiftlint:disable:this disallow_print
-            print("Cannot set grammar and them on text storage because it is not of type EditorTextStorage")
+            Log.info("Cannot set grammar and them on text storage because it is not of type EditorTextStorage")
             return
         }
         storage.replace(parser: parser, baseGrammar: baseGrammar, theme: theme)
