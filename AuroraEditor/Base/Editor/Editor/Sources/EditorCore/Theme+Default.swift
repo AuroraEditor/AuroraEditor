@@ -1,5 +1,5 @@
 //
-//  Theme+Default.swift
+//  EditorTheme+Default.swift
 //  
 //
 //  Created by Matthew Davidson on 9/12/19.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension Theme {
+public extension EditorTheme {
 
-    static let `default` = Theme(name: "", settings: [])
+    static let `default` = EditorTheme(name: "", settings: [])
 }

@@ -27,7 +27,7 @@ public class Parser {
     public func tokenize( // swiftlint:disable:this cyclomatic_complexity function_body_length
         line: String,
         state: LineState,
-        withTheme theme: Theme = .default,
+        withTheme theme: EditorTheme = .default,
         inRange range: NSRange? = nil) -> TokenizeResult {
         debug("Tokenizing line: \(line)")
         var state = state

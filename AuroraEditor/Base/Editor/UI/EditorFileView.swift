@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import EditorUI
 import EditorCore
 
 struct EditorFileView: NSViewRepresentable {
@@ -108,7 +107,7 @@ let basicSwiftGrammar = Grammar(
 )
 
 let fontSize: CGFloat = 12
-let exampleTheme: EditorCore.Theme = EditorCore.Theme(name: "basic", settings: [
+let exampleTheme: EditorTheme = EditorTheme(name: "basic", settings: [
     ThemeSetting(scope: "comment", parentScopes: [], attributes: [
         ColorThemeAttribute(color: .systemGreen)
     ]),

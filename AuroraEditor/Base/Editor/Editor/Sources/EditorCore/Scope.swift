@@ -38,7 +38,7 @@ class Scope {
         name: ScopeName,
         rules: [Rule],
         end: NSRegularExpression? = nil,
-        theme: Theme,
+        theme: EditorTheme,
         isContentScope: Bool = false
     ) {
         self.name = name
