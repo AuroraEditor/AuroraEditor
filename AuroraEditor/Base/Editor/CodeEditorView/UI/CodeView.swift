@@ -76,7 +76,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
     /// Designated initialiser for code views with a gutter.
     init(frame: CGRect, // swiftlint:disable:this function_body_length
-         with language: LanguageConfiguration,
          viewLayout: CodeEditor.LayoutConfiguration,
          theme: Theme) {
 
@@ -92,7 +91,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         codeLayoutManager.addTextContainer(codeContainer)
         codeLayoutManager.delegate = codeLayoutManagerDelegate
 
-        codeStorageDelegate = CodeStorageDelegate(with: language)
+        codeStorageDelegate = CodeStorageDelegate()
 
         super.init(frame: frame, textContainer: codeContainer)
 

@@ -76,8 +76,6 @@ struct LineInfo {
 // MARK: - Delegate class
 class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
 
-    let language: LanguageConfiguration
-
     var lineMap = LineMap<LineInfo>(string: "")
 
     /// The message bundle IDs that got invalidated by the last editing operation because the lines to which they were
@@ -87,11 +85,6 @@ class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
     /// Flag that indicates that the current editing round is for a one-character addition to the text. This property
     /// needs to be determined before attribute fixing and the like.
     private var processingOneCharacterEdit: Bool?
-
-    init(with language: LanguageConfiguration) {
-        self.language = language
-        super.init()
-    }
 
     func textStorage(_ textStorage: NSTextStorage,
                      willProcessEditing editedMask: TextStorageEditActions,

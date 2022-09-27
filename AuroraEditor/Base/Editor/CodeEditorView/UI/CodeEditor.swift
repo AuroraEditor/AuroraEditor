@@ -56,7 +56,6 @@ public struct CodeEditor {
         }
     }
 
-    let language: LanguageConfiguration
     let layout: LayoutConfiguration
 
     @Binding var text: String
@@ -78,13 +77,11 @@ public struct CodeEditor {
                 position: Binding<Position>,
                 caretPosition: Binding<CursorLocation>,
                 messages: Binding<Set<Located<Message>>>,
-                language: LanguageConfiguration = .none,
                 layout: LayoutConfiguration = .standard) {
         self._text = text
         self._position = position
         self._caretPosition = caretPosition
         self._messages = messages
-        self.language = language
         self.layout = layout
     }
 
@@ -121,8 +118,7 @@ struct CodeEditor_Previews: PreviewProvider {
             text: .constant("-- Hello World!"),
             position: .constant(CodeEditor.Position()),
             caretPosition: .constant(.init(line: 0, column: 0)),
-            messages: .constant(Set()),
-            language: .none
+            messages: .constant(Set())
         )
     }
 }

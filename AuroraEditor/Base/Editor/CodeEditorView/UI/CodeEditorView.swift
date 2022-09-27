@@ -16,7 +16,6 @@ extension CodeEditor: NSViewRepresentable {
 
         // Set up text view with gutter
         let codeView = CodeView(frame: CGRect(x: 0, y: 0, width: 100, height: 40),
-                                with: language,
                                 viewLayout: layout,
                                 theme: context.environment.codeEditorTheme)
 
