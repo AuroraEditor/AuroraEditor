@@ -44,7 +44,7 @@ struct EditorFileView: NSViewRepresentable {
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = false
         scrollView.contentView.automaticallyAdjustsContentInsets = false
-        scrollView.contentView.contentInsets = .init(top: -10, left: 0, bottom: 0, right: 0)
+        scrollView.contentView.contentInsets = .init(top: -10, left: 0, bottom: 200, right: 0)
 
         DispatchQueue.main.async {
             self.parser = Parser(grammars: [basicSwiftGrammar])
@@ -72,6 +72,10 @@ struct EditorFileView: NSViewRepresentable {
             textView.selectedTextAttributes.removeValue(forKey: .foregroundColor)
             textView.linkTextAttributes?.removeValue(forKey: .foregroundColor)
             textView.frame = nsView.bounds
+            nsView.contentView.contentInsets = .init(top: -10,
+                                                     left: 0,
+                                                     bottom: nsView.visibleRect.height/2,
+                                                     right: 0)
         }
     }
 }
