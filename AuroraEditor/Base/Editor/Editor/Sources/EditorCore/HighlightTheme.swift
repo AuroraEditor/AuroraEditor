@@ -1,5 +1,5 @@
 //
-//  EditorTheme.swift
+//  HighlightTheme.swift
 //  
 //
 //  Created by Matthew Davidson on 28/11/19.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class EditorTheme {
+public class HighlightTheme {
 
     var name: String
 
@@ -16,7 +16,7 @@ public class EditorTheme {
     public init(name: String, settings: [ThemeSetting]) {
         self.name = name
 
-        self.root = EditorTheme.createTrie(settings: settings)
+        self.root = HighlightTheme.createTrie(settings: settings)
     }
 
     static func sortSettings(settings: [ThemeSetting]) -> [ThemeSetting] {
@@ -106,7 +106,7 @@ public class EditorTheme {
         }
 
         if !setting.parentScopes.isEmpty {
-            print("Warning: EditorTheme parent scopes not implemented")
+            print("Warning: HighlightTheme parent scopes not implemented")
         }
     }
 

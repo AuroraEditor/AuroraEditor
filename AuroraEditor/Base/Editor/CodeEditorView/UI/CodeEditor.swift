@@ -10,7 +10,7 @@ import SwiftUI
 /// SwiftUI code editor based on TextKit.
 ///
 /// SwiftUI `Environment`:
-/// * Environment value `codeEditorTheme`: determines the code highlighting theme to use
+/// * Environment value `codeHighlightTheme`: determines the code highlighting theme to use
 /// * Text-related values: affect the rendering of message views
 public struct CodeEditor {
 
@@ -107,7 +107,7 @@ public struct CodeEditor {
 }
 
 /// Environment key for the current code editor theme.
-public struct CodeEditorTheme: EnvironmentKey {
+public struct CodeHighlightTheme: EnvironmentKey {
     public static var defaultValue: Theme = Theme.defaultLight
 }
 

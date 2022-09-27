@@ -65,7 +65,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         }
     }
 
-    var highlightTheme: EditorTheme = exampleTheme
+    var highlightTheme: HighlightTheme = exampleTheme
 
     /// The current view layout.
     var viewLayout: CodeEditor.LayoutConfiguration {

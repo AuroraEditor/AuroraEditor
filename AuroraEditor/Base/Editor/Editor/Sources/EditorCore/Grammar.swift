@@ -58,7 +58,7 @@ public class Grammar {
         self.repository = repository
     }
 
-    public func createFirstLineState(theme: EditorTheme = .default) -> LineState {
+    public func createFirstLineState(theme: HighlightTheme = .default) -> LineState {
         return LineState(scopes: [
             Scope(
                 name: ScopeName(rawValue: scopeName),
@@ -69,7 +69,7 @@ public class Grammar {
         ])
     }
 
-    public func baseAttributes(forTheme theme: EditorTheme) -> [NSAttributedString.Key: Any] {
+    public func baseAttributes(forTheme theme: HighlightTheme) -> [NSAttributedString.Key: Any] {
         let line = TokenizedLine(tokens: [
             Token(
                 range: NSRange(location: 0, length: 1),

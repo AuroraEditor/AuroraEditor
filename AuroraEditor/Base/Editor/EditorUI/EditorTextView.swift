@@ -41,13 +41,13 @@ public class EditorTextView: NSTextView {
 
     private var _parser: Parser = Parser(grammars: [.default])
     private var _grammar: Grammar = .default
-    private var _theme: EditorTheme = .default
+    private var _theme: HighlightTheme = .default
 
     public var grammar: Grammar {
         return _grammar
     }
 
-    public var theme: EditorTheme {
+    public var theme: HighlightTheme {
         return _theme
     }
 
@@ -251,7 +251,7 @@ public class EditorTextView: NSTextView {
 
 // MARK: - Common
 extension EditorTextView {
-    internal func replace(parser: Parser, baseGrammar: Grammar, theme: EditorTheme) {
+    internal func replace(parser: Parser, baseGrammar: Grammar, theme: HighlightTheme) {
         _parser = parser
         _grammar = baseGrammar
         _theme = theme

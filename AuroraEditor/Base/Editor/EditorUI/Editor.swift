@@ -21,7 +21,7 @@ public class Editor: NSObject {
 
     private(set) var grammar: Grammar
 
-    private(set) var theme: EditorTheme
+    private(set) var theme: HighlightTheme
 
     private var fixedGlyphProperties = [NSRange: [NSLayoutManager.GlyphProperty]]()
     private var shouldResetGlyphProperties = true
@@ -33,7 +33,7 @@ public class Editor: NSObject {
         textView: EditorTextView,
         parser: Parser,
         baseGrammar: Grammar,
-        theme: EditorTheme,
+        theme: HighlightTheme,
         notificationCenter: NotificationCenter = .default) {
         self.textView = textView
         self.parser = parser
@@ -55,7 +55,7 @@ public class Editor: NSObject {
                                        name: NSText.didChangeNotification, object: textView)
     }
 
-    public func replace(parser: Parser, baseGrammar: Grammar, theme: EditorTheme) {
+    public func replace(parser: Parser, baseGrammar: Grammar, theme: HighlightTheme) {
         self.parser = parser
         grammar = baseGrammar
         self.theme = theme

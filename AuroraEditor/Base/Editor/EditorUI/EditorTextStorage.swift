@@ -34,7 +34,7 @@ public class EditorTextStorage: NSTextStorage {
 
     private var grammar: Grammar
 
-    private var theme: EditorTheme
+    private var theme: HighlightTheme
 
     var lastProcessedRange = NSRange(location: 0, length: 0)
 
@@ -48,7 +48,7 @@ public class EditorTextStorage: NSTextStorage {
 
     var selectionLines = Set<Int>()
 
-    init(parser: Parser, baseGrammar: Grammar, theme: EditorTheme) {
+    init(parser: Parser, baseGrammar: Grammar, theme: HighlightTheme) {
         storage = NSMutableAttributedString(string: "", attributes: nil)
         self.lineRanges = [NSRange(location: 0, length: 0)]
         self.parser = parser
@@ -421,7 +421,7 @@ public class EditorTextStorage: NSTextStorage {
         }
     }
 
-    public func replace(parser: Parser, baseGrammar: Grammar, theme: EditorTheme) {
+    public func replace(parser: Parser, baseGrammar: Grammar, theme: HighlightTheme) {
         self.parser = parser
         self.grammar = baseGrammar
         self.theme = theme

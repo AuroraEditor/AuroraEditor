@@ -17,7 +17,7 @@ extension CodeEditor: NSViewRepresentable {
         // Set up text view with gutter
         let codeView = CodeView(frame: CGRect(x: 0, y: 0, width: 100, height: 40),
                                 viewLayout: layout,
-                                theme: context.environment.codeEditorTheme)
+                                theme: context.environment.codeHighlightTheme)
 
         globalMainQueue.async {
             codeView.string = text
@@ -77,7 +77,7 @@ extension CodeEditor: NSViewRepresentable {
         guard let codeView = scrollView.documentView as? CodeView else { return }
         context.coordinator.updatingView = true
 
-        let theme = context.environment.codeEditorTheme,
+        let theme = context.environment.codeHighlightTheme,
             selections = position.selections.map { NSValue(range: $0) }
 
         updateMessages(in: codeView, with: context)

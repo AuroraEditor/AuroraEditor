@@ -53,7 +53,7 @@ public struct CodeEditorViewWrapper: View {
             messages: $messages,
             layout: CodeEditor.LayoutConfiguration(showMinimap: prefs.preferences.textEditing.showMinimap)
         )
-        .environment(\.codeEditorTheme,
+        .environment(\.codeHighlightTheme,
                       colorScheme == .dark ? Theme.defaultDark : Theme.defaultLight)
     }
 }

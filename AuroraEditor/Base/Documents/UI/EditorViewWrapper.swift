@@ -49,7 +49,7 @@ public struct EditorViewWrapper: View {
         GeometryReader { proxy in
             EditorFileView(size: proxy.size, text: $codeFile.content)
         }
-        .environment(\.codeEditorTheme,
+        .environment(\.codeHighlightTheme,
                       colorScheme == .dark ? Theme.defaultDark : Theme.defaultLight)
     }
 }

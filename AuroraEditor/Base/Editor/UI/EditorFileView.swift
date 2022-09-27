@@ -112,7 +112,7 @@ let basicSwiftGrammar = Grammar(
 )
 
 let fontSize: CGFloat = 12
-let exampleTheme: EditorTheme = EditorTheme(name: "basic", settings: [
+let exampleTheme: HighlightTheme = HighlightTheme(name: "basic", settings: [
     ThemeSetting(scope: "comment", parentScopes: [], attributes: [
         ColorThemeAttribute(color: .systemGreen)
     ]),

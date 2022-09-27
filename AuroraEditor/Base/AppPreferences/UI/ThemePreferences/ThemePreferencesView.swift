@@ -184,7 +184,7 @@ public struct ThemePreferencesView: View {
             }
             switch themeModel.selectedTab {
             case 1:
-                EditorThemeView()
+                HighlightThemeView()
             case 2:
                 TerminalThemeView()
             default:

@@ -10,12 +10,12 @@ import SwiftUI
 
 extension EnvironmentValues {
     /// The current code editor theme.
-    public var codeEditorTheme: Theme {
+    public var codeHighlightTheme: Theme {
         get {
-            self[CodeEditorTheme.self]
+            self[CodeHighlightTheme.self]
         }
         set {
-            self[CodeEditorTheme.self] = newValue
+            self[CodeHighlightTheme.self] = newValue
         }
     }
 }
