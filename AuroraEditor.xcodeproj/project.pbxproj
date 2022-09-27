@@ -417,11 +417,9 @@
 		2BD5CF2728D602CE00F95E5A /* OSDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1528D602CE00F95E5A /* OSDefinitions.swift */; };
 		2BD5CF2828D602CE00F95E5A /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1628D602CE00F95E5A /* ScrollView.swift */; };
 		2BD5CF2928D602CE00F95E5A /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1728D602CE00F95E5A /* CodeView.swift */; };
-		2BD5CF2A28D602CE00F95E5A /* MutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1828D602CE00F95E5A /* MutableAttributedString.swift */; };
 		2BD5CF2B28D602CE00F95E5A /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1928D602CE00F95E5A /* TextView.swift */; };
 		2BD5CF2D28D602CE00F95E5A /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1B28D602CE00F95E5A /* Theme.swift */; };
 		2BD5CF2E28D602CE00F95E5A /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1C28D602CE00F95E5A /* MessageView.swift */; };
-		2BD5CF2F28D602CE00F95E5A /* LanguageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1D28D602CE00F95E5A /* LanguageConfiguration.swift */; };
 		2BD8A21428ACFA6D00282989 /* ShellClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8A21328ACFA6D00282989 /* ShellClient.swift */; };
 		2BDFA8F928D1079700980385 /* WebTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8F728D1079600980385 /* WebTab.swift */; };
 		2BDFA90428D107B200980385 /* WebWKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8FB28D107B200980385 /* WebWKView.swift */; };
@@ -994,11 +992,9 @@
 		2BD5CF1528D602CE00F95E5A /* OSDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSDefinitions.swift; sourceTree = "<group>"; };
 		2BD5CF1628D602CE00F95E5A /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		2BD5CF1728D602CE00F95E5A /* CodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
-		2BD5CF1828D602CE00F95E5A /* MutableAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableAttributedString.swift; sourceTree = "<group>"; };
 		2BD5CF1928D602CE00F95E5A /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		2BD5CF1B28D602CE00F95E5A /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		2BD5CF1C28D602CE00F95E5A /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
-		2BD5CF1D28D602CE00F95E5A /* LanguageConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageConfiguration.swift; sourceTree = "<group>"; };
 		2BD8A21328ACFA6D00282989 /* ShellClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShellClient.swift; sourceTree = "<group>"; };
 		2BDFA8F728D1079600980385 /* WebTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebTab.swift; sourceTree = "<group>"; };
 		2BDFA8FB28D107B200980385 /* WebWKView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebWKView.swift; sourceTree = "<group>"; };
@@ -1326,16 +1322,6 @@
 				206B129728DF7AA2002CDE51 /* GutterRect.swift */,
 			);
 			path = Gutter;
-			sourceTree = "<group>";
-		};
-		206B129928DF7B1C002CDE51 /* CodeStorage */ = {
-			isa = PBXGroup;
-			children = (
-				206B129E28DF7BC3002CDE51 /* Delegate */,
-				2BD5CF1028D602CE00F95E5A /* CodeStorage.swift */,
-				206B129C28DF7B7B002CDE51 /* CodeStorageInsertionPoint.swift */,
-			);
-			path = CodeStorage;
 			sourceTree = "<group>";
 		};
 		206B129E28DF7BC3002CDE51 /* Delegate */ = {
@@ -3075,7 +3061,7 @@
 		93813D2128D747F500A492D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				93813D2F28D74C1B00A492D4 /* Storage+Language */,
+				93813D2F28D74C1B00A492D4 /* Storage */,
 				93813D2C28D74BAB00A492D4 /* Editor */,
 				93813D2228D749A600A492D4 /* LayoutDelegates */,
 				93813D2928D74B3500A492D4 /* Messages */,
@@ -3118,14 +3104,14 @@
 			path = Editor;
 			sourceTree = "<group>";
 		};
-		93813D2F28D74C1B00A492D4 /* Storage+Language */ = {
+		93813D2F28D74C1B00A492D4 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				206B129928DF7B1C002CDE51 /* CodeStorage */,
-				2BD5CF1828D602CE00F95E5A /* MutableAttributedString.swift */,
-				2BD5CF1D28D602CE00F95E5A /* LanguageConfiguration.swift */,
+				206B129E28DF7BC3002CDE51 /* Delegate */,
+				2BD5CF1028D602CE00F95E5A /* CodeStorage.swift */,
+				206B129C28DF7B7B002CDE51 /* CodeStorageInsertionPoint.swift */,
 			);
-			path = "Storage+Language";
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		93983D2E28CE053800E54409 /* HierarchyNavigator */ = {
@@ -3944,7 +3930,6 @@
 				2093CDE8289AAE87003A88DD /* StashChangesSheet.swift in Sources */,
 				2093CD6C289AA0FC003A88DD /* EffectView.swift in Sources */,
 				2093CDB3289AA19B003A88DD /* AccountSelectionDialog.swift in Sources */,
-				2BD5CF2A28D602CE00F95E5A /* MutableAttributedString.swift in Sources */,
 				2BD5CF2E28D602CE00F95E5A /* MessageView.swift in Sources */,
 				20091DBA28DE220A008FDDFC /* UpdatePreferences.swift in Sources */,
 				93D611A728E1D89F00FA3CF2 /* EditorTextView.swift in Sources */,
@@ -4115,7 +4100,6 @@
 				2093CD23289AA084003A88DD /* GitRouter.swift in Sources */,
 				2BD5CF2428D602CE00F95E5A /* Message.swift in Sources */,
 				2093CD98289AA144003A88DD /* ThemeModel.swift in Sources */,
-				2BD5CF2F28D602CE00F95E5A /* LanguageConfiguration.swift in Sources */,
 				28B0A19827E385C300B73177 /* NavigatorSidebarToolbarTop.swift in Sources */,
 				93CACA2728D7524800978753 /* MessagePopupView.swift in Sources */,
 				2093CDBD289AA1BD003A88DD /* ParsePackagesResolved.swift in Sources */,
