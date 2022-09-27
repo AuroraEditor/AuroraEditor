@@ -8,6 +8,7 @@
 //  which forms the heart of the code editor.
 
 import SwiftUI
+import EditorCore
 
 // MARK: - Message info
 
@@ -57,14 +58,14 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
             insertionPointColor = theme.cursorColour
             selectedTextAttributes = [.backgroundColor: theme.selectionColour]
             (textStorage as? CodeStorage)?.theme = theme
-            gutterView?.theme = theme
             minimapView?.backgroundColor = theme.backgroundColour
-            minimapGutterView?.theme = theme
             documentVisibleBox?.fillColor = theme.textColour.withAlphaComponent(0.1)
             tile()
             setNeedsDisplay(visibleRect)
         }
     }
+
+    var highlightTheme: EditorTheme = exampleTheme
 
     /// The current view layout.
     var viewLayout: CodeEditor.LayoutConfiguration {

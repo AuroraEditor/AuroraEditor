@@ -1324,14 +1324,6 @@
 			path = Gutter;
 			sourceTree = "<group>";
 		};
-		206B129E28DF7BC3002CDE51 /* Delegate */ = {
-			isa = PBXGroup;
-			children = (
-				2BD5CF0F28D602CE00F95E5A /* CodeStorageDelegate.swift */,
-			);
-			path = Delegate;
-			sourceTree = "<group>";
-		};
 		2072FA14280D838800C7F8D4 /* Lists */ = {
 			isa = PBXGroup;
 			children = (
@@ -3107,7 +3099,7 @@
 		93813D2F28D74C1B00A492D4 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				206B129E28DF7BC3002CDE51 /* Delegate */,
+				2BD5CF0F28D602CE00F95E5A /* CodeStorageDelegate.swift */,
 				2BD5CF1028D602CE00F95E5A /* CodeStorage.swift */,
 				206B129C28DF7B7B002CDE51 /* CodeStorageInsertionPoint.swift */,
 			);

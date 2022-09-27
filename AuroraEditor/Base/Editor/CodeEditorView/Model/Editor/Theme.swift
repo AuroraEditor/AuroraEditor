@@ -39,9 +39,6 @@ public struct Theme: Identifiable {
     /// The colour to use if invisibles are drawn.
     public var invisiblesColour: OSColor
 
-    /// The `EditorTheme` to use in highlighting
-    public var editorTheme: EditorTheme
-
     public init(fontName: String,
                 fontSize: CGFloat,
                 textColour: OSColor,
@@ -49,8 +46,7 @@ public struct Theme: Identifiable {
                 currentLineColour: OSColor,
                 selectionColour: OSColor,
                 cursorColour: OSColor,
-                invisiblesColour: OSColor,
-                editorTheme: EditorTheme? = nil
+                invisiblesColour: OSColor
     ) {
         self.fontName = fontName
         self.fontSize = fontSize
@@ -60,7 +56,6 @@ public struct Theme: Identifiable {
         self.selectionColour = selectionColour
         self.cursorColour = cursorColour
         self.invisiblesColour = invisiblesColour
-        self.editorTheme = editorTheme ?? .default
     }
 }
 
