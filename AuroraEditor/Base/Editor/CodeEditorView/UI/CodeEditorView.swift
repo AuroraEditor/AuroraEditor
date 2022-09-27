@@ -34,7 +34,7 @@ extension CodeEditor: NSViewRepresentable {
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalRuler = false
         scrollView.drawsBackground = false
-        scrollView.documentView = codeViewc
+        scrollView.documentView = codeView
 
         if let delegate = codeView.delegate as? CodeViewDelegate {
 
