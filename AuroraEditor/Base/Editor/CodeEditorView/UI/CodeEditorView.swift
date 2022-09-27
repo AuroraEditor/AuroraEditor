@@ -34,13 +34,12 @@ extension CodeEditor: NSViewRepresentable {
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalRuler = false
         scrollView.drawsBackground = false
-        scrollView.documentView = codeView
+        scrollView.documentView = codeViewc
 
         if let delegate = codeView.delegate as? CodeViewDelegate {
 
             delegate.textDidChange = context.coordinator.textDidChange
             delegate.selectionDidChange = { textView in
-                selectionDidChange(textView)
                 context.coordinator.selectionDidChange(textView)
             }
 

@@ -455,11 +455,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
                                           height: minimapVisibleHeight).integral
         if documentVisibleBox?.frame != documentVisibleFrame { documentVisibleBox?.frame = documentVisibleFrame }
     }
-
-}
-
-/// Common code view actions triggered on a selection change.
-func selectionDidChange<TV: TextView>(_ textView: TV) {
 }
 
 /// Combine selection ranges into the smallest ranges encompassing them all.

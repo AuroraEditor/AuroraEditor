@@ -82,9 +82,7 @@
 		206B129328DF79E9002CDE51 /* MinimapTypeSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B129228DF79E9002CDE51 /* MinimapTypeSetter.swift */; };
 		206B129628DF7A3D002CDE51 /* GutterSharedCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B129528DF7A3D002CDE51 /* GutterSharedCode.swift */; };
 		206B129828DF7AA2002CDE51 /* GutterRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B129728DF7AA2002CDE51 /* GutterRect.swift */; };
-		206B129B28DF7B48002CDE51 /* CodeStorageTokenAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B129A28DF7B48002CDE51 /* CodeStorageTokenAttributes.swift */; };
 		206B129D28DF7B7B002CDE51 /* CodeStorageInsertionPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B129C28DF7B7B002CDE51 /* CodeStorageInsertionPoint.swift */; };
-		206B12A028DF7BF3002CDE51 /* CodeStorageDelegateCompletions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B129F28DF7BF3002CDE51 /* CodeStorageDelegateCompletions.swift */; };
 		2072FA13280D74ED00C7F8D4 /* HistoryInspectorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072FA12280D74ED00C7F8D4 /* HistoryInspectorModel.swift */; };
 		2072FA16280D83A500C7F8D4 /* FileTypeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072FA15280D83A500C7F8D4 /* FileTypeList.swift */; };
 		2072FA18280D871200C7F8D4 /* TextEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072FA17280D871200C7F8D4 /* TextEncoding.swift */; };
@@ -666,9 +664,7 @@
 		206B129228DF79E9002CDE51 /* MinimapTypeSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimapTypeSetter.swift; sourceTree = "<group>"; };
 		206B129528DF7A3D002CDE51 /* GutterSharedCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GutterSharedCode.swift; sourceTree = "<group>"; };
 		206B129728DF7AA2002CDE51 /* GutterRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GutterRect.swift; sourceTree = "<group>"; };
-		206B129A28DF7B48002CDE51 /* CodeStorageTokenAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeStorageTokenAttributes.swift; sourceTree = "<group>"; };
 		206B129C28DF7B7B002CDE51 /* CodeStorageInsertionPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeStorageInsertionPoint.swift; sourceTree = "<group>"; };
-		206B129F28DF7BF3002CDE51 /* CodeStorageDelegateCompletions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeStorageDelegateCompletions.swift; sourceTree = "<group>"; };
 		2072FA12280D74ED00C7F8D4 /* HistoryInspectorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInspectorModel.swift; sourceTree = "<group>"; };
 		2072FA15280D83A500C7F8D4 /* FileTypeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypeList.swift; sourceTree = "<group>"; };
 		2072FA17280D871200C7F8D4 /* TextEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEncoding.swift; sourceTree = "<group>"; };
@@ -1337,7 +1333,6 @@
 			children = (
 				206B129E28DF7BC3002CDE51 /* Delegate */,
 				2BD5CF1028D602CE00F95E5A /* CodeStorage.swift */,
-				206B129A28DF7B48002CDE51 /* CodeStorageTokenAttributes.swift */,
 				206B129C28DF7B7B002CDE51 /* CodeStorageInsertionPoint.swift */,
 			);
 			path = CodeStorage;
@@ -1347,7 +1342,6 @@
 			isa = PBXGroup;
 			children = (
 				2BD5CF0F28D602CE00F95E5A /* CodeStorageDelegate.swift */,
-				206B129F28DF7BF3002CDE51 /* CodeStorageDelegateCompletions.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -3703,7 +3697,6 @@
 				D7E201AE27E8B3C000CB86D0 /* String+Ranges.swift in Sources */,
 				93C3648A28E18BF200FC3F59 /* EditorFileView.swift in Sources */,
 				93D611C128E1D8A000FA3CF2 /* EditorTextStorage.swift in Sources */,
-				206B12A028DF7BF3002CDE51 /* CodeStorageDelegateCompletions.swift in Sources */,
 				20EBB50F280C389300F3A5DA /* FileInspectorModel.swift in Sources */,
 				20BCB0C428AA9FFA0064C7C0 /* ManualConflictResolution.swift in Sources */,
 				2093CC9A289A9FFD003A88DD /* StatusBarMaximizeButton.swift in Sources */,
@@ -3934,7 +3927,6 @@
 				20BCB0C828AAA3190064C7C0 /* GitAuthor.swift in Sources */,
 				2093CDB6289AA1A2003A88DD /* GitlabLoginView.swift in Sources */,
 				93D611B528E1D89F00FA3CF2 /* ParagraphSpacingAfterThemeAttribute.swift in Sources */,
-				206B129B28DF7B48002CDE51 /* CodeStorageTokenAttributes.swift in Sources */,
 				204CD3E628AB87640003D082 /* Config.swift in Sources */,
 				2096A82428CF76D400F6ED39 /* CreateNewBranchView.swift in Sources */,
 				2032B51028A256F50089EBB6 /* Array.swift in Sources */,
