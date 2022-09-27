@@ -106,7 +106,6 @@ class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
                      didProcessEditing editedMask: TextStorageEditActions,
                      range editedRange: NSRange, // Apple docs are incorrect here: this is the range *after* editing
                      changeInLength delta: Int) {
-        guard let codeStorage = textStorage as? CodeStorage else { return }
 
         // If only attributes change, the line map and syntax highlighting remains the same => nothing for us to do
         guard editedMask.contains(.editedCharacters) else { return }

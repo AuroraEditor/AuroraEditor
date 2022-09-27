@@ -65,8 +65,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         }
     }
 
-    var highlightTheme: HighlightTheme = exampleTheme
-
     /// The current view layout.
     var viewLayout: CodeEditor.LayoutConfiguration {
         didSet { tile() }
@@ -75,18 +73,28 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     /// Keeps track of the set of message views.
     var messageViews: MessageViews = [:]
 
+    private(set) var parser: Parser = Parser(grammars: [.default, basicSwiftGrammar])
+    private(set) var grammar: Grammar = basicSwiftGrammar
+    private(set) var highlightTheme: HighlightTheme = exampleTheme
+
     /// Designated initialiser for code views with a gutter.
     init(frame: CGRect, // swiftlint:disable:this function_body_length
          viewLayout: CodeEditor.LayoutConfiguration,
-         theme: Theme) {
+         theme: Theme,
+         highlightTheme: HighlightTheme = exampleTheme
+    ) {
 
         self.theme = theme
+        self.highlightTheme = highlightTheme
         self.viewLayout = viewLayout
 
         // Use custom components that are gutter-aware and support code-specific editing actions and highlighting.
         let codeLayoutManager = CodeLayoutManager(),
             codeContainer = CodeContainer(),
-            codeStorage = CodeStorage(theme: theme)
+            codeStorage = CodeStorage(parser: parser,
+                                      baseGrammar: grammar,
+                                      theme: theme,
+                                      highlightTheme: highlightTheme)
         codeStorage.addLayoutManager(codeLayoutManager)
         codeContainer.layoutManager = codeLayoutManager
         codeLayoutManager.addTextContainer(codeContainer)
