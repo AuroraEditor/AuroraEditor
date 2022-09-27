@@ -39,6 +39,8 @@ extension CodeEditor: NSViewRepresentable {
 
             delegate.textDidChange = context.coordinator.textDidChange
             delegate.selectionDidChange = { textView in
+                selectionDidChange(textView)
+                textView.needsDisplay = true
                 context.coordinator.selectionDidChange(textView)
             }
 

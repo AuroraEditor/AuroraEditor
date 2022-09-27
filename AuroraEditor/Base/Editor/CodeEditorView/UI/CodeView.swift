@@ -465,6 +465,19 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     }
 }
 
+/// Common code view actions triggered on a selection change.
+func selectionDidChange<TV: TextView>(_ textView: TV) {
+//    guard let layoutManager = textView.optLayoutManager,
+//          let textContainer = textView.optTextContainer,
+//          let codeStorage = textView.optCodeStorage
+//    else { return }
+//
+//    let visibleRect = textView.documentVisibleRect,
+//        glyphRange = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: visibleRect,
+//                                              in: textContainer),
+//        charRange = layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
+}
+
 /// Combine selection ranges into the smallest ranges encompassing them all.
 private func combinedRanges(ranges: [NSValue]) -> NSRange {
     let actualranges = ranges.compactMap { $0 as? NSRange }
