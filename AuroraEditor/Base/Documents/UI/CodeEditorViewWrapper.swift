@@ -51,7 +51,7 @@ public struct CodeEditorViewWrapper: View {
             position: $position,
             caretPosition: $sharedObjects.caretPos,
             messages: $messages,
-            language: .swift,
+            language: .none,
             layout: CodeEditor.LayoutConfiguration(showMinimap: prefs.preferences.textEditing.showMinimap)
         )
         .environment(\.codeEditorTheme,

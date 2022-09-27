@@ -122,7 +122,7 @@ struct CodeEditor_Previews: PreviewProvider {
             position: .constant(CodeEditor.Position()),
             caretPosition: .constant(.init(line: 0, column: 0)),
             messages: .constant(Set()),
-            language: .swift
+            language: .none
         )
     }
 }
