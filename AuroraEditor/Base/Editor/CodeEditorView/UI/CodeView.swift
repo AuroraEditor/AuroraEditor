@@ -460,21 +460,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
 /// Common code view actions triggered on a selection change.
 func selectionDidChange<TV: TextView>(_ textView: TV) {
-    guard let layoutManager = textView.optLayoutManager,
-          let textContainer = textView.optTextContainer,
-          let codeStorage = textView.optCodeStorage
-    else { return }
-
-    let visibleRect = textView.documentVisibleRect,
-        glyphRange = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: visibleRect,
-                                               in: textContainer),
-        charRange = layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
-
-    if let location = textView.insertionPoint,
-       location > 0,
-       let matchingBracketRange = codeStorage.matchingBracket(forLocationAt: location - 1, in: charRange) {
-        textView.showFindIndicator(for: matchingBracketRange)
-    }
 }
 
 /// Combine selection ranges into the smallest ranges encompassing them all.

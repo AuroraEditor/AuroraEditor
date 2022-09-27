@@ -77,7 +77,6 @@ struct LineInfo {
 class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
 
     let language: LanguageConfiguration
-    let tokeniser: Tokeniser<LanguageConfiguration.Token, LanguageConfiguration.State>? // cache the tokeniser
 
     var lineMap = LineMap<LineInfo>(string: "")
 
@@ -85,17 +84,12 @@ class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
     /// attached got changed.
     var lastEvictedMessageIDs: [LineInfo.MessageBundle.ID] = []
 
-    /// If the last text change was a one-character addition, which completed a token, then
-    /// that token is remembered here together with its range until the next text change.
-    var lastTypedToken: (type: LanguageConfiguration.Token, range: NSRange)?
-
     /// Flag that indicates that the current editing round is for a one-character addition to the text. This property
     /// needs to be determined before attribute fixing and the like.
     private var processingOneCharacterEdit: Bool?
 
     init(with language: LanguageConfiguration) {
         self.language = language
-        self.tokeniser = NSMutableAttributedString.tokeniser(for: language.tokenDictionary)
         super.init()
     }
 
@@ -141,10 +135,6 @@ class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
             textStorage.addAttribute(.backgroundColor, value: visualDebuggingEditedColour, range: editedRange)
         }
 
-        // If a single character was added, process token-level completion steps.
-        if delta == 1 && processingOneCharacterEdit == true {
-            tokenCompletion(for: codeStorage, at: editedRange.location)
-        }
         processingOneCharacterEdit = nil
     }
 }

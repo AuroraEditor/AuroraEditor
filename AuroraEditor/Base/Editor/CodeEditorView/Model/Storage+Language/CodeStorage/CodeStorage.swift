@@ -33,25 +33,7 @@ class CodeStorage: NSTextStorage {
     }
 
     override func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [NSAttributedString.Key: Any] {
-        var attributes = textStorage.attributes(at: location, effectiveRange: range)
-        var foregroundColour = theme.textColour
-
-        // Translate attributes indicating text highlighting to the foreground colour determined by the current theme.
-        if attributes[.comment] != nil {
-            foregroundColour = theme.commentColour
-        } else if let tokenAttr = attributes[.token] as? TokenAttribute<LanguageConfiguration.Token> {
-            switch tokenAttr.token {
-            case .string:     foregroundColour = theme.stringColour
-            case .character:  foregroundColour = theme.characterColour
-            case .number:     foregroundColour = theme.numberColour
-            case .identifier: foregroundColour = theme.identifierColour
-            case .keyword:    foregroundColour = theme.keywordColour
-            default: ()
-            }
-        }
-
-        attributes[.foregroundColor] = foregroundColour
-        return attributes
+        return textStorage.attributes(at: location, effectiveRange: range)
     }
 
     // Extended to handle auto-deletion of adjcent matching brackets
@@ -61,28 +43,10 @@ class CodeStorage: NSTextStorage {
 
         // We are deleting one character => check whether it is a one-character
         // bracket and if so also delete its matching bracket if it is directly adjascent
-        if range.length == 1 && str.isEmpty,
-           let token = tokenAttribute(at: range.location),
-           let language = (delegate as? CodeStorageDelegate)?.language {
+        if range.length == 1 && str.isEmpty {
 
-            let isOpen = token.token.isOpenBracket,
-                isBracket = isOpen || token.token.isCloseBracket,
-                isSafe = (isOpen && range.location + 1 < string.utf16.count) || range.location > 0,
-                offset = isOpen ? 1 : -1
-            if isBracket && isSafe && language.lexeme(of: token.token)?.count == 1 &&
-                tokenAttribute(at: range.location + offset)?.token == token.token.matchingBracket {
-
-                let extendedRange = NSRange(location: isOpen ? range.location : range.location - 1, length: 2)
-                textStorage.replaceCharacters(in: extendedRange, with: "")
-                edited(.editedCharacters, range: extendedRange, changeInLength: -2)
-                setInsertionPointAfterDeletion(of: extendedRange)
-
-            } else {
-
-                textStorage.replaceCharacters(in: range, with: str)
-                edited(.editedCharacters, range: range, changeInLength: (str as NSString).length - range.length)
-
-            }
+            textStorage.replaceCharacters(in: range, with: str)
+            edited(.editedCharacters, range: range, changeInLength: (str as NSString).length - range.length)
 
         } else {
 
