@@ -470,7 +470,6 @@
 		93813D2828D74AC400A492D4 /* CodeLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D2728D74AC400A492D4 /* CodeLayoutManager.swift */; };
 		93813D2B28D74B6400A492D4 /* CodeView+Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D2A28D74B6400A492D4 /* CodeView+Messages.swift */; };
 		93813D2E28D74BB900A492D4 /* CodeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D2D28D74BB900A492D4 /* CodeContainer.swift */; };
-		93813D3228D74D7B00A492D4 /* CodeStorageDelegate+Tokenisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D3128D74D7B00A492D4 /* CodeStorageDelegate+Tokenisation.swift */; };
 		93813D3528D74E5400A492D4 /* CodeStorageDelegate+Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D3428D74E5400A492D4 /* CodeStorageDelegate+Messages.swift */; };
 		93983D2D28CE012500E54409 /* NavigatorModeSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93983D2C28CE012500E54409 /* NavigatorModeSelectModel.swift */; };
 		939C109528AE7D0700403A97 /* RepositoryContainers&Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */; };
@@ -1051,7 +1050,6 @@
 		93813D2728D74AC400A492D4 /* CodeLayoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeLayoutManager.swift; sourceTree = "<group>"; };
 		93813D2A28D74B6400A492D4 /* CodeView+Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeView+Messages.swift"; sourceTree = "<group>"; };
 		93813D2D28D74BB900A492D4 /* CodeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeContainer.swift; sourceTree = "<group>"; };
-		93813D3128D74D7B00A492D4 /* CodeStorageDelegate+Tokenisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeStorageDelegate+Tokenisation.swift"; sourceTree = "<group>"; };
 		93813D3428D74E5400A492D4 /* CodeStorageDelegate+Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeStorageDelegate+Messages.swift"; sourceTree = "<group>"; };
 		93983D2C28CE012500E54409 /* NavigatorModeSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorModeSelectModel.swift; sourceTree = "<group>"; };
 		939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoryContainers&Items.swift"; sourceTree = "<group>"; };
@@ -1348,7 +1346,6 @@
 		206B129E28DF7BC3002CDE51 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
-				93813D3128D74D7B00A492D4 /* CodeStorageDelegate+Tokenisation.swift */,
 				2BD5CF0F28D602CE00F95E5A /* CodeStorageDelegate.swift */,
 				206B129F28DF7BF3002CDE51 /* CodeStorageDelegateCompletions.swift */,
 			);
@@ -4069,7 +4066,6 @@
 				B6EE989027E8879A00CDD8AB /* InspectorSidebar.swift in Sources */,
 				2BDFA90428D107B200980385 /* WebWKView.swift in Sources */,
 				2093CD8B289AA12B003A88DD /* NotificationData.swift in Sources */,
-				93813D3228D74D7B00A492D4 /* CodeStorageDelegate+Tokenisation.swift in Sources */,
 				2093CD4E289AA0A9003A88DD /* FeedbackToolbar.swift in Sources */,
 				93F73D0D28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift in Sources */,
 				9C3E1A07284E8E020042BEC0 /* WelcomeModuleExtensions.swift in Sources */,

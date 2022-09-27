@@ -58,7 +58,7 @@ struct WorkspaceCodeFileView: View {
                                 }
                             })
                     } else {
-                        editorView(fileItem, for: item)
+                        codeEditorView(fileItem, for: item)
                             .splitView(availablePositions: [.top, .bottom, .center, .leading, .trailing],
                                        proposalPosition: $dropProposal,
                                        margin: 15,

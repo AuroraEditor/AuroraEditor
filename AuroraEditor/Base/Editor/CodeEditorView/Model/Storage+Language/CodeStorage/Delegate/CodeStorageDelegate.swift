@@ -136,7 +136,6 @@ class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
         lastEvictedMessageIDs = lines.compactMap { lineMap.lookup(line: $0)?.info?.messages?.id }
 
         lineMap.updateAfterEditing(string: textStorage.string, range: editedRange, changeInLength: delta)
-        tokeniseAttributesFor(range: editedRange, in: textStorage)
 
         if visualDebugging {
             textStorage.addAttribute(.backgroundColor, value: visualDebuggingEditedColour, range: editedRange)
