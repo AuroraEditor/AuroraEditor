@@ -13,36 +13,94 @@ public var endRuleId = -1
 // This is a special constant to indicate that the while regexp matched.
 public var whileRuleId = -2
 
-public protocol RawGrammer: Codable {
-    var repository: [String: RawRule]? { get set }
-    var scopeName: String { get set }
-    var patterns: [RawRule] { get set }
-    var injections: [String: RawRule]? { get set }
-    var injectionSelector: String? { get set }
+public struct RawGrammer: Codable {
+    var repository: [String: RawRule]?
+    var scopeName: String
+    var patterns: [RawRule]
+    var injections: [String: RawRule]?
+    var injectionSelector: String?
 
-    var fileTypes: [String]? { get set }
-    var name: String? { get set }
-    var firstLineMatch: String? { get set }
+    var fileTypes: [String]?
+    var name: String?
+    var firstLineMatch: String?
+
+    init(repository: [String: RawRule]? = nil,
+         scopeName: String,
+         patterns: [RawRule],
+         injections: [String: RawRule]? = nil,
+         injectionSelector: String? = nil,
+         fileTypes: [String]? = nil,
+         name: String? = nil,
+         firstLineMatch: String? = nil) {
+        self.repository = repository
+        self.scopeName = scopeName
+        self.patterns = patterns
+        self.injections = injections
+        self.injectionSelector = injectionSelector
+        self.fileTypes = fileTypes
+        self.name = name
+        self.firstLineMatch = firstLineMatch
+    }
 }
 
-public protocol RawRule: Codable {
-    var id: UUID { get set }
-    var include: String? { get }
+public struct RawRule: Codable {
+    var id: UUID
+    var include: String?
 
-    var name: String? { get }
-    var contentName: String? { get }
+    var name: String?
+    var contentName: String?
 
-    var match: String? { get }
-    var captures: [String: RawRule]? { get }
-    var begin: String? { get }
-    var beginCaptures: [String: RawRule]? { get }
-    var end: String? { get }
-    var endCaptures: [String: RawRule]? { get }
-    var `while`: String? { get }
-    var whileCpatures: [String: RawRule]? { get }
-    var patterns: [RawRule]? { get }
+    var match: String?
+    var captures: [String: RawRule]?
+    var begin: String?
+    var beginCaptures: [String: RawRule]?
+    var end: String?
+    var endCaptures: [String: RawRule]?
+    var `while`: String?
+    var whileCpatures: [String: RawRule]?
+    var patterns: [RawRule]?
 
-    var repository: [String: RawRule]? { get }
+    var repository: [String: RawRule]?
 
-    var applyEndPatternLast: Bool? { get }
+    var applyEndPatternLast: Bool?
+
+    init(include: String? = nil,
+         name: String? = nil,
+         contentName: String? = nil,
+         match: String? = nil,
+         captures: [String: RawRule]? = nil,
+         begin: String? = nil,
+         beginCaptures: [String: RawRule]? = nil,
+         end: String? = nil,
+         endCaptures: [String: RawRule]? = nil,
+         whileCpatures: [String: RawRule]? = nil,
+         patterns: [RawRule]? = nil,
+         repository: [String: RawRule]? = nil,
+         applyEndPatternLast: Bool? = nil) {
+        self.id = UUID()
+        self.include = include
+        self.name = name
+        self.contentName = contentName
+        self.match = match
+        self.captures = captures
+        self.begin = begin
+        self.beginCaptures = beginCaptures
+        self.end = end
+        self.endCaptures = endCaptures
+        self.whileCpatures = whileCpatures
+        self.patterns = patterns
+        self.repository = repository
+        self.applyEndPatternLast = applyEndPatternLast
+    }
+}
+
+extension Rule {
+    static func == (lhs: Rule, rhs: Rule) -> Bool {
+        guard type(of: lhs) == type(of: rhs) else { return false }
+        return lhs.id == rhs.id
+    }
+
+    static func != (lhs: Rule, rhs: Rule) -> Bool {
+        return !(lhs == rhs)
+    }
 }

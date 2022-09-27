@@ -44,6 +44,7 @@
 		202327D628D5CA970031FFB6 /* WorkflowJobsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */; };
 		202327D828D5CB200031FFB6 /* WorkflowJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327D728D5CB200031FFB6 /* WorkflowJobCell.swift */; };
 		202327E028D607B20031FFB6 /* ReRunJobSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */; };
+		2029DA8728E2FCEC00D68786 /* swift.tsLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 2029DA8628E2FCEC00D68786 /* swift.tsLanguage.json */; };
 		202F2E35289E7277000D3CAD /* SearchResultMatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E34289E7277000D3CAD /* SearchResultMatchModel.swift */; };
 		202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E36289E740D000D3CAD /* FindNavigatorResultList.swift */; };
 		202F2E39289E7444000D3CAD /* FindNavigatorListMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E38289E7444000D3CAD /* FindNavigatorListMatchCell.swift */; };
@@ -624,6 +625,7 @@
 		202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowJobsView.swift; sourceTree = "<group>"; };
 		202327D728D5CB200031FFB6 /* WorkflowJobCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowJobCell.swift; sourceTree = "<group>"; };
 		202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReRunJobSheetView.swift; sourceTree = "<group>"; };
+		2029DA8628E2FCEC00D68786 /* swift.tsLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = swift.tsLanguage.json; sourceTree = "<group>"; };
 		202F2E34289E7277000D3CAD /* SearchResultMatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultMatchModel.swift; sourceTree = "<group>"; };
 		202F2E36289E740D000D3CAD /* FindNavigatorResultList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorResultList.swift; sourceTree = "<group>"; };
 		202F2E38289E7444000D3CAD /* FindNavigatorListMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorListMatchCell.swift; sourceTree = "<group>"; };
@@ -1241,6 +1243,14 @@
 				2021267E289BF7EF00246DD7 /* Formatter.swift */,
 			);
 			path = Log;
+			sourceTree = "<group>";
+		};
+		2029DA8528E2FCA600D68786 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2029DA8628E2FCEC00D68786 /* swift.tsLanguage.json */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		202F2E2C289E6608000D3CAD /* UI */ = {
@@ -3286,6 +3296,7 @@
 		B658FB2E27DA9E0F00EA4DBD /* AuroraEditor */ = {
 			isa = PBXGroup;
 			children = (
+				2029DA8528E2FCA600D68786 /* Extensions */,
 				20BE727F28D0834800EEDE5F /* Services */,
 				20D83713289A7A9900D91D05 /* Utils */,
 				20D83712289A7A9200D91D05 /* Base */,
@@ -3479,6 +3490,7 @@
 				2BA19F252896F721000B9543 /* .githash in Resources */,
 				28A51006281701B40087B0CC /* auroraeditor-github-dark.json in Resources */,
 				28A51002281673530087B0CC /* auroraeditor-xcode-light.json in Resources */,
+				2029DA8728E2FCEC00D68786 /* swift.tsLanguage.json in Resources */,
 				2B5B25552885D9C3009C7384 /* .gitignore in Resources */,
 				28A51005281701B40087B0CC /* auroraeditor-github-light.json in Resources */,
 				D7211D4727E06BFE008F2ED7 /* Localizable.strings in Resources */,
