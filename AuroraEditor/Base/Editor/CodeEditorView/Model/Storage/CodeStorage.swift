@@ -89,6 +89,14 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         // Then update the line ranges
         updateLineRanges(forCharactersReplacedInRange: range, with: str)
 
+        if let codeDelegate = delegate as? CodeStorageDelegate {
+            DispatchQueue.main.async {
+                codeDelegate.lineMap.updateAfterEditing(string: self.string,
+                                                        range: NSRange(location: 0, length: self.string.count),
+                                                        changeInLength: str.count-range.length)
+            }
+        }
+
         // Check the line ranges in testing
         //        checkLineRanges()
 
