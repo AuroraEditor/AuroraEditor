@@ -73,6 +73,8 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     /// Keeps track of the set of message views.
     var messageViews: MessageViews = [:]
 
+//    private(set) var parser: Parser = Parser(grammars: [.default, loadedGrammer])
+//    private(set) var grammar: Grammar = loadedGrammer
     private(set) var parser: Parser = Parser(grammars: [.default, basicSwiftGrammar])
     private(set) var grammar: Grammar = basicSwiftGrammar
     private(set) var highlightTheme: HighlightTheme = exampleTheme

@@ -76,9 +76,6 @@ extension CodeEditor: NSViewRepresentable {
             updateMessages(in: codeView, with: context)
         }
 
-        // TODO: Move this to a more sensible place
-        let loadedGrammer = loadJson(fileName: "swift.tsLanguage")
-
         return scrollView
     }
 

@@ -107,8 +107,8 @@ func patternFromJson(json: [String: Any], keyName: String) -> Pattern? {
     }
 
     // if the json contains a `include` field, it is a IncludeRulePattern
-    if let include = json["include"] as? String {
-        return IncludeRulePattern(include: include)
+    if let include = json["include"] as? String, include.hasPrefix("#") {
+        return IncludeRulePattern(include: String(include.dropFirst()))
     }
 
     // if the json just contains a `pattern`, it is a Capture
@@ -120,6 +120,17 @@ func patternFromJson(json: [String: Any], keyName: String) -> Pattern? {
     log("Json with keys \(json.keys) did not match anything")
     return nil
 }
+
+public var loadedGrammer: Grammar {
+    if let loadedGrammerBackend = loadedGrammerBackend {
+        return loadedGrammerBackend
+    } else {
+        loadedGrammerBackend = loadJson(fileName: "swift.tsLanguage")
+        return loadedGrammerBackend!
+    }
+}
+
+private var loadedGrammerBackend: Grammar?
 
 func capturesToStringArray(captures: [String: [String: String]]?) -> [String] {
     guard let captures = captures else { return [] }
