@@ -67,7 +67,6 @@ func patternsFromJsonArray(jsonArray: [[String: Any]]?) -> [Pattern] {
         }
     }
     return result
-    Repository(patterns: <#T##[String : Pattern]#>)
 }
 
 func repositoryFromJsonDict(jsonDict: [String: [String: Any]]?) -> Repository? {
@@ -113,8 +112,6 @@ func patternFromJson(json: [String: Any], keyName: String) -> Pattern? {
     if let pattern = json["pattern"] as? [[String: Any]] {
         return Capture(name: keyName.isEmpty ? nil : keyName, patterns: patternsFromJsonArray(jsonArray: pattern))
     }
-
-    
 
     // if none of the above, return nil
     return nil
