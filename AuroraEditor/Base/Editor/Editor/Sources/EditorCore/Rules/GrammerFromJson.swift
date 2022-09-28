@@ -76,8 +76,31 @@ func repositoryFromJsonDict(jsonDict: [String: [String: Any]]?) -> Repository? {
         if let realPattern = patternFromJson(json: pattern, keyName: name) {
             patterns[name] = realPattern
         }
+        if let repository = pattern["repository"] as? [String: [String: Any]],
+           let newPatterns = patternsFromJsonDict(jsonDict: repository) {
+            for newPattern in newPatterns {
+                patterns[newPattern.key] = newPattern.value
+            }
+        }
     }
     return Repository(patterns: patterns)
+}
+
+func patternsFromJsonDict(jsonDict: [String: [String: Any]]?) -> [String: Pattern]? {
+    guard let jsonDict = jsonDict else { return nil }
+    var patterns: [String: Pattern] = [:]
+    for (name, pattern) in jsonDict {
+        if let realPattern = patternFromJson(json: pattern, keyName: name) {
+            patterns[name] = realPattern
+        }
+        if let repository = pattern["repository"] as? [String: [String: Any]],
+           let newPatterns = patternsFromJsonDict(jsonDict: repository) {
+            for newPattern in newPatterns {
+                patterns[newPattern.key] = newPattern.value
+            }
+        }
+    }
+    return patterns
 }
 
 func patternFromJson(json: [String: Any], keyName: String) -> Pattern? {
@@ -107,8 +130,8 @@ func patternFromJson(json: [String: Any], keyName: String) -> Pattern? {
     }
 
     // if the json contains a `include` field, it is a IncludeRulePattern
-    if let include = json["include"] as? String, include.hasPrefix("#") {
-        return IncludeRulePattern(include: String(include.dropFirst()))
+    if let include = json["include"] as? String {
+        return IncludeRulePattern(include: include.hasPrefix("#") ? String(include.dropFirst()) : include)
     }
 
     // if the json just contains a `pattern`, it is a Capture
@@ -117,7 +140,7 @@ func patternFromJson(json: [String: Any], keyName: String) -> Pattern? {
     }
 
     // if none of the above, return nil
-    log("Json with keys \(json.keys) did not match anything")
+    log("Json \(keyName) with keys \(json.keys) did not match anything")
     return nil
 }
 
