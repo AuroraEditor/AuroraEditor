@@ -55,7 +55,7 @@ public func grammarFromJson(jsonStr: String) -> Grammar? {
                    patterns: patternsFromJsonArray(jsonArray: json["patterns"] as? [[String: Any]]),
                    foldingStartMarker: nil,
                    foldingStopMarker: nil,
-                   repository: repositoryFromJsonDict(jsonDict: json["patterns"] as? [String: [String: Any]]))
+                   repository: repositoryFromJsonDict(jsonDict: json["repository"] as? [String: [String: Any]]))
 }
 
 func patternsFromJsonArray(jsonArray: [[String: Any]]?) -> [Pattern] {
@@ -83,12 +83,15 @@ func repositoryFromJsonDict(jsonDict: [String: [String: Any]]?) -> Repository? {
 func patternFromJson(json: [String: Any], keyName: String) -> Pattern? {
     // if the json contains a `begin`, `beginCaptures`, `end`, `endCaptures`, and `patterns` field, it is a BeginEndRule
     if let begin = json["begin"] as? String,
-       let end = json["end"] as? String,
-       let patterns = json["patterns"] as? [[String: Any]] {
+       let end = json["end"] as? String {
         let beginCaptures = json["beginCaptures"] as? [String: [String: String]]
         let endCaptures = json["endCaptures"] as? [String: [String: String]]
         let contentName = json["contentName"] as? String
-        return BeginEndRule(name: keyName,
+
+        let patterns = json["patterns"] as? [[String: Any]]
+        let name = json["name"] as? String
+
+        return BeginEndRule(name: name ?? keyName,
                             begin: begin,
                             end: end,
                             contentName: contentName,
@@ -109,11 +112,12 @@ func patternFromJson(json: [String: Any], keyName: String) -> Pattern? {
     }
 
     // if the json just contains a `pattern`, it is a Capture
-    if let pattern = json["pattern"] as? [[String: Any]] {
+    if let pattern = json["patterns"] as? [[String: Any]] {
         return Capture(name: keyName.isEmpty ? nil : keyName, patterns: patternsFromJsonArray(jsonArray: pattern))
     }
 
     // if none of the above, return nil
+    log("Json with keys \(json.keys) did not match anything")
     return nil
 }
 
