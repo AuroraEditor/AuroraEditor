@@ -8,6 +8,7 @@
 
 import AppKit
 import SwiftUI
+import EditorCore
 
 extension CodeEditor: NSViewRepresentable {
 
@@ -74,6 +75,9 @@ extension CodeEditor: NSViewRepresentable {
         DispatchQueue.main.async {
             updateMessages(in: codeView, with: context)
         }
+
+        // TODO: Move this to a more sensible place
+        loadJson(fileName: "swift.tsLanguage")
 
         return scrollView
     }
