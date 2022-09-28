@@ -21,6 +21,9 @@ extension CodeEditor: NSViewRepresentable {
 
         globalMainQueue.async {
             codeView.string = text
+            codeView.codeStorageDelegate.lineMap.updateAfterEditing(string: text,
+                                                                    range: NSRange(location: 0, length: text.count),
+                                                                    changeInLength: text.count)
         }
         codeView.selectedRanges = position.selections.map { NSValue(range: $0) }
 
