@@ -260,6 +260,17 @@ public class Parser { // swiftlint:disable:this type_body_length
                         )
                         var tokens = [matchToken]
 
+                        applyCapture(grammar: rule.grammar!,
+                                     pattern: rule.begin,
+                                     capturesToApply: rule.beginCaptures,
+                                     line: line,
+                                     loc: loc,
+                                     endLoc: endLoc,
+                                     theme: theme,
+                                     state: state,
+                                     matchTokens: &matchTokens,
+                                     tokens: &tokens)
+
                         // If the BeginEndRule has a content name:
                         if let contentName = rule.contentScopeName {
                             // Add an additional scope, with the same rules and end pattern.
@@ -277,17 +288,6 @@ public class Parser { // swiftlint:disable:this type_body_length
                                 scopes: state.scopes
                             ))
                         }
-
-                        applyCapture(grammar: rule.grammar!,
-                                     pattern: rule.begin,
-                                     capturesToApply: rule.beginCaptures,
-                                     line: line,
-                                     loc: loc,
-                                     endLoc: endLoc,
-                                     theme: theme,
-                                     state: state,
-                                     matchTokens: &matchTokens,
-                                     tokens: &tokens)
 
                         tokenizedLine.addTokens(tokens)
                         loc = newPos
