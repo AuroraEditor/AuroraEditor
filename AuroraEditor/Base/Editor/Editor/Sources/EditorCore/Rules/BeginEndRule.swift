@@ -35,10 +35,9 @@ public class BeginEndRule: Rule, Pattern {
     /// The name/scope assigned to text matched between the begin/end patterns.
     let contentScopeName: ScopeName?
 
-    /// TODO:
-    var beginCaptures: [String]
-    /// TODO:
-    var endCaptures: [String]
+    var beginCaptures: [Capture]
+
+    var endCaptures: [Capture]
 
     var endHasBackReferences: Bool
 
@@ -50,8 +49,8 @@ public class BeginEndRule: Rule, Pattern {
         end: String,
         contentName: String? = nil,
         patterns: [Pattern],
-        beginCaptures: [String] = [],
-        endCaptures: [String] = [],
+        beginCaptures: [Capture] = [],
+        endCaptures: [Capture] = [],
         endHasBackReferences: Bool = false
     ) {
         self.id = UUID()

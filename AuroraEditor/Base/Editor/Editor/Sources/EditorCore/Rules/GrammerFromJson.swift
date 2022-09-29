@@ -137,8 +137,8 @@ func patternFromJson(json: [String: Any], keyName: String) -> Pattern? {
                             end: end,
                             contentName: contentName,
                             patterns: patternsFromJsonArray(jsonArray: patterns),
-                            beginCaptures: jsonDictToStringArray(captures: beginCaptures),
-                            endCaptures: jsonDictToStringArray(captures: endCaptures))
+                            beginCaptures: jsonDictToCaptures(captures: beginCaptures),
+                            endCaptures: jsonDictToCaptures(captures: endCaptures))
     }
 
     // if the json contains a `match` and `name` field, it is a MatchRule

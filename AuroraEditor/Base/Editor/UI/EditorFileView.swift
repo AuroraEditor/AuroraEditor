@@ -122,7 +122,10 @@ let exampleTheme: HighlightTheme = HighlightTheme(name: "basic", settings: [
     ThemeSetting(scope: "entity", parentScopes: [], attributes: [
         ColorThemeAttribute(color: .green)
     ]),
-    ThemeSetting(scope: "invalid", parentScopes: [], attributes: []),
+    ThemeSetting(scope: "invalid", parentScopes: [], attributes: [
+        ColorThemeAttribute(color: .red),
+        UnderlineThemeAttribute(color: .red)
+    ]),
     ThemeSetting(scope: "keyword", parentScopes: [], attributes: [
         ColorThemeAttribute(color: .systemBlue)
     ]),
