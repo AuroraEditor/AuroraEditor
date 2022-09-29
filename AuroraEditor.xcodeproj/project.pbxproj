@@ -44,7 +44,7 @@
 		202327D628D5CA970031FFB6 /* WorkflowJobsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */; };
 		202327D828D5CB200031FFB6 /* WorkflowJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327D728D5CB200031FFB6 /* WorkflowJobCell.swift */; };
 		202327E028D607B20031FFB6 /* ReRunJobSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */; };
-		2029DA8728E2FCEC00D68786 /* swift.tsLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 2029DA8628E2FCEC00D68786 /* swift.tsLanguage.json */; };
+		2029DA8728E2FCEC00D68786 /* swift.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 2029DA8628E2FCEC00D68786 /* swift.tmLanguage.json */; };
 		202F2E35289E7277000D3CAD /* SearchResultMatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E34289E7277000D3CAD /* SearchResultMatchModel.swift */; };
 		202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E36289E740D000D3CAD /* FindNavigatorResultList.swift */; };
 		202F2E39289E7444000D3CAD /* FindNavigatorListMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E38289E7444000D3CAD /* FindNavigatorListMatchCell.swift */; };
@@ -308,6 +308,17 @@
 		2096A82428CF76D400F6ED39 /* CreateNewBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2096A82328CF76D400F6ED39 /* CreateNewBranchView.swift */; };
 		209D0246289AB9750082441F /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = 209D0245289AB9750082441F /* SwiftTerm */; };
 		209D024B289ABC340082441F /* Package.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 209D024A289ABC340082441F /* Package.resolved */; };
+		209DAF2328E647BE00E31109 /* typeScript.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2228E647BE00E31109 /* typeScript.tmLanguage.json */; };
+		209DAF2528E648A700E31109 /* JSON.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2428E648A700E31109 /* JSON.tmLanguage.json */; };
+		209DAF2728E6494800E31109 /* JSONC.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2628E6494800E31109 /* JSONC.tmLanguage.json */; };
+		209DAF2928E6498C00E31109 /* docker.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2828E6498C00E31109 /* docker.tmLanguage.json */; };
+		209DAF2B28E649AC00E31109 /* css.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2A28E649AC00E31109 /* css.tmLanguage.json */; };
+		209DAF2D28E649D400E31109 /* html-derivative.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2C28E649D400E31109 /* html-derivative.tmLanguage.json */; };
+		209DAF2F28E64A0500E31109 /* html.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2E28E64A0500E31109 /* html.tmLanguage.json */; };
+		209DAF3128E64A3200E31109 /* JavaScript.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF3028E64A3200E31109 /* JavaScript.tmLanguage.json */; };
+		209DAF3328E64A5500E31109 /* JavaScriptReact.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF3228E64A5500E31109 /* JavaScriptReact.tmLanguage.json */; };
+		209DAF3528E64A9F00E31109 /* php.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF3428E64A9F00E31109 /* php.tmLanguage.json */; };
+		209DAF3728E64AE800E31109 /* ruby.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF3628E64AE800E31109 /* ruby.tmLanguage.json */; };
 		20B5BD9C28B11C6200B2A02F /* WelcomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BD9B28B11C6200B2A02F /* WelcomeModel.swift */; };
 		20B5BDA128B130EA00B2A02F /* DropProposalPositionCalculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BDA028B130EA00B2A02F /* DropProposalPositionCalculations.swift */; };
 		20B5BDA328B130F000B2A02F /* SplitEditorDropProposalPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BDA228B130F000B2A02F /* SplitEditorDropProposalPosition.swift */; };
@@ -625,7 +636,7 @@
 		202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowJobsView.swift; sourceTree = "<group>"; };
 		202327D728D5CB200031FFB6 /* WorkflowJobCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowJobCell.swift; sourceTree = "<group>"; };
 		202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReRunJobSheetView.swift; sourceTree = "<group>"; };
-		2029DA8628E2FCEC00D68786 /* swift.tsLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = swift.tsLanguage.json; sourceTree = "<group>"; };
+		2029DA8628E2FCEC00D68786 /* swift.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = swift.tmLanguage.json; sourceTree = "<group>"; };
 		202F2E34289E7277000D3CAD /* SearchResultMatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultMatchModel.swift; sourceTree = "<group>"; };
 		202F2E36289E740D000D3CAD /* FindNavigatorResultList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorResultList.swift; sourceTree = "<group>"; };
 		202F2E38289E7444000D3CAD /* FindNavigatorListMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorListMatchCell.swift; sourceTree = "<group>"; };
@@ -685,6 +696,17 @@
 		2093CDE3289AA881003A88DD /* IgnoredFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredFiles.swift; sourceTree = "<group>"; };
 		2096A82328CF76D400F6ED39 /* CreateNewBranchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewBranchView.swift; sourceTree = "<group>"; };
 		209D024A289ABC340082441F /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; name = Package.resolved; path = ../Package.resolved; sourceTree = "<group>"; };
+		209DAF2228E647BE00E31109 /* typeScript.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = typeScript.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF2428E648A700E31109 /* JSON.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSON.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF2628E6494800E31109 /* JSONC.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONC.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF2828E6498C00E31109 /* docker.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = docker.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF2A28E649AC00E31109 /* css.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = css.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF2C28E649D400E31109 /* html-derivative.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "html-derivative.tmLanguage.json"; sourceTree = "<group>"; };
+		209DAF2E28E64A0500E31109 /* html.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = html.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF3028E64A3200E31109 /* JavaScript.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JavaScript.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF3228E64A5500E31109 /* JavaScriptReact.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JavaScriptReact.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF3428E64A9F00E31109 /* php.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = php.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF3628E64AE800E31109 /* ruby.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ruby.tmLanguage.json; sourceTree = "<group>"; };
 		20B5BD9B28B11C6200B2A02F /* WelcomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeModel.swift; sourceTree = "<group>"; };
 		20B5BDA028B130EA00B2A02F /* DropProposalPositionCalculations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropProposalPositionCalculations.swift; sourceTree = "<group>"; };
 		20B5BDA228B130F000B2A02F /* SplitEditorDropProposalPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitEditorDropProposalPosition.swift; sourceTree = "<group>"; };
@@ -1248,7 +1270,18 @@
 		2029DA8528E2FCA600D68786 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2029DA8628E2FCEC00D68786 /* swift.tsLanguage.json */,
+				2029DA8628E2FCEC00D68786 /* swift.tmLanguage.json */,
+				209DAF2228E647BE00E31109 /* typeScript.tmLanguage.json */,
+				209DAF2428E648A700E31109 /* JSON.tmLanguage.json */,
+				209DAF2628E6494800E31109 /* JSONC.tmLanguage.json */,
+				209DAF2828E6498C00E31109 /* docker.tmLanguage.json */,
+				209DAF2A28E649AC00E31109 /* css.tmLanguage.json */,
+				209DAF2C28E649D400E31109 /* html-derivative.tmLanguage.json */,
+				209DAF2E28E64A0500E31109 /* html.tmLanguage.json */,
+				209DAF3028E64A3200E31109 /* JavaScript.tmLanguage.json */,
+				209DAF3228E64A5500E31109 /* JavaScriptReact.tmLanguage.json */,
+				209DAF3428E64A9F00E31109 /* php.tmLanguage.json */,
+				209DAF3628E64AE800E31109 /* ruby.tmLanguage.json */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3489,16 +3522,27 @@
 				2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */,
 				2BA19F252896F721000B9543 /* .githash in Resources */,
 				28A51006281701B40087B0CC /* auroraeditor-github-dark.json in Resources */,
+				209DAF3128E64A3200E31109 /* JavaScript.tmLanguage.json in Resources */,
 				28A51002281673530087B0CC /* auroraeditor-xcode-light.json in Resources */,
-				2029DA8728E2FCEC00D68786 /* swift.tsLanguage.json in Resources */,
+				2029DA8728E2FCEC00D68786 /* swift.tmLanguage.json in Resources */,
 				2B5B25552885D9C3009C7384 /* .gitignore in Resources */,
+				209DAF2328E647BE00E31109 /* typeScript.tmLanguage.json in Resources */,
 				28A51005281701B40087B0CC /* auroraeditor-github-light.json in Resources */,
+				209DAF2928E6498C00E31109 /* docker.tmLanguage.json in Resources */,
+				209DAF2528E648A700E31109 /* JSON.tmLanguage.json in Resources */,
 				D7211D4727E06BFE008F2ED7 /* Localizable.strings in Resources */,
 				28A51001281673530087B0CC /* auroraeditor-xcode-dark.json in Resources */,
 				B658FB3427DA9E1000EA4DBD /* Assets.xcassets in Resources */,
 				2093CD93289AA137003A88DD /* codeedit in Resources */,
+				209DAF3728E64AE800E31109 /* ruby.tmLanguage.json in Resources */,
+				209DAF2D28E649D400E31109 /* html-derivative.tmLanguage.json in Resources */,
 				209D024B289ABC340082441F /* Package.resolved in Resources */,
+				209DAF2728E6494800E31109 /* JSONC.tmLanguage.json in Resources */,
+				209DAF2F28E64A0500E31109 /* html.tmLanguage.json in Resources */,
 				043C321A27E32295006AE443 /* MainMenu.xib in Resources */,
+				209DAF2B28E649AC00E31109 /* css.tmLanguage.json in Resources */,
+				209DAF3528E64A9F00E31109 /* php.tmLanguage.json in Resources */,
+				209DAF3328E64A5500E31109 /* JavaScriptReact.tmLanguage.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

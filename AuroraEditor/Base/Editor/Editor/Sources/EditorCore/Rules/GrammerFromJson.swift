@@ -218,7 +218,7 @@ public var loadedGrammer: Grammar {
     if let loadedGrammerBackend = loadedGrammerBackend {
         return loadedGrammerBackend
     } else {
-        loadedGrammerBackend = loadJson(fileName: "swift.tsLanguage")
+        loadedGrammerBackend = loadJson(fileName: "css.tmLanguage")
         return loadedGrammerBackend!
     }
 }
