@@ -141,10 +141,7 @@ let exampleTheme: HighlightTheme = HighlightTheme(name: "basic", settings: [
     ThemeSetting(scope: "source", parentScopes: [], attributes: [
         ColorThemeAttribute(color: .exampleTextColor),
         FontThemeAttribute(font: .monospacedSystemFont(ofSize: fontSize, weight: .regular)),
-        LigatureThemeAttribute(ligature: 0),
-        FirstLineHeadIndentThemeAttribute(value: 48),
-        TailIndentThemeAttribute(value: -30),
-        HeadIndentThemeAttribute(value: 48)
+        LigatureThemeAttribute(ligature: 0)
     ]),
     ThemeSetting(scope: "comment.keyword", parentScopes: [], attributes: [
         ColorThemeAttribute(color: .systemTeal)
