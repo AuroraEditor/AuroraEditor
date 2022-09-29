@@ -124,9 +124,11 @@ func patternFromJson(json: [String: Any], keyName: String) -> Pattern? {
     }
 
     // if the json contains a `match` and `name` field, it is a MatchRule
-    if let match = json["match"] as? String,
-       let name = json["name"] as? String { // TODO: Get matches with a `capture` array instead of a `name` working
-        return MatchRule(name: name, match: match)
+    if let match = json["match"] as? String { // TODO: Get matches with a `capture` array instead of a `name` working
+        let name = json["name"] as? String
+        let captures = json["captures"] as? [String: [String: Any]]
+
+        return MatchRule(name: name ?? keyName, match: match, captures: capturesToCaptures(captures: captures))
     }
 
     // if the json contains a `include` field, it is a IncludeRulePattern
@@ -161,6 +163,19 @@ func capturesToStringArray(captures: [String: [String: String]]?) -> [String] {
     for captureIndex in captures.keys.sorted(by: { $0 < $1 }) { // sort in numerical order
         if let name = captures[captureIndex]?["name"] {
             result.append(name)
+        }
+    }
+    return result
+}
+
+func capturesToCaptures(captures: [String: [String: Any]]?) -> [Capture] {
+    guard let captures = captures else { return [] }
+    var result: [Capture] = []
+    for captureIndex in captures.keys.sorted(by: { $0 < $1 }) { // sort in numerical order
+        if let name = captures[captureIndex]?["name"] as? String {
+            result.append(Capture(name: name))
+        } else if let patterns = captures[captureIndex]?["patterns"] as? [[String: Any]] {
+            result.append(Capture(patterns: patternsFromJsonArray(jsonArray: patterns)))
         }
     }
     return result

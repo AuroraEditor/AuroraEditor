@@ -305,7 +305,7 @@ public class Parser {
         }
     }
 
-    public var shouldDebug = false
+    public var shouldDebug = true
 
     func debug(_ str: String) {
         if shouldDebug {
