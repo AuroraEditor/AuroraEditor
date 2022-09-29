@@ -24,6 +24,114 @@ public class Parser { // swiftlint:disable:this type_body_length
         return grammars.first(where: { $0.scopeName == scope })
     }
 
+    // swiftlint:disable:next function_body_length function_parameter_count
+    fileprivate func applyCapture(grammar: Grammar,
+                                  pattern: NSRegularExpression,
+                                  capturesToApply: [Capture],
+                                  line: String,
+                                  loc: Int,
+                                  endLoc: Int,
+                                  theme: HighlightTheme,
+                                  state: LineState,
+                                  matchTokens: inout [Token],
+                                  tokens: inout [Token]) {
+        // Apply capture groups
+        for (index, captureRange) in captures(pattern: pattern, str: line,
+                                              in: NSRange(location: loc, length: endLoc-loc)).enumerated() {
+            guard index < capturesToApply.count else {
+                // No capture defined for this (or further) capture(/s).
+                break
+            }
+            // Get the capture definition from the rule
+            let capture = capturesToApply[index]
+
+            guard capture.isActive else {
+                continue
+            }
+
+            // Create a scope for the capture.
+            let captureScope = Scope(
+                name: capture.scopeName,
+                rules: capture.resolve(parser: self, grammar: grammar),
+                theme: theme
+            )
+            // Create the capture state (the current state, with the capture state)
+            let captureState = LineState(scopes: state.scopes + [captureScope])
+
+            // Use tokenize on the capture as if it was an entire line.
+            let result = tokenize(line: line,
+                                  state: captureState,
+                                  withTheme: theme,
+                                  inRange: captureRange)
+
+            // Adjust and add the match tokens to our match tokens array
+            matchTokens += result.matchTokens
+
+            // Create a new array for the new version of the list of tokens.
+            var newTokens = [Token]()
+
+            // Merge the original token list with the token list from the tokenized capture line.
+            // Strategy:
+            // While both lists are not empty, take the first from each list and compare.
+            // - If the token from the original list is before the capture list we will either
+            //   just add it to the new tokens list if it completely before the other token or
+            //   we will split it and add the front bit to the new list.
+            // - Otherwise, see if the two tokens have the same range. If so, we merge them add
+            //   them to the list. Otherwise we will split the larger one.
+            // - Note: the capture line tokens will never occur before the original token because
+            //   captures are applied in order.
+            while var oToken = tokens.first, var cToken = result.tokenizedLine.tokens.first {
+                // Check if the original token is before the new capture token.
+                if oToken.range.location < cToken.range.location {
+                    var new = oToken
+                    // See if they are disjoint
+                    if oToken.range.upperBound <= cToken.range.location {
+                        tokens.removeFirst()
+                    } else {
+                        new.range.length = cToken.range.location - oToken.range.location
+                        tokens[0].range = NSRange(location: cToken.range.location,
+                                                  length: oToken.range.upperBound - cToken.range.location)
+                    }
+
+                    newTokens.append(new)
+                    continue
+                }
+
+                // Now we can guarantee that tokens are both at the same location.
+                guard oToken.range.location == cToken.range.location else {
+                    fatalError("Tokens are not contiguous")
+                }
+
+                // Now three case to merge the tokens:
+                // 1. Both are over the same range
+                // 2. Need to split cToken
+                // 3. Need to split oToken
+                if oToken.range.upperBound == cToken.range.upperBound {
+                    tokens.removeFirst()
+                    result.tokenizedLine.tokens.removeFirst()
+                } else if oToken.range.upperBound < cToken.range.upperBound {
+                    result.tokenizedLine.tokens[0].range = NSRange(location: oToken.range.upperBound,
+                                                                   length: cToken.range.upperBound -
+                                                                       oToken.range.upperBound)
+                    cToken.range.length = oToken.range.length
+                    tokens.removeFirst()
+                } else {
+                    tokens[0].range = NSRange(location: cToken.range.upperBound,
+                                              length: oToken.range.upperBound - cToken.range.upperBound)
+                    oToken.range.length = cToken.range.length
+                    result.tokenizedLine.tokens.removeFirst()
+                }
+                // Merge the capture token onto the original token.
+                newTokens.append(oToken.mergedWith(cToken))
+            }
+            // tokens and/or capture line tokens will be empty so it safe to just append them both.
+            newTokens += tokens + result.tokenizedLine.tokens
+
+            // Update the tokens.
+            tokens = newTokens
+        }
+    }
+
     public func tokenize( // swiftlint:disable:this cyclomatic_complexity function_body_length
         line: String,
         state: LineState,
@@ -107,100 +215,16 @@ public class Parser { // swiftlint:disable:this type_body_length
                         // Add to matchTokens
                         matchTokens.append(matchToken)
 
-                        // Apply capture groups
-                        for (index, captureRange) in captures(pattern: rule.match, str: line,
-                                                          in: NSRange(location: loc, length: endLoc-loc)).enumerated() {
-                            guard index < rule.captures.count else {
-                                // No capture defined for this (or further) capture(/s).
-                                break
-                            }
-                            // Get the capture definition from the rule
-                            let capture = rule.captures[index]
-
-                            guard capture.isActive else {
-                                continue
-                            }
-
-                            // Create a scope for the capture.
-                            let captureScope = Scope(
-                                name: capture.scopeName,
-                                rules: capture.resolve(parser: self, grammar: rule.grammar!),
-                                theme: theme
-                            )
-                            // Create the capture state (the current state, with the capture state)
-                            let captureState = LineState(scopes: state.scopes + [captureScope])
-
-                            // Use tokenize on the capture as if it was an entire line.
-                            let result = tokenize(line: line,
-                                                  state: captureState,
-                                                  withTheme: theme,
-                                                  inRange: captureRange)
-
-                            // Adjust and add the match tokens to our match tokens array
-                            matchTokens += result.matchTokens
-
-                            // Create a new array for the new version of the list of tokens.
-                            var newTokens = [Token]()
-
-                            // Merge the original token list with the token list from the tokenized capture line.
-                            // Strategy:
-                            // While both lists are not empty, take the first from each list and compare.
-                            // - If the token from the original list is before the capture list we will either
-                            //   just add it to the new tokens list if it completely before the other token or
-                            //   we will split it and add the front bit to the new list.
-                            // - Otherwise, see if the two tokens have the same range. If so, we merge them add
-                            //   them to the list. Otherwise we will split the larger one.
-                            // - Note: the capture line tokens will never occur before the original token because
-                            //   captures are applied in order.
-                            while var oToken = tokens.first, var cToken = result.tokenizedLine.tokens.first {
-                                // Check if the original token is before the new capture token.
-                                if oToken.range.location < cToken.range.location {
-                                    var new = oToken
-                                    // See if they are disjoint
-                                    if oToken.range.upperBound <= cToken.range.location {
-                                        tokens.removeFirst()
-                                    } else {
-                                        new.range.length = cToken.range.location - oToken.range.location
-                                        tokens[0].range = NSRange(location: cToken.range.location,
-                                              length: oToken.range.upperBound - cToken.range.location)
-                                    }
-
-                                    newTokens.append(new)
-                                    continue
-                                }
-
-                                // Now we can guarantee that tokens are both at the same location.
-                                guard oToken.range.location == cToken.range.location else {
-                                    fatalError("Tokens are not contiguous")
-                                }
-
-                                // Now three case to merge the tokens:
-                                // 1. Both are over the same range
-                                // 2. Need to split cToken
-                                // 3. Need to split oToken
-                                if oToken.range.upperBound == cToken.range.upperBound {
-                                    tokens.removeFirst()
-                                    result.tokenizedLine.tokens.removeFirst()
-                                } else if oToken.range.upperBound < cToken.range.upperBound {
-                                    result.tokenizedLine.tokens[0].range = NSRange(location: oToken.range.upperBound,
-                                        length: cToken.range.upperBound - oToken.range.upperBound)
-                                    cToken.range.length = oToken.range.length
-                                    tokens.removeFirst()
-                                } else {
-                                    tokens[0].range = NSRange(location: cToken.range.upperBound,
-                                        length: oToken.range.upperBound - cToken.range.upperBound)
-                                    oToken.range.length = cToken.range.length
-                                    result.tokenizedLine.tokens.removeFirst()
-                                }
-                                // Merge the capture token onto the original token.
-                                newTokens.append(oToken.mergedWith(cToken))
-                            }
-                            // tokens and/or capture line tokens will be empty so it safe to just append them both.
-                            newTokens += tokens + result.tokenizedLine.tokens
-
-                            // Update the tokens.
-                            tokens = newTokens
-                        }
+                        applyCapture(grammar: rule.grammar!,
+                                     pattern: rule.match,
+                                     capturesToApply: rule.captures,
+                                     line: line,
+                                     loc: loc,
+                                     endLoc: endLoc,
+                                     theme: theme,
+                                     state: state,
+                                     matchTokens: &matchTokens,
+                                     tokens: &tokens)
 
                         tokenizedLine.addTokens(tokens)
 
@@ -253,6 +277,17 @@ public class Parser { // swiftlint:disable:this type_body_length
                                 scopes: state.scopes
                             ))
                         }
+
+                        applyCapture(grammar: rule.grammar!,
+                                     pattern: rule.begin,
+                                     capturesToApply: rule.beginCaptures,
+                                     line: line,
+                                     loc: loc,
+                                     endLoc: endLoc,
+                                     theme: theme,
+                                     state: state,
+                                     matchTokens: &matchTokens,
+                                     tokens: &tokens)
 
                         // Apply capture groups, if they exist
                         for (index, captureRange) in captures(pattern: rule.begin, str: line,
