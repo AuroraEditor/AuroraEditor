@@ -216,7 +216,8 @@ public class Parser {
                 // Apply the begin end rule
                 else if let rule = rule as? BeginEndRule {
                     if let newPos = matches(pattern: rule.begin, str: line,
-                                            in: NSRange(location: loc, length: endLoc-loc)) {
+                                            in: NSRange(location: loc, length: endLoc-loc)),
+                       newPos > loc {
                         // Set matched flag
                         matched = true
                         // Create a new scope for the BeginEndRule and add it to the state.
@@ -251,8 +252,7 @@ public class Parser {
                                 scopes: state.scopes
                             ))
                         }
-                        // Update the location.
-                        loc = max(loc + 1, newPos) // make sure there is always progress
+                        loc = newPos
                         break
                     }
                 }
