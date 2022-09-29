@@ -116,13 +116,17 @@ let exampleTheme: HighlightTheme = HighlightTheme(name: "basic", settings: [
     ThemeSetting(scope: "comment", parentScopes: [], attributes: [
         ColorThemeAttribute(color: .systemGreen)
     ]),
-    ThemeSetting(scope: "constant", parentScopes: [], attributes: []),
-    ThemeSetting(scope: "entity", parentScopes: [], attributes: []),
+    ThemeSetting(scope: "constant", parentScopes: [], attributes: [
+        ColorThemeAttribute(color: .cyan)
+    ]),
+    ThemeSetting(scope: "entity", parentScopes: [], attributes: [
+        ColorThemeAttribute(color: .green)
+    ]),
     ThemeSetting(scope: "invalid", parentScopes: [], attributes: []),
     ThemeSetting(scope: "keyword", parentScopes: [], attributes: [
         ColorThemeAttribute(color: .systemBlue)
     ]),
-    ThemeSetting(scope: "markup", parentScopes: [], attributes: []),
+//    ThemeSetting(scope: "markup", parentScopes: [], attributes: []),
     ThemeSetting(scope: "storage", parentScopes: [], attributes: []),
     ThemeSetting(scope: "string", parentScopes: [], attributes: [
         ColorThemeAttribute(color: .systemRed)
@@ -131,7 +135,9 @@ let exampleTheme: HighlightTheme = HighlightTheme(name: "basic", settings: [
         ColorThemeAttribute(color: .systemOrange)
     ]),
     ThemeSetting(scope: "support", parentScopes: [], attributes: []),
-    ThemeSetting(scope: "variable", parentScopes: [], attributes: []),
+    ThemeSetting(scope: "variable", parentScopes: [], attributes: [
+        ColorThemeAttribute(color: .yellow)
+    ]),
     ThemeSetting(scope: "source", parentScopes: [], attributes: [
         ColorThemeAttribute(color: .exampleTextColor),
         FontThemeAttribute(font: .monospacedSystemFont(ofSize: fontSize, weight: .regular)),
@@ -143,15 +149,15 @@ let exampleTheme: HighlightTheme = HighlightTheme(name: "basic", settings: [
     ThemeSetting(scope: "comment.keyword", parentScopes: [], attributes: [
         ColorThemeAttribute(color: .systemTeal)
     ]),
-    ThemeSetting(scope: "markup.bold", parentScopes: [], attributes: [
-        BoldThemeAttribute()
-    ]),
-    ThemeSetting(scope: "markup.italic", parentScopes: [], attributes: [
-        ItalicThemeAttribute()
-    ]),
-    ThemeSetting(scope: "markup.mono", parentScopes: [], attributes: [
-        BackgroundColorThemeAttribute(color: .gray, roundingStyle: .quarter)
-    ]),
+//    ThemeSetting(scope: "markup.bold", parentScopes: [], attributes: [
+//        BoldThemeAttribute()
+//    ]),
+//    ThemeSetting(scope: "markup.italic", parentScopes: [], attributes: [
+//        ItalicThemeAttribute()
+//    ]),
+//    ThemeSetting(scope: "markup.mono", parentScopes: [], attributes: [
+//        BackgroundColorThemeAttribute(color: .gray, roundingStyle: .quarter)
+//    ]),
     ThemeSetting(scope: "action", parentScopes: [], attributes: [
         ActionThemeAttribute(actionId: "test", handler: { str, range  in
             Log.info("string: \(str), range \(range)")
@@ -167,65 +173,65 @@ let exampleTheme: HighlightTheme = HighlightTheme(name: "basic", settings: [
         HiddenThemeAttribute(hidden: false)
     ], outSelectionAttributes: [
         HiddenThemeAttribute(hidden: true)
-    ]),
-    ThemeSetting(scope: "markup.heading.1", parentScopes: [], attributes: [
-        FontThemeAttribute(font: .monospacedSystemFont(ofSize: fontSize * 2, weight: .regular)),
-        FirstLineHeadIndentThemeAttribute(value: 18)
-    ]),
-    ThemeSetting(scope: "markup.heading.2", parentScopes: [], attributes: [
-        FontThemeAttribute(font: .monospacedSystemFont(ofSize: fontSize * 1.6, weight: .regular)),
-        FirstLineHeadIndentThemeAttribute(value: 8)
-    ]),
-    ThemeSetting(scope: "markup.heading.3", parentScopes: [], attributes: [
-        FontThemeAttribute(font: .monospacedSystemFont(ofSize: fontSize * 1.3, weight: .regular)),
-        FirstLineHeadIndentThemeAttribute(value: 0)
-    ]),
-    ThemeSetting(scope: "markup.center", parentScopes: [], attributes: [
-        BackgroundColorThemeAttribute(color: Color.gray, roundingStyle: .quarter, coloringStyle: .line)
-    ]),
-    ThemeSetting(scope: "markup.center.content", parentScopes: [], attributes: [
-        TextAlignmentThemeAttribute(value: .center)
-    ]),
-    ThemeSetting(
-        scope: "markdown.link",
-        parentScopes: [],
-        attributes: [],
-        inSelectionAttributes: [
-            HiddenThemeAttribute(hidden: false)
-        ],
-        outSelectionAttributes: [
-            HiddenThemeAttribute(hidden: true)
-        ]
-    ),
-    ThemeSetting(
-        scope: "markdown.link.name",
-        parentScopes: [],
-        attributes: [
-            HiddenThemeAttribute(hidden: false)
-        ],
-        outSelectionAttributes: [
-            HiddenThemeAttribute(hidden: false)
-        ]
-    ),
-    ThemeSetting(
-        scope: "markdown.link.link",
-        parentScopes: [],
-        attributes: []
-    ),
-    ThemeSetting(
-        scope: "markup.syntax",
-        parentScopes: [],
-        attributes: [],
-        inSelectionAttributes: [
-            HiddenThemeAttribute(hidden: false)
-        ],
-        outSelectionAttributes: [
-            HiddenThemeAttribute(hidden: true)
-        ]
-    ),
-    ThemeSetting(scope: "markup.code.block", parentScopes: [], attributes: [
-        BackgroundColorThemeAttribute(color: .codeBackgroundColor, roundingStyle: .full, coloringStyle: .line)
     ])
+//    ThemeSetting(scope: "markup.heading.1", parentScopes: [], attributes: [
+//        FontThemeAttribute(font: .monospacedSystemFont(ofSize: fontSize * 2, weight: .regular)),
+//        FirstLineHeadIndentThemeAttribute(value: 18)
+//    ]),
+//    ThemeSetting(scope: "markup.heading.2", parentScopes: [], attributes: [
+//        FontThemeAttribute(font: .monospacedSystemFont(ofSize: fontSize * 1.6, weight: .regular)),
+//        FirstLineHeadIndentThemeAttribute(value: 8)
+//    ]),
+//    ThemeSetting(scope: "markup.heading.3", parentScopes: [], attributes: [
+//        FontThemeAttribute(font: .monospacedSystemFont(ofSize: fontSize * 1.3, weight: .regular)),
+//        FirstLineHeadIndentThemeAttribute(value: 0)
+//    ]),
+//    ThemeSetting(scope: "markup.center", parentScopes: [], attributes: [
+//        BackgroundColorThemeAttribute(color: Color.gray, roundingStyle: .quarter, coloringStyle: .line)
+//    ]),
+//    ThemeSetting(scope: "markup.center.content", parentScopes: [], attributes: [
+//        TextAlignmentThemeAttribute(value: .center)
+//    ]),
+//    ThemeSetting(
+//        scope: "markdown.link",
+//        parentScopes: [],
+//        attributes: [],
+//        inSelectionAttributes: [
+//            HiddenThemeAttribute(hidden: false)
+//        ],
+//        outSelectionAttributes: [
+//            HiddenThemeAttribute(hidden: true)
+//        ]
+//    ),
+//    ThemeSetting(
+//        scope: "markdown.link.name",
+//        parentScopes: [],
+//        attributes: [
+//            HiddenThemeAttribute(hidden: false)
+//        ],
+//        outSelectionAttributes: [
+//            HiddenThemeAttribute(hidden: false)
+//        ]
+//    ),
+//    ThemeSetting(
+//        scope: "markdown.link.link",
+//        parentScopes: [],
+//        attributes: []
+//    ),
+//    ThemeSetting(
+//        scope: "markup.syntax",
+//        parentScopes: [],
+//        attributes: [],
+//        inSelectionAttributes: [
+//            HiddenThemeAttribute(hidden: false)
+//        ],
+//        outSelectionAttributes: [
+//            HiddenThemeAttribute(hidden: true)
+//        ]
+//    ),
+//    ThemeSetting(scope: "markup.code.block", parentScopes: [], attributes: [
+//        BackgroundColorThemeAttribute(color: .codeBackgroundColor, roundingStyle: .full, coloringStyle: .line)
+//    ])
 ])
 
 extension NSColor {
