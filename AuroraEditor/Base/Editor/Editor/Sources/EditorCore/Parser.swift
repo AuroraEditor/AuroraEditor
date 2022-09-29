@@ -315,8 +315,6 @@ public class Parser { // swiftlint:disable:this type_body_length
 """
 )
         }
-        debug("")
-
         return TokenizeResult(state: state, tokenizedLine: tokenizedLine, matchTokens: matchTokens)
     }
 
