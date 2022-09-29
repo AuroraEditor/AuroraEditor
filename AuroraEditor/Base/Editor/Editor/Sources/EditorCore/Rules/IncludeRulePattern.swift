@@ -25,7 +25,7 @@ public class IncludeRulePattern: Pattern {
         if include == "$self" {
             return grammar.rules // referencing the grammar itself, meaning everything
         }
-        guard let pattern = repo.patterns[include] else {
+        guard include.hasPrefix("#"), let pattern = repo.patterns[String(include.dropFirst())] else {
             fatalError("""
                        Warning: Failed to resolve include rule with value: \(include) because the \
                        grammar '\(grammar.scopeName)' repository does not contain a pattern with name: '\(include)'.

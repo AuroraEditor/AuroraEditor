@@ -151,7 +151,7 @@ func patternFromJson(json: [String: Any], keyName: String) -> Pattern? {
 
     // if the json contains a `include` field, it is a IncludeRulePattern
     if let include = json["include"] as? String {
-        return IncludeRulePattern(include: include.hasPrefix("#") ? String(include.dropFirst()) : include)
+        return IncludeRulePattern(include: include)
     }
 
     // if the json just contains a `pattern`, it is a Capture

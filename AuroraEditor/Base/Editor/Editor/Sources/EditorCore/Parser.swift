@@ -350,4 +350,4 @@ public class Parser { // swiftlint:disable:this type_body_length
             print(str) // swiftlint:disable:this disallow_print
         }
     }
-} // swiftlint:disable:this file_length
+}
