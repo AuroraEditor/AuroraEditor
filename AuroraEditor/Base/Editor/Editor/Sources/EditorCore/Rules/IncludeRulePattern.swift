@@ -22,6 +22,9 @@ public class IncludeRulePattern: Pattern {
                        grammar '\(grammar.scopeName)' repository is nil.
                        """)
         }
+        if include == "$self" {
+            return grammar.rules // referencing the grammar itself, meaning everything
+        }
         guard let pattern = repo.patterns[include] else {
             fatalError("""
                        Warning: Failed to resolve include rule with value: \(include) because the \

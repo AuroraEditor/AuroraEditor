@@ -252,7 +252,7 @@ public class Parser {
                             ))
                         }
                         // Update the location.
-                        loc = newPos
+                        loc = max(loc + 1, newPos) // make sure there is always progress
                         break
                     }
                 }

@@ -181,6 +181,6 @@ func capturesToCaptures(captures: [String: [String: Any]]?) -> [Capture] {
     return result
 }
 
-private func log(_ str: String) {
+func log(_ str: String) {
     print(str) // swiftlint:disable:this disallow_print
 }
