@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import EditorCore
+
 import AppKit
 
 let fontSize: CGFloat = 12

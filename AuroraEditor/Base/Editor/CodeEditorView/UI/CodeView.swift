@@ -8,7 +8,6 @@
 //  which forms the heart of the code editor.
 
 import SwiftUI
-import EditorCore
 
 // MARK: - Message info
 

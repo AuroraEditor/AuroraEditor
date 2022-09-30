@@ -7,7 +7,6 @@
 //  This module defines code highlight themes.
 
 import SwiftUI
-import EditorCore
 
 /// A code highlighting theme. Different syntactic elements are purely distinguished by colour.
 ///

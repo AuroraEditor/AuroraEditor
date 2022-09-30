@@ -6,7 +6,6 @@
 //  This file contains `NSTextStorage` extensions for code editing.
 
 import AppKit
-import EditorCore
 
 // MARK: -
 // MARK: `NSTextStorage` subclass
