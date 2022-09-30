@@ -9,7 +9,7 @@ import Foundation
 
 import Cocoa
 
-public class BackgroundColorThemeAttribute: TokenThemeAttribute {
+public class BackgroundColorThemeAttribute: TokenThemeAttribute, Codable {
 
     public struct RoundingStyle: Hashable, Equatable, RawRepresentable {
 

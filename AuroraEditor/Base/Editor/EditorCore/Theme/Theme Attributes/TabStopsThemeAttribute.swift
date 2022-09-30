@@ -9,7 +9,7 @@ import Foundation
 
 import Cocoa
 
-public class TabStopsThemeAttribute: LineThemeAttribute {
+public class TabStopsThemeAttribute: LineThemeAttribute, Codable {
 
     public let key = "tab-stops"
     public let tabStops: [NSTextTab]

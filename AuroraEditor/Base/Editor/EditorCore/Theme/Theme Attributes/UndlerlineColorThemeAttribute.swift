@@ -9,7 +9,7 @@ import Foundation
 
 import Cocoa
 
-public class UnderlineThemeAttribute: TokenThemeAttribute {
+public class UnderlineThemeAttribute: TokenThemeAttribute, Codable {
 
     public let key = "underline-AEColor"
     public let AEColor: AEColor

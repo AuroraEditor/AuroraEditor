@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class ColorThemeAttribute: TokenThemeAttribute {
+public class ColorThemeAttribute: TokenThemeAttribute, Codable {
 
     public let key = "AEColor"
     public let AEColor: AEColor
