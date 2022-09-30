@@ -1,115 +1,14 @@
 //
-//  EditorFileView.swift
+//  ExampleTheme.swift
 //  AuroraEditor
 //
-//  Created by TAY KAI QUAN on 26/9/22.
+//  Created by TAY KAI QUAN on 30/9/22.
 //  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
-import SwiftUI
+import Foundation
 import EditorCore
-
-struct EditorFileView: NSViewRepresentable {
-
-    typealias NSViewType = NSScrollView
-
-    @State
-    var textView: EditorTextView!
-
-    @State
-    var editor: Editor!
-
-    @State
-    var parser: Parser!
-
-    @State
-    var size: NSSize
-
-    @Binding
-    var text: String
-
-    func makeNSView(context: Context) -> NSScrollView {
-        let scrollView = NSScrollView()
-
-        let textView = EditorTextView()
-        scrollView.documentView = textView
-        textView.insertionPointColor = .white
-        textView.string = text
-        textView.onStringChanged = { text = $0 }
-        textView.selectedTextAttributes.removeValue(forKey: .foregroundColor)
-        textView.linkTextAttributes?.removeValue(forKey: .foregroundColor)
-        textView.replace(lineNumberGutter: LineNumberGutter(withTextView: textView))
-
-        scrollView.scrollerStyle = .overlay
-        scrollView.hasVerticalScroller = true
-        scrollView.hasHorizontalScroller = false
-        scrollView.contentView.automaticallyAdjustsContentInsets = false
-        scrollView.contentView.contentInsets = .init(top: -10, left: 0, bottom: 200, right: 0)
-
-        DispatchQueue.main.async {
-            self.parser = Parser(grammars: [basicSwiftGrammar])
-            parser.shouldDebug = false
-            self.editor = Editor(textView: textView,
-                                 parser: parser,
-                                 baseGrammar: basicSwiftGrammar, theme: exampleTheme)
-            editor.subscribe(toToken: "action") { (res) in
-                for (str, range) in res {
-                    Log.info("\(str) at \(range)")
-                }
-            }
-
-            self.textView = textView
-        }
-
-        scrollView.documentView = textView
-
-        return scrollView
-    }
-
-    func updateNSView(_ nsView: NSScrollView, context: Context) {
-        if textView != nil {
-            textView.insertionPointColor = .white
-            textView.selectedTextAttributes.removeValue(forKey: .foregroundColor)
-            textView.linkTextAttributes?.removeValue(forKey: .foregroundColor)
-            textView.frame = nsView.bounds
-            nsView.contentView.contentInsets = .init(top: -10,
-                                                     left: 0,
-                                                     bottom: nsView.visibleRect.height/2,
-                                                     right: 0)
-        }
-    }
-}
-
-// swiftlint:disable:next swiftlint_file_disabling
-// swiftlint:disable line_length
-let basicSwiftGrammar = Grammar(
-    scopeName: "source.swift",
-    fileTypes: [],
-    patterns: [
-        MatchRule(name: "keyword.declarations", match: "\\b(associatedtype|class|deinit|enum|extension|fileprivate|func|import|init|inout|internal|let|open|operator|private|protocol|public|rethrows|static|struct|subscript|typealias|var)\\b"),
-        MatchRule(name: "keyword.statements", match: "\\b(break|case|continue|default|defer|do|else|fallthrough|for|guard|if|in|repeat|return|switch|where|while)\\b"),
-        MatchRule(name: "keyword.expressionsandtypes", match: "\\b(as|Any|catch|false|is|nil|super|self|Self|throw|throws|true|try)\\b"),
-        MatchRule(name: "keyword.patterns", match: "\\b_\\b"),
-        MatchRule(name: "keyword.pound", match: "\\b#(available|colorLiteral|column|else|elseif|endif|error|file|fileLiteral|function|if|imageLiteral|line|selector|sourceLocation|warning)\\b"),
-        MatchRule(name: "keyword.particularcontexts", match: "\\b(associativity|convenience|dynamic|didSet|final|get|infix|indirect|lazy|left|mutating|none|nonmutating|optional|override|postfix|precedence|prefix|Protocol|required|right|set|Type|unowned|weak|willSet)\\b"),
-        MatchRule(name: "numeric", match: "-?(?:(?:0b|0o|0x)?\\d+|\\d+\\.\\d+)"),
-        MatchRule(name: "bool", match: "(true|false)"),
-        MatchRule(name: "string.quoted.double", match: "\\\"(.*?)\\\"", captures: [
-            Capture(),
-            Capture(patterns: [
-                MatchRule(name: "source.swift", match: #"\\\((.*?)\)"#, captures: [
-                    Capture(),
-                    Capture(patterns: [IncludeGrammarPattern(scopeName: "source.swift")])
-                ])
-            ])
-        ]),
-        BeginEndRule(name: "comment.line.double-slash.swift", begin: "//", end: "\\n", patterns: [IncludeRulePattern(include: "todo")]),
-        BeginEndRule(name: "comment.block", begin: "/\\*", end: "\\*/", patterns: [IncludeRulePattern(include: "todo")])
-    ],
-    repository: Repository(patterns: [
-        "todo": MatchRule(name: "comment.keyword.todo", match: "TODO")
-    ])
-)
+import AppKit
 
 let fontSize: CGFloat = 12
 let exampleTheme: HighlightTheme = HighlightTheme(name: "basic", settings: [
@@ -285,5 +184,3 @@ extension NSColor {
 
     public static let codeBackgroundColor = NSColor.init(color: .white)!
 }
-
-// swiftlint:enable line_length

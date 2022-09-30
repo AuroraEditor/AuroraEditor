@@ -43,7 +43,7 @@ class CodeLayoutManager: NSLayoutManager {
     /// Custom background drawing is done first, then default background drawing is done,
     /// potentially overriding the custom background drawing. Inspiration from
     /// https://instagram-engineering.com/building-type-mode-for-stories-on-ios-and-android-8804e927feba
-    override public func drawBackground(forGlyphRange glyphsToShow: NSRange, at origin: Point) {
+    override public func drawBackground(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
         defer {
             // Call super last to apply normal highlighting with higher priority.
             super.drawBackground(forGlyphRange: glyphsToShow, at: origin)
@@ -145,7 +145,7 @@ within selected character range: \(range), in text container: \(textContainer)
     }
 
     // Adapted from: https://stackoverflow.com/a/44303971
-    func fillRoundedBackgroundRectArray(_ rectArray: UnsafePointer<Rect>,
+    func fillRoundedBackgroundRectArray(_ rectArray: UnsafePointer<NSRect>,
                                         count rectCount: Int,
                                         color: NSColor,
                                         cornerRadius: CGFloat) {
@@ -169,7 +169,7 @@ within selected character range: \(range), in text container: \(textContainer)
         cgContext?.drawPath(using: .fillStroke)
     }
 
-    func getRoundedBackgroundPath(_ rectArray: UnsafePointer<Rect>,
+    func getRoundedBackgroundPath(_ rectArray: UnsafePointer<NSRect>,
                                   count rectCount: Int,
                                   cornerRadius: CGFloat) -> CGPath {
 
@@ -208,7 +208,7 @@ within selected character range: \(range), in text container: \(textContainer)
         return path
     }
 
-    func fillRoundedBackgroundRect(_ rect: Rect, color: NSColor, cornerRadius: CGFloat) {
+    func fillRoundedBackgroundRect(_ rect: NSRect, color: NSColor, cornerRadius: CGFloat) {
         let path = CGMutablePath()
 
         path.addRect(rect.insetBy(dx: cornerRadius, dy: cornerRadius))

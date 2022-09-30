@@ -100,20 +100,6 @@ struct WorkspaceCodeFileView: View {
     }
 
     @ViewBuilder
-    private func editorView(
-        _ codeFile: CodeFileDocument,
-        for item: FileSystemClient.FileItem
-    ) -> some View {
-        EditorViewWrapper(codeFile: codeFile)
-            .safeAreaInset(edge: .top, spacing: 0) {
-                VStack(spacing: 0) {
-                    BreadcrumbsView(file: item, tappedOpenFile: workspace.openTab(item:))
-                    Divider()
-                }
-            }
-    }
-
-    @ViewBuilder
     private func imageFileView(
         _ otherFile: CodeFileDocument,
         for item: FileSystemClient.FileItem

@@ -533,4 +533,13 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
             Log.info(str)
         }
     }
-} // swiftlint:disable:this file_length
+}
+
+extension NSAttributedString {
+
+    var fullRange: NSRange {
+        return NSRange(location: 0, length: length)
+    }
+}
+
+// swiftlint:disable:this file_length
