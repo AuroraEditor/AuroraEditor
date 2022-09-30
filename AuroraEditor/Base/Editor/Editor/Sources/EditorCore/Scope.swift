@@ -15,6 +15,9 @@ class Scope {
     var inSelectionAttributes: [ThemeAttribute]
     var outSelectionAttributes: [ThemeAttribute]
     var isContentScope = false
+    var theme: HighlightTheme?
+    var endCaptures: [Capture]
+    var grammar: Grammar?
 
     init(
         name: ScopeName,
@@ -23,7 +26,9 @@ class Scope {
         attributes: [ThemeAttribute],
         inSelectionAttributes: [ThemeAttribute],
         outSelectionAttributes: [ThemeAttribute],
-        isContentScope: Bool = false
+        isContentScope: Bool = false,
+        endCaptures: [Capture] = [],
+        grammar: Grammar? = nil
     ) {
         self.name = name
         self.rules = rules
@@ -32,6 +37,8 @@ class Scope {
         self.inSelectionAttributes = inSelectionAttributes
         self.outSelectionAttributes = outSelectionAttributes
         self.isContentScope = isContentScope
+        self.endCaptures = endCaptures
+        self.grammar = grammar
     }
 
     init(
@@ -39,14 +46,19 @@ class Scope {
         rules: [Rule],
         end: NSRegularExpression? = nil,
         theme: HighlightTheme,
-        isContentScope: Bool = false
+        isContentScope: Bool = false,
+        endCaptures: [Capture] = [],
+        grammar: Grammar? = nil
     ) {
         self.name = name
         self.rules = rules
         self.end = end
         (self.attributes, self.inSelectionAttributes, self.outSelectionAttributes) =
             theme.allAttributes(forScopeName: name)
+        self.theme = theme
         self.isContentScope = isContentScope
+        self.endCaptures = endCaptures
+        self.grammar = grammar
     }
 }
 

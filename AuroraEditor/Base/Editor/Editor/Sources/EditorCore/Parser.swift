@@ -158,6 +158,33 @@ public class Parser { // swiftlint:disable:this type_body_length
                                         in: NSRange(location: loc, length: endLoc-loc)) {
                     // Pop off state.
                     let last = state.scopes.removeLast()
+
+                    // apply capture
+                    if let theme = last.theme, let grammar = last.grammar {
+
+                        let matchToken = Token(
+                            range: NSRange(location: loc, length: newPos - loc),
+                            scopes: state.currentScope == nil ? [] : [state.currentScope!]
+                        )
+                        var tokens: [Token] = []
+
+                        // Add to matchTokens
+                        matchTokens.append(matchToken)
+
+                        applyCapture(grammar: grammar,
+                                     pattern: endPattern,
+                                     capturesToApply: last.endCaptures,
+                                     line: line,
+                                     loc: loc,
+                                     endLoc: endLoc,
+                                     theme: theme,
+                                     state: state,
+                                     matchTokens: &matchTokens,
+                                     tokens: &tokens)
+
+                        tokenizedLine.addTokens(tokens)
+                    }
+
                     // If the state is a content state, pop off the next as well.
                     if last.isContentScope {
                         // Create a new token for the end match of the BeginEndRule
@@ -249,7 +276,9 @@ public class Parser { // swiftlint:disable:this type_body_length
                             name: rule.scopeName,
                             rules: rule.resolveRules(parser: self, grammar: rule.grammar!),
                             end: rule.end,
-                            theme: theme
+                            theme: theme,
+                            endCaptures: rule.endCaptures,
+                            grammar: rule.grammar
                         )
                         state.scopes.append(scope)
 
@@ -303,19 +332,6 @@ public class Parser { // swiftlint:disable:this type_body_length
             }
         }
         tokenizedLine.cleanLast()
-
-        for token in tokenizedLine.tokens {
-            let startIndex = line.utf16.index(line.utf16.startIndex, offsetBy: token.range.location)
-            let endIndex = line.utf16.index(line.utf16.startIndex, offsetBy: token.range.upperBound)
-            debug(
-"""
-- Token from \(token.range.location) to \(token.range.upperBound) \
-'\(line[startIndex..<endIndex])' with scopes: \
-[\(token.scopeNames.map { $0.rawValue }.joined(separator: ", "))]
-"""
-)
-        }
-        debug("")
 
         return TokenizeResult(state: state, tokenizedLine: tokenizedLine, matchTokens: matchTokens)
     }
