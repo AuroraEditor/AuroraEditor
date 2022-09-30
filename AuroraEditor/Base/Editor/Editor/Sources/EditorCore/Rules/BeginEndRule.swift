@@ -56,18 +56,26 @@ public class BeginEndRule: Rule, Pattern {
         self.id = UUID()
         self.scopeName = ScopeName(rawValue: name)
         do {
-            self.begin = try NSRegularExpression(pattern: begin,
-                                                 options: .init(arrayLiteral: .anchorsMatchLines,
-                                                    .dotMatchesLineSeparators))
-            self.end = try NSRegularExpression(pattern: end,
-                                               options: .init(arrayLiteral: .anchorsMatchLines,
-                                                .dotMatchesLineSeparators))
-        } catch {
-            fatalError(
-"""
-Could not create regex for BeginEndRule with name '\(name)' due to error: \(error.localizedDescription)
-"""
+            self.begin = try NSRegularExpression(
+                pattern: begin == "{" ? begin.replacingOccurrences(of: "{", with: "\\{") : begin,
+                options: .init(
+                    arrayLiteral: .anchorsMatchLines,
+                    .dotMatchesLineSeparators
+                )
             )
+            self.end = try NSRegularExpression(
+                pattern: end == "}" ? end.replacingOccurrences(of: "}", with: "\\}") : end,
+                options: .init(
+                    arrayLiteral: .anchorsMatchLines,
+                    .dotMatchesLineSeparators
+                )
+            )
+        } catch {
+            var message = "Could not create regex for BeginEndRule, "
+            message += "name(\"\(name)\"), begin(\"\(begin)\"), end(\"\(end)\"), "
+            message += "error: \"\(error.localizedDescription)\""
+
+            fatalError(message.replacingOccurrences(of: "\n", with: ""))
         }
         self.patterns = patterns
         if let contentName = contentName {
