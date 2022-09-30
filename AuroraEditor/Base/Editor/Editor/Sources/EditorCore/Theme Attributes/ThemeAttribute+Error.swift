@@ -11,6 +11,6 @@ import EditorCore
 extension ThemeAttribute {
 
     func error(_ details: String = "") {
-        Log.info("Failed to apply ThemeAttribute '\(key)'. \(details)")
+        log("Failed to apply ThemeAttribute '\(key)'. \(details)")
     }
 }

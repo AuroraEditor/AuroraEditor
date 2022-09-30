@@ -7,6 +7,7 @@
 //
 
 import AppKit
+import EditorCore
 
 /// Customised layout manager for code layout.
 class CodeLayoutManager: NSLayoutManager {

@@ -38,9 +38,9 @@ public class BackgroundColorThemeAttribute: TokenThemeAttribute {
 
         public static let Key = NSAttributedString.Key(rawValue: "EditorUI.RoundedBackgroundColor")
 
-        let color: Color
-        let roundingStyle: RoundingStyle
-        let coloringStyle: ColoringStyle
+        public let color: Color
+        public let roundingStyle: RoundingStyle
+        public let coloringStyle: ColoringStyle
 
         public init(color: Color, roundingStyle: RoundingStyle, coloringStyle: ColoringStyle) {
             self.color = color
