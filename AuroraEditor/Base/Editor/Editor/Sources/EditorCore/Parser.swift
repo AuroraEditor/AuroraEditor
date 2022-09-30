@@ -332,18 +332,6 @@ public class Parser { // swiftlint:disable:this type_body_length
             }
         }
         tokenizedLine.cleanLast()
-
-        for token in tokenizedLine.tokens {
-            let startIndex = line.utf16.index(line.utf16.startIndex, offsetBy: token.range.location)
-            let endIndex = line.utf16.index(line.utf16.startIndex, offsetBy: token.range.upperBound)
-            debug(
-"""
-- Token from \(token.range.location) to \(token.range.upperBound) \
-'\(line[startIndex..<endIndex])' with scopes: \
-[\(token.scopeNames.map { $0.rawValue }.joined(separator: ", "))]
-"""
-)
-        }
         return TokenizeResult(state: state, tokenizedLine: tokenizedLine, matchTokens: matchTokens)
     }
 
