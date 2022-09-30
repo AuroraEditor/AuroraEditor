@@ -38,10 +38,6 @@ public struct CodeEditorViewWrapper: View {
         return NSFont(name: name, size: Double(size)) ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
     }()
 
-    private var themeString: String? {
-        return ThemeModel.shared.selectedTheme?.highlightrThemeString
-    }
-
     @State private var position: CodeEditor.Position = CodeEditor.Position()
     @State private var messages: Set<Located<Message>> = Set()
 

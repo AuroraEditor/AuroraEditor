@@ -229,7 +229,6 @@
 		2093CD93289AA137003A88DD /* codeedit in Resources */ = {isa = PBXBuildFile; fileRef = 20D837F7289A7ACD00D91D05 /* codeedit */; };
 		2093CD94289AA13D003A88DD /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83805289A7ACD00D91D05 /* AppPreferences.swift */; };
 		2093CD95289AA13F003A88DD /* AppPreferencesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837FE289A7ACD00D91D05 /* AppPreferencesModel.swift */; };
-		2093CD96289AA144003A88DD /* Theme+Highlightr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837E3289A7ACD00D91D05 /* Theme+Highlightr.swift */; };
 		2093CD97289AA144003A88DD /* AuroraTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837E4289A7ACD00D91D05 /* AuroraTheme.swift */; };
 		2093CD98289AA144003A88DD /* ThemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837E2289A7ACD00D91D05 /* ThemeModel.swift */; };
 		2093CD99289AA148003A88DD /* SourceControlPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837FD289A7ACD00D91D05 /* SourceControlPreferences.swift */; };
@@ -786,7 +785,6 @@
 		20D837DF289A7ACD00D91D05 /* EditorThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorThemeView.swift; sourceTree = "<group>"; };
 		20D837E0289A7ACD00D91D05 /* ThemePreviewIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePreviewIcon.swift; sourceTree = "<group>"; };
 		20D837E2289A7ACD00D91D05 /* ThemeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeModel.swift; sourceTree = "<group>"; };
-		20D837E3289A7ACD00D91D05 /* Theme+Highlightr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Theme+Highlightr.swift"; sourceTree = "<group>"; };
 		20D837E4289A7ACD00D91D05 /* AuroraTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraTheme.swift; sourceTree = "<group>"; };
 		20D837E6289A7ACD00D91D05 /* PreferenceAccountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceAccountsView.swift; sourceTree = "<group>"; };
 		20D837E8289A7ACD00D91D05 /* Providers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers.swift; sourceTree = "<group>"; };
@@ -1890,7 +1888,6 @@
 			isa = PBXGroup;
 			children = (
 				20D837E2289A7ACD00D91D05 /* ThemeModel.swift */,
-				20D837E3289A7ACD00D91D05 /* Theme+Highlightr.swift */,
 				20D837E4289A7ACD00D91D05 /* AuroraTheme.swift */,
 			);
 			path = ThemePreferences;
@@ -3711,7 +3708,6 @@
 				2077162E287C8EC80069C68E /* ToolbarAppInfo.swift in Sources */,
 				2093CDAB289AA17D003A88DD /* TextEditingPreferencesView.swift in Sources */,
 				934D2CD928D207BD00F22E38 /* TabHierarchyOutlineDelegate.swift in Sources */,
-				2093CD96289AA144003A88DD /* Theme+Highlightr.swift in Sources */,
 				2093CD6B289AA0F7003A88DD /* UIDocumentation.docc in Sources */,
 				2093CD14289AA054003A88DD /* GitType.swift in Sources */,
 				2093CDA7289AA179003A88DD /* IgnoredFileView.swift in Sources */,
