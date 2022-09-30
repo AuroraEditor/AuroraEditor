@@ -60,7 +60,7 @@ class SettingsModel: ObservableObject {
                     image: NSImage(systemSymbolName: "gearshape.2", accessibilityDescription: nil)!,
                     colour: .pink),
         SettingItem(name: "Updates",
-                    image: NSImage(systemSymbolName: "gear.badge", accessibilityDescription: nil)!,
+                    image: NSImage(systemSymbolName: "square.and.arrow.down", accessibilityDescription: nil)!,
                     colour: .orange)
     ]
 }

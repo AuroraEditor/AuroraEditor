@@ -37,7 +37,7 @@ public struct Theme: Identifiable {
     public var cursorColour: OSColor
 
     /// The colour to use if invisibles are drawn.
-    public var invisiblesColour: OSColor
+    public var invisiblesColour: OSColor // NOTE: Currently unused
 
     public init(fontName: String,
                 fontSize: CGFloat,
