@@ -9,7 +9,7 @@ import Foundation
 
 public struct ThemeSetting {
 
-    var scope: String
+    var scope: String // TODO: Make this into a list of strings
     var parentScopes: [String]
 
     var attributes: [ThemeAttribute]
