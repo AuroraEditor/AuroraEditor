@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class KernThemeAttribute: TokenThemeAttribute {
+public class KernThemeAttribute: TokenThemeAttribute, Codable {
 
     public let key = "kern"
     public let kern: Float

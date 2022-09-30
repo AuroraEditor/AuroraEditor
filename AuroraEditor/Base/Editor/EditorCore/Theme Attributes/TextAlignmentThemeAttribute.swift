@@ -9,7 +9,7 @@ import Foundation
 
 import Cocoa
 
-public class TextAlignmentThemeAttribute: LineThemeAttribute {
+public class TextAlignmentThemeAttribute: LineThemeAttribute, Codable {
 
     public let key = "first-line-head-indent"
     public let value: NSTextAlignment

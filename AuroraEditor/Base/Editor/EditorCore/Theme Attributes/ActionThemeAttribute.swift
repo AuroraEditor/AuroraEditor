@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class ActionThemeAttribute: TokenThemeAttribute {
+public class ActionThemeAttribute: TokenThemeAttribute, Codable {
 
     public typealias Handler = (String, NSRange) -> Void
 

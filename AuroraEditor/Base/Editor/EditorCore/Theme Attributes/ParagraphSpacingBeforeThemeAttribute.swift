@@ -9,7 +9,7 @@ import Foundation
 
 import Cocoa
 
-public class ParagraphSpacingBeforeThemeAttribute: LineThemeAttribute {
+public class ParagraphSpacingBeforeThemeAttribute: LineThemeAttribute, Codable {
 
     public let key = "para-spacing-before"
     public let spacing: CGFloat

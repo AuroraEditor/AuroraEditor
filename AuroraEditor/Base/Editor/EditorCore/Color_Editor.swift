@@ -6,5 +6,6 @@
 //
 
 import Cocoa
+import AppKit
 
-public typealias AEColor = NSColor
+public class AEColor: NSColor, Codable {}

@@ -9,7 +9,7 @@ import Foundation
 
 import Cocoa
 
-public class DefaultTabIntervalThemeAttribute: LineThemeAttribute {
+public class DefaultTabIntervalThemeAttribute: LineThemeAttribute, Codable {
 
     public let key = "default-tab-interval"
     public let interval: CGFloat

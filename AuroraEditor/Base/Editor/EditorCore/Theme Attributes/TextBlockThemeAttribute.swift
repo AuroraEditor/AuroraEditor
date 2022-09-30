@@ -9,7 +9,7 @@ import Foundation
 
 import Cocoa
 
-public class TextBlockThemeAttribute: LineThemeAttribute {
+public class TextBlockThemeAttribute: LineThemeAttribute, Codable {
 
     public let key = "text-block"
     public let textBlock: NSTextBlock

@@ -9,7 +9,7 @@ import Foundation
 
 import Cocoa
 
-public class LineHeightThemeAttribute: LineThemeAttribute {
+public class LineHeightThemeAttribute: LineThemeAttribute, Codable {
 
     public let key = "line-height"
     public let min: CGFloat

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class HiddenThemeAttribute: TokenThemeAttribute {
+public class HiddenThemeAttribute: TokenThemeAttribute, Codable {
 
     public static let Key = NSAttributedString.Key(rawValue: "EditorUI.Hidden")
 

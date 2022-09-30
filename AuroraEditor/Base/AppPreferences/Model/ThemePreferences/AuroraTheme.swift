@@ -124,20 +124,10 @@ public extension AuroraTheme {
     struct EditorColors: Codable, Hashable, Loopable {
         public var text: Attributes
         public var insertionPoint: Attributes
-//        public var invisibles: Attributes
         public var background: Attributes
         public var lineHighlight: Attributes
         public var selection: Attributes
-//        public var keywords: Attributes
-//        public var commands: Attributes
-//        public var types: Attributes
-//        public var attributes: Attributes
-//        public var variables: Attributes
-//        public var values: Attributes
-//        public var numbers: Attributes
-//        public var strings: Attributes
-//        public var characters: Attributes
-//        public var comments: Attributes
+        public var highlightTheme: HighlightTheme
 
         /// Allows to look up properties by their name
         ///
@@ -152,20 +142,9 @@ public extension AuroraTheme {
                 switch key {
                 case "text": return self.text
                 case "insertionPoint": return self.insertionPoint
-//                case "invisibles": return self.invisibles
                 case "background": return self.background
                 case "lineHighlight": return self.lineHighlight
                 case "selection": return self.selection
-//                case "keywords": return self.keywords
-//                case "commands": return self.commands
-//                case "types": return self.types
-//                case "attributes": return self.attributes
-//                case "variables": return self.variables
-//                case "values": return self.values
-//                case "numbers": return self.numbers
-//                case "strings": return self.strings
-//                case "characters": return self.characters
-//                case "comments": return self.comments
                 default: fatalError("Invalid key")
                 }
             }
@@ -173,20 +152,9 @@ public extension AuroraTheme {
                 switch key {
                 case "text": self.text = newValue
                 case "insertionPoint": self.insertionPoint = newValue
-//                case "invisibles": self.invisibles = newValue
                 case "background": self.background = newValue
                 case "lineHighlight": self.lineHighlight = newValue
                 case "selection": self.selection = newValue
-//                case "keywords": self.keywords = newValue
-//                case "commands": self.commands = newValue
-//                case "types": self.types = newValue
-//                case "attributes": self.attributes = newValue
-//                case "variables": self.variables = newValue
-//                case "values": self.values = newValue
-//                case "numbers": self.numbers = newValue
-//                case "strings": self.strings = newValue
-//                case "characters": self.characters = newValue
-//                case "comments": self.comments = newValue
                 default: fatalError("Invalid key")
                 }
             }
@@ -195,37 +163,17 @@ public extension AuroraTheme {
         public init(
             text: Attributes,
             insertionPoint: Attributes,
-//            invisibles: Attributes,
             background: Attributes,
             lineHighlight: Attributes,
-            selection: Attributes
-//            keywords: Attributes,
-//            commands: Attributes,
-//            types: Attributes,
-//            attributes: Attributes,
-//            variables: Attributes,
-//            values: Attributes,
-//            numbers: Attributes,
-//            strings: Attributes,
-//            characters: Attributes,
-//            comments: Attributes
+            selection: Attributes,
+            highlightTheme: HighlightTheme
         ) {
             self.text = text
             self.insertionPoint = insertionPoint
-//            self.invisibles = invisibles
             self.background = background
             self.lineHighlight = lineHighlight
             self.selection = selection
-//            self.keywords = keywords
-//            self.commands = commands
-//            self.types = types
-//            self.attributes = attributes
-//            self.variables = variables
-//            self.values = values
-//            self.numbers = numbers
-//            self.strings = strings
-//            self.characters = characters
-//            self.comments = comments
+            self.highlightTheme = highlightTheme
         }
     }
 }
