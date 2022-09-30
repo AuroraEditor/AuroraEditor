@@ -16,12 +16,14 @@ extension CodeEditor: NSViewRepresentable {
 
         // Set up text view with gutter
         let codeView = CodeView(frame: CGRect(x: 0, y: 0, width: 100, height: 40),
-                                with: language,
                                 viewLayout: layout,
-                                theme: context.environment.codeEditorTheme)
+                                theme: context.environment.codeHighlightTheme)
 
         globalMainQueue.async {
             codeView.string = text
+            codeView.codeStorageDelegate.lineMap.updateAfterEditing(string: text,
+                                                                    range: NSRange(location: 0, length: text.count),
+                                                                    changeInLength: text.count)
         }
         codeView.selectedRanges = position.selections.map { NSValue(range: $0) }
 
@@ -41,6 +43,7 @@ extension CodeEditor: NSViewRepresentable {
             delegate.textDidChange = context.coordinator.textDidChange
             delegate.selectionDidChange = { textView in
                 selectionDidChange(textView)
+                textView.needsDisplay = true
                 context.coordinator.selectionDidChange(textView)
             }
 
@@ -79,7 +82,7 @@ extension CodeEditor: NSViewRepresentable {
         guard let codeView = scrollView.documentView as? CodeView else { return }
         context.coordinator.updatingView = true
 
-        let theme = context.environment.codeEditorTheme,
+        let theme = context.environment.codeHighlightTheme,
             selections = position.selections.map { NSValue(range: $0) }
 
         updateMessages(in: codeView, with: context)

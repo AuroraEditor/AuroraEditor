@@ -10,7 +10,7 @@ import SwiftUI
 /// SwiftUI code editor based on TextKit.
 ///
 /// SwiftUI `Environment`:
-/// * Environment value `codeEditorTheme`: determines the code highlighting theme to use
+/// * Environment value `codeHighlightTheme`: determines the code highlighting theme to use
 /// * Text-related values: affect the rendering of message views
 public struct CodeEditor {
 
@@ -56,7 +56,6 @@ public struct CodeEditor {
         }
     }
 
-    let language: LanguageConfiguration
     let layout: LayoutConfiguration
 
     @Binding var text: String
@@ -78,13 +77,11 @@ public struct CodeEditor {
                 position: Binding<Position>,
                 caretPosition: Binding<CursorLocation>,
                 messages: Binding<Set<Located<Message>>>,
-                language: LanguageConfiguration = .none,
                 layout: LayoutConfiguration = .standard) {
         self._text = text
         self._position = position
         self._caretPosition = caretPosition
         self._messages = messages
-        self.language = language
         self.layout = layout
     }
 
@@ -110,7 +107,7 @@ public struct CodeEditor {
 }
 
 /// Environment key for the current code editor theme.
-public struct CodeEditorTheme: EnvironmentKey {
+public struct CodeHighlightTheme: EnvironmentKey {
     public static var defaultValue: Theme = Theme.defaultLight
 }
 
@@ -121,8 +118,7 @@ struct CodeEditor_Previews: PreviewProvider {
             text: .constant("-- Hello World!"),
             position: .constant(CodeEditor.Position()),
             caretPosition: .constant(.init(line: 0, column: 0)),
-            messages: .constant(Set()),
-            language: .swift
+            messages: .constant(Set())
         )
     }
 }

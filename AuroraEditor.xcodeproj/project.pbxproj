@@ -44,6 +44,7 @@
 		202327D628D5CA970031FFB6 /* WorkflowJobsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */; };
 		202327D828D5CB200031FFB6 /* WorkflowJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327D728D5CB200031FFB6 /* WorkflowJobCell.swift */; };
 		202327E028D607B20031FFB6 /* ReRunJobSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */; };
+		2029DA8728E2FCEC00D68786 /* swift.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 2029DA8628E2FCEC00D68786 /* swift.tmLanguage.json */; };
 		202F2E35289E7277000D3CAD /* SearchResultMatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E34289E7277000D3CAD /* SearchResultMatchModel.swift */; };
 		202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E36289E740D000D3CAD /* FindNavigatorResultList.swift */; };
 		202F2E39289E7444000D3CAD /* FindNavigatorListMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E38289E7444000D3CAD /* FindNavigatorListMatchCell.swift */; };
@@ -82,9 +83,7 @@
 		206B129328DF79E9002CDE51 /* MinimapTypeSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B129228DF79E9002CDE51 /* MinimapTypeSetter.swift */; };
 		206B129628DF7A3D002CDE51 /* GutterSharedCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B129528DF7A3D002CDE51 /* GutterSharedCode.swift */; };
 		206B129828DF7AA2002CDE51 /* GutterRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B129728DF7AA2002CDE51 /* GutterRect.swift */; };
-		206B129B28DF7B48002CDE51 /* CodeStorageTokenAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B129A28DF7B48002CDE51 /* CodeStorageTokenAttributes.swift */; };
 		206B129D28DF7B7B002CDE51 /* CodeStorageInsertionPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B129C28DF7B7B002CDE51 /* CodeStorageInsertionPoint.swift */; };
-		206B12A028DF7BF3002CDE51 /* CodeStorageDelegateCompletions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B129F28DF7BF3002CDE51 /* CodeStorageDelegateCompletions.swift */; };
 		2072FA13280D74ED00C7F8D4 /* HistoryInspectorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072FA12280D74ED00C7F8D4 /* HistoryInspectorModel.swift */; };
 		2072FA16280D83A500C7F8D4 /* FileTypeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072FA15280D83A500C7F8D4 /* FileTypeList.swift */; };
 		2072FA18280D871200C7F8D4 /* TextEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072FA17280D871200C7F8D4 /* TextEncoding.swift */; };
@@ -230,7 +229,6 @@
 		2093CD93289AA137003A88DD /* codeedit in Resources */ = {isa = PBXBuildFile; fileRef = 20D837F7289A7ACD00D91D05 /* codeedit */; };
 		2093CD94289AA13D003A88DD /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83805289A7ACD00D91D05 /* AppPreferences.swift */; };
 		2093CD95289AA13F003A88DD /* AppPreferencesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837FE289A7ACD00D91D05 /* AppPreferencesModel.swift */; };
-		2093CD96289AA144003A88DD /* Theme+Highlightr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837E3289A7ACD00D91D05 /* Theme+Highlightr.swift */; };
 		2093CD97289AA144003A88DD /* AuroraTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837E4289A7ACD00D91D05 /* AuroraTheme.swift */; };
 		2093CD98289AA144003A88DD /* ThemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837E2289A7ACD00D91D05 /* ThemeModel.swift */; };
 		2093CD99289AA148003A88DD /* SourceControlPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837FD289A7ACD00D91D05 /* SourceControlPreferences.swift */; };
@@ -309,6 +307,17 @@
 		2096A82428CF76D400F6ED39 /* CreateNewBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2096A82328CF76D400F6ED39 /* CreateNewBranchView.swift */; };
 		209D0246289AB9750082441F /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = 209D0245289AB9750082441F /* SwiftTerm */; };
 		209D024B289ABC340082441F /* Package.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 209D024A289ABC340082441F /* Package.resolved */; };
+		209DAF2328E647BE00E31109 /* typeScript.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2228E647BE00E31109 /* typeScript.tmLanguage.json */; };
+		209DAF2528E648A700E31109 /* JSON.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2428E648A700E31109 /* JSON.tmLanguage.json */; };
+		209DAF2728E6494800E31109 /* JSONC.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2628E6494800E31109 /* JSONC.tmLanguage.json */; };
+		209DAF2928E6498C00E31109 /* docker.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2828E6498C00E31109 /* docker.tmLanguage.json */; };
+		209DAF2B28E649AC00E31109 /* css.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2A28E649AC00E31109 /* css.tmLanguage.json */; };
+		209DAF2D28E649D400E31109 /* html-derivative.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2C28E649D400E31109 /* html-derivative.tmLanguage.json */; };
+		209DAF2F28E64A0500E31109 /* html.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2E28E64A0500E31109 /* html.tmLanguage.json */; };
+		209DAF3128E64A3200E31109 /* JavaScript.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF3028E64A3200E31109 /* JavaScript.tmLanguage.json */; };
+		209DAF3328E64A5500E31109 /* JavaScriptReact.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF3228E64A5500E31109 /* JavaScriptReact.tmLanguage.json */; };
+		209DAF3528E64A9F00E31109 /* php.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF3428E64A9F00E31109 /* php.tmLanguage.json */; };
+		209DAF3728E64AE800E31109 /* ruby.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF3628E64AE800E31109 /* ruby.tmLanguage.json */; };
 		20B5BD9C28B11C6200B2A02F /* WelcomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BD9B28B11C6200B2A02F /* WelcomeModel.swift */; };
 		20B5BDA128B130EA00B2A02F /* DropProposalPositionCalculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BDA028B130EA00B2A02F /* DropProposalPositionCalculations.swift */; };
 		20B5BDA328B130F000B2A02F /* SplitEditorDropProposalPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BDA228B130F000B2A02F /* SplitEditorDropProposalPosition.swift */; };
@@ -398,6 +407,55 @@
 		28B0A19827E385C300B73177 /* NavigatorSidebarToolbarTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B0A19727E385C300B73177 /* NavigatorSidebarToolbarTop.swift */; };
 		28B8F884280FFE4600596236 /* NSTableView+Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B8F883280FFE4600596236 /* NSTableView+Background.swift */; };
 		28FFE1BF27E3A441001939DB /* NavigatorSidebarToolbarBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FFE1BE27E3A441001939DB /* NavigatorSidebarToolbarBottom.swift */; };
+		2B04573D28E6FFE300024F2D /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04570928E6FFE300024F2D /* Scope.swift */; };
+		2B04573E28E6FFE300024F2D /* ScopeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04570A28E6FFE300024F2D /* ScopeName.swift */; };
+		2B04573F28E6FFE300024F2D /* Capture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04570B28E6FFE300024F2D /* Capture.swift */; };
+		2B04574028E6FFE300024F2D /* TokenizedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04570C28E6FFE300024F2D /* TokenizedLine.swift */; };
+		2B04574128E6FFE300024F2D /* NSRange+Shifted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04570D28E6FFE300024F2D /* NSRange+Shifted.swift */; };
+		2B04574228E6FFE300024F2D /* ParagraphStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04570E28E6FFE300024F2D /* ParagraphStyle.swift */; };
+		2B04574328E6FFE300024F2D /* HighlightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04570F28E6FFE300024F2D /* HighlightTheme.swift */; };
+		2B04574428E6FFE300024F2D /* HighlightTheme+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04571028E6FFE300024F2D /* HighlightTheme+Default.swift */; };
+		2B04574528E6FFE300024F2D /* TokenizeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04571128E6FFE300024F2D /* TokenizeResult.swift */; };
+		2B04574628E6FFE300024F2D /* LineThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04571228E6FFE300024F2D /* LineThemeAttribute.swift */; };
+		2B04574728E6FFE300024F2D /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04571328E6FFE300024F2D /* Repository.swift */; };
+		2B04574828E6FFE300024F2D /* HighlightThemeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04571428E6FFE300024F2D /* HighlightThemeSetting.swift */; };
+		2B04574928E6FFE300024F2D /* IncludeGrammarPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04571528E6FFE300024F2D /* IncludeGrammarPattern.swift */; };
+		2B04574A28E6FFE300024F2D /* Grammar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04571628E6FFE300024F2D /* Grammar.swift */; };
+		2B04574B28E6FFE300024F2D /* ItalicThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04571828E6FFE300024F2D /* ItalicThemeAttribute.swift */; };
+		2B04574C28E6FFE300024F2D /* LineHeightThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04571928E6FFE300024F2D /* LineHeightThemeAttribute.swift */; };
+		2B04574D28E6FFE300024F2D /* KernThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04571A28E6FFE300024F2D /* KernThemeAttribute.swift */; };
+		2B04574E28E6FFE300024F2D /* UndlerlineColorThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04571B28E6FFE300024F2D /* UndlerlineColorThemeAttribute.swift */; };
+		2B04574F28E6FFE300024F2D /* TailIndentThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04571C28E6FFE300024F2D /* TailIndentThemeAttribute.swift */; };
+		2B04575028E6FFE300024F2D /* BoldThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04571D28E6FFE300024F2D /* BoldThemeAttribute.swift */; };
+		2B04575128E6FFE300024F2D /* TabStopsThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04571E28E6FFE300024F2D /* TabStopsThemeAttribute.swift */; };
+		2B04575228E6FFE300024F2D /* ActionThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04571F28E6FFE300024F2D /* ActionThemeAttribute.swift */; };
+		2B04575328E6FFE300024F2D /* BackgroundColorThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04572028E6FFE300024F2D /* BackgroundColorThemeAttribute.swift */; };
+		2B04575428E6FFE300024F2D /* ParagraphSpacingAfterThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04572128E6FFE300024F2D /* ParagraphSpacingAfterThemeAttribute.swift */; };
+		2B04575528E6FFE300024F2D /* ColorThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04572228E6FFE300024F2D /* ColorThemeAttribute.swift */; };
+		2B04575628E6FFE300024F2D /* TextAlignmentThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04572328E6FFE300024F2D /* TextAlignmentThemeAttribute.swift */; };
+		2B04575728E6FFE300024F2D /* HeadIndentThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04572428E6FFE300024F2D /* HeadIndentThemeAttribute.swift */; };
+		2B04575828E6FFE300024F2D /* FirstLineHeadIndentThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04572528E6FFE300024F2D /* FirstLineHeadIndentThemeAttribute.swift */; };
+		2B04575928E6FFE300024F2D /* ThemeAttribute+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04572628E6FFE300024F2D /* ThemeAttribute+Error.swift */; };
+		2B04575A28E6FFE300024F2D /* HiddenThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04572728E6FFE300024F2D /* HiddenThemeAttribute.swift */; };
+		2B04575B28E6FFE300024F2D /* TextBlockThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04572828E6FFE300024F2D /* TextBlockThemeAttribute.swift */; };
+		2B04575C28E6FFE300024F2D /* LigatureThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04572928E6FFE300024F2D /* LigatureThemeAttribute.swift */; };
+		2B04575D28E6FFE300024F2D /* FontThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04572A28E6FFE300024F2D /* FontThemeAttribute.swift */; };
+		2B04575E28E6FFE300024F2D /* ParagraphSpacingBeforeThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04572B28E6FFE300024F2D /* ParagraphSpacingBeforeThemeAttribute.swift */; };
+		2B04575F28E6FFE300024F2D /* DefaultTabIntervalThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04572C28E6FFE300024F2D /* DefaultTabIntervalThemeAttribute.swift */; };
+		2B04576028E6FFE300024F2D /* BeginEndRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04572E28E6FFE300024F2D /* BeginEndRule.swift */; };
+		2B04576128E6FFE300024F2D /* GrammerFromJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04572F28E6FFE300024F2D /* GrammerFromJson.swift */; };
+		2B04576228E6FFE300024F2D /* RawGrammer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573028E6FFE300024F2D /* RawGrammer.swift */; };
+		2B04576328E6FFE300024F2D /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573128E6FFE300024F2D /* Rule.swift */; };
+		2B04576428E6FFE300024F2D /* IncludeRulePattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573228E6FFE300024F2D /* IncludeRulePattern.swift */; };
+		2B04576528E6FFE300024F2D /* HighlightThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573328E6FFE300024F2D /* HighlightThemeAttribute.swift */; };
+		2B04576628E6FFE300024F2D /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573428E6FFE300024F2D /* Parser.swift */; };
+		2B04576728E6FFE300024F2D /* LineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573528E6FFE300024F2D /* LineState.swift */; };
+		2B04576828E6FFE300024F2D /* TokenThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573628E6FFE300024F2D /* TokenThemeAttribute.swift */; };
+		2B04576928E6FFE300024F2D /* MatchRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573728E6FFE300024F2D /* MatchRule.swift */; };
+		2B04576B28E6FFE300024F2D /* Token_Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573928E6FFE300024F2D /* Token_Editor.swift */; };
+		2B04576C28E6FFE300024F2D /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573A28E6FFE300024F2D /* Pattern.swift */; };
+		2B04576D28E6FFE400024F2D /* Color_Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573B28E6FFE300024F2D /* Color_Editor.swift */; };
+		2B04576E28E6FFE400024F2D /* HighlightThemeTrieElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573C28E6FFE300024F2D /* HighlightThemeTrieElement.swift */; };
 		2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B18EC4528AEC84900494768 /* Symbols.xcassets */; };
 		2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */; };
 		2B5B25532885D9BA009C7384 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B25522885D9B9009C7384 /* .swiftlint.yml */; };
@@ -419,11 +477,9 @@
 		2BD5CF2728D602CE00F95E5A /* OSDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1528D602CE00F95E5A /* OSDefinitions.swift */; };
 		2BD5CF2828D602CE00F95E5A /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1628D602CE00F95E5A /* ScrollView.swift */; };
 		2BD5CF2928D602CE00F95E5A /* CodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1728D602CE00F95E5A /* CodeView.swift */; };
-		2BD5CF2A28D602CE00F95E5A /* MutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1828D602CE00F95E5A /* MutableAttributedString.swift */; };
 		2BD5CF2B28D602CE00F95E5A /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1928D602CE00F95E5A /* TextView.swift */; };
 		2BD5CF2D28D602CE00F95E5A /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1B28D602CE00F95E5A /* Theme.swift */; };
 		2BD5CF2E28D602CE00F95E5A /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1C28D602CE00F95E5A /* MessageView.swift */; };
-		2BD5CF2F28D602CE00F95E5A /* LanguageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1D28D602CE00F95E5A /* LanguageConfiguration.swift */; };
 		2BD8A21428ACFA6D00282989 /* ShellClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8A21328ACFA6D00282989 /* ShellClient.swift */; };
 		2BDFA8F928D1079700980385 /* WebTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8F728D1079600980385 /* WebTab.swift */; };
 		2BDFA90428D107B200980385 /* WebWKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8FB28D107B200980385 /* WebWKView.swift */; };
@@ -448,6 +504,7 @@
 		93159FDC28D5F40C00C55C5A /* CodeEditorViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93159FDB28D5F40C00C55C5A /* CodeEditorViewWrapper.swift */; };
 		9327701128CE1B6300871190 /* TabHierarchyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9327701028CE1B6300871190 /* TabHierarchyTableViewCell.swift */; };
 		9336833928C5EAD7009F7B44 /* GitCloneViewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9336833828C5EAD7009F7B44 /* GitCloneViewWindow.swift */; };
+		9347F52728E6C084007EA1EF /* ExampleTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9347F52628E6C084007EA1EF /* ExampleTheme.swift */; };
 		934D2CD928D207BD00F22E38 /* TabHierarchyOutlineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D2CD828D207BD00F22E38 /* TabHierarchyOutlineDelegate.swift */; };
 		934D2CDB28D207E100F22E38 /* TabHierarchyOutlineDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D2CDA28D207E100F22E38 /* TabHierarchyOutlineDataSource.swift */; };
 		934D2F0328C4A5690034E5C8 /* GitClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D2F0228C4A5690034E5C8 /* GitClientError.swift */; };
@@ -470,7 +527,6 @@
 		93813D2828D74AC400A492D4 /* CodeLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D2728D74AC400A492D4 /* CodeLayoutManager.swift */; };
 		93813D2B28D74B6400A492D4 /* CodeView+Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D2A28D74B6400A492D4 /* CodeView+Messages.swift */; };
 		93813D2E28D74BB900A492D4 /* CodeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D2D28D74BB900A492D4 /* CodeContainer.swift */; };
-		93813D3228D74D7B00A492D4 /* CodeStorageDelegate+Tokenisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D3128D74D7B00A492D4 /* CodeStorageDelegate+Tokenisation.swift */; };
 		93813D3528D74E5400A492D4 /* CodeStorageDelegate+Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D3428D74E5400A492D4 /* CodeStorageDelegate+Messages.swift */; };
 		93983D2D28CE012500E54409 /* NavigatorModeSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93983D2C28CE012500E54409 /* NavigatorModeSelectModel.swift */; };
 		939C109528AE7D0700403A97 /* RepositoryContainers&Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */; };
@@ -596,6 +652,7 @@
 		202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowJobsView.swift; sourceTree = "<group>"; };
 		202327D728D5CB200031FFB6 /* WorkflowJobCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowJobCell.swift; sourceTree = "<group>"; };
 		202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReRunJobSheetView.swift; sourceTree = "<group>"; };
+		2029DA8628E2FCEC00D68786 /* swift.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = swift.tmLanguage.json; sourceTree = "<group>"; };
 		202F2E34289E7277000D3CAD /* SearchResultMatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultMatchModel.swift; sourceTree = "<group>"; };
 		202F2E36289E740D000D3CAD /* FindNavigatorResultList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorResultList.swift; sourceTree = "<group>"; };
 		202F2E38289E7444000D3CAD /* FindNavigatorListMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorListMatchCell.swift; sourceTree = "<group>"; };
@@ -634,9 +691,7 @@
 		206B129228DF79E9002CDE51 /* MinimapTypeSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimapTypeSetter.swift; sourceTree = "<group>"; };
 		206B129528DF7A3D002CDE51 /* GutterSharedCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GutterSharedCode.swift; sourceTree = "<group>"; };
 		206B129728DF7AA2002CDE51 /* GutterRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GutterRect.swift; sourceTree = "<group>"; };
-		206B129A28DF7B48002CDE51 /* CodeStorageTokenAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeStorageTokenAttributes.swift; sourceTree = "<group>"; };
 		206B129C28DF7B7B002CDE51 /* CodeStorageInsertionPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeStorageInsertionPoint.swift; sourceTree = "<group>"; };
-		206B129F28DF7BF3002CDE51 /* CodeStorageDelegateCompletions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeStorageDelegateCompletions.swift; sourceTree = "<group>"; };
 		2072FA12280D74ED00C7F8D4 /* HistoryInspectorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInspectorModel.swift; sourceTree = "<group>"; };
 		2072FA15280D83A500C7F8D4 /* FileTypeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypeList.swift; sourceTree = "<group>"; };
 		2072FA17280D871200C7F8D4 /* TextEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEncoding.swift; sourceTree = "<group>"; };
@@ -657,6 +712,17 @@
 		2093CDE3289AA881003A88DD /* IgnoredFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredFiles.swift; sourceTree = "<group>"; };
 		2096A82328CF76D400F6ED39 /* CreateNewBranchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewBranchView.swift; sourceTree = "<group>"; };
 		209D024A289ABC340082441F /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; name = Package.resolved; path = ../Package.resolved; sourceTree = "<group>"; };
+		209DAF2228E647BE00E31109 /* typeScript.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = typeScript.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF2428E648A700E31109 /* JSON.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSON.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF2628E6494800E31109 /* JSONC.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONC.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF2828E6498C00E31109 /* docker.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = docker.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF2A28E649AC00E31109 /* css.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = css.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF2C28E649D400E31109 /* html-derivative.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "html-derivative.tmLanguage.json"; sourceTree = "<group>"; };
+		209DAF2E28E64A0500E31109 /* html.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = html.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF3028E64A3200E31109 /* JavaScript.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JavaScript.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF3228E64A5500E31109 /* JavaScriptReact.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JavaScriptReact.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF3428E64A9F00E31109 /* php.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = php.tmLanguage.json; sourceTree = "<group>"; };
+		209DAF3628E64AE800E31109 /* ruby.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ruby.tmLanguage.json; sourceTree = "<group>"; };
 		20B5BD9B28B11C6200B2A02F /* WelcomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeModel.swift; sourceTree = "<group>"; };
 		20B5BDA028B130EA00B2A02F /* DropProposalPositionCalculations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropProposalPositionCalculations.swift; sourceTree = "<group>"; };
 		20B5BDA228B130F000B2A02F /* SplitEditorDropProposalPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitEditorDropProposalPosition.swift; sourceTree = "<group>"; };
@@ -767,7 +833,6 @@
 		20D837DF289A7ACD00D91D05 /* EditorThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorThemeView.swift; sourceTree = "<group>"; };
 		20D837E0289A7ACD00D91D05 /* ThemePreviewIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePreviewIcon.swift; sourceTree = "<group>"; };
 		20D837E2289A7ACD00D91D05 /* ThemeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeModel.swift; sourceTree = "<group>"; };
-		20D837E3289A7ACD00D91D05 /* Theme+Highlightr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Theme+Highlightr.swift"; sourceTree = "<group>"; };
 		20D837E4289A7ACD00D91D05 /* AuroraTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraTheme.swift; sourceTree = "<group>"; };
 		20D837E6289A7ACD00D91D05 /* PreferenceAccountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceAccountsView.swift; sourceTree = "<group>"; };
 		20D837E8289A7ACD00D91D05 /* Providers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers.swift; sourceTree = "<group>"; };
@@ -944,6 +1009,55 @@
 		28B0A19727E385C300B73177 /* NavigatorSidebarToolbarTop.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = NavigatorSidebarToolbarTop.swift; sourceTree = "<group>"; tabWidth = 4; };
 		28B8F883280FFE4600596236 /* NSTableView+Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTableView+Background.swift"; sourceTree = "<group>"; };
 		28FFE1BE27E3A441001939DB /* NavigatorSidebarToolbarBottom.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = NavigatorSidebarToolbarBottom.swift; sourceTree = "<group>"; tabWidth = 4; };
+		2B04570928E6FFE300024F2D /* Scope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scope.swift; sourceTree = "<group>"; };
+		2B04570A28E6FFE300024F2D /* ScopeName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScopeName.swift; sourceTree = "<group>"; };
+		2B04570B28E6FFE300024F2D /* Capture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Capture.swift; sourceTree = "<group>"; };
+		2B04570C28E6FFE300024F2D /* TokenizedLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenizedLine.swift; sourceTree = "<group>"; };
+		2B04570D28E6FFE300024F2D /* NSRange+Shifted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+Shifted.swift"; sourceTree = "<group>"; };
+		2B04570E28E6FFE300024F2D /* ParagraphStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphStyle.swift; sourceTree = "<group>"; };
+		2B04570F28E6FFE300024F2D /* HighlightTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightTheme.swift; sourceTree = "<group>"; };
+		2B04571028E6FFE300024F2D /* HighlightTheme+Default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HighlightTheme+Default.swift"; sourceTree = "<group>"; };
+		2B04571128E6FFE300024F2D /* TokenizeResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenizeResult.swift; sourceTree = "<group>"; };
+		2B04571228E6FFE300024F2D /* LineThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04571328E6FFE300024F2D /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		2B04571428E6FFE300024F2D /* HighlightThemeSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightThemeSetting.swift; sourceTree = "<group>"; };
+		2B04571528E6FFE300024F2D /* IncludeGrammarPattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncludeGrammarPattern.swift; sourceTree = "<group>"; };
+		2B04571628E6FFE300024F2D /* Grammar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grammar.swift; sourceTree = "<group>"; };
+		2B04571828E6FFE300024F2D /* ItalicThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItalicThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04571928E6FFE300024F2D /* LineHeightThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineHeightThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04571A28E6FFE300024F2D /* KernThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KernThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04571B28E6FFE300024F2D /* UndlerlineColorThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UndlerlineColorThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04571C28E6FFE300024F2D /* TailIndentThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TailIndentThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04571D28E6FFE300024F2D /* BoldThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoldThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04571E28E6FFE300024F2D /* TabStopsThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabStopsThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04571F28E6FFE300024F2D /* ActionThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04572028E6FFE300024F2D /* BackgroundColorThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundColorThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04572128E6FFE300024F2D /* ParagraphSpacingAfterThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphSpacingAfterThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04572228E6FFE300024F2D /* ColorThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04572328E6FFE300024F2D /* TextAlignmentThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAlignmentThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04572428E6FFE300024F2D /* HeadIndentThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadIndentThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04572528E6FFE300024F2D /* FirstLineHeadIndentThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstLineHeadIndentThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04572628E6FFE300024F2D /* ThemeAttribute+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ThemeAttribute+Error.swift"; sourceTree = "<group>"; };
+		2B04572728E6FFE300024F2D /* HiddenThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiddenThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04572828E6FFE300024F2D /* TextBlockThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBlockThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04572928E6FFE300024F2D /* LigatureThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LigatureThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04572A28E6FFE300024F2D /* FontThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04572B28E6FFE300024F2D /* ParagraphSpacingBeforeThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphSpacingBeforeThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04572C28E6FFE300024F2D /* DefaultTabIntervalThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTabIntervalThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04572E28E6FFE300024F2D /* BeginEndRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeginEndRule.swift; sourceTree = "<group>"; };
+		2B04572F28E6FFE300024F2D /* GrammerFromJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrammerFromJson.swift; sourceTree = "<group>"; };
+		2B04573028E6FFE300024F2D /* RawGrammer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawGrammer.swift; sourceTree = "<group>"; };
+		2B04573128E6FFE300024F2D /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
+		2B04573228E6FFE300024F2D /* IncludeRulePattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncludeRulePattern.swift; sourceTree = "<group>"; };
+		2B04573328E6FFE300024F2D /* HighlightThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04573428E6FFE300024F2D /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		2B04573528E6FFE300024F2D /* LineState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineState.swift; sourceTree = "<group>"; };
+		2B04573628E6FFE300024F2D /* TokenThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenThemeAttribute.swift; sourceTree = "<group>"; };
+		2B04573728E6FFE300024F2D /* MatchRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchRule.swift; sourceTree = "<group>"; };
+		2B04573928E6FFE300024F2D /* Token_Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token_Editor.swift; sourceTree = "<group>"; };
+		2B04573A28E6FFE300024F2D /* Pattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pattern.swift; sourceTree = "<group>"; };
+		2B04573B28E6FFE300024F2D /* Color_Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color_Editor.swift; sourceTree = "<group>"; };
+		2B04573C28E6FFE300024F2D /* HighlightThemeTrieElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightThemeTrieElement.swift; sourceTree = "<group>"; };
 		2B15CA0028254139004E8F22 /* OpenWithAuroraEditor.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = OpenWithAuroraEditor.entitlements; sourceTree = "<group>"; };
 		2B18EC4528AEC84900494768 /* Symbols.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Symbols.xcassets; sourceTree = "<group>"; };
 		2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuroraEditorSymbols.swift; sourceTree = "<group>"; };
@@ -966,11 +1080,9 @@
 		2BD5CF1528D602CE00F95E5A /* OSDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSDefinitions.swift; sourceTree = "<group>"; };
 		2BD5CF1628D602CE00F95E5A /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		2BD5CF1728D602CE00F95E5A /* CodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeView.swift; sourceTree = "<group>"; };
-		2BD5CF1828D602CE00F95E5A /* MutableAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableAttributedString.swift; sourceTree = "<group>"; };
 		2BD5CF1928D602CE00F95E5A /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		2BD5CF1B28D602CE00F95E5A /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		2BD5CF1C28D602CE00F95E5A /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
-		2BD5CF1D28D602CE00F95E5A /* LanguageConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageConfiguration.swift; sourceTree = "<group>"; };
 		2BD8A21328ACFA6D00282989 /* ShellClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShellClient.swift; sourceTree = "<group>"; };
 		2BDFA8F728D1079600980385 /* WebTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebTab.swift; sourceTree = "<group>"; };
 		2BDFA8FB28D107B200980385 /* WebWKView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebWKView.swift; sourceTree = "<group>"; };
@@ -996,6 +1108,7 @@
 		93159FDB28D5F40C00C55C5A /* CodeEditorViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditorViewWrapper.swift; sourceTree = "<group>"; };
 		9327701028CE1B6300871190 /* TabHierarchyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyTableViewCell.swift; sourceTree = "<group>"; };
 		9336833828C5EAD7009F7B44 /* GitCloneViewWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCloneViewWindow.swift; sourceTree = "<group>"; };
+		9347F52628E6C084007EA1EF /* ExampleTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTheme.swift; sourceTree = "<group>"; };
 		934D2CD828D207BD00F22E38 /* TabHierarchyOutlineDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyOutlineDelegate.swift; sourceTree = "<group>"; };
 		934D2CDA28D207E100F22E38 /* TabHierarchyOutlineDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyOutlineDataSource.swift; sourceTree = "<group>"; };
 		934D2F0228C4A5690034E5C8 /* GitClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitClientError.swift; sourceTree = "<group>"; };
@@ -1018,7 +1131,6 @@
 		93813D2728D74AC400A492D4 /* CodeLayoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeLayoutManager.swift; sourceTree = "<group>"; };
 		93813D2A28D74B6400A492D4 /* CodeView+Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeView+Messages.swift"; sourceTree = "<group>"; };
 		93813D2D28D74BB900A492D4 /* CodeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeContainer.swift; sourceTree = "<group>"; };
-		93813D3128D74D7B00A492D4 /* CodeStorageDelegate+Tokenisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeStorageDelegate+Tokenisation.swift"; sourceTree = "<group>"; };
 		93813D3428D74E5400A492D4 /* CodeStorageDelegate+Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeStorageDelegate+Messages.swift"; sourceTree = "<group>"; };
 		93983D2C28CE012500E54409 /* NavigatorModeSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorModeSelectModel.swift; sourceTree = "<group>"; };
 		939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoryContainers&Items.swift"; sourceTree = "<group>"; };
@@ -1185,6 +1297,25 @@
 			path = Log;
 			sourceTree = "<group>";
 		};
+		2029DA8528E2FCA600D68786 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2029DA8628E2FCEC00D68786 /* swift.tmLanguage.json */,
+				209DAF2228E647BE00E31109 /* typeScript.tmLanguage.json */,
+				209DAF2428E648A700E31109 /* JSON.tmLanguage.json */,
+				209DAF2628E6494800E31109 /* JSONC.tmLanguage.json */,
+				209DAF2828E6498C00E31109 /* docker.tmLanguage.json */,
+				209DAF2A28E649AC00E31109 /* css.tmLanguage.json */,
+				209DAF2C28E649D400E31109 /* html-derivative.tmLanguage.json */,
+				209DAF2E28E64A0500E31109 /* html.tmLanguage.json */,
+				209DAF3028E64A3200E31109 /* JavaScript.tmLanguage.json */,
+				209DAF3228E64A5500E31109 /* JavaScriptReact.tmLanguage.json */,
+				209DAF3428E64A9F00E31109 /* php.tmLanguage.json */,
+				209DAF3628E64AE800E31109 /* ruby.tmLanguage.json */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		202F2E2C289E6608000D3CAD /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -1263,27 +1394,6 @@
 				206B129728DF7AA2002CDE51 /* GutterRect.swift */,
 			);
 			path = Gutter;
-			sourceTree = "<group>";
-		};
-		206B129928DF7B1C002CDE51 /* CodeStorage */ = {
-			isa = PBXGroup;
-			children = (
-				206B129E28DF7BC3002CDE51 /* Delegate */,
-				2BD5CF1028D602CE00F95E5A /* CodeStorage.swift */,
-				206B129A28DF7B48002CDE51 /* CodeStorageTokenAttributes.swift */,
-				206B129C28DF7B7B002CDE51 /* CodeStorageInsertionPoint.swift */,
-			);
-			path = CodeStorage;
-			sourceTree = "<group>";
-		};
-		206B129E28DF7BC3002CDE51 /* Delegate */ = {
-			isa = PBXGroup;
-			children = (
-				93813D3128D74D7B00A492D4 /* CodeStorageDelegate+Tokenisation.swift */,
-				2BD5CF0F28D602CE00F95E5A /* CodeStorageDelegate.swift */,
-				206B129F28DF7BF3002CDE51 /* CodeStorageDelegateCompletions.swift */,
-			);
-			path = Delegate;
 			sourceTree = "<group>";
 		};
 		2072FA14280D838800C7F8D4 /* Lists */ = {
@@ -1413,10 +1523,12 @@
 		209D024F289ABF520082441F /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				2B04570828E6FFE300024F2D /* EditorCore */,
 				206B128428DF779C002CDE51 /* Extensions */,
 				2BD5CF0B28D602CE00F95E5A /* CodeEditorView */,
 				202F2E2E289E6637000D3CAD /* Model */,
 				202F2E2C289E6608000D3CAD /* UI */,
+				9347F52628E6C084007EA1EF /* ExampleTheme.swift */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -1872,7 +1984,6 @@
 			isa = PBXGroup;
 			children = (
 				20D837E2289A7ACD00D91D05 /* ThemeModel.swift */,
-				20D837E3289A7ACD00D91D05 /* Theme+Highlightr.swift */,
 				20D837E4289A7ACD00D91D05 /* AuroraTheme.swift */,
 			);
 			path = ThemePreferences;
@@ -2906,6 +3017,78 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		2B04570828E6FFE300024F2D /* EditorCore */ = {
+			isa = PBXGroup;
+			children = (
+				2B04570928E6FFE300024F2D /* Scope.swift */,
+				2B04570A28E6FFE300024F2D /* ScopeName.swift */,
+				2B04570B28E6FFE300024F2D /* Capture.swift */,
+				2B04570C28E6FFE300024F2D /* TokenizedLine.swift */,
+				2B04570D28E6FFE300024F2D /* NSRange+Shifted.swift */,
+				2B04570E28E6FFE300024F2D /* ParagraphStyle.swift */,
+				2B04570F28E6FFE300024F2D /* HighlightTheme.swift */,
+				2B04571028E6FFE300024F2D /* HighlightTheme+Default.swift */,
+				2B04571128E6FFE300024F2D /* TokenizeResult.swift */,
+				2B04571228E6FFE300024F2D /* LineThemeAttribute.swift */,
+				2B04571328E6FFE300024F2D /* Repository.swift */,
+				2B04571428E6FFE300024F2D /* HighlightThemeSetting.swift */,
+				2B04571528E6FFE300024F2D /* IncludeGrammarPattern.swift */,
+				2B04571628E6FFE300024F2D /* Grammar.swift */,
+				2B04571728E6FFE300024F2D /* Theme Attributes */,
+				2B04572D28E6FFE300024F2D /* Rules */,
+				2B04573328E6FFE300024F2D /* HighlightThemeAttribute.swift */,
+				2B04573428E6FFE300024F2D /* Parser.swift */,
+				2B04573528E6FFE300024F2D /* LineState.swift */,
+				2B04573628E6FFE300024F2D /* TokenThemeAttribute.swift */,
+				2B04573728E6FFE300024F2D /* MatchRule.swift */,
+				2B04573928E6FFE300024F2D /* Token_Editor.swift */,
+				2B04573A28E6FFE300024F2D /* Pattern.swift */,
+				2B04573B28E6FFE300024F2D /* Color_Editor.swift */,
+				2B04573C28E6FFE300024F2D /* HighlightThemeTrieElement.swift */,
+			);
+			path = EditorCore;
+			sourceTree = "<group>";
+		};
+		2B04571728E6FFE300024F2D /* Theme Attributes */ = {
+			isa = PBXGroup;
+			children = (
+				2B04571828E6FFE300024F2D /* ItalicThemeAttribute.swift */,
+				2B04571928E6FFE300024F2D /* LineHeightThemeAttribute.swift */,
+				2B04571A28E6FFE300024F2D /* KernThemeAttribute.swift */,
+				2B04571B28E6FFE300024F2D /* UndlerlineColorThemeAttribute.swift */,
+				2B04571C28E6FFE300024F2D /* TailIndentThemeAttribute.swift */,
+				2B04571D28E6FFE300024F2D /* BoldThemeAttribute.swift */,
+				2B04571E28E6FFE300024F2D /* TabStopsThemeAttribute.swift */,
+				2B04571F28E6FFE300024F2D /* ActionThemeAttribute.swift */,
+				2B04572028E6FFE300024F2D /* BackgroundColorThemeAttribute.swift */,
+				2B04572128E6FFE300024F2D /* ParagraphSpacingAfterThemeAttribute.swift */,
+				2B04572228E6FFE300024F2D /* ColorThemeAttribute.swift */,
+				2B04572328E6FFE300024F2D /* TextAlignmentThemeAttribute.swift */,
+				2B04572428E6FFE300024F2D /* HeadIndentThemeAttribute.swift */,
+				2B04572528E6FFE300024F2D /* FirstLineHeadIndentThemeAttribute.swift */,
+				2B04572628E6FFE300024F2D /* ThemeAttribute+Error.swift */,
+				2B04572728E6FFE300024F2D /* HiddenThemeAttribute.swift */,
+				2B04572828E6FFE300024F2D /* TextBlockThemeAttribute.swift */,
+				2B04572928E6FFE300024F2D /* LigatureThemeAttribute.swift */,
+				2B04572A28E6FFE300024F2D /* FontThemeAttribute.swift */,
+				2B04572B28E6FFE300024F2D /* ParagraphSpacingBeforeThemeAttribute.swift */,
+				2B04572C28E6FFE300024F2D /* DefaultTabIntervalThemeAttribute.swift */,
+			);
+			path = "Theme Attributes";
+			sourceTree = "<group>";
+		};
+		2B04572D28E6FFE300024F2D /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				2B04572E28E6FFE300024F2D /* BeginEndRule.swift */,
+				2B04572F28E6FFE300024F2D /* GrammerFromJson.swift */,
+				2B04573028E6FFE300024F2D /* RawGrammer.swift */,
+				2B04573128E6FFE300024F2D /* Rule.swift */,
+				2B04573228E6FFE300024F2D /* IncludeRulePattern.swift */,
+			);
+			path = Rules;
+			sourceTree = "<group>";
+		};
 		2BD5CF0B28D602CE00F95E5A /* CodeEditorView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3014,7 +3197,7 @@
 		93813D2128D747F500A492D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				93813D2F28D74C1B00A492D4 /* Storage+Language */,
+				93813D2F28D74C1B00A492D4 /* Storage */,
 				93813D2C28D74BAB00A492D4 /* Editor */,
 				93813D2228D749A600A492D4 /* LayoutDelegates */,
 				93813D2928D74B3500A492D4 /* Messages */,
@@ -3057,14 +3240,14 @@
 			path = Editor;
 			sourceTree = "<group>";
 		};
-		93813D2F28D74C1B00A492D4 /* Storage+Language */ = {
+		93813D2F28D74C1B00A492D4 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				206B129928DF7B1C002CDE51 /* CodeStorage */,
-				2BD5CF1828D602CE00F95E5A /* MutableAttributedString.swift */,
-				2BD5CF1D28D602CE00F95E5A /* LanguageConfiguration.swift */,
+				2BD5CF0F28D602CE00F95E5A /* CodeStorageDelegate.swift */,
+				2BD5CF1028D602CE00F95E5A /* CodeStorage.swift */,
+				206B129C28DF7B7B002CDE51 /* CodeStorageInsertionPoint.swift */,
 			);
-			path = "Storage+Language";
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		93983D2E28CE053800E54409 /* HierarchyNavigator */ = {
@@ -3193,6 +3376,7 @@
 		B658FB2E27DA9E0F00EA4DBD /* AuroraEditor */ = {
 			isa = PBXGroup;
 			children = (
+				2029DA8528E2FCA600D68786 /* Extensions */,
 				20BE727F28D0834800EEDE5F /* Services */,
 				20D83713289A7A9900D91D05 /* Utils */,
 				20D83712289A7A9200D91D05 /* Base */,
@@ -3384,15 +3568,27 @@
 				2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */,
 				2BA19F252896F721000B9543 /* .githash in Resources */,
 				28A51006281701B40087B0CC /* auroraeditor-github-dark.json in Resources */,
+				209DAF3128E64A3200E31109 /* JavaScript.tmLanguage.json in Resources */,
 				28A51002281673530087B0CC /* auroraeditor-xcode-light.json in Resources */,
+				2029DA8728E2FCEC00D68786 /* swift.tmLanguage.json in Resources */,
 				2B5B25552885D9C3009C7384 /* .gitignore in Resources */,
+				209DAF2328E647BE00E31109 /* typeScript.tmLanguage.json in Resources */,
 				28A51005281701B40087B0CC /* auroraeditor-github-light.json in Resources */,
+				209DAF2928E6498C00E31109 /* docker.tmLanguage.json in Resources */,
+				209DAF2528E648A700E31109 /* JSON.tmLanguage.json in Resources */,
 				D7211D4727E06BFE008F2ED7 /* Localizable.strings in Resources */,
 				28A51001281673530087B0CC /* auroraeditor-xcode-dark.json in Resources */,
 				B658FB3427DA9E1000EA4DBD /* Assets.xcassets in Resources */,
 				2093CD93289AA137003A88DD /* codeedit in Resources */,
+				209DAF3728E64AE800E31109 /* ruby.tmLanguage.json in Resources */,
+				209DAF2D28E649D400E31109 /* html-derivative.tmLanguage.json in Resources */,
 				209D024B289ABC340082441F /* Package.resolved in Resources */,
+				209DAF2728E6494800E31109 /* JSONC.tmLanguage.json in Resources */,
+				209DAF2F28E64A0500E31109 /* html.tmLanguage.json in Resources */,
 				043C321A27E32295006AE443 /* MainMenu.xib in Resources */,
+				209DAF2B28E649AC00E31109 /* css.tmLanguage.json in Resources */,
+				209DAF3528E64A9F00E31109 /* php.tmLanguage.json in Resources */,
+				209DAF3328E64A5500E31109 /* JavaScriptReact.tmLanguage.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3538,30 +3734,38 @@
 				2BDFA8F928D1079700980385 /* WebTab.swift in Sources */,
 				2813F93927ECC4C300E305E4 /* NavigatorSidebar.swift in Sources */,
 				2093CD3C289AA08F003A88DD /* GitlabOAuthRouter.swift in Sources */,
+				2B04576B28E6FFE300024F2D /* Token_Editor.swift in Sources */,
 				2093CD51289AA0AE003A88DD /* IssueArea.swift in Sources */,
+				2B04574B28E6FFE300024F2D /* ItalicThemeAttribute.swift in Sources */,
 				2093CDAA289AA179003A88DD /* SourceControlGitView.swift in Sources */,
 				93D5F5D028CE05BC00286EBD /* HierarchyNavigator.swift in Sources */,
 				202F2E39289E7444000D3CAD /* FindNavigatorListMatchCell.swift in Sources */,
 				20EBB50D280C383700F3A5DA /* LanguageType.swift in Sources */,
 				2093CDD8289AA511003A88DD /* URL.swift in Sources */,
+				2B04576E28E6FFE400024F2D /* HighlightThemeTrieElement.swift in Sources */,
 				2093CD46289AA095003A88DD /* AvatarURL.swift in Sources */,
 				20BE728728D0845000EEDE5F /* AuroraNetworking.swift in Sources */,
 				20C22DA828BCD2A3004973CA /* Diff-Index.swift in Sources */,
 				2BDFA90528D107B200980385 /* OtherFileView.swift in Sources */,
+				2B04575A28E6FFE300024F2D /* HiddenThemeAttribute.swift in Sources */,
 				2093CDA9289AA179003A88DD /* SourceControlGeneralView.swift in Sources */,
 				2093CD1E289AA07D003A88DD /* BitbucketRepositories.swift in Sources */,
 				201169D92837B31200F92B46 /* SourceControlSearchToolbar.swift in Sources */,
 				0483E35027FDB17700354AC0 /* ExtensionNavigator.swift in Sources */,
+				2B04575228E6FFE300024F2D /* ActionThemeAttribute.swift in Sources */,
 				2093CD35289AA089003A88DD /* Git.swift in Sources */,
 				2093CD34289AA089003A88DD /* Issue.swift in Sources */,
 				2BD5CF2D28D602CE00F95E5A /* Theme.swift in Sources */,
 				2041B8C728A6A904005F03D8 /* Refs.swift in Sources */,
+				2B04576828E6FFE300024F2D /* TokenThemeAttribute.swift in Sources */,
+				2B04574A28E6FFE300024F2D /* Grammar.swift in Sources */,
 				20752E4928CA54F000935487 /* Avatar.swift in Sources */,
 				2093CD12289AA054003A88DD /* ChangedFile.swift in Sources */,
 				20B5BD9C28B11C6200B2A02F /* WelcomeModel.swift in Sources */,
 				2041B8C528A69D12005F03D8 /* IRemote.swift in Sources */,
 				2093CD57289AA0C6003A88DD /* DownloadedPlugin.swift in Sources */,
 				2093CDC8289AA260003A88DD /* TabBar.swift in Sources */,
+				2B04575D28E6FFE300024F2D /* FontThemeAttribute.swift in Sources */,
 				2093CD6E289AA0FC003A88DD /* SegmentedControl.swift in Sources */,
 				2041B8BA28A67AA9005F03D8 /* Commit.swift in Sources */,
 				2093CD32289AA089003A88DD /* Openness.swift in Sources */,
@@ -3574,7 +3778,6 @@
 				2093CD21289AA084003A88DD /* GithubUserRouter.swift in Sources */,
 				9352467C28CB2EB700E38DAD /* ProjectNavigatorOutlineDataSource.swift in Sources */,
 				D7E201AE27E8B3C000CB86D0 /* String+Ranges.swift in Sources */,
-				206B12A028DF7BF3002CDE51 /* CodeStorageDelegateCompletions.swift in Sources */,
 				20EBB50F280C389300F3A5DA /* FileInspectorModel.swift in Sources */,
 				20BCB0C428AA9FFA0064C7C0 /* ManualConflictResolution.swift in Sources */,
 				2093CC9A289A9FFD003A88DD /* StatusBarMaximizeButton.swift in Sources */,
@@ -3588,17 +3791,22 @@
 				20E8749028A3ABA8002CE758 /* SourceControlController.swift in Sources */,
 				0463E51327FCC1FB00806D5C /* AuroraEditorTargetsAPI.swift in Sources */,
 				93EF416128C1D38E004083AD /* CommandPaletteItem.swift in Sources */,
+				2B04574628E6FFE300024F2D /* LineThemeAttribute.swift in Sources */,
 				2093CCA5289AA015003A88DD /* FileIcon.swift in Sources */,
+				2B04575628E6FFE300024F2D /* TextAlignmentThemeAttribute.swift in Sources */,
 				93D5F5D528CE074100286EBD /* TabHierarchyViewController.swift in Sources */,
 				201169DD2837B3AC00F92B46 /* SourceControlToolbarBottom.swift in Sources */,
 				2093CD50289AA0AE003A88DD /* FeedbackModel.swift in Sources */,
 				2093CD2F289AA089003A88DD /* GithubUser.swift in Sources */,
 				93672E8528B2684F0086132E /* ToolbarPlusMenu.swift in Sources */,
+				2B04573D28E6FFE300024F2D /* Scope.swift in Sources */,
 				2093CDB8289AA1A6003A88DD /* GithubEnterpriseLoginView.swift in Sources */,
 				2BD5CF2028D602CE00F95E5A /* MinimapView.swift in Sources */,
+				2B04575C28E6FFE300024F2D /* LigatureThemeAttribute.swift in Sources */,
 				2093CD44289AA095003A88DD /* Permissions.swift in Sources */,
 				2093CCA2289AA00B003A88DD /* WelcomeActionView.swift in Sources */,
 				2093CDC7289AA260003A88DD /* TabBarAccessory.swift in Sources */,
+				2B04576928E6FFE300024F2D /* MatchRule.swift in Sources */,
 				20BE729228D08ABB00EEDE5F /* Jobs.swift in Sources */,
 				20C22DAF28BCE339004973CA /* Raw-Diff.swift in Sources */,
 				2093CD49289AA095003A88DD /* EventData.swift in Sources */,
@@ -3606,6 +3814,10 @@
 				2093CDA3289AA16C003A88DD /* PreferencesColorPicker.swift in Sources */,
 				93813D2628D74AA500A492D4 /* CodeLayoutManagerDelegate.swift in Sources */,
 				2093CD6D289AA0FC003A88DD /* PanelDivider.swift in Sources */,
+				2B04576328E6FFE300024F2D /* Rule.swift in Sources */,
+				2B04573E28E6FFE300024F2D /* ScopeName.swift in Sources */,
+				9347F52728E6C084007EA1EF /* ExampleTheme.swift in Sources */,
+				2B04574928E6FFE300024F2D /* IncludeGrammarPattern.swift in Sources */,
 				04C3254D27FF331B00C8DA2D /* ExtensionNavigatorItem.swift in Sources */,
 				2093CC94289A9FF5003A88DD /* StatusBarLineEndSelector.swift in Sources */,
 				2093CD38289AA08F003A88DD /* GitlabAccount.swift in Sources */,
@@ -3620,12 +3832,15 @@
 				2041B8C228A69B8A005F03D8 /* Remote.swift in Sources */,
 				20D2A44628A7D13C0073F7BD /* Revert.swift in Sources */,
 				2093CDAD289AA185003A88DD /* ThemePreviewIcon.swift in Sources */,
+				2B04574028E6FFE300024F2D /* TokenizedLine.swift in Sources */,
+				2B04574228E6FFE300024F2D /* ParagraphStyle.swift in Sources */,
 				2093CC97289A9FF5003A88DD /* StatusBarBreakpointButton.swift in Sources */,
 				20E8748E28A3AB9B002CE758 /* SourceControlMenu.swift in Sources */,
 				2093CD15289AA054003A88DD /* GitClient.swift in Sources */,
 				9352467A28CB16A200E38DAD /* ProjectNavigatorOutlineDelegate.swift in Sources */,
 				2093CD5A289AA0C6003A88DD /* PluginRelease.swift in Sources */,
 				2093CDE9289AAE8B003A88DD /* StashWindowsChanges.swift in Sources */,
+				2B04576728E6FFE300024F2D /* LineState.swift in Sources */,
 				2093CC98289A9FF8003A88DD /* StatusBarDrawer.swift in Sources */,
 				93CACA2328D7515F00978753 /* StatefulMessageView.swift in Sources */,
 				2093CD2D289AA089003A88DD /* GithubRepositories.swift in Sources */,
@@ -3659,6 +3874,7 @@
 				20C22DAA28BCE18F004973CA /* Diff-Check.swift in Sources */,
 				2BD5CF2228D602CE00F95E5A /* CodeStorage.swift in Sources */,
 				20BCB0C228AA9AA00064C7C0 /* Stash-Entry.swift in Sources */,
+				2B04574F28E6FFE300024F2D /* TailIndentThemeAttribute.swift in Sources */,
 				2BD5CF1F28D602CE00F95E5A /* CodeEditor.swift in Sources */,
 				2093CDCB289AA260003A88DD /* TabBarItem.swift in Sources */,
 				2093CDAF289AA185003A88DD /* PreviewThemeView.swift in Sources */,
@@ -3670,7 +3886,8 @@
 				2077162E287C8EC80069C68E /* ToolbarAppInfo.swift in Sources */,
 				2093CDAB289AA17D003A88DD /* TextEditingPreferencesView.swift in Sources */,
 				934D2CD928D207BD00F22E38 /* TabHierarchyOutlineDelegate.swift in Sources */,
-				2093CD96289AA144003A88DD /* Theme+Highlightr.swift in Sources */,
+				2B04575F28E6FFE300024F2D /* DefaultTabIntervalThemeAttribute.swift in Sources */,
+				2B04575928E6FFE300024F2D /* ThemeAttribute+Error.swift in Sources */,
 				2093CD6B289AA0F7003A88DD /* UIDocumentation.docc in Sources */,
 				2093CD14289AA054003A88DD /* GitType.swift in Sources */,
 				2093CDA7289AA179003A88DD /* IgnoredFileView.swift in Sources */,
@@ -3680,6 +3897,8 @@
 				B6EE989227E887C600CDD8AB /* InspectorSidebarToolbar.swift in Sources */,
 				934D2F0828C4EC7E0034E5C8 /* StatusItem.swift in Sources */,
 				201169E72837B5CA00F92B46 /* SourceControlModel.swift in Sources */,
+				2B04575528E6FFE300024F2D /* ColorThemeAttribute.swift in Sources */,
+				2B04575328E6FFE300024F2D /* BackgroundColorThemeAttribute.swift in Sources */,
 				93EF415C28C1D21E004083AD /* CommandPaletteView.swift in Sources */,
 				93813D3528D74E5400A492D4 /* CodeStorageDelegate+Messages.swift in Sources */,
 				2093CD5E289AA0DD003A88DD /* CrashReportModel.swift in Sources */,
@@ -3700,6 +3919,7 @@
 				2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */,
 				20D2A44228A7CEFE0073F7BD /* Squash.swift in Sources */,
 				9354D4BB28AD2872004C6D18 /* StandardTableViewCell.swift in Sources */,
+				2B04575728E6FFE300024F2D /* HeadIndentThemeAttribute.swift in Sources */,
 				2093CD48289AA095003A88DD /* Parameters.swift in Sources */,
 				20DF97A328ABD7D2009CE1E9 /* CreateNewRepositoryView.swift in Sources */,
 				93EF416328C1D752004083AD /* Command.swift in Sources */,
@@ -3722,6 +3942,7 @@
 				2093CD99289AA148003A88DD /* SourceControlPreferences.swift in Sources */,
 				2093CD30289AA089003A88DD /* GithubAccount.swift in Sources */,
 				93983D2D28CE012500E54409 /* NavigatorModeSelectModel.swift in Sources */,
+				2B04574428E6FFE300024F2D /* HighlightTheme+Default.swift in Sources */,
 				20F8379028C7B45700EAE842 /* WorkspaceExtension.swift in Sources */,
 				20E8749228A3ABB6002CE758 /* SourceControlView.swift in Sources */,
 				2093CD9E289AA15F003A88DD /* Providers.swift in Sources */,
@@ -3730,6 +3951,7 @@
 				20BE72A128D0BD9300EEDE5F /* WorkflowRun.swift in Sources */,
 				2093CD70289AA0FC003A88DD /* FontPickerView.swift in Sources */,
 				2BDFA91A28D10B9200980385 /* FileSelectionItem.swift in Sources */,
+				2B04576228E6FFE300024F2D /* RawGrammer.swift in Sources */,
 				2093CDAE289AA185003A88DD /* ThemePreferencesView.swift in Sources */,
 				2041B8C028A694FE005F03D8 /* Reset.swift in Sources */,
 				2093CDB1289AA19B003A88DD /* AccountListItem.swift in Sources */,
@@ -3746,12 +3968,14 @@
 				201169E22837B3D800F92B46 /* ChangesView.swift in Sources */,
 				20DF97A128ABB30D009CE1E9 /* FileManger.swift in Sources */,
 				20FDB4E828BD26B500FDD8C3 /* Diff-Helper.swift in Sources */,
+				2B04573F28E6FFE300024F2D /* Capture.swift in Sources */,
 				93813D2E28D74BB900A492D4 /* CodeContainer.swift in Sources */,
 				20EBB507280C32D300F3A5DA /* QuickHelpInspector.swift in Sources */,
 				93813D2B28D74B6400A492D4 /* CodeView+Messages.swift in Sources */,
 				206B129128DF79C5002CDE51 /* MinimapLayoutManager.swift in Sources */,
 				2093CC91289A9FF5003A88DD /* StatusBarIndentSelector.swift in Sources */,
 				2B89F85428B13E9D007CB9C1 /* AuroraMessageBox.swift in Sources */,
+				2B04574728E6FFE300024F2D /* Repository.swift in Sources */,
 				20BE729428D08AC600EEDE5F /* JobSteps.swift in Sources */,
 				202327D828D5CB200031FFB6 /* WorkflowJobCell.swift in Sources */,
 				2093CD26289AA084003A88DD /* PreviewHeader.swift in Sources */,
@@ -3759,6 +3983,7 @@
 				206B128828DF77E3002CDE51 /* CodeEditorView.swift in Sources */,
 				04C3255C2801F86900C8DA2D /* ProjectNavigatorMenu.swift in Sources */,
 				93EF415F28C1D2DB004083AD /* CommandPaletteState.swift in Sources */,
+				2B04576028E6FFE300024F2D /* BeginEndRule.swift in Sources */,
 				2093CDE1289AA522003A88DD /* AuroraProject.swift in Sources */,
 				04540D5E27DD08C300E91B77 /* WorkspaceView.swift in Sources */,
 				20D2A44C28A7D8D00073F7BD /* Format-Patch.swift in Sources */,
@@ -3778,6 +4003,7 @@
 				2093CC95289A9FF5003A88DD /* StatusBarToggleDrawerButton.swift in Sources */,
 				2BD5CF2928D602CE00F95E5A /* CodeView.swift in Sources */,
 				2072FA1E280D891500C7F8D4 /* Location.swift in Sources */,
+				2B04574128E6FFE300024F2D /* NSRange+Shifted.swift in Sources */,
 				2093CD28289AA084003A88DD /* GithubRepositoryRouter.swift in Sources */,
 				20091DB528DE1FC7008FDDFC /* UpdatePreferencesView.swift in Sources */,
 				D7E201B227E8D50000CB86D0 /* FindNavigatorModeSelector.swift in Sources */,
@@ -3794,13 +4020,14 @@
 				20DF979B28ABA633009CE1E9 /* Rev-Parse.swift in Sources */,
 				20BCB0C828AAA3190064C7C0 /* GitAuthor.swift in Sources */,
 				2093CDB6289AA1A2003A88DD /* GitlabLoginView.swift in Sources */,
-				206B129B28DF7B48002CDE51 /* CodeStorageTokenAttributes.swift in Sources */,
+				2B04575028E6FFE300024F2D /* BoldThemeAttribute.swift in Sources */,
 				204CD3E628AB87640003D082 /* Config.swift in Sources */,
 				2096A82428CF76D400F6ED39 /* CreateNewBranchView.swift in Sources */,
 				2032B51028A256F50089EBB6 /* Array.swift in Sources */,
 				20BCB0BC28AA6AA10064C7C0 /* Diff.swift in Sources */,
 				2093CD91289AA130003A88DD /* NotificationView.swift in Sources */,
 				9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */,
+				2B04575B28E6FFE300024F2D /* TextBlockThemeAttribute.swift in Sources */,
 				285FEC7027FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift in Sources */,
 				20C8D7DC287ED2C700C5B3BA /* ToolbarBranchPicker.swift in Sources */,
 				20B6A20028AFE124004EC8D7 /* SettingsModel.swift in Sources */,
@@ -3812,9 +4039,9 @@
 				2093CDE8289AAE87003A88DD /* StashChangesSheet.swift in Sources */,
 				2093CD6C289AA0FC003A88DD /* EffectView.swift in Sources */,
 				2093CDB3289AA19B003A88DD /* AccountSelectionDialog.swift in Sources */,
-				2BD5CF2A28D602CE00F95E5A /* MutableAttributedString.swift in Sources */,
 				2BD5CF2E28D602CE00F95E5A /* MessageView.swift in Sources */,
 				20091DBA28DE220A008FDDFC /* UpdatePreferences.swift in Sources */,
+				2B04575128E6FFE300024F2D /* TabStopsThemeAttribute.swift in Sources */,
 				0485EB1F27E7458B00138301 /* WorkspaceCodeFileView.swift in Sources */,
 				2093CD4D289AA0A2003A88DD /* Session.swift in Sources */,
 				2093CD42289AA095003A88DD /* ProjectHook.swift in Sources */,
@@ -3825,6 +4052,7 @@
 				202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */,
 				204F7BB328D7905C00F49092 /* WorkflowMenu.swift in Sources */,
 				2093CDE0289AA522003A88DD /* Date.swift in Sources */,
+				2B04576628E6FFE300024F2D /* Parser.swift in Sources */,
 				2BD5CF2528D602CE00F95E5A /* LineMap.swift in Sources */,
 				2847019E27FDDF7600F87B6B /* ProjectNavigatorView.swift in Sources */,
 				93159FDC28D5F40C00C55C5A /* CodeEditorViewWrapper.swift in Sources */,
@@ -3855,6 +4083,7 @@
 				20BCB0C628AAA1C00064C7C0 /* GitCommit.swift in Sources */,
 				04C3254B27FF23B000C8DA2D /* ExtensionNavigatorData.swift in Sources */,
 				206B129828DF7AA2002CDE51 /* GutterRect.swift in Sources */,
+				2B04574528E6FFE300024F2D /* TokenizeResult.swift in Sources */,
 				2093CDD2289AA507003A88DD /* SwiftTerm+Color+Init.swift in Sources */,
 				20D59CD228AFAAE400E3907B /* AccountItemView.swift in Sources */,
 				2093CCAE289AA02D003A88DD /* QuickOpenView.swift in Sources */,
@@ -3876,6 +4105,7 @@
 				936312E728CCC7AE004CD24B /* TabBarItemIcon.swift in Sources */,
 				2093CD2B289AA089003A88DD /* Review.swift in Sources */,
 				2093CD4A289AA095003A88DD /* Namespace.swift in Sources */,
+				2B04575428E6FFE300024F2D /* ParagraphSpacingAfterThemeAttribute.swift in Sources */,
 				20D2A43328A7AA4A0073F7BD /* Init.swift in Sources */,
 				2093CDD3289AA509003A88DD /* View.swift in Sources */,
 				2093CD18289AA079003A88DD /* OAuthRouter.swift in Sources */,
@@ -3884,12 +4114,15 @@
 				20BE727528D0761200EEDE5F /* ActionsListView.swift in Sources */,
 				2BDFA91928D10B9200980385 /* NewFileModel.swift in Sources */,
 				206729B228AE6AC900EB0957 /* GroupBox.swift in Sources */,
+				2B04576428E6FFE300024F2D /* IncludeRulePattern.swift in Sources */,
 				20D2A44028A7CE300073F7BD /* Stage.swift in Sources */,
 				043BCF05281DA19A000AC47C /* WorkspaceDocument+Selection.swift in Sources */,
 				2093CD3A289AA08F003A88DD /* CommitRouter.swift in Sources */,
 				20D2A44E28A7D9CE0073F7BD /* Description.swift in Sources */,
+				2B04574D28E6FFE300024F2D /* KernThemeAttribute.swift in Sources */,
 				2093CD39289AA08F003A88DD /* GitlabOAuthConfiguration.swift in Sources */,
 				202327E028D607B20031FFB6 /* ReRunJobSheetView.swift in Sources */,
+				2B04574E28E6FFE300024F2D /* UndlerlineColorThemeAttribute.swift in Sources */,
 				20D2A43E28A7CB510073F7BD /* Submodule.swift in Sources */,
 				2093CC9C289A9FFD003A88DD /* StatusBarClearButton.swift in Sources */,
 				206B128A28DF78F2002CDE51 /* NSTextView.swift in Sources */,
@@ -3899,6 +4132,7 @@
 				2093CCA3289AA00B003A88DD /* RecentProjectsView.swift in Sources */,
 				2093CC9D289AA001003A88DD /* TerminalEmulatorView+Coordinator.swift in Sources */,
 				2093CDDA289AA51A003A88DD /* Documentation.docc in Sources */,
+				2B04575828E6FFE300024F2D /* FirstLineHeadIndentThemeAttribute.swift in Sources */,
 				04C3254F2800AA4700C8DA2D /* ExtensionInstallationView.swift in Sources */,
 				204F7BB728D7907A00F49092 /* WorkflowViewController.swift in Sources */,
 				2093CD3B289AA08F003A88DD /* GitlabConfiguration.swift in Sources */,
@@ -3906,6 +4140,7 @@
 				2093CDB2289AA19B003A88DD /* PreferenceAccountsView.swift in Sources */,
 				2093CDE7289AAE83003A88DD /* CheckoutBranchView.swift in Sources */,
 				93F0066728A7574C0038E5B7 /* FileSystemClient.swift in Sources */,
+				2B04574C28E6FFE300024F2D /* LineHeightThemeAttribute.swift in Sources */,
 				2093CDC4289AA260003A88DD /* TabBarItemButtonStyle.swift in Sources */,
 				936312EA28CCCAD9004CD24B /* TabBarAccessories.swift in Sources */,
 				2093CD11289AA054003A88DD /* GitUIModel.swift in Sources */,
@@ -3916,7 +4151,6 @@
 				B6EE989027E8879A00CDD8AB /* InspectorSidebar.swift in Sources */,
 				2BDFA90428D107B200980385 /* WebWKView.swift in Sources */,
 				2093CD8B289AA12B003A88DD /* NotificationData.swift in Sources */,
-				93813D3228D74D7B00A492D4 /* CodeStorageDelegate+Tokenisation.swift in Sources */,
 				2093CD4E289AA0A9003A88DD /* FeedbackToolbar.swift in Sources */,
 				93F73D0D28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift in Sources */,
 				9C3E1A07284E8E020042BEC0 /* WelcomeModuleExtensions.swift in Sources */,
@@ -3928,6 +4162,7 @@
 				2093CCAD289AA028003A88DD /* QuickOpenState.swift in Sources */,
 				2093CD94289AA13D003A88DD /* AppPreferences.swift in Sources */,
 				2093CD1B289AA079003A88DD /* BitbucketOAuthConfiguration.swift in Sources */,
+				2B04576D28E6FFE400024F2D /* Color_Editor.swift in Sources */,
 				2093CD3F289AA095003A88DD /* Project.swift in Sources */,
 				20D9E32C28CB68DE00FE3339 /* FilterCommitHistoryView.swift in Sources */,
 				20D839AB280DEB2900B27357 /* NoSelectionView.swift in Sources */,
@@ -3936,7 +4171,9 @@
 				2093CD4C289AA0A2003A88DD /* JSONPostRouter.swift in Sources */,
 				2041B8AF28A67091005F03D8 /* Branch.swift in Sources */,
 				2093CD40289AA095003A88DD /* GitlabCommit.swift in Sources */,
+				2B04576128E6FFE300024F2D /* GrammerFromJson.swift in Sources */,
 				20C22DB128BCE869004973CA /* Diff-Line.swift in Sources */,
+				2B04576528E6FFE300024F2D /* HighlightThemeAttribute.swift in Sources */,
 				2093CD27289AA084003A88DD /* PublicKey.swift in Sources */,
 				043C321627E3201F006AE443 /* WorkspaceDocument.swift in Sources */,
 				2BD5CF2728D602CE00F95E5A /* OSDefinitions.swift in Sources */,
@@ -3948,6 +4185,7 @@
 				20BE72A528D0BEA800EEDE5F /* WorkflowRuns.swift in Sources */,
 				2093CD9B289AA14F003A88DD /* TextEditingPreferences.swift in Sources */,
 				207D295A28CCDEDC00D31530 /* BranchCommitHistory.swift in Sources */,
+				2B04574828E6FFE300024F2D /* HighlightThemeSetting.swift in Sources */,
 				2076DF1128C9F0900031DDB1 /* Check.swift in Sources */,
 				2093CDA8289AA179003A88DD /* PreferenceSourceControlView.swift in Sources */,
 				2093CDDD289AA51D003A88DD /* AuroraEditorKeychainConstants.swift in Sources */,
@@ -3968,14 +4206,15 @@
 				2093CD58289AA0C6003A88DD /* Plugin.swift in Sources */,
 				20D2A44428A7CFB40073F7BD /* RM.swift in Sources */,
 				2093CD23289AA084003A88DD /* GitRouter.swift in Sources */,
+				2B04576C28E6FFE300024F2D /* Pattern.swift in Sources */,
 				2BD5CF2428D602CE00F95E5A /* Message.swift in Sources */,
 				2093CD98289AA144003A88DD /* ThemeModel.swift in Sources */,
-				2BD5CF2F28D602CE00F95E5A /* LanguageConfiguration.swift in Sources */,
 				28B0A19827E385C300B73177 /* NavigatorSidebarToolbarTop.swift in Sources */,
 				93CACA2728D7524800978753 /* MessagePopupView.swift in Sources */,
 				2093CDBD289AA1BD003A88DD /* ParsePackagesResolved.swift in Sources */,
 				0463E51127FCC1DF00806D5C /* AuroraEditorAPI.swift in Sources */,
 				04C3255B2801F86400C8DA2D /* ProjectNavigatorViewController.swift in Sources */,
+				2B04575E28E6FFE300024F2D /* ParagraphSpacingBeforeThemeAttribute.swift in Sources */,
 				93532A7E28C736AA007588B4 /* DockProgress.swift in Sources */,
 				93ACA43728C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift in Sources */,
 				2093CDC0289AA247003A88DD /* SearchResultModel.swift in Sources */,
@@ -3998,6 +4237,7 @@
 				2093CCA6289AA01A003A88DD /* FileItem.swift in Sources */,
 				2093CD29289AA084003A88DD /* PullRequestRouter.swift in Sources */,
 				2093CDE5289AAE7F003A88DD /* CheckoutBranch.swift in Sources */,
+				2B04574328E6FFE300024F2D /* HighlightTheme.swift in Sources */,
 				2093CD97289AA144003A88DD /* AuroraTheme.swift in Sources */,
 				2093CCB0289AA02D003A88DD /* QuickOpenPreviewView.swift in Sources */,
 				20BE729628D08B0A00EEDE5F /* Job.swift in Sources */,

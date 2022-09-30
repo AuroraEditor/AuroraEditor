@@ -57,9 +57,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
             insertionPointColor = theme.cursorColour
             selectedTextAttributes = [.backgroundColor: theme.selectionColour]
             (textStorage as? CodeStorage)?.theme = theme
-            gutterView?.theme = theme
             minimapView?.backgroundColor = theme.backgroundColour
-            minimapGutterView?.theme = theme
             documentVisibleBox?.fillColor = theme.textColour.withAlphaComponent(0.1)
             tile()
             setNeedsDisplay(visibleRect)
@@ -74,25 +72,36 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     /// Keeps track of the set of message views.
     var messageViews: MessageViews = [:]
 
+    private(set) var parser: Parser = Parser(grammars: [loadedGrammer])
+    private(set) var grammar: Grammar = loadedGrammer
+//    private(set) var parser: Parser = Parser(grammars: [.default, basicSwiftGrammar])
+//    private(set) var grammar: Grammar = basicSwiftGrammar
+    private(set) var highlightTheme: HighlightTheme = exampleTheme
+
     /// Designated initialiser for code views with a gutter.
     init(frame: CGRect, // swiftlint:disable:this function_body_length
-         with language: LanguageConfiguration,
          viewLayout: CodeEditor.LayoutConfiguration,
-         theme: Theme) {
+         theme: Theme,
+         highlightTheme: HighlightTheme = exampleTheme
+    ) {
 
         self.theme = theme
+        self.highlightTheme = highlightTheme
         self.viewLayout = viewLayout
 
         // Use custom components that are gutter-aware and support code-specific editing actions and highlighting.
         let codeLayoutManager = CodeLayoutManager(),
             codeContainer = CodeContainer(),
-            codeStorage = CodeStorage(theme: theme)
+            codeStorage = CodeStorage(parser: parser,
+                                      baseGrammar: grammar,
+                                      theme: theme,
+                                      highlightTheme: highlightTheme)
         codeStorage.addLayoutManager(codeLayoutManager)
         codeContainer.layoutManager = codeLayoutManager
         codeLayoutManager.addTextContainer(codeContainer)
         codeLayoutManager.delegate = codeLayoutManagerDelegate
 
-        codeStorageDelegate = CodeStorageDelegate(with: language)
+        codeStorageDelegate = CodeStorageDelegate()
 
         super.init(frame: frame, textContainer: codeContainer)
 
@@ -455,26 +464,19 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
                                           height: minimapVisibleHeight).integral
         if documentVisibleBox?.frame != documentVisibleFrame { documentVisibleBox?.frame = documentVisibleFrame }
     }
-
 }
 
 /// Common code view actions triggered on a selection change.
 func selectionDidChange<TV: TextView>(_ textView: TV) {
-    guard let layoutManager = textView.optLayoutManager,
-          let textContainer = textView.optTextContainer,
-          let codeStorage = textView.optCodeStorage
-    else { return }
-
-    let visibleRect = textView.documentVisibleRect,
-        glyphRange = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: visibleRect,
-                                               in: textContainer),
-        charRange = layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
-
-    if let location = textView.insertionPoint,
-       location > 0,
-       let matchingBracketRange = codeStorage.matchingBracket(forLocationAt: location - 1, in: charRange) {
-        textView.showFindIndicator(for: matchingBracketRange)
-    }
+//    guard let layoutManager = textView.optLayoutManager,
+//          let textContainer = textView.optTextContainer,
+//          let codeStorage = textView.optCodeStorage
+//    else { return }
+//
+//    let visibleRect = textView.documentVisibleRect,
+//        glyphRange = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: visibleRect,
+//                                              in: textContainer),
+//        charRange = layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
 }
 
 /// Combine selection ranges into the smallest ranges encompassing them all.

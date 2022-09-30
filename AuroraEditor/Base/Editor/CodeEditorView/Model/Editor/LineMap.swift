@@ -198,6 +198,8 @@ struct LineMap<LineInfo> {
         lines[line] = (range: lines[line].range, info: info)
     }
 
+    private var isUpdatingAfterEditing: Bool = false
+
     /// Update line map given the specified editing activity of the underlying string. It resets the info field for each
     /// affected line.
     ///
@@ -209,7 +211,8 @@ struct LineMap<LineInfo> {
     /// NB: The line after the `editedRange` will be updated (and info fields be invalidated) if the \
     /// `editedRange` ends on a newline.
     mutating func updateAfterEditing(string: String, range editedRange: NSRange, changeInLength delta: Int) {
-
+        guard !isUpdatingAfterEditing else { return }
+        isUpdatingAfterEditing = true
         // To compute line ranges, we extend all character ranges by one extra character. This is crucial as, if the
         // edited range ends on a newline, this may insert a new line break,
         // which means, we also need to update the line *after* the new line break.
@@ -234,6 +237,7 @@ struct LineMap<LineInfo> {
         for lineNumber in oldLinesRange.startIndex.advanced(by: adjustedNewLines.count) ..< lines.count {
             lines[lineNumber] = shift(line: lines[lineNumber], by: delta)
         }
+        isUpdatingAfterEditing = false
     }
 
     // MARK: - Helpers

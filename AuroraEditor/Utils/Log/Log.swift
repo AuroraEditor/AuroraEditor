@@ -221,6 +221,7 @@ public class Log {
             date: date
         )
 
-        Swift.print(result, separator: "", terminator: "") // swiftlint:disable:this disallow_print
+        // swiftlint:disable:this disallow_print
+        print(result)
     }
 }
