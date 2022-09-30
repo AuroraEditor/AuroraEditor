@@ -75,6 +75,7 @@ public class BeginEndRule: Rule, Pattern {
             message += "name(\"\(name)\"), begin(\"\(begin)\"), end(\"\(end)\"), "
             message += "error: \"\(error.localizedDescription)\""
 
+            Log.error(message)
             fatalError(message.replacingOccurrences(of: "\n", with: ""))
         }
         self.patterns = patterns

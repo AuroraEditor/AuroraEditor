@@ -37,6 +37,7 @@ public class MatchRule: Rule, Pattern {
             message += "name(\"\(name)\"), regex(\"\(match)\"), "
             message += "error: \"\(error.localizedDescription)\""
 
+            Log.error(message)
             fatalError(message.replacingOccurrences(of: "\n", with: ""))
         }
         self.captures = captures
