@@ -39,7 +39,9 @@ public class TokenizedLine {
     }
 
     func increaseLastTokenLength(by len: Int = 1) {
-        tokens[tokens.count - 1].range.length += len
+        // TODO: Check if this is needed, it 'can' crash the app without any reason
+        // it seems to work without it.
+//        tokens[tokens.count - 1].range.length += len
     }
 
     private static func applyThemeAttributes(_ attributes: [ThemeAttribute],
