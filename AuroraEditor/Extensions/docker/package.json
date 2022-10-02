@@ -1,0 +1,54 @@
+{
+  "name": "docker",
+  "displayName": "Docker Language Basics",
+  "description": "Provides syntax highlighting and bracket matching in Docker files.",
+  "version": "1.0.0",
+  "publisher": "Aurora Editor",
+  "license": "MIT",
+  "engines": {
+      "auroraeditor": "*"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "dockerfile",
+        "extensions": [
+          ".dockerfile",
+          ".containerfile"
+        ],
+        "filenames": [
+          "Dockerfile",
+          "Containerfile"
+        ],
+        "filenamePatterns": [
+          "Dockerfile.*",
+          "Containerfile.*"
+        ],
+        "aliases": [
+          "Docker",
+          "Dockerfile",
+          "Containerfile"
+        ],
+        "configuration": "/language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "dockerfile",
+        "scopeName": "source.dockerfile",
+        "path": "/syntaxes/docker.tmLanguage.json"
+      }
+    ],
+    "configurationDefaults": {
+      "[dockerfile]": {
+        "editor.quickSuggestions": {
+          "strings": true
+        }
+      }
+    }
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/auroraeditor/auroraeditor.git"
+  }
+}

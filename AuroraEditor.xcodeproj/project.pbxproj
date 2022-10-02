@@ -55,6 +55,29 @@
 		2032B51028A256F50089EBB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B50F28A256F50089EBB6 /* Array.swift */; };
 		2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */; };
 		2036DD5528DB3DB5003BECB7 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036DD5428DB3DB5003BECB7 /* Queue.swift */; };
+		203F29AF28E9856900247FCE /* language-configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29AE28E9856900247FCE /* language-configuration.json */; };
+		203F29B128E9857000247FCE /* language-configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29B028E9857000247FCE /* language-configuration.json */; };
+		203F29B328E9857600247FCE /* language-configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29B228E9857600247FCE /* language-configuration.json */; };
+		203F29B528E9857B00247FCE /* language-configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29B428E9857B00247FCE /* language-configuration.json */; };
+		203F29B728E9857F00247FCE /* language-configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29B628E9857F00247FCE /* language-configuration.json */; };
+		203F29B928E9858400247FCE /* language-configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29B828E9858400247FCE /* language-configuration.json */; };
+		203F29BB28E9859100247FCE /* language-configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29BA28E9859100247FCE /* language-configuration.json */; };
+		203F29BD28E9859600247FCE /* language-configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29BC28E9859600247FCE /* language-configuration.json */; };
+		203F29BF28E9859C00247FCE /* language-configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29BE28E9859C00247FCE /* language-configuration.json */; };
+		203F29C128E9862700247FCE /* package.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29C028E9862700247FCE /* package.json */; };
+		203F29C328E9862D00247FCE /* package.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29C228E9862D00247FCE /* package.json */; };
+		203F29C528E9863400247FCE /* package.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29C428E9863400247FCE /* package.json */; };
+		203F29C728E9863A00247FCE /* package.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29C628E9863A00247FCE /* package.json */; };
+		203F29C928E9863F00247FCE /* package.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29C828E9863F00247FCE /* package.json */; };
+		203F29CB28E9864300247FCE /* package.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29CA28E9864300247FCE /* package.json */; };
+		203F29CD28E9864900247FCE /* package.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29CC28E9864900247FCE /* package.json */; };
+		203F29CF28E9864E00247FCE /* package.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29CE28E9864E00247FCE /* package.json */; };
+		203F29D128E9865400247FCE /* package.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29D028E9865400247FCE /* package.json */; };
+		203F29D428E987AB00247FCE /* swift.ae-snippets in Resources */ = {isa = PBXBuildFile; fileRef = 203F29D328E987AB00247FCE /* swift.ae-snippets */; };
+		203F29D728E987FD00247FCE /* typescript.ae-snippets in Resources */ = {isa = PBXBuildFile; fileRef = 203F29D628E987FD00247FCE /* typescript.ae-snippets */; };
+		203F29D928E9897300247FCE /* html.ae-snippets in Resources */ = {isa = PBXBuildFile; fileRef = 203F29D828E9897300247FCE /* html.ae-snippets */; };
+		203F29DC28E989E400247FCE /* tags-language-configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 203F29DB28E989E400247FCE /* tags-language-configuration.json */; };
+		203F29DF28E98B8600247FCE /* php.ae-snippets in Resources */ = {isa = PBXBuildFile; fileRef = 203F29DE28E98B8600247FCE /* php.ae-snippets */; };
 		2041B8AF28A67091005F03D8 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2041B8AE28A67091005F03D8 /* Branch.swift */; };
 		2041B8B228A67498005F03D8 /* Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2041B8B128A67498005F03D8 /* Add.swift */; };
 		2041B8B428A674FD005F03D8 /* Checkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2041B8B328A674FD005F03D8 /* Checkout.swift */; };
@@ -663,6 +686,29 @@
 		2032B50F28A256F50089EBB6 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowHostingController.swift; sourceTree = "<group>"; };
 		2036DD5428DB3DB5003BECB7 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		203F29AE28E9856900247FCE /* language-configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "language-configuration.json"; sourceTree = "<group>"; };
+		203F29B028E9857000247FCE /* language-configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "language-configuration.json"; sourceTree = "<group>"; };
+		203F29B228E9857600247FCE /* language-configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "language-configuration.json"; sourceTree = "<group>"; };
+		203F29B428E9857B00247FCE /* language-configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "language-configuration.json"; sourceTree = "<group>"; };
+		203F29B628E9857F00247FCE /* language-configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "language-configuration.json"; sourceTree = "<group>"; };
+		203F29B828E9858400247FCE /* language-configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "language-configuration.json"; sourceTree = "<group>"; };
+		203F29BA28E9859100247FCE /* language-configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "language-configuration.json"; sourceTree = "<group>"; };
+		203F29BC28E9859600247FCE /* language-configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "language-configuration.json"; sourceTree = "<group>"; };
+		203F29BE28E9859C00247FCE /* language-configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "language-configuration.json"; sourceTree = "<group>"; };
+		203F29C028E9862700247FCE /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		203F29C228E9862D00247FCE /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		203F29C428E9863400247FCE /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		203F29C628E9863A00247FCE /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		203F29C828E9863F00247FCE /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		203F29CA28E9864300247FCE /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		203F29CC28E9864900247FCE /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		203F29CE28E9864E00247FCE /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		203F29D028E9865400247FCE /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		203F29D328E987AB00247FCE /* swift.ae-snippets */ = {isa = PBXFileReference; lastKnownFileType = text; path = "swift.ae-snippets"; sourceTree = "<group>"; };
+		203F29D628E987FD00247FCE /* typescript.ae-snippets */ = {isa = PBXFileReference; lastKnownFileType = text; path = "typescript.ae-snippets"; sourceTree = "<group>"; };
+		203F29D828E9897300247FCE /* html.ae-snippets */ = {isa = PBXFileReference; lastKnownFileType = text; path = "html.ae-snippets"; sourceTree = "<group>"; };
+		203F29DB28E989E400247FCE /* tags-language-configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "tags-language-configuration.json"; sourceTree = "<group>"; };
+		203F29DE28E98B8600247FCE /* php.ae-snippets */ = {isa = PBXFileReference; lastKnownFileType = text; path = "php.ae-snippets"; sourceTree = "<group>"; };
 		2041B8AE28A67091005F03D8 /* Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
 		2041B8B128A67498005F03D8 /* Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Add.swift; sourceTree = "<group>"; };
 		2041B8B328A674FD005F03D8 /* Checkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkout.swift; sourceTree = "<group>"; };
@@ -1300,18 +1346,15 @@
 		2029DA8528E2FCA600D68786 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2029DA8628E2FCEC00D68786 /* swift.tmLanguage.json */,
-				209DAF2228E647BE00E31109 /* typeScript.tmLanguage.json */,
-				209DAF2428E648A700E31109 /* JSON.tmLanguage.json */,
-				209DAF2628E6494800E31109 /* JSONC.tmLanguage.json */,
-				209DAF2828E6498C00E31109 /* docker.tmLanguage.json */,
-				209DAF2A28E649AC00E31109 /* css.tmLanguage.json */,
-				209DAF2C28E649D400E31109 /* html-derivative.tmLanguage.json */,
-				209DAF2E28E64A0500E31109 /* html.tmLanguage.json */,
-				209DAF3028E64A3200E31109 /* JavaScript.tmLanguage.json */,
-				209DAF3228E64A5500E31109 /* JavaScriptReact.tmLanguage.json */,
-				209DAF3428E64A9F00E31109 /* php.tmLanguage.json */,
-				209DAF3628E64AE800E31109 /* ruby.tmLanguage.json */,
+				203F29A328E9851800247FCE /* docker */,
+				203F29A228E9851100247FCE /* ruby */,
+				203F29A128E9850A00247FCE /* php */,
+				203F29A028E9850200247FCE /* javascript */,
+				203F299F28E984FD00247FCE /* html */,
+				203F299E28E984F900247FCE /* css */,
+				203F299D28E984F300247FCE /* json */,
+				203F299C28E984EC00247FCE /* typescript */,
+				203F299B28E984E400247FCE /* swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1342,6 +1385,208 @@
 				2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		203F299B28E984E400247FCE /* swift */ = {
+			isa = PBXGroup;
+			children = (
+				203F29D228E9878800247FCE /* snippets */,
+				203F29AC28E9854700247FCE /* syntaxes */,
+				203F29AE28E9856900247FCE /* language-configuration.json */,
+				203F29C028E9862700247FCE /* package.json */,
+			);
+			path = swift;
+			sourceTree = "<group>";
+		};
+		203F299C28E984EC00247FCE /* typescript */ = {
+			isa = PBXGroup;
+			children = (
+				203F29D528E987E500247FCE /* snippets */,
+				203F29AB28E9854100247FCE /* syntaxes */,
+				203F29B028E9857000247FCE /* language-configuration.json */,
+				203F29C228E9862D00247FCE /* package.json */,
+			);
+			path = typescript;
+			sourceTree = "<group>";
+		};
+		203F299D28E984F300247FCE /* json */ = {
+			isa = PBXGroup;
+			children = (
+				203F29AA28E9853E00247FCE /* syntaxes */,
+				203F29B228E9857600247FCE /* language-configuration.json */,
+				203F29C428E9863400247FCE /* package.json */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		203F299E28E984F900247FCE /* css */ = {
+			isa = PBXGroup;
+			children = (
+				203F29A928E9853A00247FCE /* syntaxes */,
+				203F29B428E9857B00247FCE /* language-configuration.json */,
+				203F29C628E9863A00247FCE /* package.json */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		203F299F28E984FD00247FCE /* html */ = {
+			isa = PBXGroup;
+			children = (
+				203F29DA28E9898800247FCE /* snippets */,
+				203F29A828E9853600247FCE /* syntaxes */,
+				203F29B628E9857F00247FCE /* language-configuration.json */,
+				203F29C828E9863F00247FCE /* package.json */,
+			);
+			path = html;
+			sourceTree = "<group>";
+		};
+		203F29A028E9850200247FCE /* javascript */ = {
+			isa = PBXGroup;
+			children = (
+				203F29A728E9853100247FCE /* syntaxes */,
+				203F29B828E9858400247FCE /* language-configuration.json */,
+				203F29CA28E9864300247FCE /* package.json */,
+				203F29DB28E989E400247FCE /* tags-language-configuration.json */,
+			);
+			path = javascript;
+			sourceTree = "<group>";
+		};
+		203F29A128E9850A00247FCE /* php */ = {
+			isa = PBXGroup;
+			children = (
+				203F29DD28E98B7B00247FCE /* snippets */,
+				203F29A628E9852D00247FCE /* syntaxes */,
+				203F29BA28E9859100247FCE /* language-configuration.json */,
+				203F29CC28E9864900247FCE /* package.json */,
+			);
+			path = php;
+			sourceTree = "<group>";
+		};
+		203F29A228E9851100247FCE /* ruby */ = {
+			isa = PBXGroup;
+			children = (
+				203F29A528E9852500247FCE /* syntaxes */,
+				203F29BC28E9859600247FCE /* language-configuration.json */,
+				203F29CE28E9864E00247FCE /* package.json */,
+			);
+			path = ruby;
+			sourceTree = "<group>";
+		};
+		203F29A328E9851800247FCE /* docker */ = {
+			isa = PBXGroup;
+			children = (
+				203F29A428E9851E00247FCE /* syntaxes */,
+				203F29BE28E9859C00247FCE /* language-configuration.json */,
+				203F29D028E9865400247FCE /* package.json */,
+			);
+			path = docker;
+			sourceTree = "<group>";
+		};
+		203F29A428E9851E00247FCE /* syntaxes */ = {
+			isa = PBXGroup;
+			children = (
+				209DAF2828E6498C00E31109 /* docker.tmLanguage.json */,
+			);
+			path = syntaxes;
+			sourceTree = "<group>";
+		};
+		203F29A528E9852500247FCE /* syntaxes */ = {
+			isa = PBXGroup;
+			children = (
+				209DAF3628E64AE800E31109 /* ruby.tmLanguage.json */,
+			);
+			path = syntaxes;
+			sourceTree = "<group>";
+		};
+		203F29A628E9852D00247FCE /* syntaxes */ = {
+			isa = PBXGroup;
+			children = (
+				209DAF3428E64A9F00E31109 /* php.tmLanguage.json */,
+			);
+			path = syntaxes;
+			sourceTree = "<group>";
+		};
+		203F29A728E9853100247FCE /* syntaxes */ = {
+			isa = PBXGroup;
+			children = (
+				209DAF3228E64A5500E31109 /* JavaScriptReact.tmLanguage.json */,
+				209DAF3028E64A3200E31109 /* JavaScript.tmLanguage.json */,
+			);
+			path = syntaxes;
+			sourceTree = "<group>";
+		};
+		203F29A828E9853600247FCE /* syntaxes */ = {
+			isa = PBXGroup;
+			children = (
+				209DAF2E28E64A0500E31109 /* html.tmLanguage.json */,
+				209DAF2C28E649D400E31109 /* html-derivative.tmLanguage.json */,
+			);
+			path = syntaxes;
+			sourceTree = "<group>";
+		};
+		203F29A928E9853A00247FCE /* syntaxes */ = {
+			isa = PBXGroup;
+			children = (
+				209DAF2A28E649AC00E31109 /* css.tmLanguage.json */,
+			);
+			path = syntaxes;
+			sourceTree = "<group>";
+		};
+		203F29AA28E9853E00247FCE /* syntaxes */ = {
+			isa = PBXGroup;
+			children = (
+				209DAF2628E6494800E31109 /* JSONC.tmLanguage.json */,
+				209DAF2428E648A700E31109 /* JSON.tmLanguage.json */,
+			);
+			path = syntaxes;
+			sourceTree = "<group>";
+		};
+		203F29AB28E9854100247FCE /* syntaxes */ = {
+			isa = PBXGroup;
+			children = (
+				209DAF2228E647BE00E31109 /* typeScript.tmLanguage.json */,
+			);
+			path = syntaxes;
+			sourceTree = "<group>";
+		};
+		203F29AC28E9854700247FCE /* syntaxes */ = {
+			isa = PBXGroup;
+			children = (
+				2029DA8628E2FCEC00D68786 /* swift.tmLanguage.json */,
+			);
+			path = syntaxes;
+			sourceTree = "<group>";
+		};
+		203F29D228E9878800247FCE /* snippets */ = {
+			isa = PBXGroup;
+			children = (
+				203F29D328E987AB00247FCE /* swift.ae-snippets */,
+			);
+			path = snippets;
+			sourceTree = "<group>";
+		};
+		203F29D528E987E500247FCE /* snippets */ = {
+			isa = PBXGroup;
+			children = (
+				203F29D628E987FD00247FCE /* typescript.ae-snippets */,
+			);
+			path = snippets;
+			sourceTree = "<group>";
+		};
+		203F29DA28E9898800247FCE /* snippets */ = {
+			isa = PBXGroup;
+			children = (
+				203F29D828E9897300247FCE /* html.ae-snippets */,
+			);
+			path = snippets;
+			sourceTree = "<group>";
+		};
+		203F29DD28E98B7B00247FCE /* snippets */ = {
+			isa = PBXGroup;
+			children = (
+				203F29DE28E98B8600247FCE /* php.ae-snippets */,
+			);
+			path = snippets;
 			sourceTree = "<group>";
 		};
 		2041B8B028A67486005F03D8 /* Core */ = {
@@ -3564,28 +3809,51 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				203F29BF28E9859C00247FCE /* language-configuration.json in Resources */,
 				2B5B25532885D9BA009C7384 /* .swiftlint.yml in Resources */,
 				2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */,
+				203F29DC28E989E400247FCE /* tags-language-configuration.json in Resources */,
 				2BA19F252896F721000B9543 /* .githash in Resources */,
+				203F29C728E9863A00247FCE /* package.json in Resources */,
+				203F29D728E987FD00247FCE /* typescript.ae-snippets in Resources */,
+				203F29CD28E9864900247FCE /* package.json in Resources */,
 				28A51006281701B40087B0CC /* auroraeditor-github-dark.json in Resources */,
 				209DAF3128E64A3200E31109 /* JavaScript.tmLanguage.json in Resources */,
+				203F29B128E9857000247FCE /* language-configuration.json in Resources */,
+				203F29B528E9857B00247FCE /* language-configuration.json in Resources */,
 				28A51002281673530087B0CC /* auroraeditor-xcode-light.json in Resources */,
 				2029DA8728E2FCEC00D68786 /* swift.tmLanguage.json in Resources */,
 				2B5B25552885D9C3009C7384 /* .gitignore in Resources */,
+				203F29C528E9863400247FCE /* package.json in Resources */,
 				209DAF2328E647BE00E31109 /* typeScript.tmLanguage.json in Resources */,
+				203F29BD28E9859600247FCE /* language-configuration.json in Resources */,
 				28A51005281701B40087B0CC /* auroraeditor-github-light.json in Resources */,
+				203F29D928E9897300247FCE /* html.ae-snippets in Resources */,
+				203F29BB28E9859100247FCE /* language-configuration.json in Resources */,
 				209DAF2928E6498C00E31109 /* docker.tmLanguage.json in Resources */,
 				209DAF2528E648A700E31109 /* JSON.tmLanguage.json in Resources */,
 				D7211D4727E06BFE008F2ED7 /* Localizable.strings in Resources */,
+				203F29B928E9858400247FCE /* language-configuration.json in Resources */,
+				203F29C128E9862700247FCE /* package.json in Resources */,
+				203F29C328E9862D00247FCE /* package.json in Resources */,
 				28A51001281673530087B0CC /* auroraeditor-xcode-dark.json in Resources */,
+				203F29D428E987AB00247FCE /* swift.ae-snippets in Resources */,
+				203F29CB28E9864300247FCE /* package.json in Resources */,
+				203F29CF28E9864E00247FCE /* package.json in Resources */,
 				B658FB3427DA9E1000EA4DBD /* Assets.xcassets in Resources */,
 				2093CD93289AA137003A88DD /* codeedit in Resources */,
+				203F29C928E9863F00247FCE /* package.json in Resources */,
 				209DAF3728E64AE800E31109 /* ruby.tmLanguage.json in Resources */,
 				209DAF2D28E649D400E31109 /* html-derivative.tmLanguage.json in Resources */,
+				203F29AF28E9856900247FCE /* language-configuration.json in Resources */,
+				203F29DF28E98B8600247FCE /* php.ae-snippets in Resources */,
+				203F29B328E9857600247FCE /* language-configuration.json in Resources */,
 				209D024B289ABC340082441F /* Package.resolved in Resources */,
+				203F29D128E9865400247FCE /* package.json in Resources */,
 				209DAF2728E6494800E31109 /* JSONC.tmLanguage.json in Resources */,
 				209DAF2F28E64A0500E31109 /* html.tmLanguage.json in Resources */,
 				043C321A27E32295006AE443 /* MainMenu.xib in Resources */,
+				203F29B728E9857F00247FCE /* language-configuration.json in Resources */,
 				209DAF2B28E649AC00E31109 /* css.tmLanguage.json in Resources */,
 				209DAF3528E64A9F00E31109 /* php.tmLanguage.json in Resources */,
 				209DAF3328E64A5500E31109 /* JavaScriptReact.tmLanguage.json in Resources */,
