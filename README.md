@@ -16,6 +16,9 @@
   <a href='https://nightly.link/AuroraEditor/AuroraEditor/workflows/nightly/main/AuroraEditor_Nightly.zip' target='_blank'>
   <img alt="Download" src="https://img.shields.io/badge/Download-Nightly Build-6bbee8?style=for-the-badge">
  </a>
+ <a href='https://github.com/AuroraEditor/AuroraEditor/issues?q=is%3Aissue+is%3Aopen+label%3Ahacktoberfest'>
+ <img alt='x' src='https://img.shields.io/github/issues/AuroraEditor/AuroraEditor/hacktoberfest?color=%237c7fff&style=for-the-badge'>
+ </a>
 </p>
 
 <br />
