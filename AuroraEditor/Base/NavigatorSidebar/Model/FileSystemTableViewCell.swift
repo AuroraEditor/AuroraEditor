@@ -109,7 +109,7 @@ class FileSystemTableViewCell: StandardTableViewCell {
         if item.children == nil && prefs.fileIconStyle == .color {
             return NSColor(item.iconColor)
         } else {
-            return NSColor(hex: "#74d0fb")
+            return .controlAccentColor
         }
     }
 }
