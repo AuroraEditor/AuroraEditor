@@ -112,7 +112,7 @@ public extension FileSystemClient {
 
         /// A boolean that is true if ``children`` is not `nil`
         public var isFolder: Bool {
-            children != nil
+            url.hasDirectoryPath
         }
 
         /// A boolean that is true if the file item is the root folder of the workspace.
