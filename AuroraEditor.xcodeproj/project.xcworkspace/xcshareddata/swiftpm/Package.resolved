@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "swiftonig",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/maogm12/SwiftOnig.git",
+      "state" : {
+        "revision" : "9d1a55a4996c84b9bc66e7cf9dedf6d5d3d5335b",
+        "version" : "0.0.1"
+      }
+    },
+    {
       "identity" : "swiftterm",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/migueldeicaza/SwiftTerm.git",
