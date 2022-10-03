@@ -100,6 +100,7 @@
 		207D295828CCDE4300D31530 /* BranchCommitHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207D295728CCDE4300D31530 /* BranchCommitHistoryView.swift */; };
 		207D295A28CCDEDC00D31530 /* BranchCommitHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207D295928CCDEDC00D31530 /* BranchCommitHistory.swift */; };
 		207D295D28CCE72F00D31530 /* RenameBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207D295C28CCE72F00D31530 /* RenameBranchView.swift */; };
+		207F42D528EB2FE800993749 /* SwiftOnig in Frameworks */ = {isa = PBXBuildFile; productRef = 207F42D428EB2FE800993749 /* SwiftOnig */; };
 		2086334F28A530AF00E29A22 /* CommitChangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2086334E28A530AF00E29A22 /* CommitChangesView.swift */; };
 		2093CC90289A9FEE003A88DD /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83722289A7ACD00D91D05 /* StatusBar.swift */; };
 		2093CC91289A9FF5003A88DD /* StatusBarIndentSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83726289A7ACD00D91D05 /* StatusBarIndentSelector.swift */; };
@@ -1192,6 +1193,7 @@
 			files = (
 				209D0246289AB9750082441F /* SwiftTerm in Frameworks */,
 				2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */,
+				207F42D528EB2FE800993749 /* SwiftOnig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3458,6 +3460,7 @@
 			packageProductDependencies = (
 				209D0245289AB9750082441F /* SwiftTerm */,
 				2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */,
+				207F42D428EB2FE800993749 /* SwiftOnig */,
 			);
 			productName = CodeEdit;
 			productReference = B658FB2C27DA9E0F00EA4DBD /* AuroraEditor.app */;
@@ -3538,6 +3541,7 @@
 			packageReferences = (
 				209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */,
 				2BE5EDAB28AE64A700C0A4AE /* XCRemoteSwiftPackageReference "AEExtensionKit" */,
+				207F42D328EB2FE800993749 /* XCRemoteSwiftPackageReference "SwiftOnig" */,
 			);
 			productRefGroup = B658FB2D27DA9E0F00EA4DBD /* Products */;
 			projectDirPath = "";
@@ -4704,6 +4708,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		207F42D328EB2FE800993749 /* XCRemoteSwiftPackageReference "SwiftOnig" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maogm12/SwiftOnig.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
+			};
+		};
 		209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/migueldeicaza/SwiftTerm.git";
@@ -4723,6 +4735,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		207F42D428EB2FE800993749 /* SwiftOnig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 207F42D328EB2FE800993749 /* XCRemoteSwiftPackageReference "SwiftOnig" */;
+			productName = SwiftOnig;
+		};
 		209D0245289AB9750082441F /* SwiftTerm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */;
