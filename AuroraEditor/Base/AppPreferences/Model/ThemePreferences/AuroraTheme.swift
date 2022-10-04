@@ -142,6 +142,7 @@ public extension AuroraTheme {
 
         public var text: Attributes
         public var insertionPoint: Attributes
+        public var invisibles: Attributes
         public var background: Attributes
         public var lineHighlight: Attributes
         public var selection: Attributes
@@ -160,6 +161,7 @@ public extension AuroraTheme {
                 switch key {
                 case "text": return self.text
                 case "insertionPoint": return self.insertionPoint
+                case "invisibles": return self.invisibles
                 case "background": return self.background
                 case "lineHighlight": return self.lineHighlight
                 case "selection": return self.selection
@@ -170,6 +172,7 @@ public extension AuroraTheme {
                 switch key {
                 case "text": self.text = newValue
                 case "insertionPoint": self.insertionPoint = newValue
+                case "invisibles": self.invisibles = newValue
                 case "background": self.background = newValue
                 case "lineHighlight": self.lineHighlight = newValue
                 case "selection": self.selection = newValue
@@ -181,6 +184,7 @@ public extension AuroraTheme {
         public init(
             text: Attributes,
             insertionPoint: Attributes,
+            invisibles: Attributes,
             background: Attributes,
             lineHighlight: Attributes,
             selection: Attributes,
@@ -188,6 +192,7 @@ public extension AuroraTheme {
         ) {
             self.text = text
             self.insertionPoint = insertionPoint
+            self.invisibles = invisibles
             self.background = background
             self.lineHighlight = lineHighlight
             self.selection = selection
