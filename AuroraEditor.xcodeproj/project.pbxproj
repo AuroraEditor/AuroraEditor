@@ -455,6 +455,8 @@
 		9354D4B928ACEE20004C6D18 /* RepositoriesMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354D4B828ACEE20004C6D18 /* RepositoriesMenu.swift */; };
 		9354D4BB28AD2872004C6D18 /* StandardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9354D4BA28AD2872004C6D18 /* StandardTableViewCell.swift */; };
 		935EB99C28A8F26900E8F798 /* FileSystemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935EB99B28A8F26900E8F798 /* FileSystemTableViewCell.swift */; };
+		9362B21428EC730D00523626 /* EditorColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9362B21328EC730D00523626 /* EditorColors.swift */; };
+		9362B21628EC734200523626 /* TerminalColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9362B21528EC734200523626 /* TerminalColors.swift */; };
 		936312E728CCC7AE004CD24B /* TabBarItemIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936312E628CCC7AE004CD24B /* TabBarItemIcon.swift */; };
 		936312EA28CCCAD9004CD24B /* TabBarAccessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936312E928CCCAD9004CD24B /* TabBarAccessories.swift */; };
 		93672E8528B2684F0086132E /* ToolbarPlusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93672E8428B2684F0086132E /* ToolbarPlusMenu.swift */; };
@@ -994,6 +996,8 @@
 		9354D4B828ACEE20004C6D18 /* RepositoriesMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesMenu.swift; sourceTree = "<group>"; };
 		9354D4BA28AD2872004C6D18 /* StandardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardTableViewCell.swift; sourceTree = "<group>"; };
 		935EB99B28A8F26900E8F798 /* FileSystemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemTableViewCell.swift; sourceTree = "<group>"; };
+		9362B21328EC730D00523626 /* EditorColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorColors.swift; sourceTree = "<group>"; };
+		9362B21528EC734200523626 /* TerminalColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalColors.swift; sourceTree = "<group>"; };
 		936312E628CCC7AE004CD24B /* TabBarItemIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemIcon.swift; sourceTree = "<group>"; };
 		936312E928CCCAD9004CD24B /* TabBarAccessories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAccessories.swift; sourceTree = "<group>"; };
 		93672E8428B2684F0086132E /* ToolbarPlusMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarPlusMenu.swift; sourceTree = "<group>"; };
@@ -1828,6 +1832,8 @@
 			children = (
 				20D837E2289A7ACD00D91D05 /* ThemeModel.swift */,
 				20D837E4289A7ACD00D91D05 /* AuroraTheme.swift */,
+				9362B21328EC730D00523626 /* EditorColors.swift */,
+				9362B21528EC734200523626 /* TerminalColors.swift */,
 			);
 			path = ThemePreferences;
 			sourceTree = "<group>";
@@ -3510,6 +3516,7 @@
 				2B04575628E6FFE300024F2D /* TextAlignmentThemeAttribute.swift in Sources */,
 				93D5F5D528CE074100286EBD /* TabHierarchyViewController.swift in Sources */,
 				201169DD2837B3AC00F92B46 /* SourceControlToolbarBottom.swift in Sources */,
+				9362B21628EC734200523626 /* TerminalColors.swift in Sources */,
 				2093CD50289AA0AE003A88DD /* FeedbackModel.swift in Sources */,
 				2093CD2F289AA089003A88DD /* GithubUser.swift in Sources */,
 				93672E8528B2684F0086132E /* ToolbarPlusMenu.swift in Sources */,
@@ -3830,6 +3837,7 @@
 				2093CD68289AA0F2003A88DD /* BreadcrumbsComponent.swift in Sources */,
 				201169D72837B2E300F92B46 /* SourceControlNavigatorView.swift in Sources */,
 				2093CCAD289AA028003A88DD /* QuickOpenState.swift in Sources */,
+				9362B21428EC730D00523626 /* EditorColors.swift in Sources */,
 				2093CD94289AA13D003A88DD /* AppPreferences.swift in Sources */,
 				2093CD1B289AA079003A88DD /* BitbucketOAuthConfiguration.swift in Sources */,
 				2093CD3F289AA095003A88DD /* Project.swift in Sources */,

@@ -118,10 +118,10 @@ public final class ThemeModel: ObservableObject {
 
                 // get all properties of terminal and editor colors
                 guard let terminalColors = try theme.terminal.allProperties() as? [String: AuroraTheme.Attributes],
-                      let editorColors = try theme.editor.allProperties() as? [String: AuroraTheme.Attributes]
+                      let editorColors = try theme.editor.allProperties().filter({ $0.value is AuroraTheme.Attributes })
+                        as? [String: AuroraTheme.Attributes]
                 else {
-                    Log.error("error")
-                    throw NSError()
+                    fatalError("failed to load terminal and editor colors")
                 }
 
                 // check if there are any overrides in `preferences.json`
@@ -225,9 +225,11 @@ public final class ThemeModel: ObservableObject {
 
                 // get properties of the current theme as well as the original
                 guard let terminalColors = try theme.terminal.allProperties() as? [String: AuroraTheme.Attributes],
-                      let editorColors = try theme.editor.allProperties() as? [String: AuroraTheme.Attributes],
+                      let editorColors = try theme.editor.allProperties().filter({ $0.value is AuroraTheme.Attributes })
+                        as? [String: AuroraTheme.Attributes],
                       let oTermColors = try originalTheme.terminal.allProperties() as? [String: AuroraTheme.Attributes],
-                      let oEditColors = try originalTheme.editor.allProperties() as? [String: AuroraTheme.Attributes]
+                      let oEditColors = try originalTheme.editor.allProperties()
+                        .filter({ $0.value is AuroraTheme.Attributes }) as? [String: AuroraTheme.Attributes]
                 else {
                     throw NSError()
                 }
