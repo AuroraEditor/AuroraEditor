@@ -9,7 +9,7 @@ import Foundation
 
 import Cocoa
 
-public class TabStopsThemeAttribute: LineThemeAttribute, Codable {
+public class TabStopsThemeAttribute: LineThemeAttribute {
 
     public let key = "tab-stops"
     public let tabStops: [NSTextTab]
@@ -24,5 +24,17 @@ public class TabStopsThemeAttribute: LineThemeAttribute, Codable {
 
     public func apply(to style: MutableParagraphStyle) {
         style.tabStops = tabStops
+    }
+
+    enum Keys: CodingKey {
+        case tabStops
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        fatalError("TabsStopsThemeAttribute does not conform to Codable as NSTextTab is a weird class")
+    }
+
+    public required init(from decoder: Decoder) throws {
+        fatalError("TabsStopsThemeAttribute does not conform to Codable as NSTextTab is a weird class")
     }
 }

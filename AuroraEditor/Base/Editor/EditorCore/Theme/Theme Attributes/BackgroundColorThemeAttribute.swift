@@ -34,7 +34,7 @@ public class BackgroundColorThemeAttribute: TokenThemeAttribute, Codable {
         case line, textOnly
     }
 
-    public class RoundedBackground {
+    public class RoundedBackground: Codable {
 
         public static let Key = NSAttributedString.Key(rawValue: "EditorUI.RoundedBackgroundNSColor")
 
@@ -47,9 +47,28 @@ public class BackgroundColorThemeAttribute: TokenThemeAttribute, Codable {
             self.roundingStyle = roundingStyle
             self.coloringStyle = coloringStyle
         }
+
+        enum Keys: CodingKey {
+            case color, roundingStyle, coloringStyle
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: Keys.self)
+            try container.encode(color.hex, forKey: .roundingStyle)
+            try container.encode(roundingStyle.rawValue, forKey: .roundingStyle)
+            try container.encode(coloringStyle.hashValue, forKey: .roundingStyle)
+        }
+
+        public required init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: Keys.self)
+            self.color = NSColor(hex: try container.decode(Int.self, forKey: .color))
+            self.roundingStyle = RoundingStyle(try container.decode(CGFloat.self, forKey: .roundingStyle))
+            self.coloringStyle = (try container.decode(String.self, forKey: .coloringStyle)) == "line" ?
+                .line : .textOnly
+        }
     }
 
-    public var key = "background-NSColor"
+    public let key = "background-NSColor"
     public var color: NSColor
     public var roundingStyle: RoundingStyle
     public var coloringStyle: ColoringStyle
@@ -70,5 +89,25 @@ public class BackgroundColorThemeAttribute: TokenThemeAttribute, Codable {
         } else {
             attrStr.addAttribute(RoundedBackground.Key, value: self.roundedBackground, range: range)
         }
+    }
+
+    enum Keys: CodingKey {
+        case color, roundingStyle, coloringStyle, roundedBackground
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Keys.self)
+        try container.encode(color.hex, forKey: .color)
+        try container.encode(roundingStyle.rawValue, forKey: .roundingStyle)
+        try container.encode("\(coloringStyle)", forKey: .coloringStyle)
+        try container.encode(roundedBackground, forKey: .roundedBackground)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        self.color = NSColor(hex: try container.decode(Int.self, forKey: .color))
+        self.roundingStyle = RoundingStyle(try container.decode(CGFloat.self, forKey: .roundingStyle))
+        self.coloringStyle = (try container.decode(String.self, forKey: .coloringStyle)) == "line" ? .line : .textOnly
+        self.roundedBackground = try container.decode(RoundedBackground.self, forKey: .roundedBackground)
     }
 }
