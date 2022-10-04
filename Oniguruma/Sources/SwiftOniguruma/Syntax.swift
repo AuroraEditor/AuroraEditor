@@ -544,7 +544,7 @@ extension Syntax {
             if onigCodePoint == ONIG_INEFFECTIVE_META_CHAR {
                 self = .ineffective
             } else {
-                self = .CodePoint(onigCodePoint)
+                self = .codePoint(onigCodePoint)
             }
         }
 
@@ -563,7 +563,7 @@ extension Syntax {
                 for number in 0..<min(bytes.count, codePointByteCount) {
                     codePoint = (codePoint << 8) | OnigCodePoint(bytes[number])
                 }
-                self = .CodePoint(codePoint)
+                self = .codePoint(codePoint)
             }
         }
 
