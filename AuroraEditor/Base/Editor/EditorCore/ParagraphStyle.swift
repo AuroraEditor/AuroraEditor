@@ -7,5 +7,6 @@
 
 import Foundation
 import Cocoa
+
 public typealias ParagraphStyle = NSParagraphStyle
 public typealias MutableParagraphStyle = NSMutableParagraphStyle
