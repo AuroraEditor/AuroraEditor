@@ -1,5 +1,5 @@
 //
-//  BackgroundAEColorThemeAttribute.swift
+//  BackgroundNSColorThemeAttribute.swift
 //  
 //
 //  Created by Matthew Davidson on 6/12/19.
@@ -36,26 +36,26 @@ public class BackgroundColorThemeAttribute: TokenThemeAttribute, Codable {
 
     public class RoundedBackground {
 
-        public static let Key = NSAttributedString.Key(rawValue: "EditorUI.RoundedBackgroundAEColor")
+        public static let Key = NSAttributedString.Key(rawValue: "EditorUI.RoundedBackgroundNSColor")
 
-        public let color: AEColor
+        public let color: NSColor
         public let roundingStyle: RoundingStyle
         public let coloringStyle: ColoringStyle
 
-        public init(color: AEColor, roundingStyle: RoundingStyle, coloringStyle: ColoringStyle) {
+        public init(color: NSColor, roundingStyle: RoundingStyle, coloringStyle: ColoringStyle) {
             self.color = color
             self.roundingStyle = roundingStyle
             self.coloringStyle = coloringStyle
         }
     }
 
-    public var key = "background-AEColor"
-    public var color: AEColor
+    public var key = "background-NSColor"
+    public var color: NSColor
     public var roundingStyle: RoundingStyle
     public var coloringStyle: ColoringStyle
     public let roundedBackground: RoundedBackground
 
-    public init(color: AEColor, roundingStyle: RoundingStyle = .none, coloringStyle: ColoringStyle = .textOnly) {
+    public init(color: NSColor, roundingStyle: RoundingStyle = .none, coloringStyle: ColoringStyle = .textOnly) {
         self.color = color
         self.roundingStyle = roundingStyle
         self.coloringStyle = coloringStyle
