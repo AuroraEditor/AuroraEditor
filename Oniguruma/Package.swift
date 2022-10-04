@@ -4,8 +4,8 @@ import PackageDescription
 let package = Package(
     name: "SwiftOniguruma",
     targets: [
-        // .systemLibrary(name: "oniguruma", pkgConfig: "oniguruma"),
-        .systemLibrary(name: "oniguruma", path: "Sources/oniguruma"),
-        .target(name: "SwiftOniguruma", dependencies: ["oniguruma"])
+        // .systemLibrary(name: "Oniguruma", pkgConfig: "Oniguruma"),
+        .systemLibrary(name: "Oniguruma", path: "Sources/Oniguruma"),
+        .target(name: "SwiftOniguruma", dependencies: ["Oniguruma"])
     ]
 )
