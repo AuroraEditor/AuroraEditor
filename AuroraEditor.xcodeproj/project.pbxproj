@@ -393,7 +393,6 @@
 		2B04576928E6FFE300024F2D /* MatchRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573728E6FFE300024F2D /* MatchRule.swift */; };
 		2B04576B28E6FFE300024F2D /* Token_Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573928E6FFE300024F2D /* Token_Editor.swift */; };
 		2B04576C28E6FFE300024F2D /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573A28E6FFE300024F2D /* Pattern.swift */; };
-		2B04576D28E6FFE400024F2D /* Color_Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573B28E6FFE300024F2D /* Color_Editor.swift */; };
 		2B04576E28E6FFE400024F2D /* HighlightThemeTrieElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573C28E6FFE300024F2D /* HighlightThemeTrieElement.swift */; };
 		2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B18EC4528AEC84900494768 /* Symbols.xcassets */; };
 		2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */; };
@@ -931,7 +930,6 @@
 		2B04573728E6FFE300024F2D /* MatchRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchRule.swift; sourceTree = "<group>"; };
 		2B04573928E6FFE300024F2D /* Token_Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token_Editor.swift; sourceTree = "<group>"; };
 		2B04573A28E6FFE300024F2D /* Pattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pattern.swift; sourceTree = "<group>"; };
-		2B04573B28E6FFE300024F2D /* Color_Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color_Editor.swift; sourceTree = "<group>"; };
 		2B04573C28E6FFE300024F2D /* HighlightThemeTrieElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightThemeTrieElement.swift; sourceTree = "<group>"; };
 		2B15CA0028254139004E8F22 /* OpenWithAuroraEditor.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = OpenWithAuroraEditor.entitlements; sourceTree = "<group>"; };
 		2B18EC4528AEC84900494768 /* Symbols.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Symbols.xcassets; sourceTree = "<group>"; };
@@ -2766,7 +2764,7 @@
 				2B04573728E6FFE300024F2D /* MatchRule.swift */,
 				2B04573928E6FFE300024F2D /* Token_Editor.swift */,
 				2B04573A28E6FFE300024F2D /* Pattern.swift */,
-				2B04573B28E6FFE300024F2D /* Color_Editor.swift */,
+				2B04573C28E6FFE300024F2D /* HighlightThemeTrieElement.swift */,
 			);
 			path = EditorCore;
 			sourceTree = "<group>";
@@ -3834,7 +3832,6 @@
 				2093CCAD289AA028003A88DD /* QuickOpenState.swift in Sources */,
 				2093CD94289AA13D003A88DD /* AppPreferences.swift in Sources */,
 				2093CD1B289AA079003A88DD /* BitbucketOAuthConfiguration.swift in Sources */,
-				2B04576D28E6FFE400024F2D /* Color_Editor.swift in Sources */,
 				2093CD3F289AA095003A88DD /* Project.swift in Sources */,
 				20D9E32C28CB68DE00FE3339 /* FilterCommitHistoryView.swift in Sources */,
 				20D839AB280DEB2900B27357 /* NoSelectionView.swift in Sources */,
