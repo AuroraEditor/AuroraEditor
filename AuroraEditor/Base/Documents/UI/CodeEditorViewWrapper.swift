@@ -29,9 +29,6 @@ public struct CodeEditorViewWrapper: View {
     }
 
     @State
-    private var selectedTheme = ThemeModel.shared.selectedTheme ?? ThemeModel.shared.themes.first!
-
-    @State
     private var font: NSFont = {
         let size = AppPreferencesModel.shared.preferences.textEditing.font.size
         let name = AppPreferencesModel.shared.preferences.textEditing.font.name
