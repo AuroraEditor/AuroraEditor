@@ -17,6 +17,15 @@
         "revision" : "70a3af884c24dff9f1beeda04e889b5591f04f3c",
         "version" : "1.0.7"
       }
+    },
+    {
+      "identity" : "version-control-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AuroraEditor/Version-Control-Kit.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "75aa2867c403e4234d7073d18ac3206750ed29ee"
+      }
     }
   ],
   "version" : 2
