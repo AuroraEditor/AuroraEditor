@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Version_Control
 
 struct CreateNewBranchView: View {
     @Environment(\.dismiss)
@@ -83,14 +84,14 @@ struct CreateNewBranchView: View {
                     Button {
                         do {
                             // Creates a new branch
-                            try Branches().createBranch(directoryURL: workspace.workspaceURL(),
-                                                        name: branchName,
-                                                        startPoint: revision,
-                                                        noTrack: nil)
+                            try createBranch(directoryURL: workspace.workspaceURL(),
+                                             name: branchName,
+                                             startPoint: revision,
+                                             noTrack: nil)
 
                             // When done creating a new branch we checkout that said new branch
-                            try Checkout().checkoutBranch(directoryURL: workspace.workspaceURL(),
-                                                          branch: branchName)
+                            try checkoutBranch(directoryURL: workspace.workspaceURL(),
+                                               branch: branchName)
 
                             dismiss()
                         } catch {

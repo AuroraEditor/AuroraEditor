@@ -8,6 +8,7 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
+import Version_Control
 
 /// A subclass of `NSMenu` implementing the contextual menu for the project navigator
 final class RepositoriesMenu: NSMenu {
@@ -108,8 +109,8 @@ final class RepositoriesMenu: NSMenu {
         alert.addButton(withTitle: "Cancel")
         if alert.runModal() == .alertFirstButtonReturn {
             do {
-                if try Branches().deleteLocalBranch(directoryURL: (workspace?.workspaceURL())!,
-                                                    branchName: branch.name) {
+                if try deleteLocalBranch(directoryURL: (workspace?.workspaceURL())!,
+                                         branchName: branch.name) {
                     self.outlineView.reloadData()
                 } else {
                     Log.error("Failed to delete branch \(branch.name)")
@@ -129,7 +130,7 @@ final class RepositoriesMenu: NSMenu {
     func isSelectedBranchCurrentOne() -> Bool {
         guard let branch = item as? RepoBranch else { return false }
         do {
-            let currentBranch = try Branches().getCurrentBranch(directoryURL: (workspace?.workspaceURL())!)
+            let currentBranch = try getCurrentBranch(directoryURL: (workspace?.workspaceURL())!)
 
             return currentBranch == branch.name
         } catch {

@@ -8,6 +8,7 @@
 import SwiftUI
 import AppKit
 import Foundation
+import Version_Control
 
 // The main window when opening Aurora Editor when there 
 // is no project to open. A user can open a project from

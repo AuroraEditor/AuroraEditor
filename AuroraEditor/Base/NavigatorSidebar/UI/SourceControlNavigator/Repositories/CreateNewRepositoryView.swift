@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Version_Control
 
 // TODO: Still need to add support for repo name, description and readme
 struct CreateNewRepositoryView: View {

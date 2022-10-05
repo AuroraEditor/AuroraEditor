@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Version_Control
 
 public final class HistoryInspectorModel: ObservableObject {
 
