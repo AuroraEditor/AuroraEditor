@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Version_Control
 
 final class WorkflowMenu: NSMenu {
 

@@ -8,6 +8,7 @@
 import SwiftUI
 import Foundation
 import Combine
+import Version_Control
 
 // swiftlint:disable:next type_body_length
 public struct GitCloneView: View {
@@ -60,7 +61,7 @@ public struct GitCloneView: View {
 
     func getRemoteHead(url: String) {
         do {
-            let branch = try Remote().getRemoteHEAD(url: url)
+            let branch = try getRemoteHEAD(url: url)
             if branch[0].contains("fatal:") {
                 Log.warning("Error: getRemoteHead")
                 activeSheet = .error("Error: getRemoteHead")
@@ -78,9 +79,9 @@ public struct GitCloneView: View {
         }
     }
 
-    func getRemoteBranch(url: String) {
+    func getGitRemoteBranch(url: String) {
         do {
-            let branches = try Remote().getRemoteBranch(url: url)
+            let branches = try getRemoteBranch(url: url)
             if branches[0].contains("fatal:") {
                 Log.warning("Error: getRemoteBranch")
                 activeSheet = .error("Error: getRemoteBranch")
@@ -215,7 +216,7 @@ public struct GitCloneView: View {
             DispatchQueue.global(qos: .background).async {
                 allBranches = false
                 getRemoteHead(url: repoUrlStr)
-                getRemoteBranch(url: repoUrlStr)
+                getGitRemoteBranch(url: repoUrlStr)
             }
         }
     }

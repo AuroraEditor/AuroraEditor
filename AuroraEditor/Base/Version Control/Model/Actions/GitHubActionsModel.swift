@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Version_Control
 
 class GitHubActions: ObservableObject {
 
@@ -246,7 +247,7 @@ class GitHubActions: ObservableObject {
 
     func getRepoInformation() {
         do {
-            let remote = try Remote().getRemoteURL(directoryURL: workspace.workspaceURL(),
+            let remote = try getRemoteURL(directoryURL: workspace.workspaceURL(),
                                                    name: "origin")
             let remoteURL = URL(string: remote!)
 

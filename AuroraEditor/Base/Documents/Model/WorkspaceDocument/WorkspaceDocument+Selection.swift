@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Version_Control
 
 struct WorkspaceSelectionState: Codable {
     var selectedId: TabBarItemID?

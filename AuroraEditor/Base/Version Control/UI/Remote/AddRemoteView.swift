@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Version_Control
 
 struct AddRemoteView: View {
     @Environment(\.dismiss)
@@ -58,9 +59,9 @@ struct AddRemoteView: View {
                 } else {
                     Button {
                         do {
-                            try Remote().addRemote(directoryURL: workspace.workspaceURL(),
-                                                   name: remoteName,
-                                                   url: remoteUrl)
+                            try addRemote(directoryURL: workspace.workspaceURL(),
+                                          name: remoteName,
+                                          url: remoteUrl)
                             dismiss()
                         } catch {
                             Log.error("Unable to add exisiting remote.")

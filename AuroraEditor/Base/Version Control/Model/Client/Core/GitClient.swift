@@ -7,6 +7,7 @@
 //
 import Foundation
 import Combine
+import Version_Control
 
 // A protocol to make calls to terminal to init a git call.
 public class GitClient: ObservableObject {
@@ -30,8 +31,8 @@ public class GitClient: ObservableObject {
             .eraseToAnyPublisher()
 
         _ = try? getCurrentBranchName()
-        _ = try? getBranches(allBranches: false)
-        _ = try? getBranches(allBranches: true)
+        _ = try? getGitBranches(allBranches: false)
+        _ = try? getGitBranches(allBranches: true)
     }
 
     public var currentBranchName: AnyPublisher<String, Never>
@@ -60,8 +61,8 @@ public class GitClient: ObservableObject {
         return output
     }
 
-    public func getBranches(allBranches: Bool = false) throws -> [String] {
-        let branches = try Branches().getBranches(allBranches, directoryURL: directoryURL)
+    public func getGitBranches(allBranches: Bool = false) throws -> [String] {
+        let branches = try getBranches(allBranches, directoryURL: directoryURL)
         if allBranches {
             allBranchNamesSubject.send(branches)
             publishedAllBranchNames = branches

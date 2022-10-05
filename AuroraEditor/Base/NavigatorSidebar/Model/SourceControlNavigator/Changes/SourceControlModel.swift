@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import Version_Control
 
 /// This model handle the fetching and adding of changes etc... for the
 /// Source Control Navigator

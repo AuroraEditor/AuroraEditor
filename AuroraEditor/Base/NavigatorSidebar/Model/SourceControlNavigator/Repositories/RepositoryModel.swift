@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import Version_Control
 
 public final class RepositoryModel: ObservableObject {
 
@@ -63,7 +64,7 @@ public final class RepositoryModel: ObservableObject {
         // reponame must not be nil or ""
         guard repoName != nil && !repoName!.isEmpty else { return }
 
-        let branchNames: [String] = ((try? gitClient?.getBranches(allBranches: false)) ?? [])
+        let branchNames: [String] = ((try? gitClient?.getGitBranches(allBranches: false)) ?? [])
         let currentBranchName = (try? gitClient?.getCurrentBranchName()) ?? ""
         let currentBranchIndex = branchNames.firstIndex(of: currentBranchName) ?? -1
 
