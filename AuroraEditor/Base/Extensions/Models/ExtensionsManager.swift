@@ -145,7 +145,6 @@ public final class ExtensionsManager {
         return nil
     }
 
-
     /// Loads extensions' bundles which were not loaded before and passes `ExtensionAPI` as a whole class
     /// or workspace's URL
     /// - Parameter apiBuilder: function which creates `ExtensionAPI` instance based on plugin's ID
