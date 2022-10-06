@@ -39,13 +39,10 @@ public final class AppPreferencesModel: ObservableObject {
     }
 
     /// Load and construct ``AppPreferences`` model from
-    /// `~/Library/com.auroraeditor/preferences.json`
+    /// `~/Library/Application Support/com.auroraeditor/Preferences.json`
     private func loadPreferences() -> AppPreferences {
         if !filemanager.fileExists(atPath: preferencesURL.path) {
-            let auroraEditorURL = filemanager
-                .homeDirectoryForCurrentUser
-                .appendingPathComponent(".config", isDirectory: true)
-                .appendingPathComponent("auroraeditor", isDirectory: true)
+            let auroraEditorURL = baseURL
             try? filemanager.createDirectory(at: auroraEditorURL, withIntermediateDirectories: false)
             return .init()
         }
@@ -59,7 +56,7 @@ public final class AppPreferencesModel: ObservableObject {
     }
 
     /// Save``AppPreferences`` model to
-    /// `~/Library/com.auroraeditor/preferences.json`
+    /// `~/Library/Application Support/com.auroraeditor/preferences.json`
     private func savePreferences() throws {
         let data = try JSONEncoder().encode(preferences)
         let json = try JSONSerialization.jsonObject(with: data)
@@ -72,20 +69,32 @@ public final class AppPreferencesModel: ObservableObject {
 
     /// The base URL of preferences.
     ///
-    /// Points to `~/Library/com.auroraeditor/`
-    internal var baseURL: URL {
-        filemanager
-            .homeDirectoryForCurrentUser
-            .appendingPathComponent("Library", isDirectory: true)
-            .appendingPathComponent("com.auroraeditor", isDirectory: true)
+    /// The base folder url `~/Library/Application Support/com.auroraeditor/`
+    public var baseURL: URL {
+        guard let url = try? filemanager.url(
+            for: .applicationSupportDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ) else {
+            return filemanager.homeDirectoryForCurrentUser
+                .appendingPathComponent("Library")
+                .appendingPathComponent("Application Support")
+                .appendingPathComponent("com.auroraeditor")
+        }
+
+        return url.appendingPathComponent(
+            "com.auroraeditor",
+            isDirectory: true
+        )
     }
 
     /// The URL of the `preferences.json` settings file.
     ///
-    /// Points to `~/Library/com.auroraeditor/preferences.json`
+    /// Points to `~/Library/Application Support/com.auroraeditor/preferences.json`
     private var preferencesURL: URL {
         baseURL
-            .appendingPathComponent("preferences")
+            .appendingPathComponent("Preferences")
             .appendingPathExtension("json")
     }
 
