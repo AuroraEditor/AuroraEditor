@@ -47,31 +47,24 @@ public final class ExtensionsManager {
 
     /// Temporary load function, all extensions in ~/Library/com.auroraeditor/Extensions will be loaded.
     public func loadPlugins() {
-        do {
-            try FileManager.default.createDirectory(
+            try? FileManager.default.createDirectory(
                 at: extensionsFolder,
                 withIntermediateDirectories: false,
                 attributes: nil
             )
-        } catch {
-            Log.error(
-                "Cannot create directory at",
-                extensionsFolder.relativeString,
-                error.localizedDescription
+
+        do {
+            let directory = try FileManager.default.contentsOfDirectory(
+                atPath: extensionsFolder.relativePath
             )
-            return
-        }
 
-        guard let directory = try? FileManager.default.contentsOfDirectory(
-            atPath: extensionsFolder.absoluteString
-        ) else {
-            Log.error("Cannot read directory", extensionsFolder.relativeString)
+            for file in directory where file.hasSuffix("AEExt") {
+                Log.info("Loading \(file)")
+                _ = self.loadBundle(path: file)
+            }
+        } catch {
+            Log.error("Error while loading plugins", error.localizedDescription)
             return
-        }
-
-        for file in directory {
-            Log.info("Loading \(file)")
-            _ = self.loadBundle(path: file)
         }
     }
 
@@ -92,19 +85,31 @@ public final class ExtensionsManager {
         //        }
     }
 
+    /// Load the bundle at path
+    /// - Parameter path: path
+    /// - Returns: ExtensionBuilder.Tyoe
     private func loadBundle(path: String) -> ExtensionBuilder.Type? {
         Log.info("Loading BUNDLE @ \(path)")
         guard let bundleURL = try? FileManager.default.contentsOfDirectory(
             at: extensionsFolder.appendingPathComponent(path, isDirectory: true),
             includingPropertiesForKeys: nil,
             options: .skipsPackageDescendants
-        ).first else { return nil }
+        ).first else {
+            Log.warning("It seems like this bundle is gone now")
+            return nil
+        }
 
         Log.info("INIT BUNDLE")
-        guard let bundle = Bundle(url: bundleURL) else { return nil }
+        guard let bundle = Bundle(url: bundleURL) else {
+            Log.warning("Failed to load bundle")
+            return nil
+        }
 
         Log.info("Loading BUNDLE")
-        guard bundle.load() else { return nil }
+        guard bundle.load() else {
+            Log.warning("Failed to load() bundle")
+            return nil
+        }
 
         Log.info("RETURNING BUNDLE AS ExtensionBuilder.Type")
         return bundle.principalClass as? ExtensionBuilder.Type

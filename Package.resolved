@@ -18,6 +18,15 @@
           "revision": "70a3af884c24dff9f1beeda04e889b5591f04f3c",
           "version": "1.0.7"
         }
+      },
+      {
+        "package": "Version-Control",
+        "repositoryURL": "https://github.com/AuroraEditor/Version-Control-Kit.git",
+        "state": {
+          "branch": "main",
+          "revision": "e0823b7bcbf97dcc65279010654851fa42419527",
+          "version": null
+        }
       }
     ]
   },
