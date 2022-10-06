@@ -83,33 +83,11 @@ public final class ExtensionsManager {
         return bundle.principalClass as? ExtensionBuilder.Type
     }
 
-    private func loadBundle(id: UUID, withExtension ext: String) throws -> Bundle? {
-        guard let bundleURL = try FileManager.default.contentsOfDirectory(
-            at: extensionsFolder.appendingPathComponent(id.uuidString,
-                                                        isDirectory: true),
-            includingPropertiesForKeys: nil,
-            options: .skipsPackageDescendants
-        ).first(where: { $0.pathExtension == ext }) else { return nil }
-
-        guard let bundle = Bundle(url: bundleURL) else { return nil }
-
-        loadedBundles[id] = bundle
-
-        return bundle
-    }
-
-    private func getExtensionBuilder(id: UUID) throws -> ExtensionBuilder.Type? {
-        if loadedBundles.keys.contains(id) {
-            return loadedBundles[id]?.principalClass as? ExtensionBuilder.Type
-        }
-
-        guard let bundle = try loadBundle(id: id, withExtension: "ceext") else {
-            return nil
-        }
-
-        guard bundle.load() else { return nil }
-
-        return bundle.principalClass as? ExtensionBuilder.Type
+    private func loadLSPClient(file: String) {
+        //                guard let client = try getLSPClient(id: plugin.release, workspaceURL: api.workspaceURL) else {
+        //                    return
+        //                }
+        //                loadedLanguageServers[key] = client
     }
 
     private func getLSPClient(id: UUID, workspaceURL: URL) throws -> LSPClient? {
@@ -145,33 +123,7 @@ public final class ExtensionsManager {
         return nil
     }
 
-    /// Loads extensions' bundles which were not loaded before and passes `ExtensionAPI` as a whole class
-    /// or workspace's URL
-    /// - Parameter apiBuilder: function which creates `ExtensionAPI` instance based on plugin's ID
-    public func load(_ apiBuilder: (String) -> ExtensionAPI) throws {
-        //        let plugins = try self.dbQueue.read { database in
-        //            try DownloadedPlugin
-        //                .filter(Column("loadable") == true)
-        //                .fetchAll(database)
-        //        }
-        //
-//                try plugins.forEach { plugin in
-        //            let api = apiBuilder(plugin.plugin.uuidString)
-        //            let key = PluginWorkspaceKey(releaseID: plugin.release, workspace: api.workspaceURL)
-        //
-        //            switch plugin.sdk {
-        //            case .swift:
-        //                guard let builder = try getExtensionBuilder(id: plugin.release) else {
-        //                    return
-        //                }
-        //
-        //                loadedPlugins[key] = builder.init().build(withAPI: api)
-        //            case .languageServer:
-        //                guard let client = try getLSPClient(id: plugin.release, workspaceURL: api.workspaceURL) else {
-        //                    return
-        //                }
-        //                loadedLanguageServers[key] = client
-        //            }
-        //        }
+    public func isInstalled(plugin: Plugin) -> Bool? {
+        return false
     }
 }

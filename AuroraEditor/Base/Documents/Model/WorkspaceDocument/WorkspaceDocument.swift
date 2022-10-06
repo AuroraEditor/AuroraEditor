@@ -166,14 +166,6 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
             }
             .store(in: &cancellables)
 
-        // initialize extensions
-        do {
-            try ExtensionsManager.shared?.load { extensionID in
-                AuroraEditorAPI(extensionId: extensionID, workspace: self)
-            }
-        } catch let error {
-            Log.error(error)
-        }
         Log.info("Made document from read: \(self)")
     }
 
