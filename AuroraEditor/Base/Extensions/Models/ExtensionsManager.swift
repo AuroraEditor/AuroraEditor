@@ -10,23 +10,17 @@ import AEExtensionKit
 
 /// Class which handles all extensions (its bundles, instances for each workspace and so on)
 public final class ExtensionsManager {
-    struct PluginWorkspaceKey: Hashable {
-        var releaseID: UUID
-        var workspace: URL
-    }
-
     /// Shared instance of `ExtensionsManager`
     public static let shared: ExtensionsManager? = {
         try? ExtensionsManager()
     }()
 
-    //    let dbQueue: DatabaseQueue
     let auroraEditorFolder: URL
     let extensionsFolder: URL
 
     var loadedBundles: [UUID: Bundle] = [:]
-    var loadedPlugins: [PluginWorkspaceKey: ExtensionInterface] = [:]
-    var loadedLanguageServers: [PluginWorkspaceKey: LSPClient] = [:]
+    var loadedPlugins: [String: ExtensionInterface] = [:]
+    var loadedLanguageServers: [String: LSPClient] = [:]
 
     init() throws {
         Log.info("Searching for Bundles")
@@ -58,9 +52,14 @@ public final class ExtensionsManager {
                 atPath: extensionsFolder.relativePath
             )
 
-            for file in directory where file.hasSuffix("AEExt") {
+            for file in directory where file.hasSuffix("AEext") {
                 Log.info("Loading \(file)")
-                _ = self.loadBundle(path: file)
+                if let builder = self.loadBundle(path: file) {
+
+                    loadedPlugins[file] = builder.init().build(
+                        withAPI: AuroraEditorAPI.init(extensionId: "0", workspace: .init())
+                    )
+                }
             }
         } catch {
             Log.error("Error while loading plugins", error.localizedDescription)
@@ -68,50 +67,19 @@ public final class ExtensionsManager {
         }
     }
 
-    /// Removes all plugins which are related to the specified workspace URL
-    /// - Parameter url: workspace's URL
-    public func close(url: URL) {
-        //        loadedPlugins.filter { elem in
-        //            elem.key.workspace == url
-        //        }.forEach { (key: PluginWorkspaceKey, _) in
-        //            loadedPlugins.removeValue(forKey: key)
-        //        }
-        //
-        //        loadedLanguageServers.filter { elem in
-        //            elem.key.workspace == url
-        //        }.forEach { (key: PluginWorkspaceKey, client: LSPClient) in
-        //            client.close()
-        //            loadedLanguageServers.removeValue(forKey: key)
-        //        }
-    }
-
     /// Load the bundle at path
     /// - Parameter path: path
     /// - Returns: ExtensionBuilder.Tyoe
     private func loadBundle(path: String) -> ExtensionBuilder.Type? {
-        Log.info("Loading BUNDLE @ \(path)")
-        guard let bundleURL = try? FileManager.default.contentsOfDirectory(
-            at: extensionsFolder.appendingPathComponent(path, isDirectory: true),
-            includingPropertiesForKeys: nil,
-            options: .skipsPackageDescendants
-        ).first else {
-            Log.warning("It seems like this bundle is gone now")
-            return nil
-        }
+        let bundleURL = extensionsFolder.appendingPathComponent(path, isDirectory: true)
 
-        Log.info("INIT BUNDLE")
-        guard let bundle = Bundle(url: bundleURL) else {
+        /// Initialize bundle
+        guard let bundle = Bundle(url: bundleURL),
+              bundle.load() else {
             Log.warning("Failed to load bundle")
             return nil
         }
 
-        Log.info("Loading BUNDLE")
-        guard bundle.load() else {
-            Log.warning("Failed to load() bundle")
-            return nil
-        }
-
-        Log.info("RETURNING BUNDLE AS ExtensionBuilder.Type")
         return bundle.principalClass as? ExtensionBuilder.Type
     }
 
@@ -177,21 +145,6 @@ public final class ExtensionsManager {
         return nil
     }
 
-    /// Preloads all extensions' bundles to `loadedBundles`
-    public func preload() throws {
-        //        let plugins = try self.dbQueue.read { database in
-        //            try DownloadedPlugin.filter(Column("loadable") == true).fetchAll(database)
-        //        }
-        //
-        //        try plugins.forEach { plugin in
-        //            switch plugin.sdk {
-        //            case .swift:
-        //                _ = try loadBundle(id: plugin.release, withExtension: "ceext")
-        //            case .languageServer:
-        //                _ = try loadBundle(id: plugin.release, withExtension: "celsp")
-        //            }
-        //        }
-    }
 
     /// Loads extensions' bundles which were not loaded before and passes `ExtensionAPI` as a whole class
     /// or workspace's URL
@@ -203,7 +156,7 @@ public final class ExtensionsManager {
         //                .fetchAll(database)
         //        }
         //
-        //        try plugins.forEach { plugin in
+//                try plugins.forEach { plugin in
         //            let api = apiBuilder(plugin.plugin.uuidString)
         //            let key = PluginWorkspaceKey(releaseID: plugin.release, workspace: api.workspaceURL)
         //
@@ -221,115 +174,5 @@ public final class ExtensionsManager {
         //                loadedLanguageServers[key] = client
         //            }
         //        }
-    }
-
-    /// Installs new extension bundle (plugin) with specified release
-    /// - Parameters:
-    ///   - plugin: plugin to be installed
-    ///   - release: release of the plugin to be installed
-    public func install(plugin: Plugin, release: PluginRelease) async throws {
-        //        guard let tarball = release.tarball else {
-        //            throw ExtensionsStoreAPIError.noTarball
-        //        }
-        //
-        //        let extensionsFolder = codeeditFolder.appendingPathComponent("Extensions", isDirectory: true)
-        //
-        //        try FileManager.default
-        //            .createDirectory(at: extensionsFolder,
-        //                             withIntermediateDirectories: true,
-        //                             attributes: nil)
-        //
-        //        let cacheTar = try FileManager.default
-        //            .url(
-        //                for: .cachesDirectory,
-        //                in: .userDomainMask,
-        //                appropriateFor: nil,
-        //                create: true
-        //            )
-        //            .appendingPathComponent("\(release.id.uuidString).tar")
-        //
-        //        // TODO: show progress
-        //        let (source, _) = try await URLSession.shared.download(from: tarball)
-        //
-        //        if FileManager.default.fileExists(atPath: cacheTar.path) {
-        //            try FileManager.default.removeItem(at: cacheTar)
-        //        }
-        //
-        //        try FileManager.default.moveItem(at: source, to: cacheTar)
-        //
-        //        let bundleURL = extensionsFolder.appendingPathComponent(release.id.uuidString, isDirectory: true)
-        //
-        //        guard let path = bundleURL.path
-        //                .addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else {
-        //                    throw ExtensionsStoreAPIError.pathError
-        //                }
-        //        try FileManager.default.createFilesAndDirectories(path: path,
-        //                                                          tarPath: cacheTar.path)
-        //
-        //        let manifest = extensionsFolder.appendingPathComponent("\(plugin.id.uuidString).json")
-        //
-        //        try JSONEncoder().encode(plugin).write(to: manifest)
-        //
-        //        // save to db
-        //
-        //        try await dbQueue.write { database in
-        //            try DownloadedPlugin(plugin: plugin.id, release: release.id, loadable: true, sdk: plugin.sdk)
-        //                .insert(database)
-        //        }
-    }
-
-    /// Removes extension bundle (plugin)
-    /// - Parameter plugin: plugin to be removed
-    public func remove(plugin: Plugin) throws {
-        //        guard let entry = (try self.dbQueue.read { database in
-        //            try DownloadedPlugin.filter(Column("plugin") == plugin.id).fetchOne(database)
-        //        }) else {
-        //            return
-        //        }
-        //
-        //        let manifestURL = extensionsFolder.appendingPathComponent("\(entry.plugin.uuidString).json")
-        //        if FileManager.default.fileExists(atPath: manifestURL.path) {
-        //            try FileManager.default.removeItem(at: manifestURL)
-        //        }
-        //
-        //        let bundleURL = extensionsFolder.appendingPathComponent(
-        //              "\(entry.release.uuidString)", isDirectory: true)
-        //        if FileManager.default.fileExists(atPath: bundleURL.path) {
-        //            try FileManager.default.removeItem(at: bundleURL)
-        //        }
-        //
-        //        _ = try self.dbQueue.write { database in
-        //            try entry.delete(database)
-        //        }
-        //
-        //        loadedBundles.removeValue(forKey: entry.release)
-        //
-        //        loadedPlugins.filter { elem in
-        //            elem.key.releaseID == entry.release
-        //        }.forEach { (key: PluginWorkspaceKey, _) in
-        //            loadedPlugins.removeValue(forKey: key)
-        //        }
-        //
-        //        loadedLanguageServers.filter { elem in
-        //            elem.key.releaseID == entry.release
-        //        }.forEach { (key: PluginWorkspaceKey, client: LSPClient) in
-        //            client.close()
-        //            loadedLanguageServers.removeValue(forKey: key)
-        //        }
-    }
-
-    /// Checks whether extension's bundle (plugin) is installed
-    /// - Parameter plugin: plugin to be checked
-    /// - Returns: whether extension's bundle is installed
-    public func isInstalled(plugin: Plugin) -> Bool {
-        //        do {
-        //            let entry = try self.dbQueue.read { database in
-        //                try DownloadedPlugin.filter(Column("plugin") == plugin.id).fetchOne(database)
-        //            }
-        //            return entry != nil
-        //        } catch {
-        //            return false
-        //        }
-        return false
     }
 }
