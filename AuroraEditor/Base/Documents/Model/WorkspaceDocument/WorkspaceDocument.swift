@@ -206,10 +206,6 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         }
         selectionState.openedCodeFiles.removeAll()
 
-        if let url = self.fileURL {
-            ExtensionsManager.shared?.close(url: url)
-        }
-
         // deinit classes
         cancellables.forEach { $0.cancel() }
         self.fileSystemClient?.cleanUp()
