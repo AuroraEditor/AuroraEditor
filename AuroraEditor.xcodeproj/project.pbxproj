@@ -436,6 +436,7 @@
 		2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */; };
 		2BF86A4228AF9EA400079705 /* AEExtensionKit in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2BF983FF289D8B3C004F1A60 /* SharedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF983FE289D8B3C004F1A60 /* SharedObjects.swift */; };
+		2BFC008728F02E0A00506EDB /* SwiftOnig in Frameworks */ = {isa = PBXBuildFile; productRef = 2BFC008628F02E0A00506EDB /* SwiftOnig */; };
 		6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */; };
 		9302A22428D183E300648D63 /* TabBarItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9302A22328D183E300648D63 /* TabBarItemStorage.swift */; };
 		9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */; };
@@ -1068,6 +1069,7 @@
 				209D0246289AB9750082441F /* SwiftTerm in Frameworks */,
 				2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */,
 				200AA21228ED88B30068C7C6 /* Version-Control in Frameworks */,
+				2BFC008728F02E0A00506EDB /* SwiftOnig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3168,6 +3170,7 @@
 				209D0245289AB9750082441F /* SwiftTerm */,
 				2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */,
 				200AA21128ED88B30068C7C6 /* Version-Control */,
+				2BFC008628F02E0A00506EDB /* SwiftOnig */,
 			);
 			productName = CodeEdit;
 			productReference = B658FB2C27DA9E0F00EA4DBD /* AuroraEditor.app */;
@@ -3249,6 +3252,7 @@
 				209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */,
 				2BE5EDAB28AE64A700C0A4AE /* XCRemoteSwiftPackageReference "AEExtensionKit" */,
 				200AA21028ED88B30068C7C6 /* XCRemoteSwiftPackageReference "Version-Control-Kit" */,
+				2BFC008528F02E0A00506EDB /* XCRemoteSwiftPackageReference "SwiftOnig" */,
 			);
 			productRefGroup = B658FB2D27DA9E0F00EA4DBD /* Products */;
 			projectDirPath = "";
@@ -4376,6 +4380,14 @@
 				kind = branch;
 			};
 		};
+		2BFC008528F02E0A00506EDB /* XCRemoteSwiftPackageReference "SwiftOnig" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maogm12/SwiftOnig.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -4393,6 +4405,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2BE5EDAB28AE64A700C0A4AE /* XCRemoteSwiftPackageReference "AEExtensionKit" */;
 			productName = AEExtensionKit;
+		};
+		2BFC008628F02E0A00506EDB /* SwiftOnig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BFC008528F02E0A00506EDB /* XCRemoteSwiftPackageReference "SwiftOnig" */;
+			productName = SwiftOnig;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

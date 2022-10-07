@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "SwiftOnig",
+        "repositoryURL": "https://github.com/maogm12/SwiftOnig.git",
+        "state": {
+          "branch": null,
+          "revision": "9d1a55a4996c84b9bc66e7cf9dedf6d5d3d5335b",
+          "version": "0.0.1"
+        }
+      },
+      {
         "package": "SwiftTerm",
         "repositoryURL": "https://github.com/migueldeicaza/SwiftTerm.git",
         "state": {
