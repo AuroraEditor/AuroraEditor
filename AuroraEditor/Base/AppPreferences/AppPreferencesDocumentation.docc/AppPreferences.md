@@ -4,8 +4,8 @@ This package manages **Preferences** of the app.
 
 ## Overview
 
-The main task is to get the preferences from `~/Library/com.auroraeditor/preferences.json` and load them into an ``AppPreferences/AppPreferences`` model.
-Once a value changes the changes are written to the `preferences.json` file.
+The main task is to get the preferences from `~/Library/com.auroraeditor/Preferences.json` and load them into an ``AppPreferences/AppPreferences`` model.
+Once a value changes the changes are written to the `Preferences.json` file.
 
 It also contains all preferences section views and necessary sub-models.
 

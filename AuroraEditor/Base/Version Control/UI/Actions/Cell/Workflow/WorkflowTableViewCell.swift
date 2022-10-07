@@ -7,6 +7,7 @@
 //
 
 import AppKit
+import Version_Control
 
 /// A `NSTableCellView` showing an ``icon`` and a ``label``
 final class WorkflowTableViewCell: StandardTableViewCell {

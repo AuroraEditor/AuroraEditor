@@ -16,6 +16,9 @@
   <a href='https://nightly.link/AuroraEditor/AuroraEditor/workflows/nightly/main/AuroraEditor_Nightly.zip' target='_blank'>
   <img alt="Download" src="https://img.shields.io/badge/Download-Nightly Build-6bbee8?style=for-the-badge">
  </a>
+ <a href='https://github.com/AuroraEditor/AuroraEditor/issues?q=is%3Aissue+is%3Aopen+label%3Ahacktoberfest'>
+ <img alt='x' src='https://img.shields.io/github/issues/AuroraEditor/AuroraEditor/hacktoberfest?color=%237c7fff&style=for-the-badge'>
+ </a>
 </p>
 
 <br />
@@ -88,6 +91,30 @@ We try to keep our code base documented as much as possible, so that any new or 
 
 We very much respect the contributors that contributed to CE, and we would like to thank them for giving us a base to begin with.
 
+## Included Repositories
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/AuroraEditor/Version-Control-Kit">
+        <img alt="Logo" src="https://user-images.githubusercontent.com/63672227/193885608-d6217c57-6a12-4470-a0c7-f1ecc80bc3f2.png" width="128">
+        <p>Version Control Kit</p>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/AuroraEditor/AEExtensionKit">
+      <img alt="Logo" src="https://user-images.githubusercontent.com/63672227/194052928-6c476452-3cd6-494b-9604-e1b8e1998390.png" width="128">
+        <p>AE Extension Kit</p>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/migueldeicaza/SwiftTerm">
+      <img alt="Logo" src="https://user-images.githubusercontent.com/63672227/194052608-65f97f2a-57fb-43a1-8b7e-46f1584a23dc.png" width="128">
+        <p>SwiftTerm</p>
+      </a>
+    </td>
+  </tr>
+</table>
+
 ## Community
 
 Join our community on [Discord](https://discord.gg/5aecJ4rq9D) or [Slack](https://join.slack.com/t/auroraeditor/shared_invite/zt-1fti1r72d-8mWmJsj279vDV~YdKhcUEA) where we discuss and collaborate on all things of Aurora Editor.
@@ -140,6 +167,9 @@ Thanks goes to these wonderful people:
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
+## Sponsors
+
+<a title="MacStadium" href="https://macstadium.com" target="_blank"><img src="https://user-images.githubusercontent.com/806104/162766594-eff7f985-31a9-48c5-9e58-139794fefa10.png" width="128"></a>
 ## License
 
 ### Intellectual Property License

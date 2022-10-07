@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Version_Control
 
 struct RenameBranchView: View {
 
@@ -94,9 +95,9 @@ struct RenameBranchView: View {
                 } else {
                     Button {
                         do {
-                            try Branches().renameBranch(directoryURL: workspace.workspaceURL(),
-                                                        branch: currentBranchName,
-                                                        newName: newBranchName)
+                            try renameBranch(directoryURL: workspace.workspaceURL(),
+                                             branch: currentBranchName,
+                                             newName: newBranchName)
                             dismiss()
                         } catch {
                             Log.error("Unable to rename current branch.")

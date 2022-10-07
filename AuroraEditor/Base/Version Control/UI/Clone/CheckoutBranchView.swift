@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Version_Control
 
 public struct CheckoutBranchView: View {
     internal let shellClient: ShellClient

@@ -86,14 +86,14 @@ public final class ThemeModel: ObservableObject {
         }
     }
 
-    /// Loads all available themes from `~/Library/com.auroraeditor/themes/`
+    /// Loads all available themes from `~/Library/Application Support/com.auroraeditor/Themes/`
     ///
     /// If no themes are available, it will create a default theme and save
     /// it to the location mentioned above.
     ///
-    /// When overrides are found in `~/Library/com.auroraeditor/preferences.json`
+    /// When overrides are found in `~/Library/Application Support/com.auroraeditor/preferences.json`
     /// they are applied to the loaded themes without altering the original
-    /// the files in `~/Library/com.auroraeditor/themes/`.
+    /// the files in `~/Library/Application Support/com.auroraeditor/Themes/`.
     public func loadThemes() throws {
         // remove all themes from memory
         themes.removeAll()
@@ -173,10 +173,10 @@ public final class ThemeModel: ObservableObject {
     }
 
     /// Removes all overrides of the given theme in
-    /// `~/Library/com.auroraeditor/preferences.json`
+    /// `~/Library/Application Support/com.auroraeditor/preferences.json`
     ///
     /// After removing overrides, themes are reloaded
-    /// from `~/Library/com.auroraeditor/themes`. See ``loadThemes()``
+    /// from `~/Library/Application Support/com.auroraeditor/Themes`. See ``loadThemes()``
     /// for more information.
     ///
     /// - Parameter theme: The theme to reset
@@ -189,10 +189,10 @@ public final class ThemeModel: ObservableObject {
         }
     }
 
-    /// Removes the given theme from `–/Library/com.auroraeditor/themes`
+    /// Removes the given theme from `–/Library/Application Support/com.auroraeditor/Themes`
     ///
     /// After removing the theme, themes are reloaded
-    /// from `~/Library/com.auroraeditor/themes`. See ``loadThemes()``
+    /// from `~/Library/Application Support/com.auroraeditor/Themes`. See ``loadThemes()``
     /// for more information.
     ///
     /// - Parameter theme: The theme to delete
@@ -215,12 +215,12 @@ public final class ThemeModel: ObservableObject {
     }
 
     /// Saves changes on theme properties to `overrides`
-    /// in `~/Library/com.auroraeditor/preferences.json`.
+    /// in `~/Library/Application Support/com.auroraeditor/preferences.json`.
     private func saveThemes() {
         let url = themesURL
         themes.forEach { theme in
             do {
-                // load the original theme from `~/Library/com.auroraeditor/themes/`
+                // load the original theme from `~/Library/Application Support/com.auroraeditor/Themes/`
                 let originalUrl = url.appendingPathComponent(theme.name).appendingPathExtension("json")
                 let originalData = try Data(contentsOf: originalUrl)
                 let originalTheme = try JSONDecoder().decode(AuroraTheme.self, from: originalData)
@@ -263,15 +263,28 @@ public final class ThemeModel: ObservableObject {
     /// Default instance of the `FileManager`
     private let filemanager = FileManager.default
 
-    /// The base folder url `~/Library/com.auroraeditor/`
+    /// The base folder url `~/Library/Application Support/com.auroraeditor/`
     private var baseURL: URL {
-        filemanager.homeDirectoryForCurrentUser
-            .appendingPathComponent("Library")
-            .appendingPathComponent("com.auroraeditor")
+        guard let url = try? filemanager.url(
+            for: .applicationSupportDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ) else {
+            return filemanager.homeDirectoryForCurrentUser
+                .appendingPathComponent("Library")
+                .appendingPathComponent("Application Support")
+                .appendingPathComponent("com.auroraeditor")
+        }
+
+        return url.appendingPathComponent(
+            "com.auroraeditor",
+            isDirectory: true
+        )
     }
 
     /// The URL of the `themes` folder
     internal var themesURL: URL {
-        baseURL.appendingPathComponent("themes", isDirectory: true)
+        baseURL.appendingPathComponent("Themes", isDirectory: true)
     }
 }

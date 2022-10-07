@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Version_Control
 
 public struct WelcomeWindowView: View {
 

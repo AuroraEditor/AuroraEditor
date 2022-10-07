@@ -42,13 +42,13 @@ struct ExtensionInstallationView: View {
                         Task {
                             do {
                                 if let release = self.model.release {
-                                    try await ExtensionsManager.shared?.install(
-                                        plugin: self.model.plugin, release: release)
-                                    self.installed = ExtensionsManager.shared?.isInstalled(
-                                        plugin: model.plugin) ?? false
-                                    if self.installed {
-                                        self.reopenAlert = true
-                                    }
+//                                    try await ExtensionsManager.shared?.install(
+//                                        plugin: self.model.plugin, release: release)
+//                                    self.installed = ExtensionsManager.shared?.isInstalled(
+//                                        plugin: model.plugin) ?? false
+//                                    if self.installed {
+//                                        self.reopenAlert = true
+//                                    }
                                 }
                             } catch let error {
                                 Log.error(error.localizedDescription)
@@ -61,8 +61,8 @@ struct ExtensionInstallationView: View {
                 } else {
                     Button {
                         do {
-                            try ExtensionsManager.shared?.remove(plugin: self.model.plugin)
-                            self.installed = ExtensionsManager.shared?.isInstalled(plugin: model.plugin) ?? false
+//                            try ExtensionsManager.shared?.remove(plugin: self.model.plugin)
+//                            self.installed = ExtensionsManager.shared?.isInstalled(plugin: model.plugin) ?? false
                         } catch let error {
                             Log.error(error.localizedDescription)
                         }

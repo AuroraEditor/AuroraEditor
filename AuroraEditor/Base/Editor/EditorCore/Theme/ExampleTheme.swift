@@ -115,6 +115,16 @@ let exampleTheme: HighlightTheme = HighlightTheme(name: "basic", settings: [
         FontThemeAttribute(font: .monospacedSystemFont(ofSize: fontSize,
                                                        weight: .bold))
     ]),
+    ThemeSetting(scope: "keyword.control.exception", parentScopes: [], attributes: [
+        ColorThemeAttribute(color: NSColor(hex: "#D0A8FF")),
+        FontThemeAttribute(font: .monospacedSystemFont(ofSize: fontSize,
+                                                       weight: .bold))
+    ]),
+    ThemeSetting(scope: "keyword.control.async.swift", parentScopes: [], attributes: [
+        ColorThemeAttribute(color: NSColor(hex: "#5DD8FF")),
+        FontThemeAttribute(font: .monospacedSystemFont(ofSize: fontSize,
+                                                       weight: .bold))
+    ]),
     ThemeSetting(scope: "punctuation.definition.preprocessor", parentScopes: [], attributes: [
         ColorThemeAttribute(color: NSColor(hex: "#FFA14F"))
     ]),

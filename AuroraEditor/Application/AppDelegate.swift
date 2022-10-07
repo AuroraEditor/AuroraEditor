@@ -85,11 +85,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             }
         }
 
-        do {
-            try ExtensionsManager.shared?.preload()
-        } catch let error {
-            Log.error(error)
-        }
+        _ = ExtensionsManager.shared
 
         if AppPreferencesModel.shared.preferences.general.menuItemShowMode == .shown {
             self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)

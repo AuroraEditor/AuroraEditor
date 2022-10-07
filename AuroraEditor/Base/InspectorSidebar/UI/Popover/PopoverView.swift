@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Version_Control
 
 // This popup view shows us information about
 // a certain commit that is in the History Inspector

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AppKit
+import Version_Control
 
 struct WorkspaceView: View {
     init(windowController: NSWindowController, workspace: WorkspaceDocument) {
