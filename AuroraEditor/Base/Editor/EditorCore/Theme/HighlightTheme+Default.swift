@@ -9,5 +9,5 @@ import Foundation
 
 public extension HighlightTheme {
 
-    static let `default` = HighlightTheme(name: "", settings: [])
+    static let `default` = exampleTheme
 }
