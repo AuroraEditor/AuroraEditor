@@ -20,7 +20,7 @@ class MinimapView: NSTextView {
         guard let layoutManager = layoutManager else { return }
 
         // Highlight the current line
-        codeView?.theme.currentLineColour.setFill()
+        codeView?.theme.editor.lineHighlight.nsColor.setFill()
         if let location = insertionPoint {
             layoutManager.enumerateFragmentRects(forLineContaining: location) { rect in
                 NSBezierPath(rect: rect).fill()
