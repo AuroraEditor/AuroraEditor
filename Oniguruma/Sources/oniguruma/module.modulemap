@@ -1,6 +1,5 @@
-module Oniguruma [system] {
+module oniguruma [system] {
     umbrella header "umbrella.h"
-    link "Oniguruma"
+    link "oniguruma"
     export *
-    export oniguruma
 }
