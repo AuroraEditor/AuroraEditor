@@ -126,7 +126,7 @@ public struct AuroraTheme: Identifiable, Codable, Equatable, Hashable, Loopable 
         if fontName.hasPrefix("SFMono") {
 
             let weightString = fontName.dropFirst("SFMono".count)
-            let weight: OSFont.Weight
+            let weight: NSFont.Weight
             switch weightString {
             case "UltraLight": weight = .ultraLight
             case "Thin":       weight = .thin
@@ -139,11 +139,11 @@ public struct AuroraTheme: Identifiable, Codable, Equatable, Hashable, Loopable 
             case "Black":      weight = .black
             default:           weight = .regular
             }
-            return OSFont.monospacedSystemFont(ofSize: fontSize, weight: weight)
+            return NSFont.monospacedSystemFont(ofSize: fontSize, weight: weight)
 
         } else {
 
-            return OSFont(name: fontName, size: fontSize) ?? OSFont.monospacedSystemFont(ofSize: fontSize,
+            return NSFont(name: fontName, size: fontSize) ?? OSFont.monospacedSystemFont(ofSize: fontSize,
                                                                                          weight: .regular)
 
         }

@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+/*
 /// A code highlighting theme. Different syntactic elements are purely distinguished by colour.
 ///
 public struct Theme: Identifiable {
@@ -116,3 +117,4 @@ extension Theme {
         }
     }
 }
+*/

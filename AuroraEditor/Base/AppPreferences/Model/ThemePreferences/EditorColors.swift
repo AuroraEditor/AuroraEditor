@@ -29,12 +29,12 @@ public extension AuroraTheme {
             hasher.combine(highlightTheme.name)
         }
 
-        public var text: Attributes
-        public var insertionPoint: Attributes
-        public var invisibles: Attributes
-        public var background: Attributes
-        public var lineHighlight: Attributes
-        public var selection: Attributes
+        public var text: Attributes                 // textColor
+        public var insertionPoint: Attributes       // cursorColor
+        public var invisibles: Attributes           // invisiblesColor
+        public var background: Attributes           // backgroundColor
+        public var lineHighlight: Attributes        // currentLineColor
+        public var selection: Attributes            // selectionColor
         public var highlightTheme: HighlightTheme
 
         /// Allows to look up properties by their name
