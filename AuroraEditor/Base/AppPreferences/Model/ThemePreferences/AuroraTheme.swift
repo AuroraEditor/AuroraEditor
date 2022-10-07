@@ -12,8 +12,9 @@ import SwiftUI
 /// The model structure of themes for the editor & terminal emulator
 public struct AuroraTheme: Identifiable, Codable, Equatable, Hashable, Loopable {
 
-    enum CodingKeys: String, CodingKey {
+    enum Keys: String, CodingKey {
         case author, license, distributionURL, name, displayName, editor, terminal, version
+        case fontName, fontSize
         case appearance = "type"
         case metadataDescription = "description"
     }
@@ -57,6 +58,10 @@ public struct AuroraTheme: Identifiable, Codable, Equatable, Hashable, Loopable 
     /// Terminal colors of the theme
     public var terminal: TerminalColors
 
+    public var fontName: String = "SFMono-Medium"
+
+    public var fontSize: CGFloat = 13.0
+
     public init(
         editor: EditorColors,
         terminal: TerminalColors,
@@ -67,7 +72,9 @@ public struct AuroraTheme: Identifiable, Codable, Equatable, Hashable, Loopable 
         name: String,
         displayName: String,
         appearance: ThemeType,
-        version: String
+        version: String,
+        fontName: String = "SFMono-Medium",
+        fontSize: CGFloat = 13.0
     ) {
         self.author = author
         self.license = license
@@ -79,6 +86,67 @@ public struct AuroraTheme: Identifiable, Codable, Equatable, Hashable, Loopable 
         self.version = version
         self.editor = editor
         self.terminal = terminal
+        self.fontName = fontName
+        self.fontSize = fontSize
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Keys.self)
+        try container.encode(author, forKey: .author)
+        try container.encode(license, forKey: .license)
+        try container.encode(distributionURL, forKey: .distributionURL)
+        try container.encode(name, forKey: .name)
+        try container.encode(displayName, forKey: .displayName)
+        try container.encode(editor, forKey: .editor)
+        try container.encode(terminal, forKey: .terminal)
+        try container.encode(version, forKey: .version)
+        try container.encode(fontName, forKey: .fontName)
+        try container.encode(fontSize, forKey: .fontSize)
+        try container.encode(appearance, forKey: .appearance)
+        try container.encode(metadataDescription, forKey: .metadataDescription)
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        self.author = try container.decode(String.self, forKey: .author)
+        self.license = try container.decode(String.self, forKey: .license)
+        self.distributionURL = try container.decode(String.self, forKey: .distributionURL)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.displayName = try container.decode(String.self, forKey: .displayName)
+        self.editor = try container.decode(EditorColors.self, forKey: .editor)
+        self.terminal = try container.decode(TerminalColors.self, forKey: .terminal)
+        self.version = try container.decode(String.self, forKey: .version)
+        self.appearance = try container.decode(ThemeType.self, forKey: .appearance)
+        self.metadataDescription = try container.decode(String.self, forKey: .metadataDescription)
+        if let fontName = try? container.decode(String.self, forKey: .fontName) { self.fontName = fontName }
+        if let fontSize = try? container.decode(CGFloat.self, forKey: .fontSize) { self.fontSize = fontSize }
+    }
+
+    public var font: NSFont {
+        if fontName.hasPrefix("SFMono") {
+
+            let weightString = fontName.dropFirst("SFMono".count)
+            let weight: OSFont.Weight
+            switch weightString {
+            case "UltraLight": weight = .ultraLight
+            case "Thin":       weight = .thin
+            case "Light":      weight = .light
+            case "Regular":    weight = .regular
+            case "Medium":     weight = .medium
+            case "Semibold":   weight = .semibold
+            case "Bold":       weight = .bold
+            case "Heavy":      weight = .heavy
+            case "Black":      weight = .black
+            default:           weight = .regular
+            }
+            return OSFont.monospacedSystemFont(ofSize: fontSize, weight: weight)
+
+        } else {
+
+            return OSFont(name: fontName, size: fontSize) ?? OSFont.monospacedSystemFont(ofSize: fontSize,
+                                                                                         weight: .regular)
+
+        }
     }
 }
 

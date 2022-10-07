@@ -37,6 +37,7 @@ public final class ThemeModel: ObservableObject {
         didSet {
             saveThemes()
             objectWillChange.send()
+            Log.info("\(themes.count) themes currently, \(String(describing: selectedTheme)) selected")
         }
     }
 
@@ -79,6 +80,7 @@ public final class ThemeModel: ObservableObject {
             let theme = try JSONDecoder().decode(AuroraTheme.self, from: json)
             return theme
         } catch {
+            Log.info("Error fetching theme: \(error)")
             try filemanager.removeItem(at: url)
             return nil
         }
