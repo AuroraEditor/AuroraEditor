@@ -11,25 +11,31 @@ import AEExtensionKit
 /// Class which handles all extensions (its bundles, instances for each workspace and so on)
 public final class ExtensionsManager {
     /// Shared instance of `ExtensionsManager`
-    public static let shared: ExtensionsManager? = {
-        try? ExtensionsManager()
-    }()
+    public static let shared: ExtensionsManager = ExtensionsManager()
 
     let auroraEditorFolder: URL
     let extensionsFolder: URL
 
     var loadedBundles: [UUID: Bundle] = [:]
-    var loadedPlugins: [String: ExtensionInterface] = [:]
+    var loadedExtensions: [String: ExtensionInterface] = [:]
     var loadedLanguageServers: [String: LSPClient] = [:]
 
-    init() throws {
-        Log.info("Searching for Bundles")
-        self.auroraEditorFolder = try FileManager.default.url(
+    init() {
+        Log.info("[ExtensionsManager] init()")
+
+        guard let extensionsPath = try? FileManager.default.url(
             for: .applicationSupportDirectory,
             in: .userDomainMask,
             appropriateFor: nil,
             create: true
-        ).appendingPathComponent("com.auroraeditor", isDirectory: true)
+        ) else {
+            fatalError("Cannot load extensions directory")
+        }
+
+        self.auroraEditorFolder = extensionsPath.appendingPathComponent(
+            "com.auroraeditor",
+            isDirectory: true
+        )
 
         self.extensionsFolder = auroraEditorFolder.appendingPathComponent(
             "Extensions",
@@ -55,10 +61,12 @@ public final class ExtensionsManager {
             for file in directory where file.hasSuffix("AEext") {
                 Log.info("Loading \(file)")
                 if let builder = self.loadBundle(path: file) {
-
-                    loadedPlugins[file] = builder.init().build(
+                    loadedExtensions[file] = builder.init().build(
                         withAPI: AuroraEditorAPI.init(extensionId: "0", workspace: .init())
                     )
+                    Log.info("Registered \(file)")
+                } else {
+                    Log.warning("Failed to init() \(file)")
                 }
             }
         } catch {
@@ -80,7 +88,19 @@ public final class ExtensionsManager {
             return nil
         }
 
-        return bundle.principalClass as? ExtensionBuilder.Type
+        guard let AEext = bundle.principalClass as? ExtensionBuilder.Type else {
+            Log.warning(
+                "Failed to convert",
+                bundle.principalClass.self ?? "None",
+                "to",
+                ExtensionBuilder.Type.self,
+                "Is the principal class correct?"
+            )
+
+            return nil
+        }
+
+        return AEext
     }
 
     private func loadLSPClient(file: String) {
