@@ -57,40 +57,6 @@ Most comparable editors are built on Electron, This is a huge disadvantage becau
 
 Xcode is a great native editor for developers on Mac, but unfortunately it doesn't support creating a multitude of projects in different programming languages, and this is where Aurora Editor comes in. Aurora Editor wants to give developers the possibility of creating their desired projects in their desired language on a editor that is native and gives a similar experience, performance and feel than that of Xcode on Mac.
 
-## Motivation for divergence from CodeEdit
-
-This project originates from https://github.com/CodeEditApp/CodeEdit. We decided to take our own direction with this project for several reasons:
-
-### Rate and direction of development
-We want to increase the rate of development, which means:
-- Encouraging people to make PRs, even if they aren't complete (this is an issue with CodeEdit, many amazing PRs go stale or take forever).
-- Making the code review cycle faster, including allowing people to merge their PRs once they have recieved enough reviews, instead of having to wait for an admin to do it. 
-- Making a clearer todo so that there is never the "what to do" programmer dilemma that slows down development.
-- Getting people interested in Swift. Go to [#swift-beginners](https://discord.gg/Mp5pfU6bcD) on our Discord server for help!
-
-### Discussion
-- We want to make sure that the development discussion is *always* public, not kept in locked channels, and should stay that way,
-- We want everybody to feel welcome, and that every commitment to the project counts!
-
-### Architecture
-- We felt that the architecture of CodeEdit wasn't up to standard. One example is the usage of Modules, which not only increased build time but also code complexity because communication between code compoments and modules is difficult. However, CodeEdit was insistent on keeping their structure. The only way we saw the CodeEdit project could continue is if this changed. 
-
-## Aurora Editor vs CodeEdit
-
-When looking at the core of both code bases, there isn't much difference between AuroraEditor (AE) and CodeEdit (CE). However, we are trying to change that, for example by following a cleaner [architecture](https://github.com/AuroraEditor/AuroraEditor/wiki/Architecture). Over time, the code base between AE and CE may barely be similar to each other. 
-
-We follow a strict set of principals when developing AE, some of which includes 
-- Keeping the code as performant as possible (including build times)
-- Fixing memory leaks or excessive memory usage that may hurt performance
-- Making sure PRs follow AE's architecture guide closely
-- The code is readable at all times and meets our expectations in regards to performance
-
-Even if the code isn't completely up to these standards, we will work with the contributor until we have a satisfactory PR. No merge left behind!
-
-We try to keep our code base documented as much as possible, so that any new or existing contributor who's building new features or fixing a bug can just read the documentation and instantly have an idea of what's happening.
-
-We very much respect the contributors that contributed to CE, and we would like to thank them for giving us a base to begin with.
-
 ## Included Repositories
 <table>
   <tr>
@@ -170,31 +136,7 @@ Thanks goes to these wonderful people:
 ## Sponsors
 
 <a title="MacStadium" href="https://macstadium.com" target="_blank"><img src="https://user-images.githubusercontent.com/806104/162766594-eff7f985-31a9-48c5-9e58-139794fefa10.png" width="128"></a>
-## License
 
-### Intellectual Property License
+## Intellectual Property License
 
 The Aurora Editor Logo is copyright of AuroraEditor and Arurora Company.
-
-### MIT License
-
-Copyright (C) 2022 Aurora Company
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
