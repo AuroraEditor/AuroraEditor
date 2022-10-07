@@ -58,7 +58,7 @@ public struct CodeEditor {
     @Binding var position: Position
     @Binding var caretPosition: CursorLocation
     @Binding var messages: Set<Located<Message>>
-    @State var theme: AuroraTheme = ThemeModel.shared.selectedTheme ?? ThemeModel.shared.themes.first!
+    @Binding var theme: AuroraTheme
 
     /// Creates a fully configured code editor.
     ///
@@ -74,15 +74,15 @@ public struct CodeEditor {
                 position: Binding<Position>,
                 caretPosition: Binding<CursorLocation>,
                 messages: Binding<Set<Located<Message>>>,
-                layout: LayoutConfiguration = .standard,
-                theme: AuroraTheme
+                theme: Binding<AuroraTheme>,
+                layout: LayoutConfiguration = .standard
     ) {
         self._text = text
         self._position = position
         self._caretPosition = caretPosition
         self._messages = messages
+        self._theme = theme
         self.layout = layout
-        self.theme = theme
     }
 
     public class TCoordinator {

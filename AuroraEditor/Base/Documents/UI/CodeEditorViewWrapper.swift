@@ -21,14 +21,16 @@ public struct CodeEditorViewWrapper: View {
     @ObservedObject
     private var themeModel: ThemeModel = .shared
 
-    @Environment(\.colorScheme)
-    private var colorScheme
+    @State
+    private var theme: AuroraTheme
 
     private let editable: Bool
 
     public init(codeFile: CodeFileDocument, editable: Bool = true) {
         self.codeFile = codeFile
         self.editable = editable
+        let currentTheme = ThemeModel.shared.selectedTheme ?? ThemeModel.shared.themes.first!
+        self.theme = currentTheme
     }
 
     @State
@@ -47,8 +49,11 @@ public struct CodeEditorViewWrapper: View {
             position: $position,
             caretPosition: $sharedObjects.caretPos,
             messages: $messages,
-            layout: CodeEditor.LayoutConfiguration(showMinimap: prefs.preferences.textEditing.showMinimap),
-            theme: themeModel.selectedTheme ?? themeModel.themes.first!
+            theme: $theme,
+            layout: CodeEditor.LayoutConfiguration(showMinimap: prefs.preferences.textEditing.showMinimap)
         )
+        .onChange(of: themeModel.selectedTheme, perform: { newTheme in
+            self.theme = newTheme ?? themeModel.themes.first!
+        })
     }
 }
