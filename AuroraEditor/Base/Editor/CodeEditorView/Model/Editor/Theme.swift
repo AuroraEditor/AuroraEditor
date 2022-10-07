@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+// TODO: Remove this later
 // This file is kept only for reference purposes
 // If the old colours are wanted for whatever reason.
 
