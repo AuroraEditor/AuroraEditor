@@ -18,6 +18,9 @@ public struct CodeEditorViewWrapper: View {
     @ObservedObject
     private var sharedObjects: SharedObjects = .shared
 
+    @ObservedObject
+    private var themeModel: ThemeModel = .shared
+
     @Environment(\.colorScheme)
     private var colorScheme
 
@@ -44,7 +47,8 @@ public struct CodeEditorViewWrapper: View {
             position: $position,
             caretPosition: $sharedObjects.caretPos,
             messages: $messages,
-            layout: CodeEditor.LayoutConfiguration(showMinimap: prefs.preferences.textEditing.showMinimap)
+            layout: CodeEditor.LayoutConfiguration(showMinimap: prefs.preferences.textEditing.showMinimap),
+            theme: themeModel.selectedTheme ?? themeModel.themes.first!
         )
     }
 }

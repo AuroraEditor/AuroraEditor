@@ -75,7 +75,6 @@
 		206729AF28AE69DC00EB0957 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206729AE28AE69DC00EB0957 /* PreferencesView.swift */; };
 		206729B228AE6AC900EB0957 /* GroupBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206729B128AE6AC900EB0957 /* GroupBox.swift */; };
 		206B128128DF7311002CDE51 /* EmptyEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B128028DF7311002CDE51 /* EmptyEditorView.swift */; };
-		206B128328DF7752002CDE51 /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B128228DF7752002CDE51 /* EnvironmentValues.swift */; };
 		206B128628DF77AD002CDE51 /* CodeEditor+Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B128528DF77AD002CDE51 /* CodeEditor+Position.swift */; };
 		206B128828DF77E3002CDE51 /* CodeEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B128728DF77E3002CDE51 /* CodeEditorView.swift */; };
 		206B128A28DF78F2002CDE51 /* NSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B128928DF78F2002CDE51 /* NSTextView.swift */; };
@@ -684,7 +683,6 @@
 		206729AE28AE69DC00EB0957 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		206729B128AE6AC900EB0957 /* GroupBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupBox.swift; sourceTree = "<group>"; };
 		206B128028DF7311002CDE51 /* EmptyEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyEditorView.swift; sourceTree = "<group>"; };
-		206B128228DF7752002CDE51 /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
 		206B128528DF77AD002CDE51 /* CodeEditor+Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeEditor+Position.swift"; sourceTree = "<group>"; };
 		206B128728DF77E3002CDE51 /* CodeEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditorView.swift; sourceTree = "<group>"; };
 		206B128928DF78F2002CDE51 /* NSTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTextView.swift; sourceTree = "<group>"; };
@@ -1829,7 +1827,6 @@
 				20212682289BF84B00246DD7 /* String.swift */,
 				20D8373D289A7ACD00D91D05 /* Color.swift */,
 				20D8373E289A7ACD00D91D05 /* Bundle.swift */,
-				206B128228DF7752002CDE51 /* EnvironmentValues.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3788,7 +3785,6 @@
 				9354D4B328ACEDDE004C6D18 /* RepositoriesWrapperView.swift in Sources */,
 				20BE729C28D0BB2000EEDE5F /* WorkflowRunsView.swift in Sources */,
 				2093CDDF289AA522003A88DD /* Bundle.swift in Sources */,
-				206B128328DF7752002CDE51 /* EnvironmentValues.swift in Sources */,
 				2BDFA91528D10B9200980385 /* FileCreationNamingView.swift in Sources */,
 				2093CD52289AA0AE003A88DD /* FeedbackType.swift in Sources */,
 				20E8749028A3ABA8002CE758 /* SourceControlController.swift in Sources */,

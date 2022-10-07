@@ -184,5 +184,14 @@ public extension AuroraTheme {
                 self.color = newValue.hexString
             }
         }
+
+        public internal(set) var nsColor: NSColor {
+            get {
+                NSColor(hex: color)
+            }
+            set {
+                self.color = newValue.hexString
+            }
+        }
     }
 }

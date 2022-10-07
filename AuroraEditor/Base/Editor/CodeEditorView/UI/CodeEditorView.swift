@@ -17,7 +17,7 @@ extension CodeEditor: NSViewRepresentable {
         // Set up text view with gutter
         let codeView = CodeView(frame: CGRect(x: 0, y: 0, width: 100, height: 40),
                                 viewLayout: layout,
-                                theme: context.environment.codeHighlightTheme)
+                                theme: theme)
 
         globalMainQueue.async {
             codeView.string = text
@@ -82,8 +82,7 @@ extension CodeEditor: NSViewRepresentable {
         guard let codeView = scrollView.documentView as? CodeView else { return }
         context.coordinator.updatingView = true
 
-        let theme = context.environment.codeHighlightTheme,
-            selections = position.selections.map { NSValue(range: $0) }
+        let selections = position.selections.map { NSValue(range: $0) }
 
         updateMessages(in: codeView, with: context)
         if text != codeView.string { codeView.string = text }  // Hoping for the string comparison fast path...
