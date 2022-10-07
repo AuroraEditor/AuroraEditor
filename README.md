@@ -96,19 +96,19 @@ We very much respect the contributors that contributed to CE, and we would like 
   <tr>
     <td align="center">
       <a href="https://github.com/AuroraEditor/Version-Control-Kit">
-        <img alt="Logo" src="https://user-images.githubusercontent.com/63672227/193885608-d6217c57-6a12-4470-a0c7-f1ecc80bc3f2.png" width="128px;" height="128px;">
+        <img alt="Logo" src="https://user-images.githubusercontent.com/63672227/193885608-d6217c57-6a12-4470-a0c7-f1ecc80bc3f2.png" width="128">
         <p>Version Control Kit</p>
       </a>
     </td>
     <td align="center">
       <a href="https://github.com/AuroraEditor/AEExtensionKit">
-      <img alt="Logo" src="https://user-images.githubusercontent.com/63672227/194052928-6c476452-3cd6-494b-9604-e1b8e1998390.png" width="128px;" height="128px;">
+      <img alt="Logo" src="https://user-images.githubusercontent.com/63672227/194052928-6c476452-3cd6-494b-9604-e1b8e1998390.png" width="128">
         <p>AE Extension Kit</p>
       </a>
     </td>
     <td align="center">
       <a href="https://github.com/migueldeicaza/SwiftTerm">
-      <img alt="Logo" src="https://user-images.githubusercontent.com/63672227/194052608-65f97f2a-57fb-43a1-8b7e-46f1584a23dc.png" width="128px;" height="128px;">
+      <img alt="Logo" src="https://user-images.githubusercontent.com/63672227/194052608-65f97f2a-57fb-43a1-8b7e-46f1584a23dc.png" width="128">
         <p>SwiftTerm</p>
       </a>
     </td>
@@ -167,6 +167,9 @@ Thanks goes to these wonderful people:
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
+## Sponsors
+
+<a title="MacStadium" href="https://macstadium.com" target="_blank"><img src="https://user-images.githubusercontent.com/806104/162766594-eff7f985-31a9-48c5-9e58-139794fefa10.png" width="128"></a>
 ## License
 
 ### Intellectual Property License

@@ -166,14 +166,6 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
             }
             .store(in: &cancellables)
 
-        // initialize extensions
-        do {
-            try ExtensionsManager.shared?.load { extensionID in
-                AuroraEditorAPI(extensionId: extensionID, workspace: self)
-            }
-        } catch let error {
-            Log.error(error)
-        }
         Log.info("Made document from read: \(self)")
     }
 
@@ -205,10 +197,6 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
             } catch {}
         }
         selectionState.openedCodeFiles.removeAll()
-
-        if let url = self.fileURL {
-            ExtensionsManager.shared?.close(url: url)
-        }
 
         // deinit classes
         cancellables.forEach { $0.cancel() }
