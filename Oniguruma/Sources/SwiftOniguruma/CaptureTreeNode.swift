@@ -5,7 +5,7 @@
 //  Created by Gavin Mao on 3/29/21.
 //
 
-import Oniguruma
+import oniguruma
 
 public struct CaptureTreeNode {
     let rawValue: OnigCaptureTreeNode

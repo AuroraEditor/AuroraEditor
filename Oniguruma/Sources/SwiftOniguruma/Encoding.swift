@@ -5,7 +5,7 @@
 //  Created by Gavin Mao on 4/3/21.
 //
 
-import Oniguruma
+import oniguruma
 import CoreFoundation
 
 public struct Encoding: Equatable, CustomStringConvertible {

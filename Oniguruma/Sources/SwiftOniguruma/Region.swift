@@ -5,7 +5,7 @@
 //  Created by Gavin Mao on 3/27/21.
 //
 
-import Oniguruma
+import oniguruma
 
 /**
  A wrapper of oniguruma `OnigRegion` which represents the results of a single regular expression match.

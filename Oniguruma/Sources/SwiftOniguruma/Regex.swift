@@ -5,7 +5,7 @@
 //  Created by Gavin Mao on 3/27/21.
 //
 
-import Oniguruma
+import oniguruma
 import Foundation
 
 /**

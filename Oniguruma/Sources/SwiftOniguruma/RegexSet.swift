@@ -5,7 +5,7 @@
 //  Created by Gavin Mao on 4/2/21.
 //
 
-import Oniguruma
+import oniguruma
 
 /**
  A wrapper of oniguruma `OnigRegSet` which represents the a set of regular expressions.
