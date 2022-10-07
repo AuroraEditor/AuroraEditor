@@ -5,7 +5,7 @@
 //  Created by Gavin Mao on 4/1/21.
 //
 
-import oniguruma
+import Oniguruma
 import Foundation
 
 public protocol OnigurumaString {

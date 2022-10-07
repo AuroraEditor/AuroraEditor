@@ -5,7 +5,7 @@
 //  Created by Gavin Mao on 3/27/21.
 //
 
-import oniguruma
+import Oniguruma
 
 public enum OnigError: Error, Equatable {
     /* internal error */

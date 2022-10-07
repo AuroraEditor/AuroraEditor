@@ -1,4 +1,4 @@
-import oniguruma
+import Oniguruma
 import Dispatch
 
 /**
