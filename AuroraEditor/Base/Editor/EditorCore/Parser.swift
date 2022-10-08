@@ -358,11 +358,11 @@ public class Parser { // swiftlint:disable:this type_body_length
         }
     }
 
-    public var shouldDebug = true
+    public var shouldDebug = false
 
     func debug(_ str: String) {
         if shouldDebug {
-            print(str) // swiftlint:disable:this disallow_print
+            Log.info(str)
         }
     }
 }

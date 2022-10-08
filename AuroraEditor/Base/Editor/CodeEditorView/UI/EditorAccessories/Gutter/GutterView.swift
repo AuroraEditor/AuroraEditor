@@ -30,9 +30,6 @@ class GutterView: NSView {
     /// Determines whether this gutter is for a main code view or for the minimap of a code view.
     let isMinimapGutter: Bool
 
-    /// Dirty rectangle whose drawing has been delayed as the code layout wasn't finished yet.
-    var pendingDrawRect: NSRect?
-
     /// Text attributes for selection
     let textAttributesDefault, textAttributesSelected: [NSAttributedString.Key: NSObject]
 

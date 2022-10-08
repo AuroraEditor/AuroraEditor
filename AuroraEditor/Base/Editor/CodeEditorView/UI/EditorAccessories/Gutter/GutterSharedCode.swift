@@ -37,30 +37,24 @@ extension GutterView {
         let textRect: CGRect
 
         if charRange.location == string.length {   // special case: insertion point on trailing empty line
-
             textRect = layoutManager.extraLineFragmentRect
-
         } else {
-
             // We call `paragraphRange(for:_)` safely by boxing `charRange` to the allowed range.
             let extendedCharRange = string.paragraphRange(
                 for: NSIntersectionRange(charRange, NSRange(location: 0, length: string.length))
-            ),
-                glyphRange = layoutManager.glyphRange(forCharacterRange: extendedCharRange,
+            )
+            let glyphRange = layoutManager.glyphRange(forCharacterRange: extendedCharRange,
                                                       actualCharacterRange: nil)
             textRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
-
         }
+
         setNeedsDisplay(gutterRectFrom(textRect: textRect))
     }
 
     /// Trigger drawing any pending gutter draw rectangle.
     func layoutFinished() {
-        if let rect = pendingDrawRect {
-            setNeedsDisplay(rect)
-            updateGutter(for: rect)
-            pendingDrawRect = nil
-        }
+        Log.info("Layout finished")
+        setNeedsDisplay(gutterRectFrom(textRect: self.frame))
     }
 
     // MARK: - Gutter drawing
@@ -83,16 +77,11 @@ extension GutterView {
                                _ layoutManager: NSLayoutManager,
                                _ lineMap: LineMap<LineInfo>,
                                _ textContainer: NSTextContainer) {
-        // This is not particularily nice, but there is no point in trying to draw the gutter, before the layout manager
-        // has finished laying out the *entire* text. Given that all we got here is a rectangle, we can't even figure
-        // out reliably whether enough text has been laid out to draw that part of the gutter that is being requested.
-        // Hence, we defer drawing the gutter until all characters have been laid out.
-        if layoutManager.firstUnlaidCharacterIndex() < NSMaxRange(lineMap.lines.last?.range ?? NSRange(location: 0,
-                                                                                                       length: 0)) {
-            pendingDrawRect = rect.union(pendingDrawRect ?? CGRect.null)
-        } else if lastRefreshedFrame != rect {
-            updateGutter(for: rect)
-        }
+
+        // NOTE: There is a chance that the view may not even have been laid out fully yet.
+        // However there is no reliable means of detecting this that I've found, so it just updates
+        // all the time.
+        updateGutter(for: rect)
 
         // Highlight the current line in the gutter
         if let location = textView.insertionPoint {

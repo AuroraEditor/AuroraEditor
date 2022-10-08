@@ -17,10 +17,10 @@ public func loadJson(fileName: String) -> Grammar? {
             let data = try Data(contentsOf: url)
             return grammarFromJson(jsonStr: String(decoding: data, as: UTF8.self))
         } catch {
-            log(String(describing: error))
+            Log.info(String(describing: error))
         }
     } else {
-        log("Json not found")
+        Log.info("Json not found")
     }
     return nil
 }
@@ -43,13 +43,13 @@ public func grammarFromJson(jsonStr: String) -> Grammar? {
     guard let jsonData = jsonStr.data(using: .utf8),
           let json = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any]
     else {
-        log("Failed to load json")
+        Log.info("Failed to load json")
         return nil
     }
 
     // make sure the scope has a name
     guard let scopeName = json["scopeName"] as? String else {
-        log("Json does not contain `scopeName` required data")
+        Log.info("Json does not contain `scopeName` required data")
         return nil
     }
 
@@ -160,7 +160,7 @@ func patternFromJson(json: [String: Any], keyName: String) -> Pattern? {
     }
 
     // if none of the above, return nil
-    log("Json \(keyName) with keys \(json.keys) did not match anything")
+    Log.info("Json \(keyName) with keys \(json.keys) did not match anything")
     return nil
 }
 
@@ -224,7 +224,3 @@ public var loadedGrammer: Grammar {
 }
 
 private var loadedGrammerBackend: Grammar?
-
-func log(_ str: String) { // TODO: Remove this
-    print(str) // swiftlint:disable:this disallow_print
-}
