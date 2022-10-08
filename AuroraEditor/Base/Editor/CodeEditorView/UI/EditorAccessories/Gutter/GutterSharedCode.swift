@@ -53,7 +53,6 @@ extension GutterView {
 
     /// Trigger drawing any pending gutter draw rectangle.
     func layoutFinished() {
-        Log.info("Layout finished")
         setNeedsDisplay(gutterRectFrom(textRect: self.frame))
     }
 
