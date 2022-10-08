@@ -49,12 +49,12 @@ public struct ThemeSetting: Codable {
     /// - ``LineThemeAttribute``
     ///     - ``LineHeightThemeAttribute``
     ///     - ``TailIndentThemeAttribute``
-    ///     - ``TabStopsThemeAttribute``
+    ///     - ``TabStopsThemeAttribute`` NOTE: not implemented due to difficulties with NSTextTab
     ///     - ``ParagraphSpacingAfterThemeAttribute``
     ///     - ``TextAlignmentThemeAttribute``
     ///     - ``HeadIndentThemeAttribute``
     ///     - ``FirstLineHeadIndentThemeAttribute``
-    ///     - ``TextBlockThemeAttribute``
+    ///     - ``TextBlockThemeAttribute`` NOTE: not implemented due to difficulties with NSTextBlock
     ///     - ``ParagraphSpacingBeforeThemeAttribute``
     ///     - ``DefaultTabIntervalThemeAttribute``
     /// - ``TokenThemeAttribute``
@@ -82,7 +82,7 @@ public struct ThemeSetting: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        var container = try decoder.container(keyedBy: Keys.self)
+        let container = try decoder.container(keyedBy: Keys.self)
         self.scope = try container.decode(String.self, forKey: .scope)
         self.parentScopes = try container.decode([String].self, forKey: .scope)
         self.attributes = try container.decode(AttributesContainer.self, forKey: .attributes).attributes
@@ -130,12 +130,10 @@ public struct ThemeSetting: Codable {
             var container = encoder.container(keyedBy: Keys.self)
             var lineHeightThemeAttribute: [LineHeightThemeAttribute] = []
             var tailIndentThemeAttribute: [TailIndentThemeAttribute] = []
-//            var tabStopsThemeAttribute: [TabStopsThemeAttribute] = []
             var paragraphSpacingAfterThemeAttribute: [ParagraphSpacingAfterThemeAttribute] = []
             var textAlignmentThemeAttribute: [TextAlignmentThemeAttribute] = []
             var headIndentThemeAttribute: [HeadIndentThemeAttribute] = []
             var firstLineHeadIndentThemeAttribute: [FirstLineHeadIndentThemeAttribute] = []
-//            var textBlockThemeAttribute: [TextBlockThemeAttribute] = []
             var paragraphSpacingBeforeThemeAttribute: [ParagraphSpacingBeforeThemeAttribute] = []
             var defaultTabIntervalThemeAttribute: [DefaultTabIntervalThemeAttribute] = []
 
@@ -154,8 +152,6 @@ public struct ThemeSetting: Codable {
                     lineHeightThemeAttribute.append(attribute)
                 } else if let attribute = attribute as? TailIndentThemeAttribute {
                     tailIndentThemeAttribute.append(attribute)
-//                } else if let attribute = attribute as? TabStopsThemeAttribute {
-//                    tabStopsThemeAttribute.append(attribute)
                 } else if let attribute = attribute as? ParagraphSpacingAfterThemeAttribute {
                     paragraphSpacingAfterThemeAttribute.append(attribute)
                 } else if let attribute = attribute as? TextAlignmentThemeAttribute {
@@ -164,8 +160,6 @@ public struct ThemeSetting: Codable {
                     headIndentThemeAttribute.append(attribute)
                 } else if let attribute = attribute as? FirstLineHeadIndentThemeAttribute {
                     firstLineHeadIndentThemeAttribute.append(attribute)
-//                } else if let attribute = attribute as? TextBlockThemeAttribute {
-//                    textBlockThemeAttribute.append(attribute)
                 } else if let attribute = attribute as? ParagraphSpacingBeforeThemeAttribute {
                     paragraphSpacingBeforeThemeAttribute.append(attribute)
                 } else if let attribute = attribute as? DefaultTabIntervalThemeAttribute {
@@ -193,12 +187,10 @@ public struct ThemeSetting: Codable {
 
             try container.encode(lineHeightThemeAttribute, forKey: .lineHeightThemeAttribute)
             try container.encode(tailIndentThemeAttribute, forKey: .tailIndentThemeAttribute)
-//            try container.encode(tabStopsThemeAttribute, forKey: .tabStopsThemeAttribute)
             try container.encode(paragraphSpacingAfterThemeAttribute, forKey: .paragraphSpacingAfterThemeAttribute)
             try container.encode(textAlignmentThemeAttribute, forKey: .textAlignmentThemeAttribute)
             try container.encode(headIndentThemeAttribute, forKey: .headIndentThemeAttribute)
             try container.encode(firstLineHeadIndentThemeAttribute, forKey: .firstLineHeadIndentThemeAttribute)
-//            try container.encode(textBlockThemeAttribute, forKey: .textBlockThemeAttribute)
             try container.encode(paragraphSpacingBeforeThemeAttribute, forKey: .paragraphSpacingBeforeThemeAttribute)
             try container.encode(defaultTabIntervalThemeAttribute, forKey: .defaultTabIntervalThemeAttribute)
             try container.encode(italicThemeAttribute, forKey: .italicThemeAttribute)
@@ -221,7 +213,6 @@ public struct ThemeSetting: Codable {
                                                                forKey: .lineHeightThemeAttribute))
             attributes.append(contentsOf: try container.decode([TailIndentThemeAttribute].self,
                                                                forKey: .tailIndentThemeAttribute))
-//            attributes.append(contentsOf: try container.decode([TabStopsThemeAttribute].self, forKey: .tabStopsThemeAttribute))
             attributes.append(contentsOf: try container.decode([ParagraphSpacingAfterThemeAttribute].self,
                                                                forKey: .paragraphSpacingAfterThemeAttribute))
             attributes.append(contentsOf: try container.decode([TextAlignmentThemeAttribute].self,
@@ -230,7 +221,6 @@ public struct ThemeSetting: Codable {
                                                                forKey: .headIndentThemeAttribute))
             attributes.append(contentsOf: try container.decode([FirstLineHeadIndentThemeAttribute].self,
                                                                forKey: .firstLineHeadIndentThemeAttribute))
-//            attributes.append(contentsOf: try container.decode([TextBlockThemeAttribute].self, forKey: .textBlockThemeAttribute))
             attributes.append(contentsOf: try container.decode([ParagraphSpacingBeforeThemeAttribute].self,
                                                                forKey: .paragraphSpacingBeforeThemeAttribute))
             attributes.append(contentsOf: try container.decode([DefaultTabIntervalThemeAttribute].self,

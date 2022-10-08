@@ -9,7 +9,7 @@ import Foundation
 import AppKit
 
 public extension HighlightTheme {
-    static let `default`: HighlightTheme = HighlightTheme(name: "basic", settings: [
+    static let `default`: HighlightTheme = HighlightTheme(settings: [
         ThemeSetting(scope: "source", parentScopes: [], attributes: [
             ColorThemeAttribute(color: .exampleTextColor),
             FontThemeAttribute(font: .monospacedSystemFont(ofSize: fontSize, weight: .regular)),

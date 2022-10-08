@@ -16,8 +16,7 @@ public extension AuroraTheme {
             lhs.insertionPoint == rhs.insertionPoint &&
             lhs.background == rhs.background &&
             lhs.lineHighlight == rhs.lineHighlight &&
-            lhs.selection == rhs.selection &&
-            lhs.highlightTheme.name == rhs.highlightTheme.name
+            lhs.selection == rhs.selection
         }
 
         public func hash(into hasher: inout Hasher) {
@@ -26,7 +25,6 @@ public extension AuroraTheme {
             hasher.combine(background)
             hasher.combine(lineHighlight)
             hasher.combine(selection)
-            hasher.combine(highlightTheme.name)
         }
 
         public var text: Attributes                 // textColor
