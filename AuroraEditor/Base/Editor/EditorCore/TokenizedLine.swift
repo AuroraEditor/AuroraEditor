@@ -54,11 +54,10 @@ public class TokenizedLine {
             } else if let tokenAttr = attr as? TokenThemeAttribute {
                 tokenAttr.apply(to: attributedString, withRange: range)
             } else {
-                // swiftlint:disable:this disallow_print
-                print("""
-                      Warning: ThemeAttribute with key \(attr.key) does not conform \
-                      to either LineThemeAttribute or TokenThemeAttribtue so it will not be applied.
-                      """)
+                Log.info("""
+                         Warning: ThemeAttribute with key \(attr.key) does not conform \
+                         to either LineThemeAttribute or TokenThemeAttribtue so it will not be applied.
+                         """)
             }
         }
     }
