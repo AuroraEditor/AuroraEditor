@@ -10,7 +10,7 @@ import SwiftUI
 struct ExtensionInstallationView: View {
     init(plugin: Plugin) {
         self.model = .init(plugin: plugin)
-        self.installed = ExtensionsManager.shared?.isInstalled(plugin: plugin) ?? false
+        self.installed = ExtensionsManager.shared.isInstalled(plugin: plugin) ?? false
     }
 
     @ObservedObject var model: ExtensionInstallationViewModel
@@ -89,7 +89,7 @@ struct ExtensionInstallationView: View {
         }
         .padding(.vertical)
         .onAppear {
-            self.installed = ExtensionsManager.shared?.isInstalled(plugin: model.plugin) ?? false
+            self.installed = ExtensionsManager.shared.isInstalled(plugin: model.plugin) ?? false
         }
     }
 }
