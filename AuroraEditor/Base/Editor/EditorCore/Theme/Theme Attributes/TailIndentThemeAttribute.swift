@@ -9,7 +9,7 @@ import Foundation
 
 import Cocoa
 
-public class TailIndentThemeAttribute: LineThemeAttribute {
+public class TailIndentThemeAttribute: LineThemeAttribute, Codable {
 
     public let key = "tail-indent"
     public let value: CGFloat

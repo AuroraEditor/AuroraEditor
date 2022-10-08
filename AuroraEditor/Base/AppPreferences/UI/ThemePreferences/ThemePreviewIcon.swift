@@ -88,164 +88,165 @@ struct ThemePreviewIcon: View {
 
     private var codeWindow: some View {
         VStack(alignment: .leading, spacing: 4) {
-            block1
-            block2
-            block3
-            block4
-            block5
+//            block1
+//            block2
+//            block3
+//            block4
+//            block5
         }
         .padding(.top, 6)
         .padding(.leading, 6)
     }
 
-    private var block1: some View {
-        codeStatement(theme.editor.comments.color, length: 25)
-    }
-
-    private var block2: some View {
-        VStack(alignment: .leading, spacing: 1) {
-            HStack(spacing: 1) {
-                codeStatement(theme.editor.keywords.color, length: 6)
-                codeStatement(theme.editor.variables.color, length: 6)
-                codeStatement(theme.editor.text.color, length: 1)
-                codeStatement(theme.editor.text.color, length: 1)
-                codeStatement(theme.editor.values.color, length: 8)
-                codeStatement(theme.editor.text.color, length: 1)
-                codeStatement(theme.editor.values.color, length: 8)
-                codeStatement(theme.editor.text.color, length: 1)
-                codeStatement(theme.editor.keywords.color, length: 6)
-                codeStatement(theme.editor.strings.color, length: 7)
-            }
-            HStack(spacing: 1) {
-                codeStatement(theme.editor.keywords.color, length: 6)
-                codeStatement(theme.editor.variables.color, length: 8)
-                codeStatement(theme.editor.keywords.color, length: 6)
-                codeStatement(theme.editor.strings.color, length: 12)
-                codeStatement(theme.editor.text.color, length: 1)
-            }
-            HStack(spacing: 1) {
-                codeStatement(theme.editor.keywords.color, length: 6)
-                codeStatement(theme.editor.strings.color, length: 14)
-                codeStatement(theme.editor.text.color, length: 1)
-            }
-        }
-    }
-
-    private var block3: some View {
-        VStack(alignment: .leading, spacing: 1) {
-            HStack(spacing: 1) {
-                codeStatement(theme.editor.keywords.color, length: 4)
-                codeStatement(theme.editor.variables.color, length: 8)
-                codeStatement(theme.editor.text.color, length: 1)
-                codeStatement(theme.editor.text.color, length: 1)
-            }
-            HStack(spacing: 1) {
-                codeSpace(3)
-                codeStatement(theme.editor.text.color, length: 1)
-            }
-            HStack(spacing: 1) {
-                codeSpace(5)
-                codeStatement(theme.editor.text.color, length: 3)
-                codeStatement(theme.editor.numbers.color, length: 1)
-                codeStatement(theme.editor.text.color, length: 1)
-            }
-            HStack(spacing: 1) {
-                codeSpace(5)
-                codeStatement(theme.editor.text.color, length: 6)
-                codeStatement(theme.editor.strings.color, length: 7)
-                codeStatement(theme.editor.strings.color, length: 5)
-                codeStatement(theme.editor.text.color, length: 1)
-            }
-            HStack(spacing: 1) {
-                codeSpace(5)
-                codeStatement(theme.editor.text.color, length: 5)
-                codeStatement(theme.editor.keywords.color, length: 5)
-            }
-            HStack(spacing: 1) {
-                codeSpace(3)
-                codeStatement(theme.editor.text.color, length: 1)
-            }
-            HStack(spacing: 1) {
-                codeStatement(theme.editor.text.color, length: 2)
-            }
-        }
-    }
-
-    private var block4: some View {
-        VStack(alignment: .leading, spacing: 1) {
-            HStack(spacing: 1) {
-                codeStatement(theme.editor.keywords.color, length: 6)
-                codeStatement(theme.editor.keywords.color, length: 7)
-                codeStatement(theme.editor.commands.color, length: 8)
-                codeStatement(theme.editor.values.color, length: 3)
-                codeStatement(theme.editor.text.color, length: 2)
-                codeStatement(theme.editor.text.color, length: 1)
-            }
-            HStack(spacing: 1) {
-                codeSpace(3)
-                codeStatement(theme.editor.keywords.color, length: 4)
-                codeStatement(theme.editor.text.color, length: 1)
-                codeStatement(theme.editor.variables.color, length: 5)
-                codeStatement(theme.editor.text.color, length: 1)
-                codeStatement(theme.editor.values.color, length: 8)
-                codeStatement(theme.editor.text.color, length: 1)
-                codeStatement(theme.editor.text.color, length: 1)
-                codeStatement(theme.editor.types.color, length: 8)
-                codeStatement(theme.editor.text.color, length: 2)
-            }
-        }
-    }
-
-    private var block5: some View {
-        VStack(alignment: .leading, spacing: 1) {
-            HStack(spacing: 1) {
-                codeSpace(3)
-                codeStatement(theme.editor.keywords.color, length: 4)
-                codeStatement(theme.editor.variables.color, length: 10)
-                codeStatement(theme.editor.text.color, length: 1)
-                codeStatement(theme.editor.types.color, length: 11)
-                codeStatement(theme.editor.text.color, length: 3)
-                codeStatement(theme.editor.keywords.color, length: 2)
-                codeStatement(theme.editor.text.color, length: 1)
-            }
-            HStack(spacing: 1) {
-                codeSpace(5)
-                codeStatement(theme.editor.attributes.color, length: 8)
-                codeStatement(theme.editor.text.color, length: 2)
-                codeStatement(theme.editor.variables.color, length: 5)
-                codeStatement(theme.editor.text.color, length: 1)
-                codeStatement(theme.editor.keywords.color, length: 2)
-                codeStatement(theme.editor.text.color, length: 1)
-            }
-            HStack(spacing: 1) {
-                codeSpace(7)
-                codeStatement(theme.editor.keywords.color, length: 3)
-                codeStatement(theme.editor.variables.color, length: 12)
-                codeStatement(theme.editor.text.color, length: 1)
-                codeStatement(theme.editor.text.color, length: 1)
-            }
-            HStack(spacing: 1) {
-                codeSpace(9)
-                codeStatement(theme.editor.text.color, length: 3)
-                codeStatement(theme.editor.characters.color, length: 1)
-                codeStatement(theme.editor.text.color, length: 1)
-            }
-            HStack(spacing: 1) {
-                codeSpace(9)
-                codeStatement(theme.editor.text.color, length: 1)
-            }
-            HStack(spacing: 1) {
-                codeSpace(9)
-                codeStatement(theme.editor.text.color, length: 3)
-                codeStatement(theme.editor.attributes.color, length: 5)
-                codeStatement(theme.editor.text.color, length: 1)
-                codeStatement(theme.editor.types.color, length: 6)
-                codeStatement(theme.editor.text.color, length: 1)
-                codeStatement(theme.editor.numbers.color, length: 1)
-                codeStatement(theme.editor.text.color, length: 1)
-            }
-        }
-    }
+    // TODO: Get these blocks working again
+//    private var block1: some View {
+//        codeStatement(theme.editor.comments.color, length: 25)
+//    }
+//
+//    private var block2: some View {
+//        VStack(alignment: .leading, spacing: 1) {
+//            HStack(spacing: 1) {
+//                codeStatement(theme.editor.keywords.color, length: 6)
+//                codeStatement(theme.editor.variables.color, length: 6)
+//                codeStatement(theme.editor.text.color, length: 1)
+//                codeStatement(theme.editor.text.color, length: 1)
+//                codeStatement(theme.editor.values.color, length: 8)
+//                codeStatement(theme.editor.text.color, length: 1)
+//                codeStatement(theme.editor.values.color, length: 8)
+//                codeStatement(theme.editor.text.color, length: 1)
+//                codeStatement(theme.editor.keywords.color, length: 6)
+//                codeStatement(theme.editor.strings.color, length: 7)
+//            }
+//            HStack(spacing: 1) {
+//                codeStatement(theme.editor.keywords.color, length: 6)
+//                codeStatement(theme.editor.variables.color, length: 8)
+//                codeStatement(theme.editor.keywords.color, length: 6)
+//                codeStatement(theme.editor.strings.color, length: 12)
+//                codeStatement(theme.editor.text.color, length: 1)
+//            }
+//            HStack(spacing: 1) {
+//                codeStatement(theme.editor.keywords.color, length: 6)
+//                codeStatement(theme.editor.strings.color, length: 14)
+//                codeStatement(theme.editor.text.color, length: 1)
+//            }
+//        }
+//    }
+//
+//    private var block3: some View {
+//        VStack(alignment: .leading, spacing: 1) {
+//            HStack(spacing: 1) {
+//                codeStatement(theme.editor.keywords.color, length: 4)
+//                codeStatement(theme.editor.variables.color, length: 8)
+//                codeStatement(theme.editor.text.color, length: 1)
+//                codeStatement(theme.editor.text.color, length: 1)
+//            }
+//            HStack(spacing: 1) {
+//                codeSpace(3)
+//                codeStatement(theme.editor.text.color, length: 1)
+//            }
+//            HStack(spacing: 1) {
+//                codeSpace(5)
+//                codeStatement(theme.editor.text.color, length: 3)
+//                codeStatement(theme.editor.numbers.color, length: 1)
+//                codeStatement(theme.editor.text.color, length: 1)
+//            }
+//            HStack(spacing: 1) {
+//                codeSpace(5)
+//                codeStatement(theme.editor.text.color, length: 6)
+//                codeStatement(theme.editor.strings.color, length: 7)
+//                codeStatement(theme.editor.strings.color, length: 5)
+//                codeStatement(theme.editor.text.color, length: 1)
+//            }
+//            HStack(spacing: 1) {
+//                codeSpace(5)
+//                codeStatement(theme.editor.text.color, length: 5)
+//                codeStatement(theme.editor.keywords.color, length: 5)
+//            }
+//            HStack(spacing: 1) {
+//                codeSpace(3)
+//                codeStatement(theme.editor.text.color, length: 1)
+//            }
+//            HStack(spacing: 1) {
+//                codeStatement(theme.editor.text.color, length: 2)
+//            }
+//        }
+//    }
+//
+//    private var block4: some View {
+//        VStack(alignment: .leading, spacing: 1) {
+//            HStack(spacing: 1) {
+//                codeStatement(theme.editor.keywords.color, length: 6)
+//                codeStatement(theme.editor.keywords.color, length: 7)
+//                codeStatement(theme.editor.commands.color, length: 8)
+//                codeStatement(theme.editor.values.color, length: 3)
+//                codeStatement(theme.editor.text.color, length: 2)
+//                codeStatement(theme.editor.text.color, length: 1)
+//            }
+//            HStack(spacing: 1) {
+//                codeSpace(3)
+//                codeStatement(theme.editor.keywords.color, length: 4)
+//                codeStatement(theme.editor.text.color, length: 1)
+//                codeStatement(theme.editor.variables.color, length: 5)
+//                codeStatement(theme.editor.text.color, length: 1)
+//                codeStatement(theme.editor.values.color, length: 8)
+//                codeStatement(theme.editor.text.color, length: 1)
+//                codeStatement(theme.editor.text.color, length: 1)
+//                codeStatement(theme.editor.types.color, length: 8)
+//                codeStatement(theme.editor.text.color, length: 2)
+//            }
+//        }
+//    }
+//
+//    private var block5: some View {
+//        VStack(alignment: .leading, spacing: 1) {
+//            HStack(spacing: 1) {
+//                codeSpace(3)
+//                codeStatement(theme.editor.keywords.color, length: 4)
+//                codeStatement(theme.editor.variables.color, length: 10)
+//                codeStatement(theme.editor.text.color, length: 1)
+//                codeStatement(theme.editor.types.color, length: 11)
+//                codeStatement(theme.editor.text.color, length: 3)
+//                codeStatement(theme.editor.keywords.color, length: 2)
+//                codeStatement(theme.editor.text.color, length: 1)
+//            }
+//            HStack(spacing: 1) {
+//                codeSpace(5)
+//                codeStatement(theme.editor.attributes.color, length: 8)
+//                codeStatement(theme.editor.text.color, length: 2)
+//                codeStatement(theme.editor.variables.color, length: 5)
+//                codeStatement(theme.editor.text.color, length: 1)
+//                codeStatement(theme.editor.keywords.color, length: 2)
+//                codeStatement(theme.editor.text.color, length: 1)
+//            }
+//            HStack(spacing: 1) {
+//                codeSpace(7)
+//                codeStatement(theme.editor.keywords.color, length: 3)
+//                codeStatement(theme.editor.variables.color, length: 12)
+//                codeStatement(theme.editor.text.color, length: 1)
+//                codeStatement(theme.editor.text.color, length: 1)
+//            }
+//            HStack(spacing: 1) {
+//                codeSpace(9)
+//                codeStatement(theme.editor.text.color, length: 3)
+//                codeStatement(theme.editor.characters.color, length: 1)
+//                codeStatement(theme.editor.text.color, length: 1)
+//            }
+//            HStack(spacing: 1) {
+//                codeSpace(9)
+//                codeStatement(theme.editor.text.color, length: 1)
+//            }
+//            HStack(spacing: 1) {
+//                codeSpace(9)
+//                codeStatement(theme.editor.text.color, length: 3)
+//                codeStatement(theme.editor.attributes.color, length: 5)
+//                codeStatement(theme.editor.text.color, length: 1)
+//                codeStatement(theme.editor.types.color, length: 6)
+//                codeStatement(theme.editor.text.color, length: 1)
+//                codeStatement(theme.editor.numbers.color, length: 1)
+//                codeStatement(theme.editor.text.color, length: 1)
+//            }
+//        }
+//    }
 
     private func codeStatement(_ color: String, length: Double) -> some View {
         Rectangle()

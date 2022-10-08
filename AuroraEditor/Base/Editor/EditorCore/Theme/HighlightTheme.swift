@@ -7,15 +7,14 @@
 
 import Foundation
 
-public class HighlightTheme {
-
-    var name: String
+public class HighlightTheme: Codable {
 
     var root: ThemeTrieElement
 
-    public init(name: String, settings: [ThemeSetting]) {
-        self.name = name
+    private var settings: [ThemeSetting]
 
+    public init(settings: [ThemeSetting]) {
+        self.settings = settings
         self.root = HighlightTheme.createTrie(settings: settings)
     }
 
@@ -123,5 +122,20 @@ public class HighlightTheme {
         return (Array(curr.attributes.values),
                 Array(curr.inSelectionAttributes.values),
                 Array(curr.outSelectionAttributes.values))
+    }
+
+    public required convenience init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        let settings = try container.decode([ThemeSetting].self, forKey: .settings)
+        self.init(settings: settings)
+    }
+
+    enum Keys: CodingKey {
+        case settings
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Keys.self)
+        try container.encode(settings, forKey: .settings)
     }
 }

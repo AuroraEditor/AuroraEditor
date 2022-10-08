@@ -13,7 +13,7 @@ import AppKit
 // `NSTextStorage` is a class cluster; hence, we realise our subclass by decorating an embeded vanilla text storage.
 class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
 
-    var theme: Theme
+    var theme: AuroraTheme
 
     var highlightTheme: HighlightTheme
 
@@ -59,13 +59,13 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
 
     var selectionLines = Set<Int>()
 
-    init(parser: Parser, baseGrammar: Grammar, theme: Theme, highlightTheme: HighlightTheme) {
+    init(parser: Parser, baseGrammar: Grammar, theme: AuroraTheme) {
         storage = NSMutableAttributedString(string: "", attributes: nil)
         self.lineRanges = [NSRange(location: 0, length: 0)]
         self.parser = parser
         self.grammar = baseGrammar
         self.theme = theme
-        self.highlightTheme = highlightTheme
+        self.highlightTheme = theme.editor.highlightTheme
         super.init()
     }
 

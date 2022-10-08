@@ -9,7 +9,7 @@ import Foundation
 
 import Cocoa
 
-public class FirstLineHeadIndentThemeAttribute: LineThemeAttribute {
+public class FirstLineHeadIndentThemeAttribute: LineThemeAttribute, Codable {
 
     public let key = "first-line-head-indent"
     public let value: CGFloat

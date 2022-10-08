@@ -20,4 +20,23 @@ public class FontThemeAttribute: TokenThemeAttribute {
     public func apply(to attrStr: NSMutableAttributedString, withRange range: NSRange) {
         attrStr.addAttribute(.font, value: font, range: range)
     }
+
+    enum Keys: CodingKey {
+        case font
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Keys.self)
+        guard let font = font as? CodableFont else { fatalError("font is broken") }
+        try container.encode(font, forKey: .font)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        self.font = try container.decode(CodableFont.self, forKey: .font).nsFont
+    }
+}
+
+private class CodableFont: NSFont, Codable {
+    var nsFont: NSFont { self as NSFont }
 }

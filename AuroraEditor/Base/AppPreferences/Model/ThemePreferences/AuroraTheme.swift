@@ -12,8 +12,9 @@ import SwiftUI
 /// The model structure of themes for the editor & terminal emulator
 public struct AuroraTheme: Identifiable, Codable, Equatable, Hashable, Loopable {
 
-    enum CodingKeys: String, CodingKey {
+    enum Keys: String, CodingKey {
         case author, license, distributionURL, name, displayName, editor, terminal, version
+        case fontName, fontSize
         case appearance = "type"
         case metadataDescription = "description"
     }
@@ -57,6 +58,10 @@ public struct AuroraTheme: Identifiable, Codable, Equatable, Hashable, Loopable 
     /// Terminal colors of the theme
     public var terminal: TerminalColors
 
+    public var fontName: String = "SFMono-Medium"
+
+    public var fontSize: CGFloat = 13.0
+
     public init(
         editor: EditorColors,
         terminal: TerminalColors,
@@ -67,7 +72,9 @@ public struct AuroraTheme: Identifiable, Codable, Equatable, Hashable, Loopable 
         name: String,
         displayName: String,
         appearance: ThemeType,
-        version: String
+        version: String,
+        fontName: String = "SFMono-Medium",
+        fontSize: CGFloat = 13.0
     ) {
         self.author = author
         self.license = license
@@ -79,6 +86,67 @@ public struct AuroraTheme: Identifiable, Codable, Equatable, Hashable, Loopable 
         self.version = version
         self.editor = editor
         self.terminal = terminal
+        self.fontName = fontName
+        self.fontSize = fontSize
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Keys.self)
+        try container.encode(author, forKey: .author)
+        try container.encode(license, forKey: .license)
+        try container.encode(distributionURL, forKey: .distributionURL)
+        try container.encode(name, forKey: .name)
+        try container.encode(displayName, forKey: .displayName)
+        try container.encode(editor, forKey: .editor)
+        try container.encode(terminal, forKey: .terminal)
+        try container.encode(version, forKey: .version)
+        try container.encode(fontName, forKey: .fontName)
+        try container.encode(fontSize, forKey: .fontSize)
+        try container.encode(appearance, forKey: .appearance)
+        try container.encode(metadataDescription, forKey: .metadataDescription)
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        self.author = try container.decode(String.self, forKey: .author)
+        self.license = try container.decode(String.self, forKey: .license)
+        self.distributionURL = try container.decode(String.self, forKey: .distributionURL)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.displayName = try container.decode(String.self, forKey: .displayName)
+        self.editor = try container.decode(EditorColors.self, forKey: .editor)
+        self.terminal = try container.decode(TerminalColors.self, forKey: .terminal)
+        self.version = try container.decode(String.self, forKey: .version)
+        self.appearance = try container.decode(ThemeType.self, forKey: .appearance)
+        self.metadataDescription = try container.decode(String.self, forKey: .metadataDescription)
+        if let fontName = try? container.decode(String.self, forKey: .fontName) { self.fontName = fontName }
+        if let fontSize = try? container.decode(CGFloat.self, forKey: .fontSize) { self.fontSize = fontSize }
+    }
+
+    public var font: NSFont {
+        if fontName.hasPrefix("SFMono") {
+
+            let weightString = fontName.dropFirst("SFMono".count)
+            let weight: NSFont.Weight
+            switch weightString {
+            case "UltraLight": weight = .ultraLight
+            case "Thin":       weight = .thin
+            case "Light":      weight = .light
+            case "Regular":    weight = .regular
+            case "Medium":     weight = .medium
+            case "Semibold":   weight = .semibold
+            case "Bold":       weight = .bold
+            case "Heavy":      weight = .heavy
+            case "Black":      weight = .black
+            default:           weight = .regular
+            }
+            return NSFont.monospacedSystemFont(ofSize: fontSize, weight: weight)
+
+        } else {
+
+            return NSFont(name: fontName, size: fontSize) ?? OSFont.monospacedSystemFont(ofSize: fontSize,
+                                                                                         weight: .regular)
+
+        }
     }
 }
 
@@ -116,273 +184,14 @@ public extension AuroraTheme {
                 self.color = newValue.hexString
             }
         }
-    }
-}
 
-public extension AuroraTheme {
-    /// The editor colors of the theme
-    struct EditorColors: Codable, Hashable, Loopable {
-        public var text: Attributes
-        public var insertionPoint: Attributes
-        public var invisibles: Attributes
-        public var background: Attributes
-        public var lineHighlight: Attributes
-        public var selection: Attributes
-        public var keywords: Attributes
-        public var commands: Attributes
-        public var types: Attributes
-        public var attributes: Attributes
-        public var variables: Attributes
-        public var values: Attributes
-        public var numbers: Attributes
-        public var strings: Attributes
-        public var characters: Attributes
-        public var comments: Attributes
-
-        /// Allows to look up properties by their name
-        ///
-        /// **Example:**
-        /// ```swift
-        /// editor["text"]
-        /// // equal to calling
-        /// editor.text
-        /// ```
-        subscript(key: String) -> Attributes {
+        public internal(set) var nsColor: NSColor {
             get {
-                switch key {
-                case "text": return self.text
-                case "insertionPoint": return self.insertionPoint
-                case "invisibles": return self.invisibles
-                case "background": return self.background
-                case "lineHighlight": return self.lineHighlight
-                case "selection": return self.selection
-                case "keywords": return self.keywords
-                case "commands": return self.commands
-                case "types": return self.types
-                case "attributes": return self.attributes
-                case "variables": return self.variables
-                case "values": return self.values
-                case "numbers": return self.numbers
-                case "strings": return self.strings
-                case "characters": return self.characters
-                case "comments": return self.comments
-                default: fatalError("Invalid key")
-                }
+                NSColor(hex: color)
             }
             set {
-                switch key {
-                case "text": self.text = newValue
-                case "insertionPoint": self.insertionPoint = newValue
-                case "invisibles": self.invisibles = newValue
-                case "background": self.background = newValue
-                case "lineHighlight": self.lineHighlight = newValue
-                case "selection": self.selection = newValue
-                case "keywords": self.keywords = newValue
-                case "commands": self.commands = newValue
-                case "types": self.types = newValue
-                case "attributes": self.attributes = newValue
-                case "variables": self.variables = newValue
-                case "values": self.values = newValue
-                case "numbers": self.numbers = newValue
-                case "strings": self.strings = newValue
-                case "characters": self.characters = newValue
-                case "comments": self.comments = newValue
-                default: fatalError("Invalid key")
-                }
+                self.color = newValue.hexString
             }
-        }
-
-        public init(
-            text: Attributes,
-            insertionPoint: Attributes,
-            invisibles: Attributes,
-            background: Attributes,
-            lineHighlight: Attributes,
-            selection: Attributes,
-            keywords: Attributes,
-            commands: Attributes,
-            types: Attributes,
-            attributes: Attributes,
-            variables: Attributes,
-            values: Attributes,
-            numbers: Attributes,
-            strings: Attributes,
-            characters: Attributes,
-            comments: Attributes
-        ) {
-            self.text = text
-            self.insertionPoint = insertionPoint
-            self.invisibles = invisibles
-            self.background = background
-            self.lineHighlight = lineHighlight
-            self.selection = selection
-            self.keywords = keywords
-            self.commands = commands
-            self.types = types
-            self.attributes = attributes
-            self.variables = variables
-            self.values = values
-            self.numbers = numbers
-            self.strings = strings
-            self.characters = characters
-            self.comments = comments
-        }
-    }
-}
-
-public extension AuroraTheme {
-    /// The terminal emulator colors of the theme
-    struct TerminalColors: Codable, Hashable, Loopable {
-        public var text: Attributes
-        public var boldText: Attributes
-        public var cursor: Attributes
-        public var background: Attributes
-        public var selection: Attributes
-        public var black: Attributes
-        public var red: Attributes
-        public var green: Attributes
-        public var yellow: Attributes
-        public var blue: Attributes
-        public var magenta: Attributes
-        public var cyan: Attributes
-        public var white: Attributes
-        public var brightBlack: Attributes
-        public var brightRed: Attributes
-        public var brightGreen: Attributes
-        public var brightYellow: Attributes
-        public var brightBlue: Attributes
-        public var brightMagenta: Attributes
-        public var brightCyan: Attributes
-        public var brightWhite: Attributes
-
-        public var ansiColors: [String] {
-            [
-                black.color,
-                red.color,
-                green.color,
-                yellow.color,
-                blue.color,
-                magenta.color,
-                cyan.color,
-                white.color,
-                brightBlack.color,
-                brightRed.color,
-                brightGreen.color,
-                brightYellow.color,
-                brightBlue.color,
-                brightMagenta.color,
-                brightCyan.color,
-                brightWhite.color
-            ]
-        }
-
-        /// Allows to look up properties by their name
-        ///
-        /// **Example:**
-        /// ```swift
-        /// terminal["text"]
-        /// // equal to calling
-        /// terminal.text
-        /// ```
-        subscript(key: String) -> Attributes { // swiftlint:disable:this function_body_length
-            get {
-                switch key {
-                case "text": return self.text
-                case "boldText": return self.boldText
-                case "cursor": return self.cursor
-                case "background": return self.background
-                case "selection": return self.selection
-                case "black": return self.black
-                case "red": return self.red
-                case "green": return self.green
-                case "yellow": return self.yellow
-                case "blue": return self.blue
-                case "magenta": return self.magenta
-                case "cyan": return self.cyan
-                case "white": return self.white
-                case "brightBlack": return self.brightBlack
-                case "brightRed": return self.brightRed
-                case "brightGreen": return self.brightGreen
-                case "brightYellow": return self.brightYellow
-                case "brightBlue": return self.brightBlue
-                case "brightMagenta": return self.brightMagenta
-                case "brightCyan": return self.brightCyan
-                case "brightWhite": return self.brightWhite
-                default: fatalError("Invalid key")
-                }
-            }
-            set {
-                switch key {
-                case "text": self.text = newValue
-                case "boldText": self.boldText = newValue
-                case "cursor": self.cursor = newValue
-                case "background": self.background = newValue
-                case "selection": self.selection = newValue
-                case "black": self.black = newValue
-                case "red": self.red = newValue
-                case "green": self.green = newValue
-                case "yellow": self.yellow = newValue
-                case "blue": self.blue = newValue
-                case "magenta": self.magenta = newValue
-                case "cyan": self.cyan = newValue
-                case "white": self.white = newValue
-                case "brightBlack": self.brightBlack = newValue
-                case "brightRed": self.brightRed = newValue
-                case "brightGreen": self.brightGreen = newValue
-                case "brightYellow": self.brightYellow = newValue
-                case "brightBlue": self.brightBlue = newValue
-                case "brightMagenta": self.brightMagenta = newValue
-                case "brightCyan": self.brightCyan = newValue
-                case "brightWhite": self.brightWhite = newValue
-                default: fatalError("Invalid key")
-                }
-            }
-        }
-
-        init(
-            text: Attributes,
-            boldText: Attributes,
-            cursor: Attributes,
-            background: Attributes,
-            selection: Attributes,
-            black: Attributes,
-            red: Attributes,
-            green: Attributes,
-            yellow: Attributes,
-            blue: Attributes,
-            magenta: Attributes,
-            cyan: Attributes,
-            white: Attributes,
-            brightBlack: Attributes,
-            brightRed: Attributes,
-            brightGreen: Attributes,
-            brightYellow: Attributes,
-            brightBlue: Attributes,
-            brightMagenta: Attributes,
-            brightCyan: Attributes,
-            brightWhite: Attributes
-        ) {
-            self.text = text
-            self.boldText = boldText
-            self.cursor = cursor
-            self.background = background
-            self.selection = selection
-            self.black = black
-            self.red = red
-            self.green = green
-            self.yellow = yellow
-            self.blue = blue
-            self.magenta = magenta
-            self.cyan = cyan
-            self.white = white
-            self.brightBlack = brightBlack
-            self.brightRed = brightRed
-            self.brightGreen = brightGreen
-            self.brightYellow = brightYellow
-            self.brightBlue = brightBlue
-            self.brightMagenta = brightMagenta
-            self.brightCyan = brightCyan
-            self.brightWhite = brightWhite
         }
     }
 }
