@@ -76,13 +76,13 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     private(set) var grammar: Grammar = loadedGrammer
 //    private(set) var parser: Parser = Parser(grammars: [.default, basicSwiftGrammar])
 //    private(set) var grammar: Grammar = basicSwiftGrammar
-    private(set) var highlightTheme: HighlightTheme = exampleTheme
+    private(set) var highlightTheme: HighlightTheme = .default
 
     /// Designated initialiser for code views with a gutter.
     init(frame: CGRect, // swiftlint:disable:this function_body_length
          viewLayout: CodeEditor.LayoutConfiguration,
          theme: AuroraTheme,
-         highlightTheme: HighlightTheme = exampleTheme
+         highlightTheme: HighlightTheme = .default
     ) {
 
         self.theme = theme

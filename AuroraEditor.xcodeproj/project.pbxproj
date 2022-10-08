@@ -439,7 +439,6 @@
 		93159FDC28D5F40C00C55C5A /* CodeEditorViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93159FDB28D5F40C00C55C5A /* CodeEditorViewWrapper.swift */; };
 		9327701128CE1B6300871190 /* TabHierarchyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9327701028CE1B6300871190 /* TabHierarchyTableViewCell.swift */; };
 		9336833928C5EAD7009F7B44 /* GitCloneViewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9336833828C5EAD7009F7B44 /* GitCloneViewWindow.swift */; };
-		9347F52728E6C084007EA1EF /* ExampleTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9347F52628E6C084007EA1EF /* ExampleTheme.swift */; };
 		934D2CD928D207BD00F22E38 /* TabHierarchyOutlineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D2CD828D207BD00F22E38 /* TabHierarchyOutlineDelegate.swift */; };
 		934D2CDB28D207E100F22E38 /* TabHierarchyOutlineDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D2CDA28D207E100F22E38 /* TabHierarchyOutlineDataSource.swift */; };
 		934D2F0328C4A5690034E5C8 /* GitClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D2F0228C4A5690034E5C8 /* GitClientError.swift */; };
@@ -979,7 +978,6 @@
 		93159FDB28D5F40C00C55C5A /* CodeEditorViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditorViewWrapper.swift; sourceTree = "<group>"; };
 		9327701028CE1B6300871190 /* TabHierarchyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyTableViewCell.swift; sourceTree = "<group>"; };
 		9336833828C5EAD7009F7B44 /* GitCloneViewWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCloneViewWindow.swift; sourceTree = "<group>"; };
-		9347F52628E6C084007EA1EF /* ExampleTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTheme.swift; sourceTree = "<group>"; };
 		934D2CD828D207BD00F22E38 /* TabHierarchyOutlineDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyOutlineDelegate.swift; sourceTree = "<group>"; };
 		934D2CDA28D207E100F22E38 /* TabHierarchyOutlineDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyOutlineDataSource.swift; sourceTree = "<group>"; };
 		934D2F0228C4A5690034E5C8 /* GitClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitClientError.swift; sourceTree = "<group>"; };
@@ -2698,7 +2696,6 @@
 		20EC822A28EC22CC007E283A /* Theme */ = {
 			isa = PBXGroup;
 			children = (
-				9347F52628E6C084007EA1EF /* ExampleTheme.swift */,
 				2B04570F28E6FFE300024F2D /* HighlightTheme.swift */,
 				2B04571028E6FFE300024F2D /* HighlightTheme+Default.swift */,
 				2B04571428E6FFE300024F2D /* HighlightThemeSetting.swift */,
@@ -3521,7 +3518,6 @@
 				2093CD6D289AA0FC003A88DD /* PanelDivider.swift in Sources */,
 				2B04576328E6FFE300024F2D /* Rule.swift in Sources */,
 				2B04573E28E6FFE300024F2D /* ScopeName.swift in Sources */,
-				9347F52728E6C084007EA1EF /* ExampleTheme.swift in Sources */,
 				2B04574928E6FFE300024F2D /* IncludeGrammarPattern.swift in Sources */,
 				04C3254D27FF331B00C8DA2D /* ExtensionNavigatorItem.swift in Sources */,
 				2093CC94289A9FF5003A88DD /* StatusBarLineEndSelector.swift in Sources */,
