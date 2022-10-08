@@ -9,7 +9,7 @@ import Foundation
 
 import Cocoa
 
-public class BoldThemeAttribute: TokenThemeAttribute {
+public class BoldThemeAttribute: TokenThemeAttribute, Codable {
     public var key: String = "bold"
 
     public init() {}

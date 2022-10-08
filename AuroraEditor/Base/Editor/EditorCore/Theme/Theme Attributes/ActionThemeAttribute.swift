@@ -7,6 +7,8 @@
 
 import Foundation
 
+// DO NOT allow this to be a codable.
+// It allows for arbritrary execution of code, which is insecure.
 public class ActionThemeAttribute: TokenThemeAttribute {
 
     public typealias Handler = (String, NSRange) -> Void
@@ -27,5 +29,13 @@ public class ActionThemeAttribute: TokenThemeAttribute {
         if let handler = handler {
             attrStr.addAttribute(Self.HandlerKey, value: handler, range: range)
         }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        fatalError("ActionThemeAttribute does not conform to Codable for security reasons.")
+    }
+
+    public required init(from decoder: Decoder) throws {
+        fatalError("ActionThemeAttribute does not conform to Codable for security reasons.")
     }
 }

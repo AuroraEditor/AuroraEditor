@@ -84,7 +84,7 @@ extension GutterView {
 
         // Highlight the current line in the gutter
         if let location = textView.insertionPoint {
-            theme.currentLineColour.setFill()
+            theme.editor.lineHighlight.nsColor.setFill()
             layoutManager.enumerateFragmentRects(forLineContaining: location) { fragmentRect in
                 let intersectionRect = rect.intersection(self.gutterRectFrom(textRect: fragmentRect))
                 if !intersectionRect.isEmpty { NSBezierPath(rect: intersectionRect).fill() }

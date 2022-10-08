@@ -1,5 +1,5 @@
 //
-//  BackgroundAEColorThemeAttribute.swift
+//  BackgroundNSColorThemeAttribute.swift
 //  
 //
 //  Created by Matthew Davidson on 6/12/19.
@@ -9,7 +9,7 @@ import Foundation
 
 import Cocoa
 
-public class BackgroundColorThemeAttribute: TokenThemeAttribute {
+public class BackgroundColorThemeAttribute: TokenThemeAttribute, Codable {
 
     public struct RoundingStyle: Hashable, Equatable, RawRepresentable {
 
@@ -34,28 +34,47 @@ public class BackgroundColorThemeAttribute: TokenThemeAttribute {
         case line, textOnly
     }
 
-    public class RoundedBackground {
+    public class RoundedBackground: Codable {
 
-        public static let Key = NSAttributedString.Key(rawValue: "EditorUI.RoundedBackgroundAEColor")
+        public static let Key = NSAttributedString.Key(rawValue: "EditorUI.RoundedBackgroundNSColor")
 
-        public let color: AEColor
+        public let color: NSColor
         public let roundingStyle: RoundingStyle
         public let coloringStyle: ColoringStyle
 
-        public init(color: AEColor, roundingStyle: RoundingStyle, coloringStyle: ColoringStyle) {
+        public init(color: NSColor, roundingStyle: RoundingStyle, coloringStyle: ColoringStyle) {
             self.color = color
             self.roundingStyle = roundingStyle
             self.coloringStyle = coloringStyle
         }
+
+        enum Keys: CodingKey {
+            case color, roundingStyle, coloringStyle
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: Keys.self)
+            try container.encode(color.hex, forKey: .roundingStyle)
+            try container.encode(roundingStyle.rawValue, forKey: .roundingStyle)
+            try container.encode(coloringStyle.hashValue, forKey: .roundingStyle)
+        }
+
+        public required init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: Keys.self)
+            self.color = NSColor(hex: try container.decode(Int.self, forKey: .color))
+            self.roundingStyle = RoundingStyle(try container.decode(CGFloat.self, forKey: .roundingStyle))
+            self.coloringStyle = (try container.decode(String.self, forKey: .coloringStyle)) == "line" ?
+                .line : .textOnly
+        }
     }
 
-    public var key = "background-AEColor"
-    public var color: AEColor
+    public let key = "background-NSColor"
+    public var color: NSColor
     public var roundingStyle: RoundingStyle
     public var coloringStyle: ColoringStyle
     public let roundedBackground: RoundedBackground
 
-    public init(color: AEColor, roundingStyle: RoundingStyle = .none, coloringStyle: ColoringStyle = .textOnly) {
+    public init(color: NSColor, roundingStyle: RoundingStyle = .none, coloringStyle: ColoringStyle = .textOnly) {
         self.color = color
         self.roundingStyle = roundingStyle
         self.coloringStyle = coloringStyle
@@ -70,5 +89,25 @@ public class BackgroundColorThemeAttribute: TokenThemeAttribute {
         } else {
             attrStr.addAttribute(RoundedBackground.Key, value: self.roundedBackground, range: range)
         }
+    }
+
+    enum Keys: CodingKey {
+        case color, roundingStyle, coloringStyle, roundedBackground
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Keys.self)
+        try container.encode(color.hex, forKey: .color)
+        try container.encode(roundingStyle.rawValue, forKey: .roundingStyle)
+        try container.encode("\(coloringStyle)", forKey: .coloringStyle)
+        try container.encode(roundedBackground, forKey: .roundedBackground)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        self.color = NSColor(hex: try container.decode(Int.self, forKey: .color))
+        self.roundingStyle = RoundingStyle(try container.decode(CGFloat.self, forKey: .roundingStyle))
+        self.coloringStyle = (try container.decode(String.self, forKey: .coloringStyle)) == "line" ? .line : .textOnly
+        self.roundedBackground = try container.decode(RoundedBackground.self, forKey: .roundedBackground)
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 import Cocoa
 
-public class ItalicThemeAttribute: TokenThemeAttribute {
+public class ItalicThemeAttribute: TokenThemeAttribute, Codable {
     public var key: String = "italic"
 
     public init() {}

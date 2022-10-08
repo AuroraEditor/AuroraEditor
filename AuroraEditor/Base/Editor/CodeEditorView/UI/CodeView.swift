@@ -50,15 +50,15 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     var oldLastLineOfInsertionPoint: Int? = 1
 
     /// The current highlighting theme
-    var theme: Theme {
+    var theme: AuroraTheme {
         didSet {
             font = theme.font
-            backgroundColor = theme.backgroundColour
-            insertionPointColor = theme.cursorColour
-            selectedTextAttributes = [.backgroundColor: theme.selectionColour]
+            backgroundColor = theme.editor.background.nsColor
+            insertionPointColor = theme.editor.insertionPoint.nsColor
+            selectedTextAttributes = [.backgroundColor: theme.editor.selection.nsColor]
             (textStorage as? CodeStorage)?.theme = theme
-            minimapView?.backgroundColor = theme.backgroundColour
-            documentVisibleBox?.fillColor = theme.textColour.withAlphaComponent(0.1)
+            minimapView?.backgroundColor = theme.editor.background.nsColor
+            documentVisibleBox?.fillColor = theme.editor.text.nsColor.withAlphaComponent(0.1)
             tile()
             setNeedsDisplay(visibleRect)
         }
@@ -76,13 +76,13 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     private(set) var grammar: Grammar = loadedGrammer
 //    private(set) var parser: Parser = Parser(grammars: [.default, basicSwiftGrammar])
 //    private(set) var grammar: Grammar = basicSwiftGrammar
-    private(set) var highlightTheme: HighlightTheme = exampleTheme
+    private(set) var highlightTheme: HighlightTheme = .default
 
     /// Designated initialiser for code views with a gutter.
     init(frame: CGRect, // swiftlint:disable:this function_body_length
          viewLayout: CodeEditor.LayoutConfiguration,
-         theme: Theme,
-         highlightTheme: HighlightTheme = exampleTheme
+         theme: AuroraTheme,
+         highlightTheme: HighlightTheme = .default
     ) {
 
         self.theme = theme
@@ -94,8 +94,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
             codeContainer = CodeContainer(),
             codeStorage = CodeStorage(parser: parser,
                                       baseGrammar: grammar,
-                                      theme: theme,
-                                      highlightTheme: highlightTheme)
+                                      theme: theme)
         codeStorage.addLayoutManager(codeLayoutManager)
         codeContainer.layoutManager = codeLayoutManager
         codeLayoutManager.addTextContainer(codeContainer)
@@ -107,9 +106,9 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
         // Set basic display and input properties
         font = theme.font
-        backgroundColor = theme.backgroundColour
-        insertionPointColor = theme.cursorColour
-        selectedTextAttributes = [.backgroundColor: theme.selectionColour]
+        backgroundColor = theme.editor.background.nsColor
+        insertionPointColor = theme.editor.insertionPoint.nsColor
+        selectedTextAttributes = [.backgroundColor: theme.editor.selection.nsColor]
         isRichText = false
         isAutomaticQuoteSubstitutionEnabled = false
         isAutomaticLinkDetectionEnabled = false
@@ -187,7 +186,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         // This handles the minimap box color, the one that moves as you scroll the document
         let documentVisibleBox = NSBox()
         documentVisibleBox.boxType = .custom
-        documentVisibleBox.fillColor = theme.textColour.withAlphaComponent(0.1)
+        documentVisibleBox.fillColor = theme.editor.text.nsColor.withAlphaComponent(0.1)
         documentVisibleBox.borderWidth = 0
         minimapView.addSubview(documentVisibleBox)
         self.documentVisibleBox = documentVisibleBox
@@ -285,7 +284,8 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         // If the selection is an insertion point, highlight the corresponding line
         if let location = insertionPoint, charRange.contains(location) || location == NSMaxRange(charRange) {
 
-            drawBackgroundHighlight(in: rect, forLineContaining: location, withColour: theme.currentLineColour)
+            drawBackgroundHighlight(in: rect, forLineContaining: location,
+                                    withColour: theme.editor.lineHighlight.nsColor)
 
         }
 

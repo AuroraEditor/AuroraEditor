@@ -8,59 +8,11 @@
 
 import SwiftUI
 
-/// A code highlighting theme. Different syntactic elements are purely distinguished by colour.
-///
-public struct Theme: Identifiable {
-    public let id = UUID()
+// TODO: Remove this later
+// This file is kept only for reference purposes
+// If the old colours are wanted for whatever reason.
 
-    /// The name of the font to use.
-    public var fontName: String
-
-    /// The point size of the font to use.
-    ///
-    public var fontSize: CGFloat
-
-    /// The default foreground text colour.
-    public var textColour: OSColor
-
-    /// The background colour.
-    public var backgroundColour: OSColor
-
-    /// The colour of the current line highlight.
-    public var currentLineColour: OSColor
-
-    /// The colour to use for the selection highlight.
-    public var selectionColour: OSColor
-
-    /// The cursor colour.
-    public var cursorColour: OSColor
-
-    /// The colour to use if invisibles are drawn.
-    public var invisiblesColour: OSColor // NOTE: Currently unused
-
-    public init(fontName: String,
-                fontSize: CGFloat,
-                textColour: OSColor,
-                backgroundColour: OSColor,
-                currentLineColour: OSColor,
-                selectionColour: OSColor,
-                cursorColour: OSColor,
-                invisiblesColour: OSColor
-    ) {
-        self.fontName = fontName
-        self.fontSize = fontSize
-        self.textColour = textColour
-        self.backgroundColour = backgroundColour
-        self.currentLineColour = currentLineColour
-        self.selectionColour = selectionColour
-        self.cursorColour = cursorColour
-        self.invisiblesColour = invisiblesColour
-    }
-}
-
-/// A theme catalog indexing themes by name
-typealias Themes = [String: Theme]
-
+/*
 extension Theme {
 
     public static var defaultDark: Theme = Theme(
@@ -85,34 +37,4 @@ extension Theme {
         invisiblesColour: OSColor(red: 0.84, green: 0.84, blue: 0.84, alpha: 1.0)
     )
 }
-
-extension Theme {
-
-    /// Font object on the basis of the font name and size of the theme.
-    var font: OSFont {
-        if fontName.hasPrefix("SFMono") {
-
-            let weightString = fontName.dropFirst("SFMono".count)
-            let weight: OSFont.Weight
-            switch weightString {
-            case "UltraLight": weight = .ultraLight
-            case "Thin":       weight = .thin
-            case "Light":      weight = .light
-            case "Regular":    weight = .regular
-            case "Medium":     weight = .medium
-            case "Semibold":   weight = .semibold
-            case "Bold":       weight = .bold
-            case "Heavy":      weight = .heavy
-            case "Black":      weight = .black
-            default:           weight = .regular
-            }
-            return OSFont.monospacedSystemFont(ofSize: fontSize, weight: weight)
-
-        } else {
-
-            return OSFont(name: fontName, size: fontSize) ?? OSFont.monospacedSystemFont(ofSize: fontSize,
-                                                                                         weight: .regular)
-
-        }
-    }
-}
+*/

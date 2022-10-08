@@ -8,10 +8,6 @@
 import SwiftUI
 
 /// SwiftUI code editor based on TextKit.
-///
-/// SwiftUI `Environment`:
-/// * Environment value `codeHighlightTheme`: determines the code highlighting theme to use
-/// * Text-related values: affect the rendering of message views
 public struct CodeEditor {
 
     /// Specification of the editor layout.
@@ -62,6 +58,7 @@ public struct CodeEditor {
     @Binding var position: Position
     @Binding var caretPosition: CursorLocation
     @Binding var messages: Set<Located<Message>>
+    @Binding var theme: AuroraTheme
 
     /// Creates a fully configured code editor.
     ///
@@ -77,11 +74,14 @@ public struct CodeEditor {
                 position: Binding<Position>,
                 caretPosition: Binding<CursorLocation>,
                 messages: Binding<Set<Located<Message>>>,
-                layout: LayoutConfiguration = .standard) {
+                theme: Binding<AuroraTheme>,
+                layout: LayoutConfiguration = .standard
+    ) {
         self._text = text
         self._position = position
         self._caretPosition = caretPosition
         self._messages = messages
+        self._theme = theme
         self.layout = layout
     }
 
@@ -103,22 +103,5 @@ public struct CodeEditor {
             self._position = position
             self._caretPosition = caretPosition
         }
-    }
-}
-
-/// Environment key for the current code editor theme.
-public struct CodeHighlightTheme: EnvironmentKey {
-    public static var defaultValue: Theme = Theme.defaultLight
-}
-
-// MARK: - Previews
-struct CodeEditor_Previews: PreviewProvider {
-    static var previews: some View {
-        CodeEditor(
-            text: .constant("-- Hello World!"),
-            position: .constant(CodeEditor.Position()),
-            caretPosition: .constant(.init(line: 0, column: 0)),
-            messages: .constant(Set())
-        )
     }
 }

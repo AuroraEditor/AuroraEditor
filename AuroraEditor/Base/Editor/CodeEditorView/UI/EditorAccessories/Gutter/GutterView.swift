@@ -22,7 +22,7 @@ class GutterView: NSView {
     let textView: NSTextView
 
     /// The current code editor theme
-    var theme: Theme
+    var theme: AuroraTheme
 
     /// Accessor for the associated text view's message views.
     let getMessageViews: () -> MessageViews
@@ -37,7 +37,7 @@ class GutterView: NSView {
     /// text container.
     init(frame: CGRect,
          textView: NSTextView,
-         theme: Theme,
+         theme: AuroraTheme,
          getMessageViews: @escaping () -> MessageViews,
          isMinimapGutter: Bool) {
         self.textView = textView
@@ -47,7 +47,7 @@ class GutterView: NSView {
         // NB: If were decide to use layer backing,
         // we need to set the `layerContentsRedrawPolicy` to redraw on resizing
 
-        theme.backgroundColour.setFill()
+        theme.editor.background.nsColor.setFill()
 
         NSBezierPath(rect: frame).fill()
 
@@ -63,9 +63,9 @@ class GutterView: NSView {
                                      .kern: NSNumber(value: Float(-theme.fontSize / 11))]
 
         self.textAttributesSelected = [NSAttributedString.Key.font: font,
-                                      .foregroundColor: theme.textColour,
-                                      .paragraphStyle: lineNumberStyle,
-                                      .kern: NSNumber(value: Float(-theme.fontSize / 11))]
+                                       .foregroundColor: theme.editor.text.nsColor,
+                                       .paragraphStyle: lineNumberStyle,
+                                       .kern: NSNumber(value: Float(-theme.fontSize / 11))]
 
         super.init(frame: frame)
     }
