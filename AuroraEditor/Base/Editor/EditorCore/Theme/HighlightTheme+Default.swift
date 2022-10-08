@@ -189,8 +189,6 @@ public extension HighlightTheme {
 
 private let fontSize: CGFloat = 12
 
-extension NSColor {
-    public static let exampleTextColor = NSColor.init(color: .white)!
-
-    public static let codeBackgroundColor = NSColor.init(color: .white)!
+fileprivate extension NSColor {
+    static let exampleTextColor = NSColor.init(color: .white)!
 }
