@@ -80,6 +80,21 @@ extension WorkspaceDocument {
                     ofType: pathExtention
                 )
                 self.selectionState.openedCodeFiles[item] = codeFile
+
+                Log.info(
+                    "[Extension] send didOpen() to \(ExtensionsManager.shared.loadedExtensions.count) extensions."
+                )
+                // Let the extensions know we opened a file (from a workspace)
+                for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
+                    let fileData = try? Data.init(contentsOf: item.url)
+
+                    Log.info("[Extension] \(id). didOpen()")
+                    AEExt.didOpen(
+                        workspace: self.fileURL?.relativeString ?? "AuroraEditor",
+                        file: item.url.relativeString,
+                        contents: fileData ?? Data()
+                    )
+                }
             } catch let err {
                 Log.error(err)
             }
@@ -128,6 +143,11 @@ extension WorkspaceDocument {
         case .codeEditor:
             guard let item = selectionState.getItemByTab(id: id) as? FileSystemClient.FileItem else { return }
             closeFileTab(item: item)
+
+            // Let the extensions know we closed a file
+            for (_, AEExt) in ExtensionsManager.shared.loadedExtensions {
+                AEExt.didClose(file: item.url.relativeString)
+            }
         case .extensionInstallation:
             guard let item = selectionState.getItemByTab(id: id) as? Plugin else { return }
             closeExtensionTab(item: item)
