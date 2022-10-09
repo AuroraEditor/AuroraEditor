@@ -11,7 +11,7 @@ public class HighlightTheme: Codable {
 
     var root: ThemeTrieElement
 
-    private var settings: [ThemeSetting]
+    var settings: [ThemeSetting]
 
     public init(settings: [ThemeSetting]) {
         self.settings = settings
