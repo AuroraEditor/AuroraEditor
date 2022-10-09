@@ -16,7 +16,7 @@ public class BoldThemeAttribute: TokenThemeAttribute, Codable {
 
     public func apply(to attrStr: NSMutableAttributedString, withRange range: NSRange) {
         let font = attrStr.attributes(at: range.location, effectiveRange: nil)[.font] as? NSFont ?? NSFont()
-
+        // TODO: Get this working. Somehow italics and underline work but not this.
         let newFont = NSFontManager.shared.convert(font, toHaveTrait: .boldFontMask)
         attrStr.addAttribute(.font, value: newFont, range: range)
     }

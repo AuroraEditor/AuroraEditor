@@ -42,7 +42,9 @@ public struct ThemePreferencesView: View {
         }
         .padding()
         .onAppear {
-            try? themeModel.loadThemes()
+            DispatchQueue.main.async {
+                try? themeModel.loadThemes()
+            }
         }
     }
 
