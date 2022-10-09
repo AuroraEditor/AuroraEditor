@@ -140,6 +140,17 @@ struct EditorThemeAttributeView: View {
             isItalic = setting.attributes.contains(where: { $0 is ItalicThemeAttribute })
             isUnderline = setting.attributes.contains(where: { $0 is UnderlineThemeAttribute })
         }
+        .contextMenu {
+            Button("Delete") {
+                let selectedTheme = (themeModel.selectedTheme ?? themeModel.themes.first!).editor.highlightTheme
+                withAnimation {
+                    selectedTheme.settings.removeAll(where: {
+                        $0.scope == setting.scope
+                    })
+                    themeModel.objectWillChange.send()
+                }
+            }
+        }
     }
 
     func replaceAttribute(setting: ThemeSetting,

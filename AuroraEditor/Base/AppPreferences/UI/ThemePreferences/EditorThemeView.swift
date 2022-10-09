@@ -29,6 +29,7 @@ struct HighlightThemeView: View {
                         ForEach((themeModel.selectedTheme ?? themeModel.themes.first!).editor.highlightTheme.settings,
                                 id: \.scope) { setting in
                             EditorThemeAttributeView(setting: setting)
+                                .transition(.opacity)
                         }
                         Spacer().frame(height: 5)
                     }
