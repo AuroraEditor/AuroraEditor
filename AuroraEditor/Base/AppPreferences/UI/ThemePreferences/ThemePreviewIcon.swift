@@ -92,7 +92,7 @@ struct ThemePreviewIcon: View {
             block2
             block3
             block4
-//            block5
+            block5
         }
         .padding(.top, 6)
         .padding(.leading, 6)
