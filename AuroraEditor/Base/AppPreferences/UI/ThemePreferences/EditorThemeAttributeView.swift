@@ -142,7 +142,7 @@ struct EditorThemeAttributeView: View {
         }
         .contextMenu {
             Button("Delete") {
-                let selectedTheme = (themeModel.selectedTheme ?? themeModel.themes.first!).editor.highlightTheme
+                guard let selectedTheme = themeModel.selectedTheme?.editor.highlightTheme else { return }
                 withAnimation {
                     selectedTheme.settings.removeAll(where: {
                         $0.scope == setting.scope
@@ -157,9 +157,9 @@ struct EditorThemeAttributeView: View {
                           existingTest: @escaping (ThemeAttribute) -> Bool,
                           toggleMode: Bool = false, // removes an attribute when found, if set to true
                           with newAttribute: ThemeAttribute? = nil) {
-        let selectedTheme = (themeModel.selectedTheme ?? themeModel.themes.first!).editor.highlightTheme
         // get the index of the setting
-        guard let settingIndex = selectedTheme.settings.firstIndex(where: {
+        guard let selectedTheme = themeModel.selectedTheme?.editor.highlightTheme,
+              let settingIndex = selectedTheme.settings.firstIndex(where: {
             $0.scope == setting.scope
         }) else { return }
         let setting = selectedTheme.settings[settingIndex]

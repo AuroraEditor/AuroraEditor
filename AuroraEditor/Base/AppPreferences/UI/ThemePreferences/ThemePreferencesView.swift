@@ -194,6 +194,21 @@ public struct ThemePreferencesView: View {
             }
             PreferencesToolbar {
                 HStack {
+                    if themeModel.selectedTab == 1 {
+                        Button {
+                            guard let selectedTheme = themeModel.selectedTheme?.editor.highlightTheme else { return }
+                            withAnimation {
+                                selectedTheme.settings.removeAll(where: { $0.scope.isEmpty }) // remove all empty scopes
+                                selectedTheme.settings.append(ThemeSetting(scope: ""))
+                                selectedTheme.root = HighlightTheme
+                                    .createTrie(settings: selectedTheme.settings)
+                                themeModel.objectWillChange.send()
+                            }
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                        .buttonStyle(.plain)
+                    }
                     Spacer()
                     Button {} label: {
                         Image(systemName: "info.circle")
