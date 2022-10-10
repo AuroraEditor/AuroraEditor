@@ -16,7 +16,7 @@ public final class ExtensionsManager {
     let auroraEditorFolder: URL
     let extensionsFolder: URL
 
-    var loadedBundles: [UUID: Bundle] = [:]
+    var loadedBundles: [String: Bundle] = [:]
     var loadedExtensions: [String: ExtensionInterface] = [:]
     var loadedLanguageServers: [String: LSPClient] = [:]
 
@@ -64,6 +64,7 @@ public final class ExtensionsManager {
                     loadedExtensions[file] = builder.init().build(
                         withAPI: AuroraEditorAPI.init(extensionId: "0", workspace: .init())
                     )
+
                     Log.info("Registered \(file)")
                 } else {
                     Log.warning("Failed to init() \(file)")
@@ -99,6 +100,8 @@ public final class ExtensionsManager {
 
             return nil
         }
+
+        loadedBundles[path] = bundle
 
         return AEext
     }

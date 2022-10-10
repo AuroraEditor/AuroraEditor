@@ -88,12 +88,14 @@ extension WorkspaceDocument {
                 for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
                     let fileData = try? Data.init(contentsOf: item.url)
 
-                    Log.info("[Extension] \(id). didOpen()")
-                    AEExt.didOpen(
-                        workspace: self.fileURL?.relativeString ?? "AuroraEditor",
-                        file: item.url.relativeString,
-                        contents: fileData ?? Data()
-                    )
+                    if AEExt.supports(function: "didOpen") {
+                        Log.info(id, "didOpen()")
+                        AEExt.didOpen(
+                            workspace: self.fileURL?.relativeString ?? "AuroraEditor",
+                            file: item.url.relativeString,
+                            contents: fileData ?? Data()
+                        )
+                    }
                 }
             } catch let err {
                 Log.error(err)
@@ -145,8 +147,10 @@ extension WorkspaceDocument {
             closeFileTab(item: item)
 
             // Let the extensions know we closed a file
-            for (_, AEExt) in ExtensionsManager.shared.loadedExtensions {
-                AEExt.didClose(file: item.url.relativeString)
+            for (id, AEExt) in ExtensionsManager.shared.loadedExtensions
+            where AEExt.supports(function: "didClose") {
+                    Log.info(id, "didClose()")
+                    AEExt.didClose(file: item.url.relativeString)
             }
         case .extensionInstallation:
             guard let item = selectionState.getItemByTab(id: id) as? Plugin else { return }
