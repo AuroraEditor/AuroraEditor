@@ -42,7 +42,9 @@ public struct ThemePreferencesView: View {
         }
         .padding()
         .onAppear {
-            try? themeModel.loadThemes()
+            DispatchQueue.main.async {
+                try? themeModel.loadThemes()
+            }
         }
     }
 
@@ -192,6 +194,21 @@ public struct ThemePreferencesView: View {
             }
             PreferencesToolbar {
                 HStack {
+                    if themeModel.selectedTab == 1 {
+                        Button {
+                            guard let selectedTheme = themeModel.selectedTheme?.editor.highlightTheme else { return }
+                            withAnimation {
+                                selectedTheme.settings.removeAll(where: { $0.scope.isEmpty }) // remove all empty scopes
+                                selectedTheme.settings.insert(ThemeSetting(scope: ""), at: 0) // insert at top
+                                selectedTheme.root = HighlightTheme
+                                    .createTrie(settings: selectedTheme.settings)
+                                themeModel.objectWillChange.send()
+                            }
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                        .buttonStyle(.plain)
+                    }
                     Spacer()
                     Button {} label: {
                         Image(systemName: "info.circle")
