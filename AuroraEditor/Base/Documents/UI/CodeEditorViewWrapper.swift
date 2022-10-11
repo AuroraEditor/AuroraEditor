@@ -48,6 +48,7 @@ public struct CodeEditorViewWrapper: View {
             text: $codeFile.content,
             position: $position,
             caretPosition: $sharedObjects.caretPos,
+            currentToken: $sharedObjects.currentToken,
             messages: $messages,
             theme: $theme,
             layout: CodeEditor.LayoutConfiguration(showMinimap: prefs.preferences.textEditing.showMinimap)

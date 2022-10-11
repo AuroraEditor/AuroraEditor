@@ -89,6 +89,11 @@ public class TokenizedLine {
         }
 
         for token in tokens {
+            let range = NSRange(location: loc + token.range.location, length: token.range.length)
+
+            // set the token NSAttributedString attribute, used for debugging
+            attributedString.addAttributes([.token: token], range: range)
+
             for scope in token.scopes {
                 if applyBaseAttributes {
                     TokenizedLine.applyThemeAttributes(

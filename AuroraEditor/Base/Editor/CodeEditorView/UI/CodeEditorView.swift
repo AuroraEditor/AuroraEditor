@@ -97,7 +97,7 @@ extension CodeEditor: NSViewRepresentable {
     }
 
     public func makeCoordinator() -> Coordinator {
-        return Coordinator($text, $position, $caretPosition)
+        return Coordinator($text, $position, $caretPosition, $currentToken)
     }
 
     public final class Coordinator: TCoordinator {
@@ -140,6 +140,14 @@ extension CodeEditor: NSViewRepresentable {
             return .init(line: row, column: col)
         }
 
+        private func getScopesAtCursor(txt: NSAttributedString, pos: Int) -> Token? {
+            Log.info("Pos: \(pos)")
+            let attributes = txt.attributes(at: pos, effectiveRange: nil)
+            let token = attributes[.token] as? Token
+            Log.info("Attributes: \(token?.scopes.map({ $0.name.rawValue }) ?? [])")
+            return token
+        }
+
         func textDidChange(_ textView: NSTextView) {
             guard !updatingView else { return }
 
@@ -155,6 +163,10 @@ extension CodeEditor: NSViewRepresentable {
             if self.position.selections != newValue {
                 if let section = newValue.first {
                     self.caretPosition = calculateCaretPosition(txt: textView.text, pos: section)
+                    if section.length == 0 {
+                        self.currentToken = getScopesAtCursor(txt: textView.attributedString(),
+                                                              pos: section.lowerBound)
+                    }
                 }
                 self.position.selections = newValue
             }

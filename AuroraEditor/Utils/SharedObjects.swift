@@ -14,5 +14,8 @@ class SharedObjects: ObservableObject {
     @Published
     var caretPos: CursorLocation = .init(line: 0, column: 0)
 
+    @Published
+    var currentToken: Token?
+
     init() { }
 }
