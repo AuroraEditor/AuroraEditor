@@ -141,10 +141,8 @@ extension CodeEditor: NSViewRepresentable {
         }
 
         private func getScopesAtCursor(txt: NSAttributedString, pos: Int) -> Token? {
-            Log.info("Pos: \(pos)")
             let attributes = txt.attributes(at: pos, effectiveRange: nil)
             let token = attributes[.token] as? Token
-            Log.info("Attributes: \(token?.scopes.map({ $0.name.rawValue }) ?? [])")
             return token
         }
 

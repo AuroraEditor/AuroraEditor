@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SharedObjects: ObservableObject {
+class SharedObjects: ObservableObject { // TODO: Get rid of this
     public static let shared: SharedObjects = .init()
 
     @Published
