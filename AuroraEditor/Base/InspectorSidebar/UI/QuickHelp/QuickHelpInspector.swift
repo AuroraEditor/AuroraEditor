@@ -13,6 +13,9 @@ struct QuickHelpInspector: View {
     @ObservedObject
     var sharedObjects: SharedObjects = .shared
 
+    @ObservedObject
+    var preferences: AppPreferencesModel = .shared
+
     var body: some View {
         VStack(alignment: .leading) {
             Text("Quick Help")
@@ -21,7 +24,8 @@ struct QuickHelpInspector: View {
                 .font(.system(size: 13))
                 .frame(minWidth: 250, maxWidth: .infinity, alignment: .leading)
 
-            if let currentToken = sharedObjects.currentToken {
+            if let currentToken = sharedObjects.currentToken,
+               preferences.preferences.textEditing.showScopes {
                 VStack(alignment: .leading) {
                     Text("Identity and Type")
                         .foregroundColor(.primary)
@@ -33,24 +37,29 @@ struct QuickHelpInspector: View {
                 }
                 Divider()
             } else {
-                Text("No Quick Help")
-                    .foregroundColor(.secondary)
-                    .font(.system(size: 16))
-                    .fontWeight(.medium)
-                    .frame(minWidth: 250, maxWidth: .infinity, alignment: .center)
-                    .padding(.top, 10)
-                    .padding(.bottom, 10)
-                Button("Search Documentation") {
-
-                }
-                .background(in: RoundedRectangle(cornerRadius: 4))
-                .frame(minWidth: 250, maxWidth: .infinity, alignment: .center)
-                .font(.system(size: 12))
-                Divider().padding(.top, 15)
+                noQuickHelp
             }
         }
         .frame(minWidth: 250, maxWidth: .infinity)
         .padding(5)
+    }
+
+    @ViewBuilder
+    var noQuickHelp: some View {
+        Text("No Quick Help")
+            .foregroundColor(.secondary)
+            .font(.system(size: 16))
+            .fontWeight(.medium)
+            .frame(minWidth: 250, maxWidth: .infinity, alignment: .center)
+            .padding(.top, 10)
+            .padding(.bottom, 10)
+        Button("Search Documentation") {
+
+        }
+        .background(in: RoundedRectangle(cornerRadius: 4))
+        .frame(minWidth: 250, maxWidth: .infinity, alignment: .center)
+        .font(.system(size: 12))
+        Divider().padding(.top, 15)
     }
 }
 

@@ -55,6 +55,12 @@ public struct TextEditingPreferencesView: View {
                 minimap
                     .padding(.bottom, 5)
                     .padding(.horizontal)
+
+                Divider()
+
+                scopes
+                    .padding(.bottom, 5)
+                    .padding(.horizontal)
             }
             .padding(.bottom)
 
@@ -99,6 +105,16 @@ public struct TextEditingPreferencesView: View {
             Text("Show Minimap")
             Spacer()
             Toggle("", isOn: $prefs.preferences.textEditing.showMinimap)
+                .toggleStyle(.switch)
+                .labelsHidden()
+        }
+    }
+
+    private var scopes: some View {
+        HStack {
+            Text("Show Scopes")
+            Spacer()
+            Toggle("", isOn: $prefs.preferences.textEditing.showScopes)
                 .toggleStyle(.switch)
                 .labelsHidden()
         }

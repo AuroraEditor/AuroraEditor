@@ -19,6 +19,8 @@ public extension AppPreferences {
 
         public var showMinimap: Bool = false
 
+        public var showScopes: Bool = false
+
         public var enableTypeOverCompletion: Bool = true
 
         public var autocompleteBraces: Bool = true
@@ -32,6 +34,7 @@ public extension AppPreferences {
             self.defaultTabWidth = try container.decodeIfPresent(Int.self, forKey: .defaultTabWidth) ?? 4
             self.font = try container.decodeIfPresent(EditorFont.self, forKey: .font) ?? .init()
             self.showMinimap = try container.decode(Bool.self, forKey: .showMinimap)
+            self.showScopes = try container.decode(Bool.self, forKey: .showScopes)
             self.enableTypeOverCompletion = try container.decodeIfPresent(
                 Bool.self, forKey: .enableTypeOverCompletion) ?? true
             self.autocompleteBraces = try container.decodeIfPresent(Bool.self,
