@@ -214,13 +214,13 @@ func jsonDictToCaptures(captures: [String: [String: Any]]?) -> [Capture] {
     return result
 }
 
-public var loadedGrammer: Grammar {
-    if let loadedGrammerBackend = loadedGrammerBackend {
-        return loadedGrammerBackend
+public var loadedGrammar: Grammar {
+    if let loadedGrammarBackend = loadedGrammarBackend {
+        return loadedGrammarBackend
     } else {
-        loadedGrammerBackend = loadJson(fileName: "swift.tmLanguage")
-        return loadedGrammerBackend!
+        loadedGrammarBackend = loadJson(fileName: "swift.tmLanguage")
+        return loadedGrammarBackend!
     }
 }
 
-private var loadedGrammerBackend: Grammar?
+private var loadedGrammarBackend: Grammar?
