@@ -14,7 +14,7 @@ extension CodeEditor: NSViewRepresentable {
     /// Generates and returns a scroll view with a CodeView set as its document view.
     public func makeNSView(context: Context) -> NSScrollView {
 
-        let loadedGrammar = GrammarJsonLoader[fileExtension]
+        let loadedGrammar = GrammarJsonLoader.grammarFor(extension: fileExtension)
 
         // Set up text view with gutter
         let codeView = CodeView(frame: CGRect(x: 0, y: 0, width: 100, height: 40),

@@ -261,7 +261,7 @@ extension GrammarJsonLoader {
         var grammar: () -> Grammar? // NOTE: grammar is a closure to avoid creating too many Grammars
     }
 
-    static subscript (_ fileExtension: String) -> Grammar {
+    static func grammarFor(extension fileExtension: String) -> Grammar {
         // see if one is cached already
         if let grammar = loadedGrammars[fileExtension] {
             return grammar
