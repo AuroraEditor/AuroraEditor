@@ -105,5 +105,5 @@ Could not resolve rules for grammar with scope name '\(scopeName)' because it wa
         return rules
     }
 
-    static let `default`: Grammar = .init(scopeName: "default")
+    static let `default`: Grammar = .init(scopeName: "source")
 }
