@@ -46,7 +46,7 @@ It will support everything you could expect from an Xcode-inspired application, 
  <br />
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Motivation
@@ -127,6 +127,9 @@ Thanks goes to these wonderful people:
       <td align="center"><a href="https://github.com/AlexBurneikis"><img src="https://avatars.githubusercontent.com/u/87457198?v=4?s=100" width="100px;" alt="Burneikis"/><br /><sub><b>Burneikis</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3AAlexBurneikis" title="Bug reports">🐛</a></td>
       <td align="center"><a href="https://github.com/Ashwonixer"><img src="https://avatars.githubusercontent.com/u/62433766?v=4?s=100" width="100px;" alt="Ashwonixer"/><br /><sub><b>Ashwonixer</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3AAshwonixer" title="Bug reports">🐛</a></td>
       <td align="center"><a href="http://rishaandesai.me"><img src="https://avatars.githubusercontent.com/u/77017806?v=4?s=100" width="100px;" alt="Rishaan Desai"/><br /><sub><b>Rishaan Desai</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3ABlackhole1123" title="Bug reports">🐛</a></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="http://cr08.netlify.app"><img src="https://avatars.githubusercontent.com/u/64256342?v=4?s=100" width="100px;" alt="Vishwa.R"/><br /><sub><b>Vishwa.R</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3Acode-reaper08" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
