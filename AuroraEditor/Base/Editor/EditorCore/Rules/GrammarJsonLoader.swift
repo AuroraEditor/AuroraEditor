@@ -13,10 +13,10 @@ class GrammarJsonLoader {
 
     private init() {} // prevent GrammarJsonLoader from being created anywhere else
 
-    /// Function that, taking in a filename for a tmlanguage JSON file, returns a ``Grammar`` from its contents
+    /// Function that, taking in a filename for a bundled tmlanguage JSON file, returns a ``Grammar`` from its contents
     /// - Parameter fileName: The name of the JSON file, not including the `.json` at the end
     /// - Returns: A ``Grammar`` representing the contents of the JSON, or nil if the given json is invalid.
-    public func loadJson(fileName: String) -> Grammar? {
+    public func loadBundledJson(fileName: String) -> Grammar? { // TODO: Depreciate this and use loadJson:from:
         if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
             let url = URL(fileURLWithPath: path)
             do {
@@ -29,6 +29,19 @@ class GrammarJsonLoader {
             Log.info("Json not found")
         }
         return nil
+    }
+
+    /// Function that, taking in a URL for a tmlanguage JSON file, returns a ``Grammar`` from its contents
+    /// - Parameter url: The URL of the JSON file
+    /// - Returns: A ``Grammar`` representing the contents of the JSON, or
+    /// nil if the given URL cannot be read as a grammar json.
+    public func loadJson(from url: URL) -> Grammar? {
+        do {
+            let data = try Data(contentsOf: url)
+            return grammarFromJson(jsonStr: String(decoding: data, as: UTF8.self))
+        } catch {
+            Log.info(String(describing: error))
+        }
     }
 
     /// Generates a ``Grammar`` class from a JSON string, if possible.

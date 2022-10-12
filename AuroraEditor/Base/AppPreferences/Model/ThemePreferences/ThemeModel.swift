@@ -81,9 +81,8 @@ public final class ThemeModel: ObservableObject {
             return theme
         } catch {
             Log.info("Error fetching theme: \(error)")
-            try filemanager.removeItem(at: url)
-            return nil
         }
+        return nil
     }
 
     /// Loads all available themes from `~/Library/Application Support/com.auroraeditor/Themes/`
@@ -168,6 +167,7 @@ public final class ThemeModel: ObservableObject {
             let prettyJSON = try JSONSerialization.data(withJSONObject: jsonObject,
                                                         options: .prettyPrinted)
 
+            // TODO: Only run this once on app install
             try prettyJSON.write(to: themesURL.appendingPathComponent("\(themeName).json"), options: .atomic)
         }
     }
