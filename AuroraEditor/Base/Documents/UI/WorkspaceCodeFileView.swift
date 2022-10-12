@@ -90,7 +90,7 @@ struct WorkspaceCodeFileView: View {
         _ codeFile: CodeFileDocument,
         for item: FileSystemClient.FileItem
     ) -> some View {
-        CodeEditorViewWrapper(codeFile: codeFile)
+        CodeEditorViewWrapper(codeFile: codeFile, fileExtension: item.url.pathExtension)
             .safeAreaInset(edge: .top, spacing: 0) {
                 VStack(spacing: 0) {
                     BreadcrumbsView(file: item, tappedOpenFile: workspace.openTab(item:))

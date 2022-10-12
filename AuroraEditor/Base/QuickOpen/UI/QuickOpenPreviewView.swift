@@ -27,7 +27,7 @@ public struct QuickOpenPreviewView: View {
                 withContentsOf: item.url,
                 ofType: "public.source-code"
             ), loaded {
-                CodeEditorViewWrapper(codeFile: codeFile, editable: false)
+                CodeEditorViewWrapper(codeFile: codeFile, editable: false, fileExtension: item.url.pathExtension)
             } else if let error = error {
                 Text(error)
             } else {
