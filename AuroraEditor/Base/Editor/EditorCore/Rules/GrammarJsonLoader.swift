@@ -250,11 +250,47 @@ extension GrammarJsonLoader {
         // swiftlint:enable line_length
     ]
 
+    /// Adds a `String` ``LanguageFile`` pair to the index of languages, overriding any
+    /// language that was preexisting sharing the same `language` name.
+    /// - Parameters:
+    ///   - language: The name of the language to add, eg. "html". Use lowercase.
+    ///   - grammar: A closure that returns an optional grammar, called when the grammar for the language is needed.
+    ///   - fileExtensions: An array of file extensions that the grammar applies to.
     static func addLanguageFiles(language: String,
                                  grammar: @escaping () -> Grammar?,
                                  fileExtensions: [String]) {
         languageFiles[language] = LanguageFile(fileExtensions: Set(fileExtensions), grammar: grammar)
     }
+
+    /// Modifies a property in an existing language
+    /// - Parameters:
+    ///   - language: The name of the language to modify
+    ///   - grammar: A closure that returns an optional grammar. Leave as nil to leave it as it is.
+    ///   - fileExtensions: An array of file extensions that the grammar applies to. Leave as nil to leave it as it is.
+    /// - Returns: True if something was replaced, false otherwise (language not found or didn't change anything)
+    static func modifyLanguageProperty(language: String,
+                                       grammar: (() -> Grammar?)? = nil,
+                                       fileExtensions: [String]? = nil) -> Bool {
+        // ensure at least one property is non-nil, and that the language exists.
+        guard languageFiles[language] != nil &&
+              (grammar != nil || fileExtensions != nil)
+        else { return false }
+
+        // replace the properties
+        if let grammar = grammar {
+            languageFiles[language]?.grammar = grammar
+        }
+        if let fileExtensions = fileExtensions {
+            languageFiles[language]?.fileExtensions = Set(fileExtensions)
+        }
+
+        return true
+    }
+
+    /// The language data for a particular language
+    /// - Parameter language: The name of the language
+    /// - Returns: The data for the language, a ``LanguageFile``
+    static func languageFileFor(language: String) -> LanguageFile? { languageFiles[language] }
 
     struct LanguageFile {
         var fileExtensions: Set<String>
