@@ -75,6 +75,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "code-reaper08",
+      "name": "Vishwa.R",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64256342?v=4",
+      "profile": "http://cr08.netlify.app",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
