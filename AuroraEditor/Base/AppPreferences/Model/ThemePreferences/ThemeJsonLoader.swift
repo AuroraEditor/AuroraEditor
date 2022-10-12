@@ -14,7 +14,8 @@ class ThemeJsonLoader {
 
     private init() {} // prevent ThemeJsonLoader from being created anywhere else
 
-    /// Function that, taking in a filename for a bundled tmlanguage JSON file, returns a ``AuroraTheme`` from its contents
+    /// Function that, taking in a filename for a bundled tmlanguage JSON file, returns a ``AuroraTheme`` from
+    /// its contents
     /// - Parameter fileName: The name of the JSON file, not including the `.json` at the end
     /// - Returns: A ``AuroraTheme`` representing the contents of the JSON, or nil if the given json is invalid.
     public func loadBundledJson(fileName: String) -> AuroraTheme? { // TODO: Depreciate this and use loadJson:from:
@@ -38,12 +39,14 @@ class ThemeJsonLoader {
     /// - Returns: An ``AuroraTheme`` representing the contents of the JSON, or
     /// nil if the given URL cannot be read as a grammar json.
     public func loadJson(from url: URL) -> AuroraTheme? {
+
         do {
             let data = try Data(contentsOf: url)
             return themeFromJson(jsonStr: String(decoding: data, as: UTF8.self))
         } catch {
             Log.info(String(describing: error))
         }
+
         return nil
     }
 

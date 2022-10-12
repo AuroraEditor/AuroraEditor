@@ -258,14 +258,21 @@ struct ThemePreviewIcon: View {
             .foregroundColor(.clear)
             .frame(width: length-1, height: 2)
     }
+}
 
+extension ThemePreviewIcon {
     private func colorHexForScope(scope: String) -> String {
         let comment = theme.editor.highlightTheme.settings.first(where: {
-            $0.scope.split(separator: ".").map({ String($0) }).contains(scope) || // Scope components contain the scope
-            $0.scope.contains(".\(scope).") ||  // Contains the scope
-            $0.scope.hasPrefix("\(scope).") ||  // Starts with the scope
-            $0.scope.hasSuffix(".\(scope)") ||  // Ends with the scope
-            $0.scope == scope                   // Is the scope
+            for settingScope in $0.scopes where
+            // Scope components contain the scope
+            settingScope.split(separator: ".").map({ String($0) }).contains(scope) ||
+            settingScope.contains(".\(scope).") ||  // Contains the scope
+            settingScope.hasPrefix("\(scope).") ||  // Starts with the scope
+            settingScope.hasSuffix(".\(scope)") ||  // Ends with the scope
+            settingScope == scope {                  // Is the scope
+                return true
+            }
+            return false
         })
         let color = comment?.attributes.first(where: { $0 is ColorThemeAttribute })
         let hexString = (color as? ColorThemeAttribute)?.color.hexString

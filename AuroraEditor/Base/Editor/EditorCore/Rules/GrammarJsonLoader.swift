@@ -42,6 +42,7 @@ class GrammarJsonLoader {
         } catch {
             Log.info(String(describing: error))
         }
+        return nil
     }
 
     /// Generates a ``Grammar`` class from a JSON string, if possible.
@@ -248,18 +249,18 @@ extension GrammarJsonLoader {
         // swiftlint:disable:next swiftlint_file_disabling
         // swiftlint:disable line_length
         "text": LanguageFile(fileExtensions: ["txt", "", "text"], grammar: { .default }),
-        "swift": LanguageFile(fileExtensions: ["swift"], grammar: { GrammarJsonLoader.shared.loadJson(fileName: "swift.tmLanguage") }),
-        "typescript": LanguageFile(fileExtensions: ["ts"], grammar: { GrammarJsonLoader.shared.loadJson(fileName: "typeScript.tmLanguage") }),
-        "json": LanguageFile(fileExtensions: ["json"], grammar: { GrammarJsonLoader.shared.loadJson(fileName: "JSON.tmLanguage") }),
-        "jsonc": LanguageFile(fileExtensions: ["jsonc"], grammar: { GrammarJsonLoader.shared.loadJson(fileName: "JSONC.tmLanguage") }),
-        "docker": LanguageFile(fileExtensions: ["docker"], grammar: { GrammarJsonLoader.shared.loadJson(fileName: "docker.tmLanguage") }),
-        "css": LanguageFile(fileExtensions: ["css"], grammar: { GrammarJsonLoader.shared.loadJson(fileName: "css.tmLanguage") }),
-        "htmlderiv": LanguageFile(fileExtensions: [], grammar: { GrammarJsonLoader.shared.loadJson(fileName: "html-derivative.tmLanguage") }),
-        "html": LanguageFile(fileExtensions: ["html"], grammar: { GrammarJsonLoader.shared.loadJson(fileName: "html.tmLanguage") }),
-        "javascript": LanguageFile(fileExtensions: ["js"], grammar: { GrammarJsonLoader.shared.loadJson(fileName: "JavaScript.tmLanguage") }),
-        "javascriptreact": LanguageFile(fileExtensions: [], grammar: { GrammarJsonLoader.shared.loadJson(fileName: "JavaScriptReact.tmLanguage") }),
-        "php": LanguageFile(fileExtensions: ["php"], grammar: { GrammarJsonLoader.shared.loadJson(fileName: "php.tmLanguage") }),
-        "ruby": LanguageFile(fileExtensions: ["ruby"], grammar: { GrammarJsonLoader.shared.loadJson(fileName: "ruby.tmLanguage") })
+        "swift": LanguageFile(fileExtensions: ["swift"], grammar: { GrammarJsonLoader.shared.loadBundledJson(fileName: "swift.tmLanguage") }),
+        "typescript": LanguageFile(fileExtensions: ["ts"], grammar: { GrammarJsonLoader.shared.loadBundledJson(fileName: "typeScript.tmLanguage") }),
+        "json": LanguageFile(fileExtensions: ["json"], grammar: { GrammarJsonLoader.shared.loadBundledJson(fileName: "JSON.tmLanguage") }),
+        "jsonc": LanguageFile(fileExtensions: ["jsonc"], grammar: { GrammarJsonLoader.shared.loadBundledJson(fileName: "JSONC.tmLanguage") }),
+        "docker": LanguageFile(fileExtensions: ["docker"], grammar: { GrammarJsonLoader.shared.loadBundledJson(fileName: "docker.tmLanguage") }),
+        "css": LanguageFile(fileExtensions: ["css"], grammar: { GrammarJsonLoader.shared.loadBundledJson(fileName: "css.tmLanguage") }),
+        "htmlderiv": LanguageFile(fileExtensions: [], grammar: { GrammarJsonLoader.shared.loadBundledJson(fileName: "html-derivative.tmLanguage") }),
+        "html": LanguageFile(fileExtensions: ["html"], grammar: { GrammarJsonLoader.shared.loadBundledJson(fileName: "html.tmLanguage") }),
+        "javascript": LanguageFile(fileExtensions: ["js"], grammar: { GrammarJsonLoader.shared.loadBundledJson(fileName: "JavaScript.tmLanguage") }),
+        "javascriptreact": LanguageFile(fileExtensions: [], grammar: { GrammarJsonLoader.shared.loadBundledJson(fileName: "JavaScriptReact.tmLanguage") }),
+        "php": LanguageFile(fileExtensions: ["php"], grammar: { GrammarJsonLoader.shared.loadBundledJson(fileName: "php.tmLanguage") }),
+        "ruby": LanguageFile(fileExtensions: ["ruby"], grammar: { GrammarJsonLoader.shared.loadBundledJson(fileName: "ruby.tmLanguage") })
         // swiftlint:enable line_length
     ]
 

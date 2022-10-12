@@ -198,8 +198,9 @@ public struct ThemePreferencesView: View {
                         Button {
                             guard let selectedTheme = themeModel.selectedTheme?.editor.highlightTheme else { return }
                             withAnimation {
-                                selectedTheme.settings.removeAll(where: { $0.scope.isEmpty }) // remove all empty scopes
-                                selectedTheme.settings.insert(ThemeSetting(scope: ""), at: 0) // insert at top
+                                // remove all empty scopes, insert new theme setting at the top
+                                selectedTheme.settings.removeAll(where: { $0.scopes.isEmpty })
+                                selectedTheme.settings.insert(ThemeSetting(scope: ""), at: 0)
                                 selectedTheme.root = HighlightTheme
                                     .createTrie(settings: selectedTheme.settings)
                                 themeModel.objectWillChange.send()

@@ -20,8 +20,8 @@ public class HighlightTheme: Codable {
 
     static func sortSettings(settings: [ThemeSetting]) -> [ThemeSetting] {
         return settings.sorted { (first, second) -> Bool in
-            if first.scopeComponents.count != second.scopeComponents.count {
-                return first.scopeComponents.count < second.scopeComponents.count
+            if first.scopes.count != second.scopes.count {
+                return first.scopes.count < second.scopes.count
             }
             return first.parentScopes.count < second.parentScopes.count
         }
@@ -41,7 +41,7 @@ public class HighlightTheme: Codable {
             return root
         }
 
-        if settings[0].scope.isEmpty {
+        if settings[0].scopes.isEmpty {
             root.attributes = settings.removeFirst().attributes.reduce([:], {
                 var res = $0
                 res[$1.key] = $1
@@ -70,21 +70,23 @@ public class HighlightTheme: Codable {
         var curr = root
         var prev: ThemeTrieElement?
         // TODO: Optimise to collapse
-        for comp in setting.scopeComponents {
-            if let child = curr.children[String(comp)] {
-                prev = curr
-                curr = child
-            } else {
-                let new = ThemeTrieElement(
-                    children: [:],
-                    attributes: [:],
-                    inSelectionAttributes: [:],
-                    outSelectionAttributes: [:],
-                    parentScopeElements: [:]
-                )
-                curr.children[String(comp)] = new
-                prev = curr
-                curr = new
+        for scope in setting.scopes {
+            for comp in scope.scopeComponents {
+                if let child = curr.children[String(comp)] {
+                    prev = curr
+                    curr = child
+                } else {
+                    let new = ThemeTrieElement(
+                        children: [:],
+                        attributes: [:],
+                        inSelectionAttributes: [:],
+                        outSelectionAttributes: [:],
+                        parentScopeElements: [:]
+                    )
+                    curr.children[String(comp)] = new
+                    prev = curr
+                    curr = new
+                }
             }
         }
         guard prev != nil else {
