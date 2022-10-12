@@ -27,13 +27,14 @@ struct QuickHelpInspector: View {
             if let currentToken = sharedObjects.currentToken,
                preferences.preferences.textEditing.showScopes {
                 VStack(alignment: .leading) {
-                    Text("Identity and Type")
+                    Text("Current Textmate Scope")
                         .foregroundColor(.primary)
                         .fontWeight(.bold)
                         .font(.system(size: 11))
                         .padding(.top, 2)
                     Text(currentToken.scopes.map({ $0.name.rawValue }).joined(separator: "\n"))
                         .font(.system(size: 11))
+                        .textSelection(.enabled)
                 }
                 Divider()
             } else {
