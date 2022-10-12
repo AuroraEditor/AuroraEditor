@@ -66,6 +66,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "Blackhole1123",
+      "name": "Rishaan Desai",
+      "avatar_url": "https://avatars.githubusercontent.com/u/77017806?v=4",
+      "profile": "http://rishaandesai.me",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -73,5 +82,6 @@
   "projectOwner": "AuroraEditor",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "angular"
 }
