@@ -9,6 +9,10 @@ import Foundation
 
 public struct ThemeSetting: Codable {
 
+    var isSource: Bool {
+        scopes.count == 1 && scopes.first! == "source"
+    }
+
     var scopes: [String]
     var parentScopes: [String]
 

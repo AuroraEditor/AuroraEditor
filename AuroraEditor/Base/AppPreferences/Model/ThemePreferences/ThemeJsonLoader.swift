@@ -71,15 +71,25 @@ class ThemeJsonLoader {
         let colors = (json["colors"] as? [String: String]) ?? [:]
         let settings = ((json["settings"] ?? json["tokenColors"]) as? [[String: Any]]) ?? []
 
+        // get the HighlightTheme and EditorColors
         let highlightTheme = highlightThemeFromVscJson(json: settings)
         let editor = editorFromVscJson(json: colors, highlightTheme: highlightTheme, type: type)
+        Log.info("Selection Color: \(editor.selection.color)")
 
-        if !highlightTheme.settings.contains(where: { $0.scopes.contains("source") }) {
-            Log.info("Theme does not contain a source")
+        // if the theme does not contain a source, add one
+        if !highlightTheme.settings.contains(where: { $0.isSource }) {
             highlightTheme.settings.append(ThemeSetting(scope: "source",
                                                         attributes: [ColorThemeAttribute(color: editor.text.nsColor)]))
-            highlightTheme.root = HighlightTheme.createTrie(settings: highlightTheme.settings)
         }
+        // add the default monospace font to the theme
+        // TODO: Allow custom fonts, font sizes, and font weights
+        if let sourceIndex = highlightTheme.settings.firstIndex(where: { $0.isSource }) {
+            var sourceSetting = highlightTheme.settings.remove(at: sourceIndex)
+            sourceSetting.attributes.append(FontThemeAttribute(font: .monospacedSystemFont(ofSize: 13,
+                                                                                           weight: .regular)))
+            highlightTheme.settings.append(sourceSetting)
+        }
+        highlightTheme.root = HighlightTheme.createTrie(settings: highlightTheme.settings)
 
         return AuroraTheme(editor: editor,
                            terminal: type == "light" ? .defaultLight : .defaultDark,
@@ -127,7 +137,7 @@ class ThemeJsonLoader {
         var themeSettings: [ThemeSetting] = []
         for colorSet in json {
             let scope = colorSet["scope"] as? String
-            let scopes = colorSet["scopes"] as? [String]
+            let scopes = colorSet["scope"] as? [String]
             guard let settings = colorSet["settings"] as? [String: String] else { continue }
 
             if let scope = scope {

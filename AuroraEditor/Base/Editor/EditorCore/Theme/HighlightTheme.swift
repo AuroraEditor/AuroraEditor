@@ -19,9 +19,19 @@ public class HighlightTheme: Codable {
     }
 
     static func sortSettings(settings: [ThemeSetting]) -> [ThemeSetting] {
-        return settings.sorted { (first, second) -> Bool in
-            if first.scopes.count != second.scopes.count {
-                return first.scopes.count < second.scopes.count
+        var expanded = [ThemeSetting]()
+        for setting in settings {
+            for scope in setting.scopes {
+                expanded.append(ThemeSetting(scope: scope,
+                                             parentScopes: setting.parentScopes,
+                                             attributes: setting.attributes,
+                                             inSelectionAttributes: setting.inSelectionAttributes,
+                                             outSelectionAttributes: setting.outSelectionAttributes))
+            }
+        }
+        return expanded.sorted { (first, second) -> Bool in
+            if first.scopes.first!.scopeComponents.count != second.scopes.first!.scopeComponents.count {
+                return first.scopes.first!.scopeComponents.count < second.scopes.first!.scopeComponents.count
             }
             return first.parentScopes.count < second.parentScopes.count
         }
@@ -41,7 +51,7 @@ public class HighlightTheme: Codable {
             return root
         }
 
-        if settings[0].scopes.isEmpty {
+        if settings[0].scopes.first?.isEmpty ?? true {
             root.attributes = settings.removeFirst().attributes.reduce([:], {
                 var res = $0
                 res[$1.key] = $1
@@ -70,23 +80,21 @@ public class HighlightTheme: Codable {
         var curr = root
         var prev: ThemeTrieElement?
         // TODO: Optimise to collapse
-        for scope in setting.scopes {
-            for comp in scope.scopeComponents {
-                if let child = curr.children[String(comp)] {
-                    prev = curr
-                    curr = child
-                } else {
-                    let new = ThemeTrieElement(
-                        children: [:],
-                        attributes: [:],
-                        inSelectionAttributes: [:],
-                        outSelectionAttributes: [:],
-                        parentScopeElements: [:]
-                    )
-                    curr.children[String(comp)] = new
-                    prev = curr
-                    curr = new
-                }
+        for comp in setting.scopes.first!.scopeComponents {
+            if let child = curr.children[String(comp)] {
+                prev = curr
+                curr = child
+            } else {
+                let new = ThemeTrieElement(
+                    children: [:],
+                    attributes: [:],
+                    inSelectionAttributes: [:],
+                    outSelectionAttributes: [:],
+                    parentScopeElements: [:]
+                )
+                curr.children[String(comp)] = new
+                prev = curr
+                curr = new
             }
         }
         guard prev != nil else {
