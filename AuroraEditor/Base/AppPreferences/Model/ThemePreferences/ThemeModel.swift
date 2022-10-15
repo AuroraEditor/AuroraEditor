@@ -37,7 +37,6 @@ public final class ThemeModel: ObservableObject {
         didSet {
             saveThemes()
             objectWillChange.send()
-            Log.info("\(themes.count) themes currently, \(String(describing: selectedTheme)) selected")
         }
     }
 
@@ -79,9 +78,7 @@ public final class ThemeModel: ObservableObject {
             // decode the json into ``Theme``
             let theme = try JSONDecoder().decode(AuroraTheme.self, from: json)
             return theme
-        } catch {
-            Log.info("Error fetching theme: \(error)")
-        }
+        } catch {}
         return nil
     }
 
@@ -115,7 +112,7 @@ public final class ThemeModel: ObservableObject {
         // load each theme from disk
         try content.forEach { file in
             let fileURL = url.appendingPathComponent(file)
-            if var theme = try load(from: fileURL) {
+            if var theme = try load(from: fileURL) ?? ThemeJsonLoader.shared.loadVscJson(from: fileURL) {
 
                 // get all properties of terminal and editor colors
                 guard let terminalColors = try theme.terminal.allProperties() as? [String: AuroraTheme.Attributes],
@@ -216,48 +213,50 @@ public final class ThemeModel: ObservableObject {
 
     /// Saves changes on theme properties to `overrides`
     /// in `~/Library/Application Support/com.auroraeditor/preferences.json`.
-    private func saveThemes() {
-        let url = themesURL
-        themes.forEach { theme in
-            do {
-                // load the original theme from `~/Library/Application Support/com.auroraeditor/Themes/`
-                let originalUrl = url.appendingPathComponent(theme.name).appendingPathExtension("json")
-                let originalData = try Data(contentsOf: originalUrl)
-                let originalTheme = try JSONDecoder().decode(AuroraTheme.self, from: originalData)
-
-                // get properties of the current theme as well as the original
-                guard let terminalColors = try theme.terminal.allProperties() as? [String: AuroraTheme.Attributes],
-                      let editorColors = try theme.editor.allProperties().filter({ $0.value is AuroraTheme.Attributes })
-                        as? [String: AuroraTheme.Attributes],
-                      let oTermColors = try originalTheme.terminal.allProperties() as? [String: AuroraTheme.Attributes],
-                      let oEditColors = try originalTheme.editor.allProperties()
-                        .filter({ $0.value is AuroraTheme.Attributes }) as? [String: AuroraTheme.Attributes]
-                else {
-                    throw NSError()
-                }
-
-                // compare the properties and if there are differences, save to overrides
-                // in `preferences.json
-                var newAttr: [String: [String: AuroraTheme.Attributes]] = ["terminal": [:], "editor": [:]]
-                terminalColors.forEach { (key, value) in
-                    if value != oTermColors[key] {
-                        newAttr["terminal"]?[key] = value
-                    }
-                }
-
-                editorColors.forEach { (key, value) in
-                    if value != oEditColors[key] {
-                        newAttr["editor"]?[key] = value
-                    }
-                }
-                DispatchQueue.main.async {
-                    AppPreferencesModel.shared.preferences.theme.overrides[theme.name] = newAttr
-                }
-
-            } catch {
-                Log.error(error)
-            }
-        }
+    private func saveThemes() { // TODO: Get this working with the new theme system
+//        let url = themesURL
+//        themes.forEach { theme in
+//            do {
+//                // load the original theme from `~/Library/Application Support/com.auroraeditor/Themes/`
+//                let originalUrl = url.appendingPathComponent(theme.name).appendingPathExtension("json")
+//                let originalData = try Data(contentsOf: originalUrl)
+//                let originalTheme = try JSONDecoder().decode(AuroraTheme.self, from: originalData)
+//
+//                // get properties of the current theme as well as the original
+//                guard let terminalColors = try theme.terminal.allProperties() as? [String: AuroraTheme.Attributes],
+//                      let editorColors = try theme.editor.allProperties()
+//                        .filter({ $0.value is AuroraTheme.Attributes })
+//                        as? [String: AuroraTheme.Attributes],
+//                      let oTermColors = try originalTheme.terminal.allProperties()
+//                        as? [String: AuroraTheme.Attributes],
+//                      let oEditColors = try originalTheme.editor.allProperties()
+//                        .filter({ $0.value is AuroraTheme.Attributes }) as? [String: AuroraTheme.Attributes]
+//                else {
+//                    throw NSError()
+//                }
+//
+//                // compare the properties and if there are differences, save to overrides
+//                // in `preferences.json
+//                var newAttr: [String: [String: AuroraTheme.Attributes]] = ["terminal": [:], "editor": [:]]
+//                terminalColors.forEach { (key, value) in
+//                    if value != oTermColors[key] {
+//                        newAttr["terminal"]?[key] = value
+//                    }
+//                }
+//
+//                editorColors.forEach { (key, value) in
+//                    if value != oEditColors[key] {
+//                        newAttr["editor"]?[key] = value
+//                    }
+//                }
+//                DispatchQueue.main.async {
+//                    AppPreferencesModel.shared.preferences.theme.overrides[theme.name] = newAttr
+//                }
+//
+//            } catch {
+//                Log.error(error)
+//            }
+//        }
     }
 
     /// Default instance of the `FileManager`

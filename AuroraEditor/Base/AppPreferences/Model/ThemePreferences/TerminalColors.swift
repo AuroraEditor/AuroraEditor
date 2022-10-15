@@ -162,5 +162,49 @@ public extension AuroraTheme {
             self.brightCyan = brightCyan
             self.brightWhite = brightWhite
         }
+
+        public static let defaultDark: TerminalColors = .init(text: Attributes(color: "#d9d9d9"),
+                                                              boldText: Attributes(color: "#d9d9d9"),
+                                                              cursor: Attributes(color: "#d9d9d9"),
+                                                              background: Attributes(color: "#1f2024"),
+                                                              selection: Attributes(color: "#515b70"),
+                                                              black: Attributes(color: "#1f2024"),
+                                                              red: Attributes(color: "#ff3b30"),
+                                                              green: Attributes(color: "#28cd41"),
+                                                              yellow: Attributes(color: "#ffcc00"),
+                                                              blue: Attributes(color: "#007aff"),
+                                                              magenta: Attributes(color: "#af52de"),
+                                                              cyan: Attributes(color: "#59adc4"),
+                                                              white: Attributes(color: "#d9d9d9"),
+                                                              brightBlack: Attributes(color: "#8e8e93"),
+                                                              brightRed: Attributes(color: "#ff3b30"),
+                                                              brightGreen: Attributes(color: "#28cd41"),
+                                                              brightYellow: Attributes(color: "#ffff00"),
+                                                              brightBlue: Attributes(color: "#007aff"),
+                                                              brightMagenta: Attributes(color: "#af52de"),
+                                                              brightCyan: Attributes(color: "#55bef0"),
+                                                              brightWhite: Attributes(color: "#ffffff"))
+
+        public static let defaultLight: TerminalColors = .init(text: Attributes(color: "#262626"),
+                                                               boldText: Attributes(color: "#262626"),
+                                                               cursor: Attributes(color: "#262626"),
+                                                               background: Attributes(color: "#ffffff"),
+                                                               selection: Attributes(color: "#a4cdff"),
+                                                               black: Attributes(color: "#1f2024"),
+                                                               red: Attributes(color: "#ff3b30"),
+                                                               green: Attributes(color: "#28cd41"),
+                                                               yellow: Attributes(color: "#ffcc00"),
+                                                               blue: Attributes(color: "#007aff"),
+                                                               magenta: Attributes(color: "#af52de"),
+                                                               cyan: Attributes(color: "#59adc4"),
+                                                               white: Attributes(color: "#d9d9d9"),
+                                                               brightBlack: Attributes(color: "#8e8e93"),
+                                                               brightRed: Attributes(color: "#ff3b30"),
+                                                               brightGreen: Attributes(color: "#28cd41"),
+                                                               brightYellow: Attributes(color: "#ffcc00"),
+                                                               brightBlue: Attributes(color: "#007aff"),
+                                                               brightMagenta: Attributes(color: "#af52de"),
+                                                               brightCyan: Attributes(color: "#55bef0"),
+                                                               brightWhite: Attributes(color: "#ffffff"))
     }
 }
