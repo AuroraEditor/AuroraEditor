@@ -144,6 +144,7 @@ extension CodeEditor: NSViewRepresentable {
         }
 
         private func getScopesAtCursor(txt: NSAttributedString, pos: Int) -> Token? {
+            guard pos < txt.length else { return nil }
             let attributes = txt.attributes(at: pos, effectiveRange: nil)
             let token = attributes[.token] as? Token
             return token
