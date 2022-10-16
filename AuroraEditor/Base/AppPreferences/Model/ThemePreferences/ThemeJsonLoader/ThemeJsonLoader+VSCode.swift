@@ -1,39 +1,14 @@
 //
-//  ThemeJsonLoader.swift
+//  ThemeJsonLoader+VSCode.swift
 //  AuroraEditor
 //
-//  Created by TAY KAI QUAN on 12/10/22.
+//  Created by TAY KAI QUAN on 16/10/22.
 //  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import SwiftUI
 
-// Useful reference for vscode themes: https://code.visualstudio.com/api/references/theme-color
-
-class ThemeJsonLoader {
-
-    static let shared: ThemeJsonLoader = .init()
-
-    private init() {} // prevent ThemeJsonLoader from being created anywhere else
-
-    /// Function that, taking in a filename for a bundled tmlanguage JSON file, returns a ``AuroraTheme`` from
-    /// its contents
-    /// - Parameter fileName: The name of the JSON file, not including the `.json` at the end
-    /// - Returns: A ``AuroraTheme`` representing the contents of the JSON, or nil if the given json is invalid.
-    public func loadBundledJson(fileName: String) -> AuroraTheme? { // TODO: Depreciate this and use loadJson:from:
-        if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
-            let url = URL(fileURLWithPath: path)
-            do {
-                let data = try Data(contentsOf: url)
-                return themeFromVscJson(jsonStr: String(decoding: data, as: UTF8.self))
-            } catch {
-                Log.info(String(describing: error))
-            }
-        } else {
-            Log.info("Json not found")
-        }
-        return nil
-    }
+extension ThemeJsonLoader {
 
     /// Function that, taking in a URL for a vscode theme JSON file,
     /// returns an ``AuroraTheme`` from its contents
@@ -116,7 +91,7 @@ class ThemeJsonLoader {
         Log.info("Selection: \(selection)")
 
         let defaultAttr = type == "light" ? AuroraTheme.EditorColors.defaultLight :
-                                                  AuroraTheme.EditorColors.defaultDark
+        AuroraTheme.EditorColors.defaultDark
 
         return AuroraTheme.EditorColors(text: text != nil ? Attributes(color: text!) :
                                             defaultAttr.text,
@@ -163,5 +138,3 @@ class ThemeJsonLoader {
         return attributes
     }
 }
-
-private typealias Attributes = AuroraTheme.Attributes

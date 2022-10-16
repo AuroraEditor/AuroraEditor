@@ -465,6 +465,8 @@
 		93813D2B28D74B6400A492D4 /* CodeView+Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D2A28D74B6400A492D4 /* CodeView+Messages.swift */; };
 		93813D2E28D74BB900A492D4 /* CodeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D2D28D74BB900A492D4 /* CodeContainer.swift */; };
 		93813D3528D74E5400A492D4 /* CodeStorageDelegate+Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D3428D74E5400A492D4 /* CodeStorageDelegate+Messages.swift */; };
+		9384904428FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9384904328FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift */; };
+		9384904628FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9384904528FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift */; };
 		93983D2D28CE012500E54409 /* NavigatorModeSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93983D2C28CE012500E54409 /* NavigatorModeSelectModel.swift */; };
 		939C109528AE7D0700403A97 /* RepositoryContainers&Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */; };
 		939C2CC6289E345900BBB345 /* FileItemFileSystemFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */; };
@@ -1006,6 +1008,8 @@
 		93813D2A28D74B6400A492D4 /* CodeView+Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeView+Messages.swift"; sourceTree = "<group>"; };
 		93813D2D28D74BB900A492D4 /* CodeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeContainer.swift; sourceTree = "<group>"; };
 		93813D3428D74E5400A492D4 /* CodeStorageDelegate+Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeStorageDelegate+Messages.swift"; sourceTree = "<group>"; };
+		9384904328FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThemeJsonLoader+VSCode.swift"; sourceTree = "<group>"; };
+		9384904528FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThemeJsonLoader+TextMate.swift"; sourceTree = "<group>"; };
 		93983D2C28CE012500E54409 /* NavigatorModeSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorModeSelectModel.swift; sourceTree = "<group>"; };
 		939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoryContainers&Items.swift"; sourceTree = "<group>"; };
 		939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileItemFileSystemFunctions.swift; sourceTree = "<group>"; };
@@ -1830,8 +1834,8 @@
 		20D837E1289A7ACD00D91D05 /* ThemePreferences */ = {
 			isa = PBXGroup;
 			children = (
+				9384904228FB9C69006FB263 /* ThemeJsonLoader */,
 				20D837E2289A7ACD00D91D05 /* ThemeModel.swift */,
-				93CAE19728F6F11200454C6F /* ThemeJsonLoader.swift */,
 				20D837E4289A7ACD00D91D05 /* AuroraTheme.swift */,
 				9362B21328EC730D00523626 /* EditorColors.swift */,
 				9362B21528EC734200523626 /* TerminalColors.swift */,
@@ -2967,6 +2971,16 @@
 			path = Storage;
 			sourceTree = "<group>";
 		};
+		9384904228FB9C69006FB263 /* ThemeJsonLoader */ = {
+			isa = PBXGroup;
+			children = (
+				93CAE19728F6F11200454C6F /* ThemeJsonLoader.swift */,
+				9384904328FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift */,
+				9384904528FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift */,
+			);
+			path = ThemeJsonLoader;
+			sourceTree = "<group>";
+		};
 		93983D2E28CE053800E54409 /* HierarchyNavigator */ = {
 			isa = PBXGroup;
 			children = (
@@ -3488,6 +3502,7 @@
 				2093CCA0289AA00B003A88DD /* WelcomeWindowView.swift in Sources */,
 				2093CD21289AA084003A88DD /* GithubUserRouter.swift in Sources */,
 				9352467C28CB2EB700E38DAD /* ProjectNavigatorOutlineDataSource.swift in Sources */,
+				9384904428FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift in Sources */,
 				D7E201AE27E8B3C000CB86D0 /* String+Ranges.swift in Sources */,
 				20EBB50F280C389300F3A5DA /* FileInspectorModel.swift in Sources */,
 				2093CC9A289A9FFD003A88DD /* StatusBarMaximizeButton.swift in Sources */,
@@ -3649,6 +3664,7 @@
 				93EF416728C1F828004083AD /* WorkspaceDocument+Commands.swift in Sources */,
 				2093CD6F289AA0FC003A88DD /* SettingsTextEditor.swift in Sources */,
 				2093CDA0289AA163003A88DD /* ThemePreferences.swift in Sources */,
+				9384904628FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift in Sources */,
 				2072FA1A280D872600C7F8D4 /* LineEndings.swift in Sources */,
 				20BE728B28D0854900EEDE5F /* Workflow.swift in Sources */,
 				9354D4B928ACEE20004C6D18 /* RepositoriesMenu.swift in Sources */,
