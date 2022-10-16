@@ -31,7 +31,7 @@ extension ThemeJsonLoader {
         guard let jsonData = jsonStr.data(using: .utf8),
               let json = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any]
         else {
-            Log.info("Failed to load json")
+            Log.info("Failed to load vsc json")
             return nil
         }
 
@@ -47,7 +47,7 @@ extension ThemeJsonLoader {
         let settings = ((json["settings"] ?? json["tokenColors"]) as? [[String: Any]]) ?? []
 
         // get the HighlightTheme and EditorColors
-        let highlightTheme = highlightThemeFromVscJson(json: settings)
+        let highlightTheme = highlightThemeFromJson(json: settings)
         let editor = editorFromVscJson(json: colors, highlightTheme: highlightTheme, type: type)
         Log.info("Selection Color: \(editor.selection.color)")
 
@@ -66,6 +66,10 @@ extension ThemeJsonLoader {
         }
         highlightTheme.root = HighlightTheme.createTrie(settings: highlightTheme.settings)
 
+        var appearance = AuroraTheme.ThemeType.universal
+        if type == "light" { appearance = .light }
+        if type == "dark" { appearance = .dark }
+
         return AuroraTheme(editor: editor,
                            terminal: type == "light" ? .defaultLight : .defaultDark,
                            author: "Imported via VSCode Theme",
@@ -74,7 +78,7 @@ extension ThemeJsonLoader {
                            distributionURL: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
                            name: name ?? "Untitled Theme",
                            displayName: name ?? "Untitled Theme",
-                           appearance: type == "light" ? .light : .dark,
+                           appearance: appearance,
                            version: "unknown")
     }
 
@@ -106,35 +110,5 @@ extension ThemeJsonLoader {
                                         selection: selection != nil ? Attributes(color: selection!) :
                                             defaultAttr.selection,
                                         highlightTheme: highlightTheme)
-    }
-
-    func highlightThemeFromVscJson(json: [[String: Any]]) -> HighlightTheme {
-        var themeSettings: [ThemeSetting] = []
-        for colorSet in json {
-            let scope = colorSet["scope"] as? String
-            let scopes = colorSet["scope"] as? [String]
-            guard let settings = colorSet["settings"] as? [String: String] else { continue }
-
-            if let scope = scope {
-                themeSettings.append(ThemeSetting(scope: scope, attributes: attributesFromVscJson(json: settings)))
-            } else if let scopes = scopes {
-                themeSettings.append(ThemeSetting(scopes: scopes, attributes: attributesFromVscJson(json: settings)))
-            } else {
-                themeSettings.append(ThemeSetting(scope: "source", attributes: attributesFromVscJson(json: settings)))
-            }
-        }
-        return HighlightTheme(settings: themeSettings)
-    }
-
-    func attributesFromVscJson(json: [String: String]) -> [ThemeAttribute] {
-        var attributes: [ThemeAttribute] = []
-        for (item, detail) in json {
-            if item == "foreground" {
-                attributes.append(ColorThemeAttribute(color: NSColor(hex: detail)))
-            } else if item == "fontStyle" {
-                // TODO: Get font style working
-            }
-        }
-        return attributes
     }
 }

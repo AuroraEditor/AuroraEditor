@@ -65,7 +65,8 @@ public struct ThemePreferencesView: View {
             PreferencesToolbar {
                 let options = [
                     "Dark Mode",
-                    "Light Mode"
+                    "Light Mode",
+                    "Universal"
                 ]
                 SegmentedControl($themeModel.selectedAppearance, options: options)
             }
@@ -83,7 +84,10 @@ public struct ThemePreferencesView: View {
 
     private var sidebarListView: some View {
         List(selection: $themeModel.selectedTheme) {
-            ForEach(themeModel.selectedAppearance == 0 ? themeModel.darkThemes : themeModel.lightThemes) { theme in
+            // 0: Dark
+            // 1: Light
+            // 2: Universal
+            ForEach(themeModel.selectedAppearance == 0 ? themeModel.darkThemes : themeModel.universalThemes) { theme in
                 Button(theme.displayName) { themeModel.selectedTheme = theme }
                     .buttonStyle(.plain)
                     .tag(theme)
@@ -110,11 +114,18 @@ public struct ThemePreferencesView: View {
             LazyVGrid(columns: grid,
                       alignment: .center,
                       spacing: 20) {
-                ForEach(themeModel.selectedAppearance == 0 ? themeModel.darkThemes : themeModel.lightThemes) { theme in
+                ForEach(themeModel.selectedAppearance == 0 ? themeModel.darkThemes :
+                            (themeModel.selectedAppearance == 1 ? themeModel.lightThemes :
+                                themeModel.universalThemes)) { theme in
                     ThemePreviewIcon(
                         theme,
                         selection: $themeModel.selectedTheme,
-                        colorScheme: themeModel.selectedAppearance == 0 ? .dark : .light
+                        // 0: dark
+                        // 1: light
+                        // 2: depends on if the user is in light/dark mode
+                        colorScheme: themeModel.selectedAppearance == 0 ? .dark :
+                            (themeModel.selectedAppearance == 1 ? .light :
+                            (UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark" ? .dark : .light))
                     )
                     .transition(.opacity)
                     .contextMenu {

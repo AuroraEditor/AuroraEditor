@@ -342,7 +342,7 @@
 		286471AB27ED51FD0039369D /* ProjectNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286471AA27ED51FD0039369D /* ProjectNavigator.swift */; };
 		28A51001281673530087B0CC /* auroraeditor-xcode-dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 28A50FFF281673530087B0CC /* auroraeditor-xcode-dark.json */; };
 		28A51002281673530087B0CC /* auroraeditor-xcode-light.json in Resources */ = {isa = PBXBuildFile; fileRef = 28A51000281673530087B0CC /* auroraeditor-xcode-light.json */; };
-		28A51005281701B40087B0CC /* auroraeditor-github-light.json in Resources */ = {isa = PBXBuildFile; fileRef = 28A51003281701B40087B0CC /* auroraeditor-github-light.json */; };
+		28A51005281701B40087B0CC /* creeper.tmTheme in Resources */ = {isa = PBXBuildFile; fileRef = 28A51003281701B40087B0CC /* creeper.tmTheme */; };
 		28A51006281701B40087B0CC /* auroraeditor-github-dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 28A51004281701B40087B0CC /* auroraeditor-github-dark.json */; };
 		28B0A19827E385C300B73177 /* NavigatorSidebarToolbarTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B0A19727E385C300B73177 /* NavigatorSidebarToolbarTop.swift */; };
 		28B8F884280FFE4600596236 /* NSTableView+Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B8F883280FFE4600596236 /* NSTableView+Background.swift */; };
@@ -467,6 +467,7 @@
 		93813D3528D74E5400A492D4 /* CodeStorageDelegate+Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D3428D74E5400A492D4 /* CodeStorageDelegate+Messages.swift */; };
 		9384904428FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9384904328FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift */; };
 		9384904628FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9384904528FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift */; };
+		9384904828FBA5E2006FB263 /* auroraeditor-github-light.json in Resources */ = {isa = PBXBuildFile; fileRef = 9384904728FBA5E2006FB263 /* auroraeditor-github-light.json */; };
 		93983D2D28CE012500E54409 /* NavigatorModeSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93983D2C28CE012500E54409 /* NavigatorModeSelectModel.swift */; };
 		939C109528AE7D0700403A97 /* RepositoryContainers&Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */; };
 		939C2CC6289E345900BBB345 /* FileItemFileSystemFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */; };
@@ -883,7 +884,7 @@
 		287776EE27E3515300D46668 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		28A50FFF281673530087B0CC /* auroraeditor-xcode-dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "auroraeditor-xcode-dark.json"; sourceTree = "<group>"; };
 		28A51000281673530087B0CC /* auroraeditor-xcode-light.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "auroraeditor-xcode-light.json"; sourceTree = "<group>"; };
-		28A51003281701B40087B0CC /* auroraeditor-github-light.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "auroraeditor-github-light.json"; sourceTree = "<group>"; };
+		28A51003281701B40087B0CC /* creeper.tmTheme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = creeper.tmTheme; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
 		28A51004281701B40087B0CC /* auroraeditor-github-dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "auroraeditor-github-dark.json"; sourceTree = "<group>"; };
 		28B0A19727E385C300B73177 /* NavigatorSidebarToolbarTop.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = NavigatorSidebarToolbarTop.swift; sourceTree = "<group>"; tabWidth = 4; };
 		28B8F883280FFE4600596236 /* NSTableView+Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTableView+Background.swift"; sourceTree = "<group>"; };
@@ -1010,6 +1011,7 @@
 		93813D3428D74E5400A492D4 /* CodeStorageDelegate+Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeStorageDelegate+Messages.swift"; sourceTree = "<group>"; };
 		9384904328FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThemeJsonLoader+VSCode.swift"; sourceTree = "<group>"; };
 		9384904528FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThemeJsonLoader+TextMate.swift"; sourceTree = "<group>"; };
+		9384904728FBA5E2006FB263 /* auroraeditor-github-light.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "auroraeditor-github-light.json"; sourceTree = "<group>"; };
 		93983D2C28CE012500E54409 /* NavigatorModeSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorModeSelectModel.swift; sourceTree = "<group>"; };
 		939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoryContainers&Items.swift"; sourceTree = "<group>"; };
 		939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileItemFileSystemFunctions.swift; sourceTree = "<group>"; };
@@ -2723,7 +2725,8 @@
 				28A50FFF281673530087B0CC /* auroraeditor-xcode-dark.json */,
 				28A51000281673530087B0CC /* auroraeditor-xcode-light.json */,
 				28A51004281701B40087B0CC /* auroraeditor-github-dark.json */,
-				28A51003281701B40087B0CC /* auroraeditor-github-light.json */,
+				9384904728FBA5E2006FB263 /* auroraeditor-github-light.json */,
+				28A51003281701B40087B0CC /* creeper.tmTheme */,
 			);
 			path = DefaultThemes;
 			sourceTree = "<group>";
@@ -3306,13 +3309,14 @@
 				2029DA8728E2FCEC00D68786 /* swift.tmLanguage.json in Resources */,
 				2B5B25552885D9C3009C7384 /* .gitignore in Resources */,
 				209DAF2328E647BE00E31109 /* typeScript.tmLanguage.json in Resources */,
-				28A51005281701B40087B0CC /* auroraeditor-github-light.json in Resources */,
+				28A51005281701B40087B0CC /* creeper.tmTheme in Resources */,
 				209DAF2928E6498C00E31109 /* docker.tmLanguage.json in Resources */,
 				209DAF2528E648A700E31109 /* JSON.tmLanguage.json in Resources */,
 				D7211D4727E06BFE008F2ED7 /* Localizable.strings in Resources */,
 				28A51001281673530087B0CC /* auroraeditor-xcode-dark.json in Resources */,
 				B658FB3427DA9E1000EA4DBD /* Assets.xcassets in Resources */,
 				2093CD93289AA137003A88DD /* codeedit in Resources */,
+				9384904828FBA5E2006FB263 /* auroraeditor-github-light.json in Resources */,
 				209DAF3728E64AE800E31109 /* ruby.tmLanguage.json in Resources */,
 				209DAF2D28E649D400E31109 /* html-derivative.tmLanguage.json in Resources */,
 				209D024B289ABC340082441F /* Package.resolved in Resources */,

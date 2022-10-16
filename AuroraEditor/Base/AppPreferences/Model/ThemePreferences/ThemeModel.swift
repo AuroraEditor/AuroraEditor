@@ -22,7 +22,11 @@ public final class ThemeModel: ObservableObject {
     /// - **0**: dark mode themes
     /// - **1**: light mode themes
     @Published
-    var selectedAppearance: Int = 0
+    var selectedAppearance: Int = 0 {
+        didSet {
+            Log.info("Selected appearance: \(selectedAppearance)")
+        }
+    }
 
     /// The selected tab in the main section.
     /// - **0**: Preview
@@ -52,12 +56,20 @@ public final class ThemeModel: ObservableObject {
 
     /// Only themes where ``Theme/appearance`` == ``Theme/ThemeType/dark``
     public var darkThemes: [AuroraTheme] {
-        themes.filter { $0.appearance == .dark }
+        Log.info("Dark themes requested")
+        return themes.filter { $0.appearance == .dark }
     }
 
     /// Only themes where ``Theme/appearance`` == ``Theme/ThemeType/light``
     public var lightThemes: [AuroraTheme] {
-        themes.filter { $0.appearance == .light }
+        Log.info("Light themes requested")
+        return themes.filter { $0.appearance == .light }
+    }
+
+    /// Only themes where ``Theme/appearance`` == ``Theme/ThemeType/universal``
+    public var universalThemes: [AuroraTheme] {
+        Log.info("Universal themes requested")
+        return themes.filter { $0.appearance == .universal }
     }
 
     private init() {
@@ -105,14 +117,18 @@ public final class ThemeModel: ObservableObject {
 
         try loadBundledThemes()
 
-        // get all filenames in themes folder that end with `.json`
-        let content = try filemanager.contentsOfDirectory(atPath: url.path).filter { $0.contains(".json") }
+        // get all filenames in themes folder that end with `.json` or ".tmTheme"
+        let content = try filemanager.contentsOfDirectory(atPath: url.path)
+            .filter { $0.hasSuffix(".json") || $0.hasSuffix(".tmTheme") }
 
         let prefs = AppPreferencesModel.shared.preferences
         // load each theme from disk
         try content.forEach { file in
             let fileURL = url.appendingPathComponent(file)
-            if var theme = try load(from: fileURL) ?? ThemeJsonLoader.shared.loadVscJson(from: fileURL) {
+            Log.info("Loading \(fileURL)")
+            if var theme = try load(from: fileURL) ??
+                               ThemeJsonLoader.shared.loadVscJson(from: fileURL) ??
+                               ThemeJsonLoader.shared.loadTmThemeXml(from: fileURL) {
 
                 // get all properties of terminal and editor colors
                 guard let terminalColors = try theme.terminal.allProperties() as? [String: AuroraTheme.Attributes],
@@ -150,22 +166,28 @@ public final class ThemeModel: ObservableObject {
 
     private func loadBundledThemes() throws {
         let bundledThemeNames: [String] = [
-            "auroraeditor-xcode-dark",
-            "auroraeditor-xcode-light",
-            "auroraeditor-github-dark",
-            "auroraeditor-github-light"
+            "auroraeditor-xcode-dark.json",
+            "auroraeditor-xcode-light.json",
+            "auroraeditor-github-dark.json",
+            "auroraeditor-github-light.json",
+            "creeper.tmTheme"
         ]
         for themeName in bundledThemeNames {
-            guard let defaultUrl = Bundle.main.url(forResource: themeName, withExtension: "json") else {
-                return
+            guard let fileName = themeName.components(separatedBy: ".").first,
+                  let fileExtension = themeName.components(separatedBy: ".").last,
+                  let defaultUrl = Bundle.main.url(forResource: fileName, withExtension: fileExtension)
+            else { continue }
+            do {
+                // NOTE: This WILL fail if the theme already exists. This is intentional behaviour,
+                // and prevents theme overriding.
+                try filemanager.copyItem(at: defaultUrl,
+                                         to: themesURL.appendingPathComponent(themeName))
+            } catch {
+                if !error.localizedDescription.contains("because an item with the same name already exists.") {
+                    Log.error(error)
+                    throw error
+                }
             }
-            let json = try Data(contentsOf: defaultUrl)
-            let jsonObject = try JSONSerialization.jsonObject(with: json)
-            let prettyJSON = try JSONSerialization.data(withJSONObject: jsonObject,
-                                                        options: .prettyPrinted)
-
-            // TODO: Only run this once on app install
-            try prettyJSON.write(to: themesURL.appendingPathComponent("\(themeName).json"), options: .atomic)
         }
     }
 
