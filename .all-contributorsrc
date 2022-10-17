@@ -66,6 +66,33 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "Blackhole1123",
+      "name": "Rishaan Desai",
+      "avatar_url": "https://avatars.githubusercontent.com/u/77017806?v=4",
+      "profile": "http://rishaandesai.me",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "code-reaper08",
+      "name": "Vishwa.R",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64256342?v=4",
+      "profile": "http://cr08.netlify.app",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "Lakhwinderr",
+      "name": "Lakhwinder Singh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39651639?v=4",
+      "profile": "https://github.com/Lakhwinderr",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -73,5 +100,6 @@
   "projectOwner": "AuroraEditor",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "angular"
 }
