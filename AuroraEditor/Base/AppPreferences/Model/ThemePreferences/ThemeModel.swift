@@ -80,20 +80,6 @@ public final class ThemeModel: ObservableObject {
         }
     }
 
-    /// Loads a theme from a given url and appends it to ``themes``.
-    /// - Parameter url: The URL of the theme
-    /// - Returns: A ``Theme``
-    private func load(from url: URL) throws -> AuroraTheme? {
-        do {
-            // get the data from the provided file
-            let json = try Data(contentsOf: url)
-            // decode the json into ``Theme``
-            let theme = try JSONDecoder().decode(AuroraTheme.self, from: json)
-            return theme
-        } catch {}
-        return nil
-    }
-
     /// Loads all available themes from `~/Library/Application Support/com.auroraeditor/Themes/`
     ///
     /// If no themes are available, it will create a default theme and save
@@ -126,9 +112,9 @@ public final class ThemeModel: ObservableObject {
         try content.forEach { file in
             let fileURL = url.appendingPathComponent(file)
             Log.info("Loading \(fileURL)")
-            if var theme = try load(from: fileURL) ??
-                               ThemeJsonLoader.shared.loadVscJson(from: fileURL) ??
-                               ThemeJsonLoader.shared.loadTmThemeXml(from: fileURL) {
+            if var theme = ThemeJsonLoader.shared.loadOldAEThemeJson(from: fileURL) ??
+                           ThemeJsonLoader.shared.loadVscJson(from: fileURL) ??
+                           ThemeJsonLoader.shared.loadTmThemeXml(from: fileURL) {
 
                 // get all properties of terminal and editor colors
                 guard let terminalColors = try theme.terminal.allProperties() as? [String: AuroraTheme.Attributes],
