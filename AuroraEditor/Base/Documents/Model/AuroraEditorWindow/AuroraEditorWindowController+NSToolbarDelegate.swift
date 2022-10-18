@@ -174,6 +174,15 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
     @objc func toggleLastPanel() {
         guard let lastSplitView = splitViewController.splitViewItems.last else { return }
         lastSplitView.animator().isCollapsed.toggle()
+        for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
+            Log.info(id, "didToggleInspectorPane()")
+            AEExt.respond(
+                action: "didToggleInspectorPane",
+                parameters: [
+                    "opened": !lastSplitView.animator().isCollapsed
+                ])
+        }
+
         if prefs.preferences.general.keepInspectorSidebarOpen {
             window?.toolbar?.insertItem(
                 withItemIdentifier: NSToolbarItem.Identifier.itemListTrackingSeparator,
