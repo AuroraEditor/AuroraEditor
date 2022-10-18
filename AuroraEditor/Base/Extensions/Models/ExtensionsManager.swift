@@ -68,6 +68,8 @@ public final class ExtensionsManager {
                     Log.info("Registered \(file)")
                 } else {
                     Log.warning("Failed to init() \(file)")
+                    Log.error("\(file) is compiled for a different version of AuroraEditor.\n" +
+                              "Please unload this plugin, or update it")
                 }
             }
         } catch {

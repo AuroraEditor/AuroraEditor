@@ -168,8 +168,15 @@ public class Log {
         message.append("\r\n\r\n")
 
         for item in items {
-            message.append("\(item)")
-            message.append("\r\n")
+            if let sArr = item as? [String] {
+                for sItem in sArr {
+                    message.append(sItem)
+                    message.append("\r\n")
+                }
+            } else {
+                message.append("\(item)")
+                message.append("\r\n")
+            }
         }
 
         DispatchQueue.main.async {

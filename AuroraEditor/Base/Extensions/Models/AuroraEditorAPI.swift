@@ -20,6 +20,4 @@ final class AuroraEditorAPI: ExtensionAPI {
          self.extensionId = extensionId
          self.workspace = workspace
      }
-
-     lazy var targets: TargetsAPI = AuroraEditorTargetsAPI(workspace)
  }
