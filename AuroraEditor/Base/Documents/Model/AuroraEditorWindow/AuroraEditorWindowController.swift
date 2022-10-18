@@ -84,6 +84,12 @@ final class AuroraEditorWindowController: NSWindowController {
             fatalError("Cannot get file")
         }
 
+        for (id, AEExt) in ExtensionsManager.shared.loadedExtensions
+        where AEExt.supports(function: "didSave") {
+            Log.info(id, "didSave()")
+            AEExt.didSave(file: file.fileURL?.relativeString ?? "Unknown")
+        }
+
 //        file.save(sender)
         file.saveFileDocument()
 
