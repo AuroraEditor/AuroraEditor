@@ -10,152 +10,202 @@ import Foundation
 /// A collection of file types and their associated extensions,
 ///  which can be selected in the inspector to override default values
 final class FileTypeList {
+    var languageTypeAuroraEditor = [
+        LanguageType(name: "Aurora Editor Project", ext: "aeproj")
+    ]
 
     var languageTypeObjCList = [
-        LanguageType(name: "Objective-C Preprocessed Source", id: "obj_c_pre_source"),
-        LanguageType(name: "Objective-C Source", id: "m"),
-        LanguageType(name: "Objective-C++ Preprocessed Source", id: "obj_c_++_pre_source"),
-        LanguageType(name: "Objective-C++ Source", id: "m")
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Objective-C(++) Preprocessed Source", ext: "?opc"),
+        LanguageType(name: "Objective-C(++) Source", ext: "m")
     ]
 
     var sourcecodeCList = [
-        LanguageType(name: "C Header", id: "h"),
-        LanguageType(name: "C Preprocessed Source", id: "obj_c_source"),
-        LanguageType(name: "C Source", id: "c")
+        LanguageType(name: "C Header", ext: "h"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "C Preprocessed Source", ext: "?cps"),
+        LanguageType(name: "C Source", ext: "c")
     ]
 
     var sourcecodeCPlusList = [
-        LanguageType(name: "C++ Header", id: "hh"),
-        LanguageType(name: "C++ Preprocessed Source", id: "i"),
-        LanguageType(name: "C++ Source", id: "cpp")]
+        LanguageType(name: "C++ Header", ext: "hpp"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "C++ Preprocessed Source", ext: "?cppps"),
+        LanguageType(name: "C++ Source", ext: "cpp")
+    ]
 
-    var sourcecodeSwiftList = [LanguageType(name: "Swift Source", id: "swift")
+    var sourcecodeSwiftList = [
+        LanguageType(name: "Swift Source", ext: "swift")
     ]
 
     var sourcecodeAssemblyList = [
-        LanguageType(name: "Assembly", id: "asm"),
-        LanguageType(name: "LLVM Assembly", id: "obj_c_source"),
-        LanguageType(name: "NASM Assembly", id: "obj_c_++_pre_source"),
-        LanguageType(name: "PPC Assembly", id: "obj_c_++_source")
+        LanguageType(name: "Assembly", ext: "asm"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "LLVM Assembly", ext: "?llvm"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "NASM Assembly", ext: "?nasm"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "PPC Assembly", ext: "?ppc")
     ]
 
     var sourcecodeScriptList = [
-        LanguageType(name: "AppleScript Uncompiled Source", id: "obj_c_pre_source"),
-        LanguageType(name: "JavaScript Source", id: "js"),
-        LanguageType(name: "PHP Script", id: "php"),
-        LanguageType(name: "Perl Script", id: "pl"),
-        LanguageType(name: "Python Script", id: "py"),
-        LanguageType(name: "Ruby Script", id: "rb")]
+        LanguageType(name: "AppleScript Uncompiled Source", ext: "?ASUS"),
+        LanguageType(name: "JavaScript Source", ext: "js"),
+        LanguageType(name: "PHP Script", ext: "php"),
+        LanguageType(name: "Perl Script", ext: "pl"),
+        LanguageType(name: "Python Script", ext: "py"),
+        LanguageType(name: "Ruby Script", ext: "rb")
+    ]
 
-    var sourcecodeVariousList = [LanguageType(name: "Ada Source", id: "obj_c_pre_source"),
-                                 LanguageType(name: "CLIPS Source", id: "obj_c_source"),
-                                 LanguageType(name: "DTrace Source", id: "obj_c_++_pre_source"),
-                                 LanguageType(name: "Fortran 77 Source", id: "obj_c_++_source"),
-                                 LanguageType(name: "Fortran 90 Source", id: "obj_c_++_source"),
-                                 LanguageType(name: "Fortran Source", id: "obj_c_++_source"),
-                                 LanguageType(name: "lig Source", id: "obj_c_++_source"),
-                                 LanguageType(name: "JAM Source", id: "obj_c_++_source"),
-                                 LanguageType(name: "Java Source", id: "obj_c_++_source"),
-                                 LanguageType(name: "Lex Source", id: "obj_c_++_source"),
-                                 LanguageType(name: "Metal Shader Source", id: "obj_c_++_source"),
-                                 LanguageType(name: "MiG Source", id: "obj_c_++_source"),
-                                 LanguageType(name: "OpenCL Source", id: "obj_c_++_source"),
-                                 LanguageType(name: "OpenGL Shading Language Source", id: "obj_c_++_source"),
-                                 LanguageType(name: "Pascal Source", id: "obj_c_++_source"),
-                                 LanguageType(name: "Rez Source", id: "obj_c_++_source"),
-                                 LanguageType(name: "Yacc Source", id: "obj_c_++_source")
+    var sourcecodeVariousList = [
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Ada Source", ext: "?ada"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "CLIPS Source", ext: "?clips"),
+        LanguageType(name: "DTrace Source", ext: "dtrace"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Fortran 77 Source", ext: "?f77"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Fortran 90 Source", ext: "?f90"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Fortran Source", ext: "?f"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "lig Source", ext: "?lig"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "JAM Source", ext: "?jam"),
+        LanguageType(name: "Java Source", ext: "java"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Lex Source", ext: "?lex"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Metal Shader Source", ext: "?mss"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "MiG Source", ext: "?mig"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "OpenCL Source", ext: "?opencl"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "OpenGL Shading Language Source", ext: "opengl"),
+        LanguageType(name: "Pascal Source", ext: "pas"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Rez Source", ext: "?rez"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Yacc Source", ext: "?yazz ")
     ]
 
     var propertyList = [
-        LanguageType(name: "Info plist XML", id: "info-xml"),
-        LanguageType(name: "Property List Binary", id: "prp_bin"),
-        LanguageType(name: "Property List Text", id: "prp_txt"),
-        LanguageType(name: "Property List XML", id: "prp_xml"),
-        LanguageType(name: "XML", id: "xml")
+        LanguageType(name: "Property List Binary", ext: "bplist"),
+        LanguageType(name: "Property List Text", ext: "?pplist"),
+        LanguageType(name: "Property List XML", ext: "plist"),
+        LanguageType(name: "XML", ext: "xml")
     ]
 
     var shellList = [
-        LanguageType(name: "Bash Shell Script", id: "bash"),
-        LanguageType(name: "Shell Script", id: "sh"),
-        LanguageType(name: "CSH Shell Script", id: "csh")
+        LanguageType(name: "Bash Shell Script", ext: "sh"),
+        LanguageType(name: "Shell Script", ext: "command"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "CSH Shell Script", ext: "?ccommand")
     ]
 
     var machOList = [
-        LanguageType(name: "Mach-O Core Dump", id: "mach-o-core-dump"),
-        LanguageType(name: "Mach-O Dynamic Library", id: "mach-o-dyn-lib"),
-        LanguageType(name: "Mach-O FVM Library", id: "mach-o-fvm-lib"),
-        LanguageType(name: "Mach-O Object Code", id: "mach-o-obj"),
-        LanguageType(name: "Mach-O Preload Data", id: "mach-o-pre-data"),
-        LanguageType(name: "Mach-O Bundle", id: "mach-o-bundle")
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Mach-O Core Dump", ext: "?mocd"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Mach-O Dynamic Library", ext: "?dylb"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Mach-O FVM Library", ext: "?fvm"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Mach-O Object Code", ext: "o"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Mach-O Preload Data", ext: "?pd"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Mach-O Bundle", ext: "?MOB")
     ]
 
     var textList = [
-        LanguageType(name: "Cascading Style Sheets", id: "css"),
-        LanguageType(name: "Cascading Style Sheets", id: "scss"),
-        LanguageType(name: "HTML", id: "html"),
-        LanguageType(name: "JSON", id: "json"),
-        LanguageType(name: "Markdown Text", id: "md"),
-        LanguageType(name: "Plain Text", id: "txt"),
-        LanguageType(name: "Rich Text Format", id: "rtf"),
-        LanguageType(name: "YAML", id: "yaml")
+        LanguageType(name: "Cascading Style Sheets", ext: "css"),
+        LanguageType(name: "HTML", ext: "html"),
+        LanguageType(name: "JSON", ext: "json"),
+        LanguageType(name: "Markdown Text", ext: "md"),
+        LanguageType(name: "Plain Text", ext: "txt"),
+        LanguageType(name: "Rich Text Format", ext: "rtf"),
+        LanguageType(name: "YAML", ext: "yaml")
     ]
 
     var audioList = [
-        LanguageType(name: "AIFF Audio", id: "aiff"),
-        LanguageType(name: "MIDI Audio", id: "midi"),
-        LanguageType(name: "MP3 Audio", id: "mp3"),
-        LanguageType(name: "WAV Audio", id: "wav"),
-        LanguageType(name: "AU Audio", id: "au")
+        LanguageType(name: "AIFF Audio", ext: "aiff"),
+        LanguageType(name: "MIDI Audio", ext: "midi"),
+        LanguageType(name: "MP3 Audio", ext: "mp3"),
+        LanguageType(name: "WAV Audio", ext: "wav"),
+        LanguageType(name: "AU Audio", ext: "au")
     ]
 
     var imageList = [
-        LanguageType(name: "BMP Image", id: "bmp"),
-        LanguageType(name: "GIF Image", id: "gif"),
-        LanguageType(name: "Icon", id: "icon"),
-        LanguageType(name: "JPEG Image", id: "jpeg"),
-        LanguageType(name: "Microsoft Icon", id: "ico"),
-        LanguageType(name: "PICT Image", id: "pict"),
-        LanguageType(name: "PNG Image", id: "png"),
-        LanguageType(name: "TIFF Image", id: "tiff")
+        LanguageType(name: "BMP Image", ext: "bmp"),
+        LanguageType(name: "GIF Image", ext: "gif"),
+        LanguageType(name: "Icon", ext: "icon"),
+        LanguageType(name: "JPEG Image", ext: "jpg"),
+        LanguageType(name: "JPEG Image", ext: "jpeg"),
+        LanguageType(name: "Microsoft Icon", ext: "ico"),
+        LanguageType(name: "PICT Image", ext: "pict"),
+        LanguageType(name: "PNG Image", ext: "png"),
+        LanguageType(name: "TIFF Image", ext: "tiff")
     ]
 
     var videoList = [
-        LanguageType(name: "AVI Video", id: "avi"),
-        LanguageType(name: "MPEG Video", id: "mpeg"),
-        LanguageType(name: "QuickTime Video", id: "quicktime")
+        LanguageType(name: "AVI Video", ext: "avi"),
+        LanguageType(name: "MPEG Video", ext: "mp4"),
+        LanguageType(name: "QuickTime Video", ext: "mov")
     ]
 
     var archiveList = [
-        LanguageType(name: "AppleScript Dictionary Archivo", id: "obj_c_pre_source"),
-        LanguageType(name: "Archive", id: "archive"),
-        LanguageType(name: "BinHex Archive", id: "obj_c_++_pre_source"),
-        LanguageType(name: "J2EE Enterprise Archive", id: "obj_c_++_source"),
-        LanguageType(name: "Java Archive", id: "obj_c_++_source"),
-        LanguageType(name: "MacBinary Archive", id: "obj_c_++_source"),
-        LanguageType(name: "PPOB Archive", id: "obj_c_++_source"),
-        LanguageType(name: "Resource Archive", id: "obj_c_++_source"),
-        LanguageType(name: "Stuffit Archive", id: "obj_c_++_source"),
-        LanguageType(name: "Web Application Archive", id: "obj_c_++_source"),
-        LanguageType(name: "Zip Archive", id: "zip"),
-        LanguageType(name: "gzip Archive", id: "gzip"),
-        LanguageType(name: "tar Archive", id: "tar")
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "AppleScript Dictionary Archivo", ext: "?ada"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Archive", ext: "?archive"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "BinHex Archive", ext: "?binhex"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "J2EE Enterprise Archive", ext: "?j2ee"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Java Archive", ext: "?ja"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "MacBinary Archive", ext: "?mba"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "PPOB Archive", ext: "?ppoba"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Resource Archive", ext: "?ra"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Stuffit Archive", ext: "?stuffit"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Web Application Archive", ext: "?waa"),
+        LanguageType(name: "Zip Archive", ext: "zip"),
+        LanguageType(name: "gzip Archive", ext: "gzip"),
+        LanguageType(name: "tar Archive", ext: "tar")
     ]
 
     var otherList = [
-        LanguageType(name: "API Notes", id: "obj_c_pre_source"),
-        LanguageType(name: "AppleScript Script Suite Definition", id: "obj_c_source"),
-        LanguageType(name: "AppleScript Script Terminology Definition", id: "obj_c_++_pre_source"),
-        LanguageType(name: "Data", id: "obj_c_++_source"),
-        LanguageType(name: "Exported Symbols", id: "obj_c_++_source"),
-        LanguageType(name: "Java Bundle", id: "aab"),
-        LanguageType(name: "Java Bytecode", id: "class"),
-        LanguageType(name: "LLVM Module Map", id: "obj_c_++_source"),
-        LanguageType(name: "Object Code", id: "obj_c_++_source"),
-        LanguageType(name: "PDF document", id: "pdf"),
-        LanguageType(name: "Quartz Composer Composition", id: "obj_c_++_source"),
-        LanguageType(name: "Text-Based Dynamic Library Definition", id: "obj_c_++_source"),
-        LanguageType(name: "Worksheet Script", id: "obj_c_++_source"),
-        LanguageType(name: "Makefile", id: "make")
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "API Notes", ext: "?apin"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "AppleScript Script Suite Definition", ext: "?asst"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "AppleScript Script Terminology Definition", ext: "?astd"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Data", ext: "?data"),
+        LanguageType(name: "Exported Symbols", ext: "symbols"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Java Bundle", ext: "?javab"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Java Bytecode", ext: "?jb"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "LLVM Module Map", ext: "?lvvm"),
+        LanguageType(name: "Object Code", ext: "o"),
+        LanguageType(name: "PDF document", ext: "pdf"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Quartz Composer Composition", ext: "?qcc"),
+        LanguageType(name: "Text-Based Dynamic Library Definition", ext: "tbdld"),
+        // TODO: Get correct extension, or remove
+        LanguageType(name: "Worksheet Script", ext: "?worksheetscript"),
+        LanguageType(name: "Makefile", ext: "markdown")
     ]
 
 }

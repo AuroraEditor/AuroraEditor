@@ -57,26 +57,35 @@ public class BeginEndRule: Rule, Pattern {
         self.scopeName = ScopeName(rawValue: name)
         do {
             self.begin = try NSRegularExpression(
-                pattern: begin == "{" ? begin.replacingOccurrences(of: "{", with: "\\{") : begin,
-                options: .init(
-                    arrayLiteral: .anchorsMatchLines,
-                    .dotMatchesLineSeparators
-                )
-            )
-            self.end = try NSRegularExpression(
-                pattern: end == "}" ? end.replacingOccurrences(of: "}", with: "\\}") : end,
+                pattern: begin.first == "{" ? begin.replacingOccurrences(of: "{", with: "\\{") : begin,
                 options: .init(
                     arrayLiteral: .anchorsMatchLines,
                     .dotMatchesLineSeparators
                 )
             )
         } catch {
-            var message = "Could not create regex for BeginEndRule, "
+            var message = "Could not create begin regex for BeginEndRule, "
             message += "name(\"\(name)\"), begin(\"\(begin)\"), end(\"\(end)\"), "
             message += "error: \"\(error.localizedDescription)\""
 
-            Log.error(message)
-            fatalError(message.replacingOccurrences(of: "\n", with: ""))
+            Log.warning(message)
+            self.begin = .init()
+        }
+        do {
+            self.end = try NSRegularExpression(
+                pattern: end.first == "}" ? end.replacingOccurrences(of: "}", with: "\\}") : end,
+                options: .init(
+                    arrayLiteral: .anchorsMatchLines,
+                    .dotMatchesLineSeparators
+                )
+            )
+        } catch {
+            var message = "Could not create end regex for BeginEndRule, "
+            message += "name(\"\(name)\"), begin(\"\(begin)\"), end(\"\(end)\"), "
+            message += "error: \"\(error.localizedDescription)\""
+
+            Log.warning(message)
+            self.end = .init()
         }
         self.patterns = patterns
         if let contentName = contentName {
