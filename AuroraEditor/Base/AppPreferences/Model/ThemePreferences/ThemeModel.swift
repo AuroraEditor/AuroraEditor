@@ -231,7 +231,8 @@ public final class ThemeModel: ObservableObject {
         //                let originalTheme = try JSONDecoder().decode(AuroraTheme.self, from: originalData)
         //
         //                // get properties of the current theme as well as the original
-        //                guard let terminalColors = try theme.terminal.allProperties() as? [String: AuroraTheme.Attributes],
+        //                guard let terminalColors = try theme.terminal.allProperties() as?
+        //                      [String: AuroraTheme.Attributes],
         //                      let editorColors = try theme.editor.allProperties()
         //                        .filter({ $0.value is AuroraTheme.Attributes })
         //                        as? [String: AuroraTheme.Attributes],
