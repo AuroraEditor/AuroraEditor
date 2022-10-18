@@ -60,6 +60,7 @@ public struct CodeEditor {
     @Binding var currentToken: Token?
     @Binding var messages: Set<Located<Message>>
     @Binding var theme: AuroraTheme
+    @Binding var fileExtension: String
 
     /// Creates a fully configured code editor.
     ///
@@ -77,6 +78,7 @@ public struct CodeEditor {
                 currentToken: Binding<Token?>,
                 messages: Binding<Set<Located<Message>>>,
                 theme: Binding<AuroraTheme>,
+                fileExtension: Binding<String>,
                 layout: LayoutConfiguration = .standard
     ) {
         self._text = text
@@ -85,6 +87,7 @@ public struct CodeEditor {
         self._currentToken = currentToken
         self._messages = messages
         self._theme = theme
+        self._fileExtension = fileExtension
         self.layout = layout
     }
 

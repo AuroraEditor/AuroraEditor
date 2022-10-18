@@ -22,13 +22,17 @@ public struct CodeEditorViewWrapper: View {
     private var themeModel: ThemeModel = .shared
 
     @State
+    private var fileExtension: String
+
+    @State
     private var theme: AuroraTheme
 
     private let editable: Bool
 
-    public init(codeFile: CodeFileDocument, editable: Bool = true) {
+    public init(codeFile: CodeFileDocument, editable: Bool = true, fileExtension: String = "txt") {
         self.codeFile = codeFile
         self.editable = editable
+        self.fileExtension = fileExtension
         let currentTheme = ThemeModel.shared.selectedTheme ?? ThemeModel.shared.themes.first!
         self.theme = currentTheme
     }
@@ -51,6 +55,7 @@ public struct CodeEditorViewWrapper: View {
             currentToken: $sharedObjects.currentToken,
             messages: $messages,
             theme: $theme,
+            fileExtension: $fileExtension,
             layout: CodeEditor.LayoutConfiguration(showMinimap: prefs.preferences.textEditing.showMinimap)
         )
         .onChange(of: themeModel.selectedTheme, perform: { newTheme in

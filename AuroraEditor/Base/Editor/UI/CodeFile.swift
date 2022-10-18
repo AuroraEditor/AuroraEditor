@@ -68,7 +68,7 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
                 .opacity(0)
                 .keyboardShortcut("w", modifiers: [.command])
 
-                CodeEditorViewWrapper(codeFile: self, editable: true)
+                CodeEditorViewWrapper(codeFile: self, editable: true) // TODO: Get the fileextension here
             }
         }
 

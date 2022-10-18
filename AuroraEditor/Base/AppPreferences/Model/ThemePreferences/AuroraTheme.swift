@@ -154,9 +154,11 @@ public extension AuroraTheme {
     /// The type of the theme
     /// - **dark**: this is a theme for dark system appearance
     /// - **light**: this is a theme for light system appearance
+    /// - **universal**: this is a theme for all system appearances
     enum ThemeType: String, Codable, Hashable {
         case dark
         case light
+        case universal
     }
 }
 

@@ -471,45 +471,34 @@
                     "name": "invalid.illegal.unexpected-end-of-block-comment.swift"
                 },
                 {
-                    "begin": "(^[ \\t]+)?(?=//)",
+                    "begin": "///",
                     "beginCaptures": {
-                        "1": {
-                            "name": "punctuation.whitespace.comment.leading.swift"
+                        "0": {
+                            "name": "punctuation.definition.comment.swift"
                         }
                     },
-                    "end": "(?!\\G)",
-                    "patterns": [
-                        {
-                            "begin": "///",
-                            "beginCaptures": {
-                                "0": {
-                                    "name": "punctuation.definition.comment.swift"
-                                }
-                            },
-                            "end": "^",
-                            "name": "comment.line.triple-slash.documentation.swift"
-                        },
-                        {
-                            "begin": "//:",
-                            "beginCaptures": {
-                                "0": {
-                                    "name": "punctuation.definition.comment.swift"
-                                }
-                            },
-                            "end": "^",
-                            "name": "comment.line.double-slash.documentation.swift"
-                        },
-                        {
-                            "begin": "//",
-                            "beginCaptures": {
-                                "0": {
-                                    "name": "punctuation.definition.comment.swift"
-                                }
-                            },
-                            "end": "^",
-                            "name": "comment.line.double-slash.swift"
+                    "end": "^",
+                    "name": "comment.line.triple-slash.documentation.swift"
+                },
+                {
+                    "begin": "//:",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.comment.swift"
                         }
-                    ]
+                    },
+                    "end": "^",
+                    "name": "comment.line.double-slash.documentation.swift"
+                },
+                {
+                    "begin": "//",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.comment.swift"
+                        }
+                    },
+                    "end": "^",
+                    "name": "comment.line.double-slash.swift"
                 }
             ],
             "repository": {

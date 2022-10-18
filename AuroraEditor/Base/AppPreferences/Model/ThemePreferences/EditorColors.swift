@@ -112,5 +112,21 @@ public extension AuroraTheme {
             self.selection = try container.decode(Attributes.self, forKey: .selection)
             self.highlightTheme = (try? container.decode(HighlightTheme.self, forKey: .highlightTheme)) ?? .default
         }
+
+        public static let defaultDark: EditorColors = .init(text: Attributes(color: "#D9D9D9"),
+                                                            insertionPoint: Attributes(color: "#D9D9D9"),
+                                                            invisibles: Attributes(color: "#53606e"),
+                                                            background: Attributes(color: "#292a30"),
+                                                            lineHighlight: Attributes(color: "#2f3239"),
+                                                            selection: Attributes(color: "#636f83"),
+                                                            highlightTheme: .default)
+
+        public static let defaultLight: EditorColors = .init(text: Attributes(color: "#262626"),
+                                                             insertionPoint: Attributes(color: "#262626"),
+                                                             invisibles: Attributes(color: "#d6d6d6"),
+                                                             background: Attributes(color: "#FFFFFF"),
+                                                             lineHighlight: Attributes(color: "#ecf5ff"),
+                                                             selection: Attributes(color: "#b2d7ff"),
+                                                             highlightTheme: .default)
     }
 }

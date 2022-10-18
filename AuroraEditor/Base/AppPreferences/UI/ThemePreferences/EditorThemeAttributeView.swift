@@ -29,23 +29,23 @@ struct EditorThemeAttributeView: View {
         GroupBox {
             HStack {
                 VStack(alignment: .leading) {
-                    // TODO: Allow horizontal overflow on this
-                    TextField("Scope Name", text: .init(get: { setting.scope }, set: { newScope in
-                        let selectedTheme = (themeModel.selectedTheme ?? themeModel.themes.first!)
-                            .editor.highlightTheme
-                        // get the index of the setting, and ensure that the scope that the user
-                        // is trying to change the name to is not preexisting
-                        guard let settingIndex = selectedTheme.settings.firstIndex(where: {
-                            $0.scope == setting.scope}),
-                              selectedTheme.settings.contains(where: { $0.scope == newScope })
-                        else { return }
-
-                        selectedTheme.settings[settingIndex].scope = newScope
-
-                        // update the root
-                        selectedTheme.root = HighlightTheme
-                            .createTrie(settings: selectedTheme.settings)
-                    }))
+                    // TODO: Get this working with multiple scopes
+//                    TextField("Scope Name", text: .init(get: { setting.scope }, set: { newScope in
+//                        let selectedTheme = (themeModel.selectedTheme ?? themeModel.themes.first!)
+//                            .editor.highlightTheme
+//                        // get the index of the setting, and ensure that the scope that the user
+//                        // is trying to change the name to is not preexisting
+//                        guard let settingIndex = selectedTheme.settings.firstIndex(where: {
+//                            $0.scope == setting.scope}),
+//                              selectedTheme.settings.contains(where: { $0.scope == newScope })
+//                        else { return }
+//
+//                        selectedTheme.settings[settingIndex].scope = newScope
+//
+//                        // update the root
+//                        selectedTheme.root = HighlightTheme
+//                            .createTrie(settings: selectedTheme.settings)
+//                    }))
                     HStack {
                         // The text's color, defaults to default text color of theme
                         PreferencesColorPicker(.init(get: {
@@ -145,7 +145,7 @@ struct EditorThemeAttributeView: View {
                 guard let selectedTheme = themeModel.selectedTheme?.editor.highlightTheme else { return }
                 withAnimation {
                     selectedTheme.settings.removeAll(where: {
-                        $0.scope == setting.scope
+                        $0.scopes == setting.scopes
                     })
                     themeModel.objectWillChange.send()
                 }
@@ -160,7 +160,7 @@ struct EditorThemeAttributeView: View {
         // get the index of the setting
         guard let selectedTheme = themeModel.selectedTheme?.editor.highlightTheme,
               let settingIndex = selectedTheme.settings.firstIndex(where: {
-            $0.scope == setting.scope
+            $0.scopes == setting.scopes
         }) else { return }
         let setting = selectedTheme.settings[settingIndex]
 
