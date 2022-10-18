@@ -9,16 +9,16 @@ import Foundation
 
 public struct ThemeSetting: Codable {
 
-    var scope: String // TODO: Make this into a list of strings
+    var isSource: Bool {
+        scopes.count == 1 && scopes.first! == "source"
+    }
+
+    var scopes: [String]
     var parentScopes: [String]
 
     var attributes: [ThemeAttribute]
     var inSelectionAttributes: [ThemeAttribute]
     var outSelectionAttributes: [ThemeAttribute]
-
-    var scopeComponents: [Substring] {
-        return scope.split(separator: ".")
-    }
 
     ///
     /// Constructor
@@ -32,13 +32,28 @@ public struct ThemeSetting: Codable {
     ///     on a line which does not have some part of the selection.
     ///
     public init(
+        scopes: [String],
+        parentScopes: [String] = [],
+        attributes: [ThemeAttribute] = [],
+        inSelectionAttributes: [ThemeAttribute] = [],
+        outSelectionAttributes: [ThemeAttribute] = []
+    ) {
+        self.scopes = scopes
+        self.parentScopes = parentScopes
+        self.attributes = attributes
+        self.inSelectionAttributes = inSelectionAttributes
+        self.outSelectionAttributes = outSelectionAttributes
+    }
+
+    /// Allows init using a single scope instead of an array
+    public init(
         scope: String,
         parentScopes: [String] = [],
         attributes: [ThemeAttribute] = [],
         inSelectionAttributes: [ThemeAttribute] = [],
         outSelectionAttributes: [ThemeAttribute] = []
     ) {
-        self.scope = scope
+        self.scopes = [scope]
         self.parentScopes = parentScopes
         self.attributes = attributes
         self.inSelectionAttributes = inSelectionAttributes
@@ -69,12 +84,12 @@ public struct ThemeSetting: Codable {
     ///     - ``LigatureThemeAttribute``
     ///     - ``FontThemeAttribute``
     enum Keys: CodingKey {
-        case scope, parentScopes, attributes, inSelectionAttributes, outSelectionAttributes
+        case scopes, parentScopes, attributes, inSelectionAttributes, outSelectionAttributes
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: Keys.self)
-        try container.encode(scope, forKey: .scope)
+        try container.encode(scopes, forKey: .scopes)
         try container.encode(parentScopes, forKey: .parentScopes)
         try container.encode(AttributesContainer(attributes: attributes), forKey: .attributes)
         try container.encode(AttributesContainer(attributes: inSelectionAttributes), forKey: .inSelectionAttributes)
@@ -83,8 +98,8 @@ public struct ThemeSetting: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
-        self.scope = try container.decode(String.self, forKey: .scope)
-        self.parentScopes = try container.decode([String].self, forKey: .scope)
+        self.scopes = try container.decode([String].self, forKey: .scopes)
+        self.parentScopes = try container.decode([String].self, forKey: .scopes)
         self.attributes = try container.decode(AttributesContainer.self, forKey: .attributes).attributes
         self.inSelectionAttributes = try container.decode(AttributesContainer.self,
                                                           forKey: .inSelectionAttributes).attributes
@@ -256,5 +271,11 @@ class ThemeAttributeCodableContainer<ThemeAtrbItem: Codable>: Codable {
 
     init(items: [ThemeAtrbItem]) {
         self.items = items
+    }
+}
+
+extension String {
+    var scopeComponents: [Substring] {
+        self.split(separator: ".")
     }
 }

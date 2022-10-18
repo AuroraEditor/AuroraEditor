@@ -72,22 +72,30 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     /// Keeps track of the set of message views.
     var messageViews: MessageViews = [:]
 
-    private(set) var parser: Parser = Parser(grammars: [loadedGrammer])
-    private(set) var grammar: Grammar = loadedGrammer
-//    private(set) var parser: Parser = Parser(grammars: [.default, basicSwiftGrammar])
-//    private(set) var grammar: Grammar = basicSwiftGrammar
+    private(set) var parser: Parser
+    private(set) var grammar: Grammar
     private(set) var highlightTheme: HighlightTheme = .default
 
     /// Designated initialiser for code views with a gutter.
     init(frame: CGRect, // swiftlint:disable:this function_body_length
          viewLayout: CodeEditor.LayoutConfiguration,
          theme: AuroraTheme,
+         grammars: [Grammar] = [],
+         mainGrammar: Grammar,
          highlightTheme: HighlightTheme = .default
     ) {
-
         self.theme = theme
         self.highlightTheme = highlightTheme
         self.viewLayout = viewLayout
+        self.grammar = mainGrammar
+
+        // as the Parser must contain mainGrammar in one of its grammars, this
+        // code ensures that grammars contains the mainGrammar
+        var grammars = grammars
+        if !grammars.contains(where: { $0.scopeName == mainGrammar.scopeName }) {
+            grammars.append(mainGrammar)
+        }
+        self.parser = Parser(grammars: grammars)
 
         // Use custom components that are gutter-aware and support code-specific editing actions and highlighting.
         let codeLayoutManager = CodeLayoutManager(),

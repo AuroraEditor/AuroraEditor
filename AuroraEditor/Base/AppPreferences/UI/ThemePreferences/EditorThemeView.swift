@@ -85,7 +85,7 @@ struct HighlightThemeView: View {
                         .padding(.horizontal, 7)
 
                         ForEach((themeModel.selectedTheme ?? themeModel.themes.first!).editor.highlightTheme.settings,
-                                id: \.scope) { setting in
+                                id: \.scopes) { setting in
                             EditorThemeAttributeView(setting: setting)
                                 .transition(.opacity)
                         }
