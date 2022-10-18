@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../../AEExtensions/AEExtensionKit">
+   </FileRef>
+   <FileRef
       location = "group:AuroraEditorCli">
    </FileRef>
    <FileRef

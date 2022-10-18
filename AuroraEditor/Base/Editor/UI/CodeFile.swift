@@ -72,6 +72,15 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
             }
         }
 
+        for (id, AEExt) in ExtensionsManager.shared.loadedExtensions
+        where AEExt.supports(function: "didOpen") {
+            Log.info(id, "didOpen()")
+            AEExt.didOpen(
+                file: self.fileURL?.relativeString ?? "Unknown",
+                contents: self.content.data(using: .utf8) ?? Data()
+            )
+        }
+
         let window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 1400, height: 600),
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
@@ -97,7 +106,6 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
 
     /// Save document. (custom function)
     public func saveFileDocument() {
-
         guard let url = self.fileURL,
               let contents = content.data(using: .utf8) else {
             fatalError("\(#function): Failed to get URL and file type.")

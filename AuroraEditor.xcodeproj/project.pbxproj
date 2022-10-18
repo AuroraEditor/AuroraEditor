@@ -934,7 +934,6 @@
 		2B15CA0028254139004E8F22 /* OpenWithAuroraEditor.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = OpenWithAuroraEditor.entitlements; sourceTree = "<group>"; };
 		2B18EC4528AEC84900494768 /* Symbols.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Symbols.xcassets; sourceTree = "<group>"; };
 		2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuroraEditorSymbols.swift; sourceTree = "<group>"; };
-		2B421AE528FE7CC4004E761B /* AEExtensionKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AEExtensionKit; path = ../../AEExtensions/AEExtensionKit; sourceTree = "<group>"; };
 		2B5B25522885D9B9009C7384 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		2B5B25542885D9C3009C7384 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		2B71C0A32874AD61008E0859 /* AuroraProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraProject.swift; sourceTree = "<group>"; };
@@ -3068,7 +3067,6 @@
 		B658FB2327DA9E0F00EA4DBD = {
 			isa = PBXGroup;
 			children = (
-				2B421AE528FE7CC4004E761B /* AEExtensionKit */,
 				B658FB2E27DA9E0F00EA4DBD /* AuroraEditor */,
 				2BE487ED28245162003F3F64 /* OpenWithAuroraEditor */,
 				B658FB2D27DA9E0F00EA4DBD /* Products */,
