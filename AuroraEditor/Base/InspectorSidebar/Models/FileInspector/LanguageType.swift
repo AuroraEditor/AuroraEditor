@@ -9,5 +9,7 @@ import Foundation
 
 struct LanguageType: Identifiable, Hashable {
     let name: String
-    let id: String
+    var id: String {
+        name.lowercased().removingSpaces()
+    }
 }
