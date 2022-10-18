@@ -16,6 +16,7 @@ public final class FileInspectorModel: ObservableObject {
 
     @Published
     var fileTypeSelection: LanguageType.ID = ""
+
     @Published
     var fileURL: String = ""
 
@@ -34,6 +35,8 @@ public final class FileInspectorModel: ObservableObject {
     @Published
     var indentUsingSelection: IndentUsing.ID = "spaces"
 
+    @Published
+    var languageTypeAuroraEditor = FileTypeList.init().languageTypeAuroraEditor
     @Published
     var languageTypeObjCList = FileTypeList.init().languageTypeObjCList
     @Published

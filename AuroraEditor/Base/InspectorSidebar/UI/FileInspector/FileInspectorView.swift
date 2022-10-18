@@ -212,6 +212,12 @@ struct FileInspectorView: View {
     private var fileType: some View {
         Picker("", selection: $inspectorModel.fileTypeSelection) {
             Group {
+                Section(header: Text("Auroraeditor")) {
+                    ForEach(inspectorModel.languageTypeAuroraEditor) {
+                        Text($0.name)
+                            .font(.system(size: 11))
+                    }
+                }
                 Section(header: Text("Sourcecode Objective-C")) {
                     ForEach(inspectorModel.languageTypeObjCList) {
                         Text($0.name)
