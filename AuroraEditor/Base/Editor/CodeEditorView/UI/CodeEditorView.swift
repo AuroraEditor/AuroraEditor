@@ -137,6 +137,12 @@ extension CodeEditor: NSViewRepresentable {
                 col = txtStr.count
             }
 
+            for (id, AEExt) in ExtensionsManager.shared.loadedExtensions
+            where AEExt.supports(function: "didMoveCaret") {
+                    Log.info(id, "didMoveCaret()")
+                    AEExt.didMoveCaret(row: row, column: col)
+            }
+
             return .init(line: row, column: col)
         }
 
