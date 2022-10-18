@@ -164,7 +164,7 @@ public final class ThemeModel: ObservableObject {
                   let defaultUrl = Bundle.main.url(forResource: fileName, withExtension: fileExtension)
             else { continue }
             do {
-                if !filemanager.fileExists(atPath: defaultUrl.relativeString) {
+                if !filemanager.fileExists(atPath: themesURL.appendingPathComponent(themeName).relativeString) {
                     try filemanager.copyItem(at: defaultUrl,
                                              to: themesURL.appendingPathComponent(themeName))
                 }
