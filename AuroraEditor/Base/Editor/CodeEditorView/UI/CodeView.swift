@@ -262,7 +262,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         oldLastLineOfInsertionPoint = lineOfInsertionPoint
 
         // NB: This needs to happen after calling `super`, as it depends on the correctly set new set of ranges.
-        DispatchQueue.main.async {
+//        DispatchQueue.main.async {
 
             // Needed as the selection affects line number highlighting.
             // NB: Invalidation of the old and new ranges needs to happen separately.
@@ -274,7 +274,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
             self.gutterView?.invalidateGutter(forCharRange: combinedRanges(ranges: ranges))
             self.minimapGutterView?.invalidateGutter(forCharRange: combinedRanges(ranges: oldSelectedRanges))
             self.minimapGutterView?.invalidateGutter(forCharRange: combinedRanges(ranges: ranges))
-        }
+//        }
 
         collapseMessageViews()
     }

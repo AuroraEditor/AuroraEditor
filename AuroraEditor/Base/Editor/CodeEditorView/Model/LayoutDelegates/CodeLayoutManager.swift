@@ -71,9 +71,9 @@ class CodeLayoutManager: NSLayoutManager {
                                                      withinSelectedCharacterRange: range,
                                                      in: textContainer, rectCount: &rectCount) else {
                     fatalError("""
-Failed to received rect array for characterRange: \(range), \
-within selected character range: \(range), in text container: \(textContainer)
-""")
+ Failed to received rect array for characterRange: \(range), \
+ within selected character range: \(range), in text container: \(textContainer)
+ """)
                 }
 
                 guard rectCount != -1 else {

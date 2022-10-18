@@ -160,25 +160,42 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
     @objc func toggleFirstPanel() {
         guard let firstSplitView = splitViewController.splitViewItems.first else { return }
         firstSplitView.animator().isCollapsed.toggle()
+
+        for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
+            Log.info(id, "didToggleNavigatorPane()")
+            AEExt.respond(
+                action: "didToggleNavigatorPane",
+                parameters: [
+                    "opened": !firstSplitView.animator().isCollapsed
+                ])
+        }
     }
 
     @objc func toggleLastPanel() {
         guard let lastSplitView = splitViewController.splitViewItems.last else { return }
         lastSplitView.animator().isCollapsed.toggle()
         if prefs.preferences.general.keepInspectorSidebarOpen {
-            window?.toolbar?.insertItem(withItemIdentifier: NSToolbarItem.Identifier.itemListTrackingSeparator,
-                                        at: (window?.toolbar?.items.count)! - 1)
-            window?.toolbar?.insertItem(withItemIdentifier: NSToolbarItem.Identifier.flexibleSpace,
-                                        at: (window?.toolbar?.items.count)! - 1)
+            window?.toolbar?.insertItem(
+                withItemIdentifier: NSToolbarItem.Identifier.itemListTrackingSeparator,
+                at: (window?.toolbar?.items.count)! - 1
+            )
+            window?.toolbar?.insertItem(
+                withItemIdentifier: NSToolbarItem.Identifier.flexibleSpace,
+                at: (window?.toolbar?.items.count)! - 1
+            )
         }
         if lastSplitView.isCollapsed {
             window?.toolbar?.removeItem(at: (window?.toolbar?.items.count)! - 2)
             window?.toolbar?.removeItem(at: (window?.toolbar?.items.count)! - 2)
         } else {
-            window?.toolbar?.insertItem(withItemIdentifier: NSToolbarItem.Identifier.itemListTrackingSeparator,
-                                        at: (window?.toolbar?.items.count)! - 1)
-            window?.toolbar?.insertItem(withItemIdentifier: NSToolbarItem.Identifier.flexibleSpace,
-                                        at: (window?.toolbar?.items.count)! - 1)
+            window?.toolbar?.insertItem(
+                withItemIdentifier: NSToolbarItem.Identifier.itemListTrackingSeparator,
+                at: (window?.toolbar?.items.count)! - 1
+            )
+            window?.toolbar?.insertItem(
+                withItemIdentifier: NSToolbarItem.Identifier.flexibleSpace,
+                at: (window?.toolbar?.items.count)! - 1
+            )
         }
     }
 }
