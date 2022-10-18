@@ -72,12 +72,14 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
             }
         }
 
-        for (id, AEExt) in ExtensionsManager.shared.loadedExtensions
-        where AEExt.supports(function: "didOpen") {
-            Log.info(id, "didOpen()")
-            AEExt.didOpen(
-                file: self.fileURL?.relativeString ?? "Unknown",
-                contents: self.content.data(using: .utf8) ?? Data()
+        for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
+            Log.info(id, "didOpen")
+            AEExt.respond(
+                action: "didOpen",
+                parameters: [
+                    "file": self.fileURL?.relativeString ?? "Unknown",
+                    "contents": self.content.data(using: .utf8) ?? Data()
+                ]
             )
         }
 

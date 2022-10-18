@@ -14,7 +14,6 @@
 		043C321A27E32295006AE443 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043C321927E32295006AE443 /* MainMenu.xib */; };
 		04540D5E27DD08C300E91B77 /* WorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */; };
 		0463E51127FCC1DF00806D5C /* AuroraEditorAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0463E51027FCC1DF00806D5C /* AuroraEditorAPI.swift */; };
-		0463E51327FCC1FB00806D5C /* AuroraEditorTargetsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0463E51227FCC1FB00806D5C /* AuroraEditorTargetsAPI.swift */; };
 		04660F6A27E51E5C00477777 /* AuroraEditorWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04660F6927E51E5C00477777 /* AuroraEditorWindowController.swift */; };
 		0483E35027FDB17700354AC0 /* ExtensionNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E34F27FDB17700354AC0 /* ExtensionNavigator.swift */; };
 		0485EB1F27E7458B00138301 /* WorkspaceCodeFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */; };
@@ -563,7 +562,6 @@
 		043C321527E3201F006AE443 /* WorkspaceDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceDocument.swift; sourceTree = "<group>"; };
 		043C321927E32295006AE443 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		0463E51027FCC1DF00806D5C /* AuroraEditorAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorAPI.swift; sourceTree = "<group>"; };
-		0463E51227FCC1FB00806D5C /* AuroraEditorTargetsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorTargetsAPI.swift; sourceTree = "<group>"; };
 		04660F6027E3A68A00477777 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04660F6927E51E5C00477777 /* AuroraEditorWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorWindowController.swift; sourceTree = "<group>"; };
 		0468438427DC76E200F8E88E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1746,7 +1744,6 @@
 		20D837BF289A7ACD00D91D05 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0463E51227FCC1FB00806D5C /* AuroraEditorTargetsAPI.swift */,
 				0463E51027FCC1DF00806D5C /* AuroraEditorAPI.swift */,
 				20D837BE289A7ACD00D91D05 /* ExtensionsManager.swift */,
 				20D837C0289A7ACD00D91D05 /* PluginRelease.swift */,
@@ -3520,7 +3517,6 @@
 				2BDFA91528D10B9200980385 /* FileCreationNamingView.swift in Sources */,
 				2093CD52289AA0AE003A88DD /* FeedbackType.swift in Sources */,
 				20E8749028A3ABA8002CE758 /* SourceControlController.swift in Sources */,
-				0463E51327FCC1FB00806D5C /* AuroraEditorTargetsAPI.swift in Sources */,
 				93EF416128C1D38E004083AD /* CommandPaletteItem.swift in Sources */,
 				2B04574628E6FFE300024F2D /* LineThemeAttribute.swift in Sources */,
 				2093CCA5289AA015003A88DD /* FileIcon.swift in Sources */,

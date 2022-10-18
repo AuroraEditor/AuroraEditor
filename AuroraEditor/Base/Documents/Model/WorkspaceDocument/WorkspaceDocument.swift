@@ -52,9 +52,6 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     var listenerModel: WorkspaceNotificationModel = .init()
     private var cancellables = Set<AnyCancellable>()
 
-    @Published
-    var targets: [Target] = []
-
     deinit {
         cancellables.forEach { $0.cancel() }
         NotificationCenter.default.removeObserver(self)
@@ -214,18 +211,5 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
 
         super.close()
         Log.info("Closed document \(self)")
-    }
-}
-
-// MARK: - Extensions
-extension WorkspaceDocument {
-    func target(didAdd target: Target) {
-        self.targets.append(target)
-    }
-    func target(didRemove target: Target) {
-        self.targets.removeAll { $0.id == target.id }
-    }
-    func targetDidClear() {
-        self.targets.removeAll()
     }
 }

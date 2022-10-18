@@ -25,6 +25,7 @@ extension WorkspaceDocument {
             case .extensionInstallation:
                 guard let plugin = item as? Plugin else { return }
                 self.openExtension(item: plugin)
+
             case .webTab:
                 guard let webTab = item as? WebTab else { return }
                 self.openWebTab(item: webTab)
@@ -87,15 +88,15 @@ extension WorkspaceDocument {
                 // Let the extensions know we opened a file (from a workspace)
                 for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
                     let fileData = try? Data.init(contentsOf: item.url)
-
-                    if AEExt.supports(function: "didOpen") {
-                        Log.info(id, "didOpen()")
-                        AEExt.didOpen(
-                            workspace: self.fileURL?.relativeString ?? "AuroraEditor",
-                            file: item.url.relativeString,
-                            contents: fileData ?? Data()
-                        )
-                    }
+                    Log.info(id, "didOpen()")
+                    AEExt.respond(
+                        action: "didOpen",
+                        parameters: [
+                            "workspace": self.fileURL?.relativeString ?? "Unknown",
+                            "file": item.url.relativeString,
+                            "contents": fileData ?? Data()
+                        ]
+                    )
                 }
             } catch let err {
                 Log.error(err)
@@ -147,10 +148,9 @@ extension WorkspaceDocument {
             closeFileTab(item: item)
 
             // Let the extensions know we closed a file
-            for (id, AEExt) in ExtensionsManager.shared.loadedExtensions
-            where AEExt.supports(function: "didClose") {
-                    Log.info(id, "didClose()")
-                    AEExt.didClose(file: item.url.relativeString)
+            for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
+                Log.info(id, "didClose()")
+                AEExt.respond(action: "didClose", parameters: ["file": item.url.relativeString])
             }
         case .extensionInstallation:
             guard let item = selectionState.getItemByTab(id: id) as? Plugin else { return }

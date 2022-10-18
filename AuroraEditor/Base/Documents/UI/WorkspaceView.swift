@@ -54,11 +54,8 @@ struct WorkspaceView: View {
             case .codeEditor:
                 WorkspaceCodeFileView(windowController: windowController, workspace: workspace)
             case .extensionInstallation:
-                if let plugin = workspace.selectionState.selected as? Plugin {
-                    ExtensionInstallationView(plugin: plugin)
-                        .environmentObject(workspace)
-                        .frame(alignment: .center)
-                }
+                EmptyView()
+
             case .webTab:
                 if let webTab = workspace.selectionState.selected as? WebTab {
                     WebTabView(webTab: webTab)

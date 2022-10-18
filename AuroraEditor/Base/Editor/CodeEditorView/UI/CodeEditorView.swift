@@ -140,10 +140,14 @@ extension CodeEditor: NSViewRepresentable {
                 col = txtStr.count
             }
 
-            for (id, AEExt) in ExtensionsManager.shared.loadedExtensions
-            where AEExt.supports(function: "didMoveCaret") {
-                    Log.info(id, "didMoveCaret()")
-                    AEExt.didMoveCaret(row: row, column: col)
+            for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
+                Log.info(id, "didMoveCaret")
+                AEExt.respond(
+                    action: "didMoveCaret",
+                    parameters: [
+                        "row": row,
+                        "col": col
+                    ])
             }
 
             return .init(line: row, column: col)

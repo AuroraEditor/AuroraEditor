@@ -17,11 +17,11 @@ struct ExtensionNavigator: View {
         VStack {
             Divider()
             List {
-                ForEach(data.plugins) { plugin in
-                    ExtensionNavigatorItem(plugin: plugin)
-                        .tag(plugin)
-                        .environmentObject(workspace)
-                }
+//                ForEach(data.plugins) { plugin in
+//                    ExtensionNavigatorItem(plugin: plugin)
+//                        .tag(plugin)
+//                        .environmentObject(workspace)
+//                }
 
                 if !data.listFull {
                     HStack {
