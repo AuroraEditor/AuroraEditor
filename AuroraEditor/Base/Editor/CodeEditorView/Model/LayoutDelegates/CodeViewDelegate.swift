@@ -18,6 +18,10 @@ class CodeViewDelegate: NSObject, NSTextViewDelegate {
 
     func textDidChange(_ notification: Notification) {
         guard let textView = notification.object as? NSTextView else { return }
+        NotificationCenter.default.post(
+            name: NSNotification.Name("AE.didBeginEditing"),
+            object: nil
+        )
 
         textDidChange?(textView)
     }

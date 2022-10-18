@@ -262,8 +262,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         oldLastLineOfInsertionPoint = lineOfInsertionPoint
 
         // NB: This needs to happen after calling `super`, as it depends on the correctly set new set of ranges.
-//        DispatchQueue.main.async {
-
+        DispatchQueue.main.async {
             // Needed as the selection affects line number highlighting.
             // NB: Invalidation of the old and new ranges needs to happen separately.
             // If we were to union them, an insertion
@@ -274,7 +273,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
             self.gutterView?.invalidateGutter(forCharRange: combinedRanges(ranges: ranges))
             self.minimapGutterView?.invalidateGutter(forCharRange: combinedRanges(ranges: oldSelectedRanges))
             self.minimapGutterView?.invalidateGutter(forCharRange: combinedRanges(ranges: ranges))
-//        }
+        }
 
         collapseMessageViews()
     }
@@ -299,7 +298,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
         // Highlight each line that has a message view
         for messageView in messageViews {
-
             let glyphRange = layoutManager.glyphRange(
                 forBoundingRect: messageView.value.lineFragementRect,
                 in: textContainer),
@@ -367,7 +365,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     ///
     /// NB: We don't use a ruler view for the gutter on macOS to be able to use the same setup on macOS and iOS.
     private func tile() { // swiftlint:disable:this function_body_length
-
         // Compute size of the main view gutter (Line Numbers)
         let theFont = font ?? NSFont.systemFont(ofSize: 0),
             fontSize = theFont.pointSize,
