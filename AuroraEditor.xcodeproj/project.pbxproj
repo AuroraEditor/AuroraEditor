@@ -122,7 +122,7 @@
 		2093CD1C289AA079003A88DD /* BitbucketRepositoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838BC289A7ACE00D91D05 /* BitbucketRepositoryRouter.swift */; };
 		2093CD1D289AA079003A88DD /* BitbucketAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838C0289A7ACE00D91D05 /* BitbucketAccount.swift */; };
 		2093CD1E289AA07D003A88DD /* BitbucketRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838C5289A7ACE00D91D05 /* BitbucketRepositories.swift */; };
-		2093CD1F289AA07D003A88DD /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838C6289A7ACE00D91D05 /* Token.swift */; };
+		2093CD1F289AA07D003A88DD /* BitbucketAccount+Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838C6289A7ACE00D91D05 /* BitbucketAccount+Token.swift */; };
 		2093CD20289AA07D003A88DD /* BitbucketUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838C4289A7ACE00D91D05 /* BitbucketUser.swift */; };
 		2093CD21289AA084003A88DD /* GithubUserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838AA289A7ACE00D91D05 /* GithubUserRouter.swift */; };
 		2093CD22289AA084003A88DD /* ReviewsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838A5289A7ACE00D91D05 /* ReviewsRouter.swift */; };
@@ -385,7 +385,7 @@
 		2B04576728E6FFE300024F2D /* LineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573528E6FFE300024F2D /* LineState.swift */; };
 		2B04576828E6FFE300024F2D /* TokenThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573628E6FFE300024F2D /* TokenThemeAttribute.swift */; };
 		2B04576928E6FFE300024F2D /* MatchRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573728E6FFE300024F2D /* MatchRule.swift */; };
-		2B04576B28E6FFE300024F2D /* Token_Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573928E6FFE300024F2D /* Token_Editor.swift */; };
+		2B04576B28E6FFE300024F2D /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573928E6FFE300024F2D /* Token.swift */; };
 		2B04576C28E6FFE300024F2D /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573A28E6FFE300024F2D /* Pattern.swift */; };
 		2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B18EC4528AEC84900494768 /* Symbols.xcassets */; };
 		2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */; };
@@ -830,7 +830,7 @@
 		20D838C2289A7ACE00D91D05 /* BitbucketTokenConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitbucketTokenConfiguration.swift; sourceTree = "<group>"; };
 		20D838C4289A7ACE00D91D05 /* BitbucketUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitbucketUser.swift; sourceTree = "<group>"; };
 		20D838C5289A7ACE00D91D05 /* BitbucketRepositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitbucketRepositories.swift; sourceTree = "<group>"; };
-		20D838C6289A7ACE00D91D05 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		20D838C6289A7ACE00D91D05 /* BitbucketAccount+Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitbucketAccount+Token.swift"; sourceTree = "<group>"; };
 		20D838CD289A7ACE00D91D05 /* GitClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitClient.swift; sourceTree = "<group>"; };
 		20D838E1289A7ACE00D91D05 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		20D838E3289A7ACE00D91D05 /* BannerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModule.swift; sourceTree = "<group>"; };
@@ -922,7 +922,7 @@
 		2B04573528E6FFE300024F2D /* LineState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineState.swift; sourceTree = "<group>"; };
 		2B04573628E6FFE300024F2D /* TokenThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenThemeAttribute.swift; sourceTree = "<group>"; };
 		2B04573728E6FFE300024F2D /* MatchRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchRule.swift; sourceTree = "<group>"; };
-		2B04573928E6FFE300024F2D /* Token_Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token_Editor.swift; sourceTree = "<group>"; };
+		2B04573928E6FFE300024F2D /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		2B04573A28E6FFE300024F2D /* Pattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pattern.swift; sourceTree = "<group>"; };
 		2B15CA0028254139004E8F22 /* OpenWithAuroraEditor.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = OpenWithAuroraEditor.entitlements; sourceTree = "<group>"; };
 		2B18EC4528AEC84900494768 /* Symbols.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Symbols.xcassets; sourceTree = "<group>"; };
@@ -2225,7 +2225,7 @@
 				20D838C1289A7ACE00D91D05 /* BitbucketOAuthConfiguration.swift */,
 				20D838C2289A7ACE00D91D05 /* BitbucketTokenConfiguration.swift */,
 				20D838C3289A7ACE00D91D05 /* Model */,
-				20D838C6289A7ACE00D91D05 /* Token.swift */,
+				20D838C6289A7ACE00D91D05 /* BitbucketAccount+Token.swift */,
 			);
 			path = Bitbucket;
 			sourceTree = "<group>";
@@ -3035,7 +3035,7 @@
 		93ECCFF92902CAD200605FB3 /* Processing */ = {
 			isa = PBXGroup;
 			children = (
-				2B04573928E6FFE300024F2D /* Token_Editor.swift */,
+				2B04573928E6FFE300024F2D /* Token.swift */,
 				2B04571328E6FFE300024F2D /* Repository.swift */,
 				2B04570928E6FFE300024F2D /* Scope.swift */,
 				2B04570A28E6FFE300024F2D /* ScopeName.swift */,
@@ -3470,7 +3470,7 @@
 				2BDFA8F928D1079700980385 /* WebTab.swift in Sources */,
 				2813F93927ECC4C300E305E4 /* NavigatorSidebar.swift in Sources */,
 				2093CD3C289AA08F003A88DD /* GitlabOAuthRouter.swift in Sources */,
-				2B04576B28E6FFE300024F2D /* Token_Editor.swift in Sources */,
+				2B04576B28E6FFE300024F2D /* Token.swift in Sources */,
 				2093CD51289AA0AE003A88DD /* IssueArea.swift in Sources */,
 				2B04574B28E6FFE300024F2D /* ItalicThemeAttribute.swift in Sources */,
 				2093CDAA289AA179003A88DD /* SourceControlGitView.swift in Sources */,
@@ -3571,7 +3571,7 @@
 				2093CD1D289AA079003A88DD /* BitbucketAccount.swift in Sources */,
 				20B5BDA728B130FA00B2A02F /* SplitViewDropProposalOverlay.swift in Sources */,
 				2093CCB1289AA032003A88DD /* LSPClient.swift in Sources */,
-				2093CD1F289AA07D003A88DD /* Token.swift in Sources */,
+				2093CD1F289AA07D003A88DD /* BitbucketAccount+Token.swift in Sources */,
 				20091DB728DE20FD008FDDFC /* AutomaticallyUpdateSheet.swift in Sources */,
 				2093CD31289AA089003A88DD /* Gist.swift in Sources */,
 				20BE727D28D07FF200EEDE5F /* ActionsPopoverCellView.swift in Sources */,
