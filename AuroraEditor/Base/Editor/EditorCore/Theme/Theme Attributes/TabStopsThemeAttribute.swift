@@ -22,7 +22,7 @@ public class TabStopsThemeAttribute: LineThemeAttribute {
         self.tabStops = locations.map { NSTextTab(textAlignment: alignment, location: $0) }
     }
 
-    public func apply(to style: MutableParagraphStyle) {
+    public func apply(to style: NSMutableParagraphStyle) {
         style.tabStops = tabStops
     }
 

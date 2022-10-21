@@ -18,7 +18,7 @@ public class ParagraphSpacingAfterThemeAttribute: LineThemeAttribute, Codable {
         self.spacing = spacing
     }
 
-    public func apply(to style: MutableParagraphStyle) {
+    public func apply(to style: NSMutableParagraphStyle) {
         style.paragraphSpacing = spacing
     }
 }

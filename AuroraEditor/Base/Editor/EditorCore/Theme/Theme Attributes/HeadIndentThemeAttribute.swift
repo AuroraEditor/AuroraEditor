@@ -18,7 +18,7 @@ public class HeadIndentThemeAttribute: LineThemeAttribute, Codable {
         self.value = value
     }
 
-    public func apply(to style: MutableParagraphStyle) {
+    public func apply(to style: NSMutableParagraphStyle) {
         style.headIndent = value
     }
 }

@@ -18,7 +18,7 @@ public class TextBlockThemeAttribute: LineThemeAttribute, Codable {
         self.textBlock = textBlock
     }
 
-    public func apply(to style: MutableParagraphStyle) {
+    public func apply(to style: NSMutableParagraphStyle) {
         style.textBlocks = [self.textBlock]
     }
 

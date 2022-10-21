@@ -18,7 +18,7 @@ public class TailIndentThemeAttribute: LineThemeAttribute, Codable {
         self.value = value
     }
 
-    public func apply(to style: MutableParagraphStyle) {
+    public func apply(to style: NSMutableParagraphStyle) {
         style.tailIndent = value
     }
 }

@@ -347,7 +347,6 @@
 		2B04573F28E6FFE300024F2D /* Capture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04570B28E6FFE300024F2D /* Capture.swift */; };
 		2B04574028E6FFE300024F2D /* TokenizedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04570C28E6FFE300024F2D /* TokenizedLine.swift */; };
 		2B04574128E6FFE300024F2D /* NSRange+Shifted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04570D28E6FFE300024F2D /* NSRange+Shifted.swift */; };
-		2B04574228E6FFE300024F2D /* ParagraphStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04570E28E6FFE300024F2D /* ParagraphStyle.swift */; };
 		2B04574328E6FFE300024F2D /* HighlightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04570F28E6FFE300024F2D /* HighlightTheme.swift */; };
 		2B04574428E6FFE300024F2D /* HighlightTheme+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04571028E6FFE300024F2D /* HighlightTheme+Default.swift */; };
 		2B04574528E6FFE300024F2D /* TokenizeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04571128E6FFE300024F2D /* TokenizeResult.swift */; };
@@ -386,7 +385,7 @@
 		2B04576728E6FFE300024F2D /* LineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573528E6FFE300024F2D /* LineState.swift */; };
 		2B04576828E6FFE300024F2D /* TokenThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573628E6FFE300024F2D /* TokenThemeAttribute.swift */; };
 		2B04576928E6FFE300024F2D /* MatchRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573728E6FFE300024F2D /* MatchRule.swift */; };
-		2B04576B28E6FFE300024F2D /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573928E6FFE300024F2D /* Token.swift */; };
+		2B04576B28E6FFE300024F2D /* Token_Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573928E6FFE300024F2D /* Token_Editor.swift */; };
 		2B04576C28E6FFE300024F2D /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573A28E6FFE300024F2D /* Pattern.swift */; };
 		2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B18EC4528AEC84900494768 /* Symbols.xcassets */; };
 		2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */; };
@@ -480,6 +479,7 @@
 		93D5F5D728CE0EF500286EBD /* TabHierarchyMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F5D628CE0EF500286EBD /* TabHierarchyMenu.swift */; };
 		93D5F5D928CE123200286EBD /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F5D828CE123200286EBD /* TextTableViewCell.swift */; };
 		93DD4FF328AFD0F100B664D4 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */; };
+		93ECCFFB2902D02E00605FB3 /* CodeFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ECCFFA2902D02E00605FB3 /* CodeFile.swift */; };
 		93EF415C28C1D21E004083AD /* CommandPaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF415B28C1D21E004083AD /* CommandPaletteView.swift */; };
 		93EF415F28C1D2DB004083AD /* CommandPaletteState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF415E28C1D2DB004083AD /* CommandPaletteState.swift */; };
 		93EF416128C1D38E004083AD /* CommandPaletteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF416028C1D38E004083AD /* CommandPaletteItem.swift */; };
@@ -884,7 +884,6 @@
 		2B04570B28E6FFE300024F2D /* Capture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Capture.swift; sourceTree = "<group>"; };
 		2B04570C28E6FFE300024F2D /* TokenizedLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenizedLine.swift; sourceTree = "<group>"; };
 		2B04570D28E6FFE300024F2D /* NSRange+Shifted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+Shifted.swift"; sourceTree = "<group>"; };
-		2B04570E28E6FFE300024F2D /* ParagraphStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphStyle.swift; sourceTree = "<group>"; };
 		2B04570F28E6FFE300024F2D /* HighlightTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightTheme.swift; sourceTree = "<group>"; };
 		2B04571028E6FFE300024F2D /* HighlightTheme+Default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HighlightTheme+Default.swift"; sourceTree = "<group>"; };
 		2B04571128E6FFE300024F2D /* TokenizeResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenizeResult.swift; sourceTree = "<group>"; };
@@ -923,7 +922,7 @@
 		2B04573528E6FFE300024F2D /* LineState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineState.swift; sourceTree = "<group>"; };
 		2B04573628E6FFE300024F2D /* TokenThemeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenThemeAttribute.swift; sourceTree = "<group>"; };
 		2B04573728E6FFE300024F2D /* MatchRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchRule.swift; sourceTree = "<group>"; };
-		2B04573928E6FFE300024F2D /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		2B04573928E6FFE300024F2D /* Token_Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token_Editor.swift; sourceTree = "<group>"; };
 		2B04573A28E6FFE300024F2D /* Pattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pattern.swift; sourceTree = "<group>"; };
 		2B15CA0028254139004E8F22 /* OpenWithAuroraEditor.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = OpenWithAuroraEditor.entitlements; sourceTree = "<group>"; };
 		2B18EC4528AEC84900494768 /* Symbols.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Symbols.xcassets; sourceTree = "<group>"; };
@@ -1019,6 +1018,7 @@
 		93D5F5D628CE0EF500286EBD /* TabHierarchyMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyMenu.swift; sourceTree = "<group>"; };
 		93D5F5D828CE123200286EBD /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
 		93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		93ECCFFA2902D02E00605FB3 /* CodeFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeFile.swift; sourceTree = "<group>"; };
 		93EF415B28C1D21E004083AD /* CommandPaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteView.swift; sourceTree = "<group>"; };
 		93EF415E28C1D2DB004083AD /* CommandPaletteState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteState.swift; sourceTree = "<group>"; };
 		93EF416028C1D38E004083AD /* CommandPaletteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteItem.swift; sourceTree = "<group>"; };
@@ -1195,6 +1195,7 @@
 				2BDFA8FC28D107B200980385 /* OtherFileView.swift */,
 				2BDFA8FD28D107B200980385 /* WebTabView.swift */,
 				2BDFA8FB28D107B200980385 /* WebWKView.swift */,
+				93ECCFFA2902D02E00605FB3 /* CodeFile.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2741,7 +2742,6 @@
 				20EC822A28EC22CC007E283A /* Theme */,
 				2B04572D28E6FFE300024F2D /* Rules+Patterns */,
 				93ECCFF92902CAD200605FB3 /* Processing */,
-				2B04570E28E6FFE300024F2D /* ParagraphStyle.swift */,
 			);
 			path = EditorCore;
 			sourceTree = "<group>";
@@ -3035,7 +3035,7 @@
 		93ECCFF92902CAD200605FB3 /* Processing */ = {
 			isa = PBXGroup;
 			children = (
-				2B04573928E6FFE300024F2D /* Token.swift */,
+				2B04573928E6FFE300024F2D /* Token_Editor.swift */,
 				2B04571328E6FFE300024F2D /* Repository.swift */,
 				2B04570928E6FFE300024F2D /* Scope.swift */,
 				2B04570A28E6FFE300024F2D /* ScopeName.swift */,
@@ -3470,7 +3470,7 @@
 				2BDFA8F928D1079700980385 /* WebTab.swift in Sources */,
 				2813F93927ECC4C300E305E4 /* NavigatorSidebar.swift in Sources */,
 				2093CD3C289AA08F003A88DD /* GitlabOAuthRouter.swift in Sources */,
-				2B04576B28E6FFE300024F2D /* Token.swift in Sources */,
+				2B04576B28E6FFE300024F2D /* Token_Editor.swift in Sources */,
 				2093CD51289AA0AE003A88DD /* IssueArea.swift in Sources */,
 				2B04574B28E6FFE300024F2D /* ItalicThemeAttribute.swift in Sources */,
 				2093CDAA289AA179003A88DD /* SourceControlGitView.swift in Sources */,
@@ -3480,6 +3480,7 @@
 				2093CDD8289AA511003A88DD /* URL.swift in Sources */,
 				2093CD46289AA095003A88DD /* AvatarURL.swift in Sources */,
 				20BE728728D0845000EEDE5F /* AuroraNetworking.swift in Sources */,
+				93ECCFFB2902D02E00605FB3 /* CodeFile.swift in Sources */,
 				2BDFA90528D107B200980385 /* OtherFileView.swift in Sources */,
 				2B04575A28E6FFE300024F2D /* HiddenThemeAttribute.swift in Sources */,
 				2093CDA9289AA179003A88DD /* SourceControlGeneralView.swift in Sources */,
@@ -3557,7 +3558,6 @@
 				93B1D10C28CD907A005A8C24 /* TabBar+Drag.swift in Sources */,
 				2093CDAD289AA185003A88DD /* ThemePreviewIcon.swift in Sources */,
 				2B04574028E6FFE300024F2D /* TokenizedLine.swift in Sources */,
-				2B04574228E6FFE300024F2D /* ParagraphStyle.swift in Sources */,
 				2093CC97289A9FF5003A88DD /* StatusBarBreakpointButton.swift in Sources */,
 				20E8748E28A3AB9B002CE758 /* SourceControlMenu.swift in Sources */,
 				2093CD15289AA054003A88DD /* GitClient.swift in Sources */,

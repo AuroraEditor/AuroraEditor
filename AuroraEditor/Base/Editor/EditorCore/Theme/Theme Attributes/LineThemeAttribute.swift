@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AppKit
 
 /// HighlightTheme attribute for applying a theme to a line,
 /// specifically some mutation to an attributed strings `paragraphStyle`.
@@ -15,5 +16,5 @@ import Foundation
 /// Paragraph styles will prioritise the theme attributes of narrower scopes and later tokens for a line.
 public protocol LineThemeAttribute: ThemeAttribute {
 
-    func apply(to style: MutableParagraphStyle)
+    func apply(to style: NSMutableParagraphStyle)
 }
