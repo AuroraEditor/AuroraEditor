@@ -20,7 +20,7 @@ public class LineHeightThemeAttribute: LineThemeAttribute, Codable {
         self.max = max
     }
 
-    public func apply(to style: MutableParagraphStyle) {
+    public func apply(to style: NSMutableParagraphStyle) {
         style.minimumLineHeight = min
         style.maximumLineHeight = max
     }

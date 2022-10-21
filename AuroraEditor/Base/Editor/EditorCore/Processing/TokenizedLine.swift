@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AppKit
 
 public class TokenizedLine {
 
@@ -47,7 +48,7 @@ public class TokenizedLine {
 
     private static func applyThemeAttributes(_ attributes: [ThemeAttribute],
                                              toStr attributedString: NSMutableAttributedString,
-                                             withStyle style: MutableParagraphStyle,
+                                             withStyle style: NSMutableParagraphStyle,
                                              andRange range: NSRange) {
         for attr in attributes {
             if let lineAttr = attr as? LineThemeAttribute {
@@ -80,12 +81,12 @@ public class TokenizedLine {
 
         // If we are applying the base attributes we will reset the attributes of the attributed string.
         // Otherwise, we will leave them and create a mutable copy of the paragraph style.
-        var style = MutableParagraphStyle()
+        var style = NSMutableParagraphStyle()
         if applyBaseAttributes {
             attributedString.setAttributes(nil, range: NSRange(location: loc, length: length))
         } else if let currStyle = (attributedString.attribute(.paragraphStyle, at: loc,
                                                               effectiveRange: nil)
-                                   as? ParagraphStyle)?.mutableCopy() as? MutableParagraphStyle {
+                                   as? NSParagraphStyle)?.mutableCopy() as? NSMutableParagraphStyle {
             style = currStyle
         }
 

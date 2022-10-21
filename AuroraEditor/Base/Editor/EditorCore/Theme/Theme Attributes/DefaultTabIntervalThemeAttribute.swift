@@ -18,7 +18,7 @@ public class DefaultTabIntervalThemeAttribute: LineThemeAttribute, Codable {
         self.interval = interval
     }
 
-    public func apply(to style: MutableParagraphStyle) {
+    public func apply(to style: NSMutableParagraphStyle) {
         style.defaultTabInterval = interval
     }
 }
