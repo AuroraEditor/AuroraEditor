@@ -96,23 +96,6 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
             }
         }
 
-        // Check the line ranges in testing
-        //        checkLineRanges()
-
-        // We are deleting one character => check whether it is a one-character
-        // bracket and if so also delete its matching bracket if it is directly adjascent
-//        if range.length == 1 && str.isEmpty {
-//
-//            textStorage.replaceCharacters(in: range, with: str)
-//            edited(.editedCharacters, range: range, changeInLength: (str as NSString).length - range.length)
-//
-//        } else {
-//
-//            textStorage.replaceCharacters(in: range, with: str)
-//            edited(.editedCharacters, range: range, changeInLength: (str as NSString).length - range.length)
-//
-//        }
-
         edited(.editedCharacters, range: range, changeInLength: (str as NSString).length - range.length)
         endEditing()
     }
