@@ -219,6 +219,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     override func setSelectedRanges(_ ranges: [NSValue],
                                     affinity: NSSelectionAffinity,
                                     stillSelecting stillSelectingFlag: Bool) {
+        Log.info("Setting selected ranges to \(ranges)")
         let oldSelectedRanges = selectedRanges
         super.setSelectedRanges(ranges, affinity: affinity, stillSelecting: stillSelectingFlag)
         minimapView?.selectedRanges = selectedRanges    // minimap mirrors the selection of the main code view
@@ -240,10 +241,8 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
                 // `lineBackgroundRect(_:)`, which is why `NSLayoutManager.invalidateDisplay(forCharacterRange:)` is not
                 // sufficient.
                 layoutManager?.enumerateFragmentRects(forLineContaining: oldLineRange.location) { fragmentRect in
-
                     self.setNeedsDisplay(self.lineBackgroundRect(fragmentRect))
                 }
-                minimapGutterView?.optLayoutManager?.invalidateDisplay(forCharacterRange: oldLineRange)
             }
             if let newLine = lineOfInsertionPoint,
                let newLineRange = codeStorage.getLineRange(newLine) {
@@ -252,11 +251,8 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
                 // `lineBackgroundRect(_:)`, which is why `NSLayoutManager.invalidateDisplay(forCharacterRange:)` is not
                 // sufficient.
                 layoutManager?.enumerateFragmentRects(forLineContaining: newLineRange.location) { fragmentRect in
-
                     self.setNeedsDisplay(self.lineBackgroundRect(fragmentRect))
                 }
-                minimapGutterView?.optLayoutManager?.invalidateDisplay(forCharacterRange: newLineRange)
-
             }
         }
         oldLastLineOfInsertionPoint = lineOfInsertionPoint
