@@ -238,12 +238,12 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
                 // We need to invalidate the whole background (incl message views); hence, we need to employ
                 // `lineBackgroundRect(_:)`, which is why `NSLayoutManager.invalidateDisplay(forCharacterRange:)` is not
                 // sufficient.
-                layoutManager?.enumerateFragmentRects(forLineContaining: oldLineRange.location) { fragmentRect in
+                layoutManager?.enumerateFragmentRects(forLineContaining:
+                                                        min(oldLineRange.location, string.count)) { fragmentRect in
 
                     self.setNeedsDisplay(self.lineBackgroundRect(fragmentRect))
                 }
                 minimapGutterView?.optLayoutManager?.invalidateDisplay(forCharacterRange: oldLineRange)
-
             }
             if let newLine = lineOfInsertionPoint,
                let newLineRange = optLineMap?.lookup(line: newLine)?.range {
