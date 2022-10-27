@@ -219,14 +219,13 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     override func setSelectedRanges(_ ranges: [NSValue],
                                     affinity: NSSelectionAffinity,
                                     stillSelecting stillSelectingFlag: Bool) {
-        Log.info("Setting selected ranges to \(ranges)")
         let oldSelectedRanges = selectedRanges
         super.setSelectedRanges(ranges, affinity: affinity, stillSelecting: stillSelectingFlag)
         minimapView?.selectedRanges = selectedRanges    // minimap mirrors the selection of the main code view
 
         let lineOfInsertionPoint = insertionPoint.flatMap { optLineMap?.lineOf(index: $0) }
 
-        // If the insertion point changed lines, we need to redraw at the\
+        // If the insertion point changed lines, we need to redraw at the
         // old and new location to fix the line highlighting.
         // NB: We retain the last line and not the character index as the
         // latter may be inaccurate due to editing that let
