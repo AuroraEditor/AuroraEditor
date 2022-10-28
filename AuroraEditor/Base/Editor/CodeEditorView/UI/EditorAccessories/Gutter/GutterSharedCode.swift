@@ -36,8 +36,10 @@ extension GutterView {
 
         let textRect: CGRect
 
-        if charRange.location == string.length {   // special case: insertion point on trailing empty line
-            textRect = layoutManager.extraLineFragmentRect
+        if charRange.location >= string.length {    // special case: insertion point on trailing empty line
+                                                    // or beyond the end of the string (just deleted last trailing line)
+            let fragRect = layoutManager.extraLineFragmentRect
+            textRect = CGRect(x: fragRect.minX, y: fragRect.minY, width: fragRect.width, height: fragRect.height*2)
         } else {
             // We call `paragraphRange(for:_)` safely by boxing `charRange` to the allowed range.
             let extendedCharRange = string.paragraphRange(
