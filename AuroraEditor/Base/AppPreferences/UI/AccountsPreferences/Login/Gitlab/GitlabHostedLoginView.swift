@@ -14,12 +14,16 @@ struct GitlabHostedLoginView: View {
 
     @Environment(\.openURL) var createToken
 
-    @Binding var dismissDialog: Bool
+    @Binding
+    var dismissDialog: Bool
 
-    @StateObject
-    private var prefs: AppPreferencesModel = .shared
+    @ObservedObject
+    var accountModel: EditorAccountModel
 
-    private let keychain = AuroraEditorKeychain()
+    init(dismissDialog: Binding<Bool>) {
+        self._dismissDialog = dismissDialog
+        self.accountModel = .init(dismissDialog: dismissDialog.wrappedValue)
+    }
 
     var body: some View {
         VStack {
@@ -67,7 +71,9 @@ struct GitlabHostedLoginView: View {
                         .disabled(true)
                     } else {
                         Button {
-                            loginGitlabSelfHosted(gitAccountName: accountName)
+                            accountModel.loginGitlabSelfHosted(gitAccountName: accountName,
+                                                               accountToken: accountToken,
+                                                               enterpriseLink: eneterpriseLink)
                         } label: {
                             Text("Sign In")
                                 .foregroundColor(.white)
@@ -80,38 +86,5 @@ struct GitlabHostedLoginView: View {
         }
         .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
         .frame(width: 545, height: 190)
-    }
-
-    private func loginGitlabSelfHosted(gitAccountName: String) {
-        let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
-
-        let config = GitlabTokenConfiguration(accountToken,
-                                              url: eneterpriseLink )
-        GitlabAccount(config).me { response in
-            switch response {
-            case .success(let user):
-                if gitAccounts.contains(where: { $0.id == gitAccountName.lowercased() }) {
-                    Log.warning("Account with the username already exists!")
-                } else {
-                    Log.info(user)
-                    prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
-                        SourceControlAccounts(id: gitAccountName.lowercased(),
-                                              gitProvider: "Gitlab",
-                                              gitProviderLink: eneterpriseLink,
-                                              gitProviderDescription: "Gitlab",
-                                              gitAccountName: gitAccountName,
-                                              gitAccountEmail: "user.email!",
-                                              gitAccountUsername: "user.username",
-                                              gitAccountImage: "user.avatarURL?.relativeString!",
-                                              gitCloningProtocol: true,
-                                              gitSSHKey: "",
-                                              isTokenValid: true))
-                    keychain.set(accountToken, forKey: "gitlab_\(gitAccountName)_hosted")
-                    dismissDialog = false
-                }
-            case .failure(let error):
-                Log.error(error)
-            }
-        }
     }
 }

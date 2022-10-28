@@ -1,18 +1,22 @@
 //
-//  GitlabLoginView.swift
-//  AuroraEditorModules/AppPreferences
+//  AuroraEditorLoginView.swift
+//  AuroraEditor
 //
-//  Created by Nanashi Li on 2022/04/21.
+//  Created by Nanashi Li on 2022/10/28.
+//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import SwiftUI
 
-struct GitlabLoginView: View {
+struct AuroraEditorLoginView: View {
 
-    @State var accountName = ""
-    @State var accountToken = ""
+    @State
+    var email = ""
+    @State
+    var password = ""
 
-    @Environment(\.openURL) var createToken
+    @Environment(\.openURL)
+    var createAccount
 
     @Binding
     var dismissDialog: Bool
@@ -27,18 +31,19 @@ struct GitlabLoginView: View {
 
     var body: some View {
         VStack {
-            Text("Sign in to your Gitlab account")
+            Text("Sign in to your Aurora Editor account")
 
             VStack(alignment: .trailing) {
                 HStack {
                     Text("Account:")
-                    TextField("Enter your username", text: $accountName)
-                        .frame(width: 300)
+                    TextField("Enter your email",
+                              text: $email)
+                    .frame(width: 300)
                 }
                 HStack {
-                    Text("Token:")
-                    SecureField("Enter your Personal Access Token",
-                                text: $accountToken)
+                    Text("Password:")
+                    SecureField("Enter your Password",
+                                text: $password)
                     .frame(width: 300)
                 }
             }
@@ -46,9 +51,9 @@ struct GitlabLoginView: View {
             HStack {
                 HStack {
                     Button {
-                        createToken(URL(string: "https://gitlab.com/-/profile/personal_access_tokens")!)
+                        createAccount(URL(string: "https://auroraeditor.com/#/sign-up")!)
                     } label: {
-                        Text("Create a Token on Gitlab")
+                        Text("Create a Aurora Editor account")
                             .foregroundColor(.primary)
                     }
                 }
@@ -60,14 +65,13 @@ struct GitlabLoginView: View {
                         Text("Cancel")
                             .foregroundColor(.primary)
                     }
-                    if accountToken.isEmpty {
+                    if email.isEmpty && password.isEmpty {
                         Button("Sign In") {}
                         .disabled(true)
                     } else {
                         Button {
-                            accountModel.loginGitlab(gitAccountName: accountName,
-                                                     accountToken: accountToken,
-                                                     accountName: accountName)
+                            accountModel.loginAuroraEditor(email: email,
+                                                           password: password)
                         } label: {
                             Text("Sign In")
                                 .foregroundColor(.white)

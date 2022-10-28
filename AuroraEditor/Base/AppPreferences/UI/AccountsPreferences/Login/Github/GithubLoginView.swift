@@ -14,12 +14,16 @@ struct GithubLoginView: View {
 
     @Environment(\.openURL) var createToken
 
-    private let keychain = AuroraEditorKeychain()
+    @Binding
+    var dismissDialog: Bool
 
-    @Binding var dismissDialog: Bool
+    @ObservedObject
+    var accountModel: EditorAccountModel
 
-    @StateObject
-    private var prefs: AppPreferencesModel = .shared
+    init(dismissDialog: Binding<Bool>) {
+        self._dismissDialog = dismissDialog
+        self.accountModel = .init(dismissDialog: dismissDialog.wrappedValue)
+    }
 
     var body: some View {
         VStack {
@@ -105,7 +109,8 @@ struct GithubLoginView: View {
                         .disabled(true)
                     } else {
                         Button {
-                            loginGithub(gitAccountName: accountName)
+                            accountModel.loginGithub(gitAccountName: accountName,
+                                                     accountToken: accountToken)
                         } label: {
                             Text("Sign In")
                                 .foregroundColor(.white)
@@ -118,39 +123,5 @@ struct GithubLoginView: View {
         }
         .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
         .frame(width: 485, height: 280)
-    }
-
-    private func loginGithub(gitAccountName: String) {
-        let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
-
-        let config = GithubTokenConfiguration(accountToken)
-        GithubAccount(config).me { response in
-            switch response {
-            case .success(let user):
-                if gitAccounts.contains(where: { $0.id == gitAccountName.lowercased() }) {
-                    Log.warning("Account with the username already exists!")
-                } else {
-                    Log.info(user)
-                    DispatchQueue.main.async {
-                        prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
-                            SourceControlAccounts(id: gitAccountName.lowercased(),
-                                                  gitProvider: "GitHub",
-                                                  gitProviderLink: "https://github.com",
-                                                  gitProviderDescription: "GitHub",
-                                                  gitAccountName: gitAccountName,
-                                                  gitAccountEmail: user.email ?? "Not Found",
-                                                  gitAccountUsername: user.login!,
-                                                  gitAccountImage: user.avatarURL!,
-                                                  gitCloningProtocol: true,
-                                                  gitSSHKey: "",
-                                                  isTokenValid: true))
-                        keychain.set(accountToken, forKey: "github_\(user.login!)")
-                    }
-                    dismissDialog.toggle()
-                }
-            case .failure(let error):
-                Log.error(error)
-            }
-        }
     }
 }
