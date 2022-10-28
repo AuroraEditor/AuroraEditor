@@ -230,10 +230,10 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         // NB: We retain the last line and not the character index as the
         // latter may be inaccurate due to editing that let
         // to the selected range change.
-        if lineOfInsertionPoint != oldLastLineOfInsertionPoint {
+        if lineOfInsertionPoint != oldLastLineOfInsertionPoint, let codeStorage = optCodeStorage {
 
             if let oldLine = oldLastLineOfInsertionPoint,
-               let oldLineRange = optLineMap?.lookup(line: oldLine)?.range {
+               let oldLineRange = codeStorage.getLineRange(oldLine) {
 
                 // We need to invalidate the whole background (incl message views); hence, we need to employ
                 // `lineBackgroundRect(_:)`, which is why `NSLayoutManager.invalidateDisplay(forCharacterRange:)` is not
@@ -242,11 +242,9 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
                     self.setNeedsDisplay(self.lineBackgroundRect(fragmentRect))
                 }
-                minimapGutterView?.optLayoutManager?.invalidateDisplay(forCharacterRange: oldLineRange)
-
             }
             if let newLine = lineOfInsertionPoint,
-               let newLineRange = optLineMap?.lookup(line: newLine)?.range {
+               let newLineRange = codeStorage.getLineRange(newLine) {
 
                 // We need to invalidate the whole background (incl message views); hence, we need to employ
                 // `lineBackgroundRect(_:)`, which is why `NSLayoutManager.invalidateDisplay(forCharacterRange:)` is not
@@ -255,8 +253,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
 
                     self.setNeedsDisplay(self.lineBackgroundRect(fragmentRect))
                 }
-                minimapGutterView?.optLayoutManager?.invalidateDisplay(forCharacterRange: newLineRange)
-
             }
         }
         oldLastLineOfInsertionPoint = lineOfInsertionPoint
@@ -271,8 +267,8 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
             // a lack of invalidation of the line on which the insertion point is located.
             self.gutterView?.invalidateGutter(forCharRange: combinedRanges(ranges: oldSelectedRanges))
             self.gutterView?.invalidateGutter(forCharRange: combinedRanges(ranges: ranges))
-            self.minimapGutterView?.invalidateGutter(forCharRange: combinedRanges(ranges: oldSelectedRanges))
-            self.minimapGutterView?.invalidateGutter(forCharRange: combinedRanges(ranges: ranges))
+//            self.minimapGutterView?.invalidateGutter(forCharRange: combinedRanges(ranges: oldSelectedRanges))
+//            self.minimapGutterView?.invalidateGutter(forCharRange: combinedRanges(ranges: ranges))
         }
 
         collapseMessageViews()

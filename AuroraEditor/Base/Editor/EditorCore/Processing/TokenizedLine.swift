@@ -82,8 +82,9 @@ public class TokenizedLine {
         // If we are applying the base attributes we will reset the attributes of the attributed string.
         // Otherwise, we will leave them and create a mutable copy of the paragraph style.
         var style = NSMutableParagraphStyle()
-        if applyBaseAttributes {
-            attributedString.setAttributes(nil, range: NSRange(location: loc, length: length))
+        if applyBaseAttributes,
+           let range = attributedString.rangeWithinString(from: NSRange(location: loc, length: length)) {
+            attributedString.setAttributes(nil, range: range)
         } else if let currStyle = (attributedString.attribute(.paragraphStyle, at: loc,
                                                               effectiveRange: nil)
                                    as? NSParagraphStyle)?.mutableCopy() as? NSMutableParagraphStyle {
@@ -91,7 +92,9 @@ public class TokenizedLine {
         }
 
         for token in tokens {
-            let range = NSRange(location: loc + token.range.location, length: token.range.length)
+            guard let range = attributedString.rangeWithinString(from: NSRange(location: loc + token.range.location,
+                                                                               length: token.range.length))
+            else { return }
 
             // set the token NSAttributedString attribute, used for debugging
             attributedString.addAttributes([.token: token], range: range)
@@ -102,24 +105,33 @@ public class TokenizedLine {
                         scope.attributes,
                         toStr: attributedString,
                         withStyle: style,
-                        andRange: NSRange(location: loc + token.range.location, length: token.range.length))
+                        andRange: range)
                 }
                 if inSelectionScope {
                     TokenizedLine.applyThemeAttributes(
                         scope.inSelectionAttributes,
                         toStr: attributedString,
                         withStyle: style,
-                        andRange: NSRange(location: loc + token.range.location, length: token.range.length))
+                        andRange: range)
                 } else {
                     TokenizedLine.applyThemeAttributes(
                         scope.outSelectionAttributes,
                         toStr: attributedString,
                         withStyle: style,
-                        andRange: NSRange(location: loc + token.range.location, length: token.range.length))
+                        andRange: range)
                 }
             }
         }
 
-        attributedString.addAttribute(.paragraphStyle, value: style, range: NSRange(location: loc, length: length))
+        if let range = attributedString.rangeWithinString(from: NSRange(location: loc, length: length)) {
+            attributedString.addAttribute(.paragraphStyle, value: style,
+                                          range: range)
+        }
+    }
+}
+
+extension NSAttributedString {
+    func rangeWithinString(from range: NSRange) -> NSRange? {
+        NSRange(location: 0, length: self.length).intersection(range)
     }
 }
