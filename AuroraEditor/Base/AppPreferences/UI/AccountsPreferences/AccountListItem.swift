@@ -11,20 +11,21 @@ struct AccountListItem: View {
 
     var gitClientName: String
     var gitClientSymbol: String
+    var clientId: String
 
     var body: some View {
         HStack {
-            Image(gitClientSymbol)
-                .resizable()
-                .frame(width: 28.0, height: 28.0)
+            if clientId == "auroraEditor" {
+                Image(systemName: gitClientSymbol)
+                    .resizable()
+                    .frame(width: 28.0, height: 28.0)
+            } else {
+                Image(gitClientSymbol)
+                    .resizable()
+                    .frame(width: 28.0, height: 28.0)
+            }
             Text(gitClientName)
                 .font(.system(size: 12))
         }
-    }
-}
-
-struct AccountListItem_Previews: PreviewProvider {
-    static var previews: some View {
-        AccountListItem(gitClientName: "Github", gitClientSymbol: "github")
     }
 }

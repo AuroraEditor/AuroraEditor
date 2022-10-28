@@ -13,6 +13,7 @@ struct AccountSelectionDialog: View {
     private var dismiss
 
     var gitProviders = [
+        Providers(name: "Aurora Editor", icon: "person.crop.circle", id: "auroraEditor"),
         Providers(name: "Bitbucket Cloud", icon: "bitbucket", id: "bitbucketCloud"),
         Providers(name: "Bitbucket Server", icon: "bitbucket", id: "bitbucketServer"),
         Providers(name: "GitHub", icon: "github", id: "github"),
@@ -32,7 +33,9 @@ struct AccountSelectionDialog: View {
                 .font(.system(size: 12))
 
             List(gitProviders, selection: $providerSelection) {
-                AccountListItem(gitClientName: $0.name, gitClientSymbol: $0.icon)
+                AccountListItem(gitClientName: $0.name,
+                                gitClientSymbol: $0.icon,
+                                clientId: $0.id)
             }
             .background(Color(NSColor.controlBackgroundColor))
             .padding(1)
@@ -66,6 +69,8 @@ struct AccountSelectionDialog: View {
     @ViewBuilder
     private var openAccountLoginDialog: some View {
         switch providerSelection {
+        case "auroraEditor":
+            AuroraEditorLoginView(dismissDialog: $openGitLogin)
         case "bitbucketCloud":
             implementationNeeded
         case "bitbucketServer":

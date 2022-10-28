@@ -52,7 +52,7 @@ public class UpdateObservedModel: ObservableObject {
         DispatchQueue(label: "Update", qos: .background).asyncAfter(deadline: .now() + 5) {
             AuroraNetworking().request(baseURL: UpdateConstants.baseURL,
                                        path: UpdateConstants.updateFileURL(),
-                                       useAuth: false,
+                                       useAuthType: .none,
                                        method: .GET,
                                        parameters: nil,
                                        completionHandler: { result in

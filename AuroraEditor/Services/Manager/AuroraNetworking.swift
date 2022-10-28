@@ -10,6 +10,14 @@ import Foundation
 import Combine
 import SwiftUI
 
+enum AuthType: Codable {
+    case github
+    case gitlab
+    case bitbucket
+    case auroraeditor
+    case none
+}
+
 class AuroraNetworking {
     static let shared = AuroraNetworking()
 
@@ -38,22 +46,39 @@ class AuroraNetworking {
         }
     }
 
-    private func createRequest(url: URL, useGitAuth: Bool) -> URLRequest {
+    private func createRequest(url: URL, useAuthType: AuthType) -> URLRequest {
         /// Create a URL Request
         var request = URLRequest(url: url)
 
-        /// Header values: we just add it automatically since all requests use the same headers
-        request.addValue(
-            "application/vnd.github+json",
-            forHTTPHeaderField: "Accept"
-        )
+        if useAuthType == .github {
+            request.addValue(
+                "application/vnd.github+json",
+                forHTTPHeaderField: "Accept"
+            )
 
-        if useGitAuth {
             let username = prefs.preferences.accounts.sourceControlAccounts.gitAccount.first?.gitAccountUsername
 
             request.setValue(
                 "Bearer \(keychain.get("github_\(username!)")!)",
                 forHTTPHeaderField: "Authorization"
+            )
+        } else if useAuthType == .auroraeditor {
+            request.addValue(
+                "application/json",
+                forHTTPHeaderField: "Content-Type"
+            )
+
+            let username = prefs.preferences.accounts.sourceControlAccounts.gitAccount.first?
+                .gitAccountUsername.contains("auroraeditor_")
+
+            request.setValue(
+                "Bearer \(keychain.get("auroraeditor_\(username!)")!)",
+                forHTTPHeaderField: "Authorization"
+            )
+        } else if useAuthType == .none {
+            request.addValue(
+                "application/json",
+                forHTTPHeaderField: "Content-Type"
             )
         }
 
@@ -130,7 +155,7 @@ class AuroraNetworking {
     public func request(
         baseURL: String,
         path: String,
-        useAuth: Bool = true,
+        useAuthType: AuthType = .github,
         method: HTTPMethod,
         parameters: [String: Any]?,
         completionHandler: @escaping (Result<Data, Error>) -> Void,
@@ -147,7 +172,7 @@ class AuroraNetworking {
         }
 
         /// Create a URL Request
-        var request = createRequest(url: siteURL, useGitAuth: useAuth)
+        var request = createRequest(url: siteURL, useAuthType: useAuthType)
         request.httpMethod = method.rawValue
 
         if method == .POST || method == .PUT {
@@ -162,7 +187,7 @@ class AuroraNetworking {
     public func request(
         path: String,
         method: HTTPMethod,
-        useAuth: Bool = true,
+        useAuthType: AuthType = .github,
         parameters: [[String: Any]],
         completionHandler: @escaping (Result<Data, Error>) -> Void,
         file: String = #file, line: Int = #line, function: String = #function
@@ -178,7 +203,7 @@ class AuroraNetworking {
         }
 
         /// Create a URL Request
-        var request = createRequest(url: siteURL, useGitAuth: useAuth)
+        var request = createRequest(url: siteURL, useAuthType: useAuthType)
         request.httpMethod = method.rawValue
 
         if method == .POST || method == .PUT {
@@ -206,7 +231,7 @@ class AuroraNetworking {
     public func request<T: Encodable>(
         path: String,
         method: HTTPMethod,
-        useAuth: Bool = true,
+        useAuthType: AuthType = .github,
         parameters: T,
         completionHandler: @escaping (Result<Data, Error>) -> Void,
         file: String = #file, line: Int = #line, function: String = #function
@@ -222,7 +247,7 @@ class AuroraNetworking {
         }
 
         /// Create a URL Request
-        var request = createRequest(url: siteURL, useGitAuth: useAuth)
+        var request = createRequest(url: siteURL, useAuthType: useAuthType)
         request.httpMethod = method.rawValue
 
         if method == .POST || method == .PUT {
