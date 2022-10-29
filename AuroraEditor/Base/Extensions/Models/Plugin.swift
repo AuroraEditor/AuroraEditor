@@ -9,40 +9,75 @@ import Foundation
 import SwiftUI
 import AEExtensionKit
 
-public struct Plugin: Codable, Identifiable, Hashable, TabBarItemRepresentable {
+public struct Plugin: Codable, Identifiable, Comparable, TabBarItemRepresentable {
+    public static func < (lhs: Plugin, rhs: Plugin) -> Bool {
+        lhs.id.uuidString < rhs.id.uuidString
+    }
+
+    public static func == (lhs: Plugin, rhs: Plugin) -> Bool {
+        lhs.id == rhs.id
+    }
     public var tabID: TabBarItemID {
-            .extensionInstallation(self.id)
-        }
+        .extensionInstallation(self.id)
+    }
 
-        public var title: String {
-            return "LEGACY"
-        }
+    public var title: String {
+        return "LEGACY"
+    }
 
-        public var icon: Image {
-            Image(systemName: "puzzlepiece.extension.fill")
-        }
+    public var icon: Image {
+        Image(systemName: "puzzlepiece.extension.fill")
+    }
 
-        public var iconColor: Color {
-            .blue
-        }
+    public var iconColor: Color {
+        .blue
+    }
 
-        public var id: UUID
-        public var author: UUID
-        public var sdk: SDK
-        public var management: ReleaseManagement
-        public var ban: Ban?
+    // Extension Info
+    public var id: UUID
+    var extensionDescription: String
+    var extensionImage: String
+    var extensionName: String
+    var download: Int
+    var category: String
+    var tags: [String]
 
-        public enum SDK: String, Codable, Hashable {
-            case swift
-            case languageServer = "language_server"
-        }
+    // Extension Creator
+    var creator: ExtensionCreator
 
-        public enum ReleaseManagement: String, Codable, Hashable {
-            case githubReleases = "gh_releases"
-        }
+    // Editor
+    var editorSupportVersion: String
 
-        public struct Ban: Codable, Hashable {
-            public var bannedBy: UUID
-            public var reason: String
-        }
+    // Developer Links
+    var developerLinks: DeveloperLinks
+}
+
+public struct ExtensionCreator: Codable {
+    var id: UUID
+    var name: String
+    var username: String
+    var profileImage: String
+    var profileUrl: String
+
+    enum CodingKeys: String, CodingKey {
+        case id = "creator_id"
+        case name = "creator_name"
+        case username = "creator_username"
+        case profileImage = "creator_profile_image"
+        case profileUrl = "creator_profile_url"
+    }
+}
+
+public struct DeveloperLinks: Codable {
+    var license: String
+    var issues: String
+    var privacyPolicy: String
+    var termsOfService: String
+
+    enum CodingKeys: String, CodingKey {
+        case license
+        case issues
+        case privacyPolicy = "privacy_policy"
+        case termsOfService = "terms_of_service"
+    }
 }
