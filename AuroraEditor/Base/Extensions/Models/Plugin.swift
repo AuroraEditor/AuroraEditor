@@ -22,7 +22,7 @@ public struct Plugin: Codable, Identifiable, Comparable, TabBarItemRepresentable
     }
 
     public var title: String {
-        return "LEGACY"
+        return self.extensionName
     }
 
     public var icon: Image {
