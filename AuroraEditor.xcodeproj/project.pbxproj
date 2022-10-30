@@ -485,6 +485,7 @@
 		93DD4FF328AFD0F100B664D4 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */; };
 		93E0486C290E45D5008263B3 /* AuroraDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E0486B290E45D5008263B3 /* AuroraDataStorage.swift */; };
 		93ECCFFB2902D02E00605FB3 /* CodeFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ECCFFA2902D02E00605FB3 /* CodeFile.swift */; };
+		93EF2EFA290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF2EF9290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift */; };
 		93EF415C28C1D21E004083AD /* CommandPaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF415B28C1D21E004083AD /* CommandPaletteView.swift */; };
 		93EF415F28C1D2DB004083AD /* CommandPaletteState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF415E28C1D2DB004083AD /* CommandPaletteState.swift */; };
 		93EF416128C1D38E004083AD /* CommandPaletteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF416028C1D38E004083AD /* CommandPaletteItem.swift */; };
@@ -1029,6 +1030,7 @@
 		93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		93E0486B290E45D5008263B3 /* AuroraDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraDataStorage.swift; sourceTree = "<group>"; };
 		93ECCFFA2902D02E00605FB3 /* CodeFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeFile.swift; sourceTree = "<group>"; };
+		93EF2EF9290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraCommandBroadcaster.swift; sourceTree = "<group>"; };
 		93EF415B28C1D21E004083AD /* CommandPaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteView.swift; sourceTree = "<group>"; };
 		93EF415E28C1D2DB004083AD /* CommandPaletteState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteState.swift; sourceTree = "<group>"; };
 		93EF416028C1D38E004083AD /* CommandPaletteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteItem.swift; sourceTree = "<group>"; };
@@ -3043,6 +3045,7 @@
 				043BCF04281DA19A000AC47C /* WorkspaceDocument+Selection.swift */,
 				6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */,
 				93F73D0C28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift */,
+				93EF2EF9290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift */,
 			);
 			path = WorkspaceDocument;
 			sourceTree = "<group>";
@@ -3687,6 +3690,7 @@
 				206B129328DF79E9002CDE51 /* MinimapTypeSetter.swift in Sources */,
 				20B5BDA928B130FF00B2A02F /* SplitViewModifier.swift in Sources */,
 				20EBB503280C327C00F3A5DA /* HistoryInspector.swift in Sources */,
+				93EF2EFA290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift in Sources */,
 				2093CD2C289AA089003A88DD /* PullRequest.swift in Sources */,
 				2BDFA91628D10B9200980385 /* FileCreationSelectionView.swift in Sources */,
 				2093CDB9289AA1AB003A88DD /* LocationsPreferencesView.swift in Sources */,

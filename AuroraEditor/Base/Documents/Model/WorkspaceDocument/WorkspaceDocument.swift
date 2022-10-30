@@ -25,6 +25,9 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     var data = AuroraDataStorage()
 
     @Published
+    var broadcaster = AuroraCommandBroadcaster()
+
+    @Published
     var fileItems: [FileSystemClient.FileItem] = []
     public var filter: String = "" {
         didSet { fileSystemClient?.onRefresh() }
