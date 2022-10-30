@@ -16,10 +16,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
     var overlayPanel: OverlayPanel?
 
     @Published
-    public var caretPos: CursorLocation = .init(line: 0, column: 0)
-
-    @Published
-    var currentToken: Token?
+    var data = WindowDataStorage()
 
     var splitViewController: NSSplitViewController! {
         get { contentViewController as? NSSplitViewController }
@@ -29,6 +26,8 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
     init(window: NSWindow, workspace: WorkspaceDocument) {
         self.workspace = workspace
         super.init(window: window)
+
+        self.data.windowController = self
 
         setupSplitView(with: workspace)
         setupToolbar()
@@ -163,7 +162,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
             alert.addButton(withTitle: "OK")
             alert.runModal()
         } else {
-            workspace.showStashChangesSheet.toggle()
+            data.showStashChangesSheet.toggle()
         }
     }
 

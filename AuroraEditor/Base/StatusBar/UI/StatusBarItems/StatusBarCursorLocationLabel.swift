@@ -22,7 +22,7 @@ internal struct StatusBarCursorLocationLabel: View {
     }
 
     internal var body: some View {
-        Text("Line: \(window.caretPos.line)  Col: \(window.caretPos.column)")
+        Text("Line: \(window.data.caretPos.line)  Col: \(window.data.caretPos.column)")
             .font(model.toolbarFont)
             .foregroundColor(foregroundColor)
             .fixedSize()

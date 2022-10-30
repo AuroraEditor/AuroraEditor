@@ -68,8 +68,7 @@ struct WorkspaceView: View {
                 }
             case .branchHistory:
                 if let branchHistoryTab = workspace.selectionState.selected as? BranchCommitHistory {
-                    BranchCommitHistoryView(branchCommitModel: branchHistoryTab,
-                                            workspace: workspace)
+                    BranchCommitHistoryView(branchCommitModel: branchHistoryTab)
                 }
             case .actionsWorkflow:
                 if let actionsWorkflowTab = workspace.selectionState.selected as? Workflow {
@@ -163,21 +162,21 @@ struct WorkspaceView: View {
         .sheet(isPresented: $workspace.newFileModel.showFileCreationSheet) {
             FileCreationSelectionView(workspace: workspace)
         }
-        .sheet(isPresented: $workspace.showStashChangesSheet) {
+        .sheet(isPresented: $window.data.showStashChangesSheet) {
             StashChangesSheet(workspaceURL: workspace.workspaceURL())
         }
-        .sheet(isPresented: $workspace.showRenameBranchSheet) {
+        .sheet(isPresented: $window.data.showRenameBranchSheet) {
             RenameBranchView(workspace: workspace,
-                             currentBranchName: workspace.currentlySelectedBranch,
-                             newBranchName: workspace.currentlySelectedBranch)
+                             currentBranchName: window.data.currentlySelectedBranch,
+                             newBranchName: window.data.currentlySelectedBranch)
         }
-        .sheet(isPresented: $workspace.showAddRemoteView) {
+        .sheet(isPresented: $window.data.showAddRemoteView) {
             AddRemoteView(workspace: workspace)
         }
-        .sheet(isPresented: $workspace.showBranchCreationSheet) {
+        .sheet(isPresented: $window.data.showBranchCreationSheet) {
             CreateNewBranchView(workspace: workspace,
-                                revision: workspace.branchRevision,
-                                revisionDesciption: workspace.branchRevisionDescription)
+                                revision: window.data.branchRevision,
+                                revisionDesciption: window.data.branchRevisionDescription)
         }
     }
 }

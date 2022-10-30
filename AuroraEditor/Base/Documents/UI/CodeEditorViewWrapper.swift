@@ -51,8 +51,8 @@ public struct CodeEditorViewWrapper: View {
         CodeEditor(
             text: $codeFile.content,
             position: $position,
-            caretPosition: $window.caretPos,
-            currentToken: $window.currentToken,
+            caretPosition: $window.data.caretPos,
+            currentToken: $window.data.currentToken,
             messages: $messages,
             theme: $theme,
             fileExtension: $fileExtension,

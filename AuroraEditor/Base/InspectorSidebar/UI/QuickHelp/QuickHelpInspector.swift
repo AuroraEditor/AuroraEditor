@@ -24,7 +24,7 @@ struct QuickHelpInspector: View {
                 .font(.system(size: 13))
                 .frame(minWidth: 250, maxWidth: .infinity, alignment: .leading)
 
-            if let currentToken = window.currentToken,
+            if let currentToken = window.data.currentToken,
                preferences.preferences.textEditing.showScopes {
                 VStack(alignment: .leading) {
                     Text("Current Textmate Scope")

@@ -17,6 +17,9 @@ struct ProjectNavigatorToolbarBottom: View {
     @ObservedObject
     var workspace: WorkspaceDocument
 
+    @EnvironmentObject
+    var window: AuroraEditorWindowController
+
     @State
     var filter: String = ""
 
@@ -79,9 +82,9 @@ struct ProjectNavigatorToolbarBottom: View {
     private var sortButton: some View {
         Menu {
             Button {
-                workspace.sortFoldersOnTop.toggle()
+                window.data.sortFoldersOnTop.toggle()
             } label: {
-                Text(workspace.sortFoldersOnTop ? "Alphabetically" : "Folders on top")
+                Text(window.data.sortFoldersOnTop ? "Alphabetically" : "Folders on top")
             }
         } label: {
             Image(systemName: "line.3.horizontal.decrease.circle")

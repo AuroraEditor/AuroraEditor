@@ -13,6 +13,9 @@ struct ProjectCommitHistoryView: View {
     @ObservedObject
     var projectHistoryModel: ProjectCommitHistory
 
+    @EnvironmentObject
+    var window: AuroraEditorWindowController
+
     let workspace: WorkspaceDocument
 
     @Environment(\.openURL)
@@ -111,9 +114,9 @@ struct ProjectCommitHistoryView: View {
                         Group {
                             Button("Tag \"\(commit.hash)\"...") {}.disabled(true)
                             Button("New Branch from \"\(commit.hash)\"...") {
-                                workspace.branchRevision = commit.hash
-                                workspace.branchRevisionDescription = commit.message
-                                workspace.showBranchCreationSheet.toggle()
+                                window.data.branchRevision = commit.hash
+                                window.data.branchRevisionDescription = commit.message
+                                window.data.showBranchCreationSheet.toggle()
                             }
                             Button("Cherry-Pick Tag \"\(commit.hash)\"...") {}.disabled(true)
                         }

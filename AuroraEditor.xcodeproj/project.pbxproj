@@ -483,6 +483,7 @@
 		93D5F5D728CE0EF500286EBD /* TabHierarchyMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F5D628CE0EF500286EBD /* TabHierarchyMenu.swift */; };
 		93D5F5D928CE123200286EBD /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F5D828CE123200286EBD /* TextTableViewCell.swift */; };
 		93DD4FF328AFD0F100B664D4 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */; };
+		93E0486C290E45D5008263B3 /* WindowDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E0486B290E45D5008263B3 /* WindowDataStorage.swift */; };
 		93ECCFFB2902D02E00605FB3 /* CodeFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ECCFFA2902D02E00605FB3 /* CodeFile.swift */; };
 		93EF415C28C1D21E004083AD /* CommandPaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF415B28C1D21E004083AD /* CommandPaletteView.swift */; };
 		93EF415F28C1D2DB004083AD /* CommandPaletteState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF415E28C1D2DB004083AD /* CommandPaletteState.swift */; };
@@ -1026,6 +1027,7 @@
 		93D5F5D628CE0EF500286EBD /* TabHierarchyMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyMenu.swift; sourceTree = "<group>"; };
 		93D5F5D828CE123200286EBD /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
 		93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		93E0486B290E45D5008263B3 /* WindowDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowDataStorage.swift; sourceTree = "<group>"; };
 		93ECCFFA2902D02E00605FB3 /* CodeFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeFile.swift; sourceTree = "<group>"; };
 		93EF415B28C1D21E004083AD /* CommandPaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteView.swift; sourceTree = "<group>"; };
 		93EF415E28C1D2DB004083AD /* CommandPaletteState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandPaletteState.swift; sourceTree = "<group>"; };
@@ -3026,6 +3028,7 @@
 			isa = PBXGroup;
 			children = (
 				04660F6927E51E5C00477777 /* AuroraEditorWindowController.swift */,
+				93E0486B290E45D5008263B3 /* WindowDataStorage.swift */,
 				93ACA43628C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift */,
 			);
 			path = AuroraEditorWindow;
@@ -3878,6 +3881,7 @@
 				2BD5CF2628D602CE00F95E5A /* ViewModifiers.swift in Sources */,
 				204F7BB928D7908700F49092 /* WorkflowTableViewCell.swift in Sources */,
 				2093CD56289AA0C0003A88DD /* Page.swift in Sources */,
+				93E0486C290E45D5008263B3 /* WindowDataStorage.swift in Sources */,
 				2093CD4B289AA0A2003A88DD /* Router.swift in Sources */,
 				B6EE989027E8879A00CDD8AB /* InspectorSidebar.swift in Sources */,
 				2BDFA90428D107B200980385 /* WebWKView.swift in Sources */,
