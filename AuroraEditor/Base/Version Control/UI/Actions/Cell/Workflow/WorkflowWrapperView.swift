@@ -12,7 +12,7 @@ import Combine
 /// Wraps a ``WorkflowWrapperView`` inside a `NSViewControllerRepresentable`
 struct WorkflowWrapperView: NSViewControllerRepresentable {
 
-    @StateObject
+    @ObservedObject
     var workspace: WorkspaceDocument
 
     @State

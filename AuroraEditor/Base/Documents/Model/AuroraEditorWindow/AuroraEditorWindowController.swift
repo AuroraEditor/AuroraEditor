@@ -12,7 +12,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
     var prefs: AppPreferencesModel = .shared
 
-    var workspace: WorkspaceDocument?
+    var workspace: WorkspaceDocument
     var overlayPanel: OverlayPanel?
 
     var splitViewController: NSSplitViewController! {
@@ -70,11 +70,11 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
     }
 
     private func getSelectedCodeFile() -> CodeFileDocument? {
-        guard let id = workspace?.selectionState.selectedId else { return nil }
-        guard let item = workspace?.selectionState.openFileItems.first(where: { item in
+        guard let id = workspace.selectionState.selectedId else { return nil }
+        guard let item = workspace.selectionState.openFileItems.first(where: { item in
             item.tabID == id
         }) else { return nil }
-        guard let file = workspace?.selectionState.openedCodeFiles[item] else { return nil }
+        guard let file = workspace.selectionState.openedCodeFiles[item] else { return nil }
         return file
     }
 
@@ -96,11 +96,11 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 //        file.save(sender)
         file.saveFileDocument()
 
-        workspace?.convertTemporaryTab()
+        workspace.convertTemporaryTab()
     }
 
     @IBAction func openCommandPalette(_ sender: Any) {
-        if let workspace = workspace, let state = workspace.commandPaletteState {
+        if let state = workspace.commandPaletteState {
             // if the panel exists, is open and is actually a command palette, close it.
             if let commandPalettePanel = overlayPanel, commandPalettePanel.isKeyWindow &&
                 commandPalettePanel.viewType ?? .commandPalette == .commandPalette {
@@ -119,7 +119,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
     }
 
     @IBAction func openQuickly(_ sender: Any) {
-        if let workspace = workspace, let state = workspace.quickOpenState {
+        if let state = workspace.quickOpenState {
             // if the panel exists, is open and is actually a quick open panel, close it.
             if let quickOpenPanel = overlayPanel, quickOpenPanel.isKeyWindow &&
                 quickOpenPanel.viewType ?? .quickOpen == .quickOpen {
@@ -149,7 +149,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
     @IBAction func stashChangesItems(_ sender: Any) {
         if AppDelegate.tryFocusWindow(of: StashChangesSheet.self) { return }
-        if (workspace?.fileSystemClient?.model?.changed ?? []).isEmpty {
+        if (workspace.fileSystemClient?.model?.changed ?? []).isEmpty {
             let alert = NSAlert()
             alert.alertStyle = .informational
             alert.messageText = "Cannot Stash Changes"
@@ -157,12 +157,12 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
             alert.addButton(withTitle: "OK")
             alert.runModal()
         } else {
-            workspace?.showStashChangesSheet.toggle()
+            workspace.showStashChangesSheet.toggle()
         }
     }
 
     @IBAction func discardProjectChanges(_ sender: Any) {
-        if (workspace?.fileSystemClient?.model?.changed ?? []).isEmpty {
+        if (workspace.fileSystemClient?.model?.changed ?? []).isEmpty {
             let alert = NSAlert()
             alert.alertStyle = .informational
             alert.messageText = "Cannot Discard Changes"
@@ -170,7 +170,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
             alert.addButton(withTitle: "OK")
             alert.runModal()
         } else {
-            workspace?.fileSystemClient?.model?.discardProjectChanges()
+            workspace.fileSystemClient?.model?.discardProjectChanges()
         }
     }
 }

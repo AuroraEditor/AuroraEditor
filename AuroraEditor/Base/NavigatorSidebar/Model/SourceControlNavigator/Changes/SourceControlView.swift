@@ -11,7 +11,7 @@ import Combine
 
 struct SourceControlView: NSViewControllerRepresentable {
 
-    @StateObject
+    @ObservedObject
     var workspace: WorkspaceDocument
 
     @StateObject

@@ -12,7 +12,7 @@ import Combine
 /// Wraps a ``RepositoriesViewController`` inside a `NSViewControllerRepresentable`
 struct RepositoriesWrapperView: NSViewControllerRepresentable {
 
-    @StateObject
+    @ObservedObject
     var workspace: WorkspaceDocument
 
     @State

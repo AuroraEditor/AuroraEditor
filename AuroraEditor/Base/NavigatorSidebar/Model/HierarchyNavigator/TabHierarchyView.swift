@@ -11,7 +11,7 @@ import SwiftUI
 /// Wraps a ``TabHierarchyViewController`` in a `NSViewControllerRepresentable`
 struct TabHierarchyView: NSViewControllerRepresentable {
 
-    @StateObject
+    @ObservedObject
     var workspace: WorkspaceDocument
 
     @StateObject
