@@ -15,9 +15,6 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
     var workspace: WorkspaceDocument
     var overlayPanel: OverlayPanel?
 
-    @Published
-    var data = AuroraDataStorage()
-
     var splitViewController: NSSplitViewController! {
         get { contentViewController as? NSSplitViewController }
         set { contentViewController = newValue }
@@ -27,7 +24,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         self.workspace = workspace
         super.init(window: window)
 
-        self.data.windowController = self
+        self.workspace.data.windowController = self
 
         setupSplitView(with: workspace)
         setupToolbar()
@@ -41,7 +38,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
     private func setupSplitView(with workspace: WorkspaceDocument) {
         let splitVC = NSSplitViewController()
 
-        let navigatorView = NavigatorSidebar(workspace: workspace).environmentObject(self).environmentObject(workspace)
+        let navigatorView = NavigatorSidebar().environmentObject(workspace)
         let navigator = NSSplitViewItem(
             sidebarWithViewController: NSHostingController(rootView: navigatorView)
         )
@@ -50,14 +47,14 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         navigator.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(navigator)
 
-        let workspaceView = WorkspaceView(workspace: workspace).environmentObject(self).environmentObject(workspace)
+        let workspaceView = WorkspaceView().environmentObject(workspace)
         let mainContent = NSSplitViewItem(
             viewController: NSHostingController(rootView: workspaceView)
         )
         mainContent.titlebarSeparatorStyle = .line
         splitVC.addSplitViewItem(mainContent)
 
-        let inspectorView = InspectorSidebar(workspace: workspace).environmentObject(self).environmentObject(workspace)
+        let inspectorView = InspectorSidebar(workspace: workspace).environmentObject(workspace)
         let inspector = NSSplitViewItem(
             viewController: NSHostingController(rootView: inspectorView)
         )
@@ -162,7 +159,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
             alert.addButton(withTitle: "OK")
             alert.runModal()
         } else {
-            data.showStashChangesSheet.toggle()
+            workspace.data.showStashChangesSheet.toggle()
         }
     }
 

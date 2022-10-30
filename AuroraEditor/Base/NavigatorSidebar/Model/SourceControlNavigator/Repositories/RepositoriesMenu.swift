@@ -75,13 +75,13 @@ final class RepositoriesMenu: NSMenu {
     private func createNewBranch() {
         guard let branch = item as? RepoBranch else { return }
 
-        workspace?.windowController?.data.showBranchCreationSheet.toggle()
-        workspace?.windowController?.data.branchRevision = branch.name
+        workspace?.data.showBranchCreationSheet.toggle()
+        workspace?.data.branchRevision = branch.name
     }
 
     @objc
     func addNewRemote() {
-        workspace?.windowController?.data.showAddRemoteView.toggle()
+        workspace?.data.showAddRemoteView.toggle()
     }
 
     @objc func switchToBranch(_ sender: Any?) {
@@ -94,8 +94,8 @@ final class RepositoriesMenu: NSMenu {
     private func renameBranch() {
         guard let branch = item as? RepoBranch else { return }
 
-        workspace?.windowController?.data.currentlySelectedBranch = branch.name
-        workspace?.windowController?.data.showRenameBranchSheet.toggle()
+        workspace?.data.currentlySelectedBranch = branch.name
+        workspace?.data.showRenameBranchSheet.toggle()
     }
 
     @objc

@@ -14,7 +14,7 @@ struct QuickHelpInspector: View {
     var preferences: AppPreferencesModel = .shared
 
     @EnvironmentObject
-    var window: AuroraEditorWindowController
+    var workspace: WorkspaceDocument
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -24,7 +24,7 @@ struct QuickHelpInspector: View {
                 .font(.system(size: 13))
                 .frame(minWidth: 250, maxWidth: .infinity, alignment: .leading)
 
-            if let currentToken = window.data.currentToken,
+            if let currentToken = workspace.data.currentToken,
                preferences.preferences.textEditing.showScopes {
                 VStack(alignment: .leading) {
                     Text("Current Textmate Scope")

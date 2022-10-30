@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct NavigatorSidebar: View {
-    @ObservedObject
+    @EnvironmentObject
     private var workspace: WorkspaceDocument
-
-    @EnvironmentObject var window: AuroraEditorWindowController
 
     @StateObject
     var prefs: AppPreferencesModel = .shared
@@ -23,10 +21,6 @@ struct NavigatorSidebar: View {
     private var dropProposal: SplitViewProposalDropPosition?
 
     private let toolbarPadding: Double = -8.0
-
-    init(workspace: WorkspaceDocument) {
-        self.workspace = workspace
-    }
 
     var body: some View {
         VStack {
@@ -98,16 +92,16 @@ struct NavigatorSidebar: View {
         .safeAreaInset(edge: .bottom) {
             switch selection {
             case 0:
-                ProjectNavigatorToolbarBottom(workspace: workspace)
+                ProjectNavigatorToolbarBottom()
                     .padding(.top, toolbarPadding)
             case 1:
                 SourceControlToolbarBottom()
                     .padding(.top, toolbarPadding)
             case 2, 3, 4, 5, 6, 7:
-                NavigatorSidebarToolbarBottom(workspace: workspace)
+                NavigatorSidebarToolbarBottom()
                     .padding(.top, toolbarPadding)
             default:
-                NavigatorSidebarToolbarBottom(workspace: workspace)
+                NavigatorSidebarToolbarBottom()
                     .padding(.top, toolbarPadding)
             }
         }

@@ -19,7 +19,7 @@ public struct CodeEditorViewWrapper: View {
     private var themeModel: ThemeModel = .shared
 
     @EnvironmentObject
-    private var window: AuroraEditorWindowController
+    private var workspace: WorkspaceDocument
 
     @State
     private var fileExtension: String
@@ -51,8 +51,8 @@ public struct CodeEditorViewWrapper: View {
         CodeEditor(
             text: $codeFile.content,
             position: $position,
-            caretPosition: $window.data.caretPos,
-            currentToken: $window.data.currentToken,
+            caretPosition: $workspace.data.caretPos,
+            currentToken: $workspace.data.currentToken,
             messages: $messages,
             theme: $theme,
             fileExtension: $fileExtension,

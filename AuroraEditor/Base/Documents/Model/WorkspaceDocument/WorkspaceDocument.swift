@@ -22,6 +22,9 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     var selectionState: WorkspaceSelectionState = .init()
 
     @Published
+    var data = AuroraDataStorage()
+
+    @Published
     var fileItems: [FileSystemClient.FileItem] = []
     public var filter: String = "" {
         didSet { fileSystemClient?.onRefresh() }

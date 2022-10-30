@@ -11,15 +11,8 @@ struct NavigatorSidebarToolbarBottom: View {
     @Environment(\.controlActiveState)
     private var activeState
 
-    @ObservedObject
-    private var workspace: WorkspaceDocument
-
     @EnvironmentObject
-    var window: AuroraEditorWindowController
-
-    init(workspace: WorkspaceDocument) {
-        self.workspace = workspace
-    }
+    var workspace: WorkspaceDocument
 
     var body: some View {
         HStack(spacing: 10) {
@@ -60,9 +53,9 @@ struct NavigatorSidebarToolbarBottom: View {
     private var sortButton: some View {
         Menu {
             Button {
-                window.data.sortFoldersOnTop.toggle()
+                workspace.data.sortFoldersOnTop.toggle()
             } label: {
-                Text(window.data.sortFoldersOnTop ? "Alphabetically" : "Folders on top")
+                Text(workspace.data.sortFoldersOnTop ? "Alphabetically" : "Folders on top")
             }
         } label: {
             Image(systemName: "line.3.horizontal.decrease.circle")

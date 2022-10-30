@@ -10,21 +10,15 @@ import AppKit
 import Version_Control
 
 struct WorkspaceView: View {
-    init(workspace: WorkspaceDocument) {
-        self.workspace = workspace
-    }
 
     let tabBarHeight = 28.0
     private var path: String = ""
-
-    @ObservedObject
-    var workspace: WorkspaceDocument
 
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
     @EnvironmentObject
-    private var window: AuroraEditorWindowController
+    private var workspace: WorkspaceDocument
 
     @State
     private var showingAlert = false
@@ -63,8 +57,7 @@ struct WorkspaceView: View {
                 }
             case .projectHistory:
                 if let projectHistoryTab = workspace.selectionState.selected as? ProjectCommitHistory {
-                    ProjectCommitHistoryView(projectHistoryModel: projectHistoryTab,
-                                             workspace: workspace)
+                    ProjectCommitHistoryView(projectHistoryModel: projectHistoryTab)
                 }
             case .branchHistory:
                 if let branchHistoryTab = workspace.selectionState.selected as? BranchCommitHistory {
@@ -116,7 +109,7 @@ struct WorkspaceView: View {
         }, message: { Text(alertMsg) })
         .onChange(of: workspace.selectionState.selectedId) { newValue in
             if newValue == nil {
-                window.window?.subtitle = ""
+                workspace.windowController?.window?.subtitle = ""
             }
         }
         .onAppear {
@@ -151,39 +144,39 @@ struct WorkspaceView: View {
         .onChange(of: prefs.preferences.general.tabBarStyle) { newStyle in
             DispatchQueue.main.async {
                 if newStyle == .native {
-                    window.window?.titlebarAppearsTransparent = true
-                    window.window?.titlebarSeparatorStyle = .none
+                    workspace.windowController?.window?.titlebarAppearsTransparent = true
+                    workspace.windowController?.window?.titlebarSeparatorStyle = .none
                 } else {
-                    window.window?.titlebarAppearsTransparent = false
-                    window.window?.titlebarSeparatorStyle = .automatic
+                    workspace.windowController?.window?.titlebarAppearsTransparent = false
+                    workspace.windowController?.window?.titlebarSeparatorStyle = .automatic
                 }
             }
         }
         .sheet(isPresented: $workspace.newFileModel.showFileCreationSheet) {
             FileCreationSelectionView(workspace: workspace)
         }
-        .sheet(isPresented: $window.data.showStashChangesSheet) {
+        .sheet(isPresented: $workspace.data.showStashChangesSheet) {
             StashChangesSheet(workspaceURL: workspace.workspaceURL())
         }
-        .sheet(isPresented: $window.data.showRenameBranchSheet) {
+        .sheet(isPresented: $workspace.data.showRenameBranchSheet) {
             RenameBranchView(workspace: workspace,
-                             currentBranchName: window.data.currentlySelectedBranch,
-                             newBranchName: window.data.currentlySelectedBranch)
+                             currentBranchName: workspace.data.currentlySelectedBranch,
+                             newBranchName: workspace.data.currentlySelectedBranch)
         }
-        .sheet(isPresented: $window.data.showAddRemoteView) {
+        .sheet(isPresented: $workspace.data.showAddRemoteView) {
             AddRemoteView(workspace: workspace)
         }
-        .sheet(isPresented: $window.data.showBranchCreationSheet) {
+        .sheet(isPresented: $workspace.data.showBranchCreationSheet) {
             CreateNewBranchView(workspace: workspace,
-                                revision: window.data.branchRevision,
-                                revisionDesciption: window.data.branchRevisionDescription)
+                                revision: workspace.data.branchRevision,
+                                revisionDesciption: workspace.data.branchRevisionDescription)
         }
     }
 }
 
 struct WorkspaceView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkspaceView(workspace: .init())
+        WorkspaceView()
     }
 }
 
