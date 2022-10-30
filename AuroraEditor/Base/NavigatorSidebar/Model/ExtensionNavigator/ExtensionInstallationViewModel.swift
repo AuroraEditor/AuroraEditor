@@ -8,51 +8,74 @@
 import Foundation
 import Combine
 
-// final class ExtensionInstallationViewModel: ObservableObject {
-//
-//    init(plugin: Plugin) {
-//        self.storedPlugin = plugin
-//    }
-//
-//    var storedPlugin: Plugin
-//    @Published var fetchedPlugin: Plugin?
-//
-//    var plugin: Plugin {
-//        self.fetchedPlugin ?? storedPlugin
-//    }
-//
-//    @Published var release: PluginRelease?
-//    @Published var releases = [PluginRelease]()
-//
-//    // Tells if all records have been loaded. (Used to hide/show activity spinner)
-//    var listFull = false
-//    // Tracks last page loaded. Used to load next page (current + 1)
-//    var currentPage = 1
-//    // Limit of records per page. (Only if backend supports, it usually does)
-//    let perPage = 10
-//
-//    private var pluginFetchCancellable: AnyCancellable?
-//    private var cancellable: AnyCancellable?
-//
-//    func fetch() {
-//        pluginFetchCancellable = ExtensionsStoreAPI.plugin(id: plugin.id)
-//            .map { $0 as Plugin? }
-//            .catch { _ in Just(nil) }
-//            .sink { [weak self] (plugin: Plugin?) in
-//                self?.fetchedPlugin = plugin
-//            }
-//
-//        cancellable = ExtensionsStoreAPI.pluginReleases(id: plugin.id, page: currentPage)
-//            .tryMap { $0.items }
-//            .catch { _ in Just(self.releases) }
-//            .sink { [weak self] in
-//                self?.currentPage += 1
-//                self?.releases.append(contentsOf: $0)
-//                // If count of data received is less than perPage value then it is last page.
-//                if $0.count < self?.perPage ?? 10 {
-//                    self?.listFull = true
-//                }
-//            }
-//    }
-//
-// }
+final class ExtensionInstallationViewModel: ObservableObject {
+
+    enum State {
+        case loading
+        case error
+        case success
+    }
+
+    @Published
+    var state: State = .loading
+
+    @Published
+    var extensions: [Plugin] = []
+
+    init() {
+        fetchExtensions()
+    }
+
+    func fetchExtensions() {
+        AuroraNetworking().request(baseURL: Constants.auroraEditorBaseURL,
+                                   path: Constants.extensions,
+                                   useAuthType: .none,
+                                   method: .GET,
+                                   parameters: nil,
+                                   completionHandler: { completion in
+            switch completion {
+            case .success(let data):
+                do {
+                    let decoder = JSONDecoder()
+                    guard let extensions = try decoder.decode([Plugin]?.self, from: data) else {
+                        Log.debug(
+                            "Error: Unable to decode",
+                            String.init(data: data, encoding: .utf8) ?? ""
+                        )
+                        DispatchQueue.main.async {
+                            self.state = .error
+                        }
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self.state = .success
+                        self.extensions = extensions
+                    }
+                } catch {
+                    Log.debug(error)
+                }
+            case .failure(let failure):
+                Log.error(failure)
+            }
+
+        })
+    }
+
+    func downloadExtension(extensionId: String) {
+        AuroraNetworking().request(baseURL: Constants.auroraEditorBaseURL,
+                                   path: Constants.downloadExtension(extensionId: extensionId),
+                                   useAuthType: .none,
+                                   method: .GET,
+                                   parameters: nil,
+                                   completionHandler: { completion in
+            switch completion {
+            case .success(let success):
+                Log.debug(String(data: success, encoding: .utf8))
+            case .failure(let failure):
+                Log.debug(failure)
+            }
+
+        })
+    }
+
+}
