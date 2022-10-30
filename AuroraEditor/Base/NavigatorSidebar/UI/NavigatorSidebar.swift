@@ -26,13 +26,13 @@ struct NavigatorSidebar: View {
         VStack {
             switch selection {
             case 0:
-                ProjectNavigator(workspace: workspace)
+                ProjectNavigator()
             case 1:
-                SourceControlNavigatorView(workspace: workspace)
+                SourceControlNavigatorView()
             case 2:
-                FindNavigator(workspace: workspace, state: workspace.searchState ?? .init(workspace))
+                FindNavigator(state: workspace.searchState ?? .init(workspace))
             case 6:
-                HierarchyNavigator(workspace: workspace)
+                HierarchyNavigator()
             case 7:
                 ExtensionNavigator(data: workspace.extensionNavigatorData!)
                     .environmentObject(workspace)

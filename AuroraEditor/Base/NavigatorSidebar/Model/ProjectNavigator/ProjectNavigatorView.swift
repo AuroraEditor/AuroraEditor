@@ -11,7 +11,7 @@ import Combine
 /// Wraps an ``ProjectNavigatorViewController`` inside a `NSViewControllerRepresentable`
 struct ProjectNavigatorView: NSViewControllerRepresentable {
 
-    @ObservedObject
+    @EnvironmentObject
     var workspace: WorkspaceDocument
 
     @StateObject

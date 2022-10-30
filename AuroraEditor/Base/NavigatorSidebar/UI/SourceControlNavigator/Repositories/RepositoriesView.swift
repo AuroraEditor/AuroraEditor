@@ -9,25 +9,20 @@ import SwiftUI
 
 struct RepositoriesView: View {
 
-    @ObservedObject
+    @EnvironmentObject
     var workspace: WorkspaceDocument
 
     @ObservedObject
     var repositoryModel: RepositoryModel
 
-    init?(workspace: WorkspaceDocument) {
-        self.workspace = workspace
-        self.repositoryModel = .init(workspace: workspace)
-
-        if let client = workspace.fileSystemClient?.model?.gitClient {
-            repositoryModel.addGitRepoDetails(client: client)
-        }
+    init?(repositoryModel: RepositoryModel) {
+        self.repositoryModel = repositoryModel
     }
 
     var body: some View {
         VStack(alignment: .center) {
             if repositoryModel.isGitRepository {
-                RepositoriesWrapperView(workspace: workspace, repository: repositoryModel)
+                RepositoriesWrapperView(repository: repositoryModel)
             } else {
                 Text("This project does not seem to be a Git repository.")
                     .padding(.horizontal)
@@ -49,12 +44,17 @@ struct RepositoriesView: View {
                 }
             }
         }
+        .onAppear {
+            if let client = workspace.fileSystemClient?.model?.gitClient {
+                repositoryModel.addGitRepoDetails(client: client)
+            }
+        }
         .frame(maxHeight: .infinity)
     }
 }
 
 struct RepositoriesView_Previews: PreviewProvider {
     static var previews: some View {
-        RepositoriesView(workspace: WorkspaceDocument().self)
+        RepositoriesView(repositoryModel: .init(workspace: .init()))
     }
 }

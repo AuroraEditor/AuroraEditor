@@ -15,15 +15,11 @@ struct InspectorSidebar: View {
     @Environment(\.controlActiveState)
     private var activeState
 
-    @ObservedObject
+    @EnvironmentObject
     private var workspace: WorkspaceDocument
 
     @State
     private var selection: Int = 0
-
-    init(workspace: WorkspaceDocument) {
-        self.workspace = workspace
-    }
 
     var body: some View {
         VStack {

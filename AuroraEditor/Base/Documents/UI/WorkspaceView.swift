@@ -47,10 +47,9 @@ struct WorkspaceView: View {
         if let tabID = workspace.selectionState.selectedId {
             switch tabID {
             case .codeEditor:
-                WorkspaceCodeFileView(workspace: workspace)
+                WorkspaceCodeFileView()
             case .extensionInstallation:
                 EmptyView()
-
             case .webTab:
                 if let webTab = workspace.selectionState.selected as? WebTab {
                     WebTabView(webTab: webTab)
@@ -90,12 +89,13 @@ struct WorkspaceView: View {
                     }
                     .safeAreaInset(edge: .top, spacing: 0) {
                         VStack(spacing: 0) {
-                            TabBar(workspace: workspace)
+                            TabBar(sourceControlModel: workspace.fileSystemClient?.model ??
+                                .init(workspaceURL: workspace.fileURL!))
                             Divider().foregroundColor(.secondary)
                         }
                     }
                     .safeAreaInset(edge: .bottom) {
-                        StatusBarView(model: model, workspace: workspace)
+                        StatusBarView(model: model)
                     }
             } else {
                 EmptyView()

@@ -26,7 +26,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
         self.workspace.data.windowController = self
 
-        setupSplitView(with: workspace)
+        setupSplitView(with: self.workspace)
         setupToolbar()
     }
 
@@ -54,7 +54,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         mainContent.titlebarSeparatorStyle = .line
         splitVC.addSplitViewItem(mainContent)
 
-        let inspectorView = InspectorSidebar(workspace: workspace).environmentObject(workspace)
+        let inspectorView = InspectorSidebar().environmentObject(workspace)
         let inspector = NSSplitViewItem(
             viewController: NSHostingController(rootView: inspectorView)
         )

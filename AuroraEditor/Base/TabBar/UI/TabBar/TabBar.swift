@@ -18,7 +18,7 @@ struct TabBar: View {
     @Environment(\.controlActiveState)
     var activeState
 
-    @ObservedObject
+    @EnvironmentObject
     var workspace: WorkspaceDocument
 
     @ObservedObject
@@ -26,11 +26,6 @@ struct TabBar: View {
 
     @StateObject
     var prefs: AppPreferencesModel = .shared
-
-    init(workspace: WorkspaceDocument) {
-        self.workspace = workspace
-        self.sourceControlModel = workspace.fileSystemClient?.model ?? .init(workspaceURL: workspace.fileURL!)
-    }
 
     @State
     var expectedTabWidth: CGFloat = 0
@@ -150,17 +145,16 @@ struct TabBar: View {
                                 if let item = workspace.selectionState.getItemByTab(id: id) {
                                     TabBarItem(
                                         expectedWidth: $expectedTabWidth,
-                                        item: item,
-                                        workspace: workspace
+                                        item: item
                                     )
                                     .frame(height: TabBar.height)
                                     .background(makeTabItemGeometryReader(id: id))
                                     // TODO: Detect the onDrag outside of tab bar.
                                     // When a tab is dragged out, we shrink the space of it.
-//                                    .padding(
-//                                        .trailing,
-//                                        !isOnDragOverTabs && onDragTabId == id ? (-tabWidth[id]! + 1) : 0
-//                                    )
+                                    .padding(
+                                        .trailing,
+                                        !isOnDragOverTabs && onDragTabId == id ? (-tabWidth[id]! + 1) : 0
+                                    )
                                     .offset(x: tabOffsets[id] ?? 0, y: 0)
                                     .highPriorityGesture(
                                         makeTabDragGesture(id: id),

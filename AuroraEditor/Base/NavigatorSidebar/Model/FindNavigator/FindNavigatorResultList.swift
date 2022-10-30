@@ -10,7 +10,7 @@
 
 struct FindNavigatorResultList: NSViewControllerRepresentable {
 
-    @ObservedObject
+    @EnvironmentObject
     var workspace: WorkspaceDocument
 
     @StateObject

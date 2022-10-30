@@ -10,7 +10,7 @@ import UniformTypeIdentifiers
 
 struct WorkspaceCodeFileView: View {
 
-    @ObservedObject
+    @EnvironmentObject
     var workspace: WorkspaceDocument
 
     @StateObject
