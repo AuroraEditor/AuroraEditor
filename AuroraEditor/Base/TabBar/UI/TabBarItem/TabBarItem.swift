@@ -104,6 +104,9 @@ struct TabBarItem: View {
         .onAppear {
             isTemporary = workspace.selectionState.temporaryTab == item.tabID
         }
+        .onChange(of: workspace.selectionState.temporaryTab) { _ in
+            isTemporary = workspace.selectionState.temporaryTab == item.tabID
+        }
         .overlay(alignment: .top) {
             // Only show NativeTabShadow when `tabBarStyle` is native and this tab is not active.
             TabBarTopDivider()
@@ -146,6 +149,7 @@ struct TabBarItem: View {
             TapGesture(count: 2)
                 .onEnded { _ in
                     if isTemporary {
+                        Log.info("Converting temp tab")
                         workspace.convertTemporaryTab()
                     }
                 }
