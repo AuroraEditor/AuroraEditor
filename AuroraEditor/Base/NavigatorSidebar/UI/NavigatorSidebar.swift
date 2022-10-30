@@ -11,6 +11,8 @@ struct NavigatorSidebar: View {
     @ObservedObject
     private var workspace: WorkspaceDocument
 
+    @EnvironmentObject var window: AuroraEditorWindowController
+
     @StateObject
     var prefs: AppPreferencesModel = .shared
 

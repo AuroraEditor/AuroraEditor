@@ -8,7 +8,7 @@
 import Cocoa
 import SwiftUI
 
-final class AuroraEditorWindowController: NSWindowController {
+final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
     var prefs: AppPreferencesModel = .shared
 
@@ -36,7 +36,7 @@ final class AuroraEditorWindowController: NSWindowController {
     private func setupSplitView(with workspace: WorkspaceDocument) {
         let splitVC = NSSplitViewController()
 
-        let navigatorView = NavigatorSidebar(workspace: workspace, windowController: self)
+        let navigatorView = NavigatorSidebar(workspace: workspace, windowController: self).environmentObject(self)
         let navigator = NSSplitViewItem(
             sidebarWithViewController: NSHostingController(rootView: navigatorView)
         )
@@ -45,14 +45,14 @@ final class AuroraEditorWindowController: NSWindowController {
         navigator.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(navigator)
 
-        let workspaceView = WorkspaceView(windowController: self, workspace: workspace)
+        let workspaceView = WorkspaceView(windowController: self, workspace: workspace).environmentObject(self)
         let mainContent = NSSplitViewItem(
             viewController: NSHostingController(rootView: workspaceView)
         )
         mainContent.titlebarSeparatorStyle = .line
         splitVC.addSplitViewItem(mainContent)
 
-        let inspectorView = InspectorSidebar(workspace: workspace, windowController: self)
+        let inspectorView = InspectorSidebar(workspace: workspace, windowController: self).environmentObject(self)
         let inspector = NSSplitViewItem(
             viewController: NSHostingController(rootView: inspectorView)
         )
