@@ -15,6 +15,12 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
     var workspace: WorkspaceDocument
     var overlayPanel: OverlayPanel?
 
+    @Published
+    public var caretPos: CursorLocation = .init(line: 0, column: 0)
+
+    @Published
+    var currentToken: Token?
+
     var splitViewController: NSSplitViewController! {
         get { contentViewController as? NSSplitViewController }
         set { contentViewController = newValue }
