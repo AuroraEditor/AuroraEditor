@@ -42,7 +42,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
     private func setupSplitView(with workspace: WorkspaceDocument) {
         let splitVC = NSSplitViewController()
 
-        let navigatorView = NavigatorSidebar(workspace: workspace, windowController: self).environmentObject(self)
+        let navigatorView = NavigatorSidebar(workspace: workspace).environmentObject(self)
         let navigator = NSSplitViewItem(
             sidebarWithViewController: NSHostingController(rootView: navigatorView)
         )
@@ -51,14 +51,14 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         navigator.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(navigator)
 
-        let workspaceView = WorkspaceView(windowController: self, workspace: workspace).environmentObject(self)
+        let workspaceView = WorkspaceView(workspace: workspace).environmentObject(self)
         let mainContent = NSSplitViewItem(
             viewController: NSHostingController(rootView: workspaceView)
         )
         mainContent.titlebarSeparatorStyle = .line
         splitVC.addSplitViewItem(mainContent)
 
-        let inspectorView = InspectorSidebar(workspace: workspace, windowController: self).environmentObject(self)
+        let inspectorView = InspectorSidebar(workspace: workspace).environmentObject(self)
         let inspector = NSSplitViewItem(
             viewController: NSHostingController(rootView: inspectorView)
         )

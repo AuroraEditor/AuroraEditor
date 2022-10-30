@@ -18,6 +18,9 @@ struct TabBarItem: View {
     @Environment(\.colorScheme)
     var colorScheme
 
+    @ObservedObject
+    var workspace: WorkspaceDocument
+
     @StateObject
     var prefs: AppPreferencesModel = .shared
 
@@ -36,12 +39,7 @@ struct TabBarItem: View {
     @Binding
     private var expectedWidth: CGFloat
 
-    @ObservedObject
-    var workspace: WorkspaceDocument
-
     var item: TabBarItemRepresentable
-
-    private var windowController: NSWindowController
 
     var isTemporary: Bool
 
@@ -75,12 +73,10 @@ struct TabBarItem: View {
     init(
         expectedWidth: Binding<CGFloat>,
         item: TabBarItemRepresentable,
-        windowController: NSWindowController,
         workspace: WorkspaceDocument
     ) {
         self._expectedWidth = expectedWidth
         self.item = item
-        self.windowController = windowController
         self.workspace = workspace
         self.isTemporary = workspace.selectionState.temporaryTab == item.tabID
     }

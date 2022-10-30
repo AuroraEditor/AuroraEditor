@@ -18,14 +18,11 @@ struct InspectorSidebar: View {
     @ObservedObject
     private var workspace: WorkspaceDocument
 
-    private let windowController: NSWindowController
-
     @State
     private var selection: Int = 0
 
-    init(workspace: WorkspaceDocument, windowController: NSWindowController) {
+    init(workspace: WorkspaceDocument) {
         self.workspace = workspace
-        self.windowController = windowController
     }
 
     var body: some View {

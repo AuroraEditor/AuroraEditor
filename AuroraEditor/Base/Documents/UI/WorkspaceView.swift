@@ -10,12 +10,10 @@ import AppKit
 import Version_Control
 
 struct WorkspaceView: View {
-    init(windowController: NSWindowController, workspace: WorkspaceDocument) {
-        self.windowController = windowController
+    init(workspace: WorkspaceDocument) {
         self.workspace = workspace
     }
 
-    let windowController: NSWindowController
     let tabBarHeight = 28.0
     private var path: String = ""
 
@@ -24,6 +22,9 @@ struct WorkspaceView: View {
 
     @StateObject
     private var prefs: AppPreferencesModel = .shared
+
+    @EnvironmentObject
+    private var window: AuroraEditorWindowController
 
     @State
     private var showingAlert = false
@@ -52,7 +53,7 @@ struct WorkspaceView: View {
         if let tabID = workspace.selectionState.selectedId {
             switch tabID {
             case .codeEditor:
-                WorkspaceCodeFileView(windowController: windowController, workspace: workspace)
+                WorkspaceCodeFileView(workspace: workspace)
             case .extensionInstallation:
                 EmptyView()
 
@@ -97,7 +98,7 @@ struct WorkspaceView: View {
                     }
                     .safeAreaInset(edge: .top, spacing: 0) {
                         VStack(spacing: 0) {
-                            TabBar(windowController: windowController, workspace: workspace)
+                            TabBar(workspace: workspace)
                             Divider().foregroundColor(.secondary)
                         }
                     }
@@ -116,7 +117,7 @@ struct WorkspaceView: View {
         }, message: { Text(alertMsg) })
         .onChange(of: workspace.selectionState.selectedId) { newValue in
             if newValue == nil {
-                windowController.window?.subtitle = ""
+                window.window?.subtitle = ""
             }
         }
         .onAppear {
@@ -151,11 +152,11 @@ struct WorkspaceView: View {
         .onChange(of: prefs.preferences.general.tabBarStyle) { newStyle in
             DispatchQueue.main.async {
                 if newStyle == .native {
-                    windowController.window?.titlebarAppearsTransparent = true
-                    windowController.window?.titlebarSeparatorStyle = .none
+                    window.window?.titlebarAppearsTransparent = true
+                    window.window?.titlebarSeparatorStyle = .none
                 } else {
-                    windowController.window?.titlebarAppearsTransparent = false
-                    windowController.window?.titlebarSeparatorStyle = .automatic
+                    window.window?.titlebarAppearsTransparent = false
+                    window.window?.titlebarSeparatorStyle = .automatic
                 }
             }
         }
@@ -183,7 +184,7 @@ struct WorkspaceView: View {
 
 struct WorkspaceView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkspaceView(windowController: NSWindowController(), workspace: .init())
+        WorkspaceView(workspace: .init())
     }
 }
 

@@ -18,8 +18,6 @@ struct TabBar: View {
     @Environment(\.controlActiveState)
     var activeState
 
-    private let windowController: NSWindowController
-
     @ObservedObject
     var workspace: WorkspaceDocument
 
@@ -29,9 +27,7 @@ struct TabBar: View {
     @StateObject
     var prefs: AppPreferencesModel = .shared
 
-    // TabBar(windowController: windowController, workspace: workspace)
-    init(windowController: NSWindowController, workspace: WorkspaceDocument) {
-        self.windowController = windowController
+    init(workspace: WorkspaceDocument) {
         self.workspace = workspace
         self.sourceControlModel = workspace.fileSystemClient?.model ?? .init(workspaceURL: workspace.fileURL!)
     }
@@ -155,7 +151,6 @@ struct TabBar: View {
                                     TabBarItem(
                                         expectedWidth: $expectedTabWidth,
                                         item: item,
-                                        windowController: windowController,
                                         workspace: workspace
                                     )
                                     .frame(height: TabBar.height)

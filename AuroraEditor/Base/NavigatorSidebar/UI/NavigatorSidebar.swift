@@ -16,8 +16,6 @@ struct NavigatorSidebar: View {
     @StateObject
     var prefs: AppPreferencesModel = .shared
 
-    private let windowController: NSWindowController
-
     @State
     public var selection: Int = 0
 
@@ -26,9 +24,8 @@ struct NavigatorSidebar: View {
 
     private let toolbarPadding: Double = -8.0
 
-    init(workspace: WorkspaceDocument, windowController: NSWindowController) {
+    init(workspace: WorkspaceDocument) {
         self.workspace = workspace
-        self.windowController = windowController
     }
 
     var body: some View {
