@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-class WindowDataStorage: ObservableObject {
+class AuroraDataStorage: ObservableObject {
 
     var windowController: AuroraEditorWindowController?
 

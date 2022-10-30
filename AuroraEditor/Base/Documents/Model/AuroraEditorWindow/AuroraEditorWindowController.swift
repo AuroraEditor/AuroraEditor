@@ -16,7 +16,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
     var overlayPanel: OverlayPanel?
 
     @Published
-    var data = WindowDataStorage()
+    var data = AuroraDataStorage()
 
     var splitViewController: NSSplitViewController! {
         get { contentViewController as? NSSplitViewController }
@@ -41,7 +41,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
     private func setupSplitView(with workspace: WorkspaceDocument) {
         let splitVC = NSSplitViewController()
 
-        let navigatorView = NavigatorSidebar(workspace: workspace).environmentObject(self)
+        let navigatorView = NavigatorSidebar(workspace: workspace).environmentObject(self).environmentObject(workspace)
         let navigator = NSSplitViewItem(
             sidebarWithViewController: NSHostingController(rootView: navigatorView)
         )
@@ -50,14 +50,14 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         navigator.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(navigator)
 
-        let workspaceView = WorkspaceView(workspace: workspace).environmentObject(self)
+        let workspaceView = WorkspaceView(workspace: workspace).environmentObject(self).environmentObject(workspace)
         let mainContent = NSSplitViewItem(
             viewController: NSHostingController(rootView: workspaceView)
         )
         mainContent.titlebarSeparatorStyle = .line
         splitVC.addSplitViewItem(mainContent)
 
-        let inspectorView = InspectorSidebar(workspace: workspace).environmentObject(self)
+        let inspectorView = InspectorSidebar(workspace: workspace).environmentObject(self).environmentObject(workspace)
         let inspector = NSSplitViewItem(
             viewController: NSHostingController(rootView: inspectorView)
         )
