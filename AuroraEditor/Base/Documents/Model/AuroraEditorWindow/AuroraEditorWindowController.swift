@@ -73,6 +73,11 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
             .sink(receiveValue: recieveCommand).store(in: &cancelables)
     }
 
+    override func close() {
+        super.close()
+        cancelables.forEach({ $0.cancel() })
+    }
+
     override func windowDidLoad() {
         super.windowDidLoad()
     }
@@ -183,8 +188,6 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
     }
 
     func recieveCommand(command: [String: String]) {
-        Log.info("Recieved command: \(command)")
-
         guard let name = command["name"] else { return }
         let sender = command["sender"] ?? ""
 

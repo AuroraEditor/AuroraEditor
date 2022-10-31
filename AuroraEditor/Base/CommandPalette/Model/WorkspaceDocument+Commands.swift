@@ -101,10 +101,16 @@ extension WorkspaceDocument {
                       let root = try? self.fileSystemClient?.getFileItem(folderURL.path) else { return }
                 root.addFile(fileName: "untitled")
             }),
+            Command(name: "Add File at Selection", command: {
+                self.broadcaster.broadcast(command: ["name": "newFileAtPos"])
+            }),
             Command(name: "Add Folder at Root", command: {
                 guard let folderURL = self.fileSystemClient?.folderURL,
                       let root = try? self.fileSystemClient?.getFileItem(folderURL.path) else { return }
                 root.addFolder(folderName: "untitled")
+            }),
+            Command(name: "Add Folder at Selection", command: {
+                self.broadcaster.broadcast(command: ["name": "newDirAtPos"])
             }),
             Command(name: "Open Web Tab", command: {
                 self.openTab(item: WebTab(url: URL(string: "https://auroraeditor.com")))

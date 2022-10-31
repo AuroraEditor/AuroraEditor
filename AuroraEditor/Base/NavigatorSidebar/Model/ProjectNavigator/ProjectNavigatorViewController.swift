@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 /// A `NSViewController` that handles the **ProjectNavigator** in the **NavigatorSideabr**.
 ///
@@ -18,6 +19,8 @@ final class ProjectNavigatorViewController: NSViewController {
 
     var scrollView: NSScrollView!
     var outlineView: NSOutlineView!
+
+    var cancelables: Set<AnyCancellable> = .init()
 
     /// Gets the folder structure
     ///
@@ -80,6 +83,32 @@ final class ProjectNavigatorViewController: NSViewController {
         outlineView.expandItem(outlineView.item(atRow: 0))
         saveExpansionState()
         reloadChangedFiles()
+
+        workspace?.broadcaster.broadcaster.sink(receiveValue: recieveCommand).store(in: &cancelables)
+    }
+
+    func recieveCommand(command: [String: String]) {
+        Log.info("Command recieved: \(command)")
+        guard let name = command["name"] else { return }
+
+        switch name {
+        case "newFileAtPos":
+            guard let item = self.outlineView.item(atRow: self.outlineView.selectedRow) as? FileItem
+            else { return }
+
+            Log.info("Created file at \(item.url.debugDescription)")
+            item.addFile(fileName: "untitled")
+        case "newDirAtPos":
+            guard let item = self.outlineView.item(atRow: self.outlineView.selectedRow) as? FileItem
+            else { return }
+            Log.info("Created folder at \(item.url.debugDescription)")
+            item.addFolder(folderName: "untitled")
+        default: break
+        }
+    }
+
+    override func viewDidDisappear() {
+        cancelables.forEach({ $0.cancel() })
     }
 
     func reloadChangedFiles() {
