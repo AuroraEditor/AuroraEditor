@@ -187,11 +187,10 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         }
     }
 
-    func recieveCommand(command: [String: String]) {
-        guard let name = command["name"] else { return }
-        let sender = command["sender"] ?? ""
+    func recieveCommand(command: AuroraCommandBroadcaster.Broadcast) {
+        let sender = command.parameters["sender"] ?? ""
 
-        switch name {
+        switch command.name {
         case "openQuickly":
             openQuickly(sender)
         case "close":

@@ -87,11 +87,8 @@ final class ProjectNavigatorViewController: NSViewController {
         workspace?.broadcaster.broadcaster.sink(receiveValue: recieveCommand).store(in: &cancelables)
     }
 
-    func recieveCommand(command: [String: String]) {
-        Log.info("Command recieved: \(command)")
-        guard let name = command["name"] else { return }
-
-        switch name {
+    func recieveCommand(command: AuroraCommandBroadcaster.Broadcast) {
+        switch command.name {
         case "newFileAtPos":
             guard let item = self.outlineView.item(atRow: self.outlineView.selectedRow) as? FileItem
             else { return }
