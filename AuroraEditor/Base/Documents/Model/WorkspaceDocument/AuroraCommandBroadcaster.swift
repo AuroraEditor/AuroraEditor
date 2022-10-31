@@ -25,18 +25,25 @@ class AuroraCommandBroadcaster: ObservableObject {
     /// can then act on the information provided.
     /// The `[String: String]` command must contain a `name` property or it will not be broadcast.
     ///
-    /// To create a subscriber to ``broadcaster``, use the following code:
+    /// To create a subscriber to ``broadcaster``, use the following code,
+    /// where `cancelables` is an instance of `Set<AnyCancellable>`:
     /// ```
     /// workspace.broadcaster.sink { command in
     ///     if command["name"] == "myCommand" {
     ///         // do something with the command
     ///     }
     /// }
+    /// .store(in: &cancelables)
+    /// ```
+    /// **Remember to cancel the sink on deinit or view dissapear**
+    /// ```
+    /// cancelables.forEach({ $0.cancel() })
     /// ```
     ///
     /// For example, in a `View`:
     /// ```swift
     /// @EnvironmentObject var workspace: WorkspaceDocument
+    /// @State var cancelables: Set<AnyCalcellable> = .init()
     ///
     /// var body: some View {
     ///     VStack { /*your view here*/ }
@@ -50,11 +57,14 @@ class AuroraCommandBroadcaster: ObservableObject {
     ///                 // do something with the command
     ///             }
     ///         }
+    ///         .store(in: &cancelables)
     ///     }
-    /// }
+    ///     .onDissapear {
+    ///         cancelables.forEach({ $0.cancel() })
+    ///     }
     /// ```
     ///
-    /// - Parameter command: The command to send
+    /// - Parameter command: The command to send, with at least a `name` field.
     func broadcast(command: [String: String]) {
         guard command["name"] != nil else { return }
         subject.send(command)
