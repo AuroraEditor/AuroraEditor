@@ -43,7 +43,7 @@ extension WorkspaceDocument {
                 NSDocumentController.openDocument(NSDocumentController.shared)(self)
             }),
             Command(name: "Open Quickly", command: {
-                self.windowController?.openQuickly(self)
+                self.broadcaster.broadcast(command: ["name": "openQuickly", "sender": "commandPalette"])
             }),
             Command(name: "Save", command: {
                 NSDocument.save(self)(self)
@@ -52,21 +52,21 @@ extension WorkspaceDocument {
                 NSDocument.saveAs(self)(self)
             }),
             Command(name: "Close", command: {
-                self.windowController?.close()
+                self.broadcaster.broadcast(command: ["name": "close", "sender": "commandPalette"])
             }),
 
             // MARK: View menu
             Command(name: "Toggle Toolbar", command: {
-                self.windowController?.window?.toggleToolbarShown(self)
+                self.broadcaster.broadcast(command: ["name": "toggleToolbarShown", "sender": "commandPalette"])
             }),
             Command(name: "Customize Toolbar", command: {
-                self.windowController?.window?.runToolbarCustomizationPalette(self)
+                self.broadcaster.broadcast(command: ["name": "runToolbarCustomization", "sender": "commandPalette"])
             }),
             Command(name: "Show Sidebar", command: {
-                self.windowController?.splitViewController.toggleSidebar(self)
+                self.broadcaster.broadcast(command: ["name": "toggleSidebar", "sender": "commandPalette"])
             }),
             Command(name: "Toggle Full Screen", command: {
-                self.windowController?.window?.toggleFullScreen(self)
+                self.broadcaster.broadcast(command: ["name": "toggleFullScreen", "sender": "commandPalette"])
             }),
 
             // TODO: Find and Navigate menus
@@ -76,15 +76,15 @@ extension WorkspaceDocument {
                 self.data.showStashChangesSheet.toggle()
             }),
             Command(name: "Discard Project Changes", command: {
-                self.windowController?.discardProjectChanges(self)
+                self.broadcaster.broadcast(command: ["name": "discardProjectChanges", "sender": "commandPalette"])
             }),
 
             // MARK: Window and Help menu
             Command(name: "Minimise", command: {
-                self.windowController?.window?.miniaturize(self)
+                self.broadcaster.broadcast(command: ["name": "miniaturize", "sender": "commandPalette"])
             }),
             Command(name: "Zoom", command: {
-                self.windowController?.window?.zoom(self)
+                self.broadcaster.broadcast(command: ["name": "zoom", "sender": "commandPalette"])
             }),
             Command(name: "Welcome Screen", command: {
                 if AppDelegate.tryFocusWindow(of: WelcomeWindowView.self) { return }

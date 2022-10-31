@@ -7,6 +7,7 @@
 
 import Cocoa
 import SwiftUI
+import Combine
 
 final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
@@ -14,6 +15,8 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
     var workspace: WorkspaceDocument
     var overlayPanel: OverlayPanel?
+
+    var cancelables: Set<AnyCancellable> = .init()
 
     var splitViewController: NSSplitViewController! {
         get { contentViewController as? NSSplitViewController }
@@ -65,6 +68,9 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         splitVC.addSplitViewItem(inspector)
 
         self.splitViewController = splitVC
+
+        workspace.broadcaster.broadcaster
+            .sink(receiveValue: recieveCommand).store(in: &cancelables)
     }
 
     override func windowDidLoad() {
@@ -173,6 +179,35 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
             alert.runModal()
         } else {
             workspace.fileSystemClient?.model?.discardProjectChanges()
+        }
+    }
+
+    func recieveCommand(command: [String: String]) {
+        Log.info("Recieved command: \(command)")
+
+        guard let name = command["name"] else { return }
+        let sender = command["sender"] ?? ""
+
+        switch name {
+        case "openQuickly":
+            openQuickly(sender)
+        case "close":
+            close()
+        case "toggleToolbarShown":
+            window?.toggleToolbarShown(sender)
+        case "runToolbarCustomization":
+            window?.runToolbarCustomizationPalette(sender)
+        case "toggleSidebar":
+            splitViewController.toggleSidebar(sender)
+        case "toggleFullScreen":
+            window?.toggleFullScreen(sender)
+        case "discardProjectChanges":
+            discardProjectChanges(sender)
+        case "miniaturize":
+            window?.miniaturize(sender)
+        case "zoom":
+            window?.zoom(sender)
+        default: break
         }
     }
 }

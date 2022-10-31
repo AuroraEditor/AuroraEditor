@@ -28,7 +28,7 @@ class AuroraCommandBroadcaster: ObservableObject {
     /// To create a subscriber to ``broadcaster``, use the following code,
     /// where `cancelables` is an instance of `Set<AnyCancellable>`:
     /// ```
-    /// workspace.broadcaster.sink { command in
+    /// workspace.broadcaster.broadcaster.sink { command in
     ///     if command["name"] == "myCommand" {
     ///         // do something with the command
     ///     }
