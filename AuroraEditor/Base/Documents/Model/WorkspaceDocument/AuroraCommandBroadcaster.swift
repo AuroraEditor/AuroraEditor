@@ -69,4 +69,11 @@ class AuroraCommandBroadcaster: ObservableObject {
         guard command["name"] != nil else { return }
         subject.send(command)
     }
+
+    /// Wrapper around ``broadcast(command:)``, for when there is only a name required.
+    /// This function equates to broadcasting `["name": named]`
+    /// - Parameter named: The name of the command to send.
+    func broadcast(named: String) {
+        subject.send(["name": named])
+    }
 }
