@@ -41,7 +41,7 @@ import Combine
 ///     // as workspace would not exist yet
 ///     .onAppear {
 ///         workspace.broadcaster.sink { command in
-///             if command["name"] == "myCommand" {
+///             if command.name == "myCommand" {
 ///                 // do something with the command
 ///             }
 ///         }
@@ -73,17 +73,8 @@ class AuroraCommandBroadcaster {
     /// - Parameters:
     ///   - name: The name of the `Broadcast` to send
     ///   - parameters: The parameters of the `Broadcast`, left blank for `[:]`
-    func broadcast(_ name: String, parameters: [String: String] = [:]) {
+    func broadcast(_ name: String, parameters: [String: Any] = [:]) {
         broadcast(command: Broadcast(name: name, parameters: parameters))
-    }
-
-    /// Wrapper around ``broadcast(command:)``
-    /// The `[String: String]` command must contain a `name` property or it will not be broadcast.
-    /// - Parameter dict: A `Broadcast` in dictionary form to send, with at least a `name` field.
-    func broadcast(dict: [String: String]) {
-        var mutableCommand = dict
-        guard let name = mutableCommand.removeValue(forKey: "name") else { return }
-        broadcast(command: Broadcast(name: name, parameters: mutableCommand))
     }
 
     /// Wrapper around ``broadcast(command:)``, for when there is only a name required.
@@ -96,7 +87,7 @@ class AuroraCommandBroadcaster {
     /// Struct that holds information about the command being broadcasted
     struct Broadcast {
         var name: String
-        var parameters: [String: String] = [:]
+        var parameters: [String: Any] = [:]
 
         static let `default`: Broadcast = .init(name: "DEFAULT")
     }
