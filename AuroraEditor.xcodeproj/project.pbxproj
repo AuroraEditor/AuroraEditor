@@ -15,7 +15,7 @@
 		04540D5E27DD08C300E91B77 /* WorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */; };
 		0463E51127FCC1DF00806D5C /* AuroraEditorAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0463E51027FCC1DF00806D5C /* AuroraEditorAPI.swift */; };
 		04660F6A27E51E5C00477777 /* AuroraEditorWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04660F6927E51E5C00477777 /* AuroraEditorWindowController.swift */; };
-		0483E35027FDB17700354AC0 /* ExtensionNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E34F27FDB17700354AC0 /* ExtensionNavigator.swift */; };
+		0483E35027FDB17700354AC0 /* ExtensionNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483E34F27FDB17700354AC0 /* ExtensionNavigatorView.swift */; };
 		0485EB1F27E7458B00138301 /* WorkspaceCodeFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */; };
 		04C3254B27FF23B000C8DA2D /* ExtensionNavigatorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3254A27FF23B000C8DA2D /* ExtensionNavigatorData.swift */; };
 		04C3254D27FF331B00C8DA2D /* ExtensionNavigatorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3254C27FF331B00C8DA2D /* ExtensionNavigatorItem.swift */; };
@@ -53,6 +53,9 @@
 		2032B51028A256F50089EBB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B50F28A256F50089EBB6 /* Array.swift */; };
 		2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */; };
 		2036DD5528DB3DB5003BECB7 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036DD5428DB3DB5003BECB7 /* Queue.swift */; };
+		20439038290D27DB00126A3F /* WorkspaceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20439037290D27DB00126A3F /* WorkspaceErrors.swift */; };
+		2043903C290D385600126A3F /* ExploreExtensionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043903B290D385600126A3F /* ExploreExtensionsView.swift */; };
+		2043903E290D38D700126A3F /* ExploreItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043903D290D38D700126A3F /* ExploreItemView.swift */; };
 		204F7BB328D7905C00F49092 /* WorkflowMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7BB228D7905C00F49092 /* WorkflowMenu.swift */; };
 		204F7BB528D7906A00F49092 /* WorkflowWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7BB428D7906A00F49092 /* WorkflowWrapperView.swift */; };
 		204F7BB728D7907A00F49092 /* WorkflowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7BB628D7907A00F49092 /* WorkflowViewController.swift */; };
@@ -566,7 +569,7 @@
 		04660F6027E3A68A00477777 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04660F6927E51E5C00477777 /* AuroraEditorWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorWindowController.swift; sourceTree = "<group>"; };
 		0468438427DC76E200F8E88E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0483E34F27FDB17700354AC0 /* ExtensionNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionNavigator.swift; sourceTree = "<group>"; };
+		0483E34F27FDB17700354AC0 /* ExtensionNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionNavigatorView.swift; sourceTree = "<group>"; };
 		0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceCodeFileView.swift; sourceTree = "<group>"; };
 		04C3254A27FF23B000C8DA2D /* ExtensionNavigatorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionNavigatorData.swift; sourceTree = "<group>"; };
 		04C3254C27FF331B00C8DA2D /* ExtensionNavigatorItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionNavigatorItem.swift; sourceTree = "<group>"; };
@@ -602,6 +605,9 @@
 		2032B50F28A256F50089EBB6 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowHostingController.swift; sourceTree = "<group>"; };
 		2036DD5428DB3DB5003BECB7 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		20439037290D27DB00126A3F /* WorkspaceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceErrors.swift; sourceTree = "<group>"; };
+		2043903B290D385600126A3F /* ExploreExtensionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreExtensionsView.swift; sourceTree = "<group>"; };
+		2043903D290D38D700126A3F /* ExploreItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreItemView.swift; sourceTree = "<group>"; };
 		204F7BB228D7905C00F49092 /* WorkflowMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowMenu.swift; sourceTree = "<group>"; };
 		204F7BB428D7906A00F49092 /* WorkflowWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowWrapperView.swift; sourceTree = "<group>"; };
 		204F7BB628D7907A00F49092 /* WorkflowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowViewController.swift; sourceTree = "<group>"; };
@@ -1108,7 +1114,9 @@
 		0483E34E27FDB15F00354AC0 /* ExtensionNavigator */ = {
 			isa = PBXGroup;
 			children = (
-				0483E34F27FDB17700354AC0 /* ExtensionNavigator.swift */,
+				2043903A290D37A000126A3F /* Explore */,
+				20439039290D379600126A3F /* Installed */,
+				0483E34F27FDB17700354AC0 /* ExtensionNavigatorView.swift */,
 				04C3254C27FF331B00C8DA2D /* ExtensionNavigatorItem.swift */,
 				04C3254E2800AA4700C8DA2D /* ExtensionInstallationView.swift */,
 			);
@@ -1235,6 +1243,30 @@
 				934D2F0228C4A5690034E5C8 /* GitClientError.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		20439035290D27C600126A3F /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				20439037290D27DB00126A3F /* WorkspaceErrors.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		20439039290D379600126A3F /* Installed */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Installed;
+			sourceTree = "<group>";
+		};
+		2043903A290D37A000126A3F /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				2043903B290D385600126A3F /* ExploreExtensionsView.swift */,
+				2043903D290D38D700126A3F /* ExploreItemView.swift */,
+			);
+			path = Explore;
 			sourceTree = "<group>";
 		};
 		204F7BB128D7903000F49092 /* Workflow */ = {
@@ -1624,6 +1656,7 @@
 		20D83713289A7A9900D91D05 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				20439035290D27C600126A3F /* Errors */,
 				2093292228D9DE0800F91C82 /* Styles */,
 				20752E4728CA54E000935487 /* Version Control */,
 				20B5BD9F28B1309200B2A02F /* SplitView */,
@@ -3536,7 +3569,7 @@
 				2093CDA9289AA179003A88DD /* SourceControlGeneralView.swift in Sources */,
 				2093CD1E289AA07D003A88DD /* BitbucketRepositories.swift in Sources */,
 				201169D92837B31200F92B46 /* SourceControlSearchToolbar.swift in Sources */,
-				0483E35027FDB17700354AC0 /* ExtensionNavigator.swift in Sources */,
+				0483E35027FDB17700354AC0 /* ExtensionNavigatorView.swift in Sources */,
 				2B04575228E6FFE300024F2D /* ActionThemeAttribute.swift in Sources */,
 				2093CD35289AA089003A88DD /* Git.swift in Sources */,
 				2093CD34289AA089003A88DD /* Issue.swift in Sources */,
@@ -3848,6 +3881,7 @@
 				2093CD4A289AA095003A88DD /* Namespace.swift in Sources */,
 				2B04575428E6FFE300024F2D /* ParagraphSpacingAfterThemeAttribute.swift in Sources */,
 				2093CDD3289AA509003A88DD /* View.swift in Sources */,
+				2043903C290D385600126A3F /* ExploreExtensionsView.swift in Sources */,
 				2093CD18289AA079003A88DD /* OAuthRouter.swift in Sources */,
 				2093CDB0289AA185003A88DD /* EditorThemeView.swift in Sources */,
 				04660F6A27E51E5C00477777 /* AuroraEditorWindowController.swift in Sources */,
@@ -3870,6 +3904,7 @@
 				2093CCA3289AA00B003A88DD /* RecentProjectsView.swift in Sources */,
 				2093CC9D289AA001003A88DD /* TerminalEmulatorView+Coordinator.swift in Sources */,
 				2B04575828E6FFE300024F2D /* FirstLineHeadIndentThemeAttribute.swift in Sources */,
+				2043903E290D38D700126A3F /* ExploreItemView.swift in Sources */,
 				04C3254F2800AA4700C8DA2D /* ExtensionInstallationView.swift in Sources */,
 				204F7BB728D7907A00F49092 /* WorkflowViewController.swift in Sources */,
 				2093CD3B289AA08F003A88DD /* GitlabConfiguration.swift in Sources */,
@@ -3882,6 +3917,7 @@
 				2093CDC4289AA260003A88DD /* TabBarItemButtonStyle.swift in Sources */,
 				936312EA28CCCAD9004CD24B /* TabBarAccessories.swift in Sources */,
 				2093CD11289AA054003A88DD /* GitUIModel.swift in Sources */,
+				20439038290D27DB00126A3F /* WorkspaceErrors.swift in Sources */,
 				2BD5CF2628D602CE00F95E5A /* ViewModifiers.swift in Sources */,
 				204F7BB928D7908700F49092 /* WorkflowTableViewCell.swift in Sources */,
 				2093CD56289AA0C0003A88DD /* Page.swift in Sources */,

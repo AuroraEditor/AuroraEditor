@@ -10,5 +10,12 @@
 struct Constants {
     static var auroraEditorBaseURL: String = "http://api.auroraeditor.com:8081/v1/"
 
+    // OAuth
     static let login: String = "oauth/login"
+
+    // Extensions
+    static let extensions: String = "extensions"
+    static func downloadExtension(extensionId: String) -> String {
+        return "extensions/download?extensionId=\(extensionId)"
+    }
 }
