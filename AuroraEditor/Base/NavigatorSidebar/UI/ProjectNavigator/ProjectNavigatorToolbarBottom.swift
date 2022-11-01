@@ -14,7 +14,7 @@ struct ProjectNavigatorToolbarBottom: View {
     @Environment(\.colorScheme)
     private var colorScheme
 
-    @ObservedObject
+    @EnvironmentObject
     var workspace: WorkspaceDocument
 
     @State
@@ -79,9 +79,9 @@ struct ProjectNavigatorToolbarBottom: View {
     private var sortButton: some View {
         Menu {
             Button {
-                workspace.sortFoldersOnTop.toggle()
+                workspace.data.sortFoldersOnTop.toggle()
             } label: {
-                Text(workspace.sortFoldersOnTop ? "Alphabetically" : "Folders on top")
+                Text(workspace.data.sortFoldersOnTop ? "Alphabetically" : "Folders on top")
             }
         } label: {
             Image(systemName: "line.3.horizontal.decrease.circle")

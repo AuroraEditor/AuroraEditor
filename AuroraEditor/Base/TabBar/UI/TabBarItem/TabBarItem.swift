@@ -18,6 +18,9 @@ struct TabBarItem: View {
     @Environment(\.colorScheme)
     var colorScheme
 
+    @EnvironmentObject
+    var workspace: WorkspaceDocument
+
     @StateObject
     var prefs: AppPreferencesModel = .shared
 
@@ -36,14 +39,10 @@ struct TabBarItem: View {
     @Binding
     private var expectedWidth: CGFloat
 
-    @ObservedObject
-    var workspace: WorkspaceDocument
-
     var item: TabBarItemRepresentable
 
-    private var windowController: NSWindowController
-
-    var isTemporary: Bool
+    @State
+    var isTemporary: Bool = true
 
     var isActive: Bool {
         item.tabID == workspace.selectionState.selectedId
@@ -74,15 +73,10 @@ struct TabBarItem: View {
 
     init(
         expectedWidth: Binding<CGFloat>,
-        item: TabBarItemRepresentable,
-        windowController: NSWindowController,
-        workspace: WorkspaceDocument
+        item: TabBarItemRepresentable
     ) {
         self._expectedWidth = expectedWidth
         self.item = item
-        self.windowController = windowController
-        self.workspace = workspace
-        self.isTemporary = workspace.selectionState.temporaryTab == item.tabID
     }
 
     @ViewBuilder
@@ -106,6 +100,12 @@ struct TabBarItem: View {
             TabDivider()
                 .opacity(isActive && prefs.preferences.general.tabBarStyle == .xcode ? 0.0 : 1.0)
                 .padding(.top, isActive && prefs.preferences.general.tabBarStyle == .native ? 1.22 : 0)
+        }
+        .onAppear {
+            isTemporary = workspace.selectionState.temporaryTab == item.tabID
+        }
+        .onChange(of: workspace.selectionState.temporaryTab) { _ in
+            isTemporary = workspace.selectionState.temporaryTab == item.tabID
         }
         .overlay(alignment: .top) {
             // Only show NativeTabShadow when `tabBarStyle` is native and this tab is not active.
@@ -149,6 +149,7 @@ struct TabBarItem: View {
             TapGesture(count: 2)
                 .onEnded { _ in
                     if isTemporary {
+                        Log.info("Converting temp tab")
                         workspace.convertTemporaryTab()
                     }
                 }

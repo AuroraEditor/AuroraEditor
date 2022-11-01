@@ -18,9 +18,7 @@ struct TabBar: View {
     @Environment(\.controlActiveState)
     var activeState
 
-    private let windowController: NSWindowController
-
-    @ObservedObject
+    @EnvironmentObject
     var workspace: WorkspaceDocument
 
     @ObservedObject
@@ -28,13 +26,6 @@ struct TabBar: View {
 
     @StateObject
     var prefs: AppPreferencesModel = .shared
-
-    // TabBar(windowController: windowController, workspace: workspace)
-    init(windowController: NSWindowController, workspace: WorkspaceDocument) {
-        self.windowController = windowController
-        self.workspace = workspace
-        self.sourceControlModel = workspace.fileSystemClient?.model ?? .init(workspaceURL: workspace.fileURL!)
-    }
 
     @State
     var expectedTabWidth: CGFloat = 0
@@ -154,18 +145,16 @@ struct TabBar: View {
                                 if let item = workspace.selectionState.getItemByTab(id: id) {
                                     TabBarItem(
                                         expectedWidth: $expectedTabWidth,
-                                        item: item,
-                                        windowController: windowController,
-                                        workspace: workspace
+                                        item: item
                                     )
                                     .frame(height: TabBar.height)
                                     .background(makeTabItemGeometryReader(id: id))
                                     // TODO: Detect the onDrag outside of tab bar.
                                     // When a tab is dragged out, we shrink the space of it.
-//                                    .padding(
-//                                        .trailing,
-//                                        !isOnDragOverTabs && onDragTabId == id ? (-tabWidth[id]! + 1) : 0
-//                                    )
+                                    .padding(
+                                        .trailing,
+                                        !isOnDragOverTabs && onDragTabId == id ? (-tabWidth[id]! + 1) : 0
+                                    )
                                     .offset(x: tabOffsets[id] ?? 0, y: 0)
                                     .highPriorityGesture(
                                         makeTabDragGesture(id: id),
@@ -206,6 +195,7 @@ struct TabBar: View {
                             updateForTabCountChange(geometryProxy: geometryProxy)
                         }
                         .onChange(of: workspace.selectionState.temporaryTab, perform: { _ in
+                            Log.info("Temp tab changed")
                             updateForTabCountChange(geometryProxy: geometryProxy)
                         })
                         // When window size changes, re-compute the expected tab width.

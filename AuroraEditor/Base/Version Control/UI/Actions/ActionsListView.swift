@@ -22,8 +22,7 @@ struct ActionsListView: View {
 
     var body: some View {
         VStack {
-            WorkflowWrapperView(workspace: workspace,
-                                actionsModel: actions)
+            WorkflowWrapperView(actionsModel: actions)
 
             // BUG: For some reason the list reints on selection when we add state management
             // not to sure what could be the cause

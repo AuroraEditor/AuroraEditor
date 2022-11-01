@@ -11,12 +11,8 @@ struct NavigatorSidebarToolbarBottom: View {
     @Environment(\.controlActiveState)
     private var activeState
 
-    @ObservedObject
-    private var workspace: WorkspaceDocument
-
-    init(workspace: WorkspaceDocument) {
-        self.workspace = workspace
-    }
+    @EnvironmentObject
+    var workspace: WorkspaceDocument
 
     var body: some View {
         HStack(spacing: 10) {
@@ -57,9 +53,9 @@ struct NavigatorSidebarToolbarBottom: View {
     private var sortButton: some View {
         Menu {
             Button {
-                workspace.sortFoldersOnTop.toggle()
+                workspace.data.sortFoldersOnTop.toggle()
             } label: {
-                Text(workspace.sortFoldersOnTop ? "Alphabetically" : "Folders on top")
+                Text(workspace.data.sortFoldersOnTop ? "Alphabetically" : "Folders on top")
             }
         } label: {
             Image(systemName: "line.3.horizontal.decrease.circle")

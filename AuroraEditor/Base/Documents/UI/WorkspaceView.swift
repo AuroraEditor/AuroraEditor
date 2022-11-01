@@ -10,20 +10,15 @@ import AppKit
 import Version_Control
 
 struct WorkspaceView: View {
-    init(windowController: NSWindowController, workspace: WorkspaceDocument) {
-        self.windowController = windowController
-        self.workspace = workspace
-    }
 
-    let windowController: NSWindowController
     let tabBarHeight = 28.0
     private var path: String = ""
 
-    @ObservedObject
-    var workspace: WorkspaceDocument
-
     @StateObject
     private var prefs: AppPreferencesModel = .shared
+
+    @EnvironmentObject
+    private var workspace: WorkspaceDocument
 
     @State
     private var showingAlert = false
@@ -52,23 +47,20 @@ struct WorkspaceView: View {
         if let tabID = workspace.selectionState.selectedId {
             switch tabID {
             case .codeEditor:
-                WorkspaceCodeFileView(windowController: windowController, workspace: workspace)
+                WorkspaceCodeFileView()
             case .extensionInstallation:
                 EmptyView()
-
             case .webTab:
                 if let webTab = workspace.selectionState.selected as? WebTab {
                     WebTabView(webTab: webTab)
                 }
             case .projectHistory:
                 if let projectHistoryTab = workspace.selectionState.selected as? ProjectCommitHistory {
-                    ProjectCommitHistoryView(projectHistoryModel: projectHistoryTab,
-                                             workspace: workspace)
+                    ProjectCommitHistoryView(projectHistoryModel: projectHistoryTab)
                 }
             case .branchHistory:
                 if let branchHistoryTab = workspace.selectionState.selected as? BranchCommitHistory {
-                    BranchCommitHistoryView(branchCommitModel: branchHistoryTab,
-                                            workspace: workspace)
+                    BranchCommitHistoryView(branchCommitModel: branchHistoryTab)
                 }
             case .actionsWorkflow:
                 if let actionsWorkflowTab = workspace.selectionState.selected as? Workflow {
@@ -97,12 +89,13 @@ struct WorkspaceView: View {
                     }
                     .safeAreaInset(edge: .top, spacing: 0) {
                         VStack(spacing: 0) {
-                            TabBar(windowController: windowController, workspace: workspace)
+                            TabBar(sourceControlModel: workspace.fileSystemClient?.model ??
+                                .init(workspaceURL: workspace.fileURL!))
                             Divider().foregroundColor(.secondary)
                         }
                     }
                     .safeAreaInset(edge: .bottom) {
-                        StatusBarView(model: model, workspace: workspace)
+                        StatusBarView(model: model)
                     }
             } else {
                 EmptyView()
@@ -116,7 +109,7 @@ struct WorkspaceView: View {
         }, message: { Text(alertMsg) })
         .onChange(of: workspace.selectionState.selectedId) { newValue in
             if newValue == nil {
-                windowController.window?.subtitle = ""
+                workspace.windowController?.window?.subtitle = ""
             }
         }
         .onAppear {
@@ -151,39 +144,39 @@ struct WorkspaceView: View {
         .onChange(of: prefs.preferences.general.tabBarStyle) { newStyle in
             DispatchQueue.main.async {
                 if newStyle == .native {
-                    windowController.window?.titlebarAppearsTransparent = true
-                    windowController.window?.titlebarSeparatorStyle = .none
+                    workspace.windowController?.window?.titlebarAppearsTransparent = true
+                    workspace.windowController?.window?.titlebarSeparatorStyle = .none
                 } else {
-                    windowController.window?.titlebarAppearsTransparent = false
-                    windowController.window?.titlebarSeparatorStyle = .automatic
+                    workspace.windowController?.window?.titlebarAppearsTransparent = false
+                    workspace.windowController?.window?.titlebarSeparatorStyle = .automatic
                 }
             }
         }
         .sheet(isPresented: $workspace.newFileModel.showFileCreationSheet) {
             FileCreationSelectionView(workspace: workspace)
         }
-        .sheet(isPresented: $workspace.showStashChangesSheet) {
+        .sheet(isPresented: $workspace.data.showStashChangesSheet) {
             StashChangesSheet(workspaceURL: workspace.workspaceURL())
         }
-        .sheet(isPresented: $workspace.showRenameBranchSheet) {
+        .sheet(isPresented: $workspace.data.showRenameBranchSheet) {
             RenameBranchView(workspace: workspace,
-                             currentBranchName: workspace.currentlySelectedBranch,
-                             newBranchName: workspace.currentlySelectedBranch)
+                             currentBranchName: workspace.data.currentlySelectedBranch,
+                             newBranchName: workspace.data.currentlySelectedBranch)
         }
-        .sheet(isPresented: $workspace.showAddRemoteView) {
+        .sheet(isPresented: $workspace.data.showAddRemoteView) {
             AddRemoteView(workspace: workspace)
         }
-        .sheet(isPresented: $workspace.showBranchCreationSheet) {
+        .sheet(isPresented: $workspace.data.showBranchCreationSheet) {
             CreateNewBranchView(workspace: workspace,
-                                revision: workspace.branchRevision,
-                                revisionDesciption: workspace.branchRevisionDescription)
+                                revision: workspace.data.branchRevision,
+                                revisionDesciption: workspace.data.branchRevisionDescription)
         }
     }
 }
 
 struct WorkspaceView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkspaceView(windowController: NSWindowController(), workspace: .init())
+        WorkspaceView()
     }
 }
 

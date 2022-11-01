@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct NavigatorSidebar: View {
-    @ObservedObject
+    @EnvironmentObject
     private var workspace: WorkspaceDocument
 
     @StateObject
     var prefs: AppPreferencesModel = .shared
-
-    private let windowController: NSWindowController
 
     @State
     public var selection: Int = 0
@@ -24,22 +22,17 @@ struct NavigatorSidebar: View {
 
     private let toolbarPadding: Double = -8.0
 
-    init(workspace: WorkspaceDocument, windowController: NSWindowController) {
-        self.workspace = workspace
-        self.windowController = windowController
-    }
-
     var body: some View {
         VStack {
             switch selection {
             case 0:
-                ProjectNavigator(workspace: workspace)
+                ProjectNavigator()
             case 1:
-                SourceControlNavigatorView(workspace: workspace)
+                SourceControlNavigatorView()
             case 2:
-                FindNavigator(workspace: workspace, state: workspace.searchState ?? .init(workspace))
+                FindNavigator(state: workspace.searchState ?? .init(workspace))
             case 6:
-                HierarchyNavigator(workspace: workspace)
+                HierarchyNavigator()
             case 7:
                 ExtensionNavigator(data: workspace.extensionNavigatorData!)
                     .environmentObject(workspace)
@@ -99,16 +92,16 @@ struct NavigatorSidebar: View {
         .safeAreaInset(edge: .bottom) {
             switch selection {
             case 0:
-                ProjectNavigatorToolbarBottom(workspace: workspace)
+                ProjectNavigatorToolbarBottom()
                     .padding(.top, toolbarPadding)
             case 1:
                 SourceControlToolbarBottom()
                     .padding(.top, toolbarPadding)
             case 2, 3, 4, 5, 6, 7:
-                NavigatorSidebarToolbarBottom(workspace: workspace)
+                NavigatorSidebarToolbarBottom()
                     .padding(.top, toolbarPadding)
             default:
-                NavigatorSidebarToolbarBottom(workspace: workspace)
+                NavigatorSidebarToolbarBottom()
                     .padding(.top, toolbarPadding)
             }
         }

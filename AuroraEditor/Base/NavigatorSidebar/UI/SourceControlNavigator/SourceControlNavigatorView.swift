@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SourceControlNavigatorView: View {
 
-    @ObservedObject
+    @EnvironmentObject
     private var workspace: WorkspaceDocument
 
     @ObservedObject
@@ -17,10 +17,6 @@ struct SourceControlNavigatorView: View {
 
     @State
     private var selectedSection: Int = 0
-
-    init(workspace: WorkspaceDocument) {
-        self.workspace = workspace
-    }
 
     var body: some View {
         VStack {
@@ -39,11 +35,11 @@ struct SourceControlNavigatorView: View {
             }
 
             if selectedSection == 0 {
-                ChangesView(workspace: workspace)
+                ChangesView(changesModel: .init(workspaceURL: workspace.workspaceURL()))
             }
 
             if selectedSection == 1 {
-                RepositoriesView(workspace: workspace)
+                RepositoriesView(repositoryModel: .init(workspace: workspace))
             }
 
             if doesUserHaveGitAccounts() {

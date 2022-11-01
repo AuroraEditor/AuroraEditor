@@ -12,7 +12,7 @@ struct FindNavigator: View {
     @ObservedObject
     private var state: WorkspaceDocument.SearchState
 
-    @ObservedObject
+    @EnvironmentObject
     private var workspace: WorkspaceDocument
 
     @State
@@ -37,8 +37,7 @@ struct FindNavigator: View {
         state.searchResult.count
     }
 
-    init(workspace: WorkspaceDocument, state: WorkspaceDocument.SearchState) {
-        self.workspace = workspace
+    init(state: WorkspaceDocument.SearchState) {
         self.state = state
     }
 
@@ -115,7 +114,7 @@ struct FindNavigator: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else if !searchText.isEmpty && submittedText {
-                FindNavigatorResultList(workspace: workspace)
+                FindNavigatorResultList()
             }
         }
         .frame(maxHeight: .infinity, alignment: .top)

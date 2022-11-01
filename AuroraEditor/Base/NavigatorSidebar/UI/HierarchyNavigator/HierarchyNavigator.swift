@@ -9,15 +9,11 @@
 import SwiftUI
 
 struct HierarchyNavigator: View {
-    @ObservedObject
+    @EnvironmentObject
     var workspace: WorkspaceDocument
 
     @State
     private var selectedSection: Int = 0
-
-    init(workspace: WorkspaceDocument) {
-        self.workspace = workspace
-    }
 
     var body: some View {
         VStack {
@@ -34,7 +30,7 @@ struct HierarchyNavigator: View {
             }
 
             if selectedSection == 0 {
-                TabHierarchyView(workspace: workspace)
+                TabHierarchyView()
             }
 
             if selectedSection == 1 {
