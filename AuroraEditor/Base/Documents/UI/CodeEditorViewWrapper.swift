@@ -16,10 +16,10 @@ public struct CodeEditorViewWrapper: View {
     private var prefs: AppPreferencesModel = .shared
 
     @ObservedObject
-    private var sharedObjects: SharedObjects = .shared
-
-    @ObservedObject
     private var themeModel: ThemeModel = .shared
+
+    @EnvironmentObject
+    private var workspace: WorkspaceDocument
 
     @State
     private var fileExtension: String
@@ -51,8 +51,9 @@ public struct CodeEditorViewWrapper: View {
         CodeEditor(
             text: $codeFile.content,
             position: $position,
-            caretPosition: $sharedObjects.caretPos,
-            currentToken: $sharedObjects.currentToken,
+            caretPosition: $workspace.data.caretPos,
+            bracketCount: $workspace.data.bracketCount,
+            currentToken: $workspace.data.currentToken,
             messages: $messages,
             theme: $theme,
             fileExtension: $fileExtension,

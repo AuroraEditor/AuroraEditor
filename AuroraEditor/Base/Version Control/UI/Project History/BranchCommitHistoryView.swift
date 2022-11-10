@@ -12,7 +12,8 @@ struct BranchCommitHistoryView: View {
     @ObservedObject
     var branchCommitModel: BranchCommitHistory
 
-    let workspace: WorkspaceDocument
+    @EnvironmentObject
+    var workspace: WorkspaceDocument
 
     @Environment(\.openURL)
     private var openCommit
@@ -110,9 +111,9 @@ struct BranchCommitHistoryView: View {
                         Group {
                             Button("Tag \"\(commit.hash)\"...") {}.disabled(true)
                             Button("New Branch from \"\(commit.hash)\"...") {
-                                workspace.branchRevision = commit.hash
-                                workspace.branchRevisionDescription = commit.message
-                                workspace.showBranchCreationSheet.toggle()
+                                workspace.data.branchRevision = commit.hash
+                                workspace.data.branchRevisionDescription = commit.message
+                                workspace.data.showBranchCreationSheet.toggle()
                             }
                             Button("Cherry-Pick Tag \"\(commit.hash)\"...") {}.disabled(true)
                         }

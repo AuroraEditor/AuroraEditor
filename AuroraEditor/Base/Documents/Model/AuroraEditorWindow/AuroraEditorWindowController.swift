@@ -7,13 +7,16 @@
 
 import Cocoa
 import SwiftUI
+import Combine
 
-final class AuroraEditorWindowController: NSWindowController {
+final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
     var prefs: AppPreferencesModel = .shared
 
-    var workspace: WorkspaceDocument?
+    var workspace: WorkspaceDocument
     var overlayPanel: OverlayPanel?
+
+    var cancelables: Set<AnyCancellable> = .init()
 
     var splitViewController: NSSplitViewController! {
         get { contentViewController as? NSSplitViewController }
@@ -24,7 +27,9 @@ final class AuroraEditorWindowController: NSWindowController {
         self.workspace = workspace
         super.init(window: window)
 
-        setupSplitView(with: workspace)
+        self.workspace.data.windowController = self
+
+        setupSplitView(with: self.workspace)
         setupToolbar()
     }
 
@@ -36,7 +41,7 @@ final class AuroraEditorWindowController: NSWindowController {
     private func setupSplitView(with workspace: WorkspaceDocument) {
         let splitVC = NSSplitViewController()
 
-        let navigatorView = NavigatorSidebar(workspace: workspace, windowController: self)
+        let navigatorView = NavigatorSidebar().environmentObject(workspace)
         let navigator = NSSplitViewItem(
             sidebarWithViewController: NSHostingController(rootView: navigatorView)
         )
@@ -45,14 +50,14 @@ final class AuroraEditorWindowController: NSWindowController {
         navigator.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(navigator)
 
-        let workspaceView = WorkspaceView(windowController: self, workspace: workspace)
+        let workspaceView = WorkspaceView().environmentObject(workspace)
         let mainContent = NSSplitViewItem(
             viewController: NSHostingController(rootView: workspaceView)
         )
         mainContent.titlebarSeparatorStyle = .line
         splitVC.addSplitViewItem(mainContent)
 
-        let inspectorView = InspectorSidebar(workspace: workspace, windowController: self)
+        let inspectorView = InspectorSidebar().environmentObject(workspace)
         let inspector = NSSplitViewItem(
             viewController: NSHostingController(rootView: inspectorView)
         )
@@ -63,6 +68,14 @@ final class AuroraEditorWindowController: NSWindowController {
         splitVC.addSplitViewItem(inspector)
 
         self.splitViewController = splitVC
+
+        workspace.broadcaster.broadcaster
+            .sink(receiveValue: recieveCommand).store(in: &cancelables)
+    }
+
+    override func close() {
+        super.close()
+        cancelables.forEach({ $0.cancel() })
     }
 
     override func windowDidLoad() {
@@ -70,11 +83,11 @@ final class AuroraEditorWindowController: NSWindowController {
     }
 
     private func getSelectedCodeFile() -> CodeFileDocument? {
-        guard let id = workspace?.selectionState.selectedId else { return nil }
-        guard let item = workspace?.selectionState.openFileItems.first(where: { item in
+        guard let id = workspace.selectionState.selectedId else { return nil }
+        guard let item = workspace.selectionState.openFileItems.first(where: { item in
             item.tabID == id
         }) else { return nil }
-        guard let file = workspace?.selectionState.openedCodeFiles[item] else { return nil }
+        guard let file = workspace.selectionState.openedCodeFiles[item] else { return nil }
         return file
     }
 
@@ -96,11 +109,11 @@ final class AuroraEditorWindowController: NSWindowController {
 //        file.save(sender)
         file.saveFileDocument()
 
-        workspace?.convertTemporaryTab()
+        workspace.convertTemporaryTab()
     }
 
     @IBAction func openCommandPalette(_ sender: Any) {
-        if let workspace = workspace, let state = workspace.commandPaletteState {
+        if let state = workspace.commandPaletteState {
             // if the panel exists, is open and is actually a command palette, close it.
             if let commandPalettePanel = overlayPanel, commandPalettePanel.isKeyWindow &&
                 commandPalettePanel.viewType ?? .commandPalette == .commandPalette {
@@ -119,7 +132,7 @@ final class AuroraEditorWindowController: NSWindowController {
     }
 
     @IBAction func openQuickly(_ sender: Any) {
-        if let workspace = workspace, let state = workspace.quickOpenState {
+        if let state = workspace.quickOpenState {
             // if the panel exists, is open and is actually a quick open panel, close it.
             if let quickOpenPanel = overlayPanel, quickOpenPanel.isKeyWindow &&
                 quickOpenPanel.viewType ?? .quickOpen == .quickOpen {
@@ -149,7 +162,7 @@ final class AuroraEditorWindowController: NSWindowController {
 
     @IBAction func stashChangesItems(_ sender: Any) {
         if AppDelegate.tryFocusWindow(of: StashChangesSheet.self) { return }
-        if (workspace?.fileSystemClient?.model?.changed ?? []).isEmpty {
+        if (workspace.fileSystemClient?.model?.changed ?? []).isEmpty {
             let alert = NSAlert()
             alert.alertStyle = .informational
             alert.messageText = "Cannot Stash Changes"
@@ -157,12 +170,12 @@ final class AuroraEditorWindowController: NSWindowController {
             alert.addButton(withTitle: "OK")
             alert.runModal()
         } else {
-            workspace?.showStashChangesSheet.toggle()
+            workspace.data.showStashChangesSheet.toggle()
         }
     }
 
     @IBAction func discardProjectChanges(_ sender: Any) {
-        if (workspace?.fileSystemClient?.model?.changed ?? []).isEmpty {
+        if (workspace.fileSystemClient?.model?.changed ?? []).isEmpty {
             let alert = NSAlert()
             alert.alertStyle = .informational
             alert.messageText = "Cannot Discard Changes"
@@ -170,7 +183,33 @@ final class AuroraEditorWindowController: NSWindowController {
             alert.addButton(withTitle: "OK")
             alert.runModal()
         } else {
-            workspace?.fileSystemClient?.model?.discardProjectChanges()
+            workspace.fileSystemClient?.model?.discardProjectChanges()
+        }
+    }
+
+    func recieveCommand(command: AuroraCommandBroadcaster.Broadcast) {
+        let sender = command.parameters["sender"] ?? ""
+
+        switch command.name {
+        case "openQuickly":
+            openQuickly(sender)
+        case "close":
+            close()
+        case "toggleToolbarShown":
+            window?.toggleToolbarShown(sender)
+        case "runToolbarCustomization":
+            window?.runToolbarCustomizationPalette(sender)
+        case "toggleSidebar":
+            splitViewController.toggleSidebar(sender)
+        case "toggleFullScreen":
+            window?.toggleFullScreen(sender)
+        case "discardProjectChanges":
+            discardProjectChanges(sender)
+        case "miniaturize":
+            window?.miniaturize(sender)
+        case "zoom":
+            window?.zoom(sender)
+        default: break
         }
     }
 }

@@ -9,19 +9,14 @@ import SwiftUI
 
 struct ChangesView: View {
 
-    @ObservedObject
+    @EnvironmentObject
     var workspace: WorkspaceDocument
 
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
     @ObservedObject
-    private var changesModel: SourceControlModel
-
-    init(workspace: WorkspaceDocument) {
-        self.workspace = workspace
-        self.changesModel = .init(workspaceURL: workspace.workspaceURL())
-    }
+    var changesModel: SourceControlModel
 
     var body: some View {
         VStack(alignment: .center) {
@@ -34,7 +29,7 @@ struct ChangesView: View {
                                 .font(.system(size: 16))
                                 .foregroundColor(.secondary)
                         } else {
-                            SourceControlView(workspace: workspace)
+                            SourceControlView()
                             CommitChangesView(workspace: workspace)
                         }
                     case .loading:

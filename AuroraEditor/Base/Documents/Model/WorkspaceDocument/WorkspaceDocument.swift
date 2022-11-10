@@ -19,24 +19,13 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     var extensionNavigatorData: ExtensionNavigatorData? = ExtensionNavigatorData()
 
     @Published
-    var sortFoldersOnTop: Bool = true
-    @Published
-    var showStashChangesSheet: Bool = false
-    @Published
-    var showRenameBranchSheet: Bool = false
-    @Published
-    var showAddRemoteView: Bool = false
-    @Published
-    var showBranchCreationSheet: Bool = false
-    @Published
-    var currentlySelectedBranch: String = ""
-    @Published
-    var branchRevision: String = ""
-    @Published
-    var branchRevisionDescription: String = ""
+    var selectionState: WorkspaceSelectionState = .init()
 
     @Published
-    var selectionState: WorkspaceSelectionState = .init()
+    var data = AuroraDataStorage()
+
+    @Published
+    var broadcaster = AuroraCommandBroadcaster()
 
     @Published
     var fileItems: [FileSystemClient.FileItem] = []

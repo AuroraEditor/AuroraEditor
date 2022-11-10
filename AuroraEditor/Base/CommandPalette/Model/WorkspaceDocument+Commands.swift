@@ -43,7 +43,7 @@ extension WorkspaceDocument {
                 NSDocumentController.openDocument(NSDocumentController.shared)(self)
             }),
             Command(name: "Open Quickly", command: {
-                self.windowController?.openQuickly(self)
+                self.broadcaster.broadcast("openQuickly", parameters: ["sender": "commandPalette"])
             }),
             Command(name: "Save", command: {
                 NSDocument.save(self)(self)
@@ -52,39 +52,39 @@ extension WorkspaceDocument {
                 NSDocument.saveAs(self)(self)
             }),
             Command(name: "Close", command: {
-                self.windowController?.close()
+                self.broadcaster.broadcast("close", parameters: ["sender": "commandPalette"])
             }),
 
             // MARK: View menu
             Command(name: "Toggle Toolbar", command: {
-                self.windowController?.window?.toggleToolbarShown(self)
+                self.broadcaster.broadcast("toggleToolbarShown", parameters: ["sender": "commandPalette"])
             }),
             Command(name: "Customize Toolbar", command: {
-                self.windowController?.window?.runToolbarCustomizationPalette(self)
+                self.broadcaster.broadcast("runToolbarCustomization", parameters: ["sender": "commandPalette"])
             }),
             Command(name: "Show Sidebar", command: {
-                self.windowController?.splitViewController.toggleSidebar(self)
+                self.broadcaster.broadcast("toggleSidebar", parameters: ["sender": "commandPalette"])
             }),
             Command(name: "Toggle Full Screen", command: {
-                self.windowController?.window?.toggleFullScreen(self)
+                self.broadcaster.broadcast("toggleFullScreen", parameters: ["sender": "commandPalette"])
             }),
 
             // TODO: Find and Navigate menus
 
             // MARK: Source Control menu
             Command(name: "Stash Changes", command: {
-                self.showStashChangesSheet.toggle()
+                self.data.showStashChangesSheet.toggle()
             }),
             Command(name: "Discard Project Changes", command: {
-                self.windowController?.discardProjectChanges(self)
+                self.broadcaster.broadcast("discardProjectChanges", parameters: ["sender": "commandPalette"])
             }),
 
             // MARK: Window and Help menu
             Command(name: "Minimise", command: {
-                self.windowController?.window?.miniaturize(self)
+                self.broadcaster.broadcast("miniaturize", parameters: ["sender": "commandPalette"])
             }),
             Command(name: "Zoom", command: {
-                self.windowController?.window?.zoom(self)
+                self.broadcaster.broadcast("zoom", parameters: ["sender": "commandPalette"])
             }),
             Command(name: "Welcome Screen", command: {
                 if AppDelegate.tryFocusWindow(of: WelcomeWindowView.self) { return }
@@ -101,10 +101,16 @@ extension WorkspaceDocument {
                       let root = try? self.fileSystemClient?.getFileItem(folderURL.path) else { return }
                 root.addFile(fileName: "untitled")
             }),
+            Command(name: "Add File at Selection", command: {
+                self.broadcaster.broadcast("newFileAtPos")
+            }),
             Command(name: "Add Folder at Root", command: {
                 guard let folderURL = self.fileSystemClient?.folderURL,
                       let root = try? self.fileSystemClient?.getFileItem(folderURL.path) else { return }
                 root.addFolder(folderName: "untitled")
+            }),
+            Command(name: "Add Folder at Selection", command: {
+                self.broadcaster.broadcast("newDirAtPos")
             }),
             Command(name: "Open Web Tab", command: {
                 self.openTab(item: WebTab(url: URL(string: "https://auroraeditor.com")))

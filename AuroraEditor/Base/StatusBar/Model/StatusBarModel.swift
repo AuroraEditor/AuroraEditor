@@ -47,6 +47,10 @@ public class StatusBarModel: ObservableObject {
     @Published
     public var searchText: String = ""
 
+    /// Which format of bracket to display
+    @Published
+    public var bracketDisplay: BracketDisplayType = .seperated
+
     /// Returns the font for status bar items to use
     private(set) var toolbarFont: Font = .system(size: 11)
 

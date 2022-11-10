@@ -23,14 +23,13 @@ public struct StatusBarView: View {
     @ObservedObject
     private var model: StatusBarModel
 
-    @ObservedObject
+    @EnvironmentObject
     private var workspace: WorkspaceDocument
 
     /// Initialize with model
     /// - Parameter model: The statusbar model
-    init(model: StatusBarModel, workspace: WorkspaceDocument) {
+    init(model: StatusBarModel) {
         self.model = model
-        self.workspace = workspace
     }
 
     public var body: some View {
@@ -63,6 +62,7 @@ public struct StatusBarView: View {
                 Spacer()
                 if let selectedId = workspace.selectionState.selectedId,
                    selectedId.id.contains("codeEditor_") {
+                    StatusBarBracketCountLabel(model: model)
                     StatusBarCursorLocationLabel(model: model)
                     StatusBarIndentSelector(model: model)
                     StatusBarEncodingSelector(model: model)
@@ -113,8 +113,7 @@ struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack(alignment: .bottom) {
             Color.white
-            StatusBarView(model: StatusBarModel(workspaceURL: URL(fileURLWithPath: "")),
-                          workspace: WorkspaceDocument())
+            StatusBarView(model: StatusBarModel(workspaceURL: URL(fileURLWithPath: "")))
             .previewLayout(.fixed(width: 1.336, height: 500.0))
             .preferredColorScheme(.light)
         }
