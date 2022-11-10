@@ -57,6 +57,7 @@ public struct CodeEditor {
     @Binding var text: String
     @Binding var position: Position
     @Binding var caretPosition: CursorLocation
+    @Binding var bracketCount: BracketCount
     @Binding var currentToken: Token?
     @Binding var messages: Set<Located<Message>>
     @Binding var theme: AuroraTheme
@@ -75,6 +76,7 @@ public struct CodeEditor {
     public init(text: Binding<String>,
                 position: Binding<Position>,
                 caretPosition: Binding<CursorLocation>,
+                bracketCount: Binding<BracketCount>,
                 currentToken: Binding<Token?>,
                 messages: Binding<Set<Located<Message>>>,
                 theme: Binding<AuroraTheme>,
@@ -84,6 +86,7 @@ public struct CodeEditor {
         self._text = text
         self._position = position
         self._caretPosition = caretPosition
+        self._bracketCount = bracketCount
         self._currentToken = currentToken
         self._messages = messages
         self._theme = theme
@@ -95,6 +98,7 @@ public struct CodeEditor {
         @Binding var text: String
         @Binding var position: Position
         @Binding var caretPosition: CursorLocation
+        @Binding var bracketCount: BracketCount
         @Binding var currentToken: Token?
 
         /// In order to avoid update cycles, where view code tries to update SwiftUI state variables (such as the view's
@@ -108,11 +112,13 @@ public struct CodeEditor {
         init(_ text: Binding<String>,
              _ position: Binding<Position>,
              _ caretPosition: Binding<CursorLocation>,
+             _ bracketCount: Binding<BracketCount>,
              _ currentToken: Binding<Token?>
         ) {
             self._text = text
             self._position = position
             self._caretPosition = caretPosition
+            self._bracketCount = bracketCount
             self._currentToken = currentToken
         }
     }

@@ -468,6 +468,8 @@
 		9384904428FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9384904328FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift */; };
 		9384904628FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9384904528FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift */; };
 		9384904828FBA5E2006FB263 /* auroraeditor-github-light.json in Resources */ = {isa = PBXBuildFile; fileRef = 9384904728FBA5E2006FB263 /* auroraeditor-github-light.json */; };
+		938E8E81291CB95C00DB8320 /* BracketCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938E8E80291CB95C00DB8320 /* BracketCount.swift */; };
+		938E8E83291CBC3400DB8320 /* StatusBarBracketCountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938E8E82291CBC3400DB8320 /* StatusBarBracketCountLabel.swift */; };
 		93983D2D28CE012500E54409 /* NavigatorModeSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93983D2C28CE012500E54409 /* NavigatorModeSelectModel.swift */; };
 		939C109528AE7D0700403A97 /* RepositoryContainers&Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */; };
 		939C2CC6289E345900BBB345 /* FileItemFileSystemFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */; };
@@ -1016,6 +1018,8 @@
 		9384904328FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThemeJsonLoader+VSCode.swift"; sourceTree = "<group>"; };
 		9384904528FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThemeJsonLoader+TextMate.swift"; sourceTree = "<group>"; };
 		9384904728FBA5E2006FB263 /* auroraeditor-github-light.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "auroraeditor-github-light.json"; sourceTree = "<group>"; };
+		938E8E80291CB95C00DB8320 /* BracketCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BracketCount.swift; sourceTree = "<group>"; };
+		938E8E82291CBC3400DB8320 /* StatusBarBracketCountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarBracketCountLabel.swift; sourceTree = "<group>"; };
 		93983D2C28CE012500E54409 /* NavigatorModeSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorModeSelectModel.swift; sourceTree = "<group>"; };
 		939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoryContainers&Items.swift"; sourceTree = "<group>"; };
 		939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileItemFileSystemFunctions.swift; sourceTree = "<group>"; };
@@ -1699,6 +1703,7 @@
 				20D83728289A7ACD00D91D05 /* StatusBarLineEndSelector.swift */,
 				20D83729289A7ACD00D91D05 /* StatusBarToggleDrawerButton.swift */,
 				20D8372A289A7ACD00D91D05 /* StatusBarCursorLocationLabel.swift */,
+				938E8E82291CBC3400DB8320 /* StatusBarBracketCountLabel.swift */,
 			);
 			path = StatusBarItems;
 			sourceTree = "<group>";
@@ -1729,6 +1734,7 @@
 				20D83735289A7ACD00D91D05 /* StatusBarModel.swift */,
 				20D83736289A7ACD00D91D05 /* StatusBarTabType.swift */,
 				20D83737289A7ACD00D91D05 /* CursorLocation.swift */,
+				938E8E80291CB95C00DB8320 /* BracketCount.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3794,6 +3800,7 @@
 				20091DB528DE1FC7008FDDFC /* UpdatePreferencesView.swift in Sources */,
 				D7E201B227E8D50000CB86D0 /* FindNavigatorModeSelector.swift in Sources */,
 				20CABA42290BFE94004753A8 /* AEUser.swift in Sources */,
+				938E8E81291CB95C00DB8320 /* BracketCount.swift in Sources */,
 				93EF416528C1EBBC004083AD /* ActionAwareInput.swift in Sources */,
 				2093CD25289AA084003A88DD /* GithubConfiguration.swift in Sources */,
 				2093CD5B289AA0D5003A88DD /* CrashReportView.swift in Sources */,
@@ -3977,6 +3984,7 @@
 				28B0A19827E385C300B73177 /* NavigatorSidebarToolbarTop.swift in Sources */,
 				93CACA2728D7524800978753 /* MessagePopupView.swift in Sources */,
 				2093CDBD289AA1BD003A88DD /* ParsePackagesResolved.swift in Sources */,
+				938E8E83291CBC3400DB8320 /* StatusBarBracketCountLabel.swift in Sources */,
 				0463E51127FCC1DF00806D5C /* AuroraEditorAPI.swift in Sources */,
 				04C3255B2801F86400C8DA2D /* ProjectNavigatorViewController.swift in Sources */,
 				2B04575E28E6FFE300024F2D /* ParagraphSpacingBeforeThemeAttribute.swift in Sources */,
