@@ -40,6 +40,10 @@ class AuroraDataStorage: ObservableObject {
     @Published
     public var caretPos: CursorLocation = .init(line: 0, column: 0) { didSet { update() } }
     @Published
+    public var bracketCount: BracketCount = .init(roundBracketCount: 0, curlyBracketCount: 0,
+                                                  squareBracketCount: 0, bracketHistory: [])
+                                                                    { didSet { update() } }
+    @Published
     var currentToken: Token?                                        { didSet { update() } }
     // swiftlint:enable opening_brace
 
