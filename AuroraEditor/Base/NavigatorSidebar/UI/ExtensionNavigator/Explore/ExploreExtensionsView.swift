@@ -10,8 +10,10 @@ import SwiftUI
 
 struct ExploreExtensionsView: View {
 
-    @ObservedObject
+    @StateObject
     private var extensionsModel: ExtensionInstallationViewModel = .init()
+
+    var document: WorkspaceDocument
 
     var body: some View {
         VStack {
@@ -26,9 +28,14 @@ struct ExploreExtensionsView: View {
             case .success:
                 List {
                     ForEach(extensionsModel.extensions) { plugin in
-                        ExploreItemView(extensionData: plugin,
-                                        extensionsModel: extensionsModel)
-                            .tag(plugin.id)
+                        Button {
+                            document.openTab(item: plugin)
+                        } label: {
+                            ExploreItemView(extensionData: plugin,
+                                            extensionsModel: extensionsModel)
+                        }
+                        .tag(plugin.id)
+                        .buttonStyle(.plain)
                     }
                 }
                 .listStyle(.sidebar)
@@ -42,11 +49,5 @@ struct ExploreExtensionsView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
-    }
-}
-
-struct ExploreExtensionsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ExploreExtensionsView()
     }
 }

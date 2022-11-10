@@ -29,6 +29,14 @@ extension String {
         return ""
     }
 
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).uppercased() + self.lowercased().dropFirst()
+    }
+
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
+
     // MARK: Offsets
 
     /// Safely returns an offset index in a string.

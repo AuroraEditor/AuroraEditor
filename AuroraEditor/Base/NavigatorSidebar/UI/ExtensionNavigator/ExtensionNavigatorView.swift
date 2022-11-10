@@ -47,7 +47,7 @@ struct ExtensionNavigator: View {
             }
 
             if selectedSection == 1 {
-                ExploreExtensionsView()
+                ExploreExtensionsView(document: workspace)
             }
         }
     }
