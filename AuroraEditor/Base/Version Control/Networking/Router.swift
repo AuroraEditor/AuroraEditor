@@ -98,28 +98,51 @@ public protocol Router {
     /// - Returns: URLRequest
     func request(_ urlComponents: URLComponents, parameters: [String: Any]) -> URLRequest?
 
+    /// Load JSON
+    /// - Parameters:
+    ///   - session: URL Session
+    ///   - expectedResultType: T
+    ///   - completion: (T, Error)
+    /// - Returns: URLSessionDataTaskProtocol
     func loadJSON<T: Codable>(
         _ session: GitURLSession,
         expectedResultType: T.Type,
         completion: @escaping (_ json: T?, _ error: Error?) -> Void) -> URLSessionDataTaskProtocol?
 
+    /// Load
+    /// - Parameters:
+    ///   - session: URL Session
+    ///   - dateDecodingStrategy: date decoding strategy
+    ///   - expectedResultType: T
+    ///   - completion: (T, Error)
+    /// - Returns: URLSessionDataTaskProtocol
     func load<T: Codable>(
         _ session: GitURLSession,
         dateDecodingStrategy: JSONDecoder.DateDecodingStrategy?,
         expectedResultType: T.Type,
         completion: @escaping (_ json: T?, _ error: Error?) -> Void) -> URLSessionDataTaskProtocol?
 
+    /// Load JSON
+    /// - Parameters:
+    ///   - session: URL Session
+    ///   - decoder: decoder
+    ///   - expectedResultType: T
+    ///   - completion: (T, Error)
+    /// - Returns: URLSessionDataTaskProtocol
     func load<T: Codable>(
         _ session: GitURLSession,
         decoder: JSONDecoder,
         expectedResultType: T.Type,
         completion: @escaping (_ json: T?, _ error: Error?) -> Void) -> URLSessionDataTaskProtocol?
 
+    /// Request
+    /// - Returns: URLRequest
     func request() -> URLRequest?
 }
 
 public extension Router {
-
+    /// Request
+    /// - Returns: URLRequest
     func request() -> URLRequest? {
         let url = URL(string: path, relativeTo: URL(string: configuration?.apiEndpoint ?? "")!)
 
