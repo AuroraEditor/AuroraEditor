@@ -8,7 +8,6 @@
 import Foundation
 import Security
 
-// TODO: DOCS (Nanashi Li)
 /// AuroraEditorKeychain
 open class AuroraEditorKeychain {
 
