@@ -9,6 +9,7 @@
 
 import Foundation
 
+/// GIT Cherry pick
 public struct CherryPick {
     /// The app-specific results from attempting to cherry pick commits
     enum CherryPickResult: String {
