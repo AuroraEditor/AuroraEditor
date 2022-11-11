@@ -9,6 +9,7 @@
 
 import Foundation
 
+/// GIT ignore
 public struct GitIgnore {
 
     /// Read the contents of the repository .gitignore.
