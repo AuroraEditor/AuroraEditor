@@ -10,7 +10,9 @@ import Foundation
 import SwiftUI
 
 class Avatar {
-
+    /// Get Git Avatar
+    /// - Parameter authorEmail: Author's email
+    /// - Returns: Avatar image
     public func gitAvatar(authorEmail: String) -> some View {
         VStack {
             // swiftlint:disable:next line_length

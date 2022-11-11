@@ -9,6 +9,7 @@
 
 import Foundation
 
+/// Add files
 public struct Add {
 
     /// Add a conflicted file to the index.
