@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Code Parser
 public class Parser { // swiftlint:disable:this type_body_length
 
     // Must be anchored to the start of the range and enforce word and line boundaries
@@ -15,11 +16,16 @@ public class Parser { // swiftlint:disable:this type_body_length
 
     private let grammars: [Grammar]
 
+    /// Initialize Parser
+    /// - Parameter grammars: Grammar
     public init(grammars: [Grammar]) {
         self.grammars = grammars
         self.grammars.forEach { $0.parser = self }
     }
 
+    /// Grammar with scope
+    /// - Parameter scope: scope
+    /// - Returns: Grammar
     public func grammar(withScope scope: String) -> Grammar? {
         return grammars.first(where: { $0.scopeName == scope })
     }
@@ -132,6 +138,13 @@ public class Parser { // swiftlint:disable:this type_body_length
         }
     }
 
+    /// Tokenize
+    /// - Parameters:
+    ///   - line: Line
+    ///   - state: Line State
+    ///   - theme: HighlightTheme
+    ///   - range: Range
+    /// - Returns: TokenizeResult
     public func tokenize( // swiftlint:disable:this cyclomatic_complexity function_body_length
         line: String,
         state: LineState,
@@ -358,6 +371,7 @@ public class Parser { // swiftlint:disable:this type_body_length
         }
     }
 
+    /// Debugging enabled
     public var shouldDebug = false
 
     func debug(_ str: String) {
