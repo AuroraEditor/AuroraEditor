@@ -10,13 +10,19 @@ import Foundation
 import FoundationNetworking
 #endif
 
-// TODO: DOCS (Nanashi Li)
+/// Review
 public struct Review {
+    /// Body
     public let body: String
+    /// Commit ID
     public let commitID: String
+    /// ID
     public let id: Int
+    /// State
     public let state: State
+    /// Date
     public let submittedAt: Date
+    /// User
     public let user: GithubUser
 }
 
