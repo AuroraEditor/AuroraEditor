@@ -48,8 +48,6 @@ public extension Review {
 }
 
 public extension GithubAccount {
-
-    @discardableResult
     /// List reviews
     /// - Parameters:
     ///   - session: GIT URLSession
@@ -58,6 +56,7 @@ public extension GithubAccount {
     ///   - pullRequestNumber: Pullrequest number
     ///   - completion: Completion
     /// - Returns: URLSessionDataTaskProtocol
+    @discardableResult
     func listReviews(_ session: GitURLSession = URLSession.shared,
                      owner: String,
                      repository: String,
