@@ -13,6 +13,7 @@ public let gitlabBaseURL = "https://gitlab.com/api/v4/"
 /// Gitlab Web URL
 public let gitlabWebURL = "https://gitlab.com/"
 
+/// Gitlab Account
 public struct GitlabAccount {
     /// GIT Configuration
     public let configuration: GitConfiguration
