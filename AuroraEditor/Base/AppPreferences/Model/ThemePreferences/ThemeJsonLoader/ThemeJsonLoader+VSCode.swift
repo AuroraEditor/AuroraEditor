@@ -92,7 +92,7 @@ extension ThemeJsonLoader {
         let lineHighlight = json["editor.lineHighlightBackground"]
         let selection = json["editor.selectionHighlightBackground"]
 
-        Log.info("Selection: \(selection)")
+        Log.info("Selection: \(String(describing: selection))")
 
         let defaultAttr = type == "light" ? AuroraTheme.EditorColors.defaultLight :
         AuroraTheme.EditorColors.defaultDark

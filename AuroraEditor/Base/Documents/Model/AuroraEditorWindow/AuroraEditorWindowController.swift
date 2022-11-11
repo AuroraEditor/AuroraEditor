@@ -91,7 +91,6 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         return file
     }
 
-    // TODO: Make this more reliable
     @IBAction func saveDocument(_ sender: Any) {
         guard let file = getSelectedCodeFile() else {
             fatalError("Cannot get file")
@@ -106,7 +105,6 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
                 ])
         }
 
-//        file.save(sender)
         file.saveFileDocument()
 
         workspace.convertTemporaryTab()
