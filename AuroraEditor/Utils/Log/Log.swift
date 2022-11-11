@@ -22,6 +22,7 @@ extension Level: Comparable {
     }
 }
 
+/// Logging class
 public class Log {
 
     /// The logger formatter.
