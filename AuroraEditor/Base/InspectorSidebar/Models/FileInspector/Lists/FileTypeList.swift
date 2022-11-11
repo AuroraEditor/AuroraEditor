@@ -60,7 +60,7 @@ final class FileTypeList {
         LanguageType(name: "OpenCL Source", ext: "cl"),
         LanguageType(name: "OpenGL Shading Language Source", ext: "clpp"),
         LanguageType(name: "Pascal Source", ext: "pas"),
-        LanguageType(name: "Rez Source", ext: "r"),
+        LanguageType(name: "Rez Source", ext: "r")
     ]
 
     var propertyList = [
