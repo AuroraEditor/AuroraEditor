@@ -37,12 +37,16 @@ public extension Date {
         return formatter.string(from: self)
     }
 
+    /// Year month day format
+    /// - Returns: date in yyyy-MM-dd
     func yearMonthDayFormat() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.string(from: self)
     }
 
+    /// GIT date format
+    /// - Returns: date in E MMM dd HH:mm:ss yyyy Z
     func gitDateFormat(commitDate: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale.current
