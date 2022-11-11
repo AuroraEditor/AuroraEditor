@@ -90,12 +90,13 @@ extension ThemeJsonLoader {
         // NOTE: Not sure if all these are correct. May need double checking.
         // TODO: Double check these values
         let highlightTheme = HighlightTheme(settings: [
-            ThemeSetting(scope: "source",
-                         attributes: [
+            ThemeSetting(
+                scope: "source",
+                attributes: [
                             FontThemeAttribute(font: .monospacedSystemFont(ofSize: 13,
                                                                            weight: .regular)),
                             ColorThemeAttribute(color: NSColor(hex: text))
-                         ]),
+            ]),
             ThemeSetting(scope: "string",
                          attributes: [ColorThemeAttribute(color: NSColor(hex: strings))]),
             ThemeSetting(scope: "comment",

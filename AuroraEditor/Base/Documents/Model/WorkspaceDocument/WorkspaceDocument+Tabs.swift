@@ -185,7 +185,6 @@ extension WorkspaceDocument {
     /// Closes collection of tab bar items
     /// - Parameter items: items to be closed
     func closeTabs<Items>(items: Items) where Items: Collection, Items.Element == TabBarItemID {
-        // TODO: Could potentially be optimized
         for item in items {
             closeTab(item: item)
         }

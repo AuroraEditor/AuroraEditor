@@ -145,17 +145,16 @@ public class FeedbackModel: ObservableObject {
         guard let firstGitAccount = gitAccounts.first else {
             Log.warning("Did not find an account name.")
             guard let safeTitle = "\(getFeebackTypeTitle()) \(title)"
-                    .addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
+                .addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
                   let safeBody = createIssueBody(description: description,
-                                           steps: steps,
-                                           expectation: expectation,
-                                           actuallyHappened: actuallyHappened)
-                    .addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
+                                                 steps: steps,
+                                                 expectation: expectation,
+                                                 actuallyHappened: actuallyHappened)
+                .addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
                   let issueURL = URL(
                     string: "https://github.com/AuroraEditor/AuroraEditor/issues/" +
-                            "new?title=\(safeTitle)&body=\(safeBody)"
+                    "new?title=\(safeTitle)&body=\(safeBody)"
                   ) else {
-                // TODO: Show error.
                 Log.error("Failed to generate URL")
                 return
             }
@@ -167,14 +166,14 @@ public class FeedbackModel: ObservableObject {
 
         let config = GithubTokenConfiguration(keychain.get(firstGitAccount.gitAccountName))
         GithubAccount(config).postIssue(owner: "AuroraEditor",
-                                  repository: "AuroraEditor",
-                                  title: "\(getFeebackTypeTitle()) \(title)",
-                                  body: createIssueBody(description: description,
-                                                        steps: steps,
-                                                        expectation: expectation,
-                                                        actuallyHappened: actuallyHappened),
-                                  assignee: "",
-                                  labels: [getFeebackTypeLabel(), getIssueLabel()]) { response in
+                                        repository: "AuroraEditor",
+                                        title: "\(getFeebackTypeTitle()) \(title)",
+                                        body: createIssueBody(description: description,
+                                                              steps: steps,
+                                                              expectation: expectation,
+                                                              actuallyHappened: actuallyHappened),
+                                        assignee: "",
+                                        labels: [getFeebackTypeLabel(), getIssueLabel()]) { response in
             switch response {
             case .success(let issue):
                 if self.prefs.preferences.sourceControl.general.openFeedbackInBrowser {

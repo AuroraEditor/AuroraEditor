@@ -10,8 +10,6 @@ import Cocoa
 final class AuroraEditorDocumentController: NSDocumentController {
     override func openDocument(_ sender: Any?) {
         self.openDocument(onCompletion: { document, documentWasAlreadyOpen in
-            // TODO: handle errors
-
             guard let document = document else {
                 Log.error("Failed to unwrap document")
                 return

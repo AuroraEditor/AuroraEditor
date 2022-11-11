@@ -1205,7 +1205,7 @@
 			path = Log;
 			sourceTree = "<group>";
 		};
-		2029DA8528E2FCA600D68786 /* Extensions */ = {
+		2029DA8528E2FCA600D68786 /* CodeLanguages */ = {
 			isa = PBXGroup;
 			children = (
 				2029DA8628E2FCEC00D68786 /* swift.tmLanguage.json */,
@@ -1221,7 +1221,7 @@
 				209DAF3428E64A9F00E31109 /* php.tmLanguage.json */,
 				209DAF3628E64AE800E31109 /* ruby.tmLanguage.json */,
 			);
-			path = Extensions;
+			path = CodeLanguages;
 			sourceTree = "<group>";
 		};
 		202F2E2C289E6608000D3CAD /* UI */ = {
@@ -3226,7 +3226,7 @@
 		B658FB2E27DA9E0F00EA4DBD /* AuroraEditor */ = {
 			isa = PBXGroup;
 			children = (
-				2029DA8528E2FCA600D68786 /* Extensions */,
+				2029DA8528E2FCA600D68786 /* CodeLanguages */,
 				20BE727F28D0834800EEDE5F /* Services */,
 				20D83713289A7A9900D91D05 /* Utils */,
 				20D83712289A7A9200D91D05 /* Base */,

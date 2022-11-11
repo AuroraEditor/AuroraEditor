@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-// TODO: DOCS (Aleksi Puttonen)
 public extension CheckoutBranchView {
     func getBranches() -> [String] {
         guard let url = URL(string: repoPath) else {

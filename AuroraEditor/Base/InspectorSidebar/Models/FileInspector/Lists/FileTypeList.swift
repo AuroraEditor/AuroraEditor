@@ -15,22 +15,16 @@ final class FileTypeList {
     ]
 
     var languageTypeObjCList = [
-        // TODO: Get correct extension, or remove
-        LanguageType(name: "Objective-C(++) Preprocessed Source", ext: "?opc"),
         LanguageType(name: "Objective-C(++) Source", ext: "m")
     ]
 
     var sourcecodeCList = [
         LanguageType(name: "C Header", ext: "h"),
-        // TODO: Get correct extension, or remove
-        LanguageType(name: "C Preprocessed Source", ext: "?cps"),
         LanguageType(name: "C Source", ext: "c")
     ]
 
     var sourcecodeCPlusList = [
         LanguageType(name: "C++ Header", ext: "hpp"),
-        // TODO: Get correct extension, or remove
-        LanguageType(name: "C++ Preprocessed Source", ext: "?cppps"),
         LanguageType(name: "C++ Source", ext: "cpp")
     ]
 
@@ -40,12 +34,7 @@ final class FileTypeList {
 
     var sourcecodeAssemblyList = [
         LanguageType(name: "Assembly", ext: "asm"),
-        // TODO: Get correct extension, or remove
-        LanguageType(name: "LLVM Assembly", ext: "?llvm"),
-        // TODO: Get correct extension, or remove
-        LanguageType(name: "NASM Assembly", ext: "?nasm"),
-        // TODO: Get correct extension, or remove
-        LanguageType(name: "PPC Assembly", ext: "?ppc")
+        LanguageType(name: "LLVM Assembly", ext: "ll")
     ]
 
     var sourcecodeScriptList = [
@@ -88,7 +77,7 @@ final class FileTypeList {
         // TODO: Get correct extension, or remove
         LanguageType(name: "Rez Source", ext: "?rez"),
         // TODO: Get correct extension, or remove
-        LanguageType(name: "Yacc Source", ext: "?yazz ")
+        LanguageType(name: "Yacc Source", ext: "?yazz")
     ]
 
     var propertyList = [
@@ -101,23 +90,13 @@ final class FileTypeList {
     var shellList = [
         LanguageType(name: "Bash Shell Script", ext: "sh"),
         LanguageType(name: "Shell Script", ext: "command"),
-        // TODO: Get correct extension, or remove
-        LanguageType(name: "CSH Shell Script", ext: "?ccommand")
+        LanguageType(name: "CSH Shell Script", ext: "csh")
     ]
 
     var machOList = [
-        // TODO: Get correct extension, or remove
-        LanguageType(name: "Mach-O Core Dump", ext: "?mocd"),
-        // TODO: Get correct extension, or remove
-        LanguageType(name: "Mach-O Dynamic Library", ext: "?dylb"),
-        // TODO: Get correct extension, or remove
-        LanguageType(name: "Mach-O FVM Library", ext: "?fvm"),
-        // TODO: Get correct extension, or remove
         LanguageType(name: "Mach-O Object Code", ext: "o"),
-        // TODO: Get correct extension, or remove
-        LanguageType(name: "Mach-O Preload Data", ext: "?pd"),
-        // TODO: Get correct extension, or remove
-        LanguageType(name: "Mach-O Bundle", ext: "?MOB")
+        LanguageType(name: "Mach-O Dynamic Library", ext: "dylb"),
+        LanguageType(name: "Mach-O Bundle", ext: "bundle")
     ]
 
     var textList = [
@@ -173,10 +152,8 @@ final class FileTypeList {
         LanguageType(name: "PPOB Archive", ext: "?ppoba"),
         // TODO: Get correct extension, or remove
         LanguageType(name: "Resource Archive", ext: "?ra"),
-        // TODO: Get correct extension, or remove
-        LanguageType(name: "Stuffit Archive", ext: "?stuffit"),
-        // TODO: Get correct extension, or remove
-        LanguageType(name: "Web Application Archive", ext: "?waa"),
+        LanguageType(name: "Stuffit Archive", ext: "sit"),
+        LanguageType(name: "Web Application Archive", ext: "war"),
         LanguageType(name: "Zip Archive", ext: "zip"),
         LanguageType(name: "gzip Archive", ext: "gzip"),
         LanguageType(name: "tar Archive", ext: "tar")
@@ -196,12 +173,9 @@ final class FileTypeList {
         LanguageType(name: "Java Bundle", ext: "?javab"),
         // TODO: Get correct extension, or remove
         LanguageType(name: "Java Bytecode", ext: "?jb"),
-        // TODO: Get correct extension, or remove
-        LanguageType(name: "LLVM Module Map", ext: "?lvvm"),
         LanguageType(name: "Object Code", ext: "o"),
         LanguageType(name: "PDF document", ext: "pdf"),
-        // TODO: Get correct extension, or remove
-        LanguageType(name: "Quartz Composer Composition", ext: "?qcc"),
+        LanguageType(name: "Quartz Composer Composition", ext: "qtz"),
         LanguageType(name: "Text-Based Dynamic Library Definition", ext: "tbdld"),
         // TODO: Get correct extension, or remove
         LanguageType(name: "Worksheet Script", ext: "?worksheetscript"),
