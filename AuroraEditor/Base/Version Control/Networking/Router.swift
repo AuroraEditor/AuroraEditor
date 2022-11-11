@@ -9,7 +9,6 @@
 
 import Foundation
 
-
 /// HTTP Encoding
 public enum HTTPEncoding: Int {
     case url, form, json
@@ -71,17 +70,32 @@ public extension GitConfiguration {
     }
 }
 
+/// Error key
 public let errorKey = "ErrorKey"
 
+/// Router
 public protocol Router {
+    /// HTTP Method
     var method: HTTPMethod { get }
+    /// URL Path
     var path: String { get }
+    /// HTTP Encoding
     var encoding: HTTPEncoding { get }
+    /// Params
     var params: [String: Any] { get }
+    /// Configuration
     var configuration: GitConfiguration? { get }
 
+    /// URL Query
+    /// - Parameter parameters: parameters
+    /// - Returns: URLQueryItem
     func urlQuery(_ parameters: [String: Any]) -> [URLQueryItem]?
 
+    /// URL Request
+    /// - Parameters:
+    ///   - urlComponents: URLComponents
+    ///   - parameters: Parameters
+    /// - Returns: URLRequest
     func request(_ urlComponents: URLComponents, parameters: [String: Any]) -> URLRequest?
 
     func loadJSON<T: Codable>(
