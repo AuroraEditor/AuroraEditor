@@ -357,6 +357,7 @@ private extension CharacterSet {
 
 /// Checks what kind of HTTP response we get from the server
 public extension HTTPURLResponse {
+    /// Was the HTTP URL Response successfull?
     var wasSuccessful: Bool {
         let successRange = 200 ..< 300
         return successRange.contains(statusCode)
