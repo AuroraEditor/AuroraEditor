@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// File icon
 public enum FileIcon {
     // Checks the file of the item extension
     public enum FileType: String {
