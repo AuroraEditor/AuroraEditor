@@ -7,51 +7,69 @@
 
 import Foundation
 
-// TODO: DOCS (Ziyuan Zhao)
+/// Search mode Model
 public struct SearchModeModel {
+    /// Title
     public let title: String
+    /// Children
     public let children: [SearchModeModel]
+    /// Need selection highlight
     public let needSelectionHightlight: Bool
 
+    /// Containing
     public static let Containing = SearchModeModel(title: "Containing", children: [], needSelectionHightlight: false)
+    /// Matching word
     public static let MatchingWord = SearchModeModel(title: "Matching Word",
                                                      children: [],
                                                      needSelectionHightlight: true)
+    /// Starts with
     public static let StartingWith = SearchModeModel(title: "Starting With",
                                                      children: [],
                                                      needSelectionHightlight: true)
+    /// Ends with
     public static let EndingWith = SearchModeModel(title: "Ending With", children: [], needSelectionHightlight: true)
 
+    /// Text
     public static let Text = SearchModeModel(title: "Text",
                                  children: [.Containing, .MatchingWord, .StartingWith, .EndingWith],
-                                 needSelectionHightlight: false)
+                                             needSelectionHightlight: false)
+    /// References
     public static let References = SearchModeModel(title: "References",
                                        children: [.Containing, .MatchingWord, .StartingWith, .EndingWith],
-                                       needSelectionHightlight: true)
+                                                   needSelectionHightlight: true)
+    /// Definition
     public static let Definitions = SearchModeModel(title: "Definitions",
                                         children: [.Containing, .MatchingWord, .StartingWith, .EndingWith],
-                                        needSelectionHightlight: true)
+                                                    needSelectionHightlight: true)
+    /// Regular Expression
     public static let RegularExpression = SearchModeModel(title: "Regular Expression",
                                                    children: [],
-                                                   needSelectionHightlight: true)
+                                                          needSelectionHightlight: true)
+    /// Call Hierarchy
     public static let CallHierarchy = SearchModeModel(title: "Call Hierarchy",
                                                       children: [],
                                                       needSelectionHightlight: true)
 
+    /// Find
     public static let Find = SearchModeModel(title: "Find",
                                  children: [.Text, .References, .Definitions, .RegularExpression, .CallHierarchy],
-                                 needSelectionHightlight: false)
+                                             needSelectionHightlight: false)
+    /// Replace
     public static let Replace = SearchModeModel(title: "Replace",
                                     children: [.Text, .RegularExpression],
                                     needSelectionHightlight: true)
 
+    /// Text matching modes
     public static let TextMatchingModes: [SearchModeModel] = [.Containing, .MatchingWord, .StartingWith, .EndingWith]
+    /// Find modes
     public static let FindModes: [SearchModeModel] = [.Text,
                                                       .References,
                                                       .Definitions,
                                                       .RegularExpression,
                                                       .CallHierarchy]
+    /// Replace modes
     public static let ReplaceModes: [SearchModeModel] = [.Text, .RegularExpression]
+    /// Search modes
     public static let SearchModes: [SearchModeModel] = [.Find, .Replace]
 }
 
