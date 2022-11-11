@@ -209,6 +209,11 @@ public extension Router {
         return components
     }
 
+    /// Request
+    /// - Parameters:
+    ///   - urlComponents: URL Components
+    ///   - parameters: Parameters
+    /// - Returns: URLRequest
     func request(_ urlComponents: URLComponents, parameters: [String: Any]) -> URLRequest? {
 
         var urlComponents = urlComponents
@@ -244,6 +249,12 @@ public extension Router {
         }
     }
 
+    /// [DEPRECATED] loadJSON
+    /// - Parameters:
+    ///   - session: DEPRECATED
+    ///   - expectedResultType: DEPRECATED
+    ///   - completion: DEPRECATED
+    /// - Returns: DEPRECATED
     @available(*, deprecated, message: "Plase use `load` method instead")
     func loadJSON<T: Codable>(
         _ session: GitURLSession = URLSession.shared,
@@ -252,6 +263,13 @@ public extension Router {
         load(session, expectedResultType: expectedResultType, completion: completion)
     }
 
+    /// Load
+    /// - Parameters:
+    ///   - session: URL Session
+    ///   - dateDecodingStrategy: date decoding strategy
+    ///   - expectedResultType: T
+    ///   - completion: (T, Error) -> Void
+    /// - Returns: URLSessionDataTaskProtocol
     func load<T: Codable>(
         _ session: GitURLSession = URLSession.shared,
         dateDecodingStrategy: JSONDecoder.DateDecodingStrategy?,
@@ -267,6 +285,13 @@ public extension Router {
         return load(session, decoder: decoder, expectedResultType: expectedResultType, completion: completion)
     }
 
+    /// Load
+    /// - Parameters:
+    ///   - session: URLSession
+    ///   - decoder: Decoder
+    ///   - _: T
+    ///   - completion: (T, Error) -> Void
+    /// - Returns: URLSessionDataTaskProtocol
     func load<T: Codable>(
         _ session: GitURLSession = URLSession.shared,
         decoder: JSONDecoder = JSONDecoder(), expectedResultType _: T.Type,
@@ -420,4 +445,4 @@ public extension HTTPURLResponse {
         let successRange = 200 ..< 300
         return successRange.contains(statusCode)
     }
-}
+} // swiftlint:disable:this file_length
