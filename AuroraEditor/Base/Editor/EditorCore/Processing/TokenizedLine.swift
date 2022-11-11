@@ -8,6 +8,7 @@
 import Foundation
 import AppKit
 
+/// Tokenized line
 public class TokenizedLine {
 
     var tokens: [Token]
@@ -16,6 +17,7 @@ public class TokenizedLine {
         self.tokens = tokens
     }
 
+    /// Token length
     public var length: Int {
         guard let last = tokens.last else {
             return 0

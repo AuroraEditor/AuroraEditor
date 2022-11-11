@@ -44,8 +44,10 @@ extension ThemeJsonLoader {
         return nil
     }
 
+    /// Theme from TextMate Theme JSON
+    /// - Parameter json: JSON Dict
+    /// - Returns: AuroraTheme
     public func themeFromTmThemeJson(json: [String: Any]) -> AuroraTheme? {
-
         // textmate themes need to contain a `name`, but do not contain a `type`.
         // we will use the current dark/light mode setting to determine the type for the theme.
         // note that this means that if the user changes from light to dark mode or vice versa, themes

@@ -27,6 +27,9 @@ extension ThemeJsonLoader {
         return nil
     }
 
+    /// Theme from Visual Studio Code JSON
+    /// - Parameter jsonStr: JSON String
+    /// - Returns: AuroraTheme
     public func themeFromVscJson(jsonStr: String) -> AuroraTheme? {
         guard let jsonData = jsonStr.data(using: .utf8),
               let json = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any]

@@ -9,8 +9,8 @@
 
 import Foundation
 
+/// GIT tag
 public struct Tag {
-
     /// Create a new tag on the given target commit.
     ///
     /// @param name - The name of the new tag.
