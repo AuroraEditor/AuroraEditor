@@ -9,42 +9,63 @@
 
 import Foundation
 
-// TODO: DOCS (Nanashi Li)
+
+/// HTTP Encoding
 public enum HTTPEncoding: Int {
     case url, form, json
 }
 
+/// HTTP Header
 public struct HTTPHeader {
+    /// Field
     public var headerField: String
+
+    /// Value
     public var value: String
+
+    /// Init
+    /// - Parameters:
+    ///   - headerField: Field
+    ///   - value: Value
     public init(headerField: String, value: String) {
         self.headerField = headerField
         self.value = value
     }
 }
 
+/// GIT Configuration
 public protocol GitConfiguration {
+    /// API Endpoint
     var apiEndpoint: String? { get }
+    /// Access Token
     var accessToken: String? { get }
+    /// Access Token Header Field Name
     var accessTokenFieldName: String? { get }
+    /// Authorization header
     var authorizationHeader: String? { get }
+    /// Error Domain
     var errorDomain: String? { get }
+    /// Custom Headers
     var customHeaders: [HTTPHeader]? { get }
 }
 
 public extension GitConfiguration {
+    /// Access token field name
     var accessTokenFieldName: String? {
         "access_token"
     }
 
+    /// authorizationHeader
     var authorizationHeader: String? {
         nil
     }
 
+    /// Error domain
     var errorDomain: String? {
         "com.auroraeditor.models.accounts.networking"
     }
 
+    /// Custom Headers
     var customHeaders: [HTTPHeader]? {
         nil
     }
