@@ -46,12 +46,19 @@ extension GitClient {
         case failedToDecodeURL
     }
 
+    /// Clone progress result
     public enum CloneProgressResult {
+        /// Cloning in to
         case cloningInto
+        /// Counting progress
         case countingProgress(Int)
+        /// Compressing progress
         case compressingProgress(Int)
+        /// Receiving progress
         case receivingProgress(Int)
+        /// Resolving progress
         case resolvingProgress(Int)
+        /// Other
         case other(String)
     }
 }
