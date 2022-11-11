@@ -340,6 +340,12 @@ public extension Router {
         return task
     }
 
+    /// Load
+    /// - Parameters:
+    ///   - session: URLSession
+    ///   - decoder: Decoder
+    ///   - _: T
+    /// - Returns: T
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func load<T: Codable>(
         _ session: GitURLSession = URLSession.shared,
@@ -370,6 +376,12 @@ public extension Router {
         return try decoder.decode(T.self, from: responseTuple.0)
     }
 
+    /// Load
+    /// - Parameters:
+    ///   - session: URLSession
+    ///   - dateDecodingStrategy: date decoding strategy
+    ///   - expectedResultType: T
+    /// - Returns: T
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func load<T: Codable>(
         _ session: GitURLSession = URLSession.shared,
@@ -385,6 +397,11 @@ public extension Router {
         return try await load(session, decoder: decoder, expectedResultType: expectedResultType)
     }
 
+    /// Load
+    /// - Parameters:
+    ///   - session: URLSession
+    ///   - completion: (error) -> Void
+    /// - Returns: URLSessionDataTaskProtocol
     func load(
         _ session: GitURLSession = URLSession.shared,
         completion: @escaping (_ error: Error?) -> Void) -> URLSessionDataTaskProtocol? {
