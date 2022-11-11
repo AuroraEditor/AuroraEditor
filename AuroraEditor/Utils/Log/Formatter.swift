@@ -8,18 +8,29 @@
 
 import Foundation
 
+/// Components
 public enum Component {
+    /// Date
     case date(String)
+    /// Message
     case message
+    /// Level
     case level
+    /// File
     case file(fullPath: Bool, fileExtension: Bool)
+    /// Line
     case line
+    /// Column
     case column
+    /// Function
     case function
+    /// Location
     case location
+    /// Block
     case block(() -> Any?)
 }
 
+/// Formatters
 open class Formatters {}
 
 open class Formatter: Formatters {
