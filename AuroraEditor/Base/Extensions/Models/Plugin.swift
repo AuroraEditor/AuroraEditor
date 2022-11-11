@@ -18,7 +18,7 @@ public struct Plugin: Codable, Identifiable, Comparable, TabBarItemRepresentable
         lhs.id == rhs.id
     }
     public var tabID: TabBarItemID {
-        .extensionInstallation(self.id)
+        .extensionInstallation(id.uuidString)
     }
 
     public var title: String {

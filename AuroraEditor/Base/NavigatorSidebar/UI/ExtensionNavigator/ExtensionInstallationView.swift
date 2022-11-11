@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct ExtensionInstallationView: View {
-//    init(plugin: Plugin) {
-//        self.model = .init(plugin: plugin)
-//        self.installed = ExtensionsManager.shared.isInstalled(plugin: plugin) ?? false
-//    }
 
-//    @ObservedObject var model: ExtensionInstallationViewModel
-    @EnvironmentObject var document: WorkspaceDocument
-    @State var reopenAlert = false
-    @State var installed: Bool = false
+    @State
+    var extensionData: Plugin
+
+    @EnvironmentObject
+    var document: WorkspaceDocument
+    @State
+    var reopenAlert = false
+    @State
+    var installed: Bool = false
 
     var body: some View {
         VStack {

@@ -49,7 +49,9 @@ struct WorkspaceView: View {
             case .codeEditor:
                 WorkspaceCodeFileView()
             case .extensionInstallation:
-                EmptyView()
+                if let plugin = workspace.selectionState.selected as? Plugin {
+                    ExtensionView(extensionData: plugin)
+                }
             case .webTab:
                 if let webTab = workspace.selectionState.selected as? WebTab {
                     WebTabView(webTab: webTab)

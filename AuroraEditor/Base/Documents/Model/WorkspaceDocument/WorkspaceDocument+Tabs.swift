@@ -25,7 +25,6 @@ extension WorkspaceDocument {
             case .extensionInstallation:
                 guard let plugin = item as? Plugin else { return }
                 self.openExtension(item: plugin)
-
             case .webTab:
                 guard let webTab = item as? WebTab else { return }
                 self.openWebTab(item: webTab)
