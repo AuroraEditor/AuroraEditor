@@ -9,6 +9,7 @@
 
 import Foundation
 
+/// Default branch
 public struct DefaultBranch {
 
     /// The default branch name that GitHub Desktop will use when
