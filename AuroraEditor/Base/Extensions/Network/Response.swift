@@ -7,8 +7,10 @@
 
 import Foundation
 
-// TODO: DOCS (Pavel Kasila)
+/// Response
 public struct Response<T> {
+    /// Value
     public let value: T
+    /// URL Response
     public let response: URLResponse
 }

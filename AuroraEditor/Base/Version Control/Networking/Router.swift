@@ -9,82 +9,140 @@
 
 import Foundation
 
-// TODO: DOCS (Nanashi Li)
+/// HTTP Encoding
 public enum HTTPEncoding: Int {
     case url, form, json
 }
 
+/// HTTP Header
 public struct HTTPHeader {
+    /// Field
     public var headerField: String
+
+    /// Value
     public var value: String
+
+    /// Init
+    /// - Parameters:
+    ///   - headerField: Field
+    ///   - value: Value
     public init(headerField: String, value: String) {
         self.headerField = headerField
         self.value = value
     }
 }
 
+/// GIT Configuration
 public protocol GitConfiguration {
+    /// API Endpoint
     var apiEndpoint: String? { get }
+    /// Access Token
     var accessToken: String? { get }
+    /// Access Token Header Field Name
     var accessTokenFieldName: String? { get }
+    /// Authorization header
     var authorizationHeader: String? { get }
+    /// Error Domain
     var errorDomain: String? { get }
+    /// Custom Headers
     var customHeaders: [HTTPHeader]? { get }
 }
 
 public extension GitConfiguration {
+    /// Access token field name
     var accessTokenFieldName: String? {
         "access_token"
     }
 
+    /// authorizationHeader
     var authorizationHeader: String? {
         nil
     }
 
+    /// Error domain
     var errorDomain: String? {
         "com.auroraeditor.models.accounts.networking"
     }
 
+    /// Custom Headers
     var customHeaders: [HTTPHeader]? {
         nil
     }
 }
 
+/// Error key
 public let errorKey = "ErrorKey"
 
+/// Router
 public protocol Router {
+    /// HTTP Method
     var method: HTTPMethod { get }
+    /// URL Path
     var path: String { get }
+    /// HTTP Encoding
     var encoding: HTTPEncoding { get }
+    /// Params
     var params: [String: Any] { get }
+    /// Configuration
     var configuration: GitConfiguration? { get }
 
+    /// URL Query
+    /// - Parameter parameters: parameters
+    /// - Returns: URLQueryItem
     func urlQuery(_ parameters: [String: Any]) -> [URLQueryItem]?
 
+    /// URL Request
+    /// - Parameters:
+    ///   - urlComponents: URLComponents
+    ///   - parameters: Parameters
+    /// - Returns: URLRequest
     func request(_ urlComponents: URLComponents, parameters: [String: Any]) -> URLRequest?
 
+    /// Load JSON
+    /// - Parameters:
+    ///   - session: URL Session
+    ///   - expectedResultType: T
+    ///   - completion: (T, Error)
+    /// - Returns: URLSessionDataTaskProtocol
     func loadJSON<T: Codable>(
         _ session: GitURLSession,
         expectedResultType: T.Type,
         completion: @escaping (_ json: T?, _ error: Error?) -> Void) -> URLSessionDataTaskProtocol?
 
+    /// Load
+    /// - Parameters:
+    ///   - session: URL Session
+    ///   - dateDecodingStrategy: date decoding strategy
+    ///   - expectedResultType: T
+    ///   - completion: (T, Error)
+    /// - Returns: URLSessionDataTaskProtocol
     func load<T: Codable>(
         _ session: GitURLSession,
         dateDecodingStrategy: JSONDecoder.DateDecodingStrategy?,
         expectedResultType: T.Type,
         completion: @escaping (_ json: T?, _ error: Error?) -> Void) -> URLSessionDataTaskProtocol?
 
+    /// Load JSON
+    /// - Parameters:
+    ///   - session: URL Session
+    ///   - decoder: decoder
+    ///   - expectedResultType: T
+    ///   - completion: (T, Error)
+    /// - Returns: URLSessionDataTaskProtocol
     func load<T: Codable>(
         _ session: GitURLSession,
         decoder: JSONDecoder,
         expectedResultType: T.Type,
         completion: @escaping (_ json: T?, _ error: Error?) -> Void) -> URLSessionDataTaskProtocol?
 
+    /// Request
+    /// - Returns: URLRequest
     func request() -> URLRequest?
 }
 
 public extension Router {
-
+    /// Request
+    /// - Returns: URLRequest
     func request() -> URLRequest? {
         let url = URL(string: path, relativeTo: URL(string: configuration?.apiEndpoint ?? "")!)
 
@@ -151,6 +209,11 @@ public extension Router {
         return components
     }
 
+    /// Request
+    /// - Parameters:
+    ///   - urlComponents: URL Components
+    ///   - parameters: Parameters
+    /// - Returns: URLRequest
     func request(_ urlComponents: URLComponents, parameters: [String: Any]) -> URLRequest? {
 
         var urlComponents = urlComponents
@@ -186,6 +249,12 @@ public extension Router {
         }
     }
 
+    /// [DEPRECATED] loadJSON
+    /// - Parameters:
+    ///   - session: DEPRECATED
+    ///   - expectedResultType: DEPRECATED
+    ///   - completion: DEPRECATED
+    /// - Returns: DEPRECATED
     @available(*, deprecated, message: "Plase use `load` method instead")
     func loadJSON<T: Codable>(
         _ session: GitURLSession = URLSession.shared,
@@ -194,6 +263,13 @@ public extension Router {
         load(session, expectedResultType: expectedResultType, completion: completion)
     }
 
+    /// Load
+    /// - Parameters:
+    ///   - session: URL Session
+    ///   - dateDecodingStrategy: date decoding strategy
+    ///   - expectedResultType: T
+    ///   - completion: (T, Error) -> Void
+    /// - Returns: URLSessionDataTaskProtocol
     func load<T: Codable>(
         _ session: GitURLSession = URLSession.shared,
         dateDecodingStrategy: JSONDecoder.DateDecodingStrategy?,
@@ -209,6 +285,13 @@ public extension Router {
         return load(session, decoder: decoder, expectedResultType: expectedResultType, completion: completion)
     }
 
+    /// Load
+    /// - Parameters:
+    ///   - session: URLSession
+    ///   - decoder: Decoder
+    ///   - _: T
+    ///   - completion: (T, Error) -> Void
+    /// - Returns: URLSessionDataTaskProtocol
     func load<T: Codable>(
         _ session: GitURLSession = URLSession.shared,
         decoder: JSONDecoder = JSONDecoder(), expectedResultType _: T.Type,
@@ -257,6 +340,12 @@ public extension Router {
         return task
     }
 
+    /// Load
+    /// - Parameters:
+    ///   - session: URLSession
+    ///   - decoder: Decoder
+    ///   - _: T
+    /// - Returns: T
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func load<T: Codable>(
         _ session: GitURLSession = URLSession.shared,
@@ -287,6 +376,12 @@ public extension Router {
         return try decoder.decode(T.self, from: responseTuple.0)
     }
 
+    /// Load
+    /// - Parameters:
+    ///   - session: URLSession
+    ///   - dateDecodingStrategy: date decoding strategy
+    ///   - expectedResultType: T
+    /// - Returns: T
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func load<T: Codable>(
         _ session: GitURLSession = URLSession.shared,
@@ -302,6 +397,11 @@ public extension Router {
         return try await load(session, decoder: decoder, expectedResultType: expectedResultType)
     }
 
+    /// Load
+    /// - Parameters:
+    ///   - session: URLSession
+    ///   - completion: (error) -> Void
+    /// - Returns: URLSessionDataTaskProtocol
     func load(
         _ session: GitURLSession = URLSession.shared,
         completion: @escaping (_ error: Error?) -> Void) -> URLSessionDataTaskProtocol? {
@@ -357,8 +457,9 @@ private extension CharacterSet {
 
 /// Checks what kind of HTTP response we get from the server
 public extension HTTPURLResponse {
+    /// Was the HTTP URL Response successfull?
     var wasSuccessful: Bool {
         let successRange = 200 ..< 300
         return successRange.contains(statusCode)
     }
-}
+} // swiftlint:disable:this file_length

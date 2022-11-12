@@ -41,6 +41,12 @@ public protocol JSONPostRouter: Router {
 }
 
 public extension JSONPostRouter {
+    /// POST JSON
+    /// - Parameters:
+    ///   - session: URLSession
+    ///   - _: expectedResultType
+    ///   - completion: completion
+    /// - Returns: URLSessionDataTaskProtocol
     func postJSON<T>(
         _ session: GitURLSession = URLSession.shared,
         expectedResultType _: T.Type,
@@ -104,6 +110,11 @@ public extension JSONPostRouter {
     }
 
     #if !canImport(FoundationNetworking)
+    /// POST JSON
+    /// - Parameters:
+    ///   - session: URLSession
+    ///   - _: expectedResultType
+    /// - Returns: T?
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func postJSON<T>(
         _ session: GitURLSession = URLSession.shared,
@@ -135,6 +146,13 @@ public extension JSONPostRouter {
     }
     #endif
 
+    /// POST <Codable>
+    /// - Parameters:
+    ///   - session: session
+    ///   - decoder: Decoder (JSON)
+    ///   - _: expectedResultType
+    ///   - completion: completion
+    /// - Returns: URLSessionDataTaskProtocol
     func post<T: Codable>(
         _ session: GitURLSession = URLSession.shared,
         decoder: JSONDecoder = JSONDecoder(),
@@ -193,6 +211,12 @@ public extension JSONPostRouter {
     }
 
     #if !canImport(FoundationNetworking)
+    /// POST <Codable>
+    /// - Parameters:
+    ///   - session: URLSession
+    ///   - decoder: Decoder
+    ///   - _: expectedResultType
+    /// - Returns: T
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func post<T: Codable>(
         _ session: GitURLSession,

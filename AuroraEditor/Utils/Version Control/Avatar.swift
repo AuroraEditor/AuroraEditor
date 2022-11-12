@@ -10,7 +10,9 @@ import Foundation
 import SwiftUI
 
 class Avatar {
-
+    /// Get Git Avatar
+    /// - Parameter authorEmail: Author's email
+    /// - Returns: Avatar image
     public func gitAvatar(authorEmail: String) -> some View {
         VStack {
             // swiftlint:disable:next line_length
@@ -39,12 +41,17 @@ class Avatar {
         }
     }
 
-    // send 404 if no image available, image size 84x84 (42x42 @2x)
+    /// Generate avatar hash
+    /// - Parameter authorEmail: Author's email address
+    /// - Returns: Avatar hash
     public func generateAvatarHash(authorEmail: String) -> String {
         let hash = authorEmail.md5(trim: true, caseSensitive: false)
         return "\(hash)?d=404&s=84"
     }
 
+    /// Generate (random) avatar color
+    /// - Parameter authorEmail: Author's email address
+    /// - Returns: Color
     public func avatarColor(authorEmail: String) -> Color {
         let hash = generateAvatarHash(authorEmail: authorEmail).hash
         switch hash % 12 {

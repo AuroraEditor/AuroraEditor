@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 public extension CheckoutBranchView {
+    /// Get branches
+    /// - Returns: branches
     func getBranches() -> [String] {
         guard let url = URL(string: repoPath) else {
             return [""]
@@ -25,8 +27,8 @@ public extension CheckoutBranchView {
         }
     }
 
-    // swiftlint:disable:next function_body_length
-    func checkoutBranch() {
+    /// Checkout in branch
+    func checkoutBranch() { // swiftlint:disable:this function_body_length
         var parsedBranch = selectedBranch
         if selectedBranch.contains("origin/") || selectedBranch.contains("upstream/") {
             parsedBranch = selectedBranch.components(separatedBy: "/")[1]

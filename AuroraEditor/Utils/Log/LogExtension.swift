@@ -12,10 +12,18 @@ import SwiftUI
 private let log = Log()
 
 extension Log {
+    /// Log level
+    /// - Parameter minLevel: minimum level
     public static func minLogLevel(_ minLevel: Level) {
         log.minLevel = minLevel
     }
 
+    /// Info log message
+    /// - Parameters:
+    ///   - logMessage: message
+    ///   - file: file
+    ///   - line: line
+    ///   - funct: function
     public static func info(_ logMessage: Any...,
                             file: String = #file,
                             line: Int = #line,
@@ -23,6 +31,12 @@ extension Log {
         log.info(logMessage, file: file, line: line, function: funct)
     }
 
+    /// debug log message
+    /// - Parameters:
+    ///   - logMessage: message
+    ///   - file: file
+    ///   - line: line
+    ///   - funct: function
     public static func debug(_ logMessage: Any...,
                              file: String = #file,
                              line: Int = #line,
@@ -30,6 +44,12 @@ extension Log {
         log.debug(logMessage, file: file, line: line, function: funct)
     }
 
+    /// warning log message
+    /// - Parameters:
+    ///   - logMessage: message
+    ///   - file: file
+    ///   - line: line
+    ///   - funct: function
     public static func warning(_ logMessage: Any...,
                                file: String = #file,
                                line: Int = #line,
@@ -37,6 +57,12 @@ extension Log {
         log.warning(logMessage, file: file, line: line, function: funct)
     }
 
+    /// trace log message
+    /// - Parameters:
+    ///   - logMessage: message
+    ///   - file: file
+    ///   - line: line
+    ///   - funct: function
     public static func trace(_ logMessage: Any...,
                              file: String = #file,
                              line: Int = #line,
@@ -44,6 +70,12 @@ extension Log {
         log.trace(logMessage, file: file, line: line, function: funct)
     }
 
+    /// error log message
+    /// - Parameters:
+    ///   - logMessage: message
+    ///   - file: file
+    ///   - line: line
+    ///   - funct: function
     public static func error(_ logMessage: Any...,
                              file: String = #file,
                              line: Int = #line,
@@ -53,7 +85,12 @@ extension Log {
 }
 
 extension View {
-
+    /// Info log message
+    /// - Parameters:
+    ///   - logMessage: message
+    ///   - file: file
+    ///   - line: line
+    ///   - funct: function
     public func info(_ logMessage: Any...,
                      file: String = #file,
                      line: Int = #line,
@@ -62,6 +99,12 @@ extension View {
         return EmptyView()
     }
 
+    /// debug log message
+    /// - Parameters:
+    ///   - logMessage: message
+    ///   - file: file
+    ///   - line: line
+    ///   - funct: function
     public func debug(_ logMessage: Any...,
                       file: String = #file,
                       line: Int = #line,
@@ -70,6 +113,12 @@ extension View {
         return EmptyView()
     }
 
+    /// warning log message
+    /// - Parameters:
+    ///   - logMessage: message
+    ///   - file: file
+    ///   - line: line
+    ///   - funct: function
     public func warning(_ logMessage: Any...,
                         file: String = #file,
                         line: Int = #line,
@@ -78,6 +127,12 @@ extension View {
         return EmptyView()
     }
 
+    /// trace log message
+    /// - Parameters:
+    ///   - logMessage: message
+    ///   - file: file
+    ///   - line: line
+    ///   - funct: function
     public func trace(_ logMessage: Any...,
                       file: String = #file,
                       line: Int = #line,
@@ -86,6 +141,12 @@ extension View {
         return EmptyView()
     }
 
+    /// error log message
+    /// - Parameters:
+    ///   - logMessage: message
+    ///   - file: file
+    ///   - line: line
+    ///   - funct: function
     public func error(_ logMessage: Any...,
                       file: String = #file,
                       line: Int = #line,

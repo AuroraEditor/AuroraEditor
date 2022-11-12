@@ -9,6 +9,9 @@
 
 import Foundation
 
+/// Add files
+///
+/// This adds a file to Git
 public struct Add {
 
     /// Add a conflicted file to the index.

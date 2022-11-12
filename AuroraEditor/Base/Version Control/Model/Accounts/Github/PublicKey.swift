@@ -10,8 +10,14 @@ import Foundation
 import FoundationNetworking
 #endif
 
-// TODO: DOCS (Nanashi Li)
 public extension GithubAccount {
+    /// Post Public key
+    /// - Parameters:
+    ///   - session: URL Session
+    ///   - publicKey: Public key
+    ///   - title: title
+    ///   - completion: completion
+    /// - Returns: URLSessionDataTaskProtocol
     func postPublicKey(_ session: GitURLSession = URLSession.shared,
                        publicKey: String,
                        title: String,

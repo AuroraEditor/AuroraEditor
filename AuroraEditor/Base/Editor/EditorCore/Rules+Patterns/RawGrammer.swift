@@ -7,10 +7,10 @@
 
 import Foundation
 
-// This is a special constant to indicate that the end regexp matched.
+/// endRuleID: This is a special constant to indicate that the end regexp matched.
 public var endRuleId = -1
 
-// This is a special constant to indicate that the while regexp matched.
+/// whileRuleId: This is a special constant to indicate that the while regexp matched.
 public var whileRuleId = -2
 
 public struct RawGrammer: Codable {

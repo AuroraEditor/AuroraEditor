@@ -9,6 +9,7 @@
 
 import Foundation
 
+/// Branches
 public struct Branches {
     func getCurrentBranch(directoryURL: URL) throws -> String {
         return try ShellClient.live().run(

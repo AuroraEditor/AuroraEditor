@@ -9,23 +9,45 @@
 
 import Foundation
 
-// TODO: DOCS (Nanashi Li)
+/// GIT URLSession
 public protocol GitURLSession {
 
+    /// Data task
+    /// - Parameters:
+    ///   - request: request
+    ///   - completionHandler: completionHandler
+    /// - Returns: URLSessionDataTaskProtocol
     func dataTask(
         with request: URLRequest,
         completionHandler: @escaping (Data?, URLResponse?, Error?) -> Swift.Void) -> URLSessionDataTaskProtocol
 
+    /// Upload task
+    /// - Parameters:
+    ///   - request: request
+    ///   - bodyData: body data
+    ///   - completionHandler: completionHandler
+    /// - Returns: URLSessionDataTaskProtocol
     func uploadTask(
         with request: URLRequest,
         fromData bodyData: Data?,
         completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTaskProtocol
 
 #if !canImport(FoundationNetworking)
+    /// Data task
+    /// - Parameters:
+    ///   - request: request
+    ///   - delegate: delegate
+    /// - Returns: (Data, URLResponse)
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func data(for request: URLRequest,
               delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
 
+    /// Upload task
+    /// - Parameters:
+    ///   - request: request
+    ///   - bodyData: body data
+    ///   - delegate: delegate
+    /// - Returns: (Data, URLResponse)
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func upload(for request: URLRequest,
                 from bodyData: Data,
@@ -33,7 +55,9 @@ public protocol GitURLSession {
 #endif
 }
 
+/// URLSessionDataTaskProtocol
 public protocol URLSessionDataTaskProtocol {
+    /// Resume
     func resume()
 }
 

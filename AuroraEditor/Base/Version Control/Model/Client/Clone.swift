@@ -9,6 +9,7 @@
 
 import Foundation
 
+/// GIT clone
 public struct Clone {
 
     /// Clones a repository from a given url into to the specified path.

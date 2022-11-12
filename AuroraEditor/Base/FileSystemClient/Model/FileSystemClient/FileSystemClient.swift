@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 
+/// File System Client
 public class FileSystemClient {
 
     // TODO: Turn into class variables
@@ -16,16 +17,24 @@ public class FileSystemClient {
     public var onRefresh: () -> Void = {}
 
     // Variables for the outside to interface with
+    /// Get Files
     public var getFiles: AnyPublisher<[FileItem], Never> =
-        CurrentValueSubject<[FileItem], Never>([]).eraseToAnyPublisher()
+    CurrentValueSubject<[FileItem], Never>([]).eraseToAnyPublisher()
+    /// Folder URL
     public var folderURL: URL?
+    /// Version Control Model
     public var model: SourceControlModel?
 
     // These should be private but some functions need them public :(
+    /// File Manager
     public var fileManager: FileManager
+    /// Ignored files and folders
     public var ignoredFilesAndFolders: [String]
+    /// Workspace item
     public let workspaceItem: FileItem
+    /// Flattened file items
     public var flattenedFileItems: [String: FileItem]
+    /// Subject
     private var subject = CurrentValueSubject<[FileItem], Never>([])
 
     /// A function that, given a file's path, returns a `FileItem` if it exists
@@ -108,7 +117,12 @@ public class FileSystemClient {
     }
 
     // MARK: Init
-    // For some strange reason, swiftlint thinks this is wrong?
+    /// Init
+    /// - Parameters:
+    ///   - fileManager: file manager
+    ///   - folderURL: Folder URL
+    ///   - ignoredFilesAndFolders: ignored files and folders
+    ///   - model: Version control model
     public init(fileManager: FileManager,
                 folderURL: URL,
                 ignoredFilesAndFolders: [String],

@@ -9,8 +9,8 @@
 
 import Foundation
 
+/// GIT remote
 public struct Remote {
-
     /// List the remotes, sorted alphabetically by `name`, for a repository.
     func getRemotes(directoryURL: URL) throws -> [IRemote] {
         let result = try ShellClient.live().run(

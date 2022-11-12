@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 
+/// File Item
 public typealias FileItem = FileSystemClient.FileItem
 
 extension FileItem {

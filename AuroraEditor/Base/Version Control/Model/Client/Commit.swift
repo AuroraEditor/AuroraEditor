@@ -9,12 +9,15 @@
 
 import Foundation
 
+/// Commit
 public struct Commit {
 
-    /// @param repository repository to execute merge in
-    /// @param message commit message
-    /// @param files files to commit
-    /// @returns the commit SHA
+    /// Create Commit
+    /// - Parameters:
+    ///   - repository: repository to execute merge in
+    ///   - message: commit message
+    ///   - files: files to commit
+    /// - returns: the commit SHA
     func createCommit(directoryURL: URL,
                       message: String,
                       files: [FileItem],
@@ -40,8 +43,5 @@ public struct Commit {
 
     /// Creates a commit to finish an in-progress merge
     /// assumes that all conflicts have already been resolved
-    ///
-    /// @param repository repository to execute merge in
-    /// @param files files to commit
     func createMergeCommit() {}
 }
