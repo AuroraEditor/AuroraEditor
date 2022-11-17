@@ -43,33 +43,30 @@ struct WorkspaceView: View {
     @State
     private var leaveFullscreenObserver: Any?
 
-    @ViewBuilder var tabContent: some View {
-        if let tabID = workspace.selectionState.selectedId {
-            switch tabID {
-            case .codeEditor:
-                WorkspaceCodeFileView()
-            case .extensionInstallation:
-                EmptyView()
-            case .webTab:
-                if let webTab = workspace.selectionState.selected as? WebTab {
-                    WebTabView(webTab: webTab)
-                }
-            case .projectHistory:
-                if let projectHistoryTab = workspace.selectionState.selected as? ProjectCommitHistory {
-                    ProjectCommitHistoryView(projectHistoryModel: projectHistoryTab)
-                }
-            case .branchHistory:
-                if let branchHistoryTab = workspace.selectionState.selected as? BranchCommitHistory {
-                    BranchCommitHistoryView(branchCommitModel: branchHistoryTab)
-                }
-            case .actionsWorkflow:
-                if let actionsWorkflowTab = workspace.selectionState.selected as? Workflow {
-                    WorkflowRunsView(workspace: workspace,
-                                     workflowId: String(actionsWorkflowTab.id))
-                }
+    @ViewBuilder
+    func tabContentForID(tabID: TabBarItemID) -> some View {
+        switch tabID {
+        case .codeEditor:
+            WorkspaceCodeFileView()
+        case .extensionInstallation:
+            EmptyView()
+        case .webTab:
+            if let webTab = workspace.selectionState.selected as? WebTab {
+                WebTabView(webTab: webTab)
             }
-        } else {
-            EmptyEditorView()
+        case .projectHistory:
+            if let projectHistoryTab = workspace.selectionState.selected as? ProjectCommitHistory {
+                ProjectCommitHistoryView(projectHistoryModel: projectHistoryTab)
+            }
+        case .branchHistory:
+            if let branchHistoryTab = workspace.selectionState.selected as? BranchCommitHistory {
+                BranchCommitHistoryView(branchCommitModel: branchHistoryTab)
+            }
+        case .actionsWorkflow:
+            if let actionsWorkflowTab = workspace.selectionState.selected as? Workflow {
+                WorkflowRunsView(workspace: workspace,
+                                 workflowId: String(actionsWorkflowTab.id))
+            }
         }
     }
 
@@ -77,7 +74,11 @@ struct WorkspaceView: View {
         ZStack {
             if workspace.fileSystemClient != nil, let model = workspace.statusBarModel {
                 ZStack {
-                    tabContent
+                    if let tabID = workspace.selectionState.selectedId {
+                        tabContentForID(tabID: tabID)
+                    } else {
+                        EmptyEditorView()
+                    }
                 }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background {
