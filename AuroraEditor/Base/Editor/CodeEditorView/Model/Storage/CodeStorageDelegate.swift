@@ -14,10 +14,10 @@ import AppKit
 
 // FIXME: It should be possible to enable this via a defaults setting.
 let visualDebugging = false
-let visualDebuggingEditedColour = OSColor(red: 0.5, green: 1.0, blue: 0.5, alpha: 0.3)
-let visualDebuggingLinesColour = OSColor(red: 0.5, green: 0.5, blue: 1.0, alpha: 0.3)
-let visualDebuggingTrailingColour = OSColor(red: 1.0, green: 0.5, blue: 0.5, alpha: 0.3)
-let visualDebuggingTokenColour = OSColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5)
+let visualDebuggingEditedColour = NSColor(red: 0.5, green: 1.0, blue: 0.5, alpha: 0.3)
+let visualDebuggingLinesColour = NSColor(red: 0.5, green: 0.5, blue: 1.0, alpha: 0.3)
+let visualDebuggingTrailingColour = NSColor(red: 1.0, green: 0.5, blue: 0.5, alpha: 0.3)
+let visualDebuggingTokenColour = NSColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5)
 
 // MARK: - Tokens
 

@@ -8,18 +8,6 @@
 
 import SwiftUI
 
-/// OS Font
-@available(*, deprecated, message: "Please use NSFont instead")
-public typealias OSFont = NSFont
-
-/// OS Color
-@available(*, deprecated, message: "Please use NSFont instead")
-public typealias OSColor = NSColor
-
-/// OS Bezier Path
-@available(*, deprecated, message: "Please use NSFont instead")
-public typealias OSBezierPath = NSBezierPath
-
 let labelColor = NSColor.labelColor
 
 typealias TextStorageEditActions = NSTextStorageEditActions
