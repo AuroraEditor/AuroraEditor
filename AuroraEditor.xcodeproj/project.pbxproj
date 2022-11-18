@@ -409,6 +409,8 @@
 		2B7AC06B282452FB0082A5B8 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7AC06A282452FB0082A5B8 /* Media.xcassets */; };
 		2B89F85428B13E9D007CB9C1 /* AuroraMessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */; };
 		2BA19F252896F721000B9543 /* .githash in Resources */ = {isa = PBXBuildFile; fileRef = 2BA19F242896F721000B9543 /* .githash */; };
+		2BCBAAC82927C41E00D4DFB2 /* BindingProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBAAC72927C41E00D4DFB2 /* BindingProxy.swift */; };
+		2BCBAACA2927C65500D4DFB2 /* View+isHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */; };
 		2BD5CF1E28D602CE00F95E5A /* EditorLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF0C28D602CE00F95E5A /* EditorLocation.swift */; };
 		2BD5CF1F28D602CE00F95E5A /* CodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF0D28D602CE00F95E5A /* CodeEditor.swift */; };
 		2BD5CF2028D602CE00F95E5A /* MinimapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF0E28D602CE00F95E5A /* MinimapView.swift */; };
@@ -964,6 +966,8 @@
 		2B7AC06A282452FB0082A5B8 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraMessageBox.swift; sourceTree = "<group>"; };
 		2BA19F242896F721000B9543 /* .githash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .githash; sourceTree = "<group>"; };
+		2BCBAAC72927C41E00D4DFB2 /* BindingProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingProxy.swift; sourceTree = "<group>"; };
+		2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+isHidden.swift"; sourceTree = "<group>"; };
 		2BD5CF0C28D602CE00F95E5A /* EditorLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorLocation.swift; sourceTree = "<group>"; };
 		2BD5CF0D28D602CE00F95E5A /* CodeEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeEditor.swift; sourceTree = "<group>"; };
 		2BD5CF0E28D602CE00F95E5A /* MinimapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimapView.swift; sourceTree = "<group>"; };
@@ -1695,6 +1699,8 @@
 				20D83744289A7ACD00D91D05 /* KeyChain */,
 				2B71C0A32874AD61008E0859 /* AuroraProject.swift */,
 				2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */,
+				2BCBAAC72927C41E00D4DFB2 /* BindingProxy.swift */,
+				2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */,
 				2036DD5428DB3DB5003BECB7 /* Queue.swift */,
 			);
 			path = Utils;
@@ -3778,6 +3784,7 @@
 				2093CD70289AA0FC003A88DD /* FontPickerView.swift in Sources */,
 				2BDFA91A28D10B9200980385 /* FileSelectionItem.swift in Sources */,
 				2093CDAE289AA185003A88DD /* ThemePreferencesView.swift in Sources */,
+				2BCBAAC82927C41E00D4DFB2 /* BindingProxy.swift in Sources */,
 				2093CDB1289AA19B003A88DD /* AccountListItem.swift in Sources */,
 				2BD5CF2828D602CE00F95E5A /* ScrollView.swift in Sources */,
 				2093CC99289A9FFD003A88DD /* FilterTextField.swift in Sources */,
@@ -4045,6 +4052,7 @@
 				2B04574328E6FFE300024F2D /* HighlightTheme.swift in Sources */,
 				2093CD97289AA144003A88DD /* AuroraTheme.swift in Sources */,
 				2093CCB0289AA02D003A88DD /* QuickOpenPreviewView.swift in Sources */,
+				2BCBAACA2927C65500D4DFB2 /* View+isHidden.swift in Sources */,
 				20BE728F28D0878E00EEDE5F /* GithubNetworkingConstants.swift in Sources */,
 				2BD5CF2B28D602CE00F95E5A /* TextView.swift in Sources */,
 				28FFE1BF27E3A441001939DB /* NavigatorSidebarToolbarBottom.swift in Sources */,
