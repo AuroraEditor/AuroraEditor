@@ -10,13 +10,19 @@ import Foundation
 import FoundationNetworking
 #endif
 
-// TODO: DOCS (Nanashi Li)
+/// Review
 public struct Review {
+    /// Body
     public let body: String
+    /// Commit ID
     public let commitID: String
+    /// ID
     public let id: Int
+    /// State
     public let state: State
+    /// Date
     public let submittedAt: Date
+    /// User
     public let user: GithubUser
 }
 
@@ -42,7 +48,14 @@ public extension Review {
 }
 
 public extension GithubAccount {
-
+    /// List reviews
+    /// - Parameters:
+    ///   - session: GIT URLSession
+    ///   - owner: Owner
+    ///   - repository: Repository
+    ///   - pullRequestNumber: Pullrequest number
+    ///   - completion: Completion
+    /// - Returns: URLSessionDataTaskProtocol
     @discardableResult
     func listReviews(_ session: GitURLSession = URLSession.shared,
                      owner: String,

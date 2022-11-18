@@ -148,6 +148,9 @@ public final class ExtensionsManager {
         return nil
     }
 
+    /// Is installed
+    /// - Parameter plugin: Plugin
+    /// - Returns: Is installed?
     public func isInstalled(plugin: Plugin) -> Bool? {
         return false
     }

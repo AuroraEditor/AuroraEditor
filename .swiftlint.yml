@@ -5,7 +5,6 @@
 # Disabled rule, reason.
 disabled_rules:
   - todo # New project, we have a lot of // TODO:
-  - missing_docs # We miss a lot of docs right now
 
 # paths to ignore during linting.
 excluded:

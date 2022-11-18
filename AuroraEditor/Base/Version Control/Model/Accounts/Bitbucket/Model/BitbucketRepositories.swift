@@ -36,13 +36,22 @@ open class BitbucketRepositories: Codable {
     }
 }
 
+/// Paginated response
 public enum PaginatedResponse<T> {
+    /// Success
     case success(values: T, nextParameters: [String: String])
+    /// Failure
     case failure(Error)
 }
 
 public extension BitbucketAccount {
-
+    /// Repositories
+    /// - Parameters:
+    ///   - session: GIT URLSession
+    ///   - userName: Username
+    ///   - nextParameters: Next parameters
+    ///   - completion: completion
+    /// - Returns: URLSessionDataTaskProtocol
     func repositories(_ session: GitURLSession = URLSession.shared,
                       userName: String? = nil,
                       nextParameters: [String: String] = [:],
@@ -66,6 +75,13 @@ public extension BitbucketAccount {
         }
     }
 
+    /// Repository
+    /// - Parameters:
+    ///   - session: GIT URLSession
+    ///   - owner: Owner
+    ///   - name: Name
+    ///   - completion: completion
+    /// - Returns: URLSessionDataTaskProtocol
     func repository(_ session: GitURLSession = URLSession.shared,
                     owner: String,
                     name: String,

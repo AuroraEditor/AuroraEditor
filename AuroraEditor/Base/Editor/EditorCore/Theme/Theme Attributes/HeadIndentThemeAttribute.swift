@@ -11,7 +11,7 @@ import Cocoa
 
 public class HeadIndentThemeAttribute: LineThemeAttribute, Codable {
 
-    public let key = "head-indent"
+    public var key = "head-indent"
     public let value: CGFloat
 
     public init(value: CGFloat = 0) {

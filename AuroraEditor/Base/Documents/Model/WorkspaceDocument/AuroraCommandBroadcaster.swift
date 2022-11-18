@@ -52,6 +52,7 @@ import Combine
 ///     }
 /// ```
 class AuroraCommandBroadcaster {
+    /// Aurora extensions broadcaster
     public private(set) var broadcaster: AnyPublisher<Broadcast, Never>
     private var subject: CurrentValueSubject<Broadcast, Never>
 

@@ -94,6 +94,7 @@ public struct CodeEditor {
         self.layout = layout
     }
 
+    /// Text Coordinator
     public class TCoordinator {
         @Binding var text: String
         @Binding var position: Position

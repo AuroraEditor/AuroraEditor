@@ -11,7 +11,7 @@ public class HiddenThemeAttribute: TokenThemeAttribute, Codable {
 
     public static let Key = NSAttributedString.Key(rawValue: "EditorUI.Hidden")
 
-    public let key = "hidden"
+    public var key = "hidden"
     public let hidden: Bool
 
     public init(hidden: Bool = true) {

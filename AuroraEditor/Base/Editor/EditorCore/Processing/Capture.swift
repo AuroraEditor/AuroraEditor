@@ -53,6 +53,6 @@ public class Capture: Pattern {
 }
 
 extension Capture {
-
+    /// None
     public static let none = Capture(isActive: false)
 }

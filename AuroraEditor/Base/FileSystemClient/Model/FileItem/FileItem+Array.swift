@@ -29,8 +29,9 @@ public extension Array where Element == FileSystemClient.FileItem {
 }
 
 public extension Array where Element: Hashable {
-
-    // Checks the difference between two given items.
+    /// Checks the difference between two given items.
+    /// - Parameter other: Other element
+    /// - Returns: symmetricDifference
     func difference(from other: [Element]) -> [Element] {
         let thisSet = Set(self)
         let otherSet = Set(other)

@@ -239,6 +239,9 @@ class DiffSelection {
                              selectableLines: self.selectableLines)
     }
 
+    /// With selectable lines
+    /// - Parameter selectableLines: Selectable lines
+    /// - Returns: Diff Selection
     public func withSelectableLines(selectableLines: Set<Int>) -> DiffSelection {
         let divergingLines = (self.divergingLines != nil) ? self.divergingLines?.filter {
             selectableLines.contains($0)

@@ -9,6 +9,7 @@
 
 import Foundation
 
+/// GIT Stash
 public struct Stash {
 
     let editorStashEntryMarker = "!!AuroraEditor"

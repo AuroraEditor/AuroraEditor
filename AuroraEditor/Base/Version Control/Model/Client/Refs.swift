@@ -9,6 +9,7 @@
 
 import Foundation
 
+/// GIT refs
 public struct Refs {
 
     /// Format a local branch in the ref syntax, ensuring situations when the branch

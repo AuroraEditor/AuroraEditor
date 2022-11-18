@@ -7,9 +7,13 @@
 
 import Foundation
 
+/// Token
 public struct Token {
+    /// Token range
     public var range: NSRange
+    /// Token scopes
     var scopes: [Scope]
+    /// Token scope names
     public var scopeNames: [ScopeName] {
         return scopes.map({ $0.name })
     }
@@ -56,10 +60,14 @@ public struct Token {
         return Self.mergeTokens(base: self, new: token)
     }
 
+    /// Shift token (alias for: `range.shifted`)
+    /// - Parameter amount: amount
     public mutating func shift(by amount: Int) {
         range = range.shifted(by: amount)
     }
 
+    /// Shift token (alias for: `range.shifted`)
+    /// - Parameter amount: amount
     public func shifted(by amount: Int) -> Token {
         var new = self
         new.range = range.shifted(by: amount)

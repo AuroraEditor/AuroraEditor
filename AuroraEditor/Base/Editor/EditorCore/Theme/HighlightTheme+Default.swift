@@ -9,6 +9,7 @@ import Foundation
 import AppKit
 
 public extension HighlightTheme {
+    /// Default Highlight theme
     static let `default`: HighlightTheme = HighlightTheme(settings: [
         ThemeSetting(scope: "source", parentScopes: [], attributes: [
             ColorThemeAttribute(color: .exampleTextColor),

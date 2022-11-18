@@ -37,6 +37,11 @@ open class Email: Codable {
 
 public extension BitbucketAccount {
 
+    /// Current user
+    /// - Parameters:
+    ///   - session: URL session
+    ///   - completion: completion
+    /// - Returns: URLSessionDataTaskProtocol
     func me(
         _ session: GitURLSession = URLSession.shared,
         completion: @escaping (_ response: Result<BitbucketUser, Error>) -> Void) -> URLSessionDataTaskProtocol? {
@@ -56,6 +61,11 @@ public extension BitbucketAccount {
             }
         }
 
+    /// Get Emails
+    /// - Parameters:
+    ///   - session: GIT Session
+    ///   - completion: completion
+    /// - Returns: URLSessionDataTaskProtocol
     func emails(
         _ session: GitURLSession = URLSession.shared,
         completion: @escaping (_ response: Result<Email, Error>) -> Void) -> URLSessionDataTaskProtocol? {

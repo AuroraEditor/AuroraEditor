@@ -7,9 +7,12 @@
 
 import Foundation
 
+/// Tokenize result
 public struct TokenizeResult {
-
+    /// Line state
     public let state: LineState
+    /// Tokenized line
     public let tokenizedLine: TokenizedLine
+    /// Matched tokens
     public let matchTokens: [Token]
 }
