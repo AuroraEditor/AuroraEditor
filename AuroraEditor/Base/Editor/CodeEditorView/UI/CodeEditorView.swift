@@ -161,25 +161,49 @@ extension CodeEditor: NSViewRepresentable {
         }
 
         private func getBracketCountAtCursor(txt: String, pos: Int) -> BracketCount {
-            var bracketCount = BracketCount(roundBracketCount: 0,
-                                            curlyBracketCount: 0,
-                                            squareBracketCount: 0,
-                                            bracketHistory: [])
+            var bracketCount = BracketCount(
+                roundBracketCount: 0,
+                curlyBracketCount: 0,
+                squareBracketCount: 0,
+                bracketHistory: []
+            )
 
             for char in String(txt[txt.startIndex..<txt.index(txt.startIndex, offsetBy: pos)]) {
                 switch char {
                     // detect open brackets
-                case "(": bracketCount.roundBracketCount += 1; bracketCount.bracketHistory.append(.round)
-                case "{": bracketCount.curlyBracketCount += 1; bracketCount.bracketHistory.append(.curly)
-                case "[": bracketCount.squareBracketCount += 1; bracketCount.bracketHistory.append(.square)
+                case "(":
+                    bracketCount.roundBracketCount += 1
+                    bracketCount.bracketHistory.append(.round)
+
+                case "{":
+                    bracketCount.curlyBracketCount += 1
+                    bracketCount.bracketHistory.append(.curly)
+
+                case "[":
+                    bracketCount.squareBracketCount += 1
+                    bracketCount.bracketHistory.append(.square)
+
                     // detect close brackets
-                case ")": bracketCount.roundBracketCount -= 1
-                    if bracketCount.bracketHistory.last == .round { _ = bracketCount.bracketHistory.popLast() }
-                case "}": bracketCount.curlyBracketCount -= 1
-                    if bracketCount.bracketHistory.last == .curly { _ = bracketCount.bracketHistory.popLast() }
-                case "]": bracketCount.squareBracketCount -= 1
-                    if bracketCount.bracketHistory.last == .square { _ = bracketCount.bracketHistory.popLast() }
-                default: break
+                case ")":
+                    bracketCount.roundBracketCount -= 1
+                    if bracketCount.bracketHistory.last == .round {
+                        _ = bracketCount.bracketHistory.popLast()
+                    }
+
+                case "}":
+                    bracketCount.curlyBracketCount -= 1
+                    if bracketCount.bracketHistory.last == .curly {
+                        _ = bracketCount.bracketHistory.popLast()
+                    }
+
+                case "]":
+                    bracketCount.squareBracketCount -= 1
+                    if bracketCount.bracketHistory.last == .square {
+                        _ = bracketCount.bracketHistory.popLast()
+                    }
+
+                default:
+                    break
                 }
             }
 
@@ -202,10 +226,14 @@ extension CodeEditor: NSViewRepresentable {
                 if let section = newValue.first {
                     self.caretPosition = calculateCaretPosition(txt: textView.text, pos: section)
                     if section.length == 0 {
-                        self.currentToken = getScopesAtCursor(txt: textView.attributedString(),
-                                                              pos: section.lowerBound)
-                        self.bracketCount = getBracketCountAtCursor(txt: textView.string,
-                                                                    pos: section.lowerBound)
+                        self.currentToken = getScopesAtCursor(
+                            txt: textView.attributedString(),
+                            pos: section.lowerBound
+                        )
+                        self.bracketCount = getBracketCountAtCursor(
+                            txt: textView.string,
+                            pos: section.lowerBound
+                        )
                     }
                 }
                 self.position.selections = newValue

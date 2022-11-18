@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import AEExtensionKit
 
-public struct Plugin: Codable, Identifiable, Comparable, TabBarItemRepresentable {
+public struct Plugin: Codable, Hashable, Identifiable, Comparable, TabBarItemRepresentable {
     public static func < (lhs: Plugin, rhs: Plugin) -> Bool {
         lhs.id.uuidString < rhs.id.uuidString
     }
@@ -50,6 +50,10 @@ public struct Plugin: Codable, Identifiable, Comparable, TabBarItemRepresentable
 
     // Developer Links
     var developerLinks: DeveloperLinks
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
 
 public struct ExtensionCreator: Codable {
