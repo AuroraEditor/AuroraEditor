@@ -51,7 +51,7 @@ struct ExtensionNavigator: View {
             // https://github.com/AuroraEditor/AuroraEditor/issues/315
             // TODO: This needs to be fixed, it should not crash if unloaded. OC: @nanashili
             ExploreExtensionsView(document: workspace)
-                .opacity(selectedSection != 1 ? 0 : 100)
+                .opacity(selectedSection != 1 ? 0 : 1)
         }
     }
 }
