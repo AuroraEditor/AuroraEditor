@@ -14,8 +14,6 @@ jobs:
         run: sw_vers
       - name: Toolchain version
         run: swift -version
-      - name: Update SwiftLint
-        run: brew upgrade swiftlint
       - name: SwiftLint (version)
         run: swiftlint version
       - name: SwiftLint (GH Actions)
