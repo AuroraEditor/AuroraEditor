@@ -36,7 +36,7 @@ extension Loopable {
         let mirror = Mirror(reflecting: self)
 
         guard let style = mirror.displayStyle, style == .struct || style == .class else {
-            throw NSError()
+            throw NSError.init(domain: "com.auroraeditor", code: 100)
         }
 
         for (property, value) in mirror.children {

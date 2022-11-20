@@ -24,8 +24,8 @@ public struct DefaultBranch {
     /// form that allows users to change default branch name.
     let suggestedBranchNames: [String] = ["main, master"]
 
-    /// Returns the configured default branch when creating new repositories
     // TODO: Bug where global config value is not being processed correctly
+    /// Returns the configured default branch when creating new repositories
     func getConfiguredDefaultBranch() throws -> String? {
         return try getGlobalConfigVlaue(name: defaultBranchSettingName)
     }

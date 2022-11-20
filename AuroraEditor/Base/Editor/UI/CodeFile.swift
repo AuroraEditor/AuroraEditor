@@ -56,7 +56,7 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
     }
 
     override public func makeWindowControllers() {
-        /// [SwiftUI] Add a "hidden" button to be able to close it with `⌘W`
+        // [SwiftUI] Add a "hidden" button to be able to close it with `⌘W`
         var view: some View {
             ZStack {
                 Button(

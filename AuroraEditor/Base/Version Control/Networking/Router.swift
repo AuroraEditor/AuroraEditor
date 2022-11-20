@@ -234,7 +234,7 @@ public extension Router {
         case .form:
             let queryData = urlComponents.percentEncodedQuery?.data(using: String.Encoding.utf8)
 
-            /// clear the query items as they go into the body
+            // clear the query items as they go into the body
             urlComponents.queryItems = nil
 
             var mutableURLRequest = Foundation.URLRequest(url: urlComponents.url!)
@@ -445,7 +445,7 @@ private extension CharacterSet {
     /// https://github.com/Alamofire/Alamofire/blob/3.5rameterEncoding.swift#L220-L225
     static func URLQueryAllowedCharacterSet() -> CharacterSet {
 
-        /// does not include "?" or "/" due to RFC 3986 - Section 3.4
+        // does not include "?" or "/" due to RFC 3986 - Section 3.4
         let generalDelimitersToEncode = ":#[]@"
         let subDelimitersToEncode = "!$&'()*+,;="
 

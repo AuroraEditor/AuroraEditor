@@ -360,7 +360,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
     ///   characters, so that line breaking procceds in the exact same way.
     ///
     /// NB: We don't use a ruler view for the gutter on macOS to be able to use the same setup on macOS and iOS.
-    private func tile() { // swiftlint:disable:this function_body_length
+    private func tile() {
         // Compute size of the main view gutter (Line Numbers)
         let theFont = font ?? NSFont.systemFont(ofSize: 0),
             fontSize = theFont.pointSize,
