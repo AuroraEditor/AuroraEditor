@@ -172,7 +172,10 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
     }
 
     @objc func toggleLastPanel() {
-        guard let lastSplitView = splitViewController.splitViewItems.last else { return }
+        guard let lastSplitView = splitViewController.splitViewItems.last,
+              let toolbar = window?.toolbar
+        else { return }
+
         lastSplitView.animator().isCollapsed.toggle()
         for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
             Log.info(id, "didToggleInspectorPane()")
@@ -183,27 +186,18 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
                 ])
         }
 
-        if prefs.preferences.general.keepInspectorSidebarOpen {
-            window?.toolbar?.insertItem(
-                withItemIdentifier: NSToolbarItem.Identifier.itemListTrackingSeparator,
-                at: (window?.toolbar?.items.count)! - 1
-            )
-            window?.toolbar?.insertItem(
-                withItemIdentifier: NSToolbarItem.Identifier.flexibleSpace,
-                at: (window?.toolbar?.items.count)! - 1
-            )
-        }
+        let itemCount = toolbar.items.count
         if lastSplitView.isCollapsed {
-            window?.toolbar?.removeItem(at: (window?.toolbar?.items.count)! - 2)
-            window?.toolbar?.removeItem(at: (window?.toolbar?.items.count)! - 2)
+            toolbar.removeItem(at: itemCount-3) // -1 is the last item, -2 is the second last
+            toolbar.removeItem(at: itemCount-3) // this removes the second last and the third last
         } else {
-            window?.toolbar?.insertItem(
+            toolbar.insertItem(
                 withItemIdentifier: NSToolbarItem.Identifier.itemListTrackingSeparator,
-                at: (window?.toolbar?.items.count)! - 1
+                at: itemCount-1 // insert it as second last
             )
-            window?.toolbar?.insertItem(
+            toolbar.insertItem(
                 withItemIdentifier: NSToolbarItem.Identifier.flexibleSpace,
-                at: (window?.toolbar?.items.count)! - 1
+                at: itemCount-0 // insert it as "last" (actually second last now)
             )
         }
     }
