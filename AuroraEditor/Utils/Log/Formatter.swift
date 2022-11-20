@@ -93,8 +93,7 @@ open class Formatter: Formatters {
 
      - returns: A formatted string.
      */
-    // swiftlint:disable:next function_parameter_count
-    func format(level: Level,
+    func format(level: Level, // swiftlint:disable:this function_parameter_count
                 items: [Any],
                 separator: String,
                 terminator: String,
@@ -142,8 +141,7 @@ open class Formatter: Formatters {
 
      - returns: A formatted string.
      */
-    // swiftlint:disable:next function_parameter_count
-    func format(description: String?,
+    func format(description: String?, // swiftlint:disable:this function_parameter_count
                 average: Double,
                 relativeStandardDeviation: Double,
                 file: String,

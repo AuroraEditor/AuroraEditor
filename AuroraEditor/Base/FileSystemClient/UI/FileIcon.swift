@@ -46,7 +46,7 @@ public enum FileIcon {
 
     /// Returns a string describing a SFSymbol for files
     /// If not specified otherwise this will return `"doc"`
-    public static func fileIcon( // swiftlint:disable:this function_body_length
+    public static func fileIcon(
         fileType: FileType
     ) -> String {
         switch fileType {

@@ -62,7 +62,7 @@ public extension AuroraTheme {
         /// // equal to calling
         /// terminal.text
         /// ```
-        subscript(key: String) -> Attributes { // swiftlint:disable:this function_body_length
+        subscript(key: String) -> Attributes {
             get {
                 switch key {
                 case "text": return self.text

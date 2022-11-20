@@ -84,7 +84,7 @@ public final class ExtensionsManager {
     private func loadBundle(path: String) -> ExtensionBuilder.Type? {
         let bundleURL = extensionsFolder.appendingPathComponent(path, isDirectory: true)
 
-        /// Initialize bundle
+        // Initialize bundle
         guard let bundle = Bundle(url: bundleURL),
               bundle.load() else {
             Log.warning("Failed to load bundle")

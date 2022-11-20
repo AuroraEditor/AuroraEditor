@@ -100,7 +100,9 @@ extension TabBar {
 
             TabBarAccessoryIcon(
                 icon: .init(systemName: "square.split.2x1"),
-                action: { /* TODO */ }
+                action: {
+                    /* TODO */
+                }
             )
             .font(Font.system(size: 14, weight: .light, design: .default))
             .foregroundColor(.secondary)

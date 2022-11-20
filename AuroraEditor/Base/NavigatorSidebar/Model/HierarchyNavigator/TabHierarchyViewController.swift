@@ -71,9 +71,9 @@ class TabHierarchyViewController: NSViewController {
     }
 
     /// Expand or collapse the folder on double click
-    // TODO: Double click stuff
     @objc
     private func onItemDoubleClicked() {
+        // TODO: Double click stuff
         let selectedIndex = outlineView.selectedRow
         guard let item = outlineView.item(atRow: selectedIndex) as? TabBarItemStorage,
               let itemTab = workspace?.selectionState.getItemByTab(id: item.tabBarID) else { return }

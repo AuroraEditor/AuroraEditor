@@ -48,14 +48,14 @@ struct WorkspaceView: View {
         switch tabID {
         case .codeEditor:
             WorkspaceCodeFileView()
-            case .extensionInstallation:
-                 if let plugin = workspace.selectionState.selected as? Plugin {
-                     ExtensionView(extensionData: plugin)
-                 }
-             case .webTab:
-                 if let webTab = workspace.selectionState.selected as? WebTab {
-                     WebTabView(webTab: webTab)
-                 }
+        case .extensionInstallation:
+            if let plugin = workspace.selectionState.selected as? Plugin {
+                ExtensionView(extensionData: plugin)
+            }
+        case .webTab:
+            if let webTab = workspace.selectionState.selected as? WebTab {
+                WebTabView(webTab: webTab)
+            }
         case .projectHistory:
             if let projectHistoryTab = workspace.selectionState.selected as? ProjectCommitHistory {
                 ProjectCommitHistoryView(projectHistoryModel: projectHistoryTab)

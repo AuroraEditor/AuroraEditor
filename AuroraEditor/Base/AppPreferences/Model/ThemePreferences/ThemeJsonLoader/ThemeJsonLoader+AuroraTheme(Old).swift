@@ -131,7 +131,6 @@ extension ThemeJsonLoader {
                                         highlightTheme: highlightTheme)
     }
 
-    // swiftlint:disable:next function_body_length
     func terminalFromOldAEThemeJson(json: [String: [String: String]]) -> AuroraTheme.TerminalColors? {
         guard let textRaw = json["text"]?["color"],
               let boldTextRaw = json["boldText"]?["color"],

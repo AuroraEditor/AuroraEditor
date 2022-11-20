@@ -14,8 +14,7 @@ enum DiffHunkExpansionType: String {
 
     /// The hunk header can be expanded up exclusively. Only the first hunk can be
     /// expanded up exclusively.
-    // swiftlint:disable:next identifier_name
-    case up = "Up"
+    case up = "Up" // swiftlint:disable:this identifier_name
 
     /// The hunk header can be expanded down exclusively. Only the last hunk (if
     /// it's the dummy hunk with only one line) can be expanded down exclusively.

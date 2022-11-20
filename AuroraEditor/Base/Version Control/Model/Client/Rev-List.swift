@@ -15,9 +15,8 @@ import Foundation
 ///
 /// Each parameter can be the commit SHA or a ref name, or specify an empty
 /// string to represent HEAD.
-// swiftlint:disable:next identifier_name
-func revRange(from: String, to: String) -> String {
-    return "\(from)..\(to)"
+func revRange(from: String, to toNumber: String) -> String {
+    return "\(from)..\(toNumber)"
 }
 
 /// Convert two refs into the Git range syntax representing the set of commits
@@ -26,9 +25,8 @@ func revRange(from: String, to: String) -> String {
 ///
 /// Each parameter can be the commit SHA or a ref name, or specify an empty
 /// string to represent HEAD.
-// swiftlint:disable:next identifier_name
-func revRangeInclusive(from: String, to: String) -> String {
-    return "\(from)^...\(to)"
+func revRangeInclusive(from: String, to toNumber: String) -> String {
+    return "\(from)^...\(toNumber)"
 }
 
 /// Convert two refs into the Git symmetric difference syntax, which represents
@@ -37,9 +35,8 @@ func revRangeInclusive(from: String, to: String) -> String {
 ///
 /// Each parameter can be the commit SHA or a ref name, or you can use an empty
 /// string to represent HEAD.
-// swiftlint:disable:next identifier_name
-func revSymmetricDifference(from: String, to: String) -> String {
-    return "\(from)...\(to)"
+func revSymmetricDifference(from: String, to toNumber: String) -> String {
+    return "\(from)...\(toNumber)"
 }
 
 /// Calculate the number of commits the range is ahead and behind.

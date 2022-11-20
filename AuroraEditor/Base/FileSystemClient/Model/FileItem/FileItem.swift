@@ -19,8 +19,8 @@ public extension FileSystemClient {
     }
 
     /// An object containing all necessary information and actions for a specific file in the workspace
-    // TODO: Clean this up
     final class FileItem: Identifiable, Codable, TabBarItemRepresentable, GitFileItem {
+        // TODO: Clean this up
         public var tabID: TabBarItemID { .codeEditor(id) }
 
         public var title: String { url.lastPathComponent }

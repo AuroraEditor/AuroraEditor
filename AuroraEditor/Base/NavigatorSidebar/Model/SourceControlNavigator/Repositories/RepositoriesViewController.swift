@@ -75,8 +75,7 @@ final class RepositoriesViewController: NSViewController {
     /// Updates the selection of the ``outlineView`` whenever it changes.
     ///
     /// Most importantly when the `id` changes from an external view.
-    // TODO: Selection
-    func updateSelection() {
+    func updateSelection() { // TODO: Selection
 //        guard let itemID = workspace?.selectionState.selectedId else {
 //            outlineView.deselectRow(outlineView.selectedRow)
 //            return
@@ -86,9 +85,9 @@ final class RepositoriesViewController: NSViewController {
     }
 
     /// Expand or collapse the folder on double click
-    // TODO: Double click stuff
     @objc
     private func onItemDoubleClicked() {
+        // TODO: Double click stuff
         let item = outlineView.item(atRow: outlineView.clickedRow)
 
         if item is RepositoryModel || item is RepoContainer {

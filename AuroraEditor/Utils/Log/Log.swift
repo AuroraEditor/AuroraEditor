@@ -202,8 +202,7 @@ public class Log {
      - parameter column:     The column at which the log happens.
      - parameter function:   The function in which the log happens.
      */
-    // swiftlint:disable:next function_parameter_count
-    private func log(_ level: Level,
+    private func log(_ level: Level, // swiftlint:disable:this function_parameter_count
                      _ items: [Any],
                      _ separator: String,
                      _ terminator: String,

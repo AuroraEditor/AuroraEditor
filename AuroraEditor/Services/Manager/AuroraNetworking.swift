@@ -47,7 +47,7 @@ class AuroraNetworking {
     }
 
     private func createRequest(url: URL, useAuthType: AuthType) -> URLRequest {
-        /// Create a URL Request
+        // Create a URL Request
         var request = URLRequest(url: url)
 
         if useAuthType == .github {
@@ -91,7 +91,7 @@ class AuroraNetworking {
         file: String = #file,
         line: Int = #line,
         function: String = #function) {
-            /// Create a  URLSession
+            // Create a  URLSession
             var session: URLSession? = URLSession.shared
 
             if let cookieData = AuroraNetworking.cookies {
@@ -104,7 +104,7 @@ class AuroraNetworking {
 
             // Start our datatask
             session?.dataTask(with: request) { [self] (sitedata, response, taskError) in
-                /// Check if we got any useable site data
+                // Check if we got any useable site data
                 guard let sitedata = sitedata else {
                     completionHandler(.failure(taskError ?? NetworkingError(message: "Unknown error")))
                     return
@@ -161,7 +161,7 @@ class AuroraNetworking {
         completionHandler: @escaping (Result<Data, Error>) -> Void,
         file: String = #file, line: Int = #line, function: String = #function
     ) {
-        /// Check if the URL is valid
+        // Check if the URL is valid
         guard let siteURL = URL(string: baseURL + path) else {
             completionHandler(
                 .failure(
@@ -171,7 +171,7 @@ class AuroraNetworking {
             return
         }
 
-        /// Create a URL Request
+        // Create a URL Request
         var request = createRequest(url: siteURL, useAuthType: useAuthType)
         request.httpMethod = method.rawValue
 
@@ -202,7 +202,7 @@ class AuroraNetworking {
         completionHandler: @escaping (Result<Data, Error>) -> Void,
         file: String = #file, line: Int = #line, function: String = #function
     ) {
-        /// Check if the URL is valid
+        // Check if the URL is valid
         guard let siteURL = URL(string: GithubNetworkingConstants.baseURL + path) else {
             completionHandler(
                 .failure(
@@ -212,7 +212,7 @@ class AuroraNetworking {
             return
         }
 
-        /// Create a URL Request
+        // Create a URL Request
         var request = createRequest(url: siteURL, useAuthType: useAuthType)
         request.httpMethod = method.rawValue
 
@@ -246,7 +246,7 @@ class AuroraNetworking {
         completionHandler: @escaping (Result<Data, Error>) -> Void,
         file: String = #file, line: Int = #line, function: String = #function
     ) {
-        /// Check if the URL is valid
+        // Check if the URL is valid
         guard let siteURL = URL(string: GithubNetworkingConstants.baseURL + path) else {
             completionHandler(
                 .failure(
@@ -256,7 +256,7 @@ class AuroraNetworking {
             return
         }
 
-        /// Create a URL Request
+        // Create a URL Request
         var request = createRequest(url: siteURL, useAuthType: useAuthType)
         request.httpMethod = method.rawValue
 

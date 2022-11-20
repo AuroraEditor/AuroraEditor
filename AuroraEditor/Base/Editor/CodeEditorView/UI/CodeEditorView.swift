@@ -116,7 +116,7 @@ extension CodeEditor: NSViewRepresentable {
             var row = 0
             var col = 0
 
-            /// Create the range
+            // Create the range
             let range = NSRange.init(location: 0, length: pos.upperBound)
 
             // Get only the text before the caret
@@ -124,7 +124,7 @@ extension CodeEditor: NSViewRepresentable {
                 fatalError("Failed to get caret position in document")
             }
 
-            /// Split newlines
+            // Split newlines
             let splitValue = txtStr.components(separatedBy: "\n")
 
             // Check on what row we are
