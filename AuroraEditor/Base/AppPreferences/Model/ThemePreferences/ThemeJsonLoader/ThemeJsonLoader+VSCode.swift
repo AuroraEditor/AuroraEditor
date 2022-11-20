@@ -27,6 +27,9 @@ extension ThemeJsonLoader {
         return nil
     }
 
+    /// Theme from Visual Studio Code JSON
+    /// - Parameter jsonStr: JSON String
+    /// - Returns: AuroraTheme
     public func themeFromVscJson(jsonStr: String) -> AuroraTheme? {
         guard let jsonData = jsonStr.data(using: .utf8),
               let json = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any]
@@ -92,7 +95,7 @@ extension ThemeJsonLoader {
         let lineHighlight = json["editor.lineHighlightBackground"]
         let selection = json["editor.selectionHighlightBackground"]
 
-        Log.info("Selection: \(selection)")
+        Log.info("Selection: \(String(describing: selection))")
 
         let defaultAttr = type == "light" ? AuroraTheme.EditorColors.defaultLight :
         AuroraTheme.EditorColors.defaultDark

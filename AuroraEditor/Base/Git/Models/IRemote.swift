@@ -9,14 +9,21 @@
 
 import Foundation
 
+/// forked remote prefix
 public var forkedRemotePrefix = "aurora-editor-"
 
+/// Fork pull request remote name generator
+/// - Parameter remoteName: Name
+/// - Returns: Prefix+remote name
 public func forkPullRequestRemoteName(remoteName: String) -> String {
     return "\(forkedRemotePrefix)\(remoteName)"
 }
 
+/// IRemote
 public protocol IRemote {
+    /// Name
     var name: String { get }
+    /// URL
     var url: String { get }
 }
 

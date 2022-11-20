@@ -25,7 +25,6 @@ extension WorkspaceDocument {
             case .extensionInstallation:
                 guard let plugin = item as? Plugin else { return }
                 self.openExtension(item: plugin)
-
             case .webTab:
                 guard let webTab = item as? WebTab else { return }
                 self.openWebTab(item: webTab)
@@ -186,7 +185,6 @@ extension WorkspaceDocument {
     /// Closes collection of tab bar items
     /// - Parameter items: items to be closed
     func closeTabs<Items>(items: Items) where Items: Collection, Items.Element == TabBarItemID {
-        // TODO: Could potentially be optimized
         for item in items {
             closeTab(item: item)
         }

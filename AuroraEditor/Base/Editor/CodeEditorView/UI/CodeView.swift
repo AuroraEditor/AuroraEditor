@@ -21,7 +21,7 @@ struct MessageInfo {
     let view: StatefulMessageView.HostingView
     var lineFragementRect: CGRect                            // The *full* line fragement rectangle (incl. message)
     var geometry: MessageView.Geometry?
-    var colour: OSColor                           // The category colour of the most severe category
+    var colour: NSColor                           // The category colour of the most severe category
 
     var topAnchorConstraint: NSLayoutConstraint?
     var rightAnchorConstraint: NSLayoutConstraint?
@@ -372,7 +372,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
                 origin: CGPoint.zero,
                 size: CGSize(width: gutterWidth, height: frame.height)
             ),
-            gutterExclusionPath = OSBezierPath(rect: gutterRect),
+            gutterExclusionPath = NSBezierPath(rect: gutterRect),
             minLineFragmentPadding = CGFloat(6)
 
         gutterView?.frame = gutterRect
@@ -393,7 +393,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         padding = codeViewWidth - (gutterWidth + ceil(numberOfCharacters * fontWidth)),
         minimapX = floor(frame.width - minimapWidth),
         minimapRect = CGRect(x: minimapX, y: 0, width: minimapWidth, height: frame.height),
-        minimapExclusionPath = OSBezierPath(rect: minimapGutterRect),
+        minimapExclusionPath = NSBezierPath(rect: minimapGutterRect),
         minimapDividerRect = CGRect(x: minimapX - dividerWidth, y: 0, width: dividerWidth, height: frame.height)
 
         minimapDividerView?.isHidden = !viewLayout.showMinimap

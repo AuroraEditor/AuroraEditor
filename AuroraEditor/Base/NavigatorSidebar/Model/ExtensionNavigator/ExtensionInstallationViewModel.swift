@@ -55,6 +55,7 @@ final class ExtensionInstallationViewModel: ObservableObject {
                     Log.debug(error)
                 }
             case .failure(let failure):
+                self.state = .error
                 Log.error(failure)
             }
 

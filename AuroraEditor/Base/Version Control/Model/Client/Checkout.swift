@@ -9,6 +9,7 @@
 
 import Foundation
 
+/// GIT Checkout
 public struct Checkout {
 
     /// Check out the given branch.

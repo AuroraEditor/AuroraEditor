@@ -39,16 +39,19 @@ struct ExtensionNavigator: View {
                 VStack(alignment: .center) {
                     HStack {
                         Spacer()
-                        Text("Needs Implementation")
+                        Text("No installed Extensions")
                         Spacer()
                     }
                 }
                 .frame(maxHeight: .infinity)
             }
 
-            if selectedSection == 1 {
-                ExploreExtensionsView()
-            }
+            // TEMPORARY FIX FOR #315
+            // Hide this view instead of unloading it, on unload it crashes the app.
+            // https://github.com/AuroraEditor/AuroraEditor/issues/315
+            // TODO: This needs to be fixed, it should not crash if unloaded. OC: @nanashili
+            ExploreExtensionsView(document: workspace)
+                .opacity(selectedSection != 1 ? 0 : 1)
         }
     }
 }

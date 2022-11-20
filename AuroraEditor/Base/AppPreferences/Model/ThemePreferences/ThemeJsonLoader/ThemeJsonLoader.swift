@@ -22,6 +22,7 @@ class ThemeJsonLoader {
     /// its contents
     /// - Parameter fileName: The name of the JSON file, not including the `.json` at the end
     /// - Returns: A ``AuroraTheme`` representing the contents of the JSON, or nil if the given json is invalid.
+    @available(*, deprecated, message: "Please use loadJson:from:")
     public func loadBundledJson(fileName: String) -> AuroraTheme? { // TODO: Depreciate this and use loadJson:from:
         if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
             let url = URL(fileURLWithPath: path)

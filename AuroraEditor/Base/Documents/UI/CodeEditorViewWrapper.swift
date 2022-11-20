@@ -52,6 +52,7 @@ public struct CodeEditorViewWrapper: View {
             text: $codeFile.content,
             position: $position,
             caretPosition: $workspace.data.caretPos,
+            bracketCount: $workspace.data.bracketCount,
             currentToken: $workspace.data.currentToken,
             messages: $messages,
             theme: $theme,

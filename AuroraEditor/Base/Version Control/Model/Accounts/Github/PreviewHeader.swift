@@ -7,8 +7,6 @@
 
 import Foundation
 
-// TODO: DOCS (Nanashi Li)
-
 /// Some APIs provide additional data for new (preview) APIs if a custom header is added to the request.
 ///
 /// - Note: Preview APIs are subject to change.
@@ -16,6 +14,7 @@ public enum PreviewHeader {
     /// The `Reactions` preview header provides reactions in `Comment`s.
     case reactions
 
+    /// HTTP Header
     public var header: HTTPHeader {
         switch self {
         case .reactions:

@@ -184,6 +184,16 @@ class AuroraNetworking {
         }, file: file, line: line, function: function)
     }
 
+    /// HTTP Request
+    /// - Parameters:
+    ///   - path: url path
+    ///   - method: HTTP method
+    ///   - useAuthType: Authentication type
+    ///   - parameters: Parameters
+    ///   - completionHandler: Completion handler
+    ///   - file: current caller file
+    ///   - line: current caller line
+    ///   - function: current caller function
     public func request(
         path: String,
         method: HTTPMethod,

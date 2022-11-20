@@ -38,6 +38,9 @@ class DiffLine {
         self.noTrailingNewLine = noTrailingNewLine
     }
 
+    /// With no trailing newline
+    /// - Parameter noTrailingNewLine: Trailing newline?
+    /// - Returns: Diff line
     public func withNoTrailingNewLine(noTrailingNewLine: Bool) -> DiffLine {
         return DiffLine(text: self.text,
                         type: self.type,
@@ -47,6 +50,8 @@ class DiffLine {
                         noTrailingNewLine: noTrailingNewLine)
     }
 
+    /// Is includable line
+    /// - Returns: is includable?
     public func isIncludeableLine() -> Bool {
         return self.type == DiffLineType.add || self.type == DiffLineType.delete
     }

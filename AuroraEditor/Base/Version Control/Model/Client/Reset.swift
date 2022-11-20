@@ -24,8 +24,8 @@ public enum GitResetMode: Int {
     case mixed
 }
 
+/// GIT Reset
 public struct Reset {
-
     func resetModeToArgs(mode: GitResetMode, ref: String) -> [String] {
         switch mode {
         case .hard:

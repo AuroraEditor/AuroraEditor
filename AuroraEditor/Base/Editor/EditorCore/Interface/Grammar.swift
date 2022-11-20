@@ -7,9 +7,7 @@
 
 import Foundation
 
-///
 /// The representation of a grammar
-///
 public class Grammar {
 
     /// The root scope of this grammar.
@@ -42,6 +40,14 @@ public class Grammar {
         return _rules!
     }
 
+    /// Initialize Grammar
+    /// - Parameters:
+    ///   - scopeName: Scope name
+    ///   - fileTypes: File types
+    ///   - patterns: Patterns
+    ///   - foldingStartMarker: Folding start marker
+    ///   - foldingStopMarker: Folding end marker
+    ///   - repository: Repisotory
     public init(
         scopeName: String,
         fileTypes: [String] = [],
@@ -58,6 +64,9 @@ public class Grammar {
         self.repository = repository
     }
 
+    /// Create first line state
+    /// - Parameter theme: Theme
+    /// - Returns: Line State
     public func createFirstLineState(theme: HighlightTheme = .default) -> LineState {
         return LineState(scopes: [
             Scope(
@@ -69,6 +78,9 @@ public class Grammar {
         ])
     }
 
+    /// Base Attributes
+    /// - Parameter theme: Theme
+    /// - Returns: [NSAttributedString.Key: Any]
     public func baseAttributes(forTheme theme: HighlightTheme) -> [NSAttributedString.Key: Any] {
         let line = TokenizedLine(tokens: [
             Token(

@@ -7,9 +7,10 @@
 
 import Foundation
 
-// TODO: DOCS (Nanashi Li)
+/// Files (`[String:File]`)
 public typealias Files = [String: File]
 
+/// File class
 open class File: Codable {
     open private(set) var id: Int = -1
     open var rawURL: URL?

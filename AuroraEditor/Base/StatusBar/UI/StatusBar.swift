@@ -62,6 +62,7 @@ public struct StatusBarView: View {
                 Spacer()
                 if let selectedId = workspace.selectionState.selectedId,
                    selectedId.id.contains("codeEditor_") {
+                    StatusBarBracketCountLabel(model: model)
                     StatusBarCursorLocationLabel(model: model)
                     StatusBarIndentSelector(model: model)
                     StatusBarEncodingSelector(model: model)

@@ -63,6 +63,8 @@ class DiffHunkHeader {
         self.newLineCount = newLineCount
     }
 
+    /// to diff line representation
+    /// - Returns: diff line representation
     public func toDiffLineRepresentation() -> String {
         return "@@ -\(self.oldStartLine),\(self.oldLineCount) +\(self.newStartLine),\(self.newLineCount) @@"
     }

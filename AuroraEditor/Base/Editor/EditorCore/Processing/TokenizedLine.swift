@@ -8,6 +8,7 @@
 import Foundation
 import AppKit
 
+/// Tokenized line
 public class TokenizedLine {
 
     var tokens: [Token]
@@ -16,6 +17,7 @@ public class TokenizedLine {
         self.tokens = tokens
     }
 
+    /// Token length
     public var length: Int {
         guard let last = tokens.last else {
             return 0
@@ -40,8 +42,6 @@ public class TokenizedLine {
     }
 
     func increaseLastTokenLength(by len: Int = 1) {
-        // TODO: Check if this is needed, it 'can' crash the app without any reason
-        // it seems to work without it.
         guard !tokens.isEmpty else { return }
         tokens[tokens.count - 1].range.length += len
     }

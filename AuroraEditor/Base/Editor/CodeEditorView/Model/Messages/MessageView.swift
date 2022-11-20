@@ -76,19 +76,19 @@ extension MessageView {
 extension Message {
 
     /// Defines the colours and icons that identify each of the various message categories.
-    typealias Theme = (Message.Category) -> (colour: OSColor, icon: Image)
+    typealias Theme = (Message.Category) -> (colour: NSColor, icon: Image)
 
     /// The default category theme
-    static func defaultTheme(for category: Message.Category) -> (colour: OSColor, icon: Image) {
+    static func defaultTheme(for category: Message.Category) -> (colour: NSColor, icon: Image) {
         switch category {
         case .live:
-            return (colour: OSColor.green, icon: Image(systemName: "line.horizontal.3"))
+            return (colour: NSColor.green, icon: Image(systemName: "line.horizontal.3"))
         case .error:
-            return (colour: OSColor.red, icon: Image(systemName: "xmark.circle.fill"))
+            return (colour: NSColor.red, icon: Image(systemName: "xmark.circle.fill"))
         case .warning:
-            return (colour: OSColor.yellow, icon: Image(systemName: "exclamationmark.triangle.fill"))
+            return (colour: NSColor.yellow, icon: Image(systemName: "exclamationmark.triangle.fill"))
         case .informational:
-            return (colour: OSColor.gray, icon: Image(systemName: "info.circle.fill"))
+            return (colour: NSColor.gray, icon: Image(systemName: "info.circle.fill"))
         }
     }
 }

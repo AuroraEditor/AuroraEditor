@@ -51,8 +51,8 @@ struct WorkspaceView: View {
         case .extensionInstallation:
             EmptyView()
         case .webTab:
-            if let webTab = workspace.selectionState.selected as? WebTab {
-                WebTabView(webTab: webTab)
+            if let plugin = workspace.selectionState.selected as? Plugin {
+                ExtensionView(extensionData: plugin)
             }
         case .projectHistory:
             if let projectHistoryTab = workspace.selectionState.selected as? ProjectCommitHistory {

@@ -8,10 +8,6 @@
 
 import SwiftUI
 
-public typealias OSFont = NSFont
-public typealias OSColor = NSColor
-public typealias OSBezierPath = NSBezierPath
-
 let labelColor = NSColor.labelColor
 
 typealias TextStorageEditActions = NSTextStorageEditActions
