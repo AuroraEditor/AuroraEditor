@@ -110,7 +110,7 @@ extension CodeView {
                                                                                          lineHeight: 15,
                                                                                          popupWidth: 300,
                                                                                          popupOffset: 16),
-                                                          fontSize: font?.pointSize ?? OSFont.systemFontSize),
+                                                          fontSize: font?.pointSize ?? NSFont.systemFontSize),
             principalCategory = messagesByCategory(messageBundle.messages)[0].key,
             colour = theme(principalCategory).colour
 
