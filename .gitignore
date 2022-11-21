@@ -98,3 +98,6 @@ iOSInjectionProject/
 
 # Ignore .githash
 .githash
+
+# Remove local workspaces
+0xWDG.xcworkspace
