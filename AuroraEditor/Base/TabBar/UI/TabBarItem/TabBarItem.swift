@@ -107,6 +107,16 @@ struct TabBarItem: View {
         .onChange(of: workspace.selectionState.temporaryTab) { _ in
             isTemporary = workspace.selectionState.temporaryTab == item.tabID
         }
+        .onChange(of: isActive, perform: { newValue in
+            for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
+                Log.info(id, newValue ? "didActivateTab" : "didDeactivateTab")
+                AEExt.respond(
+                    action: newValue ? "didActivateTab" : "didDeactivateTab",
+                    parameters: [
+                        "file": item.tabID.fileRepresentation
+                    ])
+            }
+        })
         .overlay(alignment: .top) {
             // Only show NativeTabShadow when `tabBarStyle` is native and this tab is not active.
             TabBarTopDivider()
