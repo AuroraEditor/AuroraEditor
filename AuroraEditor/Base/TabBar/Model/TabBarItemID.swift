@@ -27,6 +27,23 @@ public enum TabBarItemID: Codable, Identifiable, Hashable {
         }
     }
 
+    public var fileRepresentation: String {
+        switch self {
+        case .codeEditor(let path):
+            return path
+        case .extensionInstallation(let id):
+            return "auroraeditor://extension/\(id)"
+        case .webTab(let url):
+            return url
+        case .projectHistory(let project):
+            return "auroraeditor://project/\(project)"
+        case .branchHistory(let branch):
+            return "auroraeditor://branch/\(branch)"
+        case .actionsWorkflow(let workflow):
+            return "auroraeditor://workflow/\(workflow)"
+        }
+    }
+
     /// Represents code editor tab
     case codeEditor(String)
 
