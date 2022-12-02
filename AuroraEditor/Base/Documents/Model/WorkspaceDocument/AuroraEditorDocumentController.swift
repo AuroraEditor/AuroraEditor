@@ -27,7 +27,7 @@ final class AuroraEditorDocumentController: NSDocumentController {
             if let document = document {
                 self.addDocument(document)
             }
-            self.updateRecent(url)
+            RecentProjectsStore.shared.record(path: url.path)
             completionHandler(document, documentWasAlreadyOpen, error)
         }
     }
@@ -38,7 +38,7 @@ final class AuroraEditorDocumentController: NSDocumentController {
 
     override func clearRecentDocuments(_ sender: Any?) {
         super.clearRecentDocuments(sender)
-        UserDefaults.standard.set([], forKey: "recentProjectPaths")
+        RecentProjectsStore.shared.clearAll()
     }
 }
 
@@ -67,7 +67,7 @@ extension NSDocumentController {
                         alert.runModal()
                         return
                     }
-                    self.updateRecent(url)
+                    RecentProjectsStore.shared.record(path: url.path)
                     onCompletion(document, documentWasAlreadyOpen)
                     Log.info("Document:", document)
                     Log.info("Was already open?", documentWasAlreadyOpen)
@@ -76,17 +76,5 @@ extension NSDocumentController {
                 onCancel()
             }
         }
-    }
-
-    final func updateRecent(_ url: URL) {
-        var recentProjectPaths: [String] = UserDefaults.standard.array(
-            forKey: "recentProjectPaths"
-        ) as? [String] ?? []
-        if let containedIndex = recentProjectPaths.firstIndex(of: url.path) {
-            recentProjectPaths.move(fromOffsets: IndexSet(integer: containedIndex), toOffset: 0)
-        } else {
-            recentProjectPaths.insert(url.path, at: 0)
-        }
-        UserDefaults.standard.set(recentProjectPaths, forKey: "recentProjectPaths")
     }
 }
