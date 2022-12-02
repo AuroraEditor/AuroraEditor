@@ -1681,6 +1681,7 @@
 				20D83718289A7ACD00D91D05 /* StatusBar */,
 				934D2F0528C4EC430034E5C8 /* MenuBarItem */,
 				20D838F5289A7ACE00D91D05 /* TerminalEmulator */,
+				7BBF20122939AF6E00D60627 /* RecentProjects */,
 				20D83810289A7ACD00D91D05 /* WelcomeModule */,
 				20D83866289A7ACE00D91D05 /* FileSystemClient */,
 			);
@@ -2961,6 +2962,29 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7BBF20122939AF6E00D60627 /* RecentProjects */ = {
+			isa = PBXGroup;
+			children = (
+				7BBF20152939AFDB00D60627 /* UI */,
+				7BBF20132939AFCC00D60627 /* Model */,
+			);
+			path = RecentProjects;
+			sourceTree = "<group>";
+		};
+		7BBF20132939AFCC00D60627 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7BBF20152939AFDB00D60627 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		934D2F0528C4EC430034E5C8 /* MenuBarItem */ = {
