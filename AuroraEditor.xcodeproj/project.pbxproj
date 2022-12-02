@@ -2113,8 +2113,6 @@
 				20D8381F289A7ACD00D91D05 /* WelcomeWindowView.swift */,
 				20D83820289A7ACD00D91D05 /* WelcomeView.swift */,
 				20D83821289A7ACD00D91D05 /* WelcomeActionView.swift */,
-				20D83822289A7ACD00D91D05 /* RecentProjectsView.swift */,
-				20D83823289A7ACD00D91D05 /* RecentProjectItem.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2983,6 +2981,8 @@
 		7BBF20152939AFDB00D60627 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				20D83823289A7ACD00D91D05 /* RecentProjectItem.swift */,
+				20D83822289A7ACD00D91D05 /* RecentProjectsView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
