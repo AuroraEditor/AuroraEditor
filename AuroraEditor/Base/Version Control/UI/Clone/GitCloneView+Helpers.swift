@@ -171,18 +171,7 @@ extension GitCloneView {
                                     completionHandler: { _, _, _ in }
                                 )
                                 // add to recent projects
-                                var recentProjectPaths = (
-                                    UserDefaults.standard.array(forKey: "recentProjectPaths") as? [String] ?? []
-                                ).filter { FileManager.default.fileExists(atPath: $0) }
-                                if let urlLocation = recentProjectPaths.firstIndex(of: repoPath) {
-                                    recentProjectPaths.remove(at: urlLocation)
-                                }
-                                recentProjectPaths.insert(repoPath, at: 0)
-
-                                UserDefaults.standard.set(
-                                    recentProjectPaths,
-                                    forKey: "recentProjectPaths"
-                                )
+                                RecentProjectsStore.shared.record(path: repoPath)
                             })
                         }
                     case .other: break
