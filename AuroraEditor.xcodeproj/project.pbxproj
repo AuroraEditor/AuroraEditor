@@ -81,6 +81,7 @@
 		20752E4628CA54B200935487 /* CommitHistoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20752E4528CA54B200935487 /* CommitHistoryCellView.swift */; };
 		20752E4928CA54F000935487 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20752E4828CA54F000935487 /* Avatar.swift */; };
 		2077162E287C8EC80069C68E /* ToolbarAppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077162D287C8EC80069C68E /* ToolbarAppInfo.swift */; };
+		207B4382293E0BEC00216AD6 /* CreateNewTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B4381293E0BEC00216AD6 /* CreateNewTagView.swift */; };
 		207D295828CCDE4300D31530 /* BranchCommitHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207D295728CCDE4300D31530 /* BranchCommitHistoryView.swift */; };
 		207D295A28CCDEDC00D31530 /* BranchCommitHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207D295928CCDEDC00D31530 /* BranchCommitHistory.swift */; };
 		207D295D28CCE72F00D31530 /* RenameBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207D295C28CCE72F00D31530 /* RenameBranchView.swift */; };
@@ -644,6 +645,7 @@
 		20752E4528CA54B200935487 /* CommitHistoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitHistoryCellView.swift; sourceTree = "<group>"; };
 		20752E4828CA54F000935487 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		2077162D287C8EC80069C68E /* ToolbarAppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarAppInfo.swift; sourceTree = "<group>"; };
+		207B4381293E0BEC00216AD6 /* CreateNewTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTagView.swift; sourceTree = "<group>"; };
 		207D295728CCDE4300D31530 /* BranchCommitHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCommitHistoryView.swift; sourceTree = "<group>"; };
 		207D295928CCDEDC00D31530 /* BranchCommitHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCommitHistory.swift; sourceTree = "<group>"; };
 		207D295C28CCE72F00D31530 /* RenameBranchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameBranchView.swift; sourceTree = "<group>"; };
@@ -1355,6 +1357,7 @@
 		20752E3A28CA4C1E00935487 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				207B4380293E0BD800216AD6 /* Tag */,
 				20BE727328D0758E00EEDE5F /* Actions */,
 				2096A82228CF76C500F6ED39 /* Branch */,
 				20130BDC28CF30EB0000B634 /* Remote */,
@@ -1442,6 +1445,14 @@
 				20D8390F289A7F3F00D91D05 /* UI */,
 			);
 			path = Toolbar;
+			sourceTree = "<group>";
+		};
+		207B4380293E0BD800216AD6 /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				207B4381293E0BEC00216AD6 /* CreateNewTagView.swift */,
+			);
+			path = Tag;
 			sourceTree = "<group>";
 		};
 		207D295B28CCE72100D31530 /* Rename */ = {
@@ -3995,6 +4006,7 @@
 				2093CD56289AA0C0003A88DD /* Page.swift in Sources */,
 				93E0486C290E45D5008263B3 /* AuroraDataStorage.swift in Sources */,
 				2093CD4B289AA0A2003A88DD /* Router.swift in Sources */,
+				207B4382293E0BEC00216AD6 /* CreateNewTagView.swift in Sources */,
 				B6EE989027E8879A00CDD8AB /* InspectorSidebar.swift in Sources */,
 				2BDFA90428D107B200980385 /* WebWKView.swift in Sources */,
 				2093CD8B289AA12B003A88DD /* NotificationData.swift in Sources */,

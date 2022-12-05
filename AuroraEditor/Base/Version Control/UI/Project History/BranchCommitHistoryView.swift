@@ -109,7 +109,10 @@ struct BranchCommitHistoryView: View {
                         }
                         Divider()
                         Group {
-                            Button("Tag \"\(commit.hash)\"...") {}.disabled(true)
+                            Button("Tag \"\(commit.hash)\"...") {
+                                workspace.data.commitHash = commit.hash
+                                workspace.data.showTagCreationSheet.toggle()
+                            }
                             Button("New Branch from \"\(commit.hash)\"...") {
                                 workspace.data.branchRevision = commit.hash
                                 workspace.data.branchRevisionDescription = commit.message
