@@ -174,6 +174,11 @@ struct WorkspaceView: View {
                                 revision: workspace.data.branchRevision,
                                 revisionDesciption: workspace.data.branchRevisionDescription)
         }
+        .sheet(isPresented: $workspace.data.showTagCreationSheet) {
+            CreateNewTagView(workspace: workspace,
+                             commitHash: workspace.data.commitHash)
+
+        }
     }
 }
 
