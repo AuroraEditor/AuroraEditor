@@ -7,7 +7,8 @@
 import SwiftUI
 
 public struct RecentProjectsView: View {
-    @State private var recentProjectPaths: [String]
+
+    @ObservedObject private var recentsStore: RecentProjectsStore = .shared
     @State private var selectedProjectPath: String? = ""
 
     private let openDocument: (URL?, @escaping () -> Void) -> Void
@@ -19,7 +20,6 @@ public struct RecentProjectsView: View {
     ) {
         self.openDocument = openDocument
         self.dismissWindow = dismissWindow
-        self.recentProjectPaths = UserDefaults.standard.array(forKey: "recentProjectPaths") as? [String] ?? []
     }
 
     // If there is a no recent projects opened we
@@ -59,56 +59,21 @@ public struct RecentProjectsView: View {
     func contextMenuDelete(projectPath: String) -> some View {
         Group {
             Button("Remove from Recent Projects") {
-                deleteFromRecent(item: projectPath)
+                withAnimation { recentsStore.remove(path: projectPath) }
             }
-        }
-    }
-
-    func deleteFromRecent(item: String) {
-        self.recentProjectPaths.removeAll {
-            $0 == item
-        }
-
-        UserDefaults.standard.set(
-            self.recentProjectPaths,
-            forKey: "recentProjectPaths"
-        )
-    }
-
-    /// Update recent projects, and remove ones that no longer exist
-    func updateRecentProjects() {
-        recentProjectPaths = ( UserDefaults.standard.array(forKey: "recentProjectPaths") as? [String] ?? [] )
-            .filter { FileManager.default.fileExists(atPath: $0) }
-
-        UserDefaults.standard.set(
-            self.recentProjectPaths,
-            forKey: "recentProjectPaths"
-        )
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-            updateRecentProjects()
         }
     }
 
     func openDocument(for url: String) {
         Log.info("Opening document: \(url)")
-        openDocument( URL(fileURLWithPath: url),
-                      dismissWindow )
-        if let urlLocation = recentProjectPaths.firstIndex(of: url) {
-            recentProjectPaths.remove(at: urlLocation)
-            recentProjectPaths.insert(url, at: 0)
-
-            UserDefaults.standard.set(
-                self.recentProjectPaths,
-                forKey: "recentProjectPaths"
-            )
-        }
+        openDocument(URL(fileURLWithPath: url), dismissWindow)
+        withAnimation { recentsStore.record(path: url) }
     }
 
     public var body: some View {
-        VStack(alignment: !recentProjectPaths.isEmpty ? .leading : .center, spacing: 10) {
-            if !recentProjectPaths.isEmpty {
-                List(recentProjectPaths, id: \.self, selection: $selectedProjectPath) { projectPath in
+        VStack(alignment: !recentsStore.paths.isEmpty ? .leading : .center, spacing: 10) {
+            if !recentsStore.paths.isEmpty {
+                List(recentsStore.paths, id: \.self, selection: $selectedProjectPath) { projectPath in
                     ZStack {
                         RecentProjectItem(projectPath: projectPath)
                             .frame(width: 300)
@@ -130,7 +95,7 @@ public struct RecentProjectsView: View {
 
                         if selectedProjectPath == projectPath {
                             Button("") {
-                                deleteFromRecent(item: projectPath)
+                                recentsStore.remove(path: projectPath)
                             }
                             .buttonStyle(.borderless)
                             .keyboardShortcut(.init(.delete))
@@ -165,11 +130,6 @@ public struct RecentProjectsView: View {
                 blendingMode: NSVisualEffectView.BlendingMode.behindWindow
             )
         )
-        .onAppear {
-            // onAppear is called once, and therafter never again,
-            // since the window is never release from memory.
-            updateRecentProjects()
-        }
     }
 }
 

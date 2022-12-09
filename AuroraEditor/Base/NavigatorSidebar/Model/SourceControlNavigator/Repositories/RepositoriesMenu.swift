@@ -53,7 +53,7 @@ final class RepositoriesMenu: NSMenu {
         items = [
             menuItem("New Branch from \"\(branch.name)\"", action: #selector(createNewBranch)),
             menuItem("Rename \"\(branch.name)\"", action: #selector(renameBranch)),
-            menuItem("Tag \"\(branch.name)\"", action: nil),
+            menuItem("Tag \"\(branch.name)\"", action: #selector(createNewTag)),
             menuItem("Switch...", action: isSelectedBranchCurrentOne() ? nil : #selector(switchToBranch(_:))),
             NSMenuItem.separator(),
             menuItem("Merge from Branch...", action: nil),
@@ -77,6 +77,28 @@ final class RepositoriesMenu: NSMenu {
 
         workspace?.data.showBranchCreationSheet.toggle()
         workspace?.data.branchRevision = branch.name
+    }
+
+    @objc
+    private func createNewTag() {
+        guard let branch = item as? RepoBranch else { return }
+
+        // Get a list of commits for the selected branch. We only get the latest 2 commits of
+        // the branch so that we know what commit is newer.
+        do {
+            let commits  = try getCommits(directoryURL: (workspace?.workspaceURL())!,
+                                          revisionRange: branch.name,
+                                          limit: 2)
+
+            // Get the first commit in the list and then get its commit hash
+            let commitHash = commits[0].hash
+
+            workspace?.data.commitHash = commitHash
+        } catch {
+            Log.error("Unable to fetch commits for branch: \(branch.name)")
+        }
+
+        workspace?.data.showTagCreationSheet.toggle()
     }
 
     @objc

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 final class AuroraEditorApplication: NSApplication {
     let strongDelegate = AppDelegate()
@@ -37,6 +38,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     var statusItem: NSStatusItem!
 
     private var updateModel: UpdateObservedModel = .shared
+
+    var cancellable = Set<AnyCancellable>()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
 

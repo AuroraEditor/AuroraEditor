@@ -21,8 +21,12 @@ class AuroraDataStorage: ObservableObject {
 
     // swiftlint:disable:next swiftlint_file_disabling
     // swiftlint:disable opening_brace
+
+    // Navigator settings
     @Published
     var sortFoldersOnTop: Bool = true                               { didSet { update() } }
+
+    // Open sheets in the editor
     @Published
     var showStashChangesSheet: Bool = false                         { didSet { update() } }
     @Published
@@ -32,11 +36,19 @@ class AuroraDataStorage: ObservableObject {
     @Published
     var showBranchCreationSheet: Bool = false                       { didSet { update() } }
     @Published
+    var showTagCreationSheet: Bool = false                          { didSet { update() } }
+
+    // Git data for the editor
+    @Published
     var currentlySelectedBranch: String = ""                        { didSet { update() } }
     @Published
     var branchRevision: String = ""                                 { didSet { update() } }
     @Published
+    var commitHash: String = ""                                     { didSet { update() } }
+    @Published
     var branchRevisionDescription: String = ""                      { didSet { update() } }
+
+    // Editor information
     @Published
     public var caretPos: CursorLocation = .init(line: 0, column: 0) { didSet { update() } }
     @Published

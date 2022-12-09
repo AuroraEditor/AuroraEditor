@@ -8,7 +8,7 @@
 
 // swiftlint:disable:next convenience_type
 struct Constants {
-    static var auroraEditorBaseURL: String = "http://api.auroraeditor.com:8081/v1/"
+    static var auroraEditorBaseURL: String = "https://api.auroraeditor.com/v1/"
 
     // OAuth
     static let login: String = "oauth/login"

@@ -81,6 +81,7 @@
 		20752E4628CA54B200935487 /* CommitHistoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20752E4528CA54B200935487 /* CommitHistoryCellView.swift */; };
 		20752E4928CA54F000935487 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20752E4828CA54F000935487 /* Avatar.swift */; };
 		2077162E287C8EC80069C68E /* ToolbarAppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077162D287C8EC80069C68E /* ToolbarAppInfo.swift */; };
+		207B4382293E0BEC00216AD6 /* CreateNewTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B4381293E0BEC00216AD6 /* CreateNewTagView.swift */; };
 		207D295828CCDE4300D31530 /* BranchCommitHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207D295728CCDE4300D31530 /* BranchCommitHistoryView.swift */; };
 		207D295A28CCDEDC00D31530 /* BranchCommitHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207D295928CCDEDC00D31530 /* BranchCommitHistory.swift */; };
 		207D295D28CCE72F00D31530 /* RenameBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207D295C28CCE72F00D31530 /* RenameBranchView.swift */; };
@@ -442,6 +443,7 @@
 		2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */; };
 		2BF86A4228AF9EA400079705 /* AEExtensionKit in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */; };
+		7BBF20172939B11400D60627 /* RecentProjectsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBF20162939B11400D60627 /* RecentProjectsStore.swift */; };
 		9302A22428D183E300648D63 /* TabBarItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9302A22328D183E300648D63 /* TabBarItemStorage.swift */; };
 		9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */; };
 		93159FDC28D5F40C00C55C5A /* CodeEditorViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93159FDB28D5F40C00C55C5A /* CodeEditorViewWrapper.swift */; };
@@ -643,6 +645,7 @@
 		20752E4528CA54B200935487 /* CommitHistoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitHistoryCellView.swift; sourceTree = "<group>"; };
 		20752E4828CA54F000935487 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		2077162D287C8EC80069C68E /* ToolbarAppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarAppInfo.swift; sourceTree = "<group>"; };
+		207B4381293E0BEC00216AD6 /* CreateNewTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTagView.swift; sourceTree = "<group>"; };
 		207D295728CCDE4300D31530 /* BranchCommitHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCommitHistoryView.swift; sourceTree = "<group>"; };
 		207D295928CCDEDC00D31530 /* BranchCommitHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchCommitHistory.swift; sourceTree = "<group>"; };
 		207D295C28CCE72F00D31530 /* RenameBranchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameBranchView.swift; sourceTree = "<group>"; };
@@ -1000,6 +1003,7 @@
 		6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceDocument+Listeners.swift"; sourceTree = "<group>"; };
 		6CDA84AA284C0E4A00C1CC3A /* TabBarItemButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemButtonStyle.swift; sourceTree = "<group>"; };
 		6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContextMenu.swift; sourceTree = "<group>"; };
+		7BBF20162939B11400D60627 /* RecentProjectsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentProjectsStore.swift; sourceTree = "<group>"; };
 		9302A22328D183E300648D63 /* TabBarItemStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemStorage.swift; sourceTree = "<group>"; };
 		9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNavigatorToolbarBottom.swift; sourceTree = "<group>"; };
 		93159FDB28D5F40C00C55C5A /* CodeEditorViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditorViewWrapper.swift; sourceTree = "<group>"; };
@@ -1353,6 +1357,7 @@
 		20752E3A28CA4C1E00935487 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				207B4380293E0BD800216AD6 /* Tag */,
 				20BE727328D0758E00EEDE5F /* Actions */,
 				2096A82228CF76C500F6ED39 /* Branch */,
 				20130BDC28CF30EB0000B634 /* Remote */,
@@ -1440,6 +1445,14 @@
 				20D8390F289A7F3F00D91D05 /* UI */,
 			);
 			path = Toolbar;
+			sourceTree = "<group>";
+		};
+		207B4380293E0BD800216AD6 /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				207B4381293E0BEC00216AD6 /* CreateNewTagView.swift */,
+			);
+			path = Tag;
 			sourceTree = "<group>";
 		};
 		207D295B28CCE72100D31530 /* Rename */ = {
@@ -1681,6 +1694,7 @@
 				20D83718289A7ACD00D91D05 /* StatusBar */,
 				934D2F0528C4EC430034E5C8 /* MenuBarItem */,
 				20D838F5289A7ACE00D91D05 /* TerminalEmulator */,
+				7BBF20122939AF6E00D60627 /* Recents */,
 				20D83810289A7ACD00D91D05 /* WelcomeModule */,
 				20D83866289A7ACE00D91D05 /* FileSystemClient */,
 			);
@@ -2112,8 +2126,6 @@
 				20D8381F289A7ACD00D91D05 /* WelcomeWindowView.swift */,
 				20D83820289A7ACD00D91D05 /* WelcomeView.swift */,
 				20D83821289A7ACD00D91D05 /* WelcomeActionView.swift */,
-				20D83822289A7ACD00D91D05 /* RecentProjectsView.swift */,
-				20D83823289A7ACD00D91D05 /* RecentProjectItem.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2963,6 +2975,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7BBF20122939AF6E00D60627 /* Recents */ = {
+			isa = PBXGroup;
+			children = (
+				7BBF20152939AFDB00D60627 /* UI */,
+				7BBF20132939AFCC00D60627 /* Model */,
+			);
+			path = Recents;
+			sourceTree = "<group>";
+		};
+		7BBF20132939AFCC00D60627 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7BBF20162939B11400D60627 /* RecentProjectsStore.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7BBF20152939AFDB00D60627 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				20D83823289A7ACD00D91D05 /* RecentProjectItem.swift */,
+				20D83822289A7ACD00D91D05 /* RecentProjectsView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		934D2F0528C4EC430034E5C8 /* MenuBarItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -3710,6 +3748,7 @@
 				934D2F0A28C591FD0034E5C8 /* GeneralPreferencesViewSections.swift in Sources */,
 				20212683289BF84B00246DD7 /* String.swift in Sources */,
 				934D2CDB28D207E100F22E38 /* TabHierarchyOutlineDataSource.swift in Sources */,
+				7BBF20172939B11400D60627 /* RecentProjectsStore.swift in Sources */,
 				2093CD41289AA095003A88DD /* Event.swift in Sources */,
 				20E8748C28A3AB89002CE758 /* SourceControlTableViewCell.swift in Sources */,
 				9354D4B728ACEE04004C6D18 /* RepositoriesTableViewCell.swift in Sources */,
@@ -3967,6 +4006,7 @@
 				2093CD56289AA0C0003A88DD /* Page.swift in Sources */,
 				93E0486C290E45D5008263B3 /* AuroraDataStorage.swift in Sources */,
 				2093CD4B289AA0A2003A88DD /* Router.swift in Sources */,
+				207B4382293E0BEC00216AD6 /* CreateNewTagView.swift in Sources */,
 				B6EE989027E8879A00CDD8AB /* InspectorSidebar.swift in Sources */,
 				2BDFA90428D107B200980385 /* WebWKView.swift in Sources */,
 				2093CD8B289AA12B003A88DD /* NotificationData.swift in Sources */,

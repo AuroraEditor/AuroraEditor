@@ -48,15 +48,22 @@ extension AppDelegate {
     }
 
     func updateRecentProjects(in menuItem: NSMenuItem) {
-        let recentProjectPaths = ( UserDefaults.standard.array(forKey: "recentProjectPaths") as? [String] ?? [] )
-            .filter { FileManager.default.fileExists(atPath: $0) }
-
-        menuItem.submenu?.items = recentProjectPaths.map({ name in
-            return RecentProjectMenuItem(title: name, action: #selector(openFile), keyEquivalent: "")
-        })
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-            self.updateRecentProjects(in: menuItem)
+        DispatchQueue.main.async {
+            RecentProjectsStore.shared.$paths
+                .map { paths in
+                    paths.map {
+                        RecentProjectMenuItem(
+                            title: $0,
+                            action: #selector(self.openFile),
+                            keyEquivalent: ""
+                        )
+                    }
+                }
+                .sink { items in
+                    menuItem.submenu?.items = items
+                    menuItem.isEnabled = !items.isEmpty
+                }
+                .store(in: &self.cancellable)
         }
     }
 
@@ -72,19 +79,9 @@ extension AppDelegate {
             display: true,
             completionHandler: { _, _, _ in }
         )
-        // add to recent projects
-        var recentProjectPaths = (
-            UserDefaults.standard.array(forKey: "recentProjectPaths") as? [String] ?? []
-        ).filter { FileManager.default.fileExists(atPath: $0) }
-        if let urlLocation = recentProjectPaths.firstIndex(of: repoPath) {
-            recentProjectPaths.remove(at: urlLocation)
+        DispatchQueue.main.async {
+            RecentProjectsStore.shared.record(path: repoPath)
         }
-        recentProjectPaths.insert(repoPath, at: 0)
-
-        UserDefaults.standard.set(
-            recentProjectPaths,
-            forKey: "recentProjectPaths"
-        )
     }
 
     @objc

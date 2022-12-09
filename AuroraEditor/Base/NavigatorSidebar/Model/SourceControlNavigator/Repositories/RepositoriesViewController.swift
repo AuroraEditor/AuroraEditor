@@ -123,15 +123,15 @@ extension RepositoriesViewController: NSOutlineViewDataSource {
             // item is a repo.
             switch index {
             case 0:
-                return item.branches!
+                return item.branches ?? []
             case 1:
-                return item.recentLocations!
+                return item.recentLocations ?? []
             case 2:
-                return item.tags!
+                return item.tags ?? []
             case 3:
-                return item.stashedChanges!
+                return item.stashedChanges ?? []
             case 4:
-                return item.remotes!
+                return item.remotes ?? []
             default:
                 return 0
             }
