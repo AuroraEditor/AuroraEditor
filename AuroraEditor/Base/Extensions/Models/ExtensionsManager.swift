@@ -19,6 +19,13 @@ public final class ExtensionsManager {
     var loadedBundles: [String: Bundle] = [:]
     var loadedExtensions: [String: ExtensionInterface] = [:]
     var loadedLanguageServers: [String: LSPClient] = [:]
+    var workspace: WorkspaceDocument?
+
+    let auroraAPIHandler: AuroraAPI = { function, parameters in
+        Log.info("Broadcasting", function, parameters)
+        ExtensionsManager.shared.workspace?.broadcaster.broadcast(function, parameters: parameters)
+        return true
+    }
 
     init() {
         Log.info("[ExtensionsManager] init()")
@@ -45,6 +52,10 @@ public final class ExtensionsManager {
         loadPlugins()
     }
 
+    func set(workspace: WorkspaceDocument) {
+        self.workspace = workspace
+    }
+
     /// Temporary load function, all extensions in ~/Library/com.auroraeditor/Extensions will be loaded.
     public func loadPlugins() {
             try? FileManager.default.createDirectory(
@@ -63,6 +74,11 @@ public final class ExtensionsManager {
                 if let builder = self.loadBundle(path: file) {
                     loadedExtensions[file] = builder.init().build(
                         withAPI: AuroraEditorAPI.init(extensionId: "0", workspace: .init())
+                    )
+
+                    loadedExtensions[file]?.respond(
+                        action: "registerCallback",
+                        parameters: ["callback": auroraAPIHandler]
                     )
 
                     Log.info("Registered \(file)")
