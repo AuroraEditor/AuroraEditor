@@ -21,10 +21,7 @@ public final class ExtensionsManager {
     var loadedLanguageServers: [String: LSPClient] = [:]
     var workspace: WorkspaceDocument?
 
-    let auroraAPIHandler: AuroraAPI = { function, parameters in
-        Log.info("Broadcasting", function, parameters)
-        ExtensionsManager.shared.workspace?.broadcaster.broadcast(function, parameters: parameters)
-    }
+    var auroraAPIHandler: AuroraAPI = { _, _ in }
 
     init() {
         Log.info("[ExtensionsManager] init()")
@@ -47,6 +44,15 @@ public final class ExtensionsManager {
             "Extensions",
             isDirectory: true
         )
+
+        self.auroraAPIHandler = { function, parameters in
+            if let workspace = self.workspace {
+                Log.info("Broadcasting", function, parameters)
+                workspace.broadcaster.broadcast(function, parameters: parameters)
+            } else {
+                Log.warning("Failed to broadcast", function, parameters)
+            }
+        }
 
         loadPlugins()
     }
