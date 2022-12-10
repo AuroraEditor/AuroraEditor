@@ -24,7 +24,6 @@ public final class ExtensionsManager {
     let auroraAPIHandler: AuroraAPI = { function, parameters in
         Log.info("Broadcasting", function, parameters)
         ExtensionsManager.shared.workspace?.broadcaster.broadcast(function, parameters: parameters)
-        return true
     }
 
     init() {
