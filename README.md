@@ -13,6 +13,9 @@
   <a href='https://discord.gg/5aecJ4rq9D' target='_blank'>
     <img alt="Discord" src="https://img.shields.io/discord/997410333348077620?color=f98a6c&style=for-the-badge">
   </a>
+  <a href='https://chat.whatsapp.com/IOoaSbj7Km4BH3k5wlJPx0' target='_blank'>
+    <img alt="Discord" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+  </a>
   <a href='https://nightly.link/AuroraEditor/AuroraEditor/workflows/nightly/main/AuroraEditor_Nightly.zip' target='_blank'>
   <img alt="Download" src="https://img.shields.io/badge/Download-Nightly Build-6bbee8?style=for-the-badge">
  </a>
