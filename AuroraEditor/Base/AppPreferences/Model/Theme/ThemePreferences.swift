@@ -39,7 +39,7 @@ public extension AppPreferences {
         public var useThemeBackground: Bool = true
 
         /// Automatically change theme based on system appearance
-        public var mirrorSystemAppearance: Bool = false
+        public var mirrorSystemAppearance: Bool = true
 
         /// Dictionary of themes containing overrides
         ///
