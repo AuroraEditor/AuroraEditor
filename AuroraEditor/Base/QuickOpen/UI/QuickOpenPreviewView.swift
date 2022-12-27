@@ -27,7 +27,12 @@ public struct QuickOpenPreviewView: View {
                 withContentsOf: item.url,
                 ofType: "public.source-code"
             ), loaded {
-                CodeEditorViewWrapper(codeFile: codeFile, editable: false, fileExtension: item.url.pathExtension)
+                // "Quick Look" function, need to pass a empty env here as well.
+                CodeEditorViewWrapper(
+                    codeFile: codeFile,
+                    editable: false,
+                    fileExtension: item.url.pathExtension
+                ).environmentObject(WorkspaceDocument())
             } else if let error = error {
                 Text(error)
             } else {
