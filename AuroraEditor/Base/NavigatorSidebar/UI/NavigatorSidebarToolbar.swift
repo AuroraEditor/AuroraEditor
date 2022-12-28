@@ -63,6 +63,7 @@ struct NavigatorSidebarToolbar: View {
             Button {
                 selection = icon.id
             } label: {
+                // this icon also serves as the drag and drop item
                 model.makeIcon(
                     named: icon.imageName,
                     title: icon.title
@@ -85,7 +86,6 @@ struct NavigatorSidebarToolbar: View {
                 )
             )
         }
-//        .animation(.default, value: model.icons)
         Spacer()
     }
 }

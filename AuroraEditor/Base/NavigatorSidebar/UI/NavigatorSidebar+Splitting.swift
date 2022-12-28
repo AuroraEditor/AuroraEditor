@@ -17,35 +17,31 @@ extension NavigatorSidebar {
             icons.contains(where: { $0.id == icon.id })
         }), iconOwner >= 0 && iconOwner <= 1 else { return }
 
-        // if the item was dragged to the top from the bottom, move it
-        if iconOwner == 0 && position == .bottom {
-            moveTopToBottom(icon: icon)
-            return
-        }
-
-        // if the item was dragged to the bottom from the top, move it
-        if iconOwner == 1 && position == .top {
-            moveBottomToTop(icon: icon)
-            return
-        }
-
-        // if the item was dragged to the top from the only pane, move all other items to the bottom
-        if iconOwner == 0 && position == .top {
-            moveFilledToTop(icon: icon)
-        }
-
-        // if the item was dragged from top to top or bottom to bottom, select it
-        if (iconOwner == 0 && position == .top) ||
-            (iconOwner == 1 && position == .bottom) {
-            selections[iconOwner] = icon.id
-            return
-        }
-
-        // if the item was dragged to the center, combine both toolbars
-        if position == .center {
+        switch position {
+        case .top:
+            if selections.count == 1 {
+                // if the item was dragged to the top from the only pane, move all other items to the bottom
+                moveFilledToTop(icon: icon)
+            } else if iconOwner == 0 {
+                // if the item was dragged from top to top, select it
+                selections[iconOwner] = icon.id
+            } else if iconOwner == 1 {
+                // if the item was dragged to the bottom from the top, move it
+                moveBottomToTop(icon: icon)
+            }
+        case .bottom:
+            if iconOwner == 0 {
+                // if the item was dragged to the top from the bottom, move it
+                moveTopToBottom(icon: icon)
+            } else if iconOwner == 1 {
+                // if the item was dragged from bottom to bottom, select it
+                selections[iconOwner] = icon.id
+            }
+        case .center:
+            // if the item was dragged to the center, combine both toolbars
             model.icons = [Array(model.icons.joined())]
             selections = [icon.id]
-            return
+        default: break // should never reach here
         }
     }
 

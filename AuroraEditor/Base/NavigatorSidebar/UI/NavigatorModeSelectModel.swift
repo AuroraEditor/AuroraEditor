@@ -13,6 +13,8 @@ class NavigatorModeSelectModel: ObservableObject {
     // need to be the same across all top/left sidebars across all windows.
     static let shared: NavigatorModeSelectModel = .init()
 
+    /// A 2D array of ``SidebarDockIcon``s. Each subarray is a different pane.
+    /// Currently, it is hard-coded to not work with more than 2 panes.
     @Published
     var icons: [[SidebarDockIcon]] = [[
         SidebarDockIcon(

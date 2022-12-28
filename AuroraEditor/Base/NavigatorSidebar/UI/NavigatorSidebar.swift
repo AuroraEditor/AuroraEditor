@@ -45,27 +45,8 @@ struct NavigatorSidebar: View {
         .padding(.leading, prefs.preferences.general.sidebarStyle == .vscode ? 30 : 0)
     }
 
-    // swiftlint:disable:next function_body_length
     func sidebarModule(toolbar: Int) -> some View {
-        VStack {
-            switch selections[toolbar] {
-            case 0:
-                ProjectNavigator()
-            case 1:
-                SourceControlNavigatorView()
-            case 2:
-                FindNavigator(state: workspace.searchState ?? .init(workspace))
-            case 6:
-                HierarchyNavigator()
-            case 7:
-                ExtensionNavigator(data: workspace.extensionNavigatorData!)
-                    .environmentObject(workspace)
-            default:
-                needsImplementation
-            }
-        }
-        .ignoresSafeArea(edges: (prefs.preferences.general.sidebarStyle == .xcode) ? [.leading] : [])
-        .padding([.top, .leading], (prefs.preferences.general.sidebarStyle == .xcode) ? 0 : -10)
+        sidebarModuleContent(toolbar: toolbar)
         .safeAreaInset(edge: .leading) { // VSC style sidebar
             if prefs.preferences.general.sidebarStyle == .vscode {
                 NavigatorSidebarToolbar(selection: $selections[toolbar],
@@ -113,6 +94,23 @@ struct NavigatorSidebar: View {
             .padding(.top, toolbarPadding)
             .padding(.bottom, (toolbar == 0 && selections.count == 2) ? -9 : 0)
         }
+    }
+
+    func sidebarModuleContent(toolbar: Int) -> some View {
+        VStack {
+            switch selections[toolbar] {
+            case 0: ProjectNavigator()
+            case 1: SourceControlNavigatorView()
+            case 2: FindNavigator(state: workspace.searchState ?? .init(workspace))
+            case 6: HierarchyNavigator()
+            case 7: ExtensionNavigator(data: workspace.extensionNavigatorData!)
+                    .environmentObject(workspace)
+            default:
+                needsImplementation
+            }
+        }
+        .ignoresSafeArea(edges: (prefs.preferences.general.sidebarStyle == .xcode) ? [.leading] : [])
+        .padding([.top, .leading], (prefs.preferences.general.sidebarStyle == .xcode) ? 0 : -10)
     }
 
     var needsImplementation: some View {
