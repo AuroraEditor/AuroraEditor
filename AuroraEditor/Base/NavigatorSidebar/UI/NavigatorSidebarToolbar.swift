@@ -85,7 +85,7 @@ struct NavigatorSidebarToolbar: View {
                 )
             )
         }
-        .animation(.default, value: model.icons)
+//        .animation(.default, value: model.icons)
         Spacer()
     }
 }

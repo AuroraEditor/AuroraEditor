@@ -124,10 +124,12 @@ struct NavigatorSidebarDockIconDelegate: DropDelegate {
         drugItemLocation = info.location
 
         if icons[toIndex] != current {
-            icons.move(
-                fromOffsets: IndexSet(integer: from),
-                toOffset: toIndex > from ? toIndex + 1 : toIndex
-            )
+            withAnimation {
+                icons.move(
+                    fromOffsets: IndexSet(integer: from),
+                    toOffset: toIndex > from ? toIndex + 1 : toIndex
+                )
+            }
         }
     }
 
