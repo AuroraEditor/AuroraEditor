@@ -14,7 +14,7 @@ class NavigatorModeSelectModel: ObservableObject {
     static let shared: NavigatorModeSelectModel = .init()
 
     @Published
-    var icons: [SidebarDockIcon] = [
+    var icons: [[SidebarDockIcon]] = [[
         SidebarDockIcon(
             imageName: "folder",
             title: "Project",
@@ -60,7 +60,7 @@ class NavigatorModeSelectModel: ObservableObject {
             title: "Sidebar Items",
             id: 8
         )
-    ]
+    ]]
 
     @Published
     var hasChangedLocation: Bool = false
@@ -75,8 +75,8 @@ class NavigatorModeSelectModel: ObservableObject {
         getSafeImage(named: named, accesibilityDescription: title)
         .help(title)
         .onDrag {
-            if let index = self.icons.firstIndex(where: { $0.imageName == named }) {
-                self.draggingItem = self.icons[index]
+            if let item = Array(self.icons.joined()).first(where: { $0.imageName == named }) {
+                self.draggingItem = item
             }
             return .init(object: NSString(string: named))
         } preview: {

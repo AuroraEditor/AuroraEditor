@@ -47,18 +47,10 @@ struct NavigatorSidebar: View {
                    proposalPosition: $dropProposal,
                    margin: 0.35,
                    isProportional: true,
-                   onDrop: { position, info in
+                   onDrop: { position, _ in
             // get the data
-            guard let provider = info.itemProviders(for: [.utf8PlainText]).first else { return }
-            provider.loadDataRepresentation(forTypeIdentifier: "public.utf8-plain-text") { data, error in
-                if let error {
-                    Log.error("Error: \(error.localizedDescription)")
-                }
-                if let data, let imageName = String(data: data, encoding: .utf8) {
-                    // I have absolutely no idea why the data contains the name of the image.
-                    // but its a form of data, so we use it to identify the dropped object.
-                    moveIcon(withName: imageName, to: position)
-                }
+            if let draggingItem = model.draggingItem {
+                moveIcon(draggingItem, to: position)
             }
         })
         .ignoresSafeArea(edges: (prefs.preferences.general.sidebarStyle == .xcode) ? [.leading] : [])
@@ -66,7 +58,8 @@ struct NavigatorSidebar: View {
         .safeAreaInset(edge: .leading) { // VSC style sidebar
             if prefs.preferences.general.sidebarStyle == .vscode {
                 NavigatorSidebarToolbar(selection: $selection,
-                                        style: $prefs.preferences.general.sidebarStyle)
+                                        style: $prefs.preferences.general.sidebarStyle,
+                                        toolbarNumber: .constant(0))
                 .id("navToolbar")
                 .safeAreaInset(edge: .trailing) {
                     // this complex thing is so that theres a vertical divider that goes from top to bottom
@@ -85,7 +78,8 @@ struct NavigatorSidebar: View {
         .safeAreaInset(edge: .top) { // Xcode style sidebar
             if prefs.preferences.general.sidebarStyle == .xcode {
                 NavigatorSidebarToolbar(selection: $selection,
-                                        style: $prefs.preferences.general.sidebarStyle)
+                                        style: $prefs.preferences.general.sidebarStyle,
+                                        toolbarNumber: .constant(0))
                 .id("navToolbar")
                 .padding(.bottom, toolbarPadding)
             } else {
@@ -121,10 +115,7 @@ struct NavigatorSidebar: View {
         .frame(maxHeight: .infinity)
     }
 
-    func moveIcon(withName name: String, to position: SplitViewProposalDropPosition) {
-        // get the icon with the name
-        guard let icon = model.icons.first(where: { $0.imageName == name }) else { return }
-
+    func moveIcon(_ icon: SidebarDockIcon, to position: SplitViewProposalDropPosition) {
         // if the icon is the current view, don't do anything
         guard selection != icon.id else { return }
 
@@ -137,15 +128,15 @@ struct NavigatorSidebar: View {
         // other things
         switch position {
         case .top:
-            Log.info("Dropped \(name) at the top")
+            Log.info("Dropped \(icon.title) at the top")
         case .bottom:
-            Log.info("Dropped \(name) at the bottom")
+            Log.info("Dropped \(icon.title) at the bottom")
         case .leading:
-            Log.info("Dropped \(name) at the start")
+            Log.info("Dropped \(icon.title) at the start")
         case .trailing:
-            Log.info("Dropped \(name) at the end")
+            Log.info("Dropped \(icon.title) at the end")
         case .center:
-            Log.info("Dropped \(name) at the center")
+            Log.info("Dropped \(icon.title) at the center")
         }
     }
 }

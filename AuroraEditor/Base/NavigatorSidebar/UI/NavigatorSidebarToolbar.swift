@@ -16,14 +16,20 @@ struct NavigatorSidebarToolbar: View {
     private var selection: Int
 
     @Binding
+    private var toolbarNumber: Int
+
+    @Binding
     private var sidebarStyle: AppPreferences.SidebarStyle
 
     @ObservedObject
     private var model: NavigatorModeSelectModel = .shared
 
-    init(selection: Binding<Int>, style: Binding<AppPreferences.SidebarStyle>) {
+    init(selection: Binding<Int>,
+         style: Binding<AppPreferences.SidebarStyle>,
+         toolbarNumber: Binding<Int>) {
         self._selection = selection
         self._sidebarStyle = style
+        self._toolbarNumber = toolbarNumber
     }
 
     var body: some View {
@@ -51,7 +57,7 @@ struct NavigatorSidebarToolbar: View {
 
     @ViewBuilder
     var icons: some View {
-        ForEach(model.icons) { icon in
+        ForEach(model.icons[toolbarNumber]) { icon in
             Button {
                 selection = icon.id
             } label: {
@@ -70,30 +76,12 @@ struct NavigatorSidebarToolbar: View {
                 delegate: NavigatorSidebarDockIconDelegate(
                     item: icon,
                     current: $model.draggingItem,
-                    icons: $model.icons,
+                    icons: $model.icons[toolbarNumber],
                     hasChangedLocation: $model.hasChangedLocation,
                     drugItemLocation: $model.drugItemLocation
                 )
             )
         }
         Spacer()
-    }
-}
-
-class StringWrapper: NSObject, NSSecureCoding {
-    static var supportsSecureCoding: Bool = true
-
-    func encode(with coder: NSCoder) {
-        coder.encode(string, forKey: "string")
-    }
-
-    required init?(coder: NSCoder) {
-        self.string = (coder.decodeObject(forKey: "string") as? String) ?? ""
-    }
-
-    var string: String
-
-    init(string: String) {
-        self.string = string
     }
 }
