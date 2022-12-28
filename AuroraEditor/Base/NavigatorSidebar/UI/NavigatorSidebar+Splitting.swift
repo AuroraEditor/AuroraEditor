@@ -10,21 +10,6 @@ import SwiftUI
 
 extension NavigatorSidebar {
     func moveIcon(_ icon: SidebarDockIcon, to position: SplitViewProposalDropPosition) {
-        defer {
-            let iconFormatted = """
-[
-\(Array(model.icons.enumerated()).map({ """
-\t[ \(selections[$0])
-\($1.map({ "\t\t\($0.id) \($0.title)" }).joined(separator: "\n"))
-\t]
-""" }).joined(separator: "\n"))
-]
-"""
-            Log.info("Selections: \(selections)")
-            // swiftlint:disable:this disallow_print
-            print("Icons: \n\(iconFormatted)")
-        }
-
         // determine the toolbar that owns the icon
         // and also short circuit if the owner is not 0 or 1, as there should not
         // be any more than two at any given point
