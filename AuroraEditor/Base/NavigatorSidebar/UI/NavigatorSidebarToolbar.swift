@@ -44,7 +44,6 @@ struct NavigatorSidebarToolbar: View {
             .frame(maxWidth: .infinity)
             .overlay(alignment: .top) { Divider() }
             .overlay(alignment: .bottom) { Divider() }
-//            .animation(.default, value: model.icons)
         } else { // leading
             VStack(alignment: .center, spacing: 2) {
                 if (0..<model.icons.count).contains(toolbarNumber) {
@@ -55,7 +54,6 @@ struct NavigatorSidebarToolbar: View {
             .frame(maxHeight: .infinity)
             .padding(.leading, 5)
             .padding(.trailing, -3)
-//            .animation(.default, value: model.icons)
         }
     }
 
@@ -70,6 +68,7 @@ struct NavigatorSidebarToolbar: View {
                     title: icon.title
                 )
             }
+            .id(icon.id)
             .buttonStyle(NavigatorToolbarButtonStyle(id: icon.id, selection: selection, activeState: activeState))
             .imageScale(.medium)
             .opacity(model.draggingItem?.imageName == icon.imageName &&
@@ -86,6 +85,7 @@ struct NavigatorSidebarToolbar: View {
                 )
             )
         }
+        .animation(.default, value: model.icons)
         Spacer()
     }
 }
