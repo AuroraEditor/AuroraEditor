@@ -111,6 +111,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Maartz",
+      "name": "Maartz",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13407086?v=4",
+      "profile": "https://github.com/Maartz",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
