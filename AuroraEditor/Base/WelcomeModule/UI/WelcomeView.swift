@@ -10,10 +10,10 @@ import AppKit
 import Foundation
 import Version_Control
 
-// The main window when opening Aurora Editor when there 
+// The main window when opening Aurora Editor when there
 // is no project to open. A user can open a project from
 // directory, create one or clone one from their desired
-// git provider.
+// git provider and can drag and drop a file or a folder
 public struct WelcomeView: View {
 
     let shellClient: ShellClient
@@ -99,6 +99,12 @@ public struct WelcomeView: View {
                         .onTapGesture {
                             openDocument(nil, dismissWindow)
                         }
+
+                        WelcomeActionView(
+                            iconName: "cursorarrow.and.square.on.square.dashed",
+                            title: "Drag and drop",
+                            subtitle: "Open an existing file or folder by drag and droping it"
+                        )
                     }
                 }
                 Spacer()
@@ -111,6 +117,16 @@ public struct WelcomeView: View {
             .onHover { isHovering in
                 self.isHovering = isHovering
             }
+            .onDrop(of: ["public.file-url"], isTargeted: nil, perform: { itemProvider in
+                if let item = itemProvider.first {
+                    _ = item.loadObject(ofClass: URL.self) { (url, _) in
+                        if let url = url {
+                            openDocument(url, dismissWindow)
+                        }
+                    }
+                }
+                return true
+            })
 
             if isHovering {
                 HStack(alignment: .center) {
