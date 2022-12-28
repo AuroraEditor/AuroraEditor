@@ -45,7 +45,7 @@ struct PreferencesView: View {
                         }
                     }
                 }
-                .frame(width: 150)
+                .frame(minWidth: 160, idealWidth: 170, maxWidth: 180)
                 .listStyle(.sidebar)
 
                 Text("No selection")
@@ -84,6 +84,7 @@ struct PreferencesView: View {
                     UpdatePreferencesView()
                 }
         }
+            .frame(minWidth: 560, idealWidth: 580, maxWidth: 600)
     }
 
     public func closeWindow() {
