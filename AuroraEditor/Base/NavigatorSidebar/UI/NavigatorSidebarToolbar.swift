@@ -15,7 +15,7 @@ struct NavigatorSidebarToolbar: View {
     @Binding
     private var selection: Int
 
-    @Binding
+    @State
     private var toolbarNumber: Int
 
     @Binding
@@ -26,10 +26,10 @@ struct NavigatorSidebarToolbar: View {
 
     init(selection: Binding<Int>,
          style: Binding<AppPreferences.SidebarStyle>,
-         toolbarNumber: Binding<Int>) {
+         toolbarNumber: Int) {
         self._selection = selection
         self._sidebarStyle = style
-        self._toolbarNumber = toolbarNumber
+        self._toolbarNumber = State(initialValue: toolbarNumber)
     }
 
     var body: some View {
