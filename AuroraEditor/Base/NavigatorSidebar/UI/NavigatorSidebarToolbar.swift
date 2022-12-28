@@ -36,7 +36,9 @@ struct NavigatorSidebarToolbar: View {
         if sidebarStyle == .xcode { // top
             HStack(spacing: 2) {
                 Spacer()
-                icons
+                if (0..<model.icons.count).contains(toolbarNumber) {
+                    icons
+                }
             }
             .frame(height: 29, alignment: .center)
             .frame(maxWidth: .infinity)
@@ -45,7 +47,9 @@ struct NavigatorSidebarToolbar: View {
             .animation(.default, value: model.icons)
         } else { // leading
             VStack(alignment: .center, spacing: 2) {
-                icons
+                if (0..<model.icons.count).contains(toolbarNumber) {
+                    icons
+                }
             }
             .frame(width: 25, alignment: .center)
             .frame(maxHeight: .infinity)

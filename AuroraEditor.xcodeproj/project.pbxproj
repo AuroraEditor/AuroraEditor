@@ -497,6 +497,7 @@
 		93D5F5D928CE123200286EBD /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F5D828CE123200286EBD /* TextTableViewCell.swift */; };
 		93DD4FF328AFD0F100B664D4 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */; };
 		93DEBF7C295C1F6D002EAD63 /* NavigatorSidebarToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DEBF7B295C1F6D002EAD63 /* NavigatorSidebarToolbar.swift */; };
+		93DEBF7E295C441E002EAD63 /* NavigatorSidebar+Splitting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DEBF7D295C441E002EAD63 /* NavigatorSidebar+Splitting.swift */; };
 		93E0486C290E45D5008263B3 /* AuroraDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E0486B290E45D5008263B3 /* AuroraDataStorage.swift */; };
 		93ECCFFB2902D02E00605FB3 /* CodeFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ECCFFA2902D02E00605FB3 /* CodeFile.swift */; };
 		93EF2EFA290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF2EF9290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift */; };
@@ -1056,6 +1057,7 @@
 		93D5F5D828CE123200286EBD /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
 		93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		93DEBF7B295C1F6D002EAD63 /* NavigatorSidebarToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorSidebarToolbar.swift; sourceTree = "<group>"; };
+		93DEBF7D295C441E002EAD63 /* NavigatorSidebar+Splitting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigatorSidebar+Splitting.swift"; sourceTree = "<group>"; };
 		93E0486B290E45D5008263B3 /* AuroraDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraDataStorage.swift; sourceTree = "<group>"; };
 		93ECCFFA2902D02E00605FB3 /* CodeFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeFile.swift; sourceTree = "<group>"; };
 		93EF2EF9290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraCommandBroadcaster.swift; sourceTree = "<group>"; };
@@ -2533,6 +2535,7 @@
 				93DEBF7B295C1F6D002EAD63 /* NavigatorSidebarToolbar.swift */,
 				93983D2C28CE012500E54409 /* NavigatorModeSelectModel.swift */,
 				287776E627E3413200D46668 /* NavigatorSidebar.swift */,
+				93DEBF7D295C441E002EAD63 /* NavigatorSidebar+Splitting.swift */,
 				28FFE1BE27E3A441001939DB /* NavigatorSidebarToolbarBottom.swift */,
 			);
 			path = UI;
@@ -3791,6 +3794,7 @@
 				043C321427E31FF6006AE443 /* AuroraEditorDocumentController.swift in Sources */,
 				2093CCAA289AA01A003A88DD /* FileItem+Array.swift in Sources */,
 				2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */,
+				93DEBF7E295C441E002EAD63 /* NavigatorSidebar+Splitting.swift in Sources */,
 				9354D4BB28AD2872004C6D18 /* StandardTableViewCell.swift in Sources */,
 				2B04575728E6FFE300024F2D /* HeadIndentThemeAttribute.swift in Sources */,
 				2093CD48289AA095003A88DD /* Parameters.swift in Sources */,
