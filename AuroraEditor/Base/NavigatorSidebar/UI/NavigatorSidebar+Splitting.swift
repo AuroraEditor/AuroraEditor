@@ -26,18 +26,26 @@ extension NavigatorSidebar {
         // if the item was dragged to the bottom from the top, move it
         if iconOwner == 1 && position == .top {
             moveBottomToTop(icon: icon)
+            return
+        }
+
+        // if the item was dragged to the top from the only pane, move all other items to the bottom
+        if iconOwner == 0 && position == .top {
+            moveFilledToTop(icon: icon)
         }
 
         // if the item was dragged from top to top or bottom to bottom, select it
         if (iconOwner == 0 && position == .top) ||
             (iconOwner == 1 && position == .bottom) {
             selections[iconOwner] = icon.id
+            return
         }
 
         // if the item was dragged to the center, combine both toolbars
         if position == .center {
             model.icons = [Array(model.icons.joined())]
             selections = [icon.id]
+            return
         }
     }
 
@@ -94,5 +102,17 @@ extension NavigatorSidebar {
             // select a new focus for the bottom toolbar
             selections[1] = model.icons[1][0].id
         }
+    }
+
+    func moveFilledToTop(icon: SidebarDockIcon) {
+        // remove the icon from its origin
+        model.icons[0].removeAll { otherIcon in
+            otherIcon.id == icon.id
+        }
+
+        // insert it as item 0
+        model.icons.insert([icon], at: 0)
+        selections[0] = icon.id
+        selections.append(model.icons[1][0].id)
     }
 }
