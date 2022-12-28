@@ -47,7 +47,7 @@ It will support everything you could expect from an Xcode-inspired application, 
  <br />
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Motivation
@@ -134,6 +134,7 @@ Thanks goes to these wonderful people:
       <td align="center"><a href="https://github.com/Lakhwinderr"><img src="https://avatars.githubusercontent.com/u/39651639?v=4?s=100" width="100px;" alt="Lakhwinder Singh"/><br /><sub><b>Lakhwinder Singh</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3ALakhwinderr" title="Bug reports">🐛</a></td>
       <td align="center"><a href="http://lystad.io"><img src="https://avatars.githubusercontent.com/u/69081683?v=4?s=100" width="100px;" alt="Jens"/><br /><sub><b>Jens</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3Ajenslys" title="Bug reports">🐛</a></td>
       <td align="center"><a href="https://github.com/ladvoc"><img src="https://avatars.githubusercontent.com/u/3182119?v=4?s=100" width="100px;" alt="ladvoc"/><br /><sub><b>ladvoc</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=ladvoc" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/Maartz"><img src="https://avatars.githubusercontent.com/u/13407086?v=4?s=100" width="100px;" alt="Maartz"/><br /><sub><b>Maartz</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3AMaartz" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
