@@ -14,12 +14,12 @@
     <img alt="Discord" src="https://img.shields.io/discord/997410333348077620?color=f98a6c&style=for-the-badge">
   </a>
   <a href='https://chat.whatsapp.com/IOoaSbj7Km4BH3k5wlJPx0' target='_blank'>
-    <img alt="Discord" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" height='28px' width='28px'>
+    <img alt="Whatsapp" src="https://img.shields.io/static/v1?label=Whatsapp&message=Join%20the%20community&color=success&style=for-the-badge" height="28">
   </a>
   <a href='https://nightly.link/AuroraEditor/AuroraEditor/workflows/nightly/main/AuroraEditor_Nightly.zip' target='_blank'>
   <img alt="Download" src="https://img.shields.io/badge/Download-Nightly Build-6bbee8?style=for-the-badge">
  </a>
- <a href='https://twitter.com/intent/tweet?text=Try%20this%20new%20open-source%20code%20editor,%20Aurora%20Editor&url=https://auroraeditor.com&via=Aurora_Editor&hashtags=AuroraEditor,editor,AEIDE,developers,Aurora,OSS' target='_blank'><img src='https://img.shields.io/twitter/url/http/shields.io.svg?style=for-the-badge'></a>
+ <a href='https://twitter.com/intent/tweet?text=Try%20this%20new%20open-source%20code%20editor,%20Aurora%20Editor&url=https://auroraeditor.com&via=Aurora_Editor&hashtags=AuroraEditor,editor,AEIDE,developers,Aurora,OSS' target='_blank'><img src='https://img.shields.io/twitter/url?logo=twitter&style=for-the-badge&url=https%3A%2F%2Fauroraeditor.com'></a>
 </p>
 
 <br />
@@ -150,3 +150,9 @@ Thanks goes to these wonderful people:
 ## Intellectual Property License
 
 The Aurora Editor Logo is copyright of AuroraEditor and Arurora Company.
+
+## Socials
+
+<a href="https://www.producthunt.com/posts/aurora-editor?utm_source=badge-featured&amp;utm_medium=badge&amp;utm_souce=badge-aurora-editor">
+<img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=372771&amp;theme=light" alt="AuroraEditor | Product Hunt">
+</a>
