@@ -94,20 +94,20 @@ struct NavigatorSidebar: View {
             }
         }
         .safeAreaInset(edge: .bottom) {
-            switch selections[toolbar] {
-            case 0:
-                ProjectNavigatorToolbarBottom()
-                    .padding(.top, toolbarPadding)
-            case 1:
-                SourceControlToolbarBottom()
-                    .padding(.top, toolbarPadding)
-            case 2, 3, 4, 5, 6, 7:
-                NavigatorSidebarToolbarBottom()
-                    .padding(.top, toolbarPadding)
-            default:
-                NavigatorSidebarToolbarBottom()
-                    .padding(.top, toolbarPadding)
+            ZStack {
+                switch selections[toolbar] {
+                case 0:
+                    ProjectNavigatorToolbarBottom()
+                case 1:
+                    SourceControlToolbarBottom()
+                case 2, 3, 4, 5, 6, 7:
+                    NavigatorSidebarToolbarBottom()
+                default:
+                    NavigatorSidebarToolbarBottom()
+                }
             }
+            .padding(.top, toolbarPadding)
+            .padding(.bottom, (toolbar == 0 && selections.count == 2) ? -9 : 0)
         }
     }
 
