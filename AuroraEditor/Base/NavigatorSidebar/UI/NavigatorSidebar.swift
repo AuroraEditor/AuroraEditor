@@ -71,7 +71,7 @@ struct NavigatorSidebar: View {
                                 .padding(.bottom, -8)
                         }
                         .frame(width: 1)
-                        .offset(y: -8)
+                        .offset(x: -2, y: -8)
                     }
             } else {
                 HStack {
