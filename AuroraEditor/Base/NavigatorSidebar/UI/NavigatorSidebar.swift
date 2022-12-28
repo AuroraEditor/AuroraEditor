@@ -17,6 +17,9 @@ struct NavigatorSidebar: View {
     @State
     public var selection: Int = 0
 
+    @ObservedObject
+    private var model: NavigatorModeSelectModel = .shared
+
     @State
     private var dropProposal: SplitViewProposalDropPosition?
 
@@ -52,6 +55,8 @@ struct NavigatorSidebar: View {
                     Log.error("Error: \(error.localizedDescription)")
                 }
                 if let data, let imageName = String(data: data, encoding: .utf8) {
+                    // I have absolutely no idea why the data contains the name of the image.
+                    // but its a form of data, so we use it to identify the dropped object.
                     moveIcon(withName: imageName, to: position)
                 }
             }
@@ -117,6 +122,19 @@ struct NavigatorSidebar: View {
     }
 
     func moveIcon(withName name: String, to position: SplitViewProposalDropPosition) {
+        // get the icon with the name
+        guard let icon = model.icons.first(where: { $0.imageName == name }) else { return }
+
+        // if the icon is the current view, don't do anything
+        guard selection != icon.id else { return }
+
+        // if the icon was dragged to the center, focus it
+        if position == .center {
+            selection = icon.id
+            return
+        }
+
+        // other things
         switch position {
         case .top:
             Log.info("Dropped \(name) at the top")

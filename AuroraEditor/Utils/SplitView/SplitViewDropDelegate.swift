@@ -21,7 +21,6 @@ struct SplitViewDropDelegate: DropDelegate {
     func performDrop(info: DropInfo) -> Bool {
         if let proposalPosition = proposalPosition {
             onDrop?(proposalPosition, info)
-            Log.info("Performing drop with \(info)")
         }
 
         return false
