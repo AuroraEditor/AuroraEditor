@@ -498,6 +498,7 @@
 		93D5F5D728CE0EF500286EBD /* TabHierarchyMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F5D628CE0EF500286EBD /* TabHierarchyMenu.swift */; };
 		93D5F5D928CE123200286EBD /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F5D828CE123200286EBD /* TextTableViewCell.swift */; };
 		93DD4FF328AFD0F100B664D4 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */; };
+		93DEBF7C295C1F6D002EAD63 /* NavigatorSidebarToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DEBF7B295C1F6D002EAD63 /* NavigatorSidebarToolbar.swift */; };
 		93E0486C290E45D5008263B3 /* AuroraDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E0486B290E45D5008263B3 /* AuroraDataStorage.swift */; };
 		93ECCFFB2902D02E00605FB3 /* CodeFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ECCFFA2902D02E00605FB3 /* CodeFile.swift */; };
 		93EF2EFA290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF2EF9290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift */; };
@@ -1058,6 +1059,7 @@
 		93D5F5D628CE0EF500286EBD /* TabHierarchyMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHierarchyMenu.swift; sourceTree = "<group>"; };
 		93D5F5D828CE123200286EBD /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
 		93DD4FF228AFD0F100B664D4 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		93DEBF7B295C1F6D002EAD63 /* NavigatorSidebarToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorSidebarToolbar.swift; sourceTree = "<group>"; };
 		93E0486B290E45D5008263B3 /* AuroraDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraDataStorage.swift; sourceTree = "<group>"; };
 		93ECCFFA2902D02E00605FB3 /* CodeFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeFile.swift; sourceTree = "<group>"; };
 		93EF2EF9290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraCommandBroadcaster.swift; sourceTree = "<group>"; };
@@ -2532,6 +2534,7 @@
 				0483E34E27FDB15F00354AC0 /* ExtensionNavigator */,
 				20D83904289A7D8600D91D05 /* SourceControlNavigator */,
 				93983D2E28CE053800E54409 /* HierarchyNavigator */,
+				93DEBF7B295C1F6D002EAD63 /* NavigatorSidebarToolbar.swift */,
 				28B0A19727E385C300B73177 /* NavigatorSidebarToolbarTop.swift */,
 				93C43E8128B0DBF0002E23DC /* NavigatorSidebarToolbarLeft.swift */,
 				93983D2C28CE012500E54409 /* NavigatorModeSelectModel.swift */,
@@ -3717,6 +3720,7 @@
 				D7E201B027E8C07300CB86D0 /* FindNavigatorSearchBar.swift in Sources */,
 				2072FA1C280D874000C7F8D4 /* IndentUsing.swift in Sources */,
 				2093CD71289AA0FC003A88DD /* HelpButton.swift in Sources */,
+				93DEBF7C295C1F6D002EAD63 /* NavigatorSidebarToolbar.swift in Sources */,
 				93B1D10C28CD907A005A8C24 /* TabBar+Drag.swift in Sources */,
 				2093CDAD289AA185003A88DD /* ThemePreviewIcon.swift in Sources */,
 				2B04574028E6FFE300024F2D /* TokenizedLine.swift in Sources */,

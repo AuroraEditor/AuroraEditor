@@ -61,7 +61,7 @@ struct NavigatorSidebarToolbarTop: View {
     }
 }
 
-struct NavigatorSidebarToolbar_Previews: PreviewProvider {
+struct NavigatorSidebarToolbarTop_Previews: PreviewProvider {
     static var previews: some View {
         NavigatorSidebarToolbarTop(selection: .constant(0))
     }

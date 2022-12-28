@@ -62,19 +62,16 @@ struct NavigatorSidebar: View {
         .padding([.top, .leading], (prefs.preferences.general.sidebarStyle == .xcode) ? 0 : -10)
         .safeAreaInset(edge: .leading) { // VSC style sidebar
             if prefs.preferences.general.sidebarStyle == .vscode {
-                NavigatorSidebarToolbarLeft(selection: $selection)
-                    .padding(.leading, 5)
-                    .padding(.trailing, -3)
+                NavigatorSidebarToolbar(selection: $selection,
+                                        style: $prefs.preferences.general.sidebarStyle)
                     .safeAreaInset(edge: .trailing) {
                         // this complex thing is so that theres a vertical divider that goes from top to bottom
                         HStack {
-                            GeometryReader { geometry in
-                                Divider()
-                                    .frame(height: geometry.size.height + 8)
-                            }
+                            Divider()
+                                .padding(.bottom, -8)
                         }
                         .frame(width: 1)
-                        .offset(x: -2, y: -8)
+                        .offset(y: -8)
                     }
             } else {
                 HStack {
@@ -83,7 +80,8 @@ struct NavigatorSidebar: View {
         }
         .safeAreaInset(edge: .top) { // Xcode style sidebar
             if prefs.preferences.general.sidebarStyle == .xcode {
-                NavigatorSidebarToolbarTop(selection: $selection)
+                NavigatorSidebarToolbar(selection: $selection,
+                                        style: $prefs.preferences.general.sidebarStyle)
                     .padding(.bottom, toolbarPadding)
             } else {
                 Divider()
