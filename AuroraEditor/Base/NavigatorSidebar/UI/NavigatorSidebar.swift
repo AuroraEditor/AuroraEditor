@@ -64,15 +64,16 @@ struct NavigatorSidebar: View {
             if prefs.preferences.general.sidebarStyle == .vscode {
                 NavigatorSidebarToolbar(selection: $selection,
                                         style: $prefs.preferences.general.sidebarStyle)
-                    .safeAreaInset(edge: .trailing) {
-                        // this complex thing is so that theres a vertical divider that goes from top to bottom
-                        HStack {
-                            Divider()
-                                .padding(.bottom, -8)
-                        }
-                        .frame(width: 1)
-                        .offset(x: -2, y: -8)
+                .id("navToolbar")
+                .safeAreaInset(edge: .trailing) {
+                    // this complex thing is so that theres a vertical divider that goes from top to bottom
+                    HStack {
+                        Divider()
+                            .padding(.bottom, -8)
                     }
+                    .frame(width: 1)
+                    .offset(x: -2, y: -8)
+                }
             } else {
                 HStack {
                 }.frame(width: 0)
@@ -82,7 +83,8 @@ struct NavigatorSidebar: View {
             if prefs.preferences.general.sidebarStyle == .xcode {
                 NavigatorSidebarToolbar(selection: $selection,
                                         style: $prefs.preferences.general.sidebarStyle)
-                    .padding(.bottom, toolbarPadding)
+                .id("navToolbar")
+                .padding(.bottom, toolbarPadding)
             } else {
                 Divider()
             }
