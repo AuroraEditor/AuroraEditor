@@ -29,6 +29,8 @@ struct NavigatorSidebar: View {
         ForEach(Array(selections.enumerated()), id: \.offset) { index, _ in
             sidebarModule(toolbar: index)
         }
+        .padding(.top, prefs.preferences.general.sidebarStyle == .xcode ? -30 : 0)
+        .padding(.leading, prefs.preferences.general.sidebarStyle == .vscode ? -30 : 0)
         .splitView(availablePositions: [.top, .bottom, .center],
                    proposalPosition: $dropProposal,
                    margin: 0.35,
@@ -39,6 +41,8 @@ struct NavigatorSidebar: View {
                 moveIcon(draggingItem, to: position)
             }
         })
+        .padding(.top, prefs.preferences.general.sidebarStyle == .xcode ? 30 : 0)
+        .padding(.leading, prefs.preferences.general.sidebarStyle == .vscode ? 30 : 0)
     }
 
     // swiftlint:disable:next function_body_length

@@ -44,7 +44,7 @@ struct NavigatorSidebarToolbar: View {
             .frame(maxWidth: .infinity)
             .overlay(alignment: .top) { Divider() }
             .overlay(alignment: .bottom) { Divider() }
-            .animation(.default, value: model.icons)
+//            .animation(.default, value: model.icons)
         } else { // leading
             VStack(alignment: .center, spacing: 2) {
                 if (0..<model.icons.count).contains(toolbarNumber) {
@@ -55,7 +55,7 @@ struct NavigatorSidebarToolbar: View {
             .frame(maxHeight: .infinity)
             .padding(.leading, 5)
             .padding(.trailing, -3)
-            .animation(.default, value: model.icons)
+//            .animation(.default, value: model.icons)
         }
     }
 
