@@ -42,9 +42,9 @@ struct NavigatorSidebar: View {
         }
         .splitView(availablePositions: [.top, .bottom, .center],
                    proposalPosition: $dropProposal,
-                   margin: 0.25,
+                   margin: 0.35,
                    isProportional: true,
-                   onDrop: { position in
+                   onDrop: { position, info in
             switch position {
             case .top:
                 Log.info("Dropped at the top")
@@ -57,6 +57,7 @@ struct NavigatorSidebar: View {
             case .center:
                 Log.info("Dropped at the center")
             }
+            Log.info("Providers: \(info.itemProviders(for: [.item]))")
         })
         .ignoresSafeArea(edges: (prefs.preferences.general.sidebarStyle == .xcode) ? [.leading] : [])
         .padding([.top, .leading], (prefs.preferences.general.sidebarStyle == .xcode) ? 0 : -10)

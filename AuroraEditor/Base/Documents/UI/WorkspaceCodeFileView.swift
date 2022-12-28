@@ -42,7 +42,7 @@ struct WorkspaceCodeFileView: View {
                             .splitView(availablePositions: [.top, .bottom, .center, .leading, .trailing],
                                        proposalPosition: $dropProposal,
                                        margin: 15,
-                                       onDrop: { position in
+                                       onDrop: { position, _ in
                                 switch position {
                                 case .top:
                                     Log.info("Dropped at the top")
@@ -61,7 +61,7 @@ struct WorkspaceCodeFileView: View {
                             .splitView(availablePositions: [.top, .bottom, .center, .leading, .trailing],
                                        proposalPosition: $dropProposal,
                                        margin: 15,
-                                       onDrop: { position in
+                                       onDrop: { position, _ in
                                 switch position {
                                 case .top:
                                     Log.info("Dropped at the top")
