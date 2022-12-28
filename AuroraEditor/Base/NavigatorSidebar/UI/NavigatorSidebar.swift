@@ -45,19 +45,16 @@ struct NavigatorSidebar: View {
                    margin: 0.35,
                    isProportional: true,
                    onDrop: { position, info in
-            switch position {
-            case .top:
-                Log.info("Dropped at the top")
-            case .bottom:
-                Log.info("Dropped at the bottom")
-            case .leading:
-                Log.info("Dropped at the start")
-            case .trailing:
-                Log.info("Dropped at the end")
-            case .center:
-                Log.info("Dropped at the center")
+            // get the data
+            guard let provider = info.itemProviders(for: [.utf8PlainText]).first else { return }
+            provider.loadDataRepresentation(forTypeIdentifier: "public.utf8-plain-text") { data, error in
+                if let error {
+                    Log.error("Error: \(error.localizedDescription)")
+                }
+                if let data, let imageName = String(data: data, encoding: .utf8) {
+                    moveIcon(withName: imageName, to: position)
+                }
             }
-            Log.info("Providers: \(info.itemProviders(for: [.item]))")
         })
         .ignoresSafeArea(edges: (prefs.preferences.general.sidebarStyle == .xcode) ? [.leading] : [])
         .padding([.top, .leading], (prefs.preferences.general.sidebarStyle == .xcode) ? 0 : -10)
@@ -117,5 +114,20 @@ struct NavigatorSidebar: View {
             }
         }
         .frame(maxHeight: .infinity)
+    }
+
+    func moveIcon(withName name: String, to position: SplitViewProposalDropPosition) {
+        switch position {
+        case .top:
+            Log.info("Dropped \(name) at the top")
+        case .bottom:
+            Log.info("Dropped \(name) at the bottom")
+        case .leading:
+            Log.info("Dropped \(name) at the start")
+        case .trailing:
+            Log.info("Dropped \(name) at the end")
+        case .center:
+            Log.info("Dropped \(name) at the center")
+        }
     }
 }

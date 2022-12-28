@@ -79,3 +79,21 @@ struct NavigatorSidebarToolbar: View {
         Spacer()
     }
 }
+
+class StringWrapper: NSObject, NSSecureCoding {
+    static var supportsSecureCoding: Bool = true
+
+    func encode(with coder: NSCoder) {
+        coder.encode(string, forKey: "string")
+    }
+
+    required init?(coder: NSCoder) {
+        self.string = (coder.decodeObject(forKey: "string") as? String) ?? ""
+    }
+
+    var string: String
+
+    init(string: String) {
+        self.string = string
+    }
+}

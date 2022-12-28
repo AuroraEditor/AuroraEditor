@@ -22,7 +22,7 @@ struct SplitViewModifier: ViewModifier {
             ZStack {
                 content
                     .onDrop(
-                        of: ["public.file-url"],
+                        of: [.utf8PlainText],
                         delegate: SplitViewDropDelegate(
                             proposalPosition: $proposalPosition,
                             availablePositions: availablePositions,
