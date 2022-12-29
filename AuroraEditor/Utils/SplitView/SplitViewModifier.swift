@@ -15,14 +15,14 @@ struct SplitViewModifier: ViewModifier {
     let margin: CGFloat
     let isProportional: Bool
     let hitboxSizes: [SplitViewProposalDropPosition: CGFloat]
-    let onDrop: ((SplitViewProposalDropPosition) -> Void)?
+    let onDrop: ((SplitViewProposalDropPosition, DropInfo) -> Void)?
 
     func body(content: Content) -> some View {
         GeometryReader { geometryProxy in
             ZStack {
                 content
                     .onDrop(
-                        of: ["public.file-url"],
+                        of: [.utf8PlainText],
                         delegate: SplitViewDropDelegate(
                             proposalPosition: $proposalPosition,
                             availablePositions: availablePositions,
@@ -68,7 +68,7 @@ extension View {
                           margin: CGFloat,
                           isProportional: Bool = false,
                           hitboxSizes: [SplitViewProposalDropPosition: CGFloat] = [:],
-                          onDrop: ((SplitViewProposalDropPosition) -> Void)?) -> some View {
+                          onDrop: ((SplitViewProposalDropPosition, DropInfo) -> Void)?) -> some View {
         modifier(SplitViewModifier(proposalPosition: proposalPosition,
                                    availablePositions: availablePositions,
                                    margin: margin,

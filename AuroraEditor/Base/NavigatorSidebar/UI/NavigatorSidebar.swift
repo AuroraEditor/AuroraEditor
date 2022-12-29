@@ -15,7 +15,10 @@ struct NavigatorSidebar: View {
     var prefs: AppPreferencesModel = .shared
 
     @State
-    public var selection: Int = 0
+    public var selections: [Int] = [0]
+
+    @ObservedObject
+    internal var model: NavigatorModeSelectModel = .shared
 
     @State
     private var dropProposal: SplitViewProposalDropPosition?
@@ -23,59 +26,42 @@ struct NavigatorSidebar: View {
     private let toolbarPadding: Double = -8.0
 
     var body: some View {
-        VStack {
-            switch selection {
-            case 0:
-                ProjectNavigator()
-            case 1:
-                SourceControlNavigatorView()
-            case 2:
-                FindNavigator(state: workspace.searchState ?? .init(workspace))
-            case 6:
-                HierarchyNavigator()
-            case 7:
-                ExtensionNavigator(data: workspace.extensionNavigatorData!)
-                    .environmentObject(workspace)
-            default:
-                needsImplementation
-            }
+        ForEach(Array(selections.enumerated()), id: \.offset) { index, _ in
+            sidebarModule(toolbar: index)
         }
+        .padding(.top, prefs.preferences.general.sidebarStyle == .xcode ? -30 : 0)
+        .padding(.leading, prefs.preferences.general.sidebarStyle == .vscode ? -30 : 0)
         .splitView(availablePositions: [.top, .bottom, .center],
                    proposalPosition: $dropProposal,
-                   margin: 0.25,
+                   margin: 0.35,
                    isProportional: true,
-                   onDrop: { position in
-            switch position {
-            case .top:
-                Log.info("Dropped at the top")
-            case .bottom:
-                Log.info("Dropped at the bottom")
-            case .leading:
-                Log.info("Dropped at the start")
-            case .trailing:
-                Log.info("Dropped at the end")
-            case .center:
-                Log.info("Dropped at the center")
+                   onDrop: { position, _ in
+            // get the data
+            if let draggingItem = model.draggingItem {
+                moveIcon(draggingItem, to: position)
             }
         })
-        .ignoresSafeArea(edges: (prefs.preferences.general.sidebarStyle == .xcode) ? [.leading] : [])
-        .padding([.top, .leading], (prefs.preferences.general.sidebarStyle == .xcode) ? 0 : -10)
+        .padding(.top, prefs.preferences.general.sidebarStyle == .xcode ? 30 : 0)
+        .padding(.leading, prefs.preferences.general.sidebarStyle == .vscode ? 30 : 0)
+    }
+
+    func sidebarModule(toolbar: Int) -> some View {
+        sidebarModuleContent(toolbar: toolbar)
         .safeAreaInset(edge: .leading) { // VSC style sidebar
             if prefs.preferences.general.sidebarStyle == .vscode {
-                NavigatorSidebarToolbarLeft(selection: $selection)
-                    .padding(.leading, 5)
-                    .padding(.trailing, -3)
-                    .safeAreaInset(edge: .trailing) {
-                        // this complex thing is so that theres a vertical divider that goes from top to bottom
-                        HStack {
-                            GeometryReader { geometry in
-                                Divider()
-                                    .frame(height: geometry.size.height + 8)
-                            }
-                        }
-                        .frame(width: 1)
-                        .offset(x: -2, y: -8)
+                NavigatorSidebarToolbar(selection: $selections[toolbar],
+                                        style: $prefs.preferences.general.sidebarStyle,
+                                        toolbarNumber: toolbar)
+                .id("navToolbar")
+                .safeAreaInset(edge: .trailing) {
+                    // this complex thing is so that theres a vertical divider that goes from top to bottom
+                    HStack {
+                        Divider()
+                            .padding(.bottom, -8)
                     }
+                    .frame(width: 1)
+                    .offset(x: -2, y: -8)
+                }
             } else {
                 HStack {
                 }.frame(width: 0)
@@ -83,28 +69,48 @@ struct NavigatorSidebar: View {
         }
         .safeAreaInset(edge: .top) { // Xcode style sidebar
             if prefs.preferences.general.sidebarStyle == .xcode {
-                NavigatorSidebarToolbarTop(selection: $selection)
-                    .padding(.bottom, toolbarPadding)
+                NavigatorSidebarToolbar(selection: $selections[toolbar],
+                                        style: $prefs.preferences.general.sidebarStyle,
+                                        toolbarNumber: toolbar)
+                .id("navToolbar")
+                .padding(.bottom, toolbarPadding)
             } else {
                 Divider()
             }
         }
         .safeAreaInset(edge: .bottom) {
-            switch selection {
-            case 0:
-                ProjectNavigatorToolbarBottom()
-                    .padding(.top, toolbarPadding)
-            case 1:
-                SourceControlToolbarBottom()
-                    .padding(.top, toolbarPadding)
-            case 2, 3, 4, 5, 6, 7:
-                NavigatorSidebarToolbarBottom()
-                    .padding(.top, toolbarPadding)
+            ZStack {
+                switch selections[toolbar] {
+                case 0:
+                    ProjectNavigatorToolbarBottom()
+                case 1:
+                    SourceControlToolbarBottom()
+                case 2, 3, 4, 5, 6, 7:
+                    NavigatorSidebarToolbarBottom()
+                default:
+                    NavigatorSidebarToolbarBottom()
+                }
+            }
+            .padding(.top, toolbarPadding)
+            .padding(.bottom, (toolbar == 0 && selections.count == 2) ? -9 : 0)
+        }
+    }
+
+    func sidebarModuleContent(toolbar: Int) -> some View {
+        VStack {
+            switch selections[toolbar] {
+            case 0: ProjectNavigator()
+            case 1: SourceControlNavigatorView()
+            case 2: FindNavigator(state: workspace.searchState ?? .init(workspace))
+            case 6: HierarchyNavigator()
+            case 7: ExtensionNavigator(data: workspace.extensionNavigatorData!)
+                    .environmentObject(workspace)
             default:
-                NavigatorSidebarToolbarBottom()
-                    .padding(.top, toolbarPadding)
+                needsImplementation
             }
         }
+        .ignoresSafeArea(edges: (prefs.preferences.general.sidebarStyle == .xcode) ? [.leading] : [])
+        .padding([.top, .leading], (prefs.preferences.general.sidebarStyle == .xcode) ? 0 : -10)
     }
 
     var needsImplementation: some View {

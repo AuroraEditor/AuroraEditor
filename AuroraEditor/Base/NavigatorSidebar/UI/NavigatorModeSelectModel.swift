@@ -13,8 +13,10 @@ class NavigatorModeSelectModel: ObservableObject {
     // need to be the same across all top/left sidebars across all windows.
     static let shared: NavigatorModeSelectModel = .init()
 
+    /// A 2D array of ``SidebarDockIcon``s. Each subarray is a different pane.
+    /// Currently, it is hard-coded to not work with more than 2 panes.
     @Published
-    var icons: [SidebarDockIcon] = [
+    var icons: [[SidebarDockIcon]] = [[
         SidebarDockIcon(
             imageName: "folder",
             title: "Project",
@@ -60,7 +62,7 @@ class NavigatorModeSelectModel: ObservableObject {
             title: "Sidebar Items",
             id: 8
         )
-    ]
+    ]]
 
     @Published
     var hasChangedLocation: Bool = false
@@ -75,13 +77,12 @@ class NavigatorModeSelectModel: ObservableObject {
         getSafeImage(named: named, accesibilityDescription: title)
         .help(title)
         .onDrag {
-            if let index = self.icons.firstIndex(where: { $0.imageName == named }) {
-                self.draggingItem = self.icons[index]
+            if let item = Array(self.icons.joined()).first(where: { $0.imageName == named }) {
+                self.draggingItem = item
             }
             return .init(object: NSString(string: named))
         } preview: {
-            RoundedRectangle(cornerRadius: .zero)
-                .frame(width: .zero)
+            getSafeImage(named: named, accesibilityDescription: title)
         }
     }
 
@@ -124,10 +125,12 @@ struct NavigatorSidebarDockIconDelegate: DropDelegate {
         drugItemLocation = info.location
 
         if icons[toIndex] != current {
-            icons.move(
-                fromOffsets: IndexSet(integer: from),
-                toOffset: toIndex > from ? toIndex + 1 : toIndex
-            )
+            withAnimation {
+                icons.move(
+                    fromOffsets: IndexSet(integer: from),
+                    toOffset: toIndex > from ? toIndex + 1 : toIndex
+                )
+            }
         }
     }
 
