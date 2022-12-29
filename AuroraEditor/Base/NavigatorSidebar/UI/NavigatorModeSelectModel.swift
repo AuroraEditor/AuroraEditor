@@ -82,8 +82,7 @@ class NavigatorModeSelectModel: ObservableObject {
             }
             return .init(object: NSString(string: named))
         } preview: {
-            RoundedRectangle(cornerRadius: .zero)
-                .frame(width: .zero)
+            getSafeImage(named: named, accesibilityDescription: title)
         }
     }
 
