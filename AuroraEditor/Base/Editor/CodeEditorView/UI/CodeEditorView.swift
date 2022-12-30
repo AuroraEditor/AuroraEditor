@@ -69,9 +69,18 @@ extension CodeEditor: NSViewRepresentable {
             context.coordinator.scrollPositionDidChange(scrollView)
         }
 
-        // Report the initial message set
+        // Report the initial message set, and reset the caret position
         DispatchQueue.main.async {
             updateMessages(in: codeView, with: context)
+
+            context.coordinator.caretPosition = .init(line: 0, column: 0)
+            for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
+                Log.info(id, "didMoveCaret")
+                AEExt.respond(
+                    action: "didMoveCaret",
+                    parameters: ["row": 0, "col": 0]
+                )
+            }
         }
 
         return scrollView
