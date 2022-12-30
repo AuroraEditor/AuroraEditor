@@ -27,7 +27,10 @@ public class FontThemeAttribute: TokenThemeAttribute {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: Keys.self)
-        guard let font = font as? CodableFont else { fatalError("font is broken") }
+        guard let font = font as? CodableFont else {
+            try container.encode(font as? CodableFont, forKey: .font)
+            return
+        }
         try container.encode(font, forKey: .font)
     }
 

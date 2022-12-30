@@ -10,10 +10,8 @@ import AppKit
 import SwiftUI
 
 extension CodeEditor: NSViewRepresentable {
-
     /// Generates and returns a scroll view with a CodeView set as its document view.
     public func makeNSView(context: Context) -> NSScrollView {
-
         let loadedGrammar = GrammarJsonLoader.grammarFor(extension: fileExtension)
 
         // Set up text view with gutter
@@ -42,14 +40,12 @@ extension CodeEditor: NSViewRepresentable {
         scrollView.documentView = codeView
 
         if let delegate = codeView.delegate as? CodeViewDelegate {
-
             delegate.textDidChange = context.coordinator.textDidChange
             delegate.selectionDidChange = { textView in
                 selectionDidChange(textView)
                 textView.needsDisplay = true
                 context.coordinator.selectionDidChange(textView)
             }
-
         }
 
         // We can't set the scroll position right away as the views are not properly sized yet. Thus, this needs to be
