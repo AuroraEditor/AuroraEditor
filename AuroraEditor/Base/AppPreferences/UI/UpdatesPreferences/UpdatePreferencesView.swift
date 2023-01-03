@@ -101,8 +101,6 @@ struct UpdatePreferencesView: View {
             }
         }
         .onAppear {
-            // We disable checking for updates in debug builds as to not
-            // annoy our fellow contributers
             updateModel.checkForUpdates()
         }
     }
