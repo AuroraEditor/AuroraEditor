@@ -56,7 +56,6 @@ struct ExploreItemView: View {
             } label: {
                 Text("GET")
                     .foregroundColor(.accentColor)
-                    .padding(.horizontal)
             }
             .buttonStyle(.bordered)
             .cornerRadius(40)
