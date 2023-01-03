@@ -27,6 +27,14 @@ struct UpdatePreferencesView: View {
         Bundle.commitHash ?? "No Hash"
     }
 
+    private var isUpdateButtonDisabled: Bool {
+        #if DEBUG
+        return true
+        #else
+        return false
+        #endif
+    }
+
     private var shortCommitHash: String {
         if commitHash.count > 7 {
             return String(commitHash[...commitHash.index(commitHash.startIndex, offsetBy: 7)])
@@ -66,7 +74,7 @@ struct UpdatePreferencesView: View {
                         Link("Learn more...",
                              destination: URL(string: "https://auroraeditor.com")!)
                         .font(.system(size: 11))
-                        .foregroundColor(.blue)
+                        .foregroundColor(.accentColor)
                     }
                     .padding(5)
                 }
@@ -93,11 +101,7 @@ struct UpdatePreferencesView: View {
             }
         }
         .onAppear {
-            // We disable checking for updates in debug builds as to not
-            // annoy our fellow contributers
-            #if !DEBUG
             updateModel.checkForUpdates()
-            #endif
         }
     }
 
@@ -166,6 +170,7 @@ struct UpdatePreferencesView: View {
                     HStack {
                         Text("Update Available")
                             .font(.system(size: 12, weight: .medium))
+
                         Spacer()
                         Button {
 
@@ -175,7 +180,7 @@ struct UpdatePreferencesView: View {
                     }
 
                     HStack {
-                        Text("* Aurora Editor Nightly Build")
+                        Text("\u{00B7} Aurora Editor Nightly Build")
                             .foregroundColor(.secondary)
 
                         Spacer()
@@ -184,17 +189,22 @@ struct UpdatePreferencesView: View {
                             .foregroundColor(.secondary)
                     }
 
-                    Divider()
+                    if isUpdateButtonDisabled {
+                        Text("\u{26A0} You are using a debug build, therefore updating is disabled.")
+                            .font(.system(size: 11))
+                            .foregroundColor(.secondary)
+                            .padding(5)
+                    }
 
-                    Text("More Info...")
-                        .font(.system(size: 11))
-                        .foregroundColor(.blue)
-                        .padding(.vertical, 5)
-
+                    Link("Learn more...",
+                         destination: URL(string: "https://auroraeditor.com")!)
+                    .font(.system(size: 11))
+                    .foregroundColor(.accentColor)
                 }
                 .padding(5)
             }
             .padding(5)
+            .disabled(isUpdateButtonDisabled)
         }
     }
 
