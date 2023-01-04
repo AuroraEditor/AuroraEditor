@@ -153,7 +153,7 @@ Thanks goes to these wonderful people:
 
 ## Intellectual Property License
 
-The Aurora Editor Logo is copyright of AuroraEditor and Arurora Company.
+The Aurora Editor Logo is copyright of AuroraEditor and Aurora Company.
 
 ## Socials
 
