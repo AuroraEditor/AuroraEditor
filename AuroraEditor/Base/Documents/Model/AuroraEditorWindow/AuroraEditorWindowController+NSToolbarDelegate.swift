@@ -34,7 +34,7 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
 
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         [
-            .toggleFirstSidebarItem,
+            .toggleNavigator,
             .flexibleSpace,
             .runApplication,
             .sidebarTrackingSeparator,
@@ -43,13 +43,13 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
             .toolbarAppInformation,
             .flexibleSpace,
             .libraryPopup,
-            .toggleLastSidebarItem
+            .toggleInspector
         ]
     }
 
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         [
-            .toggleFirstSidebarItem,
+            .toggleNavigator,
             .flexibleSpace,
             .runApplication,
             .sidebarTrackingSeparator,
@@ -59,7 +59,7 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
             .flexibleSpace,
             .libraryPopup,
             .itemListTrackingSeparator,
-            .toggleLastSidebarItem
+            .toggleInspector
         ]
     }
 
@@ -80,14 +80,14 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
                     splitView: splitViewController.splitView,
                     dividerIndex: 1
                 )
-        case .toggleFirstSidebarItem:
-            let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleFirstSidebarItem)
+        case .toggleNavigator:
+            let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleNavigator)
             toolbarItem.label = "Navigator Sidebar"
             toolbarItem.paletteLabel = "Navigator Sidebar"
             toolbarItem.toolTip = "Hide or show the Navigator"
             toolbarItem.isBordered = true
             toolbarItem.target = self
-            toolbarItem.action = #selector(self.toggleFirstPanel)
+            toolbarItem.action = #selector(self.toggleNavigatorPane)
             toolbarItem.image = NSImage(
                 systemSymbolName: "sidebar.leading",
                 accessibilityDescription: nil
@@ -113,14 +113,14 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
             toolbarItem.view = view
 
             return toolbarItem
-        case .toggleLastSidebarItem:
-            let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleLastSidebarItem)
+        case .toggleInspector:
+            let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleInspector)
             toolbarItem.label = "Inspector Sidebar"
             toolbarItem.paletteLabel = "Inspector Sidebar"
             toolbarItem.toolTip = "Hide or show the Inspectors"
             toolbarItem.isBordered = true
             toolbarItem.target = self
-            toolbarItem.action = #selector(self.toggleLastPanel)
+            toolbarItem.action = #selector(self.toggleInspectorPane)
             toolbarItem.image = NSImage(
                 systemSymbolName: "sidebar.trailing",
                 accessibilityDescription: nil
@@ -157,37 +157,37 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
         }
     }
 
-    @objc func toggleFirstPanel() {
-        guard let firstSplitView = splitViewController.splitViewItems.first else { return }
-        firstSplitView.animator().isCollapsed.toggle()
+    @objc func toggleNavigatorPane() {
+        guard let navigatorPane = splitViewController.splitViewItems.first else { return }
+        navigatorPane.animator().isCollapsed.toggle()
 
         for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
             Log.info(id, "didToggleNavigatorPane()")
             AEExt.respond(
                 action: "didToggleNavigatorPane",
                 parameters: [
-                    "opened": !firstSplitView.animator().isCollapsed
+                    "opened": !navigatorPane.animator().isCollapsed
                 ])
         }
     }
 
-    @objc func toggleLastPanel() {
-        guard let lastSplitView = splitViewController.splitViewItems.last,
+    @objc func toggleInspectorPane() {
+        guard let inspectorPane = splitViewController.splitViewItems.last,
               let toolbar = window?.toolbar
         else { return }
 
-        lastSplitView.animator().isCollapsed.toggle()
+        inspectorPane.animator().isCollapsed.toggle()
         for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
             Log.info(id, "didToggleInspectorPane()")
             AEExt.respond(
                 action: "didToggleInspectorPane",
                 parameters: [
-                    "opened": !lastSplitView.animator().isCollapsed
+                    "opened": !inspectorPane.animator().isCollapsed
                 ])
         }
 
         let itemCount = toolbar.items.count
-        if lastSplitView.isCollapsed {
+        if inspectorPane.isCollapsed {
             toolbar.removeItem(at: itemCount-3) // -1 is the last item, -2 is the second last
             toolbar.removeItem(at: itemCount-3) // this removes the second last and the third last
         } else {
@@ -204,8 +204,8 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
 }
 
 private extension NSToolbarItem.Identifier {
-    static let toggleFirstSidebarItem = NSToolbarItem.Identifier("ToggleFirstSidebarItem")
-    static let toggleLastSidebarItem = NSToolbarItem.Identifier("ToggleLastSidebarItem")
+    static let toggleNavigator = NSToolbarItem.Identifier("ToggleNavigator")
+    static let toggleInspector = NSToolbarItem.Identifier("ToggleInspector")
     static let itemListTrackingSeparator = NSToolbarItem.Identifier("ItemListTrackingSeparator")
     static let branchPicker = NSToolbarItem.Identifier("BranchPicker")
     static let libraryPopup = NSToolbarItem.Identifier("LibraryPopup")
