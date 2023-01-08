@@ -88,7 +88,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             }
         }
 
-        _ = ExtensionsManager.shared
+        // TODO: Load only if we have a workspace.
+//        _ = ExtensionsManager.shared
 
         if AppPreferencesModel.shared.preferences.general.menuItemShowMode == .shown {
             self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)

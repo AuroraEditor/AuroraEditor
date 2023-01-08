@@ -16,7 +16,7 @@ import Combine
 /// To create a subscriber to ``broadcaster``, use the following code,
 /// where `cancelables` is an instance of `Set<AnyCancellable>`:
 /// ```
-/// workspace.broadcaster.broadcaster.sink { command in
+/// workspace.broadcaster.broadcaster.broadcaster.sink { command in
 ///     if command["name"] == "myCommand" {
 ///         // do something with the command
 ///     }
@@ -31,7 +31,7 @@ import Combine
 /// For example, in a `View`:
 /// ```swift
 /// @EnvironmentObject var workspace: WorkspaceDocument
-/// @State var cancelables: Set<AnyCalcellable> = .init()
+/// @State var cancelables: Set<AnyCancellable> = .init()
 ///
 /// var body: some View {
 ///     VStack { /*your view here*/ }
@@ -40,7 +40,7 @@ import Combine
 ///     // this cannot occur in the init function
 ///     // as workspace would not exist yet
 ///     .onAppear {
-///         workspace.broadcaster.sink { command in
+///         workspace.broadcaster.broadcaster.sink { command in
 ///             if command.name == "myCommand" {
 ///                 // do something with the command
 ///             }
