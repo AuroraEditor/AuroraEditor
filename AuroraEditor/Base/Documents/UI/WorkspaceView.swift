@@ -8,6 +8,7 @@
 import SwiftUI
 import AppKit
 import Version_Control
+import Combine
 
 struct WorkspaceView: View {
 
@@ -19,6 +20,9 @@ struct WorkspaceView: View {
 
     @EnvironmentObject
     private var workspace: WorkspaceDocument
+
+    @State
+    var cancelables: Set<AnyCancellable> = .init()
 
     @State
     private var showingAlert = false
@@ -42,6 +46,8 @@ struct WorkspaceView: View {
 
     @State
     private var leaveFullscreenObserver: Any?
+
+    private let extensionsManagerShared = ExtensionsManager.shared
 
     @ViewBuilder
     func tabContentForID(tabID: TabBarItemID) -> some View {
@@ -116,6 +122,7 @@ struct WorkspaceView: View {
             }
         }
         .onAppear {
+            extensionsManagerShared.set(workspace: workspace)
             // There may be other methods to monitor the full-screen state.
             // But I cannot find a better one for now because I need to pass this into the SwiftUI.
             // And it should always be updated.
@@ -131,6 +138,12 @@ struct WorkspaceView: View {
                 queue: .current,
                 using: { _ in self.isFullscreen = false }
             )
+
+            workspace.broadcaster.broadcaster.sink { command in
+                if command.name == "openSettings" {
+                    workspace.windowController?.openSettings()
+                }
+            }.store(in: &cancelables)
         }
         .onDisappear {
             // Unregister the observer when the view is going to disappear.

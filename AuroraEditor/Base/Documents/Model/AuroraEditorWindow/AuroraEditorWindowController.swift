@@ -156,6 +156,11 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         panel.viewType = viewType
     }
 
+    func openSettings() {
+        if AppDelegate.tryFocusWindow(of: PreferencesView.self) { return }
+        PreferencesView().showWindow()
+    }
+
     // MARK: Git Main Menu Items
 
     @IBAction func stashChangesItems(_ sender: Any) {
