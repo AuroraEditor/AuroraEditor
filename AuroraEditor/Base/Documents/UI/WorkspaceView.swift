@@ -143,6 +143,18 @@ struct WorkspaceView: View {
                 if command.name == "openSettings" {
                     workspace.windowController?.openSettings()
                 }
+                if command.name == "showNotification",
+                   let message = command.parameters["message"] as? String {
+                    workspace.notificationList.append(message)
+                }
+                if command.name == "showWarning",
+                   let message = command.parameters["message"] as? String {
+                    workspace.warningList.append(message)
+                }
+                if command.name == "showError",
+                   let message = command.parameters["message"] as? String {
+                    workspace.errorList.append(message)
+                }
             }.store(in: &cancelables)
         }
         .onDisappear {
