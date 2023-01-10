@@ -143,6 +143,7 @@ struct ToolbarPopoverView: View {
         .padding(.horizontal)
     }
 }
+
 struct ToolbarAppInfo_Previews: PreviewProvider {
     static var previews: some View {
         ToolbarAppInfo()
