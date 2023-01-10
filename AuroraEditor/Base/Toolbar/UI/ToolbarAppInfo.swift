@@ -111,28 +111,38 @@ public struct ToolbarAppInfo: View {
             }
             .buttonStyle(.plain)
             .popover(isPresented: $openErrors, arrowEdge: .bottom) {
-                Text("ERROR LIST:")
-                NotificationCentreView()
-                    .padding(.vertical, 5)
-                    .frame(width: 310)
+                ToolbarPopoverView(list: workspace.errorList)
+                .padding(.vertical, 5)
+                .frame(width: 310, height: 500)
             }
             .popover(isPresented: $openWarnings, arrowEdge: .bottom) {
-                Text("WARNING LIST:")
-                NotificationCentreView()
-                    .padding(.vertical, 5)
-                    .frame(width: 310)
+                ToolbarPopoverView(list: workspace.warningList)
+                .padding(.vertical, 5)
+                .frame(width: 310, height: 500)
             }
             .popover(isPresented: $openNotifications, arrowEdge: .bottom) {
-                Text("NOTIFICATION LIST:")
-                NotificationCentreView()
-                    .padding(.vertical, 5)
-                    .frame(width: 310)
+                ToolbarPopoverView(list: workspace.notificationList)
+                .padding(.vertical, 5)
+                .frame(width: 310, height: 500)
             }
         }
         .opacity(activeState == .inactive ? 0.45 : 1)
     }
 }
 
+struct ToolbarPopoverView: View {
+    var list: [String]
+
+    @EnvironmentObject
+    private var workspace: WorkspaceDocument
+
+    var body: some View {
+        List(list, id: \.self) { message in
+            Text(message)
+        }
+        .padding(.horizontal)
+    }
+}
 struct ToolbarAppInfo_Previews: PreviewProvider {
     static var previews: some View {
         ToolbarAppInfo()
