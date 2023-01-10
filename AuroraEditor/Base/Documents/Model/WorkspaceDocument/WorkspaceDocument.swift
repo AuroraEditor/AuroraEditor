@@ -28,6 +28,15 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     var broadcaster = AuroraCommandBroadcaster()
 
     @Published
+    var notificationList: [String] = []
+
+    @Published
+    var warningList: [String] = []
+
+    @Published
+    var errorList: [String] = []
+
+    @Published
     var fileItems: [FileSystemClient.FileItem] = []
     public var filter: String = "" {
         didSet { fileSystemClient?.onRefresh() }

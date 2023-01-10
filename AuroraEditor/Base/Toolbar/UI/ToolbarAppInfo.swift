@@ -16,6 +16,15 @@ public struct ToolbarAppInfo: View {
     @Environment(\.controlActiveState)
     private var activeState
 
+    @EnvironmentObject
+    private var workspace: WorkspaceDocument
+
+    @State
+    private var openErrors: Bool = false
+
+    @State
+    private var openWarnings: Bool = false
+
     @State
     private var openNotifications: Bool = false
 
@@ -58,17 +67,14 @@ public struct ToolbarAppInfo: View {
             .cornerRadius(6)
 
             Button {
-                NotificationManager().postProgressNotification(
-                    title: "Test Notification",
-                    progress: Progress(totalUnitCount: 100)
-                )
+                openErrors.toggle()
             } label: {
                 HStack {
                     Image(systemName: "xmark.circle.fill")
                         .symbolRenderingMode(.multicolor)
                         .imageScale(.small)
 
-                    Text("2")
+                    Text("\(workspace.errorList.count)")
                         .foregroundColor(.gray)
                         .font(.system(size: 10))
                 }
@@ -76,13 +82,14 @@ public struct ToolbarAppInfo: View {
             .buttonStyle(.plain)
 
             Button {
+                openWarnings.toggle()
             } label: {
                 HStack {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .symbolRenderingMode(.multicolor)
                         .imageScale(.small)
 
-                    Text("147")
+                    Text("\(workspace.warningList.count)")
                         .foregroundColor(.gray)
                         .font(.system(size: 10))
                 }
@@ -97,13 +104,26 @@ public struct ToolbarAppInfo: View {
                         .symbolRenderingMode(.multicolor)
                         .imageScale(.small)
 
-                    Text("1K+")
+                    Text("\(workspace.notificationList.count)")
                         .foregroundColor(.gray)
                         .font(.system(size: 10))
                 }
             }
             .buttonStyle(.plain)
+            .popover(isPresented: $openErrors, arrowEdge: .bottom) {
+                Text("ERROR LIST:")
+                NotificationCentreView()
+                    .padding(.vertical, 5)
+                    .frame(width: 310)
+            }
+            .popover(isPresented: $openWarnings, arrowEdge: .bottom) {
+                Text("WARNING LIST:")
+                NotificationCentreView()
+                    .padding(.vertical, 5)
+                    .frame(width: 310)
+            }
             .popover(isPresented: $openNotifications, arrowEdge: .bottom) {
+                Text("NOTIFICATION LIST:")
                 NotificationCentreView()
                     .padding(.vertical, 5)
                     .frame(width: 310)

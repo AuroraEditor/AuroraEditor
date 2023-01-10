@@ -108,7 +108,7 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
         case .toolbarAppInformation:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toolbarAppInformation)
             let view = NSHostingView(
-                rootView: ToolbarAppInfo()
+                rootView: ToolbarAppInfo().environmentObject(workspace)
             )
             toolbarItem.view = view
 
