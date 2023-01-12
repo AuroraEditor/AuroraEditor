@@ -67,7 +67,7 @@ struct PreferencesView: View {
                     PreferencesPlaceholderView()    // Navigation
                 } else if viewModel.selectedId == viewModel.setting[4].id {
                     ThemePreferencesView()          // Themes
-                } else if viewModel.selectedId == viewModel.FC8C85setting[5].id {
+                } else if viewModel.selectedId == viewModel.setting[5].id {
                     TextEditingPreferencesView()    // Text Editing
                 } else if viewModel.selectedId == viewModel.setting[6].id {
                     TerminalPreferencesView()       // Terminal
