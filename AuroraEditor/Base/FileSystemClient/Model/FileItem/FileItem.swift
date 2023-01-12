@@ -241,15 +241,22 @@ public extension FileSystemClient {
         /// that contain the `searchString` in their path or their subitems' paths.
         /// Returns `0` if the item is not a folder.
         /// - Parameter searchString: The string
+        /// - Parameter ignoredStrings: The prefixes to ignore if they prefix file names
         /// - Returns: The number of children that match the conditiions
         public func appearanceWithinChildrenOf(searchString: String,
-                                               ignoreDots: Bool = true,
-                                               ignoreTilde: Bool = true) -> Int {
+                                               ignoredStrings: [String] = [".", "~"]) -> Int {
             var count = 0
             guard self.isFolder else { return 0 }
             for child in self.children ?? [] {
-                if ignoreDots && child.fileName.starts(with: ".") { continue }
-                if ignoreTilde && child.fileName.starts(with: "~") { continue }
+                var isIgnored: Bool = false
+                for ignoredString in ignoredStrings where child.fileName.hasPrefix(ignoredString) {
+                    isIgnored = true // can use regex later
+                }
+
+                if isIgnored {
+                    continue
+                }
+
                 guard !searchString.isEmpty else { count += 1; continue }
                 if child.isFolder {
                     count += child.appearanceWithinChildrenOf(searchString: searchString) > 0 ? 1 : 0
@@ -265,15 +272,22 @@ public extension FileSystemClient {
         /// Similar to `appearanceWithinChildrenOf(searchString: String)`
         /// Returns `[]` if the item is not a folder.
         /// - Parameter searchString: The string
+        /// - Parameter ignoredStrings: The prefixes to ignore if they prefix file names
         /// - Returns: The children that match the conditiions
         public func childrenSatisfying(searchString: String,
-                                       ignoreDots: Bool = true,
-                                       ignoreTilde: Bool = true) -> [FileItem] {
+                                       ignoredStrings: [String] = [".", "~"]) -> [FileItem] {
             var satisfyingChildren: [FileItem] = []
             guard self.isFolder else { return [] }
             for child in self.children ?? [] {
-                if ignoreDots && child.fileName.starts(with: ".") { continue }
-                if ignoreTilde && child.fileName.starts(with: "~") { continue }
+                var isIgnored: Bool = false
+                for ignoredString in ignoredStrings where child.fileName.hasPrefix(ignoredString) {
+                    isIgnored = true // can use regex later
+                }
+
+                if isIgnored {
+                    continue
+                }
+
                 guard !searchString.isEmpty else { satisfyingChildren.append(child); continue }
                 if child.isFolder {
                     if child.appearanceWithinChildrenOf(searchString: searchString) > 0 {
