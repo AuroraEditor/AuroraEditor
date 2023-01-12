@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/AuroraEditor/AEExtensionKit.git",
         "state": {
           "branch": "main",
-          "revision": "53577d52ad6db38b3543ff2a17acc533a0673b8c",
+          "revision": "125fb02a7e4094c1836659809779c298d2ca976a",
           "version": null
         }
       },
@@ -24,7 +24,7 @@
         "repositoryURL": "https://github.com/AuroraEditor/Version-Control-Kit.git",
         "state": {
           "branch": "main",
-          "revision": "e0823b7bcbf97dcc65279010654851fa42419527",
+          "revision": "89551f70e84488f711af6cf2c31becba6c25649e",
           "version": null
         }
       }
