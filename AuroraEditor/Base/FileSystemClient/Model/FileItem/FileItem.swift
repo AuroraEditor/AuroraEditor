@@ -241,6 +241,7 @@ public extension FileSystemClient {
         /// that contain the `searchString` in their path or their subitems' paths.
         /// Returns `0` if the item is not a folder.
         /// - Parameter searchString: The string
+        /// - Parameter ignoredStrings: The prefixes to ignore if they prefix file names
         /// - Returns: The number of children that match the conditiions
         public func appearanceWithinChildrenOf(searchString: String,
                                                ignoredStrings: [String] = [".", "~"]) -> Int {
@@ -271,6 +272,7 @@ public extension FileSystemClient {
         /// Similar to `appearanceWithinChildrenOf(searchString: String)`
         /// Returns `[]` if the item is not a folder.
         /// - Parameter searchString: The string
+        /// - Parameter ignoredStrings: The prefixes to ignore if they prefix file names
         /// - Returns: The children that match the conditiions
         public func childrenSatisfying(searchString: String,
                                        ignoredStrings: [String] = [".", "~"]) -> [FileItem] {
