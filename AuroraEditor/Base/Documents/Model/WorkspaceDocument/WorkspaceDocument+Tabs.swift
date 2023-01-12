@@ -8,6 +8,7 @@
 
 import Foundation
 import Version_Control
+import SwiftUI
 
 extension WorkspaceDocument {
 

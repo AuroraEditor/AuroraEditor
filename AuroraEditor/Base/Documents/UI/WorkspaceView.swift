@@ -47,6 +47,12 @@ struct WorkspaceView: View {
     @State
     private var leaveFullscreenObserver: Any?
 
+    @State
+    private var sheetIsOpened = false
+
+    @State
+    private var extensionView: AnyView = AnyView(EmptyView())
+
     private let extensionsManagerShared = ExtensionsManager.shared
 
     @ViewBuilder
@@ -155,6 +161,33 @@ struct WorkspaceView: View {
                    let message = command.parameters["message"] as? String {
                     workspace.errorList.append(message)
                 }
+                if command.name == "openSheet",
+                   let view = command.parameters["view"] as? any View {
+                    extensionView = AnyView(view)
+                    sheetIsOpened = true
+                }
+                if command.name == "openTab",
+                   let view = command.parameters["view"] as? any View {
+                    Log.info("I should open a new tab, with some SwiftUI contents")
+                    // TODO: Open new tab.
+                }
+                if command.name == "openWindow",
+                   let view = command.parameters["view"] as? any View {
+                    let window = NSWindow()
+                    window.styleMask = NSWindow.StyleMask(rawValue: 0xf)
+                    window.contentViewController = NSHostingController(
+                        rootView: AnyView(view).padding(5)
+                    )
+                    window.setFrame(
+                        NSRect(x: 700, y: 200, width: 500, height: 500),
+                        display: false
+                    )
+                    let windowController = NSWindowController()
+                    windowController.contentViewController = window.contentViewController
+                    windowController.window = window
+                    windowController.showWindow(self)
+
+                }
             }.store(in: &cancelables)
         }
         .onDisappear {
@@ -203,6 +236,17 @@ struct WorkspaceView: View {
             CreateNewTagView(workspace: workspace,
                              commitHash: workspace.data.commitHash)
 
+        }
+        .sheet(isPresented: $sheetIsOpened) {
+            HStack {
+                Text("") // Title, if any at some point.
+                Spacer()
+                Button("Dismiss") {
+                    sheetIsOpened.toggle()
+                }
+            }.padding([.leading, .top, .trailing], 5)
+            Divider()
+            extensionView.padding(.bottom, 5)
         }
     }
 }
