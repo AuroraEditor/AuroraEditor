@@ -94,24 +94,24 @@ struct WorkspaceView: View {
                         EmptyEditorView()
                     }
                 }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background {
-                        if prefs.preferences.general.tabBarStyle == .xcode {
-                            // Use the same background material as xcode tab bar style.
-                            // Only when the tab bar style is set to `xcode`.
-                            TabBarXcodeBackground()
-                        }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background {
+                    if prefs.preferences.general.tabBarStyle == .xcode {
+                        // Use the same background material as xcode tab bar style.
+                        // Only when the tab bar style is set to `xcode`.
+                        TabBarXcodeBackground()
                     }
-                    .safeAreaInset(edge: .top, spacing: 0) {
-                        VStack(spacing: 0) {
-                            TabBar(sourceControlModel: workspace.fileSystemClient?.model ??
-                                .init(workspaceURL: workspace.fileURL!))
-                            Divider().foregroundColor(.secondary)
-                        }
+                }
+                .safeAreaInset(edge: .top, spacing: 0) {
+                    VStack(spacing: 0) {
+                        TabBar(sourceControlModel: workspace.fileSystemClient?.model ??
+                            .init(workspaceURL: workspace.fileURL!))
+                        Divider().foregroundColor(.secondary)
                     }
-                    .safeAreaInset(edge: .bottom) {
-                        StatusBarView(model: model)
-                    }
+                }
+                .safeAreaInset(edge: .bottom) {
+                    StatusBarView(model: model)
+                }
             } else {
                 EmptyView()
             }
@@ -168,7 +168,6 @@ struct WorkspaceView: View {
                 }
                 if command.name == "openTab",
                    let view = command.parameters["view"] as? any View {
-                    Log.info("I should open a new tab, with some SwiftUI contents")
                     // TODO: Open new tab.
                 }
                 if command.name == "openWindow",

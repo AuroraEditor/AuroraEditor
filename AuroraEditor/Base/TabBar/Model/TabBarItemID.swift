@@ -16,7 +16,6 @@ public enum TabBarItemID: Codable, Identifiable, Hashable {
         case .extensionInstallation(let id):
             return "extensionInstallation_\(id)"
         case .webTab(let url):
-            // note: does not allow for multiple tabs of the same URL
             return "webTab_\(url)"
         case .projectHistory(let project):
             return project
