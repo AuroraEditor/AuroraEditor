@@ -55,6 +55,11 @@
 		20439038290D27DB00126A3F /* WorkspaceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20439037290D27DB00126A3F /* WorkspaceErrors.swift */; };
 		2043903C290D385600126A3F /* ExploreExtensionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043903B290D385600126A3F /* ExploreExtensionsView.swift */; };
 		2043903E290D38D700126A3F /* ExploreItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043903D290D38D700126A3F /* ExploreItemView.swift */; };
+		204768D52971E31300B5753A /* EditableListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204768D42971E31300B5753A /* EditableListViewController.swift */; };
+		204768D72971E32300B5753A /* EditableListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204768D62971E32300B5753A /* EditableListDelegate.swift */; };
+		204768D92971E32E00B5753A /* EditableListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204768D82971E32E00B5753A /* EditableListDataSource.swift */; };
+		204768DB2971E33E00B5753A /* EditableListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204768DA2971E33E00B5753A /* EditableListTableViewCell.swift */; };
+		204768DD2971E34E00B5753A /* EditableListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204768DC2971E34E00B5753A /* EditableListView.swift */; };
 		204F7BB328D7905C00F49092 /* WorkflowMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7BB228D7905C00F49092 /* WorkflowMenu.swift */; };
 		204F7BB528D7906A00F49092 /* WorkflowWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7BB428D7906A00F49092 /* WorkflowWrapperView.swift */; };
 		204F7BB728D7907A00F49092 /* WorkflowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7BB628D7907A00F49092 /* WorkflowViewController.swift */; };
@@ -629,6 +634,11 @@
 		20439037290D27DB00126A3F /* WorkspaceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceErrors.swift; sourceTree = "<group>"; };
 		2043903B290D385600126A3F /* ExploreExtensionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreExtensionsView.swift; sourceTree = "<group>"; };
 		2043903D290D38D700126A3F /* ExploreItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreItemView.swift; sourceTree = "<group>"; };
+		204768D42971E31300B5753A /* EditableListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableListViewController.swift; sourceTree = "<group>"; };
+		204768D62971E32300B5753A /* EditableListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableListDelegate.swift; sourceTree = "<group>"; };
+		204768D82971E32E00B5753A /* EditableListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableListDataSource.swift; sourceTree = "<group>"; };
+		204768DA2971E33E00B5753A /* EditableListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableListTableViewCell.swift; sourceTree = "<group>"; };
+		204768DC2971E34E00B5753A /* EditableListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableListView.swift; sourceTree = "<group>"; };
 		204F7BB228D7905C00F49092 /* WorkflowMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowMenu.swift; sourceTree = "<group>"; };
 		204F7BB428D7906A00F49092 /* WorkflowWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowWrapperView.swift; sourceTree = "<group>"; };
 		204F7BB628D7907A00F49092 /* WorkflowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowViewController.swift; sourceTree = "<group>"; };
@@ -1300,6 +1310,18 @@
 				2043903D290D38D700126A3F /* ExploreItemView.swift */,
 			);
 			path = Explore;
+			sourceTree = "<group>";
+		};
+		204768D32971E2E400B5753A /* EditableList */ = {
+			isa = PBXGroup;
+			children = (
+				204768D42971E31300B5753A /* EditableListViewController.swift */,
+				204768D62971E32300B5753A /* EditableListDelegate.swift */,
+				204768D82971E32E00B5753A /* EditableListDataSource.swift */,
+				204768DA2971E33E00B5753A /* EditableListTableViewCell.swift */,
+				204768DC2971E34E00B5753A /* EditableListView.swift */,
+			);
+			path = EditableList;
 			sourceTree = "<group>";
 		};
 		204F7BB128D7903000F49092 /* Workflow */ = {
@@ -2142,6 +2164,7 @@
 		20D83835289A7ACD00D91D05 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				204768D32971E2E400B5753A /* EditableList */,
 				20D83836289A7ACD00D91D05 /* FontPickerView.swift */,
 				20D83837289A7ACD00D91D05 /* SegmentedControl.swift */,
 				20D83838289A7ACD00D91D05 /* PanelDivider.swift */,
@@ -3787,6 +3810,7 @@
 				2077162E287C8EC80069C68E /* ToolbarAppInfo.swift in Sources */,
 				2093CDAB289AA17D003A88DD /* TextEditingPreferencesView.swift in Sources */,
 				934D2CD928D207BD00F22E38 /* TabHierarchyOutlineDelegate.swift in Sources */,
+				204768D72971E32300B5753A /* EditableListDelegate.swift in Sources */,
 				2B04575F28E6FFE300024F2D /* DefaultTabIntervalThemeAttribute.swift in Sources */,
 				2B04575928E6FFE300024F2D /* ThemeAttribute+Error.swift in Sources */,
 				2093CDA7289AA179003A88DD /* IgnoredFileView.swift in Sources */,
@@ -3869,6 +3893,7 @@
 				202327D828D5CB200031FFB6 /* WorkflowJobCell.swift in Sources */,
 				2093CD26289AA084003A88DD /* PreviewHeader.swift in Sources */,
 				2093CD33289AA089003A88DD /* Comment.swift in Sources */,
+				204768DD2971E34E00B5753A /* EditableListView.swift in Sources */,
 				206B128828DF77E3002CDE51 /* CodeEditorView.swift in Sources */,
 				04C3255C2801F86900C8DA2D /* ProjectNavigatorMenu.swift in Sources */,
 				93EF415F28C1D2DB004083AD /* CommandPaletteState.swift in Sources */,
@@ -3887,11 +3912,13 @@
 				93DD4FF328AFD0F100B664D4 /* PreferencesWindowController.swift in Sources */,
 				93CB9AE028C72BC20068074A /* GitCloneView+Helpers.swift in Sources */,
 				2BDFA91828D10B9200980385 /* FileCreationModel.swift in Sources */,
+				204768D92971E32E00B5753A /* EditableListDataSource.swift in Sources */,
 				20D839AE280E0CA700B27357 /* PopoverView.swift in Sources */,
 				2093CC95289A9FF5003A88DD /* StatusBarToggleDrawerButton.swift in Sources */,
 				2BD5CF2928D602CE00F95E5A /* CodeView.swift in Sources */,
 				2072FA1E280D891500C7F8D4 /* Location.swift in Sources */,
 				2B04574128E6FFE300024F2D /* NSRange+Shifted.swift in Sources */,
+				204768D52971E31300B5753A /* EditableListViewController.swift in Sources */,
 				2093CD28289AA084003A88DD /* GithubRepositoryRouter.swift in Sources */,
 				20091DB528DE1FC7008FDDFC /* UpdatePreferencesView.swift in Sources */,
 				D7E201B227E8D50000CB86D0 /* FindNavigatorModeSelector.swift in Sources */,
@@ -3963,6 +3990,7 @@
 				93D5F5D928CE123200286EBD /* TextTableViewCell.swift in Sources */,
 				04C3254B27FF23B000C8DA2D /* ExtensionNavigatorData.swift in Sources */,
 				206B129828DF7AA2002CDE51 /* GutterRect.swift in Sources */,
+				204768DB2971E33E00B5753A /* EditableListTableViewCell.swift in Sources */,
 				2B04574528E6FFE300024F2D /* TokenizeResult.swift in Sources */,
 				2093CDD2289AA507003A88DD /* SwiftTerm+Color+Init.swift in Sources */,
 				20D59CD228AFAAE400E3907B /* AccountItemView.swift in Sources */,

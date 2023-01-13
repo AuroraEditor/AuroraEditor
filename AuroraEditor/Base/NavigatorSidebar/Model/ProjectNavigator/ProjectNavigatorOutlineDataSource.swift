@@ -9,10 +9,12 @@
 import SwiftUI
 
 extension ProjectNavigatorViewController: NSOutlineViewDataSource {
+
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         guard let workspace = self.workspace else { return 0 }
         if let item = item as? Item {
-            return item.appearanceWithinChildrenOf(searchString: workspace.filter)
+            return item.appearanceWithinChildrenOf(searchString: workspace.filter,
+                                                   ignoredStrings: prefs.preferences.general.hiddenFilesAndFolders)
         }
         return content.count
     }
@@ -22,7 +24,8 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
               let item = item as? Item
         else { return content[index] }
 
-        return item.childrenSatisfying(searchString: workspace.filter)[index]
+        return item.childrenSatisfying(searchString: workspace.filter,
+                                       ignoredStrings: prefs.preferences.general.hiddenFilesAndFolders)[index]
     }
 
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {

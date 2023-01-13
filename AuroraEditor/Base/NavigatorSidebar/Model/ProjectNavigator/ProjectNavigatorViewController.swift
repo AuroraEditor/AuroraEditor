@@ -17,6 +17,9 @@ final class ProjectNavigatorViewController: NSViewController {
     typealias Item = FileSystemClient.FileItem
     let dragType: NSPasteboard.PasteboardType = .fileURL
 
+    @ObservedObject
+    var prefs: AppPreferencesModel = .shared
+
     var scrollView: NSScrollView!
     var outlineView: NSOutlineView!
 

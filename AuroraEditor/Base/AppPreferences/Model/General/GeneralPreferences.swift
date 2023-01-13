@@ -30,6 +30,9 @@ public extension AppPreferences {
         /// The file extensions collection to hide
         public var hiddenFileExtensions: FileExtensions = .default
 
+        /// The file extensions collection to hide
+        public var hiddenFilesAndFolders: [String] = [".", "~"]
+
         /// The style for file icons
         public var fileIconStyle: FileIconStyle = .color
 
@@ -88,6 +91,10 @@ public extension AppPreferences {
                 FileExtensions.self,
                 forKey: .hiddenFileExtensions
             ) ?? .default
+            self.hiddenFilesAndFolders = try container.decodeIfPresent(
+                [String].self,
+                forKey: .hiddenFilesAndFolders
+            ) ?? [".", "~"]
             self.fileIconStyle = try container.decodeIfPresent(
                 FileIconStyle.self,
                 forKey: .fileIconStyle

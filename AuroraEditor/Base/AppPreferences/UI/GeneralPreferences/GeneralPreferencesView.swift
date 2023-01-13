@@ -100,6 +100,9 @@ public struct GeneralPreferencesView: View {
                     Divider()
                     revealFileOnFocusChangeToggle
                         .padding(.vertical, 5)
+                    Divider()
+                    excludeFoldersInNavigator
+                        .padding(.vertical, 5)
                 }
                 .padding(.bottom)
             }

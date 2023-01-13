@@ -298,4 +298,35 @@ extension GeneralPreferencesView {
         .padding(.vertical, 7)
         .padding(.horizontal)
     }
+
+    var excludeFoldersInNavigator: some View {
+        HStack(alignment: .top) {
+            Text("Hidden Files and Folders")
+            Spacer()
+            VStack(spacing: 1) {
+                EditableListView()
+                    .frame(height: 150)
+            }
+            .frame(width: inputWidth)
+            .padding(1)
+        }
+        .padding(.vertical, 5)
+        .padding(.horizontal)
+    }
+
+    private var bottomToolbar: some View {
+        HStack(spacing: 12) {
+            Button {} label: {
+                Image(systemName: "plus")
+                    .foregroundColor(Color.secondary)
+            }
+            .buttonStyle(.plain)
+            Button {} label: {
+                Image(systemName: "minus")
+            }
+            .disabled(true)
+            .buttonStyle(.plain)
+            Spacer()
+        }
+    }
 }
