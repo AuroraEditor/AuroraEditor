@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Combine
-
+import SwiftOniguruma
 final class AuroraEditorApplication: NSApplication {
     let strongDelegate = AppDelegate()
 
@@ -35,7 +35,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     var cancellable = Set<AnyCancellable>()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-
         AuroraCrashlytics.add(delegate: self)
 
         AppPreferencesModel.shared.preferences.general.appAppearance.applyAppearance()
@@ -91,6 +90,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         #if !DEBUG
         updateModel.checkForUpdates()
         #endif
+
+        Log.info("AURORA EDITOR is using SwiftOniguruma Version: \(SwiftOniguruma.version())!")
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
