@@ -12,5 +12,6 @@ struct SettingItem: Identifiable {
     let id = UUID().uuidString
     let name: String
     let image: NSImage
-    let colour: Color
+    let colorStart: Color
+    let colorEnd: Color
 }

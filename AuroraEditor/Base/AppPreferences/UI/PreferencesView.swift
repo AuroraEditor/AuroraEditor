@@ -34,12 +34,13 @@ struct PreferencesView: View {
                                     .scaledToFit()
                                     .foregroundColor(.white)
                                     .frame(width: 23, height: 23)
-                                    .background(
-                                        RoundedRectangle(
-                                            cornerRadius: 5)
-                                        .foregroundColor(item.colour)
-                                        .opacity(0.5)
-                                    )
+                                    .background {
+                                        LinearGradient(gradient: Gradient(colors: [item.colorStart, item.colorEnd]),
+                                                       startPoint: .top,
+                                                       endPoint: .bottom)
+                                        .opacity(0.85)
+                                    }
+                                    .cornerRadius(5)
                                 Text(item.name)
                             }
                         }
@@ -77,10 +78,8 @@ struct PreferencesView: View {
                 } else if viewModel.selectedId == viewModel.setting[9].id {
                     PreferencesPlaceholderView()    // Components
                 } else if viewModel.selectedId == viewModel.setting[10].id {
-                    LocationsPreferencesView()      // Locations
-                } else if viewModel.selectedId == viewModel.setting[11].id {
                     PreferencesPlaceholderView()    // Advanced
-                } else if viewModel.selectedId == viewModel.setting[12].id {
+                } else if viewModel.selectedId == viewModel.setting[11].id {
                     UpdatePreferencesView()
                 }
         }

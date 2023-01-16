@@ -168,7 +168,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     @IBAction func openAbout(_ sender: Any) {
         if AppDelegate.tryFocusWindow(of: AboutView.self) { return }
 
-        AboutView().showWindow(width: 530, height: 220)
+        AboutView().showWindow(width: 530, height: 260)
     }
 
     @IBAction func openFeedback(_ sender: Any) {

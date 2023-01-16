@@ -244,7 +244,6 @@
 		2093CDB6289AA1A2003A88DD /* GitlabLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837EF289A7ACD00D91D05 /* GitlabLoginView.swift */; };
 		2093CDB7289AA1A6003A88DD /* GithubLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837F2289A7ACD00D91D05 /* GithubLoginView.swift */; };
 		2093CDB8289AA1A6003A88DD /* GithubEnterpriseLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837F3289A7ACD00D91D05 /* GithubEnterpriseLoginView.swift */; };
-		2093CDB9289AA1AB003A88DD /* LocationsPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837F5289A7ACD00D91D05 /* LocationsPreferencesView.swift */; };
 		2093CDBA289AA1AF003A88DD /* PreferencesPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8380F289A7ACD00D91D05 /* PreferencesPlaceholderView.swift */; };
 		2093CDBB289AA1B9003A88DD /* AcknowledgementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8384D289A7ACE00D91D05 /* AcknowledgementsView.swift */; };
 		2093CDBC289AA1BD003A88DD /* AcknowledgementsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83850289A7ACE00D91D05 /* AcknowledgementsModel.swift */; };
@@ -772,7 +771,6 @@
 		20D837F0289A7ACD00D91D05 /* GitAccountItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitAccountItem.swift; sourceTree = "<group>"; };
 		20D837F2289A7ACD00D91D05 /* GithubLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubLoginView.swift; sourceTree = "<group>"; };
 		20D837F3289A7ACD00D91D05 /* GithubEnterpriseLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubEnterpriseLoginView.swift; sourceTree = "<group>"; };
-		20D837F5289A7ACD00D91D05 /* LocationsPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsPreferencesView.swift; sourceTree = "<group>"; };
 		20D837F7289A7ACD00D91D05 /* codeedit */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = codeedit; sourceTree = "<group>"; };
 		20D837F9289A7ACD00D91D05 /* Loopable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loopable.swift; sourceTree = "<group>"; };
 		20D837FD289A7ACD00D91D05 /* SourceControlPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlPreferences.swift; sourceTree = "<group>"; };
@@ -1908,7 +1906,6 @@
 				20D837D9289A7ACD00D91D05 /* TextEditingPreferences */,
 				20D837DB289A7ACD00D91D05 /* ThemePreferences */,
 				20D837E5289A7ACD00D91D05 /* AccountsPreferences */,
-				20D837F4289A7ACD00D91D05 /* LocationsPreferences */,
 				20D8380F289A7ACD00D91D05 /* PreferencesPlaceholderView.swift */,
 				206729AE28AE69DC00EB0957 /* PreferencesView.swift */,
 			);
@@ -2015,14 +2012,6 @@
 				20D837F3289A7ACD00D91D05 /* GithubEnterpriseLoginView.swift */,
 			);
 			path = Github;
-			sourceTree = "<group>";
-		};
-		20D837F4289A7ACD00D91D05 /* LocationsPreferences */ = {
-			isa = PBXGroup;
-			children = (
-				20D837F5289A7ACD00D91D05 /* LocationsPreferencesView.swift */,
-			);
-			path = LocationsPreferences;
 			sourceTree = "<group>";
 		};
 		20D837F6289A7ACD00D91D05 /* Resources */ = {
@@ -3843,7 +3832,6 @@
 				93EF2EFA290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift in Sources */,
 				2093CD2C289AA089003A88DD /* PullRequest.swift in Sources */,
 				2BDFA91628D10B9200980385 /* FileCreationSelectionView.swift in Sources */,
-				2093CDB9289AA1AB003A88DD /* LocationsPreferencesView.swift in Sources */,
 				93D5F5D728CE0EF500286EBD /* TabHierarchyMenu.swift in Sources */,
 				2093CD8F289AA130003A88DD /* NotificationCentreView.swift in Sources */,
 				2093CDDE289AA522003A88DD /* Color.swift in Sources */,

@@ -16,7 +16,7 @@ extension WorkspaceDocument {
             // MARK: AuroraEditor menu
             Command(name: "About AurorEditor", command: {
                 if AppDelegate.tryFocusWindow(of: AboutView.self) { return }
-                AboutView().showWindow(width: 530, height: 220)
+                AboutView().showWindow(width: 530, height: 260)
             }),
             Command(name: "Preferences", command: {
                 if AppDelegate.tryFocusWindow(of: PreferencesView.self) { return }
