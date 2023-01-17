@@ -44,7 +44,7 @@ public struct AboutView: View {
                 actionButtons
             }
             .padding([.trailing, .bottom])
-        }.background(VibrantEffect())
+        }
     }
 
     // MARK: Sub-Views
