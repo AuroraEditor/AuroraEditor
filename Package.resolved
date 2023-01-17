@@ -12,7 +12,7 @@
       },
       {
         "package": "SwiftOniguruma",
-        "repositoryURL": "https://github.com/0xWDG/SwiftOniguruma",
+        "repositoryURL": "https://github.com/AuroraEditor/SwiftOniguruma",
         "state": {
           "branch": "main",
           "revision": "f7706ce7e7b8cc7b59523ed7c604365df4b1bad7",
