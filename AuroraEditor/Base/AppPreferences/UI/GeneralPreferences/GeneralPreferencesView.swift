@@ -71,15 +71,17 @@ public struct GeneralPreferencesView: View {
                 Group {
                     menuItemMode
                         .padding(.vertical, 5)
+                    Divider()
                 }
-            }
-
-            GroupBox {
-                reopenBehaviorSection
-                    .padding(.vertical, 5)
-                Divider()
-                dialogWarningsSection
-                    .padding(.vertical, 5)
+                Group {
+                    reopenBehaviorSection
+                        .padding(.vertical, 5)
+                    Divider()
+                }
+                Group {
+                    dialogWarningsSection
+                        .padding(.vertical, 5)
+                }
             }
             .padding(.bottom)
 
