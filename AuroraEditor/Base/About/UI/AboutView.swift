@@ -40,8 +40,6 @@ public struct AboutView: View {
             VStack(alignment: .leading, spacing: 0) {
                 topMetaData
                 Spacer()
-                locationMetadata
-                Spacer()
                 bottomMetaData
                 actionButtons
             }
@@ -78,26 +76,6 @@ public struct AboutView: View {
             .foregroundColor(.secondary)
             .font(.system(size: 10, weight: .light))
         }
-    }
-
-    private var locationMetadata: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text("Preference Location: __*\(AppPreferencesModel.shared.baseURL.path)*__")
-                .onTapGesture {
-                    NSWorkspace.shared.selectFile(
-                        nil,
-                        inFileViewerRootedAtPath: AppPreferencesModel.shared.baseURL.path
-                    )
-                }
-            Text("Theme Location: __*\(ThemeModel.shared.themesURL.path)*__")
-                .onTapGesture {
-                    NSWorkspace.shared.selectFile(
-                        nil,
-                        inFileViewerRootedAtPath: ThemeModel.shared.themesURL.path)
-                }
-        }
-        .foregroundColor(.secondary)
-        .font(.system(size: 9))
     }
 
     private var bottomMetaData: some View {

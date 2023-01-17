@@ -276,6 +276,26 @@ extension GeneralPreferencesView {
         .padding(.horizontal)
     }
 
+    var preferencesLocation: some View {
+        /*
+         Text("Theme Location: __*\(ThemeModel.shared.themesURL.path)*__")
+             .onTapGesture {
+                 NSWorkspace.shared.selectFile(
+                     nil,
+                     inFileViewerRootedAtPath: ThemeModel.shared.themesURL.path)
+             }
+         */
+        // TODO: WDG
+        HStack {
+            Text("Automatically Show Active File")
+            Spacer()
+            Toggle("Automatically Show Active File", isOn: $prefs.preferences.general.revealFileOnFocusChange)
+                .toggleStyle(.switch)
+                .labelsHidden()
+        }
+        .padding(.horizontal)
+    }
+
     var revealFileOnFocusChangeToggle: some View {
         HStack {
             Text("Automatically Show Active File")
