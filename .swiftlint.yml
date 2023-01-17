@@ -55,6 +55,7 @@ opt_in_rules:
   - pattern_matching_keywords
   - identical_operands
   - empty_string
+  - multiline_parameters
 
 # Custom configuration for nesting, this needs to be removed at some point.
 nesting:

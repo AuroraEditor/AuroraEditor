@@ -97,10 +97,12 @@ public extension GithubAccount {
      */
     @discardableResult
     func issue(_ session: GitURLSession = URLSession.shared,
-               owner: String, repository: String,
+               owner: String,
+               repository: String,
                number: Int,
                completion: @escaping (
-                _ response: Result<Issue, Error>) -> Void) -> URLSessionDataTaskProtocol? {
+                _ response: Result<Issue, Error>
+               ) -> Void) -> URLSessionDataTaskProtocol? {
         let router = IssueRouter.readIssue(configuration, owner, repository, number)
 
         return router.load(

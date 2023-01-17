@@ -159,7 +159,8 @@ extension RepositoriesViewController: NSOutlineViewDataSource {
 
 extension RepositoriesViewController: NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView,
-                     shouldShowCellExpansionFor tableColumn: NSTableColumn?, item: Any) -> Bool {
+                     shouldShowCellExpansionFor tableColumn: NSTableColumn?,
+                     item: Any) -> Bool {
         true
     }
 

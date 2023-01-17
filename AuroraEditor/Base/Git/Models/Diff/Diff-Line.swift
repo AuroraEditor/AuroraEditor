@@ -27,8 +27,11 @@ class DiffLine {
     var newLineNumber: Int?
     var noTrailingNewLine: Bool = false
 
-    init(text: String, type: DiffLineType, originalLineNumber: Int? = nil,
-         oldLineNumber: Int? = nil, newLineNumber: Int? = nil,
+    init(text: String,
+         type: DiffLineType,
+         originalLineNumber: Int? = nil,
+         oldLineNumber: Int? = nil,
+         newLineNumber: Int? = nil,
          noTrailingNewLine: Bool) {
         self.text = text
         self.type = type

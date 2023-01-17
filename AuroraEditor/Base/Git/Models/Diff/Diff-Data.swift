@@ -76,7 +76,8 @@ class ITextDiffData {
     /// Whether or not the diff has invisible bidi characters
     var hasHiddenBidiChars: Bool
 
-    init(text: String, hunks: [DiffHunk],
+    init(text: String,
+         hunks: [DiffHunk],
          lineEndingsChange: LineEndingsChange? = nil,
          maxLineNumber: Int,
          hasHiddenBidiChars: Bool) {

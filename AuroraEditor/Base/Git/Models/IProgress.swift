@@ -173,8 +173,12 @@ class MultiCommitOperationProgress: IMultiCommitOperationProgress {
     var title: String?
     var description: String?
 
-    init(currentCommitSummary: String, position: Int, totalCommitCount: Int,
-         value: Int, title: String? = nil, description: String? = nil) {
+    init(currentCommitSummary: String,
+         position: Int,
+         totalCommitCount: Int,
+         value: Int,
+         title: String? = nil,
+         description: String? = nil) {
         self.currentCommitSummary = currentCommitSummary
         self.position = position
         self.totalCommitCount = totalCommitCount
