@@ -44,11 +44,10 @@ public struct AboutView: View {
                 actionButtons
             }
             .padding([.trailing, .bottom])
-        }
+        }.background(VibrantEffect())
     }
 
     // MARK: Sub-Views
-
     private var logo: some View {
         Image(nsImage: NSApp.applicationIconImage)
             .resizable()

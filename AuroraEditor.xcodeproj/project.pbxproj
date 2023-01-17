@@ -411,6 +411,7 @@
 		2BCBAACA2927C65500D4DFB2 /* View+isHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */; };
 		2BCDF9D8295F2EBB00570253 /* .githash in Copy .githash */ = {isa = PBXBuildFile; fileRef = 2BCDF9D6295F2E9700570253 /* .githash */; };
 		2BD0BD102975ECDA00629A86 /* SwiftOniguruma in Frameworks */ = {isa = PBXBuildFile; productRef = 2BD0BD0F2975ECDA00629A86 /* SwiftOniguruma */; };
+		2BD0BD142977331400629A86 /* VibrantEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0BD132977331400629A86 /* VibrantEffect.swift */; };
 		2BD5CF1E28D602CE00F95E5A /* EditorLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF0C28D602CE00F95E5A /* EditorLocation.swift */; };
 		2BD5CF1F28D602CE00F95E5A /* CodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF0D28D602CE00F95E5A /* CodeEditor.swift */; };
 		2BD5CF2028D602CE00F95E5A /* MinimapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF0E28D602CE00F95E5A /* MinimapView.swift */; };
@@ -980,6 +981,7 @@
 		2BCBAAC72927C41E00D4DFB2 /* BindingProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingProxy.swift; sourceTree = "<group>"; };
 		2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+isHidden.swift"; sourceTree = "<group>"; };
 		2BCDF9D6295F2E9700570253 /* .githash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .githash; sourceTree = "<group>"; };
+		2BD0BD132977331400629A86 /* VibrantEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrantEffect.swift; sourceTree = "<group>"; };
 		2BD5CF0C28D602CE00F95E5A /* EditorLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorLocation.swift; sourceTree = "<group>"; };
 		2BD5CF0D28D602CE00F95E5A /* CodeEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeEditor.swift; sourceTree = "<group>"; };
 		2BD5CF0E28D602CE00F95E5A /* MinimapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimapView.swift; sourceTree = "<group>"; };
@@ -1726,6 +1728,7 @@
 				2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */,
 				2BCBAAC72927C41E00D4DFB2 /* BindingProxy.swift */,
 				2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */,
+				2BD0BD132977331400629A86 /* VibrantEffect.swift */,
 				2036DD5428DB3DB5003BECB7 /* Queue.swift */,
 			);
 			path = Utils;
@@ -3849,6 +3852,7 @@
 				2BDFA91A28D10B9200980385 /* FileSelectionItem.swift in Sources */,
 				2093CDAE289AA185003A88DD /* ThemePreferencesView.swift in Sources */,
 				2BCBAAC82927C41E00D4DFB2 /* BindingProxy.swift in Sources */,
+				2BD0BD142977331400629A86 /* VibrantEffect.swift in Sources */,
 				2093CDB1289AA19B003A88DD /* AccountListItem.swift in Sources */,
 				2BD5CF2828D602CE00F95E5A /* ScrollView.swift in Sources */,
 				2093CC99289A9FFD003A88DD /* FilterTextField.swift in Sources */,
