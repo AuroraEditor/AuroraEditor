@@ -165,16 +165,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         WelcomeWindowView.openWelcomeWindow()
     }
 
-    @IBAction func openAbout(_ sender: Any) {
-        if AppDelegate.tryFocusWindow(of: AboutView.self) { return }
-
-        AboutView().showWindow(width: 530, height: 260)
+    @IBAction public func openAbout(_ sender: Any) {
+        AppDelegate.openAboutWindow()
     }
 
     @IBAction func openFeedback(_ sender: Any) {
         if AppDelegate.tryFocusWindow(of: FeedbackView.self) { return }
 
         FeedbackView().showWindow()
+    }
+
+    /// Open about window
+    static func openAboutWindow() {
+        if tryFocusWindow(of: AboutView.self) { return }
+        AboutView().showWindow(width: 530, height: 220)
     }
 
     /// Tries to focus a window with specified view content type.

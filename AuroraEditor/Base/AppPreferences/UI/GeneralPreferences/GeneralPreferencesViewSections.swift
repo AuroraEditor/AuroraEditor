@@ -276,6 +276,29 @@ extension GeneralPreferencesView {
         .padding(.horizontal)
     }
 
+    var preferencesLocation: some View {
+        HStack {
+              Text("Preferences")
+              Spacer()
+              HStack {
+                  Text(AppPreferencesModel.shared.baseURL.path)
+                      .foregroundColor(.secondary)
+                  Button {
+                      NSWorkspace.shared.selectFile(
+                          nil,
+                          inFileViewerRootedAtPath: AppPreferencesModel.shared.baseURL.path
+                      )
+                  } label: {
+                      Image(systemName: "arrow.right.circle.fill")
+                  }
+                  .buttonStyle(.plain)
+                  .foregroundColor(.secondary)
+              }
+          }
+          .padding(.top, 5)
+          .padding(.horizontal)
+    }
+
     var revealFileOnFocusChangeToggle: some View {
         HStack {
             Text("Automatically Show Active File")
