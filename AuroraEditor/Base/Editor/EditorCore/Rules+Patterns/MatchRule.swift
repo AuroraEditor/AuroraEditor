@@ -1,6 +1,6 @@
 //
 //  MatchRule.swift
-//
+//  Aurora Editor
 //
 //  Created by Matthew Davidson on 26/11/19.
 //

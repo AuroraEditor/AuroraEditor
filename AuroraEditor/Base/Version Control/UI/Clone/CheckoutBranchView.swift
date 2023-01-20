@@ -1,6 +1,6 @@
 //
 //  CheckoutBranchView.swift
-//  AuroraEditorModules/Git
+//  Aurora Editor
 //
 //  Created by Aleksi Puttonen on 14.4.2022.
 //

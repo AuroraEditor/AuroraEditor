@@ -1,6 +1,6 @@
 //
 //  NotificationManager.swift
-//  
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/07/12.
 //

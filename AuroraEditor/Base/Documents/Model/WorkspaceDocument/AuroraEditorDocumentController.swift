@@ -1,6 +1,6 @@
 //
-//  AuroraEditorDocumentController.swift
-//  AuroraEditor
+//  Aurora EditorDocumentController.swift
+//  Aurora Editor
 //
 //  Created by Pavel Kasila on 17.03.22.
 //

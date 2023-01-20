@@ -1,6 +1,6 @@
 //
 //  Loopable.swift
-//  AuroraEditorModules/AppPreferences
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 03.04.22.
 //

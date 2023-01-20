@@ -1,6 +1,6 @@
 //
 //  DefaultTabIntervalThemeAttribute.swift
-//  
+//  Aurora Editor
 //
 //  Created by Matthew Davidson on 30/12/19.
 //

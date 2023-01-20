@@ -1,6 +1,6 @@
 //
 //  PressActionsModifier.swift
-//  AuroraEditorModules/AuroraEditorUI
+//  Aurora Editor
 //
 //  Created by Gabriel Theodoropoulos on 1/11/20.
 //

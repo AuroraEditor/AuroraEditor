@@ -1,6 +1,6 @@
 //
 //  FileItem.swift
-//  AuroraEditorModules/FileSystemClient
+//  Aurora Editor
 //
 //  Created by Marco Carnevali on 16/03/22.
 //

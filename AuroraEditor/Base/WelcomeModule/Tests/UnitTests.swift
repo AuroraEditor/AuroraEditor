@@ -1,6 +1,6 @@
 //
 //  UnitTests.swift
-//  AuroraEditorModules/WelcomeModuleTests
+//  Aurora Editor
 //
 //  Created by Ziyuan Zhao on 2022/3/19.
 //

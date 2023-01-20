@@ -1,8 +1,9 @@
 //
 //  DockProgress.swift
-//  AuroraEditor
+//  Aurora Editor
 //
-//  Created by TAY KAI QUAN on 6/9/22.
+//  Created by TAY KAI QUAN on 06/09/2022.
+//
 //  CREDIT: Modified from https://github.com/sindresorhus/DockProgress/
 //
 

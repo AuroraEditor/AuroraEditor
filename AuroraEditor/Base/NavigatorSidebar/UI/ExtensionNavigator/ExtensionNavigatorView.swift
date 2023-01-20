@@ -1,6 +1,6 @@
 //
 //  ExtensionNavigator.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Pavel Kasila on 6.04.22.
 //

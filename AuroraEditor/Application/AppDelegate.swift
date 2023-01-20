@@ -1,8 +1,8 @@
 //
-//  AuroraEditororAppDelegate.swift
-//  AuroraEditor
+//  AppDelegate.swift
+//  Aurora Editor
 //
-//  Created by Pavel Kasila on 12.03.22.
+//  Created by Pavel Kasila on 12/03/2022.
 //
 
 import SwiftUI

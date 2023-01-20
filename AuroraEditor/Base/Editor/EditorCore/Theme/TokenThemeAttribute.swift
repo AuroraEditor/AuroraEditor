@@ -1,6 +1,6 @@
 //
 //  TokenThemeAttribute.swift
-//  
+//  Aurora Editor
 //
 //  Created by Matthew Davidson on 21/12/19.
 //

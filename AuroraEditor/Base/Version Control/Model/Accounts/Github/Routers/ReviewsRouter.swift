@@ -1,6 +1,6 @@
 //
 //  ReviewsRouter.swift
-//  AuroraEditorModules/GitAccounts
+//  Aurora Editor
 //
 //  Created by Nanshi Li on 2022/03/31.
 //

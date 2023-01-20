@@ -1,6 +1,6 @@
 //
 //  GutterView.swift
-//  
+//  Aurora Editor
 //
 //  Created by Manuel M T Chakravarty on 23/09/2020.
 //

@@ -1,6 +1,6 @@
 //
 //  CodeView.swift
-//  
+//  Aurora Editor
 //
 //  Created by Manuel M T Chakravarty on 05/05/2021.
 //

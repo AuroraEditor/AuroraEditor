@@ -1,6 +1,6 @@
 //
 //  ExtensionInstallationViewModel.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Pavel Kasila on 8.04.22.
 //

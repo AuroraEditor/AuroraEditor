@@ -1,6 +1,6 @@
 //
 //  Bundle.swift
-//  AuroraEditorModules/AuroraEditorUtils
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 01.05.22.
 //

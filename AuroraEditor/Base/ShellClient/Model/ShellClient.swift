@@ -1,6 +1,6 @@
 //
 //  ShellClientLive.swift
-//  AuroraEditorModules/ShellClient
+//  Aurora Editor
 //
 //  Created by Wesley de Groot on 17/08/22.
 //

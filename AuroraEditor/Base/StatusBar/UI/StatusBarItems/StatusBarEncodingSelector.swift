@@ -1,6 +1,6 @@
 //
 //  StatusBarEncodingSelector.swift
-//  AuroraEditorModules/StatusBar
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 22.03.22.
 //

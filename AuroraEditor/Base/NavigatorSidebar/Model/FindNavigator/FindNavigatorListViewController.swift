@@ -1,11 +1,11 @@
 //
- //  FindNavigatorListViewController.swift
- //  CodeEdit
- //
- //  Created by Khan Winter on 7/7/22.
- //
+//  FindNavigatorListViewController.swift
+//  Aurora Editor
+//
+//  Created by Khan Winter on 7/7/22.
+//
 
- import SwiftUI
+import SwiftUI
 
 final class FindNavigatorListViewController: NSViewController {
 

@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  AuroraEditorModules/AppPreferences
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 13.04.22.
 //

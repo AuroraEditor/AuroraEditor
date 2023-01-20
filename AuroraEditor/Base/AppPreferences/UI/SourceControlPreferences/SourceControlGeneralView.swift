@@ -1,6 +1,6 @@
 //
 //  SourceControlGeneralView.swift
-//  AuroraEditorModules/AppPreferences
+//  Aurora Editor
 //
 //  Created by Nanshi Li on 2022/04/01.
 //

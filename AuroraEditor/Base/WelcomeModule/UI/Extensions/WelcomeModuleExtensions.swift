@@ -1,6 +1,6 @@
 //
 //  Welcome.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Nazar Rudnyk on 06.06.2022.
 //

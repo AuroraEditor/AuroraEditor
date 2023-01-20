@@ -1,6 +1,6 @@
 //
 //  TabBarAccessory.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Lingxi Li on 4/28/22.
 //

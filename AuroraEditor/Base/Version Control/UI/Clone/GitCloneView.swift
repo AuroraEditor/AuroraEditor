@@ -1,6 +1,6 @@
 //
 //  GitCloneView.swift
-//  AuroraEditorModules/Git
+//  Aurora Editor
 //
 //  Created by Aleksi Puttonen on 23.3.2022.
 //

@@ -1,6 +1,6 @@
 //
 //  TabBarItemButtonStyle.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Khan Winter on 6/4/22.
 //

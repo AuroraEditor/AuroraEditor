@@ -1,6 +1,6 @@
 //
 //  ScopeName.swift
-//  
+//  Aurora Editor
 //
 //  Created by Matthew Davidson on 31/12/19.
 //

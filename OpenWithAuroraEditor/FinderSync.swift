@@ -1,6 +1,6 @@
 //
 //  FinderSync.swift
-//  openInCodeEdit
+//  Aurora Editor
 //
 //  Created by Wesley de Groot on 03/05/2022.
 //

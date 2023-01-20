@@ -1,6 +1,6 @@
 //
 //  Capture.swift
-//  
+//  Aurora Editor
 //
 //  Created by Matthew Davidson on 7/12/19.
 //

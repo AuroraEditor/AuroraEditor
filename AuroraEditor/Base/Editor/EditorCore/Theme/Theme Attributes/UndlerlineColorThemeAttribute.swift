@@ -1,6 +1,6 @@
 //
 //  UnderlineNSColorThemeAttribute.swift
-//  
+//  Aurora Editor
 //
 //  Created by Matthew Davidson on 23/12/19.
 //

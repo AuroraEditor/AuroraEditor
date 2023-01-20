@@ -1,6 +1,6 @@
 //
 //  Theme.swift
-//  
+//  Aurora Editor
 //
 //  Created by Manuel M T Chakravarty on 14/05/2021.
 //

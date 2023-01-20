@@ -1,6 +1,6 @@
 //
 //  shellClient.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Wesley de Groot on 22/07/2022.
 //

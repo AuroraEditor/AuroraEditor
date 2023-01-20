@@ -1,6 +1,6 @@
 //
 //  Project.swift
-//  AuroraEditorModules/GitAccounts
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/03/31.
 //

@@ -1,5 +1,6 @@
 //
 //  SplitViewModifier.swift
+//  Aurora Editor
 //
 //  Created by Mateusz Bąk on 2022/07/07.
 //

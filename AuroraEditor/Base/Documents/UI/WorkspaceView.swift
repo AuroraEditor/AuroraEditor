@@ -1,6 +1,6 @@
 //
 //  WorkspaceView.swift
-//  CodeEdit
+//  Aurora Editor
 //
 //  Created by Austin Condiff on 3/10/22.
 //

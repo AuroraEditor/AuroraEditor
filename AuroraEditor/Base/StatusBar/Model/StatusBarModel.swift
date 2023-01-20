@@ -1,6 +1,6 @@
 //
 //  StatusBarModel.swift
-//  AuroraEditorModules/StatusBar
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 20.03.22.
 //

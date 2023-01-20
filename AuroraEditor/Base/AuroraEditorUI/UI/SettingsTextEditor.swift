@@ -1,6 +1,6 @@
 //
 //  SettingsTextEditor.swift
-//  
+//  Aurora Editor
 //
 //  Created by Andrey Plotnikov on 07.05.2022.
 //

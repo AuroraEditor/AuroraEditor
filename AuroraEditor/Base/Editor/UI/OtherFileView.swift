@@ -1,6 +1,6 @@
 //
 //  OtherFileView.swift
-//  
+//  Aurora Editor
 //
 //  Created by Shibo Tong on 10/7/2022.
 //

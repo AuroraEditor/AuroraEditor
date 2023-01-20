@@ -1,9 +1,8 @@
 //
-//  AuroraEditorWindowController+NSToolbarDelegate.swift
-//  AuroraEditor
+//  Aurora EditorWindowController+NSToolbarDelegate.swift
+//  Aurora Editor
 //
 //  Created by TAY KAI QUAN on 3/9/22.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import Cocoa

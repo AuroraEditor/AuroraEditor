@@ -1,6 +1,6 @@
 //
 //  BreadcrumbsComponent.swift
-//  AuroraEditorModules/Breadcrumbs
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 18.03.22.
 //

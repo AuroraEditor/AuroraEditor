@@ -1,6 +1,6 @@
 //
 //  ParsePackagesResolved.swift
-//  AuroraEditorModules/Acknowledgements
+//  Aurora Editor
 //
 //  Created by Shivesh M M on 4/4/22.
 //

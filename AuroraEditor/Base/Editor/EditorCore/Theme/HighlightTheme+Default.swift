@@ -1,6 +1,6 @@
 //
 //  HighlightTheme+Default.swift
-//  
+//  Aurora Editor
 //
 //  Created by Matthew Davidson on 9/12/19.
 //

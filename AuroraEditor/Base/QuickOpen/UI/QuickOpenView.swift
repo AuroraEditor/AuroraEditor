@@ -1,6 +1,6 @@
 //
 //  QuickOpenView.swift
-//  AuroraEditorModules/QuickOpen
+//  Aurora Editor
 //
 //  Created by Pavel Kasila on 20.03.22.
 //
