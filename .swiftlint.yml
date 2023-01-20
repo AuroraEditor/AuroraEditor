@@ -61,6 +61,7 @@ opt_in_rules:
   - closure_parameter_position
   - closure_spacing
   - collection_alignment 
+  - last_where
 
 # Custom configuration for nesting, this needs to be removed at some point.
 nesting:
