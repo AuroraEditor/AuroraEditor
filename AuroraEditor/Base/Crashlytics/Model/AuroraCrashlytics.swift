@@ -80,7 +80,7 @@ public class AuroraCrashlytics: NSObject {
         self.delegates = self.delegates.filter {
             // filter null weak delegate
             return $0.delegate != nil
-            }.filter {
+        }.filter {
                 // filter the delegate from parameter
                 return $0.delegate?.hash != delegate.hash
         }

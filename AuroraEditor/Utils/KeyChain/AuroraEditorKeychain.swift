@@ -227,7 +227,8 @@ open class AuroraEditorKeychain {
 
         if lastResultCode == noErr {
             return (result as? [[String: Any]])?.compactMap {
-                $0[AuroraEditorKeychainConstants.attrAccount] as? String } ?? []
+                $0[AuroraEditorKeychainConstants.attrAccount] as? String
+            } ?? []
         }
 
         return []

@@ -34,7 +34,7 @@ struct FindNavigatorResultList: View {
                     state: state,
                     fileItem: foundFile.file, results: getResultWith(foundFile.file)) {
                         state.workspace.openTab(item: foundFile.file)
-                    }
+                }
             }
         }
         .listStyle(.sidebar)

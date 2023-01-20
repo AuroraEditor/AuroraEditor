@@ -142,7 +142,8 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
 
         // Find the new line start locations, adding the offset and 1 to get the location of the next line.
         let newLineLocs = str.utf16.indices.filter { str[$0] == "\n" }.map {
-            $0.utf16Offset(in: str) + 1 + range.location }
+            $0.utf16Offset(in: str) + 1 + range.location
+        }
 
         // Create new line ranges with 0 length.
         let newLineRanges = newLineLocs.map { NSRange(location: $0, length: 0) }

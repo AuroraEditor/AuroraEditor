@@ -82,7 +82,7 @@ struct PreferencesView: View {
                 } else if viewModel.selectedId == viewModel.setting[11].id {
                     UpdatePreferencesView()
                 }
-        }
+            }
             .frame(minWidth: 560, idealWidth: 580, maxWidth: 600)
     }
 

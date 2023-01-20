@@ -56,6 +56,7 @@ opt_in_rules:
   - identical_operands
   - empty_string
   - multiline_parameters
+  - closure_end_indentation
 
 # Custom configuration for nesting, this needs to be removed at some point.
 nesting:

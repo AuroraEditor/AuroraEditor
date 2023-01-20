@@ -294,7 +294,7 @@ extension GeneralPreferencesView {
                   .buttonStyle(.plain)
                   .foregroundColor(.secondary)
               }
-          }
+        }
           .padding(.top, 5)
           .padding(.horizontal)
     }

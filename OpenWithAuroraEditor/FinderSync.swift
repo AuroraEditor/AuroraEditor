@@ -27,7 +27,7 @@ class AEOpenWith: FIFinderSync {
                 if let volumeURL = notification.userInfo?[NSWorkspace.volumeURLUserInfoKey] as? URL {
                     finderSync.directoryURLs.insert(volumeURL)
                 }
-            }
+        }
     }
 
     /// Open in AuroraEditor (menu) action

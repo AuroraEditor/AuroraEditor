@@ -19,7 +19,8 @@ internal struct StatusBarLineEndSelector: View {
         Menu {
             // LF, CRLF
         } label: {
-            StatusBarMenuLabel("LF", model: model)        }
+            StatusBarMenuLabel("LF", model: model)
+        }
         .menuIndicator(.hidden)
         .menuStyle(.borderlessButton)
         .fixedSize()

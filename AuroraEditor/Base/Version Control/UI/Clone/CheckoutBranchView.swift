@@ -38,7 +38,7 @@ public struct CheckoutBranchView: View {
                         .foregroundColor(.secondary)
                         .alignmentGuide(.trailing) { context in
                         context[.trailing]
-                    }
+                        }
                     Menu {
                         ForEach(getBranches().filter { !$0.contains("HEAD") }, id: \.self) { branch in
                             Button {

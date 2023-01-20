@@ -215,7 +215,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                     display: true) { document, _, _ in
                         Log.info("checkForFilesToOpen(): Opened \(fileURL.absoluteString)")
                         document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
-                    }
+                }
             }
 
             defaults.removeObject(forKey: "openInAEFiles")
