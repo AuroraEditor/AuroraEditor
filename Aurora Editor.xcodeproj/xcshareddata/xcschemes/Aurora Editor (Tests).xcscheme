@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1400"
-   wasCreatedForAppExtension = "YES"
-   version = "2.0">
+   version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -15,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2BE487EB28245162003F3F64"
-               BuildableName = "OpenWithAuroraEditor.appex"
-               BlueprintName = "OpenWithAuroraEditor"
-               ReferencedContainer = "container:AuroraEditor.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B658FB2B27DA9E0F00EA4DBD"
-               BuildableName = "Aurora Editor.app"
-               BlueprintName = "Aurora Editor"
+               BlueprintIdentifier = "B658FB3C27DA9E1000EA4DBD"
+               BuildableName = "AuroraEditorTests.xctest"
+               BlueprintName = "AuroraEditorTests"
                ReferencedContainer = "container:AuroraEditor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,16 +32,14 @@
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = ""
-      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      askForAppToLaunch = "Yes"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES"
-      launchAutomaticallySubstyle = "2">
+      allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
@@ -64,7 +47,7 @@
             BlueprintIdentifier = "B658FB2B27DA9E0F00EA4DBD"
             BuildableName = "Aurora Editor.app"
             BlueprintName = "Aurora Editor"
-            ReferencedContainer = "container:AuroraEditor.xcodeproj">
+            ReferencedContainer = "container:Aurora Editor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -73,19 +56,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES"
-      askForAppToLaunch = "Yes"
-      launchAutomaticallySubstyle = "2">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      debugDocumentVersioning = "YES">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B658FB2B27DA9E0F00EA4DBD"
-            BuildableName = "Aurora Editor.app"
-            BlueprintName = "Aurora Editor"
+            BlueprintIdentifier = "B658FB3C27DA9E1000EA4DBD"
+            BuildableName = "AuroraEditorTests.xctest"
+            BlueprintName = "AuroraEditorTests"
             ReferencedContainer = "container:AuroraEditor.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
