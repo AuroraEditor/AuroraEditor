@@ -117,7 +117,7 @@ class StandardTableViewCell: NSTableCellView {
                             width: iconWidth, height: frame.height)
         // center align the image
         if let alignmentRect = icon.image?.alignmentRect {
-            icon.frame = NSRect(x: (iconWidth+4-alignmentRect.width)/2, y: 4,
+            icon.frame = NSRect(x: (iconWidth + 4 - alignmentRect.width) / 2, y: 4,
                                 width: alignmentRect.width, height: frame.height)
         }
 
@@ -127,18 +127,18 @@ class StandardTableViewCell: NSTableCellView {
             let newSize = secondaryLabel.sizeThatFits(CGSize(width: secondLabelWidth,
                                                              height: CGFloat.greatestFiniteMagnitude))
             // somehow, a width of 0 makes it resize properly.
-            secondaryLabel.frame = NSRect(x: frame.width-newSize.width, y: 2.5,
+            secondaryLabel.frame = NSRect(x: frame.width - newSize.width, y: 2.5,
                                           width: 0, height: newSize.height)
 
-            label.frame = NSRect(x: iconWidth+2, y: 2.5,
-                                 width: secondaryLabel.frame.minX-icon.frame.maxX-5, height: 25)
+            label.frame = NSRect(x: iconWidth + 2, y: 2.5,
+                                 width: secondaryLabel.frame.minX - icon.frame.maxX - 5, height: 25)
 
         // put the secondary label right after the primary label
         } else {
             let mainLabelWidth = label.frame.size.width
             let newSize = label.sizeThatFits(CGSize(width: mainLabelWidth,
                                                     height: CGFloat.greatestFiniteMagnitude))
-            label.frame = NSRect(x: iconWidth+2, y: 2.5,
+            label.frame = NSRect(x: iconWidth + 2, y: 2.5,
                                  width: newSize.width, height: 25)
             secondaryLabel.frame = NSRect(x: label.frame.maxX + 2, y: 2.5,
                                           width: frame.width - label.frame.maxX - 2, height: 25)

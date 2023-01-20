@@ -147,7 +147,7 @@ extension WorkspaceDocument {
                     }
                     if appearanceString.hasSuffix(searchterm) ||
                         !appearanceString.last!.isLetter ||
-                        !appearanceString.character(at: appearanceString.count-2).isLetter {
+                        !appearanceString.character(at: appearanceString.count - 2).isLetter {
                         endsWith = true
                     }
 
@@ -180,7 +180,7 @@ extension String {
         return self[self.index(self.startIndex, offsetBy: index)]
     }
 
-    func appearancesOfSubstring(substring: String, toLeft: Int=0, toRight: Int=0) -> [Range<String.Index>] {
+    func appearancesOfSubstring(substring: String, toLeft: Int = 0, toRight: Int = 0) -> [Range<String.Index>] {
         guard !substring.isEmpty && self.contains(substring) else { return [] }
         var appearances: [Range<String.Index>] = []
         for (index, character) in self.enumerated() where character == substring.first {
@@ -192,7 +192,7 @@ extension String {
                     offsetBy: index - (toLeft <= index ? toLeft : 0))
                 let endIndex = self.index(self.startIndex,
                     offsetBy: substring.count + index +
-                        (substring.count+index+toRight <= self.count ? toRight : 0))
+                        (substring.count + index + toRight <= self.count ? toRight : 0))
                 appearances.append(startIndex..<endIndex)
             }
         }

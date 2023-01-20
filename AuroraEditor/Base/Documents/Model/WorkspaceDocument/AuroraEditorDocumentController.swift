@@ -53,7 +53,7 @@ extension NSDocumentController {
         dialog.canChooseDirectories = true
 
         dialog.begin { result in
-            if result ==  NSApplication.ModalResponse.OK, let url = dialog.url {
+            if result == NSApplication.ModalResponse.OK, let url = dialog.url {
                 self.openDocument(withContentsOf: url, display: true) { document, documentWasAlreadyOpen, error in
                     if let error = error {
                         NSAlert(error: error).runModal()

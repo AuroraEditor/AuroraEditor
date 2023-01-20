@@ -86,7 +86,7 @@ final class RepositoriesMenu: NSMenu {
         // Get a list of commits for the selected branch. We only get the latest 2 commits of
         // the branch so that we know what commit is newer.
         do {
-            let commits  = try getCommits(directoryURL: (workspace?.workspaceURL())!,
+            let commits = try getCommits(directoryURL: (workspace?.workspaceURL())!,
                                           revisionRange: branch.name,
                                           limit: 2)
 

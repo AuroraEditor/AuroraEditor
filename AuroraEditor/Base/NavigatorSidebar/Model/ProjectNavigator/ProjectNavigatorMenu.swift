@@ -244,7 +244,7 @@ final class ProjectNavigatorMenu: NSMenu {
     @objc
     private func delete() {
         let deleteConfirmation = NSAlert()
-        let message = "\(item!.fileName)\(item!.isFolder ? " and its children" :"")"
+        let message = "\(item!.fileName)\(item!.isFolder ? " and its children" : "")"
         deleteConfirmation.messageText = "Do you want to move \(message) to the bin?"
         deleteConfirmation.alertStyle = .critical
         deleteConfirmation.addButton(withTitle: "Delete")

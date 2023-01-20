@@ -188,16 +188,16 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
 
         let itemCount = toolbar.items.count
         if inspectorPane.isCollapsed {
-            toolbar.removeItem(at: itemCount-3) // -1 is the last item, -2 is the second last
-            toolbar.removeItem(at: itemCount-3) // this removes the second last and the third last
+            toolbar.removeItem(at: itemCount - 3) // -1 is the last item, -2 is the second last
+            toolbar.removeItem(at: itemCount - 3) // this removes the second last and the third last
         } else {
             toolbar.insertItem(
                 withItemIdentifier: NSToolbarItem.Identifier.itemListTrackingSeparator,
-                at: itemCount-1 // insert it as second last
+                at: itemCount - 1 // insert it as second last
             )
             toolbar.insertItem(
                 withItemIdentifier: NSToolbarItem.Identifier.flexibleSpace,
-                at: itemCount-0 // insert it as "last" (actually second last now)
+                at: itemCount - 0 // insert it as "last" (actually second last now)
             )
         }
     }

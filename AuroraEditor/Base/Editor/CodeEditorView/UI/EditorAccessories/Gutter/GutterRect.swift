@@ -21,9 +21,9 @@ extension GutterView {
     /// the same vertical extension.
     public func gutterRectForLineNumbersFrom(textRect: CGRect) -> CGRect {
         let gutterRect = gutterRectFrom(textRect: textRect)
-        return CGRect(x: gutterRect.origin.x + gutterRect.size.width * 2/7,
+        return CGRect(x: gutterRect.origin.x + gutterRect.size.width * 2 / 7,
                       y: gutterRect.origin.y,
-                      width: gutterRect.size.width * 4/7,
+                      width: gutterRect.size.width * 4 / 7,
                       height: gutterRect.size.height)
     }
 

@@ -56,7 +56,7 @@ struct InspectorSidebarToolbarTop: View {
                 )
                 .opacity(draggingItem?.imageName == icon.imageName &&
                          hasChangedLocation &&
-                         drugItemLocation != nil ? 0.0: 1.0)
+                         drugItemLocation != nil ? 0.0 : 1.0)
                 .onDrop(of: [.utf8PlainText],
                         delegate: InspectorSidebarDockIconDelegate(
                             item: icon,

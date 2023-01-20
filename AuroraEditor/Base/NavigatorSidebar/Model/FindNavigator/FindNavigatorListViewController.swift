@@ -222,7 +222,7 @@ extension FindNavigatorListViewController: NSOutlineViewDelegate {
             tempView.attributedStringValue = item.attributedLabel()
             tempView.font = .labelFont(ofSize: 11)
             tempView.layout()
-            let width = outlineView.frame.width - outlineView.indentationPerLevel*2 - 24
+            let width = outlineView.frame.width - outlineView.indentationPerLevel * 2 - 24
             return tempView.sizeThatFits(NSSize(width: width,
                                                 height: CGFloat.greatestFiniteMagnitude)).height + 8
         } else {

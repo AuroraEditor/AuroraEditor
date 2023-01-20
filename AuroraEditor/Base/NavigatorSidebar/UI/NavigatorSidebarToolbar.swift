@@ -74,7 +74,7 @@ struct NavigatorSidebarToolbar: View {
             .imageScale(.medium)
             .opacity(model.draggingItem?.imageName == icon.imageName &&
                      model.hasChangedLocation &&
-                     model.drugItemLocation != nil ? 0.0: 1.0)
+                     model.drugItemLocation != nil ? 0.0 : 1.0)
             .onDrop(
                 of: [.utf8PlainText],
                 delegate: NavigatorSidebarDockIconDelegate(

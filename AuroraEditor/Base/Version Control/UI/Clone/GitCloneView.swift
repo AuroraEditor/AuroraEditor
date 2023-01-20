@@ -235,7 +235,7 @@ public struct GitCloneView: View {
 
                 Toggle("Clone all branches", isOn: $allBranches)
 
-                if  allBranches  && !arrayBranch.isEmpty {
+                if  allBranches && !arrayBranch.isEmpty {
                     Picker("Checkout", selection: $selectedBranch) {
                         ForEach(arrayBranch, id: \.self) {
                             Text($0)
@@ -243,7 +243,7 @@ public struct GitCloneView: View {
                     }
                 }
 
-                if  !allBranches  && !arrayBranch.isEmpty {
+                if  !allBranches && !arrayBranch.isEmpty {
                     Picker("Branch", selection: $selectedBranch) {
                         ForEach(arrayBranch, id: \.self) {
                             Text($0)
@@ -279,7 +279,7 @@ public struct GitCloneView: View {
                 .padding(.bottom, 2)
 
             if cloningStage != 4 {
-                Text("\(progressLabels[cloningStage]): \(valueCloning)% (\(cloningStage+1)/4)")
+                Text("\(progressLabels[cloningStage]): \(valueCloning)% (\(cloningStage + 1)/4)")
                     .font(.system(size: 11))
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.leading)
@@ -290,7 +290,7 @@ public struct GitCloneView: View {
                     .multilineTextAlignment(.leading)
             }
 
-            ProgressView(value: Float(valueCloning)/100.0)
+            ProgressView(value: Float(valueCloning) / 100.0)
                 .progressViewStyle(LinearProgressViewStyle())
 
             HStack {

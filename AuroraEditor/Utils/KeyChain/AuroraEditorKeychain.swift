@@ -159,7 +159,7 @@ open class AuroraEditorKeychain {
         if asReference {
             query[AuroraEditorKeychainConstants.returnReference] = kCFBooleanTrue
         } else {
-            query[AuroraEditorKeychainConstants.returnData] =  kCFBooleanTrue
+            query[AuroraEditorKeychainConstants.returnData] = kCFBooleanTrue
         }
 
         query = addAccessGroupWhenPresent(query)

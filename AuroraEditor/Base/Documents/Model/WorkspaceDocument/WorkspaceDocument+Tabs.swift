@@ -204,7 +204,7 @@ extension WorkspaceDocument {
             return
         }
 
-        let range = selectionState.openedTabs[(startIdx+1)...]
+        let range = selectionState.openedTabs[(startIdx + 1)...]
         closeTabs(items: range)
     }
 

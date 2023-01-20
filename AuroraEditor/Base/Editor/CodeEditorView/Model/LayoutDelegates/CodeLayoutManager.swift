@@ -90,7 +90,7 @@ class CodeLayoutManager: NSLayoutManager {
                     let leftInset: CGFloat = -1
                     let rightInset: CGFloat = -1
                     rectArray[rectIndex] = rectArray[rectIndex].insetBy(dx: leftInset + rightInset, dy: 0)
-                    rectArray[rectIndex] = rectArray[rectIndex].offsetBy(dx: (leftInset - rightInset)/2, dy: 0)
+                    rectArray[rectIndex] = rectArray[rectIndex].offsetBy(dx: (leftInset - rightInset) / 2, dy: 0)
                 }
 
                 self.fillRoundedBackgroundRectArray(rectArray,

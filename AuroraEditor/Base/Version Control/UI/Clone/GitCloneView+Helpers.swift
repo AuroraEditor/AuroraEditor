@@ -19,7 +19,7 @@ extension GitCloneView {
         dialog.nameFieldLabel = "Clone as"
         dialog.title = "Clone"
 
-        if dialog.runModal() ==  NSApplication.ModalResponse.OK {
+        if dialog.runModal() == NSApplication.ModalResponse.OK {
             let result = dialog.url
 
             if result != nil {

@@ -64,7 +64,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 
             for index in 0..<CommandLine.arguments.count {
                 if CommandLine.arguments[index] == "--open" && (index + 1) < CommandLine.arguments.count {
-                    let path = CommandLine.arguments[index+1]
+                    let path = CommandLine.arguments[index + 1]
                     let url = URL(fileURLWithPath: path)
 
                     AuroraEditorDocumentController.shared.reopenDocument(
