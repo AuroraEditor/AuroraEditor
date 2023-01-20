@@ -59,7 +59,8 @@ opt_in_rules:
   - closure_end_indentation
   - operator_usage_whitespace
   - closure_parameter_position
-
+  - closure_spacing
+  
 # Custom configuration for nesting, this needs to be removed at some point.
 nesting:
   type_level:
