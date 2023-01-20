@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B658FB2B27DA9E0F00EA4DBD"
-            BuildableName = "AuroraEditor.app"
-            BlueprintName = "AuroraEditor"
+            BuildableName = "Aurora Editor.app"
+            BlueprintName = "Aurora Editor"
             ReferencedContainer = "container:AuroraEditor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
