@@ -1,11 +1,11 @@
 //
- //  FindNavigatorListViewController.swift
- //  CodeEdit
- //
- //  Created by Khan Winter on 7/7/22.
- //
+//  FindNavigatorListViewController.swift
+//  Aurora Editor
+//
+//  Created by Khan Winter on 7/7/22.
+//
 
- import SwiftUI
+import SwiftUI
 
 final class FindNavigatorListViewController: NSViewController {
 
@@ -222,7 +222,7 @@ extension FindNavigatorListViewController: NSOutlineViewDelegate {
             tempView.attributedStringValue = item.attributedLabel()
             tempView.font = .labelFont(ofSize: 11)
             tempView.layout()
-            let width = outlineView.frame.width - outlineView.indentationPerLevel*2 - 24
+            let width = outlineView.frame.width - outlineView.indentationPerLevel * 2 - 24
             return tempView.sizeThatFits(NSSize(width: width,
                                                 height: CGFloat.greatestFiniteMagnitude)).height + 8
         } else {

@@ -1,6 +1,6 @@
 //
 //  StatusBarMaximizeButton.swift
-//  AuroraEditorModules/StatusBar
+//  Aurora Editor
 //
 //  Created by Stef Kors on 12/04/2022.
 //

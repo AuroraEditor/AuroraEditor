@@ -1,6 +1,6 @@
 //
 //  String+NSRange.swift
-//  CodeEditTextView
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 25.05.22.
 //

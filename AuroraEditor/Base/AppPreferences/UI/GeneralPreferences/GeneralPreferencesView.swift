@@ -1,6 +1,6 @@
 //
 //  GeneralPreferencesView.swift
-//  AuroraEditorModules/AppPreferences
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 30.03.22.
 //
@@ -21,7 +21,7 @@ public struct GeneralPreferencesView: View {
     var openInAuroraEditor: Bool = true
 
     public init() {
-        guard let defaults = UserDefaults.init(
+        guard let defaults = UserDefaults(
             suiteName: "com.auroraeditor.shared"
         ) else {
             Log.error("Failed to get/init shared defaults")

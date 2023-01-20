@@ -1,5 +1,5 @@
 # Swiftlint configuration file.
-# Part of AuroraEditor.
+# Part of Aurora Editor.
 # Please do not remove optional rules, feel free to add some if needed.
 
 # Disabled rule, reason.
@@ -9,6 +9,7 @@ disabled_rules:
 # paths to ignore during linting.
 excluded:
   - AuroraEditorModules/.build # Where Swift Package Manager checks out dependency sources
+  - AuroraEditorCli/Package.swift # Package.swift should not be linted
 
 # Exclude triggering type names.
 type_name:
@@ -46,6 +47,7 @@ cyclomatic_complexity:
 
 # Opt in rules, we want it more stricter.
 opt_in_rules:
+  - file_header # All files should have a same header.
   - empty_count
   - closure_spacing
   - contains_over_first_not_nil
@@ -56,6 +58,17 @@ opt_in_rules:
   - identical_operands
   - empty_string
   - multiline_parameters
+  - closure_end_indentation
+  - operator_usage_whitespace
+  - closure_parameter_position
+  - closure_spacing
+  - collection_alignment 
+  - last_where
+  - unused_optional_binding
+  - toggle_bool # use .toggle() instead of !variable
+  - explicit_init # .init is not needed
+  - fallthrough
+  - no_fallthrough_only
 
 # Custom configuration for nesting, this needs to be removed at some point.
 nesting:
@@ -119,3 +132,12 @@ custom_rules:
     regex: "\\<\\#([a-zA-Z]+)\\#\\>"
     message: "Please do not use Xcode's placeholders."
     severity: warning
+
+file_header:
+  required_pattern: |
+                  \/\/
+                  \/\/  .*?\.swift
+                  \/\/  Aurora Editor
+                  \/\/
+#                  \/\/  Created by .*? on .*?\.
+#                  \/\/

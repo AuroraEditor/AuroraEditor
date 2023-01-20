@@ -1,6 +1,6 @@
 //
 //  GithubEnterpriseLoginView.swift
-//  AuroraEditorModules/AppPreferences
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/04/12.
 //

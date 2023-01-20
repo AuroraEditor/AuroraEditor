@@ -1,11 +1,11 @@
 //
- //  FindNavigatorListCell.swift
- //  CodeEdit
- //
- //  Created by Khan Winter on 7/7/22.
- //
+//  FindNavigatorListCell.swift
+//  Aurora Editor
+//
+//  Created by Khan Winter on 7/7/22.
+//
 
- import SwiftUI
+import SwiftUI
 
 /// A `NSTableCellView` showing an icon and label
 final class FindNavigatorListMatchCell: NSTableCellView {

@@ -1,6 +1,6 @@
 //
 //  GrammarJsonLoader.swift
-//  
+//  Aurora Editor
 //
 //  Created by TAY KAI QUAN on 28/9/22.
 //

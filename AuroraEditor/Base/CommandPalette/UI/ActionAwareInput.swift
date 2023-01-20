@@ -1,6 +1,6 @@
 //
 //  ActionAwareInput.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by TAY KAI QUAN on 2/9/22.
 //  CREDITS: Avdept, CodeEdit pull #545 https://github.com/CodeEditApp/CodeEdit/pull/545

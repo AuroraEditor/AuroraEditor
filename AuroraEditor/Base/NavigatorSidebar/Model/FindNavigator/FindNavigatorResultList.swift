@@ -1,12 +1,12 @@
 //
- //  SearchResultList.swift
- //  CodeEdit
- //
- //  Created by Ziyuan Zhao on 2022/3/22.
- //
+//  SearchResultList.swift
+//  Aurora Editor
+//
+//  Created by Ziyuan Zhao on 2022/3/22.
+//
 
- import SwiftUI
- import Combine
+import SwiftUI
+import Combine
 
 struct FindNavigatorResultList: NSViewControllerRepresentable {
 

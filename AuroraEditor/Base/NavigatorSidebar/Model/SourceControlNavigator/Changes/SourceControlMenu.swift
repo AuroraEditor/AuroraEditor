@@ -1,9 +1,8 @@
 //
 //  SourceControlMenu.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/08/10.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import SwiftUI
@@ -25,7 +24,7 @@ final class SourceControlMenu: NSMenu {
 
     init(sender: NSOutlineView, workspaceURL: URL) {
         outlineView = sender
-        gitClient = GitClient.init(
+        gitClient = GitClient(
             directoryURL: workspaceURL,
             shellClient: sharedShellClient.shellClient
         )

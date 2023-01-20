@@ -1,6 +1,6 @@
 //
 //  NavigatorSidebar.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 25.03.22.
 //

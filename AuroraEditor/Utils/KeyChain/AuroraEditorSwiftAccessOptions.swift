@@ -1,6 +1,6 @@
 //
-//  AuroraEditorKeychainAccessOptions.swift
-//  AuroraEditorModules/AuroraEditorUtils
+//  Aurora EditorKeychainAccessOptions.swift
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/04/14.
 //

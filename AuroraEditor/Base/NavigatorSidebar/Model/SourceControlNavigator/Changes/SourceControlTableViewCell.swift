@@ -1,9 +1,8 @@
 //
 //  SourceControlTableViewCell.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/08/10.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import SwiftUI
@@ -27,9 +26,9 @@ final class SourceControlTableViewCell: FileSystemTableViewCell {
         super.addModel()
         // add colour
         if secondaryLabel.stringValue == "A" {
-            label.textColor = NSColor(red: 106/255, green: 255/255, blue: 156/255, alpha: 1)
+            label.textColor = NSColor(red: 106 / 255, green: 255 / 255, blue: 156 / 255, alpha: 1)
         } else if secondaryLabel.stringValue == "D" {
-            label.textColor = NSColor(red: 237/255, green: 94/255, blue: 122/255, alpha: 1)
+            label.textColor = NSColor(red: 237 / 255, green: 94 / 255, blue: 122 / 255, alpha: 1)
         }
         resizeSubviews(withOldSize: .zero)
     }

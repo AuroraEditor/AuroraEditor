@@ -1,6 +1,6 @@
 //
 //  TokenizeResult.swift
-//  
+//  Aurora Editor
 //
 //  Created by Matthew Davidson on 4/1/20.
 //

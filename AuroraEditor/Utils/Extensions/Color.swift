@@ -1,6 +1,6 @@
 //
 //  Color.swift
-//  AuroraEditorModules/AuroraEditorUtils
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 23.03.22.
 //

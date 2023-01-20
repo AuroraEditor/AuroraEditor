@@ -1,6 +1,6 @@
 //
 //  Response.swift
-//  AuroraEditorModules/ExtensionStore
+//  Aurora Editor
 //
 //  Created by Pavel Kasila on 5.04.22.
 //

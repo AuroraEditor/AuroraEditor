@@ -1,6 +1,6 @@
 //
 //  QuickOpenView.swift
-//  AuroraEditorModules/QuickOpen
+//  Aurora Editor
 //
 //  Created by Pavel Kasila on 20.03.22.
 //
@@ -66,7 +66,7 @@ public struct QuickOpenView: View {
             self.selectedItem = state.openQuicklyFiles[newIndex]
         } else {
             // if theres no selected command, just select the first or last item depending on direction
-            selectedItem = state.openQuicklyFiles[ offset < 0 ? state.openQuicklyFiles.count-1 : 0]
+            selectedItem = state.openQuicklyFiles[ offset < 0 ? state.openQuicklyFiles.count - 1 : 0]
         }
     }
 

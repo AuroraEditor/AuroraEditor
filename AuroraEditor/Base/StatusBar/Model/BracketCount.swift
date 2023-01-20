@@ -1,9 +1,8 @@
 //
 //  BracketCount.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Kai Quan Tay on 10/11/22.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import Foundation

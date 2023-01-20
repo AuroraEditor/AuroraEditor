@@ -1,3 +1,10 @@
+//
+//  Localized+ex.swift
+//  Aurora Editor
+//
+//  Created by Wesley de Groot on 20/01/2023.
+//
+
 import SwiftUI
 
 extension String {

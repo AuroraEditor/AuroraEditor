@@ -1,6 +1,6 @@
 //
 //  TextBlockThemeAttribute.swift
-//  
+//  Aurora Editor
 //
 //  Created by Matthew Davidson on 29/12/19.
 //

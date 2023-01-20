@@ -1,6 +1,6 @@
 //
-//  AuroraEditorCli.swift
-//  
+//  main.swift
+//  Aurora Editor
 //
 //  Created by Ben Koska on 14.06.22.
 //

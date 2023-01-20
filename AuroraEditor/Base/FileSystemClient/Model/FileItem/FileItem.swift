@@ -1,6 +1,6 @@
 //
 //  FileItem.swift
-//  AuroraEditorModules/FileSystemClient
+//  Aurora Editor
 //
 //  Created by Marco Carnevali on 16/03/22.
 //
@@ -157,14 +157,14 @@ public extension FileSystemClient {
         var debugFileHeirachy: String { childrenDescription(tabCount: 0) }
 
         func childrenDescription(tabCount: Int) -> String {
-            var myDetails = "\(String(repeating: "|  ", count: max(tabCount-1, 0)))\(tabCount != 0 ? "╰--" : "")"
+            var myDetails = "\(String(repeating: "|  ", count: max(tabCount - 1, 0)))\(tabCount != 0 ? "╰--" : "")"
             myDetails += "\(url.path)"
             if !self.isFolder { // if im a file, just return the url
                 return myDetails
             } else { // if im a folder, return the url and its children's details
                 var childDetails = "\(myDetails)"
                 for child in children ?? [] {
-                    childDetails += "\n\(child.childrenDescription(tabCount: tabCount+1))"
+                    childDetails += "\n\(child.childrenDescription(tabCount: tabCount + 1))"
                 }
                 return childDetails
             }
@@ -222,7 +222,7 @@ public extension FileSystemClient {
             guard isFolder else { return [self] }
             var childItems: [FileItem] = ignoringFolders ? [] : [self]
             children?.forEach { child in
-                childItems.append(contentsOf: child.flattenedChildren(depth: depth-1,
+                childItems.append(contentsOf: child.flattenedChildren(depth: depth - 1,
                     ignoringFolders: ignoringFolders))
             }
             return childItems

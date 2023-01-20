@@ -1,9 +1,8 @@
 //
 //  AuroraNetworking.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/09/13.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import Foundation
@@ -112,7 +111,7 @@ class AuroraNetworking {
 
                 // Save our cookies
                 AuroraNetworking.cookies = session?.configuration.httpCookieStorage?.cookies
-                AuroraNetworking.fullResponse = String.init(data: sitedata, encoding: .utf8)
+                AuroraNetworking.fullResponse = String(data: sitedata, encoding: .utf8)
 
                 if let httpResponse = response as? HTTPURLResponse {
                     self.networkLog(

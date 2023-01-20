@@ -1,6 +1,6 @@
 //
 //  ProjectNavigatorToolbarBottom.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by TAY KAI QUAN on 23/7/22.
 //

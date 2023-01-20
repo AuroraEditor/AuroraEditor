@@ -1,9 +1,8 @@
 //
 //  TabBarItemIcon.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by TAY KAI QUAN on 10/9/22.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import SwiftUI
@@ -130,8 +129,7 @@ fileprivate extension WorkspaceDocument {
     func getTabKeyEquivalent(item: TabBarItemRepresentable) -> KeyEquivalent {
         for counter in 0..<9 where self.selectionState.openFileItems.count > counter &&
         self.selectionState.openFileItems[counter].tabID == item.tabID {
-            return KeyEquivalent.init(
-                Character.init("\(counter + 1)")
+            return KeyEquivalent(Character("\(counter + 1)")
             )
         }
         return "0"

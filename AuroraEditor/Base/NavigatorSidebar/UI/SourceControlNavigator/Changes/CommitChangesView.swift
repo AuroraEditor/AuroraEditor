@@ -1,9 +1,8 @@
 //
 //  CommitChangesView.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/08/11.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import SwiftUI
@@ -118,6 +117,6 @@ struct CommitChangesView: View {
 
 struct CommitChangesView_Previews: PreviewProvider {
     static var previews: some View {
-        CommitChangesView(workspace: WorkspaceDocument.init())
+        CommitChangesView(workspace: WorkspaceDocument())
     }
 }

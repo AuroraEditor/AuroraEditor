@@ -1,6 +1,6 @@
 //
 //  FileInspectorView.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/03/24.
 //

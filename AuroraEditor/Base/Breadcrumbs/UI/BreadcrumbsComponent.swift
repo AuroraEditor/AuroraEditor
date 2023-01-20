@@ -1,6 +1,6 @@
 //
 //  BreadcrumbsComponent.swift
-//  AuroraEditorModules/Breadcrumbs
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 18.03.22.
 //
@@ -39,7 +39,7 @@ public struct BreadcrumbsComponent: View {
         ? .accentColor
         : (
             fileItem.isFolder
-            ? Color(hex: colorScheme == .dark ? "#61b6df" :"#27b9ff")
+            ? Color(hex: colorScheme == .dark ? "#61b6df" : "#27b9ff")
             : fileItem.iconColor
         )
     }

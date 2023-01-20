@@ -1,6 +1,6 @@
 //
 //  HighlightTheme+Default.swift
-//  
+//  Aurora Editor
 //
 //  Created by Matthew Davidson on 9/12/19.
 //
@@ -191,5 +191,5 @@ public extension HighlightTheme {
 private let fontSize: CGFloat = 12
 
 fileprivate extension NSColor {
-    static let exampleTextColor = NSColor.init(color: .white)!
+    static let exampleTextColor = NSColor(color: .white)!
 }

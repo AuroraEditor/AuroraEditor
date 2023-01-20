@@ -1,9 +1,8 @@
 //
 //  VibrantEffect.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Wesley de Groot on 17/01/2023.
-//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
 import SwiftUI

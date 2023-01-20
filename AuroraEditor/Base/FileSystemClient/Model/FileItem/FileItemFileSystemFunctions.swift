@@ -1,9 +1,8 @@
 //
 //  FileItemFileSystemFunctions.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by TAY KAI QUAN on 6/8/22.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import Foundation
@@ -93,7 +92,7 @@ extension FileItem {
         // This function also has to account for how the
         // - file system can change outside of the editor
         let deleteConfirmation = NSAlert()
-        let message = "\(self.fileName)\(self.isFolder ? " and its children" :"")"
+        let message = "\(self.fileName)\(self.isFolder ? " and its children" : "")"
         deleteConfirmation.messageText = "Do you want to move \(message) to the bin?"
         deleteConfirmation.alertStyle = .critical
         deleteConfirmation.addButton(withTitle: "Delete")

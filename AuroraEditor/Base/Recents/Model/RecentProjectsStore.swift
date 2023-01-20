@@ -1,6 +1,6 @@
 //
 //  RecentProjectsStore.swift
-//  AuroraEditorModules/Recents
+//  Aurora Editor
 //
 //  Created by ladvoc on 2022/12/01.
 //

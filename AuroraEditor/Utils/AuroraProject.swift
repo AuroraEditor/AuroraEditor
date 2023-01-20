@@ -1,6 +1,6 @@
 //
 //  AuroraProject.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Wesley de Groot on 05/07/2022.
 //

@@ -1,9 +1,8 @@
 //
 //  RepositoriesTableViewController.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by TAY KAI QUAN on 17/8/22.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import SwiftUI
@@ -24,7 +23,7 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
         case .repo:
             label.stringValue = "\(repository.repoName ?? "Unknown Repo")"
             if let branches = repository.branches,
-               branches.contents.count  > branches.current {
+               branches.contents.count > branches.current {
                 let currentBranch = (branches.contents[branches.current] as? RepoBranch)?
                     .name ?? "Unknown Main Branch"
                 secondaryLabel.stringValue = "\(currentBranch)"

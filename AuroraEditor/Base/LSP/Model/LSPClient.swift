@@ -1,6 +1,6 @@
 //
 //  LSPClient.swift
-//  AuroraEditorModules/LSP
+//  Aurora Editor
 //
 //  Created by Pavel Kasila on 16.04.22.
 //

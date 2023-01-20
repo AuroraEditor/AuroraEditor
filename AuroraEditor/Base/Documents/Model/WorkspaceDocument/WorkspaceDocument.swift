@@ -1,6 +1,6 @@
 //
 //  WorkspaceDocument.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Pavel Kasila on 17.03.22.
 //

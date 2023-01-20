@@ -1,6 +1,6 @@
 //
 //  TerminalPreferencesView.swift
-//  AuroraEditorModules/AppPreferences
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 02.04.22.
 //

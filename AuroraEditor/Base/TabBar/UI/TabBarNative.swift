@@ -1,6 +1,6 @@
 //
 //  TabBarNative.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  This file contains some support views to make native tab bar style come true.
 //

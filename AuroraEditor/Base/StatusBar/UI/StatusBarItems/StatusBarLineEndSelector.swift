@@ -1,6 +1,6 @@
 //
 //  StatusBarLineEndSelector.swift
-//  AuroraEditorModules/StatusBar
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 22.03.22.
 //
@@ -19,7 +19,8 @@ internal struct StatusBarLineEndSelector: View {
         Menu {
             // LF, CRLF
         } label: {
-            StatusBarMenuLabel("LF", model: model)        }
+            StatusBarMenuLabel("LF", model: model)
+        }
         .menuIndicator(.hidden)
         .menuStyle(.borderlessButton)
         .fixedSize()

@@ -1,8 +1,8 @@
 //
-//  AuroraEditororAppDelegate.swift
-//  AuroraEditor
+//  AppDelegate.swift
+//  Aurora Editor
 //
-//  Created by Pavel Kasila on 12.03.22.
+//  Created by Pavel Kasila on 12/03/2022.
 //
 
 import SwiftUI
@@ -64,7 +64,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 
             for index in 0..<CommandLine.arguments.count {
                 if CommandLine.arguments[index] == "--open" && (index + 1) < CommandLine.arguments.count {
-                    let path = CommandLine.arguments[index+1]
+                    let path = CommandLine.arguments[index + 1]
                     let url = URL(fileURLWithPath: path)
 
                     AuroraEditorDocumentController.shared.reopenDocument(
@@ -194,7 +194,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 
     // MARK: - Open With AuroraEditor (Extension) functions
     private func checkForFilesToOpen() {
-        guard let defaults = UserDefaults.init(
+        guard let defaults = UserDefaults(
             suiteName: "com.auroraeditor.shared"
         ) else {
             Log.error("Failed to get/init shared defaults")
@@ -215,7 +215,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                     display: true) { document, _, _ in
                         Log.info("checkForFilesToOpen(): Opened \(fileURL.absoluteString)")
                         document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
-                    }
+                }
             }
 
             defaults.removeObject(forKey: "openInAEFiles")

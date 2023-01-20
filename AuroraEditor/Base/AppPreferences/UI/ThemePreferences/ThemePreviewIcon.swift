@@ -1,6 +1,6 @@
 //
 //  ThemePreviewIcon.swift
-//  AuroraEditorModules/AppPreferences
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 30.03.22.
 //
@@ -256,7 +256,7 @@ struct ThemePreviewIcon: View {
     private func codeSpace(_ length: Double) -> some View {
         Rectangle()
             .foregroundColor(.clear)
-            .frame(width: length-1, height: 2)
+            .frame(width: length - 1, height: 2)
     }
 }
 

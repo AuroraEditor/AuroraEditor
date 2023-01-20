@@ -1,8 +1,8 @@
 //
 //  ActionThemeAttribute.swift
-//  
+//  Aurora Editor
 //
-//  Created by Matthew Davidson on 4/12/19.
+//  Created by Matthew Davidson on 04/12/19.
 //
 
 import Foundation

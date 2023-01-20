@@ -1,6 +1,6 @@
 //
-//  AuroraEditorKeychain.swift
-//  AuroraEditor/AuroraEditorUtils
+//  Aurora EditorKeychain.swift
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/04/14.
 //
@@ -159,7 +159,7 @@ open class AuroraEditorKeychain {
         if asReference {
             query[AuroraEditorKeychainConstants.returnReference] = kCFBooleanTrue
         } else {
-            query[AuroraEditorKeychainConstants.returnData] =  kCFBooleanTrue
+            query[AuroraEditorKeychainConstants.returnData] = kCFBooleanTrue
         }
 
         query = addAccessGroupWhenPresent(query)
@@ -227,7 +227,8 @@ open class AuroraEditorKeychain {
 
         if lastResultCode == noErr {
             return (result as? [[String: Any]])?.compactMap {
-                $0[AuroraEditorKeychainConstants.attrAccount] as? String } ?? []
+                $0[AuroraEditorKeychainConstants.attrAccount] as? String
+            } ?? []
         }
 
         return []

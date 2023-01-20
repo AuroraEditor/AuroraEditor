@@ -1,6 +1,6 @@
 //
 //  TabStopsThemeAttribute.swift
-//  
+//  Aurora Editor
 //
 //  Created by Matthew Davidson on 9/1/20.
 //

@@ -1,6 +1,6 @@
 //
 //  MessageViews.swift
-//  
+//  Aurora Editor
 //
 //  Created by Manuel M T Chakravarty on 23/03/2021.
 //

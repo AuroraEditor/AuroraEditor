@@ -1,6 +1,6 @@
 //
 //  NSTableView+Background.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 20.04.22.
 //

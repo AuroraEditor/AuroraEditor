@@ -1,9 +1,8 @@
 //
 //  Reflog.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/08/13.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //  This source code is restricted for Aurora Editor usage only.
 //
 
@@ -15,14 +14,16 @@ func getRecentBranches(directoryURL: URL,
     // swiftlint:disable:next line_length
     let regex = "//.*? (renamed|checkout)(?:: moving from|\\s*) (?:refs\\//heads\\//|\\s*)(.*?) to (?:refs\\//heads\\//|\\s*)(.*?)$//i"
 
-    let args = ["log",
-    "-g",
-    "--no-abbrev-commit",
-    "--pretty=oneline",
-    "HEAD",
-    "-n",
-    "2500",
-    "--"]
+    let args = [
+        "log",
+        "-g",
+        "--no-abbrev-commit",
+        "--pretty=oneline",
+        "HEAD",
+        "-n",
+        "2500",
+        "--"
+    ]
 
     let result = try ShellClient.live().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)")

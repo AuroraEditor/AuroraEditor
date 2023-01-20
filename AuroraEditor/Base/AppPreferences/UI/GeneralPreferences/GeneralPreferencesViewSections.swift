@@ -1,9 +1,8 @@
 //
 //  GeneralPreferencesViewSections.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by TAY KAI QUAN on 5/9/22.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import Foundation
@@ -263,7 +262,7 @@ extension GeneralPreferencesView {
                 .labelsHidden()
                 .toggleStyle(.switch)
                 .onChange(of: openInAuroraEditor) { newValue in
-                    guard let defaults = UserDefaults.init(
+                    guard let defaults = UserDefaults(
                         suiteName: "com.auroraeditor.shared"
                     ) else {
                         Log.error("Failed to get/init shared defaults")
@@ -294,7 +293,7 @@ extension GeneralPreferencesView {
                   .buttonStyle(.plain)
                   .foregroundColor(.secondary)
               }
-          }
+        }
           .padding(.top, 5)
           .padding(.horizontal)
     }

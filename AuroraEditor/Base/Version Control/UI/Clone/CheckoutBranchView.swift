@@ -1,6 +1,6 @@
 //
 //  CheckoutBranchView.swift
-//  AuroraEditorModules/Git
+//  Aurora Editor
 //
 //  Created by Aleksi Puttonen on 14.4.2022.
 //
@@ -38,7 +38,7 @@ public struct CheckoutBranchView: View {
                         .foregroundColor(.secondary)
                         .alignmentGuide(.trailing) { context in
                         context[.trailing]
-                    }
+                        }
                     Menu {
                         ForEach(getBranches().filter { !$0.contains("HEAD") }, id: \.self) { branch in
                             Button {

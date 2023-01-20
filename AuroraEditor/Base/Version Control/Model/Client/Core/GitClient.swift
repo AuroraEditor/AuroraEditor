@@ -1,6 +1,6 @@
 //
 //  GitClient.swift
-//  AuroraEditorModules/Git
+//  Aurora Editor
 //
 //  Created by Marco Carnevali on 21/03/22.
 //  Refactored by TAY KAI QUAN on 4 Sep 2022
