@@ -1,6 +1,6 @@
 //
 //  FinderSync.swift
-//  openInCodeEdit
+//  Aurora Editor
 //
 //  Created by Wesley de Groot on 03/05/2022.
 //
@@ -27,14 +27,14 @@ class AEOpenWith: FIFinderSync {
                 if let volumeURL = notification.userInfo?[NSWorkspace.volumeURLUserInfoKey] as? URL {
                     finderSync.directoryURLs.insert(volumeURL)
                 }
-            }
+        }
     }
 
-    /// Open in AuroraEditor (menu) action
+    /// Open in Aurora Editor (menu) action
     /// - Parameter sender: sender
     @objc func openInAuroraEditorAction(_ sender: AnyObject?) {
         guard let items = FIFinderSyncController.default().selectedItemURLs(),
-              let defaults = UserDefaults.init(suiteName: "com.auroraeditor.shared") else {
+              let defaults = UserDefaults(suiteName: "com.auroraeditor.shared") else {
             return
         }
 
@@ -61,20 +61,20 @@ class AEOpenWith: FIFinderSync {
 
     // MARK: - Menu and toolbar item support
     override func menu(for menuKind: FIMenuKind) -> NSMenu {
-        guard let defaults = UserDefaults.init(suiteName: "com.auroraeditor.shared") else {
+        guard let defaults = UserDefaults(suiteName: "com.auroraeditor.shared") else {
             NSLog("Unable to load defaults")
             return NSMenu(title: "")
         }
 
-        // Register enableOpenInCE (enable Open In AuroraEditor
+        // Register enableOpenInCE (enable Open In Aurora Editor
         defaults.register(defaults: ["enableOpenInAE": true])
 
         let menu = NSMenu(title: "")
-        let menuItem = NSMenuItem(title: "Open in AuroraEditor",
+        let menuItem = NSMenuItem(title: "Open in Aurora Editor",
                                   action: #selector(openInAuroraEditorAction(_:)),
                                   keyEquivalent: ""
         )
-        menuItem.image = NSImage.init(named: "icon")
+        menuItem.image = NSImage(named: "icon")
 
         if defaults.bool(forKey: "enableOpenInAE") {
             menu.addItem(menuItem)

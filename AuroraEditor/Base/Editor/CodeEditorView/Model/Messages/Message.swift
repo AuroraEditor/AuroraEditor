@@ -1,6 +1,6 @@
 //
 //  Message.swift
-//  
+//  Aurora Editor
 //
 //  Created by Manuel M T Chakravarty on 22/03/2021.
 //

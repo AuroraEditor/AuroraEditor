@@ -1,9 +1,8 @@
 //
 //  ProjectNavigatorOutlineDataSource.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by TAY KAI QUAN on 9/9/22.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import SwiftUI
@@ -46,8 +45,10 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
         return pboarditem
     }
 
-    func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo,
-                     proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
+    func outlineView(_ outlineView: NSOutlineView,
+                     validateDrop info: NSDraggingInfo,
+                     proposedItem item: Any?,
+                     proposedChildIndex index: Int) -> NSDragOperation {
         guard let targetFileItem = item as? FileItem,
               let draggedString = info.draggingPasteboard.string(forType: dragType)
         else { return NSDragOperation(arrayLiteral: [])}
@@ -66,8 +67,10 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
         return NSDragOperation.move
     }
 
-    func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo,
-                     item: Any?, childIndex index: Int) -> Bool {
+    func outlineView(_ outlineView: NSOutlineView,
+                     acceptDrop info: NSDraggingInfo,
+                     item: Any?,
+                     childIndex index: Int) -> Bool {
         // just reuse the validation function to check if the drop should happen
         guard self.outlineView(outlineView, validateDrop: info,
                                proposedItem: item, proposedChildIndex: index) == .move,

@@ -1,6 +1,6 @@
 //
 //  OutlineViewController.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 07.04.22.
 //

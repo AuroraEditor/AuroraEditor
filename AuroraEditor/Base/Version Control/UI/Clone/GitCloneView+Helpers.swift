@@ -1,9 +1,8 @@
 //
 //  GitCloneView+Helpers.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by TAY KAI QUAN on 6/9/22.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import SwiftUI
@@ -19,7 +18,7 @@ extension GitCloneView {
         dialog.nameFieldLabel = "Clone as"
         dialog.title = "Clone"
 
-        if dialog.runModal() ==  NSApplication.ModalResponse.OK {
+        if dialog.runModal() == NSApplication.ModalResponse.OK {
             let result = dialog.url
 
             if result != nil {
@@ -114,7 +113,7 @@ extension GitCloneView {
             try FileManager.default.createDirectory(atPath: repoPath,
                                                     withIntermediateDirectories: true,
                                                     attributes: nil)
-            gitClient = GitClient.init(
+            gitClient = GitClient(
                 directoryURL: dirUrl,
                 shellClient: shellClient
             )
@@ -187,7 +186,7 @@ extension GitCloneView {
     private func checkBranches(dirUrl: URL) -> Bool {
         // Check if repo has only one branch, and if so, don't show the checkout page
         do {
-            let branches = try GitClient.init(directoryURL: dirUrl,
+            let branches = try GitClient(directoryURL: dirUrl,
                                               shellClient: shellClient).getGitBranches(allBranches: true)
             let filtered = branches.filter { !$0.contains("HEAD") }
             if filtered.count > 1 {

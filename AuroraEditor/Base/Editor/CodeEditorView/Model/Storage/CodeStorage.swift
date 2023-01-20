@@ -1,5 +1,6 @@
 //
 //  CodeStorage.swift
+//  Aurora Editor
 //
 //  Created by Manuel M T Chakravarty on 09/01/2021.
 //
@@ -92,7 +93,7 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
             DispatchQueue.main.async {
                 codeDelegate.lineMap.updateAfterEditing(string: self.string,
                                                         range: NSRange(location: 0, length: self.string.count),
-                                                        changeInLength: str.count-range.length)
+                                                        changeInLength: str.count - range.length)
             }
         }
 
@@ -142,19 +143,20 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
 
         // Find the new line start locations, adding the offset and 1 to get the location of the next line.
         let newLineLocs = str.utf16.indices.filter { str[$0] == "\n" }.map {
-            $0.utf16Offset(in: str) + 1 + range.location }
+            $0.utf16Offset(in: str) + 1 + range.location
+        }
 
         // Create new line ranges with 0 length.
         let newLineRanges = newLineLocs.map { NSRange(location: $0, length: 0) }
         lineRanges.insert(contentsOf: newLineRanges, at: line)
 
         // Shift the start locations after inserted ranges.
-        for lineIndex in line+newLineRanges.count..<lineRanges.count {
+        for lineIndex in line + newLineRanges.count..<lineRanges.count {
             lineRanges[lineIndex].location += str.utf16.count - range.length
         }
 
         // Update lengths of new ranges and the one before (as it may have changed)
-        for lineIndex in max(line-1, 0)..<min(lineRanges.count - 1, line+newLineRanges.count) {
+        for lineIndex in max(line - 1, 0)..<min(lineRanges.count - 1, line + newLineRanges.count) {
             lineRanges[lineIndex].length = lineRanges[lineIndex + 1].location - lineRanges[lineIndex].location
         }
 
@@ -168,8 +170,8 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         assert(!lineRanges.isEmpty)
 
         var lineIndex = 0
-        while lineIndex < lineRanges.count-2 {
-            assert(lineRanges[lineIndex].upperBound == lineRanges[lineIndex+1].location)
+        while lineIndex < lineRanges.count - 2 {
+            assert(lineRanges[lineIndex].upperBound == lineRanges[lineIndex + 1].location)
             lineIndex += 1
         }
 
@@ -190,7 +192,7 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
     private func getEditedLines(lineStartLocs: [Int], editedRange: NSRange) -> (Int, Int) {
         var first = 0
         while first < lineStartLocs.count - 1 {
-            if editedRange.location < lineStartLocs[first+1] {
+            if editedRange.location < lineStartLocs[first + 1] {
                 break
             }
             first += 1
@@ -199,7 +201,7 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         // We figure out the last line that was edited.
         var last = first
         while last < lineStartLocs.count - 1 {
-            if editedRange.upperBound <= lineStartLocs[last+1] {
+            if editedRange.upperBound <= lineStartLocs[last + 1] {
                 break
             }
             last += 1
@@ -316,7 +318,7 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         let nContentLines = self.nContentLines
 
         // Default the processing lines to the entire document.
-        var processingLines = (first: 0, last: nContentLines-1)
+        var processingLines = (first: 0, last: nContentLines - 1)
 
         // Calculate the change in number of lines and adjust the states array
         let change = nContentLines - states.count + 1
@@ -329,7 +331,7 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
             processingLines.last = getLastProcessingLine(lastEditedLine: processingLines.last,
                                                          editedRange: editedRange,
                                                          text: storage.string)
-            processingLines.last = min(processingLines.last, nContentLines-1)
+            processingLines.last = min(processingLines.last, nContentLines - 1)
             adjustCache(firstEditedLine: processingLines.first, changeInLines: change)
         } else {
             // Either both caches are empty or the cache is in an inconsistent state, either way, init both

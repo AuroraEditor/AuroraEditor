@@ -1,9 +1,8 @@
 //
 //  AuroraNetworking.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/09/13.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import Foundation
@@ -112,7 +111,7 @@ class AuroraNetworking {
 
                 // Save our cookies
                 AuroraNetworking.cookies = session?.configuration.httpCookieStorage?.cookies
-                AuroraNetworking.fullResponse = String.init(data: sitedata, encoding: .utf8)
+                AuroraNetworking.fullResponse = String(data: sitedata, encoding: .utf8)
 
                 if let httpResponse = response as? HTTPURLResponse {
                     self.networkLog(
@@ -159,7 +158,9 @@ class AuroraNetworking {
         method: HTTPMethod,
         parameters: [String: Any]?,
         completionHandler: @escaping (Result<Data, Error>) -> Void,
-        file: String = #file, line: Int = #line, function: String = #function
+        file: String = #file,
+        line: Int = #line,
+        function: String = #function
     ) {
         // Check if the URL is valid
         guard let siteURL = URL(string: baseURL + path) else {
@@ -200,7 +201,9 @@ class AuroraNetworking {
         useAuthType: AuthType = .github,
         parameters: [[String: Any]],
         completionHandler: @escaping (Result<Data, Error>) -> Void,
-        file: String = #file, line: Int = #line, function: String = #function
+        file: String = #file,
+        line: Int = #line,
+        function: String = #function
     ) {
         // Check if the URL is valid
         guard let siteURL = URL(string: GithubNetworkingConstants.baseURL + path) else {
@@ -244,7 +247,9 @@ class AuroraNetworking {
         useAuthType: AuthType = .github,
         parameters: T,
         completionHandler: @escaping (Result<Data, Error>) -> Void,
-        file: String = #file, line: Int = #line, function: String = #function
+        file: String = #file,
+        line: Int = #line,
+        function: String = #function
     ) {
         // Check if the URL is valid
         guard let siteURL = URL(string: GithubNetworkingConstants.baseURL + path) else {

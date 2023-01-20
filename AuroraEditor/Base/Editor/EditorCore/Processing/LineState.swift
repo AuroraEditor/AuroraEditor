@@ -1,6 +1,6 @@
 //
 //  LineState.swift
-//  
+//  Aurora Editor
 //
 //  Created by Matthew Davidson on 4/12/19.
 //

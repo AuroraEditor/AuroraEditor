@@ -1,9 +1,8 @@
 //
 //  CodeEditorView.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/09/24.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import AppKit
@@ -122,7 +121,7 @@ extension CodeEditor: NSViewRepresentable {
             var col = 0
 
             // Create the range
-            let range = NSRange.init(location: 0, length: pos.upperBound)
+            let range = NSRange(location: 0, length: pos.upperBound)
 
             // Get only the text before the caret
             guard let txtStr = txt[range] else {

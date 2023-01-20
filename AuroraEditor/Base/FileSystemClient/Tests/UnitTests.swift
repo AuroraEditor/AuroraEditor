@@ -1,6 +1,6 @@
 //
 //  UnitTests.swift
-//  AuroraEditorModules/WorkspaceClient
+//  Aurora Editor
 //
 //  Created by Marco Carnevali on 16/03/22.
 //

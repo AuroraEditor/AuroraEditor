@@ -1,6 +1,6 @@
 //
 //  InspectorSidebar.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Austin Condiff on 3/21/22.
 //

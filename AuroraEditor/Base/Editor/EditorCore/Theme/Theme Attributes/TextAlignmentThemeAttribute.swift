@@ -1,6 +1,6 @@
 //
 //  TextAlignmentThemeAttribute.swift
-//  
+//  Aurora Editor
 //
 //  Created by Matthew Davidson on 16/12/19.
 //

@@ -1,6 +1,6 @@
 //
 //  ToolbarBranchPicker.swift
-//  AuroraEditorModules/AuroraEditorUI
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 21.04.22.
 //

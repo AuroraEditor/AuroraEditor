@@ -1,9 +1,8 @@
 //
 //  CommitHistoryCellView.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/09/08.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import SwiftUI

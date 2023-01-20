@@ -9,7 +9,7 @@
 # Commandline interface
 AuroraEditorCli @AuroraEditor/cli
 
-# Open With AuroraEditor
+# Open With Aurora Editor
 OpenWithAuroraEditor @AuroraEditor/cli
 
 # The Editor itself

@@ -1,9 +1,8 @@
 //
 //  MinimapTypeSetter.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/09/24.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import AppKit
@@ -187,7 +186,7 @@ class MinimapTypeSetter: NSATSTypesetter {
                                       atProposedOrigin lineOrigin: NSPoint) {
         // Determine the size of the rectangles to layout. (They are always twice as high as wide.)
         var fontHeight: CGFloat
-        if let glyphIndex = (paragraphSeparatorGlyphRange.length > 0   ? paragraphSeparatorGlyphRange.location : nil) ??
+        if let glyphIndex = (paragraphSeparatorGlyphRange.length > 0 ? paragraphSeparatorGlyphRange.location : nil) ??
             (paragraphSeparatorGlyphRange.location > 0 ? paragraphSeparatorGlyphRange.location - 1 : nil),
            let charIndex = layoutManager?.characterIndexForGlyph(at: glyphIndex),
            let font = layoutManager?.textStorage?.attribute(.font, at: charIndex, effectiveRange: nil) as? NSFont {

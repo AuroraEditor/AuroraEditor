@@ -1,6 +1,6 @@
 //
 //  StatusBarMenuLabel.swift
-//  AuroraEditorModules/StatusBar
+//  Aurora Editor
 //
 //  Created by Axel Zuziak on 24.04.2022
 //

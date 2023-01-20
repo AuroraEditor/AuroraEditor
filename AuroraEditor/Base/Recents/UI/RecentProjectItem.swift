@@ -1,6 +1,6 @@
 //
 //  RecentProjectView.swift
-//  AuroraEditorModules/WelcomeModule
+//  Aurora Editor
 //
 //  Created by Ziyuan Zhao on 2022/3/18.
 //

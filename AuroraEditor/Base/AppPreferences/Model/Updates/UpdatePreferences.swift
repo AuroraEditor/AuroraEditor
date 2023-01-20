@@ -1,9 +1,8 @@
 //
 //  UpdatePreferences.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/09/23.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import Foundation

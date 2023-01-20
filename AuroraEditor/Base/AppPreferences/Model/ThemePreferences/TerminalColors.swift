@@ -1,9 +1,8 @@
 //
 //  TerminalColors.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by TAY KAI QUAN on 4/10/22.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import SwiftUI

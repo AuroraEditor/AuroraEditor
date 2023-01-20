@@ -1,6 +1,6 @@
 //
 //  GitUIModel.swift
-//  
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/07/13.
 //
@@ -19,7 +19,7 @@ public final class GitUIModel: ObservableObject {
     ///
     public init(workspaceURL: URL) {
         self.workspaceURL = workspaceURL
-        gitClient = GitClient.init(
+        gitClient = GitClient(
             directoryURL: workspaceURL,
             shellClient: .live()
         )

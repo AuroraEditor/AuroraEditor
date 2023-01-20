@@ -1,9 +1,8 @@
 //
 //  FileSystemOutlineView.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by TAY KAI QUAN on 14/8/22.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import SwiftUI
@@ -114,7 +113,7 @@ class FileSystemTableViewCell: StandardTableViewCell {
     }
 }
 
-let errorRed = NSColor.init(red: 1, green: 0, blue: 0, alpha: 0.2)
+let errorRed = NSColor(red: 1, green: 0, blue: 0, alpha: 0.2)
 extension FileSystemTableViewCell: NSTextFieldDelegate {
     func controlTextDidChange(_ obj: Notification) {
         label.backgroundColor = validateFileName(for: label?.stringValue ?? "") ? .none : errorRed

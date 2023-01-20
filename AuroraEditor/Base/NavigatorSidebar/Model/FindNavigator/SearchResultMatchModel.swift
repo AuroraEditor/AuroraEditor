@@ -1,5 +1,6 @@
 //
 //  SearchResultLineMatchModel.swift
+//  Aurora Editor
 //
 //  Created by Khan Winter on 7/6/22.
 //

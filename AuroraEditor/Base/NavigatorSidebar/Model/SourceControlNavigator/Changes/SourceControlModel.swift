@@ -1,6 +1,6 @@
 //
 //  SourceControlModel.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/05/20.
 //
@@ -46,7 +46,7 @@ public final class SourceControlModel: ObservableObject {
     public init(workspaceURL: URL) {
         self.workspaceURL = workspaceURL
         self.isGitRepository = checkIfProjectIsRepo(workspaceURL: workspaceURL)
-        gitClient = GitClient.init(
+        gitClient = GitClient(
             directoryURL: workspaceURL,
             shellClient: sharedShellClient.shellClient
         )

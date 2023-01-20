@@ -1,6 +1,6 @@
 //
 //  StatusBarBreakpointButton.swift
-//  AuroraEditorModules/StatusBar
+//  Aurora Editor
 //
 //  Created by Stef Kors on 14/04/2022.
 //

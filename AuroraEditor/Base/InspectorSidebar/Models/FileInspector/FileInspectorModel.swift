@@ -1,6 +1,6 @@
 //
 //  FileInspectorModel.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/04/17.
 //
@@ -36,39 +36,39 @@ public final class FileInspectorModel: ObservableObject {
     var indentUsingSelection: IndentUsing.ID = "spaces"
 
     @Published
-    var languageTypeAuroraEditor = FileTypeList.init().languageTypeAuroraEditor
+    var languageTypeAuroraEditor = FileTypeList().languageTypeAuroraEditor
     @Published
-    var languageTypeObjCList = FileTypeList.init().languageTypeObjCList
+    var languageTypeObjCList = FileTypeList().languageTypeObjCList
     @Published
-    var sourcecodeCList = FileTypeList.init().sourcecodeCList
+    var sourcecodeCList = FileTypeList().sourcecodeCList
     @Published
-    var sourcecodeCPlusList = FileTypeList.init().sourcecodeCPlusList
+    var sourcecodeCPlusList = FileTypeList().sourcecodeCPlusList
     @Published
-    var sourcecodeSwiftList = FileTypeList.init().sourcecodeSwiftList
+    var sourcecodeSwiftList = FileTypeList().sourcecodeSwiftList
     @Published
-    var sourcecodeAssemblyList = FileTypeList.init().sourcecodeAssemblyList
+    var sourcecodeAssemblyList = FileTypeList().sourcecodeAssemblyList
     @Published
-    var sourcecodeScriptList = FileTypeList.init().sourcecodeScriptList
+    var sourcecodeScriptList = FileTypeList().sourcecodeScriptList
     @Published
-    var sourcecodeVariousList = FileTypeList.init().sourcecodeVariousList
+    var sourcecodeVariousList = FileTypeList().sourcecodeVariousList
     @Published
-    var propertyList = FileTypeList.init().propertyList
+    var propertyList = FileTypeList().propertyList
     @Published
-    var shellList = FileTypeList.init().shellList
+    var shellList = FileTypeList().shellList
     @Published
-    var machOList = FileTypeList.init().machOList
+    var machOList = FileTypeList().machOList
     @Published
-    var textList = FileTypeList.init().textList
+    var textList = FileTypeList().textList
     @Published
-    var audioList = FileTypeList.init().audioList
+    var audioList = FileTypeList().audioList
     @Published
-    var imageList = FileTypeList.init().imageList
+    var imageList = FileTypeList().imageList
     @Published
-    var videoList = FileTypeList.init().videoList
+    var videoList = FileTypeList().videoList
     @Published
-    var archiveList = FileTypeList.init().archiveList
+    var archiveList = FileTypeList().archiveList
     @Published
-    var otherList = FileTypeList.init().otherList
+    var otherList = FileTypeList().otherList
 
     @Published
     var locationList = [FileLocation(name: "Absolute Path", id: "absolute"),

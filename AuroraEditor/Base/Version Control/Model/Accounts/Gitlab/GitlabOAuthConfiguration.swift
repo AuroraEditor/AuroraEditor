@@ -1,6 +1,6 @@
 //
 //  GitlabOAuthConfiguration.swift
-//  AuroraEditorModules/GitAccounts
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/03/31.
 //
@@ -17,8 +17,11 @@ public struct GitlabOAuthConfiguration: GitConfiguration {
     public let webEndpoint: String
     public let errorDomain = "com.auroraeditor.models.accounts.gitlab"
 
-    public init(_ url: String = gitlabBaseURL, webURL: String = gitlabWebURL,
-                token: String, secret: String, redirectURI: String) {
+    public init(_ url: String = gitlabBaseURL,
+                webURL: String = gitlabWebURL,
+                token: String,
+                secret: String,
+                redirectURI: String) {
         apiEndpoint = url
         webEndpoint = webURL
         self.token = token

@@ -1,6 +1,6 @@
 //
 //  String+RemoveOccurrences.swift
-//  AuroraEditorModules/AuroraEditorUtils
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 24.04.22.
 //

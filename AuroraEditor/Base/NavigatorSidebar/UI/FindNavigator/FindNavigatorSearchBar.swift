@@ -1,6 +1,6 @@
 //
 //  SearchBar.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Ziyuan Zhao on 2022/3/21.
 //
@@ -84,7 +84,7 @@ struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
         HStack {
             FindNavigatorSearchBar(
-                state: .init(WorkspaceDocument.init()),
+                state: .init(WorkspaceDocument()),
                 text: .constant(""),
                 submittedText: .constant(false)
             )

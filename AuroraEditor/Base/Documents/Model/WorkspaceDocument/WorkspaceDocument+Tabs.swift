@@ -1,9 +1,8 @@
 //
 //  WorkspaceDocument+Tabs.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by TAY KAI QUAN on 8/8/22.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import Foundation
@@ -87,7 +86,7 @@ extension WorkspaceDocument {
                 )
                 // Let the extensions know we opened a file (from a workspace)
                 for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-                    let fileData = try? Data.init(contentsOf: item.url)
+                    let fileData = try? Data(contentsOf: item.url)
                     Log.info(id, "didOpen()")
                     AEExt.respond(
                         action: "didOpen",
@@ -204,7 +203,7 @@ extension WorkspaceDocument {
             return
         }
 
-        let range = selectionState.openedTabs[(startIdx+1)...]
+        let range = selectionState.openedTabs[(startIdx + 1)...]
         closeTabs(items: range)
     }
 

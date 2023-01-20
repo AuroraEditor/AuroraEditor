@@ -1,6 +1,6 @@
 //
 //  TabBarItemRepresentable.swift
-//  
+//  Aurora Editor
 //
 //  Created by Pavel Kasila on 30.04.22.
 //

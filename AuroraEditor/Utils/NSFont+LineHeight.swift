@@ -1,6 +1,6 @@
 //
 //  NSFont+LineHeight.swift
-//  CodeEditTextView
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 28.05.22.
 //

@@ -1,6 +1,6 @@
 //
 //  ItalicThemeAttribute.swift
-//  
+//  Aurora Editor
 //
 //  Created by Matthew Davidson on 5/12/19.
 //

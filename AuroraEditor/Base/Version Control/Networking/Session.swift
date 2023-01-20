@@ -1,9 +1,10 @@
 //
 //  Session.swift
-//  AuroraEditorModules/GitAccounts
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/03/31.
 //
+
 // This file should be strictly just be used for Accounts since it's not
 // built for any other networking except those of git accounts
 

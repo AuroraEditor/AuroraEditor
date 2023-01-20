@@ -1,6 +1,6 @@
 //
 //  FontPickerView.swift
-//  AuroraEditorModules/AuroraEditorUI
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 23.03.22.
 //

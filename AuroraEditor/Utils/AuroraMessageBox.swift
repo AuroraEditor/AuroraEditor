@@ -1,9 +1,8 @@
 //
 //  AuroraMessageBox.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Wesley de Groot on 20/08/2022.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import Foundation

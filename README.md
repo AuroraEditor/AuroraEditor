@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <h1 align="center">AuroraEditor</h1>
+  <h1 align="center">Aurora Editor</h1>
 </p>
 
 <p align="center">
@@ -24,7 +24,7 @@
 
 <br />
 
-AuroraEditor is a IDE built by the community, for the community, and written in Swift for the best native performance and feel for macOS. 
+Aurora Editor is a IDE built by the community, for the community, and written in Swift for the best native performance and feel for macOS. 
 
 It will support everything you could expect from an Xcode-inspired application, including deep integration with your selected git provider, project planning, and your favourite built in editor tools.
 
@@ -47,7 +47,7 @@ It will support everything you could expect from an Xcode-inspired application, 
  <br />
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Motivation
@@ -124,20 +124,23 @@ Thanks goes to these wonderful people:
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href="https://wdg.codes"><img src="https://avatars.githubusercontent.com/u/1290461?v=4?s=100" width="100px;" alt="Wesley De Groot"/><br /><sub><b>Wesley De Groot</b></sub></a><br /><a href="#infra-0xWDG" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=0xWDG" title="Tests">⚠️</a> <a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=0xWDG" title="Code">💻</a> <a href="#maintenance-0xWDG" title="Maintenance">🚧</a></td>
-      <td align="center"><a href="https://github.com/nanashili"><img src="https://avatars.githubusercontent.com/u/63672227?v=4?s=100" width="100px;" alt="Nanashi Li"/><br /><sub><b>Nanashi Li</b></sub></a><br /><a href="#infra-nanashili" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=nanashili" title="Tests">⚠️</a> <a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=nanashili" title="Code">💻</a> <a href="#maintenance-nanashili" title="Maintenance">🚧</a></td>
-      <td align="center"><a href="https://github.com/KaiTheRedNinja"><img src="https://avatars.githubusercontent.com/u/88234730?v=4?s=100" width="100px;" alt="KaiTheRedNinja"/><br /><sub><b>KaiTheRedNinja</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=KaiTheRedNinja" title="Tests">⚠️</a> <a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=KaiTheRedNinja" title="Code">💻</a> <a href="#maintenance-KaiTheRedNinja" title="Maintenance">🚧</a></td>
-      <td align="center"><a href="https://github.com/Angelk90"><img src="https://avatars.githubusercontent.com/u/20476002?v=4?s=100" width="100px;" alt="Angelk90"/><br /><sub><b>Angelk90</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3AAngelk90" title="Bug reports">🐛</a></td>
-      <td align="center"><a href="https://github.com/AlexBurneikis"><img src="https://avatars.githubusercontent.com/u/87457198?v=4?s=100" width="100px;" alt="Burneikis"/><br /><sub><b>Burneikis</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3AAlexBurneikis" title="Bug reports">🐛</a></td>
-      <td align="center"><a href="https://github.com/Ashwonixer"><img src="https://avatars.githubusercontent.com/u/62433766?v=4?s=100" width="100px;" alt="Ashwonixer"/><br /><sub><b>Ashwonixer</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3AAshwonixer" title="Bug reports">🐛</a></td>
-      <td align="center"><a href="http://rishaandesai.me"><img src="https://avatars.githubusercontent.com/u/77017806?v=4?s=100" width="100px;" alt="Rishaan Desai"/><br /><sub><b>Rishaan Desai</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3ABlackhole1123" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="20%"><a href="https://wdg.codes"><img src="https://avatars.githubusercontent.com/u/1290461?v=4?s=100" width="100px;" alt="Wesley De Groot"/><br /><sub><b>Wesley De Groot</b></sub></a><br /><a href="#infra-0xWDG" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=0xWDG" title="Tests">⚠️</a> <a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=0xWDG" title="Code">💻</a> <a href="#maintenance-0xWDG" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="20%"><a href="https://github.com/nanashili"><img src="https://avatars.githubusercontent.com/u/63672227?v=4?s=100" width="100px;" alt="Nanashi Li"/><br /><sub><b>Nanashi Li</b></sub></a><br /><a href="#infra-nanashili" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=nanashili" title="Tests">⚠️</a> <a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=nanashili" title="Code">💻</a> <a href="#maintenance-nanashili" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="20%"><a href="https://github.com/KaiTheRedNinja"><img src="https://avatars.githubusercontent.com/u/88234730?v=4?s=100" width="100px;" alt="KaiTheRedNinja"/><br /><sub><b>KaiTheRedNinja</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=KaiTheRedNinja" title="Tests">⚠️</a> <a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=KaiTheRedNinja" title="Code">💻</a> <a href="#maintenance-KaiTheRedNinja" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="20%"><a href="https://github.com/Angelk90"><img src="https://avatars.githubusercontent.com/u/20476002?v=4?s=100" width="100px;" alt="Angelk90"/><br /><sub><b>Angelk90</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3AAngelk90" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="20%"><a href="https://github.com/AlexBurneikis"><img src="https://avatars.githubusercontent.com/u/87457198?v=4?s=100" width="100px;" alt="Burneikis"/><br /><sub><b>Burneikis</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3AAlexBurneikis" title="Bug reports">🐛</a></td>
     </tr>
     <tr>
-      <td align="center"><a href="http://cr08.netlify.app"><img src="https://avatars.githubusercontent.com/u/64256342?v=4?s=100" width="100px;" alt="Vishwa.R"/><br /><sub><b>Vishwa.R</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3Acode-reaper08" title="Bug reports">🐛</a></td>
-      <td align="center"><a href="https://github.com/Lakhwinderr"><img src="https://avatars.githubusercontent.com/u/39651639?v=4?s=100" width="100px;" alt="Lakhwinder Singh"/><br /><sub><b>Lakhwinder Singh</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3ALakhwinderr" title="Bug reports">🐛</a></td>
-      <td align="center"><a href="http://lystad.io"><img src="https://avatars.githubusercontent.com/u/69081683?v=4?s=100" width="100px;" alt="Jens"/><br /><sub><b>Jens</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3Ajenslys" title="Bug reports">🐛</a></td>
-      <td align="center"><a href="https://github.com/ladvoc"><img src="https://avatars.githubusercontent.com/u/3182119?v=4?s=100" width="100px;" alt="ladvoc"/><br /><sub><b>ladvoc</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=ladvoc" title="Code">💻</a></td>
-      <td align="center"><a href="https://github.com/Maartz"><img src="https://avatars.githubusercontent.com/u/13407086?v=4?s=100" width="100px;" alt="Maartz"/><br /><sub><b>Maartz</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3AMaartz" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="20%"><a href="https://github.com/Ashwonixer"><img src="https://avatars.githubusercontent.com/u/62433766?v=4?s=100" width="100px;" alt="Ashwonixer"/><br /><sub><b>Ashwonixer</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3AAshwonixer" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="20%"><a href="http://rishaandesai.me"><img src="https://avatars.githubusercontent.com/u/77017806?v=4?s=100" width="100px;" alt="Rishaan Desai"/><br /><sub><b>Rishaan Desai</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3ABlackhole1123" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="20%"><a href="http://cr08.netlify.app"><img src="https://avatars.githubusercontent.com/u/64256342?v=4?s=100" width="100px;" alt="Vishwa.R"/><br /><sub><b>Vishwa.R</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3Acode-reaper08" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="20%"><a href="https://github.com/Lakhwinderr"><img src="https://avatars.githubusercontent.com/u/39651639?v=4?s=100" width="100px;" alt="Lakhwinder Singh"/><br /><sub><b>Lakhwinder Singh</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3ALakhwinderr" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="20%"><a href="http://lystad.io"><img src="https://avatars.githubusercontent.com/u/69081683?v=4?s=100" width="100px;" alt="Jens"/><br /><sub><b>Jens</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3Ajenslys" title="Bug reports">🐛</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="20%"><a href="https://github.com/ladvoc"><img src="https://avatars.githubusercontent.com/u/3182119?v=4?s=100" width="100px;" alt="ladvoc"/><br /><sub><b>ladvoc</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=ladvoc" title="Code">💻</a></td>
+      <td align="center" valign="top" width="20%"><a href="https://github.com/Maartz"><img src="https://avatars.githubusercontent.com/u/13407086?v=4?s=100" width="100px;" alt="Maartz"/><br /><sub><b>Maartz</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3AMaartz" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="20%"><a href="http://hkamran.com"><img src="https://avatars.githubusercontent.com/u/16967687?v=4?s=100" width="100px;" alt="H. Kamran"/><br /><sub><b>H. Kamran</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3Ahkamran80" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>

@@ -1,9 +1,8 @@
 //
 //  RepositoriesViewController.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by TAY KAI QUAN on 17/8/22.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import SwiftUI
@@ -159,7 +158,8 @@ extension RepositoriesViewController: NSOutlineViewDataSource {
 
 extension RepositoriesViewController: NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView,
-                     shouldShowCellExpansionFor tableColumn: NSTableColumn?, item: Any) -> Bool {
+                     shouldShowCellExpansionFor tableColumn: NSTableColumn?,
+                     item: Any) -> Bool {
         true
     }
 

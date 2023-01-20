@@ -1,6 +1,6 @@
 //
 //  Location.swift
-//  
+//  Aurora Editor
 //
 //  Created by Manuel M T Chakravarty on 09/05/2021.
 //

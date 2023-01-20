@@ -1,6 +1,6 @@
 //
 //  PanelDivider.swift
-//  
+//  Aurora Editor
 //
 //  Created by Austin Condiff on 5/10/22.
 //

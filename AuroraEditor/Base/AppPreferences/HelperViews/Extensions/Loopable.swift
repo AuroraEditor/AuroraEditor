@@ -1,6 +1,6 @@
 //
 //  Loopable.swift
-//  AuroraEditorModules/AppPreferences
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 03.04.22.
 //
@@ -36,7 +36,7 @@ extension Loopable {
         let mirror = Mirror(reflecting: self)
 
         guard let style = mirror.displayStyle, style == .struct || style == .class else {
-            throw NSError.init(domain: "com.auroraeditor", code: 100)
+            throw NSError(domain: "com.auroraeditor", code: 100)
         }
 
         for (property, value) in mirror.children {

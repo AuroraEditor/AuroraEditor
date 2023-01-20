@@ -1,9 +1,8 @@
 //
 //  PreferencesView.swift
-//  AuroraEditor
+//  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/08/18.
-//  Copyright © 2022 Aurora Company. All rights reserved.
 //
 
 import SwiftUI
@@ -82,7 +81,7 @@ struct PreferencesView: View {
                 } else if viewModel.selectedId == viewModel.setting[11].id {
                     UpdatePreferencesView()
                 }
-        }
+            }
             .frame(minWidth: 560, idealWidth: 580, maxWidth: 600)
     }
 

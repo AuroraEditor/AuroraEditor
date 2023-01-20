@@ -1,4 +1,4 @@
-name: Nightly Build of AuroraEditor
+name: Nightly Build of Aurora Editor
 on:
   push:
     branches: [ main ]

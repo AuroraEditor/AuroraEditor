@@ -1,6 +1,6 @@
 //
 //  TextView.swift
-//  
+//  Aurora Editor
 //
 //  Created by Manuel M T Chakravarty on 28/09/2020.
 //

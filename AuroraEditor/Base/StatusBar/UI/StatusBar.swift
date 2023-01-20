@@ -1,6 +1,6 @@
 //
 //  StatusBar.swift
-//  AuroraEditorModules/StatusBar
+//  Aurora Editor
 //
 //  Created by Lukas Pistrol on 19.03.22.
 //
@@ -91,7 +91,7 @@ public struct StatusBarView: View {
             .onChanged { value in
                 model.isDragging = true
                 var newHeight = max(0, min(model.currentHeight - value.translation.height, 500))
-                if newHeight-0.5 > model.currentHeight || newHeight+0.5 < model.currentHeight {
+                if newHeight - 0.5 > model.currentHeight || newHeight + 0.5 < model.currentHeight {
                     if newHeight < model.minHeight { // simulate the snapping/resistance after reaching minimal height
                         if newHeight > model.minHeight / 2 {
                             newHeight = model.minHeight
