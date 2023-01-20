@@ -92,12 +92,8 @@ iOSInjectionProject/
 # System files
 
 .DS_Store
-.codeedit
 .idea
 .vscode
 
 # Ignore .githash
 .githash
-
-# Remove local workspaces
-0xWDG.xcworkspace

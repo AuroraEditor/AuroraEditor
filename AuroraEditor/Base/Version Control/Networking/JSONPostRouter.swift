@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/03/31.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 // This file should be strictly just be used for Accounts since it's not
 // built for any other networking except those of git accounts

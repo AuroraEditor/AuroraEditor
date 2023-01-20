@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Manuel M T Chakravarty on 28/09/2020.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 //  Text view protocol that extracts common functionality between 'UITextView' and 'NSTextView'.
 

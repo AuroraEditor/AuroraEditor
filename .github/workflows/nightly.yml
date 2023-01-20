@@ -65,17 +65,17 @@ jobs:
 
       - name: "Create Release Build Archive"
         run: | 
-          set -o pipefail && xcodebuild -workspace AuroraEditor.xcworkspace -scheme AuroraEditorRelease -configuration Release archive -archivePath builds/AuroraEditor.xcarchive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty 
+          set -o pipefail && xcodebuild -workspace "Aurora Editor.xcworkspace" -scheme "Aurora Editor (Release)" -configuration Release archive -archivePath "builds/Aurora Editor.xcarchive" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty 
 
       - name: "Export Release Build"
         run: |
-          xcrun xcodebuild -exportArchive -exportOptionsPlist .github/export.plist -archivePath builds/AuroraEditor.xcarchive -exportPath builds
+          xcrun xcodebuild -exportArchive -exportOptionsPlist .github/export.plist -archivePath "builds/Aurora Editor.xcarchive" -exportPath builds
         
       - name: Install create-dmg
         run: npm install --global create-dmg
         
       - name: Make Release Dmg
-        run: create-dmg builds/AuroraEditor.app
+        run: create-dmg "builds/Aurora Editor.app"
 
       - name: "notarytool submit"
         run: xcrun notarytool submit "Aurora Editor 1.0.dmg" --apple-id "${{ secrets.APPLEID_EMAIL }}" --password "${{ secrets.APPLEID_PASSWORD }}" --team-id "4V2D72S45C" --wait

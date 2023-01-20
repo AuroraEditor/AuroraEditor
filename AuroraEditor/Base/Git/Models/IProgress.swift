@@ -2,7 +2,9 @@
 //  IProgress.swift
 //  Aurora Editor
 //
-//  Created by Nanashi Li on 2022/08/13.
+//  Created by Nana on 3/10/21.
+//  Copyright © 2023 Aurora Company. All rights reserved.
+//
 //  This source code is restricted for Aurora Editor usage only.
 //
 

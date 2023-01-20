@@ -3,6 +3,8 @@
 //  Aurora Editor
 //
 //  Created by TAY KAI QUAN on 2/9/22.
+//  Copyright © 2023 Aurora Company. All rights reserved.
+//
 //  CREDITS: Avdept, CodeEdit pull #545 https://github.com/CodeEditApp/CodeEdit/pull/545
 //
 

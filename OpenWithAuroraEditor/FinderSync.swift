@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Wesley de Groot on 03/05/2022.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
 import Cocoa
@@ -49,7 +50,7 @@ class AEOpenWith: FIFinderSync {
             withBundleIdentifier: "com.auroraeditor"
         ) else { return }
 
-        // Add files to open to openInCEFiles.
+        // Add files to open to openInAEFiles.
         defaults.set(files, forKey: "openInAEFiles")
 
         NSWorkspace.shared.open(
@@ -66,7 +67,7 @@ class AEOpenWith: FIFinderSync {
             return NSMenu(title: "")
         }
 
-        // Register enableOpenInCE (enable Open In Aurora Editor
+        // Register enableOpenInAE (enable Open In Aurora Editor
         defaults.register(defaults: ["enableOpenInAE": true])
 
         let menu = NSMenu(title: "")

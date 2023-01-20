@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Pavel Kasila on 12/03/2022.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
 import SwiftUI
@@ -201,7 +202,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             return
         }
 
-        // Register enableOpenInCE (enable Open In AuroraEditor
+        // Register enableOpenInAE (enable Open In AuroraEditor
         defaults.register(defaults: ["enableOpenInAE": true])
 
         if let filesToOpen = defaults.string(forKey: "openInAEFiles") {

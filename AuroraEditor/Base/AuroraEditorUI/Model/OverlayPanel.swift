@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Pavel Kasila on 20.03.22.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
 import Cocoa

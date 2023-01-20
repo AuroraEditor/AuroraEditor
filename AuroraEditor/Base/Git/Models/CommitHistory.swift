@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Marco Carnevali on 27/03/22.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
 import Foundation.NSDate

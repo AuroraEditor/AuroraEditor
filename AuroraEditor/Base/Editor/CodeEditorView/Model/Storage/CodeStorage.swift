@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Manuel M T Chakravarty on 09/01/2021.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 //  This file contains `NSTextStorage` extensions for code editing.
 

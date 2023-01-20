@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Manuel M T Chakravarty on 05/05/2021.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 //  This file contains both the macOS and iOS versions of the subclass for `NSTextView` and `UITextView`, respectively,
 //  which forms the heart of the code editor.

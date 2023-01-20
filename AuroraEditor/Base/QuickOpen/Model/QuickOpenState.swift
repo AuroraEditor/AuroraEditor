@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Marco Carnevali on 05/04/22.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 import Combine
 import Foundation

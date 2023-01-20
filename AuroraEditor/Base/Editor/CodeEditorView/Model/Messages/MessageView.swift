@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Manuel M T Chakravarty on 23/03/2021.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 //  Defines the visuals that present messages, both inline and as popovers.
 
