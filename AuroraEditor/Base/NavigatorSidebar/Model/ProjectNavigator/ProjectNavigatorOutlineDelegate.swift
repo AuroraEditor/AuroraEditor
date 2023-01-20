@@ -12,7 +12,8 @@ import SwiftUI
 
 extension ProjectNavigatorViewController: NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView,
-                     shouldShowCellExpansionFor tableColumn: NSTableColumn?, item: Any) -> Bool {
+                     shouldShowCellExpansionFor tableColumn: NSTableColumn?,
+                     item: Any) -> Bool {
         true
     }
 

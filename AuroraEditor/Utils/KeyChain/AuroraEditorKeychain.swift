@@ -49,7 +49,8 @@ open class AuroraEditorKeychain {
      - returns: True if the text was successfully written to the keychain.
      */
     @discardableResult
-    open func set(_ value: String, forKey key: String,
+    open func set(_ value: String,
+                  forKey key: String,
                   withAccess access: AuroraEditorKeychainAccessOptions? = nil) -> Bool {
 
         if let value = value.data(using: String.Encoding.utf8) {
@@ -68,7 +69,8 @@ open class AuroraEditorKeychain {
      - returns: True if the text was successfully written to the keychain.
      */
     @discardableResult
-    open func set(_ value: Data, forKey key: String,
+    open func set(_ value: Data,
+                  forKey key: String,
                   withAccess access: AuroraEditorKeychainAccessOptions? = nil) -> Bool {
 
         // The lock prevents the code to be run simultaneously
@@ -106,7 +108,8 @@ open class AuroraEditorKeychain {
      - returns: True if the value was successfully written to the keychain.
      */
     @discardableResult
-    open func set(_ value: Bool, forKey key: String,
+    open func set(_ value: Bool,
+                  forKey key: String,
                   withAccess access: AuroraEditorKeychainAccessOptions? = nil) -> Bool {
 
         let bytes: [UInt8] = value ? [1] : [0]

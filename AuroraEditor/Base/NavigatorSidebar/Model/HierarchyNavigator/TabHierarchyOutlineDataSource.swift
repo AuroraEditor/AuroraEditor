@@ -100,8 +100,10 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
         return pboarditem
     }
 
-    func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo,
-                     proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
+    func outlineView(_ outlineView: NSOutlineView,
+                     validateDrop info: NSDraggingInfo,
+                     proposedItem item: Any?,
+                     proposedChildIndex index: Int) -> NSDragOperation {
 
         // decode the data
         let jsonDecoder = JSONDecoder()
@@ -121,8 +123,10 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
         return .move
     }
 
-    func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo,
-                     item: Any?, childIndex index: Int) -> Bool {
+    func outlineView(_ outlineView: NSOutlineView,
+                     acceptDrop info: NSDraggingInfo,
+                     item: Any?,
+                     childIndex index: Int) -> Bool {
 
         let jsonDecoder = JSONDecoder()
 

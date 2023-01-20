@@ -294,7 +294,8 @@ public extension Router {
     /// - Returns: URLSessionDataTaskProtocol
     func load<T: Codable>(
         _ session: GitURLSession = URLSession.shared,
-        decoder: JSONDecoder = JSONDecoder(), expectedResultType _: T.Type,
+        decoder: JSONDecoder = JSONDecoder(),
+        expectedResultType _: T.Type,
         completion: @escaping (_ json: T?, _ error: Error?) -> Void) -> URLSessionDataTaskProtocol? {
 
         guard let request = request() else {
