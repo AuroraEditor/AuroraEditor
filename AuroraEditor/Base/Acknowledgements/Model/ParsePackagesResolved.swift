@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Shivesh M M on 4/4/22.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
 import Foundation

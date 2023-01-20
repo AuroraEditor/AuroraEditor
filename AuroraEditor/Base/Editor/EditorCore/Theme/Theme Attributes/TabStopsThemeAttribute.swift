@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Matthew Davidson on 9/1/20.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
 import Foundation

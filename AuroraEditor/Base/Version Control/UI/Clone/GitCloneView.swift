@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Aleksi Puttonen on 23.3.2022.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
 import SwiftUI

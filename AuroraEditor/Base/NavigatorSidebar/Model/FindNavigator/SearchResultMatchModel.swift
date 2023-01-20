@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Khan Winter on 7/6/22.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
 import Foundation

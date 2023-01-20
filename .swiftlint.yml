@@ -133,11 +133,14 @@ custom_rules:
     severity: warning
 
 file_header:
+  # "Aurora ?Editor" should be "Aurora Editor"
+  # The product name is "AuroraEditor"
+  # therefore Xcode will name the product with "AuroraEditor" in the header.
   required_pattern: |
                   \/\/
                   \/\/  .*?\.swift
-                  \/\/  Aurora Editor
+                  \/\/  Aurora ?Editor
                   \/\/
-#                  \/\/  Created by .*? on .*?\.
-#                  \/\/  Copyright © \d{4} Aurora Company. All rights reserved.
-#                  \/\/
+                  \/\/  Created by .*? on .*?\.
+                  \/\/  Copyright © \d{4} Aurora Company. All rights reserved.
+                  \/\/

@@ -3,7 +3,9 @@
 //  Aurora Editor
 //
 //  Created by Marco Carnevali on 16/03/22.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
+
 import Combine
 import Foundation
 @testable import WorkspaceClient

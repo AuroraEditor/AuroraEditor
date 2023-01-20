@@ -2,10 +2,10 @@
 //  TabBarNative.swift
 //  Aurora Editor
 //
-//  This file contains some support views to make native tab bar style come true.
-//
 //  Created by Lingxi Li on 4/25/22.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
+//  This file contains some support views to make native tab bar style come true.
 
 import SwiftUI
 

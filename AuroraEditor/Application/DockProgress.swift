@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by TAY KAI QUAN on 06/09/2022.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 //  CREDIT: Modified from https://github.com/sindresorhus/DockProgress/
 //

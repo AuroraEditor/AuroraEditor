@@ -3,7 +3,9 @@
 //  Aurora Editor
 //
 //  Created by Ziyuan Zhao on 2022/3/18.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
+
 import SwiftUI
 
 public struct RecentProjectsView: View {
