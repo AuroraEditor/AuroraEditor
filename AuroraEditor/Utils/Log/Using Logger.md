@@ -9,7 +9,7 @@ Log.error("Well that didn't go as expected!")
 ```
 Output:
 ```
-[2022-08-04 15:36:19.361] WorkspaceCodeFileView.swift:27 INFO: Item loaded is: file:///Users/tihan-nico/Documents/GitHub/CodeEdit/CodeEdit/CodeEdit.entitlements
+[2022-08-04 15:36:19.361] WorkspaceCodeFileView.swift:27 INFO: Item loaded is: file:///Users/tihan-nico/Documents/GitHub/AuroraEditor/AuroraEditor/AuroraEditor.entitlements
 ```
 
 ### Min level of logs that will be shown:
