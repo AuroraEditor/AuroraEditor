@@ -314,6 +314,9 @@
 		20BE729A28D0A25900EEDE5F /* WorkflowCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE729928D0A25900EEDE5F /* WorkflowCellView.swift */; };
 		20BE729C28D0BB2000EEDE5F /* WorkflowRunsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE729B28D0BB2000EEDE5F /* WorkflowRunsView.swift */; };
 		20BE729E28D0BB6F00EEDE5F /* WorkflowRunCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE729D28D0BB6F00EEDE5F /* WorkflowRunCell.swift */; };
+		20C0CBDD297B083E00E9F9F0 /* Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0CBDC297B083E00E9F9F0 /* Contributor.swift */; };
+		20C0CBDF297B086200E9F9F0 /* AboutViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0CBDE297B086200E9F9F0 /* AboutViewModal.swift */; };
+		20C0CBE3297B0ABE00E9F9F0 /* AboutViewNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0CBE2297B0ABE00E9F9F0 /* AboutViewNew.swift */; };
 		20C8D7DC287ED2C700C5B3BA /* ToolbarBranchPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8D7DB287ED2C700C5B3BA /* ToolbarBranchPicker.swift */; };
 		20CABA37290BF484004753A8 /* AuroraEditorLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CABA36290BF484004753A8 /* AuroraEditorLoginView.swift */; };
 		20CABA39290BF5A2004753A8 /* EditorAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CABA38290BF5A2004753A8 /* EditorAccountModel.swift */; };
@@ -696,6 +699,9 @@
 		20BE729928D0A25900EEDE5F /* WorkflowCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowCellView.swift; sourceTree = "<group>"; };
 		20BE729B28D0BB2000EEDE5F /* WorkflowRunsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowRunsView.swift; sourceTree = "<group>"; };
 		20BE729D28D0BB6F00EEDE5F /* WorkflowRunCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowRunCell.swift; sourceTree = "<group>"; };
+		20C0CBDC297B083E00E9F9F0 /* Contributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contributor.swift; sourceTree = "<group>"; };
+		20C0CBDE297B086200E9F9F0 /* AboutViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModal.swift; sourceTree = "<group>"; };
+		20C0CBE2297B0ABE00E9F9F0 /* AboutViewNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewNew.swift; sourceTree = "<group>"; };
 		20C8D7DB287ED2C700C5B3BA /* ToolbarBranchPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarBranchPicker.swift; sourceTree = "<group>"; };
 		20CABA36290BF484004753A8 /* AuroraEditorLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorLoginView.swift; sourceTree = "<group>"; };
 		20CABA38290BF5A2004753A8 /* EditorAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorAccountModel.swift; sourceTree = "<group>"; };
@@ -1634,6 +1640,15 @@
 			path = Workflow;
 			sourceTree = "<group>";
 		};
+		20C0CBDB297B077700E9F9F0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				20C0CBDC297B083E00E9F9F0 /* Contributor.swift */,
+				20C0CBDE297B086200E9F9F0 /* AboutViewModal.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		20CABA35290BF461004753A8 /* AuroraEditor */ = {
 			isa = PBXGroup;
 			children = (
@@ -2463,6 +2478,7 @@
 		20D838FB289A7AD600D91D05 /* About */ = {
 			isa = PBXGroup;
 			children = (
+				20C0CBDB297B077700E9F9F0 /* Model */,
 				2032B51128A26B2D0089EBB6 /* Controller */,
 				20D838FC289A7AD600D91D05 /* UI */,
 			);
@@ -2473,6 +2489,7 @@
 			isa = PBXGroup;
 			children = (
 				20D838FD289A7AD600D91D05 /* AboutView.swift */,
+				20C0CBE2297B0ABE00E9F9F0 /* AboutViewNew.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -3685,6 +3702,7 @@
 				20B5BD9C28B11C6200B2A02F /* WelcomeModel.swift in Sources */,
 				2093CD57289AA0C6003A88DD /* DownloadedPlugin.swift in Sources */,
 				2093CDC8289AA260003A88DD /* TabBar.swift in Sources */,
+				20C0CBE3297B0ABE00E9F9F0 /* AboutViewNew.swift in Sources */,
 				2B04575D28E6FFE300024F2D /* FontThemeAttribute.swift in Sources */,
 				2093CD6E289AA0FC003A88DD /* SegmentedControl.swift in Sources */,
 				2093CD32289AA089003A88DD /* Openness.swift in Sources */,
@@ -3833,6 +3851,7 @@
 				20B5BDA928B130FF00B2A02F /* SplitViewModifier.swift in Sources */,
 				20EBB503280C327C00F3A5DA /* HistoryInspector.swift in Sources */,
 				93EF2EFA290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift in Sources */,
+				20C0CBDF297B086200E9F9F0 /* AboutViewModal.swift in Sources */,
 				2093CD2C289AA089003A88DD /* PullRequest.swift in Sources */,
 				2BDFA91628D10B9200980385 /* FileCreationSelectionView.swift in Sources */,
 				93D5F5D728CE0EF500286EBD /* TabHierarchyMenu.swift in Sources */,
@@ -4063,6 +4082,7 @@
 				2093CD27289AA084003A88DD /* PublicKey.swift in Sources */,
 				043C321627E3201F006AE443 /* WorkspaceDocument.swift in Sources */,
 				2BD5CF2728D602CE00F95E5A /* OSDefinitions.swift in Sources */,
+				20C0CBDD297B083E00E9F9F0 /* Contributor.swift in Sources */,
 				2093CD5D289AA0DD003A88DD /* AuroraCrashlytics.swift in Sources */,
 				20CC5AC8291CD4FC007DB911 /* ExtensionWhatsNewView.swift in Sources */,
 				20CABA37290BF484004753A8 /* AuroraEditorLoginView.swift in Sources */,
