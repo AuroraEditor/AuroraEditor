@@ -15,14 +15,16 @@ func getRecentBranches(directoryURL: URL,
     // swiftlint:disable:next line_length
     let regex = "//.*? (renamed|checkout)(?:: moving from|\\s*) (?:refs\\//heads\\//|\\s*)(.*?) to (?:refs\\//heads\\//|\\s*)(.*?)$//i"
 
-    let args = ["log",
-    "-g",
-    "--no-abbrev-commit",
-    "--pretty=oneline",
-    "HEAD",
-    "-n",
-    "2500",
-    "--"]
+    let args = [
+        "log",
+        "-g",
+        "--no-abbrev-commit",
+        "--pretty=oneline",
+        "HEAD",
+        "-n",
+        "2500",
+        "--"
+    ]
 
     let result = try ShellClient.live().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)")

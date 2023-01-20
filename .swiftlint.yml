@@ -60,7 +60,8 @@ opt_in_rules:
   - operator_usage_whitespace
   - closure_parameter_position
   - closure_spacing
-  
+  - collection_alignment 
+
 # Custom configuration for nesting, this needs to be removed at some point.
 nesting:
   type_level:

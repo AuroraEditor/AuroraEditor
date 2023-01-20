@@ -57,15 +57,19 @@ class GutterView: NSView {
         let lineNumberStyle = NSMutableParagraphStyle()
         lineNumberStyle.alignment = .right
 
-        self.textAttributesDefault = [NSAttributedString.Key.font: font,
-                                     .foregroundColor: lineNumberColour,
-                                     .paragraphStyle: lineNumberStyle,
-                                     .kern: NSNumber(value: Float(-theme.fontSize / 11))]
+        self.textAttributesDefault = [
+            NSAttributedString.Key.font: font,
+            .foregroundColor: lineNumberColour,
+            .paragraphStyle: lineNumberStyle,
+            .kern: NSNumber(value: Float(-theme.fontSize / 11))
+        ]
 
-        self.textAttributesSelected = [NSAttributedString.Key.font: font,
-                                       .foregroundColor: theme.editor.text.nsColor,
-                                       .paragraphStyle: lineNumberStyle,
-                                       .kern: NSNumber(value: Float(-theme.fontSize / 11))]
+        self.textAttributesSelected = [
+            NSAttributedString.Key.font: font,
+            .foregroundColor: theme.editor.text.nsColor,
+            .paragraphStyle: lineNumberStyle,
+            .kern: NSNumber(value: Float(-theme.fontSize / 11))
+        ]
 
         super.init(frame: frame)
     }
