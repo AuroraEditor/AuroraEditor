@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Manuel M T Chakravarty on 14/05/2021.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 //  This module defines code highlight themes.
 

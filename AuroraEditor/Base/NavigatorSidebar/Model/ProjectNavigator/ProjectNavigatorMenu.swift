@@ -2,7 +2,8 @@
 //  ProjectNavigatorMenu.swift
 //  Aurora Editor
 //
-//  Created by TAY KAI QUAN on 14/8/22
+//  Created by TAY KAI QUAN on 14/8/22.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
 import SwiftUI

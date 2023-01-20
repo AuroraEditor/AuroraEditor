@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Manuel M T Chakravarty on 22/03/2021.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 //  Messages are messages that can be displayed inline in a code view in short form and as a popup in long form.
 //  They are bound to a particular primary location by way of line information, by may also include secondary locations

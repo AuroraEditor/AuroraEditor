@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Kai Quan Tay on 10/11/22.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
 import SwiftUI

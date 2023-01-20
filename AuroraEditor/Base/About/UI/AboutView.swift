@@ -2,7 +2,8 @@
 //  AboutView.swift
 //  Aurora Editor
 //
-//  Created by Andrei Vidrasco on 02.04.2022
+//  Created by Andrei Vidrasco on 02.04.2022.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
 import SwiftUI

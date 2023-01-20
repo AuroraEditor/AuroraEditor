@@ -138,6 +138,6 @@ file_header:
                   \/\/  .*?\.swift
                   \/\/  Aurora Editor
                   \/\/
-#                  \/\/  Created by .*? on .*?\.
-#                  \/\/  Copyright © \d{4} Aurora Company. All rights reserved.
-#                  \/\/
+                  \/\/  Created by .*? on .*?\.
+                  \/\/  Copyright © \d{4} Aurora Company. All rights reserved.
+                  \/\/

@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Ziyuan Zhao on 2022/3/19.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
 @testable import WelcomeModule

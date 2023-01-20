@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Manuel M T Chakravarty on 23/09/2020.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
 // MARK: - AppKit version

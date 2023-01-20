@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Manuel M T Chakravarty on 05/05/2021.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 //  TextKit subclasses to implement minimap functionality. This is currently only supported for macOS as iOS lacks
 //  support for configuring the type setter.

@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Manuel M T Chakravarty on 29/09/2020.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 //  'NSTextStorageDelegate' for code views compute, collect, store, and update additional information about the text
 //  stored in the 'NSTextStorage' that they serve. This is needed to quickly navigate the text (e.g., at which character

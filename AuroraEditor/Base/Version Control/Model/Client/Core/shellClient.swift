@@ -3,6 +3,7 @@
 //  Aurora Editor
 //
 //  Created by Wesley de Groot on 22/07/2022.
+//  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
 import Foundation
