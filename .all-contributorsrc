@@ -120,6 +120,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "hkamran80",
+      "name": "H. Kamran",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16967687?v=4",
+      "profile": "http://hkamran.com",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 5,
