@@ -201,7 +201,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             return
         }
 
-        // Register enableOpenInCE (enable Open In AuroraEditor
+        // Register enableOpenInAE (enable Open In AuroraEditor
         defaults.register(defaults: ["enableOpenInAE": true])
 
         if let filesToOpen = defaults.string(forKey: "openInAEFiles") {

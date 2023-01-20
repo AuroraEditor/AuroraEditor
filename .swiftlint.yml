@@ -61,7 +61,6 @@ opt_in_rules:
   - closure_end_indentation
   - operator_usage_whitespace
   - closure_parameter_position
-  - closure_spacing
   - collection_alignment 
   - last_where
   - unused_optional_binding
@@ -140,4 +139,5 @@ file_header:
                   \/\/  Aurora Editor
                   \/\/
 #                  \/\/  Created by .*? on .*?\.
+#                  \/\/  Copyright © \d{4} Aurora Company. All rights reserved.
 #                  \/\/

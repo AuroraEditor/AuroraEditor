@@ -92,7 +92,6 @@ iOSInjectionProject/
 # System files
 
 .DS_Store
-.codeedit
 .idea
 .vscode
 

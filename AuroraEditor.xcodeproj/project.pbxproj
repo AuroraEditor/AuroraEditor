@@ -207,7 +207,7 @@
 		2093CD8F289AA130003A88DD /* NotificationCentreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838E6289A7ACE00D91D05 /* NotificationCentreView.swift */; };
 		2093CD90289AA130003A88DD /* NotificationWithProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838E8289A7ACE00D91D05 /* NotificationWithProgress.swift */; };
 		2093CD91289AA130003A88DD /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838E9289A7ACE00D91D05 /* NotificationView.swift */; };
-		2093CD93289AA137003A88DD /* codeedit in Resources */ = {isa = PBXBuildFile; fileRef = 20D837F7289A7ACD00D91D05 /* codeedit */; };
+		2093CD93289AA137003A88DD /* AuroraEditor in Resources */ = {isa = PBXBuildFile; fileRef = 20D837F7289A7ACD00D91D05 /* AuroraEditor */; };
 		2093CD94289AA13D003A88DD /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83805289A7ACD00D91D05 /* AppPreferences.swift */; };
 		2093CD95289AA13F003A88DD /* AppPreferencesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837FE289A7ACD00D91D05 /* AppPreferencesModel.swift */; };
 		2093CD97289AA144003A88DD /* AuroraTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837E4289A7ACD00D91D05 /* AuroraTheme.swift */; };
@@ -529,21 +529,21 @@
 			containerPortal = B658FB2427DA9E0F00EA4DBD /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2BE487EB28245162003F3F64;
-			remoteInfo = OpenWithCodeEdit;
+			remoteInfo = OpenWithAuroraEditor;
 		};
 		B658FB3E27DA9E1000EA4DBD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B658FB2427DA9E0F00EA4DBD /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B658FB2B27DA9E0F00EA4DBD;
-			remoteInfo = CodeEdit;
+			remoteInfo = AuroraEditor;
 		};
 		B658FB4827DA9E1000EA4DBD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B658FB2427DA9E0F00EA4DBD /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B658FB2B27DA9E0F00EA4DBD;
-			remoteInfo = CodeEdit;
+			remoteInfo = AuroraEditor;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -772,7 +772,7 @@
 		20D837F0289A7ACD00D91D05 /* GitAccountItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitAccountItem.swift; sourceTree = "<group>"; };
 		20D837F2289A7ACD00D91D05 /* GithubLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubLoginView.swift; sourceTree = "<group>"; };
 		20D837F3289A7ACD00D91D05 /* GithubEnterpriseLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubEnterpriseLoginView.swift; sourceTree = "<group>"; };
-		20D837F7289A7ACD00D91D05 /* codeedit */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = codeedit; sourceTree = "<group>"; };
+		20D837F7289A7ACD00D91D05 /* AuroraEditor */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = AuroraEditor; sourceTree = "<group>"; };
 		20D837F9289A7ACD00D91D05 /* Loopable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loopable.swift; sourceTree = "<group>"; };
 		20D837FD289A7ACD00D91D05 /* SourceControlPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlPreferences.swift; sourceTree = "<group>"; };
 		20D837FE289A7ACD00D91D05 /* AppPreferencesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferencesModel.swift; sourceTree = "<group>"; };
@@ -2020,7 +2020,7 @@
 		20D837F6289A7ACD00D91D05 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				20D837F7289A7ACD00D91D05 /* codeedit */,
+				20D837F7289A7ACD00D91D05 /* AuroraEditor */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -3329,7 +3329,7 @@
 			dependencies = (
 			);
 			name = OpenWithAuroraEditor;
-			productName = OpenWithCodeEdit;
+			productName = OpenWithAuroraEditor;
 			productReference = 2BE487EC28245162003F3F64 /* OpenWithAuroraEditor.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
@@ -3362,7 +3362,7 @@
 				200AA21128ED88B30068C7C6 /* Version-Control */,
 				2BD0BD162977357900629A86 /* SwiftOniguruma */,
 			);
-			productName = CodeEdit;
+			productName = AuroraEditor;
 			productReference = B658FB2C27DA9E0F00EA4DBD /* AuroraEditor.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -3380,7 +3380,7 @@
 				B658FB3F27DA9E1000EA4DBD /* PBXTargetDependency */,
 			);
 			name = AuroraEditorTests;
-			productName = CodeEditTests;
+			productName = AuroraEditorTests;
 			productReference = B658FB3D27DA9E1000EA4DBD /* AuroraEditorTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -3398,7 +3398,7 @@
 				B658FB4927DA9E1000EA4DBD /* PBXTargetDependency */,
 			);
 			name = AuroraEditorUITests;
-			productName = CodeEditUITests;
+			productName = AuroraEditorUITests;
 			productReference = B658FB4727DA9E1000EA4DBD /* AuroraEditorUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -3483,7 +3483,7 @@
 				D7211D4727E06BFE008F2ED7 /* Localizable.strings in Resources */,
 				28A51001281673530087B0CC /* auroraeditor-xcode-dark.json in Resources */,
 				B658FB3427DA9E1000EA4DBD /* Assets.xcassets in Resources */,
-				2093CD93289AA137003A88DD /* codeedit in Resources */,
+				2093CD93289AA137003A88DD /* AuroraEditor in Resources */,
 				9384904828FBA5E2006FB263 /* auroraeditor-github-light.json in Resources */,
 				209DAF3728E64AE800E31109 /* ruby.tmLanguage.json in Resources */,
 				209DAF2D28E649D400E31109 /* html-derivative.tmLanguage.json in Resources */,
