@@ -407,7 +407,6 @@
 		2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468438427DC76E200F8E88E /* AppDelegate.swift */; };
 		2B7AC06B282452FB0082A5B8 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7AC06A282452FB0082A5B8 /* Media.xcassets */; };
 		2B89F85428B13E9D007CB9C1 /* AuroraMessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */; };
-		2BB6591B297AD40E0035C53F /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6591A297AD40E0035C53F /* Test.swift */; };
 		2BCBAAC82927C41E00D4DFB2 /* BindingProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBAAC72927C41E00D4DFB2 /* BindingProxy.swift */; };
 		2BCBAACA2927C65500D4DFB2 /* View+isHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */; };
 		2BCDF9D8295F2EBB00570253 /* .githash in Copy .githash */ = {isa = PBXBuildFile; fileRef = 2BCDF9D6295F2E9700570253 /* .githash */; };
@@ -979,7 +978,6 @@
 		2B71C0A32874AD61008E0859 /* AuroraProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraProject.swift; sourceTree = "<group>"; };
 		2B7AC06A282452FB0082A5B8 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraMessageBox.swift; sourceTree = "<group>"; };
-		2BB6591A297AD40E0035C53F /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		2BCBAAC72927C41E00D4DFB2 /* BindingProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingProxy.swift; sourceTree = "<group>"; };
 		2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+isHidden.swift"; sourceTree = "<group>"; };
 		2BCDF9D6295F2E9700570253 /* .githash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .githash; sourceTree = "<group>"; };
@@ -3288,7 +3286,6 @@
 				2B18EC4528AEC84900494768 /* Symbols.xcassets */,
 				2B5B25522885D9B9009C7384 /* .swiftlint.yml */,
 				2B5B25542885D9C3009C7384 /* .gitignore */,
-				2BB6591A297AD40E0035C53F /* Test.swift */,
 				B658FB3827DA9E1000EA4DBD /* AuroraEditor.entitlements */,
 				04660F6027E3A68A00477777 /* Info.plist */,
 				043C321927E32295006AE443 /* MainMenu.xib */,
@@ -3782,7 +3779,6 @@
 				7BBF20172939B11400D60627 /* RecentProjectsStore.swift in Sources */,
 				2093CD41289AA095003A88DD /* Event.swift in Sources */,
 				20E8748C28A3AB89002CE758 /* SourceControlTableViewCell.swift in Sources */,
-				2BB6591B297AD40E0035C53F /* Test.swift in Sources */,
 				9354D4B728ACEE04004C6D18 /* RepositoriesTableViewCell.swift in Sources */,
 				2BD5CF2228D602CE00F95E5A /* CodeStorage.swift in Sources */,
 				2B04574F28E6FFE300024F2D /* TailIndentThemeAttribute.swift in Sources */,
