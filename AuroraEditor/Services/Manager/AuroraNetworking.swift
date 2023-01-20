@@ -112,7 +112,7 @@ class AuroraNetworking {
 
                 // Save our cookies
                 AuroraNetworking.cookies = session?.configuration.httpCookieStorage?.cookies
-                AuroraNetworking.fullResponse = String.init(data: sitedata, encoding: .utf8)
+                AuroraNetworking.fullResponse = String(data: sitedata, encoding: .utf8)
 
                 if let httpResponse = response as? HTTPURLResponse {
                     self.networkLog(

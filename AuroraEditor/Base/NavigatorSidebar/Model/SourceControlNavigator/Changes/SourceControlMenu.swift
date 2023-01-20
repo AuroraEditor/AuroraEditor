@@ -25,7 +25,7 @@ final class SourceControlMenu: NSMenu {
 
     init(sender: NSOutlineView, workspaceURL: URL) {
         outlineView = sender
-        gitClient = GitClient.init(
+        gitClient = GitClient(
             directoryURL: workspaceURL,
             shellClient: sharedShellClient.shellClient
         )

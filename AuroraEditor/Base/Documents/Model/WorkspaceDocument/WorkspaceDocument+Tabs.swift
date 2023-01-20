@@ -87,7 +87,7 @@ extension WorkspaceDocument {
                 )
                 // Let the extensions know we opened a file (from a workspace)
                 for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-                    let fileData = try? Data.init(contentsOf: item.url)
+                    let fileData = try? Data(contentsOf: item.url)
                     Log.info(id, "didOpen()")
                     AEExt.respond(
                         action: "didOpen",

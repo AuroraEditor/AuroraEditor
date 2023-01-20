@@ -194,7 +194,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 
     // MARK: - Open With AuroraEditor (Extension) functions
     private func checkForFilesToOpen() {
-        guard let defaults = UserDefaults.init(
+        guard let defaults = UserDefaults(
             suiteName: "com.auroraeditor.shared"
         ) else {
             Log.error("Failed to get/init shared defaults")

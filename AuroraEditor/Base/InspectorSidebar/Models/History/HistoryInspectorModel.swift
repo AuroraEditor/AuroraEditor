@@ -39,7 +39,7 @@ public final class HistoryInspectorModel: ObservableObject {
     public init(workspaceURL: URL, fileURL: String) {
         self.workspaceURL = workspaceURL
         self.fileURL = fileURL
-        gitClient = GitClient.init(
+        gitClient = GitClient(
             directoryURL: workspaceURL,
             shellClient: sharedShellClient.shellClient
         )

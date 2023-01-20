@@ -46,7 +46,7 @@ public final class SourceControlModel: ObservableObject {
     public init(workspaceURL: URL) {
         self.workspaceURL = workspaceURL
         self.isGitRepository = checkIfProjectIsRepo(workspaceURL: workspaceURL)
-        gitClient = GitClient.init(
+        gitClient = GitClient(
             directoryURL: workspaceURL,
             shellClient: sharedShellClient.shellClient
         )

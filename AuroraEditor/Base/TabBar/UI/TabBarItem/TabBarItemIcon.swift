@@ -130,8 +130,7 @@ fileprivate extension WorkspaceDocument {
     func getTabKeyEquivalent(item: TabBarItemRepresentable) -> KeyEquivalent {
         for counter in 0..<9 where self.selectionState.openFileItems.count > counter &&
         self.selectionState.openFileItems[counter].tabID == item.tabID {
-            return KeyEquivalent.init(
-                Character.init("\(counter + 1)")
+            return KeyEquivalent(Character("\(counter + 1)")
             )
         }
         return "0"

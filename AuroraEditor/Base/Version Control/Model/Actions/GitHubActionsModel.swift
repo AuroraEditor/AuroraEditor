@@ -83,7 +83,7 @@ class GitHubActions: ObservableObject {
                 guard let workflows = try? decoder.decode(Workflows.self, from: data) else {
                     Log.debug(
                         "Error: Unable to decode",
-                        String.init(data: data, encoding: .utf8) ?? ""
+                        String(data: data, encoding: .utf8) ?? ""
                     )
                     DispatchQueue.main.async {
                         self.state = .error
@@ -136,7 +136,7 @@ class GitHubActions: ObservableObject {
                     }
                     Log.debug(
                         "Error: \(error)",
-                        String.init(data: data, encoding: .utf8) ?? ""
+                        String(data: data, encoding: .utf8) ?? ""
                     )
                 }
             case .failure(let error):
@@ -186,7 +186,7 @@ class GitHubActions: ObservableObject {
                     }
                     Log.debug(
                         "Error: \(error)",
-                        String.init(data: data, encoding: .utf8) ?? ""
+                        String(data: data, encoding: .utf8) ?? ""
                     )
                 }
             case .failure(let error):

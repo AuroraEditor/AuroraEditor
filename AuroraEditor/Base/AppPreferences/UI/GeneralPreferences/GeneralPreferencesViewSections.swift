@@ -263,7 +263,7 @@ extension GeneralPreferencesView {
                 .labelsHidden()
                 .toggleStyle(.switch)
                 .onChange(of: openInAuroraEditor) { newValue in
-                    guard let defaults = UserDefaults.init(
+                    guard let defaults = UserDefaults(
                         suiteName: "com.auroraeditor.shared"
                     ) else {
                         Log.error("Failed to get/init shared defaults")

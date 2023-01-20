@@ -122,7 +122,7 @@ extension CodeEditor: NSViewRepresentable {
             var col = 0
 
             // Create the range
-            let range = NSRange.init(location: 0, length: pos.upperBound)
+            let range = NSRange(location: 0, length: pos.upperBound)
 
             // Get only the text before the caret
             guard let txtStr = txt[range] else {

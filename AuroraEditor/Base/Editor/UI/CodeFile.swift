@@ -119,7 +119,7 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
         do {
             try contents.write(to: url, options: .atomic)
 
-            let newContents = try? Data.init(contentsOf: url)
+            let newContents = try? Data(contentsOf: url)
             if newContents != contents {
                 fatalError("Saving did not update the file.")
             }

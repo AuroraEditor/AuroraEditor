@@ -118,6 +118,6 @@ struct CommitChangesView: View {
 
 struct CommitChangesView_Previews: PreviewProvider {
     static var previews: some View {
-        CommitChangesView(workspace: WorkspaceDocument.init())
+        CommitChangesView(workspace: WorkspaceDocument())
     }
 }

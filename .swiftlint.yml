@@ -63,6 +63,8 @@ opt_in_rules:
   - collection_alignment 
   - last_where
   - unused_optional_binding
+  - toggle_bool # use .toggle() instead of !variable
+  - explicit_init # .init is not needed
 
 # Custom configuration for nesting, this needs to be removed at some point.
 nesting:

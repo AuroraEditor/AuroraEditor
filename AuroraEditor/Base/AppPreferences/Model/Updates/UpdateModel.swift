@@ -83,7 +83,7 @@ public class UpdateObservedModel: ObservableObject {
                         }
                         Log.debug(
                             "Error: \(error)",
-                            String.init(data: data, encoding: .utf8) ?? ""
+                            String(data: data, encoding: .utf8) ?? ""
                         )
                     }
                 case .failure(let failure):

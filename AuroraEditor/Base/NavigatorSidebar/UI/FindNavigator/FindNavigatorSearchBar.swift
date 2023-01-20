@@ -84,7 +84,7 @@ struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
         HStack {
             FindNavigatorSearchBar(
-                state: .init(WorkspaceDocument.init()),
+                state: .init(WorkspaceDocument()),
                 text: .constant(""),
                 submittedText: .constant(false)
             )
