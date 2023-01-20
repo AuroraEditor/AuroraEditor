@@ -5,6 +5,6 @@
       location = "group:AuroraEditorCli">
    </FileRef>
    <FileRef
-      location = "container:AuroraEditor.xcodeproj">
+      location = "container:Aurora Editor.xcodeproj">
    </FileRef>
 </Workspace>
