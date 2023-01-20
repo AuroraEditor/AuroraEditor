@@ -30,7 +30,7 @@ class AEOpenWith: FIFinderSync {
         }
     }
 
-    /// Open in AuroraEditor (menu) action
+    /// Open in Aurora Editor (menu) action
     /// - Parameter sender: sender
     @objc func openInAuroraEditorAction(_ sender: AnyObject?) {
         guard let items = FIFinderSyncController.default().selectedItemURLs(),
@@ -66,11 +66,11 @@ class AEOpenWith: FIFinderSync {
             return NSMenu(title: "")
         }
 
-        // Register enableOpenInCE (enable Open In AuroraEditor
+        // Register enableOpenInCE (enable Open In Aurora Editor
         defaults.register(defaults: ["enableOpenInAE": true])
 
         let menu = NSMenu(title: "")
-        let menuItem = NSMenuItem(title: "Open in AuroraEditor",
+        let menuItem = NSMenuItem(title: "Open in Aurora Editor",
                                   action: #selector(openInAuroraEditorAction(_:)),
                                   keyEquivalent: ""
         )

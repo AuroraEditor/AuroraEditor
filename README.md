@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <h1 align="center">AuroraEditor</h1>
+  <h1 align="center">Aurora Editor</h1>
 </p>
 
 <p align="center">
@@ -24,7 +24,7 @@
 
 <br />
 
-AuroraEditor is a IDE built by the community, for the community, and written in Swift for the best native performance and feel for macOS. 
+Aurora Editor is a IDE built by the community, for the community, and written in Swift for the best native performance and feel for macOS. 
 
 It will support everything you could expect from an Xcode-inspired application, including deep integration with your selected git provider, project planning, and your favourite built in editor tools.
 
