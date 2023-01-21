@@ -10,9 +10,9 @@ import Foundation
 
 class AboutViewModal: ObservableObject {
 
-    public var shared: AboutViewModal = .init()
+    static var shared: AboutViewModal = .init()
 
-    let auroraContributers: String = "https://api.github.com/repos/AuroraEditor/AuroraEditor/contributors"
+    let auroraContributers: String = "https://api.github.com/repos/AuroraEditor/AuroraEditor/contributors?per_page=100"
 
     @Published
     public var contributers: [Contributor] = []
@@ -37,10 +37,38 @@ class AboutViewModal: ObservableObject {
                     )
                     return
                 }
-                self.contributers.append(contentsOf: contributers)
+                DispatchQueue.main.async {
+                    self.contributers.append(contentsOf: contributers)
+                }
             case .failure(let error):
                 Log.debug(error)
             }
+        }
+    }
+
+    public func loadCredits() -> String {
+        if let filepath = Bundle.main.path(forResource: "Credits", ofType: "md") {
+            do {
+                let contents = try String(contentsOfFile: filepath)
+                return contents
+            } catch {
+                return "Could not load credits for Aurora Editor."
+            }
+        } else {
+            return "Credit file not found."
+        }
+    }
+
+    public func loadLicense() -> String {
+        if let filepath = Bundle.main.path(forResource: "License", ofType: "md") {
+            do {
+                let contents = try String(contentsOfFile: filepath)
+                return contents
+            } catch {
+                return "Could not load license for Aurora Editor."
+            }
+        } else {
+            return "License file not found."
         }
     }
 }
