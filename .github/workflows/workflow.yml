@@ -1,9 +1,9 @@
 name: Build & Lint
 on:
   push:
-    branches: [ main ]
+    branches: [ main, development ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, development ]
 jobs:
   build:
     runs-on: macos-12
