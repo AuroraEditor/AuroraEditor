@@ -3,7 +3,7 @@ name: Sync Main with Develop
 on:
   push:
     branches:
-      - develop
+      - development
 
 jobs:
   check_date:
@@ -39,5 +39,5 @@ jobs:
         uses: tretuna/sync-branches@1.2.0
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          FROM_BRANCH: 'develop'
+          FROM_BRANCH: 'development'
           TO_BRANCH: 'main'
