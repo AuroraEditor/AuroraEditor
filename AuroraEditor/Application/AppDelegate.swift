@@ -179,7 +179,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     /// Open about window
     static func openAboutWindow() {
         if tryFocusWindow(of: AboutView.self) { return }
-        AboutView().showWindow(width: 530, height: 220)
+        AboutView().showWindow()
     }
 
     /// Tries to focus a window with specified view content type.
