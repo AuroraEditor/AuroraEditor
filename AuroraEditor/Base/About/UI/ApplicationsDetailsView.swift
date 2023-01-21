@@ -74,7 +74,7 @@ struct ApplicationsDetailsView: View {
                     .onTapGesture {
                         aboutDetailState = .license
                     }
-                    .foregroundColor(aboutDetailState == .license ? .white : .black)
+                    .foregroundColor(aboutDetailState == .license ? .white : .secondary)
                     .padding(.vertical, 5)
                     .padding(.horizontal)
                     .background(aboutDetailState == .license ? Color(nsColor: NSColor(.accentColor)) : .clear)
@@ -84,7 +84,7 @@ struct ApplicationsDetailsView: View {
                     .onTapGesture {
                         aboutDetailState = .contributers
                     }
-                    .foregroundColor(aboutDetailState == .contributers ? .white : .black)
+                    .foregroundColor(aboutDetailState == .contributers ? .white : .secondary)
                     .padding(.vertical, 5)
                     .padding(.horizontal)
                     .background(aboutDetailState == .contributers ? Color(nsColor: NSColor(.accentColor)) : .clear)
@@ -94,7 +94,7 @@ struct ApplicationsDetailsView: View {
                     .onTapGesture {
                         aboutDetailState = .credits
                     }
-                    .foregroundColor(aboutDetailState == .credits ? .white : .black)
+                    .foregroundColor(aboutDetailState == .credits ? .white : .secondary)
                     .padding(.vertical, 5)
                     .padding(.horizontal)
                     .background(aboutDetailState == .credits ? Color(nsColor: NSColor(.accentColor)) : .clear)

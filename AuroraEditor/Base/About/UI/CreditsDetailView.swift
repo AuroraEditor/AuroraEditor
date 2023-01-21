@@ -12,6 +12,8 @@ struct CreditsDetailView: View {
     var body: some View {
         ScrollView(.vertical) {
             Text(AboutViewModal().loadCredits())
+                .multilineTextAlignment(.leading)
+                .font(.system(size: 11))
         }
     }
 }

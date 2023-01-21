@@ -60,7 +60,7 @@ public struct AboutView: View {
                         .onTapGesture {
                             openURL(URL(string: "https://github.com/AuroraEditor/AuroraEditor/contributors")!)
                         }
-                        .padding(.bottom)
+                        .padding(.bottom, 25)
                     }
                     .frame(width: 400)
                 case .credits:
@@ -69,7 +69,7 @@ public struct AboutView: View {
                 }
             }
         }
-        .background(.white)
+        .background(.regularMaterial)
     }
 
     public func showWindow() {
