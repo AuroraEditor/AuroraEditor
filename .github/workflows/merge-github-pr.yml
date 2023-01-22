@@ -9,6 +9,13 @@ jobs:
     permissions:
       pull-requests: write
     steps:
+      - name: Add 'automerge' label to PR
+        uses: christianvuerings/add-labels@v1
+        with:
+          labels: |
+            automerge
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: hmarr/auto-approve-action@v3
         with:
           github-token: ${{ secrets.GH_TOKEN_PROJECT_ACCESS }}
@@ -18,3 +25,5 @@ jobs:
         uses: "pascalgn/automerge-action@v0.15.5"
         env:
           GITHUB_TOKEN: "${{ secrets.GH_TOKEN_PROJECT_ACCESS }}"
+          MERGE_REMOVE_LABELS: "automerge"
+          MERGE_METHOD: "squash"
