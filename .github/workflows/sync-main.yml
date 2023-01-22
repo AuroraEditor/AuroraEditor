@@ -1,6 +1,9 @@
 name: Sync Main with Develop
 
 on:
+  push:
+    branches:
+      - development
   schedule: ## Schedule the job to run at 12.am daily.
     - cron: '0 0 * * *'
 
