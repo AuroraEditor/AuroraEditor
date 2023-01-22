@@ -1,0 +1,15 @@
+name: Auto approve
+on: 
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: hmarr/auto-approve-action@v3
+        with:
+          github-token: ${{ secrets.GH_TOKEN_PROJECT_ACCESS }}
+          review-message: "Automated merge from development branch to main branch."

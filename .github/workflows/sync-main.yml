@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - development
+  schedule: ## Schedule the job to run at 12.am daily.
+    - cron: '0 0 * * *'
 
 jobs:
   check_date:
@@ -29,15 +31,15 @@ jobs:
     name: Syncing branches
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Set up Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
+        uses: actions/setup-node@v3.6.0
       - name: Opening pull request
         id: pull
-        uses: tretuna/sync-branches@1.2.0
+        uses: tretuna/sync-branches@1.4.0
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           FROM_BRANCH: 'development'
           TO_BRANCH: 'main'
+          PULL_REQUEST_TITLE: 'Sync main branch with development branch'
+          PULL_REQUEST_BODY: 'This PR catches up the main branch with the current codebase of the development branch of Aurora Editor.'
