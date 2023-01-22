@@ -289,6 +289,12 @@
 		2096A82428CF76D400F6ED39 /* CreateNewBranchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2096A82328CF76D400F6ED39 /* CreateNewBranchView.swift */; };
 		209D0246289AB9750082441F /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = 209D0245289AB9750082441F /* SwiftTerm */; };
 		209D024B289ABC340082441F /* Package.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 209D024A289ABC340082441F /* Package.resolved */; };
+		209D2F4A297BBE61005AB73C /* LicenseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D2F49297BBE61005AB73C /* LicenseDetailView.swift */; };
+		209D2F4C297BBF2B005AB73C /* CreditsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D2F4B297BBF2B005AB73C /* CreditsDetailView.swift */; };
+		209D2F4E297BBF36005AB73C /* ContributersDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D2F4D297BBF36005AB73C /* ContributersDetailView.swift */; };
+		209D2F56297BD806005AB73C /* ApplicationsDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D2F55297BD806005AB73C /* ApplicationsDetailsView.swift */; };
+		209D2F5E297BDF47005AB73C /* License.md in Resources */ = {isa = PBXBuildFile; fileRef = 209D2F5D297BDF47005AB73C /* License.md */; };
+		209D2F60297BDF83005AB73C /* Credits.md in Resources */ = {isa = PBXBuildFile; fileRef = 209D2F5F297BDF83005AB73C /* Credits.md */; };
 		209DAF2328E647BE00E31109 /* typeScript.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2228E647BE00E31109 /* typeScript.tmLanguage.json */; };
 		209DAF2528E648A700E31109 /* JSON.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2428E648A700E31109 /* JSON.tmLanguage.json */; };
 		209DAF2728E6494800E31109 /* JSONC.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2628E6494800E31109 /* JSONC.tmLanguage.json */; };
@@ -319,6 +325,8 @@
 		20BE729A28D0A25900EEDE5F /* WorkflowCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE729928D0A25900EEDE5F /* WorkflowCellView.swift */; };
 		20BE729C28D0BB2000EEDE5F /* WorkflowRunsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE729B28D0BB2000EEDE5F /* WorkflowRunsView.swift */; };
 		20BE729E28D0BB6F00EEDE5F /* WorkflowRunCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE729D28D0BB6F00EEDE5F /* WorkflowRunCell.swift */; };
+		20C0CBDD297B083E00E9F9F0 /* Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0CBDC297B083E00E9F9F0 /* Contributor.swift */; };
+		20C0CBDF297B086200E9F9F0 /* AboutViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0CBDE297B086200E9F9F0 /* AboutViewModal.swift */; };
 		20C8D7DC287ED2C700C5B3BA /* ToolbarBranchPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8D7DB287ED2C700C5B3BA /* ToolbarBranchPicker.swift */; };
 		20CABA37290BF484004753A8 /* AuroraEditorLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CABA36290BF484004753A8 /* AuroraEditorLoginView.swift */; };
 		20CABA39290BF5A2004753A8 /* EditorAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CABA38290BF5A2004753A8 /* EditorAccountModel.swift */; };
@@ -676,6 +684,12 @@
 		2093CDE3289AA881003A88DD /* IgnoredFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoredFiles.swift; sourceTree = "<group>"; };
 		2096A82328CF76D400F6ED39 /* CreateNewBranchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewBranchView.swift; sourceTree = "<group>"; };
 		209D024A289ABC340082441F /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; name = Package.resolved; path = ../Package.resolved; sourceTree = "<group>"; };
+		209D2F49297BBE61005AB73C /* LicenseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseDetailView.swift; sourceTree = "<group>"; };
+		209D2F4B297BBF2B005AB73C /* CreditsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsDetailView.swift; sourceTree = "<group>"; };
+		209D2F4D297BBF36005AB73C /* ContributersDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributersDetailView.swift; sourceTree = "<group>"; };
+		209D2F55297BD806005AB73C /* ApplicationsDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationsDetailsView.swift; sourceTree = "<group>"; };
+		209D2F5D297BDF47005AB73C /* License.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = License.md; sourceTree = "<group>"; };
+		209D2F5F297BDF83005AB73C /* Credits.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Credits.md; sourceTree = "<group>"; };
 		209DAF2228E647BE00E31109 /* typeScript.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = typeScript.tmLanguage.json; sourceTree = "<group>"; };
 		209DAF2428E648A700E31109 /* JSON.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSON.tmLanguage.json; sourceTree = "<group>"; };
 		209DAF2628E6494800E31109 /* JSONC.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONC.tmLanguage.json; sourceTree = "<group>"; };
@@ -706,6 +720,8 @@
 		20BE729928D0A25900EEDE5F /* WorkflowCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowCellView.swift; sourceTree = "<group>"; };
 		20BE729B28D0BB2000EEDE5F /* WorkflowRunsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowRunsView.swift; sourceTree = "<group>"; };
 		20BE729D28D0BB6F00EEDE5F /* WorkflowRunCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowRunCell.swift; sourceTree = "<group>"; };
+		20C0CBDC297B083E00E9F9F0 /* Contributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contributor.swift; sourceTree = "<group>"; };
+		20C0CBDE297B086200E9F9F0 /* AboutViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModal.swift; sourceTree = "<group>"; };
 		20C8D7DB287ED2C700C5B3BA /* ToolbarBranchPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarBranchPicker.swift; sourceTree = "<group>"; };
 		20CABA36290BF484004753A8 /* AuroraEditorLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorLoginView.swift; sourceTree = "<group>"; };
 		20CABA38290BF5A2004753A8 /* EditorAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorAccountModel.swift; sourceTree = "<group>"; };
@@ -1526,6 +1542,16 @@
 			path = Editor;
 			sourceTree = "<group>";
 		};
+		209D2F5A297BDC5A005AB73C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				209D2F5D297BDF47005AB73C /* License.md */,
+				209D2F5F297BDF83005AB73C /* Credits.md */,
+			);
+			name = Resources;
+			path = ../../Resources;
+			sourceTree = "<group>";
+		};
 		20B5BD9728B11AA500B2A02F /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1654,6 +1680,15 @@
 			children = (
 			);
 			path = Workflow;
+			sourceTree = "<group>";
+		};
+		20C0CBDB297B077700E9F9F0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				20C0CBDC297B083E00E9F9F0 /* Contributor.swift */,
+				20C0CBDE297B086200E9F9F0 /* AboutViewModal.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		20CABA35290BF461004753A8 /* AuroraEditor */ = {
@@ -2486,6 +2521,8 @@
 		20D838FB289A7AD600D91D05 /* About */ = {
 			isa = PBXGroup;
 			children = (
+				209D2F5A297BDC5A005AB73C /* Resources */,
+				20C0CBDB297B077700E9F9F0 /* Model */,
 				2032B51128A26B2D0089EBB6 /* Controller */,
 				20D838FC289A7AD600D91D05 /* UI */,
 			);
@@ -2496,6 +2533,10 @@
 			isa = PBXGroup;
 			children = (
 				20D838FD289A7AD600D91D05 /* AboutView.swift */,
+				209D2F49297BBE61005AB73C /* LicenseDetailView.swift */,
+				209D2F4B297BBF2B005AB73C /* CreditsDetailView.swift */,
+				209D2F4D297BBF36005AB73C /* ContributersDetailView.swift */,
+				209D2F55297BD806005AB73C /* ApplicationsDetailsView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -3495,6 +3536,7 @@
 				2B5B25532885D9BA009C7384 /* .swiftlint.yml in Resources */,
 				2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */,
 				28A51006281701B40087B0CC /* auroraeditor-github-dark.json in Resources */,
+				209D2F60297BDF83005AB73C /* Credits.md in Resources */,
 				209DAF3128E64A3200E31109 /* JavaScript.tmLanguage.json in Resources */,
 				28A51002281673530087B0CC /* auroraeditor-xcode-light.json in Resources */,
 				2029DA8728E2FCEC00D68786 /* swift.tmLanguage.json in Resources */,
@@ -3506,6 +3548,7 @@
 				D7211D4727E06BFE008F2ED7 /* Localizable.strings in Resources */,
 				28A51001281673530087B0CC /* auroraeditor-xcode-dark.json in Resources */,
 				B658FB3427DA9E1000EA4DBD /* Assets.xcassets in Resources */,
+				209D2F5E297BDF47005AB73C /* License.md in Resources */,
 				2093CD93289AA137003A88DD /* AuroraEditor in Resources */,
 				9384904828FBA5E2006FB263 /* auroraeditor-github-light.json in Resources */,
 				209DAF3728E64AE800E31109 /* ruby.tmLanguage.json in Resources */,
@@ -3752,6 +3795,7 @@
 				2093CDD6289AA511003A88DD /* Dictionary+Additions.swift in Sources */,
 				2093CDA3289AA16C003A88DD /* PreferencesColorPicker.swift in Sources */,
 				20CC5AC4291CD160007DB911 /* ExtensionMoreByUserView.swift in Sources */,
+				209D2F4A297BBE61005AB73C /* LicenseDetailView.swift in Sources */,
 				93813D2628D74AA500A492D4 /* CodeLayoutManagerDelegate.swift in Sources */,
 				2093CD6D289AA0FC003A88DD /* PanelDivider.swift in Sources */,
 				2B04576328E6FFE300024F2D /* Rule.swift in Sources */,
@@ -3759,6 +3803,7 @@
 				2B04574928E6FFE300024F2D /* IncludeGrammarPattern.swift in Sources */,
 				04C3254D27FF331B00C8DA2D /* ExtensionNavigatorItem.swift in Sources */,
 				2093CC94289A9FF5003A88DD /* StatusBarLineEndSelector.swift in Sources */,
+				209D2F4E297BBF36005AB73C /* ContributersDetailView.swift in Sources */,
 				2093CD38289AA08F003A88DD /* GitlabAccount.swift in Sources */,
 				2093CDC2289AA25B003A88DD /* TabBarItemRepresentable.swift in Sources */,
 				2093CC9F289AA00B003A88DD /* WelcomeView.swift in Sources */,
@@ -3857,6 +3902,7 @@
 				20B5BDA928B130FF00B2A02F /* SplitViewModifier.swift in Sources */,
 				20EBB503280C327C00F3A5DA /* HistoryInspector.swift in Sources */,
 				93EF2EFA290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift in Sources */,
+				20C0CBDF297B086200E9F9F0 /* AboutViewModal.swift in Sources */,
 				2093CD2C289AA089003A88DD /* PullRequest.swift in Sources */,
 				2BDFA91628D10B9200980385 /* FileCreationSelectionView.swift in Sources */,
 				93D5F5D728CE0EF500286EBD /* TabHierarchyMenu.swift in Sources */,
@@ -3883,6 +3929,7 @@
 				93EF416728C1F828004083AD /* WorkspaceDocument+Commands.swift in Sources */,
 				2093CD6F289AA0FC003A88DD /* SettingsTextEditor.swift in Sources */,
 				2093CDA0289AA163003A88DD /* ThemePreferences.swift in Sources */,
+				209D2F56297BD806005AB73C /* ApplicationsDetailsView.swift in Sources */,
 				9384904628FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift in Sources */,
 				2072FA1A280D872600C7F8D4 /* LineEndings.swift in Sources */,
 				20BE728B28D0854900EEDE5F /* Workflow.swift in Sources */,
@@ -4052,6 +4099,7 @@
 				2093CDE7289AAE83003A88DD /* CheckoutBranchView.swift in Sources */,
 				93F0066728A7574C0038E5B7 /* FileSystemClient.swift in Sources */,
 				20CABA3F290BFDF7004753A8 /* AELogin.swift in Sources */,
+				209D2F4C297BBF2B005AB73C /* CreditsDetailView.swift in Sources */,
 				2B04574C28E6FFE300024F2D /* LineHeightThemeAttribute.swift in Sources */,
 				2093CDC4289AA260003A88DD /* TabBarItemButtonStyle.swift in Sources */,
 				936312EA28CCCAD9004CD24B /* TabBarAccessories.swift in Sources */,
@@ -4091,6 +4139,7 @@
 				2093CD27289AA084003A88DD /* PublicKey.swift in Sources */,
 				043C321627E3201F006AE443 /* WorkspaceDocument.swift in Sources */,
 				2BD5CF2728D602CE00F95E5A /* OSDefinitions.swift in Sources */,
+				20C0CBDD297B083E00E9F9F0 /* Contributor.swift in Sources */,
 				2093CD5D289AA0DD003A88DD /* AuroraCrashlytics.swift in Sources */,
 				20CC5AC8291CD4FC007DB911 /* ExtensionWhatsNewView.swift in Sources */,
 				20CABA37290BF484004753A8 /* AuroraEditorLoginView.swift in Sources */,

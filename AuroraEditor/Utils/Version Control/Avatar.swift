@@ -16,27 +16,45 @@ class Avatar {
     public func gitAvatar(authorEmail: String) -> some View {
         VStack {
             // swiftlint:disable:next line_length
-            AsyncImage(url: URL(string: "https://www.gravatar.com/avatar/\(Avatar().generateAvatarHash(authorEmail: authorEmail))")) { phase in
+            AsyncImage(url: URL(string: "https://www.gravatar.com/avatar/\(Avatar().generateAvatarHash(authorEmail))")) { phase in
                 if let image = phase.image {
                     image
                         .resizable()
                         .clipShape(Circle())
                         .frame(width: 42, height: 42)
                 } else if phase.error != nil {
-                    self.defaultAvatar(authorEmail: authorEmail)
+                    self.defaultAvatar(author: authorEmail)
                 } else {
-                    self.defaultAvatar(authorEmail: authorEmail)
+                    self.defaultAvatar(author: authorEmail)
                 }
             }
         }
     }
 
-    private func defaultAvatar(authorEmail: String) -> some View {
+    /// Get Controbuter Avatar
+    /// - Parameter contributerAvatarURL: Contributers's avatar url
+    /// - Returns: Contributer avatar image
+    public func contributerAvatar(contributerAvatarURL: String) -> some View {
+        AsyncImage(url: URL(string: contributerAvatarURL)) { phase in
+            if let image = phase.image {
+                image
+                    .resizable()
+                    .clipShape(Circle())
+                    .frame(width: 42, height: 42)
+            } else if phase.error != nil {
+                self.defaultAvatar(author: contributerAvatarURL)
+            } else {
+                self.defaultAvatar(author: contributerAvatarURL)
+            }
+        }
+    }
+
+    private func defaultAvatar(author: String) -> some View {
         VStack {
             Image(systemName: "person.crop.circle.fill")
                 .symbolRenderingMode(.hierarchical)
                 .resizable()
-                .foregroundColor(Avatar().avatarColor(authorEmail: authorEmail))
+                .foregroundColor(Avatar().avatarColor(author: author))
                 .frame(width: 42, height: 42)
         }
     }
@@ -44,7 +62,7 @@ class Avatar {
     /// Generate avatar hash
     /// - Parameter authorEmail: Author's email address
     /// - Returns: Avatar hash
-    public func generateAvatarHash(authorEmail: String) -> String {
+    public func generateAvatarHash(_ authorEmail: String) -> String {
         let hash = authorEmail.md5(trim: true, caseSensitive: false)
         return "\(hash)?d=404&s=84"
     }
@@ -52,8 +70,8 @@ class Avatar {
     /// Generate (random) avatar color
     /// - Parameter authorEmail: Author's email address
     /// - Returns: Color
-    public func avatarColor(authorEmail: String) -> Color {
-        let hash = generateAvatarHash(authorEmail: authorEmail).hash
+    public func avatarColor(author: String) -> Color {
+        let hash = generateAvatarHash(author).hash
         switch hash % 12 {
         case 0: return .red
         case 1: return .orange
