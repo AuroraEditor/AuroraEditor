@@ -10,5 +10,5 @@ jobs:
       pull-requests: write
     steps:
       - uses: hmarr/auto-approve-action@v3
-      with:
+        with:
           review-message: "Automated merge from development branch to main branch."
