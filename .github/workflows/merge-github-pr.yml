@@ -16,9 +16,6 @@ jobs:
             automerge
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: docker://chinthakagodawita/autoupdate-action:v1
-        env:
-          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       - uses: hmarr/auto-approve-action@v3
         with:
           github-token: ${{ secrets.GH_TOKEN_PROJECT_ACCESS }}
