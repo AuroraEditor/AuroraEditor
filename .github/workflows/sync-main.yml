@@ -29,14 +29,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up Node
-        uses: actions/setup-node@v3.6.0
-      - name: Opening pull request
-        id: pull
-        uses: tretuna/sync-branches@1.4.0
-        with:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          FROM_BRANCH: 'development'
-          TO_BRANCH: 'main'
-          PULL_REQUEST_TITLE: 'Sync main branch with development branch'
-          PULL_REQUEST_BODY: 'This PR catches up the main branch with the current codebase of the development branch of Aurora Editor.'
+      - name: setup github env
+        run: |
+            git config --global user.name 'AuroraCompanyBot'
+            git config --global user.email 'AuroraCompanyBot@users.noreply.github.com'
+            git remote set-url --push origin https://AuroraCompanyBot:$BOT_TOKEN@github.com/AuroraEditor/AuroraEditor
+      - name: Sync with development
+        run: |
+            git merge development -m "Sync with development"
+            git push origin main
