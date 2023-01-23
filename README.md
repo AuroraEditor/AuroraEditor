@@ -114,6 +114,14 @@ Please read the following for more information.
 * [Developer Guide](https://github.com/AuroraEditor/AuroraEditor/wiki/Developer-Guide)
 * [Troubeshooting Guide](https://github.com/AuroraEditor/AuroraEditor/wiki/Troubleshooting)
 
+## Editor Localization
+
+We want users to feel comfortable using Aurora Editor in their own speaking language, help us by translating Aurora Editor for you and the rest of the community.
+
+[![Crowdin](https://badges.crowdin.net/aurora-editor/localized.svg?style=for-the-badge)](https://crowdin.com/project/aurora-editor)
+
+[Translate Aurora Editor Now](https://crowdin.com/project/aurora-editor)
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people:
