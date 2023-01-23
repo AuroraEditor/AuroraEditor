@@ -30,7 +30,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         
-      - name: Setup GitHub Env
+      - name: Setup GitHub environment
         run: |
             git config --global user.name 'aurora-editor-bot'
             git config --global user.email 'aurora-editor-bot@users.noreply.github.com'
