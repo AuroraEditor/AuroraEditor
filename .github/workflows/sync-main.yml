@@ -16,7 +16,7 @@ jobs:
         run: echo ${{ github.sha }}
 
       - id: should_run
-        continue-on-error: true
+        continue-on-error: false
         name: Check last commit date
         if: ${{ github.event_name == 'schedule' }}
         run: test -z $(git rev-list  --after="24 hours"  ${{ github.sha }}) && echo "::set-output name=should_run::false"
@@ -29,11 +29,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: setup github env
+        
+      - name: Setup GitHub Env
         run: |
-            git config --global user.name 'AuroraCompanyBot'
-            git config --global user.email 'AuroraCompanyBot@users.noreply.github.com'
-            git remote set-url --push origin https://AuroraCompanyBot:$BOT_TOKEN@github.com/AuroraEditor/AuroraEditor
+            git config --global user.name 'aurora-editor-bot'
+            git config --global user.email 'aurora-editor-bot@users.noreply.github.com'
+            git remote set-url --push origin https://aurora-editor-bot:$BOT_TOKEN@github.com/AuroraEditor/AuroraEditor
+      
       - name: Sync with development
         run: |
             git merge development -m "Sync with development"
