@@ -161,6 +161,7 @@ Thanks goes to these wonderful people:
 ## Sponsors
 
 <a title="MacStadium" href="https://macstadium.com" target="_blank"><img src="https://user-images.githubusercontent.com/806104/162766594-eff7f985-31a9-48c5-9e58-139794fefa10.png" width="128"></a>
+<a title="Lokalise" href="https://lokalise.com" target="_blank"><img src="https://user-images.githubusercontent.com/63672227/214901959-62aa13a7-8d85-44c9-abd0-7d9dc21d7255.png" width="128"></a>
 
 ## Intellectual Property License
 
