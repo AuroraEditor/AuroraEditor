@@ -118,9 +118,7 @@ Please read the following for more information.
 
 We want users to feel comfortable using Aurora Editor in their own speaking language, help us by translating Aurora Editor for you and the rest of the community.
 
-[![Crowdin](https://badges.crowdin.net/aurora-editor/localized.svg?style=for-the-badge)](https://crowdin.com/project/aurora-editor)
-
-[Translate Aurora Editor Now](https://crowdin.com/project/aurora-editor)
+[Translate Aurora Editor Now](https://app.lokalise.com/public/8719853963cfc24a9bfba9.04156986/)
 
 ## Contributors ✨
 
@@ -161,6 +159,7 @@ Thanks goes to these wonderful people:
 ## Sponsors
 
 <a title="MacStadium" href="https://macstadium.com" target="_blank"><img src="https://user-images.githubusercontent.com/806104/162766594-eff7f985-31a9-48c5-9e58-139794fefa10.png" width="128"></a>
+<a title="Lokalise" href="https://lokalise.com" target="_blank"><img src="https://user-images.githubusercontent.com/63672227/214901959-62aa13a7-8d85-44c9-abd0-7d9dc21d7255.png" width="128"></a>
 
 ## Intellectual Property License
 
