@@ -118,7 +118,7 @@ Please read the following for more information.
 
 We want users to feel comfortable using Aurora Editor in their own speaking language, help us by translating Aurora Editor for you and the rest of the community.
 
-[Translate Aurora Editor Now](https://crowdin.com/project/aurora-editor](https://app.lokalise.com/public/8719853963cfc24a9bfba9.04156986/)
+[Translate Aurora Editor Now](https://app.lokalise.com/public/8719853963cfc24a9bfba9.04156986/)
 
 ## Contributors ✨
 
