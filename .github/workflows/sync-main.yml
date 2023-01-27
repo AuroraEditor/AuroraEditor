@@ -6,7 +6,7 @@ on:
 
 jobs:
   sync-branches:
-    if: ${{ github.ref_name == 'main' }} ## Should only run on main branch.
+    if: ${{ github.ref_name == 'development' }} ## Should only run on development branch.
     runs-on: ubuntu-latest
     name: Syncing branches
     steps:
@@ -21,5 +21,8 @@ jobs:
       
       - name: Sync with development
         run: |
+            git stash -a
+            git switch main
+            git pull
             git merge development -m "Sync with development"
             git push origin main
