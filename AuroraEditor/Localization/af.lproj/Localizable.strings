@@ -1,6 +1,6 @@
-// Global
-"global.show.finder" = "Show in Finder";
-"gloabl.copy.path" = "Copy Path";
+// Global - Used in more than once place
+"global.show.finder" = "Wys in Finder";
+"gloabl.copy.path" = "Kopieer pad";
 "global.editor.name" = "Aurora Editor";
 "global.cancel" = "Cancel";
 "global.continue" = "Continue";
@@ -205,32 +205,32 @@
 "settings.theme.tab.terminal" = "Terminal";
 
 // Welcome Screen
-"welcome.aurora" = "Welcome to Aurora";
-"welcome.version" = "Version %@ (%@)";
-"welcome.no.recent" = "No Recent Projects";
+"welcome.aurora" = "Welkom na Aurora";
+"welcome.version" = "Weergave %@ (%@)";
+"welcome.no.recent" = "Geen Onlangse Projekte";
 
-"welcome.new.file" = "Create a new file";
-"welcome.clone.project" = "Clone an exisiting project";
+"welcome.new.file" = "Skep n nuwe lêer";
+"welcome.clone.project" = "Kloon 'n bestaande projek";
 
-"welcome.open.file" = "Open a file or folder";
-"welcome.open.existing" = "Open an existing file or folder on your Mac";
+"welcome.open.file" = "Maak 'n lêer of gids oop";
+"welcome.open.existing" = "Maak 'n bestaande lêer of vouer op jou Mac oop";
 
-"welcome.git.work" = "Start working on something from a Git repository";
+"welcome.git.work" = "Begin werk op iets van n Git bewaarplek";
 
-"welcome.remove.recents" = "Remove from Recent Projects";
+"welcome.remove.recents" = "Verwyder van Onlangs Projekte";
 
 // Editor Screen
-"editor.open.from.sidebar" = "Open file from sidebar";
-"editor.file.type.incorrect" = "AuroraEditor cannot open this file because its file type is not supported.";
+"editor.open.from.sidebar" = "Maak lêer oop vanaf sybalk";
+"editor.file.type.incorrect" = "Aurora Editor kan nie hierdie lêer oopmaak nie omdat die lêertipe nie ondersteun word nie.";
 
 // Project Navigator
-"project.navigator.add.file" = "Add File";
-"project.navigator.not.implemented" = "Not implemented yet";
+"project.navigator.add.file" = "Voeg lêer by";
+"project.navigator.not.implemented" = "Nog nie geïmplementeer nie";
 
-"project.navigator.sort.alphabetically" = "Alphabetically";
-"project.navigator.sort.folders" = "Folders on top";
+"project.navigator.sort.alphabetically" = "Alfabeties";
+"project.navigator.sort.folders" = "Dopsies bo-op";
 
 // Inspector Sidebar
-"project.inspector.file" = "File Inspector";
-"project.inspector.history" = "History Inspector";
-"project.inspector.help" = "Quick Help Inspector";
+"project.inspector.file" = "Lêer Inspekteur";
+"project.inspector.history" = "Geskiedenis Inspekteur";
+"project.inspector.help" = "Vinnige Hulp Inspekteur";
