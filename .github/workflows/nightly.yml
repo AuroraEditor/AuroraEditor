@@ -1,7 +1,7 @@
 name: Nightly Build of Aurora Editor
 on:
   push:
-    branches: [ main ]
+    branches: [ development ]
 jobs:
   build_nightly_editor:
     if: github.repository_owner == 'AuroraEditor'
