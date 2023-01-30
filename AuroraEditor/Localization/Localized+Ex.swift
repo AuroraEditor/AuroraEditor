@@ -9,15 +9,20 @@
 import SwiftUI
 
 extension String {
-    func localized(_ custom: String? = nil) -> LocalizedStringKey {
-        if let custom = custom {
-            return LocalizedStringKey(custom)
-        } else {
-            return LocalizedStringKey(self)
+    func localize(comment: String = "") -> String {
+        let defaultLanguage = "en"
+        let value = NSLocalizedString(self, comment: comment)
+        if value != self || NSLocale.preferredLanguages.first == defaultLanguage {
+            return value // String localization was found
         }
-    }
-}
 
-extension LocalizedStringKey {
-    static let helloWorld = "Hello, world!".localized()
+        // Load resource for default language to be used as
+        // the fallback language
+        guard let path = Bundle.main.path(forResource: defaultLanguage, ofType: "lproj"),
+                let bundle = Bundle(path: path) else {
+            return value
+        }
+
+        return NSLocalizedString(self, bundle: bundle, comment: "")
+    }
 }

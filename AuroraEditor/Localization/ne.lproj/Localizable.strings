@@ -1,4 +1,4 @@
-// Global
+// Global - Used in more than once place
 "global.show.finder" = "Show in Finder";
 "gloabl.copy.path" = "Copy Path";
 "global.editor.name" = "Aurora Editor";
@@ -220,17 +220,18 @@
 "welcome.remove.recents" = "Remove from Recent Projects";
 
 // Editor Screen
-"editor.open.from.sidebar" = "Open file from sidebar";
+"editor.open.from.sidebar"="Open file from sidebar";
 "editor.file.type.incorrect" = "AuroraEditor cannot open this file because its file type is not supported.";
 
 // Project Navigator
-"project.navigator.add.file" = "Add File";
-"project.navigator.not.implemented" = "Not implemented yet";
+"project.navigator.add.file"="Add File";
+"project.navigator.not.implemented"="Not implemented yet";
 
-"project.navigator.sort.alphabetically" = "Alphabetically";
-"project.navigator.sort.folders" = "Folders on top";
+
+"project.navigator.sort.alphabetically"="Alphabetically";
+"project.navigator.sort.folders"="Folders on top";
 
 // Inspector Sidebar
-"project.inspector.file" = "File Inspector";
-"project.inspector.history" = "History Inspector";
-"project.inspector.help" = "Quick Help Inspector";
+"project.inspector.file"="File Inspector";
+"project.inspector.history"="History Inspector";
+"project.inspector.help"="Quick Help Inspector";
