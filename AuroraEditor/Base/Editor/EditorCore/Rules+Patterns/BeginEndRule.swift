@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftOniguruma
 
 ///
 /// The representation of the Begin/End rule.
@@ -23,12 +24,12 @@ public class BeginEndRule: Rule, Pattern {
     /// The begin regex for the rule.
     ///
     /// Ensure special characters are escaped correctly.
-    var begin: NSRegularExpression
+    var begin: SwiftOniguruma.Regex
 
     /// The end regex for the rule.
     ///
     /// Ensure special characters are escaped correctly.
-    var end: NSRegularExpression
+    var end: SwiftOniguruma.Regex
 
     /// The patterns to apply within the begin and end patterns.
     var patterns: [Pattern]
@@ -57,12 +58,8 @@ public class BeginEndRule: Rule, Pattern {
         self.id = UUID()
         self.scopeName = ScopeName(rawValue: name)
         do {
-            self.begin = try NSRegularExpression(
-                pattern: begin.first == "{" ? begin.replacingOccurrences(of: "{", with: "\\{") : begin,
-                options: .init(
-                    arrayLiteral: .anchorsMatchLines,
-                    .dotMatchesLineSeparators
-                )
+            self.begin = try SwiftOniguruma.Regex(
+                pattern: begin
             )
         } catch {
             var message = "Could not create begin regex for BeginEndRule, "
@@ -70,23 +67,17 @@ public class BeginEndRule: Rule, Pattern {
             message += "error: \"\(error.localizedDescription)\""
 
             Log.warning(message)
-            self.begin = .init()
+            self.begin = try! SwiftOniguruma.Regex(pattern: "") // swiftlint:disable:this force_try
         }
         do {
-            self.end = try NSRegularExpression(
-                pattern: end.first == "}" ? end.replacingOccurrences(of: "}", with: "\\}") : end,
-                options: .init(
-                    arrayLiteral: .anchorsMatchLines,
-                    .dotMatchesLineSeparators
-                )
-            )
+            self.end = try SwiftOniguruma.Regex(pattern: end)
         } catch {
             var message = "Could not create end regex for BeginEndRule, "
             message += "name(\"\(name)\"), begin(\"\(begin)\"), end(\"\(end)\"), "
             message += "error: \"\(error.localizedDescription)\""
 
             Log.warning(message)
-            self.end = .init()
+            self.end = try! SwiftOniguruma.Regex(pattern: "") // swiftlint:disable:this force_try
         }
         self.patterns = patterns
         if let contentName = contentName {

@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import SwiftOniguruma
 
 class Scope {
     var name: ScopeName
     var rules: [Rule]
-    var end: NSRegularExpression?
+    var end: SwiftOniguruma.Regex?
     var attributes: [ThemeAttribute]
     var inSelectionAttributes: [ThemeAttribute]
     var outSelectionAttributes: [ThemeAttribute]
@@ -23,7 +24,7 @@ class Scope {
     init(
         name: ScopeName,
         rules: [Rule],
-        end: NSRegularExpression? = nil,
+        end: SwiftOniguruma.Regex? = nil,
         attributes: [ThemeAttribute],
         inSelectionAttributes: [ThemeAttribute],
         outSelectionAttributes: [ThemeAttribute],
@@ -45,7 +46,7 @@ class Scope {
     init(
         name: ScopeName,
         rules: [Rule],
-        end: NSRegularExpression? = nil,
+        end: SwiftOniguruma.Regex? = nil,
         theme: HighlightTheme,
         isContentScope: Bool = false,
         endCaptures: [Capture] = [],
@@ -64,10 +65,9 @@ class Scope {
 }
 
 extension Scope: Equatable {
-
     static func == (lhs: Scope, rhs: Scope) -> Bool {
         if lhs.name != rhs.name { return false }
-        if lhs.end != rhs.end { return false }
+//        if lhs.end != rhs.end { return false }
         if lhs.rules.count != rhs.rules.count { return false }
         for (first, second) in zip(lhs.rules, rhs.rules) where first != second {
             return false

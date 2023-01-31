@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftOniguruma
 
 public class MatchRule: Rule, Pattern {
 
@@ -15,7 +16,7 @@ public class MatchRule: Rule, Pattern {
     public weak var grammar: Grammar?
 
     let scopeName: ScopeName
-    var match: NSRegularExpression
+    var match: SwiftOniguruma.Regex
     var captures: [Capture]
 
     public init(
@@ -26,20 +27,21 @@ public class MatchRule: Rule, Pattern {
         self.id = UUID()
         self.scopeName = ScopeName(rawValue: name)
         do {
-            self.match = try NSRegularExpression(
-                pattern: match,
-                                                 options: .init(
-                                                    arrayLiteral: .anchorsMatchLines,
-                                                    .dotMatchesLineSeparators
-                                                 )
-            )
+            self.match = try SwiftOniguruma.Regex(pattern: match)
+//            self.match = try NSRegularExpression(
+//                pattern: match,
+//                                                 options: .init(
+//                                                    arrayLiteral: .anchorsMatchLines,
+//                                                    .dotMatchesLineSeparators
+//                                                 )
+//            )
         } catch {
             var message = "Could not create regex for MatchRule "
             message += "name(\"\(name)\"), regex(\"\(match)\"), "
             message += "error: \"\(error.localizedDescription)\""
 
             Log.warning(message)
-            self.match = .init()
+            self.match = try! .init(pattern: "") // swiftlint:disable:this force_try
         }
         self.captures = captures
     }

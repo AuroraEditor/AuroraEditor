@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftOniguruma
 
 /// Code Parser
 public class Parser { // swiftlint:disable:this type_body_length
@@ -31,9 +32,9 @@ public class Parser { // swiftlint:disable:this type_body_length
         return grammars.first(where: { $0.scopeName == scope })
     }
 
-    // swiftlint:disable:next function_body_length function_parameter_count
+    // swiftlint:disable:next function_parameter_count function_body_length
     fileprivate func applyCapture(grammar: Grammar,
-                                  pattern: NSRegularExpression,
+                                  pattern: SwiftOniguruma.Regex,
                                   capturesToApply: [Capture],
                                   line: String,
                                   loc: Int,
@@ -42,9 +43,13 @@ public class Parser { // swiftlint:disable:this type_body_length
                                   state: LineState,
                                   matchTokens: inout [Token],
                                   tokens: inout [Token]) {
+
         // Apply capture groups
-        for (index, captureRange) in captures(pattern: pattern, str: line,
-                                              in: NSRange(location: loc, length: endLoc - loc)).enumerated() {
+        for (index, captureRange) in captures(
+            pattern: pattern,
+            str: line,
+            in: NSRange(location: loc, length: endLoc - loc)
+        ).enumerated() {
             guard index < capturesToApply.count else {
                 // No capture defined for this (or further) capture(/s).
                 break
@@ -66,10 +71,12 @@ public class Parser { // swiftlint:disable:this type_body_length
             let captureState = LineState(scopes: state.scopes + [captureScope])
 
             // Use tokenize on the capture as if it was an entire line.
-            let result = tokenize(line: line,
-                                  state: captureState,
-                                  withTheme: theme,
-                                  inRange: captureRange)
+            let result = tokenize(
+                line: line,
+                state: captureState,
+                withTheme: theme,
+                inRange: captureRange
+            )
 
             // Adjust and add the match tokens to our match tokens array
             matchTokens += result.matchTokens
@@ -119,7 +126,7 @@ public class Parser { // swiftlint:disable:this type_body_length
                 } else if oToken.range.upperBound < cToken.range.upperBound {
                     result.tokenizedLine.tokens[0].range = NSRange(location: oToken.range.upperBound,
                                                                    length: cToken.range.upperBound -
-                                                                       oToken.range.upperBound)
+                                                                   oToken.range.upperBound)
                     cToken.range.length = oToken.range.length
                     tokens.removeFirst()
                 } else {
@@ -146,230 +153,264 @@ public class Parser { // swiftlint:disable:this type_body_length
     ///   - theme: HighlightTheme
     ///   - range: Range
     /// - Returns: TokenizeResult
-    public func tokenize( // swiftlint:disable:this cyclomatic_complexity function_body_length
+    public func tokenize( // swiftlint:disable:this function_body_length cyclomatic_complexity
         line: String,
         state: LineState,
         withTheme theme: HighlightTheme = .default,
         inRange range: NSRange? = nil) -> TokenizeResult {
-        debug("Tokenizing line: \(line)")
-        var state = state
+            debug("Tokenizing line: \(line)")
+            var state = state
 
-        var loc = range?.location ?? 0
-        let endLoc = range?.upperBound ?? line.utf16.count
-        let tokenizedLine = TokenizedLine(tokens: [
-            Token(
-                range: NSRange(location: loc, length: 0),
-                scopes: state.scopes
-            )
-        ])
+            var loc = range?.location ?? 0
+            let endLoc = range?.upperBound ?? line.utf16.count
+            let tokenizedLine = TokenizedLine(tokens: [
+                Token(
+                    range: NSRange(location: loc, length: 0),
+                    scopes: state.scopes
+                )
+            ])
 
-        var matchTokens = [Token]()
-        while loc < endLoc {
-            // Before we apply the rules in the current scope, see if we are
-            // in a BeginEndRule and reached the end of its scope.
-            if let endPattern = state.currentScope?.end {
-                if let newPos = matches(pattern: endPattern, str: line,
-                                        in: NSRange(location: loc, length: endLoc - loc)) {
-                    // Pop off state.
-                    let last = state.scopes.removeLast()
+            var matchTokens = [Token]()
+            while loc < endLoc {
+                // Before we apply the rules in the current scope, see if we are
+                // in a BeginEndRule and reached the end of its scope.
+                if let endPattern = state.currentScope?.end {
+                    if let newPos = matches(
+                        pattern: endPattern,
+                        str: line,
+                        in: NSRange(location: loc, length: endLoc - loc)
+                    ) {
+                        // Pop off state.
+                        let last = state.scopes.removeLast()
 
-                    // apply capture
-                    if let theme = last.theme, let grammar = last.grammar {
+                        // apply capture
+                        if let theme = last.theme, let grammar = last.grammar {
 
-                        let matchToken = Token(
-                            range: NSRange(location: loc, length: newPos - loc),
-                            scopes: state.currentScope == nil ? [] : [state.currentScope!]
-                        )
-                        var tokens: [Token] = []
+                            let matchToken = Token(
+                                range: NSRange(location: loc, length: newPos - loc),
+                                scopes: state.currentScope == nil ? [] : [state.currentScope!]
+                            )
+                            var tokens: [Token] = []
 
-                        // Add to matchTokens
-                        matchTokens.append(matchToken)
+                            // Add to matchTokens
+                            matchTokens.append(matchToken)
 
-                        applyCapture(grammar: grammar,
-                                     pattern: endPattern,
-                                     capturesToApply: last.endCaptures,
-                                     line: line,
-                                     loc: loc,
-                                     endLoc: endLoc,
-                                     theme: theme,
-                                     state: state,
-                                     matchTokens: &matchTokens,
-                                     tokens: &tokens)
+                            applyCapture(
+                                grammar: grammar,
+                                pattern: endPattern,
+                                capturesToApply: last.endCaptures,
+                                line: line,
+                                loc: loc,
+                                endLoc: endLoc,
+                                theme: theme,
+                                state: state,
+                                matchTokens: &matchTokens,
+                                tokens: &tokens
+                            )
 
-                        tokenizedLine.addTokens(tokens)
-                    }
+                            tokenizedLine.addTokens(tokens)
+                        }
 
-                    // If the state is a content state, pop off the next as well.
-                    if last.isContentScope {
-                        // Create a new token for the end match of the BeginEndRule
-                        tokenizedLine.addToken(Token(
-                            range: NSRange(location: loc, length: newPos - loc),
-                            scopes: state.scopes
-                        ))
-                        state.scopes.removeLast()
-                    } else {
-                        // Extend the length of current token to include the end match of the BeginEndRule
-                        tokenizedLine.increaseLastTokenLength(by: newPos - loc)
-                    }
-                    // Update the location and start a new token.
-                    loc = newPos
-                    tokenizedLine.addToken(Token(
-                        range: NSRange(location: loc, length: 0),
-                        scopes: state.scopes
-                    ))
-                    continue
-                }
-            }
-
-            // Get the current scope, to get the rules.
-            // There may not always be rules, but there should always be a scope
-            guard let currentScope = state.currentScope else {
-                // Shouldn't happen
-                fatalError("Failed to tokenize line: '\(line)' because the state's current scope is nil.")
-            }
-
-            // Apply the rules in order, looking for a match
-            var matched = false
-            for rule in currentScope.rules {
-                // Apply the match rule
-                if let rule = rule as? MatchRule {
-                    if let newPos = matches(pattern: rule.match, str: line,
-                                            in: NSRange(location: loc, length: endLoc - loc)) {
-                        // Set matched flag
-                        matched = true
-                        // Create a new scope
-                        let scope = Scope(
-                            name: rule.scopeName,
-                            rules: [],
-                            theme: theme
-                        )
-
-                        // Create ordered list of tokens
-                        // Start with just one token for the entire range of the match.
-                        // This will be manipulated if there are capture groups.
-                        let matchToken = Token(
-                            range: NSRange(location: loc, length: newPos - loc),
-                            scopes: state.scopes + [scope]
-                        )
-                        var tokens = [matchToken]
-
-                        // Add to matchTokens
-                        matchTokens.append(matchToken)
-
-                        applyCapture(grammar: rule.grammar!,
-                                     pattern: rule.match,
-                                     capturesToApply: rule.captures,
-                                     line: line,
-                                     loc: loc,
-                                     endLoc: endLoc,
-                                     theme: theme,
-                                     state: state,
-                                     matchTokens: &matchTokens,
-                                     tokens: &tokens)
-
-                        tokenizedLine.addTokens(tokens)
-
-                        // Prepare for next char.
+                        // If the state is a content state, pop off the next as well.
+                        if last.isContentScope {
+                            // Create a new token for the end match of the BeginEndRule
+                            tokenizedLine.addToken(Token(
+                                range: NSRange(location: loc, length: newPos - loc),
+                                scopes: state.scopes
+                            ))
+                            state.scopes.removeLast()
+                        } else {
+                            // Extend the length of current token to include the end match of the BeginEndRule
+                            tokenizedLine.increaseLastTokenLength(by: newPos - loc)
+                        }
+                        // Update the location and start a new token.
                         loc = newPos
                         tokenizedLine.addToken(Token(
                             range: NSRange(location: loc, length: 0),
                             scopes: state.scopes
                         ))
-                        break
+                        continue
                     }
                 }
-                // Apply the begin end rule
-                else if let rule = rule as? BeginEndRule {
-                    if let newPos = matches(pattern: rule.begin, str: line,
-                                            in: NSRange(location: loc, length: endLoc - loc)),
-                       newPos > loc {
-                        // Set matched flag
-                        matched = true
-                        // Create a new scope for the BeginEndRule and add it to the state.
-                        let scope = Scope(
-                            name: rule.scopeName,
-                            rules: rule.resolveRules(parser: self, grammar: rule.grammar!),
-                            end: rule.end,
-                            theme: theme,
-                            endCaptures: rule.endCaptures,
-                            grammar: rule.grammar
-                        )
-                        state.scopes.append(scope)
 
-                        // Add a new token for the begin match of the BeginEndRule
-                        let matchToken = Token(
-                            range: NSRange(location: loc, length: newPos - loc),
-                            scopes: state.scopes
-                        )
-                        var tokens = [matchToken]
+                // Get the current scope, to get the rules.
+                // There may not always be rules, but there should always be a scope
+                guard let currentScope = state.currentScope else {
+                    // Shouldn't happen
+                    fatalError("Failed to tokenize line: '\(line)' because the state's current scope is nil.")
+                }
 
-                        applyCapture(grammar: rule.grammar!,
-                                     pattern: rule.begin,
-                                     capturesToApply: rule.beginCaptures,
-                                     line: line,
-                                     loc: loc,
-                                     endLoc: endLoc,
-                                     theme: theme,
-                                     state: state,
-                                     matchTokens: &matchTokens,
-                                     tokens: &tokens)
+                // Apply the rules in order, looking for a match
+                var matched = false
+                for rule in currentScope.rules {
+                    // Apply the match rule
+                    if let rule = rule as? MatchRule {
+                        if let newPos = matches(
+                            pattern: rule.match,
+                            str: line,
+                            in: NSRange(location: loc, length: endLoc - loc)
+                        ) {
+                            // Set matched flag
+                            matched = true
+                            // Create a new scope
+                            let scope = Scope(
+                                name: rule.scopeName,
+                                rules: [],
+                                theme: theme
+                            )
 
-                        // If the BeginEndRule has a content name:
-                        if let contentName = rule.contentScopeName {
-                            // Add an additional scope, with the same rules and end pattern.
-                            // Set the isContentScope flag so we know what to do when we find the end match
-                            state.scopes.append(Scope(
-                                name: contentName,
+                            // Create ordered list of tokens
+                            // Start with just one token for the entire range of the match.
+                            // This will be manipulated if there are capture groups.
+                            let matchToken = Token(
+                                range: NSRange(location: loc, length: newPos - loc),
+                                scopes: state.scopes + [scope]
+                            )
+                            var tokens = [matchToken]
+
+                            // Add to matchTokens
+                            matchTokens.append(matchToken)
+
+                            applyCapture(grammar: rule.grammar!,
+                                         pattern: rule.match,
+                                         capturesToApply: rule.captures,
+                                         line: line,
+                                         loc: loc,
+                                         endLoc: endLoc,
+                                         theme: theme,
+                                         state: state,
+                                         matchTokens: &matchTokens,
+                                         tokens: &tokens)
+
+                            tokenizedLine.addTokens(tokens)
+
+                            // Prepare for next char.
+                            loc = newPos
+                            tokenizedLine.addToken(Token(
+                                range: NSRange(location: loc, length: 0),
+                                scopes: state.scopes
+                            ))
+                            break
+                        }
+                    }
+                    // Apply the begin end rule
+                    else if let rule = rule as? BeginEndRule {
+                        if let newPos = matches(pattern: rule.begin, str: line,
+                                                in: NSRange(location: loc, length: endLoc - loc)),
+                           newPos > loc {
+                            // Set matched flag
+                            matched = true
+                            // Create a new scope for the BeginEndRule and add it to the state.
+                            let scope = Scope(
+                                name: rule.scopeName,
                                 rules: rule.resolveRules(parser: self, grammar: rule.grammar!),
                                 end: rule.end,
                                 theme: theme,
-                                isContentScope: true
-                            ))
-                            // Start a new token for the content between the begin and end matches.
-                            tokens.append(Token(
-                                range: NSRange(location: newPos, length: 0),
-                                scopes: state.scopes
-                            ))
-                        }
+                                endCaptures: rule.endCaptures,
+                                grammar: rule.grammar
+                            )
+                            state.scopes.append(scope)
 
-                        tokenizedLine.addTokens(tokens)
-                        loc = newPos
-                        break
+                            // Add a new token for the begin match of the BeginEndRule
+                            let matchToken = Token(
+                                range: NSRange(location: loc, length: newPos - loc),
+                                scopes: state.scopes
+                            )
+                            var tokens = [matchToken]
+
+                            applyCapture(grammar: rule.grammar!,
+                                         pattern: rule.begin,
+                                         capturesToApply: rule.beginCaptures,
+                                         line: line,
+                                         loc: loc,
+                                         endLoc: endLoc,
+                                         theme: theme,
+                                         state: state,
+                                         matchTokens: &matchTokens,
+                                         tokens: &tokens)
+
+                            // If the BeginEndRule has a content name:
+                            if let contentName = rule.contentScopeName {
+                                // Add an additional scope, with the same rules and end pattern.
+                                // Set the isContentScope flag so we know what to do when we find the end match
+                                state.scopes.append(Scope(
+                                    name: contentName,
+                                    rules: rule.resolveRules(parser: self, grammar: rule.grammar!),
+                                    end: rule.end,
+                                    theme: theme,
+                                    isContentScope: true
+                                ))
+                                // Start a new token for the content between the begin and end matches.
+                                tokens.append(Token(
+                                    range: NSRange(location: newPos, length: 0),
+                                    scopes: state.scopes
+                                ))
+                            }
+
+                            tokenizedLine.addTokens(tokens)
+                            loc = newPos
+                            break
+                        }
                     }
                 }
-            }
-            // No matches at the current position.
-            // Increase the length of the current token and move to the next character.
-            if !matched {
-                tokenizedLine.increaseLastTokenLength()
-                loc += 1
-            }
-        }
-        tokenizedLine.cleanLast()
-        return TokenizeResult(state: state, tokenizedLine: tokenizedLine, matchTokens: matchTokens)
-    }
-
-    func matches(pattern: NSRegularExpression, str: String, in range: NSRange) -> Int? {
-        let matchRange = pattern.rangeOfFirstMatch(in: str, options: Self.matchingOptions, range: range)
-        if matchRange.location != NSNotFound {
-            return matchRange.upperBound
-        } else {
-            return nil
-        }
-    }
-
-    func captures(pattern: NSRegularExpression, str: String, in range: NSRange) -> [NSRange] {
-        if let match = pattern.firstMatch(in: str, options: Self.matchingOptions, range: range) {
-            return (0..<match.numberOfRanges).compactMap { index -> NSRange? in
-                let captureRange = match.range(at: index)
-                guard captureRange.location != NSNotFound else {
-                    return nil
+                // No matches at the current position.
+                // Increase the length of the current token and move to the next character.
+                if !matched {
+                    tokenizedLine.increaseLastTokenLength()
+                    loc += 1
                 }
-                return  match.range(at: index)
             }
-        } else {
-            return []
+            tokenizedLine.cleanLast()
+            return TokenizeResult(state: state, tokenizedLine: tokenizedLine, matchTokens: matchTokens)
         }
+
+    func matches(pattern: SwiftOniguruma.Regex, str: String, in range: NSRange) -> Int? {
+        // TODO: Fix match
+        if let stringRange = str[range],
+           let matchRange = try? pattern.matches(in: stringRange, options: .none),
+           !matchRange.isEmpty {
+            Log.info("Returning upperbound: \(matchRange[0].range.upperBound)")
+            //            return matchRange[0].range.upperBound <- makes endless loop
+        }
+        Log.info("Returning nil.")
+        return nil
+
+        /*
+         let matchRange = pattern.rangeOfFirstMatch(in: str, options: Self.matchingOptions, range: range)
+         if matchRange.location != NSNotFound {
+             return matchRange.upperBound
+         } else {
+             return nil
+         }
+         */
+    }
+
+    func captures(pattern: SwiftOniguruma.Regex, str: String, in range: NSRange) -> [NSRange] {
+        if let stringRange = str[range],
+           let matchRange = try? pattern.matches(in: stringRange, options: .none),
+           !matchRange.isEmpty {
+            return (0..<matchRange.count).compactMap { index -> NSRange? in
+                return .init(
+                    location: matchRange[index].range.lowerBound,
+                    length: matchRange[index].range.upperBound
+                )
+            }
+        }
+
+        return []
+        /*
+         if let match = pattern.firstMatch(in: str, options: Self.matchingOptions, range: range) {
+             return (0..<match.numberOfRanges).compactMap { index -> NSRange? in
+                 let captureRange = match.range(at: index)
+                 guard captureRange.location != NSNotFound else {
+                     return nil
+                 }
+                 return  match.range(at: index)
+             }
+         } else {
+             return []
+         }
+        */
     }
 
     /// Debugging enabled
@@ -381,3 +422,4 @@ public class Parser { // swiftlint:disable:this type_body_length
         }
     }
 }
+// swiftlint:disable:this file_length
