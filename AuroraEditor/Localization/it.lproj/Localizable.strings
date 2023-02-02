@@ -1,4 +1,4 @@
-// Global - Used in more than once place
+// Global
 "global.show.finder" = "Show in Finder";
 "gloabl.copy.path" = "Copy Path";
 "global.editor.name" = "Aurora Editor";
@@ -26,7 +26,7 @@
 
 // Settings
 "settings.global.login.password" = "Password:";
-"settings.gloabl.login.account" = "Account:";
+"settings.global.login.account" = "Account:";
 "settings.global.login.token" = "Token:";
 "settings.global.login.server" = "Server:";
 "settings.global.login.username" = "Enter your username";
@@ -45,7 +45,7 @@
 "settings.github.enterprise.login.enter.token" = "Enter your Personal Access Token";
 "settings.github.enterprise.login.create" = "Create a Token on GitHub Enterprise";
 
-"settings.github.login.header" = "Sign in to your GitHub account";
+"settings.github.login.header" = "Sign in to your GitHub Enterprise account";
 "settings.github.login.enter.token.personal" = "Enter your Personal Access Token";
 "settings.github.login.access.scopes" = "GitHub personal access tokens must have these scopes set:";
 "settings.github.login.access.public.key" = "admin:public_key";
@@ -85,15 +85,15 @@
 "settings.general.issues.inline" = "Show Inline";
 "settings.general.issues.minimized" = "Show Minimized";
 "settings.general.issues.live" = "Show Live Issues";
-"settings.general.file.extensions" = "File Extensions:";
+"settings.general.file.extensions" = "File Extensions";
 "settings.general.file.extensions.hide" = "Hide all";
 "settings.general.file.extensions.all" = "Show all";
 "settings.general.file.extensions.only" = "Show only";
 "settings.general.file.extensions.hode" = "Hide only";
-"settings.general.file.icon.style" = "File Icon Style:";
+"settings.general.file.icon.style" = "File Icon Style";
 "settings.general.file.icon.style.color" = "Color";
 "settings.general.file.icon.style.monochrome" = "Monochrome";
-"settings.general.tabs.style" = "Tab Bar Style:";
+"settings.general.tabs.style" = "Tab Bar Style";
 "settings.general.tabs.style.xcode" = "Xcode Style";
 "settings.general.tabs.style.aurora" = "Aurora Style";
 "settings.general.navigator.position" = "Navigator Mode Position";
@@ -102,7 +102,7 @@
 "settings.general.menu.bar" = "Menu Bar Accessory (Requires restart to update)";
 "settings.general.menu.bar.shown" = "Shown";
 "settings.general.menu.bar.hidden" = "Hidden";
-"settings.general.open" = "Reopen Behavior:";
+"settings.general.open" = "Reopen Behavior";
 "settings.general.open.welcome" = "Welcome Screen";
 "settings.general.open.panel" = "Open Panel";
 "settings.general.open.document" = "New Document";
@@ -169,6 +169,9 @@
 "settings.update.channel.release" = "Release";
 "settings.update.channel.beta" = "Beta";
 "settings.update.channel.nightly" = "Nightly";
+"settings.update.channel.update.now" = "Update Now";
+"settings.update.channel.debug.build.warning" = "\u{26A0} You are using a debug build, therefore updating is disabled.";
+"settings.update.channel.update.available" = "Update Available";
 "settings.update.learn.more" = "Learn more...";
 "settings.update.failure.checking" = "Failure checking for Updates...";
 "settings.update.retry" = "Retry Again";
@@ -220,18 +223,17 @@
 "welcome.remove.recents" = "Remove from Recent Projects";
 
 // Editor Screen
-"editor.open.from.sidebar"="Open file from sidebar";
+"editor.open.from.sidebar" = "Open file from sidebar";
 "editor.file.type.incorrect" = "AuroraEditor cannot open this file because its file type is not supported.";
 
 // Project Navigator
-"project.navigator.add.file"="Add File";
-"project.navigator.not.implemented"="Not implemented yet";
+"project.navigator.add.file" = "Add File";
+"project.navigator.not.implemented" = "Not implemented yet";
 
-
-"project.navigator.sort.alphabetically"="Alphabetically";
-"project.navigator.sort.folders"="Folders on top";
+"project.navigator.sort.alphabetically" = "Alphabetically";
+"project.navigator.sort.folders" = "Folders on top";
 
 // Inspector Sidebar
-"project.inspector.file"="File Inspector";
-"project.inspector.history"="History Inspector";
-"project.inspector.help"="Quick Help Inspector";
+"project.inspector.file" = "File Inspector";
+"project.inspector.history" = "History Inspector";
+"project.inspector.help" = "Quick Help Inspector";

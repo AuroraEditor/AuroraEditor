@@ -71,7 +71,7 @@ struct UpdatePreferencesView: View {
                             .foregroundColor(.secondary)
                             .padding(.vertical, -4)
 
-                        Link("Learn more...",
+                        Link("settings.update.learn.more",
                              destination: URL(string: "https://auroraeditor.com")!)
                         .font(.system(size: 11))
                         .foregroundColor(.accentColor)
@@ -168,14 +168,14 @@ struct UpdatePreferencesView: View {
             GroupBox {
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Update Available")
+                        Text("settings.update.channel.update.available")
                             .font(.system(size: 12, weight: .medium))
 
                         Spacer()
                         Button {
 
                         } label: {
-                            Text("Update Now")
+                            Text("settings.update.channel.update.now")
                         }
                     }
 
@@ -190,13 +190,13 @@ struct UpdatePreferencesView: View {
                     }
 
                     if isUpdateButtonDisabled {
-                        Text("\u{26A0} You are using a debug build, therefore updating is disabled.")
+                        Text("settings.update.channel.debug.build.warning")
                             .font(.system(size: 11))
                             .foregroundColor(.secondary)
                             .padding(5)
                     }
 
-                    Link("Learn more...",
+                    Link("settings.update.learn.more",
                          destination: URL(string: "https://auroraeditor.com")!)
                     .font(.system(size: 11))
                     .foregroundColor(.accentColor)
@@ -213,7 +213,7 @@ struct UpdatePreferencesView: View {
             GroupBox {
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Failure checking for Updates...")
+                        Text("settings.update.failure.checking")
                             .font(.system(size: 12, weight: .medium))
                             .foregroundColor(.red)
                         Spacer()
@@ -221,7 +221,7 @@ struct UpdatePreferencesView: View {
                             prefs.preferences.updates.lastChecked = Date()
                             updateModel.checkForUpdates()
                         } label: {
-                            Text("Retry Again")
+                            Text("settings.update.retry")
                         }
                     }
 
@@ -235,11 +235,11 @@ struct UpdatePreferencesView: View {
     func updateChannelDescription() -> String {
         switch prefs.preferences.updates.updateChannel {
         case .release:
-            return "Release"
+            return "settings.update.channel.release".localize()
         case .beta:
-            return "Beta"
+            return "settings.update.channel.beta".localize()
         case .nightly:
-            return "Nightly"
+            return "settings.update.channel.nightly".localize()
         }
     }
 

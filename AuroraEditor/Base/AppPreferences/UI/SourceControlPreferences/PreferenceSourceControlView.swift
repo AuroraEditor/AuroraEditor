@@ -20,13 +20,13 @@ public struct PreferenceSourceControlView: View {
 
     public var body: some View {
         PreferencesContent {
-            Text("General")
+            Text("settings.source.control.tab.general")
                 .fontWeight(.bold)
                 .padding(.horizontal)
             SourceControlGeneralView(isChecked: true, branchName: "main")
                 .padding(.bottom)
 
-            Text("Git")
+            Text("settings.source.control.tab.git")
                 .fontWeight(.bold)
                 .padding(.horizontal)
             SourceControlGitView()
