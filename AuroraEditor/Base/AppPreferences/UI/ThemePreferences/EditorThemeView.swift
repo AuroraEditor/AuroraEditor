@@ -20,7 +20,7 @@ struct HighlightThemeView: View {
         ZStack {
             EffectView(.contentBackground)
             if themeModel.selectedTheme == nil {
-                Text("Select a Theme")
+                Text("settings.theme.selection")
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             } else {
@@ -36,7 +36,7 @@ struct HighlightThemeView: View {
                                         }, set: { newColor in
                                             themeModel.selectedTheme?.editor.text.swiftColor = newColor
                                         }))
-                                        Text("Text")
+                                        Text("settings.theme.style.text")
                                     }
                                     HStack {
                                         PreferencesColorPicker(.init(get: {
@@ -44,7 +44,7 @@ struct HighlightThemeView: View {
                                         }, set: { newColor in
                                             themeModel.selectedTheme?.editor.insertionPoint.swiftColor = newColor
                                         }))
-                                        Text("Cursor")
+                                        Text("settings.theme.style.cursor")
                                     }
                                     HStack {
                                         PreferencesColorPicker(.init(get: {
@@ -52,7 +52,7 @@ struct HighlightThemeView: View {
                                         }, set: { newColor in
                                             themeModel.selectedTheme?.editor.invisibles.swiftColor = newColor
                                         }))
-                                        Text("Invisibles")
+                                        Text("settings.theme.style.invisibles")
                                     }
                                     HStack {
                                         PreferencesColorPicker(.init(get: {
@@ -60,7 +60,7 @@ struct HighlightThemeView: View {
                                         }, set: { newColor in
                                             themeModel.selectedTheme?.editor.background.swiftColor = newColor
                                         }))
-                                        Text("Background")
+                                        Text("settings.theme.style.background")
                                     }
                                     HStack {
                                         PreferencesColorPicker(.init(get: {
@@ -68,7 +68,7 @@ struct HighlightThemeView: View {
                                         }, set: { newColor in
                                             themeModel.selectedTheme?.editor.lineHighlight.swiftColor = newColor
                                         }))
-                                        Text("Current Line")
+                                        Text("settings.theme.style.current.line")
                                     }
                                     HStack {
                                         PreferencesColorPicker(.init(get: {
@@ -76,7 +76,7 @@ struct HighlightThemeView: View {
                                         }, set: { newColor in
                                             themeModel.selectedTheme?.editor.selection.swiftColor = newColor
                                         }))
-                                        Text("Selection")
+                                        Text("settings.theme.style.selection")
                                     }
                                 }
                                 Spacer()

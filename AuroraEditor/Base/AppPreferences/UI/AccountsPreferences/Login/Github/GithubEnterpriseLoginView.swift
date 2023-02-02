@@ -29,22 +29,22 @@ struct GithubEnterpriseLoginView: View {
 
     var body: some View {
         VStack {
-            Text("Sign in to your GitHub account")
+            Text("settings.github.enterprise.login.header")
 
             VStack(alignment: .trailing) {
                 HStack {
-                    Text("Server:")
+                    Text("settings.global.login.server")
                     TextField("https://example.com", text: $eneterpriseLink)
                         .frame(width: 300)
                 }
                 HStack {
-                    Text("Account:")
+                    Text("settings.global.login.account")
                     TextField("", text: $accountName)
                         .frame(width: 300)
                 }
                 HStack {
-                    Text("Token:")
-                    SecureField("Enter your Personal Access Token",
+                    Text("settings.global.login.token")
+                    SecureField("settings.github.enterprise.login.enter.token",
                                 text: $accountToken)
                     .frame(width: 300)
                 }
@@ -55,7 +55,7 @@ struct GithubEnterpriseLoginView: View {
                     Button {
                         createToken(URL(string: "https://github.com/settings/tokens/new")!)
                     } label: {
-                        Text("Create a Token on GitHub Enterprise")
+                        Text("settings.github.enterprise.login.create")
                             .foregroundColor(.primary)
                             .lineLimit(1)
                     }
@@ -65,12 +65,12 @@ struct GithubEnterpriseLoginView: View {
                     Button {
                         dismissDialog = false
                     } label: {
-                        Text("Cancel")
+                        Text("global.cancel")
                             .foregroundColor(.primary)
                     }
 
                     if accountToken.isEmpty {
-                        Button("Sign In") {}
+                        Button("settings.global.login") {}
                         .disabled(true)
                     } else {
                         Button {
@@ -79,7 +79,7 @@ struct GithubEnterpriseLoginView: View {
                                                                accountName: accountName,
                                                                enterpriseLink: eneterpriseLink)
                         } label: {
-                            Text("Sign In")
+                            Text("settings.global.login")
                                 .foregroundColor(.white)
                         }
                         .buttonStyle(.borderedProminent)

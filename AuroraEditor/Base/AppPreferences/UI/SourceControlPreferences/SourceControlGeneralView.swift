@@ -25,9 +25,9 @@ struct SourceControlGeneralView: View {
                     Spacer()
                     VStack(alignment: .leading) {
                         HStack {
-                            Text("Enable Source Control")
+                            Text("settings.source.control.general.enable")
                             Spacer()
-                            Toggle("Enable Source Control",
+                            Toggle("",
                                    isOn: $prefs.preferences.sourceControl.general.enableSourceControl)
                             .labelsHidden()
                             .toggleStyle(.switch)
@@ -36,9 +36,9 @@ struct SourceControlGeneralView: View {
                         Divider()
 
                         HStack {
-                            Text("Refresh local status automatically")
+                            Text("settings.source.control.general.refresh")
                             Spacer()
-                            Toggle("Refresh local status automatically",
+                            Toggle("",
                                    isOn: $prefs.preferences.sourceControl.general.refreshStatusLocaly)
                             .labelsHidden()
                             .toggleStyle(.switch)
@@ -48,9 +48,9 @@ struct SourceControlGeneralView: View {
                         Divider()
 
                         HStack {
-                            Text("Fetch and refresh server status automatically")
+                            Text("settings.source.control.general.fetch")
                             Spacer()
-                            Toggle("Fetch and refresh server status automatically",
+                            Toggle("",
                                    isOn: $prefs.preferences.sourceControl.general.fetchRefreshServerStatus)
                             .labelsHidden()
                             .toggleStyle(.switch)
@@ -60,9 +60,9 @@ struct SourceControlGeneralView: View {
                         Divider()
 
                         HStack {
-                            Text("Add and remove files automatically")
+                            Text("settings.source.control.general.add.remove")
                             Spacer()
-                            Toggle("Add and remove files automatically",
+                            Toggle("",
                                    isOn: $prefs.preferences.sourceControl.general.addRemoveAutomatically)
                             .labelsHidden()
                             .toggleStyle(.switch)
@@ -72,9 +72,9 @@ struct SourceControlGeneralView: View {
                         Divider()
 
                         HStack {
-                            Text("Select files to commit automatically")
+                            Text("settings.source.control.general.select.files")
                             Spacer()
-                            Toggle("Select files to commit automatically",
+                            Toggle("",
                                    isOn: $prefs.preferences.sourceControl.general.selectFilesToCommit)
                             .labelsHidden()
                             .toggleStyle(.switch)
@@ -86,7 +86,7 @@ struct SourceControlGeneralView: View {
                 .padding(.horizontal)
             }
 
-            Text("Text Editing")
+            Text("settings.source.control.general.text.editing")
                 .fontWeight(.medium)
                 .font(.system(size: 12))
                 .padding(.horizontal)
@@ -95,9 +95,9 @@ struct SourceControlGeneralView: View {
             GroupBox {
                 VStack {
                     HStack {
-                        Text("Show Source Control changes")
+                        Text("settings.source.control.general.show.changes")
                         Spacer()
-                        Toggle("Show Source Control changes",
+                        Toggle("",
                                isOn: $prefs.preferences.sourceControl.general.showSourceControlChanges)
                         .labelsHidden()
                         .toggleStyle(.switch)
@@ -120,7 +120,7 @@ struct SourceControlGeneralView: View {
                 .padding(.horizontal)
             }
 
-            Text("Reporting")
+            Text("settings.source.control.general.reporting")
                 .fontWeight(.medium)
                 .font(.system(size: 12))
                 .padding(.horizontal)
@@ -128,9 +128,9 @@ struct SourceControlGeneralView: View {
 
             GroupBox {
                 HStack(alignment: .center) {
-                    Text("Open created issue in the browser")
+                    Text("settings.source.control.general.open.issues.browser")
                     Spacer()
-                    Toggle("Open created issue in the browser",
+                    Toggle("",
                            isOn: $prefs.preferences.sourceControl.general.openFeedbackInBrowser)
                     .labelsHidden()
                     .toggleStyle(.switch)
@@ -140,13 +140,13 @@ struct SourceControlGeneralView: View {
                 Divider()
 
                 HStack(alignment: .top) {
-                    Text("Comparison View")
+                    Text("settings.source.control.general.comparison")
                     Spacer()
-                    Picker("Comparison View",
+                    Picker("",
                            selection: $prefs.preferences.sourceControl.general.revisionComparisonLayout) {
-                        Text("Local Revision on Left Side")
+                        Text("settings.source.control.general.comparison.revision.lect")
                             .tag(AppPreferences.RevisionComparisonLayout.localLeft)
-                        Text("Local Revision on Right Side")
+                        Text("settings.source.control.general.comparison.revision.right")
                             .tag(AppPreferences.RevisionComparisonLayout.localRight)
                     }
                     .labelsHidden()
@@ -157,13 +157,13 @@ struct SourceControlGeneralView: View {
                 Divider()
 
                 HStack(alignment: .top) {
-                    Text("Source Control Navigator")
+                    Text("settings.source.control.general.navigator")
                     Spacer()
-                    Picker("Source Control Navigator",
+                    Picker("",
                            selection: $prefs.preferences.sourceControl.general.controlNavigatorOrder) {
-                        Text("Sort by Name")
+                        Text("settings.source.control.general.navigator.sort.name")
                             .tag(AppPreferences.ControlNavigatorOrder.sortByName)
-                        Text("Sort by Date")
+                        Text("settings.source.control.general.navigator.sort.date")
                             .tag(AppPreferences.ControlNavigatorOrder.sortByDate)
                     }
                     .labelsHidden()
@@ -175,7 +175,7 @@ struct SourceControlGeneralView: View {
 
                 VStack(alignment: .leading) {
                     HStack(alignment: .top) {
-                        Text("Default Branch Name")
+                        Text("settings.source.control.general.branch name")
                         Spacer()
                         VStack(alignment: .trailing) {
                             TextField("main", text: $branchName)
@@ -186,7 +186,7 @@ struct SourceControlGeneralView: View {
 
                     Divider()
 
-                    Text("Branch names cannot contain spaces, backslashes, or other symbols")
+                    Text("settings.source.control.general.branch.error")
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
                 }
