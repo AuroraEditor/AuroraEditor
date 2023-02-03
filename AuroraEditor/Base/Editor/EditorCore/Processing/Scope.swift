@@ -67,7 +67,7 @@ class Scope {
 extension Scope: Equatable {
     static func == (lhs: Scope, rhs: Scope) -> Bool {
         if lhs.name != rhs.name { return false }
-//        if lhs.end != rhs.end { return false }
+        if lhs.end?.pattern != rhs.end?.pattern { return false }
         if lhs.rules.count != rhs.rules.count { return false }
         for (first, second) in zip(lhs.rules, rhs.rules) where first != second {
             return false
