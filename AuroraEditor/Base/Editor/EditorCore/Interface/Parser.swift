@@ -180,14 +180,16 @@ public class Parser { // swiftlint:disable:this type_body_length
                         str: line,
                         in: NSRange(location: loc, length: endLoc - loc)
                     ) {
-                        Log.info(
-                            "Got a match",
-                            "ER",
-                            endPattern.pattern,
-                            line,
-                            NSRange(location: loc, length: endLoc - loc),
-                            newPos
-                        )
+                        if shouldDebug {
+                            Log.info(
+                                "Got a match",
+                                "ER",
+                                endPattern.pattern,
+                                line,
+                                NSRange(location: loc, length: endLoc - loc),
+                                newPos
+                            )
+                        }
 
                         // Pop off state.
                         let last = state.scopes.removeLast()
@@ -259,14 +261,16 @@ public class Parser { // swiftlint:disable:this type_body_length
                             str: line,
                             in: NSRange(location: loc, length: endLoc - loc)
                         ) {
-                            Log.info(
-                                "Got a match",
-                                "MR",
-                                rule.match.pattern,
-                                line,
-                                NSRange(location: loc, length: endLoc - loc),
-                                newPos
-                            )
+                            if shouldDebug {
+                                Log.info(
+                                    "Got a match",
+                                    "MR",
+                                    rule.match.pattern,
+                                    line,
+                                    NSRange(location: loc, length: endLoc - loc),
+                                    newPos
+                                )
+                            }
 
                             // Set matched flag
                             matched = true
@@ -321,14 +325,16 @@ public class Parser { // swiftlint:disable:this type_body_length
                             in: NSRange(location: loc, length: endLoc - loc)
                         ),
                            newPos > loc {
-                            Log.info(
-                                "Got a match",
-                                "BR",
-                                rule.begin.pattern,
-                                line,
-                                NSRange(location: loc, length: endLoc - loc),
-                                newPos
-                            )
+                            if shouldDebug {
+                                Log.info(
+                                    "Got a match",
+                                    "BR",
+                                    rule.begin.pattern,
+                                    line,
+                                    NSRange(location: loc, length: endLoc - loc),
+                                    newPos
+                                )
+                            }
 
                             // Set matched flag
                             matched = true
@@ -408,7 +414,8 @@ public class Parser { // swiftlint:disable:this type_body_length
             Log.trace("Matches", range, range.lowerBound, pattern.pattern)
             return range.lowerBound
         }
-        Log.trace("Matches", range, "nil", pattern.pattern)
+        // Enable rule to trace, huge impact on speed.
+//        Log.trace("Matches", range, "nil", pattern.pattern)
         return nil
 
         /*
@@ -450,7 +457,7 @@ public class Parser { // swiftlint:disable:this type_body_length
     }
 
     /// Debugging enabled
-    public var shouldDebug = true
+    public var shouldDebug = false
 
     func debug(_ str: String) {
         if shouldDebug {

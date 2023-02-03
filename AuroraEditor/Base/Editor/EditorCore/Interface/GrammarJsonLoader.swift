@@ -168,7 +168,11 @@ class GrammarJsonLoader {
             let name = json["name"] as? String
             let captures = json["captures"] as? [String: [String: Any]]
 
-            return MatchRule(name: name ?? keyName, match: match, captures: jsonDictToCaptures(captures: captures))
+            return MatchRule(
+                name: name ?? keyName,
+                match: match,
+                captures: jsonDictToCaptures(captures: captures)
+            )
         }
 
         // if the json contains a `include` field, it is a IncludeRulePattern
@@ -288,7 +292,7 @@ extension GrammarJsonLoader {
                                        fileExtensions: [String]? = nil) -> Bool {
         // ensure at least one property is non-nil, and that the language exists.
         guard languageFiles[language] != nil &&
-              (grammar != nil || fileExtensions != nil)
+                (grammar != nil || fileExtensions != nil)
         else { return false }
 
         // replace the properties
