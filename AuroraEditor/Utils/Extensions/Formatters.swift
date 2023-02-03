@@ -8,9 +8,10 @@
 
 extension Formatters {
     /// Default date formatter
-    public static let `default` = Formatter("[%@] %@ %@: %@", [
+    public static let `default` = Formatter("[%@] %@ %@ %@:\n%@", [
         .date("yyyy-MM-dd HH:mm:ss.SSS"),
         .location,
+        .function,
         .level,
         .message
     ])

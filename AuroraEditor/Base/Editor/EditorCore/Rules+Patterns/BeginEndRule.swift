@@ -59,7 +59,7 @@ public class BeginEndRule: Rule, Pattern {
         self.scopeName = ScopeName(rawValue: name)
         do {
             self.begin = try SwiftOniguruma.Regex(
-                pattern: begin
+                pattern: begin.first == "{" ? begin.replacingOccurrences(of: "{", with: "\\{") : begin
             )
         } catch {
             var message = "Could not create begin regex for BeginEndRule, "
@@ -70,7 +70,9 @@ public class BeginEndRule: Rule, Pattern {
             self.begin = try! SwiftOniguruma.Regex(pattern: "") // swiftlint:disable:this force_try
         }
         do {
-            self.end = try SwiftOniguruma.Regex(pattern: end)
+            self.end = try SwiftOniguruma.Regex(
+                pattern: end.first == "}" ? end.replacingOccurrences(of: "}", with: "\\}") : end
+            )
         } catch {
             var message = "Could not create end regex for BeginEndRule, "
             message += "name(\"\(name)\"), begin(\"\(begin)\"), end(\"\(end)\"), "

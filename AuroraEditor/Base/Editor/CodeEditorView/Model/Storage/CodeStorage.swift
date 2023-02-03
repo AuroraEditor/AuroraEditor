@@ -390,8 +390,11 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         let processingLength = lineRanges[processingLines.last].upperBound - startOfProcessing
 
         tokenizedLines.enumerated().forEach {
-            $1.applyTheme(storage, at: lineRanges[$0 + processingLines.first].location,
-                          inSelectionScope: $0 + processingLines.first == cursorLine)
+            $1.applyTheme(
+                storage,
+                at: lineRanges[$0 + processingLines.first].location,
+                inSelectionScope: $0 + processingLines.first == cursorLine
+            )
         }
 
         let processedRange = NSRange(location: startOfProcessing, length: processingLength)

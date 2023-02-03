@@ -180,6 +180,15 @@ public class Parser { // swiftlint:disable:this type_body_length
                         str: line,
                         in: NSRange(location: loc, length: endLoc - loc)
                     ) {
+                        Log.info(
+                            "Got a match",
+                            "ER",
+                            endPattern.pattern,
+                            line,
+                            NSRange(location: loc, length: endLoc - loc),
+                            newPos
+                        )
+
                         // Pop off state.
                         let last = state.scopes.removeLast()
 
@@ -250,6 +259,15 @@ public class Parser { // swiftlint:disable:this type_body_length
                             str: line,
                             in: NSRange(location: loc, length: endLoc - loc)
                         ) {
+                            Log.info(
+                                "Got a match",
+                                "MR",
+                                rule.match.pattern,
+                                line,
+                                NSRange(location: loc, length: endLoc - loc),
+                                newPos
+                            )
+
                             // Set matched flag
                             matched = true
                             // Create a new scope
@@ -271,16 +289,18 @@ public class Parser { // swiftlint:disable:this type_body_length
                             // Add to matchTokens
                             matchTokens.append(matchToken)
 
-                            applyCapture(grammar: rule.grammar!,
-                                         pattern: rule.match,
-                                         capturesToApply: rule.captures,
-                                         line: line,
-                                         loc: loc,
-                                         endLoc: endLoc,
-                                         theme: theme,
-                                         state: state,
-                                         matchTokens: &matchTokens,
-                                         tokens: &tokens)
+                            applyCapture(
+                                grammar: rule.grammar!,
+                                pattern: rule.match,
+                                capturesToApply: rule.captures,
+                                line: line,
+                                loc: loc,
+                                endLoc: endLoc,
+                                theme: theme,
+                                state: state,
+                                matchTokens: &matchTokens,
+                                tokens: &tokens
+                            )
 
                             tokenizedLine.addTokens(tokens)
 
@@ -295,9 +315,21 @@ public class Parser { // swiftlint:disable:this type_body_length
                     }
                     // Apply the begin end rule
                     else if let rule = rule as? BeginEndRule {
-                        if let newPos = matches(pattern: rule.begin, str: line,
-                                                in: NSRange(location: loc, length: endLoc - loc)),
+                        if let newPos = matches(
+                            pattern: rule.begin,
+                            str: line,
+                            in: NSRange(location: loc, length: endLoc - loc)
+                        ),
                            newPos > loc {
+                            Log.info(
+                                "Got a match",
+                                "BR",
+                                rule.begin.pattern,
+                                line,
+                                NSRange(location: loc, length: endLoc - loc),
+                                newPos
+                            )
+
                             // Set matched flag
                             matched = true
                             // Create a new scope for the BeginEndRule and add it to the state.
@@ -333,18 +365,22 @@ public class Parser { // swiftlint:disable:this type_body_length
                             if let contentName = rule.contentScopeName {
                                 // Add an additional scope, with the same rules and end pattern.
                                 // Set the isContentScope flag so we know what to do when we find the end match
-                                state.scopes.append(Scope(
-                                    name: contentName,
-                                    rules: rule.resolveRules(parser: self, grammar: rule.grammar!),
-                                    end: rule.end,
-                                    theme: theme,
-                                    isContentScope: true
-                                ))
+                                state.scopes.append(
+                                    Scope(
+                                        name: contentName,
+                                        rules: rule.resolveRules(parser: self, grammar: rule.grammar!),
+                                        end: rule.end,
+                                        theme: theme,
+                                        isContentScope: true
+                                    )
+                                )
                                 // Start a new token for the content between the begin and end matches.
-                                tokens.append(Token(
-                                    range: NSRange(location: newPos, length: 0),
-                                    scopes: state.scopes
-                                ))
+                                tokens.append(
+                                    Token(
+                                        range: NSRange(location: newPos, length: 0),
+                                        scopes: state.scopes
+                                    )
+                                )
                             }
 
                             tokenizedLine.addTokens(tokens)
@@ -369,18 +405,18 @@ public class Parser { // swiftlint:disable:this type_body_length
         if let stringRange = str[range],
            let matchRange = try? pattern.matches(in: stringRange, options: .none),
            !matchRange.isEmpty {
-            Log.info("Returning upperbound: \(matchRange[0].range.upperBound)")
-            //            return matchRange[0].range.upperBound <- makes endless loop
+            Log.trace("Matches", range, range.lowerBound, pattern.pattern)
+            return range.lowerBound
         }
-        Log.info("Returning nil.")
+        Log.trace("Matches", range, "nil", pattern.pattern)
         return nil
 
         /*
          let matchRange = pattern.rangeOfFirstMatch(in: str, options: Self.matchingOptions, range: range)
          if matchRange.location != NSNotFound {
-             return matchRange.upperBound
+         return matchRange.upperBound
          } else {
-             return nil
+         return nil
          }
          */
     }
@@ -400,25 +436,25 @@ public class Parser { // swiftlint:disable:this type_body_length
         return []
         /*
          if let match = pattern.firstMatch(in: str, options: Self.matchingOptions, range: range) {
-             return (0..<match.numberOfRanges).compactMap { index -> NSRange? in
-                 let captureRange = match.range(at: index)
-                 guard captureRange.location != NSNotFound else {
-                     return nil
-                 }
-                 return  match.range(at: index)
-             }
-         } else {
-             return []
+         return (0..<match.numberOfRanges).compactMap { index -> NSRange? in
+         let captureRange = match.range(at: index)
+         guard captureRange.location != NSNotFound else {
+         return nil
          }
-        */
+         return  match.range(at: index)
+         }
+         } else {
+         return []
+         }
+         */
     }
 
     /// Debugging enabled
-    public var shouldDebug = false
+    public var shouldDebug = true
 
     func debug(_ str: String) {
         if shouldDebug {
-            Log.info(str)
+            Log.debug(str)
         }
     }
 }
