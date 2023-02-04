@@ -43,6 +43,9 @@ public struct AppPreferences: Codable {
 
     public var updates: UpdatePreferences = .init()
 
+    /// The global settings for the notification system
+    public var notifications: NotificationsPreferences = .init()
+
     /// Default initializer
     public init() {}
 
@@ -58,5 +61,7 @@ public struct AppPreferences: Codable {
                                                            forKey: .sourceControl) ?? .init()
         self.updates = try container.decodeIfPresent(UpdatePreferences.self,
                                                      forKey: .updates) ?? .init()
+        self.notifications = try container.decodeIfPresent(NotificationsPreferences.self,
+                                                           forKey: .notifications) ?? .init()
     }
 }

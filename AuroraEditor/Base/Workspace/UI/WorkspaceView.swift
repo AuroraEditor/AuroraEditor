@@ -22,6 +22,8 @@ struct WorkspaceView: View {
     @EnvironmentObject
     private var workspace: WorkspaceDocument
 
+    private let notificationService: NotificationService = .init()
+
     @State
     var cancelables: Set<AnyCancellable> = .init()
 
@@ -152,15 +154,23 @@ struct WorkspaceView: View {
                 }
                 if command.name == "showNotification",
                    let message = command.parameters["message"] as? String {
-                    workspace.notificationList.append(message)
+                    notificationService.notify(notification: INotification(
+                        // TODO: @WDG extension developers should add their own notification id
+                        id: UUID().uuidString,
+                        // TODO: @WDG extension developers should add their own notification severity level
+                        severity: .info,
+                        message: message,
+                        notificationType: .extensionSystem,
+                        // TODO: @WDG extension developers should choose if notifications are silent or not
+                        silent: false))
                 }
                 if command.name == "showWarning",
                    let message = command.parameters["message"] as? String {
-                    workspace.warningList.append(message)
+                    notificationService.warn(message: message)
                 }
                 if command.name == "showError",
                    let message = command.parameters["message"] as? String {
-                    workspace.errorList.append(message)
+                    notificationService.error(message: message)
                 }
                 if command.name == "openSheet",
                    let view = command.parameters["view"] as? any View {

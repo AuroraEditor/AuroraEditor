@@ -17,17 +17,10 @@ public struct ToolbarAppInfo: View {
     @Environment(\.controlActiveState)
     private var activeState
 
-    @EnvironmentObject
-    private var workspace: WorkspaceDocument
+    @StateObject
+    private var model: NotificationsModel = .shared
 
-    @State
-    private var openErrors: Bool = false
-
-    @State
-    private var openWarnings: Bool = false
-
-    @State
-    private var openNotifications: Bool = false
+    private let notificationService: NotificationService = .init()
 
     func getTime() -> String {
         let formatter = DateFormatter()
@@ -41,14 +34,29 @@ public struct ToolbarAppInfo: View {
             HStack {
                 HStack {
                     Image(systemName: "app.dashed")
+                        .onTapGesture {
+                            notificationService.error(message: "This is a error notification")
+
+                            Log.debug("Notification Added")
+                        }
 
                     Text("AuroraEditor")
                         .font(.system(size: 11))
+                        .onTapGesture {
+                            notificationService.warn(message: "This is a warning notification")
+
+                            Log.debug("Notification Added")
+                        }
 
                     Image(systemName: "chevron.right")
 
                     Text("Chrome")
                         .font(.system(size: 11))
+                        .onTapGesture {
+                            notificationService.error(message: "This is a error notification")
+
+                            Log.debug("Notification Added")
+                        }
                 }
 
                 Spacer()
@@ -67,64 +75,39 @@ public struct ToolbarAppInfo: View {
             .background(.ultraThinMaterial)
             .cornerRadius(6)
 
-            Button {
-                openErrors.toggle()
-            } label: {
-                HStack {
-                    Image(systemName: "xmark.circle.fill")
-                        .symbolRenderingMode(.multicolor)
-                        .imageScale(.small)
+            if !model.notifications.isEmpty {
+                if !model.notifications.filter({ $0.severity == .error && $0.silent == false }).isEmpty {
+                    Button {
+                    } label: {
+                        HStack {
+                            Image(systemName: "xmark.circle.fill")
+                                .symbolRenderingMode(.multicolor)
+                                .imageScale(.small)
 
-                    Text("\(workspace.errorList.count)")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 10))
+                            Text("\(model.notifications.filter({ $0.severity == .error && $0.silent == false }).count)")
+                                .foregroundColor(.gray)
+                                .font(.system(size: 10))
+                        }
+                    }
+                    .buttonStyle(.plain)
                 }
-            }
-            .buttonStyle(.plain)
 
-            Button {
-                openWarnings.toggle()
-            } label: {
-                HStack {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .symbolRenderingMode(.multicolor)
-                        .imageScale(.small)
+                if !model.notifications.filter({ $0.severity == .warning }).isEmpty {
+                    Button {
+                    } label: {
+                        HStack {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .symbolRenderingMode(.multicolor)
+                                .imageScale(.small)
 
-                    Text("\(workspace.warningList.count)")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 10))
+                            // swiftlint:disable:next line_length
+                            Text("\(model.notifications.filter({ $0.severity == .warning && $0.silent == false }).count)")
+                                .foregroundColor(.gray)
+                                .font(.system(size: 10))
+                        }
+                    }
+                    .buttonStyle(.plain)
                 }
-            }
-            .buttonStyle(.plain)
-
-            Button {
-                openNotifications.toggle()
-            } label: {
-                HStack {
-                    Image(systemName: "bell.badge.fill")
-                        .symbolRenderingMode(.multicolor)
-                        .imageScale(.small)
-
-                    Text("\(workspace.notificationList.count)")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 10))
-                }
-            }
-            .buttonStyle(.plain)
-            .popover(isPresented: $openErrors, arrowEdge: .bottom) {
-                ToolbarPopoverView(list: workspace.errorList)
-                .padding(.vertical, 5)
-                .frame(width: 310, height: 500)
-            }
-            .popover(isPresented: $openWarnings, arrowEdge: .bottom) {
-                ToolbarPopoverView(list: workspace.warningList)
-                .padding(.vertical, 5)
-                .frame(width: 310, height: 500)
-            }
-            .popover(isPresented: $openNotifications, arrowEdge: .bottom) {
-                ToolbarPopoverView(list: workspace.notificationList)
-                .padding(.vertical, 5)
-                .frame(width: 310, height: 500)
             }
         }
         .opacity(activeState == .inactive ? 0.45 : 1)
