@@ -92,7 +92,7 @@ public struct ToolbarAppInfo: View {
                     .buttonStyle(.plain)
                 }
 
-                if !model.notifications.filter({ $0.severity == .warning }).isEmpty {
+                if !model.notifications.filter({ $0.severity == .warning && $0.silent == false }).isEmpty {
                     Button {
                     } label: {
                         HStack {
