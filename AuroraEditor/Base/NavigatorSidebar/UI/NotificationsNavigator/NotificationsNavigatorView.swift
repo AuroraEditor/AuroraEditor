@@ -42,6 +42,10 @@ struct NotificationsNavigatorView: View {
         if isDoNotDisturbEnabled() {
             return model.notifications.filter({ $0.severity == .error })
         } else {
+            if model.filter == .ERROR {
+                return model.notifications.filter({ $0.severity == .error })
+            }
+
             return model.notifications
         }
     }

@@ -33,8 +33,12 @@ struct NotificationsNavigatorToolbarBottom: View {
 
                 if !filter.isEmpty {
                     clearFilterButton
-                        .padding(.trailing, 5)
                 }
+
+                showHistory
+
+                showErrorsOnly
+                    .padding(.trailing, 0)
             }
             .padding(.horizontal, 5)
             .padding(.vertical, 3)
@@ -62,6 +66,36 @@ struct NotificationsNavigatorToolbarBottom: View {
         }
         .buttonStyle(.plain)
         .opacity(activeState == .inactive ? 0.45 : 1)
+    }
+
+    private var showHistory: some View {
+        Button {
+
+        } label: {
+            Image(systemName: "clock")
+                .font(.system(size: 11))
+                .symbolRenderingMode(.hierarchical)
+        }
+        .buttonStyle(.plain)
+        .opacity(activeState == .inactive ? 0.45 : 1)
+        .help("Show only issues from open documents and recently built sources")
+    }
+
+    private var showErrorsOnly: some View {
+        Button {
+            if model.filter == .ERROR {
+                model.setFilter(filter: .OFF)
+            } else {
+                model.setFilter(filter: .ERROR)
+            }
+        } label: {
+            Image(systemName: "exclamationmark.octagon.fill")
+                .font(.system(size: 11))
+                .symbolRenderingMode(model.filter == .ERROR ? .multicolor : .hierarchical)
+        }
+        .buttonStyle(.plain)
+        .opacity(activeState == .inactive ? 0.45 : 1)
+        .help("Show only errors")
     }
 }
 
