@@ -16,6 +16,9 @@ class NotificationsModel: ObservableObject, INotificationsModel {
     public var filter: NotificationsFilter = .OFF
 
     @Published
+    public var searchNotifications: String = ""
+
+    @Published
     public var notifications: [INotification] = []
 
     func addNotification(notification: INotification) {

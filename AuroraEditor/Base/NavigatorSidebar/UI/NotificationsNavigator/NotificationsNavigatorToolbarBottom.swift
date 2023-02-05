@@ -15,9 +15,6 @@ struct NotificationsNavigatorToolbarBottom: View {
     @Environment(\.colorScheme)
     private var colorScheme
 
-    @State
-    var filter: String = ""
-
     @ObservedObject
     private var model: NotificationsModel = .shared
 
@@ -27,11 +24,11 @@ struct NotificationsNavigatorToolbarBottom: View {
                 Image(systemName: "line.3.horizontal.decrease.circle")
                     .foregroundColor(.secondary)
                     .padding(.horizontal, 5)
-                TextField("Filter", text: $filter)
+                TextField("Filter", text: $model.searchNotifications)
                     .textFieldStyle(.plain)
                     .font(.system(size: 12))
 
-                if !filter.isEmpty {
+                if !model.searchNotifications.isEmpty {
                     clearFilterButton
                 }
 
@@ -58,7 +55,7 @@ struct NotificationsNavigatorToolbarBottom: View {
     /// when the user clears the filter.
     private var clearFilterButton: some View {
         Button {
-            filter = ""
+            model.searchNotifications = ""
             NSApp.keyWindow?.makeFirstResponder(nil)
         } label: {
             Image(systemName: "xmark.circle.fill")

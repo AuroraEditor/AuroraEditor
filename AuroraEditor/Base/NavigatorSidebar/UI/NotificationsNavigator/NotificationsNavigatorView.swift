@@ -26,10 +26,21 @@ struct NotificationsNavigatorView: View {
                 }
                 .frame(maxWidth: .infinity,
                        maxHeight: .infinity)
+            } else if filterResults().isEmpty {
+                withAnimation {
+                    VStack {
+                        Text("No Filter Results")
+                            .font(.system(size: 16))
+                            .foregroundColor(.secondary)
+                    }
+                    .frame(maxWidth: .infinity,
+                           maxHeight: .infinity)
+                }
             } else {
                 List(notificationList()) { notification in
                     NotificationViewItem(notification: notification)
                 }
+                .animation(.easeInOut)
             }
         }
     }
@@ -44,10 +55,20 @@ struct NotificationsNavigatorView: View {
         } else {
             if model.filter == .ERROR {
                 return model.notifications.filter({ $0.severity == .error })
+            } else {
+                if !model.searchNotifications.isEmpty {
+                    return filterResults()
+                }
+                return model.notifications
             }
-
-            return model.notifications
         }
+    }
+
+    private func filterResults() -> [INotification] {
+        return model.notifications.filter({ notification in
+            model.searchNotifications.isEmpty ||
+            notification.message.localizedStandardContains(model.searchNotifications)
+        })
     }
 }
 
