@@ -21,8 +21,7 @@ public struct PreferenceAccountsView: View {
     public var body: some View {
         PreferencesContent {
             if prefs.preferences.accounts.sourceControlAccounts.gitAccount.isEmpty {
-                // swiftlint:disable:next line_length
-                Text("Doesn't seem like you have a Git Account attached to Aurora Editor, press the \"Add Account\" button to a Git Account.")
+                Text("settings.account.no.account")
                     .padding(.horizontal)
                     .multilineTextAlignment(.center)
                     .font(.system(size: 16))
@@ -41,7 +40,7 @@ public struct PreferenceAccountsView: View {
                 Button {
                     openAccountDialog.toggle()
                 } label: {
-                    Text("Add Account")
+                    Text("settings.account.add")
                         .foregroundColor(.white)
                 }
                 .buttonStyle(.borderedProminent)

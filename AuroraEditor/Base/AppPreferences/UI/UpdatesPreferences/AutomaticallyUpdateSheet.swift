@@ -18,12 +18,12 @@ struct AutomaticallyUpdateSheet: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Automatically")
+            Text("settings.update.check.automatically")
                 .font(.system(size: 11, weight: .bold))
 
             GroupBox {
                 HStack {
-                    Text("Check for updates")
+                    Text("settings.update.check.updates")
                         .font(.system(size: 11))
                     Spacer()
                     Toggle("", isOn: $prefs.preferences.updates.checkForUpdates)
@@ -38,7 +38,7 @@ struct AutomaticallyUpdateSheet: View {
                 Divider()
 
                 HStack {
-                    Text("Download new updates when available")
+                    Text("settings.update.download.when.available")
                         .font(.system(size: 11))
                     Spacer()
                     Toggle("", isOn: $prefs.preferences.updates.downloadUpdatesWhenAvailable)
@@ -51,17 +51,17 @@ struct AutomaticallyUpdateSheet: View {
                 Divider()
 
                 HStack {
-                    Text("Update Channel")
+                    Text("settings.update.channel")
                         .font(.system(size: 11))
                     Spacer()
                     Picker("", selection: $prefs.preferences.updates.updateChannel) {
-                        Text("Release")
+                        Text("settings.update.channel.release")
                             .font(.system(size: 11))
                             .tag(AppPreferences.UpdateChannel.release)
-                        Text("Beta")
+                        Text("settings.update.channel.beta")
                             .font(.system(size: 11))
                             .tag(AppPreferences.UpdateChannel.beta)
-                        Text("Nightly")
+                        Text("settings.update.channel.nightly")
                             .font(.system(size: 11))
                             .tag(AppPreferences.UpdateChannel.nightly)
                     }
@@ -85,7 +85,7 @@ struct AutomaticallyUpdateSheet: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Done")
+                    Text("global.done")
                         .foregroundColor(.white)
                         .padding(.horizontal)
                 }

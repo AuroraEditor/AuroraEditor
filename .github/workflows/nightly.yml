@@ -1,7 +1,8 @@
 name: Nightly Build of Aurora Editor
 on:
-  schedule: ## Schedule the job to run at 12.am daily.
-     - cron: '0 0 * * *'
+  push:
+     branches: [ development ]
+
 jobs:
   build_nightly_editor:
     if: github.repository_owner == 'AuroraEditor'
