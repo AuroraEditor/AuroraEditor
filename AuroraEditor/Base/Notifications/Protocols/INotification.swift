@@ -25,6 +25,9 @@ struct INotification: INotificationProperties, Equatable, Hashable, Identifiable
     /// The type of notification that is being sent to the editor.
     var notificationType: NotificationType
 
+    /// The issue type when being sent from the editor itself.
+    var issueType: IssueType?
+
     /// Silent notifications are not shown to the user unless the notification center
     /// is opened. The status bar will still indicate all number of notifications to
     /// catch some attention.

@@ -62,24 +62,26 @@ struct PreferencesView: View {
                 } else if viewModel.selectedId == viewModel.setting[1].id {
                     PreferenceAccountsView()        // Accounts
                 } else if viewModel.selectedId == viewModel.setting[2].id {
-                    PreferencesPlaceholderView()    // Behaviors
+                    NotificationPreferencesView()        // Notifications
                 } else if viewModel.selectedId == viewModel.setting[3].id {
-                    PreferencesPlaceholderView()    // Navigation
+                    PreferencesPlaceholderView()    // Behaviors
                 } else if viewModel.selectedId == viewModel.setting[4].id {
-                    ThemePreferencesView()          // Themes
+                    PreferencesPlaceholderView()    // Navigation
                 } else if viewModel.selectedId == viewModel.setting[5].id {
-                    TextEditingPreferencesView()    // Text Editing
+                    ThemePreferencesView()          // Themes
                 } else if viewModel.selectedId == viewModel.setting[6].id {
-                    TerminalPreferencesView()       // Terminal
+                    TextEditingPreferencesView()    // Text Editing
                 } else if viewModel.selectedId == viewModel.setting[7].id {
-                    PreferencesPlaceholderView()    // Key Bindings
+                    TerminalPreferencesView()       // Terminal
                 } else if viewModel.selectedId == viewModel.setting[8].id {
-                    PreferenceSourceControlView()   // Source Control
+                    PreferencesPlaceholderView()    // Key Bindings
                 } else if viewModel.selectedId == viewModel.setting[9].id {
-                    PreferencesPlaceholderView()    // Components
+                    PreferenceSourceControlView()   // Source Control
                 } else if viewModel.selectedId == viewModel.setting[10].id {
-                    PreferencesPlaceholderView()    // Advanced
+                    PreferencesPlaceholderView()    // Components
                 } else if viewModel.selectedId == viewModel.setting[11].id {
+                    PreferencesPlaceholderView()    // Advanced
+                } else if viewModel.selectedId == viewModel.setting[12].id {
                     UpdatePreferencesView()
                 }
             }

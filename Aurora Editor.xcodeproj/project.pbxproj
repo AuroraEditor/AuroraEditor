@@ -65,9 +65,14 @@
 		2032B51028A256F50089EBB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B50F28A256F50089EBB6 /* Array.swift */; };
 		2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */; };
 		2036DD5528DB3DB5003BECB7 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036DD5428DB3DB5003BECB7 /* Queue.swift */; };
+		203A881E29901DD300F90BB5 /* IssueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A881D29901DD300F90BB5 /* IssueType.swift */; };
 		20439038290D27DB00126A3F /* WorkspaceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20439037290D27DB00126A3F /* WorkspaceErrors.swift */; };
 		2043903C290D385600126A3F /* ExploreExtensionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043903B290D385600126A3F /* ExploreExtensionsView.swift */; };
 		2043903E290D38D700126A3F /* ExploreItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043903D290D38D700126A3F /* ExploreItemView.swift */; };
+		20471861299259D90097F990 /* NotificationPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20471860299259D90097F990 /* NotificationPreferencesView.swift */; };
+		2047186429925DCB0097F990 /* HStackToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047186329925DCB0097F990 /* HStackToggle.swift */; };
+		20471866299267440097F990 /* NotificationProfileToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20471865299267440097F990 /* NotificationProfileToggle.swift */; };
+		2047186829926C410097F990 /* NotificationIndicators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047186729926C410097F990 /* NotificationIndicators.swift */; };
 		204F7BB328D7905C00F49092 /* WorkflowMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7BB228D7905C00F49092 /* WorkflowMenu.swift */; };
 		204F7BB528D7906A00F49092 /* WorkflowWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7BB428D7906A00F49092 /* WorkflowWrapperView.swift */; };
 		204F7BB728D7907A00F49092 /* WorkflowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7BB628D7907A00F49092 /* WorkflowViewController.swift */; };
@@ -655,6 +660,7 @@
 		2032B50F28A256F50089EBB6 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowHostingController.swift; sourceTree = "<group>"; };
 		2036DD5428DB3DB5003BECB7 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		203A881D29901DD300F90BB5 /* IssueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueType.swift; sourceTree = "<group>"; };
 		20425E47297EE74D0022FE5A /* sort-Xcode-project-file.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = "sort-Xcode-project-file.pl"; sourceTree = "<group>"; };
 		20425E49297EED860022FE5A /* ClearDerivedData.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ClearDerivedData.sh; sourceTree = "<group>"; };
 		20425E4B297EEE350022FE5A /* unused_strings.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = unused_strings.py; sourceTree = "<group>"; };
@@ -662,6 +668,10 @@
 		20439037290D27DB00126A3F /* WorkspaceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceErrors.swift; sourceTree = "<group>"; };
 		2043903B290D385600126A3F /* ExploreExtensionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreExtensionsView.swift; sourceTree = "<group>"; };
 		2043903D290D38D700126A3F /* ExploreItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreItemView.swift; sourceTree = "<group>"; };
+		20471860299259D90097F990 /* NotificationPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPreferencesView.swift; sourceTree = "<group>"; };
+		2047186329925DCB0097F990 /* HStackToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackToggle.swift; sourceTree = "<group>"; };
+		20471865299267440097F990 /* NotificationProfileToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationProfileToggle.swift; sourceTree = "<group>"; };
+		2047186729926C410097F990 /* NotificationIndicators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationIndicators.swift; sourceTree = "<group>"; };
 		204F7BB228D7905C00F49092 /* WorkflowMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowMenu.swift; sourceTree = "<group>"; };
 		204F7BB428D7906A00F49092 /* WorkflowWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowWrapperView.swift; sourceTree = "<group>"; };
 		204F7BB628D7907A00F49092 /* WorkflowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowViewController.swift; sourceTree = "<group>"; };
@@ -1269,6 +1279,7 @@
 		20094D06298D785200A47BA0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2047186729926C410097F990 /* NotificationIndicators.swift */,
 				20F167A4298ED86E000F90EF /* NotificationViewItem.swift */,
 			);
 			path = UI;
@@ -1294,6 +1305,7 @@
 				20094D19298D7E2600A47BA0 /* NotificationsFilter.swift */,
 				20094D1D298D7FDA00A47BA0 /* Severity.swift */,
 				20F167A0298ED0B7000F90EF /* NotificationType.swift */,
+				203A881D29901DD300F90BB5 /* IssueType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -1444,6 +1456,23 @@
 				2043903D290D38D700126A3F /* ExploreItemView.swift */,
 			);
 			path = Explore;
+			sourceTree = "<group>";
+		};
+		2047185F299259740097F990 /* Noitfications */ = {
+			isa = PBXGroup;
+			children = (
+				20471860299259D90097F990 /* NotificationPreferencesView.swift */,
+			);
+			path = Noitfications;
+			sourceTree = "<group>";
+		};
+		2047186229925DB10097F990 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				2047186329925DCB0097F990 /* HStackToggle.swift */,
+				20471865299267440097F990 /* NotificationProfileToggle.swift */,
+			);
+			path = Preferences;
 			sourceTree = "<group>";
 		};
 		204F7BB128D7903000F49092 /* Workflow */ = {
@@ -2060,6 +2089,7 @@
 		20D837CC289A7ACD00D91D05 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2047185F299259740097F990 /* Noitfications */,
 				20D837E5289A7ACD00D91D05 /* AccountsPreferences */,
 				20D837CE289A7ACD00D91D05 /* GeneralPreferences */,
 				20D837D2289A7ACD00D91D05 /* SourceControlPreferences */,
@@ -2306,6 +2336,7 @@
 		20D83835289A7ACD00D91D05 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2047186229925DB10097F990 /* Preferences */,
 				20D8383A289A7ACD00D91D05 /* EffectView.swift */,
 				20D83836289A7ACD00D91D05 /* FontPickerView.swift */,
 				20D8383E289A7ACD00D91D05 /* HelpButton.swift */,
@@ -3806,6 +3837,7 @@
 				20D59CD228AFAAE400E3907B /* AccountItemView.swift in Sources */,
 				2093CDB1289AA19B003A88DD /* AccountListItem.swift in Sources */,
 				2093CDB3289AA19B003A88DD /* AccountSelectionDialog.swift in Sources */,
+				20471861299259D90097F990 /* NotificationPreferencesView.swift in Sources */,
 				2093CD9F289AA15F003A88DD /* AccountsPreferences.swift in Sources */,
 				93EF416528C1EBBC004083AD /* ActionAwareInput.swift in Sources */,
 				20BE727528D0761200EEDE5F /* ActionsListView.swift in Sources */,
@@ -4033,6 +4065,7 @@
 				2B04574928E6FFE300024F2D /* IncludeGrammarPattern.swift in Sources */,
 				2B04576428E6FFE300024F2D /* IncludeRulePattern.swift in Sources */,
 				2072FA1C280D874000C7F8D4 /* IndentUsing.swift in Sources */,
+				2047186429925DCB0097F990 /* HStackToggle.swift in Sources */,
 				B6EE989027E8879A00CDD8AB /* InspectorSidebar.swift in Sources */,
 				B6EE989227E887C600CDD8AB /* InspectorSidebarToolbar.swift in Sources */,
 				2093CD34289AA089003A88DD /* Issue.swift in Sources */,
@@ -4154,6 +4187,7 @@
 				2093CDC0289AA247003A88DD /* SearchResultModel.swift in Sources */,
 				2093CD6E289AA0FC003A88DD /* SegmentedControl.swift in Sources */,
 				2093CD4D289AA0A2003A88DD /* Session.swift in Sources */,
+				20471866299267440097F990 /* NotificationProfileToggle.swift in Sources */,
 				20B6A1FE28AFE107004EC8D7 /* SettingItem.swift in Sources */,
 				20094D17298D7DA900A47BA0 /* INotificationHandle.swift in Sources */,
 				20B6A20028AFE124004EC8D7 /* SettingsModel.swift in Sources */,
@@ -4195,6 +4229,7 @@
 				2093CC95289A9FF5003A88DD /* StatusBarToggleDrawerButton.swift in Sources */,
 				934D2F0828C4EC7E0034E5C8 /* StatusItem.swift in Sources */,
 				D7E201AE27E8B3C000CB86D0 /* String+Ranges.swift in Sources */,
+				203A881E29901DD300F90BB5 /* IssueType.swift in Sources */,
 				20212683289BF84B00246DD7 /* String.swift in Sources */,
 				2093CDD2289AA507003A88DD /* SwiftTerm+Color+Init.swift in Sources */,
 				93B1D10C28CD907A005A8C24 /* TabBar+Drag.swift in Sources */,
@@ -4220,6 +4255,7 @@
 				2B04575128E6FFE300024F2D /* TabStopsThemeAttribute.swift in Sources */,
 				2B04574F28E6FFE300024F2D /* TailIndentThemeAttribute.swift in Sources */,
 				9362B21628EC734200523626 /* TerminalColors.swift in Sources */,
+				2047186829926C410097F990 /* NotificationIndicators.swift in Sources */,
 				2093CC9D289AA001003A88DD /* TerminalEmulatorView+Coordinator.swift in Sources */,
 				2093CC9E289AA004003A88DD /* TerminalEmulatorView.swift in Sources */,
 				2093CD9C289AA152003A88DD /* TerminalPreferences.swift in Sources */,

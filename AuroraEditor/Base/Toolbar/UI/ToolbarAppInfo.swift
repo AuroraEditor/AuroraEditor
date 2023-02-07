@@ -17,9 +17,6 @@ public struct ToolbarAppInfo: View {
     @Environment(\.controlActiveState)
     private var activeState
 
-    @StateObject
-    private var model: NotificationsModel = .shared
-
     private let notificationService: NotificationService = .init()
 
     func getTime() -> String {
@@ -75,40 +72,7 @@ public struct ToolbarAppInfo: View {
             .background(.ultraThinMaterial)
             .cornerRadius(6)
 
-            if !model.notifications.isEmpty {
-                if !model.notifications.filter({ $0.severity == .error && $0.silent == false }).isEmpty {
-                    Button {
-                    } label: {
-                        HStack {
-                            Image(systemName: "xmark.circle.fill")
-                                .symbolRenderingMode(.multicolor)
-                                .imageScale(.small)
-
-                            Text("\(model.notifications.filter({ $0.severity == .error && $0.silent == false }).count)")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 10))
-                        }
-                    }
-                    .buttonStyle(.plain)
-                }
-
-                if !model.notifications.filter({ $0.severity == .warning && $0.silent == false }).isEmpty {
-                    Button {
-                    } label: {
-                        HStack {
-                            Image(systemName: "exclamationmark.triangle.fill")
-                                .symbolRenderingMode(.multicolor)
-                                .imageScale(.small)
-
-                            // swiftlint:disable:next line_length
-                            Text("\(model.notifications.filter({ $0.severity == .warning && $0.silent == false }).count)")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 10))
-                        }
-                    }
-                    .buttonStyle(.plain)
-                }
-            }
+            NotificationIndicators()
         }
         .opacity(activeState == .inactive ? 0.45 : 1)
     }

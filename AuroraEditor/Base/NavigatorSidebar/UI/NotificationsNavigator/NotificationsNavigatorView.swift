@@ -18,16 +18,16 @@ struct NotificationsNavigatorView: View {
 
     var body: some View {
         VStack {
-            if model.notifications.isEmpty {
-                VStack {
-                    Text("No Notifications")
-                        .font(.system(size: 16))
-                        .foregroundColor(.secondary)
-                }
-                .frame(maxWidth: .infinity,
-                       maxHeight: .infinity)
-            } else if filterResults().isEmpty {
-                withAnimation {
+            if preferences.preferences.notifications.notificationsEnabled {
+                if model.notifications.isEmpty {
+                    VStack {
+                        Text("No Notifications")
+                            .font(.system(size: 16))
+                            .foregroundColor(.secondary)
+                    }
+                    .frame(maxWidth: .infinity,
+                           maxHeight: .infinity)
+                } else if filterResults().isEmpty {
                     VStack {
                         Text("No Filter Results")
                             .font(.system(size: 16))
@@ -35,22 +35,29 @@ struct NotificationsNavigatorView: View {
                     }
                     .frame(maxWidth: .infinity,
                            maxHeight: .infinity)
+                } else {
+                    List(notificationList()) { notification in
+                        NotificationViewItem(notification: notification)
+                    }
+                    .animation(.easeInOut)
                 }
             } else {
-                List(notificationList()) { notification in
-                    NotificationViewItem(notification: notification)
+                VStack {
+                    // swiftlint:disable:next line_length
+                    Text("Notifications has been disabled. Enable notifications in settings to continue receiving notifications.")
+                        .padding(.horizontal)
+                        .multilineTextAlignment(.center)
+                        .font(.system(size: 16))
+                        .foregroundColor(.secondary)
                 }
-                .animation(.easeInOut)
+                .frame(maxWidth: .infinity,
+                       maxHeight: .infinity)
             }
         }
     }
 
-    private func isDoNotDisturbEnabled() -> Bool {
-        return preferences.preferences.notifications.doNotDisturb
-    }
-
     private func notificationList() -> [INotification] {
-        if isDoNotDisturbEnabled() {
+        if preferences.preferences.notifications.doNotDisturb {
             return model.notifications.filter({ $0.severity == .error })
         } else {
             if model.filter == .ERROR {
