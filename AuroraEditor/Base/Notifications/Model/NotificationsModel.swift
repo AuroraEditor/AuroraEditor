@@ -6,7 +6,7 @@
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
-import Foundation
+import AppKit
 
 class NotificationsModel: ObservableObject, INotificationsModel {
 

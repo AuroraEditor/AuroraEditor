@@ -32,28 +32,21 @@ public struct ToolbarAppInfo: View {
                 HStack {
                     Image(systemName: "app.dashed")
                         .onTapGesture {
-                            notificationService.error(message: "This is a error notification")
-
-                            Log.debug("Notification Added")
+                            notificationService.error(title: "CheckoutBranchView",
+                                                      message: "This is a error notification")
                         }
 
                     Text("AuroraEditor")
                         .font(.system(size: 11))
                         .onTapGesture {
-                            notificationService.warn(message: "This is a warning notification")
-
-                            Log.debug("Notification Added")
+                            notificationService.warn(title: "CheckoutBranchView",
+                                                     message: "TODO: This has to be derived from git")
                         }
 
                     Image(systemName: "chevron.right")
 
                     Text("Chrome")
                         .font(.system(size: 11))
-                        .onTapGesture {
-                            notificationService.error(message: "This is a error notification")
-
-                            Log.debug("Notification Added")
-                        }
                 }
 
                 Spacer()

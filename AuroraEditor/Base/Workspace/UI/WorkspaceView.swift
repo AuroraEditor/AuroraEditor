@@ -159,6 +159,8 @@ struct WorkspaceView: View {
                         id: UUID().uuidString,
                         // TODO: @WDG extension developers should add their own notification severity level
                         severity: .info,
+                        // TODO: @WDG extension developers should add their own notification title
+                        title: "",
                         message: message,
                         notificationType: .extensionSystem,
                         // TODO: @WDG extension developers should choose if notifications are silent or not
@@ -166,11 +168,11 @@ struct WorkspaceView: View {
                 }
                 if command.name == "showWarning",
                    let message = command.parameters["message"] as? String {
-                    notificationService.warn(message: message)
+                    notificationService.warn(title: "", message: message)
                 }
                 if command.name == "showError",
                    let message = command.parameters["message"] as? String {
-                    notificationService.error(message: message)
+                    notificationService.error(title: "", message: message)
                 }
                 if command.name == "openSheet",
                    let view = command.parameters["view"] as? any View {

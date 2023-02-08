@@ -12,35 +12,79 @@ struct NotificationViewItem: View {
 
     var notification: INotification
 
+    @State
+    private var showActions: Bool = false
+
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack(alignment: .top) {
-                Image(systemName: notificationIcon(severity: notification.severity))
-                    .symbolRenderingMode(.multicolor)
-                    .font(.system(size: 12))
-
-                Text(notification.message)
-                    .multilineTextAlignment(.leading)
-                    .font(.system(size: 12))
-
-                if notification.notificationType == .custom ||
-                    notification.notificationType == .extensionSystem {
-                    Image(systemName: "gear")
-                        .contextMenu {
-                            Button {
-
-                            } label: {
-                                Text("Don't show again")
-                            }
-                        }
-                        .font(.system(size: 12))
-
-                    Image(systemName: "xmark")
-                        .onTapGesture {
-                            Log.debug("Close notification and remove it")
-                        }
-                        .font(.system(size: 12))
+        VStack {
+            HStack(alignment: .center) {
+                if notification.icon == nil {
+                    Image(systemName: notificationIcon(severity: notification.severity))
+                        .symbolRenderingMode(.multicolor)
+                        .font(.system(size: 14))
+                } else {
+                    Image(nsImage: NSImage(contentsOf: ((notification.icon ?? URL(string: ""))!))!)
+                        .font(.system(size: 14))
                 }
+
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text(notification.title)
+                            .foregroundColor(.primary)
+                            .font(.system(size: 11, weight: .medium))
+
+                        Spacer()
+
+                        if notification.notificationType == .extensionSystem {
+                            Image(systemName: showActions ? "chevron.up" : "chevron.down")
+                                .onTapGesture {
+                                    withAnimation {
+                                        showActions.toggle()
+                                    }
+                                }
+                        }
+                    }
+
+                    Text(notification.message)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.leading)
+                        .font(.system(size: 10))
+                }
+            }
+
+            if showActions {
+                withAnimation {
+                    Button {
+                    } label: {
+                        Spacer()
+                        Text("UPDATE")
+                            .foregroundColor(.accentColor)
+                        Spacer()
+                    }
+                    .shadow(radius: 0)
+                    .cornerRadius(20)
+                    .buttonStyle(.bordered)
+                }
+            }
+        }
+        .padding(5)
+        .contextMenu {
+            Button("Copy") {
+            }
+
+            Divider()
+
+            if notification.notificationType == .extensionSystem {
+                Button("View Extension") {
+                }
+
+                Divider()
+            }
+
+            Button("Ignore Notification") {
+            }
+
+            Button("Don’t Show Again...") {
             }
         }
     }
@@ -62,7 +106,9 @@ struct NotificationViewItem: View {
 struct NotificationViewItem_Previews: PreviewProvider {
     static var previews: some View {
         NotificationViewItem(notification: INotification(severity: .info,
-                                                         message: "Test notification",
+                                                         title: "Docker",
+                                                         // swiftlint:disable:next line_length
+                                                         message: "A new update of the docker extension for Aurora Editor is now available.",
                                                          notificationType: .extensionSystem))
     }
 }

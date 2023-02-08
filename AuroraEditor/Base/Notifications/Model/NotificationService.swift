@@ -74,25 +74,28 @@ class NotificationService: INotificationService {
         model.addNotification(notification: notification)
     }
 
-    func info(message: String) {
+    func info(title: String, message: String) {
         model.addNotification(notification: INotification(id: UUID().uuidString,
                                                           severity: .info,
+                                                          title: title,
                                                           message: message,
                                                           notificationType: .system,
                                                           silent: false))
     }
 
-    func warn(message: String) {
+    func warn(title: String, message: String) {
         model.addNotification(notification: INotification(id: UUID().uuidString,
                                                           severity: .warning,
+                                                          title: title,
                                                           message: message,
                                                           notificationType: .system,
                                                           silent: false))
     }
 
-    func error(message: String) {
+    func error(title: String, message: String) {
         model.addNotification(notification: INotification(id: UUID().uuidString,
                                                           severity: .error,
+                                                          title: title,
                                                           message: message,
                                                           notificationType: .system,
                                                           silent: false))

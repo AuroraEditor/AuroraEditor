@@ -21,13 +21,13 @@ protocol INotificationService {
 
     /// A convenient way of reporting infos. Use the `INotificationService.notify`
     /// method if you need more control over the notification.
-    func info(message: String)
+    func info(title: String, message: String)
 
     /// A convenient way of reporting warnings. Use the `INotificationService.notify`
     /// method if you need more control over the notification.
-    func warn(message: String)
+    func warn(title: String, message: String)
 
     /// A convenient way of reporting errors. Use the `INotificationService.notify`
     /// method if you need more control over the notification.
-    func error(message: String)
+    func error(title: String, message: String)
 }

@@ -39,7 +39,6 @@ struct NotificationsNavigatorView: View {
                     List(notificationList()) { notification in
                         NotificationViewItem(notification: notification)
                     }
-                    .animation(.easeInOut)
                 }
             } else {
                 VStack {

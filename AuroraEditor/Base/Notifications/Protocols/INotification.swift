@@ -18,6 +18,12 @@ struct INotification: INotificationProperties, Equatable, Hashable, Identifiable
     /// The severity of the notification. Either `Info`, `Warning` or `Error`.
     var severity: Severity
 
+    /// The notification icon
+    var icon: URL?
+
+    /// The title of the notification.
+    var title: String
+
     /// The message of the notification. This can either be a `string` or `Error`
     /// string format.
     var message: String
