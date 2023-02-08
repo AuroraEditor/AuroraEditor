@@ -27,7 +27,9 @@ struct NotificationsNavigatorView: View {
                     }
                     .frame(maxWidth: .infinity,
                            maxHeight: .infinity)
-                } else if filterResults().isEmpty {
+                } else if filterResults().isEmpty ||
+                            model.filter == .ERROR && model.notifications.filter({
+                                $0.severity == .error }).isEmpty {
                     VStack {
                         Text("No Filter Results")
                             .font(.system(size: 16))

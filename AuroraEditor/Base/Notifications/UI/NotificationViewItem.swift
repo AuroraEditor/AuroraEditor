@@ -37,11 +37,15 @@ struct NotificationViewItem: View {
 
                         if notification.notificationType == .extensionSystem {
                             Image(systemName: showActions ? "chevron.up" : "chevron.down")
-                                .onTapGesture {
-                                    withAnimation {
-                                        showActions.toggle()
-                                    }
-                                }
+                                .foregroundColor(.secondary)
+                                .font(.system(size: 11))
+                        }
+                    }
+                    .onTapGesture {
+                        if notification.notificationType == .extensionSystem {
+                            withAnimation {
+                                showActions.toggle()
+                            }
                         }
                     }
 
@@ -59,6 +63,7 @@ struct NotificationViewItem: View {
                         Spacer()
                         Text("UPDATE")
                             .foregroundColor(.accentColor)
+                            .font(.system(size: 11))
                         Spacer()
                     }
                     .shadow(radius: 0)
