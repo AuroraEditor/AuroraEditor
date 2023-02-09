@@ -19,6 +19,9 @@ public struct ToolbarAppInfo: View {
 
     private let notificationService: NotificationService = .init()
 
+    @ObservedObject
+    private var notificationModel: NotificationsModel = .shared
+
     func getTime() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss"
@@ -34,6 +37,8 @@ public struct ToolbarAppInfo: View {
                         .onTapGesture {
                             notificationService.error(title: "CheckoutBranchView",
                                                       message: "This is a error notification")
+
+                            notificationModel.showNotificationToast.toggle()
                         }
 
                     Text("AuroraEditor")

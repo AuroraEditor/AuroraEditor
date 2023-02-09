@@ -23,6 +23,9 @@ class NotificationsModel: ObservableObject, INotificationsModel {
     @Published
     public var notifications: [INotification] = []
 
+    @Published
+    public var showNotificationToast: Bool = false
+
     func addNotification(notification: INotification) {
 
         // If notifications are not enabled we should not allow sending
