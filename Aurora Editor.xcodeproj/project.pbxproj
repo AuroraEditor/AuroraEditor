@@ -69,6 +69,8 @@
 		20439038290D27DB00126A3F /* WorkspaceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20439037290D27DB00126A3F /* WorkspaceErrors.swift */; };
 		2043903C290D385600126A3F /* ExploreExtensionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043903B290D385600126A3F /* ExploreExtensionsView.swift */; };
 		2043903E290D38D700126A3F /* ExploreItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043903D290D38D700126A3F /* ExploreItemView.swift */; };
+		204467AF2996B9F900F3BD00 /* NotificationToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204467AE2996B9F900F3BD00 /* NotificationToastView.swift */; };
+		204467B22996BE0A00F3BD00 /* FontWithLineHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204467B12996BE0A00F3BD00 /* FontWithLineHeight.swift */; };
 		20471861299259D90097F990 /* NotificationPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20471860299259D90097F990 /* NotificationPreferencesView.swift */; };
 		2047186429925DCB0097F990 /* HStackToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047186329925DCB0097F990 /* HStackToggle.swift */; };
 		20471866299267440097F990 /* NotificationProfileToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20471865299267440097F990 /* NotificationProfileToggle.swift */; };
@@ -668,6 +670,8 @@
 		20439037290D27DB00126A3F /* WorkspaceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceErrors.swift; sourceTree = "<group>"; };
 		2043903B290D385600126A3F /* ExploreExtensionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreExtensionsView.swift; sourceTree = "<group>"; };
 		2043903D290D38D700126A3F /* ExploreItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreItemView.swift; sourceTree = "<group>"; };
+		204467AE2996B9F900F3BD00 /* NotificationToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationToastView.swift; sourceTree = "<group>"; };
+		204467B12996BE0A00F3BD00 /* FontWithLineHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontWithLineHeight.swift; sourceTree = "<group>"; };
 		20471860299259D90097F990 /* NotificationPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPreferencesView.swift; sourceTree = "<group>"; };
 		2047186329925DCB0097F990 /* HStackToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackToggle.swift; sourceTree = "<group>"; };
 		20471865299267440097F990 /* NotificationProfileToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationProfileToggle.swift; sourceTree = "<group>"; };
@@ -1281,6 +1285,7 @@
 			children = (
 				2047186729926C410097F990 /* NotificationIndicators.swift */,
 				20F167A4298ED86E000F90EF /* NotificationViewItem.swift */,
+				204467AE2996B9F900F3BD00 /* NotificationToastView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1456,6 +1461,14 @@
 				2043903D290D38D700126A3F /* ExploreItemView.swift */,
 			);
 			path = Explore;
+			sourceTree = "<group>";
+		};
+		204467B02996BDFF00F3BD00 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				204467B12996BE0A00F3BD00 /* FontWithLineHeight.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		2047185F299259740097F990 /* Noitfications */ = {
@@ -1904,6 +1917,7 @@
 		20D83713289A7A9900D91D05 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				204467B02996BDFF00F3BD00 /* Modifiers */,
 				20439035290D27C600126A3F /* Errors */,
 				20D83740289A7ACD00D91D05 /* Extensions */,
 				20D83744289A7ACD00D91D05 /* KeyChain */,
@@ -4071,6 +4085,7 @@
 				2093CD34289AA089003A88DD /* Issue.swift in Sources */,
 				2093CD51289AA0AE003A88DD /* IssueArea.swift in Sources */,
 				2093CD24289AA084003A88DD /* IssueRouter.swift in Sources */,
+				204467B22996BE0A00F3BD00 /* FontWithLineHeight.swift in Sources */,
 				2B04574B28E6FFE300024F2D /* ItalicThemeAttribute.swift in Sources */,
 				2093CD4C289AA0A2003A88DD /* JSONPostRouter.swift in Sources */,
 				2B04574D28E6FFE300024F2D /* KernThemeAttribute.swift in Sources */,
@@ -4170,6 +4185,7 @@
 				20F167A1298ED0B7000F90EF /* NotificationType.swift in Sources */,
 				9354D4B528ACEDEF004C6D18 /* RepositoriesViewController.swift in Sources */,
 				9354D4B328ACEDDE004C6D18 /* RepositoriesWrapperView.swift in Sources */,
+				204467AF2996B9F900F3BD00 /* NotificationToastView.swift in Sources */,
 				2B04574728E6FFE300024F2D /* Repository.swift in Sources */,
 				939C109528AE7D0700403A97 /* RepositoryContainers&Items.swift in Sources */,
 				20DF979F28ABAA72009CE1E9 /* RepositoryModel.swift in Sources */,

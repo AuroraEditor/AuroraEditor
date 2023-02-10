@@ -10,7 +10,6 @@ import Cocoa
 import SwiftUI
 import Combine
 
-// swiftlint:disable:next type_body_length
 final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
     var prefs: AppPreferencesModel = .shared
@@ -73,64 +72,14 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         inspector.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(inspector)
 
-        // TODO: Find a way to show the notification again when
-        // a new notification has been sent
-        var view = NSTextField()
-        view.frame = CGRect(x: 0, y: 0, width: 344, height: 104)
-        view.isEditable = false
-        view.layer?.cornerRadius = 12
-
-        let header = NSView()
-        header.frame = CGRect(x: 0, y: 0, width: 319, height: 16)
-
-        // MARK: - Start of Notification Timestamp
-        var time = NSTextView()
-        time.frame = CGRect(x: 0, y: 0, width: 39, height: 14)
-        time.alignment = .right
-        time.string = "Now"
-        // MARK: - End of Notification Timestamp
-
-        let headerParent = header
-        headerParent.addSubview(time)
-        headerParent.translatesAutoresizingMaskIntoConstraints = false
-
-        view.addSubview(header)
-
-        var shadows = NSView()
-        shadows.frame = view.frame
-        view.addSubview(shadows)
-
-        let shadowPath = NSBezierPath(roundedRect: shadows.bounds,
-                                      xRadius: 12,
-                                      yRadius: 12)
-        let layer = CALayer()
-        layer.shadowColor = NSColor(red: 0,
-                                    green: 0,
-                                    blue: 0,
-                                    alpha: 0.16).cgColor
-        layer.shadowOpacity = 1
-        layer.shadowRadius = 10
-        layer.shadowOffset = CGSize(width: 0,
-                                    height: 5)
-        layer.bounds = shadows.bounds
-        shadows.layer?.addSublayer(layer)
-
-        var shapes = NSView()
-        shapes.frame = view.frame
-        view.addSubview(shapes)
-
-        let layer1 = CALayer()
-        layer1.backgroundColor = NSColor(red: 0.146, green: 0.144, blue: 0.144, alpha: 0).cgColor
-        layer1.bounds = shapes.bounds
-        shapes.layer?.addSublayer(layer1)
-        shapes.layer?.cornerRadius = 12
+        let notificationView = NSHostingView(rootView: NotificationToastView())
 
         var parent = splitVC.view
-        parent.addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
+        parent.addSubview(notificationView)
+        notificationView.translatesAutoresizingMaskIntoConstraints = false
 
         // This sets the width of the view
-        let widthContraints = NSLayoutConstraint(item: view,
+        let widthContraints = NSLayoutConstraint(item: notificationView,
                                                   attribute: NSLayoutConstraint.Attribute.width,
                                                   relatedBy: NSLayoutConstraint.Relation.equal,
                                                   toItem: nil,
@@ -139,7 +88,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
                                                   constant: 344)
 
         // This sets the height of the view
-        let heightContraints = NSLayoutConstraint(item: view,
+        let heightContraints = NSLayoutConstraint(item: notificationView,
                                                   attribute: NSLayoutConstraint.Attribute.height,
                                                   relatedBy: NSLayoutConstraint.Relation.equal,
                                                   toItem: nil,
@@ -147,7 +96,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
                                                   multiplier: 1,
                                                   constant: 104)
 
-        let xContraints = NSLayoutConstraint(item: view,
+        let xContraints = NSLayoutConstraint(item: notificationView,
                                              attribute: NSLayoutConstraint.Attribute.bottom,
                                              relatedBy: NSLayoutConstraint.Relation.equal,
                                              toItem: parent,
@@ -155,7 +104,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
                                              multiplier: 1,
                                              constant: -20)
 
-        let yContraints = NSLayoutConstraint(item: view,
+        let yContraints = NSLayoutConstraint(item: notificationView,
                                              attribute: NSLayoutConstraint.Attribute.trailing,
                                              relatedBy: NSLayoutConstraint.Relation.equal,
                                              toItem: parent,
@@ -169,24 +118,24 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
                                      yContraints])
 
         // Hides the notification after 5 seconds
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            NSAnimationContext.runAnimationGroup { context in
-                context.duration = 0.5
-
-                // Animation that allows the view to slide out to
-                // the left
-                let transition = CATransition()
-                transition.type = .push
-                transition.subtype = .fromLeft
-
-                // BUG: For some rease it adds another view
-                // I'm assuming it has something to do with another
-                // layer being added
-                view.layer?.add(transition, forKey: nil )
-            } completionHandler: {
-                view.isHidden = true
-            }
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+//            NSAnimationContext.runAnimationGroup { context in
+//                context.duration = 0.5
+//
+//                // Animation that allows the view to slide out to
+//                // the left
+//                let transition = CATransition()
+//                transition.type = .push
+//                transition.subtype = .fromLeft
+//
+//                // BUG: For some rease it adds another view
+//                // I'm assuming it has something to do with another
+//                // layer being added
+//                notificationView.layer?.add(transition, forKey: nil )
+//            } completionHandler: {
+//                notificationView.isHidden = true
+//            }
+//        }
 
         self.splitViewController = splitVC
 
