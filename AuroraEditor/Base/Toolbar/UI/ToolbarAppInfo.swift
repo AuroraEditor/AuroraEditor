@@ -35,17 +35,19 @@ public struct ToolbarAppInfo: View {
                 HStack {
                     Image(systemName: "app.dashed")
                         .onTapGesture {
-                            notificationService.error(title: "CheckoutBranchView",
-                                                      message: "This is a error notification")
-
-                            notificationModel.showNotificationToast.toggle()
+                            notificationService.notify(notification: INotification(severity: .info,
+                                                                                   title: "Info Notification",
+                                                                                   message: "This is a test",
+                                                                                   notificationType: .system))
                         }
 
                     Text("AuroraEditor")
                         .font(.system(size: 11))
                         .onTapGesture {
-                            notificationService.warn(title: "CheckoutBranchView",
-                                                     message: "TODO: This has to be derived from git")
+                            notificationService.notify(notification: INotification(severity: .info,
+                                                                                   title: "Info Notification",
+                                                                                   message: "This should work!",
+                                                                                   notificationType: .system))
                         }
 
                     Image(systemName: "chevron.right")

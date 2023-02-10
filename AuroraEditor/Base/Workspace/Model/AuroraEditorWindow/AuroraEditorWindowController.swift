@@ -14,7 +14,6 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
     var prefs: AppPreferencesModel = .shared
 
-    @ObservedObject
     private var model: NotificationsModel = .shared
 
     var workspace: WorkspaceDocument
@@ -72,70 +71,120 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         inspector.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(inspector)
 
-        let notificationView = NSHostingView(rootView: NotificationToastView())
+        // This parent fetches the whole apps window since AE is built around
+        // a split editor view.
+        let parent = splitVC.view
 
-        var parent = splitVC.view
-        parent.addSubview(notificationView)
-        notificationView.translatesAutoresizingMaskIntoConstraints = false
+        // We create a empty NSView to be able to allow sending up to date notification
+        // toast when a new `info` notification is being sent to the user.
+        var notificationView = NSView()
 
-        // This sets the width of the view
-        let widthContraints = NSLayoutConstraint(item: notificationView,
-                                                  attribute: NSLayoutConstraint.Attribute.width,
-                                                  relatedBy: NSLayoutConstraint.Relation.equal,
-                                                  toItem: nil,
-                                                  attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-                                                  multiplier: 1,
-                                                  constant: 344)
+        // When there is an update in the `notificationToastData` publisher we featch those
+        // changes and then apply the proper view by replacing the empty `NSView` with a
+        // `NSHostingView` than contains the `NotificationToastView`.
+        //
+        // Before showing the toast we make sure the view is hidden and then add the constraints
+        // to position it correctly in the bottom right corner.
+        model.$notificationToastData.sink { data in
+            notificationView = NSHostingView(rootView: NotificationToastView(notification: data))
+            parent.addSubview(notificationView)
+            notificationView.isHidden = true
+            notificationView.translatesAutoresizingMaskIntoConstraints = false
 
-        // This sets the height of the view
-        let heightContraints = NSLayoutConstraint(item: notificationView,
-                                                  attribute: NSLayoutConstraint.Attribute.height,
-                                                  relatedBy: NSLayoutConstraint.Relation.equal,
-                                                  toItem: nil,
-                                                  attribute: NSLayoutConstraint.Attribute.notAnAttribute,
-                                                  multiplier: 1,
-                                                  constant: 104)
+            // This sets the width of the view
+            let widthContraints = NSLayoutConstraint(item: notificationView,
+                                                      attribute: NSLayoutConstraint.Attribute.width,
+                                                      relatedBy: NSLayoutConstraint.Relation.equal,
+                                                      toItem: nil,
+                                                      attribute: NSLayoutConstraint.Attribute.notAnAttribute,
+                                                      multiplier: 1,
+                                                      constant: 344)
 
-        let xContraints = NSLayoutConstraint(item: notificationView,
-                                             attribute: NSLayoutConstraint.Attribute.bottom,
-                                             relatedBy: NSLayoutConstraint.Relation.equal,
-                                             toItem: parent,
-                                             attribute: NSLayoutConstraint.Attribute.bottom,
-                                             multiplier: 1,
-                                             constant: -20)
+            // This sets the height of the view
+            let heightContraints = NSLayoutConstraint(item: notificationView,
+                                                      attribute: NSLayoutConstraint.Attribute.height,
+                                                      relatedBy: NSLayoutConstraint.Relation.equal,
+                                                      toItem: nil,
+                                                      attribute: NSLayoutConstraint.Attribute.notAnAttribute,
+                                                      multiplier: 1,
+                                                      constant: 104)
 
-        let yContraints = NSLayoutConstraint(item: notificationView,
-                                             attribute: NSLayoutConstraint.Attribute.trailing,
-                                             relatedBy: NSLayoutConstraint.Relation.equal,
-                                             toItem: parent,
-                                             attribute: NSLayoutConstraint.Attribute.trailing,
-                                             multiplier: 1,
-                                             constant: -20)
+            let xContraints = NSLayoutConstraint(item: notificationView,
+                                                 attribute: NSLayoutConstraint.Attribute.bottom,
+                                                 relatedBy: NSLayoutConstraint.Relation.equal,
+                                                 toItem: parent,
+                                                 attribute: NSLayoutConstraint.Attribute.bottom,
+                                                 multiplier: 1,
+                                                 constant: -20)
 
-        NSLayoutConstraint.activate([heightContraints,
-                                     widthContraints,
-                                     xContraints,
-                                     yContraints])
+            let yContraints = NSLayoutConstraint(item: notificationView,
+                                                 attribute: NSLayoutConstraint.Attribute.trailing,
+                                                 relatedBy: NSLayoutConstraint.Relation.equal,
+                                                 toItem: parent,
+                                                 attribute: NSLayoutConstraint.Attribute.trailing,
+                                                 multiplier: 1,
+                                                 constant: -20)
 
-        // Hides the notification after 5 seconds
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-//            NSAnimationContext.runAnimationGroup { context in
-//                context.duration = 0.5
-//
-//                // Animation that allows the view to slide out to
-//                // the left
-//                let transition = CATransition()
-//                transition.type = .push
-//                transition.subtype = .fromLeft
-//
-//                // BUG: For some rease it adds another view
-//                // I'm assuming it has something to do with another
-//                // layer being added
-//                notificationView.layer?.add(transition, forKey: nil )
-//            } completionHandler: {
-//                notificationView.isHidden = true
-//            }
-//        }
+            NSLayoutConstraint.activate([heightContraints,
+                                         widthContraints,
+                                         xContraints,
+                                         yContraints])
+        }.store(in: &cancelables)
+
+        // This sink allows us to observe if we should show the notification toast
+        // view. When the `showNotificationToast` value changes, we check if it's true
+        // if it is we put the `notificationView` hidden to false allowing us to show it
+        // to the user.
+        //
+        // When showing the notification it will transion into the editor from
+        // the right, after that animation is complete we will run a timer that will be
+        // delayed by 5 seconds which will then run another animation that will transition
+        // it to the left, after that is done we toggle `notificationView` to be hidden again
+        // and also toggle the `showNotificationToast` to be off.
+        model.$showNotificationToast.sink { showToast in
+            notificationView.isHidden = !showToast
+
+            if showToast {
+                notificationView.isHidden = !showToast
+
+                NSAnimationContext.runAnimationGroup { context in
+                    context.duration = 0.3
+
+                    // Animation that allows the view to slide in
+                    // from the right
+                    let transition = CATransition()
+                    transition.type = .push
+                    transition.subtype = .fromRight
+
+                    notificationView.layer?.add(transition, forKey: nil )
+                } completionHandler: {
+                    self.model.$hoveringOnToast.sink { isHovering in
+                        if !isHovering {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                                NSAnimationContext.runAnimationGroup { context in
+                                    context.duration = 0.3
+
+                                    // Animation that allows the view to slide out to
+                                    // the left
+                                    let transition = CATransition()
+                                    transition.type = .push
+                                    transition.subtype = .fromLeft
+
+                                    // BUG: For some rease it adds another view
+                                    // I'm assuming it has something to do with another
+                                    // layer being added
+                                    notificationView.layer?.add(transition, forKey: nil )
+                                } completionHandler: {
+                                    notificationView.isHidden = true
+
+                                    self.model.showNotificationToast = false
+                                }
+                            }
+                        }
+                    }.store(in: &self.cancelables)
+                }
+            }
+        }.store(in: &cancelables)
 
         self.splitViewController = splitVC
 

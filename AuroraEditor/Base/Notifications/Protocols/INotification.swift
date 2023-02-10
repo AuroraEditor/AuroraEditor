@@ -13,7 +13,7 @@ struct INotification: INotificationProperties, Equatable, Hashable, Identifiable
     /// The id of the notification. If provided, will be used to compare
     /// notifications with others to decide whether a notification is
     /// duplicate or not.
-    var id: String?
+    var id: String? = UUID().uuidString
 
     /// The severity of the notification. Either `Info`, `Warning` or `Error`.
     var severity: Severity

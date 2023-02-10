@@ -26,6 +26,15 @@ class NotificationsModel: ObservableObject, INotificationsModel {
     @Published
     public var showNotificationToast: Bool = false
 
+    @Published
+    public var hoveringOnToast: Bool = false
+
+    @Published
+    public var notificationToastData: INotification = INotification(severity: .info,
+                                                                    title: "",
+                                                                    message: "",
+                                                                    notificationType: .custom)
+
     func addNotification(notification: INotification) {
 
         // If notifications are not enabled we should not allow sending
@@ -40,6 +49,13 @@ class NotificationsModel: ObservableObject, INotificationsModel {
         // from the list. If it does not exist, we continue as normal.
         if findNotification(notification: notification) {
             Log.error("Notification already exists")
+            return
+        }
+
+        if notification.severity == .info {
+            notificationToastData = notification
+
+            showNotificationToast = true
         }
 
         notifications.append(notification)

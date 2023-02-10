@@ -10,8 +10,14 @@ import SwiftUI
 
 struct NotificationToastView: View {
 
+    @ObservedObject
+    private var model: NotificationsModel = .shared
+
     @Environment(\.colorScheme)
     var colorScheme
+
+    @State
+    public var notification: INotification
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -29,15 +35,23 @@ struct NotificationToastView: View {
                     .fontWithLineHeight(fontSize: 11,
                                         lineHeight: 7)
                     .foregroundColor(.secondary)
+
+                if model.hoveringOnToast {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 11))
+                        .onTapGesture {
+                            model.showNotificationToast = false
+                        }
+                }
             }
 
-            Text("Update Available")
+            Text(notification.title)
                 .fontWithLineHeight(fontSize: 13,
                                     lineHeight: 8)
                 .foregroundColor(.primary)
                 .padding(.top, 10)
 
-            Text("A new update of the docker extension for Aurora Editor is now available.")
+            Text(notification.message)
                 .fontWeight(.regular)
                 .fontWithLineHeight(fontSize: 13,
                                     lineHeight: 8)
@@ -48,11 +62,17 @@ struct NotificationToastView: View {
         .background(colorScheme == .light ? .white : Color(hex: "#252525"))
         .cornerRadius(8)
         .shadow(radius: 1)
+        .onHover { hovering in
+            model.hoveringOnToast = hovering
+        }
     }
 }
 
 struct NotificationToastView_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationToastView()
+        NotificationToastView(notification: INotification(severity: .info,
+                                                          title: "Update Available",
+                                                          message: "Test",
+                                                          notificationType: .system))
     }
 }
