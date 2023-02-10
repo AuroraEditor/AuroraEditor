@@ -129,6 +129,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "fummicc1",
+      "name": "Fumiya Tanaka",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44002126?v=4",
+      "profile": "http://fummicc1.net",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 5,
