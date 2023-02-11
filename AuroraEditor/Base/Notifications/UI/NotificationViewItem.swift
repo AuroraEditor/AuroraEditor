@@ -12,6 +12,9 @@ struct NotificationViewItem: View {
 
     var notification: INotification
 
+    @ObservedObject
+    private var model: NotificationsModel = .shared
+
     @State
     private var showActions: Bool = false
 
@@ -87,6 +90,9 @@ struct NotificationViewItem: View {
             }
 
             Button("Ignore Notification") {
+                if let index = self.model.notifications.firstIndex(of: notification) {
+                    self.model.notifications.remove(at: index)
+                }
             }
 
             Button("Don’t Show Again...") {

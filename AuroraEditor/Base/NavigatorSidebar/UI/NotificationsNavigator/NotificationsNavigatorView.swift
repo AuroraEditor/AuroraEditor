@@ -38,7 +38,7 @@ struct NotificationsNavigatorView: View {
                     .frame(maxWidth: .infinity,
                            maxHeight: .infinity)
                 } else {
-                    List(notificationList().reversed()) { notification in
+                    List(notificationList().reversed(), id: \.id) { notification in
                         NotificationViewItem(notification: notification)
                     }
                 }
