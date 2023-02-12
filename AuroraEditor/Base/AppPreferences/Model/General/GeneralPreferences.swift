@@ -57,6 +57,7 @@ public extension AppPreferences {
         /// The reveal file in navigator when focus changes behavior of the app.
         public var revealFileOnFocusChange: Bool = false
 
+        /// The fag whether inspectors side-bar should open by default or not.
         public var keepInspectorSidebarOpen: Bool = true
 
         /// Default initializer
