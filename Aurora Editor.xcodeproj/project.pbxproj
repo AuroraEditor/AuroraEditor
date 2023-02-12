@@ -3397,6 +3397,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B658FB5127DA9E1000EA4DBD /* Build configuration list for PBXNativeTarget "Aurora Editor" */;
 			buildPhases = (
+				2B4A907D299962AB00A5A2D7 /* Check for SwiftLint Updates */,
 				2BA119D327E5274D00A996FF /* SwiftLint Run Script */,
 				B658FB2827DA9E0F00EA4DBD /* Sources */,
 				B658FB2927DA9E0F00EA4DBD /* Frameworks */,
@@ -3669,6 +3670,24 @@
 			shellPath = /bin/sh;
 			shellScript = "# Hash (full length)\nGITHASH=$(git rev-parse HEAD)\n\nprintf \"$GITHASH\" > \"${PROJECT_DIR}/AuroraEditor/.githash\"\n\necho \"info: Updated ${PROJECT_DIR}/AuroraEditor/.githash: to \\\"$GITHASH\\\".\"\n";
 		};
+		2B4A907D299962AB00A5A2D7 /* Check for SwiftLint Updates */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Check for SwiftLint Updates";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Only check if swiftlint is installed, otherwise don't worry\nif which swiftlint >/dev/null; then\n    if which brew >/dev/null; then\n        # Check for updates\n        brew update\n        # Check if swiftlint is outdated (exit with status 1)\n        brew outdated swiftlint &> /dev/null\n        if [ $? -eq 1 ] \n        then\n            echo \"There are updates available for swiftlint, please run 'brew upgrade swiftlint' to update.\";\n            exit 1;\n        fi\n    fi\nfi\n";
+		};
 		2BA119D327E5274D00A996FF /* SwiftLint Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -3686,7 +3705,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint --strict\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint --strict\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		2BCDF9D9295F2EC300570253 /* Clear .githash */ = {
 			isa = PBXShellScriptBuildPhase;
