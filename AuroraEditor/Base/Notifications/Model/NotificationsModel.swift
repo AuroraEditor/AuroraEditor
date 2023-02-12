@@ -43,6 +43,14 @@ class NotificationsModel: ObservableObject, INotificationsModel {
             return
         }
 
+        // We check if the user has the notification saved in their `do not show again`
+        // list, if they do we don't add the notification until the user decides to remove
+        // the notification from not showing in settings.
+        if LocalStorage().listDoNotShowNotification().contains(notification.id ?? "") {
+            Log.warning("This notification \(notification.id), has been marked by the user to not show again.")
+            return
+        }
+
         // In order to prevent a notification we the same contents or even id
         // we check if the notification doesn't first exist. If the notification
         // does for whatever reason exist we close the notification and remove it

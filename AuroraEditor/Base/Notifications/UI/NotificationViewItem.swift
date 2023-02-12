@@ -84,18 +84,21 @@ struct NotificationViewItem: View {
 
             if notification.notificationType == .extensionSystem {
                 Button("View Extension") {
+                    // TODO: @Wesley
                 }
 
                 Divider()
             }
 
             Button("Ignore Notification") {
-                if let index = self.model.notifications.firstIndex(of: notification) {
-                    self.model.notifications.remove(at: index)
-                }
+                removeNotificationAtIndex()
             }
 
             Button("Don’t Show Again...") {
+                // Remove notification
+                removeNotificationAtIndex()
+
+                LocalStorage().saveDoNotShowNotifcation(id: notification.id ?? "")
             }
         }
     }
@@ -110,6 +113,12 @@ struct NotificationViewItem: View {
             return "exclamationmark.triangle.fill"
         case .error:
             return "exclamationmark.octagon.fill"
+        }
+    }
+
+    private func removeNotificationAtIndex() {
+        if let index = self.model.notifications.firstIndex(of: notification) {
+            self.model.notifications.remove(at: index)
         }
     }
 }

@@ -36,6 +36,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     var cancellable = Set<AnyCancellable>()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+
+        // Before anything happens we need to register any storage locations
+        // that might not exist.
+        LocalStorage().registerStorage()
+
         AuroraCrashlytics.add(delegate: self)
 
         AppPreferencesModel.shared.preferences.general.appAppearance.applyAppearance()

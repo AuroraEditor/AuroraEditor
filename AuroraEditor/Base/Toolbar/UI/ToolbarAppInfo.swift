@@ -35,7 +35,9 @@ public struct ToolbarAppInfo: View {
                 HStack {
                     Image(systemName: "app.dashed")
                         .onTapGesture {
-                            notificationService.notify(notification: INotification(severity: .info,
+                            // swiftlint:disable:next line_length
+                            notificationService.notify(notification: INotification(id: "121DD622-1624-4AF7-ADF7-528F81512925",
+                                                                                   severity: .info,
                                                                                    title: "Info Notification",
                                                                                    message: "This is a test",
                                                                                    notificationType: .system))
