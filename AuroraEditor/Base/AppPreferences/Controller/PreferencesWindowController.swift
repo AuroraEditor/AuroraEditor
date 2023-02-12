@@ -16,7 +16,6 @@ final class PreferencesWindowController: NSWindowController, NSToolbarDelegate {
         self.init(window: window)
         window.title = "Preferences"
         window.styleMask.insert(.fullSizeContentView)
-        window.styleMask.remove(.resizable)
         window.titlebarSeparatorStyle = .none
     }
 
