@@ -520,6 +520,7 @@
 		B658FB3427DA9E1000EA4DBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B658FB3327DA9E1000EA4DBD /* Assets.xcassets */; };
 		B6EE989027E8879A00CDD8AB /* InspectorSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE988F27E8879A00CDD8AB /* InspectorSidebar.swift */; };
 		B6EE989227E887C600CDD8AB /* InspectorSidebarToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE989127E887C600CDD8AB /* InspectorSidebarToolbar.swift */; };
+		D3C2DA4A29990FB900FA9F4C /* AuroraSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C2DA4929990FB900FA9F4C /* AuroraSplitViewController.swift */; };
 		D7012EE827E757850001E1EF /* FindNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7012EE727E757850001E1EF /* FindNavigator.swift */; };
 		D7211D4327E066CE008F2ED7 /* Localized+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7211D4227E066CE008F2ED7 /* Localized+Ex.swift */; };
 		D7211D4727E06BFE008F2ED7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7211D4927E06BFE008F2ED7 /* Localizable.strings */; };
@@ -1141,6 +1142,7 @@
 		B658FB4727DA9E1000EA4DBD /* Aurora Editor (UITests).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Aurora Editor (UITests).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6EE988F27E8879A00CDD8AB /* InspectorSidebar.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = InspectorSidebar.swift; sourceTree = "<group>"; tabWidth = 4; };
 		B6EE989127E887C600CDD8AB /* InspectorSidebarToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorSidebarToolbar.swift; sourceTree = "<group>"; };
+		D3C2DA4929990FB900FA9F4C /* AuroraSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraSplitViewController.swift; sourceTree = "<group>"; };
 		D7012EE727E757850001E1EF /* FindNavigator.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = FindNavigator.swift; sourceTree = "<group>"; tabWidth = 4; };
 		D7211D4227E066CE008F2ED7 /* Localized+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localized+Ex.swift"; sourceTree = "<group>"; };
 		D7211D4827E06BFE008F2ED7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1235,6 +1237,7 @@
 				206B128028DF7311002CDE51 /* EmptyEditorView.swift */,
 				0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */,
 				B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */,
+				D3C2DA4929990FB900FA9F4C /* AuroraSplitViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -3840,6 +3843,7 @@
 				93813D2428D749CC00A492D4 /* CodeViewDelegate.swift in Sources */,
 				2032B50E28A256130089EBB6 /* Collection.swift in Sources */,
 				2093CDDE289AA522003A88DD /* Color.swift in Sources */,
+				D3C2DA4A29990FB900FA9F4C /* AuroraSplitViewController.swift in Sources */,
 				2B04575528E6FFE300024F2D /* ColorThemeAttribute.swift in Sources */,
 				93EF416328C1D752004083AD /* Command.swift in Sources */,
 				93EF416128C1D38E004083AD /* CommandPaletteItem.swift in Sources */,

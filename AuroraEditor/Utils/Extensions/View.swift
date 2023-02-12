@@ -23,4 +23,34 @@ internal extension View {
             NSCursor.pop()
         }
     }
+
+    /// Change View according to `condition` parameter.
+    ///
+    /// We can use this like the below.
+    ///
+    ///     @State private var message = "Example"
+    ///     Text(message)
+    ///         .foregroundColor(Color.blue)
+    ///         .if(message.isEmpty) {
+    ///             $0.foregroundColor(Color.red)
+    ///         }
+    ///
+    /// - Parameters:
+    ///     - condition: the flag if we modify self with `whenTrue` closure.
+    ///     - whenTrue: return new View for `true` state.
+    ///     - whenFalse: return new View for `false`.
+    ///     This parameter is optional and default value is `nil`.
+    ///     If `whenFalse` is nil, just return `self` as a View for `false` state.
+    func `if`(
+        _ condition: @autoclosure () -> Bool,
+        whenTrue: (Self) -> any View,
+        whenFalse: ((Self) -> any View)? = nil
+    ) -> AnyView {
+        if condition() {
+            return AnyView(whenTrue(self))
+        } else if let whenFalse {
+            return AnyView(whenFalse(self))
+        }
+        return AnyView(self)
+    }
 }

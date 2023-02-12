@@ -19,8 +19,8 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
     var cancelables: Set<AnyCancellable> = .init()
 
-    var splitViewController: NSSplitViewController! {
-        get { contentViewController as? NSSplitViewController }
+    var splitViewController: AuroraSplitViewController! {
+        get { contentViewController as? AuroraSplitViewController }
         set { contentViewController = newValue }
     }
 
@@ -40,11 +40,16 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
     }
 
     private func setupSplitView(with workspace: WorkspaceDocument) {
-        let splitVC = NSSplitViewController()
+        let splitVC = AuroraSplitViewController(prefs: prefs)
 
         let navigatorView = NavigatorSidebar().environmentObject(workspace)
+        let navigationViewController = NSHostingController(rootView: navigatorView)
         let navigator = NSSplitViewItem(
-            sidebarWithViewController: NSHostingController(rootView: navigatorView)
+            sidebarWithViewController: navigationViewController
+        )
+        observeSidebarWidth(
+            of: navigator,
+            change: prefs.$preferences.map(\.general.navigationSidebarWidth).eraseToAnyPublisher()
         )
         navigator.titlebarSeparatorStyle = .none
         navigator.minimumThickness = 260
@@ -52,15 +57,25 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         splitVC.addSplitViewItem(navigator)
 
         let workspaceView = WorkspaceView().environmentObject(workspace)
+        let workspaceViewController = NSHostingController(rootView: workspaceView)
         let mainContent = NSSplitViewItem(
-            viewController: NSHostingController(rootView: workspaceView)
+            viewController: workspaceViewController
+        )
+        observeSidebarWidth(
+            of: mainContent,
+            change: prefs.$preferences.map(\.general.workspaceSidebarWidth).eraseToAnyPublisher()
         )
         mainContent.titlebarSeparatorStyle = .line
         splitVC.addSplitViewItem(mainContent)
 
         let inspectorView = InspectorSidebar(prefs: prefs).environmentObject(workspace)
+        let inspectorViewController = NSHostingController(rootView: inspectorView)
         let inspector = NSSplitViewItem(
-            viewController: NSHostingController(rootView: inspectorView)
+            viewController: inspectorViewController
+        )
+        observeSidebarWidth(
+            of: inspector,
+            change: prefs.$preferences.map(\.general.inspectorSidebarWidth).eraseToAnyPublisher()
         )
         inspector.titlebarSeparatorStyle = .line
         inspector.minimumThickness = 260
@@ -72,6 +87,30 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
         workspace.broadcaster.broadcaster
             .sink(receiveValue: recieveCommand).store(in: &cancelables)
+    }
+
+    private func observeSidebarWidth(
+        of splitViewItem: NSSplitViewItem,
+        change width: AnyPublisher<Double, Never>,
+        initialWidth: Double = 260
+    ) {
+        let viewController = splitViewItem.viewController
+        let strongAnchor = viewController.view.widthAnchor.constraint(equalToConstant: initialWidth)
+        strongAnchor.priority = .defaultHigh
+        strongAnchor.isActive = true
+        width.prefix(1).sink { [weak strongAnchor] width in
+            strongAnchor?.constant = width
+        }
+        .store(in: &cancelables)
+        let lowAnchor = viewController.view.widthAnchor.constraint(equalToConstant: initialWidth)
+        lowAnchor.priority = .defaultLow
+        lowAnchor.isActive = false
+        width.dropFirst().sink { [weak lowAnchor, weak strongAnchor] width in
+            strongAnchor?.isActive = false
+            lowAnchor?.isActive = true
+            lowAnchor?.constant = width
+        }
+        .store(in: &cancelables)
     }
 
     override func close() {
