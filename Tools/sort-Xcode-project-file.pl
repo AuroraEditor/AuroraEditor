@@ -29,6 +29,7 @@
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # Script to sort "children" and "files" sections in Xcode project.pbxproj files
+# Usage perl projectDirectory/AuroraEditor/Tools/sort-Xcode-project-file.pl projectDirectory/AuroraEditor/Aurora\ Editor.xcodeproj
 
 use strict;
 use warnings;
