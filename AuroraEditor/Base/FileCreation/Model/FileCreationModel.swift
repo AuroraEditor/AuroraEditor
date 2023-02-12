@@ -95,8 +95,13 @@ class FileCreationModel: ObservableObject {
                     createFileWithStarterContent(atPath: newFilePath.path, fileName: fileName)
                     completionHandler(.success("Success"))
                 } catch {
-                    // swiftlint:disable:next line_length
-                    completionHandler(.failure(FileCreationError.unableToReplace("Unable to replace file at path: \(newFilePath).")))
+                    completionHandler(
+                        .failure(
+                            FileCreationError.unableToReplace(
+                                "Unable to replace file at path: \(newFilePath)."
+                            )
+                        )
+                    )
                 }
             }
         }

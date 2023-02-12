@@ -99,7 +99,7 @@ public class HighlightTheme: Codable {
             }
         }
         guard prev != nil else {
-            print("Error: prev is nil") // swiftlint:disable:this disallow_print
+            Log.info("Error: prev is nil")
             return
         }
         curr.attributes = (prev?.attributes ?? [:])
@@ -116,7 +116,7 @@ public class HighlightTheme: Codable {
         }
 
         if !setting.parentScopes.isEmpty {
-            print("Warning: HighlightTheme parent scopes not implemented")
+            Log.warning("HighlightTheme parent scopes not implemented")
         }
     }
 
