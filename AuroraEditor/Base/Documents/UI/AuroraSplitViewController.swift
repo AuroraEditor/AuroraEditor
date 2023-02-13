@@ -44,7 +44,6 @@ class AuroraSplitViewController: NSSplitViewController {
                 }
                 /// Note: in case, other stuff of ``AppPreferences/GeneralPreferences`` is updated,
                 /// we only update the properties which can be updated in ``AuroraSplitViewController``.
-                Log.info(general)
                 prefs.preferences.general.navigationSidebarWidth = general.navigationSidebarWidth
                 prefs.preferences.general.workspaceSidebarWidth = general.workspaceSidebarWidth
                 prefs.preferences.general.inspectorSidebarWidth = general.inspectorSidebarWidth
