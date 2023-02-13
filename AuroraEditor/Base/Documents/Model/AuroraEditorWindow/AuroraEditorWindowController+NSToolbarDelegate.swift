@@ -177,6 +177,8 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
         else { return }
 
         inspectorPane.animator().isCollapsed.toggle()
+        prefs.preferences.general.keepInspectorSidebarOpen = !inspectorPane.isCollapsed
+
         for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
             Log.info(id, "didToggleInspectorPane()")
             AEExt.respond(
