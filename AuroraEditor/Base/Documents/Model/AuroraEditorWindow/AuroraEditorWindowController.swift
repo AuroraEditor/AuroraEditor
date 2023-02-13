@@ -33,17 +33,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         setupSplitView(with: self.workspace)
         setupToolbar()
 
-        DispatchQueue.main.async { [weak self] in
-            guard let self else {
-                return
-            }
-            self.window?.setContentSize(
-                CGSize(
-                    width: self.prefs.preferences.general.auroraEditorWindowWidth,
-                    height: 600
-                )
-            )
-        }
+        updateLayoutOfWindowAndSplitView()
     }
 
     @available(*, unavailable)
@@ -87,19 +77,6 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
         workspace.broadcaster.broadcaster
             .sink(receiveValue: recieveCommand).store(in: &cancelables)
-
-        DispatchQueue.main.async { [weak prefs] in
-            guard let prefs else {
-                return
-            }
-            let navigationSidebarWidth = prefs.preferences.general.navigationSidebarWidth
-            let workspaceSidebarWidth = prefs.preferences.general.workspaceSidebarWidth
-            let firstDividerPos = navigationSidebarWidth
-            let secondDividerPos = navigationSidebarWidth + workspaceSidebarWidth
-            splitVC.splitView.setPosition(firstDividerPos, ofDividerAt: 0)
-            splitVC.splitView.setPosition(secondDividerPos, ofDividerAt: 1)
-            splitVC.splitView.layoutSubtreeIfNeeded()
-        }
     }
 
     override func close() {
@@ -109,6 +86,29 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
     override func windowDidLoad() {
         super.windowDidLoad()
+    }
+
+    @objc
+    private func updateLayoutOfWindowAndSplitView() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else {
+                return
+            }
+            let navigationSidebarWidth = self.prefs.preferences.general.navigationSidebarWidth
+            let workspaceSidebarWidth = self.prefs.preferences.general.workspaceSidebarWidth
+            let firstDividerPos = navigationSidebarWidth
+            let secondDividerPos = navigationSidebarWidth + workspaceSidebarWidth
+
+            self.window?.setContentSize(
+                CGSize(
+                    width: self.prefs.preferences.general.auroraEditorWindowWidth,
+                    height: 600
+                )
+            )
+            self.splitViewController.splitView.setPosition(firstDividerPos, ofDividerAt: 0)
+            self.splitViewController.splitView.setPosition(secondDividerPos, ofDividerAt: 1)
+            self.splitViewController.splitView.layoutSubtreeIfNeeded()
+        }
     }
 
     private func getSelectedCodeFile() -> CodeFileDocument? {

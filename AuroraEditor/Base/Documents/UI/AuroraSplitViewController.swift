@@ -43,6 +43,7 @@ class AuroraSplitViewController: NSSplitViewController {
                 }
                 /// Note: in case, other stuff of ``AppPreferences/GeneralPreferences`` is updated,
                 /// we only update the properties which can be updated in ``AuroraSplitViewController``.
+                Log.info(general)
                 prefs.preferences.general.navigationSidebarWidth = general.navigationSidebarWidth
                 prefs.preferences.general.workspaceSidebarWidth = general.workspaceSidebarWidth
                 prefs.preferences.general.inspectorSidebarWidth = general.inspectorSidebarWidth
@@ -61,6 +62,13 @@ class AuroraSplitViewController: NSSplitViewController {
 
     override func splitViewDidResizeSubviews(_ notification: Notification) {
         if !calledViewDidAppear {
+            return
+        }
+        // Workaround
+        // this method `splitViewDidResizeSubviews` is also called when current window is about to be closed.
+        // then, somehow splitViewItem size is not correct (like set to zero).
+        // so I would like to skip the case some of the splitViewItems has zero size.
+        guard splitView.subviews.isEmpty == false, splitView.subviews.allSatisfy({ $0.frame.width != .zero }) else {
             return
         }
         var prefsKeyPath: [WritableKeyPath<AppPreferences.GeneralPreferences, Double>] = []
