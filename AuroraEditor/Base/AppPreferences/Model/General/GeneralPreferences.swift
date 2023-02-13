@@ -64,6 +64,10 @@ public extension AppPreferences {
         public var navigationSidebarWidth: Double = Self.defaultNavigationSidebarWidth
         public var inspectorSidebarWidth: Double = Self.defaultInspectorSidebarWidth
 
+        public var auroraEditorWindowWidth: Double {
+            navigationSidebarWidth + workspaceSidebarWidth + inspectorSidebarWidth
+        }
+
         private static let defaultInspectorSidebarWidth: Double = 260
         private static let defaultNavigationSidebarWidth: Double = 260
         private static let defaultWorkspaceSidebarWidth: Double = 260

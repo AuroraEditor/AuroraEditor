@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Combine
 
 /// AuroraSplitViewController
 ///
@@ -21,9 +22,32 @@ class AuroraSplitViewController: NSSplitViewController {
     /// because it is not what user intends, we would like to skip such a default value to be persisted.
     private var calledViewDidAppear: Bool = false
 
+    /// `generalPrefsSubject` stores latest size change of each splitViewItem.
+    ///
+    /// Why `generalPrefsSubject` exists is because such a frequest size change like splitViewItem
+    ///  should not be persisted one by one.
+    /// rather than that, we would like to store only the latest event of size change
+    /// by using `Publiher.debounce` in `Combine` framework.
+    private let generalPrefsSubject: PassthroughSubject<AppPreferences.GeneralPreferences, Never> = .init()
+
+    private var cancellables: Set<AnyCancellable> = []
+
     init(prefs: AppPreferencesModel) {
         self.prefs = prefs
         super.init(nibName: nil, bundle: nil)
+
+        generalPrefsSubject.debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .sink { [weak prefs] general in
+                guard let prefs else {
+                    return
+                }
+                /// Note: in case, other stuff of ``AppPreferences/GeneralPreferences`` is updated,
+                /// we only update the properties which can be updated in ``AuroraSplitViewController``.
+                prefs.preferences.general.navigationSidebarWidth = general.navigationSidebarWidth
+                prefs.preferences.general.workspaceSidebarWidth = general.workspaceSidebarWidth
+                prefs.preferences.general.inspectorSidebarWidth = general.inspectorSidebarWidth
+            }
+            .store(in: &cancellables)
     }
 
     required init?(coder: NSCoder) {
@@ -36,38 +60,26 @@ class AuroraSplitViewController: NSSplitViewController {
     }
 
     override func splitViewDidResizeSubviews(_ notification: Notification) {
-        guard let dividerIndex = notification.userInfo?["NSSplitViewDividerIndex"] as? Int else {
-            return
-        }
         if !calledViewDidAppear {
             return
         }
-        var prefsKeyPath: [WritableKeyPath<AppPreferences, Double>] = []
+        var prefsKeyPath: [WritableKeyPath<AppPreferences.GeneralPreferences, Double>] = []
+        var general = prefs.preferences.general
         var subViews: [NSView] = []
-        if dividerIndex == 0 {
-            prefsKeyPath = [
-                \AppPreferences.general.navigationSidebarWidth,
-                \AppPreferences.general.workspaceSidebarWidth
-            ]
-            subViews = [
-                splitView.subviews[0],
-                splitView.subviews[1]
-            ]
-        } else if dividerIndex == 1 {
-            prefsKeyPath = [
-                \AppPreferences.general.workspaceSidebarWidth,
-                \AppPreferences.general.inspectorSidebarWidth
-            ]
-            subViews = [
-                splitView.subviews[1],
-                splitView.subviews[2]
-            ]
-        } else {
-            return
-        }
+        prefsKeyPath = [
+            \.navigationSidebarWidth,
+            \.workspaceSidebarWidth,
+            \.inspectorSidebarWidth
+        ]
+        subViews = [
+            splitView.subviews[0],
+            splitView.subviews[1],
+            splitView.subviews[2]
+        ]
         for (sidebar, keyPath) in zip(subViews, prefsKeyPath) {
             let width = sidebar.frame.size.width
-            prefs.preferences[keyPath: keyPath] = width
+            general[keyPath: keyPath] = width
         }
+        generalPrefsSubject.send(general)
     }
 }
