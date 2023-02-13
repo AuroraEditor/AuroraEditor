@@ -12,7 +12,8 @@ import Combine
 /// AuroraSplitViewController
 ///
 /// `AuroraSplitViewController` is defined so that we observe resize event for SplitView subViews.
-/// By observing such a resize event, we can memorize latest size of ``NavigatorSidebar``/``WorkspaceView`` /``InspectorSidebar``
+/// By observing such a resize event, we can memorize latest size of
+/// ``NavigatorSidebar``/``WorkspaceView`` /``InspectorSidebar``
 /// whose sizes are stored inside ``AppPreferences/GeneralPreferences``.
 class AuroraSplitViewController: NSSplitViewController {
 
