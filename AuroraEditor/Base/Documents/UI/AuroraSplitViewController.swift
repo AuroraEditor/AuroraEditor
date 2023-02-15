@@ -71,19 +71,17 @@ class AuroraSplitViewController: NSSplitViewController {
         guard splitView.subviews.isEmpty == false, splitView.subviews.allSatisfy({ $0.frame.width != .zero }) else {
             return
         }
-        var prefsKeyPath: [WritableKeyPath<AppPreferences.GeneralPreferences, Double>] = []
-        var general = prefs.preferences.general
-        var subViews: [NSView] = []
-        prefsKeyPath = [
+        let prefsKeyPath: [WritableKeyPath<AppPreferences.GeneralPreferences, Double>] = [
             \.navigationSidebarWidth,
             \.workspaceSidebarWidth,
             \.inspectorSidebarWidth
         ]
-        subViews = [
+        let subViews = [
             splitView.subviews[0],
             splitView.subviews[1],
             splitView.subviews[2]
         ]
+        var general = prefs.preferences.general
         for (sidebar, keyPath) in zip(subViews, prefsKeyPath) {
             let width = sidebar.frame.size.width
             general[keyPath: keyPath] = width
