@@ -22,6 +22,8 @@ struct InspectorSidebar: View {
     @State
     private var selection: Int = 0
 
+    let prefs: AppPreferencesModel
+
     var body: some View {
         VStack {
             if let item = workspace.selectionState.openFileItems.first(where: { file in
@@ -52,6 +54,7 @@ struct InspectorSidebar: View {
             maxHeight: .infinity,
             alignment: .top
         )
+        .isHidden(!prefs.preferences.general.keepInspectorSidebarOpen)
         .safeAreaInset(edge: .top) {
             InspectorSidebarToolbarTop(selection: $selection)
                 .padding(.bottom, -8)

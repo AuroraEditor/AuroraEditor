@@ -51,7 +51,12 @@ struct PreferencesView: View {
 
                 Text("No selection")
             }
-            .frame(width: 760, height: 500)
+            .frame(
+                minWidth: 760,
+                maxWidth: .infinity,
+                minHeight: 500,
+                maxHeight: .infinity
+            )
         }
     }
 

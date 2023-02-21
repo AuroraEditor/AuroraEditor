@@ -57,7 +57,20 @@ public extension AppPreferences {
         /// The reveal file in navigator when focus changes behavior of the app.
         public var revealFileOnFocusChange: Bool = false
 
+        /// The fag whether inspectors side-bar should open by default or not.
         public var keepInspectorSidebarOpen: Bool = true
+
+        public var workspaceSidebarWidth: Double = Self.defaultWorkspaceSidebarWidth
+        public var navigationSidebarWidth: Double = Self.defaultNavigationSidebarWidth
+        public var inspectorSidebarWidth: Double = Self.defaultInspectorSidebarWidth
+
+        public var auroraEditorWindowWidth: Double {
+            navigationSidebarWidth + workspaceSidebarWidth + inspectorSidebarWidth
+        }
+
+        private static let defaultInspectorSidebarWidth: Double = 260
+        private static let defaultNavigationSidebarWidth: Double = 260
+        private static let defaultWorkspaceSidebarWidth: Double = 260
 
         /// Default initializer
         public init() {}
@@ -129,6 +142,18 @@ public extension AppPreferences {
                 Bool.self,
                 forKey: .keepInspectorSidebarOpen
             ) ?? true
+            self.navigationSidebarWidth = try container.decodeIfPresent(
+                Double.self,
+                forKey: .navigationSidebarWidth
+            ) ?? Self.defaultNavigationSidebarWidth
+            self.workspaceSidebarWidth = try container.decodeIfPresent(
+                Double.self,
+                forKey: .workspaceSidebarWidth
+            ) ?? Self.defaultWorkspaceSidebarWidth
+            self.inspectorSidebarWidth = try container.decodeIfPresent(
+                Double.self,
+                forKey: .inspectorSidebarWidth
+            ) ?? Self.defaultInspectorSidebarWidth
         }
         // swiftlint:enable function_body_length
     }

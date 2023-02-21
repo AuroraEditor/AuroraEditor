@@ -51,9 +51,11 @@ struct FileCreationSelectionView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .sheet(isPresented: $showFileNamingSheet) {
-                    FileCreationNamingView(workspace: workspace,
-                                           // swiftlint:disable:next line_length
-                                           fileName: "untitled.\(creationSheetModel.selectedLanguageItem.languageExtension)")
+                    let ext = creationSheetModel.selectedLanguageItem.languageExtension
+                    FileCreationNamingView(
+                        workspace: workspace,
+                        fileName: "untitled.\(ext)"
+                    )
                 }
             }
         }
