@@ -6,6 +6,31 @@
   <h1 align="center">Aurora Editor</h1>
 </p>
 
+
+> <h1 align="center">⚠ This project is not longer in active development</h1>
+> We suggest you to take a look on <a target='_blank' href='https://github.com/CodeEditApp/CodeEdit'>CodeEdit</a>.
+>
+> See the announcement on <a target='_blank' href='https://discord.com/channels/997410333348077620/997422144067751987/1082230875778977802'>Aurora Editor Discord</a> and the <a target='_blank' href='https://discord.com/channels/951544472238444645/1041947848549343302/1082436324675563530'>CodeEdit Discord</a>
+>
+> Thanks for all the support.
+<br />
+
+message on Aurora Editor's Discord:
+```
+Hi @everyone,
+
+It's happening, we are going to move our codebase into CodeEdit.
+You can join the CodeEdit discord here: https://discord.gg/eVChyfq99r
+It was a fun ride, we'll thank everyone for the support, but it's to much work for 2/3 people to build a full editor (IDE).
+
+AuroraEditor will stay active on Github, and i'll try to get the highlighting system to work, and if we ever feel the need, or find more contributors we're happy to start developing on AuroraEditor again.
+
+All channels except #announcements and #general will be (temporary) read-only.
+
+Thanks everyone for the support,
+and we'll hope you will join our adventure over at CodeEdit!
+```
+
 <p align="center">
   <a href='https://twitter.com/Aurora_Editor' target='_blank'>
     <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Aurora_Editor?color=f6579d&style=for-the-badge">
