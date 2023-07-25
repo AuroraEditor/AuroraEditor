@@ -102,6 +102,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         let codeLayoutManager = CodeLayoutManager(),
             codeContainer = CodeContainer(),
             codeStorage = NSTextStorage()
+        #warning("Need to implement another code storage which is not taking up all memory")
 //            codeStorage = CodeStorage(parser: parser,
 //                                      baseGrammar: grammar,
 //                                      theme: theme)
