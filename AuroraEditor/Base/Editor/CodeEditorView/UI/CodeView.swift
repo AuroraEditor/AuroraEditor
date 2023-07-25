@@ -57,7 +57,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
             backgroundColor = theme.editor.background.nsColor
             insertionPointColor = theme.editor.insertionPoint.nsColor
             selectedTextAttributes = [.backgroundColor: theme.editor.selection.nsColor]
-            (textStorage as? CodeStorage)?.theme = theme
+//            (textStorage as? CodeStorage)?.theme = theme
             minimapView?.backgroundColor = theme.editor.background.nsColor
             documentVisibleBox?.fillColor = theme.editor.text.nsColor.withAlphaComponent(0.1)
             tile()
@@ -101,9 +101,10 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         // Use custom components that are gutter-aware and support code-specific editing actions and highlighting.
         let codeLayoutManager = CodeLayoutManager(),
             codeContainer = CodeContainer(),
-            codeStorage = CodeStorage(parser: parser,
-                                      baseGrammar: grammar,
-                                      theme: theme)
+            codeStorage = NSTextStorage()
+//            codeStorage = CodeStorage(parser: parser,
+//                                      baseGrammar: grammar,
+//                                      theme: theme)
         codeStorage.addLayoutManager(codeLayoutManager)
         codeContainer.layoutManager = codeLayoutManager
         codeLayoutManager.addTextContainer(codeContainer)
@@ -232,7 +233,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         // latter may be inaccurate due to editing that let
         // to the selected range change.
         if lineOfInsertionPoint != oldLastLineOfInsertionPoint, let codeStorage = optCodeStorage {
-
+/*
             if let oldLine = oldLastLineOfInsertionPoint,
                let oldLineRange = codeStorage.getLineRange(oldLine) {
 
@@ -255,6 +256,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
                     self.setNeedsDisplay(self.lineBackgroundRect(fragmentRect))
                 }
             }
+ */
         }
         oldLastLineOfInsertionPoint = lineOfInsertionPoint
 
