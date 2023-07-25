@@ -108,7 +108,6 @@ public struct ToolbarBranchPicker: View {
 
         var body: some View {
             VStack(alignment: .leading) {
-                // TODO: This is broken for a strange reason, disabled if let.
                 if let currentBranch = currentBranch {
                     VStack(alignment: .leading, spacing: 0) {
                         headerLabel("Current Branch")
