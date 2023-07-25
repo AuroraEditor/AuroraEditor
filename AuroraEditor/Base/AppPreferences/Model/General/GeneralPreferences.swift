@@ -155,7 +155,6 @@ public extension AppPreferences {
                 forKey: .inspectorSidebarWidth
             ) ?? Self.defaultInspectorSidebarWidth
         }
-        // swiftlint:enable function_body_length
     }
 
     /// The appearance of the app
