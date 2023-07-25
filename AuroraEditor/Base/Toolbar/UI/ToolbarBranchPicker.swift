@@ -55,18 +55,18 @@ public struct ToolbarBranchPicker: View {
                     .frame(height: 16)
                     .help(title)
                 if prefs.sourceControlActive() && changesModel.isGitRepository {
-                    if let currentBranch = changesModel.gitClient.publishedBranchName {
-                        ZStack(alignment: .trailing) {
-                            Text(currentBranch)
-                                .padding(.trailing)
-                            if isHovering {
-                                Image(systemName: "chevron.down")
-                            }
-                        }
-                        .font(.subheadline)
-                        .foregroundColor(controlActive == .inactive ? inactiveColor : .secondary)
-                        .frame(height: 11)
-                    }
+//                    if let currentBranch = changesModel.gitClient.publishedBranchName {
+//                        ZStack(alignment: .trailing) {
+//                            Text(currentBranch)
+//                                .padding(.trailing)
+//                            if isHovering {
+//                                Image(systemName: "chevron.down")
+//                            }
+//                        }
+//                        .font(.subheadline)
+//                        .foregroundColor(controlActive == .inactive ? inactiveColor : .secondary)
+//                        .frame(height: 11)
+//                    }
                 }
             }
         }
@@ -98,6 +98,7 @@ public struct ToolbarBranchPicker: View {
     /// A popover view that appears once the branch picker is tapped.
     ///
     /// It displays the currently checked-out branch and all other local branches.
+    /// 
     private struct PopoverView: View {
 
         var gitClient: GitClient?
@@ -106,26 +107,27 @@ public struct ToolbarBranchPicker: View {
         var currentBranch: String
 
         var body: some View {
-            VStack(alignment: .leading) {
-                if let currentBranch = currentBranch {
-                    VStack(alignment: .leading, spacing: 0) {
-                        headerLabel("Current Branch")
-                        BranchCell(name: currentBranch, active: true) {}
-                    }
-                }
-                if !branchNames.isEmpty {
-                    ScrollView {
-                        VStack(alignment: .leading, spacing: 0) {
-                            headerLabel("Branches")
-                            ForEach(branchNames, id: \.self) { branch in
-                                BranchCell(name: branch) {
-                                    try? gitClient?.checkoutBranch(name: branch)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+//            VStack(alignment: .leading) {
+//                if let currentBranch = currentBranch {
+//                    VStack(alignment: .leading, spacing: 0) {
+//                        headerLabel("Current Branch")
+//                        BranchCell(name: currentBranch, active: true) {}
+//                    }
+//                }
+//                if !branchNames.isEmpty {
+//                    ScrollView {
+//                        VStack(alignment: .leading, spacing: 0) {
+//                            headerLabel("Branches")
+//                            ForEach(branchNames, id: \.self) { branch in
+//                                BranchCell(name: branch) {
+//                                    try? gitClient?.checkoutBranch(name: branch)
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+            EmptyView()
             .padding(.top, 10)
             .padding(5)
             .frame(width: 340)
