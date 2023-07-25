@@ -153,7 +153,6 @@ public class FileSystemClient {
         reloadFromWatcher(sourceFileItem: workspaceItem)
         workspaceItem.fileSystemClient = self
     }
-    // swiftlint:enable vertical_parameter_alignment
 
     enum FileSystemClientError: Error {
         case fileNotExist

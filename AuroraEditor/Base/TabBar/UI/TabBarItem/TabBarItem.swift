@@ -249,4 +249,3 @@ struct TabBarItem: View {
         .tabBarContextMenu(item: item, workspace: workspace, isTemporary: isTemporary)
     }
 }
-// swiftlint:enable type_body_length

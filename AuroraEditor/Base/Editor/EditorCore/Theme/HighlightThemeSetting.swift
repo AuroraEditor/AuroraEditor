@@ -8,8 +8,7 @@
 
 import Foundation
 
-public struct ThemeSetting: Codable {
-
+public struct ThemeSetting: Codable { // swiftlint:disable:this type_body_length
     var isSource: Bool {
         scopes.count == 1 && scopes.first! == "source"
     }
@@ -108,7 +107,7 @@ public struct ThemeSetting: Codable {
                                                            forKey: .outSelectionAttributes).attributes
     }
 
-    class AttributesContainer: Codable {
+    class AttributesContainer: Codable { // swiftlint:disable:this type_body_length
         var attributes: [ThemeAttribute]
 
         init(attributes: [ThemeAttribute]) {
@@ -142,7 +141,6 @@ public struct ThemeSetting: Codable {
         }
 
         // swiftlint:disable:next swiftlint_file_disabling
-        // swiftlint:disable line_length opening_brace
 
         // swiftlint:disable:next cyclomatic_complexity function_body_length
         func encode(to encoder: Encoder) throws {
@@ -204,66 +202,204 @@ public struct ThemeSetting: Codable {
                 }
             }
 
-            if !lineHeightThemeAttribute.isEmpty             { try container.encode(lineHeightThemeAttribute, forKey: .lineHeightThemeAttribute) }
-            if !tailIndentThemeAttribute.isEmpty             { try container.encode(tailIndentThemeAttribute, forKey: .tailIndentThemeAttribute) }
-            if !paragraphSpacingAfterThemeAttribute.isEmpty  { try container.encode(paragraphSpacingAfterThemeAttribute, forKey: .paragraphSpacingAfterThemeAttribute) }
-            if !textAlignmentThemeAttribute.isEmpty          { try container.encode(textAlignmentThemeAttribute, forKey: .textAlignmentThemeAttribute) }
-            if !headIndentThemeAttribute.isEmpty             { try container.encode(headIndentThemeAttribute, forKey: .headIndentThemeAttribute) }
-            if !firstLineHeadIndentThemeAttribute.isEmpty    { try container.encode(firstLineHeadIndentThemeAttribute, forKey: .firstLineHeadIndentThemeAttribute) }
-            if !paragraphSpacingBeforeThemeAttribute.isEmpty { try container.encode(paragraphSpacingBeforeThemeAttribute, forKey: .paragraphSpacingBeforeThemeAttribute) }
-            if !defaultTabIntervalThemeAttribute.isEmpty     { try container.encode(defaultTabIntervalThemeAttribute, forKey: .defaultTabIntervalThemeAttribute) }
-            if !italicThemeAttribute.isEmpty                 { try container.encode(italicThemeAttribute, forKey: .italicThemeAttribute) }
-            if !kernThemeAttribute.isEmpty                   { try container.encode(kernThemeAttribute, forKey: .kernThemeAttribute) }
-            if !underlineThemeAttribute.isEmpty              { try container.encode(underlineThemeAttribute, forKey: .underlineThemeAttribute) }
-            if !boldThemeAttribute.isEmpty                   { try container.encode(boldThemeAttribute, forKey: .boldThemeAttribute) }
-            if !backgroundColorThemeAttribute.isEmpty        { try container.encode(backgroundColorThemeAttribute, forKey: .backgroundColorThemeAttribute) }
-            if !colorThemeAttribute.isEmpty                  { try container.encode(colorThemeAttribute, forKey: .colorThemeAttribute) }
-            if !hiddenThemeAttribute.isEmpty                 { try container.encode(hiddenThemeAttribute, forKey: .hiddenThemeAttribute) }
-            if !ligatureThemeAttribute.isEmpty               { try container.encode(ligatureThemeAttribute, forKey: .ligatureThemeAttribute) }
-            if !fontThemeAttribute.isEmpty                   { try container.encode(fontThemeAttribute, forKey: .fontThemeAttribute) }
+            if !lineHeightThemeAttribute.isEmpty {
+                try container.encode(lineHeightThemeAttribute, forKey: .lineHeightThemeAttribute)
+            }
+            if !tailIndentThemeAttribute.isEmpty {
+                try container.encode(tailIndentThemeAttribute, forKey: .tailIndentThemeAttribute)
+            }
+            if !paragraphSpacingAfterThemeAttribute.isEmpty {
+                try container.encode(paragraphSpacingAfterThemeAttribute, forKey: .paragraphSpacingAfterThemeAttribute)
+            }
+            if !textAlignmentThemeAttribute.isEmpty {
+                try container.encode(textAlignmentThemeAttribute, forKey: .textAlignmentThemeAttribute)
+            }
+            if !headIndentThemeAttribute.isEmpty {
+                try container.encode(headIndentThemeAttribute, forKey: .headIndentThemeAttribute)
+            }
+            if !firstLineHeadIndentThemeAttribute.isEmpty {
+                try container.encode(firstLineHeadIndentThemeAttribute, forKey: .firstLineHeadIndentThemeAttribute)
+            }
+            if !paragraphSpacingBeforeThemeAttribute.isEmpty {
+                try container.encode(
+                    paragraphSpacingBeforeThemeAttribute,
+                    forKey: .paragraphSpacingBeforeThemeAttribute
+                )
+            }
+            if !defaultTabIntervalThemeAttribute.isEmpty {
+                try container.encode(defaultTabIntervalThemeAttribute, forKey: .defaultTabIntervalThemeAttribute)
+            }
+            if !italicThemeAttribute.isEmpty {
+                try container.encode(italicThemeAttribute, forKey: .italicThemeAttribute)
+            }
+            if !kernThemeAttribute.isEmpty {
+                try container.encode(kernThemeAttribute, forKey: .kernThemeAttribute)
+            }
+            if !underlineThemeAttribute.isEmpty {
+                try container.encode(underlineThemeAttribute, forKey: .underlineThemeAttribute)
+            }
+            if !boldThemeAttribute.isEmpty {
+                try container.encode(boldThemeAttribute, forKey: .boldThemeAttribute)
+            }
+            if !backgroundColorThemeAttribute.isEmpty {
+                try container.encode(backgroundColorThemeAttribute, forKey: .backgroundColorThemeAttribute)
+            }
+            if !colorThemeAttribute.isEmpty {
+                try container.encode(colorThemeAttribute, forKey: .colorThemeAttribute)
+            }
+            if !hiddenThemeAttribute.isEmpty {
+                try container.encode(hiddenThemeAttribute, forKey: .hiddenThemeAttribute)
+            }
+            if !ligatureThemeAttribute.isEmpty {
+                try container.encode(ligatureThemeAttribute, forKey: .ligatureThemeAttribute)
+            }
+            if !fontThemeAttribute.isEmpty {
+                try container.encode(fontThemeAttribute, forKey: .fontThemeAttribute)
+            }
+
         }
 
-        required init(from decoder: Decoder) throws {
+        required init(from decoder: Decoder) throws { // swiftlint:disable:this function_body_length
             let container = try decoder.container(keyedBy: Keys.self)
             attributes = []
 
-            attributes.append(contentsOf: (try? container.decode([LineHeightThemeAttribute].self,
-                                                               forKey: .lineHeightThemeAttribute)) ?? [])
-            attributes.append(contentsOf: (try? container.decode([TailIndentThemeAttribute].self,
-                                                               forKey: .tailIndentThemeAttribute)) ?? [])
-            attributes.append(contentsOf: (try? container.decode([ParagraphSpacingAfterThemeAttribute].self,
-                                                               forKey: .paragraphSpacingAfterThemeAttribute)) ?? [])
-            attributes.append(contentsOf: (try? container.decode([TextAlignmentThemeAttribute].self,
-                                                               forKey: .textAlignmentThemeAttribute)) ?? [])
-            attributes.append(contentsOf: (try? container.decode([HeadIndentThemeAttribute].self,
-                                                               forKey: .headIndentThemeAttribute)) ?? [])
-            attributes.append(contentsOf: (try? container.decode([FirstLineHeadIndentThemeAttribute].self,
-                                                               forKey: .firstLineHeadIndentThemeAttribute)) ?? [])
-            attributes.append(contentsOf: (try? container.decode([ParagraphSpacingBeforeThemeAttribute].self,
-                                                               forKey: .paragraphSpacingBeforeThemeAttribute)) ?? [])
-            attributes.append(contentsOf: (try? container.decode([DefaultTabIntervalThemeAttribute].self,
-                                                               forKey: .defaultTabIntervalThemeAttribute)) ?? [])
-            attributes.append(contentsOf: (try? container.decode([ItalicThemeAttribute].self,
-                                                               forKey: .italicThemeAttribute)) ?? [])
-            attributes.append(contentsOf: (try? container.decode([KernThemeAttribute].self,
-                                                               forKey: .kernThemeAttribute)) ?? [])
-            attributes.append(contentsOf: (try? container.decode([UnderlineThemeAttribute].self,
-                                                               forKey: .underlineThemeAttribute)) ?? [])
-            attributes.append(contentsOf: (try? container.decode([BoldThemeAttribute].self,
-                                                               forKey: .boldThemeAttribute)) ?? [])
-            attributes.append(contentsOf: (try? container.decode([BackgroundColorThemeAttribute].self,
-                                                               forKey: .backgroundColorThemeAttribute)) ?? [])
-            attributes.append(contentsOf: (try? container.decode([ColorThemeAttribute].self,
-                                                               forKey: .colorThemeAttribute)) ?? [])
-            attributes.append(contentsOf: (try? container.decode([HiddenThemeAttribute].self,
-                                                               forKey: .hiddenThemeAttribute)) ?? [])
-            attributes.append(contentsOf: (try? container.decode([LigatureThemeAttribute].self,
-                                                               forKey: .ligatureThemeAttribute)) ?? [])
-            attributes.append(contentsOf: (try? container.decode([FontThemeAttribute].self,
-                                                               forKey: .fontThemeAttribute)) ?? [])
+            attributes.append(
+                contentsOf: (
+                    try? container.decode(
+                        [LineHeightThemeAttribute].self,
+                        forKey: .lineHeightThemeAttribute
+                    )
+                ) ?? []
+            )
+            attributes.append(
+                contentsOf: (
+                    try? container.decode(
+                        [TailIndentThemeAttribute].self,
+                        forKey: .tailIndentThemeAttribute
+                    )
+                ) ?? []
+            )
+            attributes.append(
+                contentsOf: (
+                    try? container.decode(
+                        [ParagraphSpacingAfterThemeAttribute].self,
+                        forKey: .paragraphSpacingAfterThemeAttribute
+                    )
+                ) ?? []
+            )
+            attributes.append(
+                contentsOf: (
+                    try? container.decode(
+                        [TextAlignmentThemeAttribute].self,
+                        forKey: .textAlignmentThemeAttribute
+                    )
+                ) ?? []
+            )
+            attributes.append(
+                contentsOf: (
+                    try? container.decode(
+                        [HeadIndentThemeAttribute].self,
+                        forKey: .headIndentThemeAttribute
+                    )
+                ) ?? []
+            )
+            attributes.append(
+                contentsOf: (
+                    try? container.decode(
+                        [FirstLineHeadIndentThemeAttribute].self,
+                        forKey: .firstLineHeadIndentThemeAttribute
+                    )
+                ) ?? []
+            )
+            attributes.append(
+                contentsOf: (
+                    try? container.decode(
+                        [ParagraphSpacingBeforeThemeAttribute].self,
+                        forKey: .paragraphSpacingBeforeThemeAttribute
+                    )
+                ) ?? []
+            )
+            attributes.append(
+                contentsOf: (
+                    try? container.decode(
+                        [DefaultTabIntervalThemeAttribute].self,
+                        forKey: .defaultTabIntervalThemeAttribute
+                    )
+                ) ?? []
+            )
+            attributes.append(
+                contentsOf: (
+                    try? container.decode(
+                        [ItalicThemeAttribute].self,
+                        forKey: .italicThemeAttribute
+                    )
+                ) ?? []
+            )
+            attributes.append(
+                contentsOf: (
+                    try? container.decode(
+                        [KernThemeAttribute].self,
+                        forKey: .kernThemeAttribute
+                    )
+                ) ?? []
+            )
+            attributes.append(
+                contentsOf: (
+                    try? container.decode(
+                        [UnderlineThemeAttribute].self,
+                        forKey: .underlineThemeAttribute
+                    )
+                ) ?? []
+            )
+            attributes.append(
+                contentsOf: (
+                    try? container.decode(
+                        [BoldThemeAttribute].self,
+                        forKey: .boldThemeAttribute
+                    )
+                ) ?? []
+            )
+            attributes.append(
+                contentsOf: (
+                    try? container.decode(
+                        [BackgroundColorThemeAttribute].self,
+                        forKey: .backgroundColorThemeAttribute
+                    )
+                ) ?? []
+            )
+            attributes.append(
+                contentsOf: (
+                    try? container.decode(
+                        [ColorThemeAttribute].self,
+                        forKey: .colorThemeAttribute
+                    )
+                ) ?? []
+            )
+            attributes.append(
+                contentsOf: (
+                    try? container.decode(
+                        [HiddenThemeAttribute].self,
+                        forKey: .hiddenThemeAttribute
+                    )
+                ) ?? []
+            )
+            attributes.append(
+                contentsOf: (
+                    try? container.decode(
+                        [LigatureThemeAttribute].self,
+                        forKey: .ligatureThemeAttribute
+                    )
+                ) ?? []
+            )
+            attributes.append(
+                contentsOf: (
+                    try? container.decode(
+                        [FontThemeAttribute].self,
+                        forKey: .fontThemeAttribute
+                    )
+                ) ?? []
+            )
         }
-
-        // swiftlint:enable line_length
     }
 }
 
@@ -279,4 +415,4 @@ extension String {
     var scopeComponents: [Substring] {
         self.split(separator: ".")
     }
-}
+} // swiftlint:disable:this file_length
