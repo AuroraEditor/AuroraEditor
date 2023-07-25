@@ -8,8 +8,7 @@
 
 import Foundation
 
-public struct ThemeSetting: Codable {
-
+public struct ThemeSetting: Codable { // swiftlint:disable:this type_body_length
     var isSource: Bool {
         scopes.count == 1 && scopes.first! == "source"
     }
@@ -108,7 +107,7 @@ public struct ThemeSetting: Codable {
                                                            forKey: .outSelectionAttributes).attributes
     }
 
-    class AttributesContainer: Codable {
+    class AttributesContainer: Codable { // swiftlint:disable:this type_body_length
         var attributes: [ThemeAttribute]
 
         init(attributes: [ThemeAttribute]) {
@@ -222,7 +221,10 @@ public struct ThemeSetting: Codable {
                 try container.encode(firstLineHeadIndentThemeAttribute, forKey: .firstLineHeadIndentThemeAttribute)
             }
             if !paragraphSpacingBeforeThemeAttribute.isEmpty {
-                try container.encode(paragraphSpacingBeforeThemeAttribute, forKey: .paragraphSpacingBeforeThemeAttribute)
+                try container.encode(
+                    paragraphSpacingBeforeThemeAttribute,
+                    forKey: .paragraphSpacingBeforeThemeAttribute
+                )
             }
             if !defaultTabIntervalThemeAttribute.isEmpty {
                 try container.encode(defaultTabIntervalThemeAttribute, forKey: .defaultTabIntervalThemeAttribute)
@@ -257,7 +259,7 @@ public struct ThemeSetting: Codable {
 
         }
 
-        required init(from decoder: Decoder) throws {
+        required init(from decoder: Decoder) throws { // swiftlint:disable:this function_body_length
             let container = try decoder.container(keyedBy: Keys.self)
             attributes = []
 
@@ -413,4 +415,4 @@ extension String {
     var scopeComponents: [Substring] {
         self.split(separator: ".")
     }
-}
+} // swiftlint:disable:this file_length
