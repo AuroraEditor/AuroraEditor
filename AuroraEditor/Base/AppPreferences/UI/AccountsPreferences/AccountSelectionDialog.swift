@@ -15,12 +15,24 @@ struct AccountSelectionDialog: View {
 
     var gitProviders = [
         Providers(name: "Aurora Editor", icon: "person.crop.circle", id: "auroraEditor"),
-        Providers(name: "Bitbucket Cloud", icon: "bitbucket", id: "bitbucketCloud"),
-        Providers(name: "Bitbucket Server", icon: "bitbucket", id: "bitbucketServer"),
-        Providers(name: "GitHub", icon: "github", id: "github"),
-        Providers(name: "GitHub Enterprise", icon: "github", id: "githubEnterprise"),
-        Providers(name: "GitLab", icon: "gitlab", id: "gitlab"),
-        Providers(name: "GitLab Self-Hosted", icon: "gitlab", id: "gitlabSelfHosted")
+        Providers(name: "settings.account.bitbucket.cloud".localize(),
+                  icon: "bitbucket",
+                  id: "bitbucketCloud"),
+        Providers(name: "settings.account.bitbucket.server".localize(),
+                  icon: "bitbucket",
+                  id: "bitbucketServer"),
+        Providers(name: "settings.account.github",
+                  icon: "github",
+                  id: "github"),
+        Providers(name: "settings.account.github.enterprise".localize(),
+                  icon: "github",
+                  id: "githubEnterprise"),
+        Providers(name: "settings.account.gitlab".localize(),
+                  icon: "gitlab",
+                  id: "gitlab"),
+        Providers(name: "settings.account.gitlab.hosted".localize(),
+                  icon: "gitlab",
+                  id: "gitlabSelfHosted")
     ]
 
     @State var providerSelection: Providers.ID? = "github"
@@ -30,7 +42,7 @@ struct AccountSelectionDialog: View {
 
     var body: some View {
         VStack {
-            Text("Select the type of account you would like to add:")
+            Text("settings.account.account.type")
                 .font(.system(size: 12))
 
             List(gitProviders, selection: $providerSelection) {
@@ -46,14 +58,14 @@ struct AccountSelectionDialog: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text("Cancel")
+                    Text("global.cancel")
                         .foregroundColor(.primary)
                 }
 
                 Button {
                     openGitLogin.toggle()
                 } label: {
-                    Text("Continue")
+                    Text("global.continue")
                         .foregroundColor(.white)
                 }
                 .sheet(isPresented: $openGitLogin, content: {
@@ -91,7 +103,7 @@ struct AccountSelectionDialog: View {
 
     private var implementationNeeded: some View {
         VStack {
-            Text("This git client is currently not supported yet!")
+            Text("settings.account.client.not.supported")
                 .font(.system(size: 12))
             HStack {
                 Button("Close") {

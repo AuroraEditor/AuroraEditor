@@ -13,9 +13,6 @@
   <a href='https://discord.gg/5aecJ4rq9D' target='_blank'>
     <img alt="Discord" src="https://img.shields.io/discord/997410333348077620?color=f98a6c&style=for-the-badge">
   </a>
-  <a href='https://chat.whatsapp.com/IOoaSbj7Km4BH3k5wlJPx0' target='_blank'>
-    <img alt="Whatsapp" src="https://img.shields.io/static/v1?label=Whatsapp&message=Join%20the%20community&color=success&style=for-the-badge" height="28">
-  </a>
   <a href='https://nightly.link/AuroraEditor/AuroraEditor/workflows/nightly/main/AuroraEditor_Nightly.zip' target='_blank'>
   <img alt="Download" src="https://img.shields.io/badge/Download-Nightly Build-6bbee8?style=for-the-badge">
  </a>
@@ -47,7 +44,7 @@ It will support everything you could expect from an Xcode-inspired application, 
  <br />
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Motivation
@@ -114,6 +111,12 @@ Please read the following for more information.
 * [Developer Guide](https://github.com/AuroraEditor/AuroraEditor/wiki/Developer-Guide)
 * [Troubeshooting Guide](https://github.com/AuroraEditor/AuroraEditor/wiki/Troubleshooting)
 
+## Editor Localization
+
+We want users to feel comfortable using Aurora Editor in their own speaking language, help us by translating Aurora Editor for you and the rest of the community.
+
+[Translate Aurora Editor Now](https://app.lokalise.com/public/8719853963cfc24a9bfba9.04156986/)
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people:
@@ -141,6 +144,7 @@ Thanks goes to these wonderful people:
       <td align="center" valign="top" width="20%"><a href="https://github.com/ladvoc"><img src="https://avatars.githubusercontent.com/u/3182119?v=4?s=100" width="100px;" alt="ladvoc"/><br /><sub><b>ladvoc</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/commits?author=ladvoc" title="Code">💻</a></td>
       <td align="center" valign="top" width="20%"><a href="https://github.com/Maartz"><img src="https://avatars.githubusercontent.com/u/13407086?v=4?s=100" width="100px;" alt="Maartz"/><br /><sub><b>Maartz</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3AMaartz" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="20%"><a href="http://hkamran.com"><img src="https://avatars.githubusercontent.com/u/16967687?v=4?s=100" width="100px;" alt="H. Kamran"/><br /><sub><b>H. Kamran</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3Ahkamran80" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="20%"><a href="http://fummicc1.net"><img src="https://avatars.githubusercontent.com/u/44002126?v=4?s=100" width="100px;" alt="Fumiya Tanaka"/><br /><sub><b>Fumiya Tanaka</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3Afummicc1" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
@@ -153,6 +157,7 @@ Thanks goes to these wonderful people:
 ## Sponsors
 
 <a title="MacStadium" href="https://macstadium.com" target="_blank"><img src="https://user-images.githubusercontent.com/806104/162766594-eff7f985-31a9-48c5-9e58-139794fefa10.png" width="128"></a>
+<a title="Lokalise" href="https://lokalise.com" target="_blank"><img src="https://user-images.githubusercontent.com/63672227/214901959-62aa13a7-8d85-44c9-abd0-7d9dc21d7255.png" width="128"></a>
 
 ## Intellectual Property License
 

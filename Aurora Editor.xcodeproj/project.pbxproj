@@ -245,9 +245,6 @@
 		2093CDB7289AA1A6003A88DD /* GithubLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837F2289A7ACD00D91D05 /* GithubLoginView.swift */; };
 		2093CDB8289AA1A6003A88DD /* GithubEnterpriseLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D837F3289A7ACD00D91D05 /* GithubEnterpriseLoginView.swift */; };
 		2093CDBA289AA1AF003A88DD /* PreferencesPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8380F289A7ACD00D91D05 /* PreferencesPlaceholderView.swift */; };
-		2093CDBB289AA1B9003A88DD /* AcknowledgementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8384D289A7ACE00D91D05 /* AcknowledgementsView.swift */; };
-		2093CDBC289AA1BD003A88DD /* AcknowledgementsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83850289A7ACE00D91D05 /* AcknowledgementsModel.swift */; };
-		2093CDBD289AA1BD003A88DD /* ParsePackagesResolved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8384E289A7ACE00D91D05 /* ParsePackagesResolved.swift */; };
 		2093CDBE289AA1C2003A88DD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D838FD289A7AD600D91D05 /* AboutView.swift */; };
 		2093CDBF289AA247003A88DD /* SearchModeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8385F289A7ACE00D91D05 /* SearchModeModel.swift */; };
 		2093CDC0289AA247003A88DD /* SearchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83860289A7ACE00D91D05 /* SearchResultModel.swift */; };
@@ -523,6 +520,7 @@
 		B658FB3427DA9E1000EA4DBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B658FB3327DA9E1000EA4DBD /* Assets.xcassets */; };
 		B6EE989027E8879A00CDD8AB /* InspectorSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE988F27E8879A00CDD8AB /* InspectorSidebar.swift */; };
 		B6EE989227E887C600CDD8AB /* InspectorSidebarToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE989127E887C600CDD8AB /* InspectorSidebarToolbar.swift */; };
+		D3C2DA4A29990FB900FA9F4C /* AuroraSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C2DA4929990FB900FA9F4C /* AuroraSplitViewController.swift */; };
 		D7012EE827E757850001E1EF /* FindNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7012EE727E757850001E1EF /* FindNavigator.swift */; };
 		D7211D4327E066CE008F2ED7 /* Localized+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7211D4227E066CE008F2ED7 /* Localized+Ex.swift */; };
 		D7211D4727E06BFE008F2ED7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7211D4927E06BFE008F2ED7 /* Localizable.strings */; };
@@ -636,6 +634,10 @@
 		2032B50F28A256F50089EBB6 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowHostingController.swift; sourceTree = "<group>"; };
 		2036DD5428DB3DB5003BECB7 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		20425E47297EE74D0022FE5A /* sort-Xcode-project-file.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = "sort-Xcode-project-file.pl"; sourceTree = "<group>"; };
+		20425E49297EED860022FE5A /* ClearDerivedData.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ClearDerivedData.sh; sourceTree = "<group>"; };
+		20425E4B297EEE350022FE5A /* unused_strings.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = unused_strings.py; sourceTree = "<group>"; };
+		20425E55297F03230022FE5A /* xstrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xstrings.swift; sourceTree = "<group>"; };
 		20439037290D27DB00126A3F /* WorkspaceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceErrors.swift; sourceTree = "<group>"; };
 		2043903B290D385600126A3F /* ExploreExtensionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreExtensionsView.swift; sourceTree = "<group>"; };
 		2043903D290D38D700126A3F /* ExploreItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreItemView.swift; sourceTree = "<group>"; };
@@ -654,6 +656,42 @@
 		206B129528DF7A3D002CDE51 /* GutterSharedCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GutterSharedCode.swift; sourceTree = "<group>"; };
 		206B129728DF7AA2002CDE51 /* GutterRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GutterRect.swift; sourceTree = "<group>"; };
 		206B129C28DF7B7B002CDE51 /* CodeStorageInsertionPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeStorageInsertionPoint.swift; sourceTree = "<group>"; };
+		206D2188297E8F8100AA8F7F /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D2189297E8F9D00AA8F7F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		206D218A297E8FA100AA8F7F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		206D218B297E8FA800AA8F7F /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		206D218C297E8FAD00AA8F7F /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D218D297E8FB400AA8F7F /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D218E297E8FBA00AA8F7F /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D218F297E8FBF00AA8F7F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D2190297E8FCA00AA8F7F /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D2191297E8FEB00AA8F7F /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D2192297E8FF000AA8F7F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D2193297E8FF700AA8F7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D2194297E8FFB00AA8F7F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D2195297E900100AA8F7F /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D2196297E901500AA8F7F /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = ga.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D2197297E901A00AA8F7F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D2198297E902200AA8F7F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D2199297E902900AA8F7F /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D219A297E903D00AA8F7F /* mt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mt; path = mt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D219B297E905500AA8F7F /* ne */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ne; path = ne.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D219C297E906E00AA8F7F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D219D297E907500AA8F7F /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D219E297E907E00AA8F7F /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		206D219F297E908300AA8F7F /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D21A0297E908900AA8F7F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D21A1297E908F00AA8F7F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D21A2297E909200AA8F7F /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D21A3297E909700AA8F7F /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D21A4297E90B600AA8F7F /* th-TH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "th-TH"; path = "th-TH.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		206D21A5297E90C300AA8F7F /* tn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tn; path = tn.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D21A6297E90CA00AA8F7F /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D21A7297E90D100AA8F7F /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D21A8297E90DB00AA8F7F /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
+		206D21A9297E90E500AA8F7F /* xh-ZA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "xh-ZA"; path = "xh-ZA.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		206D21AA297E90EF00AA8F7F /* zu-ZA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zu-ZA"; path = "zu-ZA.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		206D21AB297E958000AA8F7F /* en-001 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-001"; path = "en-001.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2072FA12280D74ED00C7F8D4 /* HistoryInspectorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInspectorModel.swift; sourceTree = "<group>"; };
 		2072FA15280D83A500C7F8D4 /* FileTypeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypeList.swift; sourceTree = "<group>"; };
 		2072FA17280D871200C7F8D4 /* TextEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEncoding.swift; sourceTree = "<group>"; };
@@ -816,9 +854,6 @@
 		20D8383C289A7ACD00D91D05 /* OverlayPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayPanel.swift; sourceTree = "<group>"; };
 		20D8383D289A7ACD00D91D05 /* PressActionsModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressActionsModifier.swift; sourceTree = "<group>"; };
 		20D8383E289A7ACD00D91D05 /* HelpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpButton.swift; sourceTree = "<group>"; };
-		20D8384D289A7ACE00D91D05 /* AcknowledgementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsView.swift; sourceTree = "<group>"; };
-		20D8384E289A7ACE00D91D05 /* ParsePackagesResolved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsePackagesResolved.swift; sourceTree = "<group>"; };
-		20D83850289A7ACE00D91D05 /* AcknowledgementsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsModel.swift; sourceTree = "<group>"; };
 		20D83853289A7ACE00D91D05 /* LSPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSPClient.swift; sourceTree = "<group>"; };
 		20D83856289A7ACE00D91D05 /* CrashReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashReportView.swift; sourceTree = "<group>"; };
 		20D83857289A7ACE00D91D05 /* AuroraCrashlytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraCrashlytics.swift; sourceTree = "<group>"; };
@@ -1107,6 +1142,7 @@
 		B658FB4727DA9E1000EA4DBD /* Aurora Editor (UITests).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Aurora Editor (UITests).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6EE988F27E8879A00CDD8AB /* InspectorSidebar.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = InspectorSidebar.swift; sourceTree = "<group>"; tabWidth = 4; };
 		B6EE989127E887C600CDD8AB /* InspectorSidebarToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorSidebarToolbar.swift; sourceTree = "<group>"; };
+		D3C2DA4929990FB900FA9F4C /* AuroraSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraSplitViewController.swift; sourceTree = "<group>"; };
 		D7012EE727E757850001E1EF /* FindNavigator.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = FindNavigator.swift; sourceTree = "<group>"; tabWidth = 4; };
 		D7211D4227E066CE008F2ED7 /* Localized+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localized+Ex.swift"; sourceTree = "<group>"; };
 		D7211D4827E06BFE008F2ED7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1131,9 +1167,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				209D0246289AB9750082441F /* SwiftTerm in Frameworks */,
 				2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */,
 				2BD0BD172977357900629A86 /* SwiftOniguruma in Frameworks */,
+				209D0246289AB9750082441F /* SwiftTerm in Frameworks */,
 				200AA21228ED88B30068C7C6 /* Version-Control in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1167,11 +1203,11 @@
 		0483E34E27FDB15F00354AC0 /* ExtensionNavigator */ = {
 			isa = PBXGroup;
 			children = (
-				20CC5ABC291CD10E007DB911 /* Extension View */,
 				2043903A290D37A000126A3F /* Explore */,
+				20CC5ABC291CD10E007DB911 /* Extension View */,
 				20439039290D379600126A3F /* Installed */,
-				0483E34F27FDB17700354AC0 /* ExtensionNavigatorView.swift */,
 				04C3254C27FF331B00C8DA2D /* ExtensionNavigatorItem.swift */,
+				0483E34F27FDB17700354AC0 /* ExtensionNavigatorView.swift */,
 			);
 			path = ExtensionNavigator;
 			sourceTree = "<group>";
@@ -1179,8 +1215,8 @@
 		20091DB328DE1F6C008FDDFC /* UpdatesPreferences */ = {
 			isa = PBXGroup;
 			children = (
-				20091DB428DE1FC7008FDDFC /* UpdatePreferencesView.swift */,
 				20091DB628DE20FD008FDDFC /* AutomaticallyUpdateSheet.swift */,
+				20091DB428DE1FC7008FDDFC /* UpdatePreferencesView.swift */,
 			);
 			path = UpdatesPreferences;
 			sourceTree = "<group>";
@@ -1188,8 +1224,8 @@
 		20091DB828DE21EA008FDDFC /* Updates */ = {
 			isa = PBXGroup;
 			children = (
-				20091DB928DE220A008FDDFC /* UpdatePreferences.swift */,
 				20091DBD28DE3336008FDDFC /* UpdateModel.swift */,
+				20091DB928DE220A008FDDFC /* UpdatePreferences.swift */,
 			);
 			path = Updates;
 			sourceTree = "<group>";
@@ -1197,10 +1233,11 @@
 		200FB695289D1125006E12D4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */,
 				93159FDB28D5F40C00C55C5A /* CodeEditorViewWrapper.swift */,
-				B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */,
 				206B128028DF7311002CDE51 /* EmptyEditorView.swift */,
+				0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */,
+				B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */,
+				D3C2DA4929990FB900FA9F4C /* AuroraSplitViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1208,8 +1245,8 @@
 		200FB696289D112C006E12D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				93ACA43528C32FC000672994 /* WorkspaceDocument */,
 				93ACA43428C32F9100672994 /* AuroraEditorWindow */,
+				93ACA43528C32FC000672994 /* WorkspaceDocument */,
 				D7E201AD27E8B3C000CB86D0 /* String+Ranges.swift */,
 			);
 			path = Model;
@@ -1234,10 +1271,10 @@
 		20212679289BF7A800246DD7 /* Log */ = {
 			isa = PBXGroup;
 			children = (
-				20212688289C055E00246DD7 /* Using Logger.md */,
-				20192589289C362B009C2FAB /* LogExtension.swift */,
-				2021267B289BF7BA00246DD7 /* Log.swift */,
 				2021267E289BF7EF00246DD7 /* Formatter.swift */,
+				2021267B289BF7BA00246DD7 /* Log.swift */,
+				20192589289C362B009C2FAB /* LogExtension.swift */,
+				20212688289C055E00246DD7 /* Using Logger.md */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -1245,18 +1282,18 @@
 		2029DA8528E2FCA600D68786 /* CodeLanguages */ = {
 			isa = PBXGroup;
 			children = (
-				2029DA8628E2FCEC00D68786 /* swift.tmLanguage.json */,
-				209DAF2228E647BE00E31109 /* typeScript.tmLanguage.json */,
-				209DAF2428E648A700E31109 /* JSON.tmLanguage.json */,
-				209DAF2628E6494800E31109 /* JSONC.tmLanguage.json */,
-				209DAF2828E6498C00E31109 /* docker.tmLanguage.json */,
 				209DAF2A28E649AC00E31109 /* css.tmLanguage.json */,
+				209DAF2828E6498C00E31109 /* docker.tmLanguage.json */,
 				209DAF2C28E649D400E31109 /* html-derivative.tmLanguage.json */,
 				209DAF2E28E64A0500E31109 /* html.tmLanguage.json */,
 				209DAF3028E64A3200E31109 /* JavaScript.tmLanguage.json */,
 				209DAF3228E64A5500E31109 /* JavaScriptReact.tmLanguage.json */,
+				209DAF2428E648A700E31109 /* JSON.tmLanguage.json */,
+				209DAF2628E6494800E31109 /* JSONC.tmLanguage.json */,
 				209DAF3428E64A9F00E31109 /* php.tmLanguage.json */,
 				209DAF3628E64AE800E31109 /* ruby.tmLanguage.json */,
+				2029DA8628E2FCEC00D68786 /* swift.tmLanguage.json */,
+				209DAF2228E647BE00E31109 /* typeScript.tmLanguage.json */,
 			);
 			path = CodeLanguages;
 			sourceTree = "<group>";
@@ -1264,11 +1301,11 @@
 		202F2E2C289E6608000D3CAD /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				93ECCFFA2902D02E00605FB3 /* CodeFile.swift */,
 				2BDFA8FE28D107B200980385 /* ImageFileView.swift */,
 				2BDFA8FC28D107B200980385 /* OtherFileView.swift */,
 				2BDFA8FD28D107B200980385 /* WebTabView.swift */,
 				2BDFA8FB28D107B200980385 /* WebWKView.swift */,
-				93ECCFFA2902D02E00605FB3 /* CodeFile.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1296,6 +1333,17 @@
 				934D2F0228C4A5690034E5C8 /* GitClientError.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		20425E46297EE7270022FE5A /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				20425E47297EE74D0022FE5A /* sort-Xcode-project-file.pl */,
+				20425E49297EED860022FE5A /* ClearDerivedData.sh */,
+				20425E4B297EEE350022FE5A /* unused_strings.py */,
+				20425E55297F03230022FE5A /* xstrings.swift */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		20439035290D27C600126A3F /* Errors */ = {
@@ -1326,9 +1374,9 @@
 			isa = PBXGroup;
 			children = (
 				204F7BB228D7905C00F49092 /* WorkflowMenu.swift */,
-				204F7BB428D7906A00F49092 /* WorkflowWrapperView.swift */,
-				204F7BB628D7907A00F49092 /* WorkflowViewController.swift */,
 				204F7BB828D7908700F49092 /* WorkflowTableViewCell.swift */,
+				204F7BB628D7907A00F49092 /* WorkflowViewController.swift */,
+				204F7BB428D7906A00F49092 /* WorkflowWrapperView.swift */,
 			);
 			path = Workflow;
 			sourceTree = "<group>";
@@ -1336,11 +1384,11 @@
 		206B128428DF779C002CDE51 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2B04570D28E6FFE300024F2D /* NSRange+Shifted.swift */,
 				206B128528DF77AD002CDE51 /* CodeEditor+Position.swift */,
+				2B04570D28E6FFE300024F2D /* NSRange+Shifted.swift */,
 				206B128928DF78F2002CDE51 /* NSTextView.swift */,
-				2BD5CF1628D602CE00F95E5A /* ScrollView.swift */,
 				2BD5CF1528D602CE00F95E5A /* OSDefinitions.swift */,
+				2BD5CF1628D602CE00F95E5A /* ScrollView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1348,9 +1396,9 @@
 		206B128F28DF79B7002CDE51 /* Minimap */ = {
 			isa = PBXGroup;
 			children = (
-				2BD5CF0E28D602CE00F95E5A /* MinimapView.swift */,
 				206B129028DF79C4002CDE51 /* MinimapLayoutManager.swift */,
 				206B129228DF79E9002CDE51 /* MinimapTypeSetter.swift */,
+				2BD5CF0E28D602CE00F95E5A /* MinimapView.swift */,
 			);
 			path = Minimap;
 			sourceTree = "<group>";
@@ -1358,9 +1406,9 @@
 		206B129428DF7A22002CDE51 /* Gutter */ = {
 			isa = PBXGroup;
 			children = (
-				2BD5CF1128D602CE00F95E5A /* GutterView.swift */,
-				206B129528DF7A3D002CDE51 /* GutterSharedCode.swift */,
 				206B129728DF7AA2002CDE51 /* GutterRect.swift */,
+				206B129528DF7A3D002CDE51 /* GutterSharedCode.swift */,
+				2BD5CF1128D602CE00F95E5A /* GutterView.swift */,
 			);
 			path = Gutter;
 			sourceTree = "<group>";
@@ -1376,8 +1424,8 @@
 		20752E3928CA4C1100935487 /* Version Control */ = {
 			isa = PBXGroup;
 			children = (
-				20D83914289A816500D91D05 /* Networking */,
 				20752E3B28CA4C2200935487 /* Model */,
+				20D83914289A816500D91D05 /* Networking */,
 				20752E3A28CA4C1E00935487 /* UI */,
 			);
 			path = "Version Control";
@@ -1386,14 +1434,14 @@
 		20752E3A28CA4C1E00935487 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				207B4380293E0BD800216AD6 /* Tag */,
 				20BE727328D0758E00EEDE5F /* Actions */,
 				2096A82228CF76C500F6ED39 /* Branch */,
+				20752E3E28CA4C3B00935487 /* Clone */,
+				20752E3C28CA4C2800935487 /* Project History */,
 				20130BDC28CF30EB0000B634 /* Remote */,
 				207D295B28CCE72100D31530 /* Rename */,
-				20752E3E28CA4C3B00935487 /* Clone */,
 				20752E3D28CA4C3500935487 /* Stash */,
-				20752E3C28CA4C2800935487 /* Project History */,
+				207B4380293E0BD800216AD6 /* Tag */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1402,10 +1450,10 @@
 			isa = PBXGroup;
 			children = (
 				20D83916289A818B00D91D05 /* Accounts */,
-				20D838C7289A7ACE00D91D05 /* Client */,
-				20D8387A289A7ACE00D91D05 /* GitUIModel.swift */,
 				20BE727928D0762D00EEDE5F /* Actions */,
+				20D838C7289A7ACE00D91D05 /* Client */,
 				20752E3F28CA4C4B00935487 /* Project History */,
+				20D8387A289A7ACE00D91D05 /* GitUIModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1414,9 +1462,9 @@
 			isa = PBXGroup;
 			children = (
 				20752E4428CA54A000935487 /* Cell */,
-				20752E4228CA4E3100935487 /* ProjectCommitHistoryView.swift */,
-				20D9E32B28CB68DE00FE3339 /* FilterCommitHistoryView.swift */,
 				207D295728CCDE4300D31530 /* BranchCommitHistoryView.swift */,
+				20D9E32B28CB68DE00FE3339 /* FilterCommitHistoryView.swift */,
+				20752E4228CA4E3100935487 /* ProjectCommitHistoryView.swift */,
 			);
 			path = "Project History";
 			sourceTree = "<group>";
@@ -1433,10 +1481,10 @@
 			isa = PBXGroup;
 			children = (
 				20D8387C289A7ACE00D91D05 /* CheckoutBranch.swift */,
-				20D8387D289A7ACE00D91D05 /* GitCloneView.swift */,
-				93CB9ADF28C72BC20068074A /* GitCloneView+Helpers.swift */,
-				9336833828C5EAD7009F7B44 /* GitCloneViewWindow.swift */,
 				20D8387E289A7ACE00D91D05 /* CheckoutBranchView.swift */,
+				93CB9ADF28C72BC20068074A /* GitCloneView+Helpers.swift */,
+				20D8387D289A7ACE00D91D05 /* GitCloneView.swift */,
+				9336833828C5EAD7009F7B44 /* GitCloneViewWindow.swift */,
 			);
 			path = Clone;
 			sourceTree = "<group>";
@@ -1444,8 +1492,8 @@
 		20752E3F28CA4C4B00935487 /* Project History */ = {
 			isa = PBXGroup;
 			children = (
-				20752E4028CA4C6500935487 /* ProjectCommitHistory.swift */,
 				207D295928CCDEDC00D31530 /* BranchCommitHistory.swift */,
+				20752E4028CA4C6500935487 /* ProjectCommitHistory.swift */,
 			);
 			path = "Project History";
 			sourceTree = "<group>";
@@ -1461,9 +1509,9 @@
 		20752E4728CA54E000935487 /* Version Control */ = {
 			isa = PBXGroup;
 			children = (
-				20D8389F289A7ACE00D91D05 /* Time.swift */,
-				20D838A1289A7ACE00D91D05 /* Dictionary+Additions.swift */,
 				20752E4828CA54F000935487 /* Avatar.swift */,
+				20D838A1289A7ACE00D91D05 /* Dictionary+Additions.swift */,
+				20D8389F289A7ACE00D91D05 /* Time.swift */,
 			);
 			path = "Version Control";
 			sourceTree = "<group>";
@@ -1511,9 +1559,9 @@
 		209D024F289ABF520082441F /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				2BD5CF0B28D602CE00F95E5A /* CodeEditorView */,
 				2B04570828E6FFE300024F2D /* EditorCore */,
 				206B128428DF779C002CDE51 /* Extensions */,
-				2BD5CF0B28D602CE00F95E5A /* CodeEditorView */,
 				202F2E2E289E6637000D3CAD /* Model */,
 				202F2E2C289E6608000D3CAD /* UI */,
 			);
@@ -1523,8 +1571,8 @@
 		209D2F5A297BDC5A005AB73C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				209D2F5D297BDF47005AB73C /* License.md */,
 				209D2F5F297BDF83005AB73C /* Credits.md */,
+				209D2F5D297BDF47005AB73C /* License.md */,
 			);
 			name = Resources;
 			path = ../../Resources;
@@ -1569,11 +1617,11 @@
 		20BE727328D0758E00EEDE5F /* Actions */ = {
 			isa = PBXGroup;
 			children = (
-				2015FE3E28D87D7B006EC287 /* Sheet */,
 				20BE727628D0761500EEDE5F /* Cell */,
+				2015FE3E28D87D7B006EC287 /* Sheet */,
 				20BE727428D0761200EEDE5F /* ActionsListView.swift */,
-				20BE729B28D0BB2000EEDE5F /* WorkflowRunsView.swift */,
 				202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */,
+				20BE729B28D0BB2000EEDE5F /* WorkflowRunsView.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -1584,8 +1632,8 @@
 				204F7BB128D7903000F49092 /* Workflow */,
 				20BE727C28D07FF200EEDE5F /* ActionsPopoverCellView.swift */,
 				20BE729928D0A25900EEDE5F /* WorkflowCellView.swift */,
-				20BE729D28D0BB6F00EEDE5F /* WorkflowRunCell.swift */,
 				202327D728D5CB200031FFB6 /* WorkflowJobCell.swift */,
+				20BE729D28D0BB6F00EEDE5F /* WorkflowRunCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1602,8 +1650,8 @@
 		20BE727F28D0834800EEDE5F /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				20BE728128D0836200EEDE5F /* Model */,
 				20BE728028D0835A00EEDE5F /* Manager */,
+				20BE728128D0836200EEDE5F /* Model */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1611,11 +1659,11 @@
 		20BE728028D0835A00EEDE5F /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				20BE728228D083D800EEDE5F /* HTTPMethod.swift */,
-				20BE728428D0841A00EEDE5F /* HTTPErros.swift */,
 				20BE728628D0845000EEDE5F /* AuroraNetworking.swift */,
-				20BE728E28D0878E00EEDE5F /* GithubNetworkingConstants.swift */,
 				20CABA3A290BFCAC004753A8 /* Constants.swift */,
+				20BE728E28D0878E00EEDE5F /* GithubNetworkingConstants.swift */,
+				20BE728428D0841A00EEDE5F /* HTTPErros.swift */,
+				20BE728228D083D800EEDE5F /* HTTPMethod.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1663,8 +1711,8 @@
 		20C0CBDB297B077700E9F9F0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				20C0CBDC297B083E00E9F9F0 /* Contributor.swift */,
 				20C0CBDE297B086200E9F9F0 /* AboutViewModal.swift */,
+				20C0CBDC297B083E00E9F9F0 /* Contributor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1705,12 +1753,12 @@
 		20CC5ABC291CD10E007DB911 /* Extension View */ = {
 			isa = PBXGroup;
 			children = (
-				20CC5ABA291CD0C3007DB911 /* ExtensionView.swift */,
-				20CC5ABD291CD12F007DB911 /* ExtensionPrivacyView.swift */,
+				20CC5AC5291CD177007DB911 /* ExtensionDescriptionView.swift */,
 				20CC5ABF291CD13A007DB911 /* ExtensionHeaderView.swift */,
 				20CC5AC1291CD14E007DB911 /* ExtensionInformationView.swift */,
 				20CC5AC3291CD160007DB911 /* ExtensionMoreByUserView.swift */,
-				20CC5AC5291CD177007DB911 /* ExtensionDescriptionView.swift */,
+				20CC5ABD291CD12F007DB911 /* ExtensionPrivacyView.swift */,
+				20CC5ABA291CD0C3007DB911 /* ExtensionView.swift */,
 				20CC5AC7291CD4FC007DB911 /* ExtensionWhatsNewView.swift */,
 			);
 			path = "Extension View";
@@ -1719,32 +1767,31 @@
 		20D83712289A7A9200D91D05 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				2BDFA90C28D10B9200980385 /* FileCreation */,
-				20752E3928CA4C1100935487 /* Version Control */,
-				209D024F289ABF520082441F /* Editor */,
-				287776EB27E350BA00D46668 /* TabBar */,
-				287776EA27E350A100D46668 /* NavigatorSidebar */,
-				B6EE988E27E8877C00CDD8AB /* InspectorSidebar */,
-				043C321227E31FE8006AE443 /* Documents */,
-				2077162A287C86410069C68E /* Toolbar */,
 				20D838FB289A7AD600D91D05 /* About */,
-				20D8384B289A7ACE00D91D05 /* Acknowledgements */,
 				20D837CB289A7ACD00D91D05 /* AppPreferences */,
 				20D838DF289A7ACE00D91D05 /* AuroraEditorNotifications */,
 				20D83824289A7ACD00D91D05 /* AuroraEditorUI */,
 				20D83749289A7ACD00D91D05 /* Breadcrumbs */,
+				93EF415928C1D1BF004083AD /* CommandPalette */,
 				20D83854289A7ACE00D91D05 /* Crashlytics */,
+				043C321227E31FE8006AE443 /* Documents */,
+				209D024F289ABF520082441F /* Editor */,
 				20D837BC289A7ACD00D91D05 /* Extensions */,
 				20D837B1289A7ACD00D91D05 /* Feedback */,
-				20D83851289A7ACE00D91D05 /* LSP */,
-				20D838EA289A7ACE00D91D05 /* QuickOpen */,
-				93EF415928C1D1BF004083AD /* CommandPalette */,
-				20D83718289A7ACD00D91D05 /* StatusBar */,
-				934D2F0528C4EC430034E5C8 /* MenuBarItem */,
-				20D838F5289A7ACE00D91D05 /* TerminalEmulator */,
-				7BBF20122939AF6E00D60627 /* Recents */,
-				20D83810289A7ACD00D91D05 /* WelcomeModule */,
+				2BDFA90C28D10B9200980385 /* FileCreation */,
 				20D83866289A7ACE00D91D05 /* FileSystemClient */,
+				B6EE988E27E8877C00CDD8AB /* InspectorSidebar */,
+				20D83851289A7ACE00D91D05 /* LSP */,
+				934D2F0528C4EC430034E5C8 /* MenuBarItem */,
+				287776EA27E350A100D46668 /* NavigatorSidebar */,
+				20D838EA289A7ACE00D91D05 /* QuickOpen */,
+				7BBF20122939AF6E00D60627 /* Recents */,
+				20D83718289A7ACD00D91D05 /* StatusBar */,
+				287776EB27E350BA00D46668 /* TabBar */,
+				20D838F5289A7ACE00D91D05 /* TerminalEmulator */,
+				2077162A287C86410069C68E /* Toolbar */,
+				20752E3928CA4C1100935487 /* Version Control */,
+				20D83810289A7ACD00D91D05 /* WelcomeModule */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1753,18 +1800,18 @@
 			isa = PBXGroup;
 			children = (
 				20439035290D27C600126A3F /* Errors */,
-				2093292228D9DE0800F91C82 /* Styles */,
-				20752E4728CA54E000935487 /* Version Control */,
-				20B5BD9F28B1309200B2A02F /* SplitView */,
-				20212679289BF7A800246DD7 /* Log */,
 				20D83740289A7ACD00D91D05 /* Extensions */,
 				20D83744289A7ACD00D91D05 /* KeyChain */,
-				2B71C0A32874AD61008E0859 /* AuroraProject.swift */,
+				20212679289BF7A800246DD7 /* Log */,
+				20B5BD9F28B1309200B2A02F /* SplitView */,
+				2093292228D9DE0800F91C82 /* Styles */,
+				20752E4728CA54E000935487 /* Version Control */,
 				2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */,
+				2B71C0A32874AD61008E0859 /* AuroraProject.swift */,
 				2BCBAAC72927C41E00D4DFB2 /* BindingProxy.swift */,
-				2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */,
-				2BD0BD132977331400629A86 /* VibrantEffect.swift */,
 				2036DD5428DB3DB5003BECB7 /* Queue.swift */,
+				2BD0BD132977331400629A86 /* VibrantEffect.swift */,
+				2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1772,8 +1819,8 @@
 		20D83718289A7ACD00D91D05 /* StatusBar */ = {
 			isa = PBXGroup;
 			children = (
-				20D83721289A7ACD00D91D05 /* UI */,
 				20D83734289A7ACD00D91D05 /* Model */,
+				20D83721289A7ACD00D91D05 /* UI */,
 			);
 			path = StatusBar;
 			sourceTree = "<group>";
@@ -1781,9 +1828,9 @@
 		20D83721289A7ACD00D91D05 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				20D83722289A7ACD00D91D05 /* StatusBar.swift */,
-				20D83723289A7ACD00D91D05 /* StatusBarItems */,
 				20D8372B289A7ACD00D91D05 /* StatusBarDrawer */,
+				20D83723289A7ACD00D91D05 /* StatusBarItems */,
+				20D83722289A7ACD00D91D05 /* StatusBar.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1791,14 +1838,14 @@
 		20D83723289A7ACD00D91D05 /* StatusBarItems */ = {
 			isa = PBXGroup;
 			children = (
-				20D83724289A7ACD00D91D05 /* StatusBarMenuLabel.swift */,
-				20D83725289A7ACD00D91D05 /* StatusBarBreakpointButton.swift */,
-				20D83726289A7ACD00D91D05 /* StatusBarIndentSelector.swift */,
-				20D83727289A7ACD00D91D05 /* StatusBarEncodingSelector.swift */,
-				20D83728289A7ACD00D91D05 /* StatusBarLineEndSelector.swift */,
-				20D83729289A7ACD00D91D05 /* StatusBarToggleDrawerButton.swift */,
-				20D8372A289A7ACD00D91D05 /* StatusBarCursorLocationLabel.swift */,
 				938E8E82291CBC3400DB8320 /* StatusBarBracketCountLabel.swift */,
+				20D83725289A7ACD00D91D05 /* StatusBarBreakpointButton.swift */,
+				20D8372A289A7ACD00D91D05 /* StatusBarCursorLocationLabel.swift */,
+				20D83727289A7ACD00D91D05 /* StatusBarEncodingSelector.swift */,
+				20D83726289A7ACD00D91D05 /* StatusBarIndentSelector.swift */,
+				20D83728289A7ACD00D91D05 /* StatusBarLineEndSelector.swift */,
+				20D83724289A7ACD00D91D05 /* StatusBarMenuLabel.swift */,
+				20D83729289A7ACD00D91D05 /* StatusBarToggleDrawerButton.swift */,
 			);
 			path = StatusBarItems;
 			sourceTree = "<group>";
@@ -1806,8 +1853,8 @@
 		20D8372B289A7ACD00D91D05 /* StatusBarDrawer */ = {
 			isa = PBXGroup;
 			children = (
-				20D8372C289A7ACD00D91D05 /* StatusBarDrawer.swift */,
 				20D8372D289A7ACD00D91D05 /* BottomBar */,
+				20D8372C289A7ACD00D91D05 /* StatusBarDrawer.swift */,
 			);
 			path = StatusBarDrawer;
 			sourceTree = "<group>";
@@ -1815,10 +1862,10 @@
 		20D8372D289A7ACD00D91D05 /* BottomBar */ = {
 			isa = PBXGroup;
 			children = (
-				20D8372E289A7ACD00D91D05 /* StatusBarSplitTerminalButton.swift */,
-				20D8372F289A7ACD00D91D05 /* StatusBarMaximizeButton.swift */,
-				20D83730289A7ACD00D91D05 /* StatusBarClearButton.swift */,
 				20D83731289A7ACD00D91D05 /* FilterTextField.swift */,
+				20D83730289A7ACD00D91D05 /* StatusBarClearButton.swift */,
+				20D8372F289A7ACD00D91D05 /* StatusBarMaximizeButton.swift */,
+				20D8372E289A7ACD00D91D05 /* StatusBarSplitTerminalButton.swift */,
 			);
 			path = BottomBar;
 			sourceTree = "<group>";
@@ -1826,10 +1873,10 @@
 		20D83734289A7ACD00D91D05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				938E8E80291CB95C00DB8320 /* BracketCount.swift */,
+				20D83737289A7ACD00D91D05 /* CursorLocation.swift */,
 				20D83735289A7ACD00D91D05 /* StatusBarModel.swift */,
 				20D83736289A7ACD00D91D05 /* StatusBarTabType.swift */,
-				20D83737289A7ACD00D91D05 /* CursorLocation.swift */,
-				938E8E80291CB95C00DB8320 /* BracketCount.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1837,19 +1884,19 @@
 		20D83740289A7ACD00D91D05 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2032B50F28A256F50089EBB6 /* Array.swift */,
 				2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */,
+				20D8373E289A7ACD00D91D05 /* Bundle.swift */,
+				2032B50D28A256130089EBB6 /* Collection.swift */,
+				20D8373D289A7ACD00D91D05 /* Color.swift */,
+				20D8373F289A7ACD00D91D05 /* Date.swift */,
+				20DF97A028ABB30D009CE1E9 /* FileManger.swift */,
+				20212684289BF87600246DD7 /* Formatters.swift */,
+				20212682289BF84B00246DD7 /* String.swift */,
 				20D838FA289A7ACE00D91D05 /* SwiftTerm+Color+Init.swift */,
 				20D8389D289A7ACE00D91D05 /* URL.swift */,
 				20D83733289A7ACD00D91D05 /* View.swift */,
-				20D8373F289A7ACD00D91D05 /* Date.swift */,
-				20212684289BF87600246DD7 /* Formatters.swift */,
-				2032B50D28A256130089EBB6 /* Collection.swift */,
-				2032B50F28A256F50089EBB6 /* Array.swift */,
-				20DF97A028ABB30D009CE1E9 /* FileManger.swift */,
 				20F8378F28C7B45700EAE842 /* WorkspaceExtension.swift */,
-				20212682289BF84B00246DD7 /* String.swift */,
-				20D8373D289A7ACD00D91D05 /* Color.swift */,
-				20D8373E289A7ACD00D91D05 /* Bundle.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1857,9 +1904,9 @@
 		20D83744289A7ACD00D91D05 /* KeyChain */ = {
 			isa = PBXGroup;
 			children = (
-				20D83745289A7ACD00D91D05 /* AuroraEditorSwiftAccessOptions.swift */,
 				20D83747289A7ACD00D91D05 /* AuroraEditorKeychain.swift */,
 				20D83748289A7ACD00D91D05 /* AuroraEditorKeychainConstants.swift */,
+				20D83745289A7ACD00D91D05 /* AuroraEditorSwiftAccessOptions.swift */,
 			);
 			path = KeyChain;
 			sourceTree = "<group>";
@@ -1875,9 +1922,9 @@
 		20D837B1289A7ACD00D91D05 /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
-				20D83900289A7C9200D91D05 /* UI */,
-				20D837B5289A7ACD00D91D05 /* Model */,
 				20D837BA289A7ACD00D91D05 /* Controllers */,
+				20D837B5289A7ACD00D91D05 /* Model */,
+				20D83900289A7C9200D91D05 /* UI */,
 			);
 			path = Feedback;
 			sourceTree = "<group>";
@@ -1885,9 +1932,9 @@
 		20D837B5289A7ACD00D91D05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				20D837B6289A7ACD00D91D05 /* IssueArea.swift */,
 				20D837B7289A7ACD00D91D05 /* FeedbackModel.swift */,
 				20D837B8289A7ACD00D91D05 /* FeedbackType.swift */,
+				20D837B6289A7ACD00D91D05 /* IssueArea.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1903,9 +1950,9 @@
 		20D837BC289A7ACD00D91D05 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				20D83913289A811600D91D05 /* UI */,
 				20D837BF289A7ACD00D91D05 /* Models */,
 				20D83912289A80E700D91D05 /* Network */,
+				20D83913289A811600D91D05 /* UI */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1914,10 +1961,10 @@
 			isa = PBXGroup;
 			children = (
 				0463E51027FCC1DF00806D5C /* AuroraEditorAPI.swift */,
-				20D837BE289A7ACD00D91D05 /* ExtensionsManager.swift */,
-				20D837C0289A7ACD00D91D05 /* PluginRelease.swift */,
 				20D837C1289A7ACD00D91D05 /* DownloadedPlugin.swift */,
+				20D837BE289A7ACD00D91D05 /* ExtensionsManager.swift */,
 				20D837C2289A7ACD00D91D05 /* Plugin.swift */,
+				20D837C0289A7ACD00D91D05 /* PluginRelease.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1926,9 +1973,9 @@
 			isa = PBXGroup;
 			children = (
 				20B6A1FC28AFE05E004EC8D7 /* Controller */,
-				20D837F6289A7ACD00D91D05 /* Resources */,
-				20D837FB289A7ACD00D91D05 /* Model */,
 				20D8380B289A7ACD00D91D05 /* HelperViews */,
+				20D837FB289A7ACD00D91D05 /* Model */,
+				20D837F6289A7ACD00D91D05 /* Resources */,
 				20D837CC289A7ACD00D91D05 /* UI */,
 			);
 			path = AppPreferences;
@@ -1937,13 +1984,13 @@
 		20D837CC289A7ACD00D91D05 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				20091DB328DE1F6C008FDDFC /* UpdatesPreferences */,
+				20D837E5289A7ACD00D91D05 /* AccountsPreferences */,
 				20D837CE289A7ACD00D91D05 /* GeneralPreferences */,
-				20D837D0289A7ACD00D91D05 /* TerminalPreferences */,
 				20D837D2289A7ACD00D91D05 /* SourceControlPreferences */,
+				20D837D0289A7ACD00D91D05 /* TerminalPreferences */,
 				20D837D9289A7ACD00D91D05 /* TextEditingPreferences */,
 				20D837DB289A7ACD00D91D05 /* ThemePreferences */,
-				20D837E5289A7ACD00D91D05 /* AccountsPreferences */,
+				20091DB328DE1F6C008FDDFC /* UpdatesPreferences */,
 				20D8380F289A7ACD00D91D05 /* PreferencesPlaceholderView.swift */,
 				206729AE28AE69DC00EB0957 /* PreferencesView.swift */,
 			);
@@ -1970,10 +2017,10 @@
 		20D837D2289A7ACD00D91D05 /* SourceControlPreferences */ = {
 			isa = PBXGroup;
 			children = (
+				20D837D8289A7ACD00D91D05 /* IgnoredFileView.swift */,
 				20D837D3289A7ACD00D91D05 /* PreferenceSourceControlView.swift */,
 				20D837D4289A7ACD00D91D05 /* SourceControlGeneralView.swift */,
 				20D837D5289A7ACD00D91D05 /* SourceControlGitView.swift */,
-				20D837D8289A7ACD00D91D05 /* IgnoredFileView.swift */,
 			);
 			path = SourceControlPreferences;
 			sourceTree = "<group>";
@@ -1989,11 +2036,11 @@
 		20D837DB289A7ACD00D91D05 /* ThemePreferences */ = {
 			isa = PBXGroup;
 			children = (
-				20D837DC289A7ACD00D91D05 /* ThemePreferencesView.swift */,
+				931B0E1128F2ACEC0036FD5F /* EditorThemeAttributeView.swift */,
+				20D837DF289A7ACD00D91D05 /* EditorThemeView.swift */,
 				20D837DD289A7ACD00D91D05 /* PreviewThemeView.swift */,
 				20D837DE289A7ACD00D91D05 /* TerminalThemeView.swift */,
-				20D837DF289A7ACD00D91D05 /* EditorThemeView.swift */,
-				931B0E1128F2ACEC0036FD5F /* EditorThemeAttributeView.swift */,
+				20D837DC289A7ACD00D91D05 /* ThemePreferencesView.swift */,
 				20D837E0289A7ACD00D91D05 /* ThemePreviewIcon.swift */,
 			);
 			path = ThemePreferences;
@@ -2003,10 +2050,10 @@
 			isa = PBXGroup;
 			children = (
 				9384904228FB9C69006FB263 /* ThemeJsonLoader */,
-				20D837E2289A7ACD00D91D05 /* ThemeModel.swift */,
 				20D837E4289A7ACD00D91D05 /* AuroraTheme.swift */,
 				9362B21328EC730D00523626 /* EditorColors.swift */,
 				9362B21528EC734200523626 /* TerminalColors.swift */,
+				20D837E2289A7ACD00D91D05 /* ThemeModel.swift */,
 			);
 			path = ThemePreferences;
 			sourceTree = "<group>";
@@ -2014,11 +2061,11 @@
 		20D837E5289A7ACD00D91D05 /* AccountsPreferences */ = {
 			isa = PBXGroup;
 			children = (
-				20D837E6289A7ACD00D91D05 /* PreferenceAccountsView.swift */,
-				20D837EA289A7ACD00D91D05 /* AccountListItem.swift */,
-				20D837EB289A7ACD00D91D05 /* AccountSelectionDialog.swift */,
 				20D837EC289A7ACD00D91D05 /* Login */,
 				20D59CD128AFAAE400E3907B /* AccountItemView.swift */,
+				20D837EA289A7ACD00D91D05 /* AccountListItem.swift */,
+				20D837EB289A7ACD00D91D05 /* AccountSelectionDialog.swift */,
+				20D837E6289A7ACD00D91D05 /* PreferenceAccountsView.swift */,
 			);
 			path = AccountsPreferences;
 			sourceTree = "<group>";
@@ -2027,9 +2074,9 @@
 			isa = PBXGroup;
 			children = (
 				20CABA35290BF461004753A8 /* AuroraEditor */,
+				20D837F1289A7ACD00D91D05 /* Github */,
 				20D837ED289A7ACD00D91D05 /* Gitlab */,
 				20D837F0289A7ACD00D91D05 /* GitAccountItem.swift */,
-				20D837F1289A7ACD00D91D05 /* Github */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -2046,8 +2093,8 @@
 		20D837F1289A7ACD00D91D05 /* Github */ = {
 			isa = PBXGroup;
 			children = (
-				20D837F2289A7ACD00D91D05 /* GithubLoginView.swift */,
 				20D837F3289A7ACD00D91D05 /* GithubEnterpriseLoginView.swift */,
+				20D837F2289A7ACD00D91D05 /* GithubLoginView.swift */,
 			);
 			path = Github;
 			sourceTree = "<group>";
@@ -2071,16 +2118,16 @@
 		20D837FB289A7ACD00D91D05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				20D837FE289A7ACD00D91D05 /* AppPreferencesModel.swift */,
-				20D83805289A7ACD00D91D05 /* AppPreferences.swift */,
-				20D837FF289A7ACD00D91D05 /* General */,
-				20D83809289A7ACD00D91D05 /* Theme */,
 				20D83806289A7ACD00D91D05 /* Accounts */,
+				20D837FF289A7ACD00D91D05 /* General */,
+				20D837FC289A7ACD00D91D05 /* Source Control */,
 				20D83803289A7ACD00D91D05 /* Terminal */,
 				20D83801289A7ACD00D91D05 /* Text Editing */,
-				20D837FC289A7ACD00D91D05 /* Source Control */,
+				20D83809289A7ACD00D91D05 /* Theme */,
 				20D837E1289A7ACD00D91D05 /* ThemePreferences */,
 				20091DB828DE21EA008FDDFC /* Updates */,
+				20D83805289A7ACD00D91D05 /* AppPreferences.swift */,
+				20D837FE289A7ACD00D91D05 /* AppPreferencesModel.swift */,
 				20B6A1FD28AFE107004EC8D7 /* SettingItem.swift */,
 				20B6A1FF28AFE124004EC8D7 /* SettingsModel.swift */,
 			);
@@ -2123,10 +2170,10 @@
 		20D83806289A7ACD00D91D05 /* Accounts */ = {
 			isa = PBXGroup;
 			children = (
-				20D837E8289A7ACD00D91D05 /* Providers.swift */,
 				20D83807289A7ACD00D91D05 /* AccountsPreferences.swift */,
-				20D83808289A7ACD00D91D05 /* SourceControlAccounts.swift */,
 				20CABA38290BF5A2004753A8 /* EditorAccountModel.swift */,
+				20D837E8289A7ACD00D91D05 /* Providers.swift */,
+				20D83808289A7ACD00D91D05 /* SourceControlAccounts.swift */,
 			);
 			path = Accounts;
 			sourceTree = "<group>";
@@ -2143,8 +2190,8 @@
 			isa = PBXGroup;
 			children = (
 				20D837F8289A7ACD00D91D05 /* Extensions */,
-				20D8380C289A7ACD00D91D05 /* PreferencesSection.swift */,
 				20D8380D289A7ACD00D91D05 /* PreferencesColorPicker.swift */,
+				20D8380C289A7ACD00D91D05 /* PreferencesSection.swift */,
 				20D8380E289A7ACD00D91D05 /* PreferencesToolbar.swift */,
 			);
 			path = HelperViews;
@@ -2163,9 +2210,9 @@
 			isa = PBXGroup;
 			children = (
 				20B5BD9A28B11BF400B2A02F /* Extensions */,
-				20D8381F289A7ACD00D91D05 /* WelcomeWindowView.swift */,
-				20D83820289A7ACD00D91D05 /* WelcomeView.swift */,
 				20D83821289A7ACD00D91D05 /* WelcomeActionView.swift */,
+				20D83820289A7ACD00D91D05 /* WelcomeView.swift */,
+				20D8381F289A7ACD00D91D05 /* WelcomeWindowView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2173,8 +2220,8 @@
 		20D83824289A7ACD00D91D05 /* AuroraEditorUI */ = {
 			isa = PBXGroup;
 			children = (
-				20D83835289A7ACD00D91D05 /* UI */,
 				20D83910289A807500D91D05 /* Model */,
+				20D83835289A7ACD00D91D05 /* UI */,
 			);
 			path = AuroraEditorUI;
 			sourceTree = "<group>";
@@ -2182,40 +2229,14 @@
 		20D83835289A7ACD00D91D05 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				20D83836289A7ACD00D91D05 /* FontPickerView.swift */,
-				20D83837289A7ACD00D91D05 /* SegmentedControl.swift */,
-				20D83838289A7ACD00D91D05 /* PanelDivider.swift */,
 				20D8383A289A7ACD00D91D05 /* EffectView.swift */,
-				20D8383B289A7ACD00D91D05 /* SettingsTextEditor.swift */,
+				20D83836289A7ACD00D91D05 /* FontPickerView.swift */,
 				20D8383E289A7ACD00D91D05 /* HelpButton.swift */,
+				20D83838289A7ACD00D91D05 /* PanelDivider.swift */,
+				20D83837289A7ACD00D91D05 /* SegmentedControl.swift */,
+				20D8383B289A7ACD00D91D05 /* SettingsTextEditor.swift */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		20D8384B289A7ACE00D91D05 /* Acknowledgements */ = {
-			isa = PBXGroup;
-			children = (
-				20D8384F289A7ACE00D91D05 /* Model */,
-				20D8384C289A7ACE00D91D05 /* UI */,
-			);
-			path = Acknowledgements;
-			sourceTree = "<group>";
-		};
-		20D8384C289A7ACE00D91D05 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				20D8384D289A7ACE00D91D05 /* AcknowledgementsView.swift */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
-		20D8384F289A7ACE00D91D05 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				20D8384E289A7ACE00D91D05 /* ParsePackagesResolved.swift */,
-				20D83850289A7ACE00D91D05 /* AcknowledgementsModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		20D83851289A7ACE00D91D05 /* LSP */ = {
@@ -2237,9 +2258,9 @@
 		20D83854289A7ACE00D91D05 /* Crashlytics */ = {
 			isa = PBXGroup;
 			children = (
-				20D83901289A7CF000D91D05 /* UI */,
 				20D83858289A7ACE00D91D05 /* Controller */,
 				20D8385A289A7ACE00D91D05 /* Model */,
+				20D83901289A7CF000D91D05 /* UI */,
 			);
 			path = Crashlytics;
 			sourceTree = "<group>";
@@ -2264,12 +2285,12 @@
 		20D8385E289A7ACE00D91D05 /* FindNavigator */ = {
 			isa = PBXGroup;
 			children = (
-				20D8385F289A7ACE00D91D05 /* SearchModeModel.swift */,
-				20D83860289A7ACE00D91D05 /* SearchResultModel.swift */,
-				202F2E34289E7277000D3CAD /* SearchResultMatchModel.swift */,
-				202F2E36289E740D000D3CAD /* FindNavigatorResultList.swift */,
 				202F2E38289E7444000D3CAD /* FindNavigatorListMatchCell.swift */,
 				202F2E3A289E7483000D3CAD /* FindNavigatorListViewController.swift */,
+				202F2E36289E740D000D3CAD /* FindNavigatorResultList.swift */,
+				20D8385F289A7ACE00D91D05 /* SearchModeModel.swift */,
+				202F2E34289E7277000D3CAD /* SearchResultMatchModel.swift */,
+				20D83860289A7ACE00D91D05 /* SearchResultModel.swift */,
 			);
 			name = FindNavigator;
 			path = AuroraEditor/Base/NavigatorSidebar/Model/FindNavigator;
@@ -2278,8 +2299,8 @@
 		20D83866289A7ACE00D91D05 /* FileSystemClient */ = {
 			isa = PBXGroup;
 			children = (
-				20D8386A289A7ACE00D91D05 /* UI */,
 				20D8386C289A7ACE00D91D05 /* Model */,
+				20D8386A289A7ACE00D91D05 /* UI */,
 			);
 			path = FileSystemClient;
 			sourceTree = "<group>";
@@ -2295,8 +2316,8 @@
 		20D8386C289A7ACE00D91D05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				93F0066528A756F50038E5B7 /* FileSystemClient */,
 				939C2CC4289E341F00BBB345 /* FileItem */,
+				93F0066528A756F50038E5B7 /* FileSystemClient */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2304,11 +2325,11 @@
 		20D83881289A7ACE00D91D05 /* Gitlab */ = {
 			isa = PBXGroup;
 			children = (
-				20D83882289A7ACE00D91D05 /* Routers */,
-				20D83887289A7ACE00D91D05 /* GitlabOAuthConfiguration.swift */,
-				20D83888289A7ACE00D91D05 /* GitlabConfiguration.swift */,
-				20D83889289A7ACE00D91D05 /* GitlabAccount.swift */,
 				20D8388A289A7ACE00D91D05 /* Model */,
+				20D83882289A7ACE00D91D05 /* Routers */,
+				20D83889289A7ACE00D91D05 /* GitlabAccount.swift */,
+				20D83888289A7ACE00D91D05 /* GitlabConfiguration.swift */,
+				20D83887289A7ACE00D91D05 /* GitlabOAuthConfiguration.swift */,
 			);
 			path = Gitlab;
 			sourceTree = "<group>";
@@ -2316,10 +2337,10 @@
 		20D83882289A7ACE00D91D05 /* Routers */ = {
 			isa = PBXGroup;
 			children = (
-				20D83883289A7ACE00D91D05 /* UserRouter.swift */,
 				20D83884289A7ACE00D91D05 /* CommitRouter.swift */,
-				20D83885289A7ACE00D91D05 /* ProjectRouter.swift */,
 				20D83886289A7ACE00D91D05 /* GitlabOAuthRouter.swift */,
+				20D83885289A7ACE00D91D05 /* ProjectRouter.swift */,
+				20D83883289A7ACE00D91D05 /* UserRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -2327,19 +2348,19 @@
 		20D8388A289A7ACE00D91D05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				20D8388B289A7ACE00D91D05 /* GitlabCommit.swift */,
-				20D8388C289A7ACE00D91D05 /* GroupAccess.swift */,
-				20D8388D289A7ACE00D91D05 /* ProjectHook.swift */,
-				20D8388E289A7ACE00D91D05 /* EventData.swift */,
-				20D8388F289A7ACE00D91D05 /* GitlabAccountModel.swift */,
-				20D83890289A7ACE00D91D05 /* Event.swift */,
-				20D83891289A7ACE00D91D05 /* Permissions.swift */,
 				20D83892289A7ACE00D91D05 /* AvatarURL.swift */,
-				20D83893289A7ACE00D91D05 /* Namespace.swift */,
+				20D83890289A7ACE00D91D05 /* Event.swift */,
+				20D8388E289A7ACE00D91D05 /* EventData.swift */,
 				20D83894289A7ACE00D91D05 /* EventNote.swift */,
+				20D8388F289A7ACE00D91D05 /* GitlabAccountModel.swift */,
+				20D8388B289A7ACE00D91D05 /* GitlabCommit.swift */,
+				20D83897289A7ACE00D91D05 /* GitlabUser.swift */,
+				20D8388C289A7ACE00D91D05 /* GroupAccess.swift */,
+				20D83893289A7ACE00D91D05 /* Namespace.swift */,
+				20D83891289A7ACE00D91D05 /* Permissions.swift */,
 				20D83895289A7ACE00D91D05 /* Project.swift */,
 				20D83896289A7ACE00D91D05 /* ProjectAccess.swift */,
-				20D83897289A7ACE00D91D05 /* GitlabUser.swift */,
+				20D8388D289A7ACE00D91D05 /* ProjectHook.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2347,13 +2368,13 @@
 		20D838A2289A7ACE00D91D05 /* Github */ = {
 			isa = PBXGroup;
 			children = (
-				20D838A3289A7ACE00D91D05 /* Routers */,
-				20D838AB289A7ACE00D91D05 /* GithubConfiguration.swift */,
-				20D838AC289A7ACE00D91D05 /* PublicKey.swift */,
-				20D838AD289A7ACE00D91D05 /* PreviewHeader.swift */,
 				20D838AE289A7ACE00D91D05 /* Model */,
-				20D838B8289A7ACE00D91D05 /* Openness.swift */,
+				20D838A3289A7ACE00D91D05 /* Routers */,
 				20D838B9289A7ACE00D91D05 /* GithubAccount.swift */,
+				20D838AB289A7ACE00D91D05 /* GithubConfiguration.swift */,
+				20D838B8289A7ACE00D91D05 /* Openness.swift */,
+				20D838AD289A7ACE00D91D05 /* PreviewHeader.swift */,
+				20D838AC289A7ACE00D91D05 /* PublicKey.swift */,
 			);
 			path = Github;
 			sourceTree = "<group>";
@@ -2361,13 +2382,13 @@
 		20D838A3289A7ACE00D91D05 /* Routers */ = {
 			isa = PBXGroup;
 			children = (
-				20D838A4289A7ACE00D91D05 /* IssueRouter.swift */,
-				20D838A5289A7ACE00D91D05 /* ReviewsRouter.swift */,
-				20D838A6289A7ACE00D91D05 /* GitRouter.swift */,
-				20D838A7289A7ACE00D91D05 /* GithubRepositoryRouter.swift */,
-				20D838A8289A7ACE00D91D05 /* PullRequestRouter.swift */,
 				20D838A9289A7ACE00D91D05 /* GistRouter.swift */,
+				20D838A7289A7ACE00D91D05 /* GithubRepositoryRouter.swift */,
 				20D838AA289A7ACE00D91D05 /* GithubUserRouter.swift */,
+				20D838A6289A7ACE00D91D05 /* GitRouter.swift */,
+				20D838A4289A7ACE00D91D05 /* IssueRouter.swift */,
+				20D838A8289A7ACE00D91D05 /* PullRequestRouter.swift */,
+				20D838A5289A7ACE00D91D05 /* ReviewsRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -2375,15 +2396,15 @@
 		20D838AE289A7ACE00D91D05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				20D838AF289A7ACE00D91D05 /* PullRequest.swift */,
-				20D838B0289A7ACE00D91D05 /* GithubUser.swift */,
-				20D838B1289A7ACE00D91D05 /* Review.swift */,
 				20D838B2289A7ACE00D91D05 /* Comment.swift */,
-				20D838B3289A7ACE00D91D05 /* GithubRepositories.swift */,
 				20D838B4289A7ACE00D91D05 /* Files.swift */,
 				20D838B5289A7ACE00D91D05 /* Gist.swift */,
-				20D838B6289A7ACE00D91D05 /* Issue.swift */,
 				20D838B7289A7ACE00D91D05 /* Git.swift */,
+				20D838B3289A7ACE00D91D05 /* GithubRepositories.swift */,
+				20D838B0289A7ACE00D91D05 /* GithubUser.swift */,
+				20D838B6289A7ACE00D91D05 /* Issue.swift */,
+				20D838AF289A7ACE00D91D05 /* PullRequest.swift */,
+				20D838B1289A7ACE00D91D05 /* Review.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2391,12 +2412,12 @@
 		20D838BA289A7ACE00D91D05 /* Bitbucket */ = {
 			isa = PBXGroup;
 			children = (
+				20D838C3289A7ACE00D91D05 /* Model */,
 				20D838BB289A7ACE00D91D05 /* Routers */,
+				20D838C6289A7ACE00D91D05 /* BitbucketAccount+Token.swift */,
 				20D838C0289A7ACE00D91D05 /* BitbucketAccount.swift */,
 				20D838C1289A7ACE00D91D05 /* BitbucketOAuthConfiguration.swift */,
 				20D838C2289A7ACE00D91D05 /* BitbucketTokenConfiguration.swift */,
-				20D838C3289A7ACE00D91D05 /* Model */,
-				20D838C6289A7ACE00D91D05 /* BitbucketAccount+Token.swift */,
 			);
 			path = Bitbucket;
 			sourceTree = "<group>";
@@ -2406,8 +2427,8 @@
 			children = (
 				20D838BC289A7ACE00D91D05 /* BitbucketRepositoryRouter.swift */,
 				20D838BD289A7ACE00D91D05 /* BitbucketUserRouter.swift */,
-				20D838BE289A7ACE00D91D05 /* TokenRouter.swift */,
 				20D838BF289A7ACE00D91D05 /* OAuthRouter.swift */,
+				20D838BE289A7ACE00D91D05 /* TokenRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -2415,8 +2436,8 @@
 		20D838C3289A7ACE00D91D05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				20D838C4289A7ACE00D91D05 /* BitbucketUser.swift */,
 				20D838C5289A7ACE00D91D05 /* BitbucketRepositories.swift */,
+				20D838C4289A7ACE00D91D05 /* BitbucketUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2442,9 +2463,9 @@
 			isa = PBXGroup;
 			children = (
 				20D838E6289A7ACE00D91D05 /* NotificationCentreView.swift */,
+				20D838E9289A7ACE00D91D05 /* NotificationView.swift */,
 				20D838E7289A7ACE00D91D05 /* NotificationWithButton.swift */,
 				20D838E8289A7ACE00D91D05 /* NotificationWithProgress.swift */,
-				20D838E9289A7ACE00D91D05 /* NotificationView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2452,9 +2473,9 @@
 		20D838E2289A7ACE00D91D05 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				20D838E1289A7ACE00D91D05 /* NotificationManager.swift */,
 				20D838E3289A7ACE00D91D05 /* BannerModule.swift */,
 				20D838E4289A7ACE00D91D05 /* NotificationData.swift */,
+				20D838E1289A7ACE00D91D05 /* NotificationManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2471,9 +2492,9 @@
 		20D838EB289A7ACE00D91D05 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				20D838EC289A7ACE00D91D05 /* QuickOpenView.swift */,
-				20D838ED289A7ACE00D91D05 /* QuickOpenPreviewView.swift */,
 				20D838EF289A7ACE00D91D05 /* QuickOpenItem.swift */,
+				20D838ED289A7ACE00D91D05 /* QuickOpenPreviewView.swift */,
+				20D838EC289A7ACE00D91D05 /* QuickOpenView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2498,9 +2519,9 @@
 		20D838FB289A7AD600D91D05 /* About */ = {
 			isa = PBXGroup;
 			children = (
-				209D2F5A297BDC5A005AB73C /* Resources */,
-				20C0CBDB297B077700E9F9F0 /* Model */,
 				2032B51128A26B2D0089EBB6 /* Controller */,
+				20C0CBDB297B077700E9F9F0 /* Model */,
+				209D2F5A297BDC5A005AB73C /* Resources */,
 				20D838FC289A7AD600D91D05 /* UI */,
 			);
 			path = About;
@@ -2510,10 +2531,10 @@
 			isa = PBXGroup;
 			children = (
 				20D838FD289A7AD600D91D05 /* AboutView.swift */,
-				209D2F49297BBE61005AB73C /* LicenseDetailView.swift */,
-				209D2F4B297BBF2B005AB73C /* CreditsDetailView.swift */,
-				209D2F4D297BBF36005AB73C /* ContributersDetailView.swift */,
 				209D2F55297BD806005AB73C /* ApplicationsDetailsView.swift */,
+				209D2F4D297BBF36005AB73C /* ContributersDetailView.swift */,
+				209D2F4B297BBF2B005AB73C /* CreditsDetailView.swift */,
+				209D2F49297BBE61005AB73C /* LicenseDetailView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2521,14 +2542,14 @@
 		20D838FE289A7C2600D91D05 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				DE513F53281DE5D0002260B9 /* TabBarXcode.swift */,
+				936312E828CCCAC4004CD24B /* TabBar */,
+				936312E528CCC795004CD24B /* TabBarItem */,
 				DE513F51281B672D002260B9 /* TabBarAccessory.swift */,
-				DE6405A52817734700881FDF /* TabBarNative.swift */,
+				6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */,
 				DE6F77862813625500D00A76 /* TabBarDivider.swift */,
 				6CDA84AA284C0E4A00C1CC3A /* TabBarItemButtonStyle.swift */,
-				6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */,
-				936312E528CCC795004CD24B /* TabBarItem */,
-				936312E828CCCAC4004CD24B /* TabBar */,
+				DE6405A52817734700881FDF /* TabBarNative.swift */,
+				DE513F53281DE5D0002260B9 /* TabBarXcode.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2536,8 +2557,8 @@
 		20D838FF289A7C5900D91D05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				20D83863289A7ACE00D91D05 /* TabBarItemRepresentable.swift */,
 				20D83865289A7ACE00D91D05 /* TabBarItemID.swift */,
+				20D83863289A7ACE00D91D05 /* TabBarItemRepresentable.swift */,
 				9302A22328D183E300648D63 /* TabBarItemStorage.swift */,
 			);
 			path = Model;
@@ -2546,8 +2567,8 @@
 		20D83900289A7C9200D91D05 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				20D837B9289A7ACD00D91D05 /* FeedbackView.swift */,
 				20D837B4289A7ACD00D91D05 /* FeedbackToolbar.swift */,
+				20D837B9289A7ACD00D91D05 /* FeedbackView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2564,8 +2585,8 @@
 			isa = PBXGroup;
 			children = (
 				20D8374C289A7ACD00D91D05 /* BreadcrumbsComponent.swift */,
-				20D8374D289A7ACD00D91D05 /* BreadcrumbsView.swift */,
 				20D8374B289A7ACD00D91D05 /* BreadcrumbsMenu.swift */,
+				20D8374D289A7ACD00D91D05 /* BreadcrumbsView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2573,15 +2594,15 @@
 		20D83903289A7D6400D91D05 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				20D8390C289A7E3F00D91D05 /* FindNavigator */,
-				20D8390A289A7E1100D91D05 /* ProjectNavigator */,
 				0483E34E27FDB15F00354AC0 /* ExtensionNavigator */,
-				20D83904289A7D8600D91D05 /* SourceControlNavigator */,
+				20D8390C289A7E3F00D91D05 /* FindNavigator */,
 				93983D2E28CE053800E54409 /* HierarchyNavigator */,
-				93DEBF7B295C1F6D002EAD63 /* NavigatorSidebarToolbar.swift */,
+				20D8390A289A7E1100D91D05 /* ProjectNavigator */,
+				20D83904289A7D8600D91D05 /* SourceControlNavigator */,
 				93983D2C28CE012500E54409 /* NavigatorModeSelectModel.swift */,
-				287776E627E3413200D46668 /* NavigatorSidebar.swift */,
 				93DEBF7D295C441E002EAD63 /* NavigatorSidebar+Splitting.swift */,
+				287776E627E3413200D46668 /* NavigatorSidebar.swift */,
+				93DEBF7B295C1F6D002EAD63 /* NavigatorSidebarToolbar.swift */,
 				28FFE1BE27E3A441001939DB /* NavigatorSidebarToolbarBottom.swift */,
 			);
 			path = UI;
@@ -2602,8 +2623,8 @@
 		20D83905289A7D9800D91D05 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				201169E42837B40300F92B46 /* RepositoriesView.swift */,
 				20DF97A228ABD7D2009CE1E9 /* CreateNewRepositoryView.swift */,
+				201169E42837B40300F92B46 /* RepositoriesView.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -2620,11 +2641,11 @@
 		20D83907289A7DBA00D91D05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				20D8385E289A7ACE00D91D05 /* FindNavigator */,
-				20D8390B289A7E1800D91D05 /* ProjectNavigator */,
 				20D83909289A7DF300D91D05 /* ExtensionNavigator */,
-				20D83908289A7DC600D91D05 /* SourceControlNavigator */,
+				20D8385E289A7ACE00D91D05 /* FindNavigator */,
 				93D5F5D128CE060A00286EBD /* HierarchyNavigator */,
+				20D8390B289A7E1800D91D05 /* ProjectNavigator */,
+				20D83908289A7DC600D91D05 /* SourceControlNavigator */,
 				935EB99B28A8F26900E8F798 /* FileSystemTableViewCell.swift */,
 				9354D4BA28AD2872004C6D18 /* StandardTableViewCell.swift */,
 				93D5F5D828CE123200286EBD /* TextTableViewCell.swift */,
@@ -2635,8 +2656,8 @@
 		20D83908289A7DC600D91D05 /* SourceControlNavigator */ = {
 			isa = PBXGroup;
 			children = (
-				20DF979D28ABAA59009CE1E9 /* Repositories */,
 				20DF979C28ABAA4C009CE1E9 /* Changes */,
+				20DF979D28ABAA59009CE1E9 /* Repositories */,
 			);
 			path = SourceControlNavigator;
 			sourceTree = "<group>";
@@ -2644,8 +2665,8 @@
 		20D83909289A7DF300D91D05 /* ExtensionNavigator */ = {
 			isa = PBXGroup;
 			children = (
-				04C3254A27FF23B000C8DA2D /* ExtensionNavigatorData.swift */,
 				04C325502800AC7400C8DA2D /* ExtensionInstallationViewModel.swift */,
+				04C3254A27FF23B000C8DA2D /* ExtensionNavigatorData.swift */,
 			);
 			path = ExtensionNavigator;
 			sourceTree = "<group>";
@@ -2653,8 +2674,8 @@
 		20D8390A289A7E1100D91D05 /* ProjectNavigator */ = {
 			isa = PBXGroup;
 			children = (
-				9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */,
 				286471AA27ED51FD0039369D /* ProjectNavigator.swift */,
+				9312ADB6288C3DE0009778D2 /* ProjectNavigatorToolbarBottom.swift */,
 			);
 			path = ProjectNavigator;
 			sourceTree = "<group>";
@@ -2662,12 +2683,12 @@
 		20D8390B289A7E1800D91D05 /* ProjectNavigator */ = {
 			isa = PBXGroup;
 			children = (
+				285FEC7127FE4EEF00E57D53 /* ProjectNavigatorMenu.swift */,
+				9352467B28CB2EB700E38DAD /* ProjectNavigatorOutlineDataSource.swift */,
+				9352467928CB16A200E38DAD /* ProjectNavigatorOutlineDelegate.swift */,
+				285FEC6F27FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift */,
 				2847019D27FDDF7600F87B6B /* ProjectNavigatorView.swift */,
 				285FEC6D27FE4B4A00E57D53 /* ProjectNavigatorViewController.swift */,
-				9352467928CB16A200E38DAD /* ProjectNavigatorOutlineDelegate.swift */,
-				9352467B28CB2EB700E38DAD /* ProjectNavigatorOutlineDataSource.swift */,
-				285FEC6F27FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift */,
-				285FEC7127FE4EEF00E57D53 /* ProjectNavigatorMenu.swift */,
 			);
 			path = ProjectNavigator;
 			sourceTree = "<group>";
@@ -2675,9 +2696,9 @@
 		20D8390C289A7E3F00D91D05 /* FindNavigator */ = {
 			isa = PBXGroup;
 			children = (
-				D7E201AF27E8C07300CB86D0 /* FindNavigatorSearchBar.swift */,
 				D7012EE727E757850001E1EF /* FindNavigator.swift */,
 				D7E201B127E8D50000CB86D0 /* FindNavigatorModeSelector.swift */,
+				D7E201AF27E8C07300CB86D0 /* FindNavigatorSearchBar.swift */,
 			);
 			path = FindNavigator;
 			sourceTree = "<group>";
@@ -2686,12 +2707,12 @@
 			isa = PBXGroup;
 			children = (
 				20DD3FF5288D927400757239 /* FileInspector */,
-				20DD3FF4288D926B00757239 /* QuickHelp */,
 				20DD3FF3288D926200757239 /* History */,
 				20D839AC280E0C9400B27357 /* Popover */,
-				20D839AA280DEB2900B27357 /* NoSelectionView.swift */,
+				20DD3FF4288D926B00757239 /* QuickHelp */,
 				B6EE988F27E8879A00CDD8AB /* InspectorSidebar.swift */,
 				B6EE989127E887C600CDD8AB /* InspectorSidebarToolbar.swift */,
+				20D839AA280DEB2900B27357 /* NoSelectionView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2699,8 +2720,8 @@
 		20D8390F289A7F3F00D91D05 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				20C8D7DB287ED2C700C5B3BA /* ToolbarBranchPicker.swift */,
 				2077162D287C8EC80069C68E /* ToolbarAppInfo.swift */,
+				20C8D7DB287ED2C700C5B3BA /* ToolbarBranchPicker.swift */,
 				93672E8428B2684F0086132E /* ToolbarPlusMenu.swift */,
 			);
 			path = UI;
@@ -2709,8 +2730,8 @@
 		20D83910289A807500D91D05 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				20D8383D289A7ACD00D91D05 /* PressActionsModifier.swift */,
 				20D8383C289A7ACD00D91D05 /* OverlayPanel.swift */,
+				20D8383D289A7ACD00D91D05 /* PressActionsModifier.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2719,8 +2740,8 @@
 			isa = PBXGroup;
 			children = (
 				20D837C4289A7ACD00D91D05 /* ExtensionsStoreAPI.swift */,
-				20D837C5289A7ACD00D91D05 /* Response.swift */,
 				20D837C6289A7ACD00D91D05 /* Page.swift */,
+				20D837C5289A7ACD00D91D05 /* Response.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -2736,9 +2757,9 @@
 		20D83914289A816500D91D05 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				20D83899289A7ACE00D91D05 /* Session.swift */,
 				20D8389A289A7ACE00D91D05 /* JSONPostRouter.swift */,
 				20D8389B289A7ACE00D91D05 /* Router.swift */,
+				20D83899289A7ACE00D91D05 /* Session.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -2781,9 +2802,9 @@
 		20DD3FF3288D926200757239 /* History */ = {
 			isa = PBXGroup;
 			children = (
-				200412EE280F3EAC00BCAF5C /* NoCommitHistoryView.swift */,
-				20EBB504280C329800F3A5DA /* HistoryItem.swift */,
 				20EBB502280C327C00F3A5DA /* HistoryInspector.swift */,
+				20EBB504280C329800F3A5DA /* HistoryItem.swift */,
+				200412EE280F3EAC00BCAF5C /* NoCommitHistoryView.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -2823,12 +2844,12 @@
 			isa = PBXGroup;
 			children = (
 				2072FA14280D838800C7F8D4 /* Lists */,
-				20EBB50C280C383700F3A5DA /* LanguageType.swift */,
 				20EBB50E280C389300F3A5DA /* FileInspectorModel.swift */,
-				2072FA17280D871200C7F8D4 /* TextEncoding.swift */,
 				2072FA1B280D874000C7F8D4 /* IndentUsing.swift */,
+				20EBB50C280C383700F3A5DA /* LanguageType.swift */,
 				2072FA19280D872600C7F8D4 /* LineEndings.swift */,
 				2072FA1D280D891500C7F8D4 /* Location.swift */,
+				2072FA17280D871200C7F8D4 /* TextEncoding.swift */,
 			);
 			path = FileInspector;
 			sourceTree = "<group>";
@@ -2836,10 +2857,10 @@
 		20DF979C28ABAA4C009CE1E9 /* Changes */ = {
 			isa = PBXGroup;
 			children = (
+				20E8748F28A3ABA8002CE758 /* SourceControlController.swift */,
+				20E8748D28A3AB9B002CE758 /* SourceControlMenu.swift */,
 				201169E62837B5CA00F92B46 /* SourceControlModel.swift */,
 				20E8748B28A3AB89002CE758 /* SourceControlTableViewCell.swift */,
-				20E8748D28A3AB9B002CE758 /* SourceControlMenu.swift */,
-				20E8748F28A3ABA8002CE758 /* SourceControlController.swift */,
 				20E8749128A3ABB6002CE758 /* SourceControlView.swift */,
 			);
 			path = Changes;
@@ -2848,12 +2869,12 @@
 		20DF979D28ABAA59009CE1E9 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				20DF979E28ABAA72009CE1E9 /* RepositoryModel.swift */,
-				9354D4B228ACEDDE004C6D18 /* RepositoriesWrapperView.swift */,
-				9354D4B428ACEDEF004C6D18 /* RepositoriesViewController.swift */,
-				9354D4B628ACEE04004C6D18 /* RepositoriesTableViewCell.swift */,
 				9354D4B828ACEE20004C6D18 /* RepositoriesMenu.swift */,
+				9354D4B628ACEE04004C6D18 /* RepositoriesTableViewCell.swift */,
+				9354D4B428ACEDEF004C6D18 /* RepositoriesViewController.swift */,
+				9354D4B228ACEDDE004C6D18 /* RepositoriesWrapperView.swift */,
 				939C109428AE7D0700403A97 /* RepositoryContainers&Items.swift */,
+				20DF979E28ABAA72009CE1E9 /* RepositoryModel.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -2862,8 +2883,8 @@
 			isa = PBXGroup;
 			children = (
 				20DD3FF8288D92C300757239 /* FileInspector */,
-				20DD3FF7288D92BC00757239 /* QuickHelp */,
 				20DD3FF6288D92B200757239 /* History */,
+				20DD3FF7288D92BC00757239 /* QuickHelp */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2872,12 +2893,12 @@
 			isa = PBXGroup;
 			children = (
 				2B04571728E6FFE300024F2D /* Theme Attributes */,
-				2B04570F28E6FFE300024F2D /* HighlightTheme.swift */,
 				2B04571028E6FFE300024F2D /* HighlightTheme+Default.swift */,
-				2B04571428E6FFE300024F2D /* HighlightThemeSetting.swift */,
+				2B04570F28E6FFE300024F2D /* HighlightTheme.swift */,
 				2B04573328E6FFE300024F2D /* HighlightThemeAttribute.swift */,
-				2B04573628E6FFE300024F2D /* TokenThemeAttribute.swift */,
+				2B04571428E6FFE300024F2D /* HighlightThemeSetting.swift */,
 				2089C57028F015A900FE2155 /* HighlightThemeTrieElement.swift */,
+				2B04573628E6FFE300024F2D /* TokenThemeAttribute.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -2885,10 +2906,10 @@
 		28069DA527F5BD320016BC47 /* DefaultThemes */ = {
 			isa = PBXGroup;
 			children = (
-				28A50FFF281673530087B0CC /* auroraeditor-xcode-dark.json */,
-				28A51000281673530087B0CC /* auroraeditor-xcode-light.json */,
 				28A51004281701B40087B0CC /* auroraeditor-github-dark.json */,
 				9384904728FBA5E2006FB263 /* auroraeditor-github-light.json */,
+				28A50FFF281673530087B0CC /* auroraeditor-xcode-dark.json */,
+				28A51000281673530087B0CC /* auroraeditor-xcode-light.json */,
 				28A51003281701B40087B0CC /* creeper.tmTheme */,
 			);
 			path = DefaultThemes;
@@ -2916,9 +2937,9 @@
 			isa = PBXGroup;
 			children = (
 				93ECCFF82902CA7400605FB3 /* Interface */,
-				20EC822A28EC22CC007E283A /* Theme */,
-				2B04572D28E6FFE300024F2D /* Rules+Patterns */,
 				93ECCFF92902CAD200605FB3 /* Processing */,
+				2B04572D28E6FFE300024F2D /* Rules+Patterns */,
+				20EC822A28EC22CC007E283A /* Theme */,
 			);
 			path = EditorCore;
 			sourceTree = "<group>";
@@ -2926,28 +2947,28 @@
 		2B04571728E6FFE300024F2D /* Theme Attributes */ = {
 			isa = PBXGroup;
 			children = (
-				2B04571228E6FFE300024F2D /* LineThemeAttribute.swift */,
-				2B04571828E6FFE300024F2D /* ItalicThemeAttribute.swift */,
-				2B04571928E6FFE300024F2D /* LineHeightThemeAttribute.swift */,
-				2B04571A28E6FFE300024F2D /* KernThemeAttribute.swift */,
-				2B04571B28E6FFE300024F2D /* UndlerlineColorThemeAttribute.swift */,
-				2B04571C28E6FFE300024F2D /* TailIndentThemeAttribute.swift */,
-				2B04571D28E6FFE300024F2D /* BoldThemeAttribute.swift */,
-				2B04571E28E6FFE300024F2D /* TabStopsThemeAttribute.swift */,
 				2B04571F28E6FFE300024F2D /* ActionThemeAttribute.swift */,
 				2B04572028E6FFE300024F2D /* BackgroundColorThemeAttribute.swift */,
-				2B04572128E6FFE300024F2D /* ParagraphSpacingAfterThemeAttribute.swift */,
+				2B04571D28E6FFE300024F2D /* BoldThemeAttribute.swift */,
 				2B04572228E6FFE300024F2D /* ColorThemeAttribute.swift */,
-				2B04572328E6FFE300024F2D /* TextAlignmentThemeAttribute.swift */,
-				2B04572428E6FFE300024F2D /* HeadIndentThemeAttribute.swift */,
-				2B04572528E6FFE300024F2D /* FirstLineHeadIndentThemeAttribute.swift */,
-				2B04572628E6FFE300024F2D /* ThemeAttribute+Error.swift */,
-				2B04572728E6FFE300024F2D /* HiddenThemeAttribute.swift */,
-				2B04572828E6FFE300024F2D /* TextBlockThemeAttribute.swift */,
-				2B04572928E6FFE300024F2D /* LigatureThemeAttribute.swift */,
-				2B04572A28E6FFE300024F2D /* FontThemeAttribute.swift */,
-				2B04572B28E6FFE300024F2D /* ParagraphSpacingBeforeThemeAttribute.swift */,
 				2B04572C28E6FFE300024F2D /* DefaultTabIntervalThemeAttribute.swift */,
+				2B04572528E6FFE300024F2D /* FirstLineHeadIndentThemeAttribute.swift */,
+				2B04572A28E6FFE300024F2D /* FontThemeAttribute.swift */,
+				2B04572428E6FFE300024F2D /* HeadIndentThemeAttribute.swift */,
+				2B04572728E6FFE300024F2D /* HiddenThemeAttribute.swift */,
+				2B04571828E6FFE300024F2D /* ItalicThemeAttribute.swift */,
+				2B04571A28E6FFE300024F2D /* KernThemeAttribute.swift */,
+				2B04572928E6FFE300024F2D /* LigatureThemeAttribute.swift */,
+				2B04571928E6FFE300024F2D /* LineHeightThemeAttribute.swift */,
+				2B04571228E6FFE300024F2D /* LineThemeAttribute.swift */,
+				2B04572128E6FFE300024F2D /* ParagraphSpacingAfterThemeAttribute.swift */,
+				2B04572B28E6FFE300024F2D /* ParagraphSpacingBeforeThemeAttribute.swift */,
+				2B04571E28E6FFE300024F2D /* TabStopsThemeAttribute.swift */,
+				2B04571C28E6FFE300024F2D /* TailIndentThemeAttribute.swift */,
+				2B04572328E6FFE300024F2D /* TextAlignmentThemeAttribute.swift */,
+				2B04572828E6FFE300024F2D /* TextBlockThemeAttribute.swift */,
+				2B04572628E6FFE300024F2D /* ThemeAttribute+Error.swift */,
+				2B04571B28E6FFE300024F2D /* UndlerlineColorThemeAttribute.swift */,
 			);
 			path = "Theme Attributes";
 			sourceTree = "<group>";
@@ -2955,12 +2976,12 @@
 		2B04572D28E6FFE300024F2D /* Rules+Patterns */ = {
 			isa = PBXGroup;
 			children = (
-				2B04573128E6FFE300024F2D /* Rule.swift */,
-				2B04573728E6FFE300024F2D /* MatchRule.swift */,
 				2B04572E28E6FFE300024F2D /* BeginEndRule.swift */,
-				2B04573A28E6FFE300024F2D /* Pattern.swift */,
-				2B04573228E6FFE300024F2D /* IncludeRulePattern.swift */,
 				2B04571528E6FFE300024F2D /* IncludeGrammarPattern.swift */,
+				2B04573228E6FFE300024F2D /* IncludeRulePattern.swift */,
+				2B04573728E6FFE300024F2D /* MatchRule.swift */,
+				2B04573A28E6FFE300024F2D /* Pattern.swift */,
+				2B04573128E6FFE300024F2D /* Rule.swift */,
 			);
 			path = "Rules+Patterns";
 			sourceTree = "<group>";
@@ -2968,8 +2989,8 @@
 		2BD5CF0B28D602CE00F95E5A /* CodeEditorView */ = {
 			isa = PBXGroup;
 			children = (
-				93813D2028D747EC00A492D4 /* UI */,
 				93813D2128D747F500A492D4 /* Model */,
+				93813D2028D747EC00A492D4 /* UI */,
 			);
 			path = CodeEditorView;
 			sourceTree = "<group>";
@@ -2977,8 +2998,8 @@
 		2BDFA90C28D10B9200980385 /* FileCreation */ = {
 			isa = PBXGroup;
 			children = (
-				2BDFA90D28D10B9200980385 /* UI */,
 				2BDFA91128D10B9200980385 /* Model */,
+				2BDFA90D28D10B9200980385 /* UI */,
 			);
 			path = FileCreation;
 			sourceTree = "<group>";
@@ -2986,9 +3007,9 @@
 		2BDFA90D28D10B9200980385 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2BDFA91028D10B9200980385 /* FileCreationGridView.swift */,
 				2BDFA90E28D10B9200980385 /* FileCreationNamingView.swift */,
 				2BDFA90F28D10B9200980385 /* FileCreationSelectionView.swift */,
-				2BDFA91028D10B9200980385 /* FileCreationGridView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2997,8 +3018,8 @@
 			isa = PBXGroup;
 			children = (
 				2BDFA91228D10B9200980385 /* FileCreationModel.swift */,
-				2BDFA91328D10B9200980385 /* NewFileModel.swift */,
 				2BDFA91428D10B9200980385 /* FileSelectionItem.swift */,
+				2BDFA91328D10B9200980385 /* NewFileModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3024,8 +3045,8 @@
 		7BBF20122939AF6E00D60627 /* Recents */ = {
 			isa = PBXGroup;
 			children = (
-				7BBF20152939AFDB00D60627 /* UI */,
 				7BBF20132939AFCC00D60627 /* Model */,
+				7BBF20152939AFDB00D60627 /* UI */,
 			);
 			path = Recents;
 			sourceTree = "<group>";
@@ -3067,8 +3088,8 @@
 		936312E828CCCAC4004CD24B /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				287776E827E34BC700D46668 /* TabBar.swift */,
 				93B1D10B28CD907A005A8C24 /* TabBar+Drag.swift */,
+				287776E827E34BC700D46668 /* TabBar.swift */,
 				936312E928CCCAD9004CD24B /* TabBarAccessories.swift */,
 			);
 			path = TabBar;
@@ -3086,12 +3107,12 @@
 		93813D2028D747EC00A492D4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				2BD5CF1728D602CE00F95E5A /* CodeView.swift */,
+				93813D1F28D747C100A492D4 /* EditorAccessories */,
 				2BD5CF0D28D602CE00F95E5A /* CodeEditor.swift */,
 				206B128728DF77E3002CDE51 /* CodeEditorView.swift */,
+				2BD5CF1728D602CE00F95E5A /* CodeView.swift */,
 				2BD5CF1928D602CE00F95E5A /* TextView.swift */,
 				2BD5CF1428D602CE00F95E5A /* ViewModifiers.swift */,
-				93813D1F28D747C100A492D4 /* EditorAccessories */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -3099,10 +3120,10 @@
 		93813D2128D747F500A492D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				93813D2F28D74C1B00A492D4 /* Storage */,
 				93813D2C28D74BAB00A492D4 /* Editor */,
 				93813D2228D749A600A492D4 /* LayoutDelegates */,
 				93813D2928D74B3500A492D4 /* Messages */,
+				93813D2F28D74C1B00A492D4 /* Storage */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3110,9 +3131,9 @@
 		93813D2228D749A600A492D4 /* LayoutDelegates */ = {
 			isa = PBXGroup;
 			children = (
-				93813D2328D749CC00A492D4 /* CodeViewDelegate.swift */,
-				93813D2528D74AA500A492D4 /* CodeLayoutManagerDelegate.swift */,
 				93813D2728D74AC400A492D4 /* CodeLayoutManager.swift */,
+				93813D2528D74AA500A492D4 /* CodeLayoutManagerDelegate.swift */,
+				93813D2328D749CC00A492D4 /* CodeViewDelegate.swift */,
 			);
 			path = LayoutDelegates;
 			sourceTree = "<group>";
@@ -3120,13 +3141,13 @@
 		93813D2928D74B3500A492D4 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
-				2BD5CF1228D602CE00F95E5A /* Message.swift */,
+				93813D3428D74E5400A492D4 /* CodeStorageDelegate+Messages.swift */,
 				93813D2A28D74B6400A492D4 /* CodeView+Messages.swift */,
-				2BD5CF1C28D602CE00F95E5A /* MessageView.swift */,
-				93CACA2228D7515F00978753 /* StatefulMessageView.swift */,
+				2BD5CF1228D602CE00F95E5A /* Message.swift */,
 				93CACA2428D751CF00978753 /* MessageInlineView.swift */,
 				93CACA2628D7524800978753 /* MessagePopupView.swift */,
-				93813D3428D74E5400A492D4 /* CodeStorageDelegate+Messages.swift */,
+				2BD5CF1C28D602CE00F95E5A /* MessageView.swift */,
+				93CACA2228D7515F00978753 /* StatefulMessageView.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -3145,8 +3166,8 @@
 		93813D2F28D74C1B00A492D4 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				2BD5CF0F28D602CE00F95E5A /* CodeStorageDelegate.swift */,
 				2BD5CF1028D602CE00F95E5A /* CodeStorage.swift */,
+				2BD5CF0F28D602CE00F95E5A /* CodeStorageDelegate.swift */,
 				206B129C28DF7B7B002CDE51 /* CodeStorageInsertionPoint.swift */,
 			);
 			path = Storage;
@@ -3155,10 +3176,10 @@
 		9384904228FB9C69006FB263 /* ThemeJsonLoader */ = {
 			isa = PBXGroup;
 			children = (
-				93CAE19728F6F11200454C6F /* ThemeJsonLoader.swift */,
-				9384904328FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift */,
-				9384904528FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift */,
 				93AD8B0928FD457600317072 /* ThemeJsonLoader+AuroraTheme(Old).swift */,
+				9384904528FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift */,
+				9384904328FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift */,
+				93CAE19728F6F11200454C6F /* ThemeJsonLoader.swift */,
 			);
 			path = ThemeJsonLoader;
 			sourceTree = "<group>";
@@ -3174,8 +3195,8 @@
 		939C2CC4289E341F00BBB345 /* FileItem */ = {
 			isa = PBXGroup;
 			children = (
-				20D8386E289A7ACE00D91D05 /* FileItem.swift */,
 				20D8386D289A7ACE00D91D05 /* FileItem+Array.swift */,
+				20D8386E289A7ACE00D91D05 /* FileItem.swift */,
 				939C2CC5289E345900BBB345 /* FileItemFileSystemFunctions.swift */,
 			);
 			path = FileItem;
@@ -3184,9 +3205,9 @@
 		93ACA43428C32F9100672994 /* AuroraEditorWindow */ = {
 			isa = PBXGroup;
 			children = (
-				04660F6927E51E5C00477777 /* AuroraEditorWindowController.swift */,
 				93E0486B290E45D5008263B3 /* AuroraDataStorage.swift */,
 				93ACA43628C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift */,
+				04660F6927E51E5C00477777 /* AuroraEditorWindowController.swift */,
 			);
 			path = AuroraEditorWindow;
 			sourceTree = "<group>";
@@ -3194,13 +3215,13 @@
 		93ACA43528C32FC000672994 /* WorkspaceDocument */ = {
 			isa = PBXGroup;
 			children = (
+				93EF2EF9290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift */,
 				043C321327E31FF6006AE443 /* AuroraEditorDocumentController.swift */,
-				043C321527E3201F006AE443 /* WorkspaceDocument.swift */,
+				6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */,
 				043BCF02281DA18A000AC47C /* WorkspaceDocument+Search.swift */,
 				043BCF04281DA19A000AC47C /* WorkspaceDocument+Selection.swift */,
-				6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */,
 				93F73D0C28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift */,
-				93EF2EF9290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift */,
+				043C321527E3201F006AE443 /* WorkspaceDocument.swift */,
 			);
 			path = WorkspaceDocument;
 			sourceTree = "<group>";
@@ -3217,12 +3238,12 @@
 		93D5F5D128CE060A00286EBD /* HierarchyNavigator */ = {
 			isa = PBXGroup;
 			children = (
+				93D5F5D628CE0EF500286EBD /* TabHierarchyMenu.swift */,
+				934D2CDA28D207E100F22E38 /* TabHierarchyOutlineDataSource.swift */,
+				934D2CD828D207BD00F22E38 /* TabHierarchyOutlineDelegate.swift */,
+				9327701028CE1B6300871190 /* TabHierarchyTableViewCell.swift */,
 				93D5F5D228CE064700286EBD /* TabHierarchyView.swift */,
 				93D5F5D428CE074000286EBD /* TabHierarchyViewController.swift */,
-				934D2CD828D207BD00F22E38 /* TabHierarchyOutlineDelegate.swift */,
-				934D2CDA28D207E100F22E38 /* TabHierarchyOutlineDataSource.swift */,
-				9327701028CE1B6300871190 /* TabHierarchyTableViewCell.swift */,
-				93D5F5D628CE0EF500286EBD /* TabHierarchyMenu.swift */,
 			);
 			path = HierarchyNavigator;
 			sourceTree = "<group>";
@@ -3240,14 +3261,14 @@
 		93ECCFF92902CAD200605FB3 /* Processing */ = {
 			isa = PBXGroup;
 			children = (
-				2B04573928E6FFE300024F2D /* Token.swift */,
+				2B04570B28E6FFE300024F2D /* Capture.swift */,
+				2B04573528E6FFE300024F2D /* LineState.swift */,
 				2B04571328E6FFE300024F2D /* Repository.swift */,
 				2B04570928E6FFE300024F2D /* Scope.swift */,
 				2B04570A28E6FFE300024F2D /* ScopeName.swift */,
-				2B04570B28E6FFE300024F2D /* Capture.swift */,
+				2B04573928E6FFE300024F2D /* Token.swift */,
 				2B04570C28E6FFE300024F2D /* TokenizedLine.swift */,
 				2B04571128E6FFE300024F2D /* TokenizeResult.swift */,
-				2B04573528E6FFE300024F2D /* LineState.swift */,
 			);
 			path = Processing;
 			sourceTree = "<group>";
@@ -3264,9 +3285,9 @@
 		93EF415A28C1D205004083AD /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				93EF415B28C1D21E004083AD /* CommandPaletteView.swift */,
-				93EF416028C1D38E004083AD /* CommandPaletteItem.swift */,
 				93EF416428C1EBBC004083AD /* ActionAwareInput.swift */,
+				93EF416028C1D38E004083AD /* CommandPaletteItem.swift */,
+				93EF415B28C1D21E004083AD /* CommandPaletteView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -3274,8 +3295,8 @@
 		93EF415D28C1D2CD004083AD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				93EF415E28C1D2DB004083AD /* CommandPaletteState.swift */,
 				93EF416228C1D752004083AD /* Command.swift */,
+				93EF415E28C1D2DB004083AD /* CommandPaletteState.swift */,
 				93EF416628C1F828004083AD /* WorkspaceDocument+Commands.swift */,
 			);
 			path = Model;
@@ -3284,8 +3305,8 @@
 		93F0066528A756F50038E5B7 /* FileSystemClient */ = {
 			isa = PBXGroup;
 			children = (
-				93F0066628A7574C0038E5B7 /* FileSystemClient.swift */,
 				93F0066828A757670038E5B7 /* FileSystemClient+FileIndex.swift */,
+				93F0066628A7574C0038E5B7 /* FileSystemClient.swift */,
 			);
 			path = FileSystemClient;
 			sourceTree = "<group>";
@@ -3293,6 +3314,7 @@
 		B658FB2327DA9E0F00EA4DBD = {
 			isa = PBXGroup;
 			children = (
+				20425E46297EE7270022FE5A /* Tools */,
 				B658FB2E27DA9E0F00EA4DBD /* AuroraEditor */,
 				2BE487ED28245162003F3F64 /* OpenWithAuroraEditor */,
 				B658FB2D27DA9E0F00EA4DBD /* Products */,
@@ -3305,9 +3327,9 @@
 		B658FB2D27DA9E0F00EA4DBD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B658FB2C27DA9E0F00EA4DBD /* Aurora Editor.app */,
 				B658FB3D27DA9E1000EA4DBD /* Aurora Editor (Tests).xctest */,
 				B658FB4727DA9E1000EA4DBD /* Aurora Editor (UITests).xctest */,
+				B658FB2C27DA9E0F00EA4DBD /* Aurora Editor.app */,
 				2BE487EC28245162003F3F64 /* Open With Aurora Editor.appex */,
 			);
 			name = Products;
@@ -3316,22 +3338,22 @@
 		B658FB2E27DA9E0F00EA4DBD /* AuroraEditor */ = {
 			isa = PBXGroup;
 			children = (
+				93CB9AE128C736720068074A /* Application */,
+				20D83712289A7A9200D91D05 /* Base */,
 				2029DA8528E2FCA600D68786 /* CodeLanguages */,
+				28069DA527F5BD320016BC47 /* DefaultThemes */,
+				D7211D4427E066D4008F2ED7 /* Localization */,
 				20BE727F28D0834800EEDE5F /* Services */,
 				20D83713289A7A9900D91D05 /* Utils */,
-				20D83712289A7A9200D91D05 /* Base */,
-				D7211D4427E066D4008F2ED7 /* Localization */,
-				28069DA527F5BD320016BC47 /* DefaultThemes */,
-				93CB9AE128C736720068074A /* Application */,
-				B658FB3327DA9E1000EA4DBD /* Assets.xcassets */,
-				2B18EC4528AEC84900494768 /* Symbols.xcassets */,
-				2B5B25522885D9B9009C7384 /* .swiftlint.yml */,
+				2BCDF9D6295F2E9700570253 /* .githash */,
 				2B5B25542885D9C3009C7384 /* .gitignore */,
+				2B5B25522885D9B9009C7384 /* .swiftlint.yml */,
+				B658FB3327DA9E1000EA4DBD /* Assets.xcassets */,
 				B658FB3827DA9E1000EA4DBD /* AuroraEditor.entitlements */,
 				04660F6027E3A68A00477777 /* Info.plist */,
 				043C321927E32295006AE443 /* MainMenu.xib */,
-				2BCDF9D6295F2E9700570253 /* .githash */,
 				209D024A289ABC340082441F /* Package.resolved */,
+				2B18EC4528AEC84900494768 /* Symbols.xcassets */,
 			);
 			path = AuroraEditor;
 			sourceTree = "<group>";
@@ -3339,8 +3361,8 @@
 		B6EE988E27E8877C00CDD8AB /* InspectorSidebar */ = {
 			isa = PBXGroup;
 			children = (
-				20D8390E289A7F1400D91D05 /* UI */,
 				20EBB50B280C382800F3A5DA /* Models */,
+				20D8390E289A7F1400D91D05 /* UI */,
 			);
 			path = InspectorSidebar;
 			sourceTree = "<group>";
@@ -3348,8 +3370,8 @@
 		D7211D4427E066D4008F2ED7 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
-				D7211D4227E066CE008F2ED7 /* Localized+Ex.swift */,
 				D7211D4927E06BFE008F2ED7 /* Localizable.strings */,
+				D7211D4227E066CE008F2ED7 /* Localized+Ex.swift */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -3378,6 +3400,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B658FB5127DA9E1000EA4DBD /* Build configuration list for PBXNativeTarget "Aurora Editor" */;
 			buildPhases = (
+				2B4A907D299962AB00A5A2D7 /* Check for SwiftLint Updates */,
 				2BA119D327E5274D00A996FF /* SwiftLint Run Script */,
 				B658FB2827DA9E0F00EA4DBD /* Sources */,
 				B658FB2927DA9E0F00EA4DBD /* Frameworks */,
@@ -3477,6 +3500,42 @@
 			knownRegions = (
 				en,
 				Base,
+				af,
+				"zh-Hans",
+				"zh-Hant",
+				"zh-HK",
+				hr,
+				cs,
+				da,
+				nl,
+				fi,
+				fil,
+				fr,
+				de,
+				el,
+				hi,
+				ga,
+				it,
+				ja,
+				ms,
+				mt,
+				ne,
+				nb,
+				pl,
+				"pt-PT",
+				ro,
+				ru,
+				es,
+				sv,
+				th,
+				"th-TH",
+				tn,
+				uk,
+				vi,
+				cy,
+				"xh-ZA",
+				"zu-ZA",
+				"en-001",
 			);
 			mainGroup = B658FB2327DA9E0F00EA4DBD;
 			packageReferences = (
@@ -3510,33 +3569,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B5B25532885D9BA009C7384 /* .swiftlint.yml in Resources */,
-				2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */,
-				28A51006281701B40087B0CC /* auroraeditor-github-dark.json in Resources */,
-				209D2F60297BDF83005AB73C /* Credits.md in Resources */,
-				209DAF3128E64A3200E31109 /* JavaScript.tmLanguage.json in Resources */,
-				28A51002281673530087B0CC /* auroraeditor-xcode-light.json in Resources */,
-				2029DA8728E2FCEC00D68786 /* swift.tmLanguage.json in Resources */,
 				2B5B25552885D9C3009C7384 /* .gitignore in Resources */,
-				209DAF2328E647BE00E31109 /* typeScript.tmLanguage.json in Resources */,
-				28A51005281701B40087B0CC /* creeper.tmTheme in Resources */,
-				209DAF2928E6498C00E31109 /* docker.tmLanguage.json in Resources */,
-				209DAF2528E648A700E31109 /* JSON.tmLanguage.json in Resources */,
-				D7211D4727E06BFE008F2ED7 /* Localizable.strings in Resources */,
-				28A51001281673530087B0CC /* auroraeditor-xcode-dark.json in Resources */,
+				2B5B25532885D9BA009C7384 /* .swiftlint.yml in Resources */,
 				B658FB3427DA9E1000EA4DBD /* Assets.xcassets in Resources */,
-				209D2F5E297BDF47005AB73C /* License.md in Resources */,
 				2093CD93289AA137003A88DD /* AuroraEditor in Resources */,
+				28A51006281701B40087B0CC /* auroraeditor-github-dark.json in Resources */,
 				9384904828FBA5E2006FB263 /* auroraeditor-github-light.json in Resources */,
-				209DAF3728E64AE800E31109 /* ruby.tmLanguage.json in Resources */,
-				209DAF2D28E649D400E31109 /* html-derivative.tmLanguage.json in Resources */,
-				209D024B289ABC340082441F /* Package.resolved in Resources */,
-				209DAF2728E6494800E31109 /* JSONC.tmLanguage.json in Resources */,
-				209DAF2F28E64A0500E31109 /* html.tmLanguage.json in Resources */,
-				043C321A27E32295006AE443 /* MainMenu.xib in Resources */,
+				28A51001281673530087B0CC /* auroraeditor-xcode-dark.json in Resources */,
+				28A51002281673530087B0CC /* auroraeditor-xcode-light.json in Resources */,
+				209D2F60297BDF83005AB73C /* Credits.md in Resources */,
+				28A51005281701B40087B0CC /* creeper.tmTheme in Resources */,
 				209DAF2B28E649AC00E31109 /* css.tmLanguage.json in Resources */,
-				209DAF3528E64A9F00E31109 /* php.tmLanguage.json in Resources */,
+				209DAF2928E6498C00E31109 /* docker.tmLanguage.json in Resources */,
+				209DAF2D28E649D400E31109 /* html-derivative.tmLanguage.json in Resources */,
+				209DAF2F28E64A0500E31109 /* html.tmLanguage.json in Resources */,
+				209DAF3128E64A3200E31109 /* JavaScript.tmLanguage.json in Resources */,
 				209DAF3328E64A5500E31109 /* JavaScriptReact.tmLanguage.json in Resources */,
+				209DAF2528E648A700E31109 /* JSON.tmLanguage.json in Resources */,
+				209DAF2728E6494800E31109 /* JSONC.tmLanguage.json in Resources */,
+				209D2F5E297BDF47005AB73C /* License.md in Resources */,
+				D7211D4727E06BFE008F2ED7 /* Localizable.strings in Resources */,
+				043C321A27E32295006AE443 /* MainMenu.xib in Resources */,
+				209D024B289ABC340082441F /* Package.resolved in Resources */,
+				209DAF3528E64A9F00E31109 /* php.tmLanguage.json in Resources */,
+				209DAF3728E64AE800E31109 /* ruby.tmLanguage.json in Resources */,
+				2029DA8728E2FCEC00D68786 /* swift.tmLanguage.json in Resources */,
+				2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */,
+				209DAF2328E647BE00E31109 /* typeScript.tmLanguage.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3614,6 +3673,25 @@
 			shellPath = /bin/sh;
 			shellScript = "# Hash (full length)\nGITHASH=$(git rev-parse HEAD)\n\nprintf \"$GITHASH\" > \"${PROJECT_DIR}/AuroraEditor/.githash\"\n\necho \"info: Updated ${PROJECT_DIR}/AuroraEditor/.githash: to \\\"$GITHASH\\\".\"\n";
 		};
+		2B4A907D299962AB00A5A2D7 /* Check for SwiftLint Updates */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Check for SwiftLint Updates";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Only check if swiftlint is installed, otherwise don't worry\nif which swiftlint >/dev/null; then\n    if which brew >/dev/null; then\n        # Check for updates\n        brew update\n        # Check if swiftlint is outdated (exit with status 1)\n        brew outdated swiftlint &> /dev/null\n        if [ $? -eq 1 ] \n        then\n            echo \"There are updates available for swiftlint, please run 'brew upgrade swiftlint' to update.\";\n            exit 1;\n        fi\n    fi\nfi\n";
+		};
 		2BA119D327E5274D00A996FF /* SwiftLint Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -3631,7 +3709,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint --strict\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint --strict\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		2BCDF9D9295F2EC300570253 /* Clear .githash */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3686,492 +3764,490 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93813D2828D74AC400A492D4 /* CodeLayoutManager.swift in Sources */,
-				2093CDC3289AA25B003A88DD /* TabBarItemID.swift in Sources */,
-				20CC5AC2291CD14E007DB911 /* ExtensionInformationView.swift in Sources */,
-				204F7BB528D7906A00F49092 /* WorkflowWrapperView.swift in Sources */,
-				2093CD54289AA0C0003A88DD /* ExtensionsStoreAPI.swift in Sources */,
-				20BE729A28D0A25900EEDE5F /* WorkflowCellView.swift in Sources */,
-				935EB99C28A8F26900E8F798 /* FileSystemTableViewCell.swift in Sources */,
-				2072FA13280D74ED00C7F8D4 /* HistoryInspectorModel.swift in Sources */,
-				2093CDA2289AA16C003A88DD /* PreferencesSection.swift in Sources */,
-				201169E52837B40300F92B46 /* RepositoriesView.swift in Sources */,
-				2093CD5C289AA0D8003A88DD /* CrashReportController.swift in Sources */,
-				2BDFA8F928D1079700980385 /* WebTab.swift in Sources */,
-				2813F93927ECC4C300E305E4 /* NavigatorSidebar.swift in Sources */,
-				2093CD3C289AA08F003A88DD /* GitlabOAuthRouter.swift in Sources */,
-				2B04576B28E6FFE300024F2D /* Token.swift in Sources */,
-				2093CD51289AA0AE003A88DD /* IssueArea.swift in Sources */,
-				2B04574B28E6FFE300024F2D /* ItalicThemeAttribute.swift in Sources */,
-				2093CDAA289AA179003A88DD /* SourceControlGitView.swift in Sources */,
-				93D5F5D028CE05BC00286EBD /* HierarchyNavigator.swift in Sources */,
-				202F2E39289E7444000D3CAD /* FindNavigatorListMatchCell.swift in Sources */,
-				20CC5AC0291CD13A007DB911 /* ExtensionHeaderView.swift in Sources */,
-				20EBB50D280C383700F3A5DA /* LanguageType.swift in Sources */,
-				2093CDD8289AA511003A88DD /* URL.swift in Sources */,
-				2093CD46289AA095003A88DD /* AvatarURL.swift in Sources */,
-				20BE728728D0845000EEDE5F /* AuroraNetworking.swift in Sources */,
-				93ECCFFB2902D02E00605FB3 /* CodeFile.swift in Sources */,
-				2BDFA90528D107B200980385 /* OtherFileView.swift in Sources */,
-				2B04575A28E6FFE300024F2D /* HiddenThemeAttribute.swift in Sources */,
-				2093CDA9289AA179003A88DD /* SourceControlGeneralView.swift in Sources */,
-				2093CD1E289AA07D003A88DD /* BitbucketRepositories.swift in Sources */,
-				201169D92837B31200F92B46 /* SourceControlSearchToolbar.swift in Sources */,
-				0483E35027FDB17700354AC0 /* ExtensionNavigatorView.swift in Sources */,
-				2B04575228E6FFE300024F2D /* ActionThemeAttribute.swift in Sources */,
-				2093CD35289AA089003A88DD /* Git.swift in Sources */,
-				2093CD34289AA089003A88DD /* Issue.swift in Sources */,
-				2BD5CF2D28D602CE00F95E5A /* Theme.swift in Sources */,
-				2B04576828E6FFE300024F2D /* TokenThemeAttribute.swift in Sources */,
-				2B04574A28E6FFE300024F2D /* Grammar.swift in Sources */,
-				20752E4928CA54F000935487 /* Avatar.swift in Sources */,
-				20B5BD9C28B11C6200B2A02F /* WelcomeModel.swift in Sources */,
-				2093CD57289AA0C6003A88DD /* DownloadedPlugin.swift in Sources */,
-				2093CDC8289AA260003A88DD /* TabBar.swift in Sources */,
-				2B04575D28E6FFE300024F2D /* FontThemeAttribute.swift in Sources */,
-				2093CD6E289AA0FC003A88DD /* SegmentedControl.swift in Sources */,
-				2093CD32289AA089003A88DD /* Openness.swift in Sources */,
-				2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */,
-				D7012EE827E757850001E1EF /* FindNavigator.swift in Sources */,
-				207D295D28CCE72F00D31530 /* RenameBranchView.swift in Sources */,
-				202327D628D5CA970031FFB6 /* WorkflowJobsView.swift in Sources */,
-				2093CD17289AA079003A88DD /* TokenRouter.swift in Sources */,
-				2093CCA0289AA00B003A88DD /* WelcomeWindowView.swift in Sources */,
-				2093CD21289AA084003A88DD /* GithubUserRouter.swift in Sources */,
-				9352467C28CB2EB700E38DAD /* ProjectNavigatorOutlineDataSource.swift in Sources */,
-				9384904428FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift in Sources */,
-				D7E201AE27E8B3C000CB86D0 /* String+Ranges.swift in Sources */,
-				20EBB50F280C389300F3A5DA /* FileInspectorModel.swift in Sources */,
-				2093CC9A289A9FFD003A88DD /* StatusBarMaximizeButton.swift in Sources */,
-				2086334F28A530AF00E29A22 /* CommitChangesView.swift in Sources */,
-				9354D4B328ACEDDE004C6D18 /* RepositoriesWrapperView.swift in Sources */,
-				20BE729C28D0BB2000EEDE5F /* WorkflowRunsView.swift in Sources */,
-				2093CDDF289AA522003A88DD /* Bundle.swift in Sources */,
-				2BDFA91528D10B9200980385 /* FileCreationNamingView.swift in Sources */,
-				2093CD52289AA0AE003A88DD /* FeedbackType.swift in Sources */,
-				20E8749028A3ABA8002CE758 /* SourceControlController.swift in Sources */,
-				93EF416128C1D38E004083AD /* CommandPaletteItem.swift in Sources */,
-				2B04574628E6FFE300024F2D /* LineThemeAttribute.swift in Sources */,
-				2093CCA5289AA015003A88DD /* FileIcon.swift in Sources */,
-				2B04575628E6FFE300024F2D /* TextAlignmentThemeAttribute.swift in Sources */,
-				93D5F5D528CE074100286EBD /* TabHierarchyViewController.swift in Sources */,
-				201169DD2837B3AC00F92B46 /* SourceControlToolbarBottom.swift in Sources */,
-				9362B21628EC734200523626 /* TerminalColors.swift in Sources */,
-				2093CD50289AA0AE003A88DD /* FeedbackModel.swift in Sources */,
-				2093CD2F289AA089003A88DD /* GithubUser.swift in Sources */,
-				93672E8528B2684F0086132E /* ToolbarPlusMenu.swift in Sources */,
-				2B04573D28E6FFE300024F2D /* Scope.swift in Sources */,
-				2093CDB8289AA1A6003A88DD /* GithubEnterpriseLoginView.swift in Sources */,
-				2BD5CF2028D602CE00F95E5A /* MinimapView.swift in Sources */,
-				2B04575C28E6FFE300024F2D /* LigatureThemeAttribute.swift in Sources */,
-				2093CD44289AA095003A88DD /* Permissions.swift in Sources */,
-				2093CCA2289AA00B003A88DD /* WelcomeActionView.swift in Sources */,
-				2093CDC7289AA260003A88DD /* TabBarAccessory.swift in Sources */,
-				2B04576928E6FFE300024F2D /* MatchRule.swift in Sources */,
-				2093CD49289AA095003A88DD /* EventData.swift in Sources */,
-				2093CDD6289AA511003A88DD /* Dictionary+Additions.swift in Sources */,
-				2093CDA3289AA16C003A88DD /* PreferencesColorPicker.swift in Sources */,
-				20CC5AC4291CD160007DB911 /* ExtensionMoreByUserView.swift in Sources */,
-				209D2F4A297BBE61005AB73C /* LicenseDetailView.swift in Sources */,
-				93813D2628D74AA500A492D4 /* CodeLayoutManagerDelegate.swift in Sources */,
-				2093CD6D289AA0FC003A88DD /* PanelDivider.swift in Sources */,
-				2B04576328E6FFE300024F2D /* Rule.swift in Sources */,
-				2B04573E28E6FFE300024F2D /* ScopeName.swift in Sources */,
-				2B04574928E6FFE300024F2D /* IncludeGrammarPattern.swift in Sources */,
-				04C3254D27FF331B00C8DA2D /* ExtensionNavigatorItem.swift in Sources */,
-				2093CC94289A9FF5003A88DD /* StatusBarLineEndSelector.swift in Sources */,
-				209D2F4E297BBF36005AB73C /* ContributersDetailView.swift in Sources */,
-				2093CD38289AA08F003A88DD /* GitlabAccount.swift in Sources */,
-				2093CDC2289AA25B003A88DD /* TabBarItemRepresentable.swift in Sources */,
-				2093CC9F289AA00B003A88DD /* WelcomeView.swift in Sources */,
-				2093CDB5289AA1A2003A88DD /* GitAccountItem.swift in Sources */,
-				2093CD47289AA095003A88DD /* GitlabAccountModel.swift in Sources */,
-				D7E201B027E8C07300CB86D0 /* FindNavigatorSearchBar.swift in Sources */,
-				2072FA1C280D874000C7F8D4 /* IndentUsing.swift in Sources */,
-				2093CD71289AA0FC003A88DD /* HelpButton.swift in Sources */,
-				93DEBF7C295C1F6D002EAD63 /* NavigatorSidebarToolbar.swift in Sources */,
-				93B1D10C28CD907A005A8C24 /* TabBar+Drag.swift in Sources */,
-				2093CDAD289AA185003A88DD /* ThemePreviewIcon.swift in Sources */,
-				2B04574028E6FFE300024F2D /* TokenizedLine.swift in Sources */,
-				2093CC97289A9FF5003A88DD /* StatusBarBreakpointButton.swift in Sources */,
-				20E8748E28A3AB9B002CE758 /* SourceControlMenu.swift in Sources */,
-				2093CD15289AA054003A88DD /* GitClient.swift in Sources */,
-				9352467A28CB16A200E38DAD /* ProjectNavigatorOutlineDelegate.swift in Sources */,
-				2093CD5A289AA0C6003A88DD /* PluginRelease.swift in Sources */,
-				2B04576728E6FFE300024F2D /* LineState.swift in Sources */,
-				2093CC98289A9FF8003A88DD /* StatusBarDrawer.swift in Sources */,
-				93CACA2328D7515F00978753 /* StatefulMessageView.swift in Sources */,
-				2093CD2D289AA089003A88DD /* GithubRepositories.swift in Sources */,
-				206B128128DF7311002CDE51 /* EmptyEditorView.swift in Sources */,
-				2093CD1D289AA079003A88DD /* BitbucketAccount.swift in Sources */,
-				20B5BDA728B130FA00B2A02F /* SplitViewDropProposalOverlay.swift in Sources */,
-				2093CCB1289AA032003A88DD /* LSPClient.swift in Sources */,
-				2093CD1F289AA07D003A88DD /* BitbucketAccount+Token.swift in Sources */,
-				20091DB728DE20FD008FDDFC /* AutomaticallyUpdateSheet.swift in Sources */,
-				2093CD31289AA089003A88DD /* Gist.swift in Sources */,
-				20BE727D28D07FF200EEDE5F /* ActionsPopoverCellView.swift in Sources */,
-				2093CD8C289AA12B003A88DD /* BannerModule.swift in Sources */,
-				20BE728328D083D800EEDE5F /* HTTPMethod.swift in Sources */,
-				2093CD36289AA08F003A88DD /* UserRouter.swift in Sources */,
-				2093CD20289AA07D003A88DD /* BitbucketUser.swift in Sources */,
-				20BE728528D0841A00EEDE5F /* HTTPErros.swift in Sources */,
-				2093CDCE289AA4F4003A88DD /* CursorLocation.swift in Sources */,
-				2093CD3D289AA095003A88DD /* GroupAccess.swift in Sources */,
-				202F2E3B289E7483000D3CAD /* FindNavigatorListViewController.swift in Sources */,
-				934D2F0A28C591FD0034E5C8 /* GeneralPreferencesViewSections.swift in Sources */,
-				20212683289BF84B00246DD7 /* String.swift in Sources */,
-				934D2CDB28D207E100F22E38 /* TabHierarchyOutlineDataSource.swift in Sources */,
-				7BBF20172939B11400D60627 /* RecentProjectsStore.swift in Sources */,
-				2093CD41289AA095003A88DD /* Event.swift in Sources */,
-				20E8748C28A3AB89002CE758 /* SourceControlTableViewCell.swift in Sources */,
-				9354D4B728ACEE04004C6D18 /* RepositoriesTableViewCell.swift in Sources */,
-				2BD5CF2228D602CE00F95E5A /* CodeStorage.swift in Sources */,
-				2B04574F28E6FFE300024F2D /* TailIndentThemeAttribute.swift in Sources */,
-				2BD5CF1F28D602CE00F95E5A /* CodeEditor.swift in Sources */,
-				2093CDCB289AA260003A88DD /* TabBarItem.swift in Sources */,
-				2093CDAF289AA185003A88DD /* PreviewThemeView.swift in Sources */,
-				939C2CC6289E345900BBB345 /* FileItemFileSystemFunctions.swift in Sources */,
-				20212685289BF87600246DD7 /* Formatters.swift in Sources */,
-				9327701128CE1B6300871190 /* TabHierarchyTableViewCell.swift in Sources */,
-				2089C57128F015A900FE2155 /* HighlightThemeTrieElement.swift in Sources */,
-				2093CDBC289AA1BD003A88DD /* AcknowledgementsModel.swift in Sources */,
-				2093CDA4289AA16C003A88DD /* PreferencesToolbar.swift in Sources */,
-				2077162E287C8EC80069C68E /* ToolbarAppInfo.swift in Sources */,
-				2093CDAB289AA17D003A88DD /* TextEditingPreferencesView.swift in Sources */,
-				934D2CD928D207BD00F22E38 /* TabHierarchyOutlineDelegate.swift in Sources */,
-				2B04575F28E6FFE300024F2D /* DefaultTabIntervalThemeAttribute.swift in Sources */,
-				2B04575928E6FFE300024F2D /* ThemeAttribute+Error.swift in Sources */,
-				2093CDA7289AA179003A88DD /* IgnoredFileView.swift in Sources */,
-				2093CC9E289AA004003A88DD /* TerminalEmulatorView.swift in Sources */,
-				B6EE989227E887C600CDD8AB /* InspectorSidebarToolbar.swift in Sources */,
-				934D2F0828C4EC7E0034E5C8 /* StatusItem.swift in Sources */,
-				201169E72837B5CA00F92B46 /* SourceControlModel.swift in Sources */,
-				2B04575528E6FFE300024F2D /* ColorThemeAttribute.swift in Sources */,
-				2B04575328E6FFE300024F2D /* BackgroundColorThemeAttribute.swift in Sources */,
-				93EF415C28C1D21E004083AD /* CommandPaletteView.swift in Sources */,
-				93813D3528D74E5400A492D4 /* CodeStorageDelegate+Messages.swift in Sources */,
-				2093CD5E289AA0DD003A88DD /* CrashReportModel.swift in Sources */,
-				93D5F5D328CE064700286EBD /* TabHierarchyView.swift in Sources */,
-				28B8F884280FFE4600596236 /* NSTableView+Background.swift in Sources */,
-				2093CDE4289AA887003A88DD /* IgnoredFiles.swift in Sources */,
-				2093CDDB289AA51D003A88DD /* AuroraEditorKeychain.swift in Sources */,
-				2093CDDC289AA51D003A88DD /* AuroraEditorSwiftAccessOptions.swift in Sources */,
-				2093CCA1289AA00B003A88DD /* RecentProjectItem.swift in Sources */,
-				2093CD90289AA130003A88DD /* NotificationWithProgress.swift in Sources */,
-				206B129628DF7A3D002CDE51 /* GutterSharedCode.swift in Sources */,
-				2093CD45289AA095003A88DD /* ProjectAccess.swift in Sources */,
-				20B5BDA528B130F300B2A02F /* SplitViewDropDelegate.swift in Sources */,
-				200412EF280F3EAC00BCAF5C /* NoCommitHistoryView.swift in Sources */,
-				20DF979F28ABAA72009CE1E9 /* RepositoryModel.swift in Sources */,
-				043C321427E31FF6006AE443 /* AuroraEditorDocumentController.swift in Sources */,
-				2093CCAA289AA01A003A88DD /* FileItem+Array.swift in Sources */,
-				2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */,
-				93DEBF7E295C441E002EAD63 /* NavigatorSidebar+Splitting.swift in Sources */,
-				9354D4BB28AD2872004C6D18 /* StandardTableViewCell.swift in Sources */,
-				2B04575728E6FFE300024F2D /* HeadIndentThemeAttribute.swift in Sources */,
-				2093CD48289AA095003A88DD /* Parameters.swift in Sources */,
-				20DF97A328ABD7D2009CE1E9 /* CreateNewRepositoryView.swift in Sources */,
-				93EF416328C1D752004083AD /* Command.swift in Sources */,
-				2036DD5528DB3DB5003BECB7 /* Queue.swift in Sources */,
-				20B5BDA328B130F000B2A02F /* SplitEditorDropProposalPosition.swift in Sources */,
-				206B129328DF79E9002CDE51 /* MinimapTypeSetter.swift in Sources */,
-				20B5BDA928B130FF00B2A02F /* SplitViewModifier.swift in Sources */,
-				20EBB503280C327C00F3A5DA /* HistoryInspector.swift in Sources */,
-				93EF2EFA290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift in Sources */,
-				20C0CBDF297B086200E9F9F0 /* AboutViewModal.swift in Sources */,
-				2093CD2C289AA089003A88DD /* PullRequest.swift in Sources */,
-				2BDFA91628D10B9200980385 /* FileCreationSelectionView.swift in Sources */,
-				93D5F5D728CE0EF500286EBD /* TabHierarchyMenu.swift in Sources */,
-				2093CD8F289AA130003A88DD /* NotificationCentreView.swift in Sources */,
-				2093CDDE289AA522003A88DD /* Color.swift in Sources */,
-				2093CDA6289AA173003A88DD /* TerminalPreferencesView.swift in Sources */,
-				2093CD99289AA148003A88DD /* SourceControlPreferences.swift in Sources */,
-				2093CD30289AA089003A88DD /* GithubAccount.swift in Sources */,
-				93983D2D28CE012500E54409 /* NavigatorModeSelectModel.swift in Sources */,
-				2B04574428E6FFE300024F2D /* HighlightTheme+Default.swift in Sources */,
-				20F8379028C7B45700EAE842 /* WorkspaceExtension.swift in Sources */,
-				20E8749228A3ABB6002CE758 /* SourceControlView.swift in Sources */,
-				2093CD9E289AA15F003A88DD /* Providers.swift in Sources */,
-				2093CD2A289AA084003A88DD /* GistRouter.swift in Sources */,
-				2093CD6A289AA0F2003A88DD /* BreadcrumbsView.swift in Sources */,
-				2093CD70289AA0FC003A88DD /* FontPickerView.swift in Sources */,
-				2BDFA91A28D10B9200980385 /* FileSelectionItem.swift in Sources */,
-				2093CDAE289AA185003A88DD /* ThemePreferencesView.swift in Sources */,
-				2BCBAAC82927C41E00D4DFB2 /* BindingProxy.swift in Sources */,
-				2BD0BD142977331400629A86 /* VibrantEffect.swift in Sources */,
-				2093CDB1289AA19B003A88DD /* AccountListItem.swift in Sources */,
-				2BD5CF2828D602CE00F95E5A /* ScrollView.swift in Sources */,
-				2093CC99289A9FFD003A88DD /* FilterTextField.swift in Sources */,
-				93EF416728C1F828004083AD /* WorkspaceDocument+Commands.swift in Sources */,
-				2093CD6F289AA0FC003A88DD /* SettingsTextEditor.swift in Sources */,
-				2093CDA0289AA163003A88DD /* ThemePreferences.swift in Sources */,
-				209D2F56297BD806005AB73C /* ApplicationsDetailsView.swift in Sources */,
-				9384904628FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift in Sources */,
-				2072FA1A280D872600C7F8D4 /* LineEndings.swift in Sources */,
-				20BE728B28D0854900EEDE5F /* Workflow.swift in Sources */,
-				9354D4B928ACEE20004C6D18 /* RepositoriesMenu.swift in Sources */,
-				201169E22837B3D800F92B46 /* ChangesView.swift in Sources */,
-				20DF97A128ABB30D009CE1E9 /* FileManger.swift in Sources */,
-				2B04573F28E6FFE300024F2D /* Capture.swift in Sources */,
-				93813D2E28D74BB900A492D4 /* CodeContainer.swift in Sources */,
-				20EBB507280C32D300F3A5DA /* QuickHelpInspector.swift in Sources */,
-				93813D2B28D74B6400A492D4 /* CodeView+Messages.swift in Sources */,
-				206B129128DF79C5002CDE51 /* MinimapLayoutManager.swift in Sources */,
-				2093CC91289A9FF5003A88DD /* StatusBarIndentSelector.swift in Sources */,
-				2B89F85428B13E9D007CB9C1 /* AuroraMessageBox.swift in Sources */,
-				20CABA3B290BFCAC004753A8 /* Constants.swift in Sources */,
-				2B04574728E6FFE300024F2D /* Repository.swift in Sources */,
-				202327D828D5CB200031FFB6 /* WorkflowJobCell.swift in Sources */,
-				2093CD26289AA084003A88DD /* PreviewHeader.swift in Sources */,
-				2093CD33289AA089003A88DD /* Comment.swift in Sources */,
-				206B128828DF77E3002CDE51 /* CodeEditorView.swift in Sources */,
-				04C3255C2801F86900C8DA2D /* ProjectNavigatorMenu.swift in Sources */,
-				93EF415F28C1D2DB004083AD /* CommandPaletteState.swift in Sources */,
-				2B04576028E6FFE300024F2D /* BeginEndRule.swift in Sources */,
-				2093CDE1289AA522003A88DD /* AuroraProject.swift in Sources */,
-				04540D5E27DD08C300E91B77 /* WorkspaceView.swift in Sources */,
-				93813D2428D749CC00A492D4 /* CodeViewDelegate.swift in Sources */,
-				2093CDC5289AA260003A88DD /* TabBarDivider.swift in Sources */,
-				2093CD9F289AA15F003A88DD /* AccountsPreferences.swift in Sources */,
-				2093CDB7289AA1A6003A88DD /* GithubLoginView.swift in Sources */,
-				2093CD4F289AA0A9003A88DD /* FeedbackView.swift in Sources */,
-				2093CDE6289AAE81003A88DD /* GitCloneView.swift in Sources */,
-				2093CDAC289AA185003A88DD /* TerminalThemeView.swift in Sources */,
-				D7211D4327E066CE008F2ED7 /* Localized+Ex.swift in Sources */,
-				2093CC9B289A9FFD003A88DD /* StatusBarSplitTerminalButton.swift in Sources */,
-				93DD4FF328AFD0F100B664D4 /* PreferencesWindowController.swift in Sources */,
-				93CB9AE028C72BC20068074A /* GitCloneView+Helpers.swift in Sources */,
-				2BDFA91828D10B9200980385 /* FileCreationModel.swift in Sources */,
-				20D839AE280E0CA700B27357 /* PopoverView.swift in Sources */,
-				2093CC95289A9FF5003A88DD /* StatusBarToggleDrawerButton.swift in Sources */,
-				2BD5CF2928D602CE00F95E5A /* CodeView.swift in Sources */,
-				2072FA1E280D891500C7F8D4 /* Location.swift in Sources */,
-				2B04574128E6FFE300024F2D /* NSRange+Shifted.swift in Sources */,
-				2093CD28289AA084003A88DD /* GithubRepositoryRouter.swift in Sources */,
-				20091DB528DE1FC7008FDDFC /* UpdatePreferencesView.swift in Sources */,
-				D7E201B227E8D50000CB86D0 /* FindNavigatorModeSelector.swift in Sources */,
-				20CABA42290BFE94004753A8 /* AEUser.swift in Sources */,
-				938E8E81291CB95C00DB8320 /* BracketCount.swift in Sources */,
-				93EF416528C1EBBC004083AD /* ActionAwareInput.swift in Sources */,
-				2093CD25289AA084003A88DD /* GithubConfiguration.swift in Sources */,
-				2093CD5B289AA0D5003A88DD /* CrashReportView.swift in Sources */,
-				2093CDCC289AA4F4003A88DD /* StatusBarTabType.swift in Sources */,
-				9354D4B528ACEDEF004C6D18 /* RepositoriesViewController.swift in Sources */,
-				2093CD43289AA095003A88DD /* EventNote.swift in Sources */,
-				2093CC92289A9FF5003A88DD /* StatusBarEncodingSelector.swift in Sources */,
-				2021267F289BF7EF00246DD7 /* Formatter.swift in Sources */,
-				2093CDB6289AA1A2003A88DD /* GitlabLoginView.swift in Sources */,
-				2B04575028E6FFE300024F2D /* BoldThemeAttribute.swift in Sources */,
-				2096A82428CF76D400F6ED39 /* CreateNewBranchView.swift in Sources */,
-				2032B51028A256F50089EBB6 /* Array.swift in Sources */,
-				2093CD91289AA130003A88DD /* NotificationView.swift in Sources */,
-				9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */,
-				2B04575B28E6FFE300024F2D /* TextBlockThemeAttribute.swift in Sources */,
-				285FEC7027FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift in Sources */,
-				93AD8B0A28FD457600317072 /* ThemeJsonLoader+AuroraTheme(Old).swift in Sources */,
-				20C8D7DC287ED2C700C5B3BA /* ToolbarBranchPicker.swift in Sources */,
-				20B6A20028AFE124004EC8D7 /* SettingsModel.swift in Sources */,
-				2093CD3E289AA095003A88DD /* GitlabUser.swift in Sources */,
-				2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */,
-				20B6A1FE28AFE107004EC8D7 /* SettingItem.swift in Sources */,
-				2093CDE8289AAE87003A88DD /* StashChangesSheet.swift in Sources */,
-				2093CD6C289AA0FC003A88DD /* EffectView.swift in Sources */,
-				93CAE19828F6F11200454C6F /* ThemeJsonLoader.swift in Sources */,
-				2093CDB3289AA19B003A88DD /* AccountSelectionDialog.swift in Sources */,
-				2BD5CF2E28D602CE00F95E5A /* MessageView.swift in Sources */,
-				20CC5ABE291CD12F007DB911 /* ExtensionPrivacyView.swift in Sources */,
-				20091DBA28DE220A008FDDFC /* UpdatePreferences.swift in Sources */,
-				2B04575128E6FFE300024F2D /* TabStopsThemeAttribute.swift in Sources */,
-				0485EB1F27E7458B00138301 /* WorkspaceCodeFileView.swift in Sources */,
-				2093CD4D289AA0A2003A88DD /* Session.swift in Sources */,
-				2093CD42289AA095003A88DD /* ProjectHook.swift in Sources */,
-				20CC5AC6291CD178007DB911 /* ExtensionDescriptionView.swift in Sources */,
-				2BDFA91728D10B9200980385 /* FileCreationGridView.swift in Sources */,
-				2093CD1C289AA079003A88DD /* BitbucketRepositoryRouter.swift in Sources */,
-				939C109528AE7D0700403A97 /* RepositoryContainers&Items.swift in Sources */,
-				2093CDBB289AA1B9003A88DD /* AcknowledgementsView.swift in Sources */,
-				202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */,
-				204F7BB328D7905C00F49092 /* WorkflowMenu.swift in Sources */,
-				2093CDE0289AA522003A88DD /* Date.swift in Sources */,
-				2B04576628E6FFE300024F2D /* Parser.swift in Sources */,
-				2BD5CF2528D602CE00F95E5A /* LineMap.swift in Sources */,
-				2847019E27FDDF7600F87B6B /* ProjectNavigatorView.swift in Sources */,
-				93159FDC28D5F40C00C55C5A /* CodeEditorViewWrapper.swift in Sources */,
-				2093CD37289AA08F003A88DD /* ProjectRouter.swift in Sources */,
-				20EBB501280C325D00F3A5DA /* FileInspectorView.swift in Sources */,
-				2093CD22289AA084003A88DD /* ReviewsRouter.swift in Sources */,
-				20BE729828D08C5000EEDE5F /* GitHubActionsModel.swift in Sources */,
-				2093CD73289AA0FF003A88DD /* PressActionsModifier.swift in Sources */,
-				2093CC90289A9FEE003A88DD /* StatusBar.swift in Sources */,
-				2093CD8E289AA130003A88DD /* NotificationWithButton.swift in Sources */,
-				20752E4128CA4C6500935487 /* ProjectCommitHistory.swift in Sources */,
-				206B129D28DF7B7B002CDE51 /* CodeStorageInsertionPoint.swift in Sources */,
-				2BDFA90628D107B200980385 /* WebTabView.swift in Sources */,
-				2032B50E28A256130089EBB6 /* Collection.swift in Sources */,
-				286471AB27ED51FD0039369D /* ProjectNavigator.swift in Sources */,
-				2093CDCA289AA260003A88DD /* TabBarXcode.swift in Sources */,
-				20752E4628CA54B200935487 /* CommitHistoryCellView.swift in Sources */,
-				2BD5CF1E28D602CE00F95E5A /* EditorLocation.swift in Sources */,
-				2093CC96289A9FF5003A88DD /* StatusBarCursorLocationLabel.swift in Sources */,
-				9302A22428D183E300648D63 /* TabBarItemStorage.swift in Sources */,
-				2093CD95289AA13F003A88DD /* AppPreferencesModel.swift in Sources */,
-				93D5F5D928CE123200286EBD /* TextTableViewCell.swift in Sources */,
-				04C3254B27FF23B000C8DA2D /* ExtensionNavigatorData.swift in Sources */,
-				206B129828DF7AA2002CDE51 /* GutterRect.swift in Sources */,
-				2B04574528E6FFE300024F2D /* TokenizeResult.swift in Sources */,
-				2093CDD2289AA507003A88DD /* SwiftTerm+Color+Init.swift in Sources */,
-				20D59CD228AFAAE400E3907B /* AccountItemView.swift in Sources */,
-				2093CCAE289AA02D003A88DD /* QuickOpenView.swift in Sources */,
-				20B5BDA128B130EA00B2A02F /* DropProposalPositionCalculations.swift in Sources */,
-				2093CC93289A9FF5003A88DD /* StatusBarMenuLabel.swift in Sources */,
-				2093CD9A289AA14C003A88DD /* GeneralPreferences.swift in Sources */,
-				2BDFA90728D107B200980385 /* ImageFileView.swift in Sources */,
-				2093CD9D289AA15F003A88DD /* SourceControlAccounts.swift in Sources */,
-				2093CD69289AA0F2003A88DD /* BreadcrumbsMenu.swift in Sources */,
-				93F0066928A757670038E5B7 /* FileSystemClient+FileIndex.swift in Sources */,
-				2093CDB4289AA1A2003A88DD /* GitlabHostedLoginView.swift in Sources */,
-				20752E4328CA4E3100935487 /* ProjectCommitHistoryView.swift in Sources */,
-				2093CD9C289AA152003A88DD /* TerminalPreferences.swift in Sources */,
-				206729AF28AE69DC00EB0957 /* PreferencesView.swift in Sources */,
-				20130BDE28CF30FB0000B634 /* AddRemoteView.swift in Sources */,
-				2093CD1A289AA079003A88DD /* BitbucketUserRouter.swift in Sources */,
-				936312E728CCC7AE004CD24B /* TabBarItemIcon.swift in Sources */,
-				2093CD2B289AA089003A88DD /* Review.swift in Sources */,
-				2093CD4A289AA095003A88DD /* Namespace.swift in Sources */,
-				2B04575428E6FFE300024F2D /* ParagraphSpacingAfterThemeAttribute.swift in Sources */,
-				2093CDD3289AA509003A88DD /* View.swift in Sources */,
-				2043903C290D385600126A3F /* ExploreExtensionsView.swift in Sources */,
-				2093CD18289AA079003A88DD /* OAuthRouter.swift in Sources */,
-				2093CDB0289AA185003A88DD /* EditorThemeView.swift in Sources */,
-				04660F6A27E51E5C00477777 /* AuroraEditorWindowController.swift in Sources */,
-				20BE727528D0761200EEDE5F /* ActionsListView.swift in Sources */,
-				2BDFA91928D10B9200980385 /* NewFileModel.swift in Sources */,
-				206729B228AE6AC900EB0957 /* GroupBox.swift in Sources */,
-				2B04576428E6FFE300024F2D /* IncludeRulePattern.swift in Sources */,
-				043BCF05281DA19A000AC47C /* WorkspaceDocument+Selection.swift in Sources */,
-				2093CD3A289AA08F003A88DD /* CommitRouter.swift in Sources */,
-				2B04574D28E6FFE300024F2D /* KernThemeAttribute.swift in Sources */,
-				2093CD39289AA08F003A88DD /* GitlabOAuthConfiguration.swift in Sources */,
-				202327E028D607B20031FFB6 /* ReRunJobSheetView.swift in Sources */,
-				931B0E1228F2ACEC0036FD5F /* EditorThemeAttributeView.swift in Sources */,
-				2B04574E28E6FFE300024F2D /* UndlerlineColorThemeAttribute.swift in Sources */,
-				2093CC9C289A9FFD003A88DD /* StatusBarClearButton.swift in Sources */,
-				206B128A28DF78F2002CDE51 /* NSTextView.swift in Sources */,
-				93CACA2528D751CF00978753 /* MessageInlineView.swift in Sources */,
-				2072FA18280D871200C7F8D4 /* TextEncoding.swift in Sources */,
-				2072FA16280D83A500C7F8D4 /* FileTypeList.swift in Sources */,
-				2093CCA3289AA00B003A88DD /* RecentProjectsView.swift in Sources */,
-				2093CC9D289AA001003A88DD /* TerminalEmulatorView+Coordinator.swift in Sources */,
-				2B04575828E6FFE300024F2D /* FirstLineHeadIndentThemeAttribute.swift in Sources */,
-				2043903E290D38D700126A3F /* ExploreItemView.swift in Sources */,
-				204F7BB728D7907A00F49092 /* WorkflowViewController.swift in Sources */,
-				2093CD3B289AA08F003A88DD /* GitlabConfiguration.swift in Sources */,
-				2093CDC6289AA260003A88DD /* TabBarNative.swift in Sources */,
-				2093CDB2289AA19B003A88DD /* PreferenceAccountsView.swift in Sources */,
-				2093CDE7289AAE83003A88DD /* CheckoutBranchView.swift in Sources */,
-				93F0066728A7574C0038E5B7 /* FileSystemClient.swift in Sources */,
-				20CABA3F290BFDF7004753A8 /* AELogin.swift in Sources */,
-				209D2F4C297BBF2B005AB73C /* CreditsDetailView.swift in Sources */,
-				2B04574C28E6FFE300024F2D /* LineHeightThemeAttribute.swift in Sources */,
-				2093CDC4289AA260003A88DD /* TabBarItemButtonStyle.swift in Sources */,
-				936312EA28CCCAD9004CD24B /* TabBarAccessories.swift in Sources */,
-				2093CD11289AA054003A88DD /* GitUIModel.swift in Sources */,
-				20439038290D27DB00126A3F /* WorkspaceErrors.swift in Sources */,
-				2BD5CF2628D602CE00F95E5A /* ViewModifiers.swift in Sources */,
-				204F7BB928D7908700F49092 /* WorkflowTableViewCell.swift in Sources */,
-				2093CD56289AA0C0003A88DD /* Page.swift in Sources */,
-				93E0486C290E45D5008263B3 /* AuroraDataStorage.swift in Sources */,
-				2093CD4B289AA0A2003A88DD /* Router.swift in Sources */,
-				207B4382293E0BEC00216AD6 /* CreateNewTagView.swift in Sources */,
-				B6EE989027E8879A00CDD8AB /* InspectorSidebar.swift in Sources */,
-				2BDFA90428D107B200980385 /* WebWKView.swift in Sources */,
-				2093CD8B289AA12B003A88DD /* NotificationData.swift in Sources */,
-				2093CD4E289AA0A9003A88DD /* FeedbackToolbar.swift in Sources */,
-				93F73D0D28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift in Sources */,
-				9C3E1A07284E8E020042BEC0 /* WelcomeModuleExtensions.swift in Sources */,
-				207D295828CCDE4300D31530 /* BranchCommitHistoryView.swift in Sources */,
-				2093CDBA289AA1AF003A88DD /* PreferencesPlaceholderView.swift in Sources */,
-				2BD5CF2328D602CE00F95E5A /* GutterView.swift in Sources */,
-				2093CD68289AA0F2003A88DD /* BreadcrumbsComponent.swift in Sources */,
-				201169D72837B2E300F92B46 /* SourceControlNavigatorView.swift in Sources */,
-				2093CCAD289AA028003A88DD /* QuickOpenState.swift in Sources */,
-				9362B21428EC730D00523626 /* EditorColors.swift in Sources */,
-				2093CD94289AA13D003A88DD /* AppPreferences.swift in Sources */,
-				2093CD1B289AA079003A88DD /* BitbucketOAuthConfiguration.swift in Sources */,
-				2093CD3F289AA095003A88DD /* Project.swift in Sources */,
-				20D9E32C28CB68DE00FE3339 /* FilterCommitHistoryView.swift in Sources */,
-				20D839AB280DEB2900B27357 /* NoSelectionView.swift in Sources */,
-				2093CDA5289AA170003A88DD /* GeneralPreferencesView.swift in Sources */,
-				20EBB505280C329800F3A5DA /* HistoryItem.swift in Sources */,
-				2093CD4C289AA0A2003A88DD /* JSONPostRouter.swift in Sources */,
-				20CABA39290BF5A2004753A8 /* EditorAccountModel.swift in Sources */,
-				2093CD40289AA095003A88DD /* GitlabCommit.swift in Sources */,
-				2B04576128E6FFE300024F2D /* GrammarJsonLoader.swift in Sources */,
-				2B04576528E6FFE300024F2D /* HighlightThemeAttribute.swift in Sources */,
-				2093CD27289AA084003A88DD /* PublicKey.swift in Sources */,
-				043C321627E3201F006AE443 /* WorkspaceDocument.swift in Sources */,
-				2BD5CF2728D602CE00F95E5A /* OSDefinitions.swift in Sources */,
-				20C0CBDD297B083E00E9F9F0 /* Contributor.swift in Sources */,
-				2093CD5D289AA0DD003A88DD /* AuroraCrashlytics.swift in Sources */,
-				20CC5AC8291CD4FC007DB911 /* ExtensionWhatsNewView.swift in Sources */,
-				20CABA37290BF484004753A8 /* AuroraEditorLoginView.swift in Sources */,
-				2093CDC9289AA260003A88DD /* TabBarContextMenu.swift in Sources */,
-				2021267C289BF7BA00246DD7 /* Log.swift in Sources */,
-				2093CD9B289AA14F003A88DD /* TextEditingPreferences.swift in Sources */,
-				207D295A28CCDEDC00D31530 /* BranchCommitHistory.swift in Sources */,
-				2B04574828E6FFE300024F2D /* HighlightThemeSetting.swift in Sources */,
-				2093CDA8289AA179003A88DD /* PreferenceSourceControlView.swift in Sources */,
-				2093CDDD289AA51D003A88DD /* AuroraEditorKeychainConstants.swift in Sources */,
 				2093CDBE289AA1C2003A88DD /* AboutView.swift in Sources */,
-				043BCF03281DA18A000AC47C /* WorkspaceDocument+Search.swift in Sources */,
-				202F2E35289E7277000D3CAD /* SearchResultMatchModel.swift in Sources */,
-				04C325512800AC7400C8DA2D /* ExtensionInstallationViewModel.swift in Sources */,
-				2093CDBF289AA247003A88DD /* SearchModeModel.swift in Sources */,
-				2093CD59289AA0C6003A88DD /* ExtensionsManager.swift in Sources */,
-				2093CD72289AA0FF003A88DD /* OverlayPanel.swift in Sources */,
-				2093CCAF289AA02D003A88DD /* QuickOpenItem.swift in Sources */,
-				2093CDA1289AA167003A88DD /* Loopable.swift in Sources */,
-				2093CD58289AA0C6003A88DD /* Plugin.swift in Sources */,
-				2093CD23289AA084003A88DD /* GitRouter.swift in Sources */,
-				2B04576C28E6FFE300024F2D /* Pattern.swift in Sources */,
-				2BD5CF2428D602CE00F95E5A /* Message.swift in Sources */,
-				2093CD98289AA144003A88DD /* ThemeModel.swift in Sources */,
-				93CACA2728D7524800978753 /* MessagePopupView.swift in Sources */,
-				2093CDBD289AA1BD003A88DD /* ParsePackagesResolved.swift in Sources */,
-				938E8E83291CBC3400DB8320 /* StatusBarBracketCountLabel.swift in Sources */,
+				20C0CBDF297B086200E9F9F0 /* AboutViewModal.swift in Sources */,
+				2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */,
+				20D59CD228AFAAE400E3907B /* AccountItemView.swift in Sources */,
+				2093CDB1289AA19B003A88DD /* AccountListItem.swift in Sources */,
+				2093CDB3289AA19B003A88DD /* AccountSelectionDialog.swift in Sources */,
+				2093CD9F289AA15F003A88DD /* AccountsPreferences.swift in Sources */,
+				93EF416528C1EBBC004083AD /* ActionAwareInput.swift in Sources */,
+				20BE727528D0761200EEDE5F /* ActionsListView.swift in Sources */,
+				20BE727D28D07FF200EEDE5F /* ActionsPopoverCellView.swift in Sources */,
+				2B04575228E6FFE300024F2D /* ActionThemeAttribute.swift in Sources */,
+				20130BDE28CF30FB0000B634 /* AddRemoteView.swift in Sources */,
+				20CABA3F290BFDF7004753A8 /* AELogin.swift in Sources */,
+				20CABA42290BFE94004753A8 /* AEUser.swift in Sources */,
+				2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */,
+				209D2F56297BD806005AB73C /* ApplicationsDetailsView.swift in Sources */,
+				2093CD94289AA13D003A88DD /* AppPreferences.swift in Sources */,
+				2093CD95289AA13F003A88DD /* AppPreferencesModel.swift in Sources */,
+				2032B51028A256F50089EBB6 /* Array.swift in Sources */,
+				93EF2EFA290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift in Sources */,
+				2093CD5D289AA0DD003A88DD /* AuroraCrashlytics.swift in Sources */,
+				93E0486C290E45D5008263B3 /* AuroraDataStorage.swift in Sources */,
 				0463E51127FCC1DF00806D5C /* AuroraEditorAPI.swift in Sources */,
-				04C3255B2801F86400C8DA2D /* ProjectNavigatorViewController.swift in Sources */,
-				2B04575E28E6FFE300024F2D /* ParagraphSpacingBeforeThemeAttribute.swift in Sources */,
-				93532A7E28C736AA007588B4 /* DockProgress.swift in Sources */,
+				043C321427E31FF6006AE443 /* AuroraEditorDocumentController.swift in Sources */,
+				2093CDDB289AA51D003A88DD /* AuroraEditorKeychain.swift in Sources */,
+				2093CDDD289AA51D003A88DD /* AuroraEditorKeychainConstants.swift in Sources */,
+				20CABA37290BF484004753A8 /* AuroraEditorLoginView.swift in Sources */,
+				2093CDDC289AA51D003A88DD /* AuroraEditorSwiftAccessOptions.swift in Sources */,
+				2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */,
 				93ACA43728C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift in Sources */,
-				2093CDC0289AA247003A88DD /* SearchResultModel.swift in Sources */,
-				20CC5ABB291CD0C3007DB911 /* ExtensionView.swift in Sources */,
-				2BD5CF2128D602CE00F95E5A /* CodeStorageDelegate.swift in Sources */,
-				2093CD2E289AA089003A88DD /* Files.swift in Sources */,
-				9336833928C5EAD7009F7B44 /* GitCloneViewWindow.swift in Sources */,
-				20BE729E28D0BB6F00EEDE5F /* WorkflowRunCell.swift in Sources */,
-				6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */,
-				2093CD55289AA0C0003A88DD /* Response.swift in Sources */,
-				2093CDD9289AA511003A88DD /* Time.swift in Sources */,
-				2093CD8D289AA12B003A88DD /* NotificationManager.swift in Sources */,
-				2093CD24289AA084003A88DD /* IssueRouter.swift in Sources */,
-				934D2F0328C4A5690034E5C8 /* GitClientError.swift in Sources */,
-				2093CD53289AA0B5003A88DD /* FeedbackWindowController.swift in Sources */,
-				20091DBE28DE3336008FDDFC /* UpdateModel.swift in Sources */,
-				2093CDCD289AA4F4003A88DD /* StatusBarModel.swift in Sources */,
-				2019258A289C362B009C2FAB /* LogExtension.swift in Sources */,
-				2093CD19289AA079003A88DD /* BitbucketTokenConfiguration.swift in Sources */,
-				206B128628DF77AD002CDE51 /* CodeEditor+Position.swift in Sources */,
-				2093CCA6289AA01A003A88DD /* FileItem.swift in Sources */,
-				2093CD29289AA084003A88DD /* PullRequestRouter.swift in Sources */,
-				2093CDE5289AAE7F003A88DD /* CheckoutBranch.swift in Sources */,
-				2B04574328E6FFE300024F2D /* HighlightTheme.swift in Sources */,
+				04660F6A27E51E5C00477777 /* AuroraEditorWindowController.swift in Sources */,
+				2B89F85428B13E9D007CB9C1 /* AuroraMessageBox.swift in Sources */,
+				20BE728728D0845000EEDE5F /* AuroraNetworking.swift in Sources */,
+				2093CDE1289AA522003A88DD /* AuroraProject.swift in Sources */,
 				2093CD97289AA144003A88DD /* AuroraTheme.swift in Sources */,
-				2093CCB0289AA02D003A88DD /* QuickOpenPreviewView.swift in Sources */,
-				2BCBAACA2927C65500D4DFB2 /* View+isHidden.swift in Sources */,
+				20091DB728DE20FD008FDDFC /* AutomaticallyUpdateSheet.swift in Sources */,
+				20752E4928CA54F000935487 /* Avatar.swift in Sources */,
+				2093CD46289AA095003A88DD /* AvatarURL.swift in Sources */,
+				2B04575328E6FFE300024F2D /* BackgroundColorThemeAttribute.swift in Sources */,
+				2093CD8C289AA12B003A88DD /* BannerModule.swift in Sources */,
+				2B04576028E6FFE300024F2D /* BeginEndRule.swift in Sources */,
+				2BCBAAC82927C41E00D4DFB2 /* BindingProxy.swift in Sources */,
+				2093CD1F289AA07D003A88DD /* BitbucketAccount+Token.swift in Sources */,
+				2093CD1D289AA079003A88DD /* BitbucketAccount.swift in Sources */,
+				2093CD1B289AA079003A88DD /* BitbucketOAuthConfiguration.swift in Sources */,
+				2093CD1E289AA07D003A88DD /* BitbucketRepositories.swift in Sources */,
+				2093CD1C289AA079003A88DD /* BitbucketRepositoryRouter.swift in Sources */,
+				2093CD19289AA079003A88DD /* BitbucketTokenConfiguration.swift in Sources */,
+				2093CD20289AA07D003A88DD /* BitbucketUser.swift in Sources */,
+				2093CD1A289AA079003A88DD /* BitbucketUserRouter.swift in Sources */,
+				2B04575028E6FFE300024F2D /* BoldThemeAttribute.swift in Sources */,
+				938E8E81291CB95C00DB8320 /* BracketCount.swift in Sources */,
+				207D295A28CCDEDC00D31530 /* BranchCommitHistory.swift in Sources */,
+				207D295828CCDE4300D31530 /* BranchCommitHistoryView.swift in Sources */,
+				2093CD68289AA0F2003A88DD /* BreadcrumbsComponent.swift in Sources */,
+				2093CD69289AA0F2003A88DD /* BreadcrumbsMenu.swift in Sources */,
+				2093CD6A289AA0F2003A88DD /* BreadcrumbsView.swift in Sources */,
+				2093CDDF289AA522003A88DD /* Bundle.swift in Sources */,
+				2B04573F28E6FFE300024F2D /* Capture.swift in Sources */,
+				201169E22837B3D800F92B46 /* ChangesView.swift in Sources */,
+				2093CDE5289AAE7F003A88DD /* CheckoutBranch.swift in Sources */,
+				2093CDE7289AAE83003A88DD /* CheckoutBranchView.swift in Sources */,
+				93813D2E28D74BB900A492D4 /* CodeContainer.swift in Sources */,
+				206B128628DF77AD002CDE51 /* CodeEditor+Position.swift in Sources */,
+				2BD5CF1F28D602CE00F95E5A /* CodeEditor.swift in Sources */,
+				206B128828DF77E3002CDE51 /* CodeEditorView.swift in Sources */,
+				93159FDC28D5F40C00C55C5A /* CodeEditorViewWrapper.swift in Sources */,
+				93ECCFFB2902D02E00605FB3 /* CodeFile.swift in Sources */,
+				93813D2828D74AC400A492D4 /* CodeLayoutManager.swift in Sources */,
+				93813D2628D74AA500A492D4 /* CodeLayoutManagerDelegate.swift in Sources */,
+				2BD5CF2228D602CE00F95E5A /* CodeStorage.swift in Sources */,
+				93813D3528D74E5400A492D4 /* CodeStorageDelegate+Messages.swift in Sources */,
+				2BD5CF2128D602CE00F95E5A /* CodeStorageDelegate.swift in Sources */,
+				206B129D28DF7B7B002CDE51 /* CodeStorageInsertionPoint.swift in Sources */,
+				93813D2B28D74B6400A492D4 /* CodeView+Messages.swift in Sources */,
+				2BD5CF2928D602CE00F95E5A /* CodeView.swift in Sources */,
+				93813D2428D749CC00A492D4 /* CodeViewDelegate.swift in Sources */,
+				2032B50E28A256130089EBB6 /* Collection.swift in Sources */,
+				2093CDDE289AA522003A88DD /* Color.swift in Sources */,
+				D3C2DA4A29990FB900FA9F4C /* AuroraSplitViewController.swift in Sources */,
+				2B04575528E6FFE300024F2D /* ColorThemeAttribute.swift in Sources */,
+				93EF416328C1D752004083AD /* Command.swift in Sources */,
+				93EF416128C1D38E004083AD /* CommandPaletteItem.swift in Sources */,
+				93EF415F28C1D2DB004083AD /* CommandPaletteState.swift in Sources */,
+				93EF415C28C1D21E004083AD /* CommandPaletteView.swift in Sources */,
+				2093CD33289AA089003A88DD /* Comment.swift in Sources */,
+				2086334F28A530AF00E29A22 /* CommitChangesView.swift in Sources */,
+				20752E4628CA54B200935487 /* CommitHistoryCellView.swift in Sources */,
+				2093CD3A289AA08F003A88DD /* CommitRouter.swift in Sources */,
+				20CABA3B290BFCAC004753A8 /* Constants.swift in Sources */,
+				209D2F4E297BBF36005AB73C /* ContributersDetailView.swift in Sources */,
+				20C0CBDD297B083E00E9F9F0 /* Contributor.swift in Sources */,
+				2093CD5C289AA0D8003A88DD /* CrashReportController.swift in Sources */,
+				2093CD5E289AA0DD003A88DD /* CrashReportModel.swift in Sources */,
+				2093CD5B289AA0D5003A88DD /* CrashReportView.swift in Sources */,
+				2096A82428CF76D400F6ED39 /* CreateNewBranchView.swift in Sources */,
+				20DF97A328ABD7D2009CE1E9 /* CreateNewRepositoryView.swift in Sources */,
+				207B4382293E0BEC00216AD6 /* CreateNewTagView.swift in Sources */,
+				209D2F4C297BBF2B005AB73C /* CreditsDetailView.swift in Sources */,
+				2093CDCE289AA4F4003A88DD /* CursorLocation.swift in Sources */,
+				2093CDE0289AA522003A88DD /* Date.swift in Sources */,
+				2B04575F28E6FFE300024F2D /* DefaultTabIntervalThemeAttribute.swift in Sources */,
+				2093CDD6289AA511003A88DD /* Dictionary+Additions.swift in Sources */,
+				93532A7E28C736AA007588B4 /* DockProgress.swift in Sources */,
+				2093CD57289AA0C6003A88DD /* DownloadedPlugin.swift in Sources */,
+				20B5BDA128B130EA00B2A02F /* DropProposalPositionCalculations.swift in Sources */,
+				20CABA39290BF5A2004753A8 /* EditorAccountModel.swift in Sources */,
+				9362B21428EC730D00523626 /* EditorColors.swift in Sources */,
+				2BD5CF1E28D602CE00F95E5A /* EditorLocation.swift in Sources */,
+				931B0E1228F2ACEC0036FD5F /* EditorThemeAttributeView.swift in Sources */,
+				2093CDB0289AA185003A88DD /* EditorThemeView.swift in Sources */,
+				2093CD6C289AA0FC003A88DD /* EffectView.swift in Sources */,
+				206B128128DF7311002CDE51 /* EmptyEditorView.swift in Sources */,
+				2093CD41289AA095003A88DD /* Event.swift in Sources */,
+				2093CD49289AA095003A88DD /* EventData.swift in Sources */,
+				2093CD43289AA095003A88DD /* EventNote.swift in Sources */,
+				2043903C290D385600126A3F /* ExploreExtensionsView.swift in Sources */,
+				2043903E290D38D700126A3F /* ExploreItemView.swift in Sources */,
+				20CC5AC6291CD178007DB911 /* ExtensionDescriptionView.swift in Sources */,
+				20CC5AC0291CD13A007DB911 /* ExtensionHeaderView.swift in Sources */,
+				20CC5AC2291CD14E007DB911 /* ExtensionInformationView.swift in Sources */,
+				04C325512800AC7400C8DA2D /* ExtensionInstallationViewModel.swift in Sources */,
+				20CC5AC4291CD160007DB911 /* ExtensionMoreByUserView.swift in Sources */,
+				04C3254B27FF23B000C8DA2D /* ExtensionNavigatorData.swift in Sources */,
+				04C3254D27FF331B00C8DA2D /* ExtensionNavigatorItem.swift in Sources */,
+				0483E35027FDB17700354AC0 /* ExtensionNavigatorView.swift in Sources */,
+				20CC5ABE291CD12F007DB911 /* ExtensionPrivacyView.swift in Sources */,
+				2093CD59289AA0C6003A88DD /* ExtensionsManager.swift in Sources */,
+				2093CD54289AA0C0003A88DD /* ExtensionsStoreAPI.swift in Sources */,
+				20CC5ABB291CD0C3007DB911 /* ExtensionView.swift in Sources */,
+				20CC5AC8291CD4FC007DB911 /* ExtensionWhatsNewView.swift in Sources */,
+				2093CD50289AA0AE003A88DD /* FeedbackModel.swift in Sources */,
+				2093CD4E289AA0A9003A88DD /* FeedbackToolbar.swift in Sources */,
+				2093CD52289AA0AE003A88DD /* FeedbackType.swift in Sources */,
+				2093CD4F289AA0A9003A88DD /* FeedbackView.swift in Sources */,
+				2093CD53289AA0B5003A88DD /* FeedbackWindowController.swift in Sources */,
+				2BDFA91728D10B9200980385 /* FileCreationGridView.swift in Sources */,
+				2BDFA91828D10B9200980385 /* FileCreationModel.swift in Sources */,
+				2BDFA91528D10B9200980385 /* FileCreationNamingView.swift in Sources */,
+				2BDFA91628D10B9200980385 /* FileCreationSelectionView.swift in Sources */,
+				2093CCA5289AA015003A88DD /* FileIcon.swift in Sources */,
+				20EBB50F280C389300F3A5DA /* FileInspectorModel.swift in Sources */,
+				20EBB501280C325D00F3A5DA /* FileInspectorView.swift in Sources */,
+				2093CCAA289AA01A003A88DD /* FileItem+Array.swift in Sources */,
+				2093CCA6289AA01A003A88DD /* FileItem.swift in Sources */,
+				939C2CC6289E345900BBB345 /* FileItemFileSystemFunctions.swift in Sources */,
+				20DF97A128ABB30D009CE1E9 /* FileManger.swift in Sources */,
+				2093CD2E289AA089003A88DD /* Files.swift in Sources */,
+				2BDFA91A28D10B9200980385 /* FileSelectionItem.swift in Sources */,
+				93F0066928A757670038E5B7 /* FileSystemClient+FileIndex.swift in Sources */,
+				93F0066728A7574C0038E5B7 /* FileSystemClient.swift in Sources */,
+				935EB99C28A8F26900E8F798 /* FileSystemTableViewCell.swift in Sources */,
+				2072FA16280D83A500C7F8D4 /* FileTypeList.swift in Sources */,
+				20D9E32C28CB68DE00FE3339 /* FilterCommitHistoryView.swift in Sources */,
+				2093CC99289A9FFD003A88DD /* FilterTextField.swift in Sources */,
+				D7012EE827E757850001E1EF /* FindNavigator.swift in Sources */,
+				202F2E39289E7444000D3CAD /* FindNavigatorListMatchCell.swift in Sources */,
+				202F2E3B289E7483000D3CAD /* FindNavigatorListViewController.swift in Sources */,
+				D7E201B227E8D50000CB86D0 /* FindNavigatorModeSelector.swift in Sources */,
+				202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */,
+				D7E201B027E8C07300CB86D0 /* FindNavigatorSearchBar.swift in Sources */,
+				2B04575828E6FFE300024F2D /* FirstLineHeadIndentThemeAttribute.swift in Sources */,
+				2093CD70289AA0FC003A88DD /* FontPickerView.swift in Sources */,
+				2B04575D28E6FFE300024F2D /* FontThemeAttribute.swift in Sources */,
+				2021267F289BF7EF00246DD7 /* Formatter.swift in Sources */,
+				20212685289BF87600246DD7 /* Formatters.swift in Sources */,
+				2093CD9A289AA14C003A88DD /* GeneralPreferences.swift in Sources */,
+				2093CDA5289AA170003A88DD /* GeneralPreferencesView.swift in Sources */,
+				934D2F0A28C591FD0034E5C8 /* GeneralPreferencesViewSections.swift in Sources */,
+				2093CD31289AA089003A88DD /* Gist.swift in Sources */,
+				2093CD2A289AA084003A88DD /* GistRouter.swift in Sources */,
+				2093CD35289AA089003A88DD /* Git.swift in Sources */,
+				2093CDB5289AA1A2003A88DD /* GitAccountItem.swift in Sources */,
+				2093CD15289AA054003A88DD /* GitClient.swift in Sources */,
+				934D2F0328C4A5690034E5C8 /* GitClientError.swift in Sources */,
+				93CB9AE028C72BC20068074A /* GitCloneView+Helpers.swift in Sources */,
+				2093CDE6289AAE81003A88DD /* GitCloneView.swift in Sources */,
+				9336833928C5EAD7009F7B44 /* GitCloneViewWindow.swift in Sources */,
+				2093CD30289AA089003A88DD /* GithubAccount.swift in Sources */,
+				20BE729828D08C5000EEDE5F /* GitHubActionsModel.swift in Sources */,
+				2093CD25289AA084003A88DD /* GithubConfiguration.swift in Sources */,
+				2093CDB8289AA1A6003A88DD /* GithubEnterpriseLoginView.swift in Sources */,
+				2093CDB7289AA1A6003A88DD /* GithubLoginView.swift in Sources */,
 				20BE728F28D0878E00EEDE5F /* GithubNetworkingConstants.swift in Sources */,
-				2BD5CF2B28D602CE00F95E5A /* TextView.swift in Sources */,
+				2093CD2D289AA089003A88DD /* GithubRepositories.swift in Sources */,
+				2093CD28289AA084003A88DD /* GithubRepositoryRouter.swift in Sources */,
+				2093CD2F289AA089003A88DD /* GithubUser.swift in Sources */,
+				2093CD21289AA084003A88DD /* GithubUserRouter.swift in Sources */,
+				2093CD38289AA08F003A88DD /* GitlabAccount.swift in Sources */,
+				2093CD47289AA095003A88DD /* GitlabAccountModel.swift in Sources */,
+				2093CD40289AA095003A88DD /* GitlabCommit.swift in Sources */,
+				2093CD3B289AA08F003A88DD /* GitlabConfiguration.swift in Sources */,
+				2093CDB4289AA1A2003A88DD /* GitlabHostedLoginView.swift in Sources */,
+				2093CDB6289AA1A2003A88DD /* GitlabLoginView.swift in Sources */,
+				2093CD39289AA08F003A88DD /* GitlabOAuthConfiguration.swift in Sources */,
+				2093CD3C289AA08F003A88DD /* GitlabOAuthRouter.swift in Sources */,
+				2093CD3E289AA095003A88DD /* GitlabUser.swift in Sources */,
+				2093CD23289AA084003A88DD /* GitRouter.swift in Sources */,
+				2093CD11289AA054003A88DD /* GitUIModel.swift in Sources */,
+				2B04574A28E6FFE300024F2D /* Grammar.swift in Sources */,
+				2B04576128E6FFE300024F2D /* GrammarJsonLoader.swift in Sources */,
+				2093CD3D289AA095003A88DD /* GroupAccess.swift in Sources */,
+				206729B228AE6AC900EB0957 /* GroupBox.swift in Sources */,
+				206B129828DF7AA2002CDE51 /* GutterRect.swift in Sources */,
+				206B129628DF7A3D002CDE51 /* GutterSharedCode.swift in Sources */,
+				2BD5CF2328D602CE00F95E5A /* GutterView.swift in Sources */,
+				2B04575728E6FFE300024F2D /* HeadIndentThemeAttribute.swift in Sources */,
+				2093CD71289AA0FC003A88DD /* HelpButton.swift in Sources */,
+				2B04575A28E6FFE300024F2D /* HiddenThemeAttribute.swift in Sources */,
+				93D5F5D028CE05BC00286EBD /* HierarchyNavigator.swift in Sources */,
+				2B04574428E6FFE300024F2D /* HighlightTheme+Default.swift in Sources */,
+				2B04574328E6FFE300024F2D /* HighlightTheme.swift in Sources */,
+				2B04576528E6FFE300024F2D /* HighlightThemeAttribute.swift in Sources */,
+				2B04574828E6FFE300024F2D /* HighlightThemeSetting.swift in Sources */,
+				2089C57128F015A900FE2155 /* HighlightThemeTrieElement.swift in Sources */,
+				20EBB503280C327C00F3A5DA /* HistoryInspector.swift in Sources */,
+				2072FA13280D74ED00C7F8D4 /* HistoryInspectorModel.swift in Sources */,
+				20EBB505280C329800F3A5DA /* HistoryItem.swift in Sources */,
+				20BE728528D0841A00EEDE5F /* HTTPErros.swift in Sources */,
+				20BE728328D083D800EEDE5F /* HTTPMethod.swift in Sources */,
+				2093CDE4289AA887003A88DD /* IgnoredFiles.swift in Sources */,
+				2093CDA7289AA179003A88DD /* IgnoredFileView.swift in Sources */,
+				2BDFA90728D107B200980385 /* ImageFileView.swift in Sources */,
+				2B04574928E6FFE300024F2D /* IncludeGrammarPattern.swift in Sources */,
+				2B04576428E6FFE300024F2D /* IncludeRulePattern.swift in Sources */,
+				2072FA1C280D874000C7F8D4 /* IndentUsing.swift in Sources */,
+				B6EE989027E8879A00CDD8AB /* InspectorSidebar.swift in Sources */,
+				B6EE989227E887C600CDD8AB /* InspectorSidebarToolbar.swift in Sources */,
+				2093CD34289AA089003A88DD /* Issue.swift in Sources */,
+				2093CD51289AA0AE003A88DD /* IssueArea.swift in Sources */,
+				2093CD24289AA084003A88DD /* IssueRouter.swift in Sources */,
+				2B04574B28E6FFE300024F2D /* ItalicThemeAttribute.swift in Sources */,
+				2093CD4C289AA0A2003A88DD /* JSONPostRouter.swift in Sources */,
+				2B04574D28E6FFE300024F2D /* KernThemeAttribute.swift in Sources */,
+				20EBB50D280C383700F3A5DA /* LanguageType.swift in Sources */,
+				209D2F4A297BBE61005AB73C /* LicenseDetailView.swift in Sources */,
+				2B04575C28E6FFE300024F2D /* LigatureThemeAttribute.swift in Sources */,
+				2072FA1A280D872600C7F8D4 /* LineEndings.swift in Sources */,
+				2B04574C28E6FFE300024F2D /* LineHeightThemeAttribute.swift in Sources */,
+				2BD5CF2528D602CE00F95E5A /* LineMap.swift in Sources */,
+				2B04576728E6FFE300024F2D /* LineState.swift in Sources */,
+				2B04574628E6FFE300024F2D /* LineThemeAttribute.swift in Sources */,
+				D7211D4327E066CE008F2ED7 /* Localized+Ex.swift in Sources */,
+				2072FA1E280D891500C7F8D4 /* Location.swift in Sources */,
+				2021267C289BF7BA00246DD7 /* Log.swift in Sources */,
+				2019258A289C362B009C2FAB /* LogExtension.swift in Sources */,
+				2093CDA1289AA167003A88DD /* Loopable.swift in Sources */,
+				2093CCB1289AA032003A88DD /* LSPClient.swift in Sources */,
+				2B04576928E6FFE300024F2D /* MatchRule.swift in Sources */,
+				2BD5CF2428D602CE00F95E5A /* Message.swift in Sources */,
+				93CACA2528D751CF00978753 /* MessageInlineView.swift in Sources */,
+				93CACA2728D7524800978753 /* MessagePopupView.swift in Sources */,
+				2BD5CF2E28D602CE00F95E5A /* MessageView.swift in Sources */,
+				206B129128DF79C5002CDE51 /* MinimapLayoutManager.swift in Sources */,
+				206B129328DF79E9002CDE51 /* MinimapTypeSetter.swift in Sources */,
+				2BD5CF2028D602CE00F95E5A /* MinimapView.swift in Sources */,
+				2093CD4A289AA095003A88DD /* Namespace.swift in Sources */,
+				93983D2D28CE012500E54409 /* NavigatorModeSelectModel.swift in Sources */,
+				93DEBF7E295C441E002EAD63 /* NavigatorSidebar+Splitting.swift in Sources */,
+				2813F93927ECC4C300E305E4 /* NavigatorSidebar.swift in Sources */,
+				93DEBF7C295C1F6D002EAD63 /* NavigatorSidebarToolbar.swift in Sources */,
 				28FFE1BF27E3A441001939DB /* NavigatorSidebarToolbarBottom.swift in Sources */,
+				2BDFA91928D10B9200980385 /* NewFileModel.swift in Sources */,
+				200412EF280F3EAC00BCAF5C /* NoCommitHistoryView.swift in Sources */,
+				20D839AB280DEB2900B27357 /* NoSelectionView.swift in Sources */,
+				2093CD8F289AA130003A88DD /* NotificationCentreView.swift in Sources */,
+				2093CD8B289AA12B003A88DD /* NotificationData.swift in Sources */,
+				2093CD8D289AA12B003A88DD /* NotificationManager.swift in Sources */,
+				2093CD91289AA130003A88DD /* NotificationView.swift in Sources */,
+				2093CD8E289AA130003A88DD /* NotificationWithButton.swift in Sources */,
+				2093CD90289AA130003A88DD /* NotificationWithProgress.swift in Sources */,
+				2B04574128E6FFE300024F2D /* NSRange+Shifted.swift in Sources */,
+				28B8F884280FFE4600596236 /* NSTableView+Background.swift in Sources */,
+				206B128A28DF78F2002CDE51 /* NSTextView.swift in Sources */,
+				2093CD18289AA079003A88DD /* OAuthRouter.swift in Sources */,
+				2093CD32289AA089003A88DD /* Openness.swift in Sources */,
+				2BD5CF2728D602CE00F95E5A /* OSDefinitions.swift in Sources */,
+				2BDFA90528D107B200980385 /* OtherFileView.swift in Sources */,
+				2093CD72289AA0FF003A88DD /* OverlayPanel.swift in Sources */,
+				2093CD56289AA0C0003A88DD /* Page.swift in Sources */,
+				2093CD6D289AA0FC003A88DD /* PanelDivider.swift in Sources */,
+				2B04575428E6FFE300024F2D /* ParagraphSpacingAfterThemeAttribute.swift in Sources */,
+				2B04575E28E6FFE300024F2D /* ParagraphSpacingBeforeThemeAttribute.swift in Sources */,
+				2093CD48289AA095003A88DD /* Parameters.swift in Sources */,
+				2B04576628E6FFE300024F2D /* Parser.swift in Sources */,
+				2B04576C28E6FFE300024F2D /* Pattern.swift in Sources */,
+				2093CD44289AA095003A88DD /* Permissions.swift in Sources */,
+				2093CD58289AA0C6003A88DD /* Plugin.swift in Sources */,
+				2093CD5A289AA0C6003A88DD /* PluginRelease.swift in Sources */,
+				20D839AE280E0CA700B27357 /* PopoverView.swift in Sources */,
+				2093CDB2289AA19B003A88DD /* PreferenceAccountsView.swift in Sources */,
+				2093CDA3289AA16C003A88DD /* PreferencesColorPicker.swift in Sources */,
+				2093CDA8289AA179003A88DD /* PreferenceSourceControlView.swift in Sources */,
+				2093CDBA289AA1AF003A88DD /* PreferencesPlaceholderView.swift in Sources */,
+				2093CDA2289AA16C003A88DD /* PreferencesSection.swift in Sources */,
+				2093CDA4289AA16C003A88DD /* PreferencesToolbar.swift in Sources */,
+				206729AF28AE69DC00EB0957 /* PreferencesView.swift in Sources */,
+				93DD4FF328AFD0F100B664D4 /* PreferencesWindowController.swift in Sources */,
+				2093CD73289AA0FF003A88DD /* PressActionsModifier.swift in Sources */,
+				2093CD26289AA084003A88DD /* PreviewHeader.swift in Sources */,
+				2093CDAF289AA185003A88DD /* PreviewThemeView.swift in Sources */,
+				2093CD3F289AA095003A88DD /* Project.swift in Sources */,
+				2093CD45289AA095003A88DD /* ProjectAccess.swift in Sources */,
+				20752E4128CA4C6500935487 /* ProjectCommitHistory.swift in Sources */,
+				20752E4328CA4E3100935487 /* ProjectCommitHistoryView.swift in Sources */,
+				2093CD42289AA095003A88DD /* ProjectHook.swift in Sources */,
+				286471AB27ED51FD0039369D /* ProjectNavigator.swift in Sources */,
+				04C3255C2801F86900C8DA2D /* ProjectNavigatorMenu.swift in Sources */,
+				9352467C28CB2EB700E38DAD /* ProjectNavigatorOutlineDataSource.swift in Sources */,
+				9352467A28CB16A200E38DAD /* ProjectNavigatorOutlineDelegate.swift in Sources */,
+				285FEC7027FE4B9800E57D53 /* ProjectNavigatorTableViewCell.swift in Sources */,
+				9312ADB7288C3DE1009778D2 /* ProjectNavigatorToolbarBottom.swift in Sources */,
+				2847019E27FDDF7600F87B6B /* ProjectNavigatorView.swift in Sources */,
+				04C3255B2801F86400C8DA2D /* ProjectNavigatorViewController.swift in Sources */,
+				2093CD37289AA08F003A88DD /* ProjectRouter.swift in Sources */,
+				2093CD9E289AA15F003A88DD /* Providers.swift in Sources */,
+				2093CD27289AA084003A88DD /* PublicKey.swift in Sources */,
+				2093CD2C289AA089003A88DD /* PullRequest.swift in Sources */,
+				2093CD29289AA084003A88DD /* PullRequestRouter.swift in Sources */,
+				2036DD5528DB3DB5003BECB7 /* Queue.swift in Sources */,
+				20EBB507280C32D300F3A5DA /* QuickHelpInspector.swift in Sources */,
+				2093CCAF289AA02D003A88DD /* QuickOpenItem.swift in Sources */,
+				2093CCB0289AA02D003A88DD /* QuickOpenPreviewView.swift in Sources */,
+				2093CCAD289AA028003A88DD /* QuickOpenState.swift in Sources */,
+				2093CCAE289AA02D003A88DD /* QuickOpenView.swift in Sources */,
+				2093CCA1289AA00B003A88DD /* RecentProjectItem.swift in Sources */,
+				7BBF20172939B11400D60627 /* RecentProjectsStore.swift in Sources */,
+				2093CCA3289AA00B003A88DD /* RecentProjectsView.swift in Sources */,
+				207D295D28CCE72F00D31530 /* RenameBranchView.swift in Sources */,
+				9354D4B928ACEE20004C6D18 /* RepositoriesMenu.swift in Sources */,
+				9354D4B728ACEE04004C6D18 /* RepositoriesTableViewCell.swift in Sources */,
+				201169E52837B40300F92B46 /* RepositoriesView.swift in Sources */,
+				9354D4B528ACEDEF004C6D18 /* RepositoriesViewController.swift in Sources */,
+				9354D4B328ACEDDE004C6D18 /* RepositoriesWrapperView.swift in Sources */,
+				2B04574728E6FFE300024F2D /* Repository.swift in Sources */,
+				939C109528AE7D0700403A97 /* RepositoryContainers&Items.swift in Sources */,
+				20DF979F28ABAA72009CE1E9 /* RepositoryModel.swift in Sources */,
+				202327E028D607B20031FFB6 /* ReRunJobSheetView.swift in Sources */,
+				2093CD55289AA0C0003A88DD /* Response.swift in Sources */,
+				2093CD2B289AA089003A88DD /* Review.swift in Sources */,
+				2093CD22289AA084003A88DD /* ReviewsRouter.swift in Sources */,
+				2093CD4B289AA0A2003A88DD /* Router.swift in Sources */,
+				2B04576328E6FFE300024F2D /* Rule.swift in Sources */,
+				2B04573D28E6FFE300024F2D /* Scope.swift in Sources */,
+				2B04573E28E6FFE300024F2D /* ScopeName.swift in Sources */,
+				2BD5CF2828D602CE00F95E5A /* ScrollView.swift in Sources */,
+				2093CDBF289AA247003A88DD /* SearchModeModel.swift in Sources */,
+				202F2E35289E7277000D3CAD /* SearchResultMatchModel.swift in Sources */,
+				2093CDC0289AA247003A88DD /* SearchResultModel.swift in Sources */,
+				2093CD6E289AA0FC003A88DD /* SegmentedControl.swift in Sources */,
+				2093CD4D289AA0A2003A88DD /* Session.swift in Sources */,
+				20B6A1FE28AFE107004EC8D7 /* SettingItem.swift in Sources */,
+				20B6A20028AFE124004EC8D7 /* SettingsModel.swift in Sources */,
+				2093CD6F289AA0FC003A88DD /* SettingsTextEditor.swift in Sources */,
+				2093CD9D289AA15F003A88DD /* SourceControlAccounts.swift in Sources */,
+				20E8749028A3ABA8002CE758 /* SourceControlController.swift in Sources */,
+				2093CDA9289AA179003A88DD /* SourceControlGeneralView.swift in Sources */,
+				2093CDAA289AA179003A88DD /* SourceControlGitView.swift in Sources */,
+				20E8748E28A3AB9B002CE758 /* SourceControlMenu.swift in Sources */,
+				201169E72837B5CA00F92B46 /* SourceControlModel.swift in Sources */,
+				201169D72837B2E300F92B46 /* SourceControlNavigatorView.swift in Sources */,
+				2093CD99289AA148003A88DD /* SourceControlPreferences.swift in Sources */,
+				201169D92837B31200F92B46 /* SourceControlSearchToolbar.swift in Sources */,
+				20E8748C28A3AB89002CE758 /* SourceControlTableViewCell.swift in Sources */,
+				201169DD2837B3AC00F92B46 /* SourceControlToolbarBottom.swift in Sources */,
+				20E8749228A3ABB6002CE758 /* SourceControlView.swift in Sources */,
+				20B5BDA328B130F000B2A02F /* SplitEditorDropProposalPosition.swift in Sources */,
+				20B5BDA528B130F300B2A02F /* SplitViewDropDelegate.swift in Sources */,
+				20B5BDA728B130FA00B2A02F /* SplitViewDropProposalOverlay.swift in Sources */,
+				20B5BDA928B130FF00B2A02F /* SplitViewModifier.swift in Sources */,
+				9354D4BB28AD2872004C6D18 /* StandardTableViewCell.swift in Sources */,
+				2093CDE8289AAE87003A88DD /* StashChangesSheet.swift in Sources */,
+				93CACA2328D7515F00978753 /* StatefulMessageView.swift in Sources */,
+				2093CC90289A9FEE003A88DD /* StatusBar.swift in Sources */,
+				938E8E83291CBC3400DB8320 /* StatusBarBracketCountLabel.swift in Sources */,
+				2093CC97289A9FF5003A88DD /* StatusBarBreakpointButton.swift in Sources */,
+				2093CC9C289A9FFD003A88DD /* StatusBarClearButton.swift in Sources */,
+				2093CC96289A9FF5003A88DD /* StatusBarCursorLocationLabel.swift in Sources */,
+				2093CC98289A9FF8003A88DD /* StatusBarDrawer.swift in Sources */,
+				2093CC92289A9FF5003A88DD /* StatusBarEncodingSelector.swift in Sources */,
+				2093CC91289A9FF5003A88DD /* StatusBarIndentSelector.swift in Sources */,
+				2093CC94289A9FF5003A88DD /* StatusBarLineEndSelector.swift in Sources */,
+				2093CC9A289A9FFD003A88DD /* StatusBarMaximizeButton.swift in Sources */,
+				2093CC93289A9FF5003A88DD /* StatusBarMenuLabel.swift in Sources */,
+				2093CDCD289AA4F4003A88DD /* StatusBarModel.swift in Sources */,
+				2093CC9B289A9FFD003A88DD /* StatusBarSplitTerminalButton.swift in Sources */,
+				2093CDCC289AA4F4003A88DD /* StatusBarTabType.swift in Sources */,
+				2093CC95289A9FF5003A88DD /* StatusBarToggleDrawerButton.swift in Sources */,
+				934D2F0828C4EC7E0034E5C8 /* StatusItem.swift in Sources */,
+				D7E201AE27E8B3C000CB86D0 /* String+Ranges.swift in Sources */,
+				20212683289BF84B00246DD7 /* String.swift in Sources */,
+				2093CDD2289AA507003A88DD /* SwiftTerm+Color+Init.swift in Sources */,
+				93B1D10C28CD907A005A8C24 /* TabBar+Drag.swift in Sources */,
+				2093CDC8289AA260003A88DD /* TabBar.swift in Sources */,
+				936312EA28CCCAD9004CD24B /* TabBarAccessories.swift in Sources */,
+				2093CDC7289AA260003A88DD /* TabBarAccessory.swift in Sources */,
+				2093CDC9289AA260003A88DD /* TabBarContextMenu.swift in Sources */,
+				2093CDC5289AA260003A88DD /* TabBarDivider.swift in Sources */,
+				2093CDCB289AA260003A88DD /* TabBarItem.swift in Sources */,
+				2093CDC4289AA260003A88DD /* TabBarItemButtonStyle.swift in Sources */,
+				936312E728CCC7AE004CD24B /* TabBarItemIcon.swift in Sources */,
+				2093CDC3289AA25B003A88DD /* TabBarItemID.swift in Sources */,
+				2093CDC2289AA25B003A88DD /* TabBarItemRepresentable.swift in Sources */,
+				9302A22428D183E300648D63 /* TabBarItemStorage.swift in Sources */,
+				2093CDC6289AA260003A88DD /* TabBarNative.swift in Sources */,
+				2093CDCA289AA260003A88DD /* TabBarXcode.swift in Sources */,
+				93D5F5D728CE0EF500286EBD /* TabHierarchyMenu.swift in Sources */,
+				934D2CDB28D207E100F22E38 /* TabHierarchyOutlineDataSource.swift in Sources */,
+				934D2CD928D207BD00F22E38 /* TabHierarchyOutlineDelegate.swift in Sources */,
+				9327701128CE1B6300871190 /* TabHierarchyTableViewCell.swift in Sources */,
+				93D5F5D328CE064700286EBD /* TabHierarchyView.swift in Sources */,
+				93D5F5D528CE074100286EBD /* TabHierarchyViewController.swift in Sources */,
+				2B04575128E6FFE300024F2D /* TabStopsThemeAttribute.swift in Sources */,
+				2B04574F28E6FFE300024F2D /* TailIndentThemeAttribute.swift in Sources */,
+				9362B21628EC734200523626 /* TerminalColors.swift in Sources */,
+				2093CC9D289AA001003A88DD /* TerminalEmulatorView+Coordinator.swift in Sources */,
+				2093CC9E289AA004003A88DD /* TerminalEmulatorView.swift in Sources */,
+				2093CD9C289AA152003A88DD /* TerminalPreferences.swift in Sources */,
+				2093CDA6289AA173003A88DD /* TerminalPreferencesView.swift in Sources */,
+				2093CDAC289AA185003A88DD /* TerminalThemeView.swift in Sources */,
+				2B04575628E6FFE300024F2D /* TextAlignmentThemeAttribute.swift in Sources */,
+				2B04575B28E6FFE300024F2D /* TextBlockThemeAttribute.swift in Sources */,
+				2093CD9B289AA14F003A88DD /* TextEditingPreferences.swift in Sources */,
+				2093CDAB289AA17D003A88DD /* TextEditingPreferencesView.swift in Sources */,
+				2072FA18280D871200C7F8D4 /* TextEncoding.swift in Sources */,
+				93D5F5D928CE123200286EBD /* TextTableViewCell.swift in Sources */,
+				2BD5CF2B28D602CE00F95E5A /* TextView.swift in Sources */,
+				2BD5CF2D28D602CE00F95E5A /* Theme.swift in Sources */,
+				2B04575928E6FFE300024F2D /* ThemeAttribute+Error.swift in Sources */,
+				93AD8B0A28FD457600317072 /* ThemeJsonLoader+AuroraTheme(Old).swift in Sources */,
+				9384904628FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift in Sources */,
+				9384904428FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift in Sources */,
+				93CAE19828F6F11200454C6F /* ThemeJsonLoader.swift in Sources */,
+				2093CD98289AA144003A88DD /* ThemeModel.swift in Sources */,
+				2093CDA0289AA163003A88DD /* ThemePreferences.swift in Sources */,
+				2093CDAE289AA185003A88DD /* ThemePreferencesView.swift in Sources */,
+				2093CDAD289AA185003A88DD /* ThemePreviewIcon.swift in Sources */,
+				2093CDD9289AA511003A88DD /* Time.swift in Sources */,
+				2B04576B28E6FFE300024F2D /* Token.swift in Sources */,
+				2B04574028E6FFE300024F2D /* TokenizedLine.swift in Sources */,
+				2B04574528E6FFE300024F2D /* TokenizeResult.swift in Sources */,
+				2093CD17289AA079003A88DD /* TokenRouter.swift in Sources */,
+				2B04576828E6FFE300024F2D /* TokenThemeAttribute.swift in Sources */,
+				2077162E287C8EC80069C68E /* ToolbarAppInfo.swift in Sources */,
+				20C8D7DC287ED2C700C5B3BA /* ToolbarBranchPicker.swift in Sources */,
+				93672E8528B2684F0086132E /* ToolbarPlusMenu.swift in Sources */,
+				2B04574E28E6FFE300024F2D /* UndlerlineColorThemeAttribute.swift in Sources */,
+				20091DBE28DE3336008FDDFC /* UpdateModel.swift in Sources */,
+				20091DBA28DE220A008FDDFC /* UpdatePreferences.swift in Sources */,
+				20091DB528DE1FC7008FDDFC /* UpdatePreferencesView.swift in Sources */,
+				2093CDD8289AA511003A88DD /* URL.swift in Sources */,
+				2093CD36289AA08F003A88DD /* UserRouter.swift in Sources */,
+				2BD0BD142977331400629A86 /* VibrantEffect.swift in Sources */,
+				2BCBAACA2927C65500D4DFB2 /* View+isHidden.swift in Sources */,
+				2093CDD3289AA509003A88DD /* View.swift in Sources */,
+				2BD5CF2628D602CE00F95E5A /* ViewModifiers.swift in Sources */,
+				2BDFA8F928D1079700980385 /* WebTab.swift in Sources */,
+				2BDFA90628D107B200980385 /* WebTabView.swift in Sources */,
+				2BDFA90428D107B200980385 /* WebWKView.swift in Sources */,
+				2093CCA2289AA00B003A88DD /* WelcomeActionView.swift in Sources */,
+				20B5BD9C28B11C6200B2A02F /* WelcomeModel.swift in Sources */,
+				9C3E1A07284E8E020042BEC0 /* WelcomeModuleExtensions.swift in Sources */,
+				2093CC9F289AA00B003A88DD /* WelcomeView.swift in Sources */,
+				2093CCA0289AA00B003A88DD /* WelcomeWindowView.swift in Sources */,
+				20BE728B28D0854900EEDE5F /* Workflow.swift in Sources */,
+				20BE729A28D0A25900EEDE5F /* WorkflowCellView.swift in Sources */,
+				202327D828D5CB200031FFB6 /* WorkflowJobCell.swift in Sources */,
+				202327D628D5CA970031FFB6 /* WorkflowJobsView.swift in Sources */,
+				204F7BB328D7905C00F49092 /* WorkflowMenu.swift in Sources */,
+				20BE729E28D0BB6F00EEDE5F /* WorkflowRunCell.swift in Sources */,
+				20BE729C28D0BB2000EEDE5F /* WorkflowRunsView.swift in Sources */,
+				204F7BB928D7908700F49092 /* WorkflowTableViewCell.swift in Sources */,
+				204F7BB728D7907A00F49092 /* WorkflowViewController.swift in Sources */,
+				204F7BB528D7906A00F49092 /* WorkflowWrapperView.swift in Sources */,
+				0485EB1F27E7458B00138301 /* WorkspaceCodeFileView.swift in Sources */,
+				93EF416728C1F828004083AD /* WorkspaceDocument+Commands.swift in Sources */,
+				6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */,
+				043BCF03281DA18A000AC47C /* WorkspaceDocument+Search.swift in Sources */,
+				043BCF05281DA19A000AC47C /* WorkspaceDocument+Selection.swift in Sources */,
+				93F73D0D28A0D9FD00E67DDE /* WorkspaceDocument+Tabs.swift in Sources */,
+				043C321627E3201F006AE443 /* WorkspaceDocument.swift in Sources */,
+				20439038290D27DB00126A3F /* WorkspaceErrors.swift in Sources */,
+				20F8379028C7B45700EAE842 /* WorkspaceExtension.swift in Sources */,
+				04540D5E27DD08C300E91B77 /* WorkspaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4214,6 +4290,42 @@
 			isa = PBXVariantGroup;
 			children = (
 				D7211D4827E06BFE008F2ED7 /* en */,
+				206D2188297E8F8100AA8F7F /* af */,
+				206D2189297E8F9D00AA8F7F /* zh-Hans */,
+				206D218A297E8FA100AA8F7F /* zh-Hant */,
+				206D218B297E8FA800AA8F7F /* zh-HK */,
+				206D218C297E8FAD00AA8F7F /* hr */,
+				206D218D297E8FB400AA8F7F /* cs */,
+				206D218E297E8FBA00AA8F7F /* da */,
+				206D218F297E8FBF00AA8F7F /* nl */,
+				206D2190297E8FCA00AA8F7F /* fi */,
+				206D2191297E8FEB00AA8F7F /* fil */,
+				206D2192297E8FF000AA8F7F /* fr */,
+				206D2193297E8FF700AA8F7F /* de */,
+				206D2194297E8FFB00AA8F7F /* el */,
+				206D2195297E900100AA8F7F /* hi */,
+				206D2196297E901500AA8F7F /* ga */,
+				206D2197297E901A00AA8F7F /* it */,
+				206D2198297E902200AA8F7F /* ja */,
+				206D2199297E902900AA8F7F /* ms */,
+				206D219A297E903D00AA8F7F /* mt */,
+				206D219B297E905500AA8F7F /* ne */,
+				206D219C297E906E00AA8F7F /* nb */,
+				206D219D297E907500AA8F7F /* pl */,
+				206D219E297E907E00AA8F7F /* pt-PT */,
+				206D219F297E908300AA8F7F /* ro */,
+				206D21A0297E908900AA8F7F /* ru */,
+				206D21A1297E908F00AA8F7F /* es */,
+				206D21A2297E909200AA8F7F /* sv */,
+				206D21A3297E909700AA8F7F /* th */,
+				206D21A4297E90B600AA8F7F /* th-TH */,
+				206D21A5297E90C300AA8F7F /* tn */,
+				206D21A6297E90CA00AA8F7F /* uk */,
+				206D21A7297E90D100AA8F7F /* vi */,
+				206D21A8297E90DB00AA8F7F /* cy */,
+				206D21A9297E90E500AA8F7F /* xh-ZA */,
+				206D21AA297E90EF00AA8F7F /* zu-ZA */,
+				206D21AB297E958000AA8F7F /* en-001 */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

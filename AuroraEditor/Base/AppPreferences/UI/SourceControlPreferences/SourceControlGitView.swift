@@ -21,9 +21,10 @@ struct SourceControlGitView: View {
         VStack(alignment: .leading) {
             GroupBox {
                 HStack {
-                    Text("Author Name")
+                    Text("settings.source.control.git.author.name")
                     Spacer()
-                    TextField("Git Author Name", text: $prefs.preferences.sourceControl.git.authorName)
+                    TextField("settings.source.control.git.author",
+                              text: $prefs.preferences.sourceControl.git.authorName)
                         .frame(width: inputWidth)
                         .textFieldStyle(.roundedBorder)
                 }
@@ -33,9 +34,10 @@ struct SourceControlGitView: View {
                 Divider()
 
                 HStack {
-                    Text("Author Email")
+                    Text("settings.source.control.git.author.email")
                     Spacer()
-                    TextField("Git Email", text: $prefs.preferences.sourceControl.git.authorEmail)
+                    TextField("settings.source.control.git.email",
+                              text: $prefs.preferences.sourceControl.git.authorEmail)
                         .frame(width: inputWidth)
                         .textFieldStyle(.roundedBorder)
                 }
@@ -45,7 +47,7 @@ struct SourceControlGitView: View {
                 Divider()
 
                 HStack(alignment: .top) {
-                    Text("Ignored Files")
+                    Text("settings.source.control.git.ignored.files")
                     Spacer()
                     VStack(spacing: 1) {
                         List($prefs.preferences.sourceControl.git.ignoredFiles,
@@ -54,7 +56,7 @@ struct SourceControlGitView: View {
                         }
                         .overlay(Group {
                             if prefs.preferences.sourceControl.git.ignoredFiles.isEmpty {
-                                Text("No Ignored Files")
+                                Text("settings.source.control.git.ignored.files.none")
                                     .foregroundColor(.secondary)
                                     .font(.system(size: 11))
                             }
@@ -72,7 +74,7 @@ struct SourceControlGitView: View {
                 .padding(.horizontal)
             }
 
-            Text("Options")
+            Text("settings.source.control.git.options")
                 .fontWeight(.medium)
                 .font(.system(size: 12))
                 .padding(.horizontal)
@@ -80,9 +82,9 @@ struct SourceControlGitView: View {
 
             GroupBox {
                 HStack {
-                    Text("Prefer to rebase when pulling")
+                    Text("settings.source.control.git.prefer.rebase")
                     Spacer()
-                    Toggle("Prefer to rebase when pulling",
+                    Toggle("",
                            isOn: $prefs.preferences.sourceControl.git.preferRebaseWhenPulling)
                     .labelsHidden()
                     .toggleStyle(.switch)
@@ -93,9 +95,9 @@ struct SourceControlGitView: View {
                 Divider()
 
                 HStack {
-                    Text("Show merge commits in per-file log")
+                    Text("settings.source.control.git.show.commits")
                     Spacer()
-                    Toggle("Show merge commits in per-file log",
+                    Toggle("",
                            isOn: $prefs.preferences.sourceControl.git.showMergeCommitsPerFileLog)
                     .labelsHidden()
                     .toggleStyle(.switch)

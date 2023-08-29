@@ -19,8 +19,8 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
     var cancelables: Set<AnyCancellable> = .init()
 
-    var splitViewController: NSSplitViewController! {
-        get { contentViewController as? NSSplitViewController }
+    var splitViewController: AuroraSplitViewController! {
+        get { contentViewController as? AuroraSplitViewController }
         set { contentViewController = newValue }
     }
 
@@ -32,6 +32,8 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
         setupSplitView(with: self.workspace)
         setupToolbar()
+
+        updateLayoutOfWindowAndSplitView()
     }
 
     @available(*, unavailable)
@@ -40,11 +42,12 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
     }
 
     private func setupSplitView(with workspace: WorkspaceDocument) {
-        let splitVC = NSSplitViewController()
+        let splitVC = AuroraSplitViewController(prefs: prefs)
 
         let navigatorView = NavigatorSidebar().environmentObject(workspace)
+        let navigationViewController = NSHostingController(rootView: navigatorView)
         let navigator = NSSplitViewItem(
-            sidebarWithViewController: NSHostingController(rootView: navigatorView)
+            sidebarWithViewController: navigationViewController
         )
         navigator.titlebarSeparatorStyle = .none
         navigator.minimumThickness = 260
@@ -52,15 +55,17 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         splitVC.addSplitViewItem(navigator)
 
         let workspaceView = WorkspaceView().environmentObject(workspace)
+        let workspaceViewController = NSHostingController(rootView: workspaceView)
         let mainContent = NSSplitViewItem(
-            viewController: NSHostingController(rootView: workspaceView)
+            viewController: workspaceViewController
         )
         mainContent.titlebarSeparatorStyle = .line
         splitVC.addSplitViewItem(mainContent)
 
-        let inspectorView = InspectorSidebar().environmentObject(workspace)
+        let inspectorView = InspectorSidebar(prefs: prefs).environmentObject(workspace)
+        let inspectorViewController = NSHostingController(rootView: inspectorView)
         let inspector = NSSplitViewItem(
-            viewController: NSHostingController(rootView: inspectorView)
+            viewController: inspectorViewController
         )
         inspector.titlebarSeparatorStyle = .line
         inspector.minimumThickness = 260
@@ -81,6 +86,29 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
     override func windowDidLoad() {
         super.windowDidLoad()
+    }
+
+    @objc
+    private func updateLayoutOfWindowAndSplitView() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else {
+                return
+            }
+            let navigationSidebarWidth = self.prefs.preferences.general.navigationSidebarWidth
+            let workspaceSidebarWidth = self.prefs.preferences.general.workspaceSidebarWidth
+            let firstDividerPos = navigationSidebarWidth
+            let secondDividerPos = navigationSidebarWidth + workspaceSidebarWidth
+
+            self.window?.setContentSize(
+                CGSize(
+                    width: self.prefs.preferences.general.auroraEditorWindowWidth,
+                    height: 600
+                )
+            )
+            self.splitViewController.splitView.setPosition(firstDividerPos, ofDividerAt: 0)
+            self.splitViewController.splitView.setPosition(secondDividerPos, ofDividerAt: 1)
+            self.splitViewController.splitView.layoutSubtreeIfNeeded()
+        }
     }
 
     private func getSelectedCodeFile() -> CodeFileDocument? {

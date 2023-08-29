@@ -69,25 +69,25 @@ extension ThemeJsonLoader {
     // swiftlint:disable:next function_body_length
     func editorFromOldAEThemeJson(json: [String: [String: String]]) -> AuroraTheme.EditorColors? {
         guard
-              // To be translated to HighlightTheme
-              let strings = json["strings"]?["color"],
-              let comments = json["comments"]?["color"],
-              let numbers = json["numbers"]?["color"],
-              let commands = json["commands"]?["color"],
-              let values = json["values"]?["color"],
-              let keywords = json["keywords"]?["color"],
-              let types = json["types"]?["color"],
-              let variables = json["variables"]?["color"],
-              let attributes = json["attributes"]?["color"],
-              let characters = json["characters"]?["color"],
+            // To be translated to HighlightTheme
+            let strings = json["strings"]?["color"],
+            let comments = json["comments"]?["color"],
+            let numbers = json["numbers"]?["color"],
+            let commands = json["commands"]?["color"],
+            let values = json["values"]?["color"],
+            let keywords = json["keywords"]?["color"],
+            let types = json["types"]?["color"],
+            let variables = json["variables"]?["color"],
+            let attributes = json["attributes"]?["color"],
+            let characters = json["characters"]?["color"],
 
-              // To be fed directly into EditorColors
-              let text = json["text"]?["color"],
-              let insertionPoint = json["insertionPoint"]?["color"],
-              let invisibles = json["invisibles"]?["color"],
-              let background = json["background"]?["color"],
-              let lineHighlight = json["lineHighlight"]?["color"],
-              let selection = json["selection"]?["color"]
+                // To be fed directly into EditorColors
+            let text = json["text"]?["color"],
+            let insertionPoint = json["insertionPoint"]?["color"],
+            let invisibles = json["invisibles"]?["color"],
+            let background = json["background"]?["color"],
+            let lineHighlight = json["lineHighlight"]?["color"],
+            let selection = json["selection"]?["color"]
         else { return nil }
 
         // NOTE: Not sure if all these are correct. May need double checking.
@@ -96,10 +96,10 @@ extension ThemeJsonLoader {
             ThemeSetting(
                 scope: "source",
                 attributes: [
-                            FontThemeAttribute(font: .monospacedSystemFont(ofSize: 13,
-                                                                           weight: .regular)),
-                            ColorThemeAttribute(color: NSColor(hex: text))
-            ]),
+                    FontThemeAttribute(font: .monospacedSystemFont(ofSize: 13,
+                                                                   weight: .regular)),
+                    ColorThemeAttribute(color: NSColor(hex: text))
+                ]),
             ThemeSetting(scope: "string",
                          attributes: [ColorThemeAttribute(color: NSColor(hex: strings))]),
             ThemeSetting(scope: "comment",
@@ -122,13 +122,15 @@ extension ThemeJsonLoader {
                          attributes: [ColorThemeAttribute(color: NSColor(hex: characters))])
         ])
 
-        return AuroraTheme.EditorColors(text: AuroraTheme.Attributes(color: text),
-                                        insertionPoint: AuroraTheme.Attributes(color: insertionPoint),
-                                        invisibles: AuroraTheme.Attributes(color: invisibles),
-                                        background: AuroraTheme.Attributes(color: background),
-                                        lineHighlight: AuroraTheme.Attributes(color: lineHighlight),
-                                        selection: AuroraTheme.Attributes(color: selection),
-                                        highlightTheme: highlightTheme)
+        return AuroraTheme.EditorColors(
+            text: AuroraTheme.Attributes(color: text),
+            insertionPoint: AuroraTheme.Attributes(color: insertionPoint),
+            invisibles: AuroraTheme.Attributes(color: invisibles),
+            background: AuroraTheme.Attributes(color: background),
+            lineHighlight: AuroraTheme.Attributes(color: lineHighlight),
+            selection: AuroraTheme.Attributes(color: selection),
+            highlightTheme: highlightTheme
+        )
     }
 
     func terminalFromOldAEThemeJson(json: [String: [String: String]]) -> AuroraTheme.TerminalColors? {
@@ -155,26 +157,28 @@ extension ThemeJsonLoader {
               let brightWhiteRaw = json["brightWhite"]?["color"]
         else { return nil }
 
-        return AuroraTheme.TerminalColors(text: AuroraTheme.Attributes(color: textRaw),
-                                          boldText: AuroraTheme.Attributes(color: boldTextRaw),
-                                          cursor: AuroraTheme.Attributes(color: cursorRaw),
-                                          background: AuroraTheme.Attributes(color: backgroundRaw),
-                                          selection: AuroraTheme.Attributes(color: selectionRaw),
-                                          black: AuroraTheme.Attributes(color: blackRaw),
-                                          red: AuroraTheme.Attributes(color: redRaw),
-                                          green: AuroraTheme.Attributes(color: greenRaw),
-                                          yellow: AuroraTheme.Attributes(color: yellowRaw),
-                                          blue: AuroraTheme.Attributes(color: blueRaw),
-                                          magenta: AuroraTheme.Attributes(color: magentaRaw),
-                                          cyan: AuroraTheme.Attributes(color: cyanRaw),
-                                          white: AuroraTheme.Attributes(color: whiteRaw),
-                                          brightBlack: AuroraTheme.Attributes(color: brightBlackRaw),
-                                          brightRed: AuroraTheme.Attributes(color: brightRedRaw),
-                                          brightGreen: AuroraTheme.Attributes(color: brightGreenRaw),
-                                          brightYellow: AuroraTheme.Attributes(color: brightYellowRaw),
-                                          brightBlue: AuroraTheme.Attributes(color: brightBlueRaw),
-                                          brightMagenta: AuroraTheme.Attributes(color: brightMagentaRaw),
-                                          brightCyan: AuroraTheme.Attributes(color: brightCyanRaw),
-                                          brightWhite: AuroraTheme.Attributes(color: brightWhiteRaw))
+        return AuroraTheme.TerminalColors(
+            text: AuroraTheme.Attributes(color: textRaw),
+            boldText: AuroraTheme.Attributes(color: boldTextRaw),
+            cursor: AuroraTheme.Attributes(color: cursorRaw),
+            background: AuroraTheme.Attributes(color: backgroundRaw),
+            selection: AuroraTheme.Attributes(color: selectionRaw),
+            black: AuroraTheme.Attributes(color: blackRaw),
+            red: AuroraTheme.Attributes(color: redRaw),
+            green: AuroraTheme.Attributes(color: greenRaw),
+            yellow: AuroraTheme.Attributes(color: yellowRaw),
+            blue: AuroraTheme.Attributes(color: blueRaw),
+            magenta: AuroraTheme.Attributes(color: magentaRaw),
+            cyan: AuroraTheme.Attributes(color: cyanRaw),
+            white: AuroraTheme.Attributes(color: whiteRaw),
+            brightBlack: AuroraTheme.Attributes(color: brightBlackRaw),
+            brightRed: AuroraTheme.Attributes(color: brightRedRaw),
+            brightGreen: AuroraTheme.Attributes(color: brightGreenRaw),
+            brightYellow: AuroraTheme.Attributes(color: brightYellowRaw),
+            brightBlue: AuroraTheme.Attributes(color: brightBlueRaw),
+            brightMagenta: AuroraTheme.Attributes(color: brightMagentaRaw),
+            brightCyan: AuroraTheme.Attributes(color: brightCyanRaw),
+            brightWhite: AuroraTheme.Attributes(color: brightWhiteRaw)
+        )
     }
 }

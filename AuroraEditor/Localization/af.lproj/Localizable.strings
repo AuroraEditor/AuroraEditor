@@ -1,0 +1,239 @@
+// Global - Used in more than once place
+"global.show.finder" = "Wys in Finder";
+"gloabl.copy.path" = "Kopieer pad";
+"global.editor.name" = "Aurora Editor";
+"global.cancel" = "Cancel";
+"global.continue" = "Continue";
+"global.close" = "Close";
+"global.done" = "Done";
+"global.on" = "On";
+"global.off" = "Off";
+"global.delete" = "Delete";
+
+// About Screen
+"about.no.version" = "No Version";
+"about.no.build" = "No Build";
+"about.no.hash" = "No Hash";
+"about.version" = "Version %@ (%@)";
+"about.license" = "License";
+"about.contributers" = "Contributers";
+"about.credits" = "Credits";
+
+"about.error.no.credits" = "Could not load credits for Aurora Editor.";
+"about.error.no.credits.found" = "Credit file not found.";
+"about.error.no.license" = "Could not load license for Aurora Editor.";
+"about.error.no.license.found" = "License file not found.";
+
+// Settings
+"settings.global.login.password" = "Password:";
+"settings.global.login.account" = "Account:";
+"settings.global.login.token" = "Token:";
+"settings.global.login.server" = "Server:";
+"settings.global.login.username" = "Enter your username";
+"settings.global.cancel" = "Cancel";
+"settings.global.login" = "Sign In";
+"settings.global.font" = "Font";
+"settings.global.font.system" = "System Font";
+"settings.global.font.custom" = "Custom";
+
+"settings.aurora.login.header" = "Sign in to your Aurora Editor account";
+"settings.aurora.login.email" = "Enter your email";
+"settings.aurora.login.password" = "Enter your Password";
+"settings.aurora.login.create" = "Create a Aurora Editor account";
+
+"settings.github.enterprise.login.header" = "Sign in to your GitHub account";
+"settings.github.enterprise.login.enter.token" = "Enter your Personal Access Token";
+"settings.github.enterprise.login.create" = "Create a Token on GitHub Enterprise";
+
+"settings.github.login.header" = "Sign in to your GitHub Enterprise account";
+"settings.github.login.enter.token.personal" = "Enter your Personal Access Token";
+"settings.github.login.access.scopes" = "GitHub personal access tokens must have these scopes set:";
+"settings.github.login.access.public.key" = "admin:public_key";
+"settings.github.login.access.discussion" = "write:discussion";
+"settings.github.login.access.repo" = "repo";
+"settings.github.login.access.user" = "user";
+"settings.github.login.create" = "Create a Token on GitHub";
+
+"settings.gitlab.enterprise.login.header" = "Sign in to your Gitlab account";
+"settings.gitlab.enterprise.login.enter.token" = "Enter your Personal Access Token";
+"settings.gitlab.enterprise.login.create" = "Create a Token on Gitlab Self-Hosted";
+
+"settings.gitlab.login.header" = "Sign in to your Gitlab account";
+"settings.gitlab.login.enter.token" = "Enter your Personal Access Token";
+"settings.gitlab.login.create" = "Create a Token on Gitlab";
+
+"settings.account.show.profile" = "Show Profile...";
+"settings.account.username" = "Username";
+"settings.account.username.description" = "Your username is public and will represent you in %@";
+
+"settings.account.bitbucket.cloud" = "Bitbucket Cloud";
+"settings.account.bitbucket.server" = "Bitbucket Server";
+"settings.account.github" = "GitHub";
+"settings.account.github.enterprise" = "GitHub Enterprise";
+"settings.account.gitlab" = "GitLab";
+"settings.account.gitlab.hosted" = "GitLab Self-Hosted";
+"settings.account.account.type" = "Select the type of account you would like to add:";
+"settings.account.client.not.supported" = "This git client is currently not supported yet!";
+"settings.account.no.account" = "Doesn't seem like you have a Git Account attached to Aurora Editor, press the \"Add Account\" button to a Git Account.";
+"settings.account.add" = "Add Account";
+
+"settings.general.appearance" = "Appearance";
+"settings.general.appearance.system" = "System";
+"settings.general.appearance.light" = "Light";
+"settings.general.appearance.dark" = "Dark";
+"settings.general.issues" = "Show Issues";
+"settings.general.issues.inline" = "Show Inline";
+"settings.general.issues.minimized" = "Show Minimized";
+"settings.general.issues.live" = "Show Live Issues";
+"settings.general.file.extensions" = "File Extensions";
+"settings.general.file.extensions.hide" = "Hide all";
+"settings.general.file.extensions.all" = "Show all";
+"settings.general.file.extensions.only" = "Show only";
+"settings.general.file.extensions.hode" = "Hide only";
+"settings.general.file.icon.style" = "File Icon Style";
+"settings.general.file.icon.style.color" = "Color";
+"settings.general.file.icon.style.monochrome" = "Monochrome";
+"settings.general.tabs.style" = "Tab Bar Style";
+"settings.general.tabs.style.xcode" = "Xcode Style";
+"settings.general.tabs.style.aurora" = "Aurora Style";
+"settings.general.navigator.position" = "Navigator Mode Position";
+"settings.general.navigator.position.top" = "Top";
+"settings.general.navigator.position.left" = "Left";
+"settings.general.menu.bar" = "Menu Bar Accessory (Requires restart to update)";
+"settings.general.menu.bar.shown" = "Shown";
+"settings.general.menu.bar.hidden" = "Hidden";
+"settings.general.open" = "Reopen Behavior";
+"settings.general.open.welcome" = "Welcome Screen";
+"settings.general.open.panel" = "Open Panel";
+"settings.general.open.document" = "New Document";
+"settings.general.navigator.size" = "Project Navigator Size";
+"settings.general.navigator.size.small" = "Small";
+"settings.general.navigator.size.medium" = "Medium";
+"settings.general.navigator.size.large" = "Large";
+"settings.general.navigator.find" = "Find Navigator Detail";
+"settings.general.navigator.issue" = "Issue Navigator Detail";
+"settings.general.dialog.warnings" = "Dialog Warnings";
+"settings.general.dialog.warnings.reset" = "Reset \"Don't Ask Me\" Warnings";
+"settings.general.shell" = "Shell Command";
+"settings.general.shell.command" = "Install 'ae' command";
+"settings.general.extension.open.with" = "Show “Open With AuroraEditor” option";
+"settings.general.show.active.file" = "Automatically Show Active File";
+"settings.general.inspector.keep.open" = "Keep Inspector Sidebar Open";
+
+"settings.source.control.tab.general" = "General";
+"settings.source.control.tab.git" = "Git";
+
+"settings.source.control.general.enable" = "Enable Source Control";
+"settings.source.control.general.refresh" = "Refresh local status automatically";
+"settings.source.control.general.fetch" = "Fetch and refresh server status automatically";
+"settings.source.control.general.add.remove" = "Add and remove files automatically";
+"settings.source.control.general.select.files" = "Select files to commit automatically";
+"settings.source.control.general.text.editing" = "Text Editing";
+"settings.source.control.general.show.changes" = "Show Source Control changes";
+"settings.source.control.general.reporting" = "Reporting";
+"settings.source.control.general.open.issues.browser" = "Open created issue in the browser";
+"settings.source.control.general.comparison" = "Comparison View";
+"settings.source.control.general.comparison.revision.lect" = "Local Revision on Left Side";
+"settings.source.control.general.comparison.revision.right" = "Local Revision on Right Side";
+"settings.source.control.general.navigator" = "Source Control Navigator";
+"settings.source.control.general.navigator.sort.name" = "Sort by Name";
+"settings.source.control.general.navigator.sort.date" = "Sort by Date";
+"settings.source.control.general.branch name" = "Default Branch Name";
+"settings.source.control.general.branch.error" = "Branch names cannot contain spaces, backslashes, or other symbols";
+
+"settings.source.control.git.author.name" = "Author Name";
+"settings.source.control.git.author" = "Git Author Name";
+"settings.source.control.git.author.email" = "Author Email";
+"settings.source.control.git.email" = "Git Email";
+"settings.source.control.git.ignored.files" = "Ignored Files";
+"settings.source.control.git.ignored.files.none" = "No Ignored Files";
+"settings.source.control.git.options" = "Options";
+"settings.source.control.git.prefer.rebase" = "Prefer to rebase when pulling";
+"settings.source.control.git.show.commits" = "Show merge commits in per-file log";
+
+"settings.terminal.shell" = "Shell";
+"settings.terminal.shell.system" = "System Default";
+"settings.terminal.options" = "Use \"Option\" key as \"Meta\"";
+
+"settings.text.editing.tab.width" = "Default Tab Width";
+"settings.text.editing.completion" = "Editor Completion";
+"settings.text.editing.show.minimap" = "Show Minimap";
+"settings.text.editing.show.scopes" = "Show Scopes";
+"settings.text.editing.autocomplete.braces" = "Autocomplete braces";
+"settings.text.editing.type.over.completion" = "Enable type-over completion";
+
+"settings.update.check.automatically" = "Automatically";
+"settings.update.check.updates" = "Check for updates";
+"settings.update.download.when.available" = "Download new updates when available";
+"settings.update.channel" = "Update Channel";
+"settings.update.channel.release" = "Release";
+"settings.update.channel.beta" = "Beta";
+"settings.update.channel.nightly" = "Nightly";
+"settings.update.channel.update.now" = "Update Now";
+"settings.update.channel.debug.build.warning" = "\u{26A0} You are using a debug build, therefore updating is disabled.";
+"settings.update.channel.update.available" = "Update Available";
+"settings.update.learn.more" = "Learn more...";
+"settings.update.failure.checking" = "Failure checking for Updates...";
+"settings.update.retry" = "Retry Again";
+
+"settings.theme.selection" = "Select a Theme";
+"settings.theme.style.text" = "Text";
+"settings.theme.style.cursor" = "Cursor";
+"settings.theme.style.invisibles" = "Invisibles";
+"settings.theme.style.background" = "Background";
+"settings.theme.style.current.line" = "Current Line";
+"settings.theme.style.selection" = "Selection";
+
+"settings.theme.terminal.dark" = "Always use dark terminal appearance";
+"settings.theme.terminal.background.text" = "Background & Text";
+"settings.theme.terminal.text" = "Text";
+"settings.theme.terminal.text.bold" = "Bold Text";
+"settings.theme.terminal.cursor" = "Cursor";
+"settings.theme.terminal.background" = "Background";
+"settings.theme.terminal.selection" = "Selection";
+"settings.theme.terminal.ansi.colors" = "ANSI Colors";
+"settings.theme.terminal.ansi.colors.normal" = "Normal";
+"settings.theme.terminal.ansi.colors.bright" = "Bright";
+
+"settings.theme.change.based.on.system" = "Automatically change theme based on system appearance";
+"settings.theme.get.themes" = "Get More Themes...";
+"settings.theme.appearance.dark" = "Dark Mode";
+"settings.theme.appearance.light" = "Light Mode";
+"settings.theme.appearance.universal" = "Universal";
+"settings.theme.reset" = "Reset Theme";
+"settings.theme.delete" = "Delete Theme";
+"settings.theme.delete.selected" = "Delete selected theme";
+"settings.theme.preview" = "Preview";
+"settings.theme.tab.editor" = "Editor";
+"settings.theme.tab.terminal" = "Terminal";
+
+// Welcome Screen
+"welcome.aurora" = "Welkom na Aurora";
+"welcome.version" = "Weergave %@ (%@)";
+"welcome.no.recent" = "Geen Onlangse Projekte";
+
+"welcome.new.file" = "Skep n nuwe lêer";
+"welcome.clone.project" = "Kloon 'n bestaande projek";
+
+"welcome.open.file" = "Maak 'n lêer of gids oop";
+"welcome.open.existing" = "Maak 'n bestaande lêer of vouer op jou Mac oop";
+
+"welcome.git.work" = "Begin werk op iets van n Git bewaarplek";
+
+"welcome.remove.recents" = "Verwyder van Onlangs Projekte";
+
+// Editor Screen
+"editor.open.from.sidebar" = "Maak lêer oop vanaf sybalk";
+"editor.file.type.incorrect" = "Aurora Editor kan nie hierdie lêer oopmaak nie omdat die lêertipe nie ondersteun word nie.";
+
+// Project Navigator
+"project.navigator.add.file" = "Voeg lêer by";
+"project.navigator.not.implemented" = "Nog nie geïmplementeer nie";
+
+"project.navigator.sort.alphabetically" = "Alfabeties";
+"project.navigator.sort.folders" = "Dopsies bo-op";
+
+// Inspector Sidebar
+"project.inspector.file" = "Lêer Inspekteur";
+"project.inspector.history" = "Geskiedenis Inspekteur";
+"project.inspector.help" = "Vinnige Hulp Inspekteur";

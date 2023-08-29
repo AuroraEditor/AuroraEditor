@@ -28,22 +28,22 @@ struct GitlabHostedLoginView: View {
 
     var body: some View {
         VStack {
-            Text("Sign in to your Gitlab account")
+            Text("settings.gitlab.enterprise.login.header")
 
             VStack(alignment: .trailing) {
                 HStack {
-                    Text("Server:")
+                    Text("settings.global.login.server")
                     TextField("https://example.com", text: $eneterpriseLink)
                         .frame(width: 300)
                 }
                 HStack {
-                    Text("Account:")
+                    Text("settings.global.login.account")
                     TextField("", text: $accountName)
                         .frame(width: 300)
                 }
                 HStack {
-                    Text("Token:")
-                    SecureField("Enter your Personal Access Token",
+                    Text("settings.global.login.token")
+                    SecureField("settings.gitlab.enterprise.login.enter.token",
                                 text: $accountToken)
                     .frame(width: 300)
                 }
@@ -54,7 +54,7 @@ struct GitlabHostedLoginView: View {
                     Button {
                         createToken(URL(string: "https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html")!)
                     } label: {
-                        Text("Create a Token on Gitlab Self-Hosted")
+                        Text("settings.gitlab.enterprise.login.create")
                             .foregroundColor(.primary)
                     }
                 }
@@ -63,12 +63,12 @@ struct GitlabHostedLoginView: View {
                     Button {
                         dismissDialog = false
                     } label: {
-                        Text("Cancel")
+                        Text("global.cancel")
                             .foregroundColor(.primary)
                     }
 
                     if accountToken.isEmpty {
-                        Button("Sign In") {}
+                        Button("settings.global.login") {}
                         .disabled(true)
                     } else {
                         Button {
@@ -76,7 +76,7 @@ struct GitlabHostedLoginView: View {
                                                                accountToken: accountToken,
                                                                enterpriseLink: eneterpriseLink)
                         } label: {
-                            Text("Sign In")
+                            Text("settings.global.login")
                                 .foregroundColor(.white)
                         }
                         .buttonStyle(.borderedProminent)
