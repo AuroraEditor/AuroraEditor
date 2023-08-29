@@ -7,7 +7,7 @@ jobs:
   build_nightly_editor:
     if: github.repository_owner == 'AuroraEditor'
     runs-on: macos-12
-    timeout-minutes: 30 # If a build exceeds 30 mins, it probably isn't ever going to complete
+    timeout-minutes: 45 # If a build exceeds 30 mins, it probably isn't ever going to complete
     steps:
       - uses: actions/checkout@v3
       
