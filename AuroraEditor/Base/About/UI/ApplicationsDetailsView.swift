@@ -17,15 +17,15 @@ struct ApplicationsDetailsView: View {
     private var hoveringOnCommitHash = false
 
     private var appVersion: String {
-        Bundle.versionString ?? "No Version"
+        Bundle.versionString ?? "about.no.version".localize()
     }
 
     private var appBuild: String {
-        Bundle.buildString ?? "No Build"
+        Bundle.buildString ?? "about.no.build".localize()
     }
 
     private var commitHash: String {
-        Bundle.commitHash ?? "No Hash"
+        Bundle.commitHash ?? "about.no.hash".localize()
     }
 
     private var shortCommitHash: String {
@@ -45,7 +45,7 @@ struct ApplicationsDetailsView: View {
                 Text("Aurora Editor")
                     .font(.system(size: 24, weight: .regular))
 
-                Text("Version \(appVersion) (\(appBuild))")
+                Text("about.version \(appVersion) (\(appBuild))")
                     .textSelection(.enabled)
                     .foregroundColor(.secondary)
                     .font(.system(size: 12, weight: .light))
@@ -70,7 +70,7 @@ struct ApplicationsDetailsView: View {
             Spacer()
 
             VStack(spacing: 10) {
-                Text("License")
+                Text("about.license")
                     .onTapGesture {
                         aboutDetailState = .license
                     }
@@ -80,7 +80,7 @@ struct ApplicationsDetailsView: View {
                     .background(aboutDetailState == .license ? Color(nsColor: NSColor(.accentColor)) : .clear)
                     .cornerRadius(20)
 
-                Text("Contributers")
+                Text("about.contributers")
                     .onTapGesture {
                         aboutDetailState = .contributers
                     }
@@ -90,7 +90,7 @@ struct ApplicationsDetailsView: View {
                     .background(aboutDetailState == .contributers ? Color(nsColor: NSColor(.accentColor)) : .clear)
                     .cornerRadius(20)
 
-                Text("Credits")
+                Text("about.credits")
                     .onTapGesture {
                         aboutDetailState = .credits
                     }

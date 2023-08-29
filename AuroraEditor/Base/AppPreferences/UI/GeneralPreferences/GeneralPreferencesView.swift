@@ -34,7 +34,7 @@ public struct GeneralPreferencesView: View {
 
     public var body: some View {
         PreferencesContent {
-            Text("Appearance")
+            Text("settings.general.appearance")
                 .fontWeight(.bold)
                 .padding(.horizontal)
 

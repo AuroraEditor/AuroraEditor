@@ -141,7 +141,7 @@ struct EditorThemeAttributeView: View {
             isUnderline = setting.attributes.contains(where: { $0 is UnderlineThemeAttribute })
         }
         .contextMenu {
-            Button("Delete") {
+            Button("global.delete") {
                 guard let selectedTheme = themeModel.selectedTheme?.editor.highlightTheme else { return }
                 withAnimation {
                     selectedTheme.settings.removeAll(where: {

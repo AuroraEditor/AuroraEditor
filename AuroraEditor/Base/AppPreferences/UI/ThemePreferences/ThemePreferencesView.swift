@@ -29,11 +29,11 @@ public struct ThemePreferencesView: View {
             frame
             HStack(alignment: .center) {
                 Toggle(
-                    "Automatically change theme based on system appearance",
+                    "settings.theme.change.based.on.system",
                     isOn: $prefs.preferences.theme.mirrorSystemAppearance
                 )
                 Spacer()
-                Button("Get More Themes...") {}
+                Button("settings.theme.get.themes") {}
                     .disabled(true)
                     .help("Not yet implemented")
                 HelpButton {}
@@ -65,9 +65,9 @@ public struct ThemePreferencesView: View {
         VStack(spacing: 1) {
             PreferencesToolbar {
                 let options = [
-                    "Dark Mode",
-                    "Light Mode",
-                    "Universal"
+                    "settings.theme.appearance.dark".localize(),
+                    "settings.theme.appearance.light".localize(),
+                    "settings.theme.appearance.universal".localize()
                 ]
                 SegmentedControl($themeModel.selectedAppearance, options: options)
             }
@@ -93,11 +93,11 @@ public struct ThemePreferencesView: View {
                     .buttonStyle(.plain)
                     .tag(theme)
                     .contextMenu {
-                        Button("Reset Theme") {
+                        Button("settings.theme.reset") {
                             themeModel.reset(theme)
                         }
                         Divider()
-                        Button("Delete Theme", role: .destructive) {
+                        Button("settings.theme.delete", role: .destructive) {
                             themeModel.delete(theme)
                         }
                         .disabled(themeModel.themes.count <= 1)
@@ -130,11 +130,11 @@ public struct ThemePreferencesView: View {
                     )
                     .transition(.opacity)
                     .contextMenu {
-                        Button("Reset Theme") {
+                        Button("settings.theme.reset") {
                             themeModel.reset(theme)
                         }
                         Divider()
-                        Button("Delete Theme", role: .destructive) {
+                        Button("settings.theme.delete", role: .destructive) {
                             themeModel.delete(theme)
                         }
                         .disabled(themeModel.themes.count <= 1)
@@ -160,7 +160,7 @@ public struct ThemePreferencesView: View {
                 Image(systemName: "minus")
             }
             .disabled(themeModel.selectedTheme == nil || themeModel.themes.count <= 1)
-            .help("Delete selected theme")
+            .help("settings.theme.delete.selected")
             .buttonStyle(.plain)
             Divider()
             Button { try? themeModel.loadThemes() } label: {
@@ -189,9 +189,9 @@ public struct ThemePreferencesView: View {
     private var settingsContent: some View {
         VStack(spacing: 1) {
             let options = [
-                "Preview",
-                "Editor",
-                "Terminal"
+                "settings.theme.preview".localize(),
+                "settings.theme.tab.editor".localize(),
+                "settings.theme.tab.terminal".localize()
             ]
             PreferencesToolbar {
                 SegmentedControl($themeModel.selectedTab, options: options)

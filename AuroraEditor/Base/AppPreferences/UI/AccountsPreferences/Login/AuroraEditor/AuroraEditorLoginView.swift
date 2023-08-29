@@ -31,18 +31,18 @@ struct AuroraEditorLoginView: View {
 
     var body: some View {
         VStack {
-            Text("Sign in to your Aurora Editor account")
+            Text("settings.aurora.login.header")
 
             VStack(alignment: .trailing) {
                 HStack {
-                    Text("Account:")
-                    TextField("Enter your email",
+                    Text("settings.global.login.account")
+                    TextField("settings.aurora.login.email",
                               text: $email)
                     .frame(width: 300)
                 }
                 HStack {
-                    Text("Password:")
-                    SecureField("Enter your Password",
+                    Text("settings.global.login.password")
+                    SecureField("settings.aurora.login.password",
                                 text: $password)
                     .frame(width: 300)
                 }
@@ -53,7 +53,7 @@ struct AuroraEditorLoginView: View {
                     Button {
                         createAccount(URL(string: "https://auroraeditor.com/#/sign-up")!)
                     } label: {
-                        Text("Create a Aurora Editor account")
+                        Text("settings.aurora.login.create")
                             .foregroundColor(.primary)
                     }
                 }
@@ -62,18 +62,18 @@ struct AuroraEditorLoginView: View {
                     Button {
                         dismissDialog.toggle()
                     } label: {
-                        Text("Cancel")
+                        Text("global.cancel")
                             .foregroundColor(.primary)
                     }
                     if email.isEmpty && password.isEmpty {
-                        Button("Sign In") {}
+                        Button("settings.global.login") {}
                         .disabled(true)
                     } else {
                         Button {
                             accountModel.loginAuroraEditor(email: email,
                                                            password: password)
                         } label: {
-                            Text("Sign In")
+                            Text("settings.global.login")
                                 .foregroundColor(.white)
                         }
                         .buttonStyle(.borderedProminent)

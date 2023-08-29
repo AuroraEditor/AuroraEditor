@@ -34,13 +34,13 @@ public struct TerminalPreferencesView: View {
 
     private var shellSelector: some View {
         HStack(alignment: .top) {
-            Text("Shell")
+            Text("settings.terminal.shell")
 
             Spacer()
 
             VStack(alignment: .trailing) {
-                Picker("Shell:", selection: $prefs.preferences.terminal.shell) {
-                    Text("System Default")
+                Picker("", selection: $prefs.preferences.terminal.shell) {
+                    Text("settings.terminal.shell.system")
                         .tag(AppPreferences.TerminalShell.system)
                     Divider()
                     Text("ZSH")
@@ -52,7 +52,7 @@ public struct TerminalPreferencesView: View {
                 .frame(width: inputWidth)
 
                 HStack {
-                    Toggle("Use \"Option\" key as \"Meta\"", isOn: $prefs.preferences.terminal.optionAsMeta)
+                    Toggle("settings.terminal.options", isOn: $prefs.preferences.terminal.optionAsMeta)
                 }
             }
         }
@@ -61,12 +61,12 @@ public struct TerminalPreferencesView: View {
     @ViewBuilder
     private var fontSelector: some View {
         HStack {
-            Text("Font")
+            Text("settings.global.font")
             Spacer()
-            Picker("Font:", selection: $prefs.preferences.terminal.font.customFont) {
-                Text("System Font")
+            Picker("", selection: $prefs.preferences.terminal.font.customFont) {
+                Text("settings.global.font.system")
                     .tag(false)
-                Text("Custom")
+                Text("settings.global.font.custom")
                     .tag(true)
             }
             .labelsHidden()

@@ -12,15 +12,15 @@ import SwiftUI
 extension GeneralPreferencesView {
     var appearanceSection: some View {
         HStack {
-            Text("Appearance")
+            Text("settings.general.appearance")
             Spacer()
-            Picker("Appearance", selection: $prefs.preferences.general.appAppearance) {
-                Text("System")
+            Picker("", selection: $prefs.preferences.general.appAppearance) {
+                Text("settings.general.appearance.system")
                     .tag(AppPreferences.Appearances.system)
                 Divider()
-                Text("Light")
+                Text("settings.general.appearance.light")
                     .tag(AppPreferences.Appearances.light)
-                Text("Dark")
+                Text("ettings.general.appearance.dark")
                     .tag(AppPreferences.Appearances.dark)
             }
             .pickerStyle(.automatic)
@@ -36,21 +36,21 @@ extension GeneralPreferencesView {
     // TODO: Implement reflecting Show Issues preference and remove disabled modifier
     var showIssuesSection: some View {
         HStack {
-            Text("Show Issues")
+            Text("settings.general.issues")
 
             Spacer()
 
             VStack {
-                Picker("Show Issues", selection: $prefs.preferences.general.showIssues) {
-                    Text("Show Inline")
+                Picker("", selection: $prefs.preferences.general.showIssues) {
+                    Text("settings.general.issues.inline")
                         .tag(AppPreferences.Issues.inline)
-                    Text("Show Minimized")
+                    Text("settings.general.issues.minimized")
                         .tag(AppPreferences.Issues.minimized)
                 }
                 .labelsHidden()
                 .frame(width: inputWidth)
 
-                Toggle("Show Live Issues", isOn: $prefs.preferences.general.showLiveIssues)
+                Toggle("settings.general.issues.live", isOn: $prefs.preferences.general.showLiveIssues)
                     .toggleStyle(.switch)
             }
             .disabled(true)
@@ -60,19 +60,19 @@ extension GeneralPreferencesView {
 
     var fileExtensionsSection: some View {
         HStack {
-            Text("File Extensions")
+            Text("settings.general.file.extensions")
 
             Spacer()
 
-            Picker("File Extensions:", selection: $prefs.preferences.general.fileExtensionsVisibility) {
-                Text("Hide all")
+            Picker("", selection: $prefs.preferences.general.fileExtensionsVisibility) {
+                Text("settings.general.file.extensions.hide")
                     .tag(AppPreferences.FileExtensionsVisibility.hideAll)
-                Text("Show all")
+                Text("settings.general.file.extensions.all")
                     .tag(AppPreferences.FileExtensionsVisibility.showAll)
                 Divider()
-                Text("Show only")
+                Text("settings.general.file.extensions.only")
                     .tag(AppPreferences.FileExtensionsVisibility.showOnly)
-                Text("Hide only")
+                Text("settings.general.file.extensions.hode")
                     .tag(AppPreferences.FileExtensionsVisibility.hideOnly)
             }
             .labelsHidden()
@@ -93,12 +93,12 @@ extension GeneralPreferencesView {
 
     var fileIconStyleSection: some View {
         HStack {
-            Text("File Icon Style")
+            Text("settings.general.file.icon.style")
             Spacer()
-            Picker("File Icon Style:", selection: $prefs.preferences.general.fileIconStyle) {
-                Text("Color")
+            Picker("", selection: $prefs.preferences.general.fileIconStyle) {
+                Text("settings.general.file.icon.style.color")
                     .tag(AppPreferences.FileIconStyle.color)
-                Text("Monochrome")
+                Text("settings.general.file.icon.style.monochrome")
                     .tag(AppPreferences.FileIconStyle.monochrome)
             }
             .labelsHidden()
@@ -109,12 +109,12 @@ extension GeneralPreferencesView {
 
     var tabBarStyleSection: some View {
         HStack {
-            Text("Tab Bar Style")
+            Text("settings.general.tabs.style")
             Spacer()
-            Picker("Tab Bar Style:", selection: $prefs.preferences.general.tabBarStyle) {
-                Text("Xcode Style")
+            Picker("", selection: $prefs.preferences.general.tabBarStyle) {
+                Text("settings.general.tabs.style.xcode")
                     .tag(AppPreferences.TabBarStyle.xcode)
-                Text("Aurora Style")
+                Text("settings.general.tabs.style.aurora")
                     .tag(AppPreferences.TabBarStyle.native)
             }
             .labelsHidden()
@@ -125,12 +125,12 @@ extension GeneralPreferencesView {
 
     var sidebarStyleSection: some View {
         HStack {
-            Text("Navigator Mode Position")
+            Text("settings.general.navigator.position")
             Spacer()
             Picker("Tab Bar Style:", selection: $prefs.preferences.general.sidebarStyle) {
-                Text("Top")
+                Text("settings.general.navigator.position.top")
                     .tag(AppPreferences.SidebarStyle.xcode)
-                Text("Left")
+                Text("settings.general.navigator.position.left")
                     .tag(AppPreferences.SidebarStyle.vscode)
             }
             .labelsHidden()
@@ -141,12 +141,12 @@ extension GeneralPreferencesView {
 
     var menuItemMode: some View {
         HStack {
-            Text("Menu Bar Accessory (Requires restart to update)")
+            Text("settings.general.menu.bar")
             Spacer()
-            Picker("Shown/Hidden:", selection: $prefs.preferences.general.menuItemShowMode) {
-                Text("Shown")
+            Picker("", selection: $prefs.preferences.general.menuItemShowMode) {
+                Text("settings.general.menu.bar.shown")
                     .tag(AppPreferences.MenuBarShow.shown)
-                Text("Hidden")
+                Text("settings.general.menu.bar.hidden")
                     .tag(AppPreferences.MenuBarShow.hidden)
             }
             .labelsHidden()
@@ -157,15 +157,15 @@ extension GeneralPreferencesView {
 
     var reopenBehaviorSection: some View {
         HStack {
-            Text("Reopen Behavior")
+            Text("settings.general.open")
             Spacer()
-            Picker("Reopen Behavior:", selection: $prefs.preferences.general.reopenBehavior) {
-                Text("Welcome Screen")
+            Picker("", selection: $prefs.preferences.general.reopenBehavior) {
+                Text("settings.general.open.welcome")
                     .tag(AppPreferences.ReopenBehavior.welcome)
                 Divider()
-                Text("Open Panel")
+                Text("settings.general.open.pane")
                     .tag(AppPreferences.ReopenBehavior.openPanel)
-                Text("New Document")
+                Text("settings.general.open.document")
                     .tag(AppPreferences.ReopenBehavior.newDocument)
             }
             .labelsHidden()
@@ -176,14 +176,14 @@ extension GeneralPreferencesView {
 
     var projectNavigatorSizeSection: some View {
         HStack {
-            Text("Project Navigator Size")
+            Text("settings.general.navigator.size")
             Spacer()
-            Picker("Project Navigator Size", selection: $prefs.preferences.general.projectNavigatorSize) {
-                Text("Small")
+            Picker("", selection: $prefs.preferences.general.projectNavigatorSize) {
+                Text("settings.general.navigator.size.small")
                     .tag(AppPreferences.ProjectNavigatorSize.small)
-                Text("Medium")
+                Text("settings.general.navigator.size.medium")
                     .tag(AppPreferences.ProjectNavigatorSize.medium)
-                Text("Large")
+                Text("settings.general.navigator.size.large")
                     .tag(AppPreferences.ProjectNavigatorSize.large)
             }
             .labelsHidden()
@@ -194,9 +194,9 @@ extension GeneralPreferencesView {
 
     var findNavigatorDetailSection: some View {
         HStack {
-            Text("Find Navigator Detail")
+            Text("settings.general.navigator.find")
             Spacer()
-            Picker("Find Navigator Detail", selection: $prefs.preferences.general.findNavigatorDetail) {
+            Picker("", selection: $prefs.preferences.general.findNavigatorDetail) {
                 ForEach(AppPreferences.NavigatorDetail.allCases, id: \.self) { tag in
                     Text(tag.label).tag(tag)
                 }
@@ -210,9 +210,9 @@ extension GeneralPreferencesView {
     // TODO: Implement reflecting Issue Navigator Detail preference and remove disabled modifier
     var issueNavigatorDetailSection: some View {
         HStack {
-            Text("Issue Navigator Detail")
+            Text("settings.general.navigator.issue")
             Spacer()
-            Picker("Issue Navigator Detail", selection: $prefs.preferences.general.issueNavigatorDetail) {
+            Picker("", selection: $prefs.preferences.general.issueNavigatorDetail) {
                 ForEach(AppPreferences.NavigatorDetail.allCases, id: \.self) { tag in
                     Text(tag.label).tag(tag)
                 }
@@ -227,11 +227,11 @@ extension GeneralPreferencesView {
     // TODO: Implement reset for Don't Ask Me warnings Button and remove disabled modifier
     var dialogWarningsSection: some View {
         HStack {
-            Text("Dialog Warnings")
+            Text("settings.general.dialog.warnings")
             Spacer()
             Button(action: {
             }, label: {
-                Text("Reset \"Don't Ask Me\" Warnings")
+                Text("settings.general.dialog.warnings.reset")
                     .padding(.horizontal, 10)
             })
             .buttonStyle(.bordered)
@@ -242,12 +242,12 @@ extension GeneralPreferencesView {
 
     var shellCommandSection: some View {
         HStack {
-            Text("Shell Command")
+            Text("settings.general.shell")
             Spacer()
             Button(action: {
                 aeCommandLine()
             }, label: {
-                Text("Install 'ae' command")
+                Text("settings.general.shell.command")
                     .padding(.horizontal, 10)
             })
             .buttonStyle(.bordered)
@@ -257,7 +257,7 @@ extension GeneralPreferencesView {
 
     var openInAuroraEditorToggle: some View {
         HStack {
-            Text("Show “Open With AuroraEditor” option")
+            Text("settings.general.extension.open.with")
             Spacer()
             Toggle("", isOn: $openInAuroraEditor)
                 .labelsHidden()
@@ -301,9 +301,9 @@ extension GeneralPreferencesView {
 
     var revealFileOnFocusChangeToggle: some View {
         HStack {
-            Text("Automatically Show Active File")
+            Text("settings.general.show.active.file")
             Spacer()
-            Toggle("Automatically Show Active File", isOn: $prefs.preferences.general.revealFileOnFocusChange)
+            Toggle("", isOn: $prefs.preferences.general.revealFileOnFocusChange)
                 .toggleStyle(.switch)
                 .labelsHidden()
         }
@@ -312,7 +312,7 @@ extension GeneralPreferencesView {
 
     var keepInspectorWindowOpen: some View {
         HStack {
-            Text("Keep Inspector Sidebar Open")
+            Text("settings.general.inspector.keep.open")
             Spacer()
             Toggle("", isOn: $prefs.preferences.general.keepInspectorSidebarOpen)
                 .toggleStyle(.switch)
