@@ -28,17 +28,17 @@ struct GithubLoginView: View {
 
     var body: some View {
         VStack {
-            Text("Sign in to your GitHub account")
+            Text("settings.github.login.header")
 
             VStack(alignment: .trailing) {
                 HStack {
-                    Text("Account:")
-                    TextField("Enter your username", text: $accountName)
+                    Text("settings.global.login.account")
+                    TextField("settings.global.login.username", text: $accountName)
                         .frame(width: 300)
                 }
                 HStack {
-                    Text("Token:")
-                    SecureField("Enter your Personal Access Token",
+                    Text("settings.global.login.token")
+                    SecureField("settings.github.login.enter.token.personal",
                                 text: $accountToken)
                     .frame(width: 300)
                 }
@@ -46,7 +46,7 @@ struct GithubLoginView: View {
 
             GroupBox {
                 VStack {
-                    Text("GitHub personal access tokens must have these scopes set:")
+                    Text("settings.github.login.access.scopes")
                         .fontWeight(.bold)
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
@@ -55,28 +55,28 @@ struct GithubLoginView: View {
                         HStack {
                             Image(systemName: "checkmark")
                                 .foregroundColor(.secondary)
-                            Text("admin:public_key")
+                            Text("settings.github.login.access.public.key")
                                 .font(.system(size: 10))
                                 .foregroundColor(.secondary)
                         }
                         HStack {
                             Image(systemName: "checkmark")
                                 .foregroundColor(.secondary)
-                            Text("write:discussion")
+                            Text("settings.github.login.access.discussion")
                                 .font(.system(size: 10))
                                 .foregroundColor(.secondary)
                         }
                         HStack {
                             Image(systemName: "checkmark")
                                 .foregroundColor(.secondary)
-                            Text("repo")
+                            Text("settings.github.login.access.repo")
                                 .font(.system(size: 10))
                                 .foregroundColor(.secondary)
                         }
                         HStack {
                             Image(systemName: "checkmark")
                                 .foregroundColor(.secondary)
-                            Text("user")
+                            Text("settings.github.login.access.user")
                                 .font(.system(size: 10))
                                 .foregroundColor(.secondary)
                         }
@@ -92,7 +92,7 @@ struct GithubLoginView: View {
                     Button {
                         createToken(URL(string: "https://github.com/settings/tokens/new")!)
                     } label: {
-                        Text("Create a Token on GitHub")
+                        Text("settings.github.login.create")
                             .foregroundColor(.primary)
                     }
                 }
@@ -101,19 +101,19 @@ struct GithubLoginView: View {
                     Button {
                         dismissDialog.toggle()
                     } label: {
-                        Text("Cancel")
+                        Text("global.cancel")
                             .foregroundColor(.primary)
                     }
 
                     if accountToken.isEmpty {
-                        Button("Sign In") {}
+                        Button("settings.global.login") {}
                         .disabled(true)
                     } else {
                         Button {
                             accountModel.loginGithub(gitAccountName: accountName,
                                                      accountToken: accountToken)
                         } label: {
-                            Text("Sign In")
+                            Text("settings.global.login")
                                 .foregroundColor(.white)
                         }
                         .buttonStyle(.borderedProminent)

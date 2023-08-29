@@ -28,17 +28,17 @@ struct GitlabLoginView: View {
 
     var body: some View {
         VStack {
-            Text("Sign in to your Gitlab account")
+            Text("settings.gitlab.login.header")
 
             VStack(alignment: .trailing) {
                 HStack {
-                    Text("Account:")
+                    Text("settings.global.login.account")
                     TextField("Enter your username", text: $accountName)
                         .frame(width: 300)
                 }
                 HStack {
-                    Text("Token:")
-                    SecureField("Enter your Personal Access Token",
+                    Text("settings.global.login.token")
+                    SecureField("settings.gitlab.login.enter.token",
                                 text: $accountToken)
                     .frame(width: 300)
                 }
@@ -49,7 +49,7 @@ struct GitlabLoginView: View {
                     Button {
                         createToken(URL(string: "https://gitlab.com/-/profile/personal_access_tokens")!)
                     } label: {
-                        Text("Create a Token on Gitlab")
+                        Text("settings.gitlab.login.create")
                             .foregroundColor(.primary)
                     }
                 }
@@ -58,11 +58,11 @@ struct GitlabLoginView: View {
                     Button {
                         dismissDialog.toggle()
                     } label: {
-                        Text("Cancel")
+                        Text("global.cancel")
                             .foregroundColor(.primary)
                     }
                     if accountToken.isEmpty {
-                        Button("Sign In") {}
+                        Button("settings.global.login") {}
                         .disabled(true)
                     } else {
                         Button {
@@ -70,7 +70,7 @@ struct GitlabLoginView: View {
                                                      accountToken: accountToken,
                                                      accountName: accountName)
                         } label: {
-                            Text("Sign In")
+                            Text("settings.global.login")
                                 .foregroundColor(.white)
                         }
                         .buttonStyle(.borderedProminent)

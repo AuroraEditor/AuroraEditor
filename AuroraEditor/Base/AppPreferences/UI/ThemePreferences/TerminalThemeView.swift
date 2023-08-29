@@ -21,7 +21,7 @@ struct TerminalThemeView: View {
         ZStack(alignment: .topLeading) {
             EffectView(.contentBackground)
             if themeModel.selectedTheme == nil {
-                Text("Select a Theme")
+                Text("settings.theme.selection")
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             } else {
@@ -37,13 +37,13 @@ struct TerminalThemeView: View {
 
     private var topToggles: some View {
         VStack(alignment: .leading) {
-            Toggle("Always use dark terminal appearance", isOn: $prefs.preferences.terminal.darkAppearance)
+            Toggle("settings.theme.terminal.dark", isOn: $prefs.preferences.terminal.darkAppearance)
         }
     }
 
     private var colorSelector: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Background & Text")
+            Text("settings.theme.terminal.background.text")
                 .font(.system(size: 13, weight: .semibold))
                 .foregroundColor(.secondary)
                 .padding(.bottom, 10)
@@ -52,18 +52,18 @@ struct TerminalThemeView: View {
                    let index = themeModel.themes.firstIndex(of: selectedTheme) {
                     VStack(alignment: .leading, spacing: 10) {
                         PreferencesColorPicker($themeModel.themes[index].terminal.text.swiftColor,
-                                               label: "Text")
+                                               label: "settings.theme.terminal.text")
                         PreferencesColorPicker($themeModel.themes[index].terminal.boldText.swiftColor,
-                                               label: "Bold Text")
+                                               label: "settings.theme.terminal.text.bold")
                         PreferencesColorPicker($themeModel.themes[index].terminal.cursor.swiftColor,
-                                               label: "Cursor")
+                                               label: "settings.theme.terminal.cursor")
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     VStack(alignment: .leading, spacing: 10) {
                         PreferencesColorPicker($themeModel.themes[index].terminal.background.swiftColor,
-                                               label: "Background")
+                                               label: "settings.theme.terminal.background")
                         PreferencesColorPicker($themeModel.themes[index].terminal.selection.swiftColor,
-                                               label: "Selection")
+                                               label: "settings.theme.terminal.selection")
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -75,7 +75,7 @@ struct TerminalThemeView: View {
         VStack(alignment: .leading, spacing: 5) {
             if let selectedTheme = themeModel.selectedTheme,
                let index = themeModel.themes.firstIndex(of: selectedTheme) {
-                Text("ANSI Colors")
+                Text("settings.theme.terminal.ansi.colors")
                     .font(.system(size: 13, weight: .semibold))
                     .foregroundColor(.secondary)
                     .padding(.bottom, 5)
@@ -88,7 +88,7 @@ struct TerminalThemeView: View {
                     PreferencesColorPicker($themeModel.themes[index].terminal.magenta.swiftColor)
                     PreferencesColorPicker($themeModel.themes[index].terminal.cyan.swiftColor)
                     PreferencesColorPicker($themeModel.themes[index].terminal.white.swiftColor)
-                    Text("Normal").padding(.leading, 4)
+                    Text("settings.theme.terminal.ansi.colors.normal").padding(.leading, 4)
                 }
                 HStack(spacing: 5) {
                     PreferencesColorPicker($themeModel.themes[index].terminal.brightBlack.swiftColor)
@@ -99,7 +99,7 @@ struct TerminalThemeView: View {
                     PreferencesColorPicker($themeModel.themes[index].terminal.brightMagenta.swiftColor)
                     PreferencesColorPicker($themeModel.themes[index].terminal.brightCyan.swiftColor)
                     PreferencesColorPicker($themeModel.themes[index].terminal.brightWhite.swiftColor)
-                    Text("Bright").padding(.leading, 4)
+                    Text("settings.theme.terminal.ansi.colors.bright").padding(.leading, 4)
                 }
                 .padding(.top, 5)
             }

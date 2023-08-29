@@ -17,7 +17,7 @@ struct PreviewThemeView: View {
         ZStack(alignment: .topLeading) {
             EffectView(.contentBackground)
             if themeModel.selectedTheme == nil {
-                Text("Select a Theme")
+                Text("settings.theme.selection")
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             } else {

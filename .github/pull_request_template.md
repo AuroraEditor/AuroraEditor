@@ -13,6 +13,8 @@
 - [ ] My changes generate no new warnings
 - [ ] My code builds and runs on my machine
 - [ ] I documented my code
+- [ ] I added localization
+- [ ] I added tests (and they pass)
 
 # Screenshots
 

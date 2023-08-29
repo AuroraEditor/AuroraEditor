@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-// swiftlint:disable:next missing_docs
+/// Which page is presented right now
 public enum AboutDetailState {
-    // swiftlint:disable:next missing_docs
+    /// Licence page
     case license
-    // swiftlint:disable:next missing_docs
+    /// Contributors page
     case contributers
-    // swiftlint:disable:next missing_docs
+    /// Credits page
     case credits
 }
 

@@ -41,7 +41,7 @@ struct AccountItemView: View {
                     Button {
                         openGithubProfile(URL(string: "\(account.gitProviderLink)/\(account.gitAccountUsername)")!)
                     } label: {
-                        Text("Show Profile...")
+                        Text("settings.account.show.profile")
                             .foregroundColor(.primary)
                     }
                 }
@@ -51,7 +51,7 @@ struct AccountItemView: View {
                 Divider()
 
                 HStack {
-                    Text("Username")
+                    Text("settings.account.username")
 
                     Spacer()
 
@@ -62,7 +62,7 @@ struct AccountItemView: View {
 
                 Divider()
 
-                Text("Your username is public and will represent you in \(account.gitProvider)")
+                Text("settings.account.username.description \(account.gitProvider)")
                     .foregroundColor(.secondary)
                     .font(.system(size: 11))
                     .padding(6)

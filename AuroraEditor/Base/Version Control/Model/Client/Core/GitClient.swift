@@ -39,7 +39,7 @@ public class GitClient: ObservableObject {
 
     public var currentBranchName: AnyPublisher<String, Never>
     private var currentBranchNameSubject = CurrentValueSubject<String, Never>("Unknown Branch")
-    @Published var publishedBranchName: String = ""
+    @Published var publishedBranchName: String?
 
     public var branchNames: AnyPublisher<[String], Never>
     private var branchNamesSubject = CurrentValueSubject<[String], Never>([])
