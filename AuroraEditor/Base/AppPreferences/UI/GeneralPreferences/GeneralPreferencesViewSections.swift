@@ -20,7 +20,7 @@ extension GeneralPreferencesView {
                 Divider()
                 Text("settings.general.appearance.light")
                     .tag(AppPreferences.Appearances.light)
-                Text("ettings.general.appearance.dark")
+                Text("settings.general.appearance.dark")
                     .tag(AppPreferences.Appearances.dark)
             }
             .pickerStyle(.automatic)

@@ -52,6 +52,9 @@
 		2032B51028A256F50089EBB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B50F28A256F50089EBB6 /* Array.swift */; };
 		2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */; };
 		2036DD5528DB3DB5003BECB7 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036DD5428DB3DB5003BECB7 /* Queue.swift */; };
+		20425E48297EE74D0022FE5A /* sort-Xcode-project-file.pl in Resources */ = {isa = PBXBuildFile; fileRef = 20425E47297EE74D0022FE5A /* sort-Xcode-project-file.pl */; };
+		20425E4A297EED860022FE5A /* ClearDerivedData.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20425E49297EED860022FE5A /* ClearDerivedData.sh */; };
+		20425E4C297EEE350022FE5A /* unused_strings.py in Resources */ = {isa = PBXBuildFile; fileRef = 20425E4B297EEE350022FE5A /* unused_strings.py */; };
 		20439038290D27DB00126A3F /* WorkspaceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20439037290D27DB00126A3F /* WorkspaceErrors.swift */; };
 		2043903C290D385600126A3F /* ExploreExtensionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043903B290D385600126A3F /* ExploreExtensionsView.swift */; };
 		2043903E290D38D700126A3F /* ExploreItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043903D290D38D700126A3F /* ExploreItemView.swift */; };
@@ -634,6 +637,10 @@
 		2032B50F28A256F50089EBB6 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowHostingController.swift; sourceTree = "<group>"; };
 		2036DD5428DB3DB5003BECB7 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		20425E47297EE74D0022FE5A /* sort-Xcode-project-file.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = "sort-Xcode-project-file.pl"; sourceTree = "<group>"; };
+		20425E49297EED860022FE5A /* ClearDerivedData.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ClearDerivedData.sh; sourceTree = "<group>"; };
+		20425E4B297EEE350022FE5A /* unused_strings.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = unused_strings.py; sourceTree = "<group>"; };
+		20425E55297F03230022FE5A /* xstrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xstrings.swift; sourceTree = "<group>"; };
 		20425E47297EE74D0022FE5A /* sort-Xcode-project-file.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = "sort-Xcode-project-file.pl"; sourceTree = "<group>"; };
 		20425E49297EED860022FE5A /* ClearDerivedData.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ClearDerivedData.sh; sourceTree = "<group>"; };
 		20425E4B297EEE350022FE5A /* unused_strings.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = unused_strings.py; sourceTree = "<group>"; };
@@ -1238,6 +1245,8 @@
 				0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */,
 				B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */,
 				D3C2DA4929990FB900FA9F4C /* AuroraSplitViewController.swift */,
+				0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */,
+				B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
