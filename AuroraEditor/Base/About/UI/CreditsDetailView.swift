@@ -11,7 +11,7 @@ import SwiftUI
 struct CreditsDetailView: View {
     var body: some View {
         ScrollView(.vertical) {
-            Text(AboutViewModal().loadCredits())
+            Text(.init(AboutViewModal().loadCredits()))
                 .multilineTextAlignment(.leading)
                 .font(.system(size: 11))
         }

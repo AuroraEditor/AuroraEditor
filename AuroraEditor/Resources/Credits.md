@@ -1,4 +1,4 @@
-AuroraEditor/SwiftOniguruma & AuroraEditor/Version-Control-Kit
+**AuroraEditor/SwiftOniguruma**, **AuroraEditor/Version-Control-Kit**
 
 GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
@@ -675,7 +675,9 @@ the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.
 
-migueldeicaza/SwiftTerm
+---
+
+**migueldeicaza/SwiftTerm**
 
 Copyright (c) 2019-2022 Miguel de Icaza (https://github.com/migueldeicaza)
 Copyright (c) 2017-2019, The xterm.js authors (https://github.com/xtermjs/xterm.js)
@@ -701,10 +703,9 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-========================================================
+---
 
-Aurora Editor is a fork of CodeEdit (Forked on the 4th of July 2022)
-https://github.com/CodeEditApp/CodeEdit
+Aurora Editor is a fork of [CodeEdit](https://github.com/CodeEditApp/CodeEdit) (Forked on the 4th of July 2022)
 
 MIT License
 
