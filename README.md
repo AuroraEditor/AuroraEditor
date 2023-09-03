@@ -93,7 +93,22 @@ If you created an awesome feature for Aurora Editor why not [Show and tell](http
 When we have some awesome news or a big annoucement to make, we will be making it in the [Annoucement Discussion](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/announcements). So stay tuned for any future annoucments.
 
 ## Difference between `AuroraEditor` and `CodeEdit`
-Please read https://github.com/AuroraEditor/AuroraEditor/discussions/286 to read about the difference between our projects.
+
+We have all contributed to CodeEdit, and some of us continue to contribute to the CE community. However, there are several notable distinctions in our approach:
+
+1. We actively encourage the submission of smaller pull requests (PRs), even if they are not flawless. Our rationale is that this approach can expedite project development.
+
+2. We have adopted a different syntax highlighting engine. Our decision is based on the belief that Tree-sitter's parsing speed may not be sufficient, especially during the initial parsing stages.
+
+3. We have streamlined the project by removing a significant number of modules that frequently encountered fetch failures and required additional instructions for users.
+
+4. Our primary focus lies on functionality rather than aesthetics. While CodeEdit emphasizes creating visually appealing designs, our primary goal is to ensure that the system functions correctly. Design refinements are considered once functionality is achieved.
+
+5. Some of us have experienced situations where their ideas were initially deemed unsuitable. However, it has come to our attention that these ideas were eventually implemented weeks later due to an admin's suggestion.
+
+These are some of the key differences in our approach to CodeEdit, aimed at enhancing project development and efficiency.
+
+Based of the following answer from @WDG https://github.com/AuroraEditor/AuroraEditor/discussions/286.
 
 ## Mental Health Awareness
 
