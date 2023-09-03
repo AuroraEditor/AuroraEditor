@@ -7,6 +7,8 @@
 //
 //  Refactored by TAY KAI QUAN on 4 Sep 2022
 //
+//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
+
 import Foundation
 import Combine
 import Version_Control

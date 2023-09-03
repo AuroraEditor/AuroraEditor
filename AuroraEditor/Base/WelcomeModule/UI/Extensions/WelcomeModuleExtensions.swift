@@ -5,6 +5,7 @@
 //  Created by Nazar Rudnyk on 06.06.2022.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
+//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import SwiftUI
 import Version_Control

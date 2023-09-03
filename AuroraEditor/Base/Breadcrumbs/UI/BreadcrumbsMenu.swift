@@ -5,6 +5,7 @@
 //  Created by Ziyuan Zhao on 2022/3/29.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
+//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import AppKit
 
