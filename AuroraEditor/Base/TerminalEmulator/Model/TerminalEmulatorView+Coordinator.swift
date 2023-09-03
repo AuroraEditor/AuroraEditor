@@ -5,6 +5,7 @@
 //  Created by Lukas Pistrol on 24.03.22.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
+//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import SwiftUI
 import SwiftTerm

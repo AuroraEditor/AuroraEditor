@@ -5,10 +5,12 @@
 //  Created by Pavel Kasila on 12/03/2022.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
+//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import SwiftUI
 import Combine
 import SwiftOniguruma
+
 final class AuroraEditorApplication: NSApplication {
     let strongDelegate = AppDelegate()
 

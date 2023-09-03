@@ -52,9 +52,6 @@
 		2032B51028A256F50089EBB6 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B50F28A256F50089EBB6 /* Array.swift */; };
 		2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */; };
 		2036DD5528DB3DB5003BECB7 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036DD5428DB3DB5003BECB7 /* Queue.swift */; };
-		20425E48297EE74D0022FE5A /* sort-Xcode-project-file.pl in Resources */ = {isa = PBXBuildFile; fileRef = 20425E47297EE74D0022FE5A /* sort-Xcode-project-file.pl */; };
-		20425E4A297EED860022FE5A /* ClearDerivedData.sh in Resources */ = {isa = PBXBuildFile; fileRef = 20425E49297EED860022FE5A /* ClearDerivedData.sh */; };
-		20425E4C297EEE350022FE5A /* unused_strings.py in Resources */ = {isa = PBXBuildFile; fileRef = 20425E4B297EEE350022FE5A /* unused_strings.py */; };
 		20439038290D27DB00126A3F /* WorkspaceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20439037290D27DB00126A3F /* WorkspaceErrors.swift */; };
 		2043903C290D385600126A3F /* ExploreExtensionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043903B290D385600126A3F /* ExploreExtensionsView.swift */; };
 		2043903E290D38D700126A3F /* ExploreItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043903D290D38D700126A3F /* ExploreItemView.swift */; };
@@ -641,10 +638,6 @@
 		20425E49297EED860022FE5A /* ClearDerivedData.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ClearDerivedData.sh; sourceTree = "<group>"; };
 		20425E4B297EEE350022FE5A /* unused_strings.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = unused_strings.py; sourceTree = "<group>"; };
 		20425E55297F03230022FE5A /* xstrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xstrings.swift; sourceTree = "<group>"; };
-		20425E47297EE74D0022FE5A /* sort-Xcode-project-file.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = "sort-Xcode-project-file.pl"; sourceTree = "<group>"; };
-		20425E49297EED860022FE5A /* ClearDerivedData.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ClearDerivedData.sh; sourceTree = "<group>"; };
-		20425E4B297EEE350022FE5A /* unused_strings.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = unused_strings.py; sourceTree = "<group>"; };
-		20425E55297F03230022FE5A /* xstrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xstrings.swift; sourceTree = "<group>"; };
 		20439037290D27DB00126A3F /* WorkspaceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceErrors.swift; sourceTree = "<group>"; };
 		2043903B290D385600126A3F /* ExploreExtensionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreExtensionsView.swift; sourceTree = "<group>"; };
 		2043903D290D38D700126A3F /* ExploreItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreItemView.swift; sourceTree = "<group>"; };
@@ -1212,7 +1205,6 @@
 			children = (
 				2043903A290D37A000126A3F /* Explore */,
 				20CC5ABC291CD10E007DB911 /* Extension View */,
-				20439039290D379600126A3F /* Installed */,
 				04C3254C27FF331B00C8DA2D /* ExtensionNavigatorItem.swift */,
 				0483E34F27FDB17700354AC0 /* ExtensionNavigatorView.swift */,
 			);
@@ -1242,8 +1234,6 @@
 			children = (
 				93159FDB28D5F40C00C55C5A /* CodeEditorViewWrapper.swift */,
 				206B128028DF7311002CDE51 /* EmptyEditorView.swift */,
-				0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */,
-				B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */,
 				D3C2DA4929990FB900FA9F4C /* AuroraSplitViewController.swift */,
 				0485EB1E27E7458B00138301 /* WorkspaceCodeFileView.swift */,
 				B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */,
@@ -1361,13 +1351,6 @@
 				20439037290D27DB00126A3F /* WorkspaceErrors.swift */,
 			);
 			path = Errors;
-			sourceTree = "<group>";
-		};
-		20439039290D379600126A3F /* Installed */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Installed;
 			sourceTree = "<group>";
 		};
 		2043903A290D37A000126A3F /* Explore */ = {
@@ -2842,13 +2825,6 @@
 			path = History;
 			sourceTree = "<group>";
 		};
-		20DD3FF7288D92BC00757239 /* QuickHelp */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = QuickHelp;
-			sourceTree = "<group>";
-		};
 		20DD3FF8288D92C300757239 /* FileInspector */ = {
 			isa = PBXGroup;
 			children = (
@@ -2893,7 +2869,6 @@
 			children = (
 				20DD3FF8288D92C300757239 /* FileInspector */,
 				20DD3FF6288D92B200757239 /* History */,
-				20DD3FF7288D92BC00757239 /* QuickHelp */,
 			);
 			path = Models;
 			sourceTree = "<group>";

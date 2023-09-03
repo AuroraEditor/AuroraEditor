@@ -5,6 +5,7 @@
 //  Created by Axel Zuziak on 24.04.2022.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
+//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import SwiftUI
 
