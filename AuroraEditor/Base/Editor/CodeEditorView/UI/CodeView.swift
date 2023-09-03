@@ -457,7 +457,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         // view outside of the clip view.
         let newOriginY = floor(min(max(documentVisibleRect.origin.y * scrollFactor, 0),
                                    frame.size.height - (minimapView?.frame.size.height ?? 0)))
-        if minimapView?.frame.origin.y != newOriginY {
+        if minimapView?.frame.origin.y != newOriginY && !newOriginY.isNaN {
             minimapView?.frame.origin.y = newOriginY
         }  // don't update frames in vain
 
