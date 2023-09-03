@@ -201,7 +201,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         documentVisibleBox.borderWidth = 0
         minimapView.addSubview(documentVisibleBox)
         self.documentVisibleBox = documentVisibleBox
-
         tile()
     }
 
