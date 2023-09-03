@@ -82,6 +82,7 @@ Xcode is a great native editor for developers on Mac, but unfortunately it doesn
 ## Community
 
 Join our community on [Discord](https://discord.gg/5aecJ4rq9D) or [Slack](https://join.slack.com/t/auroraeditor/shared_invite/zt-1fti1r72d-8mWmJsj279vDV~YdKhcUEA) where we discuss and collaborate on all things of Aurora Editor.
+
 Don't be shy, jump right in and be part of the discussion!
 
 ## Community Details
@@ -108,7 +109,7 @@ We have all contributed to CodeEdit, and some of us continue to contribute to th
 
 These are some of the key differences in our approach to CodeEdit, aimed at enhancing project development and efficiency.
 
-Based of the following answer from @WDG https://github.com/AuroraEditor/AuroraEditor/discussions/286.
+Based of the following answer from <a href='https://github.com/0xWDG'>@0xWDG</a> in <a href='https://github.com/AuroraEditor/AuroraEditor/discussions/286'>Discussion#286</a>.
 
 ## Mental Health Awareness
 
