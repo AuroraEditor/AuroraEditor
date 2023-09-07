@@ -14,33 +14,41 @@ extension FileSystemClient {
     /// - Parameter url: The URL of the directory to load the items of
     /// - Returns: `[FileItem]` representing the contents of the directory
     func loadFiles(fromURL url: URL) throws -> [FileItem] {
-        let directoryContents = try fileManager.contentsOfDirectory(at: url.resolvingSymlinksInPath(),
-                                                                    includingPropertiesForKeys: nil)
+        let directoryContents = try fileManager.contentsOfDirectory(
+            at: url.resolvingSymlinksInPath(),
+            includingPropertiesForKeys: nil
+        )
+
         var items: [FileItem] = []
+
         for itemURL in directoryContents {
-            // Skip file if it is in ignore list
-            guard !ignoredFilesAndFolders.contains(itemURL.lastPathComponent) else { continue }
+            let itemName = itemURL.lastPathComponent
 
-            var isDir: ObjCBool = false
+            // Skip file if it is in the ignore list
+            guard !ignoredFilesAndFolders.contains(itemName) else { continue }
 
-            if fileManager.fileExists(atPath: itemURL.path, isDirectory: &isDir) {
-                var subItems: [FileItem]?
+            do {
+                let itemAttributes = try fileManager.attributesOfItem(atPath: itemURL.path)
 
-                if isDir.boolValue {
-                    // Recursively fetch subdirectories and files if the path points to a directory
-                    subItems = try loadFiles(fromURL: itemURL)
+                if let isDirectory = itemAttributes[FileAttributeKey.type] as? FileAttributeType,
+                   isDirectory == .typeDirectory {
+
+                    let subItems = try loadFiles(fromURL: itemURL)
+
+                    let newFileItem = FileItem(url: itemURL,
+                                               children: subItems.sortItems(foldersOnTop: true),
+                                               fileSystemClient: self)
+                    // Note: Watcher code will be applied after the workspaceItem is created
+                    newFileItem.watcherCode = { sourceFileItem in
+                        self.reloadFromWatcher(sourceFileItem: sourceFileItem)
+                    }
+
+                    subItems.forEach { $0.parent = newFileItem }
+                    items.append(newFileItem)
+                    flattenedFileItems[newFileItem.id] = newFileItem
                 }
-
-                let newFileItem = FileItem(url: itemURL,
-                                           children: subItems?.sortItems(foldersOnTop: true),
-                                           fileSystemClient: self)
-                // note: watcher code will be applied after the workspaceItem is created
-                newFileItem.watcherCode = { sourceFileItem in
-                    self.reloadFromWatcher(sourceFileItem: sourceFileItem)
-                }
-                subItems?.forEach { $0.parent = newFileItem }
-                items.append(newFileItem)
-                flattenedFileItems[newFileItem.id] = newFileItem
+            } catch {
+                Log.error("Error loading item: \(error)")
             }
         }
 
@@ -69,7 +77,7 @@ extension FileSystemClient {
             }
         }
 
-        // test for new children, and index them using loadFiles
+        // Check for new children and index them using loadFiles
         for newContent in directoryContentsUrls {
             guard !ignoredFilesAndFolders.contains(newContent.lastPathComponent) else { continue }
 
@@ -97,14 +105,13 @@ extension FileSystemClient {
         }
 
         fileItem.children = fileItem.children?.sortItems(foldersOnTop: true)
-        fileItem.children?.forEach({
+        fileItem.children?.forEach {
             if $0.isFolder {
                 let childChanged = try? rebuildFiles(fromItem: $0)
                 didChangeSomething = (childChanged ?? false) ? true : didChangeSomething
             }
             flattenedFileItems[$0.id] = $0
-        })
-
+        }
         return didChangeSomething
     }
 }

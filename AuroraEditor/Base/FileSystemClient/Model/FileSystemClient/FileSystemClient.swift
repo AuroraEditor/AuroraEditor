@@ -19,8 +19,13 @@ public class FileSystemClient {
 
     // Variables for the outside to interface with
     /// Get Files
-    public var getFiles: AnyPublisher<[FileItem], Never> =
-    CurrentValueSubject<[FileItem], Never>([]).eraseToAnyPublisher()
+    public var getFiles: AnyPublisher<[FileItem], Never> = {
+        // Create a CurrentValueSubject with an initial empty array of FileItem
+        let subject = CurrentValueSubject<[FileItem], Never>([])
+
+        // Erase the subject's type to AnyPublisher
+        return subject.eraseToAnyPublisher()
+    }()
     /// Folder URL
     public var folderURL: URL?
     /// Version Control Model
@@ -43,20 +48,25 @@ public class FileSystemClient {
     /// - Parameter id: The file's full path
     /// - Returns: The file item corresponding to the file
     public func getFileItem(_ id: String) throws -> FileItem {
-        guard let item = flattenedFileItems[id] else {
-            throw FileSystemClientError.fileNotExist
+        if let item = flattenedFileItems[id] {
+            return item
         }
 
-        return item
+        throw FileSystemClientError.fileNotExist
     }
 
     /// Usually run when the owner of the `FileSystemClient` doesn't need it anymore.
     /// This de-inits most functions in the `FileSystemClient`, so that in case it isn't de-init'd it does not use up
     /// significant amounts of RAM.
+    /// Cleans up directory monitoring and workspace items.
     public func cleanUp() {
+        // Stop listening to directories and clear watchers first
         stopListeningToDirectory()
+
+        // Clear workspace items
         workspaceItem.children = []
         flattenedFileItems = [workspaceItem.id: workspaceItem]
+
         Log.info("Cleaned up watchers and file items")
     }
 
@@ -71,44 +81,53 @@ public class FileSystemClient {
     /// running the main code body.
     /// - Parameter sourceFileItem: The `FileItem` corresponding to the file that triggered the `DispatchSource`
     func reloadFromWatcher(sourceFileItem: FileItem) {
-        // Something has changed inside the directory
-        // We should reload the files.
-        guard !isRunning else { // this runs when a file change is detected but is already running
+        guard !isRunning else {
             anotherInstanceRan += 1
-            return
+            return // Another instance is already running
         }
-        isRunning = true
 
-        // inital reload of files
+        isRunning = true
+        defer {
+            isRunning = false
+            anotherInstanceRan = 0
+        }
+
+        // Reload files
         _ = try? rebuildFiles(fromItem: sourceFileItem)
 
-        // re-reload if another instance tried to run while this instance was running
-        while anotherInstanceRan > 0 { // TODO: optimise
+        // Reload Git changes and update gitStatus
+        reloadGitChanges()
+
+        // Send updated children
+        subject.send(workspaceItem.children ?? [])
+
+        // Reload data in outline view controller through the main thread
+        DispatchQueue.main.async {
+            self.onRefresh()
+        }
+
+        // Handle cases where another instance attempted to run while this one was running
+        while anotherInstanceRan > 0 {
             let somethingChanged = try? rebuildFiles(fromItem: workspaceItem)
             anotherInstanceRan = !(somethingChanged ?? false) ? 0 : anotherInstanceRan - 1
         }
+    }
 
-        // reload git changes
+    func reloadGitChanges() {
         model?.reloadChangedFiles()
         for changedFile in (model?.changed ?? []) {
             flattenedFileItems[changedFile.id]?.gitStatus = changedFile.gitStatus
-        }
-
-        subject.send(workspaceItem.children ?? [])
-        isRunning = false
-        anotherInstanceRan = 0
-
-        // reload data in outline view controller through the main thread
-        DispatchQueue.main.async {
-            self.onRefresh()
         }
     }
 
     /// A function to kill the watcher of a specific directory, or all directories.
     /// - Parameter directory: The directory to stop watching, or nil to stop watching everything.
     func stopListeningToDirectory(directory: URL? = nil) {
-        if directory != nil {
-            flattenedFileItems[directory!.relativePath]?.watcher?.cancel()
+        if let directory = directory {
+            if let item = flattenedFileItems[directory.relativePath] {
+                item.watcher?.cancel()
+                item.watcher = nil
+            }
         } else {
             for item in flattenedFileItems.values {
                 item.watcher?.cancel()
@@ -128,30 +147,45 @@ public class FileSystemClient {
                 folderURL: URL,
                 ignoredFilesAndFolders: [String],
                 model: SourceControlModel?) {
+        // Initialize essential properties
         self.fileManager = fileManager
         self.folderURL = folderURL
         self.ignoredFilesAndFolders = ignoredFilesAndFolders
         self.model = model
 
-        // workspace fileItem
+        // Initialize the workspace fileItem
         workspaceItem = FileItem(url: folderURL, children: [])
         flattenedFileItems = [workspaceItem.id: workspaceItem]
 
-        self.getFiles = subject
+        // Configure the getFiles publisher
+        getFiles = subject
             .handleEvents(receiveCancel: {
-                for item in self.flattenedFileItems.values {
-                    item.watcher?.cancel()
-                    item.watcher = nil
-                }
+                self.cancelWatchers()
             })
             .receive(on: RunLoop.main)
             .eraseToAnyPublisher()
 
+        // Set the watcher code and initial file monitoring
+        configureWorkspaceItem()
+
+        // Set the file system client reference
+        workspaceItem.fileSystemClient = self
+    }
+
+    // Configure the workspace item's watcher and initial monitoring
+    private func configureWorkspaceItem() {
         workspaceItem.watcherCode = { sourceFileItem in
             self.reloadFromWatcher(sourceFileItem: sourceFileItem)
         }
         reloadFromWatcher(sourceFileItem: workspaceItem)
-        workspaceItem.fileSystemClient = self
+    }
+
+    // Cancel watchers for all file items
+    private func cancelWatchers() {
+        for item in flattenedFileItems.values {
+            item.watcher?.cancel()
+            item.watcher = nil
+        }
     }
 
     enum FileSystemClientError: Error {

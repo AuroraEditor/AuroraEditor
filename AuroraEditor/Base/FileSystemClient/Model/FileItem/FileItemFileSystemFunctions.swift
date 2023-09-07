@@ -45,8 +45,8 @@ extension FileItem {
         var fileExtensions: [String: Int] = ["": 0]
 
         for child in (self.isFolder ?
-                      self.flattenedSiblings(height: 2, ignoringFolders: true) :
-                      parent?.flattenedSiblings(height: 2, ignoringFolders: true)) ?? [] where !child.isFolder {
+                      self.flattenedSiblings(toHeight: 2, ignoringFolders: true) :
+                      parent?.flattenedSiblings(toHeight: 2, ignoringFolders: true)) ?? [] where !child.isFolder {
             // if the file extension was present before, add it now
             let childFileName = child.fileName(typeHidden: false)
             if let index = childFileName.lastIndex(of: ".") {

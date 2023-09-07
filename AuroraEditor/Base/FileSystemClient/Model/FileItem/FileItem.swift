@@ -20,9 +20,8 @@ public extension FileSystemClient {
         case changeType
     }
 
-    /// An object containing all necessary information and actions for a specific file in the workspace
-    final class FileItem: Identifiable, Codable, TabBarItemRepresentable, GitFileItem {
-        // TODO: Clean this up
+    /// An object containing all necessary information and actions for a specific file in the workspace.
+    final class FileItem: Identifiable, Codable, Hashable, Comparable, TabBarItemRepresentable, GitFileItem {
         public var tabID: TabBarItemID { .codeEditor(id) }
 
         public var title: String { url.lastPathComponent }
@@ -41,42 +40,20 @@ public extension FileSystemClient {
         public var gitStatus: GitType?
         public var fileSystemClient: FileSystemClient?
 
-        public func activateWatcher() -> Bool {
-            // check that there is watcher code and that opening the file succeeded
-            guard let watcherCode = watcherCode else { return false }
-            let descriptor = open(self.url.path, O_EVTONLY)
-            guard descriptor > 0 else { return false }
-
-            // create the source
-            let source = DispatchSource.makeFileSystemObjectSource(
-                fileDescriptor: descriptor,
-                eventMask: .write,
-                queue: DispatchQueue.global()
-            )
-            if descriptor > 2000 {
-                Log.info("Watcher \(descriptor) used up on \(url.path)")
-            }
-            source.setEventHandler { watcherCode(self) }
-            source.setCancelHandler { close(descriptor) }
-            source.resume()
-            self.watcher = source
-
-            // TODO: reindex the current item, because the files in the item may have changed
-            // since the initial load on startup.
-            return true
-        }
+        // MARK: - Initialization
 
         public init(url: URL,
                     children: [FileItem]? = nil,
                     changeType: GitType? = nil,
-                    fileSystemClient: FileSystemClient? = nil
-        ) {
+                    fileSystemClient: FileSystemClient? = nil) {
             self.url = url
             self.children = children
             self.gitStatus = changeType
             self.fileSystemClient = fileSystemClient
             id = url.relativePath
         }
+
+        // MARK: - Codable
 
         public required init(from decoder: Decoder) throws {
             let values = try decoder.container(keyedBy: FileItemCodingKeys.self)
@@ -92,6 +69,51 @@ public extension FileSystemClient {
             try container.encode(url, forKey: .url)
             try container.encode(children, forKey: .children)
             try container.encode(gitStatus, forKey: .changeType)
+        }
+
+        public func activateWatcher() -> Bool {
+            do {
+                // Check that there is watcher code and that opening the file succeeded
+                guard let watcherCode = watcherCode else { return false }
+                let descriptor = try openFileDescriptor()
+
+                // Create the source
+                let source = DispatchSource.makeFileSystemObjectSource(
+                    fileDescriptor: descriptor,
+                    eventMask: .write,
+                    queue: DispatchQueue.global()
+                )
+
+                if descriptor > 2000 {
+                    Log.warning("File descriptor \(descriptor) may be exhausted for \(url.path)")
+                }
+
+                source.setEventHandler { [weak self] in
+                    watcherCode(self!)
+                }
+
+                source.setCancelHandler {
+                    close(descriptor)
+                }
+
+                source.resume()
+                self.watcher = source
+
+                // TODO: Reindex the current item because the files in the item may have changed
+                // since the initial load on startup.
+                return true
+            } catch {
+                Log.error("Error while activating watcher for \(url.path): \(error)")
+                return false
+            }
+        }
+
+        private func openFileDescriptor() throws -> Int32 {
+            let descriptor = open(self.url.path, O_EVTONLY)
+            if descriptor == -1 {
+                Log.error("Failed to open file descripter")
+            }
+            return descriptor
         }
 
         /// The id of the ``FileSystemClient/FileSystemClient/FileItem``.
@@ -158,18 +180,17 @@ public extension FileSystemClient {
 
         var debugFileHeirachy: String { childrenDescription(tabCount: 0) }
 
-        func childrenDescription(tabCount: Int) -> String {
-            var myDetails = "\(String(repeating: "|  ", count: max(tabCount - 1, 0)))\(tabCount != 0 ? "╰--" : "")"
-            myDetails += "\(url.path)"
-            if !self.isFolder { // if im a file, just return the url
-                return myDetails
-            } else { // if im a folder, return the url and its children's details
-                var childDetails = "\(myDetails)"
-                for child in children ?? [] {
-                    childDetails += "\n\(child.childrenDescription(tabCount: tabCount + 1))"
-                }
-                return childDetails
+        func childrenDescription(tabCount: Int = 0) -> String {
+            let indent = String(repeating: "|  ", count: max(tabCount - 1, 0)) + (tabCount != 0 ? "╰--" : "")
+            var details = "\(indent)\(url.path)"
+
+            if isFolder {
+                details += children?.reduce("") { result, child in
+                    result + "\n" + child.childrenDescription(tabCount: tabCount + 1)
+                } ?? ""
             }
+
+            return details
         }
 
         /// Returns a string describing a SFSymbol for folders
@@ -178,13 +199,14 @@ public extension FileSystemClient {
         /// If it is a `.codeedit` folder this will return `"folder.fill.badge.gearshape"`.
         /// If it has children this will return `"folder.fill"` otherwise `"folder"`.
         private func folderIcon(_ children: [FileItem]) -> String {
-            if self.parent == nil {
+            switch (self.parent, self.fileName) {
+            case (nil, _):
                 return "square.dashed.inset.filled"
-            }
-            if self.fileName == ".codeedit" {
+            case (_, ".auroraeditor"):
                 return "folder.fill.badge.gearshape"
+            default:
+                return children.isEmpty ? "folder" : "folder.fill"
             }
-            return children.isEmpty ? "folder" : "folder.fill"
         }
 
         /// Returns the file name with optional extension (e.g.: `Package.swift`)
@@ -221,22 +243,38 @@ public extension FileSystemClient {
 
         public func flattenedChildren(depth: Int, ignoringFolders: Bool) -> [FileItem] {
             guard depth > 0 else { return [] }
-            guard isFolder else { return [self] }
-            var childItems: [FileItem] = ignoringFolders ? [] : [self]
-            children?.forEach { child in
-                childItems.append(contentsOf: child.flattenedChildren(depth: depth - 1,
-                    ignoringFolders: ignoringFolders))
+
+            var childItems: [FileItem] = []
+
+            if !ignoringFolders || isFolder {
+                childItems.append(self)
             }
+
+            guard isFolder else { return childItems }
+
+            if let children = children {
+                for child in children {
+                    childItems.append(contentsOf: child.flattenedChildren(depth: depth - 1,
+                                                                          ignoringFolders: ignoringFolders))
+                }
+            }
+
             return childItems
         }
 
-        public func flattenedSiblings(height: Int, ignoringFolders: Bool) -> [FileItem] {
-            var topmostParent = self
-            for _ in 0..<height {
-                guard let parent = topmostParent.parent else { break }
-                topmostParent = parent
+        public func flattenedSiblings(toHeight height: Int, ignoringFolders: Bool) -> [FileItem] {
+            var currentFileItem = self
+
+            // Traverse up the hierarchy to the desired height or the root
+            for _ in stride(from: 0, to: height, by: 1) {
+                guard let parent = currentFileItem.parent else {
+                    break  // Reached the root
+                }
+                currentFileItem = parent
             }
-            return topmostParent.flattenedChildren(depth: height, ignoringFolders: ignoringFolders)
+
+            // Return the flattened children at the specified height
+            return currentFileItem.flattenedChildren(depth: height, ignoringFolders: ignoringFolders)
         }
 
         /// Recursive function that returns the number of children
@@ -245,28 +283,36 @@ public extension FileSystemClient {
         /// - Parameter searchString: The string
         /// - Parameter ignoredStrings: The prefixes to ignore if they prefix file names
         /// - Returns: The number of children that match the conditiions
-        public func appearanceWithinChildrenOf(searchString: String,
-                                               ignoredStrings: [String] = [".", "~"]) -> Int {
-            var count = 0
-            guard self.isFolder else { return 0 }
-            for child in self.children ?? [] {
-                var isIgnored: Bool = false
-                for ignoredString in ignoredStrings where child.fileName.hasPrefix(ignoredString) {
-                    isIgnored = true // can use regex later
-                }
+        public func appearanceWithinChildrenOf(searchString: String, ignoredStrings: [String] = [".", "~"]) -> Int {
+            guard isFolder else { return 0 }
 
-                if isIgnored {
+            var count = 0
+
+            for child in children ?? [] {
+                if isIgnored(child.fileName, ignoredStrings) {
                     continue
                 }
 
-                guard !searchString.isEmpty else { count += 1; continue }
+                if searchString.isEmpty {
+                    count += 1
+                    continue
+                }
+
                 if child.isFolder {
-                    count += child.appearanceWithinChildrenOf(searchString: searchString) > 0 ? 1 : 0
+                    count += child.appearanceWithinChildrenOf(searchString: searchString)
                 } else {
-                    count += child.fileName.lowercased().contains(searchString.lowercased()) ? 1 : 0
+                    count += child.fileName.localizedCaseInsensitiveContains(searchString) ? 1 : 0
                 }
             }
+
             return count
+        }
+
+        private func isIgnored(_ fileName: String, _ ignoredStrings: [String]) -> Bool {
+            for ignoredString in ignoredStrings where fileName.hasPrefix(ignoredString) {
+                return true
+            }
+            return false
         }
 
         /// Function that returns an array of the children
@@ -276,51 +322,42 @@ public extension FileSystemClient {
         /// - Parameter searchString: The string
         /// - Parameter ignoredStrings: The prefixes to ignore if they prefix file names
         /// - Returns: The children that match the conditiions
-        public func childrenSatisfying(searchString: String,
-                                       ignoredStrings: [String] = [".", "~"]) -> [FileItem] {
-            var satisfyingChildren: [FileItem] = []
-            guard self.isFolder else { return [] }
-            for child in self.children ?? [] {
-                var isIgnored: Bool = false
-                for ignoredString in ignoredStrings where child.fileName.hasPrefix(ignoredString) {
-                    isIgnored = true // can use regex later
-                }
+        public func childrenSatisfying(searchString: String, ignoredStrings: [String] = [".", "~"]) -> [FileItem] {
+            guard isFolder else { return [] }
 
-                if isIgnored {
-                    continue
-                }
-
-                guard !searchString.isEmpty else { satisfyingChildren.append(child); continue }
-                if child.isFolder {
-                    if child.appearanceWithinChildrenOf(searchString: searchString) > 0 {
-                        satisfyingChildren.append(child)
-                    }
-                } else {
-                    if child.fileName.lowercased().contains(searchString.lowercased()) {
-                        satisfyingChildren.append(child)
-                    }
-                }
+            let satisfyingChildren = children?.filter { child in
+                !isIgnored(child.fileName, ignoredStrings) &&
+                (searchString.isEmpty || child.satisfiesSearch(searchString))
             }
-            return satisfyingChildren
+
+            return satisfyingChildren ?? []
         }
-    }
-}
 
-// MARK: Hashable
-extension FileSystemClient.FileItem: Hashable {
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(fileIdentifier)
-        hasher.combine(id)
-    }
-}
+        private func satisfiesSearch(_ searchString: String) -> Bool {
+            if searchString.isEmpty {
+                return true
+            }
 
-// MARK: Comparable
-extension FileSystemClient.FileItem: Comparable {
-    public static func == (lhs: FileSystemClient.FileItem, rhs: FileSystemClient.FileItem) -> Bool {
-        lhs.id == rhs.id
-    }
+            if isFolder {
+                return appearanceWithinChildrenOf(searchString: searchString) > 0
+            } else {
+                return fileName.localizedCaseInsensitiveContains(searchString)
+            }
+        }
 
-    public static func < (lhs: FileSystemClient.FileItem, rhs: FileSystemClient.FileItem) -> Bool {
-        lhs.url.lastPathComponent < rhs.url.lastPathComponent
+        public func hash(into hasher: inout Hasher) {
+            hasher.combine(fileIdentifier)
+            hasher.combine(id)
+        }
+
+        // MARK: - Comparable
+
+        public static func == (lhs: FileSystemClient.FileItem, rhs: FileSystemClient.FileItem) -> Bool {
+            return lhs.id == rhs.id
+        }
+
+        public static func < (lhs: FileSystemClient.FileItem, rhs: FileSystemClient.FileItem) -> Bool {
+            return lhs.url.path < rhs.url.path
+        }
     }
 }
