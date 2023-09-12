@@ -18,7 +18,7 @@ final class AuroraEditorUITestsLaunchTests: XCTestCase {
         continueAfterFailure = false
     }
 
-    func testLaunch() throws {
+//    func testLaunch() throws {
 //        let app = XCUIApplication()
 //        app.launch()
 //
@@ -29,5 +29,5 @@ final class AuroraEditorUITestsLaunchTests: XCTestCase {
 //        attachment.name = "Launch Screen"
 //        attachment.lifetime = .keepAlways
 //        add(attachment)
-    }
+//    }
 }
