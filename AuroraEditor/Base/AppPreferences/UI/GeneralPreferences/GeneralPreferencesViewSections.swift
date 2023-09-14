@@ -163,7 +163,7 @@ extension GeneralPreferencesView {
                 Text("settings.general.open.welcome")
                     .tag(AppPreferences.ReopenBehavior.welcome)
                 Divider()
-                Text("settings.general.open.pane")
+                Text("settings.general.open.panel")
                     .tag(AppPreferences.ReopenBehavior.openPanel)
                 Text("settings.general.open.document")
                     .tag(AppPreferences.ReopenBehavior.newDocument)
