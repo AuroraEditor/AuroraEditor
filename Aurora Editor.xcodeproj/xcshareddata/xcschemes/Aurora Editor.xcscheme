@@ -29,10 +29,21 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B658FB3C27DA9E1000EA4DBD"
+               BlueprintIdentifier = "2B11FF862AB0E8F4005B649C"
+               BuildableName = "Aurora Editor (Tests).xctest"
+               BlueprintName = "Aurora Editor (Tests)"
+               ReferencedContainer = "container:Aurora Editor.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2B11FF862AB0E8F4005B649C"
                BuildableName = "Aurora Editor (Tests).xctest"
                BlueprintName = "Aurora Editor (Tests)"
                ReferencedContainer = "container:Aurora Editor.xcodeproj">
@@ -43,6 +54,17 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B658FB4627DA9E1000EA4DBD"
+               BuildableName = "Aurora Editor (UITests).xctest"
+               BlueprintName = "Aurora Editor (UITests)"
+               ReferencedContainer = "container:Aurora Editor.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2B11FF932AB0EBF7005B649C"
                BuildableName = "Aurora Editor (UITests).xctest"
                BlueprintName = "Aurora Editor (UITests)"
                ReferencedContainer = "container:Aurora Editor.xcodeproj">

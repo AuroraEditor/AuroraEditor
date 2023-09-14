@@ -28,6 +28,28 @@
       selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2B11FF862AB0E8F4005B649C"
+               BuildableName = "Aurora Editor (Tests).xctest"
+               BlueprintName = "Aurora Editor (Tests)"
+               ReferencedContainer = "container:Aurora Editor.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2B11FF932AB0EBF7005B649C"
+               BuildableName = "Aurora Editor (UITests).xctest"
+               BlueprintName = "Aurora Editor (UITests)"
+               ReferencedContainer = "container:Aurora Editor.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -76,6 +98,15 @@
             ReferencedContainer = "container:AuroraEditor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "B658FB2B27DA9E0F00EA4DBD"
+            BuildableName = "Aurora Editor.app"
+            BlueprintName = "Aurora Editor"
+            ReferencedContainer = "container:AuroraEditor.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Release">
