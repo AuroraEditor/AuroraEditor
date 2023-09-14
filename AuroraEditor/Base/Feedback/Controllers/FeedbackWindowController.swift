@@ -33,6 +33,17 @@ final class FeedbackWindowController: NSWindowController, NSToolbarDelegate {
         window?.backgroundColor = .windowBackgroundColor
 
         feedbackToolbar()
+        shouldStayOpened()
+    }
+
+    private func shouldStayOpened() {
+        if FeedbackModel.shared.isSubmitted {
+            self.closeAnimated()
+        } else {
+            DispatchQueue
+                .global(qos: .background)
+                .asyncAfter(deadline: .now() + 1, execute: shouldStayOpened)
+        }
     }
 
     private func feedbackToolbar() {
