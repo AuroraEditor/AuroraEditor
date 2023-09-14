@@ -9,7 +9,9 @@
 import SwiftUI
 
 public class FeedbackModel: ObservableObject {
-    public static let shared: FeedbackModel = .init() // Accessing Environment<OpenURLAction>'s value outside of being installed on a View. This will always read the default value and will not update.
+    public static let shared: FeedbackModel = .init() // Accessing Environment<OpenURLAction>'s
+    // value outside of being installed on a View.
+    // This will always read the default value and will not update.
 
     private var prefs: AppPreferencesModel = .shared
     private let keychain = AuroraEditorKeychain()
