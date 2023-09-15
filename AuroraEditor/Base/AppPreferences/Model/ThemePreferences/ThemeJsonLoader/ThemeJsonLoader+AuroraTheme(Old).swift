@@ -108,7 +108,7 @@ extension ThemeJsonLoader {
                          attributes: [ColorThemeAttribute(color: NSColor(hex: numbers))]),
             ThemeSetting(scope: "entity.name.function",
                          attributes: [ColorThemeAttribute(color: NSColor(hex: commands))]),
-            ThemeSetting(scope: "variable",
+            ThemeSetting(scope: "values",
                          attributes: [ColorThemeAttribute(color: NSColor(hex: values))]),
             ThemeSetting(scope: "keyword",
                          attributes: [ColorThemeAttribute(color: NSColor(hex: keywords))]),
