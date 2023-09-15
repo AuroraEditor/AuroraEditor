@@ -166,15 +166,17 @@ public final class ThemeModel: ObservableObject {
                   let defaultUrl = Bundle.main.url(forResource: fileName, withExtension: fileExtension)
             else { continue }
             do {
-                // NOTE: This WILL fail if the theme already exists. This is intentional behaviour,
-                // and prevents theme overriding.
-                try filemanager.copyItem(at: defaultUrl,
-                                         to: themesURL.appendingPathComponent(themeName))
-            } catch {
-                if !error.localizedDescription.contains("because an item with the same name already exists.") {
-                    Log.error(error)
-                    throw error
+                if !filemanager.fileExists(
+                    atPath: themesURL.appendingPathComponent(themeName).relativePath
+                ) {
+                    try filemanager.copyItem(
+                        at: defaultUrl,
+                        to: themesURL.appendingPathComponent(themeName)
+                    )
                 }
+            } catch {
+                Log.error(error)
+                throw error
             }
         }
     }
