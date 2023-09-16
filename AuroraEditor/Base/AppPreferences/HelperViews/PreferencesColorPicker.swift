@@ -26,7 +26,7 @@ struct PreferencesColorPicker: View {
             ColorPicker(selection: $color, supportsOpacity: false) { }
                 .labelsHidden()
             if let label = label {
-                Text(label)
+                Text(.init(label))
             }
         }
     }
