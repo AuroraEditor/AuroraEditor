@@ -1,4 +1,4 @@
-name: Add Issue to Aurora Project
+name: Add to Milestone
 
 on:
   issues:
@@ -6,7 +6,7 @@ on:
       - opened
   pull_request:
     types:
-      - created
+      - opened
 
 jobs:
   milestonePR:
