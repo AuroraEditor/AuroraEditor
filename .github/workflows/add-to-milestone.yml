@@ -10,7 +10,7 @@ on:
 
 jobs:
   milestonePR:
-    if: github.repository_owner == 'AuroraEditor' && ${{ github.event.issue.pull_request }}
+    if: ${{ github.repository_owner == 'AuroraEditor' && github.event.issue.pull_request }}
     runs-on: ubuntu-latest   
     steps:
       - uses: actions/checkout@v3
@@ -24,7 +24,7 @@ jobs:
           https://api.github.com/repos/AuroraEditor/AuroraEditor/issues/${{ github.event.pull_request.number }} \
           -d '{"milestone":1}'
   milestoneIssue:
-    if: github.repository_owner == 'AuroraEditor' && ${{ !github.event.issue.pull_request }}
+    if: ${{ github.repository_owner == 'AuroraEditor' && !github.event.issue.pull_request }}
     runs-on: ubuntu-latest   
     steps:
       - uses: actions/checkout@v3
