@@ -73,7 +73,7 @@ final class ExtensionInstallationViewModel: ObservableObject {
                                    completionHandler: { completion in
             switch completion {
             case .success(let success):
-                Log.debug(String(data: success, encoding: .utf8))
+                Log.debug(String(data: success, encoding: .utf8) ?? "")
             case .failure(let failure):
                 Log.debug(failure)
             }

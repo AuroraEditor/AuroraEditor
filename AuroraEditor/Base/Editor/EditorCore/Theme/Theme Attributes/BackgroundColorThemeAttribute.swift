@@ -6,8 +6,6 @@
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
-import Foundation
-import Cocoa
 import SwiftUI
 
 public class BackgroundColorThemeAttribute: TokenThemeAttribute, Codable {

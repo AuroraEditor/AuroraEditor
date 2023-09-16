@@ -7,7 +7,6 @@
 //
 //  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
-import Cocoa
 import SwiftUI
 import Combine
 

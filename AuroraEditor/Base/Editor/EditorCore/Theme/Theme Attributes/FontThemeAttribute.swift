@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Cocoa
+import AppKit
 
 public class FontThemeAttribute: TokenThemeAttribute {
 
