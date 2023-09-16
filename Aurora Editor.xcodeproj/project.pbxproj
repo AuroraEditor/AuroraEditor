@@ -637,7 +637,7 @@
 		20425E47297EE74D0022FE5A /* sort-Xcode-project-file.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = "sort-Xcode-project-file.pl"; sourceTree = "<group>"; };
 		20425E49297EED860022FE5A /* ClearDerivedData.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ClearDerivedData.sh; sourceTree = "<group>"; };
 		20425E4B297EEE350022FE5A /* unused_strings.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = unused_strings.py; sourceTree = "<group>"; };
-		20425E55297F03230022FE5A /* xstrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xstrings.swift; sourceTree = "<group>"; };
+		20425E55297F03230022FE5A /* ExtractLocalizationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractLocalizationStrings.swift; sourceTree = "<group>"; };
 		20439037290D27DB00126A3F /* WorkspaceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceErrors.swift; sourceTree = "<group>"; };
 		2043903B290D385600126A3F /* ExploreExtensionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreExtensionsView.swift; sourceTree = "<group>"; };
 		2043903D290D38D700126A3F /* ExploreItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreItemView.swift; sourceTree = "<group>"; };
@@ -1340,7 +1340,7 @@
 				20425E47297EE74D0022FE5A /* sort-Xcode-project-file.pl */,
 				20425E49297EED860022FE5A /* ClearDerivedData.sh */,
 				20425E4B297EEE350022FE5A /* unused_strings.py */,
-				20425E55297F03230022FE5A /* xstrings.swift */,
+				20425E55297F03230022FE5A /* ExtractLocalizationStrings.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
