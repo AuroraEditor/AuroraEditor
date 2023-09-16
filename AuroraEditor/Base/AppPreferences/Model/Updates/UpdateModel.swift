@@ -50,8 +50,9 @@ public class UpdateObservedModel: ObservableObject {
         // Reason for this not being on main thread is that it's a network call and it's best practice
         // to have network calls on the background thread leaving the main thread just for UI.
         DispatchQueue(label: "Update", qos: .background).asyncAfter(deadline: .now() + 5) {
-            AuroraNetworking().request(baseURL: UpdateConstants.baseURL,
-                                       path: UpdateConstants.updateFileURL(),
+            let constants = UpdateConstants()
+            AuroraNetworking().request(baseURL: constants.baseURL,
+                                       path: constants.updateFileURL(),
                                        useAuthType: .none,
                                        method: .GET,
                                        parameters: nil,
@@ -90,7 +91,7 @@ public class UpdateObservedModel: ObservableObject {
                     DispatchQueue.main.async {
                         self.updateState = .error
                     }
-                    Log.error(failure)
+                    Log.debug(failure)
                 }
             })
         }
@@ -104,17 +105,18 @@ struct UpdateModel: Codable {
     let url: String
 }
 
-// swiftlint:disable:next convenience_type
 private struct UpdateConstants {
+    /// Base URL
+    public let baseURL = "https://auroraeditor.com/"
 
-    static let baseURL: String = "https://auroraeditor.com/"
-
-    static func updateFileURL() -> String {
+    /// get update file url
+    /// - Returns: update url
+    public func updateFileURL() -> String {
         switch prefs.preferences.updates.updateChannel {
         case .release:
-            return "updates/dynamic/macos/nightly.json" // TODO: Create Release Json
+            return "updates/dynamic/macos/release.json"
         case .beta:
-            return "updates/dynamic/macos/nightly.json" // TODO: Create Beta Json
+            return "updates/dynamic/macos/beta.json"
         case .nightly:
             return "updates/dynamic/macos/nightly.json"
         }
