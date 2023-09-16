@@ -7,7 +7,6 @@
 //
 //  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
-import Foundation
 import Cocoa
 
 /// A struct for holding information about a search match.

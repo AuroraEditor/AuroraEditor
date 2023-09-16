@@ -8,7 +8,7 @@
 
 import Foundation
 
-// TODO: DOCS (Nanashi Li)
+/// BitbucketRepositories
 open class BitbucketRepositories: Codable {
     open var id: String
     open var owner: BitbucketUser

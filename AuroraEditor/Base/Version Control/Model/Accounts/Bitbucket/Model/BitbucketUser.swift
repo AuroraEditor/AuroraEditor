@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-// TODO: DOCS (Nanashi Li)
+/// Bitbucket user
 open class BitbucketUser: Codable {
     open var id: String?
     open var login: String?

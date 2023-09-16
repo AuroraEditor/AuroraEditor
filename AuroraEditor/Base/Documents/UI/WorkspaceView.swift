@@ -170,6 +170,7 @@ struct WorkspaceView: View {
                 }
                 if command.name == "openTab",
                    let view = command.parameters["view"] as? any View {
+                    Log.info(view)
                     // TODO: Open new tab.
                 }
                 if command.name == "openWindow",

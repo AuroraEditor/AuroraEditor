@@ -6,7 +6,7 @@
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
-import Cocoa
+import AppKit
 import Combine
 
 /// AuroraSplitViewController

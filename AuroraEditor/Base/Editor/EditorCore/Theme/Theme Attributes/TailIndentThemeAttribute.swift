@@ -8,7 +8,7 @@
 
 import Foundation
 
-import Cocoa
+import AppKit
 
 public class TailIndentThemeAttribute: LineThemeAttribute, Codable {
 
