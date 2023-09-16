@@ -14,8 +14,11 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
     var prefs: AppPreferencesModel = .shared
 
+    private var model: NotificationsModel = .shared
+
     var workspace: WorkspaceDocument
     var overlayPanel: OverlayPanel?
+    var notificationAnimator: NotificationViewAnimator!
 
     var cancelables: Set<AnyCancellable> = .init()
 
@@ -67,11 +70,25 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         let inspector = NSSplitViewItem(
             viewController: inspectorViewController
         )
-        inspector.titlebarSeparatorStyle = .line
+        inspector.titlebarSeparatorStyle = .none
         inspector.minimumThickness = 260
-        inspector.isCollapsed = !prefs.preferences.general.keepInspectorSidebarOpen
+        inspector.isCollapsed = true
         inspector.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(inspector)
+
+        // This parent fetches the whole apps window since AE is built around
+        // a split editor view.
+        let parent = splitVC.view
+
+        // Create an instance of NotificationViewAnimator
+        notificationAnimator = NotificationViewAnimator(
+            notificationView: NSView(),
+            parent: parent,
+            model: model
+        )
+
+        notificationAnimator.observeNotificationData()
+        notificationAnimator.observeShowNotification()
 
         self.splitViewController = splitVC
 

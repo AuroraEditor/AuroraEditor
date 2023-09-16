@@ -24,4 +24,11 @@ internal extension View {
             NSCursor.pop()
         }
     }
+
+    func fontWithLineHeight(fontSize: CGFloat, lineHeight: CGFloat) -> some View {
+        ModifiedContent(content: self,
+                        modifier: FontWithLineHeight(font: NSFont(name: "SF Pro Text",
+                                                                  size: fontSize)!,
+                                                     lineHeight: lineHeight))
+    }
 }
