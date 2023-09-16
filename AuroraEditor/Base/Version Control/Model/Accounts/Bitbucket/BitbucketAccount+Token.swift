@@ -8,7 +8,7 @@
 
 import Foundation
 
-// TODO: DOCS (Nanashi Li)
+/// Bitbucket account
 public extension BitbucketAccount {
     /// Refresh token
     /// - Parameters:

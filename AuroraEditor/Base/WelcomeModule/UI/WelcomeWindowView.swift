@@ -36,12 +36,14 @@ public struct WelcomeWindowView: View {
             }
             .buttonStyle(.plain)
             .keyboardShortcut(.escape, modifiers: [])
+            .focusable(false)
 
             Button("_") { // Do not empty the text, this will break functionality
                 self.dismissWindow()
             }
             .buttonStyle(.plain)
             .keyboardShortcut("w", modifiers: [.command])
+            .focusable(false)
 
             HStack(spacing: 0) {
                 WelcomeView(

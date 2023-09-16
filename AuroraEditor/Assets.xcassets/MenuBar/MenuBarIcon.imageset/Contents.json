@@ -1,7 +1,27 @@
 {
   "images" : [
     {
-      "filename" : "Icon.svg",
+      "filename" : "icon-dark 2.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "light"
+        }
+      ],
+      "filename" : "icon-dark 1.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Icon-light.svg",
       "idiom" : "universal"
     }
   ],

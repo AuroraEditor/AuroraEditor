@@ -6,7 +6,6 @@
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
-import Cocoa
 import SwiftUI
 
 extension AuroraEditorWindowController: NSToolbarDelegate {

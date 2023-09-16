@@ -137,7 +137,7 @@ file_header:
   required_pattern: |
                   \/\/
                   \/\/  .*?\.swift
-                  \/\/  Aurora Editor
+                  \/\/  Aurora Editor(| UITests| Tests)
                   \/\/
                   \/\/  Created by .*? on .*?\.
                   \/\/  Copyright © \d{4} Aurora Company. All rights reserved.
