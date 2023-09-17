@@ -6,17 +6,27 @@
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
+/// An enumeration specifying severity levels for notifications.
 enum Severity: Int {
+    /// Indicates that the notification should be ignored.
     case ignore = 0
+
+    /// Indicates an informational severity level for notifications.
     case info = 1
+
+    /// Indicates a warning severity level for notifications.
     case warning = 2
+
+    /// Indicates an error severity level for notifications.
     case error = 3
 }
 
 extension Severity {
-
-    /// Parses 'error', 'warning', 'warn', 'info' in call casings
-    /// and falls back to ignore.
+    /// Parses a string value and returns the corresponding `Severity`.
+    /// Recognizes common variants of severity strings and falls back to `.ignore` if not recognized.
+    ///
+    /// - Parameter value: The string representation of the severity.
+    /// - Returns: The parsed `Severity` value.
     public func fromValue(value: String) -> Severity {
         if value.isEmpty {
             return .ignore
@@ -37,7 +47,9 @@ extension Severity {
         return .ignore
     }
 
-    /// 
+    /// Returns the name of the system icon associated with the severity.
+    ///
+    /// - Returns: The name of the system icon.
     public func iconName() -> String {
         switch self {
         case .error:
@@ -51,7 +63,10 @@ extension Severity {
         }
     }
 
-    /// Converts the serverity enum into a string
+    /// Converts a `Severity` enum value into its string representation.
+    ///
+    /// - Parameter severity: The `Severity` value to convert.
+    /// - Returns: The string representation of the `Severity`.
     public func toString(severity: Severity) -> String {
         switch severity {
         case .error:

@@ -8,15 +8,18 @@
 
 import Foundation
 
+/// The `INotificationHandle` protocol defines methods for controlling and updating notifications.
 protocol INotificationHandle {
-
-    /// Allows to update the severity of the notification.
+    /// Updates the severity of the notification.
+    ///
+    /// - Parameter severity: The new severity level for the notification.
     func updateSeverity(severity: Severity)
 
-    /// Allows to update the message of the notification even after the
-    /// notification is already visible.
+    /// Updates the message of the notification even after it is already visible.
+    ///
+    /// - Parameter message: The new message to display in the notification.
     func updateMessage(message: String)
 
-    /// Hide the notification and remove it from the notification center.
+    /// Hides the notification and removes it from the notification center.
     func close()
 }

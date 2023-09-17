@@ -6,18 +6,16 @@
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
+/// An enumeration specifying the scope for marking a notification to never show again.
 enum NeverShowAgainScope {
-
-    /// Will never show this notification on the current workspace again.
+    /// Indicates that the notification should never show again on the current workspace.
     case WORKSPACE
 
-    /// Will never show this notification on any workspace of the same
-    /// profile again.
+    /// Indicates that the notification should never show again on any workspace of the same profile.
     ///
-    /// TODO: Implement the profile feature for AE
+    /// TODO: Implement the profile feature for AE (Add more information when implementing this feature).
     case PROFILE
 
-    /// Will never show this notification on any workspace across all
-    /// profiles again.
+    /// Indicates that the notification should never show again on any workspace across all profiles.
     case APPLICATION
 }

@@ -8,7 +8,15 @@
 
 import Foundation
 
+/// The `INotificationsModel` protocol defines methods for managing notifications and filters.
 protocol INotificationsModel {
+    /// Adds a notification to the model.
+    ///
+    /// - Parameter notification: The `INotification` to be added.
     func addNotification(notification: INotification)
+
+    /// Sets the filter for notifications.
+    ///
+    /// - Parameter filter: The `NotificationsFilter` to apply to notifications.
     func setFilter(filter: NotificationsFilter)
 }

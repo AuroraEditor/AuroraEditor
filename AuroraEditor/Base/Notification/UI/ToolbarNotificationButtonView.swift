@@ -8,18 +8,26 @@
 
 import SwiftUI
 
+/// The `ToolbarNotificationButtonView` SwiftUI view displays a button in the toolbar with a notification icon
+/// and a count for the specified notification type.
 struct ToolbarNotificationButtonView: View {
+    /// The severity level of the notifications to represent.
     let notificationType: Severity
+
+    /// The count of notifications for the specified type.
     let notificationCount: Int
 
     var body: some View {
         Button {
+            // Action to be performed when the button is tapped.
         } label: {
             HStack {
+                // Display the notification icon based on severity.
                 Image(systemName: notificationType.iconName())
                     .symbolRenderingMode(.multicolor)
                     .imageScale(.small)
 
+                // Display the notification count.
                 Text("\(notificationCount)")
                     .foregroundColor(.gray)
                     .font(.system(size: 10))

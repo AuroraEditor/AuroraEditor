@@ -6,15 +6,15 @@
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
+/// An enumeration representing different types of changes that can occur to notifications.
 enum NotificationChangeType {
-
-    /// A notification was added.
+    /// Indicates that a new notification was added.
     case ADD
 
-    /// A notification changed. Check `detail` property
-    /// on the event for additional information.
+    /// Indicates that an existing notification has changed. Additional information can be found
+    /// in the `detail` property of the event.
     case CHANGE
 
-    /// A notification was removed.
+    /// Indicates that a notification was removed.
     case REMOVE
 }

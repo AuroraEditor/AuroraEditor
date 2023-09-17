@@ -8,15 +8,17 @@
 
 import Foundation
 
+/// The `INotificationProperties` protocol defines properties for configuring notification behavior.
 protocol INotificationProperties {
-
-    /// Silent notifications are not shown to the user unless the notification center
-    /// is opened. The status bar will still indicate all number of notifications to
-    /// catch some attention.
+    /// A flag indicating whether the notification should be shown silently to the user.
+    ///
+    /// Silent notifications are not displayed as alerts to the user, but they may still be
+    /// indicated in the status bar to catch some attention.
     var silent: Bool? { get }
 
-    /// Adds an action to never show the notification again. The choice will be persisted
-    /// such as future requests will not cause the notification to show again.
+    /// Options to configure whether the notification should never be shown again.
+    ///
+    /// By adding an action to never show the notification again, the user's choice will
+    /// be persisted, and future requests will not cause the notification to appear.
     var neverShowAgain: INeverShowAgainOptions? { get }
-
 }

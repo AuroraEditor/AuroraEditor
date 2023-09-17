@@ -6,18 +6,14 @@
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
+/// An enumeration specifying different types of notifications.
 enum NotificationType {
-
-    /// System notifications, are notifications that is sent by AE.
-    /// For example if there is an error in the users code the editor
-    /// would use tthe system notification type.
+    /// Represents system notifications sent by AE (the editor). For example, errors in user code.
     case system
 
-    /// Extension notifications, are any notification that is being sent
-    /// by an extension a user has installed.
+    /// Represents extension notifications sent by user-installed extensions.
     case extensionSystem
 
-    /// A custom notification allows us to create a notification beyond just
-    /// extension and system.
+    /// Represents custom notifications that provide flexibility beyond system and extension notifications.
     case custom
 }

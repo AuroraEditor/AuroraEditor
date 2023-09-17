@@ -8,19 +8,21 @@
 
 import SwiftUI
 
+/// The `NotificationViewItem` SwiftUI view displays individual notification items with actions and context menus.
 struct NotificationViewItem: View {
-
+    // The notification to be displayed.
     var notification: INotification
 
-    @ObservedObject
-    private var model: NotificationsModel = .shared
+    // Observed object for managing notifications.
+    @ObservedObject private var model: NotificationsModel = .shared
 
-    @State
-    private var showActions: Bool = false
+    // State to control whether to show additional actions for the notification.
+    @State private var showActions: Bool = false
 
     var body: some View {
         VStack {
             HStack(alignment: .center) {
+                // Display the notification icon based on severity or a default icon if none provided.
                 if notification.icon == nil {
                     Image(systemName: notificationIcon(severity: notification.severity))
                         .symbolRenderingMode(.multicolor)
@@ -32,12 +34,14 @@ struct NotificationViewItem: View {
 
                 VStack(alignment: .leading) {
                     HStack {
+                        // Display the notification title.
                         Text(notification.title)
                             .foregroundColor(.primary)
                             .font(.system(size: 11, weight: .medium))
 
                         Spacer()
 
+                        // Display a chevron icon for toggling additional actions (if applicable).
                         if notification.notificationType == .extensionSystem {
                             Image(systemName: showActions ? "chevron.up" : "chevron.down")
                                 .foregroundColor(.secondary)
@@ -45,6 +49,7 @@ struct NotificationViewItem: View {
                         }
                     }
                     .onTapGesture {
+                        // Toggle additional actions when tapping the title (if applicable).
                         if notification.notificationType == .extensionSystem {
                             withAnimation {
                                 showActions.toggle()
@@ -52,6 +57,7 @@ struct NotificationViewItem: View {
                         }
                     }
 
+                    // Display the notification message.
                     Text(notification.message)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.leading)
@@ -59,9 +65,11 @@ struct NotificationViewItem: View {
                 }
             }
 
+            // Display additional actions (if expanded).
             if showActions {
                 withAnimation {
                     Button {
+                        // Action to be performed when the button is tapped.
                     } label: {
                         Spacer()
                         Text("UPDATE")
@@ -77,13 +85,16 @@ struct NotificationViewItem: View {
         }
         .padding(5)
         .contextMenu {
+            // Context menu items for the notification.
             Button("Copy") {
+                // Action to copy notification content.
             }
 
             Divider()
 
             if notification.notificationType == .extensionSystem {
                 Button("View Extension") {
+                    // Action to view an extension (specific to extension system notifications).
                     // TODO: @Wesley
                 }
 
@@ -91,18 +102,21 @@ struct NotificationViewItem: View {
             }
 
             Button("Ignore Notification") {
+                // Action to ignore the notification.
                 removeNotificationAtIndex()
             }
 
             Button("Don’t Show Again...") {
-                // Remove notification
+                // Action to hide the notification permanently.
                 removeNotificationAtIndex()
-
                 LocalStorage().saveDoNotShowNotifcation(id: notification.id ?? "")
             }
         }
     }
 
+    /// Determines the appropriate system icon based on the severity of the notification.
+    /// - Parameter severity: The severity level of the notification.
+    /// - Returns: The system icon name.
     private func notificationIcon(severity: Severity) -> String {
         switch severity {
         case .ignore:
@@ -116,6 +130,7 @@ struct NotificationViewItem: View {
         }
     }
 
+    /// Removes the current notification from the model's notifications array.
     private func removeNotificationAtIndex() {
         if let index = self.model.notifications.firstIndex(of: notification) {
             self.model.notifications.remove(at: index)

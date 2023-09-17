@@ -6,14 +6,14 @@
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
+/// An enumeration specifying different types of filters for notifications.
 enum NotificationsFilter {
-
-    /// No filter is enabled.
+    /// Represents that no filter is enabled, and all notifications should be displayed.
     case OFF
 
-    /// All notifications are configured as silent.
+    /// Represents a filter where all notifications are configured as silent and not displayed to the user.
     case SILENT
 
-    /// All notifications are silent except error notifications.
+    /// Represents a filter where all notifications are silent except error notifications.
     case ERROR
 }

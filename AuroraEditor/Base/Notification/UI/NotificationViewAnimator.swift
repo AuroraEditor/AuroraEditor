@@ -11,22 +11,40 @@ import Combine
 import SwiftUI
 
 class NotificationViewAnimator {
+    /// The view representing the notification to be displayed.
     private var notificationView: NSView
+
+    /// The parent view where the notification view will be displayed.
     private let parent: NSView
+
+    /// The shared instance of the `NotificationsModel`.
     private var model: NotificationsModel = .shared
+
+    /// A collection of cancellables used to manage Combine subscriptions.
     private var cancelables: Set<AnyCancellable> = []
+
+    /// A task for scheduling actions with a delay.
     private var timerTask: DispatchWorkItem?
 
+    /// Initializes a new `NotificationViewManager` instance.
+    ///
+    /// - Parameters:
+    ///   - notificationView: The view representing the notification to be displayed.
+    ///   - parent: The parent view where the notification view will be displayed.
+    ///   - model: The `NotificationsModel` used for managing notifications.
     init(notificationView: NSView, parent: NSView, model: NotificationsModel) {
         self.notificationView = notificationView
         self.parent = parent
         self.model = model
     }
 
+    /// Animates the notification view sliding into view with a fade-in effect.
     func slideInNotificationView() {
+        // Set the initial state of the notification view.
         notificationView.alphaValue = 0.0
         notificationView.frame.origin.x = parent.frame.width + 20
 
+        // Run an animation to slide in the notification view.
         NSAnimationContext.runAnimationGroup { context in
             context.duration = 0.3
             notificationView.animator().alphaValue = 1.0
@@ -34,48 +52,60 @@ class NotificationViewAnimator {
         }
     }
 
+    /// Animates the notification view sliding out of view with a fade-out effect and hides it.
     func slideOutNotificationView() {
+        // Run an animation to slide out the notification view and fade it out.
         NSAnimationContext.runAnimationGroup { context in
             context.duration = 0.3
             notificationView.animator().alphaValue = 0.0
             notificationView.animator().frame.origin.x = parent.frame.width + 20
         }
 
+        // After the animation completes, hide the notification view and update the model.
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.notificationView.isHidden = true
             self.model.showNotificationToast = false
         }
     }
 
+    /// Observes changes in the `notificationToastData` property of the `model` and updates the user interface
+    /// to display a notification toast when new notification data is available.
     func observeNotificationData() {
+        // Use the `sink` operator to listen for changes in the `notificationToastData` property of the `model`.
         model.$notificationToastData.sink { [weak self] data in
+            // Ensure self is still valid to prevent strong reference cycles.
             guard let self = self else { return }
 
-            // Create the NSHostingView with NotificationToastView
+            // Create an NSHostingView with the NotificationToastView using the new notification data.
             let newNotificationView = NSHostingView(rootView: NotificationToastView(notification: data))
             newNotificationView.translatesAutoresizingMaskIntoConstraints = false
 
+            // Remove the existing notification view and its constraints.
             self.notificationView.removeFromSuperview()
             self.notificationView.removeConstraints(self.notificationView.constraints)
 
-            // Add the newNotificationView to the parent view
+            // Add the newNotificationView to the parent view.
             self.parent.addSubview(newNotificationView)
 
-            // Apply constraints to position it correctly
+            // Apply constraints to position the newNotificationView correctly within the parent view.
             NSLayoutConstraint.activate([
                 newNotificationView.widthAnchor.constraint(equalToConstant: 344),
                 newNotificationView.heightAnchor.constraint(equalToConstant: 104),
-                newNotificationView.bottomAnchor.constraint(equalTo: parent.bottomAnchor, constant: -20),
-                newNotificationView.trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -20)
+                newNotificationView.bottomAnchor.constraint(equalTo: self.parent.bottomAnchor, constant: -20),
+                newNotificationView.trailingAnchor.constraint(equalTo: self.parent.trailingAnchor, constant: -20)
             ])
 
-            // Assign the new view to notificationView
+            // Assign the new view to the notificationView property.
             self.notificationView = newNotificationView
+
+            // Initially hide the notification view.
             self.notificationView.isHidden = true
 
-            // Slide in the notification view
+            // Slide in the notification view to make it visible to the user.
             self.slideInNotificationView()
-        }.store(in: &cancelables)
+        }
+        // Store the subscription in the `cancelables` collection to manage its lifecycle.
+        .store(in: &cancelables)
     }
 
     /**
