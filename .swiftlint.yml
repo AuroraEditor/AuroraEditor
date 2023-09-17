@@ -10,6 +10,7 @@ disabled_rules:
 excluded:
   - AuroraEditorModules/.build # Where Swift Package Manager checks out dependency sources
   - AuroraEditorCli/Package.swift # Package.swift should not be linted
+  - Tools
 
 # Exclude triggering type names.
 type_name:
