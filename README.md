@@ -174,6 +174,13 @@ Thanks goes to these wonderful people:
 
 <a title="MacStadium" href="https://macstadium.com" target="_blank"><img src="https://user-images.githubusercontent.com/806104/162766594-eff7f985-31a9-48c5-9e58-139794fefa10.png" width="128"></a>
 <a title="Lokalise" href="https://lokalise.com" target="_blank"><img src="https://user-images.githubusercontent.com/63672227/214901959-62aa13a7-8d85-44c9-abd0-7d9dc21d7255.png" width="128"></a>
+<a href="https://sentry.io" title="Sentry">
+  <picture>
+    <source alt="Sentry" href="https://sentry.io" media="(prefers-color-scheme: dark)" srcset="https://github.com/AuroraEditor/AuroraEditor/assets/63672227/59a48bf3-5c3f-4904-9b1c-982bcf89fc5f" width="128">
+    <img alt="Sentry" href="https://sentry.io" src="https://github.com/AuroraEditor/AuroraEditor/assets/63672227/cccf2fd4-7cfe-4ace-bb84-13557794f93c" width="128">
+  </picture>
+</a>
+
 
 ## Intellectual Property License
 
