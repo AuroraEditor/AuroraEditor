@@ -138,6 +138,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "ameen4455",
+      "name": "ameen4455",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43875940?v=4",
+      "profile": "https://github.com/ameen4455",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 4,
@@ -146,5 +155,6 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true,
-  "commitConvention": "angular"
+  "commitConvention": "angular",
+  "commitType": "docs"
 }
