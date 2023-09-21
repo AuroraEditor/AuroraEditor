@@ -9,7 +9,6 @@ jobs:
   automation:
     runs-on: ubuntu-latest
     steps:
-    - name: Assign PR to creator
       - uses: actions/checkout@v3
       - name: Assign PR to creator
         run: |
