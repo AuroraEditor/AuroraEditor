@@ -44,8 +44,7 @@ body:
         - label: Documentation has been updated to reflect the changes.
         - label: All tests pass successfully.
         - label: Code follows the project's coding guidelines and style.
-        - label: The branch is up-to-date with the latest changes from the main branch.
-        - label: Reviewed by at least one other contributor.
+        - label: The branch is up-to-date with the latest changes from the development branch.
   - type: textarea
     attributes:
       label: Related Issue
