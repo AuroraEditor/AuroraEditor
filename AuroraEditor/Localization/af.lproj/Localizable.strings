@@ -64,7 +64,7 @@
 
 "settings.account.show.profile" = "Show Profile...";
 "settings.account.username" = "Username";
-"settings.account.username.description" = "Your username is public and will represent you in %@";
+"settings.account.username.description %@" = "Your username is public and will represent you in %@";
 
 "settings.account.bitbucket.cloud" = "Bitbucket Cloud";
 "settings.account.bitbucket.server" = "Bitbucket Server";
