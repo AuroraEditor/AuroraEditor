@@ -10,9 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Assign PR to creator
-      if: github.event_name == 'pull_request' && github.event.action == 'opened'
       - uses: actions/checkout@v3
-      - name: Add pull request to Aurora Project Milestone 1
+      - name: Assign PR to creator
         run: |
           curl -L \
           -X PATCH \
