@@ -21,7 +21,7 @@ struct AccountSelectionDialog: View {
         Providers(name: "settings.account.bitbucket.server".localize(),
                   icon: "bitbucket",
                   id: "bitbucketServer"),
-        Providers(name: "settings.account.github",
+        Providers(name: "settings.account.github".localize(),
                   icon: "github",
                   id: "github"),
         Providers(name: "settings.account.github.enterprise".localize(),
