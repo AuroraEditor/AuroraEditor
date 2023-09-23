@@ -76,7 +76,8 @@ struct GitlabHostedLoginView: View {
                         Button {
                             accountModel.loginGitlabSelfHosted(gitAccountName: accountName,
                                                                accountToken: accountToken,
-                                                               enterpriseLink: eneterpriseLink, successCallback: loginSuccessfulCallback)
+                                                               enterpriseLink: eneterpriseLink,
+                                                               successCallback: loginSuccessfulCallback)
                             self.dismissDialog = accountModel.dismissDialog
                         } label: {
                             Text("settings.global.login")

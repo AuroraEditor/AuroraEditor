@@ -15,7 +15,7 @@ struct AccountItemView: View {
 
     @Binding
     var account: SourceControlAccounts
-    
+
     var onDeleteCallback: (String) -> Void
 
     var body: some View {

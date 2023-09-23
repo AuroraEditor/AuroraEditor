@@ -9,7 +9,7 @@
 import Foundation
 
 class EditorAccountModel: ObservableObject {
-    
+
     typealias LoginSuccessfulCallback = () -> Void
 
     private var prefs: AppPreferencesModel = .shared
@@ -24,7 +24,8 @@ class EditorAccountModel: ObservableObject {
     }
 
     func loginAuroraEditor(email: String,
-                           password: String, successCallback: @escaping LoginSuccessfulCallback) {
+                           password: String,
+                           successCallback: @escaping LoginSuccessfulCallback) {
 
         let parameters: [String: Any] = [
             "email": email,
@@ -73,7 +74,8 @@ class EditorAccountModel: ObservableObject {
 
     func loginGitlab(gitAccountName: String,
                      accountToken: String,
-                     accountName: String, successCallback: @escaping LoginSuccessfulCallback) {
+                     accountName: String,
+                     successCallback: @escaping LoginSuccessfulCallback) {
         let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
 
         let config = GitlabTokenConfiguration(accountToken)
@@ -108,7 +110,8 @@ class EditorAccountModel: ObservableObject {
 
     func loginGitlabSelfHosted(gitAccountName: String,
                                accountToken: String,
-                               enterpriseLink: String, successCallback: @escaping LoginSuccessfulCallback) {
+                               enterpriseLink: String,
+                               successCallback: @escaping LoginSuccessfulCallback) {
         let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
 
         let config = GitlabTokenConfiguration(accountToken,
@@ -143,7 +146,8 @@ class EditorAccountModel: ObservableObject {
     }
 
     func loginGithub(gitAccountName: String,
-                     accountToken: String, successCallback: @escaping LoginSuccessfulCallback) {
+                     accountToken: String,
+                     successCallback: @escaping LoginSuccessfulCallback) {
         let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
 
         let config = GithubTokenConfiguration(accountToken)
@@ -181,7 +185,8 @@ class EditorAccountModel: ObservableObject {
     func loginGithubEnterprise(gitAccountName: String,
                                accountToken: String,
                                accountName: String,
-                               enterpriseLink: String, successCallback: @escaping LoginSuccessfulCallback) {
+                               enterpriseLink: String,
+                               successCallback: @escaping LoginSuccessfulCallback) {
         let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
 
         let config = GithubTokenConfiguration(accountToken,

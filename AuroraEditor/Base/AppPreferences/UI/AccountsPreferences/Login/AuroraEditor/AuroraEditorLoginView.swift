@@ -23,7 +23,7 @@ struct AuroraEditorLoginView: View {
 
     @ObservedObject
     var accountModel: EditorAccountModel
-    
+
     var loginSuccessfulCallback: EditorAccountModel.LoginSuccessfulCallback
 
     init(dismissDialog: Binding<Bool>, loginSuccessfulCallback: @escaping EditorAccountModel.LoginSuccessfulCallback) {
