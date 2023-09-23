@@ -20,7 +20,7 @@ struct GithubLoginView: View {
 
     @ObservedObject
     var accountModel: EditorAccountModel
-    
+
     var loginSuccessfulCallback: EditorAccountModel.LoginSuccessfulCallback
 
     init(dismissDialog: Binding<Bool>, loginSuccessfulCallback: @escaping EditorAccountModel.LoginSuccessfulCallback) {
@@ -114,7 +114,8 @@ struct GithubLoginView: View {
                     } else {
                         Button {
                             accountModel.loginGithub(gitAccountName: accountName,
-                                                     accountToken: accountToken, successCallback: loginSuccessfulCallback)
+                                                     accountToken: accountToken,
+                                                     successCallback: loginSuccessfulCallback)
                             self.dismissDialog = accountModel.dismissDialog
                         } label: {
                             Text("settings.global.login")

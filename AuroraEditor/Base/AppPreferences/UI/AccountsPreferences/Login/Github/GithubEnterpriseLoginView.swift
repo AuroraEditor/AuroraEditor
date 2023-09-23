@@ -79,7 +79,8 @@ struct GithubEnterpriseLoginView: View {
                             accountModel.loginGithubEnterprise(gitAccountName: accountName,
                                                                accountToken: accountToken,
                                                                accountName: accountName,
-                                                               enterpriseLink: eneterpriseLink, successCallback: loginSuccessfulCallback)
+                                                               enterpriseLink: eneterpriseLink,
+                                                               successCallback: loginSuccessfulCallback)
                             self.dismissDialog = accountModel.dismissDialog
                         } label: {
                             Text("settings.global.login")

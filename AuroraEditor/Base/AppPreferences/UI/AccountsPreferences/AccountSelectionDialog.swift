@@ -100,7 +100,7 @@ struct AccountSelectionDialog: View {
             implementationNeeded
         }
     }
-    
+
     private func dismissView() {
         self.dismiss()
     }

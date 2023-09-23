@@ -58,7 +58,7 @@ public struct PreferenceAccountsView: View {
             let index = gitAccounts.firstIndex(of: account)
             gitAccounts.remove(at: index ?? 0)
         }
-        
+
         prefs.preferences.accounts.sourceControlAccounts.gitAccount = gitAccounts
     }
 }
