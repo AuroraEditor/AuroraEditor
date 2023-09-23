@@ -28,7 +28,7 @@ public struct PreferenceAccountsView: View {
                     .foregroundColor(.secondary)
             } else {
                 List($prefs.preferences.accounts.sourceControlAccounts.gitAccount) { account in
-                    AccountItemView(account: account)
+                    AccountItemView(account: account, onDeleteCallback: removeSourceControlAccount)
                 }
                 .frame(minHeight: 435)
                 .padding(.horizontal, -10)
@@ -51,13 +51,15 @@ public struct PreferenceAccountsView: View {
         }
     }
 
-    private func removeSourceControlAccount(selectedAccountId: String) {
+    func removeSourceControlAccount(selectedAccountId: String) {
         var gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
 
         for account in gitAccounts where account.id == selectedAccountId {
             let index = gitAccounts.firstIndex(of: account)
             gitAccounts.remove(at: index ?? 0)
         }
+        
+        prefs.preferences.accounts.sourceControlAccounts.gitAccount = gitAccounts
     }
 }
 

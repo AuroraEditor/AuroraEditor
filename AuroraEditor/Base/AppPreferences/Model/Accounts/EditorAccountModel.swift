@@ -9,6 +9,8 @@
 import Foundation
 
 class EditorAccountModel: ObservableObject {
+    
+    typealias LoginSuccessfulCallback = () -> Void
 
     private var prefs: AppPreferencesModel = .shared
 
@@ -22,7 +24,7 @@ class EditorAccountModel: ObservableObject {
     }
 
     func loginAuroraEditor(email: String,
-                           password: String) {
+                           password: String, successCallback: @escaping LoginSuccessfulCallback) {
 
         let parameters: [String: Any] = [
             "email": email,
@@ -43,7 +45,7 @@ class EditorAccountModel: ObservableObject {
 
                     DispatchQueue.main.async {
                         self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
-                            SourceControlAccounts(id: login.user.id,
+                            SourceControlAccounts(id: "aurora-" + login.user.id,
                                                   gitProvider: "Aurora Editor",
                                                   gitProviderLink: "https://auroraeditor.com",
                                                   gitProviderDescription: "Official Aurora Editor Account",
@@ -55,8 +57,8 @@ class EditorAccountModel: ObservableObject {
                                                   gitSSHKey: "",
                                                   isTokenValid: true)
                         )
-
-                        self.dismissDialog = false
+                        self.dismissDialog.toggle()
+                        successCallback()
                     }
                     self.keychain.set(login.accessToken, forKey: "auroraeditor_access_\(email)")
                     self.keychain.set(login.refreshToken, forKey: "auroraeditor_refresh_\(email)")
@@ -71,7 +73,7 @@ class EditorAccountModel: ObservableObject {
 
     func loginGitlab(gitAccountName: String,
                      accountToken: String,
-                     accountName: String) {
+                     accountName: String, successCallback: @escaping LoginSuccessfulCallback) {
         let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
 
         let config = GitlabTokenConfiguration(accountToken)
@@ -83,7 +85,7 @@ class EditorAccountModel: ObservableObject {
                 } else {
                     Log.info(user)
                     self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
-                        SourceControlAccounts(id: gitAccountName.lowercased(),
+                        SourceControlAccounts(id: "gitlab-" + gitAccountName.lowercased(),
                                               gitProvider: "Gitlab",
                                               gitProviderLink: "https://gitlab.com",
                                               gitProviderDescription: "Gitlab",
@@ -95,7 +97,8 @@ class EditorAccountModel: ObservableObject {
                                               gitSSHKey: "",
                                               isTokenValid: true))
                     self.keychain.set(accountToken, forKey: "gitlab_\(accountName)")
-                    self.dismissDialog = false
+                    self.dismissDialog.toggle()
+                    successCallback()
                 }
             case .failure(let error):
                 Log.error(error)
@@ -105,7 +108,7 @@ class EditorAccountModel: ObservableObject {
 
     func loginGitlabSelfHosted(gitAccountName: String,
                                accountToken: String,
-                               enterpriseLink: String) {
+                               enterpriseLink: String, successCallback: @escaping LoginSuccessfulCallback) {
         let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
 
         let config = GitlabTokenConfiguration(accountToken,
@@ -118,7 +121,7 @@ class EditorAccountModel: ObservableObject {
                 } else {
                     Log.info(user)
                     self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
-                        SourceControlAccounts(id: gitAccountName.lowercased(),
+                        SourceControlAccounts(id: "gitlab-sh-" + gitAccountName.lowercased(),
                                               gitProvider: "Gitlab",
                                               gitProviderLink: enterpriseLink,
                                               gitProviderDescription: "Gitlab",
@@ -130,7 +133,8 @@ class EditorAccountModel: ObservableObject {
                                               gitSSHKey: "",
                                               isTokenValid: true))
                     self.keychain.set(accountToken, forKey: "gitlab_\(gitAccountName)_hosted")
-                    self.dismissDialog = false
+                    self.dismissDialog.toggle()
+                    successCallback()
                 }
             case .failure(let error):
                 Log.error(error)
@@ -139,7 +143,7 @@ class EditorAccountModel: ObservableObject {
     }
 
     func loginGithub(gitAccountName: String,
-                     accountToken: String) {
+                     accountToken: String, successCallback: @escaping LoginSuccessfulCallback) {
         let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
 
         let config = GithubTokenConfiguration(accountToken)
@@ -152,7 +156,7 @@ class EditorAccountModel: ObservableObject {
                     Log.info(user)
                     DispatchQueue.main.async {
                         self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
-                            SourceControlAccounts(id: gitAccountName.lowercased(),
+                            SourceControlAccounts(id: "github-" + gitAccountName.lowercased(),
                                                   gitProvider: "GitHub",
                                                   gitProviderLink: "https://github.com",
                                                   gitProviderDescription: "GitHub",
@@ -166,6 +170,7 @@ class EditorAccountModel: ObservableObject {
                         self.keychain.set(accountToken, forKey: "github_\(user.login!)")
                     }
                     self.dismissDialog.toggle()
+                    successCallback()
                 }
             case .failure(let error):
                 Log.error(error)
@@ -176,7 +181,7 @@ class EditorAccountModel: ObservableObject {
     func loginGithubEnterprise(gitAccountName: String,
                                accountToken: String,
                                accountName: String,
-                               enterpriseLink: String) {
+                               enterpriseLink: String, successCallback: @escaping LoginSuccessfulCallback) {
         let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
 
         let config = GithubTokenConfiguration(accountToken,
@@ -189,7 +194,7 @@ class EditorAccountModel: ObservableObject {
                 } else {
                     Log.info(user)
                     self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
-                        SourceControlAccounts(id: gitAccountName.lowercased(),
+                        SourceControlAccounts(id: "github-ent-" + gitAccountName.lowercased(),
                                               gitProvider: "GitHub",
                                               gitProviderLink: enterpriseLink,
                                               gitProviderDescription: "GitHub",
@@ -201,7 +206,8 @@ class EditorAccountModel: ObservableObject {
                                               gitSSHKey: "",
                                               isTokenValid: true))
                     self.keychain.set(accountToken, forKey: "github_\(accountName)_enterprise")
-                    self.dismissDialog = false
+                    self.dismissDialog.toggle()
+                    successCallback()
                 }
             case .failure(let error):
                 Log.error(error)
