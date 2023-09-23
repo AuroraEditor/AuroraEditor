@@ -41,11 +41,11 @@
 "settings.aurora.login.password" = "Enter your Password";
 "settings.aurora.login.create" = "Create a Aurora Editor account";
 
-"settings.github.enterprise.login.header" = "Sign in to your GitHub account";
+"settings.github.enterprise.login.header" = "Sign in to your GitHub Enterprise account";
 "settings.github.enterprise.login.enter.token" = "Enter your Personal Access Token";
 "settings.github.enterprise.login.create" = "Create a Token on GitHub Enterprise";
 
-"settings.github.login.header" = "Sign in to your GitHub Enterprise account";
+"settings.github.login.header" = "Sign in to your GitHub account";
 "settings.github.login.enter.token.personal" = "Enter your Personal Access Token";
 "settings.github.login.access.scopes" = "GitHub personal access tokens must have these scopes set:";
 "settings.github.login.access.public.key" = "admin:public_key";
