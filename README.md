@@ -44,7 +44,7 @@ It will support everything you could expect from an Xcode-inspired application, 
  <br />
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Motivation
@@ -164,6 +164,7 @@ Thanks goes to these wonderful people:
       <td align="center" valign="top" width="25%"><a href="http://hkamran.com"><img src="https://avatars.githubusercontent.com/u/16967687?v=4?s=100" width="100px;" alt="H. Kamran"/><br /><sub><b>H. Kamran</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3Ahkamran80" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="25%"><a href="http://fummicc1.net"><img src="https://avatars.githubusercontent.com/u/44002126?v=4?s=100" width="100px;" alt="Fumiya Tanaka"/><br /><sub><b>Fumiya Tanaka</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3Afummicc1" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="25%"><a href="https://github.com/ameen4455"><img src="https://avatars.githubusercontent.com/u/43875940?v=4?s=100" width="100px;" alt="ameen4455"/><br /><sub><b>ameen4455</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3Aameen4455" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="25%"><a href="http://mithem.github.io"><img src="https://avatars.githubusercontent.com/u/41842729?v=4?s=100" width="100px;" alt="mithem"/><br /><sub><b>mithem</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3Amithem" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
