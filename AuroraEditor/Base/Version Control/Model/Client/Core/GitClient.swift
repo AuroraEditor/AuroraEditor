@@ -282,4 +282,31 @@ public class GitClient: ObservableObject {
             }
         }
     }
+    
+    public func stage(files: [String]) throws {
+        let output = try shellClient.run("cd \(directoryURL.relativePath.escapedWhiteSpaces());git add \(files.joined(separator: " "))")
+        if output.contains("fatal") {
+            throw GitClientError.outputError(output)
+        } else {
+            Log.info("Successfully staged files: \(files.joined(separator: ", "))")
+        }
+    }
+    
+    public func unstage(files: [String]) throws {
+        let output = try shellClient.run("cd \(directoryURL.relativePath.escapedWhiteSpaces());git restore --staged \(files.joined(separator: " "))")
+        if output.contains("fatal") {
+            throw GitClientError.outputError(output)
+        } else {
+            Log.info("Successfully unstaged files: \(files.joined(separator: ", "))")
+        }
+    }
+    
+    public func commit(message: String) throws {
+        let output = try shellClient.run("cd \(directoryURL.relativePath.escapedWhiteSpaces());git commit -m '\(message.escapedQuotes())'")
+        if output.contains("fatal") {
+            throw GitClientError.outputError(output)
+        } else {
+            Log.info("Successfully commited with message \"\(message)\"")
+        }
+    }
 }

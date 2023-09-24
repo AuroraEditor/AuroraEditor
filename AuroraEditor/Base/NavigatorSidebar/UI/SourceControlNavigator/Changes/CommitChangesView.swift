@@ -20,6 +20,9 @@ struct CommitChangesView: View {
 
     @State
     var workspace: WorkspaceDocument
+    
+    @State
+    private var stageAll: Bool = false
 
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
@@ -60,9 +63,10 @@ struct CommitChangesView: View {
             .clipShape(RoundedRectangle(cornerRadius: 6))
             .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.secondary, lineWidth: 0.5).cornerRadius(6))
 
-            Button {
-
-            } label: {
+            Toggle(isOn: $stageAll) {
+                Text("Stage All")
+            }
+            Button(action: commit) {
                 Text("Commit to **\(currentGitBranchName())**")
                     .foregroundColor(.white)
                     .font(.system(size: 11))
@@ -113,6 +117,27 @@ struct CommitChangesView: View {
     private func currentGitBranchName() -> String {
         guard let branchName = try? gitClient?.getCurrentBranchName() else { return "Not Available" }
         return branchName
+    }
+    
+    private func commit() {
+        guard let client = gitClient else { Log.error("No git client!"); return } // TODO: Proper error handling.
+        do {
+            let changedFiles = (try? client.getChangedFiles().map {$0.fileName}) ?? []
+            if !changedFiles.isEmpty {
+                if stageAll {
+                    try client.stage(files: changedFiles)
+                }
+                var message = summaryText
+                if !descriptionText.isEmpty {
+                    message += "\n\n" + descriptionText
+                }
+                try client.commit(message: message)
+            } else {
+                Log.info("No changes to commit!")
+            }
+        } catch (let err) {
+            Log.error(err)
+        }
     }
 }
 
