@@ -451,6 +451,7 @@
 		2BE487F428245162003F3F64 /* Open With Aurora Editor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BE487EC28245162003F3F64 /* Open With Aurora Editor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */; };
 		2BF86A4228AF9EA400079705 /* AEExtensionKit in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		2BF915DF2AC03D5900A10273 /* SourceControlRelatedMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF915DE2AC03D5800A10273 /* SourceControlRelatedMenu.swift */; };
 		6C05A8AF284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */; };
 		7BBF20172939B11400D60627 /* RecentProjectsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBF20162939B11400D60627 /* RecentProjectsStore.swift */; };
 		9302A22428D183E300648D63 /* TabBarItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9302A22328D183E300648D63 /* TabBarItemStorage.swift */; };
@@ -1072,6 +1073,7 @@
 		2BE487EC28245162003F3F64 /* Open With Aurora Editor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Open With Aurora Editor.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE487EE28245162003F3F64 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
 		2BE487F028245162003F3F64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BF915DE2AC03D5800A10273 /* SourceControlRelatedMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceControlRelatedMenu.swift; sourceTree = "<group>"; };
 		6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceDocument+Listeners.swift"; sourceTree = "<group>"; };
 		6CDA84AA284C0E4A00C1CC3A /* TabBarItemButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemButtonStyle.swift; sourceTree = "<group>"; };
 		6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContextMenu.swift; sourceTree = "<group>"; };
@@ -2851,6 +2853,7 @@
 		20DF979C28ABAA4C009CE1E9 /* Changes */ = {
 			isa = PBXGroup;
 			children = (
+				2BF915DE2AC03D5800A10273 /* SourceControlRelatedMenu.swift */,
 				20E8748F28A3ABA8002CE758 /* SourceControlController.swift */,
 				20E8748D28A3AB9B002CE758 /* SourceControlMenu.swift */,
 				201169E62837B5CA00F92B46 /* SourceControlModel.swift */,
@@ -3940,6 +3943,7 @@
 				2093CCA6289AA01A003A88DD /* FileItem.swift in Sources */,
 				939C2CC6289E345900BBB345 /* FileItemFileSystemFunctions.swift in Sources */,
 				20DF97A128ABB30D009CE1E9 /* FileManger.swift in Sources */,
+				2BF915DF2AC03D5900A10273 /* SourceControlRelatedMenu.swift in Sources */,
 				2093CD2E289AA089003A88DD /* Files.swift in Sources */,
 				2BDFA91A28D10B9200980385 /* FileSelectionItem.swift in Sources */,
 				93F0066928A757670038E5B7 /* FileSystemClient+FileIndex.swift in Sources */,
