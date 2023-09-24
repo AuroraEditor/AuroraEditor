@@ -45,7 +45,9 @@ struct ApplicationsDetailsView: View {
                 Text("Aurora Editor")
                     .font(.system(size: 24, weight: .regular))
 
-                Text("about.version \(appVersion) (\(appBuild))")
+                Text(
+                    "about.version".localized(appVersion, appBuild)
+                )
                     .textSelection(.enabled)
                     .foregroundColor(.secondary)
                     .font(.system(size: 12, weight: .light))
