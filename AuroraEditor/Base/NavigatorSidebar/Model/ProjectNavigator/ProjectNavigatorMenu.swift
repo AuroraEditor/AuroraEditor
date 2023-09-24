@@ -147,7 +147,10 @@ final class ProjectNavigatorMenu: NSMenu {
 
     /// Submenu for **Source Control** menu item.
     private func sourceControlMenu(item: Item) -> NSMenu {
-        guard let workspaceURL = workspace?.workspaceURL() else { fatalError("No workspace URL configured") } // TODO: Investigate more robust solutions
+        guard let workspaceURL = workspace?.workspaceURL() else {
+            // TODO: Investigate more robust solutions
+            fatalError("No workspace URL configured")
+        }
         let menu = SourceControlRelatedMenu(sender: outlineView, workspaceURL: workspaceURL)
         menu.item = item
         menu.setupMenu()

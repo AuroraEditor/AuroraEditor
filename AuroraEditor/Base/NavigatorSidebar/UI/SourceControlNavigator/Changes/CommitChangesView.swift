@@ -20,7 +20,7 @@ struct CommitChangesView: View {
 
     @State
     var workspace: WorkspaceDocument
-    
+
     @State
     private var stageAll: Bool = false
 
@@ -118,11 +118,11 @@ struct CommitChangesView: View {
         guard let branchName = try? gitClient?.getCurrentBranchName() else { return "Not Available" }
         return branchName
     }
-    
+
     private func commit() {
         guard let client = gitClient else { Log.error("No git client!"); return } // TODO: Proper error handling.
         do {
-            let changedFiles = (try? client.getChangedFiles().map {$0.fileName}) ?? []
+            let changedFiles = (try? client.getChangedFiles().map { $0.fileName }) ?? []
             if !changedFiles.isEmpty {
                 if stageAll {
                     try client.stage(files: changedFiles)
@@ -135,7 +135,7 @@ struct CommitChangesView: View {
             } else {
                 Log.info("No changes to commit!")
             }
-        } catch (let err) {
+        } catch let err {
             Log.error(err)
         }
     }

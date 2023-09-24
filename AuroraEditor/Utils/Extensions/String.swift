@@ -104,7 +104,7 @@ extension String {
     func escapedWhiteSpaces() -> String {
         self.replacingOccurrences(of: " ", with: "\\ ")
     }
-    
+
     /// Escape single quotes
     func escapedQuotes() -> String {
         return self.replacingOccurrences(of: "'", with: "\'")

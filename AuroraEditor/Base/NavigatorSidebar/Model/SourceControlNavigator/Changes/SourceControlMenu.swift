@@ -52,15 +52,15 @@ final class SourceControlMenu: NSMenu {
         let openInTab = menuItem("Open in Tab", action: #selector(openInTab))
         let openInNewWindow = menuItem("Open in New Indow", action: nil)
         let openExternalEditor = menuItem("Open with External Editor", action: #selector(openWithExternalEditor))
-        
-        let sourceControlRelatedMenu = SourceControlRelatedMenu(sender: outlineView, workspaceURL: gitClient.directoryURL)
+        let sourceControlRelatedMenu = SourceControlRelatedMenu(
+            sender: outlineView,
+            workspaceURL: gitClient.directoryURL
+        )
         sourceControlRelatedMenu.item = item
         sourceControlRelatedMenu.setupMenu()
-        
+
         let sourceControl = menuItem("Source Control", action: nil)
         setSubmenu(sourceControlRelatedMenu, for: sourceControl)
-
-
         items = [
             showInFinder,
             revealInProjectNav,
