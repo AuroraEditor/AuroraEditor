@@ -14,7 +14,7 @@ import Combine
 import Version_Control
 
 // A protocol to make calls to terminal to init a git call.
-public class GitClient: ObservableObject { // swiftlint:disable:this type_body_length
+public class GitClient: ObservableObject {
     var directoryURL: URL
     var shellClient: ShellClient
 
@@ -53,8 +53,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
 
     public func getCurrentBranchName() throws -> String {
         let output = try shellClient.run(
-            "cd \(directoryURL.relativePath.escapedWhiteSpaces());" +
-            "git rev-parse --abbrev-ref HEAD"
+            "cd \(directoryURL.relativePath.escapedWhiteSpaces());git rev-parse --abbrev-ref HEAD"
         )
             .replacingOccurrences(of: "\n", with: "")
         if output.contains("fatal: not a git repository") {
@@ -82,8 +81,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
     public func checkoutBranch(name: String) throws {
         guard currentBranchNameSubject.value != name else { return }
         let output = try shellClient.run(
-            "cd \(directoryURL.relativePath.escapedWhiteSpaces());" +
-            "git checkout \(name)"
+            "cd \(directoryURL.relativePath.escapedWhiteSpaces());git checkout \(name)"
         )
         if output.contains("fatal: not a git repository") {
             throw GitClientError.notGitRepository
@@ -282,41 +280,6 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
             } else {
                 Log.info("Successfully stashed changes!")
             }
-        }
-    }
-
-    public func stage(files: [String]) throws {
-        let output = try shellClient.run(
-            "cd \(directoryURL.relativePath.escapedWhiteSpaces());git add \(files.joined(separator: " "))"
-        )
-        if output.contains("fatal") {
-            throw GitClientError.outputError(output)
-        } else {
-            Log.info("Successfully staged files: \(files.joined(separator: ", "))")
-        }
-    }
-
-    public func unstage(files: [String]) throws {
-        let output = try shellClient.run(
-            "cd \(directoryURL.relativePath.escapedWhiteSpaces());" +
-            "git restore --staged \(files.joined(separator: " "))"
-        )
-        if output.contains("fatal") {
-            throw GitClientError.outputError(output)
-        } else {
-            Log.info("Successfully unstaged files: \(files.joined(separator: ", "))")
-        }
-    }
-
-    public func commit(message: String) throws {
-        let output = try shellClient.run(
-            "cd \(directoryURL.relativePath.escapedWhiteSpaces());" +
-            "git commit -m '\(message.escapedQuotes())'"
-        )
-        if output.contains("fatal") {
-            throw GitClientError.outputError(output)
-        } else {
-            Log.info("Successfully commited with message \"\(message)\"")
         }
     }
 }

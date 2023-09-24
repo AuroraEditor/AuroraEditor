@@ -105,11 +105,6 @@ extension String {
         self.replacingOccurrences(of: " ", with: "\\ ")
     }
 
-    /// Escape single quotes
-    func escapedQuotes() -> String {
-        return self.replacingOccurrences(of: "'", with: "\'")
-    }
-
     func index(from: Int) -> Index {
         return self.index(self.startIndex, offsetBy: from)
     }

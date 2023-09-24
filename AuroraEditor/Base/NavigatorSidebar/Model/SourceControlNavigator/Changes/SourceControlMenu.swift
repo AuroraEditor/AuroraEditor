@@ -44,7 +44,7 @@ final class SourceControlMenu: NSMenu {
         return mItem
     }
 
-    func setupMenu() {
+    private func setupMenu() {
 
         let showInFinder = menuItem("Show in Finder", action: #selector(showInFinder))
         let revealInProjectNav = menuItem("Reveal in Project Navigator", action: nil)
@@ -52,15 +52,15 @@ final class SourceControlMenu: NSMenu {
         let openInTab = menuItem("Open in Tab", action: #selector(openInTab))
         let openInNewWindow = menuItem("Open in New Indow", action: nil)
         let openExternalEditor = menuItem("Open with External Editor", action: #selector(openWithExternalEditor))
-        let sourceControlRelatedMenu = SourceControlRelatedMenu(
-            sender: outlineView,
-            workspaceURL: gitClient.directoryURL
-        )
-        sourceControlRelatedMenu.item = item
-        sourceControlRelatedMenu.setupMenu()
 
-        let sourceControl = menuItem("Source Control", action: nil)
-        setSubmenu(sourceControlRelatedMenu, for: sourceControl)
+        let commitFile = menuItem("Commit \"\(item?.fileName ?? "Selected Files")\"...", action: nil)
+
+        let discardChanges = menuItem("Discard Changes in \"\(item?.fileName ?? "Selected Files")\"...",
+                                      action: #selector(discardChangesInFile))
+
+        let addSelectedFiles = menuItem("Add Selected Files...", action: nil)
+        let markAsResolved = menuItem("Mark Selected Files as Resolved", action: nil)
+
         items = [
             showInFinder,
             revealInProjectNav,
@@ -69,7 +69,12 @@ final class SourceControlMenu: NSMenu {
             openInNewWindow,
             openExternalEditor,
             NSMenuItem.separator(),
-            sourceControl
+            commitFile,
+            NSMenuItem.separator(),
+            discardChanges,
+            NSMenuItem.separator(),
+            addSelectedFiles,
+            markAsResolved
         ]
     }
 
@@ -105,6 +110,29 @@ final class SourceControlMenu: NSMenu {
 
     }
 
+    // TODO: Need to find a way to check for changes in the current selected file
+    @objc
+    private func discardChangesInFile() {
+        let alert = NSAlert()
+        alert.messageText = "Do you want to permanently discard all changes to \"\(item?.fileName ?? "")\"?"
+        alert.informativeText = "You can't undo this action"
+        alert.alertStyle = .critical
+        alert.addButton(withTitle: "Discard Changes")
+        alert.buttons.last?.hasDestructiveAction = true
+        alert.addButton(withTitle: "Cancel")
+        if alert.runModal() == .alertFirstButtonReturn {
+            do {
+                try gitClient.discardFileChanges(url: (item?.url.path)!)
+            } catch {
+                Log.error("Error when trying to discard changes in file!")
+            }
+        }
+    }
+
+    @objc
+    private func addSelectedFiles() {
+
+    }
 }
 
 extension NSMenuItem {
