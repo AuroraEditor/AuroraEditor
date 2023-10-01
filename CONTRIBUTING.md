@@ -1,6 +1,6 @@
 # Contribute to Aurora Editor
 
-Feel free to join and collaborate on our [Discord Server](https://discord.gg/vChUXVf9Em).
+Feel free to join and collaborate on our [Discord Server](https://discord.gg/5aecJ4rq9D).
 
 > Note:
 > Since Aurora Editor is still in the development stage it can crash randomly.
@@ -29,7 +29,10 @@ If you find an issue you want to work on, please indicate it in the issue by com
 
 ## Getting Started
 
-...
+1. Fork this repository
+2. Clone to your own Mac `git clone https://github.com/yourusername/AuroraEditor.git`
+3. Write your changes
+4. Create PR
 
 &nbsp;
 
