@@ -69,7 +69,7 @@ jobs:
 
       - name: "Create Release Build Archive"
         run: | 
-          set -o pipefail && xcodebuild -workspace "Aurora Editor.xcworkspace" -scheme "Aurora Editor (Release)" -configuration Release archive -archivePath "builds/Aurora Editor.xcarchive" DEVELOPMENT_TEAM=4V2D72S45C | xcpretty 
+          set -o pipefail && xcodebuild -workspace "Aurora Editor.xcworkspace" -scheme "Aurora Editor (Release)" -configuration Release archive -archivePath "builds/Aurora Editor.xcarchive" DEVELOPMENT_TEAM=4V2D72S45C OTHER_CODE_SIGN_FLAGS="--options=runtime" | xcpretty 
 
       - name: "Export Release Build"
         run: |
