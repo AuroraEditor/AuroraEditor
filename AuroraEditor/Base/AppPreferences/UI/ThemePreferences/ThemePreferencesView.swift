@@ -109,7 +109,7 @@ public struct ThemePreferencesView: View {
     private var sidebarScrollView: some View {
         ScrollView {
             let grid: [GridItem] = .init(
-                repeating: .init(.fixed(130), spacing: 20, alignment: .center),
+                repeating: .init(.fixed(130), spacing: 20, alignment: .top),
                 count: 2
             )
             LazyVGrid(columns: grid,
