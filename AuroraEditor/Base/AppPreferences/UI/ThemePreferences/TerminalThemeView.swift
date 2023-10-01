@@ -25,12 +25,14 @@ struct TerminalThemeView: View {
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             } else {
-                VStack(alignment: .leading, spacing: 15) {
-                    topToggles
-                    colorSelector
-                    ansiColorSelector
+                ScrollView(.vertical, showsIndicators: true) {
+                    VStack(alignment: .leading, spacing: 15) {
+                        topToggles
+                        colorSelector
+                        ansiColorSelector
+                    }
+                    .padding(10)
                 }
-                .padding(20)
             }
         }
     }
@@ -57,9 +59,6 @@ struct TerminalThemeView: View {
                                                label: "settings.theme.terminal.text.bold")
                         PreferencesColorPicker($themeModel.themes[index].terminal.cursor.swiftColor,
                                                label: "settings.theme.terminal.cursor")
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    VStack(alignment: .leading, spacing: 10) {
                         PreferencesColorPicker($themeModel.themes[index].terminal.background.swiftColor,
                                                label: "settings.theme.terminal.background")
                         PreferencesColorPicker($themeModel.themes[index].terminal.selection.swiftColor,
@@ -105,7 +104,6 @@ struct TerminalThemeView: View {
                     PreferencesColorPicker($themeModel.themes[index].terminal.brightCyan.swiftColor)
                     PreferencesColorPicker($themeModel.themes[index].terminal.brightWhite.swiftColor)
                 }
-                .padding(.top, 5)
             }
         }
     }
