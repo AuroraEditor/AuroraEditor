@@ -69,7 +69,7 @@ jobs:
 
       - name: "Create Release Build Archive"
         run: | 
-          set -o pipefail && xcodebuild -workspace "Aurora Editor.xcworkspace" -scheme "Aurora Editor (Release)" -configuration Release archive -archivePath "builds/Aurora Editor.xcarchive" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty 
+          set -o pipefail && xcodebuild -workspace "Aurora Editor.xcworkspace" -scheme "Aurora Editor (Release)" -configuration Release archive -archivePath "builds/Aurora Editor.xcarchive" | xcpretty 
 
       - name: "Export Release Build"
         run: |
@@ -85,7 +85,6 @@ jobs:
         run: |
           xcrun notarytool submit "Aurora Editor 1.0.dmg" --apple-id "${{ secrets.APPLEID_EMAIL }}" --password "${{ secrets.APPLEID_PASSWORD }}" --team-id "4V2D72S45C" --wait > notarytool.log
           cat notarytool.log
-          ID=`cat notarytool.log | grep -m1 id: | cut -d':' -f 2`
           xcrun notarytool log "$(cat notarytool.log | grep -m1 id: | cut -d':' -f 2 | sed  s/\ //g)" --apple-id "${{ secrets.APPLEID_EMAIL }}" --password "${{ secrets.APPLEID_PASSWORD }}" --team-id "4V2D72S45C"
         
       # - name: "Staple Release Build"
