@@ -106,3 +106,61 @@ jobs:
         if: ${{ always() }}
         run: |
           security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
+
+      - name: Extract Version Info and Calculate SHA-256
+        id: version_and_sha
+        run: |
+          # Get the version name (CFBundleShortVersionString)
+          version_name=$(agvtool what-marketing-version -terse1)
+          # Get the version code (CFBundleVersion)
+          version_code=$(agvtool what-version -terse)
+          sha256sum=$(shasum -a 256 "Aurora Editor 1.0.dmg" | awk '{ print $1 }')
+
+          echo "version_name=$version_name" >> $GITHUB_OUTPUT
+          echo "version_code=$version_code" >> $GITHUB_OUTPUT
+          echo "sha256sum=$sha256sum" >> $GITHUB_OUTPUT
+
+      - name: Create a Updated nightly.json File
+        run: |
+          version_name=${{ steps.version_and_sha.outputs.version_name }}
+          version_code=${{ steps.version_and_sha.outputs.version_code }}
+          sha256sum=${{ steps.version_and_sha.outputs.sha256sum }}
+          
+          echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/nightly/main/AuroraEditor_Nightly.zip\"}" > app_info.json
+
+      - name: Get SHA of nightly.json file
+        id: get_sha
+        env:
+          PAT: ${{ secrets.BOT_TOKEN }}
+        run: |
+          result=$(curl -s -H "Authorization: Bearer $PAT" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/AuroraEditor/auroraeditor.com/contents/public/updates/dynamic/macos/nightly.json 2>&1)
+    
+          # Check for errors and log stderr
+          if [ $? -ne 0 ]; then
+            echo "Error occurred during curl request:"
+            echo "$result"
+            exit 1
+          fi
+    
+          # Extract SHA from the JSON response
+          SHA=$(echo "$result" | jq -r '.sha')
+
+          echo "sha=$SHA" >> $GITHUB_OUTPUT
+
+      - name: Commit Updated nightly.json to auroraeditor.com Repository
+        env:
+          PAT: ${{ secrets.BOT_TOKEN }}
+        run: |
+          sha=${{ steps.get_sha.outputs.sha }}
+          json_content=$(cat app_info.json)
+          commit_message="Updated nightly.json"
+    
+          # Define the API URL
+          api_url="https://api.github.com/repos/AuroraEditor/auroraeditor.com/contents/public/updates/dynamic/macos/nightly.json"
+
+          # Use curl to create the commit with the updated JSON file
+          curl -H "Authorization: Bearer $PAT" -X PUT \
+            -d "{\"message\": \"$commit_message\", \"content\": \"$(base64 <<< $json_content)\", \"branch\": \"main\", \"sha\": \"$sha\"}" \
+            "$api_url"
