@@ -82,7 +82,11 @@ jobs:
         run: create-dmg "builds/Aurora Editor.app"
 
       - name: "notarytool submit"
-        run: xcrun notarytool submit "Aurora Editor 1.0.dmg" --apple-id "${{ secrets.APPLEID_EMAIL }}" --password "${{ secrets.APPLEID_PASSWORD }}" --team-id "4V2D72S45C" --wait
+        run: |
+          xcrun notarytool submit "Aurora Editor 1.0.dmg" --apple-id "${{ secrets.APPLEID_EMAIL }}" --password "${{ secrets.APPLEID_PASSWORD }}" --team-id "4V2D72S45C" --wait > notarytool.log
+          cat notarytool.log
+          ID=`cat notarytool.log | grep -m1 id: | cut -d':' -f 2`
+          xcrun notarytool log "$(cat notarytool.log | grep -m1 id: | cut -d':' -f 2 | sed  s/\ //g)" --apple-id "${{ secrets.APPLEID_EMAIL }}" --password "${{ secrets.APPLEID_PASSWORD }}" --team-id "4V2D72S45C"
         
       # - name: "Staple Release Build"
       # run: xcrun stapler staple "Aurora Editor 1.0.dmg"
