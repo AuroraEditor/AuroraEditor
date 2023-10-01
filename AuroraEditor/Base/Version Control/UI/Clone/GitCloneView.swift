@@ -64,12 +64,12 @@ public struct GitCloneView: View {
     func getRemoteHead(url: String) {
         do {
             let branch = try getRemoteHEAD(url: url)
-            if branch[0].contains("fatal:") {
+            if branch.contains("fatal:") {
                 Log.warning("Error: getRemoteHead")
                 activeSheet = .error("Error: getRemoteHead")
             } else {
-                self.mainBranch = branch[0]
-                self.selectedBranch = branch[0]
+                self.mainBranch = branch
+                self.selectedBranch = branch
                 self.check += 1
                 if check == 2 {
                     check = 0
