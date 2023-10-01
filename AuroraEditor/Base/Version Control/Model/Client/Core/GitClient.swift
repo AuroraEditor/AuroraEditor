@@ -67,7 +67,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
     }
 
     public func getGitBranches(allBranches: Bool = false) throws -> [String] {
-        let branches = try getBranches(allBranches, directoryURL: directoryURL)
+        let branches = try Branch().getBranches(allBranches, directoryURL: directoryURL)
         if allBranches {
             allBranchNamesSubject.send(branches)
             publishedAllBranchNames = branches

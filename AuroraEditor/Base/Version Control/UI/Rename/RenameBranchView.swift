@@ -95,7 +95,7 @@ struct RenameBranchView: View {
                 } else {
                     Button {
                         do {
-                            try renameBranch(directoryURL: workspace.workspaceURL(),
+                            try Branch().renameBranch(directoryURL: workspace.workspaceURL(),
                                              branch: currentBranchName,
                                              newName: newBranchName)
                             dismiss()
