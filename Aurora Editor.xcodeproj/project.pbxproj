@@ -3705,7 +3705,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Only check if swiftlint is installed, otherwise don't worry\nif which swiftlint >/dev/null; then\n    if which brew >/dev/null; then\n        # Check for updates\n        brew update\n        # Check if swiftlint is outdated (exit with status 1)\n        brew outdated swiftlint &> /dev/null\n        if [ $? -eq 1 ] \n        then\n            echo \"There are updates available for swiftlint, please run 'brew upgrade swiftlint' to update.\";\n            exit 1;\n        fi\n    fi\nfi\n";
+			shellScript = "# Only check if swiftlint is installed, otherwise don't worry\nif which swiftlint >/dev/null; then\n    if which brew >/dev/null; then\n        # Check for updates\n        brew update\n        # Check if swiftlint is outdated (exit with status 1)\n        brew outdated swiftlint &> /dev/null\n        if [ $? -eq 1 ] \n        then\n            echo \"WARNING: There are updates available for swiftlint, please run 'brew upgrade swiftlint' to update.\";\n            exit 0;\n        fi\n    fi\nfi\n";
 		};
 		2BA119D327E5274D00A996FF /* SwiftLint Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
