@@ -69,12 +69,16 @@ jobs:
 
       - name: "Create Release Build Archive"
         run: | 
-          set -o pipefail && xcodebuild -workspace "Aurora Editor.xcworkspace" -scheme "Aurora Editor (Release)" -configuration Release archive -archivePath "builds/Aurora Editor.xcarchive" | xcpretty 
+          set -o pipefail && xcodebuild -workspace "Aurora Editor.xcworkspace" -scheme "Aurora Editor (Release)" -configuration Release archive -archivePath "builds/Aurora Editor.xcarchive" DEVELOPMENT_TEAM=4V2D72S45C | xcpretty 
 
       - name: "Export Release Build"
         run: |
           xcrun xcodebuild -exportArchive -exportOptionsPlist .github/export.plist -archivePath "builds/Aurora Editor.xcarchive" -exportPath builds
-        
+
+      - name: "Sign application"
+        run: |
+          codesign --sign "Developer ID Application: Wesley de Groot (4V2D72S45C)" -vvv --verbose --strict --options=runtime --prefix com.auroraeditor. --force --deep --timestamp "builds/Aurora Editor.app"
+
       - name: Install create-dmg
         run: npm install --global create-dmg
         
