@@ -126,7 +126,7 @@ jobs:
           version_code=${{ steps.version_and_sha.outputs.version_code }}
           sha256sum=${{ steps.version_and_sha.outputs.sha256sum }}
           
-          echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/nightly/main/AuroraEditor_Nightly.zip\"}" > app_info.json
+          echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/nightly/development/AuroraEditor_Nightly.zip\"}" > app_info.json
 
       - name: Get SHA of nightly.json file
         id: get_sha
