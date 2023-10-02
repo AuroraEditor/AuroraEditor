@@ -108,7 +108,7 @@ jobs:
         run: |
           # Extract the size information from the upload_artifact step's output
           upload_output=$(echo "${{ steps.upload_artifact.outputs.upload-artifact }}" | tr -d '\n')
-          size_bytes=$(echo "$upload_output" | grep -oP 'The size of all the files that were uploaded is \K[0-9]+')
+          size_bytes=$(echo "$upload_output" | grep -o 'The size of all the files that were uploaded is [0-9]\+ bytes' | grep -o '[0-9]\+')
 
           echo "Size: $size_bytes"
           echo "size_bytes=$size_bytes" >> $GITHUB_OUTPUT
