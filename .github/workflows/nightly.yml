@@ -110,7 +110,7 @@ jobs:
           file_path="Aurora Editor 1.0.dmg"
     
           # Calculate the file size in bytes
-          file_size_bytes=$(stat -c %s "$file_path")
+          file_size_bytes=$(ls -l "$file_path" | awk '{print $5}')
 
           echo "Size: $file_size_bytes"
           echo "file_size_bytes=$file_size_bytes" >> $GITHUB_OUTPUT
