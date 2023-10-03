@@ -103,15 +103,17 @@ jobs:
           # A file, directory or wildcard pattern that describes what to upload
           path: "Aurora Editor 1.0.dmg"
 
-      - name: Extract Artifact Size
-        id: extract_size
+      - name: Calculate File Size
+        id: calculate_size
         run: |
-          # Extract the size information from the upload_artifact step's output
-          upload_output=$(echo "${{ steps.upload_artifact.outputs.upload-artifact }}" | tr -d '\n')
-          size_bytes=$(echo "$upload_output" | grep -o 'The size of all the files that were uploaded is [0-9]\+ bytes' | grep -o '[0-9]\+')
+          # Specify the path to the file you want to calculate the size of
+          file_path="Aurora Editor 1.0.dmg"
+    
+          # Calculate the file size in bytes
+          file_size_bytes=$(stat -c %s "$file_path")
 
-          echo "Size: $size_bytes"
-          echo "size_bytes=$size_bytes" >> $GITHUB_OUTPUT
+          echo "Size: $file_size_bytes"
+          echo "file_size_bytes=$file_size_bytes" >> $GITHUB_OUTPUT
         
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
@@ -136,9 +138,9 @@ jobs:
           version_name=${{ steps.version_and_sha.outputs.version_name }}
           version_code=${{ steps.version_and_sha.outputs.version_code }}
           sha256sum=${{ steps.version_and_sha.outputs.sha256sum }}
-          size_bytes=${{ steps.extract_size.outputs.size_bytes }}
+          file_size_bytes=${{ steps.calculate_size.outputs.file_size_bytes }}
           
-          echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/nightly/development/AuroraEditor_Nightly.zip\", \"size\": \"$size_bytes\"}" > app_info.json
+          echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/nightly/development/AuroraEditor_Nightly.zip\", \"size\": \"$file_size_bytes\"}" > app_info.json
 
       - name: Get SHA of nightly.json file
         id: get_sha
