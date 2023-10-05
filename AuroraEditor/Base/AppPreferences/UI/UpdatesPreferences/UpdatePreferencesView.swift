@@ -13,6 +13,8 @@ struct UpdatePreferencesView: View {
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
+    private var repository: UpdateEditorRepository = UpdateEditorRepository()
+
     @ObservedObject
     private var updateModel: UpdateObservedModel = .shared
 
@@ -82,19 +84,56 @@ struct UpdatePreferencesView: View {
 
                 switch updateModel.updateState {
                 case .loading:
-                    checkingForUpdates()
-                case .success:
-                    checkForUpdates()
+                    UpdateLoadingState()
                 case .updateFound:
-                    updateAvailable()
+                    UpdateAvailableState(model: updateModel, prefs: prefs)
                 case .error:
-                    updateError()
+                    UpdateErrorState(prefs: prefs,
+                                     updateModel: updateModel)
+                case .cancelled:
+                    UpdateErrorState(prefs: prefs,
+                                     updateModel: updateModel)
+                case .timedOut:
+                    UpdateErrorState(prefs: prefs,
+                                     updateModel: updateModel)
+                case .networkConnectionLost:
+                    UpdateErrorState(prefs: prefs,
+                                     updateModel: updateModel)
+                case .cannotFindHost:
+                    UpdateErrorState(prefs: prefs,
+                                     updateModel: updateModel)
+                case .cannotConnectToHost:
+                    UpdateErrorState(prefs: prefs,
+                                     updateModel: updateModel)
+                case .notEnoughStorage:
+                    UpdateErrorState(prefs: prefs,
+                                     updateModel: updateModel)
+                case .invalidChecksum:
+                    UpdateErrorState(prefs: prefs,
+                                     updateModel: updateModel)
+                case .unzipError:
+                    UpdateErrorState(prefs: prefs,
+                                     updateModel: updateModel)
+                case .updateReady:
+                    UpdateReadyState(repository: repository,
+                                     model: updateModel,
+                                     prefs: prefs)
+                case .inProgress:
+                    UpdateInProgressState(repository: repository,
+                                          model: updateModel)
+                case .checksumInvalid:
+                    UpdateInvalidChecksumState(repository: repository,
+                                               prefs: prefs,
+                                               model: updateModel)
+                case .upToDate:
+                    UpdateUpToDateState(prefs: prefs,
+                                        model: updateModel)
                 }
 
                 // swiftlint:disable:next line_length
-                Text("Use of this software is subject to the original license agreement that accompanied the software being updated.")
-                    .lineLimit(2)
+                Text("Use of this software is subject to the [original license agreement](https://auroraeditor.com) that accompanied the software being updated.")
                     .multilineTextAlignment(.center)
+                    .lineLimit(2)
                     .font(.system(size: 11))
                     .foregroundColor(.secondary)
                     .padding(5)
@@ -102,133 +141,6 @@ struct UpdatePreferencesView: View {
         }
         .onAppear {
             updateModel.checkForUpdates()
-        }
-    }
-
-    func checkForUpdates() -> some View {
-        GroupBox {
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("Check for Updates")
-                        .font(.system(size: 12, weight: .medium))
-                    Spacer()
-                    Button {
-                        prefs.preferences.updates.lastChecked = Date()
-                        updateModel.checkForUpdates()
-                    } label: {
-                        Text("Check Now")
-                    }
-                }
-
-                Text("Aurora Editor \(appVersion) (\(shortCommitHash))")
-                    .font(.system(size: 11))
-                    .foregroundColor(.secondary)
-                    .padding(.top, 5)
-                    .padding(.bottom, -2)
-
-                // swiftlint:disable:next line_length
-                Text("Last Checked: \(prefs.preferences.updates.lastChecked.formatted(date: .complete, time: .standard)) ")
-                    .font(.system(size: 11))
-                    .foregroundColor(.secondary)
-                    .padding(.bottom, -2)
-
-                Text("Aurora Editor is up to date")
-                    .font(.system(size: 11))
-                    .foregroundColor(.secondary)
-                    .padding(.bottom, 5)
-
-            }
-            .padding(5)
-        }
-        .padding(5)
-    }
-
-    func checkingForUpdates() -> some View {
-        GroupBox {
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("Checking for Updates...")
-                        .font(.system(size: 12, weight: .medium))
-                    Spacer()
-
-                    ProgressView()
-                        .progressViewStyle(.linear)
-                        .frame(width: 100)
-
-                }
-            }
-            .padding(.vertical, 5)
-            .padding(.horizontal, 5)
-        }
-        .padding(5)
-    }
-
-    func updateAvailable() -> some View {
-        VStack {
-            GroupBox {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("settings.update.channel.update.available")
-                            .font(.system(size: 12, weight: .medium))
-
-                        Spacer()
-                        Button {
-
-                        } label: {
-                            Text("settings.update.channel.update.now")
-                        }
-                    }
-
-                    HStack {
-                        Text("\u{00B7} Aurora Editor Nightly Build")
-                            .foregroundColor(.secondary)
-
-                        Spacer()
-
-                        Text("10MB")
-                            .foregroundColor(.secondary)
-                    }
-
-                    if isUpdateButtonDisabled {
-                        Text("settings.update.channel.debug.build.warning")
-                            .font(.system(size: 11))
-                            .foregroundColor(.secondary)
-                            .padding(5)
-                    }
-
-                    Link("settings.update.learn.more",
-                         destination: URL(string: "https://auroraeditor.com")!)
-                    .font(.system(size: 11))
-                    .foregroundColor(.accentColor)
-                }
-                .padding(5)
-            }
-            .padding(5)
-            .disabled(isUpdateButtonDisabled)
-        }
-    }
-
-    func updateError() -> some View {
-        VStack {
-            GroupBox {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("settings.update.failure.checking")
-                            .font(.system(size: 12, weight: .medium))
-                            .foregroundColor(.red)
-                        Spacer()
-                        Button {
-                            prefs.preferences.updates.lastChecked = Date()
-                            updateModel.checkForUpdates()
-                        } label: {
-                            Text("settings.update.retry")
-                        }
-                    }
-
-                }
-                .padding(5)
-            }
-            .padding(5)
         }
     }
 

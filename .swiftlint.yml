@@ -11,6 +11,7 @@ excluded:
   - AuroraEditorModules/.build # Where Swift Package Manager checks out dependency sources
   - AuroraEditorCli/Package.swift # Package.swift should not be linted
   - Tools
+  - AEUpdateService
 
 # Exclude triggering type names.
 type_name:
