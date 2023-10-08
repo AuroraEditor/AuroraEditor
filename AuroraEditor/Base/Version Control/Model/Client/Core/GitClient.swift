@@ -190,16 +190,15 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         return try output
             .split(whereSeparator: \.isNewline)
             .map { line -> FileItem in
-                let paramData = line.trimmingCharacters(in: .whitespacesAndNewlines)
-                let parameters = paramData.components(separatedBy: " ")
-                let fileName = parameters[safe: 1] ?? String(describing: URLError.badURL)
+                let pattern = try Regex(#"(?<gittype>\w) {1,2}(?<filename>.+)"#)
+                guard let match = line.wholeMatch(of: pattern) else { throw GitClientError.failedToDecodeURL }
+                guard let fileName = match["filename"]?.substring else { throw GitClientError.failedToDecodeURL }
                 guard let url = URL(string: "file://\(directoryURL.relativePath)/\(fileName)") else {
                     throw GitClientError.failedToDecodeURL
                 }
 
-                var gitType: GitType {
-                    .init(rawValue: parameters[safe: 0] ?? "") ?? GitType.unknown
-                }
+                let gitTypeStr: String = String(match["gittype"]?.substring ?? "")
+                let gitType = GitType(rawValue: gitTypeStr) ?? .unknown
 
                 return FileItem(url: url, changeType: gitType)
             }
