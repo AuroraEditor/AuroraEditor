@@ -72,53 +72,7 @@ jobs:
           security list-keychain -d user -s $KEYCHAIN_PATH
 
       - name: "Update version number"
-        run: |
-          # Calculate the new version number based on SemVer
-          current_version=$(agvtool what-marketing-version -terse1)
-          IFS='.' read -r -a version_parts <<< "$current_version"
-    
-          # Increment the version components based on commit messages
-          new_major=${version_parts[0]}
-          new_minor=${version_parts[1]}
-          new_patch=${version_parts[2]}
-
-          echo "New version: $new_major.$new_minor.$new_patch"
-    
-          # Get the list of commit messages since the last version
-          commit_messages=$(git log --oneline $(git describe --tags --abbrev=0)..HEAD --format="%s")
-
-          version_name="V1.0.0"
-    
-          # Check commit messages for keywords
-          if echo "$commit_messages" | grep -q "breaking"; then
-            ((new_major++))
-            new_minor=0
-            new_patch=0
-            version_name="V$new_major"
-          elif echo "$commit_messages" | grep -q "feature"; then
-            ((new_minor++))
-            new_patch=0
-            version_name="V$new_major.$new_minor"
-          elif echo "$commit_messages" | grep -q "bug"; then
-            ((new_patch++))
-            version_name="V$new_major.$new_minor.$new_patch"
-          fi
-    
-          # Generate the new version number
-          new_version="$new_major.$new_minor.$new_patch"
-
-          if [[ $new_version =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            agvtool new-marketing-version "$new_version"
-            agvtool new-version -all "$version_name"
-            echo "New version: $new_version"
-            echo "Version name: $version_name"
-           else
-            # If the new version is not a valid semantic version, fall back to the old version
-            agvtool new-marketing-version "$current_version"
-            agvtool new-version -all "$version_name"
-            echo "Invalid new version, falling back to the old version: $current_version"
-            echo "Version name: $version_name"
-          fi
+        run: agvtool new-version -all `date -u "+%Y%m%d.%H%M"`
 
       - name: "Create Release Build Archive"
         run: | 
