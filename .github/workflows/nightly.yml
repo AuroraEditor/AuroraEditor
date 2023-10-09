@@ -81,6 +81,8 @@ jobs:
           new_major=${version_parts[0]}
           new_minor=${version_parts[1]}
           new_patch=${version_parts[2]}
+
+          echo "New version: $new_major.$new_minor.$new_patch"
     
           # Get the list of commit messages since the last version
           commit_messages=$(git log --oneline $(git describe --tags --abbrev=0)..HEAD --format="%s")
@@ -104,14 +106,19 @@ jobs:
     
           # Generate the new version number
           new_version="$new_major.$new_minor.$new_patch"
-    
-          # Update the version in your project
-          agvtool new-marketing-version "$new_version"
-          agvtool new-version -all "$version_name"
-    
-          # Print the new version for reference
-          echo "New version: $new_version"
-          echo "Version Name: $version_name"
+
+          if [[ $new_version =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            agvtool new-marketing-version "$new_version"
+            agvtool new-version -all "$version_name"
+            echo "New version: $new_version"
+            echo "Version name: $version_name"
+           else
+            # If the new version is not a valid semantic version, fall back to the old version
+            agvtool new-marketing-version "$current_version"
+            agvtool new-version -all "$version_name"
+            echo "Invalid new version, falling back to the old version: $current_version"
+            echo "Version name: $version_name"
+          fi
 
       - name: "Create Release Build Archive"
         run: | 
