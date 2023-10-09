@@ -77,17 +77,22 @@ jobs:
     
           # Get the list of commit messages since the last version
           commit_messages=$(git log --oneline $(git describe --tags --abbrev=0)..HEAD --format="%s")
+
+          version_name=""
     
           # Check commit messages for keywords
           if echo "$commit_messages" | grep -q "breaking"; then
             ((new_major++))
             new_minor=0
             new_patch=0
+            version_name="V$new_major"
           elif echo "$commit_messages" | grep -q "feature"; then
             ((new_minor++))
             new_patch=0
+            version_name="V$new_major.$new_minor"
           elif echo "$commit_messages" | grep -q "bug"; then
             ((new_patch++))
+            version_name="V$new_major.$new_minor.$new_patch"
           fi
     
           # Generate the new version number
@@ -95,10 +100,11 @@ jobs:
     
           # Update the version in your project
           agvtool new-marketing-version "$new_version"
+          agvtool new-version -all "$version_name"
     
           # Print the new version for reference
           echo "New version: $new_version"
-
+          echo "Version Name: $version_name"
 
       - name: "Create Release Build Archive"
         run: | 
