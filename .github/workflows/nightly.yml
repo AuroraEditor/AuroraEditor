@@ -65,7 +65,40 @@ jobs:
           security list-keychain -d user -s $KEYCHAIN_PATH
 
       - name: "Update version number"
-        run: agvtool new-version -all `date -u "+%Y%m%d.%H%M"`
+        run: |
+          # Calculate the new version number based on SemVer
+          current_version=$(agvtool what-marketing-version -terse1)
+          IFS='.' read -r -a version_parts <<< "$current_version"
+    
+          # Increment the version components based on commit messages
+          new_major=${version_parts[0]}
+          new_minor=${version_parts[1]}
+          new_patch=${version_parts[2]}
+    
+          # Get the list of commit messages since the last version
+          commit_messages=$(git log --oneline $(git describe --tags --abbrev=0)..HEAD --format="%s")
+    
+          # Check commit messages for keywords
+          if echo "$commit_messages" | grep -q "breaking"; then
+            ((new_major++))
+            new_minor=0
+            new_patch=0
+          elif echo "$commit_messages" | grep -q "feature"; then
+            ((new_minor++))
+            new_patch=0
+          elif echo "$commit_messages" | grep -q "bug"; then
+            ((new_patch++))
+          fi
+    
+          # Generate the new version number
+          new_version="$new_major.$new_minor.$new_patch"
+    
+          # Update the version in your project
+          agvtool new-marketing-version "$new_version"
+    
+          # Print the new version for reference
+          echo "New version: $new_version"
+
 
       - name: "Create Release Build Archive"
         run: | 
