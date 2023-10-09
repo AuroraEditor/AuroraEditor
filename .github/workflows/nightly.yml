@@ -9,6 +9,13 @@ jobs:
     runs-on: macos-12
     timeout-minutes: 30 # If a build exceeds 430 mins, it probably isn't ever going to complete
     steps:
+      - name: 'Cleanup build folder'
+        run: |
+          ls -la ./
+          rm -rf ./* || true
+          rm -rf ./.??* || true
+          ls -la ./
+        
       - uses: actions/checkout@v3
       
       - name: "Select Xcode 14.0"
@@ -78,7 +85,7 @@ jobs:
           # Get the list of commit messages since the last version
           commit_messages=$(git log --oneline $(git describe --tags --abbrev=0)..HEAD --format="%s")
 
-          version_name=""
+          version_name="V1.0.0"
     
           # Check commit messages for keywords
           if echo "$commit_messages" | grep -q "breaking"; then
