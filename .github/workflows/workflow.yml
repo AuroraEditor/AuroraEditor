@@ -1,22 +1,30 @@
 name: Build & Lint
 on:
   push:
-    branches: [ main, development ]
+    branches: [main, development]
   pull_request:
-    branches: [ main, development ]
+    branches: [main, development]
 jobs:
   build:
     runs-on: macos-12
-    timeout-minutes: 10 # If a build exceeds 10 mins, it probably isn't ever going to complete
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v3
+
       - name: MacOS Version
         run: sw_vers
+
       - name: Toolchain version
         run: swift -version
+
       - name: SwiftLint (version)
         run: swiftlint version
+
+      - name: Upgrade SwiftLint
+        run: brew upgrade swiftlint
+
       - name: SwiftLint (GH Actions)
         run: swiftlint --reporter github-actions-logging --strict
+
       - name: Swift (clean) Build
         run: set -o pipefail && xcodebuild -verbose -workspace "Aurora Editor.xcworkspace" -scheme "Aurora Editor" clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
