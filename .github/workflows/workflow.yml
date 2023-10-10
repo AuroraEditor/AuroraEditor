@@ -20,8 +20,27 @@ jobs:
       - name: SwiftLint (version)
         run: swiftlint version
 
+      - name: Check SwiftLint Version
+        id: check_swiftlint_version
+        run: |
+          current_version=$(swiftlint version)
+          latest_version=$(brew info swiftlint | grep -E -o "[0-9]+\.[0-9]+\.[0-9]+")
+          if [ "$current_version" == "$latest_version" ]; then
+            echo "SwiftLint is up to date. Skipping upgrade step."
+            echo "::set-output name=upgrade_required::false"
+          else
+            echo "SwiftLint needs to be upgraded."
+            echo "::set-output name=upgrade_required::true"
+          fi
+        shell: bash
+
       - name: Upgrade SwiftLint
-        run: brew upgrade swiftlint
+        run: |
+          upgrade_required="${{ steps.check_swiftlint_version.outputs.upgrade_required }}"
+          if [ "$upgrade_required" == "true" ]; then
+            brew upgrade swiftlint
+          fi
+        shell: bash
 
       - name: SwiftLint (GH Actions)
         run: swiftlint --reporter github-actions-logging --strict
