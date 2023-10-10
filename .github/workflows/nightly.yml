@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: "Select Xcode 15.0"
-        run: sudo xcode-select -s /Applications/Xcode-beta.app
+        run: sudo xcode-select -s /Applications/Xcode.app
         
         ### Certs
       - name: "Import Certificate: Development"
