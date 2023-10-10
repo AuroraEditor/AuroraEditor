@@ -28,33 +28,42 @@ jobs:
           P12_PASSWORD: ${{ secrets.DEVELOPMENT_CERTIFICATE_PASSPHRASE }}
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
         run: |
-          # create variables
-          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
-          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
-          # import certificate and provisioning profile from secrets
-          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode --output $CERTIFICATE_PATH
-          # create temporary keychain
-          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
-          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-          # import certificate to keychain
-          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-          security list-keychain -d user -s $KEYCHAIN_PATH
-      
+          # Create variables
+          CERTIFICATE_PATH="$RUNNER_TEMP/build_certificate.p12"
+          KEYCHAIN_PATH="$RUNNER_TEMP/app-signing.keychain-db"
+
+          # Import certificate and provisioning profile from secrets
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode --output "$CERTIFICATE_PATH"
+
+          # Create a temporary keychain
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+
+          # Import certificate into the keychain
+          security import "$CERTIFICATE_PATH" -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
+
+          # List keychains to verify the import
+          security list-keychains -s "$KEYCHAIN_PATH"
+
       - name: "Import Certificate: Distribution"
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.DISTRIBUTION_CERTIFICATE_DATA }}
           P12_PASSWORD: ${{ secrets.DISTRIBUTION_CERTIFICATE_PASSPHRASE }}
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
         run: |
-          # create variables
-          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
-          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
-          # import certificate and provisioning profile from secrets
-          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode --output $CERTIFICATE_PATH
-          # import certificate to keychain
-          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-          security list-keychain -d user -s $KEYCHAIN_PATH
+          # Create variables
+          CERTIFICATE_PATH="$RUNNER_TEMP/build_certificate.p12"
+          KEYCHAIN_PATH="$RUNNER_TEMP/app-signing.keychain-db"
+
+          # Import certificate and provisioning profile from secrets
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode --output "$CERTIFICATE_PATH"
+
+          # Import certificate into the keychain
+          security import "$CERTIFICATE_PATH" -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
+
+          # List keychains to verify the import
+          security list-keychains -s "$KEYCHAIN_PATH"
 
       - name: "Import Certificate: Developer ID Application"
         env:
@@ -62,14 +71,18 @@ jobs:
           P12_PASSWORD: ${{ secrets.DEVELOPER_ID_PASSPHRASE }}
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
         run: |
-          # create variables
-          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
-          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
-          # import certificate and provisioning profile from secrets
-          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode --output $CERTIFICATE_PATH
-          # import certificate to keychain
-          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-          security list-keychain -d user -s $KEYCHAIN_PATH
+          # Create variables
+          CERTIFICATE_PATH="$RUNNER_TEMP/build_certificate.p12"
+          KEYCHAIN_PATH="$RUNNER_TEMP/app-signing.keychain-db"
+
+          # Import certificate and provisioning profile from secrets
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode --output "$CERTIFICATE_PATH"
+
+          # Import certificate into the keychain
+          security import "$CERTIFICATE_PATH" -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
+
+          # List keychains to verify the import
+          security list-keychains -s "$KEYCHAIN_PATH"
 
       - name: "Update version number"
         id: version_info
@@ -134,13 +147,25 @@ jobs:
                DEVELOPMENT_TEAM=4V2D72S45C \
                OTHER_CODE_SIGN_FLAGS="--options=runtime" 2>/dev/null
                
-      - name: "Export Release Build"
-        run: |
-          xcrun xcodebuild -exportArchive -exportOptionsPlist .github/export.plist -archivePath "builds/Aurora Editor.xcarchive" -exportPath builds
+      - name: Export Release Build
+        run: xcodebuild -exportArchive \
+          -archivePath "builds/Aurora Editor.xcarchive" \
+          -exportPath "builds" \
+          -exportOptionsPlist .github/export.plist
 
       - name: "Sign application"
         run: |
+          # Check that the certificate and identity exist and are installed.
+          security find-identity -v -p codesigning
+
+          # Verify the application path is correct.
+          codesign --verify --deep --display "builds/Aurora Editor.app"
+
+          # Perform the code signing.
           codesign --sign "Developer ID Application: Wesley de Groot (4V2D72S45C)" -vvv --verbose --strict --options=runtime --prefix com.auroraeditor. --force --deep --timestamp "builds/Aurora Editor.app"
+
+          # Verify the code signature.
+          codesign --verify --deep --display --verbose "builds/Aurora Editor.app"
 
       - name: Install create-dmg
         run: npm install --global create-dmg
@@ -148,14 +173,27 @@ jobs:
       - name: Make Release Dmg
         run: create-dmg "builds/Aurora Editor.app"
 
-      - name: "notarytool submit"
+      - name: Notarize and Log
         run: |
-          xcrun notarytool submit "Aurora Editor 1.0.dmg" --apple-id "${{ secrets.APPLEID_EMAIL }}" --password "${{ secrets.APPLEID_PASSWORD }}" --team-id "4V2D72S45C" --wait > notarytool.log
+          # Submit the file for notarization and store the output in a log file.
+          xcrun notarytool submit "Aurora Editor 1.0.dmg" \
+          --apple-id "${{ secrets.APPLEID_EMAIL }}" \
+          --password "${{ secrets.APPLEID_PASSWORD }}" \
+          --team-id "4V2D72S45C" \
+          --wait > notarytool.log
+
+          # Display the contents of the log file.
           cat notarytool.log
-          xcrun notarytool log "$(cat notarytool.log | grep -m1 id: | cut -d':' -f 2 | sed  s/\ //g)" --apple-id "${{ secrets.APPLEID_EMAIL }}" --password "${{ secrets.APPLEID_PASSWORD }}" --team-id "4V2D72S45C"
-        
-      # - name: "Staple Release Build"
-      # run: xcrun stapler staple "Aurora Editor 1.0.dmg"
+
+          # Extract the request ID from the log and check the notarization status.
+          request_id="$(grep -m1 'id:' notarytool.log | cut -d':' -f 2 | tr -d '[:space:]')"
+          xcrun notarytool log "$request_id" \
+          --apple-id "${{ secrets.APPLEID_EMAIL }}" \
+          --password "${{ secrets.APPLEID_PASSWORD }}" \
+          --team-id "4V2D72S45C"
+
+      - name: "Staple Release Build"
+        run: xcrun stapler staple "Aurora Editor 1.0.dmg"
         
       - name: Upload a Build Artifact
         id: upload_artifact
