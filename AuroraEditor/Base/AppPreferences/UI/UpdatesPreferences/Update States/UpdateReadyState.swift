@@ -18,6 +18,9 @@ struct UpdateReadyState: View {
     @State
     private var prefs: AppPreferencesModel
 
+    @State
+    private var showInstallAlert: Bool = false
+
     init(repository: UpdateEditorRepository, model: UpdateObservedModel, prefs: AppPreferencesModel) {
         self.repository = repository
         self.model = model
@@ -33,15 +36,32 @@ struct UpdateReadyState: View {
                             .font(.system(size: 12, weight: .medium))
                         Spacer()
                         Button {
-                            guard let url = repository.updateFileUrl else {
-                                Log.debug("Invalid Url")
-                                return
-                            }
-                            Log.debug("aeupdateservice:\\\(url)")
-                            NSWorkspace.shared.open(URL(string: "aeupdateservice:\(url)")!)
+                            showInstallAlert.toggle()
                         } label: {
                             Text("Install Now")
                         }
+                        .alert("Restart Required",
+                               isPresented: $showInstallAlert, actions: {
+                            Button(role: .destructive) {
+                                guard let url = repository.updateFileUrl else {
+                                    Log.debug("Invalid Url")
+                                    return
+                                }
+
+                                NSWorkspace.shared.open(URL(string: "updateservice:\\\(url)")!)
+
+                                exit(0)
+                            } label: {
+                                Text("Continue")
+                            }
+
+                            Button(role: .cancel) {
+                            } label: {
+                                Text("Cancel")
+                            }
+                        }, message: {
+                            Text("The editor needs to be restarted in order to apply the update.")
+                        })
 
                         Button {
                         } label: {

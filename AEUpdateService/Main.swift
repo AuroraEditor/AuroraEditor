@@ -15,6 +15,7 @@ struct Main: App {
     init() {
         SentrySDK.start { options in
             options.dsn = ProcessInfo.processInfo.environment["SentryURL"]
+            options.debug = true
             options.enabled = true
             options.enableCrashHandler = true
             options.enableMetricKit = true
@@ -36,7 +37,7 @@ struct Main: App {
                         window.isMovableByWindowBackground = false
                         window.canHide = false
 
-                        window.maxSize = NSSize(width: 350, height: 485)
+                        window.maxSize = NSSize(width: 350, height: 400)
                     }
                 }
         }

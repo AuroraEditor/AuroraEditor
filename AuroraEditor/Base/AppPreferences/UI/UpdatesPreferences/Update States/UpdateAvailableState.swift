@@ -19,6 +19,9 @@ struct UpdateAvailableState: View {
     @State
     private var model: UpdateObservedModel
 
+    @State
+    private var showLicenseSheet: Bool = false
+
     init(model: UpdateObservedModel, prefs: AppPreferencesModel) {
         self.model = model
         self.prefs = prefs
@@ -34,9 +37,12 @@ struct UpdateAvailableState: View {
 
                         Spacer()
                         Button {
-                            model.updateState = .inProgress
+                            showLicenseSheet.toggle()
                         } label: {
                             Text("settings.update.channel.update.now")
+                        }
+                        .sheet(isPresented: $showLicenseSheet) {
+                            LicenseView(closeSheet: $showLicenseSheet, model: model)
                         }
                     }
 

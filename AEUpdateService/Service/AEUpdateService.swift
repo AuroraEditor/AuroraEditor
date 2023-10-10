@@ -20,8 +20,6 @@ class AEUpdateService: NSObject {
             mountProcess.launch()
             mountProcess.waitUntilExit()
 
-            SentrySDK.capture(message: mountProcess.arguments!.joined())
-
             // Define paths
             let applicationsFolder = try FileManager.default.url(for: .applicationDirectory, 
                                                                  in: .localDomainMask,
@@ -41,16 +39,61 @@ class AEUpdateService: NSObject {
             // Unmount the disk image
             let unmountProcess = Process()
             unmountProcess.launchPath = "/usr/bin/hdiutil"
-            unmountProcess.arguments = ["detach", sourcePath]
+            unmountProcess.arguments = ["detach", findAuroraEditorVolume(listVolumes()!)!]
             unmountProcess.launch()
             unmountProcess.waitUntilExit()
 
-            SentrySDK.capture(message: "Update installed successfully.")
             DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                NSWorkspace.shared.open(URL(string: "auroraeditor:\\")!)
                 exit(0)
             }
         } catch {
             SentrySDK.capture(message: "Error during update installation: \(error)")
         }
+    }
+
+    // Function to list volumes using diskutil
+    func listVolumes() -> String? {
+        let listProcess = Process()
+        listProcess.launchPath = "/usr/sbin/diskutil"
+        listProcess.arguments = ["list"]
+
+        let pipe = Pipe()
+        listProcess.standardOutput = pipe
+        listProcess.standardError = pipe
+
+        listProcess.launch()
+        listProcess.waitUntilExit()
+
+        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        return String(data: data, encoding: .utf8)
+    }
+
+    // Function to parse the list of volumes and identify the Aurora Editor volume
+    func findAuroraEditorVolume(_ diskutilOutput: String) -> String? {
+        // Split the output by newlines to process each line separately
+        let lines = diskutilOutput.split(separator: "\n")
+
+        // Variable to store the volume disk image
+        var auroraEditorDiskImage: String?
+
+        // Flag to indicate if we are currently looking at information about the Aurora Editor volume
+        var isAuroraEditorVolume = false
+
+        for line in lines {
+            // Check if the line contains the volume name or any other identifying information for Aurora Editor
+            if line.contains("Aurora Editor") {
+                isAuroraEditorVolume = true
+            } else if isAuroraEditorVolume && line.hasPrefix("/dev/") {
+                // Assuming that the line with "/dev/" prefix contains the disk image path
+                auroraEditorDiskImage = String(line)
+                break // We found what we needed, so we can exit the loop
+            } else if isAuroraEditorVolume && line.isEmpty {
+                // If we encounter an empty line after identifying the Aurora Editor volume, stop looking
+                break
+            }
+        }
+
+        return auroraEditorDiskImage
     }
 }

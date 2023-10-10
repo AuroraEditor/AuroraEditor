@@ -63,7 +63,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "SentryURL"
-            value = "https://e421445a5feb44a8ab02cb8b3a6ce88f@o1387904.ingest.sentry.io/6709568"
+            value = "https://e02d8cc5c6a8d1ee153d49b27f1ef937@o4505906598379520.ingest.sentry.io/4505906603294720"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

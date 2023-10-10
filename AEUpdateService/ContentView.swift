@@ -33,17 +33,16 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            Text("Installing AuroraEditor Update")
-                .frame(width: 200, height: 60)
+            Text("Installing Aurora Editor Update")
+                .frame(width: 300)
                 .multilineTextAlignment(.center)
                 .font(.system(size: 18, weight: .bold))
 
-            Image(.update)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+            LoaderView()
                 .frame(maxWidth: 300, maxHeight: 300)
 
             Text(updateText[randomIndex])
+                .frame(height: 32)
                 .font(.system(size: 12))
                 .padding(.vertical, 10)
                 .multilineTextAlignment(.center)
@@ -54,37 +53,26 @@ struct ContentView: View {
                     }
                 }
 
-            ProgressView()
-                .progressViewStyle(.linear)
-
         }
         .padding()
-        .frame(width: 350, height: 485)
+        .frame(width: 350, height: 400)
         .onOpenURL { url in
             // Define a set of allowed URL schemes.
             let allowedSchemes: Set<String> = ["updateservice", "aefallbackservice"]
 
             // Validate the URL scheme.
             guard let scheme = url.scheme, allowedSchemes.contains(scheme) else {
-                SentrySDK.capture(message: "Unsupported URL scheme: \(url.scheme ?? "Unknown")")
                 return
             }
-
-            SentrySDK.capture(message: "The last path is: \(url.relativeString.split(separator: "%5C")[1])")
 
             let dataUrl = url.relativeString.split(separator: "%5C")[1]
 
             do {
                 if scheme == "updateservice" {
-                    SentrySDK.capture(message: "The current scheme is: \(scheme)")
-
                     let fileManager = FileManager.default
-
-                    SentrySDK.capture(message: "The current directory is: \(dataUrl)")
 
                     // Ensure that the directory exists.
                     guard fileManager.fileExists(atPath: String(dataUrl)) else {
-                        SentrySDK.capture(message: "Directory does not exist: \(String(dataUrl))")
                         return
                     }
 
@@ -94,8 +82,6 @@ struct ContentView: View {
                     if let firstContent = contents.first {
                         // Perform the update operation.
                         AEUpdateService().installAuroraEditorUpdate(updateFile: "\(dataUrl)/\(firstContent)")
-                    } else {
-                        SentrySDK.capture(message: "Directory is empty.")
                     }
                 } else if scheme == "aefallbackservice" {
                     // Handle aefallbackservice scheme here if needed.
