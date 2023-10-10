@@ -126,8 +126,14 @@ jobs:
 
       - name: "Create Release Build Archive"
         run: | 
-          set -o pipefail && xcodebuild -workspace "Aurora Editor.xcworkspace" -scheme "Aurora Editor (Release)" -configuration Release archive -archivePath "builds/Aurora Editor.xcarchive" DEVELOPMENT_TEAM=4V2D72S45C OTHER_CODE_SIGN_FLAGS="--options=runtime" | xcpretty 
-
+          set -o pipefail
+               xcodebuild -workspace "Aurora Editor.xcworkspace" \
+               -scheme "Aurora Editor (Release)" \
+               -configuration Release archive \
+               -archivePath "builds/Aurora Editor.xcarchive" \
+               DEVELOPMENT_TEAM=4V2D72S45C \
+               OTHER_CODE_SIGN_FLAGS="--options=runtime" 2>/dev/null | xcpretty
+               
       - name: "Export Release Build"
         run: |
           xcrun xcodebuild -exportArchive -exportOptionsPlist .github/export.plist -archivePath "builds/Aurora Editor.xcarchive" -exportPath builds
