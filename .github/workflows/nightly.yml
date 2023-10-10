@@ -72,7 +72,57 @@ jobs:
           security list-keychain -d user -s $KEYCHAIN_PATH
 
       - name: "Update version number"
-        run: agvtool new-version -all `date -u "+%Y%m%d.%H%M"`
+        id: version_info
+        run: |
+          # Calculate the new version number based on SemVer
+          current_version=$(agvtool what-version -terse)
+          IFS='.' read -r -a version_parts <<< "$current_version"
+
+          # Initialize default values for new_minor and new_patch
+          default_minor=0
+          default_patch=0
+
+          # Assign values from version_parts or use default values if they don't exist
+          new_major=${version_parts[0]}
+          new_minor=${version_parts[1]:-$default_minor}
+          new_patch=${version_parts[2]:-$default_patch}
+
+          echo "Current version: $new_major.$new_minor.$new_patch"
+
+          # Get the list of commit messages since the last version
+          commit_messages=$(git log --oneline --format="%s")
+
+          version_name="V$new_major.$new_minor.$new_patch"  # Initialize with default value
+
+          # Check commit messages for keywords
+          if echo "$commit_messages" | grep -q "breaking"; then
+            ((new_major++))
+            new_minor=0
+            new_patch=0
+            version_name="V$new_major"
+          elif echo "$commit_messages" | grep -q "feature"; then
+            ((new_minor++))
+            new_patch=0
+            version_name="V$new_major.$new_minor"
+          else
+            ((new_patch++))
+          fi
+
+          # Generate the new version number and version name
+          new_version="$new_major.$new_minor.$new_patch"
+          version_name="V$new_major.$new_minor.$new_patch"
+
+          if [[ $new_version =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            agvtool new-version -all "$new_version"
+            echo "New version: $new_version"
+            echo "Version name: $version_name"
+          else
+            agvtool new-version -all "$current_version"
+            echo "Invalid new version, falling back to the old version: $current_version"
+            echo "Version name: $version_name"
+          fi
+
+          echo "version_name=$version_name" >> $GITHUB_OUTPUT
 
       - name: "Create Release Build Archive"
         run: | 
@@ -142,7 +192,7 @@ jobs:
 
       - name: Create a Updated nightly.json File
         run: |
-          version_name=${{ steps.version_and_sha.outputs.version_name }}
+          version_name=${{ steps.version_info.outputs.version_name }}
           version_code=${{ steps.version_and_sha.outputs.version_code }}
           sha256sum=${{ steps.version_and_sha.outputs.sha256sum }}
           file_size_bytes=${{ steps.calculate_size.outputs.file_size_bytes }}
