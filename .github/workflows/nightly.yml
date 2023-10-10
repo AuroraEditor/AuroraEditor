@@ -149,9 +149,9 @@ jobs:
                
       - name: Export Release Build
         run: xcodebuild -exportArchive \
+          -exportOptionsPlist .github/export.plist \
           -archivePath "builds/Aurora Editor.xcarchive" \
-          -exportPath "builds" \
-          -exportOptionsPlist .github/export.plist
+          -exportPath "builds"
 
       - name: "Sign application"
         run: |
