@@ -14,20 +14,25 @@ struct PreferencesColorPicker: View {
     @Binding
     var color: Color
 
+    @State private var selectedColor: Color
+
     private let label: String?
 
     init(_ color: Binding<Color>, label: String? = nil) {
         self._color = color
         self.label = label
+        self._selectedColor = State(initialValue: color.wrappedValue)
     }
 
     var body: some View {
         HStack {
-            ColorPicker(selection: $color, supportsOpacity: false) { }
+            ColorPicker(selection: $selectedColor, supportsOpacity: false) { }
                 .labelsHidden()
             if let label = label {
                 Text(.init(label))
             }
+        }.onChange(of: selectedColor) { newValue in
+            color = newValue
         }
     }
 }
