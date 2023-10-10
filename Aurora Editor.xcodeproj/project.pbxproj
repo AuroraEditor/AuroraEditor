@@ -531,8 +531,6 @@
 		A0142F092ACB6B2D0002F95D /* UpdateReadyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0142F082ACB6B2D0002F95D /* UpdateReadyState.swift */; };
 		A0142F0D2ACB71830002F95D /* Int64.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0142F0C2ACB71830002F95D /* Int64.swift */; };
 		A01AB2C32ACC674A0029EDF0 /* UpdateInProgressState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01AB2C22ACC674A0029EDF0 /* UpdateInProgressState.swift */; };
-		A01AB2C62ACC6B080029EDF0 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = A01AB2C52ACC6B080029EDF0 /* SwiftUIIntrospect */; };
-		A01AB2CA2ACC6B080029EDF0 /* SwiftUIIntrospect-Static in Frameworks */ = {isa = PBXBuildFile; productRef = A01AB2C92ACC6B080029EDF0 /* SwiftUIIntrospect-Static */; };
 		A01AB2D62ACC9EDA0029EDF0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01AB2D52ACC9EDA0029EDF0 /* ContentView.swift */; };
 		A01AB2D82ACC9EDC0029EDF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A01AB2D72ACC9EDC0029EDF0 /* Assets.xcassets */; };
 		A01AB2DB2ACC9EDC0029EDF0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A01AB2DA2ACC9EDC0029EDF0 /* Preview Assets.xcassets */; };
@@ -1249,8 +1247,6 @@
 				2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */,
 				2BD0BD172977357900629A86 /* SwiftOniguruma in Frameworks */,
 				209D0246289AB9750082441F /* SwiftTerm in Frameworks */,
-				A01AB2CA2ACC6B080029EDF0 /* SwiftUIIntrospect-Static in Frameworks */,
-				A01AB2C62ACC6B080029EDF0 /* SwiftUIIntrospect in Frameworks */,
 				200AA21228ED88B30068C7C6 /* Version-Control in Frameworks */,
 				A0142EFE2ACB64AA0002F95D /* ZIPFoundation in Frameworks */,
 			);
@@ -3625,8 +3621,6 @@
 				200AA21128ED88B30068C7C6 /* Version-Control */,
 				2BD0BD162977357900629A86 /* SwiftOniguruma */,
 				A0142EFD2ACB64AA0002F95D /* ZIPFoundation */,
-				A01AB2C52ACC6B080029EDF0 /* SwiftUIIntrospect */,
-				A01AB2C92ACC6B080029EDF0 /* SwiftUIIntrospect-Static */,
 			);
 			productName = AuroraEditor;
 			productReference = B658FB2C27DA9E0F00EA4DBD /* Aurora Editor.app */;
@@ -3713,7 +3707,6 @@
 				200AA21028ED88B30068C7C6 /* XCRemoteSwiftPackageReference "Version-Control-Kit" */,
 				2BD0BD152977357900629A86 /* XCRemoteSwiftPackageReference "SwiftOniguruma" */,
 				A0142EFC2ACB64AA0002F95D /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
-				A01AB2C42ACC6B080029EDF0 /* XCRemoteSwiftPackageReference "swiftui-introspect" */,
 				A0C038682ACF1C1E00DACE3F /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
 			);
 			productRefGroup = B658FB2D27DA9E0F00EA4DBD /* Products */;
@@ -5068,14 +5061,6 @@
 				minimumVersion = 0.9.17;
 			};
 		};
-		A01AB2C42ACC6B080029EDF0 /* XCRemoteSwiftPackageReference "swiftui-introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/swiftui-introspect.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		A0C038682ACF1C1E00DACE3F /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/getsentry/sentry-cocoa.git";
@@ -5111,16 +5096,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A0142EFC2ACB64AA0002F95D /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
 			productName = ZIPFoundation;
-		};
-		A01AB2C52ACC6B080029EDF0 /* SwiftUIIntrospect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A01AB2C42ACC6B080029EDF0 /* XCRemoteSwiftPackageReference "swiftui-introspect" */;
-			productName = SwiftUIIntrospect;
-		};
-		A01AB2C92ACC6B080029EDF0 /* SwiftUIIntrospect-Static */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A01AB2C42ACC6B080029EDF0 /* XCRemoteSwiftPackageReference "swiftui-introspect" */;
-			productName = "SwiftUIIntrospect-Static";
 		};
 		A0C038692ACF1C1E00DACE3F /* Sentry */ = {
 			isa = XCSwiftPackageProductDependency;
