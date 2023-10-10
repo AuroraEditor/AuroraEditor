@@ -132,7 +132,7 @@ jobs:
                -configuration Release archive \
                -archivePath "builds/Aurora Editor.xcarchive" \
                DEVELOPMENT_TEAM=4V2D72S45C \
-               OTHER_CODE_SIGN_FLAGS="--options=runtime" 2>/dev/null | xcpretty
+               OTHER_CODE_SIGN_FLAGS="--options=runtime" 2>/dev/null
                
       - name: "Export Release Build"
         run: |
