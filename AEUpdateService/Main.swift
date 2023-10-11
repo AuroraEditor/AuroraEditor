@@ -1,6 +1,6 @@
 //
 //  Main.swift
-//  AEUpdateService
+//  Aurora Editor Updater
 //
 //  Created by Nanashi Li on 2023/10/04.
 //  Copyright © 2023 Aurora Company. All rights reserved.

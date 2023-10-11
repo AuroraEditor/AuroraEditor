@@ -1,6 +1,6 @@
 //
-//  AEUpdateService.swift
-//  AEUpdateService
+//  Aurora Editor Updater.swift
+//  Aurora Editor Updater
 //
 //  Created by Nanashi Li on 2023/10/03.
 //  Copyright © 2023 Aurora Company. All rights reserved.
@@ -21,7 +21,7 @@ class AEUpdateService: NSObject {
             mountProcess.waitUntilExit()
 
             // Define paths
-            let applicationsFolder = try FileManager.default.url(for: .applicationDirectory, 
+            let applicationsFolder = try FileManager.default.url(for: .applicationDirectory,
                                                                  in: .localDomainMask,
                                                                  appropriateFor: nil,
                                                                  create: false)

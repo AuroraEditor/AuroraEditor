@@ -1,6 +1,6 @@
 //
 //  Loader.swift
-//  AEUpdateService
+//  Aurora Editor Updater
 //
 //  Created by Nanashi Li on 2023/10/09.
 //  Copyright © 2023 Aurora Company. All rights reserved.
@@ -34,14 +34,14 @@ struct Loader: View {
         .frame(width: 40,
                height: 0,
                alignment: loaderState.alignment)
-        .onAppear() {
+        .onAppear {
             self.setIndex()
             Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (initialTimer) in
-                if (self.startAnimating) {
-                    Timer.scheduledTimer(withTimeInterval: self.timerDuration, repeats: false) { (separatorTimer) in
+                if self.startAnimating {
+                    Timer.scheduledTimer(withTimeInterval: self.timerDuration, repeats: false) { _ in
                         self.animateCapsule()
                         Timer.scheduledTimer(withTimeInterval: 2.1, repeats: true) { (loaderTimer) in
-                            if (!self.startAnimating) {
+                            if !self.startAnimating {
                                 loaderTimer.invalidate()
                             }
                             self.loaderState = self.getNextCase()
@@ -58,7 +58,7 @@ struct Loader: View {
     // provides the next case defined in the enum based on the currentIndex
     func getNextCase() -> LoaderState {
         let allCases = LoaderState.allCases
-        if (self.currentIndex == allCases.count - 1) {
+        if self.currentIndex == allCases.count - 1 {
             self.currentIndex = -1
         }
         self.currentIndex += 1
@@ -68,27 +68,26 @@ struct Loader: View {
 
     // sets the initialIndex & offset values based on the loader state provided to the view
     func setIndex() {
-        for (ix, loaderCase) in LoaderState.allCases.enumerated() {
-            if (loaderCase == self.loaderState) {
-                self.currentIndex = ix
-                self.xOffset = LoaderState.allCases[self.currentIndex].increment_before.0
-                self.yOffset = LoaderState.allCases[self.currentIndex].increment_before.1
-            }
+        for (index, loaderCase) in LoaderState.allCases.enumerated()
+        where loaderCase == self.loaderState {
+            self.currentIndex = index
+            self.xOffset = LoaderState.allCases[self.currentIndex].incrementBefore.0
+            self.yOffset = LoaderState.allCases[self.currentIndex].incrementBefore.1
         }
     }
 
     // animates the capsule to a direction
     func animateCapsule() {
-        self.xOffset = self.loaderState.increment_before.0
-        self.yOffset = self.loaderState.increment_before.1
-        self.capsuleWidth = self.loaderState.increment_before.2
-        self.capsuleHeight = self.loaderState.increment_before.3
+        self.xOffset = self.loaderState.incrementBefore.0
+        self.yOffset = self.loaderState.incrementBefore.1
+        self.capsuleWidth = self.loaderState.incrementBefore.2
+        self.capsuleHeight = self.loaderState.incrementBefore.3
 
-        Timer.scheduledTimer(withTimeInterval: 0.35, repeats: false) { (Timer) in
-            self.xOffset = self.loaderState.increment_after.0
-            self.yOffset = self.loaderState.increment_after.1
-            self.capsuleWidth = self.loaderState.increment_after.2
-            self.capsuleHeight = self.loaderState.increment_after.3
+        Timer.scheduledTimer(withTimeInterval: 0.35, repeats: false) { _ in
+            self.xOffset = self.loaderState.incrementAfter.0
+            self.yOffset = self.loaderState.incrementAfter.1
+            self.capsuleWidth = self.loaderState.incrementAfter.2
+            self.capsuleHeight = self.loaderState.incrementAfter.3
         }
     }
 }

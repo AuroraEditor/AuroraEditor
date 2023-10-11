@@ -1,13 +1,12 @@
 //
 //  LoaderView.swift
-//  AEUpdateService
+//  Aurora Editor Updater
 //
 //  Created by Nanashi Li on 2023/10/09.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
 import SwiftUI
-
 
 struct LoaderView: View {
 
@@ -23,7 +22,7 @@ struct LoaderView: View {
                 Loader(loaderState: .up, timerDuration: 1.75, startAnimating: $animateLoaders)
             }
             .offset(x: -40, y: -40)
-        }.onAppear() {
+        }.onAppear {
             self.animateLoaders.toggle()
         }
     }

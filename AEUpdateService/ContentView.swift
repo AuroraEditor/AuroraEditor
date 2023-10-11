@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  AEUpdateService
+//  Aurora Editor Updater
 //
 //  Created by Nanashi Li on 2023/10/03.
 //  Copyright © 2023 Aurora Company. All rights reserved.
@@ -24,7 +24,7 @@ struct ContentView: View {
         "How do you comfort a JavaScript bug? You console it!"
     ]
 
-    @State 
+    @State
     private var randomIndex: Int
 
     init() {
@@ -48,7 +48,7 @@ struct ContentView: View {
                 .multilineTextAlignment(.center)
                 .onAppear {
                     // Start a timer to change the text every 5 seconds
-                    Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
+                    Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
                         randomIndex = Int.random(in: 0..<updateText.count)
                     }
                 }

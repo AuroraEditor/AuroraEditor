@@ -1,6 +1,6 @@
 //
 //  LoaderState.swift
-//  AEUpdateService
+//  Aurora Editor Updater
 //
 //  Created by Nanashi Li on 2023/10/09.
 //  Copyright © 2023 Aurora Company. All rights reserved.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-/// https://github.com/Shubham0812/SwiftUI-Animations/blob/master/SwiftUI-Animations/Code/Animations/Loader/LoaderState.swift
+/// https://github.com/Shubham0812/SwiftUI-Animations/
 enum LoaderState: CaseIterable {
     case right
     case down
@@ -33,7 +33,8 @@ enum LoaderState: CaseIterable {
         return 72
     }
 
-    var increment_before: (CGFloat, CGFloat, CGFloat, CGFloat) {
+    // swiftlint:disable:next large_tuple
+    var incrementBefore: (CGFloat, CGFloat, CGFloat, CGFloat) {
         switch self {
         case .right:
             return (0, 0, capsuleDimension + increasingOffset, capsuleDimension)
@@ -46,7 +47,8 @@ enum LoaderState: CaseIterable {
         }
     }
 
-    var increment_after: (CGFloat, CGFloat, CGFloat, CGFloat) {
+    // swiftlint:disable:next large_tuple
+    var incrementAfter: (CGFloat, CGFloat, CGFloat, CGFloat) {
         switch self {
         case .right:
             return (increasingOffset, 0, capsuleDimension, capsuleDimension)
