@@ -22,6 +22,8 @@ identifier_name:
   excluded:
     - id
     - vc
+    - up
+    - to
     # (short) File extensions:
     - c
     - m
@@ -137,7 +139,7 @@ file_header:
   required_pattern: |
                   \/\/
                   \/\/  .*?\.swift
-                  \/\/  Aurora Editor(| UITests| Tests)
+                  \/\/  Aurora Editor(| UITests| Tests| Updater)
                   \/\/
                   \/\/  Created by .*? on .*?\.
                   \/\/  Copyright © \d{4} Aurora Company. All rights reserved.

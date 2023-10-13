@@ -43,7 +43,7 @@ public extension AppPreferences {
         }
     }
 
-    enum UpdateChannel: Codable {
+    enum UpdateChannel: String, Codable {
         case release
         case beta
         case nightly

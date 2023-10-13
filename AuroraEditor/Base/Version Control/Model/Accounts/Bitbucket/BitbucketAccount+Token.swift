@@ -29,7 +29,7 @@ public extension BitbucketAccount {
         var task: URLSessionDataTaskProtocol?
 
         if let request = request {
-            task = session.dataTask(with: request) { data, response, _ in
+            task = session.dataTaskGit(with: request) { data, response, _ in
 
                 guard let response = response as? HTTPURLResponse else { return }
 

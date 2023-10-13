@@ -304,7 +304,7 @@ public extension Router {
             return nil
         }
 
-        let task = session.dataTask(with: request) { data, response, err in
+        let task = session.dataTaskGit(with: request) { data, response, err in
             if let response = response as? HTTPURLResponse {
                 if response.wasSuccessful == false {
                     var userInfo = [String: Any]()
@@ -413,7 +413,7 @@ public extension Router {
             return nil
         }
 
-        let task = session.dataTask(with: request) { data, response, err in
+        let task = session.dataTaskGit(with: request) { data, response, err in
             if let response = response as? HTTPURLResponse {
                 if response.wasSuccessful == false {
                     var userInfo = [String: Any]()
