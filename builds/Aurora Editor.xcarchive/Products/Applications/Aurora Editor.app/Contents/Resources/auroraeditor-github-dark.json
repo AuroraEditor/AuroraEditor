@@ -1,0 +1,332 @@
+{
+    "name": "auroraeditor-github-dark",
+    "type": "dark",
+    "colors": {
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#D4D4D4",
+        "editor.inactiveSelectionBackground": "#3A3D41",
+        "editorIndentGuide.background": "#404040",
+        "editorIndentGuide.activeBackground": "#707070",
+        "editor.selectionHighlightBackground": "#ADD6FF26",
+        "list.dropBackground": "#383B3D",
+        "activityBarBadge.background": "#007ACC",
+        "sideBarTitle.foreground": "#BBBBBB",
+        "input.placeholderForeground": "#A6A6A6",
+        "settings.textInputBackground": "#292929",
+        "settings.numberInputBackground": "#292929",
+        "menu.background": "#252526",
+        "menu.foreground": "#CCCCCC",
+        "statusBarItem.remoteForeground": "#FFF",
+        "statusBarItem.remoteBackground": "#16825D"
+    },
+    "settings": [
+        {
+            "settings": {
+                "foreground": "#ffffff",
+            }
+        },
+        {
+            "name": "Comment",
+            "scope": "comment",
+            "settings": {
+                "foreground": "#a19b8f"
+            }
+        },
+        {
+            "name": "String",
+            "scope": [
+                "string",
+                "string support",
+                "string keyword"
+            ],
+            "settings": {
+                "foreground": "#9DCDF5"
+            }
+        },
+        {
+            "name": "Built-in constant",
+            "scope": "constant.language",
+            "settings": {
+                "foreground": "#0086b3"
+            }
+        },
+        {
+            "name": "User-defined constant",
+            "scope": "constant.other",
+            "settings": {
+                "foreground": "#66B5F6"
+            }
+        },
+        {
+            "name": "Variable",
+            "scope": "variable",
+            "settings": {
+                "fontStyle": ""
+            }
+        },
+        {
+            "name": "Operators (shell)",
+            "scope": "source.shell keyword.operator.assign",
+            "settings": {
+                "foreground": "#ffffff"
+            }
+        },
+        {
+            "name": "Keyword",
+            "scope": "keyword",
+            "settings": {
+                "foreground": "#eb7e81"
+            }
+        },
+        {
+            "name": "Keyword",
+            "scope": "keyword.operator.arithmetic.shell",
+            "settings": {
+                "foreground": "#eb7e81"
+            }
+        },
+        {
+            "name": "Keyword (Apache)",
+            "scope": "keyword.core.apacheconf",
+            "settings": {
+                "foreground": "#66B5F6"
+            }
+        },
+        {
+            "name": "Storage",
+            "scope": [
+                "storage",
+                "support.type.return",
+                "support.type.receiver"
+            ],
+            "settings": {
+                "fontStyle": "",
+                "foreground": "#eb7e81"
+            }
+        },
+        {
+            "name": "Class name",
+            "scope": [
+                "entity.name.class",
+                "entity.section.ini",
+                "entity.name.section",
+                "source.ts entity.name.type",
+                "support.constant.dom.js",
+                "entity.name.type.class",
+                "entity.name.type.interface"
+            ],
+            "settings": {
+                "foreground": "#bb97e7"
+            }
+        },
+        {
+            "name": "Inherited class",
+            "scope": "entity.other.inherited-class",
+            "settings": {
+                "foreground": "#bb97e7"
+            }
+        },
+        {
+            "name": "Tag name",
+            "scope": [
+                "entity.name.tag",
+                "entity.tag.apacheconf"
+            ],
+            "settings": {
+                "fontStyle": "",
+                "foreground": "#66B5F6"
+            }
+        },
+        {
+            "name": "Tag name - doctype (HTML)",
+            "scope": "entity.name.tag.doctype",
+            "settings": {
+                "fontStyle": "",
+                "foreground": "#ffffff"
+            }
+        },
+        {
+            "name": "Tag attribute",
+            "scope": [
+                "entity.other.attribute-name",
+                "entity.other.pseudo-element"
+            ],
+            "settings": {
+                "fontStyle": "",
+                "foreground": "#bb97e7"
+            }
+        },
+        {
+            "name": "Function name",
+            "scope": [
+                "entity.name.function",
+            ],
+            "settings": {
+                "fontStyle": "",
+                "foreground": "#bb97e7"
+            }
+        },
+        {
+            "name": "Library function",
+            "scope": [
+                "meta.function-call.generic",
+                "meta.function-call.object",
+                "meta.function-call.static",
+                "meta.function-call.ts",
+            ],
+            "settings": {
+                "fontStyle": "",
+                "foreground": "#ffffff"
+            }
+        },
+        {
+            "name": "Property (CSS)",
+            "scope": [
+                "source.css support.type",
+                "support.constant.color",
+                "constant.codepoint-range.css",
+                "support.constant.unicode-range.prefix.css"
+            ],
+            "settings": {
+                "foreground": "#66B5F6"
+            }
+        },
+        {
+            "name": "Library constant",
+            "scope": "support.constant",
+            "settings": {
+                "fontStyle": "",
+                "foreground": "#66B5F6"
+            }
+        },
+        {
+            "name": "Library class/type",
+            "scope": [
+                "support.type",
+                "support.other.namespace"
+            ],
+            "settings": {
+                "foreground": "#66B5F6"
+            }
+        },
+        {
+            "name": "Library class (JS)",
+            "scope": "source.js support.type",
+            "settings": {
+                "foreground": "#bb97e7"
+            }
+        },
+        {
+            "name": "Library class",
+            "scope": "support.class",
+            "settings": {
+                "foreground": "#66B5F6"
+            }
+        },
+        {
+            "name": "Library variable",
+            "scope": "support.other.variable",
+            "settings": {
+                "fontStyle": ""
+            }
+        },
+        {
+            "name": "Invalid",
+            "scope": "invalid",
+            "settings": {
+                "background": "#DC5148",
+                "fontStyle": "",
+                "foreground": "#fafbfc"
+            }
+        },
+        {
+            "name": "CSS property",
+            "scope": [
+                "meta.property-name.css",
+                "meta.property-value.css support",
+                "meta.property-value.css support.constant",
+                "meta.property-value.css"
+            ],
+            "settings": {
+                "foreground": "#66B5F6"
+            }
+        },
+        {
+            "name": "CSS property value punctuation",
+            "scope": "meta.property-value.css punctuation",
+            "settings": {
+                "foreground": "#ffffff"
+            }
+        },
+        {
+            "name": "Constant in string",
+            "scope": "string constant",
+            "settings": {
+                "foreground": "#66B5F6"
+            }
+        },
+        {
+            "name": "Entity (HTML)",
+            "scope": "constant.character.entity",
+            "settings": {
+                "foreground": "#66B5F6"
+            }
+        },
+        {
+            "name": "Number",
+            "scope": "constant.numeric",
+            "settings": {
+                "foreground": "#66B5F6"
+            }
+        },
+        {
+            "name": "Constant",
+            "scope": "constant.language",
+            "settings": {
+                "foreground": "#66B5F6"
+            }
+        },
+        {
+            "name": "Label",
+            "scope": "entity.name.label",
+            "settings": {
+                "foreground": "#bb97e7"
+            }
+        },
+        {
+            "name": "Variables (Go, Python, etc.)",
+            "scope": [
+                "variable.other.exported.go",
+                "entity.name.type.exported.go",
+                "variable.parameter.go",
+                "variable.other.receiver.go",
+                "variable.parameter",
+            ],
+            "settings": {
+                "foreground": "#F39961"
+            }
+        },
+        {
+            "name": "Parameter ts",
+            "scope": "variable.parameter.ts",
+            "settings": {
+                "foreground": "#ffffff"
+            }
+        },
+        {
+            "name": "Black variables (Go)",
+            "scope": "support.type.go",
+            "settings": {
+                "foreground": "#fffff"
+            }
+        },
+        {
+            "name": "Parameter (CSS)",
+            "scope": "variable.parameter.misc.css",
+            "settings": {
+                "foreground": "#e36209"
+            }
+        }
+    ],
+    "uuid": "96D817F0-8536-11E4-B4A9-0800200C9A66"
+}
