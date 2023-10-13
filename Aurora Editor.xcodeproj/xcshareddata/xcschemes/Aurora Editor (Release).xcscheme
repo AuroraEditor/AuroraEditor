@@ -20,6 +20,48 @@
                ReferencedContainer = "container:AuroraEditor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A01AB2D02ACC9EDA0029EDF0"
+               BuildableName = "AEUpdateService.app"
+               BlueprintName = "AEUpdateService"
+               ReferencedContainer = "container:Aurora Editor.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2BE487EB28245162003F3F64"
+               BuildableName = "Open With Aurora Editor.appex"
+               BlueprintName = "Open With Aurora Editor"
+               ReferencedContainer = "container:Aurora Editor.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AuroraEditorCli"
+               BuildableName = "AuroraEditorCli"
+               BlueprintName = "AuroraEditorCli"
+               ReferencedContainer = "container:AuroraEditorCli">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
