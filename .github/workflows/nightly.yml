@@ -145,6 +145,7 @@ jobs:
             -configuration Release archive \
             -archivePath "builds/Aurora Editor.xcarchive" \
             DEVELOPMENT_TEAM=4V2D72S45C \
+            SKIP_INSTALL=YES \
             OTHER_CODE_SIGN_FLAGS="--options=runtime" 2>/dev/null
                
       - name: Export Release Build
@@ -152,7 +153,8 @@ jobs:
           xcodebuild -exportArchive \
           -exportOptionsPlist .github/export.plist \
           -archivePath "builds/Aurora Editor.xcarchive" \
-          -exportPath "builds"
+          -exportPath "builds" \
+          SKIP_INSTALL=YES
 
       - name: "Sign application"
         run: |
