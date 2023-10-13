@@ -14,6 +14,6 @@ struct UpdateCancelledState: View {
     }
 }
 
-// #Preview {
-//     UpdateCancelledState()
-// }
+#Preview {
+    UpdateCancelledState()
+}
