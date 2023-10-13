@@ -193,8 +193,9 @@ jobs:
           --password "${{ secrets.APPLEID_PASSWORD }}" \
           --team-id "4V2D72S45C"
 
-      - name: "Staple Release Build"
-        run: xcrun stapler staple "Aurora Editor 1.0.dmg"
+      # Stapler does not work, so it's disabled.
+      #- name: "Staple Release Build"
+      #  run: xcrun stapler staple "Aurora Editor 1.0.dmg"
         
       - name: Upload a Build Artifact
         id: upload_artifact
