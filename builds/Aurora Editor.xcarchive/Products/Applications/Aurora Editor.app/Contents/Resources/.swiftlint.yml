@@ -1,0 +1,146 @@
+# Swiftlint configuration file.
+# Part of Aurora Editor.
+# Please do not remove optional rules, feel free to add some if needed.
+
+# Disabled rule, reason.
+disabled_rules:
+  - todo # New project, we have a lot of // TODO:
+
+# paths to ignore during linting.
+excluded:
+  - AuroraEditorModules/.build # Where Swift Package Manager checks out dependency sources
+  - AuroraEditorCli/Package.swift # Package.swift should not be linted
+  - Tools
+
+# Exclude triggering type names.
+type_name:
+  excluded:
+    - ID
+
+# Exclude triggering identifier names.
+identifier_name:
+  excluded:
+    - id
+    - vc
+    - up
+    - to
+    # (short) File extensions:
+    - c
+    - m
+    - h
+    - js
+    - md
+    - py
+    - go
+    - ts
+    - txt
+    - sh
+    - pf
+    - r
+    - q
+    - tp
+    - xl
+    - hy
+    - d
+    - cs
+
+# cyclomatic_complexity (ignore case)
+cyclomatic_complexity:
+  ignores_case_statements: true
+
+# Opt in rules, we want it more stricter.
+opt_in_rules:
+  - file_header # All files should have a same header.
+  - empty_count
+  - closure_spacing
+  - contains_over_first_not_nil
+  - missing_docs
+  - modifier_order
+  - convenience_type
+  - pattern_matching_keywords
+  - identical_operands
+  - empty_string
+  - multiline_parameters
+  - closure_end_indentation
+  - operator_usage_whitespace
+  - closure_parameter_position
+  - collection_alignment 
+  - last_where
+  - unused_optional_binding
+  - toggle_bool # use .toggle() instead of !variable
+  - explicit_init # .init is not needed
+  - fallthrough
+  - no_fallthrough_only
+
+# Custom configuration for nesting, this needs to be removed at some point.
+nesting:
+  type_level:
+    warning: 2 # warning if you nest 2 level deep instead of 1
+    error: 3 # error if you nest 3 level deep instead of 1
+
+# Custom rules
+custom_rules:
+  # Prefer spaces over tabs.
+  spaces_over_tabs:
+    included: ".*\\.swift"
+    name: "Spaces over Tabs"
+    regex: "\t"
+    message: "Prefer spaces for indents over tabs. See Xcode setting: 'Text Editing' -> 'Indentation'"
+    severity: warning
+
+  # @Something needs a new line
+  at_attributes_newlining:
+    name: "Significant attributes"
+    message: "Significant @attributes should be on an extra line"
+    included: ".*.swift"
+    regex: '(@objc\([^\)]+\)|@nonobjc|@discardableResult|@propertyWrapper|@UIApplicationMain|@dynamicMemberLookup|@_cdecl\([^\)]+\))[^\n]'
+    severity: error
+
+  # forbid multiple empty lines
+  multiple_empty_lines:
+    included: ".*.swift"
+    name: "Multiple Empty Lines"
+    regex: '((?:\s*\n){3,})'
+    message: "There are too many line breaks"
+    severity: error
+
+  # one space after a comma
+  comma_space_rule:
+    regex: ",[ ]{2,}"
+    message: "Expected only one space after ',"
+    severity: error
+
+  # Disable usage of // swiftlint:disable (rulename)
+  swiftlint_file_disabling:
+    included: ".*.swift"
+    name: "SwiftLint File Disabling"
+    regex: "swiftlint:disable\\s"
+    match_kinds: comment
+    message: "Use swiftlint:disable:next or swiftlint:disable:this"
+    severity: error
+
+  # Don't use print
+  disallow_print:
+    included: ".*.swift"
+    name: "No print"
+    regex: "print(.*)"
+    message: "Please do not use print(), use `Log.info()`."
+    severity: warning
+
+  # Disable Xcode placeholders like <#Description#>
+  no_placeholders:
+    included: ".*.swift"
+    name: "No Placeholders"
+    regex: "\\<\\#([a-zA-Z]+)\\#\\>"
+    message: "Please do not use Xcode's placeholders."
+    severity: warning
+
+file_header:
+  required_pattern: |
+                  \/\/
+                  \/\/  .*?\.swift
+                  \/\/  Aurora Editor(| UITests| Tests| Updater)
+                  \/\/
+                  \/\/  Created by .*? on .*?\.
+                  \/\/  Copyright © \d{4} Aurora Company. All rights reserved.
+                  \/\/
