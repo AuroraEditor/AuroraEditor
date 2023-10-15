@@ -53,7 +53,7 @@ public struct BitbucketOAuthConfiguration: GitConfiguration {
         let request = OAuthRouter.accessToken(self, code).URLRequest
 
         if let request = request {
-            let task = session.dataTask(with: request) { data, response, _ in
+            let task = session.dataTaskGit(with: request) { data, response, _ in
                 if let response = response as? HTTPURLResponse {
                     if response.statusCode != 200 {
                         return

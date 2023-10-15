@@ -4,25 +4,54 @@ title: CHANGES
 body:
   - type: textarea
     attributes:
-      label: Description
-      description: >-
-        A clear and concise description of what this PR contains.
+      label: Summary
+      description: A clear and concise summary of what this PR is about.
     validations:
       required: true
   - type: textarea
     attributes:
-      label: Related Issue
-      description: >-
-        #ISSUE_NUMBER
+      label: Changes Made
+      description: A clear and concise description of what this PR contains.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: TODO
+      description: A clear and concise description of what is left to do in this PR.
+    validations:
+      required: true  # Change to true if it's a required field
+  - type: textarea
+    attributes:
+      label: Motivation
+      description: Explain the primary goal of this PR.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Testing
+      description: Explain the testing you did and what you tested.
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Screenshots/Screen recordings
+      description: Include screenshots or GIFs demonstrating the PR here, if applicable.
   - type: checkboxes
     attributes:
       label: Checklist
       options:
-        - label: My changes generate no new warnings
-        - label: My code builds and runs on my machine
-        - label: I documented my code
+        - label: Code has been tested and verified.
+        - label: Documentation has been updated to reflect the changes.
+        - label: All tests pass successfully.
+        - label: Code follows the project's coding guidelines and style.
+        - label: The branch is up-to-date with the latest changes from the development branch.
   - type: textarea
     attributes:
-      label: Screenshots/Screen recordings
-      description: >-
-        Please provide a screenshot, or preferred a screen recording
+      label: Related Issue
+      description: Include any related issue numbers or links here.
+  - type: textarea
+    attributes:
+      label: Additional Notes
+      description: Do you have any additional notes you want to add regarding this PR?
+    validations:
+      required: true

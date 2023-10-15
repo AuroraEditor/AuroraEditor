@@ -34,10 +34,6 @@ final class AuroraEditorDocumentController: NSDocumentController {
         }
     }
 
-    override func removeDocument(_ document: NSDocument) {
-        super.removeDocument(document)
-    }
-
     override func clearRecentDocuments(_ sender: Any?) {
         super.clearRecentDocuments(sender)
         RecentProjectsStore.shared.clearAll()

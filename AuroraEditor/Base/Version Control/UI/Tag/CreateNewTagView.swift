@@ -62,7 +62,7 @@ struct CreateNewTagView: View {
                             Log.debug(commitHash)
 
                             // Create a tag
-                            try createTag(
+                            try Tag().createTag(
                                 directoryURL: workspace.workspaceURL(),
                                 name: tagName,
                                 targetCommitSha: commitHash

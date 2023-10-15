@@ -16,6 +16,8 @@ struct AccountItemView: View {
     @Binding
     var account: SourceControlAccounts
 
+    var onDeleteCallback: (String) -> Void
+
     var body: some View {
         GroupBox {
             VStack(alignment: .leading) {
@@ -62,11 +64,17 @@ struct AccountItemView: View {
 
                 Divider()
 
-                Text("settings.account.username.description \(account.gitProvider)")
-                    .foregroundColor(.secondary)
-                    .font(.system(size: 11))
-                    .padding(6)
-                    .padding(.horizontal, 5)
+                HStack {
+                    Text("settings.account.username.description \(account.gitProvider)")
+                        .foregroundColor(.secondary)
+                        .font(.system(size: 11))
+                        .padding(6)
+                        .padding(.horizontal, 5)
+                    Spacer()
+                    Button("global.delete") {
+                        onDeleteCallback(account.id)
+                    }
+                }
             }
         }
     }

@@ -21,16 +21,26 @@ public class UpdateObservedModel: ObservableObject {
     enum UpdateState {
         case loading
         case error
-        case success
+        case cancelled
+        case timedOut
+        case networkConnectionLost
+        case cannotFindHost
+        case cannotConnectToHost
+        case notEnoughStorage
+        case invalidChecksum
+        case unzipError
+        case updateReady
         case updateFound
+        case inProgress
+        case checksumInvalid
+        case upToDate
     }
 
-    // We put this as success as to avoid a constant loading loop in debug builds
     @Published
-    var updateState: UpdateState = .success
+    var updateState: UpdateState = .loading
 
     @Published
-    var updateStatus: UpdateModel?
+    var updateModelJson: UpdateModel?
 
     /// This function allows us to to check for any new updates for the editor.
     ///
@@ -69,14 +79,13 @@ public class UpdateObservedModel: ObservableObject {
                         let decoder = JSONDecoder()
                         let updateFile = try decoder.decode(UpdateModel.self, from: data)
                         DispatchQueue.main.async {
-                            self.updateStatus = updateFile
+                            self.updateModelJson = updateFile
 
-                            if updateFile.sha256sum != self.commitHash {
+                            if updateFile.versionCode != Bundle.versionString {
                                 self.updateState = .updateFound
-                                return
+                            } else {
+                                self.updateState = .upToDate
                             }
-
-                            self.updateState = .success
                         }
                     } catch {
                         DispatchQueue.main.async {
@@ -103,9 +112,11 @@ struct UpdateModel: Codable {
     let versionName: String
     let sha256sum: String
     let url: String
+    let size: String
 }
 
-private struct UpdateConstants {
+/// Constants for update paths
+public struct UpdateConstants {
     /// Base URL
     public let baseURL = "https://auroraeditor.com/"
 

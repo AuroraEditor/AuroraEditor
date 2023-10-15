@@ -171,7 +171,6 @@ class DiffSelection {
                                    length: Int,
                                    selected: Bool) throws -> DiffSelection {
         let computedSelectionType = self.getSelectionType()
-        // swiftlint:disable:next identifier_name
         let to = from + length
 
         if try typeMatchesSelection(selectionType: computedSelectionType,

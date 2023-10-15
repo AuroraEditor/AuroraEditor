@@ -1233,28 +1233,46 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string></string>
+			<key>CFBundleURLName</key>
+			<string>com.auroraeditor.service.update</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>AuroraEditor</string>
+				<string>updateservice</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>AE Fallback Service</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>aefallbackservice</string>
 			</array>
 		</dict>
 	</array>
+	<key>GitHash</key>
+	<string>Invalid</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>api.auroraeditor.com</key>
 			<dict>
-				<key>NSIncludesSubdomains</key>
-				<true/>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
 				<true/>
 			</dict>
 		</dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<false/>
 	</dict>
-	<key>GitHash</key>
-	<string>Invalid</string>
+	<key>NSServices</key>
+	<array>
+		<dict/>
+	</array>
 </dict>
 </plist>

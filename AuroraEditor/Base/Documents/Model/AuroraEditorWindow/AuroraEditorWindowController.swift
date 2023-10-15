@@ -101,10 +101,6 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         cancelables.forEach({ $0.cancel() })
     }
 
-    override func windowDidLoad() {
-        super.windowDidLoad()
-    }
-
     @objc
     private func updateLayoutOfWindowAndSplitView() {
         DispatchQueue.main.async { [weak self] in

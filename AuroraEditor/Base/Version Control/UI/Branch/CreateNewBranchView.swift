@@ -84,13 +84,13 @@ struct CreateNewBranchView: View {
                     Button {
                         do {
                             // Creates a new branch
-                            try createBranch(directoryURL: workspace.workspaceURL(),
+                            try Branch().createBranch(directoryURL: workspace.workspaceURL(),
                                              name: branchName,
                                              startPoint: revision,
                                              noTrack: nil)
 
                             // When done creating a new branch we checkout that said new branch
-                            try checkoutBranch(directoryURL: workspace.workspaceURL(),
+                            try Checkout().checkoutBranch(directoryURL: workspace.workspaceURL(),
                                                branch: branchName)
 
                             dismiss()

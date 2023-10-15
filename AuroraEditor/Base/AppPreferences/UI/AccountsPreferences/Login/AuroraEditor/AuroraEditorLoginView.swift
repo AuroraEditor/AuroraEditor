@@ -24,9 +24,12 @@ struct AuroraEditorLoginView: View {
     @ObservedObject
     var accountModel: EditorAccountModel
 
-    init(dismissDialog: Binding<Bool>) {
+    var loginSuccessfulCallback: EditorAccountModel.LoginSuccessfulCallback
+
+    init(dismissDialog: Binding<Bool>, loginSuccessfulCallback: @escaping EditorAccountModel.LoginSuccessfulCallback) {
         self._dismissDialog = dismissDialog
         self.accountModel = .init(dismissDialog: dismissDialog.wrappedValue)
+        self.loginSuccessfulCallback = loginSuccessfulCallback
     }
 
     var body: some View {
@@ -71,7 +74,8 @@ struct AuroraEditorLoginView: View {
                     } else {
                         Button {
                             accountModel.loginAuroraEditor(email: email,
-                                                           password: password)
+                                                           password: password, successCallback: loginSuccessfulCallback)
+                            self.dismissDialog = accountModel.dismissDialog
                         } label: {
                             Text("settings.global.login")
                                 .foregroundColor(.white)
