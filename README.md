@@ -44,7 +44,7 @@ It will support everything you could expect from an Xcode-inspired application, 
  <br />
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Motivation
@@ -168,6 +168,7 @@ Thanks goes to these wonderful people:
     </tr>
     <tr>
       <td align="center" valign="top" width="25%"><a href="https://pkmisha.com/"><img src="https://avatars.githubusercontent.com/u/66741910?v=4?s=100" width="100px;" alt="Mikhail"/><br /><sub><b>Mikhail</b></sub></a><br /><a href="https://github.com/AuroraEditor/AuroraEditor/issues?q=author%3Amishapark" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="25%"><a href="http://briangor.github.io"><img src="https://avatars.githubusercontent.com/u/27485722?v=4?s=100" width="100px;" alt="Brian"/><br /><sub><b>Brian</b></sub></a><br /><a href="#design-briangor" title="Design">🎨</a></td>
     </tr>
   </tbody>
 </table>
