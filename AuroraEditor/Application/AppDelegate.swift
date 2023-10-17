@@ -51,26 +51,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         checkForFilesToOpen()
 
         DispatchQueue.main.async {
-            if NSApp.windows.isEmpty {
-                // Check if there are projects to recover.
-                if let projects = UserDefaults.standard.array(forKey: AppDelegate.recoverWorkspacesKey)
-                    as? [String], !projects.isEmpty {
-                    projects.forEach { path in
-                        let url = URL(fileURLWithPath: path)
-                        // Reopen documents associated with the projects.
-                        AuroraEditorDocumentController.shared.reopenDocument(
-                            for: url,
-                            withContentsOf: url,
-                            display: true) { document, _, _ in
-                                Log.info("Opened project: \(url.absoluteString)")
-                                document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
-                        }
+            if let projects = UserDefaults.standard.array(forKey: AppDelegate.recoverWorkspacesKey) as? [String],
+               !projects.isEmpty {
+                projects.forEach { path in
+                    let url = URL(fileURLWithPath: path)
+                    // Reopen documents associated with the projects.
+                    AuroraEditorDocumentController.shared.reopenDocument(
+                        for: url,
+                        withContentsOf: url,
+                        display: true) { document, _, _ in
+                            Log.info("Opened project: \(url.absoluteString)")
+                            document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
                     }
-                    Log.info("No need to open the Welcome Screen (projects)")
-                } else {
-                    // If no projects to recover, handle other open requests.
-                    self.handleOpen()
                 }
+                Log.info("No need to open the Welcome Screen (projects)")
+            } else {
+                // If no projects to recover, handle other open requests.
+                self.handleOpen()
             }
 
             // Check for command-line arguments to open specific files.
