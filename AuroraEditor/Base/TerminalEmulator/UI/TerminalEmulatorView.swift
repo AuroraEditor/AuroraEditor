@@ -182,6 +182,9 @@ public struct TerminalEmulatorView: NSViewRepresentable {
         }
         terminal.appearance = colorAppearance
         scroller?.isHidden = true
+        terminal.getTerminal().setCursorStyle(
+            getCursorStyle(prefs.preferences.terminal.cursorStyle, shouldBlink: prefs.preferences.terminal.blinkCursor)
+        )
         TerminalEmulatorView.lastTerminal[url.path] = terminal
     }
 
@@ -211,9 +214,23 @@ public struct TerminalEmulatorView: NSViewRepresentable {
         }
         view.getTerminal().softReset()
         view.feed(text: "") // send empty character to force colors to be redrawn
+        view.getTerminal().setCursorStyle(
+            getCursorStyle(prefs.preferences.terminal.cursorStyle, shouldBlink: prefs.preferences.terminal.blinkCursor)
+        )
     }
 
     public func makeCoordinator() -> Coordinator {
         Coordinator(url: url)
+    }
+
+    private func getCursorStyle(_ style: AppPreferences.TerminalCursorStyle, shouldBlink: Bool) -> CursorStyle {
+        switch style {
+        case .block:
+            return shouldBlink ? .blinkBlock : .steadyBlock
+        case .underline:
+            return shouldBlink ? .blinkUnderline : .steadyUnderline
+        case .verticalBar:
+            return shouldBlink ? .blinkBar : .steadyBar
+        }
     }
 }

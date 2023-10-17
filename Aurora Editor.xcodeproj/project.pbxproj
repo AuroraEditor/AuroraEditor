@@ -5036,7 +5036,7 @@
 			repositoryURL = "https://github.com/migueldeicaza/SwiftTerm.git";
 			requirement = {
 				kind = exactVersion;
-				version = 1.0.7;
+				version = 1.2.0;
 			};
 		};
 		2BD0BD152977357900629A86 /* XCRemoteSwiftPackageReference "SwiftOniguruma" */ = {
