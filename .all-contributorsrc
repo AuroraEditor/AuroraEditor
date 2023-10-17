@@ -165,6 +165,24 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "briangor",
+      "name": "Brian",
+      "avatar_url": "https://avatars.githubusercontent.com/u/27485722?v=4",
+      "profile": "http://briangor.github.io",
+      "contributions": [
+        "design"
+      ]
+    },
+    {
+      "login": "czuria1",
+      "name": "Cassandra Zuria",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36312970?v=4",
+      "profile": "https://github.com/czuria1",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 4,
