@@ -6,7 +6,7 @@
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
-import Foundation
+import SwiftTerm
 
 public extension AppPreferences {
 
@@ -24,6 +24,12 @@ public extension AppPreferences {
 
         /// The font to use in terminal.
         public var font: TerminalFont = .init()
+
+        /// The cursor style to apply on the terminal. Defaults to `block`.
+        public var cursorStyle: TerminalCursorStyle = .block
+
+        /// Boolean value for whether the cursor should blink.
+        public var blinkCursor: Bool = false
 
         /// Default initializer
         public init() {}
@@ -68,5 +74,16 @@ public extension AppPreferences {
             self.size = try container.decodeIfPresent(Int.self, forKey: .size) ?? 11
             self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? "SFMono-Medium"
         }
+    }
+
+    /// The possible terminal cursor shapes.
+    enum TerminalCursorStyle: String, Codable, CaseIterable, Identifiable {
+        public var id: String { rawValue }
+        /// Cursor appears as a block shape █
+        case block
+        /// Cursor appears as an underline _
+        case underline
+        /// Cursor appears as a vertical bar |
+        case verticalBar = "vertical bar"
     }
 }
