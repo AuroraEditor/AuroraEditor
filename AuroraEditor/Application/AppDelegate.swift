@@ -44,25 +44,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         checkForFilesToOpen()
 
         DispatchQueue.main.async {
-            if NSApp.windows.isEmpty {
-                if let projects = UserDefaults.standard.array(forKey: AppDelegate.recoverWorkspacesKey) as? [String],
-                   !projects.isEmpty {
-                    projects.forEach { path in
-                        Log.info(#function, "Reopening \(path)")
-                        let url = URL(fileURLWithPath: path)
-                        AuroraEditorDocumentController.shared.reopenDocument(
-                            for: url,
-                            withContentsOf: url,
-                            display: true) { document, _, _ in
-                                Log.info("applicationDidFinishLaunching(): projects: Opened \(url.absoluteString)")
-                                document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
-                        }
+            if let projects = UserDefaults.standard.array(forKey: AppDelegate.recoverWorkspacesKey) as? [String],
+               !projects.isEmpty {
+                projects.forEach { path in
+                    let url = URL(fileURLWithPath: path)
+                    // Reopen documents associated with the projects.
+                    AuroraEditorDocumentController.shared.reopenDocument(
+                        for: url,
+                        withContentsOf: url,
+                        display: true) { document, _, _ in
+                            Log.info("Opened project: \(url.absoluteString)")
+                            document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
                     }
-
-                    Log.info("No need to open Welcome Screen (projects)")
-                } else {
-                    self.handleOpen()
                 }
+                Log.info("No need to open the Welcome Screen (projects)")
+            } else {
+                // If no projects to recover, handle other open requests.
+                self.handleOpen()
             }
 
             for index in 0..<CommandLine.arguments.count {
