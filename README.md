@@ -51,7 +51,7 @@ It will support everything you could expect from an Xcode-inspired application, 
 
 Developers should be able to use an editor that feels snappy and fast.
 
-Most comparable editors are built on Electron, This is a huge disadvantage because it utilize a lot of unneccecary system resources. Electron requires a Chromium instance to run. This can mean massive performance losses and high RAM usage even for small apps built on it. Additionally, the overall code footprint is much larger and animations are slower. More frames are lost and things like window resizing feels laggy. Native apps are smooth as butter and utilize system resources much more efficiently for better performance and reliability.
+Most comparable editors are built on Electron, This is a huge disadvantage because it utilize a lot of unnecessary system resources. Electron requires a Chromium instance to run. This can mean massive performance losses and high RAM usage even for small apps built on it. Additionally, the overall code footprint is much larger and animations are slower. More frames are lost and things like window resizing feels laggy. Native apps are smooth as butter and utilize system resources much more efficiently for better performance and reliability.
 
 Xcode is a great native editor for developers on Mac, but unfortunately it doesn't support creating a multitude of projects in different programming languages, and this is where Aurora Editor comes in. Aurora Editor wants to give developers the possibility of creating their desired projects in their desired language on a editor that is native and gives a similar experience, performance and feel than that of Xcode on Mac.
 
@@ -91,7 +91,7 @@ We would love to hear what kind of great ideas you as the community have. If you
 
 If you created an awesome feature for Aurora Editor why not [Show and tell](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/show-and-tell), and celebrate with the community and developers of Aurora Editor.
 
-When we have some awesome news or a big annoucement to make, we will be making it in the [Annoucement Discussion](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/announcements). So stay tuned for any future annoucments.
+When we have some awesome news or a big announcement to make, we will be making it in the [announcement Discussion](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/announcements). So stay tuned for any future annoucments.
 
 ## Difference between `AuroraEditor` and `CodeEdit`
 
@@ -125,7 +125,7 @@ Please read the following for more information.
 * [Contribution Guide](https://github.com/AuroraEditor/AuroraEditor/blob/main/CONTRIBUTING.md)
 * [Architecture Guide](https://github.com/AuroraEditor/AuroraEditor/wiki/Architecture)
 * [Developer Guide](https://github.com/AuroraEditor/AuroraEditor/wiki/Developer-Guide)
-* [Troubeshooting Guide](https://github.com/AuroraEditor/AuroraEditor/wiki/Troubleshooting)
+* [Troubleshooting Guide](https://github.com/AuroraEditor/AuroraEditor/wiki/Troubleshooting)
 
 ## Editor Localization
 
