@@ -1,70 +1,66 @@
-# Contribute to Aurora Editor
+# Contribute to Aurora Editor 🌟
 
-Feel free to join and collaborate on our [Discord Server](https://discord.gg/5aecJ4rq9D).
+Join our vibrant community and collaborate with us on the [Aurora Editor Discord Server](https://discord.gg/5aecJ4rq9D). 
 
-> Note:
-> Since Aurora Editor is still in the development stage it can crash randomly.
+> **Please Note**: Aurora Editor is currently in active development, and it might occasionally experience random crashes. Your contributions are invaluable in making it better!
 
-&nbsp;
+## 🍴 Fork & Clone Aurora Editor
 
-## Fork & Clone Aurora Editor
+1. Get started by tapping the **"Fork"** button at the top of this GitHub repository.
 
-Tap the **"Fork"** button on the top of the site.
+2. After forking, clone your repository to your Mac using the following command:
 
-After forking clone the forked repository to your Mac. 
+    ```bash
+    git clone https://github.com/yourusername/AuroraEditor.git
+    ```
 
-e.g. using `git clone https://github.com/yourusername/AuroraEditor.git`
+## 🔍 Explore Issues
 
-&nbsp;
+Explore the list of open issues from the [Issues tab](https://github.com/AuroraEditor/AuroraEditor/issues).
 
-## Explore Issues
+If you find an issue you'd like to work on, please express your interest by commenting:
 
-Find issues from the [Issues tab](https://github.com/AuroraEditor/AuroraEditor/issues).
+    ```
+    @aurora-editor-bot please assign me
+    ```
 
-If you find an issue you want to work on, please indicate it in the issue by commenting 
+## 🚀 Getting Started
 
-`@aurora-editor-bot please assign me`.
+1. Fork this repository to your own GitHub account.
+2. Clone the repository to your local machine:
 
-&nbsp;
+    ```bash
+    git clone https://github.com/yourusername/AuroraEditor.git
+    ```
 
-## Getting Started
+3. Make your code changes.
 
-1. Fork this repository
-2. Clone to your own Mac `git clone https://github.com/yourusername/AuroraEditor.git`
-3. Write your changes
-4. Create PR
+4. Create a Pull Request (PR) when you're ready to submit your changes.
 
-&nbsp;
+## 💻 Code Style
 
-## Code Style
+While we don't have a detailed coding style guide, we do follow [SwiftLint rules](.swiftlint.yml).
 
-We do not yet have a written out coding style, [Swiftlint rules do apply](.swiftlint.yml).
+## 🚧 Pull Request (PR)
 
-&nbsp;
+When submitting a Pull Request, please follow these guidelines:
 
-## Pull Request
+- Provide a descriptive **title** summarizing your changes.
+- Include a detailed **description** of the modifications you made.
+- If your changes affect the user interface (UI), add a **screenshot** or **video** to showcase the improvements.
+- Link your PR to a related issue. If there isn't one, create an issue first and then link it to your PR.
+- If your PR is still a work in progress, mark it as **Draft**.
 
-Once you are happy with your changes, submit a `Pull Request`.
+## ✔️ Checks, Tests & Documentation
 
-The pull request opens with a template loaded. Fill out all fields that are relevant.
+GitHub will automatically notify the required reviewers.
 
-The `PR` should include following information:
-* A descriptive **title** on what changed.
-* A detailed **description** of changes.
-* If you made changes to the UI please add a **screenshot** or **video** as well.
-* If there is a related issue please add a **reference to the issue**. If not, create one beforehand and link it.
-* If your PR is still in progress mark it as **Draft**.
+- Resolve all `Violation` errors in Xcode. This is essential for the SwiftLint check on GitHub to pass.
 
-&nbsp;
+- GitHub will run tests and SwiftLint checks upon submitting your PR. If a test fails, the PR cannot be merged.
 
-## Checks, Tests & Documentation
+- Make sure to resolve any merge conflicts, as unresolvable conflicts can block the PR from being merged.
 
-GitHub will inform the required reviewers for you.
+> **Important**: Ensure your code is well-documented to make it easy for others to understand and work with your contributions! 📚🖋️
 
-Please resolve all `Violation` errors in Xcode. Otherwise the swiftlint check on GitHub will fail.
-
-Once you submit the `PR` GitHub will run a couple of actions which run tests and `SwiftLint` (this can take a couple of minutes). Should a test fail, it cannot be merged until tests succeed.
-
-Make sure to resolve all merge-conflicts otherwise the `PR` cannot be merged.
-
-> **Important**: make sure your code is well documented so others can interact with your code easily!
+Let's work together to make Aurora Editor an exceptional tool! 😄🚀
