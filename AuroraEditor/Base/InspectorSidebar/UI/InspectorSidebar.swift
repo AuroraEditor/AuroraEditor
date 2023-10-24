@@ -14,47 +14,31 @@ import SwiftUI
 // Quick Help.
 struct InspectorSidebar: View {
 
-    @Environment(\.controlActiveState)
-    private var activeState
-
-    @EnvironmentObject
-    private var workspace: WorkspaceDocument
-
-    @State
-    private var selection: Int = 0
+    @Environment(\.controlActiveState) private var activeState
+    @EnvironmentObject private var workspace: WorkspaceDocument
+    @State private var selection: Int = 0
 
     let prefs: AppPreferencesModel
 
     var body: some View {
         VStack {
-            if let item = workspace.selectionState.openFileItems.first(where: { file in
-                file.tabID == workspace.selectionState.selectedId
-            }) {
-                if let codeFile = workspace.selectionState.openedCodeFiles[item] {
-                    switch selection {
-                    case 0:
-                        FileInspectorView(workspaceURL: workspace.fileURL!,
-                                          fileURL: codeFile.fileURL!.path)
+            if let selectedItem = selectedFileItem {
+                switch selection {
+                case 0:
+                    FileInspectorView(workspaceURL: workspace.fileURL!, fileURL: selectedItem.url.path)
                         .frame(maxWidth: .infinity)
-                    case 1:
-                        HistoryInspector(workspaceURL: workspace.fileURL!,
-                                         fileURL: codeFile.fileURL!.path)
-                    case 2:
-                        QuickHelpInspector().padding(5)
-                    default: EmptyView()
-                    }
+                case 1:
+                    HistoryInspector(workspaceURL: workspace.fileURL!, fileURL: selectedItem.url.path)
+                case 2:
+                    QuickHelpInspector().padding(5)
+                default:
+                    NoSelectionView()
                 }
             } else {
                 NoSelectionView()
             }
         }
-        .frame(
-            minWidth: 250,
-            idealWidth: 260,
-            minHeight: 0,
-            maxHeight: .infinity,
-            alignment: .top
-        )
+        .frame(minWidth: 250, idealWidth: 260, minHeight: 0, maxHeight: .infinity, alignment: .top)
         .isHidden(!prefs.preferences.general.keepInspectorSidebarOpen)
         .safeAreaInset(edge: .top) {
             InspectorSidebarToolbarTop(selection: $selection)
@@ -64,5 +48,10 @@ struct InspectorSidebar: View {
             EffectView(.windowBackground, blendingMode: .withinWindow)
         )
         .opacity(activeState == .inactive ? 0.45 : 1)
+    }
+
+    private var selectedFileItem: FileItem? {
+        guard let selectedId = workspace.selectionState.selectedId else { return nil }
+        return workspace.selectionState.openFileItems.first { $0.tabID == selectedId }
     }
 }

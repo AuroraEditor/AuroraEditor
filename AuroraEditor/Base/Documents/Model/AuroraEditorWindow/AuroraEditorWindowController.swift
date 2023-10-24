@@ -14,8 +14,11 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
     var prefs: AppPreferencesModel = .shared
 
+    private var model: NotificationsModel = .shared
+
     var workspace: WorkspaceDocument
     var overlayPanel: OverlayPanel?
+    var notificationAnimator: NotificationViewAnimator!
 
     var cancelables: Set<AnyCancellable> = .init()
 
@@ -72,6 +75,16 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         inspector.isCollapsed = !prefs.preferences.general.keepInspectorSidebarOpen
         inspector.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(inspector)
+
+        // Create an instance of NotificationViewAnimator
+        notificationAnimator = NotificationViewAnimator(
+            notificationView: NSView(),
+            parent: splitVC.view,
+            model: model
+        )
+
+        notificationAnimator.observeNotificationData()
+        notificationAnimator.observeShowNotification()
 
         self.splitViewController = splitVC
 

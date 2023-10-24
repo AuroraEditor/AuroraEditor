@@ -61,34 +61,36 @@ struct PreferencesView: View {
     }
 
     var settingContentView: some View {
-            ScrollView {
-                if viewModel.selectedId == viewModel.setting[0].id {
-                    GeneralPreferencesView()        // General
-                } else if viewModel.selectedId == viewModel.setting[1].id {
-                    PreferenceAccountsView()        // Accounts
-                } else if viewModel.selectedId == viewModel.setting[2].id {
-                    PreferencesPlaceholderView()    // Behaviors
-                } else if viewModel.selectedId == viewModel.setting[3].id {
-                    PreferencesPlaceholderView()    // Navigation
-                } else if viewModel.selectedId == viewModel.setting[4].id {
-                    ThemePreferencesView()          // Themes
-                } else if viewModel.selectedId == viewModel.setting[5].id {
-                    TextEditingPreferencesView()    // Text Editing
-                } else if viewModel.selectedId == viewModel.setting[6].id {
-                    TerminalPreferencesView()       // Terminal
-                } else if viewModel.selectedId == viewModel.setting[7].id {
-                    PreferencesPlaceholderView()    // Key Bindings
-                } else if viewModel.selectedId == viewModel.setting[8].id {
-                    PreferenceSourceControlView()   // Source Control
-                } else if viewModel.selectedId == viewModel.setting[9].id {
-                    PreferencesPlaceholderView()    // Components
-                } else if viewModel.selectedId == viewModel.setting[10].id {
-                    PreferencesPlaceholderView()    // Advanced
-                } else if viewModel.selectedId == viewModel.setting[11].id {
-                    UpdatePreferencesView()
-                }
+        ScrollView {
+            if viewModel.selectedId == viewModel.setting[0].id {
+                GeneralPreferencesView()        // General
+            } else if viewModel.selectedId == viewModel.setting[1].id {
+                PreferenceAccountsView()        // Accounts
+            } else if viewModel.selectedId == viewModel.setting[2].id {
+                NotificationPreferencesView()        // Notifications
+            } else if viewModel.selectedId == viewModel.setting[3].id {
+                PreferencesPlaceholderView()    // Behaviors
+            } else if viewModel.selectedId == viewModel.setting[4].id {
+                PreferencesPlaceholderView()    // Navigation
+            } else if viewModel.selectedId == viewModel.setting[5].id {
+                ThemePreferencesView()          // Themes
+            } else if viewModel.selectedId == viewModel.setting[6].id {
+                TextEditingPreferencesView()    // Text Editing
+            } else if viewModel.selectedId == viewModel.setting[7].id {
+                TerminalPreferencesView()       // Terminal
+            } else if viewModel.selectedId == viewModel.setting[8].id {
+                PreferencesPlaceholderView()    // Key Bindings
+            } else if viewModel.selectedId == viewModel.setting[9].id {
+                PreferenceSourceControlView()   // Source Control
+            } else if viewModel.selectedId == viewModel.setting[10].id {
+                PreferencesPlaceholderView()    // Components
+            } else if viewModel.selectedId == viewModel.setting[11].id {
+                PreferencesPlaceholderView()    // Advanced
+            } else if viewModel.selectedId == viewModel.setting[12].id {
+                UpdatePreferencesView()
             }
-            .frame(minWidth: 560, idealWidth: 580, maxWidth: 600)
+        }
+        .frame(minWidth: 560, idealWidth: 580, maxWidth: 600)
     }
 
     public func closeWindow() {
