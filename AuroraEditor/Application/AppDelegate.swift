@@ -31,7 +31,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     func applicationWillFinishLaunching(_ notification: Notification) {
     }
 
-    var statusItem: NSStatusItem!
+    var statusItem: NSStatusItem?
 
     private var updateModel: UpdateObservedModel = .shared
 
@@ -57,7 +57,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                             document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
                     }
                 }
-                Log.info("No need to open the Welcome Screen (projects)")
             } else {
                 // If no projects to recover, handle other open requests.
                 self.handleOpen()
@@ -81,18 +80,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             }
         }
 
-        if AppPreferencesModel.shared.preferences.general.menuItemShowMode == .shown {
-            self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-            setup(statusItem: statusItem)
+        if NSApp.activationPolicy() == .regular {
+            if statusItem == nil {
+                // Create a status item if the menu item show mode is set to "shown."
+                if AppPreferencesModel.shared.preferences.general.menuItemShowMode == .shown {
+                    self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+                    guard let statusItem = statusItem else {
+                        return
+                    }
+                    setup(statusItem: statusItem)
+                }
+            }
         }
 
-        // We disable checking for updates in debug builds as to not
-        // annoy our fellow contributers
-        #if !DEBUG
+        // Check for updates (except in DEBUG builds).
         updateModel.checkForUpdates()
-        #endif
-
-        Log.info("AURORA EDITOR is using SwiftOniguruma Version: \(SwiftOniguruma.version())!")
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
