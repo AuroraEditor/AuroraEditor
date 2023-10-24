@@ -24,7 +24,7 @@ struct NotificationViewItem: View {
             HStack(alignment: .center) {
                 // Display the notification icon based on severity or a default icon if none provided.
                 if notification.icon == nil {
-                    Image(systemName: notificationIcon(severity: notification.severity))
+                    Image(systemName: notification.severity.iconName())
                         .symbolRenderingMode(.multicolor)
                         .font(.system(size: 14))
                 } else {
@@ -43,16 +43,10 @@ struct NotificationViewItem: View {
 
                         // Display a chevron icon for toggling additional actions (if applicable).
                         if notification.notificationType == .extensionSystem {
-                            Image(systemName: showActions ? "chevron.up" : "chevron.down")
-                                .foregroundColor(.secondary)
-                                .font(.system(size: 11))
-                        }
-                    }
-                    .onTapGesture {
-                        // Toggle additional actions when tapping the title (if applicable).
-                        if notification.notificationType == .extensionSystem {
                             withAnimation {
-                                showActions.toggle()
+                                Image(systemName: showActions ? "chevron.up" : "chevron.down")
+                                    .foregroundColor(.secondary)
+                                    .font(.system(size: 11))
                             }
                         }
                     }
@@ -64,30 +58,42 @@ struct NotificationViewItem: View {
                         .font(.system(size: 10))
                 }
             }
+            .onTapGesture {
+                // Toggle additional actions when tapping the title (if applicable).
+                if notification.notificationType == .extensionSystem {
+                    withAnimation {
+                        showActions.toggle()
+                    }
+                }
+            }
 
             // Display additional actions (if expanded).
             if showActions {
-                withAnimation {
-                    Button {
-                        // Action to be performed when the button is tapped.
-                    } label: {
-                        Spacer()
-                        Text("UPDATE")
-                            .foregroundColor(.accentColor)
-                            .font(.system(size: 11))
-                        Spacer()
-                    }
-                    .shadow(radius: 0)
-                    .cornerRadius(20)
-                    .buttonStyle(.bordered)
+                Button {
+                    // Action to be performed when the button is tapped.
+                } label: {
+                    Spacer()
+                    Text("UPDATE")
+                        .foregroundColor(.accentColor)
+                        .font(.system(size: 11))
+                    Spacer()
                 }
+                .shadow(radius: 0)
+                .cornerRadius(20)
+                .buttonStyle(.bordered)
             }
         }
         .padding(5)
+        .onTapGesture {
+            if notification.notificationType == .update {
+            }
+        }
         .contextMenu {
             // Context menu items for the notification.
             Button("Copy") {
-                // Action to copy notification content.
+                let pasteboard = NSPasteboard.general
+                pasteboard.clearContents()
+                pasteboard.setString(notification.message, forType: .string)
             }
 
             Divider()
@@ -109,24 +115,11 @@ struct NotificationViewItem: View {
             Button("Don’t Show Again...") {
                 // Action to hide the notification permanently.
                 removeNotificationAtIndex()
-                LocalStorage().saveDoNotShowNotifcation(id: notification.id ?? "")
+                var updatedNotification = notification
+                updatedNotification.neverShowAgain?.id = UUID().uuidString
+                updatedNotification.neverShowAgain?.scope = .WORKSPACE
+                LocalStorage().saveDoNotShowNotification(notification: updatedNotification)
             }
-        }
-    }
-
-    /// Determines the appropriate system icon based on the severity of the notification.
-    /// - Parameter severity: The severity level of the notification.
-    /// - Returns: The system icon name.
-    private func notificationIcon(severity: Severity) -> String {
-        switch severity {
-        case .ignore:
-            return ""
-        case .info:
-            return "info.circle.fill"
-        case .warning:
-            return "exclamationmark.triangle.fill"
-        case .error:
-            return "exclamationmark.octagon.fill"
         }
     }
 

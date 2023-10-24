@@ -9,7 +9,7 @@
 import Foundation
 
 /// The `INotification` struct represents a notification with various properties.
-struct INotification: INotificationProperties, Equatable, Hashable, Identifiable {
+struct INotification: INotificationProperties, Equatable, Hashable, Identifiable, Codable {
     /// The unique identifier for the notification. Used to determine if a notification is a duplicate.
     var id: String? = UUID().uuidString
 

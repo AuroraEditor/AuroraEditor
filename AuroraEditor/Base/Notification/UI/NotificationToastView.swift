@@ -23,14 +23,13 @@ struct NotificationToastView: View {
         VStack(alignment: .leading) {
             HStack(alignment: .center) {
                 // Notification icon.
-                Image(systemName: "square.dashed.inset.filled")
-                    .font(.system(size: 14))
-                    .cornerRadius(5)
+                NotificationIcon(notification: notification)
 
                 // Notification source or identifier.
                 Text("Docker")
                     .fontWithLineHeight(fontSize: 12, lineHeight: 7)
                     .foregroundColor(.secondary)
+
                 Spacer()
 
                 // Timestamp for when the notification was received.

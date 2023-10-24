@@ -19,7 +19,9 @@ extension View {
     /// - Parameters:
     ///   - hidden: Set to `false` to show the view. Set to `true` to hide the view.
     @ViewBuilder func isHidden(_ hidden: Bool) -> some View {
-        if !hidden {
+        if hidden {
+            self.hidden()
+        } else {
             self
         }
     }

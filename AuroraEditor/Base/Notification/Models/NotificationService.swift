@@ -90,6 +90,20 @@ class NotificationService: INotificationService {
     /// - Parameters:
     ///   - title: The title of the informational notification.
     ///   - message: The message associated with the informational notification.
+    func editorUpdate(title: String, message: String) {
+        model.addNotification(notification: INotification(id: "AuroraEditor-Update",
+                                                          severity: .info,
+                                                          title: title,
+                                                          message: message,
+                                                          notificationType: .update,
+                                                          silent: false))
+    }
+
+    /// Adds an informational notification to the notifications model.
+    ///
+    /// - Parameters:
+    ///   - title: The title of the informational notification.
+    ///   - message: The message associated with the informational notification.
     func info(title: String, message: String) {
         model.addNotification(notification: INotification(id: UUID().uuidString,
                                                           severity: .info,

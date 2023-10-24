@@ -7,7 +7,7 @@
 //
 
 /// An enumeration specifying the scope for marking a notification to never show again.
-enum NeverShowAgainScope {
+enum NeverShowAgainScope: Codable {
     /// Indicates that the notification should never show again on the current workspace.
     case WORKSPACE
 

@@ -7,7 +7,7 @@
 //
 
 /// An enumeration specifying severity levels for notifications.
-enum Severity: Int {
+enum Severity: Int, Codable {
     /// Indicates that the notification should be ignored.
     case ignore = 0
 
@@ -59,7 +59,7 @@ extension Severity {
         case .ignore:
             return ""
         case .info:
-            return ""
+            return "info.circle.fill"
         }
     }
 

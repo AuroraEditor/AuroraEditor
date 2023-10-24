@@ -55,10 +55,21 @@ struct NotificationPreferencesView: View {
 
                     HStackToggle(text: "Allow notifications on all profiles",
                                  toggleValue: $appPreferences.preferences.notifications.allProfiles)
+
+                    Divider()
+
+                    HStackToggle(text: "Notifications allowed to popup",
+                                 toggleValue: $appPreferences.preferences.notifications.allProfiles)
                 }
                 .padding(.top, 5)
             }
         }
         .padding()
+    }
+}
+
+struct NotificationPreferencesView_Previews: PreviewProvider {
+    static var previews: some View {
+        NotificationPreferencesView()
     }
 }

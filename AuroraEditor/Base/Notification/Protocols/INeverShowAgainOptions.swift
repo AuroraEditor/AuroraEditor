@@ -8,7 +8,7 @@
 
 /// The `INeverShowAgainOptions` struct represents options to configure whether a notification
 /// should never be shown again.
-struct INeverShowAgainOptions: Hashable, Equatable {
+struct INeverShowAgainOptions: Hashable, Equatable, Codable {
     /// The identifier used to persist the selection of not showing the notification again.
     var id: String
 

@@ -70,20 +70,16 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         let inspector = NSSplitViewItem(
             viewController: inspectorViewController
         )
-        inspector.titlebarSeparatorStyle = .none
+        inspector.titlebarSeparatorStyle = .line
         inspector.minimumThickness = 260
-        inspector.isCollapsed = true
+        inspector.isCollapsed = !prefs.preferences.general.keepInspectorSidebarOpen
         inspector.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(inspector)
-
-        // This parent fetches the whole apps window since AE is built around
-        // a split editor view.
-        let parent = splitVC.view
 
         // Create an instance of NotificationViewAnimator
         notificationAnimator = NotificationViewAnimator(
             notificationView: NSView(),
-            parent: parent,
+            parent: splitVC.view,
             model: model
         )
 

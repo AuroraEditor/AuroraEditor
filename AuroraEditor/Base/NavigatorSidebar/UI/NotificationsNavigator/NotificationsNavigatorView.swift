@@ -31,15 +31,8 @@ struct NotificationsNavigatorView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
                     List {
-                        ScrollViewReader { proxy in
-                            ForEach(notificationList().reversed(), id: \.id) { notification in
-                                NotificationViewItem(notification: notification)
-                            }
-                            .onChange(of: notificationList()) { _ in
-                                withAnimation {
-                                    proxy.scrollTo(0)
-                                }
-                            }
+                        ForEach(notificationList().reversed(), id: \.id) { notification in
+                            NotificationViewItem(notification: notification)
                         }
                     }
                 }

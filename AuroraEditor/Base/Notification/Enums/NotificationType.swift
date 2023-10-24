@@ -7,9 +7,12 @@
 //
 
 /// An enumeration specifying different types of notifications.
-enum NotificationType {
+enum NotificationType: Codable {
     /// Represents system notifications sent by AE (the editor). For example, errors in user code.
     case system
+
+    /// Represents update notifications sent by AE (the editor).
+    case update
 
     /// Represents extension notifications sent by user-installed extensions.
     case extensionSystem

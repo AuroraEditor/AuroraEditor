@@ -16,6 +16,8 @@ public extension AppPreferences {
         /// Allows notifications to be sent to the user
         public var notificationsEnabled: Bool = true
 
+        public var notificationDisplayTime: Int = 5000
+
         /// if true, the notifications system ignores all notifications except errors
         public var doNotDisturb: Bool = false
 
@@ -30,6 +32,8 @@ public extension AppPreferences {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.notificationsEnabled = try container.decodeIfPresent(Bool.self,
                                                                       forKey: .notificationsEnabled) ?? true
+            self.notificationDisplayTime = try container.decodeIfPresent(Int.self,
+                                                                         forKey: .notificationDisplayTime) ?? 5000
             self.doNotDisturb = try container.decodeIfPresent(Bool.self,
                                                               forKey: .doNotDisturb) ?? false
             self.allProfiles = try container.decodeIfPresent(Bool.self,

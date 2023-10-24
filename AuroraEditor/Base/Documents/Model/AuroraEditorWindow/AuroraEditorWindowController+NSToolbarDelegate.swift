@@ -77,7 +77,7 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
             .toggleNavigator,
             .flexibleSpace,
             .runApplication,
-            .itemListTrackingSeparator,
+            .sidebarTrackingSeparator,
             .branchPicker,
             .flexibleSpace,
             .toolbarAppInformation,
@@ -225,14 +225,14 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
     /// notifies extensions of the change.
     @objc func toggleInspectorPane() {
         guard let inspectorPane = splitViewController.splitViewItems.last,
-            let window = window,
-            let toolbar = window.toolbar
+              let window = window,
+              let toolbar = window.toolbar
         else { return }
 
         inspectorPane.animator().isCollapsed.toggle()
         prefs.preferences.general.keepInspectorSidebarOpen = !inspectorPane.isCollapsed
 
-        // Find the index of the separator and flexible space items.
+        // Find the indices of the separator, flexible space, and other items.
         if let itemListTrackingSeparatorIndex = toolbar.items.firstIndex(where: {
             $0.itemIdentifier == .itemListTrackingSeparator
         }), let flexibleSpaceIndex = toolbar.items.firstIndex(where: {
@@ -242,25 +242,26 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
         }), let libraryPopupIndex = toolbar.items.firstIndex(where: {
             $0.itemIdentifier == .libraryPopup
         }) {
-            let inspectorIsCollapsed = inspectorPane.isCollapsed
 
-            // Check if the indices are within bounds.
-            if itemListTrackingSeparatorIndex >= 0 && itemListTrackingSeparatorIndex < toolbar.items.count
-                && flexibleSpaceIndex >= 0 && flexibleSpaceIndex < toolbar.items.count
-                && toggleInspectorIndex >= 0 && toggleInspectorIndex < toolbar.items.count
-                && libraryPopupIndex >= 0 && libraryPopupIndex < toolbar.items.count {
+            // Ensure that all indices are within bounds.
+            if itemListTrackingSeparatorIndex < toolbar.items.count &&
+                flexibleSpaceIndex < toolbar.items.count &&
+                toggleInspectorIndex < toolbar.items.count &&
+                libraryPopupIndex < toolbar.items.count {
 
                 // Update the toolbar items based on the inspector's collapse state.
-                if inspectorIsCollapsed {
+                if inspectorPane.isCollapsed {
                     // Remove the separator and flexible space.
                     toolbar.removeItem(at: itemListTrackingSeparatorIndex)
                     toolbar.removeItem(at: flexibleSpaceIndex)
 
                     // Re-add the library popup after the toggleInspector item.
-                    toolbar.insertItem(
-                        withItemIdentifier: .libraryPopup,
-                        at: toggleInspectorIndex + 1
-                    )
+                    if toggleInspectorIndex + 1 <= toolbar.items.count {
+                        toolbar.insertItem(
+                            withItemIdentifier: .libraryPopup,
+                            at: toggleInspectorIndex + 1
+                        )
+                    }
                 } else {
                     // Remove the library popup before the separator.
                     toolbar.removeItem(at: libraryPopupIndex)

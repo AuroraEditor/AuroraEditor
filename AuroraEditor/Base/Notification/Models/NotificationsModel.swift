@@ -59,8 +59,9 @@ class NotificationsModel: ObservableObject, INotificationsModel {
         // We check if the user has the notification saved in their 'do not show again' list.
         // If they do, we don't add the notification until the user decides to remove it
         // from the list in settings.
-        if let notificationID = notification.id, LocalStorage().listDoNotShowNotification().contains(notificationID) {
-            Log.warning("This notification \(notificationID) has been marked by the user to not show again.")
+        let notificationList = LocalStorage().listDoNotShowNotifications()
+        if notificationList.contains(where: { $0.id == notification.id }) {
+            Log.warning("This notification \(notification.id) has been marked by the user to not show again.")
             return
         }
 

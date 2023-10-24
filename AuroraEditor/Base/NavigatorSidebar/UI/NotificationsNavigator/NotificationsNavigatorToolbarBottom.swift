@@ -21,9 +21,8 @@ struct NotificationsNavigatorToolbarBottom: View {
     var body: some View {
         HStack {
             HStack {
-                Image(systemName: "line.3.horizontal.decrease.circle")
-                    .foregroundColor(.secondary)
-                    .padding(.horizontal, 5)
+                FilterButton()
+
                 TextField("Filter", text: $model.searchNotifications)
                     .textFieldStyle(.plain)
                     .font(.system(size: 12))

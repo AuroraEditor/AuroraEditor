@@ -7,7 +7,7 @@
 //
 
 /// An enumeration representing different types of issues that can occur in a software project.
-enum IssueType: String {
+enum IssueType: String, Codable {
     /// A build-related issue.
     case build = "Build"
 

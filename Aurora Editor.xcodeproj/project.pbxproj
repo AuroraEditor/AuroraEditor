@@ -557,10 +557,12 @@
 		A01AB2D82ACC9EDC0029EDF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A01AB2D72ACC9EDC0029EDF0 /* Assets.xcassets */; };
 		A01AB2DB2ACC9EDC0029EDF0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A01AB2DA2ACC9EDC0029EDF0 /* Preview Assets.xcassets */; };
 		A01AB2E72ACCA8B90029EDF0 /* AEUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01AB2E62ACCA8B90029EDF0 /* AEUpdateService.swift */; };
+		A02AA2122ADF20CE007933A5 /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02AA2112ADF20CE007933A5 /* FilterButton.swift */; };
 		A05D17C22ACDCE94002153C9 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05D17C12ACDCE94002153C9 /* Main.swift */; };
 		A05D17C92ACE0028002153C9 /* UpdateInvalidChecksumState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05D17C72ACDFAA9002153C9 /* UpdateInvalidChecksumState.swift */; };
 		A05D17CB2ACE041E002153C9 /* UpdateUpToDateState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05D17CA2ACE041E002153C9 /* UpdateUpToDateState.swift */; };
 		A05D17CE2ACE190A002153C9 /* AEUpdateService.app in Resources */ = {isa = PBXBuildFile; fileRef = A01AB2D12ACC9EDA0029EDF0 /* AEUpdateService.app */; };
+		A07C1CD42AE4518900E8B17D /* NotificationIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07C1CD32AE4518900E8B17D /* NotificationIcon.swift */; };
 		A08E00812AD48C2A0091725D /* LoaderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E00802AD48C2A0091725D /* LoaderState.swift */; };
 		A08E00832AD48C740091725D /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E00822AD48C740091725D /* Loader.swift */; };
 		A08E00852AD48D660091725D /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E00842AD48D660091725D /* LoaderView.swift */; };
@@ -1227,9 +1229,11 @@
 		A01AB2DA2ACC9EDC0029EDF0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A01AB2DC2ACC9EDC0029EDF0 /* AEUpdateService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AEUpdateService.entitlements; sourceTree = "<group>"; };
 		A01AB2E62ACCA8B90029EDF0 /* AEUpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AEUpdateService.swift; sourceTree = "<group>"; };
+		A02AA2112ADF20CE007933A5 /* FilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButton.swift; sourceTree = "<group>"; };
 		A05D17C12ACDCE94002153C9 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		A05D17C72ACDFAA9002153C9 /* UpdateInvalidChecksumState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInvalidChecksumState.swift; sourceTree = "<group>"; };
 		A05D17CA2ACE041E002153C9 /* UpdateUpToDateState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUpToDateState.swift; sourceTree = "<group>"; };
+		A07C1CD32AE4518900E8B17D /* NotificationIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationIcon.swift; sourceTree = "<group>"; };
 		A08E00802AD48C2A0091725D /* LoaderState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderState.swift; sourceTree = "<group>"; };
 		A08E00822AD48C740091725D /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		A08E00842AD48D660091725D /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
@@ -2345,6 +2349,7 @@
 				20D83838289A7ACD00D91D05 /* PanelDivider.swift */,
 				20D83837289A7ACD00D91D05 /* SegmentedControl.swift */,
 				20D8383B289A7ACD00D91D05 /* SettingsTextEditor.swift */,
+				A02AA2112ADF20CE007933A5 /* FilterButton.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -3033,6 +3038,7 @@
 				20FACF8C2AB60FCB00B09012 /* NotificationToastView.swift */,
 				20FACF8E2AB60FF900B09012 /* NotificationViewItem.swift */,
 				20FACFA62AB6309E00B09012 /* ToolbarNotificationButtonView.swift */,
+				A07C1CD32AE4518900E8B17D /* NotificationIcon.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -4267,6 +4273,7 @@
 				D7012EE827E757850001E1EF /* FindNavigator.swift in Sources */,
 				202F2E39289E7444000D3CAD /* FindNavigatorListMatchCell.swift in Sources */,
 				202F2E3B289E7483000D3CAD /* FindNavigatorListViewController.swift in Sources */,
+				A02AA2122ADF20CE007933A5 /* FilterButton.swift in Sources */,
 				D7E201B227E8D50000CB86D0 /* FindNavigatorModeSelector.swift in Sources */,
 				202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */,
 				D7E201B027E8C07300CB86D0 /* FindNavigatorSearchBar.swift in Sources */,
@@ -4337,6 +4344,7 @@
 				2093CDA7289AA179003A88DD /* IgnoredFileView.swift in Sources */,
 				2BDFA90728D107B200980385 /* ImageFileView.swift in Sources */,
 				20FACF8F2AB60FF900B09012 /* NotificationViewItem.swift in Sources */,
+				A07C1CD42AE4518900E8B17D /* NotificationIcon.swift in Sources */,
 				2B04574928E6FFE300024F2D /* IncludeGrammarPattern.swift in Sources */,
 				2B04576428E6FFE300024F2D /* IncludeRulePattern.swift in Sources */,
 				2072FA1C280D874000C7F8D4 /* IndentUsing.swift in Sources */,
