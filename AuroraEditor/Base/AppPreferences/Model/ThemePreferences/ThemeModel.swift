@@ -146,10 +146,10 @@ public final class ThemeModel: ObservableObject {
                 self.themes.append(theme)
 
                 // if there already is a selected theme in `preferences.json` select this theme
-                // otherwise try take any theme according to system appearance
-                if let theme = self.themes.first(where: {
+                // otherwise try take any theme align with system appearance
+                if let existingTheme = self.themes.first(where: {
                     $0.name == prefs.theme.selectedTheme
-                }) { self.selectedTheme = theme }
+                }) { self.selectedTheme = existingTheme }
                 
                 else {
                     self.selectedTheme = try? getDefaultTheme()
@@ -158,19 +158,17 @@ public final class ThemeModel: ObservableObject {
         }
     }
         
-    private func getDefaultTheme() throws -> AuroraTheme? {
+    private func getDefaultTheme(with apearance: NSAppearance.Name = NSApp.effectiveAppearance.name) throws -> AuroraTheme? {
+        
         enum DefaultTheme {
             static let anyDark = "AuroraEditor-xcode-dark"
             static let anyLight = "auroraeditor-xcode-light"
         }
         
-        guard let systemTheme = NSApp.appearance?.name else { throw NSError() }
-        
-        if systemTheme == .darkAqua || systemTheme == .vibrantDark {
+        if apearance == .darkAqua || apearance == .vibrantDark {
             return self.themes.first { $0.name == DefaultTheme.anyDark }
-        } else if systemTheme == .aqua || systemTheme == .vibrantLight { return self.themes.first { $0.name == DefaultTheme.anyLight }
+        } else if apearance == .aqua || apearance == .vibrantLight { return self.themes.first { $0.name == DefaultTheme.anyLight }
         }
-        
         return nil
     }
 
