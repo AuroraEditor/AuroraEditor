@@ -114,7 +114,7 @@ extension AppDelegate {
 
     @objc
     func hideMenuItem(_ sender: Any?) {
-        statusItem.button?.isHidden = true
+        statusItem?.button?.isHidden = true
         AppPreferencesModel.shared.preferences.general.menuItemShowMode = .hidden
     }
 }

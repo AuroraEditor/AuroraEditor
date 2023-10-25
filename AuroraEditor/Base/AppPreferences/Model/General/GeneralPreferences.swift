@@ -58,7 +58,7 @@ public extension AppPreferences {
         public var revealFileOnFocusChange: Bool = false
 
         /// The fag whether inspectors side-bar should open by default or not.
-        public var keepInspectorSidebarOpen: Bool = true
+        public var keepInspectorSidebarOpen: Bool = false
 
         public var workspaceSidebarWidth: Double = Self.defaultWorkspaceSidebarWidth
         public var navigationSidebarWidth: Double = Self.defaultNavigationSidebarWidth

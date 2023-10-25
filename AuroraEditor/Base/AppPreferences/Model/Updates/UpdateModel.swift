@@ -42,6 +42,8 @@ public class UpdateObservedModel: ObservableObject {
     @Published
     var updateModelJson: UpdateModel?
 
+    private let notificationService: NotificationService = .init()
+
     /// This function allows us to to check for any new updates for the editor.
     ///
     /// We fetch a json based on the users update channel, currently there are three channels
@@ -83,6 +85,11 @@ public class UpdateObservedModel: ObservableObject {
 
                             if updateFile.versionCode != Bundle.versionString {
                                 self.updateState = .updateFound
+
+                                self.notificationService
+                                    .editorUpdate(title: "Update Available",
+                                                  message: "A new update for Aurora Editor is available")
+
                             } else {
                                 self.updateState = .upToDate
                             }

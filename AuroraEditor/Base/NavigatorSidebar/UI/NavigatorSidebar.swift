@@ -47,6 +47,7 @@ struct NavigatorSidebar: View {
         .padding(.leading, prefs.preferences.general.sidebarStyle == .vscode ? 30 : 0)
     }
 
+    // swiftlint:disable:next function_body_length
     func sidebarModule(toolbar: Int) -> some View {
         sidebarModuleContent(toolbar: toolbar)
         .safeAreaInset(edge: .leading) { // VSC style sidebar
@@ -87,7 +88,13 @@ struct NavigatorSidebar: View {
                     ProjectNavigatorToolbarBottom()
                 case 1:
                     SourceControlToolbarBottom()
-                case 2, 3, 4, 5, 6, 7:
+                case 5:
+                    if prefs.preferences.notifications.notificationsEnabled {
+                        NotificationsNavigatorToolbarBottom()
+                    } else {
+                        EmptyView()
+                    }
+                case 2, 3, 4, 6, 7:
                     NavigatorSidebarToolbarBottom()
                 default:
                     NavigatorSidebarToolbarBottom()
@@ -104,6 +111,7 @@ struct NavigatorSidebar: View {
             case 0: ProjectNavigator()
             case 1: SourceControlNavigatorView()
             case 2: FindNavigator(state: workspace.searchState ?? .init(workspace))
+            case 5: NotificationsNavigatorView()
             case 6: HierarchyNavigator()
             case 7: ExtensionNavigator(data: workspace.extensionNavigatorData!)
                     .environmentObject(workspace)
