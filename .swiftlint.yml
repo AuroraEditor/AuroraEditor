@@ -135,6 +135,14 @@ custom_rules:
     message: "Please do not use Xcode's placeholders."
     severity: warning
 
+  # Don't use #Preview macro
+  no_preview_macro:
+    included: ".*.swift"
+    name: "No Preview Macro"
+    regex: "\\#Preview"
+    message: "Do not use preview macro."
+    severity: warning
+
 file_header:
   required_pattern: |
                   \/\/

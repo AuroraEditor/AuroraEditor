@@ -55,6 +55,7 @@ extension WelcomeWindowView {
                 windowController.window?.close()
             }
         ))
+
         window.makeKeyAndOrderFront(self)
     }
 }
