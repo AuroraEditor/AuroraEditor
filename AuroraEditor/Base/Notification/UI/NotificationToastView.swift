@@ -27,11 +27,9 @@ struct NotificationToastView: View {
                     .frame(maxWidth: 24, maxHeight: 24)
 
                 // Notification source or identifier.
-                if !notification.title.isEmpty {
-                    Text(notification.title)
-                        .fontWithLineHeight(fontSize: 12, lineHeight: 7)
-                        .foregroundColor(.secondary)
-                }
+                Text(notification.title)
+                    .fontWithLineHeight(fontSize: 12, lineHeight: 7)
+                    .foregroundColor(.secondary)
 
                 Spacer()
 
