@@ -14,6 +14,8 @@ struct UpdateCancelledState: View {
     }
 }
 
-// #Preview {
-//     UpdateCancelledState()
-// }
+struct UpdateCancelledStatePreview: PreviewProvider {
+    static var previews: some View {
+        UpdateCancelledState()
+    }
+}
