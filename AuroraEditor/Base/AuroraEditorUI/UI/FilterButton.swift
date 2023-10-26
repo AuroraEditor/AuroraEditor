@@ -25,6 +25,8 @@ struct FilterButton: View {
     }
 }
 
-#Preview {
-    FilterButton()
+struct FilterButtonPreview: PreviewProvider {
+    static var previews: some View {
+        FilterButton()
+    }
 }
