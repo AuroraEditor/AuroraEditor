@@ -87,7 +87,7 @@ We would love to hear what kind of great ideas you as the community have. If you
 
 If you created an awesome feature for Aurora Editor why not [Show and tell](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/show-and-tell), and celebrate with the community and developers of Aurora Editor.
 
-When we have some awesome news or a big announcement to make, we will be making it in the [announcement Discussion](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/announcements). So stay tuned for any future annoucments.
+When we have some awesome news or a big announcement to make, we will be making it in the [announcement Discussion](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/announcements). So stay tuned for any future announcements.
 
 ## Difference between `AuroraEditor` and `CodeEdit`
 
