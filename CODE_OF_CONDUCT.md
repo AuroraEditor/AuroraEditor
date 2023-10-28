@@ -12,7 +12,7 @@ and orientation.
 We pledge to act and interact in ways that contribute to an open, welcoming,
 diverse, inclusive, and healthy community.
 
-If you feel unwelcome, or feel like you are not being treated properly, please contact an Founder [@Scripts](https://github.com/orgs/AuroraEditor/teams/scripts) and we will do everything we can to resolve this. 
+If you feel unwelcome, or feel like you are not being treated properly, please contact a Founder [@Scripts](https://github.com/orgs/AuroraEditor/teams/scripts) and we will do everything we can to resolve this. 
 
 ## Our Standards
 
@@ -22,7 +22,7 @@ community include:
 * Demonstrating empathy and kindness toward other people
 * Being respectful of differing opinions, viewpoints, and experiences
 * Giving and gracefully accepting constructive feedback
-* Accepting responsibility and apologizing to those affected by our mistakes,
+* Accepting responsibility and apologizing to those affected by our mistakes
   and learning from the experience
 * Focusing on what is best not just for us as individuals, but for the
   overall community
@@ -33,7 +33,7 @@ Examples of unacceptable behavior include:
   advances of any kind
 * Trolling, insulting or derogatory comments, and personal or political attacks
 * Public or private harassment
-* Publishing others' private information, such as a physical or email
+* Publishing other's private information, such as a physical or email
   address, without their explicit permission
 * Other conduct which could reasonably be considered inappropriate in a
   professional setting
@@ -42,7 +42,7 @@ Examples of unacceptable behavior include:
 
 Community leaders are responsible for clarifying and enforcing our standards of
 acceptable behavior and will take appropriate and fair corrective action in
-response to any behavior that they deem inappropriate, threatening, offensive,
+response to any behavior that they deem to be inappropriate, threatening, offensive,
 or harmful.
 
 Community leaders have the right and responsibility to remove, edit, or reject
