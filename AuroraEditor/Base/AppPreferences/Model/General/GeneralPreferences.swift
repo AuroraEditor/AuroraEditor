@@ -170,7 +170,7 @@ public extension AppPreferences {
         public func applyAppearance() {
             switch self {
             case .system:
-                NSApp.appearance = .init(named: NSApp.effectiveAppearance.name)
+                NSApp.appearance = nil
             case .dark:
                 NSApp.appearance = .init(named: .darkAqua)
 
