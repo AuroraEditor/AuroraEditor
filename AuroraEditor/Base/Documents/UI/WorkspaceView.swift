@@ -55,7 +55,10 @@ struct WorkspaceView: View {
     private var sheetIsOpened = false
 
     @State
-    private var extensionView: AnyView = AnyView(EmptyView())
+    private var extensionName: String = ""
+
+    @State
+    private var extensionsView: AnyView = AnyView(EmptyView())
 
     private let extensionsManagerShared = ExtensionsManager.shared
 
@@ -150,6 +153,7 @@ struct WorkspaceView: View {
             )
 
             workspace.broadcaster.broadcaster.sink { command in
+                Log.info(command)
                 if command.name == "openSettings" {
                     workspace.windowController?.openSettings()
                 } else if command.name == "showNotification" {
@@ -174,8 +178,8 @@ struct WorkspaceView: View {
                         message: (command.parameters["message"] as? String) ?? ""
                     )
                 } else if command.name == "openSheet",
-                   let view = command.parameters["view"] as? any View {
-                    extensionView = AnyView(view)
+                          let view = command.parameters["view"] as? any View {
+                    extensionsView = AnyView(view)
                     sheetIsOpened = true
                 } else if command.name == "openTab",
                    let view = command.parameters["view"] as? any View {
@@ -194,6 +198,7 @@ struct WorkspaceView: View {
                     )
                     let windowController = NSWindowController()
                     windowController.contentViewController = window.contentViewController
+                    windowController.window?.title = extensionName
                     windowController.window = window
                     windowController.showWindow(self)
                 } else {
@@ -249,15 +254,18 @@ struct WorkspaceView: View {
 
         }
         .sheet(isPresented: $sheetIsOpened) {
-            HStack {
-                Text("") // Title, if any at some point.
-                Spacer()
-                Button("Dismiss") {
-                    sheetIsOpened.toggle()
-                }
-            }.padding([.leading, .top, .trailing], 5)
-            Divider()
-            extensionView.padding(.bottom, 5)
+            VStack {
+                HStack {
+                    Text(extensionName)
+                    Spacer()
+                    Button("Dismiss") {
+                        sheetIsOpened.toggle()
+                    }
+                }.padding([.leading, .top, .trailing], 5)
+                Divider()
+                extensionsView
+                    .padding(.bottom, 5)
+            }
         }
     }
 }
