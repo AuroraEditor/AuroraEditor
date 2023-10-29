@@ -47,7 +47,7 @@ It will support everything you could expect from an Xcode-inspired application, 
 
 Developers should be able to use an editor that feels snappy and fast.
 
-Most comparable editors are built on Electron, This is a huge disadvantage because it utilizes a lot of unnecessary system resources. Electron requires a Chromium instance to run. This can mean massive performance losses and high RAM usage even for small apps built on it. Additionally, the overall code footprint is much larger and animations are slower. More frames are lost and things like window resizing feels laggy. Native apps are smooth as butter and utilize system resources much more efficiently for better performance and reliability.
+Most comparable editors are built on Electron, this is a huge disadvantage because it utilizes a lot of unnecessary system resources. Electron requires a Chromium instance to run. This can mean massive performance losses and high RAM usage even for small apps built on it. Additionally, the overall code footprint is much larger and animations are slower. More frames are lost and things like window resizing feels laggy. Native apps are smooth as butter and utilizes system resources much more efficiently for better performance and reliability.
 
 Xcode is a great native editor for developers on Mac, but unfortunately it doesn't support creating a multitude of projects in different programming languages, and this is where Aurora Editor comes in. Aurora Editor wants to give developers the possibility of creating their desired projects in their desired language on an editor that is native and gives a similar experience, performance and feel than that of Xcode on Mac.
 
