@@ -152,8 +152,7 @@ struct WorkspaceView: View {
             workspace.broadcaster.broadcaster.sink { command in
                 if command.name == "openSettings" {
                     workspace.windowController?.openSettings()
-                }
-                if command.name == "showNotification" {
+                } else if command.name == "showNotification" {
                     notificationService.notify(
                         notification: INotification(
                             id: UUID().uuidString,
@@ -164,30 +163,25 @@ struct WorkspaceView: View {
                             silent: false
                         )
                     )
-                }
-                if command.name == "showWarning" {
+                } else if command.name == "showWarning" {
                     notificationService.warn(
                         title: (command.parameters["title"] as? String) ?? "",
                         message: (command.parameters["message"] as? String) ?? ""
                     )
-                }
-                if command.name == "showError" {
+                } else if command.name == "showError" {
                     notificationService.error(
                         title: (command.parameters["title"] as? String) ?? "",
                         message: (command.parameters["message"] as? String) ?? ""
                     )
-                }
-                if command.name == "openSheet",
+                } else if command.name == "openSheet",
                    let view = command.parameters["view"] as? any View {
                     extensionView = AnyView(view)
                     sheetIsOpened = true
-                }
-                if command.name == "openTab",
+                } else if command.name == "openTab",
                    let view = command.parameters["view"] as? any View {
-                    Log.info(view)
+                    Log.info("openTab", view)
                     // TODO: Open new tab.
-                }
-                if command.name == "openWindow",
+                } else if command.name == "openWindow",
                    let view = command.parameters["view"] as? any View {
                     let window = NSWindow()
                     window.styleMask = NSWindow.StyleMask(rawValue: 0xf)
@@ -202,7 +196,8 @@ struct WorkspaceView: View {
                     windowController.contentViewController = window.contentViewController
                     windowController.window = window
                     windowController.showWindow(self)
-
+                } else {
+                    Log.info("Unknown command", command)
                 }
             }.store(in: &cancelables)
         }
