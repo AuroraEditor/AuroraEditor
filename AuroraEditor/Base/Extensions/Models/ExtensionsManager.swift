@@ -65,11 +65,11 @@ public final class ExtensionsManager {
 
     /// Temporary load function, all extensions in ~/Library/com.auroraeditor/Extensions will be loaded.
     public func loadPlugins() {
-            try? FileManager.default.createDirectory(
-                at: extensionsFolder,
-                withIntermediateDirectories: false,
-                attributes: nil
-            )
+        try? FileManager.default.createDirectory(
+            at: extensionsFolder,
+            withIntermediateDirectories: false,
+            attributes: nil
+        )
 
         do {
             let directory = try FileManager.default.contentsOfDirectory(
@@ -108,14 +108,27 @@ public final class ExtensionsManager {
         let bundleURL = extensionsFolder.appendingPathComponent(path, isDirectory: true)
 
         // Initialize bundle
-        guard let bundle = Bundle(url: bundleURL),
-              bundle.load() else {
-            Log.warning("Failed to load bundle")
+        guard let bundle = Bundle(url: bundleURL) else {
+            Log.warning("Failed to load extension \(path)")
+            return nil
+        }
+
+        // Pre-flight
+        do {
+            try bundle.preflight()
+        } catch {
+            Log.error(path, error)
+            return nil
+        }
+
+        if !bundle.load() {
+            Log.warning("We were unable to load extension \(path).")
             return nil
         }
 
         guard let AEext = bundle.principalClass as? ExtensionBuilder.Type else {
             Log.warning(
+                path,
                 "Failed to convert",
                 bundle.principalClass.self ?? "None",
                 "to",
