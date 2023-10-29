@@ -24,15 +24,16 @@ struct NotificationToastView: View {
             HStack(alignment: .center) {
                 // Notification icon.
                 NotificationIcon(notification: notification)
+                    .frame(maxWidth: 24, maxHeight: 24)
 
                 // Notification source or identifier.
-                Text("Docker")
+                Text(notification.title)
                     .fontWithLineHeight(fontSize: 12, lineHeight: 7)
                     .foregroundColor(.secondary)
 
                 Spacer()
 
-                // Timestamp for when the notification was received.
+                // TODO: Timestamp for when the notification was received.
                 Text("Now")
                     .fontWithLineHeight(fontSize: 11, lineHeight: 7)
                     .foregroundColor(.secondary)
@@ -41,17 +42,12 @@ struct NotificationToastView: View {
                 if model.hoveringOnToast {
                     Image(systemName: "xmark")
                         .font(.system(size: 11))
+                        .frame(maxWidth: 24, maxHeight: 24)
                         .onTapGesture {
                             model.showNotificationToast = false
                         }
                 }
             }
-
-            // Title of the notification.
-            Text(notification.title)
-                .fontWithLineHeight(fontSize: 13, lineHeight: 8)
-                .foregroundColor(.primary)
-                .padding(.top, 10)
 
             // Message content of the notification.
             Text(notification.message)
@@ -59,8 +55,8 @@ struct NotificationToastView: View {
                 .fontWithLineHeight(fontSize: 13, lineHeight: 8)
                 .foregroundColor(.secondary)
         }
-        .padding(10)
-        .frame(width: 350, height: 105)
+        .padding(.horizontal, 10)
+        .frame(minWidth: 350, minHeight: 75)
         .background(colorScheme == .light ? .white : Color(hex: "#252525"))
         .cornerRadius(8)
         .shadow(radius: 1)

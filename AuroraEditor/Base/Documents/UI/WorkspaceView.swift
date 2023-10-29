@@ -153,23 +153,29 @@ struct WorkspaceView: View {
                 if command.name == "openSettings" {
                     workspace.windowController?.openSettings()
                 }
-                if command.name == "showNotification",
-                   let message = command.parameters["message"] as? String {
-                    notificationService.notify(notification: INotification(
-                                            id: UUID().uuidString,
-                                            severity: .info,
-                                            title: "",
-                                            message: message,
-                                            notificationType: .extensionSystem,
-                                            silent: false))
+                if command.name == "showNotification" {
+                    notificationService.notify(
+                        notification: INotification(
+                            id: UUID().uuidString,
+                            severity: .info,
+                            title: (command.parameters["title"] as? String) ?? "",
+                            message: (command.parameters["message"] as? String) ?? "",
+                            notificationType: .extensionSystem,
+                            silent: false
+                        )
+                    )
                 }
-                if command.name == "showWarning",
-                   let message = command.parameters["message"] as? String {
-                    notificationService.warn(title: "", message: message)
+                if command.name == "showWarning" {
+                    notificationService.warn(
+                        title: (command.parameters["title"] as? String) ?? "",
+                        message: (command.parameters["message"] as? String) ?? ""
+                    )
                 }
-                if command.name == "showError",
-                   let message = command.parameters["message"] as? String {
-                    notificationService.error(title: "", message: message)
+                if command.name == "showError" {
+                    notificationService.error(
+                        title: (command.parameters["title"] as? String) ?? "",
+                        message: (command.parameters["message"] as? String) ?? ""
+                    )
                 }
                 if command.name == "openSheet",
                    let view = command.parameters["view"] as? any View {

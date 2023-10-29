@@ -21,9 +21,9 @@
 
 <br />
 
-Aurora Editor is a IDE built by the community, for the community, and written in Swift for the best native performance and feel for macOS. 
+Aurora Editor is an IDE built by the community, for the community, and written in Swift for the best native performance and feel for macOS. 
 
-It will support everything you could expect from an Xcode-inspired application, including deep integration with your selected git provider, project planning, and your favourite built in editor tools.
+It will support everything you could expect from an Xcode-inspired application, including deep integration with your selected Git provider, project planning, and your favourite built in editor tools.
 
 <img width="1012" alt="github-banner" src="https://user-images.githubusercontent.com/63672227/187914690-2277654c-6cab-4738-b151-1c85947bea8b.jpg">
 
@@ -47,9 +47,9 @@ It will support everything you could expect from an Xcode-inspired application, 
 
 Developers should be able to use an editor that feels snappy and fast.
 
-Most comparable editors are built on Electron, This is a huge disadvantage because it utilize a lot of unnecessary system resources. Electron requires a Chromium instance to run. This can mean massive performance losses and high RAM usage even for small apps built on it. Additionally, the overall code footprint is much larger and animations are slower. More frames are lost and things like window resizing feels laggy. Native apps are smooth as butter and utilize system resources much more efficiently for better performance and reliability.
+Most comparable editors are built on Electron, this is a huge disadvantage because it utilizes a lot of unnecessary system resources. Electron requires a Chromium instance to run. This can mean massive performance losses and high RAM usage even for small apps built on it. Additionally, the overall code footprint is much larger and animations are slower. More frames are lost and things like window resizing feels laggy. Native apps are smooth as butter and utilizes system resources much more efficiently for better performance and reliability.
 
-Xcode is a great native editor for developers on Mac, but unfortunately it doesn't support creating a multitude of projects in different programming languages, and this is where Aurora Editor comes in. Aurora Editor wants to give developers the possibility of creating their desired projects in their desired language on a editor that is native and gives a similar experience, performance and feel than that of Xcode on Mac.
+Xcode is a great native editor for developers on Mac, but unfortunately it doesn't support creating a multitude of projects in different programming languages, and this is where Aurora Editor comes in. Aurora Editor wants to give developers the possibility of creating their desired projects in their desired language on an editor that is native and gives a similar experience, performance and feel than that of Xcode on Mac.
 
 ## Included Repositories
 <table>
@@ -87,13 +87,13 @@ We would love to hear what kind of great ideas you as the community have. If you
 
 If you created an awesome feature for Aurora Editor why not [Show and tell](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/show-and-tell), and celebrate with the community and developers of Aurora Editor.
 
-When we have some awesome news or a big announcement to make, we will be making it in the [announcement Discussion](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/announcements). So stay tuned for any future annoucments.
+When we have some awesome news or a big announcement to make, we will be making it in the [announcement Discussion](https://github.com/AuroraEditor/AuroraEditor/discussions/categories/announcements). So stay tuned for any future announcements.
 
 ## Difference between `AuroraEditor` and `CodeEdit`
 
 We have all contributed to CodeEdit, and some of us continue to contribute to the CE community. However, there are several notable distinctions in our approach:
 
-1. We actively encourage the submission of smaller pull requests (PRs), even if they are not flawless. Our rationale is that this approach can expedite project development.
+1. We actively encourage the submission of smaller pull requests (PRs), even if they are not flawless. Our rationale is that this approach can expedite the project development.
 
 2. We have adopted a different syntax highlighting engine. Our decision is based on the belief that Tree-sitter's parsing speed may not be sufficient, especially during the initial parsing stages.
 
@@ -150,7 +150,7 @@ We want users to feel comfortable using Aurora Editor in their own speaking lang
 
 ## Intellectual Property License
 
-The Aurora Editor Logo is copyright of AuroraEditor and Aurora Company.
+The Aurora Editor Logo is copyrighted by AuroraEditor and Aurora Company.
 
 ## Socials
 
