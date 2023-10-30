@@ -171,7 +171,6 @@ public extension AppPreferences {
             switch self {
             case .system:
                 NSApp.appearance = nil
-
             case .dark:
                 NSApp.appearance = .init(named: .darkAqua)
 
