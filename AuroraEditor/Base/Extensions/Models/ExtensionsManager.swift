@@ -14,7 +14,7 @@ import AEExtensionKit
 public final class ExtensionsManager {
     /// Shared instance of `ExtensionsManager`
     public static let shared: ExtensionsManager = ExtensionsManager()
-    
+
     /// Aurora Editor folder (`~/Library/com.auroraeditor/`)
     let auroraEditorFolder: URL
 
