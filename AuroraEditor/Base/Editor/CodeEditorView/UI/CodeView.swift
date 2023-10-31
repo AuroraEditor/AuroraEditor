@@ -57,6 +57,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
             backgroundColor = theme.editor.background.nsColor
             insertionPointColor = theme.editor.insertionPoint.nsColor
             selectedTextAttributes = [.backgroundColor: theme.editor.selection.nsColor]
+            textColor = theme.editor.text.nsColor
 //            (textStorage as? CodeStorage)?.theme = theme
             minimapView?.backgroundColor = theme.editor.background.nsColor
             documentVisibleBox?.fillColor = theme.editor.text.nsColor.withAlphaComponent(0.1)
