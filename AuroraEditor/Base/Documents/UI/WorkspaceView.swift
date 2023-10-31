@@ -184,7 +184,7 @@ struct WorkspaceView: View {
                     )
                 } else if broadcast.command == "openSheet",
                           let view = broadcast.parameters["view"] as? any View {
-                    extensionsViewTitle = broadcast.parameters["title"] as? String ?? extensionName
+                    extensionsViewTitle = (broadcast.parameters["title"] as? String) ?? extensionName
                     extensionsView = AnyView(view)
                     sheetIsOpened = true
                 } else if broadcast.command == "openTab",
@@ -204,7 +204,7 @@ struct WorkspaceView: View {
                     )
                     let windowController = NSWindowController()
                     windowController.contentViewController = window.contentViewController
-                    windowController.window?.title = broadcast.parameters["title"] as? String ?? extensionName
+                    windowController.window?.title = (broadcast.parameters["title"] as? String) ?? extensionName
                     windowController.window = window
                     windowController.showWindow(self)
                 } else {
