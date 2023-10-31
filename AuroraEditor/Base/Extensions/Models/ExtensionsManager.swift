@@ -23,8 +23,6 @@ public final class ExtensionsManager {
     var loadedLanguageServers: [String: LSPClient] = [:]
     var workspace: WorkspaceDocument?
 
-    var auroraAPIHandler: AuroraAPI = { _, _ in }
-
     init() {
         Log.info("[ExtensionsManager] init()")
 
@@ -46,15 +44,6 @@ public final class ExtensionsManager {
             "Extensions",
             isDirectory: true
         )
-
-        self.auroraAPIHandler = { function, parameters in
-            if let workspace = self.workspace {
-                Log.info("Broadcasting", function, parameters)
-                workspace.broadcaster.broadcast(function, parameters: parameters)
-            } else {
-                Log.warning("Failed to broadcast", function, parameters)
-            }
-        }
 
         loadPlugins()
     }
@@ -83,9 +72,24 @@ public final class ExtensionsManager {
                         withAPI: AuroraEditorAPI(extensionId: "0", workspace: .init())
                     )
 
+                    let auroraAPI: AuroraAPI = { function, parameters in
+                        if let workspace = self.workspace {
+                            Log.info("Broadcasting", function, parameters)
+                            workspace.broadcaster.broadcast(
+                                sender: file.replacingOccurrences(of: ".AEext", with: ""),
+                                command: function,
+                                parameters: parameters
+                            )
+                        } else {
+                            Log.warning("Failed to broadcast", function, parameters)
+                        }
+                    }
+
                     loadedExtensions[file]?.respond(
                         action: "registerCallback",
-                        parameters: ["callback": auroraAPIHandler]
+                        parameters: [
+                            "callback": auroraAPI
+                        ]
                     )
 
                     Log.info("Registered \(file)")

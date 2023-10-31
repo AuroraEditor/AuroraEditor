@@ -57,7 +57,7 @@ class AuroraCommandBroadcaster {
     private var subject: CurrentValueSubject<Broadcast, Never>
 
     init() {
-        subject = .init(.default)
+        subject = .init(.init(sender: "AuroraEditor", command: "NOOP"))
         broadcaster = subject
             .handleEvents(receiveCancel: {})
             .receive(on: RunLoop.main)
@@ -74,22 +74,21 @@ class AuroraCommandBroadcaster {
     /// - Parameters:
     ///   - name: The name of the `Broadcast` to send
     ///   - parameters: The parameters of the `Broadcast`, left blank for `[:]`
-    func broadcast(_ name: String, parameters: [String: Any] = [:]) {
-        broadcast(command: Broadcast(name: name, parameters: parameters))
+    func broadcast(sender: String, command: String, parameters: [String: Any] = [:]) {
+        broadcast(command: Broadcast(sender: sender, command: command, parameters: parameters))
     }
 
     /// Wrapper around ``broadcast(command:)``, for when there is only a name required.
     /// This function equates to broadcasting `Broadcast(name: named)`
     /// - Parameter named: The name of the command to send.
-    func broadcast(named: String) {
-        broadcast(command: Broadcast(name: named))
+    func broadcast(command: String) {
+        broadcast(command: Broadcast(sender: "Unknown", command: command))
     }
 
     /// Struct that holds information about the command being broadcasted
     struct Broadcast {
-        var name: String
+        var sender: String
+        var command: String
         var parameters: [String: Any] = [:]
-
-        static let `default`: Broadcast = .init(name: "DEFAULT")
     }
 }

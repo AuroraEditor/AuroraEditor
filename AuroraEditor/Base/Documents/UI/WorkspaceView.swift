@@ -60,6 +60,9 @@ struct WorkspaceView: View {
     @State
     private var extensionsView: AnyView = AnyView(EmptyView())
 
+    @State
+    private var extensionsViewTitle: String = ""
+
     private let extensionsManagerShared = ExtensionsManager.shared
 
     @ViewBuilder
@@ -152,41 +155,44 @@ struct WorkspaceView: View {
                 using: { _ in self.isFullscreen = false }
             )
 
-            workspace.broadcaster.broadcaster.sink { command in
-                Log.info(command)
-                if command.name == "openSettings" {
+            workspace.broadcaster.broadcaster.sink { broadcast in
+                Log.info(broadcast)
+                extensionName = broadcast.sender
+
+                if broadcast.command == "openSettings" {
                     workspace.windowController?.openSettings()
-                } else if command.name == "showNotification" {
+                } else if broadcast.command == "showNotification" {
                     notificationService.notify(
                         notification: INotification(
                             id: UUID().uuidString,
                             severity: .info,
-                            title: (command.parameters["title"] as? String) ?? "",
-                            message: (command.parameters["message"] as? String) ?? "",
+                            title: (broadcast.parameters["title"] as? String) ?? extensionName,
+                            message: (broadcast.parameters["message"] as? String) ?? "",
                             notificationType: .extensionSystem,
                             silent: false
                         )
                     )
-                } else if command.name == "showWarning" {
+                } else if broadcast.command == "showWarning" {
                     notificationService.warn(
-                        title: (command.parameters["title"] as? String) ?? "",
-                        message: (command.parameters["message"] as? String) ?? ""
+                        title: (broadcast.parameters["title"] as? String) ?? extensionName,
+                        message: (broadcast.parameters["message"] as? String) ?? ""
                     )
-                } else if command.name == "showError" {
+                } else if broadcast.command == "showError" {
                     notificationService.error(
-                        title: (command.parameters["title"] as? String) ?? "",
-                        message: (command.parameters["message"] as? String) ?? ""
+                        title: (broadcast.parameters["title"] as? String) ?? extensionName,
+                        message: (broadcast.parameters["message"] as? String) ?? ""
                     )
-                } else if command.name == "openSheet",
-                          let view = command.parameters["view"] as? any View {
+                } else if broadcast.command == "openSheet",
+                          let view = broadcast.parameters["view"] as? any View {
+                    extensionsViewTitle = broadcast.parameters["title"] as? String ?? extensionName
                     extensionsView = AnyView(view)
                     sheetIsOpened = true
-                } else if command.name == "openTab",
-                   let view = command.parameters["view"] as? any View {
+                } else if broadcast.command == "openTab",
+                   let view = broadcast.parameters["view"] as? any View {
                     Log.info("openTab", view)
                     // TODO: Open new tab.
-                } else if command.name == "openWindow",
-                   let view = command.parameters["view"] as? any View {
+                } else if broadcast.command == "openWindow",
+                   let view = broadcast.parameters["view"] as? any View {
                     let window = NSWindow()
                     window.styleMask = NSWindow.StyleMask(rawValue: 0xf)
                     window.contentViewController = NSHostingController(
@@ -198,11 +204,11 @@ struct WorkspaceView: View {
                     )
                     let windowController = NSWindowController()
                     windowController.contentViewController = window.contentViewController
-                    windowController.window?.title = extensionName
+                    windowController.window?.title = broadcast.parameters["title"] as? String ?? extensionName
                     windowController.window = window
                     windowController.showWindow(self)
                 } else {
-                    Log.info("Unknown command", command)
+                    Log.info("Unknown broadcast", broadcast)
                 }
             }.store(in: &cancelables)
         }
