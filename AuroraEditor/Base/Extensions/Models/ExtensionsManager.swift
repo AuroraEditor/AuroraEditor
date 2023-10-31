@@ -52,6 +52,21 @@ public final class ExtensionsManager {
         self.workspace = workspace
     }
 
+    private func auroraAPICallback(file: String) -> AuroraAPI {
+        return { function, parameters in
+            if let workspace = self.workspace {
+                Log.info("Broadcasting", function, parameters)
+                workspace.broadcaster.broadcast(
+                    sender: file.replacingOccurrences(of: ".AEext", with: ""),
+                    command: function,
+                    parameters: parameters
+                )
+            } else {
+                Log.warning("Failed to broadcast", function, parameters)
+            }
+        }
+    }
+
     /// Temporary load function, all extensions in ~/Library/com.auroraeditor/Extensions will be loaded.
     public func loadPlugins() {
         try? FileManager.default.createDirectory(
@@ -72,23 +87,10 @@ public final class ExtensionsManager {
                         withAPI: AuroraEditorAPI(extensionId: "0", workspace: .init())
                     )
 
-                    let auroraAPI: AuroraAPI = { function, parameters in
-                        if let workspace = self.workspace {
-                            Log.info("Broadcasting", function, parameters)
-                            workspace.broadcaster.broadcast(
-                                sender: file.replacingOccurrences(of: ".AEext", with: ""),
-                                command: function,
-                                parameters: parameters
-                            )
-                        } else {
-                            Log.warning("Failed to broadcast", function, parameters)
-                        }
-                    }
-
                     loadedExtensions[file]?.respond(
                         action: "registerCallback",
                         parameters: [
-                            "callback": auroraAPI
+                            "callback": auroraAPICallback(file: file)
                         ]
                     )
 
