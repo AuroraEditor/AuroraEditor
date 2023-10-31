@@ -171,7 +171,9 @@ struct WorkspaceView: View {
                 extensionDynamic.name = broadcast.sender
                 extensionDynamic.title = (broadcast.parameters["title"] as? String) ?? extensionDynamic.name
 
-                if broadcast.command == "openSettings" {
+                if broadcast.command == "NOOP" {
+                    // Got a noop command, we can ignore this.
+                } else if broadcast.command == "openSettings" {
                     workspace.windowController?.openSettings()
                 } else if broadcast.command == "showNotification" {
                     notificationService.notify(
