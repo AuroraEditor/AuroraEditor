@@ -12,6 +12,23 @@ import AppKit
 import Version_Control
 import Combine
 
+class ExtensionDynamicData: ObservableObject {
+    @Published
+    public var name: String
+
+    @Published
+    public var title: String = ""
+
+    @Published
+    public var view: AnyView = AnyView(EmptyView())
+
+    init() {
+        self.name = ""
+        self.title = ""
+        self.view = AnyView(EmptyView())
+    }
+}
+
 struct WorkspaceView: View {
 
     let tabBarHeight = 28.0
@@ -54,14 +71,8 @@ struct WorkspaceView: View {
     @State
     private var sheetIsOpened = false
 
-    @State
-    private var extensionName: String = ""
-
-    @State
-    private var extensionsView: AnyView = AnyView(EmptyView())
-
-    @State
-    private var extensionsViewTitle: String = ""
+    @ObservedObject
+    private var extensionDynamic = ExtensionDynamicData()
 
     private let extensionsManagerShared = ExtensionsManager.shared
 
@@ -157,7 +168,8 @@ struct WorkspaceView: View {
 
             workspace.broadcaster.broadcaster.sink { broadcast in
                 Log.info(broadcast)
-                extensionName = broadcast.sender
+                extensionDynamic.name = broadcast.sender
+                extensionDynamic.title = (broadcast.parameters["title"] as? String) ?? extensionDynamic.name
 
                 if broadcast.command == "openSettings" {
                     workspace.windowController?.openSettings()
@@ -166,7 +178,7 @@ struct WorkspaceView: View {
                         notification: INotification(
                             id: UUID().uuidString,
                             severity: .info,
-                            title: (broadcast.parameters["title"] as? String) ?? extensionName,
+                            title: extensionDynamic.title,
                             message: (broadcast.parameters["message"] as? String) ?? "",
                             notificationType: .extensionSystem,
                             silent: false
@@ -174,18 +186,17 @@ struct WorkspaceView: View {
                     )
                 } else if broadcast.command == "showWarning" {
                     notificationService.warn(
-                        title: (broadcast.parameters["title"] as? String) ?? extensionName,
+                        title: extensionDynamic.title,
                         message: (broadcast.parameters["message"] as? String) ?? ""
                     )
                 } else if broadcast.command == "showError" {
                     notificationService.error(
-                        title: (broadcast.parameters["title"] as? String) ?? extensionName,
+                        title: extensionDynamic.title,
                         message: (broadcast.parameters["message"] as? String) ?? ""
                     )
                 } else if broadcast.command == "openSheet",
-                          let view = broadcast.parameters["view"] as? any View {
-                    extensionsViewTitle = (broadcast.parameters["title"] as? String) ?? extensionName
-                    extensionsView = AnyView(view)
+                    let view = broadcast.parameters["view"] as? any View {
+                    extensionDynamic.view = AnyView(view)
                     sheetIsOpened = true
                 } else if broadcast.command == "openTab",
                    let view = broadcast.parameters["view"] as? any View {
@@ -204,7 +215,7 @@ struct WorkspaceView: View {
                     )
                     let windowController = NSWindowController()
                     windowController.contentViewController = window.contentViewController
-                    windowController.window?.title = (broadcast.parameters["title"] as? String) ?? extensionName
+                    windowController.window?.title = extensionDynamic.title
                     windowController.window = window
                     windowController.showWindow(self)
                 } else {
@@ -262,16 +273,17 @@ struct WorkspaceView: View {
         .sheet(isPresented: $sheetIsOpened) {
             VStack {
                 HStack {
-                    Text(extensionName)
+                    Text(extensionDynamic.title)
                     Spacer()
                     Button("Dismiss") {
                         sheetIsOpened.toggle()
                     }
                 }.padding([.leading, .top, .trailing], 5)
                 Divider()
-                extensionsView
+                extensionDynamic.view
                     .padding(.bottom, 5)
             }
+            .frame(minWidth: 250, minHeight: 150)
         }
     }
 }

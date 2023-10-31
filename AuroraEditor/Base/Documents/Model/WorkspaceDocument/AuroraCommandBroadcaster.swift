@@ -57,6 +57,7 @@ class AuroraCommandBroadcaster {
     private var subject: CurrentValueSubject<Broadcast, Never>
 
     init() {
+        Log.info("[AuroraCommandBroadcaster] init()")
         subject = .init(.init(sender: "AuroraEditor", command: "NOOP"))
         broadcaster = subject
             .handleEvents(receiveCancel: {})
