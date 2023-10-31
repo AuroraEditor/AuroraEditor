@@ -45,10 +45,7 @@ public final class ExtensionsManager {
             isDirectory: true
         )
 
-        DispatchQueue.main.asyncAfter(
-            deadline: .now() + 0.5,
-            execute: loadPlugins
-        )
+        loadPlugins()
     }
 
     func set(workspace: WorkspaceDocument) {
