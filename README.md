@@ -75,6 +75,26 @@ Xcode is a great native editor for developers on Mac, but unfortunately it doesn
   </tr>
 </table>
 
+## How To install Aurora Editor?
+
+# Enable snaps on elementary OS and install Aurora Editor
+Snaps are applications packaged with all their dependencies to run on all popular Linux distributions from a single build. They update automatically and roll back gracefully.
+
+Snaps are discoverable and installable from the Snap Store, an app store with an audience of millions.
+
+# Enable snapd
+Snap can be installed on elementary OS from the command line. Open Terminal from the Applications launcher and type the following:
+
+sudo apt update
+sudo apt install snapd
+
+Either log out and back in again, or restart your system, to ensure snap’s paths are updated correctly.
+
+# Install Aurora Editor
+To install Aurora Editor, simply use the following command:
+
+sudo snap install aurora-editor
+
 ## Community
 
 Join our community on [Discord](https://discord.gg/5aecJ4rq9D) or [Slack](https://join.slack.com/t/auroraeditor/shared_invite/zt-1fti1r72d-8mWmJsj279vDV~YdKhcUEA) where we discuss and collaborate on all things of Aurora Editor.
