@@ -171,11 +171,10 @@ jobs:
           # Verify the code signature.
           codesign --verify --deep --display --verbose "builds/Aurora Editor.app"
 
-      - name: Install create-dmg
-        run: npm install --global create-dmg
-        
       - name: Make Release Dmg
-        run: create-dmg "builds/Aurora Editor.app"
+        run: |
+          hdiutil create "Aurora Editor 1.0.dmg" -ov -volname "Aurora Editor" -fs HFS+ -srcfolder "builds/"
+          hdiutil convert "Aurora Editor 1.0.dmg" -format UDZO -o RecitalInstall.dmg
 
       - name: Notarize and Log
         run: |
