@@ -171,11 +171,32 @@ jobs:
           # Verify the code signature.
           codesign --verify --deep --display --verbose "builds/Aurora Editor.app"
 
-      - name: Install create-dmg
-        run: npm install --global create-dmg
-        
       - name: Make Release Dmg
-        run: create-dmg "builds/Aurora Editor.app"
+        run: |
+          hdiutil create temp.dmg -ov -volname "Aurora Editor" -fs HFS+ -srcfolder "builds/Aurora Editor.app"
+          hdiutil convert temp.dmg -format UDZO -o "Aurora Editor 1.0.dmg"
+          
+          IDENTITIES=`/usr/bin/security find-identity -v -p codesigning`
+          
+          if [[ "$IDENTITIES" == *"Developer ID Application:"* ]]; then
+              IDENTITY="Developer ID Application"
+          elif [[ "$IDENTITIES" == *"Mac Developer:"* ]]; then
+              IDENTITY="Mac Developer"
+          elif [[ "$IDENTITIES" == *"Apple Development:"* ]]; then
+              IDENTITY="Apple Development"
+          else
+              echo "Not identity found {$IDENTITIES}"
+          fi
+
+          if [[ "$IDENTITY" != "" ]]; then
+              /usr/bin/codesign --sign "$IDENTITY" "Aurora Editor 1.0.dmg"
+              CHECK_SIGN=`/usr/bin/codesign "Aurora Editor 1.0.dmg" --display --verbose=2`
+
+              if [[ "$CHECK_SIGN" == *"not signed at all"* ]]; then
+                  echo "Signing failed"
+                  exit 1
+              fi
+          fi
 
       - name: Notarize and Log
         run: |
@@ -316,3 +337,12 @@ jobs:
           curl -H "Authorization: Bearer $PAT" -X PUT \
             -d "{\"message\": \"$commit_message\", \"content\": \"$(base64 <<< $json_content)\", \"branch\": \"main\", \"sha\": \"$sha\"}" \
             "$api_url"
+
+      - name: Release
+        if: github.ref_name == "main"
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.BOT_TOKEN }}
+          body: "Automatic release from main"
+          files: |
+            "Aurora Editor.dmg"
