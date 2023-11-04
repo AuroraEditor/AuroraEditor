@@ -173,7 +173,7 @@ jobs:
 
       - name: Make Release Dmg
         run: |
-          hdiutil create temp.dmg -ov -volname "Aurora Editor" -fs HFS+ -srcfolder "builds/"
+          hdiutil create temp.dmg -ov -volname "Aurora Editor" -fs HFS+ -srcfolder "builds/Aurora Editor.app"
           hdiutil convert temp.dmg -format UDZO -o "Aurora Editor 1.0.dmg"
           
           IDENTITIES=`/usr/bin/security find-identity -v -p codesigning`
