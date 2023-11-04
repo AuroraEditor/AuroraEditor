@@ -337,3 +337,12 @@ jobs:
           curl -H "Authorization: Bearer $PAT" -X PUT \
             -d "{\"message\": \"$commit_message\", \"content\": \"$(base64 <<< $json_content)\", \"branch\": \"main\", \"sha\": \"$sha\"}" \
             "$api_url"
+
+      - name: Release
+        if: github.ref_name == "main"
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.BOT_TOKEN }}
+          body: "Automatic release from main"
+          files: |
+            "Aurora Editor.dmg"
