@@ -33,7 +33,20 @@ public struct CodeEditorViewWrapper: View {
         self.codeFile = codeFile
         self.editable = editable
         self.fileExtension = fileExtension
-        let currentTheme = ThemeModel.shared.selectedTheme ?? ThemeModel.shared.themes.first!
+        let currentTheme = ThemeModel.shared.selectedTheme
+            ?? ThemeModel.shared.themes.first
+            ?? .init(
+                editor: .defaultLight,
+                terminal: .defaultLight,
+                author: "N/A",
+                license: "MIT",
+                metadataDescription: "N/A",
+                distributionURL: "N/A",
+                name: "Default",
+                displayName: "Default",
+                appearance: .light,
+                version: "0"
+            )
         self.theme = currentTheme
     }
 

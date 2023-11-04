@@ -20,10 +20,12 @@ struct GitlabLoginView: View {
 
     @ObservedObject
     var accountModel: EditorAccountModel
+    var loginSuccessfulCallback: EditorAccountModel.LoginSuccessfulCallback
 
-    init(dismissDialog: Binding<Bool>) {
+    init(dismissDialog: Binding<Bool>, loginSuccessfulCallback: @escaping EditorAccountModel.LoginSuccessfulCallback) {
         self._dismissDialog = dismissDialog
         self.accountModel = .init(dismissDialog: dismissDialog.wrappedValue)
+        self.loginSuccessfulCallback = loginSuccessfulCallback
     }
 
     var body: some View {
@@ -68,7 +70,8 @@ struct GitlabLoginView: View {
                         Button {
                             accountModel.loginGitlab(gitAccountName: accountName,
                                                      accountToken: accountToken,
-                                                     accountName: accountName)
+                                                     accountName: accountName, successCallback: loginSuccessfulCallback)
+                            self.dismissDialog = accountModel.dismissDialog
                         } label: {
                             Text("settings.global.login")
                                 .foregroundColor(.white)

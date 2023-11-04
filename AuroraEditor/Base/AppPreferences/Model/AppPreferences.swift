@@ -5,6 +5,7 @@
 //  Created by Lukas Pistrol on 01.04.22.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
+//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import SwiftUI
 
@@ -43,6 +44,9 @@ public struct AppPreferences: Codable {
 
     public var updates: UpdatePreferences = .init()
 
+    /// The global settings for the notification system
+    public var notifications: NotificationsPreferences = .init()
+
     /// Default initializer
     public init() {}
 
@@ -58,5 +62,7 @@ public struct AppPreferences: Codable {
                                                            forKey: .sourceControl) ?? .init()
         self.updates = try container.decodeIfPresent(UpdatePreferences.self,
                                                      forKey: .updates) ?? .init()
+        self.notifications = try container.decodeIfPresent(NotificationsPreferences.self,
+                                                                   forKey: .notifications) ?? .init()
     }
 }

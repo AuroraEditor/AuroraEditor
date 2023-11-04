@@ -57,6 +57,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
             backgroundColor = theme.editor.background.nsColor
             insertionPointColor = theme.editor.insertionPoint.nsColor
             selectedTextAttributes = [.backgroundColor: theme.editor.selection.nsColor]
+            textColor = theme.editor.text.nsColor
 //            (textStorage as? CodeStorage)?.theme = theme
             minimapView?.backgroundColor = theme.editor.background.nsColor
             documentVisibleBox?.fillColor = theme.editor.text.nsColor.withAlphaComponent(0.1)
@@ -201,7 +202,6 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         documentVisibleBox.borderWidth = 0
         minimapView.addSubview(documentVisibleBox)
         self.documentVisibleBox = documentVisibleBox
-
         tile()
     }
 
@@ -457,7 +457,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         // view outside of the clip view.
         let newOriginY = floor(min(max(documentVisibleRect.origin.y * scrollFactor, 0),
                                    frame.size.height - (minimapView?.frame.size.height ?? 0)))
-        if minimapView?.frame.origin.y != newOriginY {
+        if minimapView?.frame.origin.y != newOriginY && !newOriginY.isNaN {
             minimapView?.frame.origin.y = newOriginY
         }  // don't update frames in vain
 

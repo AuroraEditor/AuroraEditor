@@ -10,6 +10,7 @@ disabled_rules:
 excluded:
   - AuroraEditorModules/.build # Where Swift Package Manager checks out dependency sources
   - AuroraEditorCli/Package.swift # Package.swift should not be linted
+  - Tools
 
 # Exclude triggering type names.
 type_name:
@@ -21,6 +22,8 @@ identifier_name:
   excluded:
     - id
     - vc
+    - up
+    - to
     # (short) File extensions:
     - c
     - m
@@ -132,11 +135,19 @@ custom_rules:
     message: "Please do not use Xcode's placeholders."
     severity: warning
 
+  # Don't use #Preview macro
+  no_preview_macro:
+    included: ".*.swift"
+    name: "No Preview Macro"
+    regex: "\\#Preview"
+    message: "Do not use preview macro."
+    severity: warning
+
 file_header:
   required_pattern: |
                   \/\/
                   \/\/  .*?\.swift
-                  \/\/  Aurora Editor
+                  \/\/  Aurora Editor(| UITests| Tests| Updater)
                   \/\/
                   \/\/  Created by .*? on .*?\.
                   \/\/  Copyright © \d{4} Aurora Company. All rights reserved.

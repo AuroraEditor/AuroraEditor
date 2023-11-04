@@ -5,6 +5,7 @@
 //  Created by Pavel Kasila on 8.04.22.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
+//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import Foundation
 import Combine
@@ -72,7 +73,7 @@ final class ExtensionInstallationViewModel: ObservableObject {
                                    completionHandler: { completion in
             switch completion {
             case .success(let success):
-                Log.debug(String(data: success, encoding: .utf8))
+                Log.debug(String(data: success, encoding: .utf8) ?? "")
             case .failure(let failure):
                 Log.debug(failure)
             }

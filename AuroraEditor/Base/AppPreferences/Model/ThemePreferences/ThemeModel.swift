@@ -5,6 +5,7 @@
 //  Created by Lukas Pistrol on 31.03.22.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
+//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import SwiftUI
 
@@ -144,11 +145,36 @@ public final class ThemeModel: ObservableObject {
                 // add the theme to themes array
                 self.themes.append(theme)
 
-                // if there already is a selected theme in `preferences.json` select this theme
-                // otherwise take the first in the list
-                self.selectedTheme = self.themes.first { $0.name == prefs.theme.selectedTheme } ?? self.themes.first
+            }
+
+        }
+
+        // if there already is a selected theme in `preferences.json` select this theme
+        // otherwise try take any theme aligned with system appearance
+        if let existingTheme = self.themes.first(where: {
+            $0.name == prefs.theme.selectedTheme }) { self.selectedTheme = existingTheme } else {
+            self.selectedTheme = try? getDefaultTheme(with: NSApp.effectiveAppearance.name)
+        }
+    }
+    private func getDefaultTheme(with apearance: NSAppearance.Name) throws -> AuroraTheme? {
+        enum DefaultTheme {
+            static let anyDark = "AuroraEditor-xcode-dark"
+            static let anyLight = "AuroraEditor-github-light"
+        }
+        if apearance == .darkAqua {
+            return self.themes.first { $0.name == DefaultTheme.anyDark
+            }
+        } else if apearance == .vibrantDark {
+            return self.themes.first { $0.name == DefaultTheme.anyDark
+            }
+        } else if apearance == .aqua {
+            return self.themes.first { $0.name == DefaultTheme.anyLight
+            }
+        } else if apearance == .vibrantLight {
+            return self.themes.first { $0.name == DefaultTheme.anyLight
             }
         }
+        return nil
     }
 
     private func loadBundledThemes() throws {
@@ -165,15 +191,17 @@ public final class ThemeModel: ObservableObject {
                   let defaultUrl = Bundle.main.url(forResource: fileName, withExtension: fileExtension)
             else { continue }
             do {
-                // NOTE: This WILL fail if the theme already exists. This is intentional behaviour,
-                // and prevents theme overriding.
-                try filemanager.copyItem(at: defaultUrl,
-                                         to: themesURL.appendingPathComponent(themeName))
-            } catch {
-                if !error.localizedDescription.contains("because an item with the same name already exists.") {
-                    Log.error(error)
-                    throw error
+                if !filemanager.fileExists(
+                    atPath: themesURL.appendingPathComponent(themeName).relativePath
+                ) {
+                    try filemanager.copyItem(
+                        at: defaultUrl,
+                        to: themesURL.appendingPathComponent(themeName)
+                    )
                 }
+            } catch {
+                Log.error(error)
+                throw error
             }
         }
     }

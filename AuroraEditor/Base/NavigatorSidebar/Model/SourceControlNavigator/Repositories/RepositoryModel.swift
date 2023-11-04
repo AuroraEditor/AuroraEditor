@@ -51,7 +51,7 @@ public final class RepositoryModel: ObservableObject {
         self.workspace = workspace
         self.repositoryLocalPath = workspace.workspaceURL().path
         self.repositoryName = workspace.workspaceURL().lastPathComponent
-        self.isGitRepository = checkIfProjectIsRepo(workspaceURL: workspace.workspaceURL())
+        self.isGitRepository = Check().checkIfProjectIsRepo(workspaceURL: workspace.workspaceURL())
     }
 
     func addGitRepoDetails(client: GitClient? = nil) {

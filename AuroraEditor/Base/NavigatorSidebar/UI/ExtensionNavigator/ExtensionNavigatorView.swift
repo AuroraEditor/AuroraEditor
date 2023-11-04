@@ -5,6 +5,7 @@
 //  Created by Pavel Kasila on 6.04.22.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
+//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import SwiftUI
 import Combine
@@ -47,10 +48,7 @@ struct ExtensionNavigator: View {
                 .frame(maxHeight: .infinity)
             }
 
-            // TEMPORARY FIX FOR #315
-            // Hide this view instead of unloading it, on unload it crashes the app.
             // https://github.com/AuroraEditor/AuroraEditor/issues/315
-            // TODO: This needs to be fixed, it should not crash if unloaded. OC: @nanashili
             ExploreExtensionsView(document: workspace)
                 .opacity(selectedSection != 1 ? 0 : 1)
         }

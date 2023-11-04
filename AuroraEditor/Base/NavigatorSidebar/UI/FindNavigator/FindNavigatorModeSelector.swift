@@ -5,6 +5,7 @@
 //  Created by Ziyuan Zhao on 2022/3/21.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
+//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import SwiftUI
 
@@ -42,7 +43,8 @@ struct FindNavigatorModeSelector: View {
             if let firstMode = selectedMode.first {
                 newSelectedMode.append(contentsOf: [firstMode, searchMode])
                 if let thirdMode = searchMode.children.first {
-                    if let selectedThirdMode = selectedMode.third, (searchMode.children.contains(selectedThirdMode)) {
+                    if let selectedThirdMode = selectedMode.third,
+                        searchMode.children.contains(selectedThirdMode) {
                         newSelectedMode.append(selectedThirdMode)
                     } else {
                         newSelectedMode.append(thirdMode)

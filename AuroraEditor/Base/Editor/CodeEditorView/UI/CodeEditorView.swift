@@ -11,22 +11,29 @@ import SwiftUI
 
 extension CodeEditor: NSViewRepresentable {
     /// Generates and returns a scroll view with a CodeView set as its document view.
-    public func makeNSView(context: Context) -> NSScrollView {
+    public func makeNSView(context: Context) -> NSScrollView { // swiftlint:disable:this function_body_length
         let loadedGrammar = GrammarJsonLoader.grammarFor(extension: fileExtension)
 
         // Set up text view with gutter
-        let codeView = CodeView(frame: CGRect(x: 0, y: 0, width: 100, height: 40),
-                                viewLayout: layout,
-                                theme: theme,
-                                mainGrammar: loadedGrammar)
+        let codeView = CodeView(
+            frame: CGRect(x: 0, y: 0, width: 100, height: 40),
+            viewLayout: layout,
+            theme: theme,
+            mainGrammar: loadedGrammar
+        )
 
         globalMainQueue.async {
             codeView.string = text
-            codeView.codeStorageDelegate.lineMap.updateAfterEditing(string: text,
-                                                                    range: NSRange(location: 0, length: text.count),
-                                                                    changeInLength: text.count)
+            codeView.codeStorageDelegate.lineMap.updateAfterEditing(
+                string: text,
+                range: NSRange(location: 0, length: text.count),
+                changeInLength: text.count
+            )
         }
-        codeView.selectedRanges = position.selections.map { NSValue(range: $0) }
+
+        codeView.selectedRanges = position.selections.map {
+            NSValue(range: $0)
+        }
 
         codeView.isVerticallyResizable = true
         codeView.isHorizontallyResizable = false
@@ -81,6 +88,10 @@ extension CodeEditor: NSViewRepresentable {
                     parameters: ["row": 0, "col": 0]
                 )
             }
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            codeView.window?.makeFirstResponder(codeView)
         }
 
         return scrollView

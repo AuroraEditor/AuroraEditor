@@ -37,11 +37,9 @@ typealias LineEnding = LineEndingType
 
 class LineEndingsChange {
     var from: LineEnding
-    // swiftlint:disable:next identifier_name
     var to: LineEnding
 
     init(from: LineEnding,
-         // swiftlint:disable:next identifier_name
          to: LineEnding) {
         self.from = from
         self.to = to

@@ -5,6 +5,7 @@
 //  Created by Lukas Pistrol on 22.03.22.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
+//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import SwiftUI
 
@@ -22,5 +23,12 @@ internal extension View {
         } else {
             NSCursor.pop()
         }
+    }
+
+    func fontWithLineHeight(fontSize: CGFloat, lineHeight: CGFloat) -> some View {
+        ModifiedContent(content: self,
+                        modifier: FontWithLineHeight(font: NSFont(name: "SF Pro Text",
+                                                                  size: fontSize)!,
+                                                     lineHeight: lineHeight))
     }
 }

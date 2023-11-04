@@ -11,7 +11,7 @@ import SwiftUI
 struct LicenseDetailView: View {
     var body: some View {
         ScrollView(.vertical) {
-            Text(AboutViewModal().loadLicense())
+            Text(.init(AboutViewModal().loadLicense()))
                 .multilineTextAlignment(.leading)
                 .font(.system(size: 11))
         }

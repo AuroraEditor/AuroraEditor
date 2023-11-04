@@ -17,17 +17,10 @@ public struct ToolbarAppInfo: View {
     @Environment(\.controlActiveState)
     private var activeState
 
-    @EnvironmentObject
-    private var workspace: WorkspaceDocument
+    private let notificationService: NotificationService = .init()
 
-    @State
-    private var openErrors: Bool = false
-
-    @State
-    private var openWarnings: Bool = false
-
-    @State
-    private var openNotifications: Bool = false
+    @ObservedObject
+    private var notificationModel: NotificationsModel = .shared
 
     func getTime() -> String {
         let formatter = DateFormatter()
@@ -41,9 +34,23 @@ public struct ToolbarAppInfo: View {
             HStack {
                 HStack {
                     Image(systemName: "app.dashed")
+                        .onTapGesture {
+                            // swiftlint:disable:next line_length
+                            notificationService.notify(notification: INotification(id: "121DD622-1624-4AF7-ADF7-528F81512925",
+                                                                                   severity: .info,
+                                                                                   title: "Info Notification",
+                                                                                   message: "This is a test",
+                                                                                   notificationType: .system))
+                        }
 
                     Text("AuroraEditor")
                         .font(.system(size: 11))
+                        .onTapGesture {
+                            notificationService.notify(notification: INotification(severity: .error,
+                                                                                   title: "Info Notification",
+                                                                                   message: "This should work!",
+                                                                                   notificationType: .system))
+                        }
 
                     Image(systemName: "chevron.right")
 
@@ -67,65 +74,7 @@ public struct ToolbarAppInfo: View {
             .background(.ultraThinMaterial)
             .cornerRadius(6)
 
-            Button {
-                openErrors.toggle()
-            } label: {
-                HStack {
-                    Image(systemName: "xmark.circle.fill")
-                        .symbolRenderingMode(.multicolor)
-                        .imageScale(.small)
-
-                    Text("\(workspace.errorList.count)")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 10))
-                }
-            }
-            .buttonStyle(.plain)
-
-            Button {
-                openWarnings.toggle()
-            } label: {
-                HStack {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .symbolRenderingMode(.multicolor)
-                        .imageScale(.small)
-
-                    Text("\(workspace.warningList.count)")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 10))
-                }
-            }
-            .buttonStyle(.plain)
-
-            Button {
-                openNotifications.toggle()
-            } label: {
-                HStack {
-                    Image(systemName: "bell.badge.fill")
-                        .symbolRenderingMode(.multicolor)
-                        .imageScale(.small)
-
-                    Text("\(workspace.notificationList.count)")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 10))
-                }
-            }
-            .buttonStyle(.plain)
-            .popover(isPresented: $openErrors, arrowEdge: .bottom) {
-                ToolbarPopoverView(list: workspace.errorList)
-                .padding(.vertical, 5)
-                .frame(width: 310, height: 500)
-            }
-            .popover(isPresented: $openWarnings, arrowEdge: .bottom) {
-                ToolbarPopoverView(list: workspace.warningList)
-                .padding(.vertical, 5)
-                .frame(width: 310, height: 500)
-            }
-            .popover(isPresented: $openNotifications, arrowEdge: .bottom) {
-                ToolbarPopoverView(list: workspace.notificationList)
-                .padding(.vertical, 5)
-                .frame(width: 310, height: 500)
-            }
+            NotificationIndicators()
         }
         .opacity(activeState == .inactive ? 0.45 : 1)
     }

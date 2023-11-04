@@ -19,7 +19,7 @@ public protocol GitURLSession {
     ///   - request: request
     ///   - completionHandler: completionHandler
     /// - Returns: URLSessionDataTaskProtocol
-    func dataTask(
+    func dataTaskGit(
         with request: URLRequest,
         completionHandler: @escaping (Data?, URLResponse?, Error?) -> Swift.Void) -> URLSessionDataTaskProtocol
 
@@ -67,7 +67,7 @@ extension URLSessionDataTask: URLSessionDataTaskProtocol {}
 
 extension URLSession: GitURLSession {
 
-    public func dataTask(
+    public func dataTaskGit(
         with request: URLRequest,
         completionHandler: @escaping (Data?, URLResponse?, Error?) -> Swift.Void) -> URLSessionDataTaskProtocol {
             (dataTask(with: request, completionHandler: completionHandler) as URLSessionDataTask)

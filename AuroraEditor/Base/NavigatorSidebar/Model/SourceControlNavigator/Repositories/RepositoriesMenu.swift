@@ -131,7 +131,7 @@ final class RepositoriesMenu: NSMenu {
         alert.addButton(withTitle: "Cancel")
         if alert.runModal() == .alertFirstButtonReturn {
             do {
-                if try deleteLocalBranch(directoryURL: (workspace?.workspaceURL())!,
+                if try Branch().deleteLocalBranch(directoryURL: (workspace?.workspaceURL())!,
                                          branchName: branch.name) {
                     self.outlineView.reloadData()
                 } else {
@@ -152,7 +152,7 @@ final class RepositoriesMenu: NSMenu {
     func isSelectedBranchCurrentOne() -> Bool {
         guard let branch = item as? RepoBranch else { return false }
         do {
-            let currentBranch = try getCurrentBranch(directoryURL: (workspace?.workspaceURL())!)
+            let currentBranch = try Branch().getCurrentBranch(directoryURL: (workspace?.workspaceURL())!)
 
             return currentBranch == branch.name
         } catch {

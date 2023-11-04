@@ -5,10 +5,12 @@
 //  Created by Pavel Kasila on 12/03/2022.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
+//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import SwiftUI
 import Combine
 import SwiftOniguruma
+
 final class AuroraEditorApplication: NSApplication {
     let strongDelegate = AppDelegate()
 
@@ -29,40 +31,45 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     func applicationWillFinishLaunching(_ notification: Notification) {
     }
 
-    var statusItem: NSStatusItem!
+    var statusItem: NSStatusItem?
 
     private var updateModel: UpdateObservedModel = .shared
 
     var cancellable = Set<AnyCancellable>()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // Register storage locations if needed.
+        LocalStorage().registerStorage()
+
+        // Initialize AuroraCrashlytics delegate.
         AuroraCrashlytics.add(delegate: self)
 
+        // Apply application appearance preferences.
         AppPreferencesModel.shared.preferences.general.appAppearance.applyAppearance()
+
+        // Check for and open files associated with the application.
         checkForFilesToOpen()
 
         DispatchQueue.main.async {
-            if NSApp.windows.isEmpty {
-                if let projects = UserDefaults.standard.array(forKey: AppDelegate.recoverWorkspacesKey) as? [String],
-                   !projects.isEmpty {
-                    projects.forEach { path in
-                        Log.info(#function, "Reopening \(path)")
-                        let url = URL(fileURLWithPath: path)
-                        AuroraEditorDocumentController.shared.reopenDocument(
-                            for: url,
-                            withContentsOf: url,
-                            display: true) { document, _, _ in
-                                Log.info("applicationDidFinishLaunching(): projects: Opened \(url.absoluteString)")
-                                document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
-                        }
+            if let projects = UserDefaults.standard.array(forKey: AppDelegate.recoverWorkspacesKey) as? [String],
+               !projects.isEmpty {
+                projects.forEach { path in
+                    let url = URL(fileURLWithPath: path)
+                    // Reopen documents associated with the projects.
+                    AuroraEditorDocumentController.shared.reopenDocument(
+                        for: url,
+                        withContentsOf: url,
+                        display: true) { document, _, _ in
+                            Log.info("Opened project: \(url.absoluteString)")
+                            document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
                     }
-
-                    Log.info("No need to open Welcome Screen (projects)")
-                } else {
-                    self.handleOpen()
                 }
+            } else {
+                // If no projects to recover, handle other open requests.
+                self.handleOpen()
             }
 
+            // Check for command-line arguments to open specific files.
             for index in 0..<CommandLine.arguments.count {
                 if CommandLine.arguments[index] == "--open" && (index + 1) < CommandLine.arguments.count {
                     let path = CommandLine.arguments[index + 1]
@@ -72,27 +79,32 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                         for: url,
                         withContentsOf: url,
                         display: true) { document, _, _ in
-                            Log.info("applicationDidFinishLaunching(): commandline: Opened \(url.absoluteString)")
+                            Log.info("Opened file via command line: \(url.absoluteString)")
                             document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
                     }
-
-                    Log.info("No need to open Welcome Screen (commandline)")
+                    Log.info("No need to open the Welcome Screen (command line)")
                 }
             }
         }
 
-        if AppPreferencesModel.shared.preferences.general.menuItemShowMode == .shown {
-            self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-            setup(statusItem: statusItem)
+        // Log the version of SwiftOniguruma being used.
+        Log.info("AURORA EDITOR is using SwiftOniguruma Version: \(SwiftOniguruma.version())!")
+
+        if NSApp.activationPolicy() == .regular {
+            if statusItem == nil {
+                // Create a status item if the menu item show mode is set to "shown."
+                if AppPreferencesModel.shared.preferences.general.menuItemShowMode == .shown {
+                    self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+                    guard let statusItem = statusItem else {
+                        return
+                    }
+                    setup(statusItem: statusItem)
+                }
+            }
         }
 
-        // We disable checking for updates in debug builds as to not
-        // annoy our fellow contributers
-        #if !DEBUG
+        // Check for updates
         updateModel.checkForUpdates()
-        #endif
-
-        Log.info("AURORA EDITOR is using SwiftOniguruma Version: \(SwiftOniguruma.version())!")
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -131,22 +143,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
-        let projects: [String] = AuroraEditorDocumentController.shared.documents
-            .map { doc in
-                (doc as? WorkspaceDocument)?.fileURL?.path
-            }
-            .filter { $0 != nil }
-            .map { $0! }
+        // Extract the paths of open projects (WorkspaceDocuments).
+        let projects = AuroraEditorDocumentController.shared.documents.compactMap { doc in
+            (doc as? WorkspaceDocument)?.fileURL?.path
+        }
 
+        // Save the paths of open projects to UserDefaults.
         UserDefaults.standard.set(projects, forKey: AppDelegate.recoverWorkspacesKey)
 
+        // Close and remove all open documents.
         AuroraEditorDocumentController.shared.documents.forEach { doc in
             doc.close()
             AuroraEditorDocumentController.shared.removeDocument(doc)
         }
 
-        if let date = UserDefaults.standard.string(forKey: "crash") {
-            CrashReportView(errorDetails: date).showWindow()
+        // Check if a crash report date is stored in UserDefaults and display a crash report window if available.
+        if let crashDate = UserDefaults.standard.string(forKey: "crash") {
+            CrashReportView(errorDetails: crashDate).showWindow()
         }
 
         return .terminateNow
@@ -155,75 +168,91 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     // MARK: - Open windows
 
     @IBAction func openPreferences(_ sender: Any) {
-        if AppDelegate.tryFocusWindow(of: PreferencesView.self) { return }
-
-        PreferencesView().showWindow()
+        if !AppDelegate.tryFocusWindow(of: PreferencesView.self) {
+            PreferencesView().showWindow()
+        }
     }
 
     @IBAction func openWelcome(_ sender: Any) {
-        if AppDelegate.tryFocusWindow(of: WelcomeWindowView.self) { return }
-
-        WelcomeWindowView.openWelcomeWindow()
+        if !AppDelegate.tryFocusWindow(of: WelcomeWindowView.self) {
+            WelcomeWindowView.openWelcomeWindow()
+        }
     }
 
     @IBAction public func openAbout(_ sender: Any) {
-        AppDelegate.openAboutWindow()
+        if !AppDelegate.tryFocusWindow(of: AboutView.self) {
+            AboutView().showWindow()
+        }
     }
 
     @IBAction func openFeedback(_ sender: Any) {
-        if AppDelegate.tryFocusWindow(of: FeedbackView.self) { return }
-
-        FeedbackView().showWindow()
+        if !AppDelegate.tryFocusWindow(of: FeedbackView.self) {
+            FeedbackView().showWindow()
+        }
     }
 
     /// Open about window
     static func openAboutWindow() {
-        if tryFocusWindow(of: AboutView.self) { return }
-        AboutView().showWindow()
+        if !tryFocusWindow(of: AboutView.self) {
+            AboutView().showWindow()
+        }
     }
 
-    /// Tries to focus a window with specified view content type.
-    /// - Parameter type: The type of viewContent which hosted in a window to be focused.
-    /// - Returns: `true` if window exist and focused, oterwise - `false`
+    /// Attempt to focus a window containing a specific type of NSHostingView.
+    ///
+    /// - Parameters:
+    ///   - type: The type of the NSHostingView to search for in windows.
+    /// - Returns: `true` if a window containing the specified view type is found and brought
+    ///             to the front; `false` otherwise.
     static func tryFocusWindow<T: View>(of type: T.Type) -> Bool {
-        guard let window = NSApp.windows.filter({ ($0.contentView as? NSHostingView<T>) != nil }).first
-        else { return false }
-
-        window.makeKeyAndOrderFront(self)
-        return true
+        // Use the first(where:) method to find the first window with the desired contentView.
+        if let window = NSApp.windows.first(where: { $0.contentView is NSHostingView<T> }) {
+            // If a matching window is found, bring it to the front.
+            window.makeKeyAndOrderFront(self)
+            return true
+        }
+        // If no matching window is found, return false.
+        return false
     }
 
     // MARK: - Open With AuroraEditor (Extension) functions
     private func checkForFilesToOpen() {
-        guard let defaults = UserDefaults(
-            suiteName: "com.auroraeditor.shared"
-        ) else {
+        // Access UserDefaults with a specific suite name.
+        guard let defaults = UserDefaults(suiteName: "com.auroraeditor.shared") else {
             Log.error("Failed to get/init shared defaults")
             return
         }
 
-        // Register enableOpenInAE (enable Open In AuroraEditor
-        defaults.register(defaults: ["enableOpenInAE": true])
+        // Register a default value for the "enableOpenInAE" key if not already registered.
+        if !defaults.bool(forKey: "enableOpenInAE") {
+            defaults.set(true, forKey: "enableOpenInAE")
+        }
 
+        // Check if there are files to open stored in UserDefaults.
         if let filesToOpen = defaults.string(forKey: "openInAEFiles") {
+            // Split the semicolon-separated file paths into an array.
             let files = filesToOpen.split(separator: ";")
 
-            for filePath in files {
+            // Process each file URL in parallel using DispatchQueue.concurrentPerform.
+            DispatchQueue.concurrentPerform(iterations: files.count) { item in
+                let filePath = files[item]
                 let fileURL = URL(fileURLWithPath: String(filePath))
+
+                // Attempt to reopen the document associated with the file URL.
                 AuroraEditorDocumentController.shared.reopenDocument(
                     for: fileURL,
                     withContentsOf: fileURL,
                     display: true) { document, _, _ in
+                        // Log information about the opened file.
                         Log.info("checkForFilesToOpen(): Opened \(fileURL.absoluteString)")
+
+                        // Synchronize the window title with the document name.
                         document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
                 }
             }
 
+            // Remove the "openInAEFiles" key from UserDefaults after processing.
             defaults.removeObject(forKey: "openInAEFiles")
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.checkForFilesToOpen()
         }
     }
 }

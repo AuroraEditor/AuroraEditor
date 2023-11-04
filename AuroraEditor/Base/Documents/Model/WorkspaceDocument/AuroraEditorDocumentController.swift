@@ -5,6 +5,7 @@
 //  Created by Pavel Kasila on 17.03.22.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
+//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import Cocoa
 
@@ -31,10 +32,6 @@ final class AuroraEditorDocumentController: NSDocumentController {
             RecentProjectsStore.shared.record(path: url.path)
             completionHandler(document, documentWasAlreadyOpen, error)
         }
-    }
-
-    override func removeDocument(_ document: NSDocument) {
-        super.removeDocument(document)
     }
 
     override func clearRecentDocuments(_ sender: Any?) {

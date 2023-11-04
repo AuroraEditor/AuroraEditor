@@ -28,6 +28,10 @@ public struct TerminalPreferencesView: View {
                 fontSelector
                     .padding(.horizontal)
                     .padding(.bottom, 5)
+                Divider()
+                cursorSelector
+                    .padding(.horizontal)
+                    .padding(.bottom, 5)
             }
         }
     }
@@ -76,6 +80,26 @@ public struct TerminalPreferencesView: View {
                     "\(prefs.preferences.terminal.font.name) \(prefs.preferences.terminal.font.size)",
                     name: $prefs.preferences.terminal.font.name, size: $prefs.preferences.terminal.font.size
                 )
+            }
+        }
+    }
+
+    private var cursorSelector: some View {
+        HStack(alignment: .top) {
+            Text("Cursor")
+            Spacer()
+            VStack(alignment: .trailing) {
+                Picker("", selection: $prefs.preferences.terminal.cursorStyle) {
+                    ForEach(AppPreferences.TerminalCursorStyle.allCases) { style in
+                        Text(style.rawValue.capitalized)
+                            .tag(style)
+                    }
+                }
+                .pickerStyle(.radioGroup)
+                Spacer()
+                HStack {
+                    Toggle("Blink cursor", isOn: $prefs.preferences.terminal.blinkCursor)
+                }
             }
         }
     }

@@ -5,6 +5,7 @@
 //  Created by Lukas Pistrol on 07.04.22.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
+//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import SwiftUI
 import Combine
@@ -85,11 +86,11 @@ final class ProjectNavigatorViewController: NSViewController {
         saveExpansionState()
         reloadChangedFiles()
 
-        workspace?.broadcaster.broadcaster.sink(receiveValue: recieveCommand).store(in: &cancelables)
+        workspace?.broadcaster.broadcaster.sink(receiveValue: recieveBroadcast).store(in: &cancelables)
     }
 
-    func recieveCommand(command: AuroraCommandBroadcaster.Broadcast) {
-        switch command.name {
+    func recieveBroadcast(broadcast: AuroraCommandBroadcaster.Broadcast) {
+        switch broadcast.command {
         case "newFileAtPos":
             guard let item = self.outlineView.item(atRow: self.outlineView.selectedRow) as? FileItem
             else { return }

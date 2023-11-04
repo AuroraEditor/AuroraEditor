@@ -147,38 +147,14 @@ final class ProjectNavigatorMenu: NSMenu {
 
     /// Submenu for **Source Control** menu item.
     private func sourceControlMenu(item: Item) -> NSMenu {
-        let sourceControlMenu = NSMenu(
-            title: "Source Control"
-        )
-        sourceControlMenu.addItem(
-            withTitle: "Commit \"\(item.fileName)\"...",
-            action: nil,
-            keyEquivalent: ""
-        )
-        sourceControlMenu.addItem(
-            .separator()
-        )
-        sourceControlMenu.addItem(
-            menuItem(
-                "Discard Changes in \"\(item.fileName)\"...",
-                action: #selector(discardChangesInFile)
-            )
-        )
-        sourceControlMenu.addItem(
-            .separator()
-        )
-        sourceControlMenu.addItem(
-            withTitle: "Add Selected Files",
-            action: nil,
-            keyEquivalent: ""
-        )
-        sourceControlMenu.addItem(
-            withTitle: "Mark Selected Files as Resolved",
-            action: nil,
-            keyEquivalent: ""
-        )
-
-        return sourceControlMenu
+        guard let workspaceURL = workspace?.workspaceURL() else {
+            // TODO: Investigate more robust solutions
+            fatalError("No workspace URL configured")
+        }
+        let menu = SourceControlRelatedMenu(sender: outlineView, workspaceURL: workspaceURL)
+        menu.item = item
+        menu.setupMenu()
+        return menu
     }
 
     /// Updates the menu for the selected item and hides it if no item is provided.
@@ -270,37 +246,6 @@ final class ProjectNavigatorMenu: NSMenu {
     @objc
     private func duplicate() {
         item?.duplicate()
-    }
-
-    // MARK: Source Control
-
-    @objc
-    private func commitFile() {
-
-    }
-
-    // TODO: Need to find a way to check for changes in the current selected file
-    @objc
-    private func discardChangesInFile() {
-        let alert = NSAlert()
-        alert.messageText = "Do you want to permanently discard all changes to \"\(item?.fileName ?? "")\"?"
-        alert.informativeText = "You can't undo this action"
-        alert.alertStyle = .critical
-        alert.addButton(withTitle: "Discard Changes")
-        alert.buttons.last?.hasDestructiveAction = true
-        alert.addButton(withTitle: "Cancel")
-        if alert.runModal() == .alertFirstButtonReturn {
-            do {
-                try gitClient?.discardFileChanges(url: (item?.url.path)!)
-            } catch {
-                Log.error("Error when trying to discard changes in file!")
-            }
-        }
-    }
-
-    @objc
-    private func addSelectedFiles() {
-
     }
 }
 

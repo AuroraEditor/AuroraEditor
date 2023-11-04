@@ -21,9 +21,12 @@ struct GithubLoginView: View {
     @ObservedObject
     var accountModel: EditorAccountModel
 
-    init(dismissDialog: Binding<Bool>) {
+    var loginSuccessfulCallback: EditorAccountModel.LoginSuccessfulCallback
+
+    init(dismissDialog: Binding<Bool>, loginSuccessfulCallback: @escaping EditorAccountModel.LoginSuccessfulCallback) {
         self._dismissDialog = dismissDialog
         self.accountModel = .init(dismissDialog: dismissDialog.wrappedValue)
+        self.loginSuccessfulCallback = loginSuccessfulCallback
     }
 
     var body: some View {
@@ -111,7 +114,9 @@ struct GithubLoginView: View {
                     } else {
                         Button {
                             accountModel.loginGithub(gitAccountName: accountName,
-                                                     accountToken: accountToken)
+                                                     accountToken: accountToken,
+                                                     successCallback: loginSuccessfulCallback)
+                            self.dismissDialog = accountModel.dismissDialog
                         } label: {
                             Text("settings.global.login")
                                 .foregroundColor(.white)

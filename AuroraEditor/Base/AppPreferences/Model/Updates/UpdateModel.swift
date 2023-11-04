@@ -21,16 +21,28 @@ public class UpdateObservedModel: ObservableObject {
     enum UpdateState {
         case loading
         case error
-        case success
+        case cancelled
+        case timedOut
+        case networkConnectionLost
+        case cannotFindHost
+        case cannotConnectToHost
+        case notEnoughStorage
+        case invalidChecksum
+        case unzipError
+        case updateReady
         case updateFound
+        case inProgress
+        case checksumInvalid
+        case upToDate
     }
 
-    // We put this as success as to avoid a constant loading loop in debug builds
     @Published
-    var updateState: UpdateState = .success
+    var updateState: UpdateState = .loading
 
     @Published
-    var updateStatus: UpdateModel?
+    var updateModelJson: UpdateModel?
+
+    private let notificationService: NotificationService = .init()
 
     /// This function allows us to to check for any new updates for the editor.
     ///
@@ -50,8 +62,9 @@ public class UpdateObservedModel: ObservableObject {
         // Reason for this not being on main thread is that it's a network call and it's best practice
         // to have network calls on the background thread leaving the main thread just for UI.
         DispatchQueue(label: "Update", qos: .background).asyncAfter(deadline: .now() + 5) {
-            AuroraNetworking().request(baseURL: UpdateConstants.baseURL,
-                                       path: UpdateConstants.updateFileURL(),
+            let constants = UpdateConstants()
+            AuroraNetworking().request(baseURL: constants.baseURL,
+                                       path: constants.updateFileURL(),
                                        useAuthType: .none,
                                        method: .GET,
                                        parameters: nil,
@@ -68,14 +81,18 @@ public class UpdateObservedModel: ObservableObject {
                         let decoder = JSONDecoder()
                         let updateFile = try decoder.decode(UpdateModel.self, from: data)
                         DispatchQueue.main.async {
-                            self.updateStatus = updateFile
+                            self.updateModelJson = updateFile
 
-                            if updateFile.sha256sum != self.commitHash {
+                            if updateFile.versionCode != Bundle.versionString {
                                 self.updateState = .updateFound
-                                return
-                            }
 
-                            self.updateState = .success
+                                self.notificationService
+                                    .editorUpdate(title: "Update Available",
+                                                  message: "A new update for Aurora Editor is available")
+
+                            } else {
+                                self.updateState = .upToDate
+                            }
                         }
                     } catch {
                         DispatchQueue.main.async {
@@ -90,7 +107,7 @@ public class UpdateObservedModel: ObservableObject {
                     DispatchQueue.main.async {
                         self.updateState = .error
                     }
-                    Log.error(failure)
+                    Log.debug(failure)
                 }
             })
         }
@@ -102,19 +119,22 @@ struct UpdateModel: Codable {
     let versionName: String
     let sha256sum: String
     let url: String
+    let size: String
 }
 
-// swiftlint:disable:next convenience_type
-private struct UpdateConstants {
+/// Constants for update paths
+public struct UpdateConstants {
+    /// Base URL
+    public let baseURL = "https://auroraeditor.com/"
 
-    static let baseURL: String = "https://auroraeditor.com/"
-
-    static func updateFileURL() -> String {
+    /// get update file url
+    /// - Returns: update url
+    public func updateFileURL() -> String {
         switch prefs.preferences.updates.updateChannel {
         case .release:
-            return "updates/dynamic/macos/nightly.json" // TODO: Create Release Json
+            return "updates/dynamic/macos/release.json"
         case .beta:
-            return "updates/dynamic/macos/nightly.json" // TODO: Create Beta Json
+            return "updates/dynamic/macos/beta.json"
         case .nightly:
             return "updates/dynamic/macos/nightly.json"
         }

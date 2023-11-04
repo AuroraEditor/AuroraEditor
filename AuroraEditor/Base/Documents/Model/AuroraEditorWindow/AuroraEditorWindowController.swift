@@ -5,8 +5,8 @@
 //  Created by Pavel Kasila on 18.03.22.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
+//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
-import Cocoa
 import SwiftUI
 import Combine
 
@@ -14,8 +14,11 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
     var prefs: AppPreferencesModel = .shared
 
+    private var model: NotificationsModel = .shared
+
     var workspace: WorkspaceDocument
     var overlayPanel: OverlayPanel?
+    var notificationAnimator: NotificationViewAnimator!
 
     var cancelables: Set<AnyCancellable> = .init()
 
@@ -73,19 +76,25 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         inspector.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(inspector)
 
+        // Create an instance of NotificationViewAnimator
+        notificationAnimator = NotificationViewAnimator(
+            notificationView: NSView(),
+            parent: splitVC.view,
+            model: model
+        )
+
+        notificationAnimator.observeNotificationData()
+        notificationAnimator.observeShowNotification()
+
         self.splitViewController = splitVC
 
         workspace.broadcaster.broadcaster
-            .sink(receiveValue: recieveCommand).store(in: &cancelables)
+            .sink(receiveValue: recieveBroadcast).store(in: &cancelables)
     }
 
     override func close() {
         super.close()
         cancelables.forEach({ $0.cancel() })
-    }
-
-    override func windowDidLoad() {
-        super.windowDidLoad()
     }
 
     @objc
@@ -219,10 +228,10 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         }
     }
 
-    func recieveCommand(command: AuroraCommandBroadcaster.Broadcast) {
-        let sender = command.parameters["sender"] ?? ""
+    func recieveBroadcast(broadcast: AuroraCommandBroadcaster.Broadcast) {
+        let sender = broadcast.parameters["sender"] ?? ""
 
-        switch command.name {
+        switch broadcast.command {
         case "openQuickly":
             openQuickly(sender)
         case "close":

@@ -25,12 +25,14 @@ struct TerminalThemeView: View {
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             } else {
-                VStack(alignment: .leading, spacing: 15) {
-                    topToggles
-                    colorSelector
-                    ansiColorSelector
+                ScrollView(.vertical, showsIndicators: true) {
+                    VStack(alignment: .leading, spacing: 15) {
+                        topToggles
+                        colorSelector
+                        ansiColorSelector
+                    }
+                    .padding(10)
                 }
-                .padding(20)
             }
         }
     }
@@ -57,9 +59,6 @@ struct TerminalThemeView: View {
                                                label: "settings.theme.terminal.text.bold")
                         PreferencesColorPicker($themeModel.themes[index].terminal.cursor.swiftColor,
                                                label: "settings.theme.terminal.cursor")
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    VStack(alignment: .leading, spacing: 10) {
                         PreferencesColorPicker($themeModel.themes[index].terminal.background.swiftColor,
                                                label: "settings.theme.terminal.background")
                         PreferencesColorPicker($themeModel.themes[index].terminal.selection.swiftColor,
@@ -79,29 +78,32 @@ struct TerminalThemeView: View {
                     .font(.system(size: 13, weight: .semibold))
                     .foregroundColor(.secondary)
                     .padding(.bottom, 5)
+                Text("settings.theme.terminal.ansi.colors.normal").padding(.leading, 4)
                 HStack(spacing: 5) {
                     PreferencesColorPicker($themeModel.themes[index].terminal.black.swiftColor)
                     PreferencesColorPicker($themeModel.themes[index].terminal.red.swiftColor)
                     PreferencesColorPicker($themeModel.themes[index].terminal.green.swiftColor)
                     PreferencesColorPicker($themeModel.themes[index].terminal.yellow.swiftColor)
+                }
+                HStack(spacing: 5) {
                     PreferencesColorPicker($themeModel.themes[index].terminal.blue.swiftColor)
                     PreferencesColorPicker($themeModel.themes[index].terminal.magenta.swiftColor)
                     PreferencesColorPicker($themeModel.themes[index].terminal.cyan.swiftColor)
                     PreferencesColorPicker($themeModel.themes[index].terminal.white.swiftColor)
-                    Text("settings.theme.terminal.ansi.colors.normal").padding(.leading, 4)
                 }
+                Text("settings.theme.terminal.ansi.colors.bright").padding(.leading, 4)
                 HStack(spacing: 5) {
                     PreferencesColorPicker($themeModel.themes[index].terminal.brightBlack.swiftColor)
                     PreferencesColorPicker($themeModel.themes[index].terminal.brightRed.swiftColor)
                     PreferencesColorPicker($themeModel.themes[index].terminal.brightGreen.swiftColor)
                     PreferencesColorPicker($themeModel.themes[index].terminal.brightYellow.swiftColor)
+                }
+                HStack(spacing: 5) {
                     PreferencesColorPicker($themeModel.themes[index].terminal.brightBlue.swiftColor)
                     PreferencesColorPicker($themeModel.themes[index].terminal.brightMagenta.swiftColor)
                     PreferencesColorPicker($themeModel.themes[index].terminal.brightCyan.swiftColor)
                     PreferencesColorPicker($themeModel.themes[index].terminal.brightWhite.swiftColor)
-                    Text("settings.theme.terminal.ansi.colors.bright").padding(.leading, 4)
                 }
-                .padding(.top, 5)
             }
         }
     }

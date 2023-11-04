@@ -42,7 +42,11 @@ extension WorkspaceDocument {
                 NSDocumentController.openDocument(NSDocumentController.shared)(self)
             }),
             Command(name: "Open Quickly", command: {
-                self.broadcaster.broadcast("openQuickly", parameters: ["sender": "commandPalette"])
+                self.broadcaster.broadcast(
+                    sender: "AuroraEditor",
+                    command: "openQuickly",
+                    parameters: ["sender": "commandPalette"]
+                )
             }),
             Command(name: "Save", command: {
                 NSDocument.save(self)(self)
@@ -51,21 +55,41 @@ extension WorkspaceDocument {
                 NSDocument.saveAs(self)(self)
             }),
             Command(name: "Close", command: {
-                self.broadcaster.broadcast("close", parameters: ["sender": "commandPalette"])
+                self.broadcaster.broadcast(
+                    sender: "AuroraEditor",
+                    command: "close",
+                    parameters: ["sender": "commandPalette"]
+                )
             }),
 
             // MARK: View menu
             Command(name: "Toggle Toolbar", command: {
-                self.broadcaster.broadcast("toggleToolbarShown", parameters: ["sender": "commandPalette"])
+                self.broadcaster.broadcast(
+                    sender: "AuroraEditor",
+                    command: "toggleToolbarShown",
+                    parameters: ["sender": "commandPalette"]
+                )
             }),
             Command(name: "Customize Toolbar", command: {
-                self.broadcaster.broadcast("runToolbarCustomization", parameters: ["sender": "commandPalette"])
+                self.broadcaster.broadcast(
+                    sender: "AuroraEditor",
+                    command: "runToolbarCustomization",
+                    parameters: ["sender": "commandPalette"]
+                )
             }),
             Command(name: "Show Sidebar", command: {
-                self.broadcaster.broadcast("toggleSidebar", parameters: ["sender": "commandPalette"])
+                self.broadcaster.broadcast(
+                    sender: "AuroraEditor",
+                    command: "toggleSidebar",
+                    parameters: ["sender": "commandPalette"]
+                )
             }),
             Command(name: "Toggle Full Screen", command: {
-                self.broadcaster.broadcast("toggleFullScreen", parameters: ["sender": "commandPalette"])
+                self.broadcaster.broadcast(
+                    sender: "AuroraEditor",
+                    command: "toggleFullScreen",
+                    parameters: ["sender": "commandPalette"]
+                )
             }),
 
             // TODO: Find and Navigate menus
@@ -75,15 +99,27 @@ extension WorkspaceDocument {
                 self.data.showStashChangesSheet.toggle()
             }),
             Command(name: "Discard Project Changes", command: {
-                self.broadcaster.broadcast("discardProjectChanges", parameters: ["sender": "commandPalette"])
+                self.broadcaster.broadcast(
+                    sender: "AuroraEditor",
+                    command: "discardProjectChanges",
+                    parameters: ["sender": "commandPalette"]
+                )
             }),
 
             // MARK: Window and Help menu
             Command(name: "Minimise", command: {
-                self.broadcaster.broadcast("miniaturize", parameters: ["sender": "commandPalette"])
+                self.broadcaster.broadcast(
+                    sender: "AuroraEditor",
+                    command: "miniaturize",
+                    parameters: ["sender": "commandPalette"]
+                )
             }),
             Command(name: "Zoom", command: {
-                self.broadcaster.broadcast("zoom", parameters: ["sender": "commandPalette"])
+                self.broadcaster.broadcast(
+                    sender: "AuroraEditor",
+                    command: "zoom",
+                    parameters: ["sender": "commandPalette"]
+                )
             }),
             Command(name: "Welcome Screen", command: {
                 if AppDelegate.tryFocusWindow(of: WelcomeWindowView.self) { return }
@@ -101,7 +137,7 @@ extension WorkspaceDocument {
                 root.addFile(fileName: "untitled")
             }),
             Command(name: "Add File at Selection", command: {
-                self.broadcaster.broadcast("newFileAtPos")
+                self.broadcaster.broadcast(sender: "AuroraEditor", command: "newFileAtPos")
             }),
             Command(name: "Add Folder at Root", command: {
                 guard let folderURL = self.fileSystemClient?.folderURL,
@@ -109,7 +145,7 @@ extension WorkspaceDocument {
                 root.addFolder(folderName: "untitled")
             }),
             Command(name: "Add Folder at Selection", command: {
-                self.broadcaster.broadcast("newDirAtPos")
+                self.broadcaster.broadcast(sender: "AuroraEditor", command: "newDirAtPos")
             }),
             Command(name: "Open Web Tab", command: {
                 self.openTab(item: WebTab(url: URL(string: "https://auroraeditor.com")))

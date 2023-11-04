@@ -21,7 +21,7 @@ struct AccountSelectionDialog: View {
         Providers(name: "settings.account.bitbucket.server".localize(),
                   icon: "bitbucket",
                   id: "bitbucketServer"),
-        Providers(name: "settings.account.github",
+        Providers(name: "settings.account.github".localize(),
                   icon: "github",
                   id: "github"),
         Providers(name: "settings.account.github.enterprise".localize(),
@@ -83,22 +83,26 @@ struct AccountSelectionDialog: View {
     private var openAccountLoginDialog: some View {
         switch providerSelection {
         case "auroraEditor":
-            AuroraEditorLoginView(dismissDialog: $openGitLogin)
+            AuroraEditorLoginView(dismissDialog: $openGitLogin, loginSuccessfulCallback: dismissView)
         case "bitbucketCloud":
             implementationNeeded
         case "bitbucketServer":
             implementationNeeded
         case "github":
-            GithubLoginView(dismissDialog: $openGitLogin)
+            GithubLoginView(dismissDialog: $openGitLogin, loginSuccessfulCallback: dismissView)
         case "githubEnterprise":
-            GithubEnterpriseLoginView(dismissDialog: $openGitLogin)
+            GithubEnterpriseLoginView(dismissDialog: $openGitLogin, loginSuccessfulCallback: dismissView)
         case "gitlab":
-            GitlabLoginView(dismissDialog: $openGitLogin)
+            GitlabLoginView(dismissDialog: $openGitLogin, loginSuccessfulCallback: dismissView)
         case "gitlabSelfHosted":
-            GitlabHostedLoginView(dismissDialog: $openGitLogin)
+            GitlabHostedLoginView(dismissDialog: $openGitLogin, loginSuccessfulCallback: dismissView)
         default:
             implementationNeeded
         }
+    }
+
+    private func dismissView() {
+        self.dismiss()
     }
 
     private var implementationNeeded: some View {

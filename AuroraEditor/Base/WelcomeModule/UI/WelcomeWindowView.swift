@@ -5,6 +5,7 @@
 //  Created by Ziyuan Zhao on 2022/3/18.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
+//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import SwiftUI
 import Version_Control
@@ -35,12 +36,14 @@ public struct WelcomeWindowView: View {
             }
             .buttonStyle(.plain)
             .keyboardShortcut(.escape, modifiers: [])
+            .focusable(false)
 
             Button("_") { // Do not empty the text, this will break functionality
                 self.dismissWindow()
             }
             .buttonStyle(.plain)
             .keyboardShortcut("w", modifiers: [.command])
+            .focusable(false)
 
             HStack(spacing: 0) {
                 WelcomeView(
