@@ -1,13 +1,15 @@
 name: Build & Lint
+
 on:
   push:
     branches: [main, development]
   pull_request:
     branches: [main, development]
+
 jobs:
   build:
-    runs-on: self-hosted
-    timeout-minutes: 10
+    runs-on: macos-12
+    timeout-minutes: 10 # If a action exceeds 10 mins, it probably isn't ever going to complete.
     steps:
       - uses: actions/checkout@v3
 

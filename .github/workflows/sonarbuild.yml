@@ -9,6 +9,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    timeout-minutes: 10 # If a action exceeds 10 mins, it probably isn't ever going to complete.
     permissions: read-all
     steps:
       - uses: actions/checkout@v2
