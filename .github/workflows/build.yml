@@ -189,12 +189,12 @@ jobs:
           fi
 
           if [[ "$IDENTITY" != "" ]]; then
-              /usr/bin/codesign --sign $IDENTITY "Aurora Editor 1.0.dmg"
+              /usr/bin/codesign --sign "$IDENTITY" "Aurora Editor 1.0.dmg"
               CHECK_SIGN=`/usr/bin/codesign "Aurora Editor 1.0.dmg" --display --verbose=2`
 
-              if [[ "$CHECK_SIGN" != *"Authority="* ]]; then
+              if [[ "$CHECK_SIGN" == *"not signed at all"* ]]; then
                   echo "Signing failed"
-                  # exit 1
+                  exit 1
               fi
           fi
 
