@@ -339,7 +339,7 @@ jobs:
             "$api_url"
 
       - name: Release
-        if: github.ref_name == "main"
+        if: github.ref_name == 'main'
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.BOT_TOKEN }}
