@@ -1,11 +1,13 @@
-name: Nightly Build of Aurora Editor
+name: Build of Aurora Editor
 
 on:
   push:
-     branches: [ development ]
+     branches: 
+       - development
+       - main
 
 jobs:
-  build_nightly_editor:
+  build_editor:
     if: github.repository_owner == 'AuroraEditor'
     runs-on: macos-12
     timeout-minutes: 30 # If a build exceeds 30 mins, it probably isn't ever going to complete
@@ -203,7 +205,7 @@ jobs:
         uses: actions/upload-artifact@v3.0.0
         with:
           # Artifact name
-          name: AuroraEditor_Nightly # optional, default is artifact
+          name: AuroraEditor # optional, default is artifact
           # A file, directory or wildcard pattern that describes what to upload
           path: "Aurora Editor 1.0.dmg"
 
@@ -238,15 +240,27 @@ jobs:
           echo "sha256sum=$sha256sum" >> $GITHUB_OUTPUT
 
       - name: Create a Updated nightly.json File
+        if: github.ref_name == "development"
         run: |
           version_name=${{ steps.version_info.outputs.version_name }}
           version_code=${{ steps.version_and_sha.outputs.version_code }}
           sha256sum=${{ steps.version_and_sha.outputs.sha256sum }}
           file_size_bytes=${{ steps.calculate_size.outputs.file_size_bytes }}
           
-          echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/nightly/development/AuroraEditor_Nightly.zip\", \"size\": \"$file_size_bytes\"}" > app_info.json
+          echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/nightly/development/AuroraEditor.zip\", \"size\": \"$file_size_bytes\"}" > app_info.json
+
+      - name: Create a Updated stable.json File
+        if: github.ref_name == "main"
+        run: |
+          version_name=${{ steps.version_info.outputs.version_name }}
+          version_code=${{ steps.version_and_sha.outputs.version_code }}
+          sha256sum=${{ steps.version_and_sha.outputs.sha256sum }}
+          file_size_bytes=${{ steps.calculate_size.outputs.file_size_bytes }}
+          
+          echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/nightly/main/AuroraEditor.zip\", \"size\": \"$file_size_bytes\"}" > app_info.json
 
       - name: Get SHA of nightly.json file
+        if: github.ref_name == "development"
         id: get_sha
         env:
           PAT: ${{ secrets.BOT_TOKEN }}
@@ -267,7 +281,30 @@ jobs:
 
           echo "sha=$SHA" >> $GITHUB_OUTPUT
 
+      - name: Get SHA of stable.json file
+        if: github.ref_name == "main"
+        id: get_sha
+        env:
+          PAT: ${{ secrets.BOT_TOKEN }}
+        run: |
+          result=$(curl -s -H "Authorization: Bearer $PAT" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/AuroraEditor/auroraeditor.com/contents/public/updates/dynamic/macos/stable.json 2>&1)
+    
+          # Check for errors and log stderr
+          if [ $? -ne 0 ]; then
+            echo "Error occurred during curl request:"
+            echo "$result"
+            exit 1
+          fi
+    
+          # Extract SHA from the JSON response
+          SHA=$(echo "$result" | jq -r '.sha')
+
+          echo "sha=$SHA" >> $GITHUB_OUTPUT
+
       - name: Commit Updated nightly.json to auroraeditor.com Repository
+        if: github.ref_name == "development"
         env:
           PAT: ${{ secrets.BOT_TOKEN }}
         run: |
@@ -277,6 +314,23 @@ jobs:
     
           # Define the API URL
           api_url="https://api.github.com/repos/AuroraEditor/auroraeditor.com/contents/public/updates/dynamic/macos/nightly.json"
+
+          # Use curl to create the commit with the updated JSON file
+          curl -H "Authorization: Bearer $PAT" -X PUT \
+            -d "{\"message\": \"$commit_message\", \"content\": \"$(base64 <<< $json_content)\", \"branch\": \"main\", \"sha\": \"$sha\"}" \
+            "$api_url"
+
+      - name: Commit Updated stable.json to auroraeditor.com Repository
+        if: github.ref_name == "main"
+        env:
+          PAT: ${{ secrets.BOT_TOKEN }}
+        run: |
+          sha=${{ steps.get_sha.outputs.sha }}
+          json_content=$(cat app_info.json)
+          commit_message="Updated stable.json"
+    
+          # Define the API URL
+          api_url="https://api.github.com/repos/AuroraEditor/auroraeditor.com/contents/public/updates/dynamic/macos/stable.json"
 
           # Use curl to create the commit with the updated JSON file
           curl -H "Authorization: Bearer $PAT" -X PUT \
