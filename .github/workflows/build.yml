@@ -171,11 +171,31 @@ jobs:
           # Verify the code signature.
           codesign --verify --deep --display --verbose "builds/Aurora Editor.app"
 
-      - name: Install create-dmg
-        run: npm install --global create-dmg
-        
       - name: Make Release Dmg
-        run: create-dmg "builds/Aurora Editor.app"
+        run: |
+          hdiutil create temp.dmg -ov -volname "Aurora Editor" -fs HFS+ -srcfolder "builds/"
+          hdiutil convert temp.dmg -format UDZO -o "Aurora Editor 1.0.dmg"
+          
+          IDENTITIES=`/usr/bin/security find-identity -v -p codesigning`
+          
+          if [[ "$IDENTITIES" == *"Developer ID Application:"* ]]; then
+              IDENTITY="Developer ID Application"
+          elif [[ "$IDENTITIES" == *"Mac Developer:"* ]]; then
+              IDENTITY="Mac Developer"
+          elif [[ "$IDENTITIES" == *"Apple Development:"* ]]; then
+              IDENTITY="Apple Development"
+          else
+              echo "Not identity found {$IDENTITIES}"
+          fi
+
+          if [[ "$IDENTITY" != "" ]]; then
+              SIGN=`/usr/bin/codesign "Aurora Editor 1.0.dmg" --display --verbose=2`
+
+              if [[ "$SIGN" != *"Authority="* ]]; then
+                  echo "Signing failed"
+                  # exit 1
+              fi
+          fi
 
       - name: Notarize and Log
         run: |
