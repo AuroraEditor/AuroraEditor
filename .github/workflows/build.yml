@@ -247,7 +247,7 @@ jobs:
           sha256sum=${{ steps.version_and_sha.outputs.sha256sum }}
           file_size_bytes=${{ steps.calculate_size.outputs.file_size_bytes }}
           
-          echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/nightly/development/AuroraEditor.zip\", \"size\": \"$file_size_bytes\"}" > app_info.json
+          echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/build/development/AuroraEditor.zip\", \"size\": \"$file_size_bytes\"}" > app_info.json
 
       - name: Create a Updated stable.json File
         if: github.ref_name == "main"
@@ -257,7 +257,7 @@ jobs:
           sha256sum=${{ steps.version_and_sha.outputs.sha256sum }}
           file_size_bytes=${{ steps.calculate_size.outputs.file_size_bytes }}
           
-          echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/nightly/main/AuroraEditor.zip\", \"size\": \"$file_size_bytes\"}" > app_info.json
+          echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/build/main/AuroraEditor.zip\", \"size\": \"$file_size_bytes\"}" > app_info.json
 
       - name: Get SHA of nightly.json file
         if: github.ref_name == "development"
