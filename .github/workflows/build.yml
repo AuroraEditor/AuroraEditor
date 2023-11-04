@@ -338,11 +338,12 @@ jobs:
             -d "{\"message\": \"$commit_message\", \"content\": \"$(base64 <<< $json_content)\", \"branch\": \"main\", \"sha\": \"$sha\"}" \
             "$api_url"
 
-      - name: Release
+      - name: Release to GitHub
         if: github.ref_name == 'main'
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.BOT_TOKEN }}
+          tag_name: "Release"
           body: "Automatic release from main"
           files: |
             "Aurora Editor.dmg"
