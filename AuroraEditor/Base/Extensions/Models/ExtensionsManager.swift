@@ -141,18 +141,10 @@ public final class ExtensionsManager {
             Log.warning("We were unable to load extension \(path).")
 
             if !isResigned {
-                Log.info("RESIGNING")
-                let task = Process()
-                let pipe = Pipe()
+                Log.info("Trying to resign.")
+                let task = resign(bundle: bundleURL)
 
-                task.standardOutput = pipe
-                task.standardError = pipe
-                task.arguments = ["codesign", "--sign", "-", path]
-                task.executableURL = URL(fileURLWithPath: "/usr/bin/xcrun")
-                task.launch()
-                task.waitUntilExit()
-
-                if task.terminationStatus != 0 {
+                if task?.terminationStatus != 0 {
                     Log.info("Resigning failed.")
                 } else {
                     Log.info("Resigning succeed, reloading")
@@ -179,6 +171,31 @@ public final class ExtensionsManager {
         }
 
         return AEext
+    }
+
+    private func resign(bundle: URL) -> Process? {
+        if !FileManager().fileExists(atPath: "/usr/bin/xcrun") {
+            return nil
+        }
+
+        let task = Process()
+        let pipe = Pipe()
+
+        task.standardOutput = pipe
+        task.standardError = pipe
+        task.arguments = ["codesign", "--sign", "-", bundle.path(percentEncoded: false)]
+        task.executableURL = URL(fileURLWithPath: "/usr/bin/xcrun")
+        task.launch()
+        task.waitUntilExit()
+
+        #if DEBUG
+        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        if let outputString = String(data: data, encoding: .utf8) {
+            Log.info("Resign", outputString)
+        }
+        #endif
+
+        return task
     }
 
     /// Is installed
