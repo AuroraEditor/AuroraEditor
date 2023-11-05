@@ -79,6 +79,8 @@ public final class ExtensionsManager {
     /// Load plugins
     /// all extensions in `~/Library/com.auroraeditor/Extensions` will be loaded.
     public func loadPlugins() {
+        loadedExtensions = [:]
+
         try? FileManager.default.createDirectory(
             at: extensionsFolder,
             withIntermediateDirectories: false,
@@ -117,7 +119,7 @@ public final class ExtensionsManager {
     /// Load the bundle at path
     /// - Parameter path: path
     /// - Returns: ExtensionBuilder.Tyoe
-    private func loadBundle(path: String) -> ExtensionBuilder.Type? {
+    private func loadBundle(path: String, isResigned: Bool = false) -> ExtensionBuilder.Type? {
         let bundleURL = extensionsFolder.appendingPathComponent(path, isDirectory: true)
 
         // Initialize bundle
@@ -130,13 +132,34 @@ public final class ExtensionsManager {
         do {
             try bundle.preflight()
         } catch {
-            Log.error(path, error)
+            Log.error("Preflight", path, error)
             return nil
         }
 
         // Check if bundle can be loaded.
         if !bundle.load() {
             Log.warning("We were unable to load extension \(path).")
+
+            if !isResigned {
+                Log.info("RESIGNING")
+                let task = Process()
+                let pipe = Pipe()
+
+                task.standardOutput = pipe
+                task.standardError = pipe
+                task.arguments = ["codesign", "--sign", "-", path]
+                task.executableURL = URL(fileURLWithPath: "/usr/bin/xcrun")
+                task.launch()
+                task.waitUntilExit()
+
+                if task.terminationStatus != 0 {
+                    Log.info("Resigning failed.")
+                } else {
+                    Log.info("Resigning succeed, reloading")
+                    return loadBundle(path: path, isResigned: true)
+                }
+            }
+
             return nil
         }
 
