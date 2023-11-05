@@ -4,6 +4,7 @@ on:
   push:
      branches: 
        - development
+       - beta
        - main
 
 jobs:
