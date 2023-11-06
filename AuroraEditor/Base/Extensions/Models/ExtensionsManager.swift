@@ -183,7 +183,7 @@ public final class ExtensionsManager {
 
         task.standardOutput = pipe
         task.standardError = pipe
-        task.arguments = ["codesign", "--sign", "-", bundle.path(percentEncoded: false)]
+        task.arguments = ["codesign", "--sign", "-", bundle.path]
         task.executableURL = URL(fileURLWithPath: "/usr/bin/xcrun")
         task.launch()
         task.waitUntilExit()
