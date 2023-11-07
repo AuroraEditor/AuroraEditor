@@ -7,7 +7,7 @@ on:
     branches: [main, development]
 
 jobs:
-  build:
+  build_and_lint:
     runs-on: macos-12
     timeout-minutes: 10 # If a action exceeds 10 mins, it probably isn't ever going to complete.
     steps:
