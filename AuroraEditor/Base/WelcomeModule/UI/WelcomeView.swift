@@ -105,7 +105,7 @@ public struct WelcomeView: View {
                         WelcomeActionView(
                             iconName: "cursorarrow.and.square.on.square.dashed",
                             title: "Drag and drop",
-                            subtitle: "Open an existing file or folder by drag and droping it"
+                            subtitle: "Open an existing file or folder by drag and dropping it"
                         )
                     }
                 }
