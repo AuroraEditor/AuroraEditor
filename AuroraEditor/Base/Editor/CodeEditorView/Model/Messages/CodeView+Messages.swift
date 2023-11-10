@@ -101,7 +101,6 @@ extension CodeView {
         // If we removed the last message of this view, we don't need to create a new version
         if messageBundle.messages.isEmpty { return }
 
-        // TODO: CodeEditor needs to be parameterised by message theme
         let theme = Message.defaultTheme
 
         let messageView = StatefulMessageView.HostingView(

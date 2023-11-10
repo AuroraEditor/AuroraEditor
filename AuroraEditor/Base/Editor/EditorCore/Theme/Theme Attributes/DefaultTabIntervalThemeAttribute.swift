@@ -11,8 +11,7 @@ import Foundation
 import AppKit
 
 public class DefaultTabIntervalThemeAttribute: LineThemeAttribute, Codable {
-
-    public let key = "default-tab-interval"
+    public var key = "default-tab-interval"
     public let interval: CGFloat
 
     public init(interval: CGFloat) {

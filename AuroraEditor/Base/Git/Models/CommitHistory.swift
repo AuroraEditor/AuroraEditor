@@ -33,7 +33,6 @@ public struct CommitHistory: Equatable, Hashable, Identifiable {
             if remoteURL.absoluteString.contains("gitlab") {
                 return parsedRemoteUrl(domain: "https://gitlab.com", remote: remoteURL)
             }
-            // TODO: Implement other git clients other than github, bitbucket here
         }
         return nil
     }
