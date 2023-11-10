@@ -59,9 +59,11 @@ struct AddRemoteView: View {
                 } else {
                     Button {
                         do {
-                            try addRemote(directoryURL: workspace.workspaceURL(),
-                                          name: remoteName,
-                                          url: remoteUrl)
+                            _ = try addRemote(
+                                directoryURL: workspace.workspaceURL(),
+                                name: remoteName,
+                                url: remoteUrl
+                            )
                             dismiss()
                         } catch {
                             Log.error("Unable to add exisiting remote.")
