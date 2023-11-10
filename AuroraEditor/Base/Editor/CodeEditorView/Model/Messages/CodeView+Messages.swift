@@ -104,20 +104,24 @@ extension CodeView {
         // TODO: CodeEditor needs to be parameterised by message theme
         let theme = Message.defaultTheme
 
-        let messageView = StatefulMessageView.HostingView(messages: messageBundle.messages,
-                                                          theme: theme,
-                                                          geometry: MessageView.Geometry(lineWidth: 100,
-                                                                                         lineHeight: 15,
-                                                                                         popupWidth: 300,
-                                                                                         popupOffset: 16),
-                                                          fontSize: font?.pointSize ?? NSFont.systemFontSize),
-            principalCategory = messagesByCategory(messageBundle.messages)[0].key,
-            colour = theme(principalCategory).colour
+        let messageView = StatefulMessageView.HostingView(
+            messages: messageBundle.messages,
+            theme: theme,
+            geometry: MessageView.Geometry(lineWidth: 100,
+                                           lineHeight: 15,
+                                           popupWidth: 300,
+                                           popupOffset: 16),
+            fontSize: font?.pointSize ?? NSFont.systemFontSize
+        ),
+        principalCategory = messagesByCategory(messageBundle.messages)[0].key,
+        colour = theme(principalCategory).colour
 
-        messageViews[messageBundle.id] = MessageInfo(view: messageView,
-                                                     lineFragementRect: CGRect.zero,
-                                                     geometry: nil,
-                                                     colour: colour)
+        messageViews[messageBundle.id] = MessageInfo(
+            view: messageView,
+            lineFragementRect: CGRect.zero,
+            geometry: nil,
+            colour: colour
+        )
 
         // We invalidate the layout of the line where the message belongs as their may be
         // less space for the text now and because the layout process for the text fills
@@ -136,18 +140,18 @@ extension CodeView {
 
         // Remove all message bundles in the line map and collect their ids for subsequent view removal.
         for line in lines ?? 1..<codeStorageDelegate.lineMap.lines.count {
-
             if let messageBundle = codeStorageDelegate.messages(at: line) {
-
                 messageIds.append(messageBundle.id)
                 codeStorageDelegate.removeMessages(at: line)
-
             }
-
         }
 
         // Make sure to remove all views that are still around if necessary.
-        if lines == nil { removeMessageViews() } else { removeMessageViews(withIDs: messageIds) }
+        if lines == nil {
+            removeMessageViews()
+        } else {
+            removeMessageViews(withIDs: messageIds)
+        }
     }
 
     /// Remove the message views with the given ids.
@@ -156,12 +160,9 @@ extension CodeView {
     ///
     /// IDs that do not have no associated message view cause no harm.
     func removeMessageViews(withIDs ids: [LineInfo.MessageBundle.ID]? = nil) {
-
         for id in ids ?? [LineInfo.MessageBundle.ID](messageViews.keys) {
-
             if let info = messageViews[id] { info.view.removeFromSuperview() }
             messageViews.removeValue(forKey: id)
-
         }
     }
 
@@ -171,5 +172,4 @@ extension CodeView {
             messageView.value.view.unfolded = false
         }
     }
-
 }
