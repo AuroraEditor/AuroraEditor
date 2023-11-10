@@ -48,4 +48,4 @@ jobs:
         run: swiftlint --reporter github-actions-logging --strict
 
       - name: Swift (clean) Build
-        run: set -o pipefail && xcodebuild -verbose -workspace "Aurora Editor.xcworkspace" -scheme "Aurora Editor" clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+        run: set -o pipefail && xcodebuild -verbose -workspace "Aurora Editor.xcworkspace" -scheme "Aurora Editor" clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcbeautify --renderer github-actions
