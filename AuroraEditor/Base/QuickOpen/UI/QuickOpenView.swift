@@ -82,9 +82,11 @@ public struct QuickOpenView: View {
                         .frame(width: 20, height: 20)
                         .padding(.trailing, 12)
                         .offset(x: 0, y: 1)
-                    ActionAwareInput(onDown: onKeyDown,
-                                     onTextChange: onQueryChange,
-                                     text: $state.openQuicklyQuery)
+                    ActionAwareInput(
+                        onDown: onKeyDown,
+                        onTextChange: onQueryChange,
+                        text: $state.openQuicklyQuery
+                    )
                 }
                 .padding(16)
                 .foregroundColor(.primary.opacity(0.85))
@@ -96,7 +98,6 @@ public struct QuickOpenView: View {
                 NavigationView {
                     ZStack {
                         List(state.openQuicklyFiles, id: \.id) { file in
-                            // FIXME: 'init(tag:selection:destination:label:)' was deprecated in macOS 13.0: use NavigationLink(value:label:), or navigationDestination(isPresented:destination:), inside a NavigationStack or NavigationSplitView
                             NavigationLink(tag: file, selection: $selectedItem) {
                                 QuickOpenPreviewView(item: file)
                             } label: {
