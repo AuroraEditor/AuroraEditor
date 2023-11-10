@@ -62,8 +62,6 @@ struct LineInfo {
 
     var commentDepthStart: Int   // nesting depth for nested comments at the start of this line
     var commentDepthEnd: Int   // nesting depth for nested comments at the end of this line
-
-    // FIXME: we are not currently using the following three variables (they are maintained, but they are never useful).
     var roundBracketDiff: Int   // increase or decrease of the nesting level of round brackets on this line
     var squareBracketDiff: Int   // increase or decrease of the nesting level of square brackets on this line
     var curlyBracketDiff: Int   // increase or decrease of the nesting level of curly brackets on this line
