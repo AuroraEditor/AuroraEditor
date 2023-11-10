@@ -27,9 +27,11 @@ struct Loader: View {
                 .stroke(style: StrokeStyle(lineWidth: 14, lineCap: .round))
                 .foregroundColor(Color.white)
                 .frame(width: capsuleWidth, height: capsuleHeight, alignment: .center)
-                .animation(.easeOut(duration: 0.35))
+                .animation(
+                    Animation.easeOut(duration: 0.35),
+                    value: UUID()
+                )
                 .offset(x: self.xOffset, y: self.yOffset)
-
         })
         .frame(width: 40,
                height: 0,
