@@ -96,6 +96,7 @@ public struct QuickOpenView: View {
                 NavigationView {
                     ZStack {
                         List(state.openQuicklyFiles, id: \.id) { file in
+                            // FIXME: 'init(tag:selection:destination:label:)' was deprecated in macOS 13.0: use NavigationLink(value:label:), or navigationDestination(isPresented:destination:), inside a NavigationStack or NavigationSplitView
                             NavigationLink(tag: file, selection: $selectedItem) {
                                 QuickOpenPreviewView(item: file)
                             } label: {
