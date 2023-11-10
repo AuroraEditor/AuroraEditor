@@ -33,8 +33,7 @@ struct NotificationToastView: View {
 
                 Spacer()
 
-                // TODO: Timestamp for when the notification was received.
-                Text("Now")
+                Text(.init(getCurrentTimeStamp()))
                     .fontWithLineHeight(fontSize: 11, lineHeight: 7)
                     .foregroundColor(.secondary)
 
@@ -64,5 +63,11 @@ struct NotificationToastView: View {
             // Track if the mouse is hovering over the notification for interaction.
             model.hoveringOnToast = hovering
         }
+    }
+
+    func getCurrentTimeStamp() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        return formatter.string(from: Date())
     }
 }

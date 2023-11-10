@@ -61,7 +61,9 @@ class NotificationsModel: ObservableObject, INotificationsModel {
         // from the list in settings.
         let notificationList = LocalStorage().listDoNotShowNotifications()
         if notificationList.contains(where: { $0.id == notification.id }) {
-            Log.warning("This notification \(notification.id) has been marked by the user to not show again.")
+            Log.warning(
+                "This notification \(notification.id) has been marked by the user to not show again."
+            )
             return
         }
 

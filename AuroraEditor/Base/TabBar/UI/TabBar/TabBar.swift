@@ -164,7 +164,7 @@ struct TabBar: View {
                                     )
                                     // Detect the drop action of each tab.
                                     .onDrop(
-                                        of: [.utf8PlainText], // TODO: Make a unique type for it.
+                                        of: [.utf8PlainText],
                                         delegate: TabBarItemOnDropDelegate(
                                             currentTabId: id,
                                             openedTabs: $openedTabs,

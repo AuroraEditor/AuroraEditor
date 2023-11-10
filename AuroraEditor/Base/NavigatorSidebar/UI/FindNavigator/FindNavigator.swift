@@ -9,7 +9,7 @@
 
 import SwiftUI
 
-// TODO: Add state management to search @NanashiLi
+/// FindNavigator, the "Find" pane for the Navigator.
 struct FindNavigator: View {
     @ObservedObject
     private var state: WorkspaceDocument.SearchState

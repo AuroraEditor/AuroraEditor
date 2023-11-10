@@ -101,7 +101,7 @@ struct NotificationViewItem: View {
             if notification.notificationType == .extensionSystem {
                 Button("View Extension") {
                     // Action to view an extension (specific to extension system notifications).
-                    // TODO: @Wesley
+                    // TODO: @0xWDG
                 }
 
                 Divider()
