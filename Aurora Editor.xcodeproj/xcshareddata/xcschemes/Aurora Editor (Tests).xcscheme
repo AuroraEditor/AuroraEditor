@@ -39,17 +39,6 @@
                ReferencedContainer = "container:Aurora Editor.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "YES"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2B11FF932AB0EBF7005B649C"
-               BuildableName = "Aurora Editor (UITests).xctest"
-               BlueprintName = "Aurora Editor (UITests)"
-               ReferencedContainer = "container:Aurora Editor.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
