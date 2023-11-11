@@ -19,69 +19,6 @@ jobs:
       - name: Toolchain version
         run: swift -version
         
-        ### Certs
-      - name: "Import Certificate: Development"
-        env:
-          BUILD_CERTIFICATE_BASE64: ${{ secrets.DEVELOPMENT_CERTIFICATE_DATA }}
-          P12_PASSWORD: ${{ secrets.DEVELOPMENT_CERTIFICATE_PASSPHRASE }}
-          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
-        run: |
-          # Create variables
-          CERTIFICATE_PATH="$RUNNER_TEMP/build_certificate.p12"
-          KEYCHAIN_PATH="$RUNNER_TEMP/app-signing.keychain-db"
-
-          # Import certificate and provisioning profile from secrets
-          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode --output "$CERTIFICATE_PATH"
-
-          # Create a temporary keychain
-          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
-          security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
-          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
-
-          # Import certificate into the keychain
-          security import "$CERTIFICATE_PATH" -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
-
-          # List keychains to verify the import
-          security list-keychains -s "$KEYCHAIN_PATH"
-
-      - name: "Import Certificate: Distribution"
-        env:
-          BUILD_CERTIFICATE_BASE64: ${{ secrets.DISTRIBUTION_CERTIFICATE_DATA }}
-          P12_PASSWORD: ${{ secrets.DISTRIBUTION_CERTIFICATE_PASSPHRASE }}
-          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
-        run: |
-          # Create variables
-          CERTIFICATE_PATH="$RUNNER_TEMP/build_certificate.p12"
-          KEYCHAIN_PATH="$RUNNER_TEMP/app-signing.keychain-db"
-
-          # Import certificate and provisioning profile from secrets
-          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode --output "$CERTIFICATE_PATH"
-
-          # Import certificate into the keychain
-          security import "$CERTIFICATE_PATH" -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
-
-          # List keychains to verify the import
-          security list-keychains -s "$KEYCHAIN_PATH"
-
-      - name: "Import Certificate: Developer ID Application"
-        env:
-          BUILD_CERTIFICATE_BASE64: ${{ secrets.DEVELOPER_ID_DATA }}
-          P12_PASSWORD: ${{ secrets.DEVELOPER_ID_PASSPHRASE }}
-          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
-        run: |
-          # Create variables
-          CERTIFICATE_PATH="$RUNNER_TEMP/build_certificate.p12"
-          KEYCHAIN_PATH="$RUNNER_TEMP/app-signing.keychain-db"
-
-          # Import certificate and provisioning profile from secrets
-          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode --output "$CERTIFICATE_PATH"
-
-          # Import certificate into the keychain
-          security import "$CERTIFICATE_PATH" -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
-
-          # List keychains to verify the import
-          security list-keychains -s "$KEYCHAIN_PATH"
-
       - name: "Select Xcode (Default)"
         run: sudo xcode-select -s /Applications/Xcode.app
 
@@ -89,5 +26,6 @@ jobs:
         run: |
           xcodebuild -workspace "Aurora Editor.xcworkspace" \
           -scheme "Aurora Editor (Tests)" \
-          DEVELOPMENT_TEAM=4V2D72S45C \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
           test
