@@ -70,6 +70,7 @@ struct NavigatorSidebarToolbar: View {
                 )
             }
             .id(icon.id)
+            .focusable(false)
             .buttonStyle(NavigatorToolbarButtonStyle(id: icon.id, selection: selection, activeState: activeState))
             .imageScale(.medium)
             .opacity(model.draggingItem?.imageName == icon.imageName &&
