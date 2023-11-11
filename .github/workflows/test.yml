@@ -1,0 +1,26 @@
+name: Run Aurora Editor Tests
+
+on:
+  push:
+    branches: [main, development]
+  pull_request:
+    branches: [main, development]
+
+jobs:
+  tests:
+    runs-on: macos-12
+    timeout-minutes: 10 # If a action exceeds 10 mins, it probably isn't ever going to complete.
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: MacOS Version
+        run: sw_vers
+
+      - name: Toolchain version
+        run: swift -version
+
+      - name: Aurora Editor (Tests)
+        run: |
+          xcodebuild -workspace "Aurora Editor.xcworkspace" \
+          -scheme "Aurora Editor (Tests)" \
+          test
