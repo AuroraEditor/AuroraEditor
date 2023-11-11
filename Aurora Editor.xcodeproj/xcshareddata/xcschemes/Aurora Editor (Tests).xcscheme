@@ -20,6 +20,20 @@
                ReferencedContainer = "container:AuroraEditor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A01AB2D02ACC9EDA0029EDF0"
+               BuildableName = "AEUpdateService.app"
+               BlueprintName = "AEUpdateService"
+               ReferencedContainer = "container:Aurora Editor.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
