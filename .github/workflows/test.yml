@@ -19,8 +19,7 @@ jobs:
       - name: Toolchain version
         run: swift -version
 
-   
-        - name: "Select Xcode (Default)"
+      - name: "Select Xcode (Default)"
         run: sudo xcode-select -s /Applications/Xcode.app
         
         ### Certs
