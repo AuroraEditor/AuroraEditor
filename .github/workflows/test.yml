@@ -83,7 +83,7 @@ jobs:
           security list-keychains -s "$KEYCHAIN_PATH"
 
       - name: "Select Xcode (Default)"
-          run: sudo xcode-select -s /Applications/Xcode.app
+        run: sudo xcode-select -s /Applications/Xcode.app
 
       - name: Aurora Editor (Tests)
         run: |
