@@ -435,6 +435,7 @@
 		2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */; };
 		2B5B25532885D9BA009C7384 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B25522885D9B9009C7384 /* .swiftlint.yml */; };
 		2B5B25552885D9C3009C7384 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B25542885D9C3009C7384 /* .gitignore */; };
+		2B6CB09E2AFFA3B1001E4955 /* AEUpdateService.app in Resources */ = {isa = PBXBuildFile; fileRef = A01AB2D12ACC9EDA0029EDF0 /* AEUpdateService.app */; };
 		2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468438427DC76E200F8E88E /* AppDelegate.swift */; };
 		2B7AC06B282452FB0082A5B8 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7AC06A282452FB0082A5B8 /* Media.xcassets */; };
 		2B89F85428B13E9D007CB9C1 /* AuroraMessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */; };
@@ -3863,6 +3864,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B6CB09E2AFFA3B1001E4955 /* AEUpdateService.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
