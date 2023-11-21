@@ -46,29 +46,23 @@ class AboutViewModal: ObservableObject {
         }
     }
 
-    public func loadCredits() -> String {
-        if let filepath = Bundle.main.path(forResource: "Credits", ofType: "md") {
-            do {
-                let contents = try String(contentsOfFile: filepath)
-                return contents
-            } catch {
-                return "Could not load credits for Aurora Editor."
-            }
-        } else {
-            return "Credit file not found."
+    public func loadFileContent(fileName: String, fileType: String) -> String {
+        guard let filepath = Bundle.main.path(forResource: fileName, ofType: fileType) else {
+            return "\(fileName) file not found."
+        }
+        do {
+            let contents = try String(contentsOfFile: filepath)
+            return contents
+        } catch {
+            return "Could not load \(fileName) for Aurora Editor."
         }
     }
 
+    public func loadCredits() -> String {
+        loadFileContent(fileName: "Credits", fileType: "md")
+    }
+
     public func loadLicense() -> String {
-        if let filepath = Bundle.main.path(forResource: "License", ofType: "md") {
-            do {
-                let contents = try String(contentsOfFile: filepath)
-                return contents
-            } catch {
-                return "Could not load license for Aurora Editor."
-            }
-        } else {
-            return "License file not found."
-        }
+        loadFileContent(fileName: "License", fileType: "md")
     }
 }
