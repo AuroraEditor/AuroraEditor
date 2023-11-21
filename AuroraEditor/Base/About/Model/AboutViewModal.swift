@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AboutViewModal: ObservableObject {
+public class AboutViewModal: ObservableObject {
 
     static var shared: AboutViewModal = .init()
 
@@ -16,6 +16,9 @@ class AboutViewModal: ObservableObject {
 
     @Published
     public var contributers: [Contributor] = []
+
+    @Published
+    var aboutDetailState: AboutDetailState = .license
 
     init() {
         loadContributors(from: auroraContributers)

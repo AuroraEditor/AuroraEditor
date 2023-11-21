@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-struct LicenseDetailView: View {
-    var body: some View {
+public struct LicenseDetailView: View {
+    public var body: some View {
         ScrollView(.vertical) {
             Text(.init(AboutViewModal().loadLicense()))
                 .multilineTextAlignment(.leading)
