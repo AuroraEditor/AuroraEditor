@@ -6,7 +6,7 @@
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
-struct Contributor: Codable, Identifiable, Hashable {
+public struct Contributor: Codable, Identifiable, Hashable {
     public var id: String { self.username }
     let username: String
     let avatarURL: String

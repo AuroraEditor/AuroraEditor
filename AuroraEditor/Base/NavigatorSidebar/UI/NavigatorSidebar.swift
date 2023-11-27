@@ -45,6 +45,17 @@ struct NavigatorSidebar: View {
         })
         .padding(.top, prefs.preferences.general.sidebarStyle == .xcode ? 30 : 0)
         .padding(.leading, prefs.preferences.general.sidebarStyle == .vscode ? 30 : 0)
+        .onAppear {
+            NotificationCenter.default.addObserver(
+                forName: Notification.Name("changeNavigatorPane"),
+                object: nil,
+                queue: OperationQueue.main
+            ) { (notification) in
+                if let pane = notification.object as? Int {
+                    self.selections = [pane]
+                }
+            }
+        }
     }
 
     // swiftlint:disable:next function_body_length

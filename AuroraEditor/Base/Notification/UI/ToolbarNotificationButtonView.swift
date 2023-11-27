@@ -19,7 +19,10 @@ struct ToolbarNotificationButtonView: View {
 
     var body: some View {
         Button {
-            // Action to be performed when the button is tapped.
+            NotificationCenter.default.post(
+                name: Notification.Name("changeNavigatorPane"),
+                object: 5
+            )
         } label: {
             HStack {
                 // Display the notification icon based on severity.
