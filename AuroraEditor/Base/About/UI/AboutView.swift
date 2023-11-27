@@ -19,64 +19,63 @@ public enum AboutDetailState {
 }
 
 public struct AboutView: View {
-    @Environment(\.openURL)
-    private var openURL
-
-    @State
-    private var aboutDetailState: AboutDetailState = .license
+    @Environment(\.openURL) private var openURL
+    @ObservedObject var viewModel = AboutViewModal()
 
     private let fade: Gradient = Gradient(colors: [.clear, .white])
 
     public var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                ApplicationsDetailsView(aboutDetailState: $aboutDetailState)
+                ApplicationsDetailsView(aboutDetailState: $viewModel.aboutDetailState)
                     .frame(width: 260)
-                switch aboutDetailState {
-                case .license:
-                    LicenseDetailView()
-                        .frame(width: 400)
-                case .contributers:
-                    ZStack(alignment: .bottom) {
-                        ContributersDetailView()
-                            .mask(LinearGradient(gradient: fade,
-                                                 startPoint: .bottom,
-                                                 endPoint: .top))
 
-                        ZStack {
-                            Color.gray
-                                .opacity(0.2)
-                                .cornerRadius(20)
-                            HStack {
-                                Image(systemName: "arrow.right.circle")
-                                    .font(.system(size: 11))
-                                    .foregroundColor(.primary)
-                                Text("AuroraEditor/Contributers")
-                                    .font(.system(size: 11))
-                                    .foregroundColor(.primary)
-                            }
-                        }
-                        .frame(width: 180, height: 20)
-                        .onTapGesture {
-                            openURL(URL(string: "https://github.com/AuroraEditor/AuroraEditor/contributors")!)
-                        }
-                        .padding(.bottom, 25)
+                Group {
+                    switch viewModel.aboutDetailState {
+                    case .license:
+                        LicenseDetailView()
+                    case .contributers:
+                        contributorsView
+                    case .credits:
+                        CreditsDetailView()
                     }
-                    .frame(width: 400)
-                case .credits:
-                    CreditsDetailView()
-                        .frame(width: 400)
-                }
+                }.frame(width: 400)
             }
         }
         .background(.regularMaterial)
     }
 
+    private var contributorsView: some View {
+        ZStack(alignment: .bottom) {
+            ContributorsDetailView(viewModel: viewModel)
+                .mask(LinearGradient(gradient: fade, startPoint: .bottom, endPoint: .top))
+            contributorFooter
+        }
+    }
+
+    private var contributorFooter: some View {
+        let contributorsURL = "https://github.com/AuroraEditor/AuroraEditor/contributors"
+        return ZStack {
+            Color.gray.opacity(0.2).cornerRadius(20)
+            HStack {
+                Image(systemName: "arrow.right.circle")
+                Text("AuroraEditor/Contributors")
+            }
+            .font(.system(size: 11))
+            .foregroundColor(.primary)
+        }
+        .frame(width: 180, height: 20)
+        .onTapGesture {
+            if let url = URL(string: contributorsURL) {
+                openURL(url)
+            }
+        }
+        .padding(.bottom, 25)
+    }
+
     public func showWindow() {
-        AboutWindowHostingController(view: self,
-                                    size: NSSize(width: 640,
-                                                 height: 370))
-        .showWindow(nil)
+        AboutWindowHostingController(view: self, size: NSSize(width: 640, height: 370))
+            .showWindow(nil)
     }
 }
 

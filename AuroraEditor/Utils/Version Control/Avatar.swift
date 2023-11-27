@@ -34,19 +34,12 @@ class Avatar {
     /// Get Controbuter Avatar
     /// - Parameter contributerAvatarURL: Contributers's avatar url
     /// - Returns: Contributer avatar image
-    public func contributerAvatar(contributerAvatarURL: String) -> some View {
-        AsyncImage(url: URL(string: contributerAvatarURL)) { phase in
-            if let image = phase.image {
-                image
-                    .resizable()
-                    .clipShape(Circle())
-                    .frame(width: 42, height: 42)
-            } else if phase.error != nil {
-                self.defaultAvatar(author: contributerAvatarURL)
-            } else {
-                self.defaultAvatar(author: contributerAvatarURL)
-            }
-        }
+    public func contributorAvatar(contributorAvatarURL: String) -> some View {
+        CachingAsyncImageView(contributorAvatarURL: contributorAvatarURL,
+                              imageSize: 42)
+            .frame(width: 42, height: 42)
+            .clipShape(Circle())
+            .accessibilityLabel("Contributor Avatar")
     }
 
     private func defaultAvatar(author: String) -> some View {

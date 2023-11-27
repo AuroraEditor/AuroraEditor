@@ -6,8 +6,9 @@ on:
       - development
 
 jobs:
-  build:
-    name: Build
+  SonarBuild:
+    name: SonarBuild
+    if: github.repository_owner == 'AuroraEditor'
     runs-on: ubuntu-latest
     timeout-minutes: 10 # If a action exceeds 10 mins, it probably isn't ever going to complete.
     permissions: read-all
