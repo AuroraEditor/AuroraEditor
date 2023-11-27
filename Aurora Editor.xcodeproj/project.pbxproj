@@ -5205,8 +5205,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AuroraEditor/Version-Control-Kit.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = revision;
+				revision = 6224857a6f2caba5d7b13b396dd52e7de9a3bbad;
 			};
 		};
 		209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */ = {
