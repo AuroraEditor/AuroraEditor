@@ -16,7 +16,7 @@
 "about.no.hash" = "No Hash";
 "about.version" = "Version %@ (%@)";
 "about.license" = "License";
-"about.contributers" = "Contributers";
+"about.contributors" = "Contributors";
 "about.credits" = "Credits";
 
 "about.error.no.credits" = "Could not load credits for Aurora Editor.";
