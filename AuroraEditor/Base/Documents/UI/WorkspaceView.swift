@@ -12,6 +12,23 @@ import AppKit
 import Version_Control
 import Combine
 
+class ExtensionDynamicData: ObservableObject {
+    @Published
+    public var name: String
+
+    @Published
+    public var title: String = ""
+
+    @Published
+    public var view: AnyView = AnyView(EmptyView())
+
+    init() {
+        self.name = ""
+        self.title = ""
+        self.view = AnyView(EmptyView())
+    }
+}
+
 struct WorkspaceView: View {
 
     let tabBarHeight = 28.0
@@ -54,8 +71,8 @@ struct WorkspaceView: View {
     @State
     private var sheetIsOpened = false
 
-    @State
-    private var extensionView: AnyView = AnyView(EmptyView())
+    @ObservedObject
+    private var extensionDynamic = ExtensionDynamicData()
 
     private let extensionsManagerShared = ExtensionsManager.shared
 
@@ -149,46 +166,46 @@ struct WorkspaceView: View {
                 using: { _ in self.isFullscreen = false }
             )
 
-            workspace.broadcaster.broadcaster.sink { command in
-                if command.name == "openSettings" {
+            workspace.broadcaster.broadcaster.sink { broadcast in
+                Log.info(broadcast)
+                extensionDynamic.name = broadcast.sender
+                extensionDynamic.title = (broadcast.parameters["title"] as? String) ?? extensionDynamic.name
+
+                if broadcast.command == "NOOP" {
+                    // Got a noop command, we can ignore this.
+                } else if broadcast.command == "openSettings" {
                     workspace.windowController?.openSettings()
-                }
-                if command.name == "showNotification" {
+                } else if broadcast.command == "showNotification" {
                     notificationService.notify(
                         notification: INotification(
                             id: UUID().uuidString,
                             severity: .info,
-                            title: (command.parameters["title"] as? String) ?? "",
-                            message: (command.parameters["message"] as? String) ?? "",
+                            title: extensionDynamic.title,
+                            message: (broadcast.parameters["message"] as? String) ?? "",
                             notificationType: .extensionSystem,
                             silent: false
                         )
                     )
-                }
-                if command.name == "showWarning" {
+                } else if broadcast.command == "showWarning" {
                     notificationService.warn(
-                        title: (command.parameters["title"] as? String) ?? "",
-                        message: (command.parameters["message"] as? String) ?? ""
+                        title: extensionDynamic.title,
+                        message: (broadcast.parameters["message"] as? String) ?? ""
                     )
-                }
-                if command.name == "showError" {
+                } else if broadcast.command == "showError" {
                     notificationService.error(
-                        title: (command.parameters["title"] as? String) ?? "",
-                        message: (command.parameters["message"] as? String) ?? ""
+                        title: extensionDynamic.title,
+                        message: (broadcast.parameters["message"] as? String) ?? ""
                     )
-                }
-                if command.name == "openSheet",
-                   let view = command.parameters["view"] as? any View {
-                    extensionView = AnyView(view)
+                } else if broadcast.command == "openSheet",
+                    let view = broadcast.parameters["view"] as? any View {
+                    extensionDynamic.view = AnyView(view)
                     sheetIsOpened = true
-                }
-                if command.name == "openTab",
-                   let view = command.parameters["view"] as? any View {
-                    Log.info(view)
+                } else if broadcast.command == "openTab",
+                   let view = broadcast.parameters["view"] as? any View {
+                    Log.info("openTab", view)
                     // TODO: Open new tab.
-                }
-                if command.name == "openWindow",
-                   let view = command.parameters["view"] as? any View {
+                } else if broadcast.command == "openWindow",
+                   let view = broadcast.parameters["view"] as? any View {
                     let window = NSWindow()
                     window.styleMask = NSWindow.StyleMask(rawValue: 0xf)
                     window.contentViewController = NSHostingController(
@@ -200,9 +217,11 @@ struct WorkspaceView: View {
                     )
                     let windowController = NSWindowController()
                     windowController.contentViewController = window.contentViewController
+                    windowController.window?.title = extensionDynamic.title
                     windowController.window = window
                     windowController.showWindow(self)
-
+                } else {
+                    Log.info("Unknown broadcast", broadcast)
                 }
             }.store(in: &cancelables)
         }
@@ -254,15 +273,19 @@ struct WorkspaceView: View {
 
         }
         .sheet(isPresented: $sheetIsOpened) {
-            HStack {
-                Text("") // Title, if any at some point.
-                Spacer()
-                Button("Dismiss") {
-                    sheetIsOpened.toggle()
-                }
-            }.padding([.leading, .top, .trailing], 5)
-            Divider()
-            extensionView.padding(.bottom, 5)
+            VStack {
+                HStack {
+                    Text(extensionDynamic.title)
+                    Spacer()
+                    Button("Dismiss") {
+                        sheetIsOpened.toggle()
+                    }
+                }.padding([.leading, .top, .trailing], 5)
+                Divider()
+                extensionDynamic.view
+                    .padding(.bottom, 5)
+            }
+            .frame(minWidth: 250, minHeight: 150)
         }
     }
 }

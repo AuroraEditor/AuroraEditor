@@ -82,7 +82,7 @@ struct ApplicationsDetailsView: View {
                     .background(aboutDetailState == .license ? Color(nsColor: NSColor(.accentColor)) : .clear)
                     .cornerRadius(20)
 
-                Text("about.contributers")
+                Text("about.contributors")
                     .onTapGesture {
                         aboutDetailState = .contributers
                     }

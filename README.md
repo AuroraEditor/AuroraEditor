@@ -31,12 +31,7 @@ It will support everything you could expect from an Xcode-inspired application, 
 
 <p align="center">
   <a href='https://github.com/AuroraEditor/AuroraEditor/pulls'><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
-  <a href='https://github.com/AuroraEditor/AuroraEditor/pulls?q=is%3Apr+is%3Aclosed'><img alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed-raw/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
-  <br />
   <a href='https://github.com/AuroraEditor/AuroraEditor/issues'><img alt="GitHub issues" src="https://img.shields.io/github/issues-raw/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
-  <a href='https://github.com/AuroraEditor/AuroraEditor/issues?q=is%3Aissue+is%3Aclosed'><img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed-raw/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
-  <br />
-  <img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/AuroraEditor/AuroraEditor/main?color=f98a6c&style=for-the-badge">
   <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge">
   <a href='https://github.com/AuroraEditor/AuroraEditor/fork'><img alt="GitHub forks" src="https://img.shields.io/github/forks/AuroraEditor/AuroraEditor?color=f98a6c&style=for-the-badge"></a>
  </p>
@@ -47,9 +42,9 @@ It will support everything you could expect from an Xcode-inspired application, 
 
 Developers should be able to use an editor that feels snappy and fast.
 
-Most comparable editors are built on Electron, this is a huge disadvantage because it utilizes a lot of unnecessary system resources. Electron requires a Chromium instance to run. This can mean massive performance losses and high RAM usage even for small apps built on it. Additionally, the overall code footprint is much larger and animations are slower. More frames are lost and things like window resizing feels laggy. Native apps are smooth as butter and utilizes system resources much more efficiently for better performance and reliability.
+Most comparable editors are built on Electron, this is a huge disadvantage because it utilizes a lot of unnecessary system resources. Electron requires a Chromium instance to run. This can mean massive performance losses and high RAM usage even for small apps built on it. Additionally, the overall code footprint is much larger and animations are slower. More frames are lost and things like window resizing feel laggy. Native apps are smooth as butter and utilize system resources much more efficiently for better performance and reliability.
 
-Xcode is a great native editor for developers on Mac, but unfortunately it doesn't support creating a multitude of projects in different programming languages, and this is where Aurora Editor comes in. Aurora Editor wants to give developers the possibility of creating their desired projects in their desired language on an editor that is native and gives a similar experience, performance and feel than that of Xcode on Mac.
+Xcode is a great native editor for developers on Mac, but unfortunately it doesn't support creating a multitude of projects in different programming languages, and this is where Aurora Editor comes in. Aurora Editor wants to give developers the possibility of creating their desired projects in their desired language on an editor that is native and gives a similar experience, performance and feel to that of Xcode on Mac.
 
 ## Included Repositories
 <table>
@@ -101,7 +96,7 @@ We have all contributed to CodeEdit, and some of us continue to contribute to th
 
 4. Our primary focus lies on functionality rather than aesthetics. While CodeEdit emphasizes creating visually appealing designs, our primary goal is to ensure that the system functions correctly. Design refinements are considered once functionality is achieved.
 
-5. Some of us have experienced situations where their ideas were initially deemed unsuitable. However, it has come to our attention that these ideas were eventually implemented weeks later due to an admin's suggestion.
+5. Some of us have experienced situations where our ideas were initially deemed unsuitable. However, it has come to our attention that these ideas were eventually implemented weeks later due to an admin's suggestion.
 
 These are some of the key differences in our approach to CodeEdit, aimed at enhancing project development and efficiency.
 
@@ -109,7 +104,7 @@ Based of the following answer from <a href='https://github.com/0xWDG'>@0xWDG</a>
 
 ## Mental Health Awareness
 
-We are aware how difficult and overwhelming it can be sometimes for developers when working on a big or small project. If you feel like you are getting overwhelmed when working on a certain feature or bug on Aurora Editor don't be afraid to let us know and we'll be able to help you out and takeover what you have been working on if you feel comfortable letting someone else do it. If you just feel the need to talk about certain issues feel free to talk about it in the [Mental Health Channel](https://discord.gg/HyC7Z9WaQS) or if just need advice on something ask in the [Advice Channel](https://discord.gg/Fnr5A5atbn).
+We are aware of how difficult and overwhelming it can be sometimes for developers when working on a big or small project. If you feel like you are getting overwhelmed when working on a certain feature or bug on Aurora Editor don't be afraid to let us know and we'll be able to help you out and take over what you have been working on if you feel comfortable letting someone else do it. If you just feel the need to talk about certain issues feel free to talk about it in the [Mental Health Channel](https://discord.gg/HyC7Z9WaQS) or if just need advice on something ask in the [Advice Channel](https://discord.gg/Fnr5A5atbn).
 
 ## Contributing
 

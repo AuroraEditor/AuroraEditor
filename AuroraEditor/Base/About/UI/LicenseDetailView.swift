@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-struct LicenseDetailView: View {
-    var body: some View {
+public struct LicenseDetailView: View {
+    public var body: some View {
         ScrollView(.vertical) {
             Text(.init(AboutViewModal().loadLicense()))
                 .multilineTextAlignment(.leading)
                 .font(.system(size: 11))
         }
-        .frame(height: 370)
+        .frame(height: 300)
     }
 }
 

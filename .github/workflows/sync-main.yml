@@ -8,6 +8,7 @@ jobs:
   sync-branches:
     if: ${{ github.ref_name == 'main' }} ## Should only run on main branch.
     runs-on: ubuntu-latest
+    timeout-minutes: 10 # If a action exceeds 10 mins, it probably isn't ever going to complete.
     name: Syncing branches
     steps:
       - name: Checkout

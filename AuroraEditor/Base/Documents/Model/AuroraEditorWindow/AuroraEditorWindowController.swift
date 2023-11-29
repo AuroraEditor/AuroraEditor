@@ -89,7 +89,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         self.splitViewController = splitVC
 
         workspace.broadcaster.broadcaster
-            .sink(receiveValue: recieveCommand).store(in: &cancelables)
+            .sink(receiveValue: recieveBroadcast).store(in: &cancelables)
     }
 
     override func close() {
@@ -228,10 +228,10 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         }
     }
 
-    func recieveCommand(command: AuroraCommandBroadcaster.Broadcast) {
-        let sender = command.parameters["sender"] ?? ""
+    func recieveBroadcast(broadcast: AuroraCommandBroadcaster.Broadcast) {
+        let sender = broadcast.parameters["sender"] ?? ""
 
-        switch command.name {
+        switch broadcast.command {
         case "openQuickly":
             openQuickly(sender)
         case "close":
