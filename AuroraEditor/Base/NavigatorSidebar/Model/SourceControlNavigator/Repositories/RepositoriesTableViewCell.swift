@@ -23,16 +23,25 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
         switch cellType {
         case .repo:
             label.stringValue = "\(repository.repoName ?? "Unknown Repo")"
-            if let branches = repository.branches,
-               branches.contents.count > branches.current {
-                let currentBranch = (branches.contents[branches.current] as? RepoBranch)?
-                    .name ?? "Unknown Main Branch"
-                secondaryLabel.stringValue = "\(currentBranch)"
-            } else {
-                secondaryLabel.stringValue = "Unknown Main Branch"
-            }
-            image = NSImage(systemSymbolName: "clock", accessibilityDescription: nil)!
 
+            if let branches = repository.branches,
+               branches.current >= 0, // Ensure the index is non-negative.
+               branches.current < branches.contents.count { // Ensure the index is within bounds.
+                if let currentBranch = (branches.contents[branches.current] as? RepoBranch)?.name {
+                    secondaryLabel.stringValue = "\(currentBranch)"
+                } else {
+                    secondaryLabel.stringValue = "Unknown Branch"
+                }
+            } else {
+                secondaryLabel.stringValue = "Unknown Branch"
+            }
+
+            if let clockImage = NSImage(systemSymbolName: "clock", accessibilityDescription: nil) {
+                image = clockImage
+            } else {
+                // Handle the case where the system image isn't found
+                image = NSImage() // Create a default image if needed
+            }
         case .branches:
             label.stringValue = "Branches"
             image = NSImage(named: "git.branch")!
@@ -58,7 +67,7 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
             image = NSImage(named: "vault")!
 
         case .branch:
-            var currentBranch = "Unknown Main Branch"
+            var currentBranch = "Unknown Branch"
             if let branches = repository.branches,
                let unsafeCurrentBranch = branches.contents[branches.current] as? RepoBranch {
                 currentBranch = unsafeCurrentBranch.name

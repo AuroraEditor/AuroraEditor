@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Version_Control
 
 extension GitCloneView {
     func getPath(modifiable: inout String, saveName: String) -> String? {
@@ -187,9 +188,8 @@ extension GitCloneView {
     private func checkBranches(dirUrl: URL) -> Bool {
         // Check if repo has only one branch, and if so, don't show the checkout page
         do {
-            let branches = try GitClient(directoryURL: dirUrl,
-                                              shellClient: shellClient).getGitBranches(allBranches: true)
-            let filtered = branches.filter { !$0.contains("HEAD") }
+            let branches: [GitBranch] = []
+            let filtered = branches.filter { !$0.ref.contains("HEAD") }
             if filtered.count > 1 {
                 return true
             }

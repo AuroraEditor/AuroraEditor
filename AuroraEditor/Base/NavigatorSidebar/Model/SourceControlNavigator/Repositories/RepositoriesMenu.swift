@@ -86,14 +86,15 @@ final class RepositoriesMenu: NSMenu {
         // Get a list of commits for the selected branch. We only get the latest 2 commits of
         // the branch so that we know what commit is newer.
         do {
-            let commits = try getCommits(directoryURL: (workspace?.workspaceURL())!,
-                                          revisionRange: branch.name,
-                                          limit: 2)
+            let commits = try GitLog().getCommits(directoryURL: (workspace!.workspaceURL()),
+                                                  revisionRange: branch.name,
+                                                  limit: 2,
+                                                  skip: 0)
 
             // Get the first commit in the list and then get its commit hash
-            let commitHash = commits[0].hash
+            let commitHash = commits[0]
 
-            workspace?.data.commitHash = commitHash
+            workspace?.data.commitHash = commitHash.sha
         } catch {
             Log.error("Unable to fetch commits for branch: \(branch.name)")
         }
@@ -132,7 +133,7 @@ final class RepositoriesMenu: NSMenu {
         if alert.runModal() == .alertFirstButtonReturn {
             do {
                 if try Branch().deleteLocalBranch(directoryURL: (workspace?.workspaceURL())!,
-                                         branchName: branch.name) {
+                                                  branchName: branch.name) {
                     self.outlineView.reloadData()
                 } else {
                     Log.error("Failed to delete branch \(branch.name)")

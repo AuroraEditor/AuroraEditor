@@ -37,7 +37,7 @@ public struct GitCloneView: View {
     ]
 
     @State var allBranches = false
-    @State var arrayBranch: [String] = []
+    @State var arrayBranch: [GitRemote] = []
     @State var mainBranch: String = ""
     @State var selectedBranch: String = ""
     @State private var check = 0
@@ -63,7 +63,10 @@ public struct GitCloneView: View {
 
     func getRemoteHead(url: String) {
         do {
-            let branch = try getRemoteHEAD(url: url)
+            guard let branch = try Remote().getRemoteHEAD(directoryURL: URL(string: url)!,
+                                                          remote: "remoteName") else {
+                throw fatalError()
+            }
             if branch.contains("fatal:") {
                 Log.warning("Error: getRemoteHead")
                 activeSheet = .error("Error: getRemoteHead")
@@ -83,8 +86,9 @@ public struct GitCloneView: View {
 
     func getGitRemoteBranch(url: String) {
         do {
-            let branches = try getRemoteBranch(url: url)
-            if branches[0].contains("fatal:") {
+            let branches = try Remote().getRemotes(directoryURL: URL(string: url)!)
+
+            if branches.isEmpty {
                 Log.warning("Error: getRemoteBranch")
                 activeSheet = .error("Error: getRemoteBranch")
             } else {
@@ -240,7 +244,7 @@ public struct GitCloneView: View {
                 if  allBranches && !arrayBranch.isEmpty {
                     Picker("Checkout", selection: $selectedBranch) {
                         ForEach(arrayBranch, id: \.self) {
-                            Text($0)
+                            Text($0.name)
                         }
                     }
                 }
@@ -248,7 +252,7 @@ public struct GitCloneView: View {
                 if  !allBranches && !arrayBranch.isEmpty {
                     Picker("Branch", selection: $selectedBranch) {
                         ForEach(arrayBranch, id: \.self) {
-                            Text($0)
+                            Text($0.name)
                         }
                     }
                 }
