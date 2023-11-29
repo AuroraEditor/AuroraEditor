@@ -15,6 +15,7 @@ struct CreditsDetailView: View {
                 .multilineTextAlignment(.leading)
                 .font(.system(size: 11))
         }
+        .frame(height: 300)
     }
 }
 

@@ -2,28 +2,30 @@
 //  ExtensionsManager.swift
 //  Aurora Editor
 //
-//  Created by Pavel Kasila on 7.04.22.
+//  Created by Wesley de Groot on 31-10-2023.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
-//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import Foundation
 import AEExtensionKit
 
-/// Class which handles all extensions (its bundles, instances for each workspace and so on)
+/// ExtensionsManager
+/// This class handles all extensions
 public final class ExtensionsManager {
     /// Shared instance of `ExtensionsManager`
     public static let shared: ExtensionsManager = ExtensionsManager()
 
+    /// Aurora Editor folder (`~/Library/com.auroraeditor/`)
     let auroraEditorFolder: URL
+
+    /// Aurora Editor extensions folder (`~/Library/com.auroraeditor/Extensions`)
     let extensionsFolder: URL
 
-    var loadedBundles: [String: Bundle] = [:]
+    /// Dictionary of current loaded extensions
     var loadedExtensions: [String: ExtensionInterface] = [:]
-    var loadedLanguageServers: [String: LSPClient] = [:]
-    var workspace: WorkspaceDocument?
 
-    var auroraAPIHandler: AuroraAPI = { _, _ in }
+    /// The current workspace document
+    var workspace: WorkspaceDocument?
 
     init() {
         Log.info("[ExtensionsManager] init()")
@@ -47,29 +49,43 @@ public final class ExtensionsManager {
             isDirectory: true
         )
 
-        self.auroraAPIHandler = { function, parameters in
-            if let workspace = self.workspace {
-                Log.info("Broadcasting", function, parameters)
-                workspace.broadcaster.broadcast(function, parameters: parameters)
-            } else {
-                Log.warning("Failed to broadcast", function, parameters)
-            }
-        }
-
         loadPlugins()
     }
 
+    /// Set workspace document
+    /// - Parameter workspace: Workspace document
     func set(workspace: WorkspaceDocument) {
         self.workspace = workspace
     }
 
-    /// Temporary load function, all extensions in ~/Library/com.auroraeditor/Extensions will be loaded.
+    /// Create an Aurora API Callback handler.
+    /// - Parameter file: extension name
+    /// - Returns: AuroraAPI
+    private func auroraAPICallback(file: String) -> AuroraAPI {
+        return { function, parameters in
+            if let workspace = self.workspace {
+                Log.info("Broadcasting", function, parameters)
+                workspace.broadcaster.broadcast(
+                    sender: file.replacingOccurrences(of: ".AEext", with: ""),
+                    command: function,
+                    parameters: parameters
+                )
+            } else {
+                Log.warning("Failed to broadcast", function, parameters)
+            }
+        }
+    }
+
+    /// Load plugins
+    /// all extensions in `~/Library/com.auroraeditor/Extensions` will be loaded.
     public func loadPlugins() {
-            try? FileManager.default.createDirectory(
-                at: extensionsFolder,
-                withIntermediateDirectories: false,
-                attributes: nil
-            )
+        loadedExtensions = [:]
+
+        try? FileManager.default.createDirectory(
+            at: extensionsFolder,
+            withIntermediateDirectories: false,
+            attributes: nil
+        )
 
         do {
             let directory = try FileManager.default.contentsOfDirectory(
@@ -77,15 +93,14 @@ public final class ExtensionsManager {
             )
 
             for file in directory where file.hasSuffix("AEext") {
-                Log.info("Loading \(file)")
                 if let builder = self.loadBundle(path: file) {
                     loadedExtensions[file] = builder.init().build(
-                        withAPI: AuroraEditorAPI(extensionId: "0", workspace: .init())
+                        withAPI: AuroraEditorAPI(extensionId: "0", workspace: workspace ?? .init())
                     )
 
                     loadedExtensions[file]?.respond(
                         action: "registerCallback",
-                        parameters: ["callback": auroraAPIHandler]
+                        parameters: ["callback": auroraAPICallback(file: file)]
                     )
 
                     Log.info("Registered \(file)")
@@ -104,18 +119,47 @@ public final class ExtensionsManager {
     /// Load the bundle at path
     /// - Parameter path: path
     /// - Returns: ExtensionBuilder.Tyoe
-    private func loadBundle(path: String) -> ExtensionBuilder.Type? {
+    private func loadBundle(path: String, isResigned: Bool = false) -> ExtensionBuilder.Type? {
         let bundleURL = extensionsFolder.appendingPathComponent(path, isDirectory: true)
 
         // Initialize bundle
-        guard let bundle = Bundle(url: bundleURL),
-              bundle.load() else {
-            Log.warning("Failed to load bundle")
+        guard let bundle = Bundle(url: bundleURL) else {
+            Log.warning("Failed to load extension \(path)")
             return nil
         }
 
+        // Pre-flight
+        do {
+            try bundle.preflight()
+        } catch {
+            Log.error("Preflight", path, error)
+            return nil
+        }
+
+        // Check if bundle can be loaded.
+        if !bundle.load() {
+            Log.warning("We were unable to load extension \(path).")
+
+            if !isResigned {
+                Log.info("Trying to resign.")
+                let task = resign(bundle: bundleURL)
+
+                if task?.terminationStatus != 0 {
+                    Log.info("Resigning failed.")
+                } else {
+                    Log.info("Resigning succeed, reloading")
+                    return loadBundle(path: path, isResigned: true)
+                }
+            }
+
+            return nil
+        }
+
+        // Can we convert the principalClass to an ExtensionBuilder.Type?
+        // If not than this is probably not an Aurora Editor extension.
         guard let AEext = bundle.principalClass as? ExtensionBuilder.Type else {
             Log.warning(
+                path,
                 "Failed to convert",
                 bundle.principalClass.self ?? "None",
                 "to",
@@ -126,49 +170,32 @@ public final class ExtensionsManager {
             return nil
         }
 
-        loadedBundles[path] = bundle
-
         return AEext
     }
 
-    private func loadLSPClient(file: String) {
-        //                guard let client = try getLSPClient(id: plugin.release, workspaceURL: api.workspaceURL) else {
-        //                    return
-        //                }
-        //                loadedLanguageServers[key] = client
-    }
+    private func resign(bundle: URL) -> Process? {
+        if !FileManager().fileExists(atPath: "/usr/bin/xcrun") {
+            return nil
+        }
 
-    private func getLSPClient(id: UUID, workspaceURL: URL) throws -> LSPClient? {
-        //        if loadedBundles.keys.contains(id) {
-        //            guard let lspFile = loadedBundles[id]?.infoDictionary?["CELSPExecutable"] as? String else {
-        //                return nil
-        //            }
-        //
-        //            guard let lspURL = loadedBundles[id]?.url(forResource: lspFile, withExtension: nil) else {
-        //                return nil
-        //            }
-        //
-        //            return try LSPClient(lspURL,
-        //                                 workspace: workspaceURL,
-        //                                 arguments: loadedBundles[id]?.infoDictionary?["CELSPArguments"] as? [String])
-        //        }
-        //
-        //        guard let bundle = try loadBundle(id: id, withExtension: "celsp") else {
-        //            return nil
-        //        }
-        //
-        //        guard let lspFile = bundle.infoDictionary?["CELSPExecutable"] as? String else {
-        //            return nil
-        //        }
-        //
-        //        guard let lspURL = bundle.url(forResource: lspFile, withExtension: nil) else {
-        //            return nil
-        //        }
-        //
-        //        return try LSPClient(lspURL,
-        //                             workspace: workspaceURL,
-        //                             arguments: loadedBundles[id]?.infoDictionary?["CELSPArguments"] as? [String])
-        return nil
+        let task = Process()
+        let pipe = Pipe()
+
+        task.standardOutput = pipe
+        task.standardError = pipe
+        task.arguments = ["codesign", "--sign", "-", bundle.path]
+        task.executableURL = URL(fileURLWithPath: "/usr/bin/xcrun")
+        task.launch()
+        task.waitUntilExit()
+
+        #if DEBUG
+        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        if let outputString = String(data: data, encoding: .utf8) {
+            Log.info("Resign", outputString)
+        }
+        #endif
+
+        return task
     }
 
     /// Is installed

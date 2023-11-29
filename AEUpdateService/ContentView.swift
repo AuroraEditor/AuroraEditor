@@ -65,7 +65,7 @@ struct ContentView: View {
                 return
             }
 
-            let dataUrl = url.relativeString.split(separator: "%5C")[1]
+            let dataUrl = url.relativeString.components(separatedBy: "%5C")[1]
 
             do {
                 if scheme == "updateservice" {

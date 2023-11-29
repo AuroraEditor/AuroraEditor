@@ -41,8 +41,8 @@ struct Main: App {
                     }
                 }
         }
-        .commandsRemoved()
-        .defaultPosition(.center)
+//        .commandsRemoved()
+//        .defaultPosition(.center)
         .windowStyle(.hiddenTitleBar)
     }
 }
