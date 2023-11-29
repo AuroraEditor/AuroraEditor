@@ -132,6 +132,9 @@ public struct GeneralPreferencesView: View {
                     Divider()
                     preferencesLocation
                         .padding(.vertical, 5)
+                    Divider()
+                    installPathLocation
+                        .padding(.vertical, 5)
                 }
                 .padding(.bottom)
             }

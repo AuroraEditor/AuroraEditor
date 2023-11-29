@@ -15,7 +15,7 @@ public struct LicenseDetailView: View {
                 .multilineTextAlignment(.leading)
                 .font(.system(size: 11))
         }
-        .frame(height: 370)
+        .frame(height: 300)
     }
 }
 
