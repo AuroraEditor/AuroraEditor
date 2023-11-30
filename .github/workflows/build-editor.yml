@@ -35,7 +35,7 @@ jobs:
         run: sudo xcode-select -s /Applications/Xcode.app
 
       - name: "Synchronize time"
-        run: sudo sntp -sS time.apple.com
+        run: sudo sntp -sS pool.ntp.org
 
         ### Certs
       - name: "Import Certificate: Development"
