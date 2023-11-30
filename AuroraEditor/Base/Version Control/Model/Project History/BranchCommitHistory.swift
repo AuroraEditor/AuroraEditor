@@ -49,7 +49,7 @@ final class BranchCommitHistory: Equatable, Identifiable, TabBarItemRepresentabl
     }
 
     @Published
-    var projectHistory: [CommitHistory] = []
+    var projectHistory: [Commit] = []
 
     @Published
     var gitHistoryDate: CommitDate? {
@@ -87,10 +87,27 @@ final class BranchCommitHistory: Equatable, Identifiable, TabBarItemRepresentabl
     }
 
     func reloadProjectHistory() throws {
-        let projectHistory = try getCommits(directoryURL: workspace.workspaceURL(),
-                                            revisionRange: branchName,
-                                            limit: 150,
-                                            commitsSince: gitHistoryDate)
+
+        var additionArgs: [String] = []
+
+        if gitHistoryDate != nil {
+            switch gitHistoryDate {
+            case .lastDay:
+                additionArgs.append("--since=\"24 hours ago\"")
+            case .lastSevenDays:
+                additionArgs.append("--since=\"7 days ago\"")
+            case .lastThirtyDays:
+                additionArgs.append("--since=\"30 days ago\"")
+            case .none:
+                additionArgs = []
+            }
+        }
+
+        let projectHistory = try GitLog().getCommits(directoryURL: workspace.workspaceURL(),
+                                                     revisionRange: branchName,
+                                                     limit: 150,
+                                                     skip: 0,
+                                                     additionalArgs: additionArgs)
         if projectHistory.isEmpty {
             DispatchQueue.main.async {
                 self.state = .empty
