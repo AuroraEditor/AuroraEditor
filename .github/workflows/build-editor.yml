@@ -159,7 +159,7 @@ jobs:
             -archivePath "builds/Aurora Editor.xcarchive" \
             DEVELOPMENT_TEAM=4V2D72S45C \
             CODE_SIGN_INJECT_BASE_ENTITLEMENTS=YES \
-            OTHER_CODE_SIGN_FLAGS="--options=runtime -timestamp" 2>/dev/null
+            OTHER_CODE_SIGN_FLAGS="--options=runtime" 2>/dev/null
                
       - name: Export Release Build
         run: |
