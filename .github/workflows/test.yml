@@ -13,11 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: MacOS Version
-        run: sw_vers
-
-      - name: Toolchain version
-        run: swift -version
+      - name: Runner environment
+        run: |
+          echo "MacOS Version"
+          sw_vers
+          echo "Toolchain version"
+          swift -version
+          echo "SwiftLint (version)"
+          swiftlint version
         
       - name: "Select Xcode (Default)"
         run: sudo xcode-select -s /Applications/Xcode.app
