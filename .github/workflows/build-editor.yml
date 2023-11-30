@@ -180,13 +180,15 @@ jobs:
           codesign --sign "Developer ID Application: Wesley de Groot (4V2D72S45C)" -vvv --verbose --strict --options=runtime --prefix com.auroraeditor. --force --deep --timestamp "builds/Aurora Editor.app"
           
           echo "::debug::Verify the code signature."
-          codesign --verify --deep --display --verbose "builds/Aurora Editor.app" &> codesign.log
-          cat codesign.log
+          codesign --verify --deep --display --verbose "builds/Aurora Editor.app"
 
           echo "::debug::Verify signed timestamp."
-          if grep -q "mismatch" codesign.log; then
+          codesign -dvv "builds/Aurora Editor.app" &> codesign.log
+          if grep -qF "mismatch" codesign.log; then
             # This should be ::error when we fixed the initial signing
             echo "::warning::TIMESTAMP MISMATCH"
+          else
+            echo "::debug::Codesign does not have a time mismatch"
           fi
 
       - name: Make Release Dmg
