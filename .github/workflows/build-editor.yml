@@ -181,7 +181,7 @@ jobs:
 
           echo "INFO: Verify signed timestamp."
           if [[ "`codesign -dvv "builds/Aurora Editor.app"`" =~ mismatch ]]; then
-            echo "WARNING: TIMESTAMP MISMATCH"
+            echo "::notice TIMESTAMP MISMATCH"
           fi;
           
           echo "INFO: Verify the code signature."
@@ -201,7 +201,7 @@ jobs:
           elif [[ "$IDENTITIES" == *"Apple Development:"* ]]; then
               IDENTITY="Apple Development"
           else
-              echo "Not identity found {$IDENTITIES}"
+              echo "::notice Not identity found {$IDENTITIES}"
           fi
 
           if [[ "$IDENTITY" != "" ]]; then
@@ -209,7 +209,7 @@ jobs:
               CHECK_SIGN=`/usr/bin/codesign "Aurora Editor 1.0.dmg" --display --verbose=2`
 
               if [[ "$CHECK_SIGN" == *"not signed at all"* ]]; then
-                  echo "Signing failed"
+                  echo "::error Signing failed"
                   exit 1
               fi
           fi
