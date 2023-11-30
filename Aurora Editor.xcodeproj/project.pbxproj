@@ -28,6 +28,7 @@
 		20091DB728DE20FD008FDDFC /* AutomaticallyUpdateSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20091DB628DE20FD008FDDFC /* AutomaticallyUpdateSheet.swift */; };
 		20091DBA28DE220A008FDDFC /* UpdatePreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20091DB928DE220A008FDDFC /* UpdatePreferences.swift */; };
 		20091DBE28DE3336008FDDFC /* UpdateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20091DBD28DE3336008FDDFC /* UpdateModel.swift */; };
+		200AA21228ED88B30068C7C6 /* Version-Control in Frameworks */ = {isa = PBXBuildFile; productRef = 200AA21128ED88B30068C7C6 /* Version-Control */; };
 		201169D72837B2E300F92B46 /* SourceControlNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201169D62837B2E300F92B46 /* SourceControlNavigatorView.swift */; };
 		201169D92837B31200F92B46 /* SourceControlSearchToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201169D82837B31200F92B46 /* SourceControlSearchToolbar.swift */; };
 		201169DD2837B3AC00F92B46 /* SourceControlToolbarBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201169DC2837B3AC00F92B46 /* SourceControlToolbarBottom.swift */; };
@@ -567,16 +568,12 @@
 		A05D17CB2ACE041E002153C9 /* UpdateUpToDateState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05D17CA2ACE041E002153C9 /* UpdateUpToDateState.swift */; };
 		A05D17CE2ACE190A002153C9 /* AEUpdateService.app in Resources */ = {isa = PBXBuildFile; fileRef = A01AB2D12ACC9EDA0029EDF0 /* AEUpdateService.app */; };
 		A07C1CD42AE4518900E8B17D /* NotificationIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07C1CD32AE4518900E8B17D /* NotificationIcon.swift */; };
-		A08A78B02AF4214B00E050D4 /* Version-Control in Frameworks */ = {isa = PBXBuildFile; productRef = A08A78AF2AF4214B00E050D4 /* Version-Control */; };
 		A08E00812AD48C2A0091725D /* LoaderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E00802AD48C2A0091725D /* LoaderState.swift */; };
 		A08E00832AD48C740091725D /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E00822AD48C740091725D /* Loader.swift */; };
 		A08E00852AD48D660091725D /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E00842AD48D660091725D /* LoaderView.swift */; };
 		A09913B22AD013640016DF53 /* LicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09913B12AD013640016DF53 /* LicenseView.swift */; };
 		A0C0386A2ACF1C1E00DACE3F /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = A0C038692ACF1C1E00DACE3F /* Sentry */; };
 		A0C0386C2ACF1C1E00DACE3F /* SentrySwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A0C0386B2ACF1C1E00DACE3F /* SentrySwiftUI */; };
-		A0EB97262B17C2F9005FEAE2 /* Version-Control in Frameworks */ = {isa = PBXBuildFile; productRef = A0EB97252B17C2F9005FEAE2 /* Version-Control */; };
-		A0EB972F2B17D130005FEAE2 /* Version-Control in Frameworks */ = {isa = PBXBuildFile; productRef = A0EB972E2B17D130005FEAE2 /* Version-Control */; };
-		A0FE4E302AFC07B200D7528B /* CommitMessageFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE4E2F2AFC07B200D7528B /* CommitMessageFormatter.swift */; };
 		B658FB3427DA9E1000EA4DBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B658FB3327DA9E1000EA4DBD /* Assets.xcassets */; };
 		B6EE989027E8879A00CDD8AB /* InspectorSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE988F27E8879A00CDD8AB /* InspectorSidebar.swift */; };
 		B6EE989227E887C600CDD8AB /* InspectorSidebarToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE989127E887C600CDD8AB /* InspectorSidebarToolbar.swift */; };
@@ -1250,7 +1247,6 @@
 		A08E00822AD48C740091725D /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		A08E00842AD48D660091725D /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		A09913B12AD013640016DF53 /* LicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseView.swift; sourceTree = "<group>"; };
-		A0FE4E2F2AFC07B200D7528B /* CommitMessageFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitMessageFormatter.swift; sourceTree = "<group>"; };
 		B658FB2C27DA9E0F00EA4DBD /* Aurora Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Aurora Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceView.swift; sourceTree = "<group>"; tabWidth = 4; };
 		B658FB3327DA9E1000EA4DBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1308,10 +1304,8 @@
 				2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */,
 				2BD0BD172977357900629A86 /* SwiftOniguruma in Frameworks */,
 				209D0246289AB9750082441F /* SwiftTerm in Frameworks */,
+				200AA21228ED88B30068C7C6 /* Version-Control in Frameworks */,
 				A0142EFE2ACB64AA0002F95D /* ZIPFoundation in Frameworks */,
-				A0EB972F2B17D130005FEAE2 /* Version-Control in Frameworks */,
-				A08A78B02AF4214B00E050D4 /* Version-Control in Frameworks */,
-				A0EB97262B17C2F9005FEAE2 /* Version-Control in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2956,7 +2950,6 @@
 		20DF979C28ABAA4C009CE1E9 /* Changes */ = {
 			isa = PBXGroup;
 			children = (
-				A0FE4E2E2AFC079600D7528B /* Utils */,
 				2BF915DE2AC03D5800A10273 /* SourceControlRelatedMenu.swift */,
 				20E8748F28A3ABA8002CE758 /* SourceControlController.swift */,
 				20E8748D28A3AB9B002CE758 /* SourceControlMenu.swift */,
@@ -3601,14 +3594,6 @@
 			path = "Util Views";
 			sourceTree = "<group>";
 		};
-		A0FE4E2E2AFC079600D7528B /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				A0FE4E2F2AFC07B200D7528B /* CommitMessageFormatter.swift */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
 		B658FB2327DA9E0F00EA4DBD = {
 			isa = PBXGroup;
 			children = (
@@ -3782,11 +3767,9 @@
 			packageProductDependencies = (
 				209D0245289AB9750082441F /* SwiftTerm */,
 				2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */,
+				200AA21128ED88B30068C7C6 /* Version-Control */,
 				2BD0BD162977357900629A86 /* SwiftOniguruma */,
 				A0142EFD2ACB64AA0002F95D /* ZIPFoundation */,
-				A08A78AF2AF4214B00E050D4 /* Version-Control */,
-				A0EB97252B17C2F9005FEAE2 /* Version-Control */,
-				A0EB972E2B17D130005FEAE2 /* Version-Control */,
 			);
 			productName = AuroraEditor;
 			productReference = B658FB2C27DA9E0F00EA4DBD /* Aurora Editor.app */;
@@ -3870,10 +3853,10 @@
 			packageReferences = (
 				209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */,
 				2BE5EDAB28AE64A700C0A4AE /* XCRemoteSwiftPackageReference "AEExtensionKit" */,
+				200AA21028ED88B30068C7C6 /* XCRemoteSwiftPackageReference "Version-Control-Kit" */,
 				2BD0BD152977357900629A86 /* XCRemoteSwiftPackageReference "SwiftOniguruma" */,
 				A0142EFC2ACB64AA0002F95D /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 				A0C038682ACF1C1E00DACE3F /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
-				A0EB972D2B17D130005FEAE2 /* XCRemoteSwiftPackageReference "Version-Control-Kit" */,
 			);
 			productRefGroup = B658FB2D27DA9E0F00EA4DBD /* Products */;
 			projectDirPath = "";
@@ -4179,7 +4162,6 @@
 				2093CD97289AA144003A88DD /* AuroraTheme.swift in Sources */,
 				20091DB728DE20FD008FDDFC /* AutomaticallyUpdateSheet.swift in Sources */,
 				20752E4928CA54F000935487 /* Avatar.swift in Sources */,
-				A0FE4E302AFC07B200D7528B /* CommitMessageFormatter.swift in Sources */,
 				2093CD46289AA095003A88DD /* AvatarURL.swift in Sources */,
 				2B04575328E6FFE300024F2D /* BackgroundColorThemeAttribute.swift in Sources */,
 				2B04576028E6FFE300024F2D /* BeginEndRule.swift in Sources */,
@@ -5219,6 +5201,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		200AA21028ED88B30068C7C6 /* XCRemoteSwiftPackageReference "Version-Control-Kit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AuroraEditor/Version-Control-Kit.git";
+			requirement = {
+				kind = revision;
+				revision = 6224857a6f2caba5d7b13b396dd52e7de9a3bbad;
+			};
+		};
 		209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/migueldeicaza/SwiftTerm.git";
@@ -5259,17 +5249,14 @@
 				minimumVersion = 8.13.0;
 			};
 		};
-		A0EB972D2B17D130005FEAE2 /* XCRemoteSwiftPackageReference "Version-Control-Kit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AuroraEditor/Version-Control-Kit.git";
-			requirement = {
-				kind = exactVersion;
-				version = "1.0.1-RC";
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		200AA21128ED88B30068C7C6 /* Version-Control */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 200AA21028ED88B30068C7C6 /* XCRemoteSwiftPackageReference "Version-Control-Kit" */;
+			productName = "Version-Control";
+		};
 		209D0245289AB9750082441F /* SwiftTerm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */;
@@ -5290,10 +5277,6 @@
 			package = A0142EFC2ACB64AA0002F95D /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
 			productName = ZIPFoundation;
 		};
-		A08A78AF2AF4214B00E050D4 /* Version-Control */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = "Version-Control";
-		};
 		A0C038692ACF1C1E00DACE3F /* Sentry */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A0C038682ACF1C1E00DACE3F /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
@@ -5303,15 +5286,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A0C038682ACF1C1E00DACE3F /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
 			productName = SentrySwiftUI;
-		};
-		A0EB97252B17C2F9005FEAE2 /* Version-Control */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = "Version-Control";
-		};
-		A0EB972E2B17D130005FEAE2 /* Version-Control */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A0EB972D2B17D130005FEAE2 /* XCRemoteSwiftPackageReference "Version-Control-Kit" */;
-			productName = "Version-Control";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
