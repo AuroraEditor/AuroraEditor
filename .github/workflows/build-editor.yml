@@ -158,7 +158,8 @@ jobs:
             -configuration Release archive \
             -archivePath "builds/Aurora Editor.xcarchive" \
             DEVELOPMENT_TEAM=4V2D72S45C \
-            OTHER_CODE_SIGN_FLAGS="--options=runtime" 2>/dev/null
+            CODE_SIGN_INJECT_BASE_ENTITLEMENTS=YES \
+            OTHER_CODE_SIGN_FLAGS="--options=runtime -timestamp" 2>/dev/null
                
       - name: Export Release Build
         run: |
@@ -169,16 +170,19 @@ jobs:
 
       - name: "Sign application"
         run: |
-          # Check that the certificate and identity exist and are installed.
+          echo "Check that the certificate and identity exist and are installed."
           security find-identity -v -p codesigning
 
-          # Verify the application path is correct.
+          echo "Verify the application path is correct."
           codesign --verify --deep --display "builds/Aurora Editor.app"
 
-          # Perform the code signing.
+          echo "Perform the code signing."
           codesign --sign "Developer ID Application: Wesley de Groot (4V2D72S45C)" -vvv --verbose --strict --options=runtime --prefix com.auroraeditor. --force --deep --timestamp "builds/Aurora Editor.app"
 
-          # Verify the code signature.
+          echo "Verify signed timestamp."
+          codesign -dvv "builds/Aurora Editor.app"
+          
+          echo "Verify the code signature."
           codesign --verify --deep --display --verbose "builds/Aurora Editor.app"
 
       - name: Make Release Dmg
