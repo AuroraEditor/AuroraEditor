@@ -35,7 +35,7 @@ jobs:
         run: sudo xcode-select -s /Applications/Xcode.app
 
       - name: "Synchronize time"
-        run: sudo ntpdate -u time.apple.com
+        run: sudo sntp -sS time.apple.com
 
         ### Certs
       - name: "Import Certificate: Development"
@@ -183,7 +183,7 @@ jobs:
           codesign --sign "Developer ID Application: Wesley de Groot (4V2D72S45C)" -vvv --verbose --strict --options=runtime --prefix com.auroraeditor. --force --deep --timestamp "builds/Aurora Editor.app"
 
           echo "::debug::Verify signed timestamp."
-          if [[ $(codesign -dvv "builds/Aurora Editor.app") =~ mismatch ]]; then
+          if [[ $(codesign -dvv "builds/Aurora Editor.app") == *mismatch* ]]; then
             # This should be ::error when we fixed the initial signing
             echo "::warning::TIMESTAMP MISMATCH"
           fi;
