@@ -183,8 +183,10 @@ jobs:
           codesign --verify --deep --display --verbose "builds/Aurora Editor.app"
 
           echo "::debug::Verify signed timestamp."
-          codesign -dvv "builds/Aurora Editor.app" &> codesign.log
-          if grep -qF "mismatch" codesign.log; then
+          CSOUTPUT=`codesign -dvv "builds/Aurora Editor.app"`
+          echo "::debug::$CSOUTPUT"
+          # 2>&1 ? 
+          if [[ "$CSOUTPUT" == *"mismatch"* ]] then
             # This should be ::error when we fixed the initial signing
             echo "::warning::TIMESTAMP MISMATCH"
           else
