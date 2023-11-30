@@ -10,7 +10,7 @@ on:
 jobs:
   build_editor:
     if: github.repository_owner == 'AuroraEditor'
-    runs-on: macos-12
+    runs-on: macos-13
     timeout-minutes: 30 # If a build exceeds 30 mins, it probably isn't ever going to complete
     steps:
       - name: 'Cleanup build folder'
@@ -20,11 +20,20 @@ jobs:
           rm -rf ./.??* || true
           ls -la ./
         
+      - name: Runner environment
+        run: |
+          echo "MacOS Version"
+          sw_vers
+          echo "Toolchain version"
+          swift -version
+          echo "SwiftLint (version)"
+          swiftlint version
+
       - uses: actions/checkout@v3
       
       - name: "Select Xcode (Default)"
         run: sudo xcode-select -s /Applications/Xcode.app
-        
+
         ### Certs
       - name: "Import Certificate: Development"
         env:
@@ -37,7 +46,7 @@ jobs:
           KEYCHAIN_PATH="$RUNNER_TEMP/app-signing.keychain-db"
 
           # Import certificate and provisioning profile from secrets
-          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode --output "$CERTIFICATE_PATH"
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 -d -o "$CERTIFICATE_PATH"
 
           # Create a temporary keychain
           security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
@@ -61,7 +70,7 @@ jobs:
           KEYCHAIN_PATH="$RUNNER_TEMP/app-signing.keychain-db"
 
           # Import certificate and provisioning profile from secrets
-          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode --output "$CERTIFICATE_PATH"
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 -d -o "$CERTIFICATE_PATH"
 
           # Import certificate into the keychain
           security import "$CERTIFICATE_PATH" -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
@@ -80,12 +89,12 @@ jobs:
           KEYCHAIN_PATH="$RUNNER_TEMP/app-signing.keychain-db"
 
           # Import certificate and provisioning profile from secrets
-          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode --output "$CERTIFICATE_PATH"
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 -d -o "$CERTIFICATE_PATH"
 
           # Import certificate into the keychain
           security import "$CERTIFICATE_PATH" -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
 
-          # List keychains to verify the import
+          echo "::debug::List keychains to verify the import"
           security list-keychains -s "$KEYCHAIN_PATH"
 
       - name: "Update version number"
@@ -149,6 +158,7 @@ jobs:
             -configuration Release archive \
             -archivePath "builds/Aurora Editor.xcarchive" \
             DEVELOPMENT_TEAM=4V2D72S45C \
+            CODE_SIGN_INJECT_BASE_ENTITLEMENTS=YES \
             OTHER_CODE_SIGN_FLAGS="--options=runtime" 2>/dev/null
                
       - name: Export Release Build
@@ -160,17 +170,27 @@ jobs:
 
       - name: "Sign application"
         run: |
-          # Check that the certificate and identity exist and are installed.
+          echo "::debug::Check that the certificate and identity exist and are installed."
           security find-identity -v -p codesigning
 
-          # Verify the application path is correct.
+          echo "::debug::Verify the application path is correct."
           codesign --verify --deep --display "builds/Aurora Editor.app"
 
-          # Perform the code signing.
+          echo "::debug::Perform the code signing."
           codesign --sign "Developer ID Application: Wesley de Groot (4V2D72S45C)" -vvv --verbose --strict --options=runtime --prefix com.auroraeditor. --force --deep --timestamp "builds/Aurora Editor.app"
-
-          # Verify the code signature.
+          
+          echo "::debug::Verify the code signature."
           codesign --verify --deep --display --verbose "builds/Aurora Editor.app"
+
+          echo "::debug::Verify signed timestamp."
+          CSOUTPUT=`codesign -dvv "builds/Aurora Editor.app" 2>&1`
+          echo "::debug::$CSOUTPUT"
+          if [[ "$CSOUTPUT" == *"mismatch"* ]]; then
+            # This should be ::error when we fixed the initial signing
+            echo "::warning::TIMESTAMP MISMATCH"
+          else
+            echo "::debug::Codesign does not have a time mismatch"
+          fi
 
       - name: Make Release Dmg
         run: |
@@ -186,7 +206,7 @@ jobs:
           elif [[ "$IDENTITIES" == *"Apple Development:"* ]]; then
               IDENTITY="Apple Development"
           else
-              echo "Not identity found {$IDENTITIES}"
+              echo "::notice::Not identity found {$IDENTITIES}"
           fi
 
           if [[ "$IDENTITY" != "" ]]; then
@@ -194,24 +214,24 @@ jobs:
               CHECK_SIGN=`/usr/bin/codesign "Aurora Editor 1.0.dmg" --display --verbose=2`
 
               if [[ "$CHECK_SIGN" == *"not signed at all"* ]]; then
-                  echo "Signing failed"
+                  echo "::error::Signing failed"
                   exit 1
               fi
           fi
 
       - name: Notarize and Log
         run: |
-          # Submit the file for notarization and store the output in a log file.
+          echo "::debug::Submit the file for notarization and store the output in a log file."
           xcrun notarytool submit "Aurora Editor 1.0.dmg" \
           --apple-id "${{ secrets.APPLEID_EMAIL }}" \
           --password "${{ secrets.APPLEID_PASSWORD }}" \
           --team-id "4V2D72S45C" \
           --wait > notarytool.log
 
-          # Display the contents of the log file.
+          echo "::debug::Display the contents of the log file."
           cat notarytool.log
 
-          # Extract the request ID from the log and check the notarization status.
+          echo "::debug::Extract the request ID from the log and check the notarization status."
           request_id="$(grep -m1 'id:' notarytool.log | cut -d':' -f 2 | tr -d '[:space:]')"
           xcrun notarytool log "$request_id" \
           --apple-id "${{ secrets.APPLEID_EMAIL }}" \
@@ -240,7 +260,7 @@ jobs:
           # Calculate the file size in bytes
           file_size_bytes=$(ls -l "$file_path" | awk '{print $5}')
 
-          echo "Size: $file_size_bytes"
+          echo "::debug::File size: $file_size_bytes"
           echo "file_size_bytes=$file_size_bytes" >> $GITHUB_OUTPUT
         
       - name: Clean up keychain and provisioning profile
@@ -275,7 +295,7 @@ jobs:
           elif [ "${{ github.ref_name }}" == "development" ]; then
             echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/build/development/AuroraEditor.zip\", \"size\": \"$file_size_bytes\"}" > app_info.json
           else 
-            echo "Something went wrong, we are in branch ${{ github.ref_name }}"
+            echo "::error::Something went wrong, we are in branch ${{ github.ref_name }}"
             exit 1
           fi
 
@@ -297,14 +317,14 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/AuroraEditor/auroraeditor.com/contents/public/updates/dynamic/macos/nightly.json 2>&1)
           else 
-            echo "Something went wrong, we are in branch ${{ github.ref_name }}"
+            echo "::error::Something went wrong, we are in branch ${{ github.ref_name }}"
             exit 1
           fi
     
           # Check for errors and log stderr
           if [ $? -ne 0 ]; then
-            echo "Error occurred during curl request:"
-            echo "$result"
+            echo "::error::Error occurred during curl request:"
+            echo "::error::$result"
             exit 1
           fi
     
@@ -330,7 +350,7 @@ jobs:
             commit_message="Updated nightly.json"
             api_url="https://api.github.com/repos/AuroraEditor/auroraeditor.com/contents/public/updates/dynamic/macos/nightly.json"
           else 
-            echo "Something went wrong, we are in branch ${{ github.ref_name }}"
+            echo "::error::Something went wrong, we are in branch ${{ github.ref_name }}"
             exit 1
           fi
 
