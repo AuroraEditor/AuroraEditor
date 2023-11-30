@@ -186,7 +186,7 @@ jobs:
           CSOUTPUT=`codesign -dvv "builds/Aurora Editor.app"`
           echo "::debug::$CSOUTPUT"
           # 2>&1 ? 
-          if [[ "$CSOUTPUT" == *"mismatch"* ]] then
+          if [[ "$CSOUTPUT" == *"mismatch"* ]]; then
             # This should be ::error when we fixed the initial signing
             echo "::warning::TIMESTAMP MISMATCH"
           else
