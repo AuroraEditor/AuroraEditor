@@ -64,24 +64,18 @@ public final class RepositoryModel: ObservableObject {
         // reponame must not be nil or ""
         guard repoName != nil && !repoName!.isEmpty else { return }
 
-        let branchNames: [String] = gitClient?.allBranches.map { $0.name } ?? []
-
-        Log.debug("Branch Names: \(branchNames)")
-
+        let branchNames: [String] = ((try? gitClient?.getGitBranches(allBranches: false)) ?? [])
         let currentBranchName = (try? gitClient?.getCurrentBranchName()) ?? ""
         let currentBranchIndex = branchNames.firstIndex(of: currentBranchName) ?? -1
 
-        Log.debug("Branch Index: \(currentBranchName)")
-
+        // set branches
         if branches == nil {
-            self.branches = RepoBranches(contents: branchNames.map { RepoBranch(name: $0) },
-                                         current: currentBranchIndex)
+            self.branches = RepoBranches(contents: branchNames.map { branch in
+                RepoBranch(name: branch)
+            }, current: currentBranchIndex)
         } else {
-            // If branches is not nil, update its contents and current index
-            self.branches?.contents = branchNames.map { RepoBranch(name: $0) }
-            self.branches?.current = currentBranchIndex
-
-            Log.debug("Branches: \(self.branches?.contents)")
+            branches?.contents = branchNames.map { RepoBranch(name: $0) }
+            branches?.current = currentBranchIndex
         }
 
         // TODO: Get recent locations

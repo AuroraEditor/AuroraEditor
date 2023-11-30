@@ -59,7 +59,7 @@ struct AddRemoteView: View {
                 } else {
                     Button {
                         do {
-                            try Remote().addRemote(directoryURL: workspace.workspaceURL(),
+                            try addRemote(directoryURL: workspace.workspaceURL(),
                                           name: remoteName,
                                           url: remoteUrl)
                             dismiss()

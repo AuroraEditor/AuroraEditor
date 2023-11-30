@@ -85,16 +85,13 @@ struct CreateNewBranchView: View {
                         do {
                             // Creates a new branch
                             try Branch().createBranch(directoryURL: workspace.workspaceURL(),
-                                                      name: branchName,
-                                                      startPoint: revision)
+                                             name: branchName,
+                                             startPoint: revision,
+                                             noTrack: nil)
 
                             // When done creating a new branch we checkout that said new branch
-                            try GitCheckout().checkoutBranch(directoryURL: workspace.workspaceURL(),
-                                                             account: nil,
-                                                             branch: GitBranch(name: branchName,
-                                                                               type: .local,
-                                                                               ref: ""),
-                                                             progressCallback: nil)
+                            try Checkout().checkoutBranch(directoryURL: workspace.workspaceURL(),
+                                               branch: branchName)
 
                             dismiss()
                         } catch {
