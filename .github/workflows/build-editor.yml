@@ -20,6 +20,15 @@ jobs:
           rm -rf ./.??* || true
           ls -la ./
         
+      - name: Runner environment
+        run: |
+          echo "MacOS Version"
+          sw_vers
+          echo "Toolchain version"
+          swift -version
+          echo "SwiftLint (version)"
+          swiftlint version
+
       - uses: actions/checkout@v3
       
       - name: "Select Xcode (Default)"
