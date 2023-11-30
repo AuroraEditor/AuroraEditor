@@ -34,9 +34,6 @@ jobs:
       - name: "Select Xcode (Default)"
         run: sudo xcode-select -s /Applications/Xcode.app
 
-      - name: "Synchronize time"
-        run: sudo sntp -sS pool.ntp.org
-
         ### Certs
       - name: "Import Certificate: Development"
         env:
@@ -259,7 +256,7 @@ jobs:
           # Calculate the file size in bytes
           file_size_bytes=$(ls -l "$file_path" | awk '{print $5}')
 
-          echo "Size: $file_size_bytes"
+          echo "::debug::File size: $file_size_bytes"
           echo "file_size_bytes=$file_size_bytes" >> $GITHUB_OUTPUT
         
       - name: Clean up keychain and provisioning profile
@@ -294,7 +291,7 @@ jobs:
           elif [ "${{ github.ref_name }}" == "development" ]; then
             echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/build/development/AuroraEditor.zip\", \"size\": \"$file_size_bytes\"}" > app_info.json
           else 
-            echo "Something went wrong, we are in branch ${{ github.ref_name }}"
+            echo "::error::Something went wrong, we are in branch ${{ github.ref_name }}"
             exit 1
           fi
 
