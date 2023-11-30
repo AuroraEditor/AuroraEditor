@@ -180,7 +180,7 @@ jobs:
           codesign --sign "Developer ID Application: Wesley de Groot (4V2D72S45C)" -vvv --verbose --strict --options=runtime --prefix com.auroraeditor. --force --deep --timestamp "builds/Aurora Editor.app"
 
           echo "::debug::Verify signed timestamp."
-          if [[ "`codesign -dvv "builds/Aurora Editor.app"`" =~ mismatch ]]; then
+          if [[ $(codesign -dvv "builds/Aurora Editor.app") =~ mismatch ]]; then
             echo "::notice::TIMESTAMP MISMATCH"
           fi;
           
