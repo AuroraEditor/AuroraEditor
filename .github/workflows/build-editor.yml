@@ -33,7 +33,10 @@ jobs:
       
       - name: "Select Xcode (Default)"
         run: sudo xcode-select -s /Applications/Xcode.app
-        
+
+      - name: "Synchronize time"
+        run: sudo ntpdate -u time.apple.com
+
         ### Certs
       - name: "Import Certificate: Development"
         env:
