@@ -13,7 +13,3 @@ struct CommitMessageAvatar: View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
-
-#Preview { // swiftlint:disable:this no_preview_macro
-    CommitMessageAvatar()
-}
