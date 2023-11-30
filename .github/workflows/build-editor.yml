@@ -181,7 +181,8 @@ jobs:
 
           echo "::debug::Verify signed timestamp."
           if [[ $(codesign -dvv "builds/Aurora Editor.app") =~ mismatch ]]; then
-            echo "::notice::TIMESTAMP MISMATCH"
+            # This should be ::error when we fixed the initial signing
+            echo "::warning::TIMESTAMP MISMATCH"
           fi;
           
           echo "::debug::Verify the code signature."
