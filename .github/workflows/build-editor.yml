@@ -183,7 +183,7 @@ jobs:
           if codesign -dvv "builds/Aurora Editor.app" | grep -q "mismatch" then
             # This should be ::error when we fixed the initial signing
             echo "::warning::TIMESTAMP MISMATCH"
-          fi;
+          fi
           
           echo "::debug::Verify the code signature."
           codesign --verify --deep --display --verbose "builds/Aurora Editor.app"
