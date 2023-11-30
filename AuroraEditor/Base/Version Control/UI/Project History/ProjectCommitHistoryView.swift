@@ -99,34 +99,34 @@ struct ProjectCommitHistoryView: View {
                             Button("Copy Commit Message") {
                                 let pasteboard = NSPasteboard.general
                                 pasteboard.clearContents()
-                                pasteboard.setString(commit.message, forType: .string)
+                                pasteboard.setString(commit.summary, forType: .string)
                             }
                             Button("Copy Identifier") {}.disabled(true)
-                            Button("Email \(commit.author)...") {
+                            Button("Email \(commit.author.email)...") {
                                 let service = NSSharingService(named: NSSharingService.Name.composeEmail)
-                                service?.recipients = [commit.authorEmail]
+                                service?.recipients = [commit.author.email]
                                 service?.perform(withItems: [])
                             }
                         }
                         Divider()
                         Group {
-                            Button("Tag \"\(commit.hash)\"...") {}.disabled(true)
-                            Button("New Branch from \"\(commit.hash)\"...") {
-                                workspace.data.branchRevision = commit.hash
-                                workspace.data.branchRevisionDescription = commit.message
+                            Button("Tag \"\(commit.sha)\"...") {}.disabled(true)
+                            Button("New Branch from \"\(commit.sha)\"...") {
+                                workspace.data.branchRevision = commit.sha
+                                workspace.data.branchRevisionDescription = commit.summary
                                 workspace.data.showBranchCreationSheet.toggle()
                             }
-                            Button("Cherry-Pick Tag \"\(commit.hash)\"...") {}.disabled(true)
+                            Button("Cherry-Pick Tag \"\(commit.sha)\"...") {}.disabled(true)
                         }
                         Divider()
                         Button("View on Host...") {
-                            if let commitRemoteURL = commit.commitBaseURL?.absoluteString {
-                                let commitURL = "\(commitRemoteURL)/\(commit.commitHash)"
-                                openCommit(URL(string: commitURL)!)
-                            }
+//                            if let commitRemoteURL = commit.commitBaseURL?.absoluteString {
+//                                let commitURL = "\(commitRemoteURL)/\(commit.commitHash)"
+//                                openCommit(URL(string: commitURL)!)
+//                            }
                         }
                         Divider()
-                        Button("Switch to \"\(commit.hash)\"...") {}.disabled(true)
+                        Button("Switch to \"\(commit.sha)\"...") {}.disabled(true)
                     }
             }
         }

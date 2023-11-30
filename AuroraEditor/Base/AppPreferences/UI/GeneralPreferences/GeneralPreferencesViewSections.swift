@@ -299,6 +299,40 @@ extension GeneralPreferencesView {
           .padding(.horizontal)
     }
 
+    var installPath: String {
+        var bundleURL = Bundle.main.resourceURL
+        guard var bundleURL = bundleURL?.deletingLastPathComponent() else {
+            return "No install path found"
+        }
+        bundleURL = bundleURL.deletingLastPathComponent()
+        return bundleURL.path // ?? "No install path found"
+    }
+
+    var installPathLocation: some View {
+        HStack {
+              Text("Install Path")
+              Spacer()
+              HStack {
+                  Text(self.installPath)
+                      .foregroundColor(.secondary)
+                  if let resPath = Bundle.main.resourcePath {
+                      Button {
+                          NSWorkspace.shared.selectFile(
+                            nil,
+                            inFileViewerRootedAtPath: resPath
+                          )
+                      } label: {
+                          Image(systemName: "arrow.right.circle.fill")
+                      }
+                      .buttonStyle(.plain)
+                      .foregroundColor(.secondary)
+                  }
+              }
+        }
+          .padding(.top, 5)
+          .padding(.horizontal)
+    }
+
     var revealFileOnFocusChangeToggle: some View {
         HStack {
             Text("settings.general.show.active.file")
