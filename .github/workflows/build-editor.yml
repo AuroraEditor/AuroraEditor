@@ -94,7 +94,7 @@ jobs:
           # Import certificate into the keychain
           security import "$CERTIFICATE_PATH" -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
 
-          # List keychains to verify the import
+          echo "INFO: List keychains to verify the import"
           security list-keychains -s "$KEYCHAIN_PATH"
 
       - name: "Update version number"
@@ -170,19 +170,21 @@ jobs:
 
       - name: "Sign application"
         run: |
-          echo "Check that the certificate and identity exist and are installed."
+          echo "INFO: Check that the certificate and identity exist and are installed."
           security find-identity -v -p codesigning
 
-          echo "Verify the application path is correct."
+          echo "INFO: Verify the application path is correct."
           codesign --verify --deep --display "builds/Aurora Editor.app"
 
-          echo "Perform the code signing."
+          echo "INFO: Perform the code signing."
           codesign --sign "Developer ID Application: Wesley de Groot (4V2D72S45C)" -vvv --verbose --strict --options=runtime --prefix com.auroraeditor. --force --deep --timestamp "builds/Aurora Editor.app"
 
-          echo "Verify signed timestamp."
-          codesign -dvv "builds/Aurora Editor.app"
+          echo "INFO: Verify signed timestamp."
+          if [[ "`codesign -dvv "builds/Aurora Editor.app"`" =~ mismatch ]]; then
+            echo "WARNING: TIMESTAMP MISMATCH"
+          fi;
           
-          echo "Verify the code signature."
+          echo "INFO: Verify the code signature."
           codesign --verify --deep --display --verbose "builds/Aurora Editor.app"
 
       - name: Make Release Dmg
@@ -214,17 +216,17 @@ jobs:
 
       - name: Notarize and Log
         run: |
-          # Submit the file for notarization and store the output in a log file.
+          echo "INFO: Submit the file for notarization and store the output in a log file."
           xcrun notarytool submit "Aurora Editor 1.0.dmg" \
           --apple-id "${{ secrets.APPLEID_EMAIL }}" \
           --password "${{ secrets.APPLEID_PASSWORD }}" \
           --team-id "4V2D72S45C" \
           --wait > notarytool.log
 
-          # Display the contents of the log file.
+          echo "INFO: Display the contents of the log file."
           cat notarytool.log
 
-          # Extract the request ID from the log and check the notarization status.
+          echo "INFO: Extract the request ID from the log and check the notarization status."
           request_id="$(grep -m1 'id:' notarytool.log | cut -d':' -f 2 | tr -d '[:space:]')"
           xcrun notarytool log "$request_id" \
           --apple-id "${{ secrets.APPLEID_EMAIL }}" \
