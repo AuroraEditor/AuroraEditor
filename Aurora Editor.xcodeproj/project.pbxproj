@@ -577,7 +577,6 @@
 		A0EB97262B17C2F9005FEAE2 /* Version-Control in Frameworks */ = {isa = PBXBuildFile; productRef = A0EB97252B17C2F9005FEAE2 /* Version-Control */; };
 		A0EB972F2B17D130005FEAE2 /* Version-Control in Frameworks */ = {isa = PBXBuildFile; productRef = A0EB972E2B17D130005FEAE2 /* Version-Control */; };
 		A0FE4E302AFC07B200D7528B /* CommitMessageFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE4E2F2AFC07B200D7528B /* CommitMessageFormatter.swift */; };
-		A0FE4E322AFC0C1800D7528B /* CommitMessageAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE4E312AFC0C1800D7528B /* CommitMessageAvatar.swift */; };
 		B658FB3427DA9E1000EA4DBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B658FB3327DA9E1000EA4DBD /* Assets.xcassets */; };
 		B6EE989027E8879A00CDD8AB /* InspectorSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE988F27E8879A00CDD8AB /* InspectorSidebar.swift */; };
 		B6EE989227E887C600CDD8AB /* InspectorSidebarToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE989127E887C600CDD8AB /* InspectorSidebarToolbar.swift */; };
@@ -1252,7 +1251,6 @@
 		A08E00842AD48D660091725D /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		A09913B12AD013640016DF53 /* LicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseView.swift; sourceTree = "<group>"; };
 		A0FE4E2F2AFC07B200D7528B /* CommitMessageFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitMessageFormatter.swift; sourceTree = "<group>"; };
-		A0FE4E312AFC0C1800D7528B /* CommitMessageAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitMessageAvatar.swift; sourceTree = "<group>"; };
 		B658FB2C27DA9E0F00EA4DBD /* Aurora Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Aurora Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceView.swift; sourceTree = "<group>"; tabWidth = 4; };
 		B658FB3327DA9E1000EA4DBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -2741,7 +2739,6 @@
 			children = (
 				201169E12837B3D800F92B46 /* ChangesView.swift */,
 				2086334E28A530AF00E29A22 /* CommitChangesView.swift */,
-				A0FE4E312AFC0C1800D7528B /* CommitMessageAvatar.swift */,
 			);
 			path = Changes;
 			sourceTree = "<group>";
@@ -4585,7 +4582,6 @@
 				9362B21628EC734200523626 /* TerminalColors.swift in Sources */,
 				2093CC9D289AA001003A88DD /* TerminalEmulatorView+Coordinator.swift in Sources */,
 				2093CC9E289AA004003A88DD /* TerminalEmulatorView.swift in Sources */,
-				A0FE4E322AFC0C1800D7528B /* CommitMessageAvatar.swift in Sources */,
 				A0142F092ACB6B2D0002F95D /* UpdateReadyState.swift in Sources */,
 				2093CD9C289AA152003A88DD /* TerminalPreferences.swift in Sources */,
 				200782EC2AAD44AE00FE186C /* ToolbarAppInfoViewController.swift in Sources */,
@@ -5223,14 +5219,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		200AA21028ED88B30068C7C6 /* XCRemoteSwiftPackageReference "Version-Control-Kit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AuroraEditor/Version-Control-Kit.git";
-			requirement = {
-				kind = revision;
-				revision = 6224857a6f2caba5d7b13b396dd52e7de9a3bbad;
-			};
-		};
 		209D0244289AB9750082441F /* XCRemoteSwiftPackageReference "SwiftTerm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/migueldeicaza/SwiftTerm.git";
