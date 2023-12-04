@@ -238,9 +238,11 @@ jobs:
           --password "${{ secrets.APPLEID_PASSWORD }}" \
           --team-id "4V2D72S45C"
 
-      # Stapler does not work, so it's disabled.
-      #- name: "Staple Release Build"
-      #  run: xcrun stapler staple "Aurora Editor 1.0.dmg"
+      # Stapler does not work, so we don't fail on error.
+      - name: "Staple Release Build"
+        continue-on-error: true
+        run: |
+          xcrun stapler staple "Aurora Editor 1.0.dmg" -v
         
       - name: Upload a Build Artifact
         id: upload_artifact
@@ -266,7 +268,9 @@ jobs:
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
         run: |
-          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
+          if [[ -f " $RUNNER_TEMP/app-signing.keychain-db" ]]; then
+              security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
+          fi
 
       - name: Extract Version Info and Calculate SHA-256
         id: version_and_sha
