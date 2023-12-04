@@ -242,7 +242,7 @@ jobs:
       - name: "Staple Release Build"
         continue-on-error: true
         run: |
-          xcrun stapler staple "Aurora Editor 1.0.dmg" -v
+          xcrun stapler staple -v "Aurora Editor 1.0.dmg"
         
       - name: Upload a Build Artifact
         id: upload_artifact
