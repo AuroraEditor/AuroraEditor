@@ -141,7 +141,7 @@ We want users to feel comfortable using Aurora Editor in their own speaking lang
     <img alt="Sentry" href="https://sentry.io" src="https://github.com/AuroraEditor/AuroraEditor/assets/63672227/cccf2fd4-7cfe-4ace-bb84-13557794f93c" width="128">
   </picture>
 </a>
-<a href="https://www.digitalocean.com/?refcode=dd1c02686db9&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"><img src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%203.svg" alt="DigitalOcean Referral Badge" /></a>
+[![DigitalOcean Referral Badge](https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%203.svg)](https://www.digitalocean.com/?refcode=d68c5c8d2ac1&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
 
 
 ## Intellectual Property License
