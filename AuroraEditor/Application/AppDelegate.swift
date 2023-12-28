@@ -9,7 +9,6 @@
 
 import SwiftUI
 import Combine
-import SwiftOniguruma
 
 final class AuroraEditorApplication: NSApplication {
     let strongDelegate = AppDelegate()
@@ -86,9 +85,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                 }
             }
         }
-
-        // Log the version of SwiftOniguruma being used.
-        Log.info("AURORA EDITOR is using SwiftOniguruma Version: \(SwiftOniguruma.version())!")
 
         if NSApp.activationPolicy() == .regular {
             if statusItem == nil {
