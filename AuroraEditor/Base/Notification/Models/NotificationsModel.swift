@@ -33,7 +33,7 @@ class NotificationsModel: ObservableObject, INotificationsModel {
 
     /// A flag indicating whether to show a notification toast.
     @Published
-    public dynamic var showNotificationToast: Bool = false
+    @objc public dynamic var showNotificationToast: Bool = false
 
     /// A flag indicating whether the user is hovering over the notification toast.
     @Published
