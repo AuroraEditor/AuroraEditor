@@ -120,7 +120,10 @@ struct CommitChangesView: View {
     }
 
     private func commit() {
-        guard let client = gitClient else { Log.error("No git client!"); return } // TODO: Proper error handling.
+        guard let client = gitClient else {
+            Log.error("No git client!");
+            return
+        }
         do {
             let changedFiles = (try? client.getChangedFiles().map { $0.fileName }) ?? []
             if !changedFiles.isEmpty {
