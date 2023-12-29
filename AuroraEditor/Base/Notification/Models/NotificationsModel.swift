@@ -73,7 +73,7 @@ class NotificationsModel: ObservableObject, INotificationsModel {
             return
         }
 
-        // TODO: Maybe give the user a choice as to what items show as a toast
+        // DISCUSSION: Maybe give the user a choice as to what items show as a toast
         // if notification.severity == .info {
         //     notificationToastData = notification
         //     showNotificationToast = true
