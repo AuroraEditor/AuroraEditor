@@ -233,8 +233,7 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
         // NB: We retain the last line and not the character index as the
         // latter may be inaccurate due to editing that let
         // to the selected range change.
-        if lineOfInsertionPoint != oldLastLineOfInsertionPoint, let codeStorage = optCodeStorage {
-/*
+/*        if lineOfInsertionPoint != oldLastLineOfInsertionPoint, let codeStorage = optCodeStorage {
             if let oldLine = oldLastLineOfInsertionPoint,
                let oldLineRange = codeStorage.getLineRange(oldLine) {
 
@@ -257,8 +256,8 @@ class CodeView: NSTextView { // swiftlint:disable:this type_body_length
                     self.setNeedsDisplay(self.lineBackgroundRect(fragmentRect))
                 }
             }
- */
         }
+*/
         oldLastLineOfInsertionPoint = lineOfInsertionPoint
 
         // NB: This needs to happen after calling `super`, as it depends on the correctly set new set of ranges.
