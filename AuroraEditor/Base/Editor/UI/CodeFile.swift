@@ -73,7 +73,7 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
                 // SINGLE FILE OPEN
                 // Pass empty env to prevent crash
                 CodeEditorViewWrapper(codeFile: self, editable: true)
-                    .environmentObject(WorkspaceDocument()) // TODO: Get the fileextension here
+                    .environmentObject(WorkspaceDocument())
             }
         }
 
