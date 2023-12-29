@@ -300,12 +300,12 @@ extension GeneralPreferencesView {
     }
 
     var installPath: String {
-        var bundleURL = Bundle.main.resourceURL
+        let bundleURL = Bundle.main.resourceURL
         guard var bundleURL = bundleURL?.deletingLastPathComponent() else {
             return "No install path found"
         }
         bundleURL = bundleURL.deletingLastPathComponent()
-        return bundleURL.path // ?? "No install path found"
+        return bundleURL.path
     }
 
     var installPathLocation: some View {
