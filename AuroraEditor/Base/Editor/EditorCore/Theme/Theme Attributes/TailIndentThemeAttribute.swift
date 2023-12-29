@@ -12,7 +12,7 @@ import AppKit
 
 public class TailIndentThemeAttribute: LineThemeAttribute, Codable {
 
-    public let key = "tail-indent"
+    public var key = "tail-indent"
     public let value: CGFloat
 
     public init(value: CGFloat = 0) {
