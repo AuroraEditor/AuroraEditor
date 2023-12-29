@@ -12,7 +12,7 @@ import AppKit
 
 public class LineHeightThemeAttribute: LineThemeAttribute, Codable {
 
-    public let key = "line-height"
+    public var key = "line-height"
     public let min: CGFloat
     public let max: CGFloat
 
