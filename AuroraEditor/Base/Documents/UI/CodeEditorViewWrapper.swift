@@ -7,6 +7,9 @@
 //
 
 import SwiftUI
+import AuroraEditorLanguages
+import AuroraEditorTextView
+import AuroraEditorInputView
 
 public struct CodeEditorViewWrapper: View {
     @ObservedObject
@@ -27,12 +30,21 @@ public struct CodeEditorViewWrapper: View {
     @State
     private var theme: AuroraTheme
 
+    @State
+    private var breadcrumbItem: FileItem?
+
     private let editable: Bool
 
-    public init(codeFile: CodeFileDocument, editable: Bool = true, fileExtension: String = "txt") {
+    private let undoManager = CEUndoManager()
+
+    public init(codeFile: CodeFileDocument,
+                editable: Bool = true,
+                fileExtension: String = "txt",
+                breadcrumbItem: FileItem? = nil) {
         self.codeFile = codeFile
         self.editable = editable
         self.fileExtension = fileExtension
+        self.breadcrumbItem = breadcrumbItem
         let currentTheme = ThemeModel.shared.selectedTheme
             ?? ThemeModel.shared.themes.first
             ?? .init(
@@ -57,23 +69,40 @@ public struct CodeEditorViewWrapper: View {
         return NSFont(name: name, size: Double(size)) ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
     }()
 
-    @State private var position: CodeEditor.Position = CodeEditor.Position()
-    @State private var messages: Set<Located<Message>> = Set()
+    @State private var selectedTheme = ThemeModel.shared.selectedTheme
+    @State var cursorPosition = [CursorPosition(line: 1, column: 1)]
 
     public var body: some View {
-        CodeEditor(
-            text: $codeFile.content,
-            position: $position,
-            caretPosition: $workspace.data.caretPos,
-            bracketCount: $workspace.data.bracketCount,
-            currentToken: $workspace.data.currentToken,
-            messages: $messages,
-            theme: $theme,
-            fileExtension: $fileExtension,
-            layout: CodeEditor.LayoutConfiguration(showMinimap: prefs.preferences.textEditing.showMinimap)
-        )
+        AuroraEditorTextView($codeFile.content,
+                             language: getLanguage(),
+                             theme: .init(text: NSColor(hex: "#D9D9D9"),
+                                          insertionPoint: NSColor(hex: "#D9D9D9"),
+                                          invisibles: NSColor(hex: "#D9D9D9"),
+                                          background: NSColor(hex: "#292a30"),
+                                          lineHighlight: NSColor(hex: "#2f3239"),
+                                          selection: NSColor(hex: "#2f3239"),
+                                          keywords: NSColor(hex: "#FC5FA3"),
+                                          commands: NSColor(hex: "#D9D9D9"),
+                                          types: NSColor(hex: "#5DD8FF"),
+                                          attributes: NSColor(hex: "#D9D9D9"),
+                                          variables: NSColor(hex: "#D9D9D9"),
+                                          values: NSColor(hex: "#D9D9D9"),
+                                          numbers: NSColor(hex: "#D7C986"),
+                                          strings: NSColor(hex: "#FC6A5D"),
+                                          characters: NSColor(hex: "#D0BF69"),
+                                          comments: NSColor(hex: "#6C7986")),
+                             font: font,
+                             tabWidth: 4,
+                             lineHeight: 1.45,
+                             wrapLines: true,
+                             cursorPositions: $cursorPosition,
+                             bracketPairHighlight: .flash)
         .onChange(of: themeModel.selectedTheme, perform: { newTheme in
             self.theme = newTheme ?? themeModel.themes.first!
         })
+    }
+
+    private func getLanguage() -> CodeLanguage {
+        return CodeLanguage.detectLanguageFrom(url: codeFile.fileURL!)
     }
 }

@@ -33,6 +33,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     var statusItem: NSStatusItem?
 
     private var updateModel: UpdateObservedModel = .shared
+    private var languageRegistery: LanguageRegistry = .shared
 
     var cancellable = Set<AnyCancellable>()
 
@@ -98,6 +99,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                 }
             }
         }
+
+        handleLanguageRegisteredNotification()
 
         // Check for updates
         updateModel.checkForUpdates()
@@ -251,6 +254,22 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             defaults.removeObject(forKey: "openInAEFiles")
         }
     }
+
+    private func handleLanguageRegisteredNotification() {
+        BashLanguageHandler().registerLanguage()
+        CLanguageHandler().registerLanguage()
+        CPPLanguageHandler().registerLanguage()
+        CSharpLanguageHandler().registerLanguage()
+        CSSLanguageHandler().registerLanguage()
+        GoLanguageHandler().registerLanguage()
+        JavaLanguageHandler().registerLanguage()
+        JavascriptLanguageHandler().registerLanguage()
+        OcamlLanguageHandler().registerLanguage()
+        PhpLanguageHandler().registerLanguage()
+        RubyLanguageHandler().registerLanguage()
+        PlainTextLanguageHandler().registerLanguage()
+    }
+
 }
 
 extension AppDelegate {
