@@ -10,7 +10,7 @@ import Foundation
 
 public class KernThemeAttribute: TokenThemeAttribute, Codable {
 
-    public let key = "kern"
+    public var key = "kern"
     public let kern: Float
 
     public init(kern: Float = 0) {

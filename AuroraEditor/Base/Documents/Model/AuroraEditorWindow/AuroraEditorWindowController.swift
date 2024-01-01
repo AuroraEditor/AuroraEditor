@@ -188,7 +188,6 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
     func configureOverlayPanel(panel: OverlayPanel, content: NSView, viewType: OverlayPanel.ViewType? = nil) {
         panel.contentView = content
-        // TODO: Fix bug where panel appears too high when it is created with preexisting items
         window?.addChildWindow(panel, ordered: .above)
         panel.makeKeyAndOrderFront(self)
         panel.viewType = viewType

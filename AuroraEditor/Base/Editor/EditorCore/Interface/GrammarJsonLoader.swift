@@ -17,7 +17,7 @@ class GrammarJsonLoader {
     /// Function that, taking in a filename for a bundled tmlanguage JSON file, returns a ``Grammar`` from its contents
     /// - Parameter fileName: The name of the JSON file, not including the `.json` at the end
     /// - Returns: A ``Grammar`` representing the contents of the JSON, or nil if the given json is invalid.
-    public func loadBundledJson(fileName: String) -> Grammar? { // TODO: Depreciate this and use loadJson:from:
+    public func loadBundledJson(fileName: String) -> Grammar? {
         if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
             let url = URL(fileURLWithPath: path)
             do {

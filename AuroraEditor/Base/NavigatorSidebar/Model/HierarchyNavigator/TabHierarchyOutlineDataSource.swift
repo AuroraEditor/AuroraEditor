@@ -16,9 +16,9 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
             if let itemCategory = item as? TabHierarchyCategory { // if the item is a header
                 switch itemCategory {
                 case .savedTabs:
-                    return workspace.selectionState.savedTabs.count ?? 0
+                    return workspace.selectionState.savedTabs.count
                 case .openTabs:
-                    return workspace.selectionState.openedTabs.count ?? 0
+                    return workspace.selectionState.openedTabs.count
                 case .unknown:
                     break
                 }

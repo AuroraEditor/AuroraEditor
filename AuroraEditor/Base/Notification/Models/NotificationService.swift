@@ -79,6 +79,7 @@ class NotificationService: INotificationService {
 
             // TODO: Check if the user has previously chosen not to show the notification.
             // TODO: Add notification actions.
+            Log.info(id)
         }
 
         // Add the notification to the model.

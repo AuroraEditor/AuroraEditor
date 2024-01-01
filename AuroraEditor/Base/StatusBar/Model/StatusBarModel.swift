@@ -16,8 +16,6 @@ import SwiftUI
 public class StatusBarModel: ObservableObject {
 
     // TODO: Implement logic for updating values
-    // TODO: Add @Published vars for indentation, encoding, linebreak
-
     /// The selected tab in the main section.
     /// - **0**: Terminal
     /// - **1**: Debugger
@@ -52,6 +50,15 @@ public class StatusBarModel: ObservableObject {
     /// Which format of bracket to display
     @Published
     public var bracketDisplay: BracketDisplayType = .seperated
+
+    @Published
+    public var indentation: Int = 4
+
+    @Published
+    public var encoding: String.Encoding = .utf8
+
+    @Published
+    public var linebreak: String = "\r\n"
 
     /// Returns the font for status bar items to use
     private(set) var toolbarFont: Font = .system(size: 11)

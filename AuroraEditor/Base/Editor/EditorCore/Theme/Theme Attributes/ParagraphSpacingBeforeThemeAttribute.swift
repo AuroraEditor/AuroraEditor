@@ -12,7 +12,7 @@ import AppKit
 
 public class ParagraphSpacingBeforeThemeAttribute: LineThemeAttribute, Codable {
 
-    public let key = "para-spacing-before"
+    public var key = "para-spacing-before"
     public let spacing: CGFloat
 
     public init(spacing: CGFloat) {

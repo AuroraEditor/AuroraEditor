@@ -31,7 +31,6 @@ struct NotificationPreferencesView: View {
                 .padding(.top, -8)
 
             GroupBox {
-                // TODO: Show dialog before asking user if they wanna disable notifications
                 HStackToggle(text: "Enable Notifications",
                              toggleValue: $appPreferences.preferences.notifications.notificationsEnabled)
                 .onChange(of: appPreferences.preferences.notifications.notificationsEnabled) { _ in
