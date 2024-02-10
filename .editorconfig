@@ -1,27 +1,73 @@
+# This file is used to maintain consistent coding styles between different editors and IDEs
+# This is the default configuration for Aurora Editor
+
+# root = true will prevent the editor from looking for a .editorconfig file in sub directories
 root = true
 
+# This is the default configuration for all files (unless overridden by a more specific selector)
 [*]
 indent_style=space
 indent_size=2
 tab_width=2
-end_of_line = cr
-charset = utf-8
-trim_trailing_whitespace = true
-insert_final_newline = true
+end_of_line=lf
+charset=utf-8
+trim_trailing_whitespace=true
+insert_final_newline=true
 max_line_length=100
 
+# JSON and YAML files
 [*.{json,yml}]
 indent_style = space
 indent_size = 2
 
-[*.{js,jsx,ts,tsx,html,css,scss}]
+# JavaScript, TypeScript, JSX, and TSX files, as well as HTML, CSS, and SCSS files
+[*.{js,jsx,ts,tsx,html,css,scss,html}]
 indent_style = space
 indent_size = 2
 
-
+# Text files
 [*.txt]
 indent_style = tab
 indent_size = 4
 
+# Markdown files
 [*.{diff,md,markdown}]
 trim_trailing_whitespace = false
+
+# PHP files
+[*.php]
+indent_style = space
+indent_size = 4
+quote_type = single
+
+# Python files
+[*.py]
+indent_style = space
+indent_size = 4
+
+# Unit test 1
+[.unit_test_1]
+indent_style=space
+indent_size=2
+tab_width=2
+end_of_line=lf
+charset=utf-8
+trim_trailing_whitespace=true
+insert_final_newline=true
+max_line_length=100
+
+# Unit test 2
+[.unit_test_2]
+indent_style = space
+indent_size = 2
+tab_width = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+max_line_length = 100
+
+# Indentation override for all JS under lib directory
+[lib/**.js]
+indent_style = space
+indent_size = 2
