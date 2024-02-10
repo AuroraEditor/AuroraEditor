@@ -9,10 +9,40 @@
 import Foundation
 
 class AuroraEditorConfig {
+    enum EditorConfigKeys: String {
+        case indent_style
+        // swiftlint:disable:previous identifier_name
+        case indent_size
+        // swiftlint:disable:previous identifier_name
+        case tab_width
+        // swiftlint:disable:previous identifier_name
+        case end_of_line
+        // swiftlint:disable:previous identifier_name
+        case charset
+        case trim_trailing_whitespace
+        // swiftlint:disable:previous identifier_name
+        case insert_final_newline
+        // swiftlint:disable:previous identifier_name
+        case max_line_length
+        // swiftlint:disable:previous identifier_name
+    }
+
     var parsed: [String: [String: Any]]? = [:]
 
+    var defaults: [String: [String: Any]] = [
+        "*": [
+            "indent_style": "space",
+            "indent_size": "4",
+            "tab_width": "4",
+            "end_of_line": "lf",
+            "charset": "utf8",
+            "trim_trailing_whitespace": "true",
+            "insert_final_newline": "true",
+            "max_line_length": "10000"
+        ]
+    ]
+
     init(fromPath: String) {
-        // try to load from this directory, otherwise go to the parent
         if let configFile = findEditorConfig(fromPath: fromPath),
            let configData = FileManager.default.contents(atPath: configFile),
            let configINI = String(data: configData, encoding: .utf8) {
@@ -23,8 +53,20 @@ class AuroraEditorConfig {
         }
     }
 
-    public func get(value: String, for: String) {
+    /// Get value for type
+    /// - Parameters:
+    ///   - value: value type
+    ///   - for: for type
+    public func get(value: EditorConfigKeys, for file: String = "*") -> Any? {
+        return parsed?[getKeyNameFor(file: file)]?[value.rawValue]
+            ?? parsed?["*"]?[value.rawValue]
+            ?? defaults[getKeyNameFor(file: file)]?[value.rawValue]
+            ?? defaults["*"]?[value.rawValue]
+            ?? nil
+    }
 
+    private func getKeyNameFor(file: String) -> String {
+        return "*"
     }
 
     private func findEditorConfig(fromPath: String) -> String? {
