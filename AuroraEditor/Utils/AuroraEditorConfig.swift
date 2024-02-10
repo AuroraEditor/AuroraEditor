@@ -9,6 +9,8 @@
 import Foundation
 
 class AuroraEditorConfig {
+    var parsed: [String: [String: Any]]? = [:]
+
     init(fromPath: String) {
         // try to load from this directory, otherwise go to the parent
         if let configFile = findEditorConfig(fromPath: fromPath),
@@ -17,7 +19,11 @@ class AuroraEditorConfig {
             let parsed = AuroraINIParser(ini: configINI).parse()
             Log.info("INI=\(configFile)")
             Log.info(parsed)
+            self.parsed = parsed
         }
+    }
+
+    public func get(value: String, for: String) {
 
     }
 
@@ -30,9 +36,12 @@ class AuroraEditorConfig {
             }
 
             var temporaryPath = components.joined(separator: "/")
+            Log.info("TP=", temporaryPath)
             temporaryPath += "/.editorconfig"
+            Log.info("TP+=", temporaryPath)
 
             if FileManager.default.fileExists(atPath: temporaryPath) {
+                Log.info("TP-F=", temporaryPath)
                 return temporaryPath
             }
         }
