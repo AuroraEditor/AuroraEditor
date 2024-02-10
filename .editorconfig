@@ -71,3 +71,12 @@ max_line_length = 100
 [lib/**.js]
 indent_style = space
 indent_size = 2
+
+# UNIT TESTS FOR AURORA EDITOR
+# testWildcardCharacter
+[file?.wcUnitTest]
+indent_size = wcUnitTest
+
+# testMultipleMatchesNumberic
+[file{0..9}.mnUnitTest]
+indent_size = mnUnitTest

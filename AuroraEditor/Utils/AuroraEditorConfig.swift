@@ -123,16 +123,72 @@ class AuroraEditorConfig {
     /// - Parameters:
     ///   - value: value type
     ///   - for: for type
-    public func get(value: EditorConfigKeys, for file: String = "*") -> Any? {
-        return parsed?[getKeyNameFor(file: file)]?[value.rawValue]
-            ?? parsed?["*"]?[value.rawValue]
-            ?? defaults[getKeyNameFor(file: file)]?[value.rawValue]
-            ?? defaults["*"]?[value.rawValue]
-            ?? nil
+    public func get(value: EditorConfigKeys, for file: String = "*") -> String {
+        if let value = getKeyNameFor(parsed, file: file)?[value.rawValue] as? String {
+            return value
+        }
+
+        if let value = parsed?["*"]?[value.rawValue] as? String {
+            return value
+        }
+
+        if let value = getKeyNameFor(defaults, file: file)?[value.rawValue] as? String {
+            return value
+        }
+
+        if let value = defaults["*"]?[value.rawValue] as? String {
+            return value
+        }
+
+        Log.error("There is no value for \(value.rawValue) for file \(file)")
+        return ""
     }
 
-    private func getKeyNameFor(file: String) -> String {
-        return "*"
+    private func shouldInvert(_ value: Bool, inverted: Bool) -> Bool {
+        return inverted ? !value : value
+    }
+
+    private func getKeyNameFor(_ inDict: [String: [String: Any]]?, file: String) -> [String: Any]? {
+        var invert = false
+
+        if let inDict = inDict {
+            for (pattern, values) in inDict {
+                if pattern.hasPrefix("!") {
+                    invert = true
+                }
+
+                if pattern.contains("**") {
+                    Log.info("** is not (yet) supported")
+                    continue
+                } else if pattern.hasPrefix("*.") {
+                    let search = pattern.replacingOccurrences(of: "*.", with: "")
+
+                    if pattern.contains("{") && pattern.contains("}") {
+                        if let noOpen = pattern.split(separator: "{").last,
+                           let noClose = noOpen.split(separator: "}").first {
+                            var extensionList = noClose.split(separator: ",")
+
+                            for fileExtension in extensionList where shouldInvert(
+                                file.hasSuffix(fileExtension),
+                                inverted: invert
+                            ) {
+                                return values
+                            }
+                        }
+                    }
+
+                    if file.hasSuffix(search) {
+                        return values
+                    }
+                } else {
+                    if file.hasSuffix(pattern) {
+                        return values
+                    }
+                }
+            }
+        }
+
+        return nil
     }
 
     private func findEditorConfig(fromPath: String) -> String? {

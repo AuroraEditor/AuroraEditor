@@ -10,9 +10,51 @@ import XCTest
 @testable import AuroraEditor
 
 final class AuroraEditorConfigTests: XCTestCase {
-    func testEditorConfig() throws {
-        // TODO: Create test
-        // get project path.
-        AuroraEditorConfig(fromPath: #file)
+    let cfg = AuroraEditorConfig(fromPath: #file)
+
+    func testPHPFile() {
+        XCTAssertEqual(
+            cfg.get(value: .charset, for: "/some/dir/file.php"),
+            "utf-8"
+        )
+    }
+
+    func testJSFile() {
+        XCTAssertEqual(
+            cfg.get(value: .charset, for: "/some/dir/file.js"),
+            "utf-8"
+        )
+    }
+
+    func testJSFileInLibDir() {
+        // This should match "lib/**js"
+        XCTAssertEqual(
+            cfg.get(value: .charset, for: "/lib/someLibrary/file.js"),
+            "utf-8"
+        )
+    }
+
+    func testWildcardCharacter() {
+        XCTExpectFailure("TODO Need to be supported later")
+
+        // This should match "file?.file"
+        XCTAssertEqual(
+            cfg.get(value: .indent_size, for: "/lib/someLibrary/file1.wcUnitTest"),
+            "wcUnitTest"
+        )
+
+        XCTAssertEqual(
+            cfg.get(value: .indent_size, for: "/lib/someLibrary/file9.wcUnitTest"),
+            "wcUnitTest"
+        )
+    }
+
+    func testMultipleMatchesNumberic() {
+        XCTExpectFailure("TODO Need to be supported later")
+
+        XCTAssertEqual(
+            cfg.get(value: .indent_size, for: "/lib/someLibrary/file9.mnUnitTest"),
+            "mnUnitTest"
+        )
     }
 }
