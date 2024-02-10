@@ -36,12 +36,9 @@ class AuroraEditorConfig {
             }
 
             var temporaryPath = components.joined(separator: "/")
-            Log.info("TP=", temporaryPath)
             temporaryPath += "/.editorconfig"
-            Log.info("TP+=", temporaryPath)
 
             if FileManager.default.fileExists(atPath: temporaryPath) {
-                Log.info("TP-F=", temporaryPath)
                 return temporaryPath
             }
         }
