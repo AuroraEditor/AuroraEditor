@@ -433,6 +433,8 @@
 		2B11FF992AB0EBF8005B649C /* Aurora_Editor_UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B11FF982AB0EBF8005B649C /* Aurora_Editor_UITestsLaunchTests.swift */; };
 		2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B18EC4528AEC84900494768 /* Symbols.xcassets */; };
 		2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */; };
+		2B53D1FC2B77A2250064114F /* AuroraEditorConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B53D1FB2B77A2250064114F /* AuroraEditorConfigTests.swift */; };
+		2B53D1FF2B77A82D0064114F /* AuroraEditorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B53D1FD2B77A2660064114F /* AuroraEditorConfig.swift */; };
 		2B5B25532885D9BA009C7384 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B25522885D9B9009C7384 /* .swiftlint.yml */; };
 		2B5B25552885D9C3009C7384 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B25542885D9C3009C7384 /* .gitignore */; };
 		2B6CB09E2AFFA3B1001E4955 /* AEUpdateService.app in Resources */ = {isa = PBXBuildFile; fileRef = A01AB2D12ACC9EDA0029EDF0 /* AEUpdateService.app */; };
@@ -1108,6 +1110,8 @@
 		2B15CA0028254139004E8F22 /* OpenWithAuroraEditor.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = OpenWithAuroraEditor.entitlements; sourceTree = "<group>"; };
 		2B18EC4528AEC84900494768 /* Symbols.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Symbols.xcassets; sourceTree = "<group>"; };
 		2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuroraEditorSymbols.swift; sourceTree = "<group>"; };
+		2B53D1FB2B77A2250064114F /* AuroraEditorConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorConfigTests.swift; sourceTree = "<group>"; };
+		2B53D1FD2B77A2660064114F /* AuroraEditorConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorConfig.swift; sourceTree = "<group>"; };
 		2B5B25522885D9B9009C7384 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		2B5B25542885D9C3009C7384 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		2B71C0A32874AD61008E0859 /* AuroraProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraProject.swift; sourceTree = "<group>"; };
@@ -1929,6 +1933,7 @@
 				2BD0BD132977331400629A86 /* VibrantEffect.swift */,
 				2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */,
 				2B11FF812AB0E87C005B649C /* AuroraINIParser.swift */,
+				2B53D1FD2B77A2660064114F /* AuroraEditorConfig.swift */,
 				A03E21F62B0D53CB008A6A77 /* ImageCache.swift */,
 			);
 			path = Utils;
@@ -3191,6 +3196,7 @@
 			isa = PBXGroup;
 			children = (
 				2B11FF892AB0E8F4005B649C /* AuroraINITests.swift */,
+				2B53D1FB2B77A2250064114F /* AuroraEditorConfigTests.swift */,
 			);
 			path = "Aurora EditorTests";
 			sourceTree = "<group>";
@@ -4078,6 +4084,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B53D1FC2B77A2250064114F /* AuroraEditorConfigTests.swift in Sources */,
 				2B11FF8A2AB0E8F4005B649C /* AuroraINITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4442,6 +4449,7 @@
 				20FACF972AB610B900B09012 /* NotificationsNavigatorView.swift in Sources */,
 				20752E4328CA4E3100935487 /* ProjectCommitHistoryView.swift in Sources */,
 				2093CD42289AA095003A88DD /* ProjectHook.swift in Sources */,
+				2B53D1FF2B77A82D0064114F /* AuroraEditorConfig.swift in Sources */,
 				286471AB27ED51FD0039369D /* ProjectNavigator.swift in Sources */,
 				04C3255C2801F86900C8DA2D /* ProjectNavigatorMenu.swift in Sources */,
 				9352467C28CB2EB700E38DAD /* ProjectNavigatorOutlineDataSource.swift in Sources */,
