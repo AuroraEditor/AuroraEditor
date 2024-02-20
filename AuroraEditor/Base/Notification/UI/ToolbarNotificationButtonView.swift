@@ -20,7 +20,7 @@ struct ToolbarNotificationButtonView: View {
     var body: some View {
         Button {
             NotificationCenter.default.post(
-                name: Notification.Name("changeNavigatorPane"),
+                name: .changeNavigatorPane,
                 object: 5
             )
         } label: {

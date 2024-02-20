@@ -117,7 +117,7 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(convertTemporaryTab),
-            name: NSNotification.Name("AE.didBeginEditing"),
+            name: .didBeginEditing,
             object: nil
         )
 

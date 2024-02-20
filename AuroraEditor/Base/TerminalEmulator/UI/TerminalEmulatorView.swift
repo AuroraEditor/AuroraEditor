@@ -46,6 +46,15 @@ public struct TerminalEmulatorView: NSViewRepresentable {
     public init(url: URL) {
         self.url = url
         self._terminal = State(initialValue: TerminalEmulatorView.lastTerminal[url.path] ?? .init(frame: .zero))
+
+        NotificationCenter.default.addObserver(
+            forName: .openInTerminal,
+            object: nil,
+            queue: .main) { [self] notification in
+            if let directory = notification.object as? URL {
+                terminal.send(txt: "cd \"\(directory.path)\"\n")
+            }
+        }
     }
 
     /// Returns a string of a shell path to use
