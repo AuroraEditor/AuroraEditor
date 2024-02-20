@@ -47,7 +47,7 @@ struct NavigatorSidebar: View {
         .padding(.leading, prefs.preferences.general.sidebarStyle == .vscode ? 30 : 0)
         .onAppear {
             NotificationCenter.default.addObserver(
-                forName: Notification.Name("changeNavigatorPane"),
+                forName: .changeNavigatorPane,
                 object: nil,
                 queue: OperationQueue.main
             ) { (notification) in
