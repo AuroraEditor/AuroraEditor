@@ -10,7 +10,7 @@ import Foundation
 
 public class LigatureThemeAttribute: TokenThemeAttribute, Codable {
 
-    public let key = "ligature"
+    public var key = "ligature"
     public let ligature: Int
 
     public init(ligature: Int) {

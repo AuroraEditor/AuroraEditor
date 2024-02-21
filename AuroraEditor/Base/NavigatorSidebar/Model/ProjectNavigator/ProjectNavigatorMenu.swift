@@ -64,12 +64,16 @@ final class ProjectNavigatorMenu: NSMenu {
 
         let sourceControl = menuItem("Source Control", action: nil)
 
+        let openInTerminal = menuItem("Open in Integrated Terminal", action: #selector(openInIntegratedTerminal))
+        openInTerminal.isHidden = !item.isFolder
+
         items = [
             menuItem("Show in Finder", action: #selector(showInFinder)),
             NSMenuItem.separator(),
             menuItem("Open in Tab", action: #selector(openInTab)),
             menuItem("Open in New Window", action: nil),
             menuItem("Open with External Editor", action: #selector(openWithExternalEditor)),
+            openInTerminal,
             openAs,
             NSMenuItem.separator(),
             menuItem("Show File Inspector", action: nil),
@@ -181,6 +185,17 @@ final class ProjectNavigatorMenu: NSMenu {
     @objc
     private func openWithExternalEditor() {
         item?.openWithExternalEditor()
+    }
+
+    /// Action that navigates to the integrated terminal
+    @objc
+    private func openInIntegratedTerminal() {
+        if let item = item, item.isFolder {
+            NotificationCenter.default.post(
+                name: .openInTerminal,
+                object: item.url
+            )
+        }
     }
 
     /// Action that creates a new untitled file

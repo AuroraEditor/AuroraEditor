@@ -33,7 +33,7 @@ class NotificationsModel: ObservableObject, INotificationsModel {
 
     /// A flag indicating whether to show a notification toast.
     @Published
-    public var showNotificationToast: Bool = false
+    @objc public dynamic var showNotificationToast: Bool = false
 
     /// A flag indicating whether the user is hovering over the notification toast.
     @Published
@@ -61,7 +61,7 @@ class NotificationsModel: ObservableObject, INotificationsModel {
         // from the list in settings.
         let notificationList = LocalStorage().listDoNotShowNotifications()
         if notificationList.contains(where: { $0.id == notification.id }) {
-            Log.warning("This notification \(notification.id) has been marked by the user to not show again.")
+            Log.warning("This notification \(notification.id ?? "") has been marked by the user to not show again.")
             return
         }
 
@@ -73,7 +73,7 @@ class NotificationsModel: ObservableObject, INotificationsModel {
             return
         }
 
-        // TODO: Maybe give the user a choice as to what items show as a toast
+        // DISCUSSION: Maybe give the user a choice as to what items show as a toast
         // if notification.severity == .info {
         //     notificationToastData = notification
         //     showNotificationToast = true

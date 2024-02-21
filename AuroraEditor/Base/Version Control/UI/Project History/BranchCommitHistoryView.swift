@@ -95,42 +95,40 @@ struct BranchCommitHistoryView: View {
                 CommitHistoryCellView(commit: commit)
                     .contextMenu {
                         Group {
-                            Button {
+                            Button("Copy Commit Message") {
                                 let pasteboard = NSPasteboard.general
                                 pasteboard.clearContents()
-                                pasteboard.setString(commit.summary, forType: .string)
-                            } label: {
-                                Text("Copy Commit Message")
+                                pasteboard.setString(commit.message, forType: .string)
                             }
                             Button("Copy Identifier") {}.disabled(true)
-                            Button("Email \(commit.author.email)...") {
+                            Button("Email \(commit.author)...") {
                                 let service = NSSharingService(named: NSSharingService.Name.composeEmail)
-                                service?.recipients = [commit.author.email]
+                                service?.recipients = [commit.authorEmail]
                                 service?.perform(withItems: [])
                             }
                         }
                         Divider()
                         Group {
-                            Button("Tag \"\(commit.sha)\"...") {
-                                workspace.data.commitHash = commit.sha
+                            Button("Tag \"\(commit.hash)\"...") {
+                                workspace.data.commitHash = commit.hash
                                 workspace.data.showTagCreationSheet.toggle()
                             }
-                            Button("New Branch from \"\(commit.sha)\"...") {
-                                workspace.data.branchRevision = commit.sha
-                                workspace.data.branchRevisionDescription = commit.summary
+                            Button("New Branch from \"\(commit.hash)\"...") {
+                                workspace.data.branchRevision = commit.hash
+                                workspace.data.branchRevisionDescription = commit.message
                                 workspace.data.showBranchCreationSheet.toggle()
                             }
-                            Button("Cherry-Pick Tag \"\(commit.sha)\"...") {}.disabled(true)
+                            Button("Cherry-Pick Tag \"\(commit.hash)\"...") {}.disabled(true)
                         }
                         Divider()
                         Button("View on Host...") {
-//                            if let commitRemoteURL = commit.commitBaseURL?.absoluteString {
-//                                let commitURL = "\(commitRemoteURL)/\(commit.commitHash)"
-//                                openCommit(URL(string: commitURL)!)
-//                            }
+                            if let commitRemoteURL = commit.commitBaseURL?.absoluteString {
+                                let commitURL = "\(commitRemoteURL)/\(commit.commitHash)"
+                                openCommit(URL(string: commitURL)!)
+                            }
                         }
                         Divider()
-                        Button("Switch to \"\(commit.sha)\"...") {}.disabled(true)
+                        Button("Switch to \"\(commit.hash)\"...") {}.disabled(true)
                     }
             }
         }

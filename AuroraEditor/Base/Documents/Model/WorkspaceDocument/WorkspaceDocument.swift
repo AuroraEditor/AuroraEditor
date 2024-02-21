@@ -40,6 +40,9 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
 
     @Published
     var fileItems: [FileSystemClient.FileItem] = []
+
+    var editorConfig: AuroraEditorConfig = .init(fromPath: "/")
+
     public var filter: String = "" {
         didSet { fileSystemClient?.onRefresh() }
     }
@@ -111,10 +114,19 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         self.newFileModel = .init(workspace: self)
         setupCommands()
 
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(convertTemporaryTab),
-                                               name: NSNotification.Name("AE.didBeginEditing"),
-                                               object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(convertTemporaryTab),
+            name: .didBeginEditing,
+            object: nil
+        )
+
+        if #available(macOS 13.0, *) {
+            editorConfig = AuroraEditorConfig(fromPath: url.path(percentEncoded: false))
+        } else {
+            editorConfig = AuroraEditorConfig(fromPath: url.path)
+        }
+
         Log.info("Created document \(self)")
     }
 

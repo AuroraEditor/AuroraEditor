@@ -9,7 +9,6 @@
 
 import Foundation
 import SwiftUI
-import Version_Control
 
 public extension CheckoutBranchView {
     /// Get branches
@@ -19,15 +18,19 @@ public extension CheckoutBranchView {
             return [""]
         }
         do {
-            let branches = try Branch().getBranches(directoryURL: url)
-            return branches.map { $0.name }
+            let branches = try GitClient(
+                directoryURL: url,
+                shellClient: shellClient
+            ).getGitBranches(allBranches: true)
+
+            return branches
         } catch {
             return [""]
         }
     }
 
     /// Checkout in branch
-    func checkoutBranch() {
+    func checkoutBranch() { // swiftlint:disable:this function_body_length
         var parsedBranch = selectedBranch
         if selectedBranch.contains("origin/") || selectedBranch.contains("upstream/") {
             parsedBranch = selectedBranch.components(separatedBy: "/")[1]
@@ -48,7 +51,69 @@ public extension CheckoutBranchView {
                 alert.messageText = "Not a git repository"
             case let .outputError(message):
                 alert.messageText = message
-            default:
+            case .failedToDecodeURL:
+                alert.messageText = "Failed to decode URL"
+            case .badConfigFile:
+                alert.messageText = "Failed to decode URL"
+            case .authenticationFailed:
+                alert.messageText = "Failed to decode URL"
+            case .noUserNameConfigured:
+                alert.messageText = "Failed to decode URL"
+            case .noUserEmailConfigured:
+                alert.messageText = "Failed to decode URL"
+            case .notAGitRepository:
+                alert.messageText = "Failed to decode URL"
+            case .notAtRepositoryRoot:
+                alert.messageText = "Failed to decode URL"
+            case .conflict:
+                alert.messageText = "Failed to decode URL"
+            case .stashConflict:
+                alert.messageText = "Failed to decode URL"
+            case .unmergedChanges:
+                alert.messageText = "Failed to decode URL"
+            case .pushRejected:
+                alert.messageText = "Failed to decode URL"
+            case .remoteConnectionError:
+                alert.messageText = "Failed to decode URL"
+            case .dirtyWorkTree:
+                alert.messageText = "Failed to decode URL"
+            case .cantOpenResource:
+                alert.messageText = "Failed to decode URL"
+            case .gitNotFound:
+                alert.messageText = "Failed to decode URL"
+            case .cantCreatePipe:
+                alert.messageText = "Failed to decode URL"
+            case .cantAccessRemote:
+                alert.messageText = "Failed to decode URL"
+            case .repositoryNotFound:
+                alert.messageText = "Failed to decode URL"
+            case .repositoryIsLocked:
+                alert.messageText = "Failed to decode URL"
+            case .branchNotFullyMerged:
+                alert.messageText = "Failed to decode URL"
+            case .noRemoteReference:
+                alert.messageText = "Failed to decode URL"
+            case .invalidBranchName:
+                alert.messageText = "Failed to decode URL"
+            case .branchAlreadyExists:
+                alert.messageText = "Failed to decode URL"
+            case .noLocalChanges:
+                alert.messageText = "Failed to decode URL"
+            case .noStashFound:
+                alert.messageText = "Failed to decode URL"
+            case .localChangesOverwritten:
+                alert.messageText = "Failed to decode URL"
+            case .noUpstreamBranch:
+                alert.messageText = "Failed to decode URL"
+            case .isInSubModule:
+                alert.messageText = "Failed to decode URL"
+            case .wrongCase:
+                alert.messageText = "Failed to decode URL"
+            case .cantLockRef:
+                alert.messageText = "Failed to decode URL"
+            case .cantRebaseMultipleBranches:
+                alert.messageText = "Failed to decode URL"
+            case .patchDoesNotApply:
                 alert.messageText = "Failed to decode URL"
             }
             alert.runModal()
