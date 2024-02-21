@@ -9,7 +9,7 @@
 
 import SwiftUI
 import Combine
-import SwiftOniguruma
+import AuroraEditorLanguage
 
 final class AuroraEditorApplication: NSApplication {
     let strongDelegate = AppDelegate()
@@ -34,6 +34,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     var statusItem: NSStatusItem?
 
     private var updateModel: UpdateObservedModel = .shared
+    private var languageRegistery: LanguageRegistry = .shared
 
     var cancellable = Set<AnyCancellable>()
 
@@ -87,9 +88,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             }
         }
 
-        // Log the version of SwiftOniguruma being used.
-        Log.info("AURORA EDITOR is using SwiftOniguruma Version: \(SwiftOniguruma.version())!")
-
         if NSApp.activationPolicy() == .regular {
             if statusItem == nil {
                 // Create a status item if the menu item show mode is set to "shown."
@@ -102,6 +100,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                 }
             }
         }
+
+        handleLanguageRegisteredNotification()
 
         // Check for updates
         updateModel.checkForUpdates()
@@ -255,6 +255,22 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             defaults.removeObject(forKey: "openInAEFiles")
         }
     }
+
+    private func handleLanguageRegisteredNotification() {
+        BashLanguageHandler().registerLanguage()
+        CLanguageHandler().registerLanguage()
+        CPPLanguageHandler().registerLanguage()
+        CSharpLanguageHandler().registerLanguage()
+        CSSLanguageHandler().registerLanguage()
+        GoLanguageHandler().registerLanguage()
+        JavaLanguageHandler().registerLanguage()
+        JavascriptLanguageHandler().registerLanguage()
+        OcamlLanguageHandler().registerLanguage()
+        PhpLanguageHandler().registerLanguage()
+        RubyLanguageHandler().registerLanguage()
+        PlainTextLanguageHandler().registerLanguage()
+    }
+
 }
 
 extension AppDelegate {
