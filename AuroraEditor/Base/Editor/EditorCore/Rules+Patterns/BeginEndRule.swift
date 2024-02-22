@@ -69,7 +69,7 @@ public class BeginEndRule: Rule, Pattern {
             message += "name(\"\(name)\"), begin(\"\(begin)\"), end(\"\(end)\"), "
             message += "error: \"\(error.localizedDescription)\""
 
-            Log.warning(message)
+            Log.warning("\(message)")
             self.begin = .init()
         }
         do {
@@ -85,7 +85,7 @@ public class BeginEndRule: Rule, Pattern {
             message += "name(\"\(name)\"), begin(\"\(begin)\"), end(\"\(end)\"), "
             message += "error: \"\(error.localizedDescription)\""
 
-            Log.warning(message)
+            Log.warning("\(message)")
             self.end = .init()
         }
         self.patterns = patterns

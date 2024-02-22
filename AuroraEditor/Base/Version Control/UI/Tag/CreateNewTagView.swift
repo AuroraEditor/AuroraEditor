@@ -59,7 +59,7 @@ struct CreateNewTagView: View {
                 } else {
                     Button {
                         do {
-                            Log.debug(commitHash)
+                            Log.debug("\(commitHash)")
 
                             // Create a tag
                             try Tag().createTag(

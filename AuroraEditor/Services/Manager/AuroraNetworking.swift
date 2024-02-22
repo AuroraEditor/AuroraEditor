@@ -329,7 +329,7 @@ class AuroraNetworking {
         Log.debug("HTTPURLResponse:")
         Log.debug("  HTTP \(response.statusCode)")
         for (header, cont) in response.allHeaderFields {
-            Log.debug("    \(header): \(cont)")
+            Log.debug("    \(header): \(cont as? String ?? "")")
         }
     }
 
@@ -344,11 +344,11 @@ class AuroraNetworking {
                 Log.debug("\n  Decoded JSON:")
                 if let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                     for (key, value) in dictionary {
-                        Log.debug("    \(key): \"\(value)\"")
+                        Log.debug("    \(key): \"\(value as? String ?? "")\"")
                     }
                 }
             } catch {
-                Log.debug(error.localizedDescription)
+                Log.error("\(error.localizedDescription)")
             }
         }
     }

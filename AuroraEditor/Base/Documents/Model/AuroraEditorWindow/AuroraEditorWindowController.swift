@@ -134,7 +134,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         }
 
         for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-            Log.info(id, "didSave()")
+            Log.info("\(id), didSave()")
             AEExt.respond(
                 action: "didSave",
                 parameters: [

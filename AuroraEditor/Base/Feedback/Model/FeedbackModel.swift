@@ -187,7 +187,7 @@ public class FeedbackModel: ObservableObject {
                 Log.info(issue)
             case .failure(let error):
                 self.failedToSubmit.toggle()
-                Log.error(error)
+                Log.error("\(error)")
             }
         }
     }

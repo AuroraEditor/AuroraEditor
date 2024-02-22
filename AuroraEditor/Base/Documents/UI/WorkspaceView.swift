@@ -166,7 +166,7 @@ struct WorkspaceView: View {
             )
 
             workspace.broadcaster.broadcaster.sink { broadcast in
-                Log.info(broadcast)
+                Log.info("\(broadcast)")
                 extensionDynamic.name = broadcast.sender
                 extensionDynamic.title = (broadcast.parameters["title"] as? String) ?? extensionDynamic.name
 
@@ -201,7 +201,7 @@ struct WorkspaceView: View {
                     sheetIsOpened = true
                 } else if broadcast.command == "openTab",
                    let view = broadcast.parameters["view"] as? any View {
-                    Log.info("openTab", view)
+                    Log.info("openTab \(view)")
                     // TODO: Open new tab.
                 } else if broadcast.command == "openWindow",
                    let view = broadcast.parameters["view"] as? any View {

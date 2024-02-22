@@ -334,7 +334,7 @@ func aeCommandLine() {
             }
         }
     } catch {
-        Log.error(error)
+        Log.error("\(error)")
     }
 }
 
@@ -360,6 +360,6 @@ func fallbackShellInstallation(commandPath: String, destinationPath: String) {
     do {
         try task.run()
     } catch {
-        Log.error(error)
+        Log.error("\(error)")
     }
 }

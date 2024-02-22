@@ -77,7 +77,7 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
         }
 
         for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-            Log.info(id, "didOpen")
+            Log.info("\(id), didOpen")
             AEExt.respond(
                 action: "didOpen",
                 parameters: [

@@ -99,7 +99,7 @@ class GitHubActions: ObservableObject {
                 DispatchQueue.main.async {
                     self.state = .error
                 }
-                Log.error(error)
+                Log.error("\(error)")
             }
         })
     }
@@ -143,7 +143,7 @@ class GitHubActions: ObservableObject {
                 DispatchQueue.main.async {
                     self.workflowRunState = .error
                 }
-                Log.error(error)
+                Log.error("\(error)")
             }
 
         })
@@ -193,7 +193,7 @@ class GitHubActions: ObservableObject {
                 DispatchQueue.main.async {
                     self.jobsState = .error
                 }
-                Log.error(error)
+                Log.error("\(error)")
             }
         })
     }
@@ -222,7 +222,7 @@ class GitHubActions: ObservableObject {
                 Log.debug("Succeffully Re-Run job: \(jobId)")
                 completion(.success("Succeffully Re-Run job: \(jobId)"))
             case .failure(let error):
-                Log.error(error)
+                Log.error("\(error)")
                 completion(.failure(error))
             }
         })
@@ -240,7 +240,7 @@ class GitHubActions: ObservableObject {
             case .success:
                 Log.debug("Succeffully Downloaded Workflow Logs for: \(jobId)")
             case .failure(let error):
-                Log.error(error)
+                Log.error("\(error)")
             }
         })
     }

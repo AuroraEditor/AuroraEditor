@@ -105,7 +105,7 @@ struct TabBarItem: View {
         .onAppear {
             isTemporary = workspace.selectionState.temporaryTab == item.tabID
             for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-                Log.info(id, "didActivateTab")
+                Log.info("\(id), didActivateTab")
                 AEExt.respond(
                     action: "didActivateTab",
                     parameters: [

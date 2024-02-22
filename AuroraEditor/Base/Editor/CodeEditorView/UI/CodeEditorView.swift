@@ -82,7 +82,7 @@ extension CodeEditor: NSViewRepresentable {
 
             context.coordinator.caretPosition = .init(line: 0, column: 0)
             for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-                Log.info(id, "didMoveCaret")
+                Log.info("\(id), didMoveCaret")
                 AEExt.respond(
                     action: "didMoveCaret",
                     parameters: ["row": 0, "col": 0]
@@ -157,7 +157,7 @@ extension CodeEditor: NSViewRepresentable {
             }
 
             for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-                Log.info(id, "didMoveCaret")
+                Log.info("\(id), didMoveCaret")
                 AEExt.respond(
                     action: "didMoveCaret",
                     parameters: [
