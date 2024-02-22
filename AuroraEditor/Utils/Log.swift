@@ -15,6 +15,18 @@ let Log = Logger( // swiftlint:disable:this identifier_name
 )
 
 extension View {
+    /// Log
+    /// This enables:
+    ///
+    ///  ```swift
+    ///  SomeSwiftUIView()
+    ///  .log {
+    ///    // Code you need to run
+    ///  }
+    ///  ```
+    ///
+    /// - Parameter closure: Code need to run
+    /// - Returns: self
     func log(_ closure: () -> Void) -> some View {
         return self
     }
