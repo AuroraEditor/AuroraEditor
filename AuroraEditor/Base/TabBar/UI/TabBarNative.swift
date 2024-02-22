@@ -6,7 +6,6 @@
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
 //  This file contains some support views to make native tab bar style come true.
-//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import SwiftUI
 

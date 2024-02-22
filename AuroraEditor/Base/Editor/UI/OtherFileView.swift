@@ -5,7 +5,6 @@
 //  Created by Shibo Tong on 10/7/2022.
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
-//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import SwiftUI
 import QuickLookUI
