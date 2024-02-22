@@ -82,8 +82,7 @@ class GitHubActions: ObservableObject {
                 let decoder = JSONDecoder()
                 guard let workflows = try? decoder.decode(Workflows.self, from: data) else {
                     Log.debug(
-                        "Error: Unable to decode",
-                        String(data: data, encoding: .utf8) ?? ""
+                        "Error: Unable to decode \(String(data: data, encoding: .utf8) ?? "")"
                     )
                     DispatchQueue.main.async {
                         self.state = .error
@@ -135,8 +134,7 @@ class GitHubActions: ObservableObject {
                         self.workflowRunState = .error
                     }
                     Log.debug(
-                        "Error: \(error)",
-                        String(data: data, encoding: .utf8) ?? ""
+                        "Error: \(error), \(String(data: data, encoding: .utf8) ?? "")"
                     )
                 }
             case .failure(let error):
@@ -185,8 +183,7 @@ class GitHubActions: ObservableObject {
                         self.jobsState = .error
                     }
                     Log.debug(
-                        "Error: \(error)",
-                        String(data: data, encoding: .utf8) ?? ""
+                        "Error: \(error), \(String(data: data, encoding: .utf8) ?? "")"
                     )
                 }
             case .failure(let error):

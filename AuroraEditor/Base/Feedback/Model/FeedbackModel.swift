@@ -184,7 +184,7 @@ public class FeedbackModel: ObservableObject {
                     )
                 }
                 self.isSubmitted.toggle()
-                Log.info(issue)
+                Log.info("\(issue.number)")
             case .failure(let error):
                 self.failedToSubmit.toggle()
                 Log.error("\(error)")

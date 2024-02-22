@@ -114,7 +114,7 @@ class AuroraEditorConfig {
            let configINI = String(data: configData, encoding: .utf8) {
             let parsed = AuroraINIParser(ini: configINI).parse()
             Log.info("INI=\(configFile)")
-            Log.info(parsed)
+            Log.info("\(parsed)")
             self.parsed = parsed
         }
     }

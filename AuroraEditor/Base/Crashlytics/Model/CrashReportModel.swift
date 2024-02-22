@@ -62,7 +62,7 @@ public class CrashReportModel: ObservableObject {
                 self.isSubmitted.toggle()
             case .failure(let error):
                 self.failedToSubmit.toggle()
-                Log.error(error.localizedDescription)
+                Log.error("\(error.localizedDescription)")
             }
         }
     }

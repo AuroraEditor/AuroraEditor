@@ -139,7 +139,7 @@ struct CommitChangesView: View {
                 Log.info("No changes to commit!")
             }
         } catch let err {
-            Log.error(err)
+            Log.error("\(err)")
         }
     }
 }

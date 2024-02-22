@@ -6,10 +6,16 @@
 //  Copyright © 2024 Aurora Company. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 import os
 
 let Log = Logger( // swiftlint:disable:this identifier_name
     subsystem: "com.auroraeditor",
     category: "AuroraEditor"
 )
+
+extension View {
+    func log(_ closure: () -> Void) -> some View {
+        return self
+    }
+}

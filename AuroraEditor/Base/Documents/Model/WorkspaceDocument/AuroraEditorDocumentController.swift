@@ -16,7 +16,7 @@ final class AuroraEditorDocumentController: NSDocumentController {
                 return
             }
 
-            Log.info(document, documentWasAlreadyOpen)
+            Log.info("\(document), \(documentWasAlreadyOpen)")
         }, onCancel: {})
     }
 
@@ -66,8 +66,8 @@ extension NSDocumentController {
                     }
                     RecentProjectsStore.shared.record(path: url.path)
                     onCompletion(document, documentWasAlreadyOpen)
-                    Log.info("Document:", document)
-                    Log.info("Was already open?", documentWasAlreadyOpen)
+                    Log.info("Document: \(document)")
+                    Log.info("Was already open? \(documentWasAlreadyOpen)")
                 }
             } else if result == NSApplication.ModalResponse.cancel {
                 onCancel()

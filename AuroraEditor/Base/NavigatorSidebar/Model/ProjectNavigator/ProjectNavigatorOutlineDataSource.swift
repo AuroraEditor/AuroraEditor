@@ -35,7 +35,7 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
     // MARK: Drag and Drop
     func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
         guard let fileItem = item as? FileItem else {
-            Log.error("Item \(item) is not file item")
+            Log.error("Item is not file item")
             return nil
         }
         let pboarditem = NSPasteboardItem()

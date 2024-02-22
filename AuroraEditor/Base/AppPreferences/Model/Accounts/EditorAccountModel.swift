@@ -85,7 +85,6 @@ class EditorAccountModel: ObservableObject {
                 if gitAccounts.contains(where: { $0.id == gitAccountName.lowercased() }) {
                     Log.warning("Account with the username already exists!")
                 } else {
-                    Log.info(user)
                     self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
                         SourceControlAccounts(id: "gitlab-" + gitAccountName.lowercased(),
                                               gitProvider: "Gitlab",
@@ -122,7 +121,6 @@ class EditorAccountModel: ObservableObject {
                 if gitAccounts.contains(where: { $0.id == gitAccountName.lowercased() }) {
                     Log.warning("Account with the username already exists!")
                 } else {
-                    Log.info(user)
                     self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
                         SourceControlAccounts(id: "gitlab-sh-" + gitAccountName.lowercased(),
                                               gitProvider: "Gitlab",
@@ -157,7 +155,6 @@ class EditorAccountModel: ObservableObject {
                 if gitAccounts.contains(where: { $0.id == gitAccountName.lowercased() }) {
                     Log.warning("Account with the username already exists!")
                 } else {
-                    Log.info(user)
                     DispatchQueue.main.async {
                         self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
                             SourceControlAccounts(id: "github-" + gitAccountName.lowercased(),
@@ -197,7 +194,6 @@ class EditorAccountModel: ObservableObject {
                 if gitAccounts.contains(where: { $0.id == gitAccountName.lowercased() }) {
                     Log.warning("Account with the username already exists!")
                 } else {
-                    Log.info(user)
                     self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
                         SourceControlAccounts(id: "github-ent-" + gitAccountName.lowercased(),
                                               gitProvider: "GitHub",
