@@ -62,7 +62,7 @@ struct ReRunJobSheetView: View {
                             case .success:
                                 dismiss()
                             case .failure(let failure):
-                                Log.error(failure)
+                                Log.fault("\(failure)")
                             }
                         }
                     )

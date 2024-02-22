@@ -127,7 +127,7 @@ extension FileItem {
             do {
                 try FileItem.fileManger.copyItem(at: self.url, to: fileUrl)
             } catch {
-                Log.error("Error at \(self.url.path) to \(fileUrl.path)")
+                Log.fault("Error at \(self.url.path) to \(fileUrl.path)")
                 fatalError(error.localizedDescription)
             }
         }

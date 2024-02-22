@@ -64,14 +64,14 @@ public final class ExtensionsManager {
     private func auroraAPICallback(file: String) -> AuroraAPI {
         return { function, parameters in
             if let workspace = self.workspace {
-                Log.info("Broadcasting", function, parameters)
+                Log.info("Broadcasting \(function), \(parameters)")
                 workspace.broadcaster.broadcast(
                     sender: file.replacingOccurrences(of: ".AEext", with: ""),
                     command: function,
                     parameters: parameters
                 )
             } else {
-                Log.warning("Failed to broadcast", function, parameters)
+                Log.warning("Failed to broadcast \(function), \(parameters)")
             }
         }
     }
@@ -106,12 +106,16 @@ public final class ExtensionsManager {
                     Log.info("Registered \(file)")
                 } else {
                     Log.warning("Failed to init() \(file)")
-                    Log.error("\(file) is compiled for a different version of AuroraEditor.\n" +
-                              "Please unload this plugin, or update it")
+                    Log.fault("\(file) is compiled for a different version of AuroraEditor.")
+                    auroraMessageBox(
+                        type: .critical,
+                        message: "\(file) is compiled for a different version of AuroraEditor.\n" +
+                                "Please unload this plugin, or update it"
+                    )
                 }
             }
         } catch {
-            Log.error("Error while loading plugins", error.localizedDescription)
+            Log.fault("Error while loading plugins \(error.localizedDescription)")
             return
         }
     }
@@ -132,7 +136,7 @@ public final class ExtensionsManager {
         do {
             try bundle.preflight()
         } catch {
-            Log.error("Preflight", path, error)
+            Log.fault("Preflight \(path), \(error)")
             return nil
         }
 
@@ -158,14 +162,10 @@ public final class ExtensionsManager {
         // Can we convert the principalClass to an ExtensionBuilder.Type?
         // If not than this is probably not an Aurora Editor extension.
         guard let AEext = bundle.principalClass as? ExtensionBuilder.Type else {
-            Log.warning(
-                path,
-                "Failed to convert",
-                bundle.principalClass.self ?? "None",
-                "to",
-                ExtensionBuilder.Type.self,
-                "Is the principal class correct?"
-            )
+            let warning = "\(path), Failed to convert \(String(describing: bundle.principalClass.self))" +
+            "to \(ExtensionBuilder.Type.self) Is the principal class correct?"
+
+            Log.warning("\(warning)")
 
             return nil
         }
@@ -191,7 +191,7 @@ public final class ExtensionsManager {
         #if DEBUG
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         if let outputString = String(data: data, encoding: .utf8) {
-            Log.info("Resign", outputString)
+            Log.info("Resign \(outputString)")
         }
         #endif
 

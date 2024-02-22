@@ -57,8 +57,6 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         _isProcessingEditing
     }
 
-    public var shouldDebug = false
-
     var selectionLines = Set<Int>()
 
     init(parser: Parser, baseGrammar: Grammar, theme: AuroraTheme) {
@@ -399,7 +397,7 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         // Important for fixing fonts where the font does not contain the glyph in the text, e.g. emojis.
         fixAttributes(in: processedRange)
 
-        debug("Lines processed: \(processingLines.first) to \(processingLines.last)")
+        Log.info("Lines processed: \(processingLines.first) to \(processingLines.last)")
 
         guard !self.tokenizedLines.contains(where: { $0 == nil }) &&
                 self.tokenizedLines.count == nContentLines else {
@@ -431,9 +429,8 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         }
 
         let range = processSyntaxHighlighting(editedRange: editedRange)
-        debug("editedRange: \(editedRange)")
-        debug("Range processed: \(range)")
-        debug()
+        Log.info("editedRange: \(editedRange)")
+        Log.info("Range processed: \(range)")
 
         self.lastProcessedRange = range
 
@@ -528,12 +525,6 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
             res += zip(ranges.map { str.substring(with: $0) }, ranges)
         }
         return res
-    }
-
-    private func debug(_ str: String = "") {
-        if shouldDebug {
-            Log.info(str)
-        }
     }
 }
 

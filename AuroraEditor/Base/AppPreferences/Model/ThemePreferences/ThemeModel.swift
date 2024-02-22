@@ -25,7 +25,7 @@ public final class ThemeModel: ObservableObject {
     @Published
     var selectedAppearance: Int = 0 {
         didSet {
-            Log.info("Selected appearance: \(selectedAppearance)")
+            Log.info("Selected appearance: \(self.selectedAppearance)")
         }
     }
 
@@ -77,7 +77,7 @@ public final class ThemeModel: ObservableObject {
         do {
             try loadThemes()
         } catch {
-            Log.error(error)
+            Log.fault("\(error)")
         }
     }
 
@@ -199,7 +199,7 @@ public final class ThemeModel: ObservableObject {
                     )
                 }
             } catch {
-                Log.error(error)
+                Log.fault("\(error)")
                 throw error
             }
         }
@@ -218,7 +218,7 @@ public final class ThemeModel: ObservableObject {
         do {
             try self.loadThemes()
         } catch {
-            Log.error(error)
+            Log.fault("\(error)")
         }
     }
 
@@ -243,7 +243,7 @@ public final class ThemeModel: ObservableObject {
             // reload themes
             try self.loadThemes()
         } catch {
-            Log.error(error)
+            Log.fault("\(error)")
         }
     }
 
@@ -291,7 +291,7 @@ public final class ThemeModel: ObservableObject {
         //                }
         //
         //            } catch {
-        //                Log.error(error)
+        //                Log.fault("\(error)")
         //            }
         //        }
     }

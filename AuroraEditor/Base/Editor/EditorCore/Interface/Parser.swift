@@ -151,7 +151,7 @@ public class Parser { // swiftlint:disable:this type_body_length
         state: LineState,
         withTheme theme: HighlightTheme = .default,
         inRange range: NSRange? = nil) -> TokenizeResult {
-        debug("Tokenizing line: \(line)")
+        Log.debug("Tokenizing line: \(line)")
         var state = state
 
         var loc = range?.location ?? 0
@@ -369,15 +369,6 @@ public class Parser { // swiftlint:disable:this type_body_length
             }
         } else {
             return []
-        }
-    }
-
-    /// Debugging enabled
-    public var shouldDebug = false
-
-    func debug(_ str: String) {
-        if shouldDebug {
-            Log.info(str)
         }
     }
 }

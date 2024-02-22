@@ -315,7 +315,7 @@ func aeCommandLine() {
         }
 
         guard let shellUrl = url?.path else {
-            Log.error("Failed to get URL to shell command")
+            Log.fault("Failed to get URL to shell command")
             return
         }
 
@@ -334,7 +334,7 @@ func aeCommandLine() {
             }
         }
     } catch {
-        Log.error(error)
+        Log.fault("\(error)")
     }
 }
 
@@ -360,6 +360,6 @@ func fallbackShellInstallation(commandPath: String, destinationPath: String) {
     do {
         try task.run()
     } catch {
-        Log.error(error)
+        Log.fault("\(error)")
     }
 }

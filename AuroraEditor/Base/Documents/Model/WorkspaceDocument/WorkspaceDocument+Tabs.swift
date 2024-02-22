@@ -88,7 +88,7 @@ extension WorkspaceDocument {
                 // Let the extensions know we opened a file (from a workspace)
                 for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
                     let fileData = try? Data(contentsOf: item.url)
-                    Log.info(id, "didOpen()")
+                    Log.info("\(id) didOpen()")
                     AEExt.respond(
                         action: "didOpen",
                         parameters: [
@@ -99,7 +99,7 @@ extension WorkspaceDocument {
                     )
                 }
             } catch let err {
-                Log.error(err)
+                Log.fault("\(err)")
             }
         }
     }
@@ -148,7 +148,7 @@ extension WorkspaceDocument {
 
             // Let the extensions know we closed a file
             for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-                Log.info(id, "didClose()")
+                Log.info("\(id), didClose()")
                 AEExt.respond(action: "didClose", parameters: ["file": item.url.relativeString])
             }
         case .extensionInstallation:
@@ -219,7 +219,7 @@ extension WorkspaceDocument {
                     as? FileSystemClient.FileItem else { return }
             selectionState.openedCodeFiles.removeValue(forKey: item)
             if let idx = selectionState.openFileItems.firstIndex(of: item) {
-                Log.info("Removing temp tab \(item)")
+                Log.info("Removing temp tab")
                 selectionState.openFileItems.remove(at: idx)
             }
         case .extensionInstallation:

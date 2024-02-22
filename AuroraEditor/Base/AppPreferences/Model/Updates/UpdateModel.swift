@@ -98,16 +98,15 @@ public class UpdateObservedModel: ObservableObject {
                         DispatchQueue.main.async {
                             self.updateState = .error
                         }
-                        Log.debug(
-                            "Error: \(error)",
-                            String(data: data, encoding: .utf8) ?? ""
+                        Log.fault(
+                            "Error: \(error), \(String(data: data, encoding: .utf8) ?? "")"
                         )
                     }
                 case .failure(let failure):
                     DispatchQueue.main.async {
                         self.updateState = .error
                     }
-                    Log.debug(failure)
+                    Log.debug("\(failure)")
                 }
             })
         }

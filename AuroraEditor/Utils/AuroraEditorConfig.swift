@@ -114,7 +114,7 @@ class AuroraEditorConfig {
            let configINI = String(data: configData, encoding: .utf8) {
             let parsed = AuroraINIParser(ini: configINI).parse()
             Log.info("INI=\(configFile)")
-            Log.info(parsed)
+            Log.info("\(parsed)")
             self.parsed = parsed
         }
     }
@@ -140,7 +140,7 @@ class AuroraEditorConfig {
             return value
         }
 
-        Log.error("There is no value for \(value.rawValue) for file \(file)")
+        Log.fault("There is no value for \(value.rawValue) for file \(file)")
         return ""
     }
 

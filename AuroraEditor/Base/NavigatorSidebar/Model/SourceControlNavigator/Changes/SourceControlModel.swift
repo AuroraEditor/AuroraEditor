@@ -70,7 +70,7 @@ public final class SourceControlModel: ObservableObject {
         do {
             try gitClient.discardFileChanges(url: file.url.path)
         } catch {
-            Log.error("Failed to discard changes")
+            Log.fault("Failed to discard changes")
         }
     }
 
@@ -78,7 +78,7 @@ public final class SourceControlModel: ObservableObject {
         do {
             try gitClient.discardProjectChanges()
         } catch {
-            Log.error("Failed to discard changes")
+            Log.fault("Failed to discard changes")
         }
     }
 

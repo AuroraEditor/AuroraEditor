@@ -82,8 +82,7 @@ class GitHubActions: ObservableObject {
                 let decoder = JSONDecoder()
                 guard let workflows = try? decoder.decode(Workflows.self, from: data) else {
                     Log.debug(
-                        "Error: Unable to decode",
-                        String(data: data, encoding: .utf8) ?? ""
+                        "Error: Unable to decode \(String(data: data, encoding: .utf8) ?? "")"
                     )
                     DispatchQueue.main.async {
                         self.state = .error
@@ -99,7 +98,7 @@ class GitHubActions: ObservableObject {
                 DispatchQueue.main.async {
                     self.state = .error
                 }
-                Log.error(error)
+                Log.fault("\(error)")
             }
         })
     }
@@ -135,15 +134,14 @@ class GitHubActions: ObservableObject {
                         self.workflowRunState = .error
                     }
                     Log.debug(
-                        "Error: \(error)",
-                        String(data: data, encoding: .utf8) ?? ""
+                        "Error: \(error), \(String(data: data, encoding: .utf8) ?? "")"
                     )
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.workflowRunState = .error
                 }
-                Log.error(error)
+                Log.fault("\(error)")
             }
 
         })
@@ -185,15 +183,14 @@ class GitHubActions: ObservableObject {
                         self.jobsState = .error
                     }
                     Log.debug(
-                        "Error: \(error)",
-                        String(data: data, encoding: .utf8) ?? ""
+                        "Error: \(error), \(String(data: data, encoding: .utf8) ?? "")"
                     )
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.jobsState = .error
                 }
-                Log.error(error)
+                Log.fault("\(error)")
             }
         })
     }
@@ -202,7 +199,7 @@ class GitHubActions: ObservableObject {
                            enableDebugging: Bool,
                            completion: @escaping (Result<String, Error>) -> Void) {
         guard !jobId.isEmpty else {
-            Log.error("No job id provided")
+            Log.fault("No job id provided")
             return
         }
 
@@ -222,7 +219,7 @@ class GitHubActions: ObservableObject {
                 Log.debug("Succeffully Re-Run job: \(jobId)")
                 completion(.success("Succeffully Re-Run job: \(jobId)"))
             case .failure(let error):
-                Log.error(error)
+                Log.fault("\(error)")
                 completion(.failure(error))
             }
         })
@@ -240,7 +237,7 @@ class GitHubActions: ObservableObject {
             case .success:
                 Log.debug("Succeffully Downloaded Workflow Logs for: \(jobId)")
             case .failure(let error):
-                Log.error(error)
+                Log.fault("\(error)")
             }
         })
     }
@@ -269,7 +266,7 @@ class GitHubActions: ObservableObject {
             }
             self.objectWillChange.send()
         } catch {
-            Log.error("Failed to get project remote URL.")
+            Log.fault("Failed to get project remote URL.")
             DispatchQueue.main.async {
                 self.state = .repoFailure
                 self.objectWillChange.send()

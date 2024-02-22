@@ -59,7 +59,7 @@ struct CreateNewTagView: View {
                 } else {
                     Button {
                         do {
-                            Log.debug(commitHash)
+                            Log.debug("\(commitHash)")
 
                             // Create a tag
                             try Tag().createTag(
@@ -70,7 +70,7 @@ struct CreateNewTagView: View {
 
                             dismiss()
                         } catch {
-                            Log.error("Unable to create tag...")
+                            Log.fault("Unable to create tag...")
                         }
                     } label: {
                         Text("Create")

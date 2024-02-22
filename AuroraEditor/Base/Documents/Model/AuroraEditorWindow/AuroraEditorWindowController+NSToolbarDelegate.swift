@@ -209,7 +209,7 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
         navigatorPane.animator().isCollapsed.toggle()
 
         for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-            Log.info(id, "didToggleNavigatorPane()")
+            Log.info("\(id), didToggleNavigatorPane()")
             AEExt.respond(
                 action: "didToggleNavigatorPane",
                 parameters: [
@@ -280,7 +280,7 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
         }
 
         for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-            Log.info(id, "didToggleInspectorPane()")
+            Log.info("\(id), didToggleInspectorPane()")
             AEExt.respond(
                 action: "didToggleInspectorPane",
                 parameters: [

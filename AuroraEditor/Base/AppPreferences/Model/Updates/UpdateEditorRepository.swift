@@ -55,7 +55,7 @@ class UpdateEditorRepository: NSObject, URLSessionDownloadDelegate {
         let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
 
         if let url = URL(string: downloadURL) {
-            Log.debug(downloadURL)
+            Log.debug("\(downloadURL)")
             downloadTask = session.downloadTask(with: url)
             downloadTask?.resume()
 

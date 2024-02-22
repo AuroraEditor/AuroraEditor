@@ -53,7 +53,7 @@ public extension FileSystemClient {
                 queue: DispatchQueue.global()
             )
             if descriptor > 2000 {
-                Log.info("Watcher \(descriptor) used up on \(url.path)")
+                Log.info("Watcher \(descriptor) used up on \(self.url.path)")
             }
             source.setEventHandler { watcherCode(self) }
             source.setCancelHandler { close(descriptor) }

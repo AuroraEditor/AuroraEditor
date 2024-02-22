@@ -204,7 +204,7 @@ public extension Router {
                     }
                 }
             default:
-                Log.error("Cannot encode object of type \(type(of: value))")
+                Log.fault("Cannot encode object of type \(type(of: value))")
             }
         }
 

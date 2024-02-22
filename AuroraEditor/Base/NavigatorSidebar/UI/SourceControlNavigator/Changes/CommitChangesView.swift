@@ -121,7 +121,7 @@ struct CommitChangesView: View {
 
     private func commit() {
         guard let client = gitClient else {
-            Log.error("No git client!")
+            Log.fault("No git client!")
             return
         }
         do {
@@ -139,7 +139,7 @@ struct CommitChangesView: View {
                 Log.info("No changes to commit!")
             }
         } catch let err {
-            Log.error(err)
+            Log.fault("\(err)")
         }
     }
 }

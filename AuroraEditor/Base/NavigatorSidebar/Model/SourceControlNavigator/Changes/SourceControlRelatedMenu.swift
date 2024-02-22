@@ -73,7 +73,7 @@ final class SourceControlRelatedMenu: NSMenu {
             do {
                 try gitClient.discardFileChanges(url: (item?.url.path)!)
             } catch {
-                Log.error("Error when trying to discard changes in file!")
+                Log.fault("Error when trying to discard changes in file!")
             }
         }
     }

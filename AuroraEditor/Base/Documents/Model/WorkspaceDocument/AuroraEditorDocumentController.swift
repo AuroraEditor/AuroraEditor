@@ -12,11 +12,11 @@ final class AuroraEditorDocumentController: NSDocumentController {
     override func openDocument(_ sender: Any?) {
         self.openDocument(onCompletion: { document, documentWasAlreadyOpen in
             guard let document = document else {
-                Log.error("Failed to unwrap document")
+                Log.fault("Failed to unwrap document")
                 return
             }
 
-            Log.info(document, documentWasAlreadyOpen)
+            Log.info("\(document), \(documentWasAlreadyOpen)")
         }, onCancel: {})
     }
 
@@ -66,8 +66,8 @@ extension NSDocumentController {
                     }
                     RecentProjectsStore.shared.record(path: url.path)
                     onCompletion(document, documentWasAlreadyOpen)
-                    Log.info("Document:", document)
-                    Log.info("Was already open?", documentWasAlreadyOpen)
+                    Log.info("Document: \(document)")
+                    Log.info("Was already open? \(documentWasAlreadyOpen)")
                 }
             } else if result == NSApplication.ModalResponse.cancel {
                 onCancel()

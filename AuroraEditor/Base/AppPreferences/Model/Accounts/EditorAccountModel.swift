@@ -67,7 +67,7 @@ class EditorAccountModel: ObservableObject {
 
                 }
             case .failure(let failure):
-                Log.error(failure)
+                Log.fault("\(failure)")
             }
         })
     }
@@ -85,7 +85,6 @@ class EditorAccountModel: ObservableObject {
                 if gitAccounts.contains(where: { $0.id == gitAccountName.lowercased() }) {
                     Log.warning("Account with the username already exists!")
                 } else {
-                    Log.info(user)
                     self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
                         SourceControlAccounts(id: "gitlab-" + gitAccountName.lowercased(),
                                               gitProvider: "Gitlab",
@@ -103,7 +102,7 @@ class EditorAccountModel: ObservableObject {
                     successCallback()
                 }
             case .failure(let error):
-                Log.error(error)
+                Log.fault("\(error)")
             }
         }
     }
@@ -122,7 +121,6 @@ class EditorAccountModel: ObservableObject {
                 if gitAccounts.contains(where: { $0.id == gitAccountName.lowercased() }) {
                     Log.warning("Account with the username already exists!")
                 } else {
-                    Log.info(user)
                     self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
                         SourceControlAccounts(id: "gitlab-sh-" + gitAccountName.lowercased(),
                                               gitProvider: "Gitlab",
@@ -140,7 +138,7 @@ class EditorAccountModel: ObservableObject {
                     successCallback()
                 }
             case .failure(let error):
-                Log.error(error)
+                Log.fault("\(error)")
             }
         }
     }
@@ -157,7 +155,6 @@ class EditorAccountModel: ObservableObject {
                 if gitAccounts.contains(where: { $0.id == gitAccountName.lowercased() }) {
                     Log.warning("Account with the username already exists!")
                 } else {
-                    Log.info(user)
                     DispatchQueue.main.async {
                         self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
                             SourceControlAccounts(id: "github-" + gitAccountName.lowercased(),
@@ -177,7 +174,7 @@ class EditorAccountModel: ObservableObject {
                     successCallback()
                 }
             case .failure(let error):
-                Log.error(error)
+                Log.fault("\(error)")
             }
         }
     }
@@ -197,7 +194,6 @@ class EditorAccountModel: ObservableObject {
                 if gitAccounts.contains(where: { $0.id == gitAccountName.lowercased() }) {
                     Log.warning("Account with the username already exists!")
                 } else {
-                    Log.info(user)
                     self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
                         SourceControlAccounts(id: "github-ent-" + gitAccountName.lowercased(),
                                               gitProvider: "GitHub",
@@ -215,7 +211,7 @@ class EditorAccountModel: ObservableObject {
                     successCallback()
                 }
             case .failure(let error):
-                Log.error(error)
+                Log.fault("\(error)")
             }
         }
     }
