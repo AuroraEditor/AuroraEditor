@@ -68,7 +68,7 @@ struct FileCreationNamingView: View {
                             presentationMode.wrappedValue.dismiss()
                             workspace.newFileModel.showFileCreationSheet.toggle()
                         case .failure(let failure):
-                            Log.error(failure)
+                            Log.error("\(failure)")
                         }
                     }
                 } label: {

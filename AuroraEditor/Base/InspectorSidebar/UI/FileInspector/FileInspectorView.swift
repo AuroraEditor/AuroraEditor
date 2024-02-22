@@ -369,8 +369,7 @@ struct FileInspectorView: View {
             try fileManager.moveItem(atPath: inspectorModel.fileURL,
                                      toPath: fileName)
         } catch let error as NSError {
-            Log.error("Ooops! Something went wrong: \(error)")
-            Log.info(fileName)
+            Log.error("Ooops! Something went wrong: \(error),\n\(fileName)")
         }
     }
 }

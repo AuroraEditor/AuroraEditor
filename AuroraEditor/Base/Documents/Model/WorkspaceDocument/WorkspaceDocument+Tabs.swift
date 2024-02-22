@@ -148,7 +148,7 @@ extension WorkspaceDocument {
 
             // Let the extensions know we closed a file
             for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-                Log.info(id, "didClose()")
+                Log.info("\(id), didClose()")
                 AEExt.respond(action: "didClose", parameters: ["file": item.url.relativeString])
             }
         case .extensionInstallation:

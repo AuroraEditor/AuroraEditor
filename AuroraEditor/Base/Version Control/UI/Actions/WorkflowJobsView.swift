@@ -60,7 +60,7 @@ struct WorkflowJobsView: View {
                     .buttonStyle(.plain)
                     .help("Re-run this job")
                     .sheet(isPresented: $reRunJobs) {
-                        debug("Currently selected job id: \(actionsModel.jobId)")
+                        Log.info("Currently selected job id: \(actionsModel.jobId)")
                         ReRunJobSheetView(workspace: actionsModel.workspace,
                                           jobId: actionsModel.jobId)
                     }

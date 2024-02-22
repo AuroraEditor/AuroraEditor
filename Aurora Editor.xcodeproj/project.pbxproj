@@ -36,9 +36,6 @@
 		201169E52837B40300F92B46 /* RepositoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201169E42837B40300F92B46 /* RepositoriesView.swift */; };
 		201169E72837B5CA00F92B46 /* SourceControlModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201169E62837B5CA00F92B46 /* SourceControlModel.swift */; };
 		20130BDE28CF30FB0000B634 /* AddRemoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20130BDD28CF30FB0000B634 /* AddRemoteView.swift */; };
-		2019258A289C362B009C2FAB /* LogExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20192589289C362B009C2FAB /* LogExtension.swift */; };
-		2021267C289BF7BA00246DD7 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021267B289BF7BA00246DD7 /* Log.swift */; };
-		2021267F289BF7EF00246DD7 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021267E289BF7EF00246DD7 /* Formatter.swift */; };
 		20212683289BF84B00246DD7 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20212682289BF84B00246DD7 /* String.swift */; };
 		20212685289BF87600246DD7 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20212684289BF87600246DD7 /* Formatters.swift */; };
 		202327D628D5CA970031FFB6 /* WorkflowJobsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */; };
@@ -438,6 +435,7 @@
 		2B53D1FF2B77A82D0064114F /* AuroraEditorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B53D1FD2B77A2660064114F /* AuroraEditorConfig.swift */; };
 		2B5B25532885D9BA009C7384 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B25522885D9B9009C7384 /* .swiftlint.yml */; };
 		2B5B25552885D9C3009C7384 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B25542885D9C3009C7384 /* .gitignore */; };
+		2B5CAC822B87E701006B6C66 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5CAC812B87E701006B6C66 /* Log.swift */; };
 		2B6CB09E2AFFA3B1001E4955 /* AEUpdateService.app in Resources */ = {isa = PBXBuildFile; fileRef = A01AB2D12ACC9EDA0029EDF0 /* AEUpdateService.app */; };
 		2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468438427DC76E200F8E88E /* AppDelegate.swift */; };
 		2B7AC06B282452FB0082A5B8 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7AC06A282452FB0082A5B8 /* Media.xcassets */; };
@@ -681,12 +679,8 @@
 		201169E42837B40300F92B46 /* RepositoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesView.swift; sourceTree = "<group>"; };
 		201169E62837B5CA00F92B46 /* SourceControlModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceControlModel.swift; sourceTree = "<group>"; };
 		20130BDD28CF30FB0000B634 /* AddRemoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRemoteView.swift; sourceTree = "<group>"; };
-		20192589289C362B009C2FAB /* LogExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogExtension.swift; sourceTree = "<group>"; };
-		2021267B289BF7BA00246DD7 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
-		2021267E289BF7EF00246DD7 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		20212682289BF84B00246DD7 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		20212684289BF87600246DD7 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
-		20212688289C055E00246DD7 /* Using Logger.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Using Logger.md"; sourceTree = "<group>"; };
 		202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowJobsView.swift; sourceTree = "<group>"; };
 		202327D728D5CB200031FFB6 /* WorkflowJobCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowJobCell.swift; sourceTree = "<group>"; };
 		202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReRunJobSheetView.swift; sourceTree = "<group>"; };
@@ -1121,6 +1115,7 @@
 		2B53D1FD2B77A2660064114F /* AuroraEditorConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorConfig.swift; sourceTree = "<group>"; };
 		2B5B25522885D9B9009C7384 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		2B5B25542885D9C3009C7384 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
+		2B5CAC812B87E701006B6C66 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		2B71C0A32874AD61008E0859 /* AuroraProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraProject.swift; sourceTree = "<group>"; };
 		2B7AC06A282452FB0082A5B8 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraMessageBox.swift; sourceTree = "<group>"; };
@@ -1403,17 +1398,6 @@
 				202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */,
 			);
 			path = Sheet;
-			sourceTree = "<group>";
-		};
-		20212679289BF7A800246DD7 /* Log */ = {
-			isa = PBXGroup;
-			children = (
-				2021267E289BF7EF00246DD7 /* Formatter.swift */,
-				2021267B289BF7BA00246DD7 /* Log.swift */,
-				20192589289C362B009C2FAB /* LogExtension.swift */,
-				20212688289C055E00246DD7 /* Using Logger.md */,
-			);
-			path = Log;
 			sourceTree = "<group>";
 		};
 		2029DA8528E2FCA600D68786 /* CodeLanguages */ = {
@@ -1934,13 +1918,13 @@
 				20439035290D27C600126A3F /* Errors */,
 				20D83740289A7ACD00D91D05 /* Extensions */,
 				20D83744289A7ACD00D91D05 /* KeyChain */,
-				20212679289BF7A800246DD7 /* Log */,
 				20B5BD9F28B1309200B2A02F /* SplitView */,
 				2093292228D9DE0800F91C82 /* Styles */,
 				20752E4728CA54E000935487 /* Version Control */,
 				2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */,
 				2B71C0A32874AD61008E0859 /* AuroraProject.swift */,
 				2BCBAAC72927C41E00D4DFB2 /* BindingProxy.swift */,
+				2B5CAC812B87E701006B6C66 /* Log.swift */,
 				2B23B2F72B8521CD00C6B066 /* NotificationKeys.swift */,
 				2036DD5428DB3DB5003BECB7 /* Queue.swift */,
 				2BD0BD132977331400629A86 /* VibrantEffect.swift */,
@@ -4316,7 +4300,6 @@
 				2B04575828E6FFE300024F2D /* FirstLineHeadIndentThemeAttribute.swift in Sources */,
 				2093CD70289AA0FC003A88DD /* FontPickerView.swift in Sources */,
 				2B04575D28E6FFE300024F2D /* FontThemeAttribute.swift in Sources */,
-				2021267F289BF7EF00246DD7 /* Formatter.swift in Sources */,
 				20212685289BF87600246DD7 /* Formatters.swift in Sources */,
 				2093CD9A289AA14C003A88DD /* GeneralPreferences.swift in Sources */,
 				2093CDA5289AA170003A88DD /* GeneralPreferencesView.swift in Sources */,
@@ -4405,9 +4388,7 @@
 				2B11FF822AB0E87C005B649C /* AuroraINIParser.swift in Sources */,
 				D7211D4327E066CE008F2ED7 /* Localized+Ex.swift in Sources */,
 				2072FA1E280D891500C7F8D4 /* Location.swift in Sources */,
-				2021267C289BF7BA00246DD7 /* Log.swift in Sources */,
 				A03E21FB2B0D54C1008A6A77 /* CachingAsyncImageView.swift in Sources */,
-				2019258A289C362B009C2FAB /* LogExtension.swift in Sources */,
 				2093CDA1289AA167003A88DD /* Loopable.swift in Sources */,
 				2093CCB1289AA032003A88DD /* LSPClient.swift in Sources */,
 				2B04576928E6FFE300024F2D /* MatchRule.swift in Sources */,
@@ -4551,6 +4532,7 @@
 				2093CC92289A9FF5003A88DD /* StatusBarEncodingSelector.swift in Sources */,
 				2093CC91289A9FF5003A88DD /* StatusBarIndentSelector.swift in Sources */,
 				2093CC94289A9FF5003A88DD /* StatusBarLineEndSelector.swift in Sources */,
+				2B5CAC822B87E701006B6C66 /* Log.swift in Sources */,
 				2093CC9A289A9FFD003A88DD /* StatusBarMaximizeButton.swift in Sources */,
 				2093CC93289A9FF5003A88DD /* StatusBarMenuLabel.swift in Sources */,
 				2093CDCD289AA4F4003A88DD /* StatusBarModel.swift in Sources */,

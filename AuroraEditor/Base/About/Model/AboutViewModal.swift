@@ -35,8 +35,7 @@ public class AboutViewModal: ObservableObject {
                 let decoder = JSONDecoder()
                 guard let contributers = try? decoder.decode([Contributor].self, from: data) else {
                     Log.debug(
-                        "Error: Unable to decode",
-                        String(data: data, encoding: .utf8) ?? ""
+                        "Error: Unable to decode \(String(data: data, encoding: .utf8) ?? "")"
                     )
                     return
                 }
@@ -44,7 +43,7 @@ public class AboutViewModal: ObservableObject {
                     self.contributers.append(contentsOf: contributers)
                 }
             case .failure(let error):
-                Log.debug(error)
+                Log.debug("\(error)")
             }
         }
     }
