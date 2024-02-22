@@ -90,13 +90,11 @@ We have all contributed to CodeEdit, and some of us continue to contribute to th
 
 1. We actively encourage the submission of smaller pull requests (PRs), even if they are not flawless. Our rationale is that this approach can expedite the project development.
 
-2. We have adopted a different syntax highlighting engine. Our decision is based on the belief that Tree-sitter's parsing speed may not be sufficient, especially during the initial parsing stages.
+2. We have streamlined the project by removing a significant number of modules that frequently encountered fetch failures and required additional instructions for users.
 
-3. We have streamlined the project by removing a significant number of modules that frequently encountered fetch failures and required additional instructions for users.
+3. Our primary focus lies on functionality rather than aesthetics. While CodeEdit emphasizes creating visually appealing designs, our primary goal is to ensure that the system functions correctly. Design refinements are considered once functionality is achieved.
 
-4. Our primary focus lies on functionality rather than aesthetics. While CodeEdit emphasizes creating visually appealing designs, our primary goal is to ensure that the system functions correctly. Design refinements are considered once functionality is achieved.
-
-5. Some of us have experienced situations where our ideas were initially deemed unsuitable. However, it has come to our attention that these ideas were eventually implemented weeks later due to an admin's suggestion.
+4. Some of us have experienced situations where our ideas were initially deemed unsuitable. However, it has come to our attention that these ideas were eventually implemented weeks later due to an admin's suggestion.
 
 These are some of the key differences in our approach to CodeEdit, aimed at enhancing project development and efficiency.
 
