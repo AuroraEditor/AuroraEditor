@@ -9,9 +9,14 @@
 import SwiftUI
 import os
 
+/// Aurora Editor logger
+///
+/// Logger configuration:\
+/// subsystem: com.auroraeditor\
+/// category: Aurora Editor
 let Log = Logger( // swiftlint:disable:this identifier_name
     subsystem: "com.auroraeditor",
-    category: "AuroraEditor"
+    category: "Aurora Editor"
 )
 
 extension View {
