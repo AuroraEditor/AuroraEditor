@@ -76,7 +76,7 @@ public struct GitCloneView: View {
                 }
             }
         } catch {
-            Log.error("Failed to find main branch name.")
+            Log.fault("Failed to find main branch name.")
         }
     }
 
@@ -99,7 +99,7 @@ public struct GitCloneView: View {
                 }
             }
         } catch {
-            Log.error("Failed to find branches.")
+            Log.fault("Failed to find branches.")
         }
     }
 

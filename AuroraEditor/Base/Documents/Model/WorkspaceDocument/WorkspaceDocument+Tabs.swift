@@ -99,7 +99,7 @@ extension WorkspaceDocument {
                     )
                 }
             } catch let err {
-                Log.error("\(err)")
+                Log.fault("\(err)")
             }
         }
     }

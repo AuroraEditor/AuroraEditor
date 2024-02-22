@@ -106,7 +106,7 @@ public final class ExtensionsManager {
                     Log.info("Registered \(file)")
                 } else {
                     Log.warning("Failed to init() \(file)")
-                    Log.error("\(file) is compiled for a different version of AuroraEditor.")
+                    Log.fault("\(file) is compiled for a different version of AuroraEditor.")
                     auroraMessageBox(
                         type: .critical,
                         message: "\(file) is compiled for a different version of AuroraEditor.\n" +
@@ -115,7 +115,7 @@ public final class ExtensionsManager {
                 }
             }
         } catch {
-            Log.error("Error while loading plugins \(error.localizedDescription)")
+            Log.fault("Error while loading plugins \(error.localizedDescription)")
             return
         }
     }
@@ -136,7 +136,7 @@ public final class ExtensionsManager {
         do {
             try bundle.preflight()
         } catch {
-            Log.error("Preflight \(path), \(error)")
+            Log.fault("Preflight \(path), \(error)")
             return nil
         }
 

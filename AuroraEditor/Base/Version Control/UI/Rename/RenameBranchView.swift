@@ -100,7 +100,7 @@ struct RenameBranchView: View {
                                              newName: newBranchName)
                             dismiss()
                         } catch {
-                            Log.error("Unable to rename current branch.")
+                            Log.fault("Unable to rename current branch.")
                         }
                     } label: {
                         Text("Rename")

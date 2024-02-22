@@ -140,7 +140,7 @@ class AuroraEditorConfig {
             return value
         }
 
-        Log.error("There is no value for \(value.rawValue) for file \(file)")
+        Log.fault("There is no value for \(value.rawValue) for file \(file)")
         return ""
     }
 

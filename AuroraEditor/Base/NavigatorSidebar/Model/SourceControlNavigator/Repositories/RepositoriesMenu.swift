@@ -95,7 +95,7 @@ final class RepositoriesMenu: NSMenu {
 
             workspace?.data.commitHash = commitHash
         } catch {
-            Log.error("Unable to fetch commits for branch: \(branch.name)")
+            Log.fault("Unable to fetch commits for branch: \(branch.name)")
         }
 
         workspace?.data.showTagCreationSheet.toggle()
@@ -135,10 +135,10 @@ final class RepositoriesMenu: NSMenu {
                                          branchName: branch.name) {
                     self.outlineView.reloadData()
                 } else {
-                    Log.error("Failed to delete branch \(branch.name)")
+                    Log.fault("Failed to delete branch \(branch.name)")
                 }
             } catch {
-                Log.error("Failed to delete branch \(branch.name)")
+                Log.fault("Failed to delete branch \(branch.name)")
             }
         }
     }
@@ -156,7 +156,7 @@ final class RepositoriesMenu: NSMenu {
 
             return currentBranch == branch.name
         } catch {
-            Log.error("Failed to find current branch name.")
+            Log.fault("Failed to find current branch name.")
             return false
         }
     }

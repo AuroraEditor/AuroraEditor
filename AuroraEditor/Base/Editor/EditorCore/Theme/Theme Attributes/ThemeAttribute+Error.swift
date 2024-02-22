@@ -11,6 +11,6 @@ import Foundation
 extension ThemeAttribute {
 
     func error(_ details: String = "") {
-        Log.error("Failed to apply ThemeAttribute '\(key)'. \(details)")
+        Log.fault("Failed to apply ThemeAttribute '\(key)'. \(details)")
     }
 }

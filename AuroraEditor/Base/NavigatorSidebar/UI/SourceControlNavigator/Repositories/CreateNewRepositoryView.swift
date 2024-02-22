@@ -76,7 +76,7 @@ struct CreateNewRepositoryView: View {
                         repositoryModel.isGitRepository = Check().checkIfProjectIsRepo(workspaceURL: projectPath)
                         repositoryModel.openGitCreationSheet.toggle()
                     } catch {
-                        Log.error("Unable to create a repo for project")
+                        Log.fault("Unable to create a repo for project")
                     }
                 } label: {
                     Text("Create Repository")

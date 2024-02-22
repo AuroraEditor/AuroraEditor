@@ -196,7 +196,7 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         do {
             try saveSelectionState()
         } catch {
-            Log.error("Couldn't save selection state from user defaults")
+            Log.fault("Couldn't save selection state from user defaults")
         }
 
         selectionState.selectedId = nil

@@ -24,7 +24,7 @@ class GrammarJsonLoader {
                 let data = try Data(contentsOf: url)
                 return grammarFromJson(jsonStr: String(decoding: data, as: UTF8.self))
             } catch {
-                Log.error("\(error)")
+                Log.fault("\(error)")
             }
         } else {
             Log.info("Json not found")
@@ -41,7 +41,7 @@ class GrammarJsonLoader {
             let data = try Data(contentsOf: url)
             return grammarFromJson(jsonStr: String(decoding: data, as: UTF8.self))
         } catch {
-            Log.error("\(error)")
+            Log.fault("\(error)")
         }
         return nil
     }

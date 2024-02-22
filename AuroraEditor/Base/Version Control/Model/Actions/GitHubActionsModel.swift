@@ -98,7 +98,7 @@ class GitHubActions: ObservableObject {
                 DispatchQueue.main.async {
                     self.state = .error
                 }
-                Log.error("\(error)")
+                Log.fault("\(error)")
             }
         })
     }
@@ -141,7 +141,7 @@ class GitHubActions: ObservableObject {
                 DispatchQueue.main.async {
                     self.workflowRunState = .error
                 }
-                Log.error("\(error)")
+                Log.fault("\(error)")
             }
 
         })
@@ -190,7 +190,7 @@ class GitHubActions: ObservableObject {
                 DispatchQueue.main.async {
                     self.jobsState = .error
                 }
-                Log.error("\(error)")
+                Log.fault("\(error)")
             }
         })
     }
@@ -199,7 +199,7 @@ class GitHubActions: ObservableObject {
                            enableDebugging: Bool,
                            completion: @escaping (Result<String, Error>) -> Void) {
         guard !jobId.isEmpty else {
-            Log.error("No job id provided")
+            Log.fault("No job id provided")
             return
         }
 
@@ -219,7 +219,7 @@ class GitHubActions: ObservableObject {
                 Log.debug("Succeffully Re-Run job: \(jobId)")
                 completion(.success("Succeffully Re-Run job: \(jobId)"))
             case .failure(let error):
-                Log.error("\(error)")
+                Log.fault("\(error)")
                 completion(.failure(error))
             }
         })
@@ -237,7 +237,7 @@ class GitHubActions: ObservableObject {
             case .success:
                 Log.debug("Succeffully Downloaded Workflow Logs for: \(jobId)")
             case .failure(let error):
-                Log.error("\(error)")
+                Log.fault("\(error)")
             }
         })
     }
@@ -266,7 +266,7 @@ class GitHubActions: ObservableObject {
             }
             self.objectWillChange.send()
         } catch {
-            Log.error("Failed to get project remote URL.")
+            Log.fault("Failed to get project remote URL.")
             DispatchQueue.main.async {
                 self.state = .repoFailure
                 self.objectWillChange.send()

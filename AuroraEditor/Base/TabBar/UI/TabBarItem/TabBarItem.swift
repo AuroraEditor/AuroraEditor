@@ -118,7 +118,7 @@ struct TabBarItem: View {
         }
         .onChange(of: isActive, perform: { newValue in
             for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-                Log.info(id, newValue ? "didActivateTab" : "didDeactivateTab")
+                Log.info("\(id), \(newValue ? "didActivateTab" : "didDeactivateTab")")
                 AEExt.respond(
                     action: newValue ? "didActivateTab" : "didDeactivateTab",
                     parameters: [

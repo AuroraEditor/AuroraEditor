@@ -125,7 +125,7 @@ class AuroraNetworking {
                         completionHandler(
                             .success(sitedata)
                         )
-                        return Log.debug("[\(function)] OK")
+                        return Log.debug("[\(function)] HTTP OK")
                     default:
                         return completionHandler(
                             .failure(
@@ -348,7 +348,7 @@ class AuroraNetworking {
                     }
                 }
             } catch {
-                Log.error("\(error.localizedDescription)")
+                Log.fault("\(error.localizedDescription)")
             }
         }
     }

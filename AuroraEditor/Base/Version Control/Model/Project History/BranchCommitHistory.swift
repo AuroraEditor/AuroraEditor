@@ -59,7 +59,7 @@ final class BranchCommitHistory: Equatable, Identifiable, TabBarItemRepresentabl
                 do {
                     try self.reloadProjectHistory()
                 } catch {
-                    Log.error("Failed to get commits")
+                    Log.fault("Failed to get commits")
                 }
             }
         }

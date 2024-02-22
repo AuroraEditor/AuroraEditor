@@ -69,7 +69,7 @@ class NotificationsModel: ObservableObject, INotificationsModel {
         // the notification doesn't already exist. If it does, for whatever reason, we close
         // the notification and remove it from the list. If it does not exist, we continue as normal.
         if hasDuplicateNotification(notification: notification) {
-            Log.error("Notification already exists")
+            Log.fault("Notification already exists")
             return
         }
 

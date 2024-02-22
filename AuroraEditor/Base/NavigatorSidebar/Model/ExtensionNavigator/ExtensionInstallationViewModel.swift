@@ -52,11 +52,11 @@ final class ExtensionInstallationViewModel: ObservableObject {
                         self.extensions = extensions
                     }
                 } catch {
-                    Log.error("\(error)")
+                    Log.fault("\(error)")
                 }
             case .failure(let failure):
                 self.state = .error
-                Log.error("\(failure)")
+                Log.fault("\(failure)")
             }
 
         })

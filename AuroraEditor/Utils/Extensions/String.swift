@@ -129,7 +129,7 @@ extension String {
                 String(text[Range($0.range, in: text)!])
             }
         } catch let error {
-            Log.error("invalid regex: \(error.localizedDescription)")
+            Log.fault("invalid regex: \(error.localizedDescription)")
             return []
         }
     }

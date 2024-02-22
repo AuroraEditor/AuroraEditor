@@ -30,7 +30,7 @@ class ThemeJsonLoader {
                 let data = try Data(contentsOf: url)
                 return themeFromVscJson(jsonStr: String(decoding: data, as: UTF8.self))
             } catch {
-                Log.error("\(error)")
+                Log.fault("\(error)")
             }
         } else {
             Log.info("Json not found")

@@ -30,7 +30,7 @@ public final class GitUIModel: ObservableObject {
         do {
             try gitClient.stashChanges(message: message ?? "")
         } catch {
-            Log.error("Failed to stash changes!")
+            Log.fault("Failed to stash changes!")
         }
     }
 }

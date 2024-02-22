@@ -67,7 +67,7 @@ class EditorAccountModel: ObservableObject {
 
                 }
             case .failure(let failure):
-                Log.error("\(failure)")
+                Log.fault("\(failure)")
             }
         })
     }
@@ -102,7 +102,7 @@ class EditorAccountModel: ObservableObject {
                     successCallback()
                 }
             case .failure(let error):
-                Log.error("\(error)")
+                Log.fault("\(error)")
             }
         }
     }
@@ -138,7 +138,7 @@ class EditorAccountModel: ObservableObject {
                     successCallback()
                 }
             case .failure(let error):
-                Log.error("\(error)")
+                Log.fault("\(error)")
             }
         }
     }
@@ -174,7 +174,7 @@ class EditorAccountModel: ObservableObject {
                     successCallback()
                 }
             case .failure(let error):
-                Log.error("\(error)")
+                Log.fault("\(error)")
             }
         }
     }
@@ -211,7 +211,7 @@ class EditorAccountModel: ObservableObject {
                     successCallback()
                 }
             case .failure(let error):
-                Log.error("\(error)")
+                Log.fault("\(error)")
             }
         }
     }

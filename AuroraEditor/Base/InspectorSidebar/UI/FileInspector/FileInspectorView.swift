@@ -124,7 +124,7 @@ struct FileInspectorView: View {
                                         .frame(width: 11, height: 11)
                                         .onTapGesture {
                                             guard let url = URL(string: "file://\(inspectorModel.fileURL)") else {
-                                                Log.error("Failed to decode")
+                                                Log.fault("Failed to decode")
                                                 return
                                             }
 
@@ -369,7 +369,7 @@ struct FileInspectorView: View {
             try fileManager.moveItem(atPath: inspectorModel.fileURL,
                                      toPath: fileName)
         } catch let error as NSError {
-            Log.error("Ooops! Something went wrong: \(error),\n\(fileName)")
+            Log.fault("Ooops! Something went wrong: \(error),\n\(fileName)")
         }
     }
 }

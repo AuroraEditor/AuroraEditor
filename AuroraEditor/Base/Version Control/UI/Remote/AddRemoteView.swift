@@ -64,7 +64,7 @@ struct AddRemoteView: View {
                                           url: remoteUrl)
                             dismiss()
                         } catch {
-                            Log.error("Unable to add exisiting remote.")
+                            Log.fault("Unable to add exisiting remote.")
                         }
                     } label: {
                         Text("Add")

@@ -70,7 +70,7 @@ struct CreateNewTagView: View {
 
                             dismiss()
                         } catch {
-                            Log.error("Unable to create tag...")
+                            Log.fault("Unable to create tag...")
                         }
                     } label: {
                         Text("Create")

@@ -157,7 +157,7 @@ public class FeedbackModel: ObservableObject {
                     string: "https://github.com/AuroraEditor/AuroraEditor/issues/" +
                     "new?title=\(safeTitle)&body=\(safeBody)"
                   ) else {
-                Log.error("Failed to generate URL")
+                Log.fault("Failed to generate URL")
                 return
             }
 
@@ -187,7 +187,7 @@ public class FeedbackModel: ObservableObject {
                 Log.info("\(issue.number)")
             case .failure(let error):
                 self.failedToSubmit.toggle()
-                Log.error("\(error)")
+                Log.fault("\(error)")
             }
         }
     }

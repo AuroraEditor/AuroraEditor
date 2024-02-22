@@ -218,7 +218,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     private func checkForFilesToOpen() {
         // Access UserDefaults with a specific suite name.
         guard let defaults = UserDefaults(suiteName: "com.auroraeditor.shared") else {
-            Log.error("Failed to get/init shared defaults")
+            Log.fault("Failed to get/init shared defaults")
             return
         }
 
