@@ -32,8 +32,9 @@ struct SourceControlNavigatorView: View {
             VStack {
 
                 SegmentedControl($selectedSection,
-                                 // swiftlint:disable:next line_length
-                                 options: doesUserHaveGitAccounts() ? ["Changes", "Repositories", "Actions"] : ["Changes", "Repositories"],
+                                 options: doesUserHaveGitAccounts()
+                                    ? ["Changes", "Repositories", "Actions"]
+                                    : ["Changes", "Repositories"],
                                  prominent: true)
                 .frame(maxWidth: .infinity)
                 .frame(height: 27)
