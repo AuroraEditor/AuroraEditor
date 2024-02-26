@@ -119,7 +119,7 @@ struct NavigatorSidebar: View {
         VStack {
             switch selections[toolbar] {
             case 0: ProjectNavigator()
-            case 1: SourceControlNavigatorView()
+            case 1: SourceControlNavigatorView(workspace: workspace)
             case 2: FindNavigator(state: workspace.searchState ?? .init(workspace))
             case 5: NotificationsNavigatorView()
             case 6: HierarchyNavigator()
