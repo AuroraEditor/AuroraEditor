@@ -293,11 +293,11 @@ jobs:
           file_size_bytes=${{ steps.calculate_size.outputs.file_size_bytes }}
 
           if [ "${{ github.ref_name }}" == "main" ]; then
-            echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/build/main/AuroraEditor.zip\", \"size\": \"$file_size_bytes\"}" > app_info.json
+            echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/build-editor/main/AuroraEditor.zip\", \"size\": \"$file_size_bytes\"}" > app_info.json
           elif [ "${{ github.ref_name }}" == "beta" ]; then
-            echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/build/beta/AuroraEditor.zip\", \"size\": \"$file_size_bytes\"}" > app_info.json
+            echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/build-editor/beta/AuroraEditor.zip\", \"size\": \"$file_size_bytes\"}" > app_info.json
           elif [ "${{ github.ref_name }}" == "development" ]; then
-            echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/build/development/AuroraEditor.zip\", \"size\": \"$file_size_bytes\"}" > app_info.json
+            echo "{\"versionCode\": \"$version_code\", \"versionName\": \"$version_name\", \"sha256sum\": \"$sha256sum\", \"url\": \"https://nightly.link/AuroraEditor/AuroraEditor/workflows/build-editor/development/AuroraEditor.zip\", \"size\": \"$file_size_bytes\"}" > app_info.json
           else 
             echo "::error::Something went wrong, we are in branch ${{ github.ref_name }}"
             exit 1
