@@ -188,8 +188,9 @@ public struct ToolbarBranchPicker: View {
         }
 
         var branchNames: [String] {
-            // FIXME: Value of type 'GitClient' has no member 'allBranches'
-            gitClient?.allBranches.map({ $0.name }).filter { $0 != currentBranch } ?? []
+            // FIXME: Enable this
+//            gitClient?.allBranches.map({ $0.name }).filter { $0 != currentBranch } ?? []
+            return []
         }
     }
 }

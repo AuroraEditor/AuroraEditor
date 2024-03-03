@@ -64,7 +64,6 @@ public final class RepositoryModel: ObservableObject {
         // reponame must not be nil or ""
         guard repoName != nil && !repoName!.isEmpty else { return }
 
-        // FIXME: Value of type 'GitClient' has no member 'allBranches'
         let branchNames: [String] = gitClient?.allBranches.map { $0.name } ?? []
         let currentBranchName = (try? gitClient?.getCurrentBranchName()) ?? ""
         let currentBranchIndex = branchNames.firstIndex(of: currentBranchName) ?? -1
