@@ -244,8 +244,7 @@ class GitHubActions: ObservableObject {
 
     func getRepoInformation() {
         do {
-            let remote = try getRemoteURL(directoryURL: workspace.workspaceURL(),
-                                                   name: "origin")
+            let remote = try Remote().getRemoteURL(directoryURL: workspace.workspaceURL(),                                                   name: "origin")
             let remoteURL = URL(string: remote!)
 
             // As caution we check if the origin contains git@ so we can fetch the repo

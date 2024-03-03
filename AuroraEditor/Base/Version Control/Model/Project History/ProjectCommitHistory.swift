@@ -11,92 +11,109 @@ import Version_Control
 
 final class ProjectCommitHistory: Equatable, Identifiable, TabBarItemRepresentable, ObservableObject {
 
-     /// The state of the current Project Commit History View
-     enum State {
-         case loading
-         case error
-         case success
-         case empty
-     }
+    /// The state of the current Project Commit History View
+    enum State {
+        case loading
+        case error
+        case success
+        case empty
+    }
 
-     @Published
-     var state: State = .loading
+    @Published
+    var state: State = .loading
 
-     let workspace: WorkspaceDocument
+    let workspace: WorkspaceDocument
 
-     static func == (lhs: ProjectCommitHistory, rhs: ProjectCommitHistory) -> Bool {
-         guard lhs.tabID == rhs.tabID else { return false }
-         guard lhs.title == rhs.title else { return false }
-         return true
-     }
+    static func == (lhs: ProjectCommitHistory, rhs: ProjectCommitHistory) -> Bool {
+        guard lhs.tabID == rhs.tabID else { return false }
+        guard lhs.title == rhs.title else { return false }
+        return true
+    }
 
-     public var tabID: TabBarItemID {
-         .projectHistory(workspace.workspaceURL().lastPathComponent)
-     }
+    public var tabID: TabBarItemID {
+        .projectHistory(workspace.workspaceURL().lastPathComponent)
+    }
 
-     public var title: String {
-         workspace.workspaceURL().lastPathComponent
-     }
+    public var title: String {
+        workspace.workspaceURL().lastPathComponent
+    }
 
-     public var icon: Image {
-         Image(systemName: "clock")
-     }
+    public var icon: Image {
+        Image(systemName: "clock")
+    }
 
-     public var iconColor: Color {
-         return .secondary
-     }
+    public var iconColor: Color {
+        return .secondary
+    }
 
-     @Published
-     var projectHistory: [CommitHistory] = []
+    @Published
+    var projectHistory: [Commit] = []
 
-     @Published
-     var gitHistoryDate: CommitDate? {
-         didSet {
-             DispatchQueue.main.async {
-                 self.state = .loading
-                 do {
-                     try self.reloadProjectHistory()
-                 } catch {
-                     Log.fault("Failed to get commits")
-                 }
-             }
-         }
-     }
+    @Published
+    var gitHistoryDate: CommitDate? {
+        didSet {
+            DispatchQueue.main.async {
+                self.state = .loading
+                do {
+                    try self.reloadProjectHistory()
+                } catch {
+                    Log.error("Failed to get commits")
+                }
+            }
+        }
+    }
 
-     init(workspace: WorkspaceDocument) {
-         self.workspace = workspace
+    init(workspace: WorkspaceDocument) {
+        self.workspace = workspace
 
-         DispatchQueue.main.async {
-             self.state = .loading
-         }
+        DispatchQueue.main.async {
+            self.state = .loading
+        }
 
-         DispatchQueue.main.async {
-             do {
-                 try self.reloadProjectHistory()
-             } catch {
-                 DispatchQueue.main.async {
-                     self.state = .empty
-                 }
+        DispatchQueue.main.async {
+            do {
+                try self.reloadProjectHistory()
+            } catch {
+                DispatchQueue.main.async {
+                    self.state = .empty
+                }
 
-                 self.projectHistory = []
-             }
-         }
-     }
+                self.projectHistory = []
+            }
+        }
+    }
 
-     func reloadProjectHistory() throws {
-         let projectHistory = try getCommits(directoryURL: workspace.workspaceURL(),
-                                             limit: 150,
-                                             commitsSince: gitHistoryDate)
-         if projectHistory.isEmpty {
-             DispatchQueue.main.async {
-                 self.state = .empty
-             }
-         } else {
-             DispatchQueue.main.async {
-                 self.state = .success
-             }
-         }
+    func reloadProjectHistory() throws {
+        var additionArgs: [String] = []
 
-         self.projectHistory = projectHistory
-     }
- }
+        if gitHistoryDate != nil {
+            switch gitHistoryDate {
+            case .lastDay:
+                additionArgs.append("--since=\"24 hours ago\"")
+            case .lastSevenDays:
+                additionArgs.append("--since=\"7 days ago\"")
+            case .lastThirtyDays:
+                additionArgs.append("--since=\"30 days ago\"")
+            case .none:
+                additionArgs = []
+            }
+        }
+
+        let projectHistory = try GitLog().getCommits(directoryURL: workspace.workspaceURL(),
+                                                     revisionRange: nil,
+                                                     limit: 150,
+                                                     skip: 0,
+                                                     additionalArgs: additionArgs)
+        if projectHistory.isEmpty {
+            DispatchQueue.main.async {
+                self.state = .empty
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.state = .success
+            }
+        }
+
+        self.projectHistory = projectHistory
+    }
+    }

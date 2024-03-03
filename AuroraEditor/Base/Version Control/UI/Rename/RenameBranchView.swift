@@ -96,11 +96,13 @@ struct RenameBranchView: View {
                     Button {
                         do {
                             try Branch().renameBranch(directoryURL: workspace.workspaceURL(),
-                                             branch: currentBranchName,
-                                             newName: newBranchName)
+                                                      branch: GitBranch(name: currentBranchName,
+                                                                        type: .local,
+                                                                        ref: ""),
+                                                      newName: newBranchName)
                             dismiss()
                         } catch {
-                            Log.fault("Unable to rename current branch.")
+                            Log.error("Unable to rename current branch.")
                         }
                     } label: {
                         Text("Rename")
