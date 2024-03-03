@@ -51,18 +51,21 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
     @Published var publishedAllBranchNames: [String] = []
 
     public func getCurrentBranchName() throws -> String {
-        let output = try shellClient.run(
-            "cd \(directoryURL.relativePath.escapedWhiteSpaces());" +
-            "git rev-parse --abbrev-ref HEAD"
-        )
-            .replacingOccurrences(of: "\n", with: "")
-        if output.contains("fatal: not a git repository") {
-            throw GitClientError.notGitRepository
+        do {
+            let output = try shellClient.run(
+                "cd \(directoryURL.relativePath.escapedWhiteSpaces());" +
+                "git branch --show-current"
+            ).replacingOccurrences(of: "\n", with: "")
+            guard !output.contains("fatal: not a git repository") else {
+                throw GitClientError.notGitRepository
+            }
+            currentBranchNameSubject.send(output)
+            publishedBranchName = output
+            objectWillChange.send()
+            return output
+        } catch {
+            throw error
         }
-        currentBranchNameSubject.send(output)
-        publishedBranchName = output
-        objectWillChange.send()
-        return output
     }
 
     public func getGitBranches(allBranches: Bool = false) throws -> [String] {
