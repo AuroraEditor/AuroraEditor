@@ -120,10 +120,10 @@ struct ProjectCommitHistoryView: View {
                         }
                         Divider()
                         Button("View on Host...") {
-                            //                            if let commitRemoteURL = commit.commitBaseURL?.absoluteString {
-                            //                                let commitURL = "\(commitRemoteURL)/\(commit.commitHash)"
-                            //                                openCommit(URL(string: commitURL)!)
-                            //                            }
+                            // if let commitRemoteURL = commit.commitBaseURL?.absoluteString {
+                            // let commitURL = "\(commitRemoteURL)/\(commit.commitHash)"
+                            // openCommit(URL(string: commitURL)!)
+                            // }
                         }
                         Divider()
                         Button("Switch to \"\(commit.sha)\"...") {}.disabled(true)

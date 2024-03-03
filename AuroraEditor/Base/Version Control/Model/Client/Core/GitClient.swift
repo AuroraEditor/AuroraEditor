@@ -162,7 +162,6 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         if output.contains("fatal: not a git repository") {
             throw GitClientError.notGitRepository
         } else if !output.contains("Switched to branch") && !output.contains("Switched to a new branch") {
-            Log.error(output)
             throw GitClientError.outputError(output)
         }
         _ = try? getCurrentBranchName() // update the current branch
