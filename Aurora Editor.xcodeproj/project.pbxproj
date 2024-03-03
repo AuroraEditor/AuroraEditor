@@ -469,6 +469,7 @@
 		2BDFA91828D10B9200980385 /* FileCreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA91228D10B9200980385 /* FileCreationModel.swift */; };
 		2BDFA91928D10B9200980385 /* NewFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA91328D10B9200980385 /* NewFileModel.swift */; };
 		2BDFA91A28D10B9200980385 /* FileSelectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA91428D10B9200980385 /* FileSelectionItem.swift */; };
+		2BE19D402B94B16300B6FCD8 /* CommitMessageFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE19D3F2B94B16300B6FCD8 /* CommitMessageFormatter.swift */; };
 		2BE487EF28245162003F3F64 /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE487EE28245162003F3F64 /* FinderSync.swift */; };
 		2BE487F428245162003F3F64 /* Open With Aurora Editor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BE487EC28245162003F3F64 /* Open With Aurora Editor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */; };
@@ -1147,6 +1148,7 @@
 		2BDFA91228D10B9200980385 /* FileCreationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileCreationModel.swift; sourceTree = "<group>"; };
 		2BDFA91328D10B9200980385 /* NewFileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFileModel.swift; sourceTree = "<group>"; };
 		2BDFA91428D10B9200980385 /* FileSelectionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSelectionItem.swift; sourceTree = "<group>"; };
+		2BE19D3F2B94B16300B6FCD8 /* CommitMessageFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitMessageFormatter.swift; sourceTree = "<group>"; };
 		2BE487EC28245162003F3F64 /* Open With Aurora Editor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Open With Aurora Editor.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE487EE28245162003F3F64 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
 		2BE487F028245162003F3F64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2948,6 +2950,7 @@
 			isa = PBXGroup;
 			children = (
 				2BF915DE2AC03D5800A10273 /* SourceControlRelatedMenu.swift */,
+				2BE19D3F2B94B16300B6FCD8 /* CommitMessageFormatter.swift */,
 				20E8748F28A3ABA8002CE758 /* SourceControlController.swift */,
 				20E8748D28A3AB9B002CE758 /* SourceControlMenu.swift */,
 				201169E62837B5CA00F92B46 /* SourceControlModel.swift */,
@@ -4538,6 +4541,7 @@
 				934D2F0828C4EC7E0034E5C8 /* StatusItem.swift in Sources */,
 				D7E201AE27E8B3C000CB86D0 /* String+Ranges.swift in Sources */,
 				20FACF812AB60F3C00B09012 /* INotificationHandle.swift in Sources */,
+				2BE19D402B94B16300B6FCD8 /* CommitMessageFormatter.swift in Sources */,
 				20212683289BF84B00246DD7 /* String.swift in Sources */,
 				2093CDD2289AA507003A88DD /* SwiftTerm+Color+Init.swift in Sources */,
 				93B1D10C28CD907A005A8C24 /* TabBar+Drag.swift in Sources */,
