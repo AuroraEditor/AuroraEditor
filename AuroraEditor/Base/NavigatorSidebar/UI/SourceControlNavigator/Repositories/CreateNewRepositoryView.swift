@@ -71,7 +71,7 @@ struct CreateNewRepositoryView: View {
                         guard let projectPath = repositoryModel.workspace.fileSystemClient?.folderURL else {
                             return
                         }
-                        try initGitRepository(directoryURL: projectPath)
+                        try Git().initGitRepository(directoryURL: projectPath)
 
                         repositoryModel.isGitRepository = Check().checkIfProjectIsRepo(workspaceURL: projectPath)
                         repositoryModel.openGitCreationSheet.toggle()

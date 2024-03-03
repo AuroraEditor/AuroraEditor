@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Version_Control
 
 extension GitCloneView {
     func getPath(modifiable: inout String, saveName: String) -> String? {
@@ -124,59 +125,59 @@ extension GitCloneView {
                 branch: selectedBranch,
                 allBranches: allBranches
             ).sink(receiveCompletion: { result in
-                    switch result {
-                    case let .failure(error):
-                        switch error {
-                        case .notGitRepository:
-                            showAlert(alertMsg: "Error", infoText: "Not a git repository")
-                        case let .outputError(error):
-                            showAlert(alertMsg: "Error", infoText: error)
-                        default:
-                            showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
-                        }
-                    case .finished: break
+                switch result {
+                case let .failure(error):
+                    switch error {
+                    case .notGitRepository:
+                        showAlert(alertMsg: "Error", infoText: "Not a git repository")
+                    case let .outputError(error):
+                        showAlert(alertMsg: "Error", infoText: error)
+                    default:
+                        showAlert(alertMsg: "Error", infoText: "Failed to decode URL")
                     }
-                }, receiveValue: { result in
-                    switch result {
-                    case .cloningInto:
-                        isCloning = true
-                    case let .countingProgress(progress):
-                        cloningStage = 0
-                        valueCloning = progress
-                        NSApplication.shared.setDockProgress(progress: 0.10 * Double(progress) / 100 + 0.0)
-                    case let .compressingProgress(progress):
-                        cloningStage = 1
-                        valueCloning = progress
-                        NSApplication.shared.setDockProgress(progress: 0.10 * Double(progress) / 100 + 0.10)
-                    case let .receivingProgress(progress):
-                        cloningStage = 2
-                        valueCloning = progress
-                        NSApplication.shared.setDockProgress(progress: 0.30 * Double(progress) / 100 + 0.20)
-                    case let .resolvingProgress(progress):
-                        cloningStage = 3
-                        valueCloning = progress
-                        NSApplication.shared.setDockProgress(progress: 0.50 * Double(progress) / 100 + 0.50)
-                        if progress >= 100 {
-                            cloningStage = 4
-                            cloneCancellable?.cancel()
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                                NSApplication.shared.removeDockProgress()
-                                isPresented = false
-                                // open the document
-                                let repoFileURL = URL(fileURLWithPath: repoPath)
-                                Log.info("Opening \(repoFileURL)")
-                                AuroraEditorDocumentController.shared.openDocument(
-                                    withContentsOf: repoFileURL,
-                                    display: true,
-                                    completionHandler: { _, _, _ in }
-                                )
-                                // add to recent projects
-                                RecentProjectsStore.shared.record(path: repoPath)
-                            })
-                        }
-                    case .other: break
+                case .finished: break
+                }
+            }, receiveValue: { result in
+                switch result {
+                case .cloningInto:
+                    isCloning = true
+                case let .countingProgress(progress):
+                    cloningStage = 0
+                    valueCloning = progress
+                    NSApplication.shared.setDockProgress(progress: 0.10 * Double(progress) / 100 + 0.0)
+                case let .compressingProgress(progress):
+                    cloningStage = 1
+                    valueCloning = progress
+                    NSApplication.shared.setDockProgress(progress: 0.10 * Double(progress) / 100 + 0.10)
+                case let .receivingProgress(progress):
+                    cloningStage = 2
+                    valueCloning = progress
+                    NSApplication.shared.setDockProgress(progress: 0.30 * Double(progress) / 100 + 0.20)
+                case let .resolvingProgress(progress):
+                    cloningStage = 3
+                    valueCloning = progress
+                    NSApplication.shared.setDockProgress(progress: 0.50 * Double(progress) / 100 + 0.50)
+                    if progress >= 100 {
+                        cloningStage = 4
+                        cloneCancellable?.cancel()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                            NSApplication.shared.removeDockProgress()
+                            isPresented = false
+                            // open the document
+                            let repoFileURL = URL(fileURLWithPath: repoPath)
+                            Log.info("Opening \(repoFileURL)")
+                            AuroraEditorDocumentController.shared.openDocument(
+                                withContentsOf: repoFileURL,
+                                display: true,
+                                completionHandler: { _, _, _ in }
+                            )
+                            // add to recent projects
+                            RecentProjectsStore.shared.record(path: repoPath)
+                        })
                     }
-                })
+                case .other: break
+                }
+            })
             checkBranches(dirUrl: dirUrl)
         } catch {
             showAlert(alertMsg: "Error", infoText: error.localizedDescription)
@@ -187,9 +188,8 @@ extension GitCloneView {
     private func checkBranches(dirUrl: URL) -> Bool {
         // Check if repo has only one branch, and if so, don't show the checkout page
         do {
-            let branches = try GitClient(directoryURL: dirUrl,
-                                              shellClient: shellClient).getGitBranches(allBranches: true)
-            let filtered = branches.filter { !$0.contains("HEAD") }
+            let branches: [GitBranch] = []
+            let filtered = branches.filter { !$0.ref.contains("HEAD") }
             if filtered.count > 1 {
                 return true
             }

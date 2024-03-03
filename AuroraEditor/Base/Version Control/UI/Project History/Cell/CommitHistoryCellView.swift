@@ -12,19 +12,19 @@ import Version_Control
 struct CommitHistoryCellView: View {
 
     @State
-    var commit: CommitHistory
+    var commit: Commit
 
     var body: some View {
         HStack {
-            Avatar().gitAvatar(authorEmail: commit.authorEmail)
+            Avatar().gitAvatar(authorEmail: commit.author.email)
 
             VStack(alignment: .leading, spacing: 3) {
                 HStack {
-                    Text(commit.author)
+                    Text(commit.author.name)
                         .font(.system(size: 11))
                         .fontWeight(.bold)
 
-                    if commit.isMerge ?? false {
+                    if commit.isMergeCommit {
                         HStack {
                             Image("git.merge")
                                 .foregroundColor(.secondary)
@@ -44,7 +44,7 @@ struct CommitHistoryCellView: View {
                     }
                 }
 
-                Text(commit.message)
+                Text(commit.summary)
                     .font(.system(size: 11))
                     .lineLimit(1)
             }
@@ -53,7 +53,7 @@ struct CommitHistoryCellView: View {
 
             VStack {
                 VStack(alignment: .trailing, spacing: 3) {
-                    Text(commit.hash)
+                    Text(commit.sha)
                         .font(.system(size: 10))
                         .background(
                             RoundedRectangle(cornerRadius: 3)
@@ -63,28 +63,13 @@ struct CommitHistoryCellView: View {
                         )
                         .padding(.trailing, 5)
 
-                    Text(commit.date.relativeStringToNow())
-                        .font(.system(size: 11))
-                        .foregroundColor(.secondary)
+                    //                    Text(commit..relativeStringToNow())
+                    //                        .font(.system(size: 11))
+                    //                        .foregroundColor(.secondary)
                 }
                 .padding(.top, 1)
             }
         }
         .padding(.horizontal, 10)
-    }
-}
-
-struct CommitHistoryCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        CommitHistoryCellView(commit: CommitHistory(hash: "",
-                                                    commitHash: "",
-                                                    message: "",
-                                                    author: "Tihan-Nico Paxton",
-                                                    authorEmail: "",
-                                                    commiter: "",
-                                                    commiterEmail: "",
-                                                    remoteURL: URL(string: "github.com"),
-                                                    date: Date(),
-                                                    isMerge: true))
     }
 }

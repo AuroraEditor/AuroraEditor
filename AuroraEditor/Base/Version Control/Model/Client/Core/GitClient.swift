@@ -17,6 +17,24 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
     var directoryURL: URL
     var shellClient: ShellClient
 
+    /// The max number of recent branches to find.
+    private var recentBranchesLimit = 5
+
+    @Published
+    var pullWithRebase: Bool?
+
+    @Published
+    public var allBranches: [GitBranch] = []
+
+    @Published
+    var recentBranches: [GitBranch] = []
+
+    @Published
+    var defaultBranch: GitBranch?
+
+    @Published
+    var upstreamDefaultBranch: GitBranch?
+
     init(directoryURL: URL, shellClient: ShellClient) {
         self.directoryURL = directoryURL
         self.shellClient = shellClient
@@ -34,8 +52,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
             .eraseToAnyPublisher()
 
         _ = try? getCurrentBranchName()
-        _ = try? getGitBranches(allBranches: false)
-        _ = try? getGitBranches(allBranches: true)
+        loadBranches()
     }
 
     public var currentBranchName: AnyPublisher<String, Never>
@@ -51,31 +68,89 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
     @Published var publishedAllBranchNames: [String] = []
 
     public func getCurrentBranchName() throws -> String {
-        let output = try shellClient.run(
-            "cd \(directoryURL.relativePath.escapedWhiteSpaces());" +
-            "git rev-parse --abbrev-ref HEAD"
-        )
-            .replacingOccurrences(of: "\n", with: "")
-        if output.contains("fatal: not a git repository") {
+        let result = try GitShell().git(args: ["rev-parse", "--abbrev-ref", "HEAD"],
+                                        path: directoryURL,
+                                        name: #function)
+
+        if result.stdout.contains("fatal: not a git repository") {
             throw GitClientError.notGitRepository
         }
-        currentBranchNameSubject.send(output)
-        publishedBranchName = output
+        currentBranchNameSubject.send(result.stdout.replacingOccurrences(of: "\n", with: ""))
+        publishedBranchName = result.stdout.replacingOccurrences(of: "\n", with: "")
         objectWillChange.send()
-        return output
+        return result.stdout.replacingOccurrences(of: "\n", with: "")
     }
 
-    public func getGitBranches(allBranches: Bool = false) throws -> [String] {
-        let branches = try Branch().getBranches(allBranches, directoryURL: directoryURL)
-        if allBranches {
-            allBranchNamesSubject.send(branches)
-            publishedAllBranchNames = branches
-        } else {
-            branchNamesSubject.send(branches)
-            publishedBranchNames = branches
+    // MARK: - BRANCHES
+
+    public func loadBranches() {
+        let localAndRemoteBranches = try? Branch().getBranches(directoryURL: directoryURL)
+
+        // Chances are that the recent branches list will contain the default
+        // branch which we filter out in refreshRecentBranches. So grab one
+        // more than we need to account for that.
+        let recentBranchNames = try? Branch().getRecentBranches(directoryURL: directoryURL,
+                                                                limit: recentBranchesLimit + 1)
+
+        guard let localAndRemoteBranches = localAndRemoteBranches else {
+            return
         }
-        objectWillChange.send()
-        return branches
+
+        self.allBranches = BranchUtil().mergeRemoteAndLocalBranches(branches: localAndRemoteBranches)
+
+        // refreshRecentBranches is dependent on having a default branch
+        self.refreshDefaultBranch()
+        self.refreshRecentBranches(recentBranchNames: recentBranchNames)
+
+        self.checkPullWithRebase()
+    }
+
+    public func refreshDefaultBranch() {
+        do {
+            defaultBranch = try DefaultBranch().findDefaultBranch(directoryURL: directoryURL,
+                                                                  branches: allBranches,
+                                                                  defaultRemoteName: "")
+
+            let upstreamDefaultBranch = try Remote().getRemoteHEAD(directoryURL: directoryURL,
+                                                                   remote: "") ?? DefaultBranch().getDefaultBranch()
+
+            self.upstreamDefaultBranch = self.allBranches.first { branch in
+                return branch.type == .remote &&
+                branch.remoteName == "fewf" &&
+                branch.nameWithoutRemote == upstreamDefaultBranch
+            } ?? nil
+        } catch {
+            // Handle errors appropriately
+        }
+    }
+
+    private func refreshRecentBranches(recentBranchNames: [String]?) {
+        guard let recentBranchNames = recentBranchNames, !recentBranchNames.isEmpty else {
+            self.recentBranches = []
+            return
+        }
+
+        var branchesByName = [String: GitBranch]()
+
+        for branch in self.allBranches where branch.type == .local {
+            branchesByName[branch.name] = branch
+        }
+
+        var recentBranches = [GitBranch]()
+        for name in recentBranchNames {
+            if name == self.defaultBranch?.name {
+                continue
+            }
+
+            if let branch = branchesByName[name] {
+                recentBranches.append(branch)
+            }
+            if recentBranches.count >= recentBranchesLimit {
+                break
+            }
+        }
+
+        self.recentBranches = recentBranches
     }
 
     public func checkoutBranch(name: String) throws {
@@ -87,11 +162,12 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         if output.contains("fatal: not a git repository") {
             throw GitClientError.notGitRepository
         } else if !output.contains("Switched to branch") && !output.contains("Switched to a new branch") {
-            Log.fault("\(output)")
             throw GitClientError.outputError(output)
         }
         _ = try? getCurrentBranchName() // update the current branch
     }
+
+    // MARK: - PULL
 
     public func pull() throws {
         let output = try shellClient.run(
@@ -99,6 +175,28 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         )
         if output.contains("fatal: not a git repository") {
             throw GitClientError.notGitRepository
+        }
+    }
+
+    private func checkPullWithRebase() {
+        do {
+            if let result = try Config().getConfigValue(directoryURL: directoryURL,
+                                                        name: "pull.rebase") {
+                switch result {
+                case "":
+                    self.pullWithRebase = nil
+                case "true":
+                    self.pullWithRebase = true
+                case "false":
+                    self.pullWithRebase = false
+                default:
+                    Log.warning("Unexpected value found for pull.rebase in config: '\(result)'")
+                    // Ensure any previous value is purged from app state
+                    self.pullWithRebase = nil
+                }
+            }
+        } catch {
+
         }
     }
 
@@ -318,4 +416,4 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
             Log.info("Successfully commited with message \"\(message)\"")
         }
     }
-}
+} // swiftlint:disable:this file_length

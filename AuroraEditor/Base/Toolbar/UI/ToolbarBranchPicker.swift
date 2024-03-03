@@ -188,7 +188,9 @@ public struct ToolbarBranchPicker: View {
         }
 
         var branchNames: [String] {
-            ((try? gitClient?.getGitBranches(allBranches: false)) ?? []).filter { $0 != currentBranch }
+            // FIXME: Enable this
+//            gitClient?.allBranches.map({ $0.name }).filter { $0 != currentBranch } ?? []
+            return []
         }
     }
 }
