@@ -6,8 +6,6 @@
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
 //  Refactored by TAY KAI QUAN on 4 Sep 2022
-//
-//  This file originates from CodeEdit, https://github.com/CodeEditApp/CodeEdit
 
 import Foundation
 import Combine
@@ -54,7 +52,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
     public func getCurrentBranchName() throws -> String {
         let output = try shellClient.run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());" +
-            "git rev-parse --abbrev-ref HEAD"
+            "git branch --show-current"
         )
             .replacingOccurrences(of: "\n", with: "")
         if output.contains("fatal: not a git repository") {
