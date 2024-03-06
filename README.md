@@ -153,5 +153,5 @@ The Aurora Editor Logo is copyrighted by AuroraEditor and Aurora Company.
 <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=372771&amp;theme=light" alt="AuroraEditor | Product Hunt">
 </a>
 
-## Stars flow
-[![Star History Chart](https://api.star-history.com/svg?repos=auroraeditor/auroraeditor&type=Timeline)](https://star-history.com/#auroraeditor/auroraeditor&Timeline)
+## Stats
+![Alt](https://repobeats.axiom.co/api/embed/2ef1e222dc8117fc1afb2ff45d273756aa296647.svg "Repobeats analytics image")
