@@ -151,6 +151,8 @@ class JSSupport: ExtensionInterface {
     ///   - parameters: with parameters
     /// - Returns: response value from javascript
     func respond(action: String, parameters: [String: Any]) -> JSValue? {
+        jsLogger.debug("\(action)(\(Array(parameters.values)))")
+
         return context
             .objectForKeyedSubscript(action)?
             .call(withArguments: Array(parameters.values))

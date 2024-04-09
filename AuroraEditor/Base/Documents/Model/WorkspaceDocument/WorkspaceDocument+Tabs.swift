@@ -94,7 +94,7 @@ extension WorkspaceDocument {
                         parameters: [
                             "workspace": self.fileURL?.relativeString ?? "Unknown",
                             "file": item.url.relativeString,
-                            "contents": fileData ?? Data()
+                            "contents": String(data: fileData ?? Data(), encoding: .utf8) ?? ""
                         ]
                     )
                 }
