@@ -133,6 +133,7 @@ public final class ExtensionsManager {
             path: self.extensionsFolder.relativePath + "/" + directory + "/extension.js",
             workspace: workspace
         ) {
+            Log.info("Registered extension \(extensionName)")
             loadedExtensions[directory] = extensionInterface
         } else {
             Log.fault("Failed to load \(extensionName)")

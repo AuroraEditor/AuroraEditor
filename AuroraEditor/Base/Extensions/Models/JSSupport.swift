@@ -66,7 +66,7 @@ class JSSupport: ExtensionInterface {
         do {
             let content = try String(contentsOfFile: path)
 
-            if let value = context.evaluateScript(content),
+            if let value = context.evaluateScript(content + aeContextDidLoad),
                // If the value is not AEContext, it has failed to load
                // See `aeContextDidLoad` fore more information.
                value.toString() != "AEContext" {
