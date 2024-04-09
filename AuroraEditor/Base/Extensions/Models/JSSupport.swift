@@ -13,16 +13,9 @@ import AEExtensionKit
 
 /// This class is used to support JavaScript extensions in AuroraEditor.
 /// This class has no static function since we need to run a new instance for every extension.
-/// Usage:
-///
-///     let jssupport = JSSupport(WorkspaceDocument)` // to create a new instance.
-///     jssuport.register("MyExtension") // to register the extension.
 class JSSupport: ExtensionInterface {
     /// Create the os_log logger
-    var jsLogger = Logger(
-        subsystem: "com.auroraeditor.JSSupport",
-        category: "JSSupport"
-    )
+    var jsLogger: Logger
 
     /// The current JavaScript context where we are running in
     var context = JSContext()!
@@ -48,9 +41,11 @@ class JSSupport: ExtensionInterface {
     init?(name: String, path: String, workspace: WorkspaceDocument?) {
         // Set the extension name
         self.extensionName = name
+
+        // Set the workspace name
         self.workspace = workspace
 
-        // Rewrite jsLogger to use the extension name as category.
+        // Initialize jsLogger to use the extension name as category.
         jsLogger = Logger(
             subsystem: "com.auroraeditor.JSSupport",
             category: name
@@ -72,6 +67,8 @@ class JSSupport: ExtensionInterface {
             let content = try String(contentsOfFile: path)
 
             if let value = context.evaluateScript(content),
+               // If the value is not AEContext, it has failed to load
+               // See `aeContextDidLoad` fore more information.
                value.toString() != "AEContext" {
                 jsLogger.error("Extension \"\(self.extensionName)\" failed to load.")
                 return false
