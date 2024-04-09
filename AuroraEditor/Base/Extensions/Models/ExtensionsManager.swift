@@ -92,8 +92,9 @@ public final class ExtensionsManager {
             )
 
             for file in directory {
-                Log.info("Extension path: \(file + "/extension.js")")
-                if FileManager.default.fileExists(atPath: file + "/extension.js") {
+                if file.hasSuffix("JSext") {
+                    // TODO: Remove log.
+                    Log.info("\(file) is a JS extension, we should load it.")
                     loadJSExtension(at: file)
                 }
 
@@ -126,9 +127,22 @@ public final class ExtensionsManager {
         }
     }
 
-    private func loadJSExtension(at path: String) {
-        if let extensionInterface = JSSupport(name: "test-extension", workspace: workspace) {
-            loadedExtensions[path] = extensionInterface
+    private func loadJSExtension(at directory: String) {
+        Log.info("Loading JS Extension \(directory) now")
+        let extensionName = directory.replacingOccurrences(of: ".JSext", with: "")
+
+        if let extensionInterface = JSSupport(
+            name: extensionName,
+            path: self.extensionsFolder.relativePath + "/" + directory + "/extension.js",
+            workspace: workspace
+        ) {
+            loadedExtensions[directory] = extensionInterface
+        } else {
+            Log.fault("Failed to load \(extensionName)")
+            auroraMessageBox(
+                type: .critical,
+                message: "Failed to load \(extensionName)"
+            )
         }
     }
 

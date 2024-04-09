@@ -45,9 +45,10 @@ class JSSupport: ExtensionInterface {
 
     /// Initialize
     /// - Parameter workspace: workspace document
-    init?(name: String, workspace: WorkspaceDocument?) {
+    init?(name: String, path: String, workspace: WorkspaceDocument?) {
         // Set the extension name
-        extensionName = name
+        self.extensionName = name
+        self.workspace = workspace
 
         // Rewrite jsLogger to use the extension name as category.
         jsLogger = Logger(
@@ -59,28 +60,31 @@ class JSSupport: ExtensionInterface {
         registerJS()
 
         // Load the JS Extension
-        loadJSExtension()
+        if !loadJSExtension(path: path) {
+            return nil
+        }
     }
 
     /// Register JS Extension
     /// - Parameter script: extension path
-    public func loadJSExtension() {
-        if let path = Bundle.main.path(forResource: extensionName, ofType: "js") {
-            do {
-                let content = try String(contentsOfFile: path)
+    public func loadJSExtension(path: String) -> Bool {
+        do {
+            let content = try String(contentsOfFile: path)
 
-                if let value = context.evaluateScript(content),
-                    value.toString() != "AEContext" {
-                    jsLogger.error("Extension \"\(self.extensionName)\" failed to load.")
-                }
-            } catch {
-                jsLogger.error(
-                    "Could not read the contents of \"\(self.extensionName)\" (extension.js), Error: \(error)"
-                )
+            if let value = context.evaluateScript(content),
+               value.toString() != "AEContext" {
+                jsLogger.error("Extension \"\(self.extensionName)\" failed to load.")
+                return false
             }
-        } else {
-            jsLogger.error("Error extension \"\(self.extensionName)\" not found.")
+        } catch {
+            jsLogger.error(
+                "Could not read the contents of \"\(self.extensionName)\" (extension.js), Error: \(error)"
+            )
+
+            return false
         }
+
+        return true
     }
 
     func registerJS() {
