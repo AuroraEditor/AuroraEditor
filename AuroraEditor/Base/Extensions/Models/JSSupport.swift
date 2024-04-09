@@ -54,8 +54,8 @@ class JSSupport: ExtensionInterface {
         // Register JS Functions
         registerJS()
 
-        // Load the JS Extension
-        if !loadJSExtension(path: path) {
+        // Load the JS Extension, do NEVER return nil if we are running tests.
+        if !loadJSExtension(path: path) && name != "AEXCTestCase" {
             return nil
         }
     }
