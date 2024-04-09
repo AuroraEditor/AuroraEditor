@@ -93,8 +93,6 @@ public final class ExtensionsManager {
 
             for file in directory {
                 if file.hasSuffix("JSext") {
-                    // TODO: Remove log.
-                    Log.info("\(file) is a JS extension, we should load it.")
                     loadJSExtension(at: file)
                 }
 
