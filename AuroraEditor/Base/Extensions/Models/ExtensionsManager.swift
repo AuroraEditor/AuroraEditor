@@ -126,7 +126,6 @@ public final class ExtensionsManager {
     }
 
     private func loadJSExtension(at directory: String) {
-        Log.info("Loading JS Extension \(directory) now")
         let extensionName = directory.replacingOccurrences(of: ".JSext", with: "")
 
         if let extensionInterface = JSSupport(
