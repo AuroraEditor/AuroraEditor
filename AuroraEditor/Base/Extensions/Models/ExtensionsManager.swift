@@ -48,14 +48,13 @@ public final class ExtensionsManager {
             "Extensions",
             isDirectory: true
         )
-
-        loadPlugins()
     }
 
     /// Set workspace document
     /// - Parameter workspace: Workspace document
     func set(workspace: WorkspaceDocument) {
         self.workspace = workspace
+        loadPlugins()
     }
 
     /// Create an Aurora API Callback handler.
@@ -92,31 +91,44 @@ public final class ExtensionsManager {
                 atPath: extensionsFolder.relativePath
             )
 
-            for file in directory where file.hasSuffix("AEext") {
-                if let builder = self.loadBundle(path: file) {
-                    loadedExtensions[file] = builder.init().build(
-                        withAPI: AuroraEditorAPI(extensionId: "0", workspace: workspace ?? .init())
-                    )
+            for file in directory {
+                Log.info("Extension path: \(file + "/extension.js")")
+                if FileManager.default.fileExists(atPath: file + "/extension.js") {
+                    loadJSExtension(at: file)
+                }
 
-                    loadedExtensions[file]?.respond(
-                        action: "registerCallback",
-                        parameters: ["callback": auroraAPICallback(file: file)]
-                    )
+                if file.hasSuffix("AEext") {
+                    if let builder = self.loadBundle(path: file) {
+                        loadedExtensions[file] = builder.init().build(
+                            withAPI: AuroraEditorAPI(extensionId: "0", workspace: workspace ?? .init())
+                        )
 
-                    Log.info("Registered \(file)")
-                } else {
-                    Log.warning("Failed to init() \(file)")
-                    Log.fault("\(file) is compiled for a different version of AuroraEditor.")
-                    auroraMessageBox(
-                        type: .critical,
-                        message: "\(file) is compiled for a different version of AuroraEditor.\n" +
-                                "Please unload this plugin, or update it"
-                    )
+                        loadedExtensions[file]?.respond(
+                            action: "registerCallback",
+                            parameters: ["callback": auroraAPICallback(file: file)]
+                        )
+
+                        Log.info("Registered \(file)")
+                    } else {
+                        Log.warning("Failed to init() \(file)")
+                        Log.fault("\(file) is compiled for a different version of AuroraEditor.")
+                        auroraMessageBox(
+                            type: .critical,
+                            message: "\(file) is compiled for a different version of AuroraEditor.\n" +
+                            "Please unload this plugin, or update it"
+                        )
+                    }
                 }
             }
         } catch {
             Log.fault("Error while loading plugins \(error.localizedDescription)")
             return
+        }
+    }
+
+    private func loadJSExtension(at path: String) {
+        if let extensionInterface = JSSupport(name: "test-extension", workspace: workspace) {
+            loadedExtensions[path] = extensionInterface
         }
     }
 

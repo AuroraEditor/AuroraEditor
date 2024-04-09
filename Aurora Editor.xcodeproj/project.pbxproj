@@ -438,6 +438,8 @@
 		2B6CB09E2AFFA3B1001E4955 /* AEUpdateService.app in Resources */ = {isa = PBXBuildFile; fileRef = A01AB2D12ACC9EDA0029EDF0 /* AEUpdateService.app */; };
 		2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468438427DC76E200F8E88E /* AppDelegate.swift */; };
 		2B7AC06B282452FB0082A5B8 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7AC06A282452FB0082A5B8 /* Media.xcassets */; };
+		2B7C8CC62BC5B3160061DE0D /* JSSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */; };
+		2B7C8CC92BC5B3A10061DE0D /* AuroraJSSupportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7C8CC72BC5B3440061DE0D /* AuroraJSSupportTests.swift */; };
 		2B89F85428B13E9D007CB9C1 /* AuroraMessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */; };
 		2BCBAAC82927C41E00D4DFB2 /* BindingProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBAAC72927C41E00D4DFB2 /* BindingProxy.swift */; };
 		2BCBAACA2927C65500D4DFB2 /* View+isHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */; };
@@ -1117,6 +1119,8 @@
 		2B5CAC812B87E701006B6C66 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		2B71C0A32874AD61008E0859 /* AuroraProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraProject.swift; sourceTree = "<group>"; };
 		2B7AC06A282452FB0082A5B8 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSSupport.swift; sourceTree = "<group>"; };
+		2B7C8CC72BC5B3440061DE0D /* AuroraJSSupportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraJSSupportTests.swift; sourceTree = "<group>"; };
 		2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraMessageBox.swift; sourceTree = "<group>"; };
 		2BCBAAC72927C41E00D4DFB2 /* BindingProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingProxy.swift; sourceTree = "<group>"; };
 		2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+isHidden.swift"; sourceTree = "<group>"; };
@@ -2086,6 +2090,7 @@
 				20D837BE289A7ACD00D91D05 /* ExtensionsManager.swift */,
 				20D837C2289A7ACD00D91D05 /* Plugin.swift */,
 				20D837C0289A7ACD00D91D05 /* PluginRelease.swift */,
+				2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3193,6 +3198,7 @@
 			isa = PBXGroup;
 			children = (
 				2B11FF892AB0E8F4005B649C /* AuroraINITests.swift */,
+				2B7C8CC72BC5B3440061DE0D /* AuroraJSSupportTests.swift */,
 				2B53D1FB2B77A2250064114F /* AuroraEditorConfigTests.swift */,
 			);
 			path = "Aurora EditorTests";
@@ -4086,6 +4092,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B7C8CC92BC5B3A10061DE0D /* AuroraJSSupportTests.swift in Sources */,
 				2B53D1FC2B77A2250064114F /* AuroraEditorConfigTests.swift in Sources */,
 				2B11FF8A2AB0E8F4005B649C /* AuroraINITests.swift in Sources */,
 			);
@@ -4565,6 +4572,7 @@
 				93D5F5D328CE064700286EBD /* TabHierarchyView.swift in Sources */,
 				93D5F5D528CE074100286EBD /* TabHierarchyViewController.swift in Sources */,
 				2B04575128E6FFE300024F2D /* TabStopsThemeAttribute.swift in Sources */,
+				2B7C8CC62BC5B3160061DE0D /* JSSupport.swift in Sources */,
 				2B04574F28E6FFE300024F2D /* TailIndentThemeAttribute.swift in Sources */,
 				9362B21628EC734200523626 /* TerminalColors.swift in Sources */,
 				2093CC9D289AA001003A88DD /* TerminalEmulatorView+Coordinator.swift in Sources */,
