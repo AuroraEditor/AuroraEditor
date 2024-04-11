@@ -105,7 +105,7 @@ struct WorkspaceView: View {
             if let customTab = workspace.selectionState.selected as? ExtensionCustomViewModel {
                 ExtensionOrWebView(view: extensionView.storage.first(where: {
                     $0.key == customTab.id
-                })?.value)
+                })?.value, sender: customTab.sender)
             }
         }
     }
@@ -204,7 +204,7 @@ struct WorkspaceView: View {
                 } else if broadcast.command == "openSheet",
                     let view = broadcast.parameters["view"] {
                     extensionDynamic.view = AnyView(
-                        ExtensionOrWebView(view: view)
+                        ExtensionOrWebView(view: view, sender: broadcast.sender)
                     )
                     sheetIsOpened = true
                 } else if broadcast.command == "openTab" {
@@ -212,7 +212,8 @@ struct WorkspaceView: View {
                     workspace.openTab(
                         item: ExtensionCustomViewModel(
                             name: extensionDynamic.title,
-                            view: broadcast.parameters["view"]
+                            view: broadcast.parameters["view"],
+                            sender: broadcast.sender
                         )
                     )
                 } else if broadcast.command == "openWindow",
@@ -220,7 +221,7 @@ struct WorkspaceView: View {
                     let window = NSWindow()
                     window.styleMask = NSWindow.StyleMask(rawValue: 0xf)
                     window.contentViewController = NSHostingController(
-                        rootView: ExtensionOrWebView(view: view).padding(5)
+                        rootView: ExtensionOrWebView(view: view, sender: broadcast.sender).padding(5)
                     )
                     window.setFrame(
                         NSRect(x: 700, y: 200, width: 500, height: 500),

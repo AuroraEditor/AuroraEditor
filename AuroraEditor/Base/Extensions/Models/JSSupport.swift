@@ -28,7 +28,7 @@ class JSSupport: ExtensionInterface {
     /// if the result of the total evaluation is "AEContext", the extension did load correctly,
     /// if the result is any other than that then either the extension developer has a early return,
     /// or a syntax error.
-    let aeContextDidLoad = ";(function(){return \"AEContext\"})();"
+    let aeContextDidLoad = ";function AEContext() { return \"AEContext\" };"
 
     /// Extension name.
     var extensionName = ""
@@ -66,10 +66,11 @@ class JSSupport: ExtensionInterface {
         do {
             let content = try String(contentsOfFile: path)
 
-            if let value = context.evaluateScript(content + aeContextDidLoad),
+            if let value = context.evaluateScript(aeContextDidLoad + content),
+               let result = context.objectForKeyedSubscript("AEContext").call(withArguments: nil),
                // If the value is not AEContext, it has failed to load
                // See `aeContextDidLoad` fore more information.
-               value.toString() != "AEContext" {
+                result.toString() != "AEContext" {
                 jsLogger.error("Extension \"\(self.extensionName)\" failed to load.")
                 return false
             }
