@@ -39,9 +39,9 @@ struct ExtensionWKWebView: NSViewRepresentable {
     /// Page to load
     var pageHTML: String?
 
-    let webKitView = WKWebView()
-
     func makeNSView(context: Context) -> NSView {
+        let webKitView = WKWebView()
+
         webKitView.navigationDelegate = context.coordinator
 
         // Configure the webView
@@ -49,7 +49,7 @@ struct ExtensionWKWebView: NSViewRepresentable {
         "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Safari/605.1.15"
 
         webKitView.setValue(true, forKey: "drawsTransparentBackground")
-        
+
         // load the initial page
         loadPage(webView: webKitView, pageHTML: pageHTML)
 
