@@ -101,7 +101,7 @@ struct WorkspaceView: View {
                 WorkflowRunsView(workspace: workspace,
                                  workflowId: String(actionsWorkflowTab.id))
             }
-        case .extensionCustomView(let name):
+        case .extensionCustomView:
             if let customTab = workspace.selectionState.selected as? ExtensionCustomViewModel {
                 ExtensionOrWebView(view: extensionView.storage.first(where: {
                     $0.key == customTab.id
