@@ -44,6 +44,8 @@ struct WorkspaceSelectionState: Codable {
 
     var openedActionsWorkflow: [Workflow] = []
 
+    var openedCustomExtensionViews: [ExtensionCustomViewModel] = []
+
     enum CodingKeys: String, CodingKey {
         case selectedId,
              openedTabs,
@@ -51,7 +53,8 @@ struct WorkspaceSelectionState: Codable {
              openedExtensions,
              openedWebTabs,
              projectCommitHistory,
-             branchCommitHistory
+             branchCommitHistory,
+             openedExtensionViews
     }
 
     init() {
@@ -64,6 +67,10 @@ struct WorkspaceSelectionState: Codable {
         temporaryTab = try container.decode(TabBarItemID?.self, forKey: .temporaryTab)
         openedExtensions = try container.decode([Plugin].self, forKey: .openedExtensions)
         openedWebTabs = try container.decode([WebTab].self, forKey: .openedWebTabs)
+        openedCustomExtensionViews = try container.decode(
+            [ExtensionCustomViewModel].self,
+            forKey: .openedExtensionViews
+        )
     }
 
     func encode(to encoder: Encoder) throws {
@@ -73,6 +80,7 @@ struct WorkspaceSelectionState: Codable {
         try container.encode(temporaryTab, forKey: .temporaryTab)
         try container.encode(openedExtensions, forKey: .openedExtensions)
         try container.encode(openedWebTabs, forKey: .openedWebTabs)
+        try container.encode(openedCustomExtensionViews, forKey: .openedExtensionViews)
     }
 
     /// Returns TabBarItemRepresentable by its identifier
@@ -105,6 +113,10 @@ struct WorkspaceSelectionState: Codable {
             }
         case .actionsWorkflow:
             return self.openedActionsWorkflow.first { item in
+                item.tabID == id
+            }
+        case .extensionCustomView:
+            return self.openedCustomExtensionViews.first { item in
                 item.tabID == id
             }
         }

@@ -29,7 +29,6 @@ class ExtensionDynamicData: ObservableObject {
 }
 
 struct WorkspaceView: View {
-
     let tabBarHeight = 28.0
     private var path: String = ""
 
@@ -74,6 +73,7 @@ struct WorkspaceView: View {
     private var extensionDynamic = ExtensionDynamicData()
 
     private let extensionsManagerShared = ExtensionsManager.shared
+    private let extensionView = ExtensionViewStorage.shared
 
     @ViewBuilder
     func tabContentForID(tabID: TabBarItemID) -> some View {
@@ -100,6 +100,12 @@ struct WorkspaceView: View {
             if let actionsWorkflowTab = workspace.selectionState.selected as? Workflow {
                 WorkflowRunsView(workspace: workspace,
                                  workflowId: String(actionsWorkflowTab.id))
+            }
+        case .extensionCustomView(let name):
+            if let customTab = workspace.selectionState.selected as? ExtensionCustomViewModel {
+                ExtensionOrWebView(view: extensionView.storage.first(where: {
+                    $0.key == customTab.id
+                })?.value)
             }
         }
     }
@@ -196,19 +202,25 @@ struct WorkspaceView: View {
                         message: (broadcast.parameters["message"] as? String) ?? ""
                     )
                 } else if broadcast.command == "openSheet",
-                    let view = broadcast.parameters["view"] as? any View {
-                    extensionDynamic.view = AnyView(view)
+                    let view = broadcast.parameters["view"] {
+                    extensionDynamic.view = AnyView(
+                        ExtensionOrWebView(view: view)
+                    )
                     sheetIsOpened = true
-                } else if broadcast.command == "openTab",
-                   let view = broadcast.parameters["view"] as? any View {
+                } else if broadcast.command == "openTab" {
                     Log.info("openTab")
-                    // TODO: Open new tab.
+                    workspace.openTab(
+                        item: ExtensionCustomViewModel(
+                            name: extensionDynamic.title,
+                            view: broadcast.parameters["view"]
+                        )
+                    )
                 } else if broadcast.command == "openWindow",
-                   let view = broadcast.parameters["view"] as? any View {
+                   let view = broadcast.parameters["view"] {
                     let window = NSWindow()
                     window.styleMask = NSWindow.StyleMask(rawValue: 0xf)
                     window.contentViewController = NSHostingController(
-                        rootView: AnyView(view).padding(5)
+                        rootView: ExtensionOrWebView(view: view).padding(5)
                     )
                     window.setFrame(
                         NSRect(x: 700, y: 200, width: 500, height: 500),
@@ -216,8 +228,8 @@ struct WorkspaceView: View {
                     )
                     let windowController = NSWindowController()
                     windowController.contentViewController = window.contentViewController
-                    windowController.window?.title = extensionDynamic.title
                     windowController.window = window
+                    windowController.window?.title = extensionDynamic.title
                     windowController.showWindow(self)
                 } else {
                     Log.info("Unknown broadcast command \(broadcast.command)")

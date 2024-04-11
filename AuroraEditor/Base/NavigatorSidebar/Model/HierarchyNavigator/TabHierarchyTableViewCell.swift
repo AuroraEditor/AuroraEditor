@@ -50,6 +50,9 @@ class TabHierarchyTableViewCell: StandardTableViewCell {
         case .actionsWorkflow:
             icon.image = NSImage(named: "diamond")
             textField?.stringValue = "GitHub Workflows"
+        case .extensionCustomView:
+            icon.image = NSImage(named: "globe")
+            textField?.stringValue = "Extension"
         }
 
         if let tabItemRepresentable = tabItemRepresentable {

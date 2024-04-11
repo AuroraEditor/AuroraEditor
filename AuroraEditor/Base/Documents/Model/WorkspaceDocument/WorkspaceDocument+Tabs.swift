@@ -38,6 +38,9 @@ extension WorkspaceDocument {
             case .actionsWorkflow:
                 guard let actionsWorkflowTab = item as? Workflow else { return }
                 self.openActionsWorkflow(item: actionsWorkflowTab)
+            case .extensionCustomView:
+                guard let extensionCustomViewTab = item as? ExtensionCustomViewModel else { return }
+                self.openExtensionCustomView(item: extensionCustomViewTab)
             }
         }
         updateNewlyOpenedTabs(item: item)
@@ -127,6 +130,10 @@ extension WorkspaceDocument {
         selectionState.openedActionsWorkflow.append(item)
     }
 
+    private func openExtensionCustomView(item: ExtensionCustomViewModel) {
+        selectionState.openedCustomExtensionViews.append(item)
+    }
+
     // MARK: Close Tabs
 
     /// Closes single tab
@@ -166,6 +173,9 @@ extension WorkspaceDocument {
         case .actionsWorkflow:
             guard let item = selectionState.getItemByTab(id: id) as? Workflow else { return }
             closeActionsWorkflowTab(item: item)
+        case .extensionCustomView:
+            guard let item = selectionState.getItemByTab(id: id) as? ExtensionCustomViewModel else { return }
+            closeExtensionCustomView(item: item)
         }
 
         if selectionState.openedTabs.isEmpty {
@@ -242,6 +252,9 @@ extension WorkspaceDocument {
             guard let item = selectionState.getItemByTab(id: id)
                     as? Workflow else { return }
             closeActionsWorkflowTab(item: item)
+        case .extensionCustomView:
+            guard let item = selectionState.getItemByTab(id: id) as? ExtensionCustomViewModel else { return }
+            closeExtensionCustomView(item: item)
         }
 
         guard let openFileItemIdx = selectionState
@@ -285,6 +298,11 @@ extension WorkspaceDocument {
     private func closeActionsWorkflowTab(item: Workflow) {
         guard let idx = selectionState.openedActionsWorkflow.firstIndex(of: item) else { return }
         selectionState.openedActionsWorkflow.remove(at: idx)
+    }
+
+    private func closeExtensionCustomView(item: ExtensionCustomViewModel) {
+        guard let idx = selectionState.openedCustomExtensionViews.firstIndex(of: item) else { return }
+        selectionState.openedCustomExtensionViews.remove(at: idx)
     }
 
     /// Makes the temporary tab permanent when a file save or edit happens.

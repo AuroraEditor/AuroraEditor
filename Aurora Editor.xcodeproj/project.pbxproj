@@ -435,6 +435,9 @@
 		2B5B25532885D9BA009C7384 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B25522885D9B9009C7384 /* .swiftlint.yml */; };
 		2B5B25552885D9C3009C7384 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B25542885D9C3009C7384 /* .gitignore */; };
 		2B5CAC822B87E701006B6C66 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5CAC812B87E701006B6C66 /* Log.swift */; };
+		2B615AB72BC85A4300A5457F /* ExtensionCustomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B615AB62BC85A4300A5457F /* ExtensionCustomViewModel.swift */; };
+		2B615ABA2BC865B500A5457F /* ExtensionOrWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B615AB92BC865B500A5457F /* ExtensionOrWebView.swift */; };
+		2B615ABC2BC865E400A5457F /* ExtensionViewStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B615ABB2BC865E400A5457F /* ExtensionViewStorage.swift */; };
 		2B6CB09E2AFFA3B1001E4955 /* AEUpdateService.app in Resources */ = {isa = PBXBuildFile; fileRef = A01AB2D12ACC9EDA0029EDF0 /* AEUpdateService.app */; };
 		2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468438427DC76E200F8E88E /* AppDelegate.swift */; };
 		2B7AC06B282452FB0082A5B8 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7AC06A282452FB0082A5B8 /* Media.xcassets */; };
@@ -1117,6 +1120,9 @@
 		2B5B25522885D9B9009C7384 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		2B5B25542885D9C3009C7384 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		2B5CAC812B87E701006B6C66 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		2B615AB62BC85A4300A5457F /* ExtensionCustomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionCustomViewModel.swift; sourceTree = "<group>"; };
+		2B615AB92BC865B500A5457F /* ExtensionOrWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionOrWebView.swift; sourceTree = "<group>"; };
+		2B615ABB2BC865E400A5457F /* ExtensionViewStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewStorage.swift; sourceTree = "<group>"; };
 		2B71C0A32874AD61008E0859 /* AuroraProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraProject.swift; sourceTree = "<group>"; };
 		2B7AC06A282452FB0082A5B8 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSSupport.swift; sourceTree = "<group>"; };
@@ -2091,6 +2097,7 @@
 				20D837C2289A7ACD00D91D05 /* Plugin.swift */,
 				20D837C0289A7ACD00D91D05 /* PluginRelease.swift */,
 				2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */,
+				2B615ABB2BC865E400A5457F /* ExtensionViewStorage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2853,7 +2860,9 @@
 		20D83913289A811600D91D05 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				2B615AB62BC85A4300A5457F /* ExtensionCustomViewModel.swift */,
 				28B8F883280FFE4600596236 /* NSTableView+Background.swift */,
+				2B615AB92BC865B500A5457F /* ExtensionOrWebView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -4472,6 +4481,7 @@
 				2093CD29289AA084003A88DD /* PullRequestRouter.swift in Sources */,
 				2036DD5528DB3DB5003BECB7 /* Queue.swift in Sources */,
 				20EBB507280C32D300F3A5DA /* QuickHelpInspector.swift in Sources */,
+				2B615ABC2BC865E400A5457F /* ExtensionViewStorage.swift in Sources */,
 				2093CCAF289AA02D003A88DD /* QuickOpenItem.swift in Sources */,
 				2093CCB0289AA02D003A88DD /* QuickOpenPreviewView.swift in Sources */,
 				2093CCAD289AA028003A88DD /* QuickOpenState.swift in Sources */,
@@ -4636,7 +4646,9 @@
 				2093CCA0289AA00B003A88DD /* WelcomeWindowView.swift in Sources */,
 				20FACF7D2AB60F0C00B09012 /* INeverShowAgainOptions.swift in Sources */,
 				20BE728B28D0854900EEDE5F /* Workflow.swift in Sources */,
+				2B615AB72BC85A4300A5457F /* ExtensionCustomViewModel.swift in Sources */,
 				20BE729A28D0A25900EEDE5F /* WorkflowCellView.swift in Sources */,
+				2B615ABA2BC865B500A5457F /* ExtensionOrWebView.swift in Sources */,
 				202327D828D5CB200031FFB6 /* WorkflowJobCell.swift in Sources */,
 				A0142EF62ACB4E490002F95D /* UpdateEditorRepository.swift in Sources */,
 				202327D628D5CA970031FFB6 /* WorkflowJobsView.swift in Sources */,

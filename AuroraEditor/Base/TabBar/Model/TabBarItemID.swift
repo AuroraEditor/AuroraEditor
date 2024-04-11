@@ -24,6 +24,8 @@ public enum TabBarItemID: Codable, Identifiable, Hashable {
             return branch
         case .actionsWorkflow(let workflow):
             return workflow
+        case .extensionCustomView(let extensionName):
+            return "cus_ext_\(extensionName)"
         }
     }
 
@@ -41,6 +43,8 @@ public enum TabBarItemID: Codable, Identifiable, Hashable {
             return "auroraeditor://branch/\(branch)"
         case .actionsWorkflow(let workflow):
             return "auroraeditor://workflow/\(workflow)"
+        case .extensionCustomView(let extensionName):
+            return "auroraeditor//extension/\(extensionName)/view"
         }
     }
 
@@ -58,4 +62,6 @@ public enum TabBarItemID: Codable, Identifiable, Hashable {
     case branchHistory(String)
 
     case actionsWorkflow(String)
+
+    case extensionCustomView(String)
 }
