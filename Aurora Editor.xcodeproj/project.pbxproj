@@ -463,6 +463,7 @@
 		2BD5CF2B28D602CE00F95E5A /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1928D602CE00F95E5A /* TextView.swift */; };
 		2BD5CF2D28D602CE00F95E5A /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1B28D602CE00F95E5A /* Theme.swift */; };
 		2BD5CF2E28D602CE00F95E5A /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1C28D602CE00F95E5A /* MessageView.swift */; };
+		2BDE0F772BC8874900C20B85 /* JSTimerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE0F762BC8874800C20B85 /* JSTimerSupport.swift */; };
 		2BDFA8F928D1079700980385 /* WebTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8F728D1079600980385 /* WebTab.swift */; };
 		2BDFA90428D107B200980385 /* WebWKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8FB28D107B200980385 /* WebWKView.swift */; };
 		2BDFA90528D107B200980385 /* OtherFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8FC28D107B200980385 /* OtherFileView.swift */; };
@@ -1147,6 +1148,7 @@
 		2BD5CF1928D602CE00F95E5A /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		2BD5CF1B28D602CE00F95E5A /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		2BD5CF1C28D602CE00F95E5A /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		2BDE0F762BC8874800C20B85 /* JSTimerSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSTimerSupport.swift; sourceTree = "<group>"; };
 		2BDFA8F728D1079600980385 /* WebTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebTab.swift; sourceTree = "<group>"; };
 		2BDFA8FB28D107B200980385 /* WebWKView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebWKView.swift; sourceTree = "<group>"; };
 		2BDFA8FC28D107B200980385 /* OtherFileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherFileView.swift; sourceTree = "<group>"; };
@@ -2097,6 +2099,7 @@
 				20D837C2289A7ACD00D91D05 /* Plugin.swift */,
 				20D837C0289A7ACD00D91D05 /* PluginRelease.swift */,
 				2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */,
+				2BDE0F762BC8874800C20B85 /* JSTimerSupport.swift */,
 				2B615ABB2BC865E400A5457F /* ExtensionViewStorage.swift */,
 			);
 			path = Models;
@@ -4161,6 +4164,7 @@
 				2093CD94289AA13D003A88DD /* AppPreferences.swift in Sources */,
 				A0142F052ACB6AF80002F95D /* UpdateAvailableState.swift in Sources */,
 				2093CD95289AA13F003A88DD /* AppPreferencesModel.swift in Sources */,
+				2BDE0F772BC8874900C20B85 /* JSTimerSupport.swift in Sources */,
 				2032B51028A256F50089EBB6 /* Array.swift in Sources */,
 				93EF2EFA290EBC3F00CE2059 /* AuroraCommandBroadcaster.swift in Sources */,
 				2093CD5D289AA0DD003A88DD /* AuroraCrashlytics.swift in Sources */,

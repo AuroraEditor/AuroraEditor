@@ -144,6 +144,8 @@ class JSSupport: ExtensionInterface {
         // This script will be filled with aliases and more.
         context
             .evaluateScript("var AuroraEditor = {};")
+
+        JSTimerSupport.shared.registerInto(jsContext: context)
     }
 
     /// Respond to an (AuroraEditor) JavaScript function.
