@@ -19,6 +19,7 @@ final class ExtensionCustomViewModel: Codable, Equatable, Identifiable, TabBarIt
     var id = UUID()
     @Published public var name: String
     @Published public var title: String
+    var sender: String
 
     public var tabID: TabBarItemID {
         .extensionCustomView(id.debugDescription)
@@ -34,9 +35,10 @@ final class ExtensionCustomViewModel: Codable, Equatable, Identifiable, TabBarIt
 
     private let viewStorage = ExtensionViewStorage.shared
 
-    init(name: String, view: Any?) {
+    init(name: String, view: Any?, sender: String) {
         self.name = name
         self.title = name
+        self.sender = sender
 
         if let view = view {
             viewStorage.storage[id] = view
@@ -46,6 +48,7 @@ final class ExtensionCustomViewModel: Codable, Equatable, Identifiable, TabBarIt
     enum ExtensionCustomViewModelKey: CodingKey {
         case id
         case name
+        case sender
     }
 
     required init(from decoder: Decoder) throws {
@@ -53,11 +56,13 @@ final class ExtensionCustomViewModel: Codable, Equatable, Identifiable, TabBarIt
         self.id = try container.decode(UUID.self, forKey: .id)
         self.name = try container.decode(String.self, forKey: .name)
         self.title = try container.decode(String.self, forKey: .name)
+        self.sender = try container.decode(String.self, forKey: .sender)
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: ExtensionCustomViewModelKey.self)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.name, forKey: .name)
+        try container.encode(self.sender, forKey: .sender)
     }
 }

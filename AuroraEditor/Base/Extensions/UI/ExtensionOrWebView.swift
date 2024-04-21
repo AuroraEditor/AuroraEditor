@@ -12,6 +12,7 @@ import WebKit
 /// Should we use a extension View or a WebView.
 struct ExtensionOrWebView: View {
     let view: Any?
+    let sender: String
 
     var body: some View {
         if let swiftUIView = view as? any View {
@@ -23,7 +24,7 @@ struct ExtensionOrWebView: View {
             // The view is a String, this can only means that
             // the view is written in HTML/CSS/Javascript.
 
-            ExtensionWKWebView(pageHTML: webViewContents)
+            ExtensionWKWebView(pageHTML: webViewContents, sender: sender)
         } else {
             // This type, we cannot cast,
             // Either it's empty, or unsupported.
@@ -38,6 +39,7 @@ struct ExtensionWKWebView: NSViewRepresentable {
 
     /// Page to load
     var pageHTML: String?
+    var sender: String
 
     func makeNSView(context: Context) -> NSView {
         let webKitView = WKWebView()
@@ -70,12 +72,16 @@ struct ExtensionWKWebView: NSViewRepresentable {
     ///   - webView: The web view
     ///   - url: The URL to load
     func loadPage(webView: WKWebView, pageHTML: String?) {
-        // check that the URL is different
+        let baseURL = ExtensionsManager.shared.extensionsFolder.appendingPathComponent(
+                sender + ".JSext",
+                isDirectory: true
+        )
 
         // if the URL is valid (has a protocol), load the page
         if let html = pageHTML {
-            // TODO: pass baseURL to support importing of CSS/JS/Images and so on.
-            webView.loadHTMLString(html, baseURL: nil)
+            Log.info("Allow access to: \(baseURL)")
+            webView.loadFileURL(baseURL, allowingReadAccessTo: baseURL)
+            webView.loadHTMLString(html, baseURL: baseURL)
         } else {
             webView.loadHTMLString("No HTML passed to the view", baseURL: nil)
         }
