@@ -208,14 +208,12 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
         guard let navigatorPane = splitViewController.splitViewItems.first else { return }
         navigatorPane.animator().isCollapsed.toggle()
 
-        for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-            Log.info("\(id), didToggleNavigatorPane()")
-            AEExt.respond(
-                action: "didToggleNavigatorPane",
-                parameters: [
-                    "opened": !navigatorPane.animator().isCollapsed
-                ])
-        }
+        ExtensionsManager.shared.sendEvent(
+            event: "didToggleNavigatorPane",
+            parameters: [
+                "opened": !navigatorPane.animator().isCollapsed
+            ]
+        )
     }
 
     /// Toggles the visibility of the inspector pane in the application's user interface.
@@ -279,15 +277,12 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
             }
         }
 
-        for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-            Log.info("\(id), didToggleInspectorPane()")
-            AEExt.respond(
-                action: "didToggleInspectorPane",
-                parameters: [
-                    "opened": !inspectorPane.animator().isCollapsed
-                ]
-            )
-        }
+        ExtensionsManager.shared.sendEvent(
+            event: "didToggleInspectorPane",
+            parameters: [
+                "opened": !inspectorPane.animator().isCollapsed
+            ]
+        )
     }
 }
 

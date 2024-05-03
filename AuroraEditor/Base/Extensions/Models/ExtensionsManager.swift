@@ -16,16 +16,16 @@ public final class ExtensionsManager {
     public static let shared: ExtensionsManager = ExtensionsManager()
 
     /// Aurora Editor folder (`~/Library/com.auroraeditor/`)
-    let auroraEditorFolder: URL
+    private let auroraEditorFolder: URL
 
     /// Aurora Editor extensions folder (`~/Library/com.auroraeditor/Extensions`)
-    let extensionsFolder: URL
+    public let extensionsFolder: URL
 
     /// Dictionary of current loaded extensions
-    var loadedExtensions: [String: ExtensionInterface] = [:]
+    private(set) var loadedExtensions: [String: ExtensionInterface] = [:]
 
     /// The current workspace document
-    var workspace: WorkspaceDocument?
+    private var workspace: WorkspaceDocument?
 
     init() {
         Log.info("[ExtensionsManager] init()")
@@ -220,6 +220,25 @@ public final class ExtensionsManager {
         #endif
 
         return task
+    }
+
+    /// Send event to all loaded extensions
+    /// - Parameters:
+    ///   - event: Event to send
+    ///   - parameters: Parameters to send
+    public func sendEvent(event: String, parameters: [String: Any]) {
+        DispatchQueue.main.async {
+            var params = Array(parameters.keys).joined(separator: ": ..., ")
+
+            Log.info(
+                "[Extension] send \(event)(\(params)) to \(ExtensionsManager.shared.loadedExtensions.count) extensions."
+            )
+
+            // Let the extensions know we opened a file (from a workspace)
+            for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
+                AEExt.respond(action: event, parameters: parameters)
+            }
+        }
     }
 
     /// Is installed

@@ -81,13 +81,14 @@ extension CodeEditor: NSViewRepresentable {
             updateMessages(in: codeView, with: context)
 
             context.coordinator.caretPosition = .init(line: 0, column: 0)
-            for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-                Log.info("\(id), didMoveCaret")
-                AEExt.respond(
-                    action: "didMoveCaret",
-                    parameters: ["row": 0, "col": 0]
-                )
-            }
+
+            ExtensionsManager.shared.sendEvent(
+                event: "didMoveCaret",
+                parameters: [
+                    "row": 0,
+                    "col": 0
+                ]
+            )
         }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -156,15 +157,13 @@ extension CodeEditor: NSViewRepresentable {
                 col = txtStr.count
             }
 
-            for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-                Log.info("\(id), didMoveCaret")
-                AEExt.respond(
-                    action: "didMoveCaret",
-                    parameters: [
-                        "row": row,
-                        "col": col
-                    ])
-            }
+            ExtensionsManager.shared.sendEvent(
+                event: "didMoveCaret",
+                parameters: [
+                    "row": row,
+                    "col": col
+                ]
+            )
 
             return .init(line: row, column: col)
         }

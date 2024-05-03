@@ -85,22 +85,16 @@ extension WorkspaceDocument {
                 )
                 self.selectionState.openedCodeFiles[item] = codeFile
 
-                Log.info(
-                    "[Extension] send didOpen() to \(ExtensionsManager.shared.loadedExtensions.count) extensions."
-                )
+                let fileData = try? Data(contentsOf: item.url)
                 // Let the extensions know we opened a file (from a workspace)
-                for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-                    let fileData = try? Data(contentsOf: item.url)
-                    Log.info("\(id) didOpen()")
-                    AEExt.respond(
-                        action: "didOpen",
-                        parameters: [
-                            "workspace": self.fileURL?.relativeString ?? "Unknown",
-                            "file": item.url.relativeString,
-                            "contents": String(data: fileData ?? Data(), encoding: .utf8) ?? ""
-                        ]
-                    )
-                }
+                ExtensionsManager.shared.sendEvent(
+                    event: "didOpen",
+                    parameters: [
+                        "workspace": self.fileURL?.relativeString ?? "Unknown",
+                        "file": item.url.relativeString,
+                        "contents": String(data: fileData ?? Data(), encoding: .utf8) ?? ""
+                    ]
+                )
             } catch let err {
                 Log.fault("\(err)")
             }
@@ -154,28 +148,37 @@ extension WorkspaceDocument {
             closeFileTab(item: item)
 
             // Let the extensions know we closed a file
-            for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-                Log.info("\(id), didClose()")
-                AEExt.respond(action: "didClose", parameters: ["file": item.url.relativeString])
-            }
+            ExtensionsManager.shared.sendEvent(
+                event: "didClose",
+                parameters: ["file": item.url.relativeString]
+            )
+
         case .extensionInstallation:
             guard let item = selectionState.getItemByTab(id: id) as? Plugin else { return }
             closeExtensionTab(item: item)
+
         case .webTab:
             guard let item = selectionState.getItemByTab(id: id) as? WebTab else { return }
             closeWebTab(item: item)
+
         case .projectHistory:
             guard let item = selectionState.getItemByTab(id: id) as? ProjectCommitHistory else { return }
             closeProjectCommitHistoryTab(item: item)
+
         case .branchHistory:
             guard let item = selectionState.getItemByTab(id: id) as? BranchCommitHistory else { return }
             closeBranchCommitHistoryTab(item: item)
+
         case .actionsWorkflow:
             guard let item = selectionState.getItemByTab(id: id) as? Workflow else { return }
             closeActionsWorkflowTab(item: item)
+
         case .extensionCustomView:
             guard let item = selectionState.getItemByTab(id: id) as? ExtensionCustomViewModel else { return }
             closeExtensionCustomView(item: item)
+            ExtensionsManager.shared.sendEvent(event: "didCloseExtensionView", parameters: [
+                "view": item
+            ])
         }
 
         if selectionState.openedTabs.isEmpty {

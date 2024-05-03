@@ -76,16 +76,13 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
             }
         }
 
-        for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
-            Log.info("\(id), didOpen")
-            AEExt.respond(
-                action: "didOpen",
-                parameters: [
-                    "file": self.fileURL?.relativeString ?? "Unknown",
-                    "contents": self.content.data(using: .utf8) ?? Data()
-                ]
-            )
-        }
+        ExtensionsManager.shared.sendEvent(
+            event: "didOpen",
+            parameters: [
+                "file": self.fileURL?.relativeString ?? "Unknown",
+                "contents": self.content.data(using: .utf8) ?? Data()
+            ]
+        )
 
         let window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 1400, height: 600),
