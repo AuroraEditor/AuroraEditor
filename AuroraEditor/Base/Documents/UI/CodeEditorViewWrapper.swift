@@ -100,6 +100,12 @@ public struct CodeEditorViewWrapper: View {
         .onChange(of: themeModel.selectedTheme, perform: { newTheme in
             self.theme = newTheme ?? themeModel.themes.first!
         })
+        .onChange(of: cursorPosition) { newValue in
+            self.workspace.data.caretPos = .init(
+                line: newValue[0].line,
+                column: newValue[0].column
+            )
+        }
     }
 
     private func getLanguage() -> CodeLanguage {

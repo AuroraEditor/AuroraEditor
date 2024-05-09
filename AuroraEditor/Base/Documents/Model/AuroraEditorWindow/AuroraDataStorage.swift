@@ -65,8 +65,19 @@ class AuroraDataStorage: ObservableObject {
     // Editor information
     @Published
     public var caretPos: CursorLocation = .init(line: 0, column: 0) {
-        didSet { update() }
+        didSet {
+            update()
+
+            ExtensionsManager.shared.sendEvent(
+                event: "didMoveCaret",
+                parameters: [
+                    "row": caretPos.line,
+                    "col": caretPos.column
+                ]
+            )
+        }
     }
+
     @Published
     public var bracketCount: BracketCount = .init(
         roundBracketCount: 0,
@@ -74,12 +85,26 @@ class AuroraDataStorage: ObservableObject {
         squareBracketCount: 0,
         bracketHistory: []
     ) {
-        didSet { update() }
+        didSet {
+            update()
+
+            ExtensionsManager.shared.sendEvent(
+                event: "updateBracketCount",
+                parameters: [
+                    "roundBracketCount": bracketCount.roundBracketCount,
+                    "curlyBracketCount": bracketCount.curlyBracketCount,
+                    "squareBracketCount": bracketCount.squareBracketCount,
+                    "bracketHistory": bracketCount.bracketHistory
+                ]
+            )
+        }
 
     }
     @Published
     var currentToken: Token? {
-        didSet { update() }
+        didSet {
+            update()
+        }
     }
 
     /// Function that updates the ``AuroraEditorWindowController`` and the ``WorkspaceDocument``.
