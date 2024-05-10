@@ -10,6 +10,7 @@ import Foundation
 import JavaScriptCore
 import OSLog
 import AEExtensionKit
+import SwiftUI
 
 /// This class is used to support JavaScript extensions in AuroraEditor.
 /// This class has no static function since we need to run a new instance for every extension.
@@ -66,8 +67,8 @@ class JSSupport: ExtensionInterface {
         do {
             let content = try String(contentsOfFile: path)
 
-            if let value = context.evaluateScript(aeContextDidLoad + content),
-               let result = context.objectForKeyedSubscript("AEContext").call(withArguments: nil),
+            context.evaluateScript(aeContextDidLoad + content)
+            if let result = context.objectForKeyedSubscript("AEContext").call(withArguments: nil),
                // If the value is not AEContext, it has failed to load
                // See `aeContextDidLoad` fore more information.
                 result.toString() != "AEContext" {
@@ -102,14 +103,16 @@ class JSSupport: ExtensionInterface {
     }
 
     func registerFunctions() {
-        let api: @convention (block) (String) -> Bool = { (message: String) in
+        let log: @convention (block) (String) -> Bool = { (message: String) in
             self.jsLogger.debug("JSAPI Message: \(message)")
 
             return true
         }
 
         let respond: Responder = { (action: String, parameters: [String: Any])  in
-            self.jsLogger.debug("JSAPI:\n Function: \(action)\n Parameters: \(String(describing: parameters))")
+            self.jsLogger.debug(
+                "JSAPI:\n Function: \(action)\n Parameters: \(String(describing: parameters))"
+            )
 
             // Broadcast the action to Aurora Editor
             self.workspace?.broadcaster.broadcast(
@@ -121,12 +124,12 @@ class JSSupport: ExtensionInterface {
             return true
         }
 
-        /// Create AuroraEditor.api(...)
+        /// Create AuroraEditor.log(...)
         context
             .objectForKeyedSubscript("AuroraEditor")
             .setObject(
-                unsafeBitCast(api, to: AnyObject.self),
-                forKeyedSubscript: "api" as (NSCopying & NSObjectProtocol)
+                unsafeBitCast(log, to: AnyObject.self),
+                forKeyedSubscript: "log" as (NSCopying & NSObjectProtocol)
             )
 
         /// Create AuroraEditor.respond(...)
@@ -156,7 +159,23 @@ class JSSupport: ExtensionInterface {
     func respond(action: String, parameters: [String: Any]) -> JSValue? {
         return context
             .objectForKeyedSubscript(action)?
-            .call(withArguments: Array(parameters.values))
+            .call(withArguments: [Array(parameters.values).compactMap { val in
+                // Custom view models can crash, only return their name.
+                // The problem is that it is inerhited from Codable so
+                // as? Codable will always pass, so we need to check this
+                // on the first possible position.
+                if let newVal = val as? ExtensionCustomViewModel {
+                    return newVal.name as Any
+                }
+
+                // It confirms to Codable, that _should_ be safe
+                if let safeValue = val as? Codable {
+                    return val // We want the "Any" returned.
+                }
+
+                // This is probably unsafe, do not return.
+                return nil
+            }])
     }
 
     /// Respond to an (AuroraEditor) JavaScript function.

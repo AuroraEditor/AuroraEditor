@@ -15,7 +15,7 @@ final class AuroraJSSupportTests: XCTestCase {
     /// Test api access, using evaluate.
     func testJSAPIUsingEvaluate() throws {
         guard let value = jsSupport?.evaluate(
-            script: "AuroraEditor.api('AuroraEditor.api using evaluate...');"
+            script: "AuroraEditor.log('AuroraEditor.log using evaluate...');"
         ), value.toBool() else {
             XCTFail("Error: No value returned.")
             return
@@ -25,8 +25,8 @@ final class AuroraJSSupportTests: XCTestCase {
     /// Respond to AE using respondToAE()
     func testJSAPIUsingRespondToApi() {
         guard let value = jsSupport?.respondToAE(
-            action: "api",
-            parameters: ["api": "api using respondToAE()"]
+            action: "log",
+            parameters: ["message": "log using respondToAE()"]
         ), value.toBool() else {
             XCTFail("Error: No value returned.")
             return
@@ -35,11 +35,11 @@ final class AuroraJSSupportTests: XCTestCase {
 
     /// Create a "custom" function, and run that custom function.
     func testJSAPIUsingRespondToCustomApi() {
-        guard let script = jsSupport?.evaluate(script: "function AEapiTest(v) { return v }"),
+        guard let script = jsSupport?.evaluate(script: "function AECustomApiTest(v) { return v }"),
               let value = jsSupport?.respond(
-                action: "AEapiTest",
-                parameters: ["val": "api using respond()"]
-              ), value.toString() == "api using respond()" else {
+                action: "AECustomApiTest",
+                parameters: ["val": "AECustomApiTest using respond()"]
+              ), value.toString() == "AECustomApiTest using respond()" else {
             XCTFail("Error: No value returned.")
             return
         }
