@@ -39,6 +39,7 @@ jobs:
         shell: bash
 
       - name: Upgrade SwiftLint
+        continue-on-error: true
         run: |
           upgrade_required="${{ steps.check_swiftlint_version.outputs.upgrade_required }}"
           if [ "$upgrade_required" == "true" ]; then
