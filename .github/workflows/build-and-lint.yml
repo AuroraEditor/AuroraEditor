@@ -17,6 +17,8 @@ jobs:
         run: |
           echo "MacOS Version"
           sw_vers
+          echo "Xcode Version"
+          xcodebuild -version
           echo "Toolchain version"
           swift -version
           echo "SwiftLint (version)"
