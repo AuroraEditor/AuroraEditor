@@ -8,6 +8,7 @@
 
 import Foundation
 import AEExtensionKit
+import OSLog
 
 /// ExtensionsManager
 /// This class handles all extensions
@@ -27,8 +28,11 @@ public final class ExtensionsManager {
     /// The current workspace document
     private var workspace: WorkspaceDocument?
 
+    /// Extensions logger
+    private let logger = Logger(subsystem: "com.auroraeditor", category: "Extensions")
+
     init() {
-        Log.info("[ExtensionsManager] init()")
+        logger.info("[ExtensionsManager] init()")
 
         guard let extensionsPath = try? FileManager.default.url(
             for: .applicationSupportDirectory,
@@ -70,7 +74,7 @@ public final class ExtensionsManager {
                     parameters: parameters
                 )
             } else {
-                Log.warning("Failed to broadcast \(function), \(parameters)")
+                self.logger.warning("Failed to broadcast \(function), \(parameters)")
             }
         }
     }
@@ -107,10 +111,10 @@ public final class ExtensionsManager {
                             parameters: ["callback": auroraAPICallback(file: file)]
                         )
 
-                        Log.info("Registered \(file)")
+                        logger.info("Registered \(file)")
                     } else {
-                        Log.warning("Failed to init() \(file)")
-                        Log.fault("\(file) is compiled for a different version of AuroraEditor.")
+                        logger.warning("Failed to init() \(file)")
+                        logger.fault("\(file) is compiled for a different version of AuroraEditor.")
                         auroraMessageBox(
                             type: .critical,
                             message: "\(file) is compiled for a different version of AuroraEditor.\n" +
@@ -120,7 +124,7 @@ public final class ExtensionsManager {
                 }
             }
         } catch {
-            Log.fault("Error while loading plugins \(error.localizedDescription)")
+            logger.fault("Error while loading plugins \(error.localizedDescription)")
             return
         }
     }
@@ -133,10 +137,10 @@ public final class ExtensionsManager {
             path: self.extensionsFolder.relativePath + "/" + directory + "/extension.js",
             workspace: workspace
         ) {
-            Log.info("Registered extension \(extensionName)")
+            logger.info("Registered extension \(extensionName)")
             loadedExtensions[directory] = extensionInterface
         } else {
-            Log.fault("Failed to load \(extensionName)")
+            logger.fault("Failed to load \(extensionName)")
             auroraMessageBox(
                 type: .critical,
                 message: "Failed to load \(extensionName)"
@@ -152,7 +156,7 @@ public final class ExtensionsManager {
 
         // Initialize bundle
         guard let bundle = Bundle(url: bundleURL) else {
-            Log.warning("Failed to load extension \(path)")
+            logger.warning("Failed to load extension \(path)")
             return nil
         }
 
@@ -160,22 +164,22 @@ public final class ExtensionsManager {
         do {
             try bundle.preflight()
         } catch {
-            Log.fault("Preflight \(path), \(error)")
+            logger.fault("Preflight \(path), \(error)")
             return nil
         }
 
         // Check if bundle can be loaded.
         if !bundle.load() {
-            Log.warning("We were unable to load extension \(path).")
+            logger.warning("We were unable to load extension \(path).")
 
             if !isResigned {
-                Log.info("Trying to resign.")
+                logger.info("Trying to resign.")
                 let task = resign(bundle: bundleURL)
 
                 if task?.terminationStatus != 0 {
-                    Log.info("Resigning failed.")
+                    logger.info("Resigning failed.")
                 } else {
-                    Log.info("Resigning succeed, reloading")
+                    logger.info("Resigning succeed, reloading")
                     return loadBundle(path: path, isResigned: true)
                 }
             }
@@ -189,7 +193,7 @@ public final class ExtensionsManager {
             let warning = "\(path), Failed to convert \(String(describing: bundle.principalClass.self))" +
             "to \(ExtensionBuilder.Type.self) Is the principal class correct?"
 
-            Log.warning("\(warning)")
+            logger.warning("\(warning)")
 
             return nil
         }
@@ -215,7 +219,7 @@ public final class ExtensionsManager {
         #if DEBUG
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         if let outputString = String(data: data, encoding: .utf8) {
-            Log.info("Resign \(outputString)")
+            logger.info("Resign \(outputString)")
         }
         #endif
 
@@ -228,9 +232,9 @@ public final class ExtensionsManager {
     ///   - parameters: Parameters to send
     public func sendEvent(event: String, parameters: [String: Any]) {
         DispatchQueue.main.async {
-            var params = Array(parameters.keys).joined(separator: ": ..., ")
+            let params = Array(parameters.keys).joined(separator: ": ..., ")
 
-            Log.info(
+            self.logger.info(
                 "[Extension] send \(event)(\(params)) to \(ExtensionsManager.shared.loadedExtensions.count) extensions."
             )
 

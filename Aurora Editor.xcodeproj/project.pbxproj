@@ -430,6 +430,7 @@
 		2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B18EC4528AEC84900494768 /* Symbols.xcassets */; };
 		2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */; };
 		2B23B2F82B8521CD00C6B066 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B23B2F72B8521CD00C6B066 /* NotificationKeys.swift */; };
+		2B3A88A72BF77DC500BD4F5F /* Spotlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3A88A62BF77DC500BD4F5F /* Spotlight.swift */; };
 		2B53D1FC2B77A2250064114F /* AuroraEditorConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B53D1FB2B77A2250064114F /* AuroraEditorConfigTests.swift */; };
 		2B53D1FF2B77A82D0064114F /* AuroraEditorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B53D1FD2B77A2660064114F /* AuroraEditorConfig.swift */; };
 		2B5B25532885D9BA009C7384 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B25522885D9B9009C7384 /* .swiftlint.yml */; };
@@ -1080,6 +1081,7 @@
 		2B18EC4528AEC84900494768 /* Symbols.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Symbols.xcassets; sourceTree = "<group>"; };
 		2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuroraEditorSymbols.swift; sourceTree = "<group>"; };
 		2B23B2F72B8521CD00C6B066 /* NotificationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
+		2B3A88A62BF77DC500BD4F5F /* Spotlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotlight.swift; sourceTree = "<group>"; };
 		2B53D1FB2B77A2250064114F /* AuroraEditorConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorConfigTests.swift; sourceTree = "<group>"; };
 		2B53D1FD2B77A2660064114F /* AuroraEditorConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorConfig.swift; sourceTree = "<group>"; };
 		2B5B25522885D9B9009C7384 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
@@ -3434,6 +3436,7 @@
 			children = (
 				0468438427DC76E200F8E88E /* AppDelegate.swift */,
 				93532A7D28C736AA007588B4 /* DockProgress.swift */,
+				2B3A88A62BF77DC500BD4F5F /* Spotlight.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -4150,6 +4153,7 @@
 				2093CDE1289AA522003A88DD /* AuroraProject.swift in Sources */,
 				2093CD97289AA144003A88DD /* AuroraTheme.swift in Sources */,
 				20091DB728DE20FD008FDDFC /* AutomaticallyUpdateSheet.swift in Sources */,
+				2B3A88A72BF77DC500BD4F5F /* Spotlight.swift in Sources */,
 				20752E4928CA54F000935487 /* Avatar.swift in Sources */,
 				2093CD46289AA095003A88DD /* AvatarURL.swift in Sources */,
 				2B04575328E6FFE300024F2D /* BackgroundColorThemeAttribute.swift in Sources */,

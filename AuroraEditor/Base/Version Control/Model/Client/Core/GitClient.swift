@@ -11,6 +11,7 @@
 import Foundation
 import Combine
 import Version_Control
+import OSLog
 
 // A protocol to make calls to terminal to init a git call.
 public class GitClient: ObservableObject { // swiftlint:disable:this type_body_length
@@ -34,6 +35,8 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
 
     @Published
     var upstreamDefaultBranch: GitBranch?
+
+    private let logger = Logger(subsystem: "com.auroraeditor", category: "version-control")
 
     init(directoryURL: URL, shellClient: ShellClient) {
         self.directoryURL = directoryURL
@@ -349,7 +352,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         if output.contains("fatal") {
             throw GitClientError.outputError(output)
         } else {
-            Log.info("Successfully disregarded changes!")
+            logger.info("Successfully disregarded changes!")
         }
     }
 
@@ -358,7 +361,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         if output.contains("fatal") {
             throw GitClientError.outputError(output)
         } else {
-            Log.info("Successfully disregarded changes!")
+            logger.info("Successfully disregarded changes!")
         }
     }
 
@@ -368,7 +371,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
             if output.contains("fatal") {
                 throw GitClientError.outputError(output)
             } else {
-                Log.info("Successfully stashed changes!")
+                logger.info("Successfully stashed changes!")
             }
         } else {
             let output = try shellClient.run(
@@ -377,7 +380,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
             if output.contains("fatal") {
                 throw GitClientError.outputError(output)
             } else {
-                Log.info("Successfully stashed changes!")
+                logger.info("Successfully stashed changes!")
             }
         }
     }
@@ -389,7 +392,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         if output.contains("fatal") {
             throw GitClientError.outputError(output)
         } else {
-            Log.info("Successfully staged files: \(files.joined(separator: ", "))")
+            logger.info("Successfully staged files: \(files.joined(separator: ", "))")
         }
     }
 
@@ -401,7 +404,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         if output.contains("fatal") {
             throw GitClientError.outputError(output)
         } else {
-            Log.info("Successfully unstaged files: \(files.joined(separator: ", "))")
+            logger.info("Successfully unstaged files: \(files.joined(separator: ", "))")
         }
     }
 
@@ -413,7 +416,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         if output.contains("fatal") {
             throw GitClientError.outputError(output)
         } else {
-            Log.info("Successfully commited with message \"\(message)\"")
+            logger.info("Successfully commited with message \"\(message)\"")
         }
     }
 } // swiftlint:disable:this file_length

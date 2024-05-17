@@ -104,6 +104,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 
         // Check for updates
         updateModel.checkForUpdates()
+
+        // Initialize AE Spotlight
+        CoreSpotlight().update()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
