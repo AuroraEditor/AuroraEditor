@@ -120,7 +120,9 @@ public class AuroraCrashlytics: NSObject {
         signal(SIGTRAP, AuroraCrashlytics.RecieveSignal)
     }
 
+    // swiftlint:disable:next redundant_void_return
     private static let RecieveException: @convention(c) (NSException) -> Swift.Void = { (exteption) -> Void in
+        // swiftlint:disable:previous redundant_void_return
         if appOldExceptionHandler != nil {
             appOldExceptionHandler!(exteption)
         }
@@ -143,8 +145,9 @@ public class AuroraCrashlytics: NSObject {
         }
     }
 
+    // swiftlint:disable:next redundant_void_return
     private static let RecieveSignal: @convention(c) (Int32) -> Void = { (signal) -> Void in
-
+        // swiftlint:disable:previous redundant_void_return
         guard AuroraCrashlytics.isOpen == true else {
             return
         }
