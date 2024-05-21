@@ -22,6 +22,7 @@ class PreviewViewController: NSViewController, QLPreviewingController {
 
     override func loadView() {
         logger.info("Load View")
+        webView?.setValue(true, forKey: "drawsTransparentBackground")
         super.loadView()
     }
 
@@ -30,25 +31,13 @@ class PreviewViewController: NSViewController, QLPreviewingController {
         logger.info("Opening \(url.absoluteString)...")
 
         if let data = try? Data.init(contentsOf: url) {
-            var html = "<html><style>"
-            html += "html,head,body{padding:0;margin:0}pre{width:100vw;height:100vh}"
-            html += QLHighlighter().css
-            html += "</style><pre><code>"
-            html += "/// AURORA EDITOR QUICK LOOK\r\n"
-            html += "/// - BETA -\r\n"
-            html += (String(data: data, encoding: .utf8) ?? "Failed to load")
-                        .replacingOccurrences(of: "<", with: "&lt;")
-                        .replacingOccurrences(of: ">", with: "&gt;")
-            html += "</code></pre>"
-            html += "<script>" + QLHighlighter().javaScript + ";hljs.highlightAll();</script>"
-            html += "</html>"
-
             self.webView?.loadHTMLString(
-                html,
+                QLHighlighter(contents: data).build(),
                 baseURL: nil
             )
 
-            logger.info("Loaded WV")
+            logger.info("Loaded HTML")
+            dump(QLHighlighter(contents: data).build())
             handler(nil)
         } else {
             logger.error("Failed to load?")
