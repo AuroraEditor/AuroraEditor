@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="22690"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PreviewViewController" customModule="AEquicklook" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="c22-O7-iKe" id="NRM-P4-wb6"/>
+                <outlet property="webView" destination="l2G-Vf-61Z" id="zk5-X9-x7B"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe" userLabel="Preview View">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2G-Vf-61Z">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+                    <wkWebViewConfiguration key="configuration">
+                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                        <wkPreferences key="preferences"/>
+                    </wkWebViewConfiguration>
+                </wkWebView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="l2G-Vf-61Z" secondAttribute="trailing" id="JYa-ZE-XSZ"/>
+                <constraint firstAttribute="bottom" secondItem="l2G-Vf-61Z" secondAttribute="bottom" id="T2P-R0-LRt"/>
+                <constraint firstItem="l2G-Vf-61Z" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="nep-ut-6vA"/>
+                <constraint firstItem="l2G-Vf-61Z" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="zNw-mI-KdH"/>
+            </constraints>
+            <point key="canvasLocation" x="48" y="-36"/>
+        </customView>
+    </objects>
+</document>
