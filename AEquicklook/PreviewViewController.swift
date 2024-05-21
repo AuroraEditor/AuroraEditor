@@ -1,6 +1,6 @@
 //
 //  PreviewViewController.swift
-//  AEquicklook
+//  Aurora Editor
 //
 //  Created by Wesley de Groot on 21/05/2024.
 //  Copyright © 2024 Aurora Company. All rights reserved.
@@ -26,11 +26,10 @@ class PreviewViewController: NSViewController, QLPreviewingController {
         super.loadView()
     }
 
-
     func preparePreviewOfFile(at url: URL, completionHandler handler: @escaping (Error?) -> Void) {
         logger.info("Opening \(url.absoluteString)...")
 
-        if let data = try? Data.init(contentsOf: url) {
+        if let data = try? Data(contentsOf: url) {
             self.webView?.loadHTMLString(
                 QLHighlighter(contents: data).build(),
                 baseURL: nil

@@ -5,6 +5,8 @@
 # Disabled rule, reason.
 disabled_rules:
   - todo # New project, we have a lot of // TODO:
+  - static_over_final_class # We need to fix this (later)
+  - non_optional_string_data_conversion # We need to fix this (later)
 
 # paths to ignore during linting.
 excluded:

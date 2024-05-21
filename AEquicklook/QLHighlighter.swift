@@ -1,6 +1,6 @@
 //
 //  HLBase.swift
-//  AEquicklook
+//  Aurora Editor
 //
 //  Created by Wesley de Groot on 21/05/2024.
 //  Copyright © 2024 Aurora Company. All rights reserved.
@@ -8,6 +8,8 @@
 
 import Foundation
 
+// swiftlint:disable:next swiftlint_file_disabling
+// swiftlint:disable all
 class QLHighlighter {
     let javaScript = #"""
 /*!
@@ -1255,3 +1257,4 @@ return He}()
 """
     }
 }
+// swiftlint:enable all
