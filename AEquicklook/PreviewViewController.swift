@@ -36,7 +36,9 @@ class PreviewViewController: NSViewController, QLPreviewingController {
             html += "</style><pre><code>"
             html += "/// AURORA EDITOR QUICK LOOK\r\n"
             html += "/// - BETA -\r\n"
-            html += String(data: data, encoding: .utf8) ?? "Failed to load"
+            html += (String(data: data, encoding: .utf8) ?? "Failed to load")
+                        .replacingOccurrences(of: "<", with: "&lt;")
+                        .replacingOccurrences(of: ">", with: "&gt;")
             html += "</code></pre>"
             html += "<script>" + QLHighlighter().javaScript + ";hljs.highlightAll();</script>"
             html += "</html>"
