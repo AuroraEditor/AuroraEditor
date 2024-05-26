@@ -436,6 +436,8 @@
 		2B3DAA462BFD1BD400A7773D /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2B3DAA452BFD1BD400A7773D /* Base */; };
 		2B3DAA4B2BFD1BD400A7773D /* AEquicklook.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2B3DAA3C2BFD1BD400A7773D /* AEquicklook.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2B3DAA502BFD24C500A7773D /* QLHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3DAA4F2BFD24C500A7773D /* QLHighlighter.swift */; };
+		2B48F7422C03B62F000EAD67 /* highlight.js in Resources */ = {isa = PBXBuildFile; fileRef = 2B48F7412C03B62F000EAD67 /* highlight.js */; };
+		2B48F7442C03B63E000EAD67 /* highlight.css in Resources */ = {isa = PBXBuildFile; fileRef = 2B48F7432C03B63E000EAD67 /* highlight.css */; };
 		2B53D1FC2B77A2250064114F /* AuroraEditorConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B53D1FB2B77A2250064114F /* AuroraEditorConfigTests.swift */; };
 		2B53D1FF2B77A82D0064114F /* AuroraEditorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B53D1FD2B77A2660064114F /* AuroraEditorConfig.swift */; };
 		2B5B25532885D9BA009C7384 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2B5B25522885D9B9009C7384 /* .swiftlint.yml */; };
@@ -1102,6 +1104,8 @@
 		2B3DAA472BFD1BD400A7773D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B3DAA482BFD1BD400A7773D /* AEquicklook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AEquicklook.entitlements; sourceTree = "<group>"; };
 		2B3DAA4F2BFD24C500A7773D /* QLHighlighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLHighlighter.swift; sourceTree = "<group>"; };
+		2B48F7412C03B62F000EAD67 /* highlight.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = highlight.js; sourceTree = "<group>"; };
+		2B48F7432C03B63E000EAD67 /* highlight.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = highlight.css; sourceTree = "<group>"; };
 		2B53D1FB2B77A2250064114F /* AuroraEditorConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorConfigTests.swift; sourceTree = "<group>"; };
 		2B53D1FD2B77A2660064114F /* AuroraEditorConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorConfig.swift; sourceTree = "<group>"; };
 		2B5B25522885D9B9009C7384 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
@@ -3227,6 +3231,8 @@
 				2B3DAA472BFD1BD400A7773D /* Info.plist */,
 				2B3DAA482BFD1BD400A7773D /* AEquicklook.entitlements */,
 				2B3DAA4F2BFD24C500A7773D /* QLHighlighter.swift */,
+				2B48F7412C03B62F000EAD67 /* highlight.js */,
+				2B48F7432C03B63E000EAD67 /* highlight.css */,
 			);
 			path = AEquicklook;
 			sourceTree = "<group>";
@@ -3945,7 +3951,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B48F7442C03B63E000EAD67 /* highlight.css in Resources */,
 				2B3DAA462BFD1BD400A7773D /* Base in Resources */,
+				2B48F7422C03B62F000EAD67 /* highlight.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
