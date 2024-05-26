@@ -13,6 +13,7 @@ excluded:
   - AuroraEditorModules/.build # Where Swift Package Manager checks out dependency sources
   - AuroraEditorCli/Package.swift # Package.swift should not be linted
   - Tools
+  - AEquicklook # Check if we can move the js/css into a separate file and load via bundle. @0xWDG
 
 # Exclude triggering type names.
 type_name:

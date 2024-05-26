@@ -8,8 +8,6 @@
 
 import Foundation
 
-// swiftlint:disable:next swiftlint_file_disabling
-// swiftlint:disable all
 class QLHighlighter {
     let javaScript = #"""
 /*!
@@ -1257,4 +1255,3 @@ return He}()
 """
     }
 }
-// swiftlint:enable all
