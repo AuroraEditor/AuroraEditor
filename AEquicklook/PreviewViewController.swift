@@ -36,7 +36,6 @@ class PreviewViewController: NSViewController, QLPreviewingController {
             )
 
             logger.info("Loaded HTML")
-            dump(QLHighlighter(contents: data).build())
             handler(nil)
         } else {
             logger.error("Failed to load?")
