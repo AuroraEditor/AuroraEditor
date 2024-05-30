@@ -29,7 +29,10 @@ jobs:
         if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
         run: |
           sed 's/DEVELOPMENT_TEAM = .*;/DEVELOPMENT_TEAM = "";/g' "$xcodeproj" > "$xcodeproj"
-          [ -s "$xcodeproj" ] || echo "::error file=$xcodeproj,line=1::Xcodeproject file is empty"
+          if [ ! -s "$xcodeproj" ] ; then 
+            echo "::error file=$xcodeproj,line=1::Xcodeproject file is empty"
+            exit 99
+          fi
 
       - name: Setup github environment
         if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
