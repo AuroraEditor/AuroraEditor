@@ -28,11 +28,9 @@ jobs:
       - name: Rewrite DEVELOPMENT_TEAM
         if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
         run: |
-          cleaned=`sed 's/DEVELOPMENT_TEAM = .*;/DEVELOPMENT_TEAM = "";/g' "$xcodeproj"`
-          echo $cleaned > "$xcodeproj"
+          sed -i 's/DEVELOPMENT_TEAM = .*;/DEVELOPMENT_TEAM = "";/g' "$xcodeproj" > "$xcodeproj"
           if [ ! -s "$xcodeproj" ] ; then 
             echo "::error file=$xcodeproj,line=1::Xcodeproject file is empty"
-            echo "File contents should be: $cleaned"
             exit 1
           fi
 
