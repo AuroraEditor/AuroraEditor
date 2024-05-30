@@ -18,7 +18,7 @@ jobs:
       - name: Check if we need to empty DEVELOPMENT_TEAM.
         id: needs-removal
         run: |
-          rec="$( grep -cE "DEVELOPMENT_TEAM = [[:alnum:]]{1,20};" "$xcodeproj" )"
+          rec="$( grep -cE "DEVELOPMENT_TEAM = [[:alnum:]]{1,20};" "$xcodeproj" || true )"
           if [[ "$rec" > 0 ]] ; then
             echo "needs-removal=1" >> "$GITHUB_OUTPUT"
           else
