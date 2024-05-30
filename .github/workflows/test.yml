@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main, development]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   tests:
     runs-on: macos-13
@@ -21,7 +25,7 @@ jobs:
           swift -version
           echo "SwiftLint (version)"
           swiftlint version
-        
+
       - name: "Select Xcode (Default)"
         run: sudo xcode-select -s /Applications/Xcode.app
 

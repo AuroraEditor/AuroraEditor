@@ -2,10 +2,14 @@ name: Build of Aurora Editor
 
 on:
   push:
-     branches: 
-       - development
-       - beta
-       - main
+    branches:
+      - development
+      - beta
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build_editor:
@@ -13,13 +17,13 @@ jobs:
     runs-on: macos-13
     timeout-minutes: 30 # If a build exceeds 30 mins, it probably isn't ever going to complete
     steps:
-      - name: 'Cleanup build folder'
+      - name: "Cleanup build folder"
         run: |
           ls -la ./
           rm -rf ./* || true
           rm -rf ./.??* || true
           ls -la ./
-        
+
       - name: Runner environment
         run: |
           echo "MacOS Version"
@@ -30,7 +34,7 @@ jobs:
           swiftlint version
 
       - uses: actions/checkout@v3
-      
+
       - name: "Select Xcode (Default)"
         run: sudo xcode-select -s /Applications/Xcode.app
 
@@ -151,7 +155,7 @@ jobs:
           echo "version_name=$version_name" >> $GITHUB_OUTPUT
 
       - name: "Create Release Build Archive"
-        run: | 
+        run: |
           set -o pipefail
           xcodebuild -workspace "Aurora Editor.xcworkspace" \
             -scheme "Aurora Editor (Release)" \
@@ -160,7 +164,7 @@ jobs:
             DEVELOPMENT_TEAM=4V2D72S45C \
             CODE_SIGN_INJECT_BASE_ENTITLEMENTS=YES \
             OTHER_CODE_SIGN_FLAGS="--options=runtime" 2>/dev/null
-               
+
       - name: Export Release Build
         run: |
           xcodebuild -exportArchive \
@@ -178,7 +182,7 @@ jobs:
 
           echo "::debug::Perform the code signing."
           codesign --sign "Developer ID Application: Wesley de Groot (4V2D72S45C)" -vvv --verbose --strict --options=runtime --prefix com.auroraeditor. --force --deep --timestamp "builds/Aurora Editor.app"
-          
+
           echo "::debug::Verify the code signature."
           codesign --verify --deep --display --verbose "builds/Aurora Editor.app"
 
@@ -196,9 +200,9 @@ jobs:
         run: |
           hdiutil create temp.dmg -ov -volname "Aurora Editor" -fs HFS+ -srcfolder "builds/Aurora Editor.app"
           hdiutil convert temp.dmg -format UDZO -o "Aurora Editor 1.0.dmg"
-          
+
           IDENTITIES=`/usr/bin/security find-identity -v -p codesigning`
-          
+
           if [[ "$IDENTITIES" == *"Developer ID Application:"* ]]; then
               IDENTITY="Developer ID Application"
           elif [[ "$IDENTITIES" == *"Mac Developer:"* ]]; then
@@ -243,7 +247,7 @@ jobs:
         continue-on-error: true
         run: |
           xcrun stapler staple -v "Aurora Editor 1.0.dmg"
-        
+
       - name: Upload a Build Artifact
         id: upload_artifact
         uses: actions/upload-artifact@v3.0.0
@@ -258,13 +262,13 @@ jobs:
         run: |
           # Specify the path to the file you want to calculate the size of
           file_path="Aurora Editor 1.0.dmg"
-    
+
           # Calculate the file size in bytes
           file_size_bytes=$(ls -l "$file_path" | awk '{print $5}')
 
           echo "::debug::File size: $file_size_bytes"
           echo "file_size_bytes=$file_size_bytes" >> $GITHUB_OUTPUT
-        
+
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
         run: |
@@ -324,14 +328,14 @@ jobs:
             echo "::error::Something went wrong, we are in branch ${{ github.ref_name }}"
             exit 1
           fi
-    
+
           # Check for errors and log stderr
           if [ $? -ne 0 ]; then
             echo "::error::Error occurred during curl request:"
             echo "::error::$result"
             exit 1
           fi
-    
+
           # Extract SHA from the JSON response
           SHA=$(echo "$result" | jq -r '.sha')
 
