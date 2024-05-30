@@ -28,10 +28,12 @@ jobs:
       - name: Rewrite DEVELOPMENT_TEAM
         if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
         run: |
-          sed 's/DEVELOPMENT_TEAM = .*;/DEVELOPMENT_TEAM = "";/g' "$xcodeproj" > "$xcodeproj"
+          cleaned=`sed 's/DEVELOPMENT_TEAM = .*;/DEVELOPMENT_TEAM = "";/g' "$xcodeproj"`
+          echo $cleaned > "$xcodeproj"
           if [ ! -s "$xcodeproj" ] ; then 
             echo "::error file=$xcodeproj,line=1::Xcodeproject file is empty"
-            exit 99
+            echo "File contents should be: $cleaned"
+            exit 1
           fi
 
       - name: Setup github environment
