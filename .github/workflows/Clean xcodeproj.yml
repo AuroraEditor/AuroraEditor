@@ -33,7 +33,6 @@ jobs:
           rm "temp"
           if [ ! -s "$xcodeproj" ] ; then 
             echo "::error file=$xcodeproj,line=1::Xcodeproject file is empty"
-            cat "$xcodeproj"
             exit 1
           fi
 
@@ -43,7 +42,6 @@ jobs:
           url=`echo "${{ github.repositoryUrl }}" | sed 's/git:\/\///'`
           git config --global user.name 'aurora-editor-bot'
           git config --global user.email 'aurora-editor-bot@users.noreply.github.com'
-        #   git remote set-url --push origin "https://aurora-editor-bot:$BOT_TOKEN@$url"
 
       - name: push to Github
         if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
