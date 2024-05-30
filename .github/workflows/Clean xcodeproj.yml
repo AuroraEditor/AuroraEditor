@@ -41,8 +41,7 @@ jobs:
       - name: push to Github
         if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
         run: |
-          git_branch=`git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/\1/p'`
-          echo "Current branch: $git_branch"
+          echo "Current branch: $GITHUB_HEAD_REF"
           git add . --all
           git commit -m "Removed development team"
-          git push origin HEAD:$git_branch --force
+          git push origin HEAD:$GITHUB_HEAD_REF --force
