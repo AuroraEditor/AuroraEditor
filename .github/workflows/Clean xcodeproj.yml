@@ -29,8 +29,10 @@ jobs:
         if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
         run: |
           cp "$xcodeproj" "temp"
+          # Sed to the same file causes issues, so we use a temp file.
           sed 's/DEVELOPMENT_TEAM = .*;/DEVELOPMENT_TEAM = "";/g' "temp" > "$xcodeproj"
           rm "temp"
+
           if [ ! -s "$xcodeproj" ] ; then 
             echo "::error file=$xcodeproj,line=1::Xcodeproject file is empty"
             exit 1
@@ -39,7 +41,6 @@ jobs:
       - name: Setup github environment
         if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
         run: |
-          url=`echo "${{ github.repositoryUrl }}" | sed 's/git:\/\///'`
           git config --global user.name 'aurora-editor-bot'
           git config --global user.email 'aurora-editor-bot@users.noreply.github.com'
 
