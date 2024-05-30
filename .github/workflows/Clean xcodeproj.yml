@@ -43,4 +43,4 @@ jobs:
         run: |
           git add . --all
           git commit -m "Removed development team"
-          git push origin HEAD:`echo "${{ github.ref }}" | sed 's/refs\/heads\///'` --force
+          git push --force
