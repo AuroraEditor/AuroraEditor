@@ -28,8 +28,8 @@ jobs:
       - name: Rewrite DEVELOPMENT_TEAM
         if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
         run: |
-          sed 's/DEVELOPMENT_TEAM = .*;/DEVELOPMENT_TEAM = "";/g' "$xcodeproj"
-          sed 's/DEVELOPMENT_TEAM = .*;/DEVELOPMENT_TEAM = "";/g' "$xcodeproj" > "$xcodeproj2"
+          sed 's/DEVELOPMENT_TEAM = .*;/DEVELOPMENT_TEAM = "";/g' "$xcodeproj" > "$xcodeproj"
+          [ -s "$xcodeproj" ] || echo "::error file=$xcodeproj,line=1::Xcodeproject file is empty"
 
       - name: Setup github environment
         if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
