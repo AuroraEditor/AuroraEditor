@@ -1,0 +1,45 @@
+name: Clean xcodeproj
+run-name: "Remove DEVELOPMENT_TEAM from xcode project"
+
+on:
+  push:
+    branches: [development]
+  workflow_dispatch:
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'AuroraEditor'
+    env:
+      xcodeproj: "Aurora Editor.xcodeproj/project.pbxproj"
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Check if we need to empty DEVELOPMENT_TEAM.
+      id: needs-removal
+      run : |
+        rec="$( grep -cE "DEVELOPMENT_TEAM = [[:alnum:]]{1,20};" "$xcodeproj" )"
+        if [[ "$rec" > 0 ]] ; then
+          echo "needs-removal=1" >> "$GITHUB_OUTPUT"
+        else
+          echo "needs-removal=0" >> "$GITHUB_OUTPUT"
+        fi
+        
+    - name: Rewrite DEVELOPMENT_TEAM
+      if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
+      run: |
+        sed 's/DEVELOPMENT_TEAM = .*;/DEVELOPMENT_TEAM = "";/g' "$xcodeproj" > "$xcodeproj"
+
+    - name: Setup github environment
+      if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
+      run: |
+        git config --global user.name 'aurora-editor-bot'
+        git config --global user.email 'aurora-editor-bot@users.noreply.github.com'
+        git remote set-url --push origin https://aurora-editor-bot:$BOT_TOKEN@github.com/AuroraEditor/AuroraEditor
+
+    - name: push to Github
+      if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
+      run: |
+        git add . --all
+        git commit -m "Removed development team"
+        git push origin HEAD:development --force
