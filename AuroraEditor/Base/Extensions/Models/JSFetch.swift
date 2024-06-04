@@ -23,7 +23,7 @@ class JSFetch {
             forKeyedSubscript: "fetch" as (NSCopying & NSObjectProtocol)
         )
     }
-    
+
     /// (Obj-C) The fetch function
     let fetch: @convention(block) (String) -> JSPromise? = { link in
         let promise = JSPromise()
@@ -31,7 +31,7 @@ class JSFetch {
             timer.invalidate()
 
             if let url = URL(string: link) {
-                URLSession.shared.dataTask(with: url) { (data, response, error) in
+                URLSession.shared.dataTask(with: url) { (data, _, error) in
                     if let error = error {
                         promise.fail(error: error.localizedDescription)
                     } else if let data = data,

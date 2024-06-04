@@ -24,7 +24,7 @@ import JavaScriptCore
 class JSPromise: NSObject, JSPromiseExports {
     /// Shared instance so it will not be unloaded.
     static let shared: JSPromise = .init()
-    
+
     /// Resolve callback
     var resolve: JSValue?
 
@@ -89,7 +89,7 @@ class JSPromise: NSObject, JSPromiseExports {
         // Return the real promise
         return self.next
     }
-    
+
     /// (internal) Promise did fail, calling reject
     /// - Parameter error: Error message to send to "catch"
     func fail(error: String) {
@@ -100,13 +100,13 @@ class JSPromise: NSObject, JSPromiseExports {
             next.fail(error: error)
         }
     }
-    
+
     /// (internal) Call succeeded.
     /// - Parameter value: Send the success message to "then".
     func success(value: Any?) {
         // Check if we have a resolve (`then`).
         guard let resolve = resolve else { return }
-        
+
         var result: JSValue?
 
         // If we can unwrap the value

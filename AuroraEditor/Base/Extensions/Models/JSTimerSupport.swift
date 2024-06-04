@@ -20,7 +20,7 @@ import JavaScriptCore
     /// JavaScript `clearTimeout` function
     /// - Parameter identifier: The identifier to cancel (see the result of the timer)
     func clearTimeout(_ identifier: String)
-    
+
     /// JavaScript `setInterval` function
     /// - Parameters:
     ///   - callback: Callback
@@ -71,7 +71,7 @@ import JavaScriptCore
     func setTimeout(_ callback: JSValue, _ time: Double) -> String {
         return createTimer(callback: callback, time: time, repeats: false)
     }
-    
+
     /// (Internal) Create a timer
     /// - Parameters:
     ///   - callback: fallback
@@ -97,7 +97,7 @@ import JavaScriptCore
 
         return uuid
     }
-    
+
     /// Call JavaScript callback
     /// - Parameter timer: for which timer
     @objc func callJsCallback(_ timer: Timer) {
