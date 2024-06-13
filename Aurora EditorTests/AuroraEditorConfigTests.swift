@@ -9,9 +9,12 @@
 import XCTest
 @testable import AuroraEditor
 
+/// Aurora Editor Config Tests
 final class AuroraEditorConfigTests: XCTestCase {
+    /// The configuration
     let cfg = AuroraEditorConfig(fromPath: #file)
 
+    /// Test PHP file
     func testPHPFile() {
         XCTAssertEqual(
             cfg.get(value: .charset, for: "/some/dir/file.php"),
@@ -19,6 +22,7 @@ final class AuroraEditorConfigTests: XCTestCase {
         )
     }
 
+    /// Test JavaScript file
     func testJSFile() {
         XCTAssertEqual(
             cfg.get(value: .charset, for: "/some/dir/file.js"),
@@ -26,6 +30,7 @@ final class AuroraEditorConfigTests: XCTestCase {
         )
     }
 
+    /// Test JS file in lib dir
     func testJSFileInLibDir() {
         // This should match "lib/**js"
         XCTAssertEqual(
@@ -34,6 +39,7 @@ final class AuroraEditorConfigTests: XCTestCase {
         )
     }
 
+    /// test wildcard character
     func testWildcardCharacter() {
         XCTExpectFailure("TODO Need to be supported later")
 
@@ -49,6 +55,7 @@ final class AuroraEditorConfigTests: XCTestCase {
         )
     }
 
+    /// test multiple matches
     func testMultipleMatchesNumberic() {
         XCTExpectFailure("TODO Need to be supported later")
 

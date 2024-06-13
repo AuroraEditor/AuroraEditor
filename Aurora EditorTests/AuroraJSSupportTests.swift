@@ -9,8 +9,14 @@
 import XCTest
 @testable import AuroraEditor
 
+/// AuroraJSSupport Tests
 final class AuroraJSSupportTests: XCTestCase {
-    let jsSupport = JSSupport(name: "AEXCTestCase", path: "/", workspace: nil)
+    /// The JSSupport instance
+    let jsSupport = JSSupport(
+        name: "AEXCTestCase",
+        path: "/",
+        workspace: nil
+    )
 
     /// Test api access, using evaluate.
     func testJSAPIUsingEvaluate() throws {

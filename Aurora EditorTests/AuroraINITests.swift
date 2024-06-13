@@ -9,7 +9,9 @@
 import XCTest
 @testable import AuroraEditor
 
+/// Aurora INI Tests
 final class AuroraINITests: XCTestCase {
+    /// Test INI Parser
     func testINIParser() throws {
         let iniFile = """
 ; Old school comment
