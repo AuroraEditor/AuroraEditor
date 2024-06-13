@@ -9,21 +9,37 @@
 import Foundation
 
 extension WorkspaceDocument {
+    /// The search state
     final class SearchState: ObservableObject {
+        /// The workspace document
         weak var workspace: WorkspaceDocument?
+
+        /// The selected mode
         var selectedMode: [SearchModeModel] = [
             .Find,
             .Text,
             .Containing
         ]
-        @Published var searchResult: [SearchResultModel] = []
-        @Published var searchResultCount: Int = 0
+
+        /// The search result
+        @Published
+        var searchResult: [SearchResultModel] = []
+
+        /// The search result count
+        @Published
+        var searchResultCount: Int = 0
+
         /// A unique ID for the current search results. Used to "re-search" with the same
         /// search text but refresh results and UI.
-        @Published var searchId: UUID?
+        @Published
+        var searchId: UUID?
 
+        /// Whether to ignore case when searching
         var ignoreCase: Bool = true
 
+        /// Creates a new instance of the search state.
+        /// 
+        /// - Parameter workspace: The workspace document.
         init(_ workspace: WorkspaceDocument) {
             self.workspace = workspace
         }
@@ -116,9 +132,14 @@ extension WorkspaceDocument {
             }
         }
 
-        // see if the line contains search term, obeying selectedMode
-        // swiftlint:disable:next cyclomatic_complexity
+        /// see if the line contains search term, obeying selectedMode
+        ///
+        /// - Parameter line: the line to search
+        /// - Parameter searchterm: the search term
+        /// 
+        /// - Returns: whether the line contains the search term
         func lineContainsSearchTerm(line rawLine: String, term searchterm: String) -> Bool {
+            // swiftlint:disable:previous cyclomatic_complexity
             var line = rawLine
             if line.hasSuffix(" ") { line.removeLast() }
             if line.hasPrefix(" ") { line.removeFirst() }
@@ -177,10 +198,22 @@ extension WorkspaceDocument {
 }
 
 extension String {
+    /// Returns the ranges of the substring in the string.
+    /// 
+    /// - Parameter substring: The substring to search for.
+    /// 
+    /// - Returns: The ranges of the substring in the string.
     func character(at index: Int) -> Character {
         return self[self.index(self.startIndex, offsetBy: index)]
     }
 
+    /// Returns the ranges of the substring in the string.
+    /// 
+    /// - Parameter substring: The substring to search for.
+    /// - Parameter toLeft: The number of characters to the left of the substring.
+    /// - Parameter toRight: The number of characters to the right of the substring.
+    /// 
+    /// - Returns: The ranges of the substring in the string.
     func appearancesOfSubstring(substring: String, toLeft: Int = 0, toRight: Int = 0) -> [Range<String.Index>] {
         guard !substring.isEmpty && self.contains(substring) else { return [] }
         var appearances: [Range<String.Index>] = []

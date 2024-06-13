@@ -9,17 +9,21 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
+/// A view that represents the code file editor in the workspace.
 struct WorkspaceCodeFileView: View {
-
+    /// The workspace document
     @EnvironmentObject
     var workspace: WorkspaceDocument
 
+    /// The preferences model
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// The drop proposal
     @State
     private var dropProposal: SplitViewProposalDropPosition?
 
+    /// The font
     @State
     private var font: NSFont = {
         let size = AppPreferencesModel.shared.preferences.textEditing.font.size
@@ -27,6 +31,7 @@ struct WorkspaceCodeFileView: View {
         return NSFont(name: name, size: Double(size)) ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
     }()
 
+    /// The code view
     @ViewBuilder
     var codeView: some View {
         ZStack {
@@ -85,6 +90,10 @@ struct WorkspaceCodeFileView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
+    /// Code editor view
+    /// 
+    /// - Parameter codeFile: The code file document
+    /// - Parameter item: The file item
     @ViewBuilder
     private func codeEditorView(
         _ codeFile: CodeFileDocument,
@@ -99,6 +108,10 @@ struct WorkspaceCodeFileView: View {
             }
     }
 
+    /// Image file view
+    ///
+    /// - Parameter otherFile: The code file document
+    /// - Parameter item: The file item
     @ViewBuilder
     private func imageFileView(
         _ otherFile: CodeFileDocument,
@@ -128,6 +141,7 @@ struct WorkspaceCodeFileView: View {
         }
     }
 
+    /// The view body
     var body: some View {
         codeView
             .frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -9,6 +9,13 @@
 import Foundation
 
 extension StringProtocol where Index == String.Index {
+    /// Returns the ranges of the specified substring in the string.
+    /// 
+    /// - Parameter substring: The substring to search for.
+    /// - Parameter options: The search options.
+    /// - Parameter locale: The locale to use.
+    /// 
+    /// - Returns: The ranges of the specified substring in the string.
     func ranges<T: StringProtocol>(
         of substring: T,
         options: String.CompareOptions = [],

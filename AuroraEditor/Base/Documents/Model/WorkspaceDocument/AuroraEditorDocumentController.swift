@@ -8,7 +8,11 @@
 
 import Cocoa
 
+/// A class that manages the document controller.
 final class AuroraEditorDocumentController: NSDocumentController {
+    /// Opens a document.
+    /// 
+    /// - Parameter sender: The sender.
     override func openDocument(_ sender: Any?) {
         self.openDocument(onCompletion: { document, documentWasAlreadyOpen in
             guard let document = document else {
@@ -20,6 +24,11 @@ final class AuroraEditorDocumentController: NSDocumentController {
         }, onCancel: {})
     }
 
+    /// Opens a document.
+    /// 
+    /// - Parameter withContentsOf: The URL to open.
+    /// - Parameter display: Whether to display the document.
+    /// - Parameter completionHandler: The completion handler.
     override func openDocument(withContentsOf url: URL,
                                display displayDocument: Bool,
                                completionHandler: @escaping (NSDocument?, Bool, Error?) -> Void) {
@@ -33,6 +42,7 @@ final class AuroraEditorDocumentController: NSDocumentController {
         }
     }
 
+    /// Clears the recent documents.
     override func clearRecentDocuments(_ sender: Any?) {
         super.clearRecentDocuments(sender)
         RecentProjectsStore.shared.clearAll()
@@ -40,6 +50,9 @@ final class AuroraEditorDocumentController: NSDocumentController {
 }
 
 extension NSDocumentController {
+    /// Opens a document.
+    /// 
+    /// - Parameter onCompletion: The completion handler.
     final func openDocument(onCompletion: @escaping (NSDocument?, Bool) -> Void, onCancel: @escaping () -> Void) {
         let dialog = NSOpenPanel()
 

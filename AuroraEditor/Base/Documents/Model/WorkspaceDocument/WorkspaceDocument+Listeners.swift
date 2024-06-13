@@ -9,11 +9,14 @@
 import Foundation
 import Combine
 
+/// A class that represents the workspace document command listeners.
 class WorkspaceNotificationModel: ObservableObject {
+    /// The highlighted file item
     init() {
         highlightedFileItem = nil
     }
 
+    /// The highlighted file item
     @Published
     var highlightedFileItem: FileSystemClient.FileItem?
 }

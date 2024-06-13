@@ -240,7 +240,6 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
         }), let libraryPopupIndex = toolbar.items.firstIndex(where: {
             $0.itemIdentifier == .libraryPopup
         }) {
-
             // Ensure that all indices are within bounds.
             if itemListTrackingSeparatorIndex < toolbar.items.count &&
                 flexibleSpaceIndex < toolbar.items.count &&
@@ -287,11 +286,24 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
 }
 
 private extension NSToolbarItem.Identifier {
+    /// The identifier for the navigator pane toggle button.
     static let toggleNavigator = NSToolbarItem.Identifier("ToggleNavigator")
+
+    /// The identifier for the inspector pane toggle button.
     static let toggleInspector = NSToolbarItem.Identifier("ToggleInspector")
+
+    /// The identifier for the item list tracking separator.
     static let itemListTrackingSeparator = NSToolbarItem.Identifier("ItemListTrackingSeparator")
+
+    /// The identifier for the branch picker.
     static let branchPicker = NSToolbarItem.Identifier("BranchPicker")
+
+    /// The identifier for the library popup.
     static let libraryPopup = NSToolbarItem.Identifier("LibraryPopup")
+
+    /// The identifier for the run application button.
     static let runApplication = NSToolbarItem.Identifier("RunApplication")
+
+    /// The identifier for the app information view.
     static let toolbarAppInformation = NSToolbarItem.Identifier("ToolbarAppInformation")
 }

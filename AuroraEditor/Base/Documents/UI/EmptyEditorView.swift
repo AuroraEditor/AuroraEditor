@@ -8,7 +8,9 @@
 
 import SwiftUI
 
+/// A view that represents the empty editor view.
 struct EmptyEditorView: View {
+    /// The view body
     var body: some View {
         ZStack {
             Rectangle()

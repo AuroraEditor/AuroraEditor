@@ -9,23 +9,37 @@
 import SwiftUI
 import Combine
 
+/// The window controller for Aurora Editor.
 final class AuroraEditorWindowController: NSWindowController, ObservableObject {
-
+    /// The preferences model.
+    @Published
     var prefs: AppPreferencesModel = .shared
 
+    /// The notifications model.
     private var model: NotificationsModel = .shared
 
+    /// The workspace document.
     var workspace: WorkspaceDocument
+
+    /// The overlay panel.
     var overlayPanel: OverlayPanel?
+
+    /// The notification animator.
     var notificationAnimator: NotificationViewAnimator!
 
+    /// The set of cancelables.
     var cancelables: Set<AnyCancellable> = .init()
 
+    /// The split view controller.
     var splitViewController: AuroraSplitViewController! {
         get { contentViewController as? AuroraSplitViewController }
         set { contentViewController = newValue }
     }
 
+    /// Creates a new instance of the window controller.
+    /// 
+    /// - Parameter window: The window.
+    /// - Parameter workspace: The workspace document.
     init(window: NSWindow, workspace: WorkspaceDocument) {
         self.workspace = workspace
         super.init(window: window)
@@ -38,11 +52,15 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         updateLayoutOfWindowAndSplitView()
     }
 
+    /// Creates a new instance of the window controller.
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    /// Setup split view.
+    /// 
+    /// - Parameter workspace: The workspace document.
     private func setupSplitView(with workspace: WorkspaceDocument) {
         let splitVC = AuroraSplitViewController(prefs: prefs)
 
@@ -91,11 +109,13 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
             .sink(receiveValue: recieveBroadcast).store(in: &cancelables)
     }
 
+    /// Close the window.
     override func close() {
         super.close()
         cancelables.forEach({ $0.cancel() })
     }
 
+    /// Update the layout of the window and split view.
     @objc
     private func updateLayoutOfWindowAndSplitView() {
         DispatchQueue.main.async { [weak self] in
@@ -119,6 +139,9 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         }
     }
 
+    /// Get the selected code file.
+    /// 
+    /// - Returns: The selected code file.
     private func getSelectedCodeFile() -> CodeFileDocument? {
         guard let id = workspace.selectionState.selectedId else { return nil }
         guard let item = workspace.selectionState.openFileItems.first(where: { item in
@@ -128,6 +151,9 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         return file
     }
 
+    /// Save the document.
+    /// 
+    /// - Parameter sender: The sender.
     @IBAction func saveDocument(_ sender: Any) {
         guard let file = getSelectedCodeFile() else {
             fatalError("Cannot get file")
@@ -143,6 +169,9 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         workspace.convertTemporaryTab()
     }
 
+    /// Open command palette.
+    /// 
+    /// - Parameter sender: The sender.
     @IBAction func openCommandPalette(_ sender: Any) {
         if let state = workspace.commandPaletteState {
             // if the panel exists, is open and is actually a command palette, close it.
@@ -162,6 +191,9 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         }
     }
 
+    /// Open quick open.
+    /// 
+    /// - Parameter sender: The sender.
     @IBAction func openQuickly(_ sender: Any) {
         if let state = workspace.quickOpenState {
             // if the panel exists, is open and is actually a quick open panel, close it.
@@ -181,6 +213,11 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         }
     }
 
+    /// Configure overlay panel.
+    /// 
+    /// - Parameter panel: The overlay panel.
+    /// - Parameter content: The content.
+    /// - Parameter viewType: The view type.
     func configureOverlayPanel(panel: OverlayPanel, content: NSView, viewType: OverlayPanel.ViewType? = nil) {
         panel.contentView = content
         window?.addChildWindow(panel, ordered: .above)
@@ -188,6 +225,7 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         panel.viewType = viewType
     }
 
+    /// Open settings.
     func openSettings() {
         if AppDelegate.tryFocusWindow(of: PreferencesView.self) { return }
         PreferencesView().showWindow()
@@ -195,6 +233,9 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
     // MARK: Git Main Menu Items
 
+    /// Stash changes items.
+    /// 
+    /// - Parameter sender: The sender.
     @IBAction func stashChangesItems(_ sender: Any) {
         if AppDelegate.tryFocusWindow(of: StashChangesSheet.self) { return }
         if (workspace.fileSystemClient?.model?.changed ?? []).isEmpty {
@@ -209,6 +250,9 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         }
     }
 
+    /// Discard project changes.
+    /// 
+    /// - Parameter sender: The sender.
     @IBAction func discardProjectChanges(_ sender: Any) {
         if (workspace.fileSystemClient?.model?.changed ?? []).isEmpty {
             let alert = NSAlert()
@@ -222,6 +266,11 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
         }
     }
 
+    /// Receive broadcast.
+    /// 
+    /// - Parameter broadcast: The broadcast.
+    /// 
+    /// - Note: This method is called when a broadcast is received.
     func recieveBroadcast(broadcast: AuroraCommandBroadcaster.Broadcast) {
         let sender = broadcast.parameters["sender"] ?? ""
 

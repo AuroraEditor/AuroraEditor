@@ -9,43 +9,69 @@
 import Foundation
 import Version_Control
 
+/// A struct that represents the workspace selection state.
 struct WorkspaceSelectionState: Codable {
+    /// The selected tab bar item identifier
     var selectedId: TabBarItemID?
+
+    /// The opened tab bar item identifiers
     var openedTabs: [TabBarItemID] = []
+
+    /// The saved tabs
     var savedTabs: [TabBarItemStorage] = []
+
+    /// The flattened saved tabs
     var flattenedSavedTabs: [TabBarItemStorage] {
         var flat = [TabBarItemStorage]()
+
         for tab in savedTabs {
             flat.append(tab)
             flat.append(contentsOf: tab.flattenedChildren)
         }
+
         return flat
     }
+
+    /// The temporary tab bar item identifier
     var temporaryTab: TabBarItemID?
+
+    /// The previous temporary tab bar item identifier
     var previousTemporaryTab: TabBarItemID?
 
+    /// The workspace document
     var workspace: WorkspaceDocument?
 
+    /// The selected tab bar item
     var selected: TabBarItemRepresentable? {
         guard let selectedId = selectedId else { return nil }
         return getItemByTab(id: selectedId)
     }
 
+    /// The opened file items
     var openFileItems: [FileSystemClient.FileItem] = []
+
+    /// The opened code files
     var openedCodeFiles: [FileSystemClient.FileItem: CodeFileDocument] = [:]
 
+    /// The opened extensions
     var openedExtensions: [Plugin] = []
 
+    /// The opened web tabs
     var openedWebTabs: [WebTab] = []
 
+    /// The opened project commit history
     var openedProjectCommitHistory: [ProjectCommitHistory] = []
 
+    /// The opened branch commit history
     var openedBranchCommitHistory: [BranchCommitHistory] = []
 
+    /// The opened actions workflow
     var openedActionsWorkflow: [Workflow] = []
 
+    /// The opened custom extension views
     var openedCustomExtensionViews: [ExtensionCustomViewModel] = []
 
+    /// The opened custom extension views
     enum CodingKeys: String, CodingKey {
         case selectedId,
              openedTabs,
@@ -57,9 +83,13 @@ struct WorkspaceSelectionState: Codable {
              openedExtensionViews
     }
 
+    /// Initializes the workspace selection state.
     init() {
     }
 
+    /// Initializes the workspace selection state with the specified decoder.
+    /// 
+    /// - Parameter decoder: The decoder to use.
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         selectedId = try container.decode(TabBarItemID?.self, forKey: .selectedId)
@@ -73,6 +103,9 @@ struct WorkspaceSelectionState: Codable {
         )
     }
 
+    /// Encodes the workspace selection state using the specified encoder.
+    ///     
+    /// - Parameter encoder: The encoder to use.
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(selectedId, forKey: .selectedId)
@@ -84,7 +117,9 @@ struct WorkspaceSelectionState: Codable {
     }
 
     /// Returns TabBarItemRepresentable by its identifier
+    /// 
     /// - Parameter id: tab bar item's identifier
+    /// 
     /// - Returns: item with passed identifier
     func getItemByTab(id: TabBarItemID) -> TabBarItemRepresentable? {
         switch id {

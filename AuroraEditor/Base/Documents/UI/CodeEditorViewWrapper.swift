@@ -11,32 +11,48 @@ import AuroraEditorTextView
 import AuroraEditorInputView
 import AuroraEditorLanguage
 
+/// A view that wraps the code editor view.
 public struct CodeEditorViewWrapper: View {
+    /// The code file document
     @ObservedObject
     private var codeFile: CodeFileDocument
 
+    /// The preferences model
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// The theme model
     @ObservedObject
     private var themeModel: ThemeModel = .shared
 
+    /// The workspace document
     @EnvironmentObject
     private var workspace: WorkspaceDocument
 
+    /// The file extension
     @State
     private var fileExtension: String
 
+    /// The active theme
     @State
     private var theme: AuroraTheme
 
+    /// The breadcrumb item
     @State
     private var breadcrumbItem: FileItem?
 
+    /// Is editable state
     private let editable: Bool
 
+    /// The undo manager
     private let undoManager = CEUndoManager()
 
+    /// Code editor view wrapper initializer
+    /// 
+    /// - Parameter codeFile: The code file document
+    /// - Parameter editable: Is editable
+    /// - Parameter fileExtension: The file extension
+    /// - Parameter breadcrumbItem: The breadcrumb item
     public init(codeFile: CodeFileDocument,
                 editable: Bool = true,
                 fileExtension: String = "txt",
@@ -62,6 +78,7 @@ public struct CodeEditorViewWrapper: View {
         self.theme = currentTheme
     }
 
+    /// The current font
     @State
     private var font: NSFont = {
         let size = AppPreferencesModel.shared.preferences.textEditing.font.size
@@ -69,9 +86,15 @@ public struct CodeEditorViewWrapper: View {
         return NSFont(name: name, size: Double(size)) ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
     }()
 
-    @State private var selectedTheme = ThemeModel.shared.selectedTheme
-    @State var cursorPosition = [CursorPosition(line: 1, column: 1)]
+    /// The selected theme
+    @State
+    private var selectedTheme = ThemeModel.shared.selectedTheme
 
+    /// The cursor position
+    @State
+    var cursorPosition = [CursorPosition(line: 1, column: 1)]
+
+    /// The view body
     public var body: some View {
         AuroraEditorTextView($codeFile.content,
                              language: getLanguage(),
@@ -108,6 +131,9 @@ public struct CodeEditorViewWrapper: View {
         }
     }
 
+    /// Get the language
+    /// 
+    /// - Returns: The code language
     private func getLanguage() -> CodeLanguage {
         guard let url = codeFile.fileURL else {
             guard let plainText = CodeLanguage.allLanguages.first(where: { $0.tsName == "PlainText" }) else {

@@ -55,8 +55,14 @@ import OSLog
 class AuroraCommandBroadcaster {
     /// Aurora extensions broadcaster
     public private(set) var broadcaster: AnyPublisher<Broadcast, Never>
+
+    /// The subject that the broadcaster uses to send commands
     private var subject: CurrentValueSubject<Broadcast, Never>
+
+    /// The logger for this class
     private let logger = Logger(subsystem: "com.auroraeditor", category: "Broadcaster")
+
+    /// Initializes the broadcaster
     init() {
         logger.info("[AuroraCommandBroadcaster] init()")
         subject = .init(.init(sender: "AuroraEditor", command: "NOOP"))

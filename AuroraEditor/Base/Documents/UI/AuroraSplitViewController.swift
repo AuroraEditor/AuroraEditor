@@ -16,7 +16,7 @@ import Combine
 /// ``NavigatorSidebar``/``WorkspaceView`` /``InspectorSidebar``
 /// whose sizes are stored inside ``AppPreferences/GeneralPreferences``.
 class AuroraSplitViewController: NSSplitViewController {
-
+    /// Preferences model
     let prefs: AppPreferencesModel
 
     /// - Note: Before calling viewDidAppear, received size is kind of minimum size.
@@ -31,8 +31,12 @@ class AuroraSplitViewController: NSSplitViewController {
     /// by using `Publiher.debounce` in `Combine` framework.
     private let generalPrefsSubject: PassthroughSubject<AppPreferences.GeneralPreferences, Never> = .init()
 
+    /// `cancellables` stores all the `AnyCancellable` which is used in this class.
     private var cancellables: Set<AnyCancellable> = []
 
+    /// Initialize `AuroraSplitViewController`
+    /// 
+    /// - Parameter prefs: The preferences model
     init(prefs: AppPreferencesModel) {
         self.prefs = prefs
         super.init(nibName: nil, bundle: nil)
@@ -51,19 +55,27 @@ class AuroraSplitViewController: NSSplitViewController {
             .store(in: &cancellables)
     }
 
+    /// Initialize `AuroraSplitViewController`
+    /// 
+    /// - Parameter coder: The coder
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    /// view did appear
     override func viewDidAppear() {
         super.viewDidAppear()
         calledViewDidAppear = true
     }
 
+    /// split view did resize subviews
+    /// 
+    /// - Parameter notification: The notification
     override func splitViewDidResizeSubviews(_ notification: Notification) {
         if !calledViewDidAppear {
             return
         }
+
         // Workaround
         // this method `splitViewDidResizeSubviews` is also called when current window is about to be closed.
         // then, somehow splitViewItem size is not correct (like set to zero).
@@ -71,21 +83,26 @@ class AuroraSplitViewController: NSSplitViewController {
         guard splitView.subviews.isEmpty == false, splitView.subviews.allSatisfy({ $0.frame.width != .zero }) else {
             return
         }
+
         let prefsKeyPath: [WritableKeyPath<AppPreferences.GeneralPreferences, Double>] = [
             \.navigationSidebarWidth,
             \.workspaceSidebarWidth,
             \.inspectorSidebarWidth
         ]
+
         let subViews = [
             splitView.subviews[0],
             splitView.subviews[1],
             splitView.subviews[2]
         ]
+
         var general = prefs.preferences.general
+
         for (sidebar, keyPath) in zip(subViews, prefsKeyPath) {
             let width = sidebar.frame.size.width
             general[keyPath: keyPath] = width
         }
+
         generalPrefsSubject.send(general)
     }
 }

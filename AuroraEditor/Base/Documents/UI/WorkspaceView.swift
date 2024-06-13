@@ -11,16 +11,21 @@ import AppKit
 import Version_Control
 import Combine
 
+/// Dynamic data for extensions.
 class ExtensionDynamicData: ObservableObject {
+    /// The name of the extension.
     @Published
     public var name: String
 
+    /// The title of the window.
     @Published
     public var title: String = ""
 
+    /// The view to display.
     @Published
     public var view: AnyView = AnyView(EmptyView())
 
+    /// Creates a new instance of the dynamic data.
     init() {
         self.name = ""
         self.title = ""
@@ -28,30 +33,42 @@ class ExtensionDynamicData: ObservableObject {
     }
 }
 
+/// Workspace view.
 struct WorkspaceView: View {
+    /// The height of the tab bar.
     let tabBarHeight = 28.0
+
+    /// Path of the workspace.
     private var path: String = ""
 
+    /// The preferences model.
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// The workspace document.
     @EnvironmentObject
     private var workspace: WorkspaceDocument
 
+    /// The notification service.
     private let notificationService: NotificationService = .init()
 
+    /// The cancelables.
     @State
     var cancelables: Set<AnyCancellable> = .init()
 
+    /// The alert state.
     @State
     private var showingAlert = false
 
+    /// The alert title.
     @State
     private var alertTitle = ""
 
+    /// The alert message.
     @State
     private var alertMsg = ""
 
+    /// The inspector state.
     @State
     var showInspector = true
 
@@ -60,21 +77,33 @@ struct WorkspaceView: View {
     @State
     var isFullscreen = false
 
+    /// Enter fullscreen observer.
     @State
     private var enterFullscreenObserver: Any?
 
+    /// Leave fullscreen observer.
     @State
     private var leaveFullscreenObserver: Any?
 
+    /// The sheet state.
     @State
     private var sheetIsOpened = false
 
+    /// The dynamic extension data.
     @ObservedObject
     private var extensionDynamic = ExtensionDynamicData()
 
+    /// The extensions manager.
     private let extensionsManagerShared = ExtensionsManager.shared
+
+    /// Extension view storage.
     private let extensionView = ExtensionViewStorage.shared
 
+    /// Tab content
+    /// 
+    /// - Parameter tabID: The tab ID
+    /// 
+    /// - Returns: The view
     @ViewBuilder
     func tabContentForID(tabID: TabBarItemID) -> some View {
         switch tabID {
@@ -110,6 +139,7 @@ struct WorkspaceView: View {
         }
     }
 
+    /// The view body.
     var body: some View {
         ZStack {
             if workspace.fileSystemClient != nil, let model = workspace.statusBarModel {
@@ -308,11 +338,14 @@ struct WorkspaceView_Previews: PreviewProvider {
     }
 }
 
+/// Environment key for the fullscreen state.
 private struct WorkspaceFullscreenStateEnvironmentKey: EnvironmentKey {
+    /// The default value.
     static let defaultValue: Bool = false
 }
 
 extension EnvironmentValues {
+    /// Is fullscreen state.
     var isFullscreen: Bool {
         get { self[WorkspaceFullscreenStateEnvironmentKey.self] }
         set { self[WorkspaceFullscreenStateEnvironmentKey.self] = newValue }

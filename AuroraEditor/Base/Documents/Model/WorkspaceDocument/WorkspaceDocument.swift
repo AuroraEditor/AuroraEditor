@@ -12,53 +12,79 @@ import SwiftUI
 import Combine
 import AEExtensionKit
 
+/// A class that represents a workspace document.
 @objc(WorkspaceDocument)
 class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     /// The FileSystemClient instance that manages the project's file system
     var fileSystemClient: FileSystemClient?
 
+    /// The extension navigator data
     var extensionNavigatorData: ExtensionNavigatorData? = ExtensionNavigatorData()
 
+    /// The selection state
     @Published
     var selectionState: WorkspaceSelectionState = .init()
 
+    /// The data storage
     @Published
     var data = AuroraDataStorage()
 
+    /// The broadcaster
     @Published
     var broadcaster = AuroraCommandBroadcaster()
 
+    /// The notification list
     @Published
     var notificationList: [String] = []
 
+    /// The warning list
     @Published
     var warningList: [String] = []
 
+    /// The error list
     @Published
     var errorList: [String] = []
 
+    /// The file items
     @Published
     var fileItems: [FileSystemClient.FileItem] = []
 
+    /// The editor configuration
     var editorConfig: AuroraEditorConfig = .init(fromPath: "/")
 
+    /// The current filter
     public var filter: String = "" {
         didSet { fileSystemClient?.onRefresh() }
     }
 
+    /// The status bar model
     var statusBarModel: StatusBarModel?
+
+    /// The search state
     var searchState: SearchState?
+
+    /// The quick open state
     var quickOpenState: QuickOpenState?
+
+    /// The command palette state
     var commandPaletteState: CommandPaletteState?
+
+    /// The new file model
     var newFileModel: NewFileModel = .init()
+
+    /// The workspace notification model
     var listenerModel: WorkspaceNotificationModel = .init()
+
+    /// The cancellables
     private var cancellables = Set<AnyCancellable>()
 
+    /// Deinitializer
     deinit {
         cancellables.forEach { $0.cancel() }
         NotificationCenter.default.removeObserver(self)
     }
 
+    /// debugDescription
     override var debugDescription: String {
         let path = fileSystemClient?.folderURL?.path ?? "unknown"
         return "WorkspaceDocument with path \(path)"
@@ -66,19 +92,25 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
 
     // MARK: NSDocument
 
+    /// The ignored files and directories
     private let ignoredFilesAndDirectory = [
         ".DS_Store"
     ]
 
+    /// Autosaves in place
     override class var autosavesInPlace: Bool {
         false
     }
 
+    /// Is document edited
     override var isDocumentEdited: Bool {
         false
     }
 
+    /// The window controller
     var windowController: AuroraEditorWindowController?
+
+    /// Make window controllers
     override func makeWindowControllers() {
         let window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 800, height: 600),
@@ -98,7 +130,9 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     }
 
     // MARK: Set Up Workspace
-
+    /// Init workspace state
+    /// 
+    /// - Parameter url: The URL of the workspace.
     private func initWorkspaceState(_ url: URL) throws {
         self.fileSystemClient = .init(
             fileManager: .default,
@@ -139,6 +173,10 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         return state
     }
 
+    /// Read from URL
+    /// 
+    /// - Parameter url: The URL.
+    /// - Parameter typeName: The type name.
     override func read(from url: URL, ofType typeName: String) throws {
         try initWorkspaceState(url)
 
@@ -179,6 +217,10 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         Log.info("Made document from read: \(self)")
     }
 
+    /// Write to URL
+    /// 
+    /// - Parameter url: The URL.
+    /// - Parameter typeName: The type name.
     override func write(to url: URL, ofType typeName: String) throws {}
 
     // MARK: Close Workspace
@@ -192,6 +234,7 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         UserDefaults.standard.set(data, forKey: hash)
     }
 
+    /// Close
     override func close() {
         do {
             try saveSelectionState()
