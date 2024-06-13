@@ -8,14 +8,17 @@
 
 import SwiftUI
 
+/// A view that represents a notification profile toggle.
 struct NotificationProfileToggle: View {
-
+    /// The title of the toggle.
     @State
     public var title: String
 
+    /// The enabled options.
     @State
     public var enabledOptions: [String] = []
 
+    /// The view body
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)

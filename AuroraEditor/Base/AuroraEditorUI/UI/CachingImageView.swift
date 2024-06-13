@@ -9,28 +9,43 @@
 import Foundation
 import AppKit
 
+/// A view that represents a caching image view.
 class CachingImageView: NSView {
+    /// The image URL.
     private var imageUrl: URL?
 
+    /// The image.
     var image: NSImage? {
         didSet {
             updateImageDisplay()
         }
     }
 
+    /// The image view.
     private let imageView = NSImageView(frame: .zero)
+
+    /// The image size.
     private var imageSize: NSSize = NSSize(width: 42, height: 42) // Default value
 
+    /// Make the CachingImageView.
+    /// 
+    /// - Parameter frameRect: The frame rect.
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         setupImageView()
     }
 
+    /// Make the CachingImageView.
+    /// 
+    /// - Parameter coder: The coder.
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupImageView()
     }
 
+    /// Set the image size.
+    /// 
+    /// - Parameter size: The size.
     func setImageSize(_ size: NSSize) {
         imageSize = size
         NSLayoutConstraint.activate([
@@ -40,6 +55,7 @@ class CachingImageView: NSView {
         updateImageDisplay()
     }
 
+    /// Setup the image view.
     private func setupImageView() {
         addSubview(imageView)
         imageView.imageAlignment = .alignCenter
@@ -51,12 +67,16 @@ class CachingImageView: NSView {
         ])
     }
 
+    /// Update the image display.
     private func updateImageDisplay() {
         guard let image = image else { return }
         let resizedImage = image.resizing(to: imageSize)
         imageView.image = resizedImage
     }
 
+    /// Load the image from the URL.
+    /// 
+    /// - Parameter url: The URL.
     func loadImage(from url: URL) {
         imageUrl = url
         if let cachedImage = ImageCache.shared.getCachedImage(url: url) {

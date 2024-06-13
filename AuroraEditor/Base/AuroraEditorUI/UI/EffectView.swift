@@ -15,8 +15,13 @@ import SwiftUI
 /// EffectView(material: .headerView, blendingMode: .withinWindow)
 /// ```
 public struct EffectView: NSViewRepresentable {
+    /// The material to use for the effect view.
     private let material: NSVisualEffectView.Material
+
+    /// The blending mode to use for the effect view.
     private let blendingMode: NSVisualEffectView.BlendingMode
+
+    /// A Boolean value indicating whether to emphasize the look of the material.
     private let emphasized: Bool
 
     /// Initializes the
@@ -43,6 +48,7 @@ public struct EffectView: NSViewRepresentable {
         self.emphasized = emphasized
     }
 
+    /// Makes the `NSVisualEffectView` with the provided `material`, `blendingMode` and `emphasized` flag.
     public func makeNSView(context: Context) -> NSVisualEffectView {
         let view = NSVisualEffectView()
         view.material = material
@@ -52,6 +58,7 @@ public struct EffectView: NSViewRepresentable {
         return view
     }
 
+    /// Updates the `NSVisualEffectView` with the provided `material` and `blendingMode`.
     public func updateNSView(_ nsView: NSVisualEffectView, context: Context) {
         nsView.material = material
         nsView.blendingMode = blendingMode

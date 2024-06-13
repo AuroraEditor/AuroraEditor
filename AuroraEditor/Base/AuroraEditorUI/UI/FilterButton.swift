@@ -8,7 +8,9 @@
 
 import SwiftUI
 
+/// A view that represents a filter button.
 struct FilterButton: View {
+    /// The view body
     var body: some View {
         HStack {
             Image(systemName: "line.3.horizontal.decrease")

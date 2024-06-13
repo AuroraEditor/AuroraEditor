@@ -8,14 +8,17 @@
 
 import SwiftUI
 
+/// A view that represents a horizontal stack toggle.
 struct HStackToggle: View {
-
+    /// The text of the toggle.
     @State
     public var text: String
 
+    /// The toggle value binding.
     @Binding
     public var toggleValue: Bool
 
+    /// The view body
     var body: some View {
         HStack(alignment: .center) {
             Text(text)

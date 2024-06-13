@@ -26,13 +26,17 @@ public struct SegmentedControl: View {
         self.prominent = prominent
     }
 
+    /// The index of the current selected item.
     @Binding
     private var preselectedIndex: Int
 
+    /// The options to display as an array of strings.
     private var options: [String]
 
+    /// A Bool indicating whether to use a prominent appearance instead
     private var prominent: Bool
 
+    /// The view body.
     public var body: some View {
         HStack(spacing: 8) {
             ForEach(options.indices, id: \.self) { index in
@@ -51,29 +55,40 @@ public struct SegmentedControl: View {
     }
 }
 
+/// A view that represents a single item in a segmented control.
 struct SegmentedControlItem: View {
+    /// The color scheme.
     @Environment(\.colorScheme)
     private var colorScheme
 
+    /// The active state.
     @Environment(\.controlActiveState)
     private var activeState
 
+    /// A binding to the hovering state.
     @State
     var isHovering: Bool = false
 
+    /// A binding to the pressing state.
     @State
     var isPressing: Bool = false
 
+    /// Item label.
     let label: String
 
+    /// Is the item active.
     let active: Bool
 
+    /// The action to perform when the item is tapped.
     let action: () -> Void
 
+    /// A Bool indicating whether to use a prominent appearance instead
     let prominent: Bool
 
+    /// The color of the control.
     private let color: Color = Color(nsColor: .selectedControlColor)
 
+    /// The view body.
     public var body: some View {
         Text(label)
             .font(.subheadline)
@@ -99,6 +114,7 @@ struct SegmentedControlItem: View {
 
     }
 
+    /// The text color.
     private var textColor: Color {
         if prominent {
             return active
@@ -111,6 +127,7 @@ struct SegmentedControlItem: View {
         }
     }
 
+    /// The text opacity.
     private var textOpacity: Double {
         if prominent {
             return activeState != .inactive ? 1 : active ? 1 : 0.3
@@ -119,6 +136,7 @@ struct SegmentedControlItem: View {
         }
     }
 
+    /// The background color.
     @ViewBuilder
     private var background: some View {
         if prominent {

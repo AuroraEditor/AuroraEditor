@@ -8,12 +8,16 @@
 
 import SwiftUI
 
+/// A view that represents a panel divider.
 public struct PanelDivider: View {
+    /// The color scheme.
     @Environment(\.colorScheme)
     private var colorScheme
 
+    /// Creates a new instance of `PanelDivider`.
     public init() {}
 
+    /// The view body.
     public var body: some View {
         Divider()
             .opacity(0)
