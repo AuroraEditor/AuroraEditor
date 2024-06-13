@@ -8,12 +8,27 @@
 
 import SwiftUI
 
+/// A view that represents the command palette.
 struct CommandPaletteView: View {
-    @ObservedObject private var state: CommandPaletteState
-    private let onClose: () -> Void
-    private let openFile: (FileSystemClient.FileItem) -> Void
-    @State private var selectedCommand: Command?
+    /// The ObservedObject of the command palette.
+    @ObservedObject
+    private var state: CommandPaletteState
 
+    /// The action to perform when the command palette is closed.
+    private let onClose: () -> Void
+
+    /// The action to perform when a file is opened.
+    private let openFile: (FileSystemClient.FileItem) -> Void
+
+    /// The selected command.
+    @State
+    private var selectedCommand: Command?
+
+    /// Creates a new instance of the command palette.
+    /// 
+    /// - Parameter state: The state of the command palette.
+    /// - Parameter onClose: The action to perform when the command palette is closed.
+    /// - Parameter openFile: The action to perform when a file is opened.
     public init(
         state: CommandPaletteState,
         onClose: @escaping () -> Void,
@@ -24,8 +39,14 @@ struct CommandPaletteView: View {
         self.openFile = openFile
     }
 
+    /// on key down event handler
+    /// 
     /// It should return bool value in order to notify underlying handler if event was handled or not.
     /// So returning true - means you need to break the chain and do not pass event down the line
+    /// 
+    /// - Parameter event: The NSEvent object.
+    /// 
+    /// - Returns: A boolean value indicating whether the event was handled.
     func onKeyDown(with event: NSEvent) -> Bool {
         switch event.keyCode {
         case 125: // down arrow
@@ -52,6 +73,9 @@ struct CommandPaletteView: View {
         }
     }
 
+    /// Selects the offset.
+    /// 
+    /// - Parameter offset: The offset.
     func selectOffset(by offset: Int) {
         guard !state.commands.isEmpty else { return }
 
@@ -66,6 +90,9 @@ struct CommandPaletteView: View {
         }
     }
 
+    /// on query change event handler
+    /// 
+    /// - Parameter text: The text.
     func onQueryChange(text: String) {
         state.fetchCommands()
         if !state.isShowingCommands {
@@ -73,6 +100,7 @@ struct CommandPaletteView: View {
         }
     }
 
+    /// The view body
     public var body: some View {
         VStack(spacing: 0.0) {
             VStack {

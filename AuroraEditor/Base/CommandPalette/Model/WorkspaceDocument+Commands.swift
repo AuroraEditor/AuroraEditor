@@ -10,8 +10,11 @@ import Foundation
 import SwiftUI
 
 extension WorkspaceDocument {
-    // swiftlint:disable:next function_body_length
+    /// Sets up the commands for the workspace document.
+    /// 
+    /// - Note: This function is called when the workspace document is created.
     func setupCommands() {
+        // swiftlint:disable:previous function_body_length
         self.commandPaletteState?.addCommands(commands: [
             // MARK: AuroraEditor menu
             Command(name: "About AurorEditor", command: {

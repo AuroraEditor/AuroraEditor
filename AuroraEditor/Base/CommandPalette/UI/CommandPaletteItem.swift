@@ -8,15 +8,21 @@
 
 import SwiftUI
 
+/// A view that represents a command palette item.
 struct CommandPaletteItem: View {
+    /// The command to display.
     private let command: Command
 
+    /// Creates a new instance of the command palette item.
+    /// 
+    /// - Parameter command: The command to display.
     public init(
         command: Command
     ) {
         self.command = command
     }
 
+    /// The view body.
     public var body: some View {
         HStack(spacing: 8) {
             VStack(alignment: .leading, spacing: 0) {

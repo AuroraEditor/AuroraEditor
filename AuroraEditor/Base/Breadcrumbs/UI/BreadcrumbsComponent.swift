@@ -23,9 +23,9 @@ public struct BreadcrumbsComponent: View {
     private var prefs: AppPreferencesModel = .shared
 
     /// The position.
-    @State 
+    @State
     var position: NSPoint?
-    
+
     /// The file item.
     private let fileItem: FileSystemClient.FileItem
 
