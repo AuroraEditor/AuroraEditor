@@ -10,20 +10,26 @@ import SwiftUI
 
 /// A view that implements the `Theme` preference section
 public struct ThemePreferencesView: View {
+    /// The color scheme
     @Environment(\.colorScheme)
     var colorScheme
 
+    /// Theme model
     @ObservedObject
     private var themeModel: ThemeModel = .shared
 
+    /// Preferences model
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// List view
     @State
     private var listView: Bool = false
 
+    /// The view body
     public init() {}
 
+    /// The view body
     public var body: some View {
         VStack(spacing: 20) {
             frame
@@ -49,6 +55,7 @@ public struct ThemePreferencesView: View {
         }
     }
 
+    /// The frame
     private var frame: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack(spacing: 1) {
@@ -61,6 +68,7 @@ public struct ThemePreferencesView: View {
         }
     }
 
+    /// The sidebar
     private var sidebar: some View {
         VStack(spacing: 1) {
             PreferencesToolbar {
@@ -83,6 +91,7 @@ public struct ThemePreferencesView: View {
         .frame(width: 320)
     }
 
+    /// The sidebar list view
     private var sidebarListView: some View {
         List(selection: $themeModel.selectedTheme) {
             // 0: Dark
@@ -106,6 +115,7 @@ public struct ThemePreferencesView: View {
         }
     }
 
+    /// The sidebar scroll view
     private var sidebarScrollView: some View {
         ScrollView {
             let grid: [GridItem] = .init(
@@ -146,6 +156,7 @@ public struct ThemePreferencesView: View {
         .background(EffectView(.contentBackground))
     }
 
+    /// The sidebar bottom toolbar
     private var sidebarBottomToolbar: some View {
         HStack {
             Button {} label: {
@@ -185,7 +196,8 @@ public struct ThemePreferencesView: View {
             .buttonStyle(.plain)
         }
     }
-
+    
+    /// The settings content
     private var settingsContent: some View {
         VStack(spacing: 1) {
             let options = [

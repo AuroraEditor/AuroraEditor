@@ -8,20 +8,30 @@
 
 import SwiftUI
 
+/// A view that represents a preview icon of a theme.
 struct ThemePreviewIcon: View {
+    /// Theme Preview Icon
+    /// 
+    /// - Parameter theme: The theme to preview
+    /// - Parameter selection: The selection binding
+    /// - Parameter colorScheme: The color scheme
     init(_ theme: AuroraTheme, selection: Binding<AuroraTheme?>, colorScheme: ColorScheme) {
         self.theme = theme
         self._selection = selection
         self.colorScheme = colorScheme
     }
 
+    /// The theme
     var theme: AuroraTheme
 
+    /// The selection binding
     @Binding
     var selection: AuroraTheme?
 
+    /// The color scheme
     var colorScheme: ColorScheme
 
+    /// The view body
     var body: some View {
         VStack {
             ZStack(alignment: .topLeading) {
@@ -58,6 +68,7 @@ struct ThemePreviewIcon: View {
         }
     }
 
+    /// The sidebar
     private var sidebar: some View {
         ZStack(alignment: .topLeading) {
             Rectangle()
@@ -74,6 +85,7 @@ struct ThemePreviewIcon: View {
         }
     }
 
+    /// The content
     private var content: some View {
         VStack(spacing: 0) {
             Rectangle()
@@ -87,6 +99,7 @@ struct ThemePreviewIcon: View {
         }
     }
 
+    /// The code window
     private var codeWindow: some View {
         VStack(alignment: .leading, spacing: 4) {
             block1
@@ -99,10 +112,12 @@ struct ThemePreviewIcon: View {
         .padding(.leading, 6)
     }
 
+    /// The code blocks
     private var block1: some View {
         codeStatement(colorHexForScope(scope: "comment"), length: 25)
     }
 
+    /// The code blocks
     private var block2: some View {
         VStack(alignment: .leading, spacing: 1) {
             HStack(spacing: 1) {
@@ -132,6 +147,7 @@ struct ThemePreviewIcon: View {
         }
     }
 
+    /// The code blocks
     private var block3: some View {
         VStack(alignment: .leading, spacing: 1) {
             HStack(spacing: 1) {
@@ -172,6 +188,7 @@ struct ThemePreviewIcon: View {
         }
     }
 
+    /// The code blocks
     private var block4: some View {
         VStack(alignment: .leading, spacing: 1) {
             HStack(spacing: 1) {
@@ -197,6 +214,7 @@ struct ThemePreviewIcon: View {
         }
     }
 
+    /// The code blocks
     private var block5: some View {
         VStack(alignment: .leading, spacing: 1) {
             HStack(spacing: 1) {
@@ -248,12 +266,19 @@ struct ThemePreviewIcon: View {
         }
     }
 
+    /// Code statement
+    /// 
+    /// - Parameter color: The color
+    /// - Parameter length: The length
     private func codeStatement(_ color: String, length: Double) -> some View {
         Rectangle()
             .foregroundColor(Color(hex: color))
             .frame(width: length, height: 2)
     }
 
+    /// Code space
+    /// 
+    /// - Parameter length: The length
     private func codeSpace(_ length: Double) -> some View {
         Rectangle()
             .foregroundColor(.clear)
@@ -262,6 +287,11 @@ struct ThemePreviewIcon: View {
 }
 
 extension ThemePreviewIcon {
+    /// The color hex for scope
+    /// 
+    /// - Parameter scope: The scope
+    /// 
+    /// - Returns: The color hex
     private func colorHexForScope(scope: String) -> String {
         let comment = theme.editor.highlightTheme.settings.first(where: {
             for settingScope in $0.scopes where

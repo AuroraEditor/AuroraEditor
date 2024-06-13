@@ -8,15 +8,20 @@
 
 import SwiftUI
 
+/// A view that represents the terminal theme settings.
 struct TerminalThemeView: View {
+    /// Preferences model
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// Theme model
     @StateObject
     private var themeModel: ThemeModel = .shared
 
+    /// The view body
     init() {}
 
+    /// The view body
     var body: some View {
         ZStack(alignment: .topLeading) {
             EffectView(.contentBackground)
@@ -37,12 +42,14 @@ struct TerminalThemeView: View {
         }
     }
 
+    /// Dark mode toggle
     private var topToggles: some View {
         VStack(alignment: .leading) {
             Toggle("settings.theme.terminal.dark", isOn: $prefs.preferences.terminal.darkAppearance)
         }
     }
 
+    /// Color selector
     private var colorSelector: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("settings.theme.terminal.background.text")
@@ -70,6 +77,7 @@ struct TerminalThemeView: View {
         }
     }
 
+    /// ANSI color selector
     private var ansiColorSelector: some View {
         VStack(alignment: .leading, spacing: 5) {
             if let selectedTheme = themeModel.selectedTheme,

@@ -8,11 +8,13 @@
 
 import SwiftUI
 
+/// A view that represents the preview of the selected theme.
 struct PreviewThemeView: View {
-
+    /// Theme model
     @StateObject
     private var themeModel: ThemeModel = .shared
 
+    /// The view body
     var body: some View {
         ZStack(alignment: .topLeading) {
             EffectView(.contentBackground)

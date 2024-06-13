@@ -29,7 +29,8 @@ public struct ContributorsDetailView: View {
         ScrollView(.vertical) {
             LazyVGrid(columns: gridItemLayout) {
                 ForEach(viewModel.contributors, id: \.id) { contributor in
-                    Avatar().contributorAvatar(contributorAvatarURL: contributor.avatarURL)
+                    Avatar()
+                        .contributorAvatar(contributorAvatarURL: contributor.avatarURL)
                         .help(contributor.username)
                 }
             }

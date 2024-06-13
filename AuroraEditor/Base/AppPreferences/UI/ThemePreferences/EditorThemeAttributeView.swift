@@ -8,23 +8,29 @@
 
 import SwiftUI
 
+/// A view that represents a single attribute in the editor theme settings.
 struct EditorThemeAttributeView: View {
-
+    /// Theme settings
     @State
     var setting: ThemeSetting // NOTE: This is HIGHLY UNRELIABLE to use.
 
+    /// Theme model
     @StateObject
     private var themeModel: ThemeModel = .shared
 
+    /// Isbold
     @State
     var isBold: Bool = false
 
+    /// IsItalic
     @State
     var isItalic: Bool = false
 
+    /// IsUnderline
     @State
     var isUnderline: Bool = false
 
+    /// The view body
     var body: some View {
         GroupBox {
             HStack {
@@ -153,6 +159,12 @@ struct EditorThemeAttributeView: View {
         }
     }
 
+    /// Replace an attribute in the theme settings
+    /// 
+    /// - Parameter setting: The setting to replace
+    /// - Parameter existingTest: The test to check if the attribute exists
+    /// - Parameter toggleMode: Whether to remove the attribute if found
+    /// - Parameter newAttribute: The new attribute to replace with
     func replaceAttribute(setting: ThemeSetting,
                           existingTest: @escaping (ThemeAttribute) -> Bool,
                           toggleMode: Bool = false, // removes an attribute when found, if set to true

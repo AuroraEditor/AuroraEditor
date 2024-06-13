@@ -8,14 +8,17 @@
 
 import SwiftUI
 
+/// A view that represents the highlight theme settings.
 struct HighlightThemeView: View {
-
+    /// Theme model
     @StateObject
     private var themeModel: ThemeModel = .shared
 
+    /// Preferences model
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// The view body
     var body: some View {
         ZStack {
             EffectView(.contentBackground)
