@@ -8,10 +8,13 @@
 
 import SwiftUI
 
+/// A placeholder view for the preferences
 public struct PreferencesPlaceholderView: View {
 
+    /// The view body
     public init() {}
 
+    /// The view body
     public var body: some View {
         VStack {
             Text("Implementation needed")

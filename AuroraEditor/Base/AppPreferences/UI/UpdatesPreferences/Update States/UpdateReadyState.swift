@@ -8,25 +8,35 @@
 
 import SwiftUI
 
+/// A view that represents the update ready state.
 struct UpdateReadyState: View {
-
+    /// Update editor repository
     private let repository: UpdateEditorRepository
 
+    /// Update model
     @State
     private var model: UpdateObservedModel
 
+    /// Preferences model
     @State
     private var prefs: AppPreferencesModel
 
+    /// Show install alert
     @State
     private var showInstallAlert: Bool = false
 
+    /// Update ready state
+    /// 
+    /// - Parameter repository: The update editor repository
+    /// - Parameter model: The update model
+    /// - Parameter prefs: The preferences model
     init(repository: UpdateEditorRepository, model: UpdateObservedModel, prefs: AppPreferencesModel) {
         self.repository = repository
         self.model = model
         self.prefs = prefs
     }
 
+    /// The view body
     var body: some View {
         VStack {
             GroupBox {

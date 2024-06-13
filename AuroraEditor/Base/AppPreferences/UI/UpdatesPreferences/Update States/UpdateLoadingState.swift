@@ -8,7 +8,9 @@
 
 import SwiftUI
 
+/// A view that represents the update loading state.
 struct UpdateLoadingState: View {
+    /// The view body
     var body: some View {
         GroupBox {
             VStack(alignment: .leading) {

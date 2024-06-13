@@ -8,14 +8,17 @@
 
 import SwiftUI
 
+/// A view that represents the license view.
 struct LicenseView: View {
-
+    /// A binding to close the sheet
     @Binding
     var closeSheet: Bool
 
+    /// The update model
     @State
     var model: UpdateObservedModel?
 
+    /// The view body
     var body: some View {
         VStack {
             ScrollView(.vertical) {
@@ -50,6 +53,7 @@ struct LicenseView: View {
         .padding()
     }
 
+    /// Get the license credits
     public func getLicenseCredits() -> String {
         if let filepath = Bundle.main.path(forResource: "Credits", ofType: "md") {
             do {

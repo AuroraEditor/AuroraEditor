@@ -8,11 +8,13 @@
 
 import SwiftUI
 
+/// A view that represents the preferences view.
 struct PreferencesView: View {
-
+    /// The view model
     @StateObject
     var viewModel = SettingsModel()
 
+    /// The view body
     var body: some View {
         ZStack {
             Button("CLOSE WINDOW") {
@@ -60,43 +62,59 @@ struct PreferencesView: View {
         }
     }
 
+    /// The setting content view
     var settingContentView: some View {
         ScrollView {
             if viewModel.selectedId == viewModel.setting[0].id {
-                GeneralPreferencesView()        // General
+                // General
+                GeneralPreferencesView()
             } else if viewModel.selectedId == viewModel.setting[1].id {
-                PreferenceAccountsView()        // Accounts
+                // Accounts
+                PreferenceAccountsView()
             } else if viewModel.selectedId == viewModel.setting[2].id {
-                NotificationPreferencesView()        // Notifications
+                // Notifications
+                NotificationPreferencesView()
             } else if viewModel.selectedId == viewModel.setting[3].id {
-                PreferencesPlaceholderView()    // Behaviors
+                // Behaviors
+                PreferencesPlaceholderView()
             } else if viewModel.selectedId == viewModel.setting[4].id {
-                PreferencesPlaceholderView()    // Navigation
+                // Navigation
+                PreferencesPlaceholderView()
             } else if viewModel.selectedId == viewModel.setting[5].id {
-                ThemePreferencesView()          // Themes
+                // Themes
+                ThemePreferencesView()
             } else if viewModel.selectedId == viewModel.setting[6].id {
-                TextEditingPreferencesView()    // Text Editing
+                // Text Editing
+                TextEditingPreferencesView()
             } else if viewModel.selectedId == viewModel.setting[7].id {
-                TerminalPreferencesView()       // Terminal
+                // Terminal
+                TerminalPreferencesView()
             } else if viewModel.selectedId == viewModel.setting[8].id {
-                PreferencesPlaceholderView()    // Key Bindings
+                // Key Bindings
+                PreferencesPlaceholderView()
             } else if viewModel.selectedId == viewModel.setting[9].id {
-                PreferenceSourceControlView()   // Source Control
+                // Source Control
+                PreferenceSourceControlView()
             } else if viewModel.selectedId == viewModel.setting[10].id {
-                PreferencesPlaceholderView()    // Components
+                // Components
+                PreferencesPlaceholderView()
             } else if viewModel.selectedId == viewModel.setting[11].id {
-                PreferencesPlaceholderView()    // Advanced
+                // Advanced
+                PreferencesPlaceholderView()
             } else if viewModel.selectedId == viewModel.setting[12].id {
+                // Update
                 UpdatePreferencesView()
             }
         }
         .frame(minWidth: 560, idealWidth: 580, maxWidth: 600)
     }
 
+    /// Close the preferences window
     public func closeWindow() {
         PreferencesWindowController(view: self).closeWindow()
     }
 
+    /// Show the preferences window
     public func showWindow() {
         PreferencesWindowController(view: self).showWindow(nil)
     }

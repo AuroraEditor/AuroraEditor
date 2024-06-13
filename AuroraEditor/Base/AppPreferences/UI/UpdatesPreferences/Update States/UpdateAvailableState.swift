@@ -8,25 +8,33 @@
 
 import SwiftUI
 
+/// A view that represents the update available state.
 struct UpdateAvailableState: View {
-
+    /// Is the update button disabled
     @State
     private var isUpdateButtonDisabled: Bool = false
 
+    /// Preferences model
     @State
     private var prefs: AppPreferencesModel
 
+    /// Update model
     @State
     private var model: UpdateObservedModel
 
+    /// Show license sheet
     @State
     private var showLicenseSheet: Bool = false
 
+    /// Update available state
+    /// - Parameter model: The update model
+    /// - Parameter prefs: The preferences model
     init(model: UpdateObservedModel, prefs: AppPreferencesModel) {
         self.model = model
         self.prefs = prefs
     }
 
+    /// The view body
     var body: some View {
         VStack {
             GroupBox {
@@ -73,6 +81,9 @@ struct UpdateAvailableState: View {
         }
     }
 
+    /// Get the download size
+    /// 
+    /// - Returns: The download size
     private func getDownloadSize() -> String {
         return Int64(model.updateModelJson!.size)?.fileSizeString ?? "Unknown Size"
     }

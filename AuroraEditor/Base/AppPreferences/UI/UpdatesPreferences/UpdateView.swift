@@ -8,7 +8,9 @@
 
 import SwiftUI
 
+/// A view that represents the update view.
 struct UpdateView: View {
+    /// The view body
     var body: some View {
         VStack {
             GroupBox {

@@ -8,20 +8,27 @@
 
 import SwiftUI
 
+/// A view that represents the update up to date state.
 struct UpdateUpToDateState: View {
-
+    /// Preferences model
     @State
     private var prefs: AppPreferencesModel
 
+    /// Update model
     @State
     private var model: UpdateObservedModel
 
+    /// Update up to date state
+    /// 
+    /// - Parameter prefs: The preferences model
+    /// - Parameter model: The update model
     init(prefs: AppPreferencesModel,
          model: UpdateObservedModel) {
         self.prefs = prefs
         self.model = model
     }
 
+    /// The view body
     var body: some View {
         VStack {
             GroupBox {

@@ -8,16 +8,24 @@
 
 import SwiftUI
 
+/// A view that represents the update invalid checksum state.
 struct UpdateInvalidChecksumState: View {
-
+    /// Update editor repository
     private let repository: UpdateEditorRepository
 
+    /// Preferences model
     @State
     private var prefs: AppPreferencesModel
 
+    /// Update model
     @State
     private var model: UpdateObservedModel
 
+    /// Update invalid checksum state
+    /// 
+    /// - Parameter repository: The update editor repository
+    /// - Parameter prefs: The preferences model
+    /// - Parameter model: The update model
     init(repository: UpdateEditorRepository,
          prefs: AppPreferencesModel,
          model: UpdateObservedModel) {
@@ -26,6 +34,7 @@ struct UpdateInvalidChecksumState: View {
         self.model = model
     }
 
+    /// The view body
     var body: some View {
         VStack {
             GroupBox {

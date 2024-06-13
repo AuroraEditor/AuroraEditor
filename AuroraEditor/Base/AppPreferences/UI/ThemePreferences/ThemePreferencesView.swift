@@ -196,7 +196,7 @@ public struct ThemePreferencesView: View {
             .buttonStyle(.plain)
         }
     }
-    
+
     /// The settings content
     private var settingsContent: some View {
         VStack(spacing: 1) {

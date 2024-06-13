@@ -8,26 +8,35 @@
 
 import SwiftUI
 
+/// A view that represents the update in progress state.
 struct UpdateInProgressState: View {
-
+    /// Update editor repository
     @State
     private var repository: UpdateEditorRepository
 
+    /// Download progress
     @State
     private var downloadProgress: Double = 0.0
 
+    /// ETA progress
     @State
     private var etaProgress: String = ""
 
+    /// Update model
     @State
     private var model: UpdateObservedModel
 
+    /// Update in progress state
+    /// 
+    /// - Parameter repository: The update editor repository
+    /// - Parameter model: The update model
     init(repository: UpdateEditorRepository,
          model: UpdateObservedModel) {
         self.repository = repository
         self.model = model
     }
 
+    /// The view body
     var body: some View {
         GroupBox {
             VStack(alignment: .leading) {

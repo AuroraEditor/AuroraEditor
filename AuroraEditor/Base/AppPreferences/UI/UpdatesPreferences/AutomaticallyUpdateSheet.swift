@@ -8,14 +8,17 @@
 
 import SwiftUI
 
+/// A view that represents the automatically update sheet.
 struct AutomaticallyUpdateSheet: View {
-
+    /// Dismiss environment
     @Environment(\.dismiss)
     private var dismiss
 
+    /// Preferences model
     @ObservedObject
     var prefs: AppPreferencesModel = .shared
 
+    /// The view body
     var body: some View {
         VStack(alignment: .leading) {
             Text("settings.update.check.automatically")

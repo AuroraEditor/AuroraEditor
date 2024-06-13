@@ -8,27 +8,34 @@
 
 import SwiftUI
 
+/// A view that represents the update preferences view.
 struct UpdatePreferencesView: View {
-
+    /// Preferences model
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// Update editor repository
     private var repository: UpdateEditorRepository = UpdateEditorRepository()
 
+    /// Update model
     @ObservedObject
     private var updateModel: UpdateObservedModel = .shared
 
+    /// Whether the update settings is open
     @State
     private var openUpdateSettings: Bool = false
 
+    /// The app version
     private var appVersion: String {
         Bundle.versionString ?? "No Version"
     }
 
+    /// The app build number
     private var commitHash: String {
         Bundle.commitHash ?? "No Hash"
     }
 
+    /// Whether the update button is disabled
     private var isUpdateButtonDisabled: Bool {
         #if DEBUG
         return true
@@ -37,13 +44,16 @@ struct UpdatePreferencesView: View {
         #endif
     }
 
+    /// The short commit hash
     private var shortCommitHash: String {
         if commitHash.count > 7 {
             return String(commitHash[...commitHash.index(commitHash.startIndex, offsetBy: 7)])
         }
+
         return commitHash
     }
 
+    /// The view body
     var body: some View {
         PreferencesContent {
             VStack {
@@ -144,6 +154,9 @@ struct UpdatePreferencesView: View {
         }
     }
 
+    /// Update the channel description
+    ///
+    /// - Returns: The channel description
     func updateChannelDescription() -> String {
         switch prefs.preferences.updates.updateChannel {
         case .release:
@@ -155,6 +168,7 @@ struct UpdatePreferencesView: View {
         }
     }
 
+    /// Get the automatic updates
     func automaticUpdates() -> String {
         if prefs.preferences.updates.checkForUpdates {
             return "On"
