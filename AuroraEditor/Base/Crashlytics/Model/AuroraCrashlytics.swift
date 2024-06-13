@@ -15,28 +15,53 @@ public protocol AuroraCrashlyticsDelegate: NSObjectProtocol {
     func auroraCrashlyticsDidCatchCrash(with model: CrashModel)
 }
 
+/// A weak wrapper for AuroraCrashlyticsDelegate
 class WeakAuroraCrashlyticsDelegate: NSObject {
+    /// The weak delegate
     weak var delegate: AuroraCrashlyticsDelegate?
 
+    /// Weak wrapper for AuroraCrashlyticsDelegate
+    /// 
+    /// - Parameter delegate: The delegate to wrap
     init(delegate: AuroraCrashlyticsDelegate) {
         super.init()
         self.delegate = delegate
     }
 }
 
+/// The type of crash
 public enum CrashModelType: Int {
+    /// Signal
     case signal = 1
+
+    /// Exception
     case exception = 2
 }
 
+/// The crash model
 open class CrashModel: NSObject {
-
+    /// The type of crash
     open var type: CrashModelType
+
+    /// The name of the crash
     open var name: String
+
+    /// The reason of the crash
     open var reason: String
+
+    /// The app info
     open var appinfo: String
+
+    /// The call stack
     open var callStack: String
 
+    /// Creates a new instance of the crash model
+    /// 
+    /// - Parameter type: The type of crash
+    /// - Parameter name: The name of the crash
+    /// - Parameter reason: The reason of the crash
+    /// - Parameter appinfo: The app info
+    /// - Parameter callStack: The call stack
     init(type: CrashModelType,
          name: String,
          reason: String,
@@ -50,12 +75,17 @@ open class CrashModel: NSObject {
     }
 }
 
+/// The old exception handler
 private var appOldExceptionHandler: (@convention(c) (NSException) -> Swift.Void)?
 
+/// The crashlytics
 public class AuroraCrashlytics: NSObject {
-
+    /// A boolean value indicating whether the crashlytics is open
     public private(set) static var isOpen: Bool = false
 
+    /// Adds a delegate
+    /// 
+    /// - Parameter delegate: The delegate
     open class func add(delegate: AuroraCrashlyticsDelegate) {
         // delete null week delegate
         self.delegates = self.delegates.filter {
@@ -77,6 +107,9 @@ public class AuroraCrashlytics: NSObject {
         }
     }
 
+    /// Removes a delegate
+    /// 
+    /// - Parameter delegate: The delegate
     open class func remove(delegate: AuroraCrashlyticsDelegate) {
         self.delegates = self.delegates.filter {
             // filter null weak delegate
@@ -91,6 +124,7 @@ public class AuroraCrashlytics: NSObject {
         }
     }
 
+    /// Opens the crashlytics
     private class func open() {
         guard self.isOpen == false else {
             return
@@ -102,6 +136,7 @@ public class AuroraCrashlytics: NSObject {
         self.setCrashSignalHandler()
     }
 
+    /// Closes the crashlytics
     private class func close() {
         guard self.isOpen == true else {
             return
@@ -110,6 +145,7 @@ public class AuroraCrashlytics: NSObject {
         NSSetUncaughtExceptionHandler(appOldExceptionHandler)
     }
 
+    /// Sets the crash signal handler
     private class func setCrashSignalHandler() {
         signal(SIGABRT, AuroraCrashlytics.RecieveSignal)
         signal(SIGILL, AuroraCrashlytics.RecieveSignal)
@@ -120,7 +156,7 @@ public class AuroraCrashlytics: NSObject {
         signal(SIGTRAP, AuroraCrashlytics.RecieveSignal)
     }
 
-    // swiftlint:disable:next redundant_void_return
+    /// The new exception handler
     private static let RecieveException: @convention(c) (NSException) -> Swift.Void = { (exteption) -> Void in
         // swiftlint:disable:previous redundant_void_return
         if appOldExceptionHandler != nil {
@@ -145,7 +181,7 @@ public class AuroraCrashlytics: NSObject {
         }
     }
 
-    // swiftlint:disable:next redundant_void_return
+    /// The signal handler
     private static let RecieveSignal: @convention(c) (Int32) -> Void = { (signal) -> Void in
         // swiftlint:disable:previous redundant_void_return
         guard AuroraCrashlytics.isOpen == true else {
@@ -171,6 +207,9 @@ public class AuroraCrashlytics: NSObject {
         AuroraCrashlytics.killApp()
     }
 
+    /// App info
+    /// 
+    /// - Returns: The app info
     private class func appInfo() -> String {
         let displayName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") ?? ""
         let shortVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? ""
@@ -181,6 +220,9 @@ public class AuroraCrashlytics: NSObject {
         "Device:\(deviceModel ?? "Unknown device")\n" + "OS Version:\(systemVersion)"
     }
 
+    /// The name of the signal
+    /// 
+    /// - Parameter signal: The signal
     private class func name(of signal: Int32) -> String {
         switch signal {
         case SIGABRT:
@@ -200,6 +242,7 @@ public class AuroraCrashlytics: NSObject {
         }
     }
 
+    /// Kills the app
     private class func killApp() {
         NSSetUncaughtExceptionHandler(nil)
 
@@ -213,5 +256,6 @@ public class AuroraCrashlytics: NSObject {
         kill(getpid(), SIGKILL)
     }
 
+    /// The delegates
     fileprivate static var delegates = [WeakAuroraCrashlyticsDelegate]()
 }

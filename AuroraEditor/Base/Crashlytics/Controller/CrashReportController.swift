@@ -12,6 +12,9 @@ import SwiftUI
 
 // This class helps display the Crash Reporting view before termination.
 final class CrashReportController: NSWindowController, NSToolbarDelegate {
+    /// Initialize the crash report controller with a SwiftUI view.
+    /// 
+    /// - Parameter view: The SwiftUI view to display.
     convenience init<T: View>(view: T) {
         let hostingController = NSHostingController(rootView: view)
         let window = NSWindow(contentViewController: hostingController)
@@ -22,6 +25,7 @@ final class CrashReportController: NSWindowController, NSToolbarDelegate {
         window.styleMask.remove(.miniaturizable)
     }
 
+    /// Close the window.
     func closeAnimated() {
         NSAnimationContext.beginGrouping()
         NSAnimationContext.current.duration = 0.4
