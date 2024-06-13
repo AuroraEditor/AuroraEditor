@@ -9,6 +9,10 @@
 import SwiftUI
 
 extension String {
+    @available(*, deprecated, message: "Use built-in localization instead.")
+    /// Localize a string
+    /// - Parameter comment: The comment
+    /// - Returns: The localized string
     func localize(comment: String = "") -> String {
         let defaultLanguage = "en"
         let value = NSLocalizedString(self, comment: comment)
@@ -26,10 +30,12 @@ extension String {
         return NSLocalizedString(self, bundle: bundle, comment: "")
     }
 
+    /// Localize a string
     var localized: String {
         return NSLocalizedString(self, comment: "\(self)_comment")
     }
 
+    /// Localize a string with arguments
     func localized(_ args: CVarArg...) -> String {
         return String(format: localized, arguments: args)
     }
