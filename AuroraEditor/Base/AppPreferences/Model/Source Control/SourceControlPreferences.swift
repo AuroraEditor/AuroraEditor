@@ -25,6 +25,7 @@ public extension AppPreferences {
         }
     }
 
+    /// The general source control settings
     struct SourceControlGeneral: Codable {
         /// Indicates whether or not the source control is active
         public var enableSourceControl: Bool = true
@@ -78,7 +79,10 @@ public extension AppPreferences {
     /// - **localLeft**: Local Revision on Left Side
     /// - **localRight**: Local Revision on Right Side
     enum RevisionComparisonLayout: String, Codable {
+        /// Local Revision on Left Side
         case localLeft
+
+        /// Local Revision on Right Side
         case localRight
     }
 
@@ -86,10 +90,14 @@ public extension AppPreferences {
     /// - **sortName**: They are sorted by Name
     /// - **sortDate**: They are sorted by Date
     enum ControlNavigatorOrder: String, Codable {
+        /// They are sorted by Name
         case sortByName
+
+        /// They are sorted by Date
         case sortByDate
     }
 
+    /// The source control git settings
     struct SourceControlGit: Codable {
         /// The author name
         public var authorName: String = ""

@@ -8,26 +8,33 @@
 
 import SwiftUI
 
+/// The view that displays the details of the application
 struct ApplicationsDetailsView: View {
 
     @Binding
+    /// The state of the detail view
     var aboutDetailState: AboutDetailState
 
     @State
+    /// Is the user hovering on the commit hash
     private var hoveringOnCommitHash = false
 
+    /// The app version
     private var appVersion: String {
         Bundle.versionString ?? "about.no.version".localize()
     }
 
+    /// The app build
     private var appBuild: String {
         Bundle.buildString ?? "about.no.build".localize()
     }
 
+    /// The commit hash
     private var commitHash: String {
         Bundle.commitHash ?? "about.no.hash".localize()
     }
 
+    /// The short commit hash
     private var shortCommitHash: String {
         if commitHash.count > 7 {
             return String(commitHash[...commitHash.index(commitHash.startIndex, offsetBy: 7)])
@@ -35,6 +42,7 @@ struct ApplicationsDetailsView: View {
         return commitHash
     }
 
+    /// The view body
     var body: some View {
         VStack {
             VStack {

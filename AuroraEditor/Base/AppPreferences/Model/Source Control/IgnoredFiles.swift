@@ -8,7 +8,11 @@
 
 import Foundation
 
+/// A struct to represent ignored files
 public struct IgnoredFiles: Codable, Identifiable, Hashable {
+    /// The unique identifier for the ignored file
     public var id: String
+
+    /// The name of the ignored file
     public var name: String
 }

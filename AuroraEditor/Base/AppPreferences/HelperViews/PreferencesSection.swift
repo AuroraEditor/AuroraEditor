@@ -10,13 +10,15 @@ import SwiftUI
 
 /// A view that wraps multiple ``PreferencesSection`` views and aligns them correctly.
 public struct PreferencesContent<Content: View>: View {
-
+    /// The view content
     private let content: Content
 
+    /// Initializes a new preferences content view
     public init(@ViewBuilder content: () -> Content) {
         self.content = content()
     }
 
+    /// The view body
     public var body: some View {
         VStack(alignment: .leading) {
             content
@@ -27,13 +29,24 @@ public struct PreferencesContent<Content: View>: View {
 
 /// A view that wraps controls and more and adds a right aligned label.
 public struct PreferencesSection<Content: View>: View {
-
+    /// The title
     private let title: String
+    /// The width
     private let width: Double
+    /// Should we hide labels
     private let hideLabels: Bool
+    /// The content
     private let content: Content
+    /// The alignment
     private let align: VerticalAlignment
 
+    /// Initializes a new preferences section
+    /// 
+    /// - Parameter title: The title
+    /// - Parameter width: The width
+    /// - Parameter hideLabels: Should we hide labels
+    /// - Parameter align: The alignment
+    /// - Parameter content: The content
     public init(
         _ title: String,
         width: Double = 300,
@@ -48,6 +61,7 @@ public struct PreferencesSection<Content: View>: View {
         self.content = content()
     }
 
+    /// The view body
     public var body: some View {
         HStack(alignment: align) {
             /// We keep the ":" since it's being used by all preference views.

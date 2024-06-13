@@ -9,7 +9,6 @@
 import Foundation
 
 public extension AppPreferences {
-
     /// The global settings for the notification system
     struct NotificationsPreferences: Codable {
 
@@ -30,14 +29,22 @@ public extension AppPreferences {
         /// Explicit decoder init for setting default values when key is not present in `JSON`
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.notificationsEnabled = try container.decodeIfPresent(Bool.self,
-                                                                      forKey: .notificationsEnabled) ?? true
-            self.notificationDisplayTime = try container.decodeIfPresent(Int.self,
-                                                                         forKey: .notificationDisplayTime) ?? 5000
-            self.doNotDisturb = try container.decodeIfPresent(Bool.self,
-                                                              forKey: .doNotDisturb) ?? false
-            self.allProfiles = try container.decodeIfPresent(Bool.self,
-                                                             forKey: .allProfiles) ?? false
+            self.notificationsEnabled = try container.decodeIfPresent(
+                Bool.self,
+                forKey: .notificationsEnabled
+            ) ?? true
+            self.notificationDisplayTime = try container.decodeIfPresent(
+                Int.self,
+                forKey: .notificationDisplayTime
+            ) ?? 5000
+            self.doNotDisturb = try container.decodeIfPresent(
+                Bool.self,
+                forKey: .doNotDisturb
+            ) ?? false
+            self.allProfiles = try container.decodeIfPresent(
+                Bool.self,
+                forKey: .allProfiles
+            ) ?? false
         }
     }
 }

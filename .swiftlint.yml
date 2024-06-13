@@ -12,7 +12,7 @@ disabled_rules:
 excluded:
   - AuroraEditorModules/.build # Where Swift Package Manager checks out dependency sources
   - AuroraEditorCli/Package.swift # Package.swift should not be linted
-  - Tools
+  - Tools # Tools should not be linted
   - AEquicklook # Check if we can move the js/css into a separate file and load via bundle. @0xWDG
 
 # Exclude triggering type names.
@@ -54,26 +54,29 @@ cyclomatic_complexity:
 # Opt in rules, we want it more stricter.
 opt_in_rules:
   - file_header # All files should have a same header.
-  - empty_count
-  - closure_spacing
-  - contains_over_first_not_nil
-  - missing_docs
-  - modifier_order
-  - convenience_type
-  - pattern_matching_keywords
-  - identical_operands
-  - empty_string
-  - multiline_parameters
-  - closure_end_indentation
-  - operator_usage_whitespace
-  - closure_parameter_position
-  - collection_alignment 
-  - last_where
-  - unused_optional_binding
+  - empty_count # Use .isEmpty instead of .count == 0
+  - closure_spacing # Closure should have a space before and after the braces
+  - contains_over_first_not_nil # Use .contains instead of .first(where:)
+  - missing_docs # Required documentation for public functions
+  - modifier_order # Modifier order should be consistent
+  - convenience_type # Use convenience type instead of type with default values
+  - pattern_matching_keywords # Use pattern matching keywords instead of 'is' and 'as'
+  - identical_operands # Identical operands should be avoided
+  - empty_string # Use .isEmpty instead of .count == 0
+  - multiline_parameters # Multiline parameters should be indented the same as the line they are on
+  - closure_end_indentation # Closure end should be indented the same as the line the closure starts
+  - operator_usage_whitespace # Operator should be surrounded by whitespace
+  - closure_parameter_position # Closure parameters should be on the same line as the opening brace
+  - collection_alignment  # Collection should have the same alignment
+  - last_where # Use last(where:) instead of filter().last
+  - unused_optional_binding # Unused optional binding should be avoided
   - toggle_bool # use .toggle() instead of !variable
   - explicit_init # .init is not needed
-  - fallthrough
-  - no_fallthrough_only
+  - fallthrough # fallthrough is not allowed
+  - no_fallthrough_only # fallthrough should not be the only statement in a case body
+  - comment_spacing # Comments should be followed by a space
+  - orphaned_doc_comment # Orphaned doc comment should be avoided
+  - local_doc_comment # Local doc comment should be avoided
 
 # Custom configuration for nesting, this needs to be removed at some point.
 nesting:

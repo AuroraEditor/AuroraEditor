@@ -8,19 +8,25 @@
 
 import SwiftUI
 
+/// The view that displays the acknowledgements
 public struct AcknowledgementsView: View {
-
     @ObservedObject
+    /// The view model
     private var model: AcknowledgementsModel
 
+    /// Initializes the view
     public init() {
         self.model = .init()
     }
 
+    /// Initializes the view
+    /// 
+    /// - Parameter dependencies: The dependencies
     init(_ dependencies: [Dependency]) {
         self.model = .init(dependencies)
     }
 
+    /// The view body
     public var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             Text("Dependencies")
@@ -42,6 +48,7 @@ public struct AcknowledgementsView: View {
         }
     }
 
+    /// Shows the window
     public func showWindow(width: CGFloat, height: CGFloat) {
         AcknowledgementWindowController(
             view: self,
@@ -53,11 +60,16 @@ public struct AcknowledgementsView: View {
     }
 }
 
+/// The view model for the acknowledgements
 struct AcknowledgementRow: View {
-    @Environment(\.openURL) var openURL
+    @Environment(\.openURL)
+    /// The open URL environment
+    var openURL
 
+    /// Acknowledgements
     var acknowledgement: Dependency
 
+    /// The view body
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 10) {
             Text(acknowledgement.name)
@@ -77,7 +89,12 @@ struct AcknowledgementRow: View {
     }
 }
 
+/// The window controller for the acknowledgements
 final class AcknowledgementWindowController: NSWindowController {
+    /// Initializes the window controller with the given view and size
+    /// 
+    /// - Parameter view: The view to display in the window
+    /// - Parameter size: The size of the window
     convenience init<T: View>(view: T, size: NSSize) {
         let hostingController = NSHostingController(rootView: view)
         // New window holding our SwiftUI view
@@ -90,8 +107,12 @@ final class AcknowledgementWindowController: NSWindowController {
         window.styleMask.remove(.miniaturizable)
     }
 
+    /// The event handler for the escape key
     private var escapeDetectEvent: Any?
 
+    /// Shows the window
+    /// 
+    /// - Parameter sender: The sender
     override func showWindow(_ sender: Any?) {
         window?.center()
         window?.alphaValue = 0.0
@@ -114,6 +135,7 @@ final class AcknowledgementWindowController: NSWindowController {
         window?.title = "Acknowledgements"
     }
 
+    /// De-initializes the window controller
     deinit {
         Log.info("Acknowledgement window controller de-init'd")
         if let escapeDetectEvent = escapeDetectEvent {
@@ -121,6 +143,7 @@ final class AcknowledgementWindowController: NSWindowController {
         }
     }
 
+    /// Closes the window
     func closeAnimated() {
         NSAnimationContext.beginGrouping()
         NSAnimationContext.current.duration = 0.4

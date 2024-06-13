@@ -11,8 +11,13 @@ import SwiftUI
 // This class helps display the AboutView
 final class AboutWindowHostingController<T: View>: NSWindowController {
 
+    /// The event handler for the escape key
     private var escapeDetectEvent: Any?
 
+    /// Initializes the window controller with the given view and size
+    /// 
+    /// - Parameter view: The view to display in the window
+    /// - Parameter size: The size of the window
     init(view: T, size: NSSize) {
         let hostingController = NSHostingController(rootView: view)
         let window = NSWindow(contentViewController: hostingController)
@@ -22,10 +27,16 @@ final class AboutWindowHostingController<T: View>: NSWindowController {
         setupEscapeKeyEventHandler()
     }
 
+    /// Required initializer
+    /// 
+    /// - Parameter coder: The coder
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    /// Configures the window with the given size
+    /// 
+    /// - Parameter size: The size of the window
     private func configureWindow(size: NSSize) {
         guard let window = window else { return }
 
@@ -39,6 +50,7 @@ final class AboutWindowHostingController<T: View>: NSWindowController {
         window.titleVisibility = .hidden
     }
 
+    /// Sets up the event handler for the escape key
     private func setupEscapeKeyEventHandler() {
         escapeDetectEvent = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
             if event.keyCode == 53 {
@@ -49,6 +61,9 @@ final class AboutWindowHostingController<T: View>: NSWindowController {
         }
     }
 
+    /// Shows the window
+    /// 
+    /// - Parameter sender: The sender
     override func showWindow(_ sender: Any?) {
         window?.center()
         super.showWindow(sender)
@@ -56,11 +71,13 @@ final class AboutWindowHostingController<T: View>: NSWindowController {
         animateWindow(toAlpha: 1.0)
     }
 
+    /// De-initializes the window controller
     deinit {
         Log.info("About Window controller de-init'd")
         removeEscapeKeyEventHandler()
     }
 
+    /// Removes the escape key event handler
     private func removeEscapeKeyEventHandler() {
         if let escapeDetectEvent = escapeDetectEvent {
             NSEvent.removeMonitor(escapeDetectEvent)
@@ -68,12 +85,17 @@ final class AboutWindowHostingController<T: View>: NSWindowController {
         }
     }
 
+    /// Closes the window
     func closeAnimated() {
         animateWindow(toAlpha: 0.0) {
             self.close()
         }
     }
 
+    /// Animates the window to the given alpha value
+    /// 
+    /// - Parameter alphaValue: The alpha value
+    /// - Parameter completion: The completion handler
     private func animateWindow(toAlpha alphaValue: CGFloat, completion: (() -> Void)? = nil) {
         NSAnimationContext.runAnimationGroup { context in
             context.duration = 0.4

@@ -8,7 +8,9 @@
 
 import SwiftUI
 
+/// The view that displays the details of the license
 public struct LicenseDetailView: View {
+    /// The view body
     public var body: some View {
         ScrollView(.vertical) {
             Text(.init(AboutViewModal().loadLicense()))

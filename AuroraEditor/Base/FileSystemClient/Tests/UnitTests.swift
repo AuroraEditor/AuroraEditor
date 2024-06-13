@@ -21,7 +21,7 @@ final class WorkspaceClientUnitTests: XCTestCase {
             appropriateFor: nil,
             create: true
         )
-            .appendingPathComponent("CodeEdit", isDirectory: true)
+            .appendingPathComponent("AuroraEditor", isDirectory: true)
             .appendingPathComponent("WorkspaceClientTests", isDirectory: true)
         try? FileManager.default.removeItem(at: directory)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
@@ -65,7 +65,7 @@ final class WorkspaceClientUnitTests: XCTestCase {
             appropriateFor: nil,
             create: true
         )
-            .appendingPathComponent("CodeEdit", isDirectory: true)
+            .appendingPathComponent("AuroraEditor", isDirectory: true)
             .appendingPathComponent("WorkspaceClientTests", isDirectory: true)
         try? FileManager.default.removeItem(at: directory)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)

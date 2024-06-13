@@ -10,6 +10,9 @@ import SwiftUI
 
 // Shows the settings window model
 final class PreferencesWindowController: NSWindowController, NSToolbarDelegate {
+    /// Initializes the window controller
+    /// 
+    /// - Parameter view: The view to display
     convenience init<T: View>(view: T) {
         let hostingController = NSHostingController(rootView: view)
         let window = NSWindow(contentViewController: hostingController)
@@ -21,6 +24,9 @@ final class PreferencesWindowController: NSWindowController, NSToolbarDelegate {
         window.standardWindowButton(.zoomButton)?.isEnabled = false
     }
 
+    /// Show the window
+    /// 
+    /// - Parameter sender: The sender
     override func showWindow(_ sender: Any?) {
         window?.center()
         window?.alphaValue = 0.0
@@ -35,6 +41,7 @@ final class PreferencesWindowController: NSWindowController, NSToolbarDelegate {
         settingsToolbar()
     }
 
+    /// Sets up the toolbar
     private func settingsToolbar() {
         let toolbar = NSToolbar(identifier: UUID().uuidString)
         toolbar.delegate = self
@@ -43,6 +50,7 @@ final class PreferencesWindowController: NSWindowController, NSToolbarDelegate {
         self.window?.toolbar = toolbar
     }
 
+    /// Close the window
     func closeWindow() {
         NSApplication.shared.keyWindow?.close()
     }

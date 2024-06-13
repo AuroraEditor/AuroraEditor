@@ -10,12 +10,16 @@ import SwiftUI
 
 // Useful reference for vscode themes: https://code.visualstudio.com/api/references/theme-color
 
+/// A class that loads a JSON file and returns a ``AuroraTheme`` from its contents
 class ThemeJsonLoader {
-
+    /// The shared instance of the ``ThemeJsonLoader``
     static let shared: ThemeJsonLoader = .init()
 
-    private init() {} // prevent ThemeJsonLoader from being created anywhere else
+    /// The private initializer
+    /// prevent ThemeJsonLoader from being created anywhere else
+    private init() {}
 
+    /// Attributes for the AuroraTheme
     typealias Attributes = AuroraTheme.Attributes
 
     /// Function that, taking in a filename for a bundled tmlanguage JSON file, returns a ``AuroraTheme`` from
@@ -83,6 +87,11 @@ class ThemeJsonLoader {
         return HighlightTheme(settings: themeSettings)
     }
 
+    /// Function that turns a JSON string into a ``ThemeAttribute`` array.
+    /// 
+    /// This function is used to decode the settings of a theme, which are stored in a dictionary.
+    /// 
+    /// - Parameter json: a JSON string
     func attributesFromJson(json: [String: String]) -> [ThemeAttribute] {
         var attributes: [ThemeAttribute] = []
         for (item, detail) in json {

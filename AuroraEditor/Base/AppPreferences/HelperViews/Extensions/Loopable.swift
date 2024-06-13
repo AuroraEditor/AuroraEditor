@@ -11,11 +11,6 @@ import Foundation
 /// Loopable protocol implements a method that will return all child
 /// properties and their associated values of a `Type`
 protocol Loopable {
-    func allProperties() throws -> [String: Any]
-}
-
-extension Loopable {
-
     /// returns all child properties and their associated values of `self`
     ///
     /// **Example:**
@@ -31,6 +26,10 @@ extension Loopable {
     /// // returns
     /// ["name": "Steve", "books": 4]
     /// ```
+    func allProperties() throws -> [String: Any]
+}
+
+extension Loopable {
     func allProperties() throws -> [String: Any] {
         var result: [String: Any] = [:]
 

@@ -124,7 +124,7 @@ class JSSupport: ExtensionInterface {
             return true
         }
 
-        /// Create AuroraEditor.log(...)
+        // Create AuroraEditor.log(...)
         context
             .objectForKeyedSubscript("AuroraEditor")
             .setObject(
@@ -132,7 +132,7 @@ class JSSupport: ExtensionInterface {
                 forKeyedSubscript: "log" as (NSCopying & NSObjectProtocol)
             )
 
-        /// Create AuroraEditor.respond(...)
+        // Create AuroraEditor.respond(...)
         context
             .objectForKeyedSubscript("AuroraEditor")
             .setObject(

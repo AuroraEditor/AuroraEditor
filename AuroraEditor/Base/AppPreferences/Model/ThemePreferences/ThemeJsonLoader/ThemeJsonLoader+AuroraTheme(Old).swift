@@ -66,8 +66,10 @@ extension ThemeJsonLoader {
                            version: version)
     }
 
-    // swiftlint:disable:next function_body_length
+    /// Editor from old AE Theme JSON
+    /// - Parameter json: JSON
     func editorFromOldAEThemeJson(json: [String: [String: String]]) -> AuroraTheme.EditorColors? {
+        // swiftlint:disable:previous function_body_length
         guard
             // To be translated to HighlightTheme
             let strings = json["strings"]?["color"],

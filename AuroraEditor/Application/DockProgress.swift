@@ -12,6 +12,9 @@ import SwiftUI
 import Cocoa
 
 extension NSApplication {
+    /// The dock progress indicator.
+    /// 
+    /// - Parameter progress: The progress value between 0 and 1.
     func setDockProgress(progress: Double) {
         let dockTile = NSApplication.shared.dockTile
         guard let image = NSApplication.shared.applicationIconImage else { return }
@@ -22,6 +25,7 @@ extension NSApplication {
         dockTile.display()
     }
 
+    /// Remove the dock progress indicator.
     func removeDockProgress() {
         let dockTile = NSApplication.shared.dockTile
         guard let image = NSApplication.shared.applicationIconImage else { return }
@@ -29,6 +33,10 @@ extension NSApplication {
         dockTile.display()
     }
 
+    /// The dock progress indicator.
+    /// 
+    /// - Parameter on: The app icon image.
+    /// - Parameter progress: The progress value between 0 and 1.
     private func drawProgress(on appIcon: NSImage, progress: Double) -> NSImage {
         NSImage(size: appIcon.size, flipped: false) { dstRect in
             NSGraphicsContext.current?.imageInterpolation = .high
@@ -65,12 +73,20 @@ let label = with(NSTextField()) {
 */
 
 @discardableResult
+@available(*, deprecated, message: "Please do not use this anymore.")
+/// Convenience function for initializing an object and modifying its properties.
+/// 
+/// - Parameter item: The object to modify.
+/// - Parameter update: The closure to modify the object.
+/// 
+/// - Returns: The modified object.
 private func with<T>(_ item: T, update: (inout T) throws -> Void) rethrows -> T {
     var this = item
     try update(&this)
     return this
 }
 
+/// The dock progress indicator.
 private extension NSBezierPath {
     /**
     Create a path for a superellipse that fits inside the given rect.

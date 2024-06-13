@@ -46,6 +46,7 @@ public extension AppPreferences {
         /// The reopen behavior of the app
         public var reopenBehavior: ReopenBehavior = .welcome
 
+        /// The project navigator size
         public var projectNavigatorSize: ProjectNavigatorSize = .medium
 
         /// The Find Navigator Detail line limit
@@ -60,16 +61,27 @@ public extension AppPreferences {
         /// The fag whether inspectors side-bar should open by default or not.
         public var keepInspectorSidebarOpen: Bool = false
 
+        /// The workspace sidebar width
         public var workspaceSidebarWidth: Double = Self.defaultWorkspaceSidebarWidth
+
+        /// The navigation sidebar width
         public var navigationSidebarWidth: Double = Self.defaultNavigationSidebarWidth
+
+        /// The inspector sidebar width
         public var inspectorSidebarWidth: Double = Self.defaultInspectorSidebarWidth
 
+        /// Aurora Editor Window Width
         public var auroraEditorWindowWidth: Double {
             navigationSidebarWidth + workspaceSidebarWidth + inspectorSidebarWidth
         }
 
+        /// Default inspector sidebar width
         private static let defaultInspectorSidebarWidth: Double = 260
+
+        /// Default navigation sidebar width
         private static let defaultNavigationSidebarWidth: Double = 260
+
+        /// Default workspace sidebar width
         private static let defaultWorkspaceSidebarWidth: Double = 260
 
         /// Default initializer
@@ -203,8 +215,10 @@ public extension AppPreferences {
     /// The collection of file extensions used by
     /// ``FileExtensionsVisibility/showOnly`` or  ``FileExtensionsVisibility/hideOnly`` preference
     struct FileExtensions: Codable, Hashable {
+        /// The file extensions
         public var extensions: [String]
 
+        /// The string representation of the file extensions
         public var string: String {
             get {
                 extensions.joined(separator: ", ")
@@ -217,16 +231,20 @@ public extension AppPreferences {
             }
         }
 
+        /// Default file extensions
         public static var `default` = FileExtensions(extensions: [
             "c", "cc", "cpp", "h", "hpp", "m", "mm", "gif",
             "icns", "jpeg", "jpg", "png", "tiff", "swift"
         ])
     }
+
     /// The style for file icons
     /// - **color**: File icons appear in their default colors
     /// - **monochrome**: File icons appear monochromatic
     enum FileIconStyle: String, Codable {
+        /// File icons appear in their default colors
         case color
+        /// File icons appear monochromatic
         case monochrome
     }
 
@@ -234,7 +252,10 @@ public extension AppPreferences {
     /// - **native**: Native-styled tab bar (like Finder)
     /// - **xcode**: Xcode-liked tab bar
     enum TabBarStyle: String, Codable {
+        /// Native-styled tab bar (like Finder)
         case native
+
+        /// Xcode-liked tab bar
         case xcode
     }
 
@@ -242,7 +263,10 @@ public extension AppPreferences {
     /// - **xcode**: Xcode-like mode selection
     /// - **vscode**: VSCode-like mode seliction
     enum SidebarStyle: String, Codable {
+        /// Xcode-like mode selection
         case xcode
+
+        /// VSCode-like mode seliction
         case vscode
     }
 
@@ -250,7 +274,10 @@ public extension AppPreferences {
     /// - **shown**: The menu bar item is shown
     /// - **hidden**: The menu bar item is hidden
     enum MenuBarShow: String, Codable {
+        /// The menu bar item is shown
         case shown
+
+        /// The menu bar item is hidden
         case hidden
     }
 
@@ -259,14 +286,25 @@ public extension AppPreferences {
     /// - **openPanel**: On restart the app will show an open panel
     /// - **newDocument**: On restart a new empty document will be created
     enum ReopenBehavior: String, Codable {
+        /// On restart the app will show the welcome screen
         case welcome
+
+        /// On restart the app will show an open panel
         case openPanel
+
+        /// On restart a new empty document will be created
         case newDocument
     }
 
+    /// The size of the project navigator
     enum ProjectNavigatorSize: String, Codable {
+        /// The row height of the project navigator
         case small
+
+        /// The row height of the project navigator
         case medium
+
+        /// The row height of the project navigator
         case large
 
         /// Returns the row height depending on the `projectNavigatorSize` in `AppPreferences`.
@@ -286,14 +324,22 @@ public extension AppPreferences {
     /// The Navigation Detail behavior of the app
     ///  - Use **rawValue** to set lineLimit
     enum NavigatorDetail: Int, Codable, CaseIterable {
+        /// One line
         case upTo1 = 1
+        /// Up to 2 lines
         case upTo2 = 2
+        /// Up to 3 lines
         case upTo3 = 3
+        /// Up to 4 lines
         case upTo4 = 4
+        /// Up to 5 lines
         case upTo5 = 5
+        /// Up to 10 lines
         case upTo10 = 10
+        /// Up to 30 lines
         case upTo30 = 30
 
+        /// The label for the line limit
         var label: String {
             switch self {
             case .upTo1:
@@ -305,6 +351,7 @@ public extension AppPreferences {
     }
 }
 
+/// Aurora Editor Commandline installation
 func aeCommandLine() {
     do {
         let url = Bundle.main.url(forResource: "ae", withExtension: nil, subdirectory: "Resources")
@@ -338,6 +385,7 @@ func aeCommandLine() {
     }
 }
 
+/// Fallback shell installation
 func fallbackShellInstallation(commandPath: String, destinationPath: String) {
     let cmd = [
         "osascript",
@@ -363,3 +411,4 @@ func fallbackShellInstallation(commandPath: String, destinationPath: String) {
         Log.fault("\(error)")
     }
 }
+// swiftlint:disable:this file_length

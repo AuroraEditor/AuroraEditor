@@ -12,7 +12,7 @@ import SwiftUI
 ///
 /// The model structure of themes for the editor & terminal emulator
 public struct AuroraTheme: Identifiable, Codable, Equatable, Hashable, Loopable {
-
+    /// The keys for encoding and decoding
     enum Keys: String, CodingKey {
         case author, license, distributionURL, name, displayName, editor, terminal, version
         case fontName, fontSize

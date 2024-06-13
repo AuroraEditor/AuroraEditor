@@ -8,8 +8,14 @@
 
 import Foundation
 
+/// A struct to represent a provider
 struct Providers: Identifiable, Hashable {
+    /// The name of the provider
     let name: String
+
+    /// The icon of the provider
     let icon: String
+
+    /// The unique id of the provider
     let id: String
 }

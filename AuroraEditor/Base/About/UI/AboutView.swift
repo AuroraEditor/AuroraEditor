@@ -18,12 +18,20 @@ public enum AboutDetailState {
     case credits
 }
 
+/// About View
 public struct AboutView: View {
-    @Environment(\.openURL) private var openURL
-    @ObservedObject var viewModel = AboutViewModal()
+    @Environment(\.openURL)
+    /// The open URL modifier
+    private var openURL
 
+    @ObservedObject
+    /// The view model
+    var viewModel = AboutViewModal()
+
+    /// The gradient for the contributors view
     private let fade: Gradient = Gradient(colors: [.clear, .white])
 
+    /// The view body
     public var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -45,6 +53,7 @@ public struct AboutView: View {
         .background(.regularMaterial)
     }
 
+    /// The contributors view
     private var contributorsView: some View {
         ZStack(alignment: .bottom) {
             ContributorsDetailView(viewModel: viewModel)
@@ -53,6 +62,7 @@ public struct AboutView: View {
         }
     }
 
+    /// The contributor footer
     private var contributorFooter: some View {
         let contributorsURL = "https://github.com/AuroraEditor/AuroraEditor/contributors"
         return ZStack {
@@ -73,6 +83,7 @@ public struct AboutView: View {
         .padding(.bottom, 25)
     }
 
+    /// Shows the window
     public func showWindow() {
         AboutWindowHostingController(view: self, size: NSSize(width: 640, height: 370))
             .showWindow(nil)

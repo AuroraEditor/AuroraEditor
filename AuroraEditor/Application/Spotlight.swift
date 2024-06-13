@@ -10,14 +10,22 @@ import SwiftUI
 import OSLog
 import CoreSpotlight
 
+/// A class to manage the CoreSpotlight indexing for recent projects
+/// 
+/// This class is responsible for updating the CoreSpotlight index with the recent projects
+/// that the user has opened. It also provides a method to reset the index.
 class CoreSpotlight {
     @ObservedObject
+    /// The store that contains the recent projects
     private var recentsStore: RecentProjectsStore = .shared
 
+    /// The logger for this class
     private let logger = Logger(subsystem: "com.auroraeditor", category: "Spotlight")
 
+    /// Initializes the class
     init() { }
 
+    /// Updates the CoreSpotlight index with the recent projects
     func update() {
         // Index new values
         let searchableItems = recentsStore.paths.map { recentItem in
@@ -46,6 +54,7 @@ class CoreSpotlight {
         }
     }
 
+    /// Resets the CoreSpotlight index for all items with identifier com.auroraeditor.projectItem
     func reset() {
         // Reset old values
         CSSearchableIndex.default().deleteSearchableItems(

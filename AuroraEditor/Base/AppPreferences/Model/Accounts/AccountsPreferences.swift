@@ -9,7 +9,6 @@
 import Foundation
 
 public extension AppPreferences {
-
     /// The global settings for text editing
     struct AccountsPreferences: Codable {
         /// An integer indicating how many spaces a `tab` will generate
@@ -21,18 +20,23 @@ public extension AppPreferences {
         /// Explicit decoder init for setting default values when key is not present in `JSON`
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.sourceControlAccounts = try container.decodeIfPresent(GitAccounts.self,
-                                                                       forKey: .sourceControlAccounts) ?? .init()
+            self.sourceControlAccounts = try container.decodeIfPresent(
+                GitAccounts.self,
+                forKey: .sourceControlAccounts
+            ) ?? .init()
         }
     }
 
+    /// The global settings for text editing
     struct GitAccounts: Codable {
         /// This id will store the account name as the identifiable
         public var gitAccount: [SourceControlAccounts] = []
 
         public var sshKey: String = ""
+
         /// Default initializer
         public init() {}
+
         /// Explicit decoder init for setting default values when key is not present in `JSON`
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)

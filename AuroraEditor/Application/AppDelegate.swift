@@ -10,9 +10,16 @@ import SwiftUI
 import Combine
 import AuroraEditorLanguage
 
+/// AuroraEditorApplication
+/// 
+/// The main application class for Aurora Editor.
+/// 
+/// This class is responsible for initializing the application and setting the application delegate.
 final class AuroraEditorApplication: NSApplication {
+    /// The strong reference to the application delegate.
     let strongDelegate = AppDelegate()
 
+    /// Initialize the application with the strong delegate.
     override init() {
         super.init()
         self.delegate = strongDelegate
@@ -26,17 +33,31 @@ final class AuroraEditorApplication: NSApplication {
 }
 
 @NSApplicationMain
+/// AppDelegate
+/// 
+/// The main application delegate for Aurora Editor.
+/// 
+/// This class is responsible for handling application lifecycle events, such as application
+/// launch, termination, and reopening. It also manages the status item and the main menu.
+/// 
 final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     func applicationWillFinishLaunching(_ notification: Notification) {
     }
 
+    /// The status item for the application.
     var statusItem: NSStatusItem?
 
+    /// Model for handling application updates.
     private var updateModel: UpdateObservedModel = .shared
+
+    /// Model for handling language registry.
     private var languageRegistery: LanguageRegistry = .shared
 
+    /// Set of cancellable objects for Combine subscriptions.
     var cancellable = Set<AnyCancellable>()
 
+    /// Initialize the application delegate.
+    /// - Parameter notification: The notification object.
     func applicationDidFinishLaunching(_ notification: Notification) {
         // Register storage locations if needed.
         LocalStorage().registerStorage()
@@ -100,6 +121,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             }
         }
 
+        // Handle language registry
         handleLanguageRegisteredNotification()
 
         // Check for updates
@@ -109,13 +131,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         CoreSpotlight().update()
     }
 
+    /// Code to run when the application is about to terminate.
+    /// 
+    /// - Parameter aNotification: The notification object.
     func applicationWillTerminate(_ aNotification: Notification) {
     }
 
+    /// Define if the application supports secure restorable state.
+    /// 
+    /// - Parameter notification: The notification object.
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         true
     }
 
+    /// Code to run when the application is about reopen.
+    /// 
+    /// - Parameter notification: The notification object.
+    /// - Parameter hasVisibleWindows: A boolean value indicating whether the application has visible windows.
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         if flag {
             return false
@@ -126,10 +158,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         return false
     }
 
+    /// Code to run when the application is about to open an untitled file.
+    /// 
+    /// - Parameter sender: The sender of the action.
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         false
     }
 
+    /// Code to run when the application is about to open a file.
+    /// 
+    /// - Parameter funct: The caller function name.
     func handleOpen(funct: String = #function) {
         Log.info("handleOpen() called from \(funct)")
         let behavior = AppPreferencesModel.shared.preferences.general.reopenBehavior
@@ -144,6 +182,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         }
     }
 
+    /// Code to run when the application is about to terminate.
+    /// 
+    /// - Parameter sender: The sender of the action.
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         // Extract the paths of open projects (WorkspaceDocuments).
         let projects = AuroraEditorDocumentController.shared.documents.compactMap { doc in
@@ -164,29 +205,41 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             CrashReportView(errorDetails: crashDate).showWindow()
         }
 
+        // Terminate the application.
         return .terminateNow
     }
 
     // MARK: - Open windows
-
+    /// Open the preferences window.
+    /// 
+    /// - Parameter sender: The sender of the action.
     @IBAction func openPreferences(_ sender: Any) {
         if !AppDelegate.tryFocusWindow(of: PreferencesView.self) {
             PreferencesView().showWindow()
         }
     }
 
+    // Open the welcome window.
+    /// 
+    /// - Parameter sender: The sender of the action.
     @IBAction func openWelcome(_ sender: Any) {
         if !AppDelegate.tryFocusWindow(of: WelcomeWindowView.self) {
             WelcomeWindowView.openWelcomeWindow()
         }
     }
 
+    /// Open the about window.
+    /// 
+    /// - Parameter sender: The sender of the action.
     @IBAction public func openAbout(_ sender: Any) {
         if !AppDelegate.tryFocusWindow(of: AboutView.self) {
             AboutView().showWindow()
         }
     }
 
+    /// Open the feedback window.
+    /// 
+    /// - Parameter sender: The sender of the action.
     @IBAction func openFeedback(_ sender: Any) {
         if !AppDelegate.tryFocusWindow(of: FeedbackView.self) {
             FeedbackView().showWindow()

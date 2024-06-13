@@ -8,17 +8,23 @@
 
 import SwiftUI
 
+/// The view that displays the details of the contributors
 public struct ContributorsDetailView: View {
-
     @ObservedObject
+    /// The view model
     private var viewModel: AboutViewModal
 
+    /// The grid item layout
     private let gridItemLayout = [GridItem(.adaptive(minimum: 50))]
 
+    /// Initializes the view
+    /// 
+    /// - Parameter viewModel: The view model
     public init(viewModel: AboutViewModal) {
         self.viewModel = viewModel
     }
 
+    /// The view body
     public var body: some View {
         ScrollView(.vertical) {
             LazyVGrid(columns: gridItemLayout) {

@@ -8,11 +8,13 @@
 
 import SwiftUI
 
+/// The model for the acknowledgements
 final class AcknowledgementsModel: ObservableObject {
-
     @Published
+    /// The dependencies
     private (set) var acknowledgements: [Dependency]
 
+    /// Initializes the model
     public init(_ dependencies: [Dependency] = []) {
         self.acknowledgements = dependencies
 
@@ -21,6 +23,7 @@ final class AcknowledgementsModel: ObservableObject {
         }
     }
 
+    /// Fetches the dependencies
     public func fetchDependencies() {
         self.acknowledgements.removeAll()
         do {

@@ -45,15 +45,19 @@ public extension AppPreferences {
     }
 
     /// The shell options.
-    /// - **bash**: uses the default bash shell
+    /// - **bash**: uses the bash shell
     /// - **zsh**: uses the ZSH shell
     /// - **system**: uses the system default shell (most likely ZSH)
     enum TerminalShell: String, Codable {
+        /// Uses the bash shell
         case bash
+        /// Uses the ZSH shell
         case zsh
+        /// Uses the system default shell (most likely ZSH)
         case system
     }
 
+    /// The font to use in the terminal
     struct TerminalFont: Codable {
         /// Indicates whether or not to use a custom font
         public var customFont: Bool = false
@@ -78,6 +82,7 @@ public extension AppPreferences {
 
     /// The possible terminal cursor shapes.
     enum TerminalCursorStyle: String, Codable, CaseIterable, Identifiable {
+        /// The unique identifier for the cursor style
         public var id: String { rawValue }
         /// Cursor appears as a block shape █
         case block

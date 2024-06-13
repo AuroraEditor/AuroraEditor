@@ -8,7 +8,9 @@
 
 import SwiftUI
 
+/// The view that displays the details of the credits
 struct CreditsDetailView: View {
+    /// The view body
     var body: some View {
         ScrollView(.vertical) {
             Text(.init(AboutViewModal().loadCredits()))

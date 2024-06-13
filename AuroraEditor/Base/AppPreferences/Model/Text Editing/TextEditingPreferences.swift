@@ -18,12 +18,16 @@ public extension AppPreferences {
         /// The font to use in editor.
         public var font: EditorFont = .init()
 
+        /// Indicates whether or not to show the minimap
         public var showMinimap: Bool = false
 
+        /// Indicates whether or not to show scopes
         public var showScopes: Bool = false
 
+        /// Indicates whether or not to enable type over completion
         public var enableTypeOverCompletion: Bool = true
 
+        /// Indicates whether or not to autocomplete braces
         public var autocompleteBraces: Bool = true
 
         /// Default initializer
@@ -43,6 +47,7 @@ public extension AppPreferences {
         }
     }
 
+    /// The font to use in the editor
     struct EditorFont: Codable, Equatable {
         /// Indicates whether or not to use a custom font
         public var customFont: Bool = false

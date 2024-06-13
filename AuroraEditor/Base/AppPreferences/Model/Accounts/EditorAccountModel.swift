@@ -8,36 +8,48 @@
 
 import Foundation
 
+/// A model to handle the editor account
 class EditorAccountModel: ObservableObject {
-
+    /// The callback for a successful login
     typealias LoginSuccessfulCallback = () -> Void
 
+    /// The preferences model
     private var prefs: AppPreferencesModel = .shared
 
+    /// The keychain
     private let keychain = AuroraEditorKeychain()
 
     @Published
+    /// A boolean to dismiss the dialog
     var dismissDialog: Bool
 
+    /// Initializes a new editor account model
     init(dismissDialog: Bool) {
         self.dismissDialog = dismissDialog
     }
 
-    func loginAuroraEditor(email: String,
-                           password: String,
-                           successCallback: @escaping LoginSuccessfulCallback) {
-
+    /// Logs in to your Aurora Editor account
+    /// 
+    /// - Parameter email: email address
+    /// - Parameter password: password
+    /// - Parameter successCallback: the callback for a successful login
+    func loginAuroraEditor(
+        email: String,
+        password: String,
+        successCallback: @escaping LoginSuccessfulCallback
+    ) {
         let parameters: [String: Any] = [
             "email": email,
             "password": password
         ]
 
-        AuroraNetworking().request(baseURL: Constants.auroraEditorBaseURL,
-                                   path: Constants.login,
-                                   useAuthType: .none,
-                                   method: .POST,
-                                   parameters: parameters,
-                                   completionHandler: { completion in
+        AuroraNetworking().request(
+            baseURL: Constants.auroraEditorBaseURL,
+            path: Constants.login,
+            useAuthType: .none,
+            method: .POST,
+            parameters: parameters,
+        completionHandler: { completion in
             switch completion {
             case .success(let data):
                 do {
@@ -72,6 +84,12 @@ class EditorAccountModel: ObservableObject {
         })
     }
 
+    /// Logs in to your Gitlab account
+    /// 
+    /// - Parameter gitAccountName: the name of the git account
+    /// - Parameter accountToken: the token of the account
+    /// - Parameter accountName: the name of the account
+    /// - Parameter successCallback: the callback for a successful login
     func loginGitlab(gitAccountName: String,
                      accountToken: String,
                      accountName: String,
@@ -86,17 +104,20 @@ class EditorAccountModel: ObservableObject {
                     Log.warning("Account with the username already exists!")
                 } else {
                     self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
-                        SourceControlAccounts(id: "gitlab-" + gitAccountName.lowercased(),
-                                              gitProvider: "Gitlab",
-                                              gitProviderLink: "https://gitlab.com",
-                                              gitProviderDescription: "Gitlab",
-                                              gitAccountName: gitAccountName,
-                                              gitAccountEmail: "user.email",
-                                              gitAccountUsername: "user.username",
-                                              gitAccountImage: "user.avatarURL?.absoluteString!",
-                                              gitCloningProtocol: true,
-                                              gitSSHKey: "",
-                                              isTokenValid: true))
+                        SourceControlAccounts(
+                            id: "gitlab-" + gitAccountName.lowercased(),
+                            gitProvider: "Gitlab",
+                            gitProviderLink: "https://gitlab.com",
+                            gitProviderDescription: "Gitlab",
+                            gitAccountName: gitAccountName,
+                            gitAccountEmail: "user.email",
+                            gitAccountUsername: "user.username",
+                            gitAccountImage: "user.avatarURL?.absoluteString!",
+                            gitCloningProtocol: true,
+                            gitSSHKey: "",
+                            isTokenValid: true
+                        )
+                    )
                     self.keychain.set(accountToken, forKey: "gitlab_\(accountName)")
                     self.dismissDialog.toggle()
                     successCallback()
@@ -107,10 +128,18 @@ class EditorAccountModel: ObservableObject {
         }
     }
 
-    func loginGitlabSelfHosted(gitAccountName: String,
-                               accountToken: String,
-                               enterpriseLink: String,
-                               successCallback: @escaping LoginSuccessfulCallback) {
+    /// Logs in to your self hosted Gitlab account
+    ///
+    /// - Parameter gitAccountName: the name of the git account
+    /// - Parameter accountToken: the token of the account
+    /// - Parameter enterpriseLink: the link to the enterprise
+    /// - Parameter successCallback: the callback for a successful login
+    func loginGitlabSelfHosted(
+        gitAccountName: String,
+        accountToken: String,
+        enterpriseLink: String,
+        successCallback: @escaping LoginSuccessfulCallback
+    ) {
         let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
 
         let config = GitlabTokenConfiguration(accountToken,
@@ -143,9 +172,16 @@ class EditorAccountModel: ObservableObject {
         }
     }
 
-    func loginGithub(gitAccountName: String,
-                     accountToken: String,
-                     successCallback: @escaping LoginSuccessfulCallback) {
+    /// Logs in to your Github account
+    /// 
+    /// - Parameter gitAccountName: the name of the git account
+    /// - Parameter accountToken: the token of the account
+    /// - Parameter successCallback: the callback for a successful login
+    func loginGithub(
+        gitAccountName: String,
+        accountToken: String,
+        successCallback: @escaping LoginSuccessfulCallback
+    ) {
         let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
 
         let config = GithubTokenConfiguration(accountToken)
@@ -179,11 +215,20 @@ class EditorAccountModel: ObservableObject {
         }
     }
 
-    func loginGithubEnterprise(gitAccountName: String,
-                               accountToken: String,
-                               accountName: String,
-                               enterpriseLink: String,
-                               successCallback: @escaping LoginSuccessfulCallback) {
+    /// Logs in to your self hosted Github account
+    /// 
+    /// - Parameter gitAccountName: the name of the git account
+    /// - Parameter accountToken: the token of the account
+    /// - Parameter accountName: the name of the account
+    /// - Parameter enterpriseLink: the link to the enterprise
+    /// - Parameter successCallback: the callback for a successful login
+    func loginGithubEnterprise(
+        gitAccountName: String,
+        accountToken: String,
+        accountName: String,
+        enterpriseLink: String,
+        successCallback: @escaping LoginSuccessfulCallback
+    ) {
         let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
 
         let config = GithubTokenConfiguration(accountToken,
