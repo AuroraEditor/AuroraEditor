@@ -8,11 +8,20 @@
 
 import Foundation
 
+/// QuickLook highlighter
 class QLHighlighter {
+    /// The JavaScript code
     let javaScript: String
+
+    /// The CSS code
     let css: String
+
+    /// The code
     var code: String
 
+    /// Initialize the highlighter
+    /// 
+    /// - Parameter contents: The contents
     init(contents: Data) {
         self.code = (String(data: contents, encoding: .utf8) ?? "Failed to decode")
             .replacingOccurrences(of: "<", with: "&lt;")
@@ -31,6 +40,7 @@ class QLHighlighter {
         self.javaScript = jsContents
     }
 
+    /// Build the HTML
     func build() -> String {
         return """
 <!DOCTYPE html>
