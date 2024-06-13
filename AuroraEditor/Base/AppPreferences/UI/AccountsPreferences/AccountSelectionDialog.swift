@@ -8,11 +8,13 @@
 
 import SwiftUI
 
+/// The account selection dialog
 struct AccountSelectionDialog: View {
-
+    /// The dismiss environment
     @Environment(\.dismiss)
     private var dismiss
 
+    /// The git providers
     var gitProviders = [
         Providers(name: "Aurora Editor", icon: "person.crop.circle", id: "auroraEditor"),
         Providers(name: "settings.account.bitbucket.cloud".localize(),
@@ -35,11 +37,15 @@ struct AccountSelectionDialog: View {
                   id: "gitlabSelfHosted")
     ]
 
-    @State var providerSelection: Providers.ID? = "github"
+    /// The provider selection
+    @State
+    var providerSelection: Providers.ID? = "github"
 
+    /// The open GitHub login
     @State
     var openGitLogin = false
 
+    /// The view body
     var body: some View {
         VStack {
             Text("settings.account.account.type")
@@ -79,6 +85,7 @@ struct AccountSelectionDialog: View {
         .frame(width: 400, height: 285)
     }
 
+    /// Open the account login dialog
     @ViewBuilder
     private var openAccountLoginDialog: some View {
         switch providerSelection {
@@ -101,10 +108,12 @@ struct AccountSelectionDialog: View {
         }
     }
 
+    /// Dismiss the view
     private func dismissView() {
         self.dismiss()
     }
 
+    /// The implementation needed view
     private var implementationNeeded: some View {
         VStack {
             Text("settings.account.client.not.supported")

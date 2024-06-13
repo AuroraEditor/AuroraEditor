@@ -9,7 +9,6 @@
 import AppKit
 
 extension CodeStorageDelegate {
-
     /// Add the given message to the line info of the line where the message is located.
     ///
     /// - Parameter message: The message to add.

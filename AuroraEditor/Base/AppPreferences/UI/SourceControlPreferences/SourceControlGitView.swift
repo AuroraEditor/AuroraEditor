@@ -8,15 +8,20 @@
 
 import SwiftUI
 
+/// The source control git view
 struct SourceControlGitView: View {
-
+    /// The input width
     private let inputWidth: Double = 280
 
-    @State var ignoredFileSelection: IgnoredFiles.ID?
+    /// The ignored file selection
+    @State
+    var ignoredFileSelection: IgnoredFiles.ID?
 
+    /// The preferences model
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// The view body
     var body: some View {
         VStack(alignment: .leading) {
             GroupBox {
@@ -108,6 +113,7 @@ struct SourceControlGitView: View {
         }
     }
 
+    /// The bottom toolbar
     private var bottomToolbar: some View {
         HStack(spacing: 12) {
             Button {} label: {

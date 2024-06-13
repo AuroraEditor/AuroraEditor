@@ -8,16 +8,24 @@
 
 import SwiftUI
 
+/// The source control general view
 struct SourceControlGeneralView: View {
-
+    /// The input width
     private let inputWidth: Double = 200
 
-    @State var isChecked: Bool
-    @State var branchName: String
+    /// is checked
+    @State
+    var isChecked: Bool
 
+    /// The branch name
+    @State
+    var branchName: String
+
+    /// The preferences model
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// The view body
     var body: some View {
         VStack(alignment: .leading) {
             GroupBox {

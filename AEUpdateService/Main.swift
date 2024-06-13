@@ -9,9 +9,10 @@
 import SwiftUI
 import Sentry
 
+/// The Aurora Editor updater main app
 @main
 struct Main: App {
-
+    /// Initializes the app
     init() {
         SentrySDK.start { options in
             options.dsn = ProcessInfo.processInfo.environment["SentryURL"]
@@ -25,6 +26,7 @@ struct Main: App {
         }
     }
 
+    /// The view body
     var body: some Scene {
         WindowGroup {
             ContentView()

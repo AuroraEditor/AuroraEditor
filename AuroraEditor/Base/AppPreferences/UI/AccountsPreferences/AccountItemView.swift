@@ -8,16 +8,20 @@
 
 import SwiftUI
 
+/// The account item view
 struct AccountItemView: View {
-
+    /// The open URL environment
     @Environment(\.openURL)
     var openGithubProfile
 
+    /// The account
     @Binding
     var account: SourceControlAccounts
 
+    /// The delete callback
     var onDeleteCallback: (String) -> Void
 
+    /// The view body
     var body: some View {
         GroupBox {
             VStack(alignment: .leading) {

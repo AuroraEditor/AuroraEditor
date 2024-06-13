@@ -10,14 +10,17 @@ import SwiftUI
 
 /// A view that implements the `Terminal` preference section
 public struct TerminalPreferencesView: View {
-
+    /// The input width
     private let inputWidth: Double = 150
 
+    /// The preferences model
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// Initializes the terminal preferences view
     public init() {}
 
+    /// The view body
     public var body: some View {
         PreferencesContent {
             GroupBox {
@@ -36,6 +39,7 @@ public struct TerminalPreferencesView: View {
         }
     }
 
+    /// The shell selector
     private var shellSelector: some View {
         HStack(alignment: .top) {
             Text("settings.terminal.shell")
@@ -62,6 +66,7 @@ public struct TerminalPreferencesView: View {
         }
     }
 
+    /// The font selector
     @ViewBuilder
     private var fontSelector: some View {
         HStack {
@@ -84,6 +89,7 @@ public struct TerminalPreferencesView: View {
         }
     }
 
+    /// The cursor selector
     private var cursorSelector: some View {
         HStack(alignment: .top) {
             Text("Cursor")

@@ -8,12 +8,14 @@
 
 import SwiftUI
 
+/// The Aurora Editor updater main app
 @main
 struct AEUpdateServiceApp: App {
-
+    /// The app delegate
     @NSApplicationDelegateAdaptor(AppDelegate.self)
     var appDelegate
 
+    /// The view body
     var body: some Scene {
         WindowGroup {}
     }

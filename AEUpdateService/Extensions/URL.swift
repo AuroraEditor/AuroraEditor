@@ -9,6 +9,7 @@
 import Foundation
 
 extension URL {
+    /// The query parameters of the URL
     var queryParameters: [String: String]? {
         guard let components = URLComponents(url: self, resolvingAgainstBaseURL: false),
               let queryItems = components.queryItems else {

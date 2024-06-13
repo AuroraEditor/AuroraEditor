@@ -11,6 +11,10 @@ import SwiftUI
 public extension AuroraTheme {
     /// The editor colors of the theme
     struct EditorColors: Codable, Hashable, Loopable {
+        /// Equatable implementation
+        /// 
+        /// - Parameter lhs: The left-hand side of the comparison
+        /// - Parameter rhs: The right-hand side of the comparison
         public static func == (lhs: AuroraTheme.EditorColors, rhs: AuroraTheme.EditorColors) -> Bool {
             lhs.text == rhs.text &&
             lhs.insertionPoint == rhs.insertionPoint &&
@@ -19,6 +23,7 @@ public extension AuroraTheme {
             lhs.selection == rhs.selection
         }
 
+        /// Hashable implementation
         public func hash(into hasher: inout Hasher) {
             hasher.combine(text)
             hasher.combine(insertionPoint)
@@ -27,12 +32,25 @@ public extension AuroraTheme {
             hasher.combine(selection)
         }
 
-        public var text: Attributes                 // textColor
-        public var insertionPoint: Attributes       // cursorColor
-        public var invisibles: Attributes           // invisiblesColor
-        public var background: Attributes           // backgroundColor
-        public var lineHighlight: Attributes        // currentLineColor
-        public var selection: Attributes            // selectionColor
+        /// text color
+        public var text: Attributes
+
+        /// cursor color
+        public var insertionPoint: Attributes
+
+        /// invisibles color
+        public var invisibles: Attributes
+
+        /// backgroundColor
+        public var background: Attributes
+
+        /// currentLineColor
+        public var lineHighlight: Attributes
+
+        /// selectionColor
+        public var selection: Attributes
+
+        /// The highlight theme
         public var highlightTheme: HighlightTheme
 
         /// Allows to look up properties by their name
@@ -43,6 +61,8 @@ public extension AuroraTheme {
         /// // equal to calling
         /// editor.text
         /// ```
+        /// 
+        /// - Parameter key: The key to look up
         subscript(key: String) -> Attributes {
             get {
                 switch key {
@@ -68,6 +88,15 @@ public extension AuroraTheme {
             }
         }
 
+        /// Initialize the editor colors
+        /// 
+        /// - Parameter text: text color
+        /// - Parameter insertionPoint: cursor color
+        /// - Parameter invisibles: invisibles color
+        /// - Parameter background: backgroundColor
+        /// - Parameter lineHighlight: currentLineColor
+        /// - Parameter selection: selectionColor
+        /// - Parameter highlightTheme: The highlight theme
         public init(
             text: Attributes,
             insertionPoint: Attributes,
@@ -86,10 +115,14 @@ public extension AuroraTheme {
             self.highlightTheme = highlightTheme
         }
 
+        /// Encode the editor colors
         enum Keys: CodingKey {
             case text, insertionPoint, invisibles, background, lineHighlight, selection, highlightTheme
         }
 
+        /// Encode the editor colors
+        /// 
+        /// - Parameter encoder: The encoder
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: Keys.self)
             try container.encode(self.text, forKey: .text)
@@ -101,6 +134,9 @@ public extension AuroraTheme {
             try container.encode(self.highlightTheme, forKey: .highlightTheme)
         }
 
+        /// Decode the editor colors
+        /// 
+        /// - Parameter decoder: The decoder
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: Keys.self)
 
@@ -113,20 +149,26 @@ public extension AuroraTheme {
             self.highlightTheme = (try? container.decode(HighlightTheme.self, forKey: .highlightTheme)) ?? .default
         }
 
-        public static let defaultDark: EditorColors = .init(text: Attributes(color: "#D9D9D9"),
-                                                            insertionPoint: Attributes(color: "#D9D9D9"),
-                                                            invisibles: Attributes(color: "#53606e"),
-                                                            background: Attributes(color: "#292a30"),
-                                                            lineHighlight: Attributes(color: "#2f3239"),
-                                                            selection: Attributes(color: "#636f83"),
-                                                            highlightTheme: .default)
+        /// Default dark theme
+        public static let defaultDark: EditorColors = .init(
+            text: Attributes(color: "#D9D9D9"),
+            insertionPoint: Attributes(color: "#D9D9D9"),
+            invisibles: Attributes(color: "#53606e"),
+            background: Attributes(color: "#292a30"),
+            lineHighlight: Attributes(color: "#2f3239"),
+            selection: Attributes(color: "#636f83"),
+            highlightTheme: .default
+        )
 
-        public static let defaultLight: EditorColors = .init(text: Attributes(color: "#262626"),
-                                                             insertionPoint: Attributes(color: "#262626"),
-                                                             invisibles: Attributes(color: "#d6d6d6"),
-                                                             background: Attributes(color: "#FFFFFF"),
-                                                             lineHighlight: Attributes(color: "#ecf5ff"),
-                                                             selection: Attributes(color: "#b2d7ff"),
-                                                             highlightTheme: .default)
+        /// Default light theme
+        public static let defaultLight: EditorColors = .init(
+            text: Attributes(color: "#262626"),
+            insertionPoint: Attributes(color: "#262626"),
+            invisibles: Attributes(color: "#d6d6d6"),
+            background: Attributes(color: "#FFFFFF"),
+            lineHighlight: Attributes(color: "#ecf5ff"),
+            selection: Attributes(color: "#b2d7ff"),
+            highlightTheme: .default
+        )
     }
 }

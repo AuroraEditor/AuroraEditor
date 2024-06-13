@@ -10,10 +10,11 @@ import SwiftUI
 
 /// A view that implements the `Text Editing` preference section
 public struct TextEditingPreferencesView: View {
-
+    /// The preferences model
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// Initializes the text editing preferences view
     public init() {}
 
     /// only allows integer values in the range of `[1...8]`
@@ -26,6 +27,7 @@ public struct TextEditingPreferencesView: View {
         return formatter
     }
 
+    /// The view body
     public var body: some View {
         PreferencesContent {
             GroupBox {
@@ -79,6 +81,7 @@ public struct TextEditingPreferencesView: View {
         }
     }
 
+    /// The font selector
     @ViewBuilder
     private var fontSelector: some View {
         HStack {
@@ -101,6 +104,7 @@ public struct TextEditingPreferencesView: View {
         }
     }
 
+    /// The minimap toggle
     private var minimap: some View {
         HStack {
             Text("settings.text.editing.show.minimap")
@@ -111,6 +115,7 @@ public struct TextEditingPreferencesView: View {
         }
     }
 
+    /// The scopes toggle
     private var scopes: some View {
         HStack {
             Text("settings.text.editing.show.scopes")
@@ -121,6 +126,7 @@ public struct TextEditingPreferencesView: View {
         }
     }
 
+    /// The autocomplete braces toggle
     private var autocompleteBraces: some View {
         HStack {
             Text("settings.text.editing.autocomplete.braces")
@@ -131,6 +137,7 @@ public struct TextEditingPreferencesView: View {
         }
     }
 
+    /// The enable type over completion toggle
     private var enableTypeOverCompletion: some View {
         HStack {
             Text("settings.text.editing.type.over.completion")

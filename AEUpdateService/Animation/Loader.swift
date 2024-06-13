@@ -8,19 +8,44 @@
 
 import SwiftUI
 
+/// Loader animation
 struct Loader: View {
+    /// Capsule width
+    @State
+    var capsuleWidth: CGFloat = 40
 
-    @State var capsuleWidth: CGFloat = 40
-    @State var capsuleHeight: CGFloat = 40
-    @State var xOffset: CGFloat = 0
-    @State var yOffset: CGFloat = 0
-    @State var loaderState: LoaderState
-    @State var currentIndex = 0
-    @State var animationStarted: Bool = true
+    /// Capsule height
+    @State
+    var capsuleHeight: CGFloat = 40
 
+    /// Capsule x offset
+    @State
+    var xOffset: CGFloat = 0
+
+    /// Capsule y offset
+    @State
+    var yOffset: CGFloat = 0
+
+    /// Loader state
+    @State
+    var loaderState: LoaderState
+
+    /// Current index
+    @State
+    var currentIndex = 0
+
+    /// Animation started
+    @State
+    var animationStarted: Bool = true
+
+    /// Timer duration
     var timerDuration: TimeInterval
-    @Binding var startAnimating: Bool
 
+    /// Start animating
+    @Binding
+    var startAnimating: Bool
+
+    /// The view body
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom), content: {
             Capsule()
@@ -58,7 +83,9 @@ struct Loader: View {
         }
     }
 
-    // provides the next case defined in the enum based on the currentIndex
+    /// provides the next case defined in the enum based on the currentIndex
+    /// 
+    /// - Returns: the next case
     func getNextCase() -> LoaderState {
         let allCases = LoaderState.allCases
         if self.currentIndex == allCases.count - 1 {
@@ -69,7 +96,7 @@ struct Loader: View {
         return allCases[index]
     }
 
-    // sets the initialIndex & offset values based on the loader state provided to the view
+    /// sets the initialIndex & offset values based on the loader state provided to the view
     func setIndex() {
         for (index, loaderCase) in LoaderState.allCases.enumerated()
         where loaderCase == self.loaderState {
@@ -79,7 +106,7 @@ struct Loader: View {
         }
     }
 
-    // animates the capsule to a direction
+    /// animates the capsule to a direction
     func animateCapsule() {
         self.xOffset = self.loaderState.incrementBefore.0
         self.yOffset = self.loaderState.incrementBefore.1

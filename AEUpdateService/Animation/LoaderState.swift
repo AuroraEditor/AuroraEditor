@@ -9,12 +9,21 @@
 import SwiftUI
 
 /// https://github.com/Shubham0812/SwiftUI-Animations/
+/// Loader state
 enum LoaderState: CaseIterable {
+    /// Right
     case right
+
+    /// Down
     case down
+
+    /// Left
     case left
+
+    /// Up
     case up
 
+    /// Alignment
     var alignment: Alignment {
         switch self {
         case .right, .down:
@@ -26,15 +35,19 @@ enum LoaderState: CaseIterable {
         }
     }
 
+    /// Capsule dimension
     var capsuleDimension: CGFloat {
         return 40
     }
+
+    /// Increasing offset
     var increasingOffset: CGFloat {
         return 72
     }
 
-    // swiftlint:disable:next large_tuple
+    /// Increment before
     var incrementBefore: (CGFloat, CGFloat, CGFloat, CGFloat) {
+        // swiftlint:disable:previous large_tuple
         switch self {
         case .right:
             return (0, 0, capsuleDimension + increasingOffset, capsuleDimension)
@@ -47,8 +60,9 @@ enum LoaderState: CaseIterable {
         }
     }
 
-    // swiftlint:disable:next large_tuple
+    /// Increment after
     var incrementAfter: (CGFloat, CGFloat, CGFloat, CGFloat) {
+        // swiftlint:disable:previous large_tuple
         switch self {
         case .right:
             return (increasingOffset, 0, capsuleDimension, capsuleDimension)

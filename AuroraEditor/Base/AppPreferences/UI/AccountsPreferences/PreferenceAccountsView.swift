@@ -8,16 +8,20 @@
 
 import SwiftUI
 
+/// The preference accounts view
 public struct PreferenceAccountsView: View {
-
+    /// The open account dialog
     @State
     private var openAccountDialog = false
 
+    /// The preferences model
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// Initializes the preference accounts view
     public init() {}
 
+    /// The view body
     public var body: some View {
         PreferencesContent {
             if prefs.preferences.accounts.sourceControlAccounts.gitAccount.isEmpty {
@@ -51,6 +55,9 @@ public struct PreferenceAccountsView: View {
         }
     }
 
+    /// Removes the source control account
+    /// 
+    /// - Parameter selectedAccountId: The selected account ID
     func removeSourceControlAccount(selectedAccountId: String) {
         var gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
 

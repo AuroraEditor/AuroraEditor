@@ -8,26 +8,42 @@
 
 import SwiftUI
 
+/// The login view for Gitlab
 struct GitlabLoginView: View {
+    /// The account name
+    @State
+    var accountName = ""
 
-    @State var accountName = ""
-    @State var accountToken = ""
+    /// The account token
+    @State
+    var accountToken = ""
 
-    @Environment(\.openURL) var createToken
+    /// The open URL environment
+    @Environment(\.openURL)
+    var createToken
 
+    /// Dismiss dialog
     @Binding
     var dismissDialog: Bool
 
+    /// The account model
     @ObservedObject
     var accountModel: EditorAccountModel
+
+    /// Login successful callback
     var loginSuccessfulCallback: EditorAccountModel.LoginSuccessfulCallback
 
+    /// Initializes the Gitlab login view
+    /// 
+    /// - Parameter dismissDialog: Dismiss dialog
+    /// - Parameter loginSuccessfulCallback: Login successful callback
     init(dismissDialog: Binding<Bool>, loginSuccessfulCallback: @escaping EditorAccountModel.LoginSuccessfulCallback) {
         self._dismissDialog = dismissDialog
         self.accountModel = .init(dismissDialog: dismissDialog.wrappedValue)
         self.loginSuccessfulCallback = loginSuccessfulCallback
     }
 
+    /// The view body
     var body: some View {
         VStack {
             Text("settings.gitlab.login.header")

@@ -8,30 +8,42 @@
 
 import SwiftUI
 
+/// The login view for Aurora Editor
 struct AuroraEditorLoginView: View {
-
+    /// The email address
     @State
     var email = ""
+
+    /// The password
     @State
     var password = ""
 
+    /// The open URL environment
     @Environment(\.openURL)
     var createAccount
 
+    /// Dismiss dialog
     @Binding
     var dismissDialog: Bool
 
+    /// The account model
     @ObservedObject
     var accountModel: EditorAccountModel
 
+    /// Login successful callback
     var loginSuccessfulCallback: EditorAccountModel.LoginSuccessfulCallback
 
+    /// Initializes the Aurora Editor login view
+    /// 
+    /// - Parameter dismissDialog: Dismiss dialog
+    /// - Parameter loginSuccessfulCallback: Login successful callback
     init(dismissDialog: Binding<Bool>, loginSuccessfulCallback: @escaping EditorAccountModel.LoginSuccessfulCallback) {
         self._dismissDialog = dismissDialog
         self.accountModel = .init(dismissDialog: dismissDialog.wrappedValue)
         self.loginSuccessfulCallback = loginSuccessfulCallback
     }
 
+    /// The view body
     var body: some View {
         VStack {
             Text("settings.aurora.login.header")

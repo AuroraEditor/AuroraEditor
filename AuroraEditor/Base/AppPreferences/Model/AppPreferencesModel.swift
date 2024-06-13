@@ -17,10 +17,10 @@ import SwiftUI
 /// private var prefs: AppPreferencesModel = .shared
 /// ```
 public final class AppPreferencesModel: ObservableObject {
-
     /// The publicly available singleton instance of ``AppPreferencesModel``
     public static let shared: AppPreferencesModel = .init()
 
+    /// The private initializer of the ``AppPreferencesModel``
     private init() {
         self.preferences = .init()
         self.preferences = loadPreferences()
@@ -41,6 +41,8 @@ public final class AppPreferencesModel: ObservableObject {
 
     /// Load and construct ``AppPreferences`` model from
     /// `~/Library/Application Support/com.auroraeditor/Preferences.json`
+    /// 
+    /// - returns: The loaded ``AppPreferences`` model
     private func loadPreferences() -> AppPreferences {
         if !filemanager.fileExists(atPath: preferencesURL.path) {
             let auroraEditorURL = baseURL
@@ -99,6 +101,7 @@ public final class AppPreferencesModel: ObservableObject {
             .appendingPathExtension("json")
     }
 
+    /// Is the source control active?
     public func sourceControlActive() -> Bool {
         return preferences.sourceControl.general.enableSourceControl
     }

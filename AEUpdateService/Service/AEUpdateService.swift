@@ -9,8 +9,11 @@
 import Foundation
 import Sentry
 
+/// The Aurora Editor update service
 class AEUpdateService: NSObject {
-
+    /// install the Aurora Editor update
+    /// 
+    /// - Parameter updateFile: The update file
     func installAuroraEditorUpdate(updateFile: String) {
         do {
             // Mount the disk image
@@ -52,7 +55,9 @@ class AEUpdateService: NSObject {
         }
     }
 
-    // Function to list volumes using diskutil
+    /// Function to list volumes using diskutil
+    /// 
+    /// - Returns: The output of the diskutil command
     func listVolumes() -> String? {
         let listProcess = Process()
         listProcess.launchPath = "/usr/sbin/diskutil"
@@ -69,7 +74,10 @@ class AEUpdateService: NSObject {
         return String(data: data, encoding: .utf8)
     }
 
-    // Function to parse the list of volumes and identify the Aurora Editor volume
+    /// Function to parse the list of volumes and identify the Aurora Editor volume
+    ///
+    /// - Parameter diskutilOutput: The output of the diskutil command
+    /// - Returns: The disk image path for the Aurora Editor volume
     func findAuroraEditorVolume(_ diskutilOutput: String) -> String? {
         // Split the output by newlines to process each line separately
         let lines = diskutilOutput.split(separator: "\n")

@@ -8,19 +8,25 @@
 
 import SwiftUI
 
+/// Settings model
 class SettingsModel: ObservableObject {
-
+    /// Initializes the settings model
+    /// 
+    /// - Parameter setting: The settings
     init(setting: [SettingItem] = SettingsModel.settingItems) {
         self.setting = setting
         self.selectedId = setting[0].id
     }
 
     @Published
+    /// Settings items
     var setting: [SettingItem]
 
     @Published
+    /// Selected id
     var selectedId: String?
 
+    /// The setting items
     static let settingItems = [
         SettingItem(name: "General",
                     image: NSImage(systemSymbolName: "gearshape", accessibilityDescription: nil)!,

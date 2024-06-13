@@ -8,10 +8,20 @@
 
 import SwiftUI
 
+/// The setting item
 struct SettingItem: Identifiable {
+    /// The id of the setting item
     let id = UUID().uuidString
+
+    /// The name of the setting item
     let name: String
+
+    /// The image of the setting item
     let image: NSImage
+
+    /// Color start
     let colorStart: Color
+
+    /// Color end
     let colorEnd: Color
 }

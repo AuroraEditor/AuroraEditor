@@ -9,7 +9,6 @@
 import AppKit
 
 extension CodeView {
-
     /// Update the layout of the specified message view if its geometry got invalidated by
     /// `CodeTextContainer.lineFragmentRect(forProposedRect:at:writingDirection:remaining:)`.
     func layoutMessageView(

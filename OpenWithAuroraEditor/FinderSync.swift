@@ -9,7 +9,9 @@
 import Cocoa
 import FinderSync
 
+/// Open with Aurora Editor Finder Menu Item
 class AEOpenWith: FIFinderSync {
+    /// Initialize the Finder Sync
     override init() {
         super.init()
         // Add finder sync
@@ -61,6 +63,10 @@ class AEOpenWith: FIFinderSync {
     }
 
     // MARK: - Menu and toolbar item support
+    /// Menu for the Finder
+    /// 
+    /// - Parameter menuKind: kind of menu
+    /// - Returns: the menu
     override func menu(for menuKind: FIMenuKind) -> NSMenu {
         guard let defaults = UserDefaults(suiteName: "com.auroraeditor.shared") else {
             NSLog("Unable to load defaults")

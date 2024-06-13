@@ -9,8 +9,9 @@
 import SwiftUI
 import Sentry
 
+/// The main content view
 struct ContentView: View {
-
+    /// Texts to display while updating
     let updateText = [
         "Why did the software developer go broke? Because he used up all his cache!",
         "How do software developers stay cool in the summer? They use fans.",
@@ -24,13 +25,16 @@ struct ContentView: View {
         "How do you comfort a JavaScript bug? You console it!"
     ]
 
+    /// The random index
     @State
     private var randomIndex: Int
 
+    /// Initializes the content view
     init() {
         self.randomIndex = Int.random(in: 0..<updateText.count)
     }
 
+    /// The view body
     var body: some View {
         VStack {
             Text("Installing Aurora Editor Update")

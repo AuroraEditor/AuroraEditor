@@ -8,40 +8,76 @@
 
 import Foundation
 
+/// The model for the update json
 private var prefs: AppPreferencesModel = .shared
 
+/// The model for the update json
 public class UpdateObservedModel: ObservableObject {
-
+    /// The shared instance of the update model
     public static let shared: UpdateObservedModel = .init()
 
+    /// The commit hash of the current build
     private var commitHash: String {
         Bundle.commitHash ?? "No Hash"
     }
 
+    /// The update state
     enum UpdateState {
+        /// Loading update
         case loading
+
+        /// Error
         case error
+
+        /// Update cancelled
         case cancelled
+
+        /// Update timed out
         case timedOut
+
+        /// Network connection lost
         case networkConnectionLost
+
+        /// Cannot find host
         case cannotFindHost
+
+        /// Cannot connect to host
         case cannotConnectToHost
+
+        /// Not enough storage
         case notEnoughStorage
+
+        /// Invalid checksum
         case invalidChecksum
+
+        /// Unzip error
         case unzipError
+
+        /// Update ready
         case updateReady
+
+        /// Update found
         case updateFound
+
+        /// Update in progress
         case inProgress
+
+        /// Checksum invalid
         case checksumInvalid
+
+        /// Up to date
         case upToDate
     }
 
     @Published
+    /// The update state
     var updateState: UpdateState = .loading
 
     @Published
+    /// The update model json
     var updateModelJson: UpdateModel?
 
+    /// The notification service
     private let notificationService: NotificationService = .init()
 
     /// This function allows us to to check for any new updates for the editor.
@@ -113,11 +149,21 @@ public class UpdateObservedModel: ObservableObject {
     }
 }
 
+/// The model for the update json
 struct UpdateModel: Codable {
+    /// The version code
     let versionCode: String
+
+    /// The version name
     let versionName: String
+
+    /// The sha256sum
     let sha256sum: String
+
+    /// The url
     let url: String
+
+    /// The size
     let size: String
 }
 

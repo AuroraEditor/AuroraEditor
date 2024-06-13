@@ -8,10 +8,13 @@
 
 import SwiftUI
 
+/// Loader view
 struct LoaderView: View {
+    /// Animate loaders
+    @State
+    var animateLoaders: Bool = false
 
-    @State var animateLoaders: Bool = false
-
+    /// The view body
     var body: some View {
         ZStack {
             Color.clear

@@ -8,14 +8,17 @@
 
 import SwiftUI
 
+/// The notification preferences view
 struct NotificationPreferencesView: View {
-
+    /// The app preferences
     @ObservedObject
     private var appPreferences: AppPreferencesModel = .shared
 
+    /// The notification model
     @ObservedObject
     private var notificationModel: NotificationsModel = .shared
 
+    /// The view body
     var body: some View {
         VStack(alignment: .leading) {
             Text("Notification Centre")

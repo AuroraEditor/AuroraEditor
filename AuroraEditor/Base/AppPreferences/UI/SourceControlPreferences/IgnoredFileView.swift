@@ -8,11 +8,13 @@
 
 import SwiftUI
 
+/// The ignored file view
 struct IgnoredFileView: View {
-
+    /// The ignored files
     @Binding
     var ignoredFile: IgnoredFiles
 
+    /// The view body
     var body: some View {
         Text(ignoredFile.name)
     }

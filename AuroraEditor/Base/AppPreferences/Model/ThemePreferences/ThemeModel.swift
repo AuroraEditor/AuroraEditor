@@ -16,7 +16,7 @@ import SwiftUI
 /// private var themeModel: ThemeModel = .shared
 /// ```
 public final class ThemeModel: ObservableObject {
-
+    /// The shared instance of the `ThemeModel`
     public static let shared: ThemeModel = .init()
 
     /// The selected appearance in the sidebar.
@@ -73,6 +73,7 @@ public final class ThemeModel: ObservableObject {
         return themes.filter { $0.appearance == .universal }
     }
 
+    /// Initializes the `ThemeModel` and loads all available themes.
     private init() {
         do {
             try loadThemes()
@@ -155,6 +156,10 @@ public final class ThemeModel: ObservableObject {
             self.selectedTheme = try? getDefaultTheme(with: NSApp.effectiveAppearance.name)
         }
     }
+
+    /// Returns the default theme for the given appearance
+    /// 
+    /// - Parameter apearance: The appearance to get the default theme for
     private func getDefaultTheme(with apearance: NSAppearance.Name) throws -> AuroraTheme? {
         enum DefaultTheme {
             static let anyDark = "AuroraEditor-xcode-dark"
@@ -176,6 +181,7 @@ public final class ThemeModel: ObservableObject {
         return nil
     }
 
+    /// Loads the bundled themes from the app bundle to `~/Library/Application Support/com.auroraeditor/Themes`
     private func loadBundledThemes() throws {
         let bundledThemeNames: [String] = [
             "auroraeditor-xcode-dark.json",

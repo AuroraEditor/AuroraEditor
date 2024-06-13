@@ -8,16 +8,20 @@
 
 import SwiftUI
 
+/// The source control preference view
 public struct PreferenceSourceControlView: View {
-
+    /// Initializes the preference source control view
     public init() {}
 
+    /// The preferences model
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// The selected section
     @State
     private var selectedSection: Int = 0
 
+    /// The view body
     public var body: some View {
         PreferencesContent {
             Text("settings.source.control.tab.general")

@@ -59,10 +59,26 @@ public struct AuroraTheme: Identifiable, Codable, Equatable, Hashable, Loopable 
     /// Terminal colors of the theme
     public var terminal: TerminalColors
 
+    /// The `font name` of the theme
     public var fontName: String = "SFMono-Medium"
 
+    /// The `font size` of the theme
     public var fontSize: CGFloat = 13.0
 
+    /// Initialize a new theme
+    /// 
+    /// - Parameter editor: The editor colors
+    /// - Parameter terminal: The terminal colors
+    /// - Parameter author: The author of the theme
+    /// - Parameter license: The license of the theme
+    /// - Parameter metadataDescription: A short description of the theme
+    /// - Parameter distributionURL: An URL for reference
+    /// - Parameter name: The unique name of the theme
+    /// - Parameter displayName: The display name of the theme
+    /// - Parameter appearance: The appearance of the theme
+    /// - Parameter version: The version of the theme
+    /// - Parameter fontName: The font name of the theme
+    /// - Parameter fontSize: The font size of the theme
     public init(
         editor: EditorColors,
         terminal: TerminalColors,
@@ -91,6 +107,9 @@ public struct AuroraTheme: Identifiable, Codable, Equatable, Hashable, Loopable 
         self.fontSize = fontSize
     }
 
+    /// Encode the theme
+    /// 
+    /// - Parameter encoder: The encoder
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: Keys.self)
         try container.encode(author, forKey: .author)
@@ -107,6 +126,7 @@ public struct AuroraTheme: Identifiable, Codable, Equatable, Hashable, Loopable 
         try container.encode(metadataDescription, forKey: .metadataDescription)
     }
 
+    /// Decode the theme
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
         self.author = try container.decode(String.self, forKey: .author)
@@ -123,6 +143,7 @@ public struct AuroraTheme: Identifiable, Codable, Equatable, Hashable, Loopable 
         if let fontSize = try? container.decode(CGFloat.self, forKey: .fontSize) { self.fontSize = fontSize }
     }
 
+    /// The `NSFont` of the theme
     public var font: NSFont {
         if fontName.hasPrefix("SFMono") {
             let weightString = fontName.dropFirst("SFMono".count)

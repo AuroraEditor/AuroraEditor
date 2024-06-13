@@ -8,12 +8,18 @@
 
 import SwiftUI
 
+/// The account list item
 struct AccountListItem: View {
-
+    /// The git client name
     var gitClientName: String
+
+    /// The git client symbol
     var gitClientSymbol: String
+
+    /// The client ID
     var clientId: String
 
+    /// The view body
     var body: some View {
         HStack {
             if clientId == "auroraEditor" {

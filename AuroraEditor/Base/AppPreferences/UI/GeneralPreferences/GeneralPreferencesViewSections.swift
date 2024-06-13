@@ -10,6 +10,7 @@ import Foundation
 import SwiftUI
 
 extension GeneralPreferencesView {
+    /// The appearance section
     var appearanceSection: some View {
         HStack {
             Text("settings.general.appearance")
@@ -34,6 +35,7 @@ extension GeneralPreferencesView {
     }
 
     // TODO: Implement reflecting Show Issues preference and remove disabled modifier
+    /// The show issues section
     var showIssuesSection: some View {
         HStack {
             Text("settings.general.issues")
@@ -58,6 +60,7 @@ extension GeneralPreferencesView {
         .padding(.horizontal)
     }
 
+    /// The file extensions section
     var fileExtensionsSection: some View {
         HStack {
             Text("settings.general.file.extensions")
@@ -91,6 +94,7 @@ extension GeneralPreferencesView {
         .padding(.horizontal)
     }
 
+    /// The file icon style section
     var fileIconStyleSection: some View {
         HStack {
             Text("settings.general.file.icon.style")
@@ -123,6 +127,7 @@ extension GeneralPreferencesView {
         .padding(.horizontal)
     }
 
+    /// The sidebar style section
     var sidebarStyleSection: some View {
         HStack {
             Text("settings.general.navigator.position")
@@ -139,6 +144,7 @@ extension GeneralPreferencesView {
         .padding(.horizontal)
     }
 
+    /// The menu item mode section
     var menuItemMode: some View {
         HStack {
             Text("settings.general.menu.bar")
@@ -155,6 +161,7 @@ extension GeneralPreferencesView {
         .padding(.horizontal)
     }
 
+    /// The reopen behavior section
     var reopenBehaviorSection: some View {
         HStack {
             Text("settings.general.open")
@@ -174,6 +181,7 @@ extension GeneralPreferencesView {
         .padding(.horizontal)
     }
 
+    /// The project navigator size section
     var projectNavigatorSizeSection: some View {
         HStack {
             Text("settings.general.navigator.size")
@@ -192,6 +200,7 @@ extension GeneralPreferencesView {
         .padding(.horizontal)
     }
 
+    /// The navigator detail section
     var findNavigatorDetailSection: some View {
         HStack {
             Text("settings.general.navigator.find")
@@ -208,6 +217,7 @@ extension GeneralPreferencesView {
     }
 
     // TODO: Implement reflecting Issue Navigator Detail preference and remove disabled modifier
+    /// The issue navigator detail section
     var issueNavigatorDetailSection: some View {
         HStack {
             Text("settings.general.navigator.issue")
@@ -225,6 +235,7 @@ extension GeneralPreferencesView {
     }
 
     // TODO: Implement reset for Don't Ask Me warnings Button and remove disabled modifier
+    /// The dialog warnings section
     var dialogWarningsSection: some View {
         HStack {
             Text("settings.general.dialog.warnings")
@@ -240,6 +251,7 @@ extension GeneralPreferencesView {
         .disabled(true)
     }
 
+    /// The shell command section
     var shellCommandSection: some View {
         HStack {
             Text("settings.general.shell")
@@ -255,6 +267,7 @@ extension GeneralPreferencesView {
         .padding(.horizontal)
     }
 
+    /// The open in Aurora Editor toggle
     var openInAuroraEditorToggle: some View {
         HStack {
             Text("settings.general.extension.open.with")
@@ -276,6 +289,7 @@ extension GeneralPreferencesView {
         .padding(.horizontal)
     }
 
+    /// The preferences location section
     var preferencesLocation: some View {
         HStack {
               Text("Preferences")
@@ -299,6 +313,7 @@ extension GeneralPreferencesView {
           .padding(.horizontal)
     }
 
+    /// The install path section
     var installPath: String {
         let bundleURL = Bundle.main.resourceURL
         guard var bundleURL = bundleURL?.deletingLastPathComponent() else {
@@ -308,6 +323,7 @@ extension GeneralPreferencesView {
         return bundleURL.path
     }
 
+    /// The install path location section
     var installPathLocation: some View {
         HStack {
               Text("Install Path")
@@ -333,6 +349,7 @@ extension GeneralPreferencesView {
           .padding(.horizontal)
     }
 
+    /// The reveal file on focus change toggle
     var revealFileOnFocusChangeToggle: some View {
         HStack {
             Text("settings.general.show.active.file")
@@ -344,6 +361,7 @@ extension GeneralPreferencesView {
         .padding(.horizontal)
     }
 
+    /// The keep inspector window open toggle
     var keepInspectorWindowOpen: some View {
         HStack {
             Text("settings.general.inspector.keep.open")

@@ -8,6 +8,10 @@
 
 import Foundation
 
+/// Convert to absolute path
+/// 
+/// - Parameter path: The path to convert
+/// - Returns: The absolute path
 func convertToAbsolutePath(_ path: String) -> String {
     let nsString = NSString(string: path)
     if nsString.isAbsolutePath {
@@ -24,6 +28,9 @@ func convertToAbsolutePath(_ path: String) -> String {
     )
 }
 
+/// Open AuroraEditor
+/// 
+/// - Parameter paths: The paths to open
 func openApp(paths: [String]? = nil) {
     let task = Process()
     task.launchPath = "/usr/bin/open" // This should be the same on all installations of MacOS
@@ -41,8 +48,11 @@ func openApp(paths: [String]? = nil) {
     task.launch()
 }
 
+// If no arguments are passed, open the app
 if CommandLine.arguments.count < 2 {
+    // Open the app without any arguments
     openApp()
 } else {
+    // If arguments are passed, open the app with the arguments
     openApp(paths: Array(CommandLine.arguments.dropFirst(1)))
 }

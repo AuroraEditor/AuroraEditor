@@ -10,17 +10,24 @@ import SwiftUI
 
 /// A view that implements the `General` preference section
 public struct GeneralPreferencesView: View {
-
+    /// The width of the input fields
     let inputWidth: Double = 160
+
+    /// The width of the text editor fields
     let textEditorWidth: Double = 220
+
+    /// The height of the text editor fields
     let textEditorHeight: Double = 30
 
+    /// App preferences model
     @StateObject
     var prefs: AppPreferencesModel = .shared
 
+    /// Open in Aurora Editor toggle
     @State
     var openInAuroraEditor: Bool = true
 
+    /// Initializes the general preferences view
     public init() {
         guard let defaults = UserDefaults(
             suiteName: "com.auroraeditor.shared"
@@ -32,6 +39,7 @@ public struct GeneralPreferencesView: View {
         self.openInAuroraEditor = defaults.bool(forKey: "enableOpenInAE")
     }
 
+    /// The view body
     public var body: some View {
         PreferencesContent {
             Text("settings.general.appearance")

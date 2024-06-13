@@ -10,22 +10,36 @@ import Foundation
 import ZIPFoundation
 import AppKit
 
+/// A repository that manages the download and installation of editor updates.
 class UpdateEditorRepository: NSObject, URLSessionDownloadDelegate {
-
+    /// The file manager used to manage files on disk.
     private var fileManager: FileManager
+
+    /// The temporary directory used to store downloaded files.
     private var tempDirectory: URL
+
+    /// The required storage size for the downloaded file.
     private let requiredStorageSize: Int64
 
+    /// The download task used to download the update file.
     private var downloadTask: URLSessionDownloadTask?
+
+    /// The background completion handler used to notify the system when the download is complete.
     private var backgroundCompletionHandler: (() -> Void)?
 
+    /// The progress handler used to report download progress.
     private var progressHandler: ((Double, String?) -> Void)?
 
+    /// The shared `UpdateObservedModel` instance used to manage the update state.
     private let model: UpdateObservedModel = .shared
+
+    /// The URL of the downloaded update file.
     public var updateFileUrl: String? = ""
 
+    /// The time at which the download started.
     private var downloadStartTime: TimeInterval = 0
 
+    /// Initializes a new `UpdateEditorRepository` instance.
     override init() {
         self.fileManager = FileManager.default
         self.tempDirectory = fileManager.temporaryDirectory
@@ -286,6 +300,10 @@ class UpdateEditorRepository: NSObject, URLSessionDownloadDelegate {
         return false
     }
 
+    /// Unzips a file at a specified path to a destination directory.
+    /// 
+    /// - Parameter zipFilePath: The path to the ZIP file to be unzipped.
+    /// - Parameter destinationDirectory: The path to the directory where the ZIP file should be unzipped.
     func unzipFile(zipFilePath: String, to destinationDirectory: String) {
         let task = Process()
         task.executableURL = URL(fileURLWithPath: "/usr/bin/unzip")
@@ -299,6 +317,11 @@ class UpdateEditorRepository: NSObject, URLSessionDownloadDelegate {
         }
     }
 
+    /// Calculates the SHA-256 checksum for a file at a specified path.
+    /// 
+    /// - Parameter filePath: The path to the file for which the checksum should be calculated.
+    /// 
+    /// - Returns: The SHA-256 checksum of the file, or `nil` if an error occurs.
     public func calculateSHA256Checksum(forFileAtPath filePath: String) -> String? {
         let process = Process()
         process.launchPath = "/usr/bin/shasum"
@@ -324,5 +347,4 @@ class UpdateEditorRepository: NSObject, URLSessionDownloadDelegate {
 
         return nil
     }
-
 }
