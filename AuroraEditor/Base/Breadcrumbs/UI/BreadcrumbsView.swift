@@ -8,19 +8,30 @@
 
 import SwiftUI
 
+/// A view that represents the breadcrumbs.
 public struct BreadcrumbsView: View {
+    /// The color scheme.
     @Environment(\.colorScheme)
     private var colorScheme
 
+    /// The active state.
     @Environment(\.controlActiveState)
     private var activeState
 
+    /// The file items.
     @State
     private var fileItems: [FileSystemClient.FileItem] = []
 
+    /// The file.
     private let file: FileSystemClient.FileItem
+
+    /// The tapped open file closure.
     private let tappedOpenFile: (FileSystemClient.FileItem) -> Void
 
+    /// Creates a new instance of `BreadcrumbsView`.
+    /// 
+    /// - Parameter file: The file.
+    /// - Parameter tappedOpenFile: The tapped open file closure.
     public init(
         file: FileSystemClient.FileItem,
         tappedOpenFile: @escaping (FileSystemClient.FileItem) -> Void
@@ -29,6 +40,7 @@ public struct BreadcrumbsView: View {
         self.tappedOpenFile = tappedOpenFile
     }
 
+    /// The view body.
     public var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 1.5) {
@@ -57,6 +69,7 @@ public struct BreadcrumbsView: View {
         }
     }
 
+    /// Chrevron divider.
     private var chevron: some View {
         Image(systemName: "chevron.compact.right")
             .font(.system(size: 18, weight: .thin, design: .monospaced))
@@ -64,6 +77,9 @@ public struct BreadcrumbsView: View {
             .opacity(activeState != .inactive ? 0.8 : 0.5)
     }
 
+    /// File info.
+    /// 
+    /// - Parameter file: The file.
     private func fileInfo(_ file: FileSystemClient.FileItem) {
         fileItems = []
         var currentFile: FileSystemClient.FileItem? = file

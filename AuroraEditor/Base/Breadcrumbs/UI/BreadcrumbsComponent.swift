@@ -8,18 +8,34 @@
 
 import SwiftUI
 
+/// A view that represents a breadcrumbs component.
 public struct BreadcrumbsComponent: View {
+    /// The color scheme.
     @Environment(\.colorScheme)
     var colorScheme
 
+    /// The active state.
     @Environment(\.controlActiveState)
     private var activeState
 
-    @StateObject private var prefs: AppPreferencesModel = .shared
-    @State var position: NSPoint?
+    /// The preferences model.
+    @StateObject
+    private var prefs: AppPreferencesModel = .shared
+
+    /// The position.
+    @State 
+    var position: NSPoint?
+    
+    /// The file item.
     private let fileItem: FileSystemClient.FileItem
+
+    /// The tapped open file closure.
     private let tappedOpenFile: (FileSystemClient.FileItem) -> Void
 
+    /// Creates a new instance of `BreadcrumbsComponent`.
+    /// 
+    /// - Parameter fileItem: The file item.
+    /// - Parameter tappedOpenFile: The tapped open file closure.
     public init(
         fileItem: FileSystemClient.FileItem,
         tappedOpenFile: @escaping (FileSystemClient.FileItem) -> Void
@@ -28,6 +44,7 @@ public struct BreadcrumbsComponent: View {
         self.tappedOpenFile = tappedOpenFile
     }
 
+    /// The file image.
     private var image: String {
         fileItem.parent == nil ? "square.dashed.inset.filled" : fileItem.systemImage
     }
@@ -45,6 +62,7 @@ public struct BreadcrumbsComponent: View {
         )
     }
 
+    /// The view body.
     public var body: some View {
         HStack(alignment: .center, spacing: 5) {
             Image(systemName: image)
