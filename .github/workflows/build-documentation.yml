@@ -1,0 +1,41 @@
+name: build-documentation
+
+on:
+  push:
+    branches:
+      - "development"
+  workflow_dispatch:
+
+jobs:
+  build-docc:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create folder for generated documentation
+        run: |
+          mkdir docs
+
+      - name: Build Documentation
+        run: |
+          xcodebuild docbuild -scheme "Aurora Editor" \
+          OTHER_DOCC_FLAGS="--transform-for-static-hosting --output-path docs"
+
+      - name: Init new repo in dist folder and commit generated files
+        run: |
+          cd docs
+          git init -b documentation
+          DOCURL=`basename ${{ github.repository }}`
+          echo "docs.auroraeditor.com" > CNAME
+          echo "{\"meta\":{\"title\":\"$DOCURL Documentation\"}}" > theme-settings.json
+          echo "<script>window.location.href = (document.location.host == 'auroraeditor.github.io' ? '/AuroraEditor' : '') + '/documentation/$DOCURL/'.toLowerCase();</script>" > index.html
+          echo "<script>window.location.href = (document.location.host == 'auroraeditor.github.io' ? '/AuroraEditor' : '') + '/documentation/$DOCURL/'.toLowerCase();</script>" > 404.html
+          git add -A .
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git commit -m 'deploy'
+          git push \
+          "https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" \
+          HEAD:documentation \
+          --force

@@ -154,6 +154,14 @@ jobs:
 
           echo "version_name=$version_name" >> $GITHUB_OUTPUT
 
+      - name: "Set DEVELOPMENT_TEAM identifier"
+        env:
+          xcodeproj: "Aurora Editor.xcodeproj/project.pbxproj"
+        run: |
+          cp "$xcodeproj" "temp"
+          sed 's/DEVELOPMENT_TEAM = "";/DEVELOPMENT_TEAM = 4V2D72S45C;/g' "temp" > "$xcodeproj"
+          rm "temp"
+
       - name: "Create Release Build Archive"
         run: |
           set -o pipefail

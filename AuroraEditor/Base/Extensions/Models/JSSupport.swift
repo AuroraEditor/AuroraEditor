@@ -149,6 +149,8 @@ class JSSupport: ExtensionInterface {
             .evaluateScript("var AuroraEditor = {};")
 
         JSTimerSupport.shared.registerInto(jsContext: context)
+        JSPromise.shared.registerInto(jsContext: context)
+        JSFetch.shared.registerInto(jsContext: context)
     }
 
     /// Respond to an (AuroraEditor) JavaScript function.

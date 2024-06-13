@@ -447,6 +447,8 @@
 		2B615ABA2BC865B500A5457F /* ExtensionOrWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B615AB92BC865B500A5457F /* ExtensionOrWebView.swift */; };
 		2B615ABC2BC865E400A5457F /* ExtensionViewStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B615ABB2BC865E400A5457F /* ExtensionViewStorage.swift */; };
 		2B6CB09E2AFFA3B1001E4955 /* AEUpdateService.app in Resources */ = {isa = PBXBuildFile; fileRef = A01AB2D12ACC9EDA0029EDF0 /* AEUpdateService.app */; };
+		2B74A3F02C0F8FFA002498F5 /* JSPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B74A3EF2C0F8FFA002498F5 /* JSPromise.swift */; };
+		2B74A3F22C0F90B2002498F5 /* JSFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B74A3F12C0F90B2002498F5 /* JSFetch.swift */; };
 		2B7A56B62BD5037C00A728D7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2B7A56B52BD5036900A728D7 /* Localizable.xcstrings */; };
 		2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468438427DC76E200F8E88E /* AppDelegate.swift */; };
 		2B7AC06B282452FB0082A5B8 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7AC06A282452FB0082A5B8 /* Media.xcassets */; };
@@ -1115,6 +1117,8 @@
 		2B615AB92BC865B500A5457F /* ExtensionOrWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionOrWebView.swift; sourceTree = "<group>"; };
 		2B615ABB2BC865E400A5457F /* ExtensionViewStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewStorage.swift; sourceTree = "<group>"; };
 		2B71C0A32874AD61008E0859 /* AuroraProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraProject.swift; sourceTree = "<group>"; };
+		2B74A3EF2C0F8FFA002498F5 /* JSPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSPromise.swift; sourceTree = "<group>"; };
+		2B74A3F12C0F90B2002498F5 /* JSFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSFetch.swift; sourceTree = "<group>"; };
 		2B7A56B52BD5036900A728D7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2B7AC06A282452FB0082A5B8 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSSupport.swift; sourceTree = "<group>"; };
@@ -2098,6 +2102,8 @@
 				20D837C0289A7ACD00D91D05 /* PluginRelease.swift */,
 				2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */,
 				2BDE0F762BC8874800C20B85 /* JSTimerSupport.swift */,
+				2B74A3EF2C0F8FFA002498F5 /* JSPromise.swift */,
+				2B74A3F12C0F90B2002498F5 /* JSFetch.swift */,
 				2B615ABB2BC865E400A5457F /* ExtensionViewStorage.swift */,
 			);
 			path = Models;
@@ -4410,6 +4416,7 @@
 				2093CD3C289AA08F003A88DD /* GitlabOAuthRouter.swift in Sources */,
 				2093CD3E289AA095003A88DD /* GitlabUser.swift in Sources */,
 				2093CD23289AA084003A88DD /* GitRouter.swift in Sources */,
+				2B74A3F22C0F90B2002498F5 /* JSFetch.swift in Sources */,
 				2093CD11289AA054003A88DD /* GitUIModel.swift in Sources */,
 				2B04574A28E6FFE300024F2D /* Grammar.swift in Sources */,
 				2B04576128E6FFE300024F2D /* GrammarJsonLoader.swift in Sources */,
@@ -4607,6 +4614,7 @@
 				2093CC96289A9FF5003A88DD /* StatusBarCursorLocationLabel.swift in Sources */,
 				2093CC98289A9FF8003A88DD /* StatusBarDrawer.swift in Sources */,
 				A0142F0D2ACB71830002F95D /* Int64.swift in Sources */,
+				2B74A3F02C0F8FFA002498F5 /* JSPromise.swift in Sources */,
 				2093CC92289A9FF5003A88DD /* StatusBarEncodingSelector.swift in Sources */,
 				2093CC91289A9FF5003A88DD /* StatusBarIndentSelector.swift in Sources */,
 				2093CC94289A9FF5003A88DD /* StatusBarLineEndSelector.swift in Sources */,
