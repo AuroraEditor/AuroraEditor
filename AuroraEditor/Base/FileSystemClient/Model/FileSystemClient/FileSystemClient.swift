@@ -21,26 +21,33 @@ public class FileSystemClient {
     /// Get Files
     public var getFiles: AnyPublisher<[FileItem], Never> =
     CurrentValueSubject<[FileItem], Never>([]).eraseToAnyPublisher()
+
     /// Folder URL
     public var folderURL: URL?
+
     /// Version Control Model
     public var model: SourceControlModel?
 
-    // These should be private but some functions need them public :(
     /// File Manager
     public var fileManager: FileManager
+
     /// Ignored files and folders
     public var ignoredFilesAndFolders: [String]
+
     /// Workspace item
     public let workspaceItem: FileItem
+
     /// Flattened file items
     public var flattenedFileItems: [String: FileItem]
+
     /// Subject
     private var subject = CurrentValueSubject<[FileItem], Never>([])
 
     /// A function that, given a file's path, returns a `FileItem` if it exists
     /// within the scope of the `FileSystemClient`.
+    /// 
     /// - Parameter id: The file's full path
+    /// 
     /// - Returns: The file item corresponding to the file
     public func getFileItem(_ id: String) throws -> FileItem {
         guard let item = flattenedFileItems[id] else {
@@ -61,7 +68,10 @@ public class FileSystemClient {
     }
 
     // MARK: Watchers
+    /// Is Running
     private var isRunning: Bool = false
+
+    /// Another Instance Ran
     private var anotherInstanceRan: Int = 0
 
     // run by dispatchsource watchers. Multiple instances may be concurrent,
@@ -69,6 +79,7 @@ public class FileSystemClient {
     /// This is a function run by `DispatchSource` file watchers. Due to the nature of watchers, multiple
     /// instances may be running concurrently, so the function prevents more than one instance of it from
     /// running the main code body.
+    /// 
     /// - Parameter sourceFileItem: The `FileItem` corresponding to the file that triggered the `DispatchSource`
     func reloadFromWatcher(sourceFileItem: FileItem) {
         // Something has changed inside the directory
@@ -105,6 +116,7 @@ public class FileSystemClient {
     }
 
     /// A function to kill the watcher of a specific directory, or all directories.
+    /// 
     /// - Parameter directory: The directory to stop watching, or nil to stop watching everything.
     func stopListeningToDirectory(directory: URL? = nil) {
         if directory != nil {
@@ -118,7 +130,8 @@ public class FileSystemClient {
     }
 
     // MARK: Init
-    /// Init
+    /// Initialiser for the file system client.
+    /// 
     /// - Parameters:
     ///   - fileManager: file manager
     ///   - folderURL: Folder URL
@@ -154,7 +167,9 @@ public class FileSystemClient {
         workspaceItem.fileSystemClient = self
     }
 
+    /// File System Client Error
     enum FileSystemClientError: Error {
+        /// File does not exist
         case fileNotExist
     }
 }

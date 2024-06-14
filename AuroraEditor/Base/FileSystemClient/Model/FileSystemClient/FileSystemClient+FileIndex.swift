@@ -11,7 +11,9 @@ import Foundation
 extension FileSystemClient {
 
     /// Recursive loading of files into `FileItem`s
+    /// 
     /// - Parameter url: The URL of the directory to load the items of
+    /// 
     /// - Returns: `[FileItem]` representing the contents of the directory
     func loadFiles(fromURL url: URL) throws -> [FileItem] {
         let directoryContents = try fileManager.contentsOfDirectory(at: url.resolvingSymlinksInPath(),
@@ -50,7 +52,12 @@ extension FileSystemClient {
     /// Recursive function similar to `loadFiles`, but creates or deletes children of the
     /// `FileItem` so that they are accurate with the file system, instead of creating an
     /// entirely new `FileItem`, to prevent the `OutlineView` from going crazy with folding.
+    /// 
     /// - Parameter fileItem: The `FileItem` to correct the children of
+    /// 
+    /// - Returns: `true` if the children of the `FileItem` were changed
+    /// 
+    /// - Throws: If the file system cannot be accessed
     @discardableResult
     func rebuildFiles(fromItem fileItem: FileItem) throws -> Bool {
         var didChangeSomething = false

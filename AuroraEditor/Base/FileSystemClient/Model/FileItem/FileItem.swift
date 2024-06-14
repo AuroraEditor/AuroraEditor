@@ -12,34 +12,57 @@ import UniformTypeIdentifiers
 import Version_Control
 
 public extension FileSystemClient {
+    /// The coding keys for the ``FileSystemClient``.
     enum FileItemCodingKeys: String, CodingKey {
+        /// Identifier
         case id
+
+        /// URL
         case url
+
+        /// Children
         case children
+
+        /// Change type
         case changeType
     }
 
     /// An object containing all necessary information and actions for a specific file in the workspace
     final class FileItem: Identifiable, Codable, TabBarItemRepresentable, GitFileItem {
         // TODO: Clean this up
+
+        /// Tab identifier
         public var tabID: TabBarItemID { .codeEditor(id) }
 
+        /// Tab title
         public var title: String { url.lastPathComponent }
 
+        /// Tab icon
         public var icon: Image { Image(systemName: systemImage) }
 
+        /// Should be expanded
         public var shouldBeExpanded: Bool = false
 
         public typealias ID = String
 
+        /// The file identifier
         public var fileIdentifier = UUID().uuidString
 
+        /// The watcher for the file
         public var watcher: DispatchSourceFileSystemObject?
+
+        /// The code that should be executed when the file changes
         public var watcherCode: ((FileItem) -> Void)?
 
+        /// The type of change that has been made to the file
         public var gitStatus: GitType?
+
+        /// The file system client
         public var fileSystemClient: FileSystemClient?
 
+        /// Activates the watcher for the file
+        /// 
+        /// - Returns: `true` if the watcher was activated successfully
         public func activateWatcher() -> Bool {
             // check that there is watcher code and that opening the file succeeded
             guard let watcherCode = watcherCode else { return false }
@@ -65,6 +88,12 @@ public extension FileSystemClient {
             return true
         }
 
+        /// Initialises a new FileItem
+        /// 
+        /// - Parameter url: The URL of the file
+        /// - Parameter children: The children of the file
+        /// - Parameter changeType: The type of change that has been made to the file
+        /// - Parameter fileSystemClient: The file system client
         public init(url: URL,
                     children: [FileItem]? = nil,
                     changeType: GitType? = nil,
@@ -77,6 +106,9 @@ public extension FileSystemClient {
             id = url.relativePath
         }
 
+        /// Initialises a new FileItem
+        /// 
+        /// - Parameter decoder: The decoder
         public required init(from decoder: Decoder) throws {
             let values = try decoder.container(keyedBy: FileItemCodingKeys.self)
             id = try values.decode(String.self, forKey: .id)
@@ -85,6 +117,9 @@ public extension FileSystemClient {
             gitStatus = try values.decode(GitType.self, forKey: .changeType)
         }
 
+        /// Encodes the FileItem
+        /// 
+        /// - Parameter encoder: The encoder
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: FileItemCodingKeys.self)
             try container.encode(id, forKey: .id)
@@ -151,12 +186,19 @@ public extension FileSystemClient {
             .init(rawValue: url.pathExtension) ?? .txt
         }
 
+        /// Returns the type of change that has been made to the file
         public var changeTypeValue: String {
             gitStatus?.description ?? ""
         }
 
+        /// Debug file heirachy
         var debugFileHeirachy: String { childrenDescription(tabCount: 0) }
 
+        /// Children description
+        /// 
+        /// - Parameter tabCount: The tab count
+        /// 
+        /// - Returns: The children description
         func childrenDescription(tabCount: Int) -> String {
             var myDetails = "\(String(repeating: "|  ", count: max(tabCount - 1, 0)))\(tabCount != 0 ? "╰--" : "")"
             myDetails += "\(url.path)"
@@ -176,6 +218,10 @@ public extension FileSystemClient {
         /// If it is the top-level folder this will return `"square.dashed.inset.filled"`.
         /// If it is a `.codeedit` folder this will return `"folder.fill.badge.gearshape"`.
         /// If it has children this will return `"folder.fill"` otherwise `"folder"`.
+        /// 
+        /// - Parameter children: The children of the folder
+        /// 
+        /// - Returns: The SFSymbol string
         private func folderIcon(_ children: [FileItem]) -> String {
             if self.parent == nil {
                 return "square.dashed.inset.filled"
@@ -187,6 +233,10 @@ public extension FileSystemClient {
         }
 
         /// Returns the file name with optional extension (e.g.: `Package.swift`)
+        /// 
+        /// - Parameter typeHidden: If `true` the extension will be hidden
+        /// 
+        /// - Returns: The file name
         public func fileName(typeHidden: Bool) -> String {
             typeHidden ? url.deletingPathExtension().lastPathComponent : fileName
         }
@@ -218,6 +268,12 @@ public extension FileSystemClient {
             NSWorkspace.shared.open(url)
         }
 
+        /// Flattens the children of the current item
+        /// 
+        /// - Parameter depth: The depth to flatten
+        /// - Parameter ignoringFolders: If `true` folders will be ignored
+        /// 
+        /// - Returns: The flattened children
         public func flattenedChildren(depth: Int, ignoringFolders: Bool) -> [FileItem] {
             guard depth > 0 else { return [] }
             guard isFolder else { return [self] }
@@ -229,6 +285,12 @@ public extension FileSystemClient {
             return childItems
         }
 
+        /// Flattens the siblings of the current item
+        /// 
+        /// - Parameter height: The height to flatten
+        /// - Parameter ignoringFolders: If `true` folders will be ignored
+        /// 
+        /// - Returns: The flattened siblings
         public func flattenedSiblings(height: Int, ignoringFolders: Bool) -> [FileItem] {
             var topmostParent = self
             for _ in 0..<height {
@@ -241,8 +303,10 @@ public extension FileSystemClient {
         /// Recursive function that returns the number of children
         /// that contain the `searchString` in their path or their subitems' paths.
         /// Returns `0` if the item is not a folder.
+        /// 
         /// - Parameter searchString: The string
         /// - Parameter ignoredStrings: The prefixes to ignore if they prefix file names
+        /// 
         /// - Returns: The number of children that match the conditiions
         public func appearanceWithinChildrenOf(searchString: String,
                                                ignoredStrings: [String] = [".", "~"]) -> Int {
@@ -272,8 +336,10 @@ public extension FileSystemClient {
         /// that contain the `searchString` in their path or their subitems' paths.
         /// Similar to `appearanceWithinChildrenOf(searchString: String)`
         /// Returns `[]` if the item is not a folder.
+        /// 
         /// - Parameter searchString: The string
         /// - Parameter ignoredStrings: The prefixes to ignore if they prefix file names
+        /// 
         /// - Returns: The children that match the conditiions
         public func childrenSatisfying(searchString: String,
                                        ignoredStrings: [String] = [".", "~"]) -> [FileItem] {
@@ -307,6 +373,7 @@ public extension FileSystemClient {
 
 // MARK: Hashable
 extension FileSystemClient.FileItem: Hashable {
+    /// Hashes the essential components of the file item
     public func hash(into hasher: inout Hasher) {
         hasher.combine(fileIdentifier)
         hasher.combine(id)
@@ -315,10 +382,22 @@ extension FileSystemClient.FileItem: Hashable {
 
 // MARK: Comparable
 extension FileSystemClient.FileItem: Comparable {
+    /// Compares two file items
+    /// 
+    /// - Parameter lhs: The left hand side
+    /// - Parameter rhs: The right hand side
+    /// 
+    /// - Returns: `true` if the two file items are equal
     public static func == (lhs: FileSystemClient.FileItem, rhs: FileSystemClient.FileItem) -> Bool {
         lhs.id == rhs.id
     }
 
+    /// Compares two file items
+    /// 
+    /// - Parameter lhs: The left hand side
+    /// - Parameter rhs: The right hand side
+    /// 
+    /// - Returns: `true` if the left hand side is less than the right hand side
     public static func < (lhs: FileSystemClient.FileItem, rhs: FileSystemClient.FileItem) -> Bool {
         lhs.url.lastPathComponent < rhs.url.lastPathComponent
     }

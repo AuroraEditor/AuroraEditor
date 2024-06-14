@@ -14,6 +14,7 @@ public typealias FileItem = FileSystemClient.FileItem
 
 extension FileItem {
     /// This function allows creation of folders in the main directory or sub-folders
+    /// 
     /// - Parameter folderName: The name of the new folder
     public func addFolder(folderName: String) {
         // Check if folder, if it is create folder under self, else create on same level.
@@ -39,6 +40,7 @@ extension FileItem {
     }
 
     /// This function allows creating files in the selected folder or project main directory
+    /// 
     /// - Parameter fileName: The name of the new file
     public func addFile(fileName: String) {
         // check the folder for other files, and see what the most common file extension is
@@ -134,6 +136,8 @@ extension FileItem {
     }
 
     /// This function moves the item or folder if possible
+    /// 
+    /// - Parameter newLocation: The new location of the item
     public func move(to newLocation: URL) {
         guard !FileItem.fileManger.fileExists(atPath: newLocation.path) else { return }
         createMissingParentDirectory(for: newLocation.deletingLastPathComponent())

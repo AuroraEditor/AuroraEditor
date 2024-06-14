@@ -12,41 +12,106 @@ import SwiftUI
 public enum FileIcon {
     // Checks the file of the item extension
     public enum FileType: String {
+        /// JSON file icon
         case json
+
+        /// JavaScript file icon
         case js
+
+        /// CSS file icon
         case css
+
+        /// JSX file icon
         case jsx
+
+        /// Swift file icon
         case swift
+
+        /// Environment file icon
         case env
+
+        /// Example file icon
         case example
+
+        /// Gitignore file icon
         case gitignore
+
+        /// PNG file icon
         case png
+
+        /// JPG file icon
         case jpg
+
+        /// JPEG file icon
         case jpeg
+
+        /// ICO file icon
         case ico
+
+        /// SVG file icon
         case svg
+
+        /// Entitlements file icon
         case entitlements
+
+        /// Plist file icon
         case plist
+
+        /// Markdown file icon
         case md
+
+        /// Text file icon
         case txt = "text"
+
+        /// RTF file icon
         case rtf
+
+        /// HTML file icon
         case html
+
+        /// Python file icon
         case py
+
+        /// Shell file icon
         case sh
+
+        /// License file icon
         case LICENSE
+
+        /// Java file icon
         case java
+
+        /// Header file icon
         case h
+
+        /// Objective-C file icon
         case m
+
+        /// Vue file icon
         case vue
+
+        /// Go file icon
         case go
+
+        /// Sum file icon
         case sum
+
+        /// Mod file icon
         case mod
+
+        /// Makefile file icon
         case makefile
+
+        /// TypeScript file icon
         case ts
     }
 
     /// Returns a string describing a SFSymbol for files
     /// If not specified otherwise this will return `"doc"`
+    /// 
+    /// - Parameter fileType: The file type
+    /// 
+    /// - Returns: The SFSymbol name
     public static func fileIcon(
         fileType: FileType
     ) -> String {
@@ -100,6 +165,10 @@ public enum FileIcon {
 
     /// Returns a `Color` for a specific `fileType`
     /// If not specified otherwise this will return `Color.accentColor`
+    /// 
+    /// - Parameter fileType: The file type
+    /// 
+    /// - Returns: The color
     public static func iconColor(fileType: FileType) -> Color {
         switch fileType {
         case .swift, .html:
