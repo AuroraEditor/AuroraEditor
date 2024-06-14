@@ -8,10 +8,14 @@
 
 import SwiftUI
 
+/// The search mode selector in the navigator sidebar.
 struct FindNavigatorModeSelector: View {
+
+    /// The search state
     @ObservedObject
     private var state: WorkspaceDocument.SearchState
 
+    /// The selected mode
     @State
     private var selectedMode: [SearchModeModel] {
         didSet {
@@ -21,15 +25,29 @@ struct FindNavigatorModeSelector: View {
         }
     }
 
+    /// Initialize the find navigator mode selector
+    /// 
+    /// - Parameter state: The search state
+    /// 
+    /// - Returns: A new instance of FindNavigatorModeSelector
     init(state: WorkspaceDocument.SearchState) {
         self.state = state
         selectedMode = state.selectedMode
     }
 
+    /// Get the menu list
+    /// 
+    /// - Parameter index: The index
+    /// 
+    /// - Returns: The search mode model
     private func getMenuList(_ index: Int) -> [SearchModeModel] {
         index == 0 ? SearchModeModel.SearchModes : selectedMode[index - 1].children
     }
 
+    /// On select menu item
+    /// 
+    /// - Parameter index: The index
+    /// - Parameter searchMode: The search mode model
     private func onSelectMenuItem(_ index: Int, searchMode: SearchModeModel) {
         var newSelectedMode: [SearchModeModel] = []
 
@@ -61,6 +79,10 @@ struct FindNavigatorModeSelector: View {
         }
     }
 
+    /// Update selected mode
+    /// 
+    /// - Parameter searchMode: The search mode model
+    /// - Parameter searchModel: The search mode model array
     private func updateSelectedMode(_ searchMode: SearchModeModel, searchModel: inout [SearchModeModel]) {
         if let secondMode = searchMode.children.first {
             if let selectedSecondMode = selectedMode.second, searchMode.children.contains(selectedSecondMode) {
@@ -78,12 +100,14 @@ struct FindNavigatorModeSelector: View {
         }
     }
 
+    /// Chevron right
     private var chevron: some View {
         Image(systemName: "chevron.compact.right")
             .foregroundStyle(.secondary)
             .imageScale(.small)
     }
 
+    /// The view body.
     var body: some View {
         HStack(spacing: 0) {
             ForEach(0..<selectedMode.count, id: \.self) { index in
@@ -112,16 +136,21 @@ struct FindNavigatorModeSelector: View {
 }
 
 extension Array {
+    /// Get the second element
     var second: Element? {
         self.count > 1 ? self[1] : nil
     }
 
+    /// Get the third element
     var third: Element? {
         self.count > 2 ? self[2] : nil
     }
 }
 
 extension View {
+    /// Search mode menu
+    /// 
+    /// - Returns: The search mode menu
     func searchModeMenu() -> some View {
         menuStyle(.borderlessButton)
             .fixedSize()

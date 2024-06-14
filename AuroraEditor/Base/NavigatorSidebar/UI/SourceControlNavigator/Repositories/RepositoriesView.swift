@@ -8,18 +8,25 @@
 
 import SwiftUI
 
+/// The view for repositories.
 struct RepositoriesView: View {
 
+    /// The workspace document.
     @EnvironmentObject
     var workspace: WorkspaceDocument
 
+    /// The repository model.
     @ObservedObject
     var repositoryModel: RepositoryModel
 
+    /// Initializes the view.
+    /// 
+    /// - Parameter repositoryModel: The repository model.
     init?(repositoryModel: RepositoryModel) {
         self.repositoryModel = repositoryModel
     }
 
+    /// The view body.
     var body: some View {
         VStack(alignment: .center) {
             if repositoryModel.isGitRepository {

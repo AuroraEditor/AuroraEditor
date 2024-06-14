@@ -9,39 +9,58 @@
 import SwiftUI
 
 // TODO: Add state management to search @NanashiLi
+
+/// The search bar in the navigator sidebar.
 struct FindNavigator: View {
+
+    /// The search state
     @ObservedObject
     private var state: WorkspaceDocument.SearchState
 
+    /// Workspace document
     @EnvironmentObject
     private var workspace: WorkspaceDocument
 
+    /// The search text
     @State
     private var searchText: String = ""
 
+    /// The filters
     enum Filters: String {
+
+        /// Ignoring case
         case ignoring = "Ignoring Case"
+
+        /// Matching case
         case matching = "Matching Case"
     }
 
+    /// The current filter
     @State
     var currentFilter: String = ""
 
+    /// The submitted text
     @State
     private var submittedText: Bool = false
 
+    /// The found files count
     private var foundFilesCount: Int {
         state.searchResult.count
     }
 
+    /// The found results count
     private var foundResultsCount: Int {
         state.searchResult.count
     }
 
+    /// Initialize the find navigator
+    /// 
+    /// - Parameter state: The search state
     init(state: WorkspaceDocument.SearchState) {
         self.state = state
     }
 
+    /// The view body.
     var body: some View {
         VStack {
             VStack {

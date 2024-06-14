@@ -8,24 +8,33 @@
 
 import SwiftUI
 
+/// The sidebar of the navigator.
 struct NavigatorSidebar: View {
+
+    /// Workspace document
     @EnvironmentObject
     private var workspace: WorkspaceDocument
 
+    /// Application preferences model
     @StateObject
     var prefs: AppPreferencesModel = .shared
 
+    /// Selections
     @State
     public var selections: [Int] = [0]
 
+    /// Navigator mode select model
     @ObservedObject
     internal var model: NavigatorModeSelectModel = .shared
 
+    /// Drop proposal
     @State
     private var dropProposal: SplitViewProposalDropPosition?
 
+    /// Toolbar padding
     private let toolbarPadding: Double = -8.0
 
+    /// The view body.
     var body: some View {
         ForEach(Array(selections.enumerated()), id: \.offset) { index, _ in
             sidebarModule(toolbar: index)
@@ -57,8 +66,13 @@ struct NavigatorSidebar: View {
         }
     }
 
-    // swiftlint:disable:next function_body_length
+    /// Sidebar module
+    /// 
+    /// - Parameter toolbar: The toolbar number
+    /// 
+    /// - Returns: The sidebar module.
     func sidebarModule(toolbar: Int) -> some View {
+        // swiftlint:disable:previous function_body_length
         sidebarModuleContent(toolbar: toolbar)
         .safeAreaInset(edge: .leading) { // VSC style sidebar
             if prefs.preferences.general.sidebarStyle == .vscode {
@@ -115,6 +129,11 @@ struct NavigatorSidebar: View {
         }
     }
 
+    /// Sidebar module content
+    /// 
+    /// - Parameter toolbar: The toolbar number
+    /// 
+    /// - Returns: The sidebar module content.
     func sidebarModuleContent(toolbar: Int) -> some View {
         VStack {
             switch selections[toolbar] {
@@ -133,6 +152,7 @@ struct NavigatorSidebar: View {
         .padding([.top, .leading], (prefs.preferences.general.sidebarStyle == .xcode) ? 0 : -10)
     }
 
+    /// Needs implementation view
     var needsImplementation: some View {
         VStack(alignment: .center) {
             HStack {

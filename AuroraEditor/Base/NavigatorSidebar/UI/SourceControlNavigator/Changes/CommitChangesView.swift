@@ -8,27 +8,37 @@
 
 import SwiftUI
 
+/// A view for committing changes.
 struct CommitChangesView: View {
 
+    /// The git client.
     private var gitClient: GitClient?
 
+    /// The summary text.
     @State
     private var summaryText: String = ""
 
+    /// The description text.
     @State
     private var descriptionText: String = ""
 
+    /// The workspace.
     @State
     var workspace: WorkspaceDocument
 
+    /// Whether to stage all changes.
     @State
     private var stageAll: Bool = false
 
+    /// The view body.
+    /// 
+    /// - Parameter workspace: The workspace.
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
         self.gitClient = workspace.fileSystemClient?.model?.gitClient
     }
 
+    /// The view body.
     var body: some View {
         VStack(alignment: .leading) {
             Divider()
@@ -77,8 +87,12 @@ struct CommitChangesView: View {
         .padding(10)
     }
 
-    // Based on the Git Change type of the file we create a summary string
-    // that matches that of the Git Change type
+    /// Gets the first file summary.
+    /// 
+    /// Based on the Git Change type of the file we create a summary string
+    /// that matches that of the Git Change type
+    ///
+    /// - Returns: The summary string.
     private func getFirstFileSummary() -> String {
         let fileName = workspace.fileSystemClient?.model?.changed[0].fileName
         switch workspace.fileSystemClient?.model?.changed[0].gitStatus {
@@ -107,18 +121,25 @@ struct CommitChangesView: View {
         }
     }
 
-    // If there is only one changed file in list we will return true else
-    // if there is more than one we return false.
+    /// Checks if the change is one.
+    /// 
+    /// If there is only one changed file in list we will return true else
+    /// if there is more than one we return false.
+    /// 
+    /// - Returns: Whether the change is one.
     private func checkIfChangeIsOne() -> Bool {
         return workspace.fileSystemClient?.model?.changed.count == 1
     }
 
-    // Gets the current projects branch name.
+    /// Gets the current projects branch name.
+    /// 
+    /// - Returns: The current projects branch name.
     private func currentGitBranchName() -> String {
         guard let branchName = try? gitClient?.getCurrentBranchName() else { return "Not Available" }
         return branchName
     }
 
+    /// Commits the changes.
     private func commit() {
         guard let client = gitClient else {
             Log.fault("No git client!")

@@ -9,6 +9,10 @@
 import SwiftUI
 
 extension NavigatorSidebar {
+    /// Move the icon to the specified position
+    /// 
+    /// - Parameter icon: The icon to move
+    /// - Parameter position: The position to move the icon to
     func moveIcon(_ icon: SidebarDockIcon, to position: SplitViewProposalDropPosition) {
         // determine the toolbar that owns the icon
         // and also short circuit if the owner is not 0 or 1, as there should not
@@ -45,6 +49,9 @@ extension NavigatorSidebar {
         }
     }
 
+    /// Move the top toolbar to the bottom
+    /// 
+    /// - Parameter icon: The icon to move
     func moveTopToBottom(icon: SidebarDockIcon) {
         defer {
             // select a new focus for the top toolbar
@@ -80,6 +87,9 @@ extension NavigatorSidebar {
         return
     }
 
+    /// Move the bottom toolbar to the top
+    /// 
+    /// - Parameter icon: The icon to move
     func moveBottomToTop(icon: SidebarDockIcon) {
         // remove the icon from its origin
         model.icons[1].removeAll { otherIcon in
@@ -100,6 +110,9 @@ extension NavigatorSidebar {
         }
     }
 
+    /// Move the filled toolbar to the top
+    /// 
+    /// - Parameter icon: The icon to move
     func moveFilledToTop(icon: SidebarDockIcon) {
         // remove the icon from its origin
         model.icons[0].removeAll { otherIcon in

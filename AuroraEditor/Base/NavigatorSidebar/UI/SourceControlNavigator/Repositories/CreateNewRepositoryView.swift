@@ -10,11 +10,15 @@ import SwiftUI
 import Version_Control
 
 // TODO: Still need to add support for repo name, description and readme
+
+/// A view for creating a new repository.
 struct CreateNewRepositoryView: View {
 
+    /// The repository model.
     @ObservedObject
     var repositoryModel: RepositoryModel
 
+    /// The view body.
     var body: some View {
         VStack(alignment: .leading) {
             Text("Create a New Repository")

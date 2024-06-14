@@ -8,16 +8,22 @@
 
 import SwiftUI
 
+/// The bottom toolbar for the notifications navigator.
 struct NotificationsNavigatorToolbarBottom: View {
+
+    /// The active state of the control
     @Environment(\.controlActiveState)
     private var activeState
 
+    /// The color scheme
     @Environment(\.colorScheme)
     private var colorScheme
 
+    /// The notifications model
     @ObservedObject
     private var model: NotificationsModel = .shared
 
+    /// The view body.
     var body: some View {
         HStack {
             HStack {
@@ -64,6 +70,7 @@ struct NotificationsNavigatorToolbarBottom: View {
         .opacity(activeState == .inactive ? 0.45 : 1)
     }
 
+    /// Show the history of notifications.
     private var showHistory: some View {
         Button {
 
@@ -77,6 +84,7 @@ struct NotificationsNavigatorToolbarBottom: View {
         .help("Show only issues from open documents and recently built sources")
     }
 
+    /// Show only errors.
     private var showErrorsOnly: some View {
         Button {
             if model.filter == .ERROR {

@@ -8,19 +8,39 @@
 
 import SwiftUI
 
+/// The search result file item.
 struct FindNavigatorResultFileItem: View {
+
+    /// The search state
     @ObservedObject
     private var state: WorkspaceDocument.SearchState
+
+    /// Application preferences model
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// The expanded state
     @State
     private var isExpanded: Bool = true
 
+    /// The file item
     private var fileItem: WorkspaceClient.FileItem
+
+    /// The search results
     private var results: [SearchResultModel]
+
+    /// Jump to file closure
     private var jumpToFile: () -> Void
 
+    /// Initialize the search result file item
+    /// 
+    /// - Parameter state: The search state
+    /// - Parameter isExpanded: The expanded state
+    /// - Parameter fileItem: The file item
+    /// - Parameter results: The search results
+    /// - Parameter jumpToFile: The jump to file closure
+    /// 
+    /// - Returns: A new instance of FindNavigatorResultFileItem
     init(state: WorkspaceDocument.SearchState,
          isExpanded: Bool = true,
          fileItem: WorkspaceClient.FileItem,
@@ -33,6 +53,12 @@ struct FindNavigatorResultFileItem: View {
              self.jumpToFile = jumpToFile
     }
 
+    /// The found line result
+    /// 
+    /// - Parameter lineContent: The line content
+    /// - Parameter keywordRange: The keyword range
+    /// 
+    /// - Returns: The found line result
     @ViewBuilder
     private func foundLineResult(_ lineContent: String?, keywordRange: Range<String.Index>?) -> some View {
         if let lineContent = lineContent,
@@ -45,6 +71,7 @@ struct FindNavigatorResultFileItem: View {
         }
     }
 
+    /// The view body.
     var body: some View {
         DisclosureGroup(isExpanded: $isExpanded) {
             ForEach(results, id: \.self) { (result: SearchResultModel) in

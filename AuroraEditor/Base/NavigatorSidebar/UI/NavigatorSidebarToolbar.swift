@@ -8,22 +8,36 @@
 
 import SwiftUI
 
+/// The toolbar for the navigator sidebar
 struct NavigatorSidebarToolbar: View {
+
+    /// The active state of the control
     @Environment(\.controlActiveState)
     private var activeState
 
+    /// The selection
     @Binding
     private var selection: Int
 
+    /// The toolbar number
     @State
     private var toolbarNumber: Int
 
+    /// The sidebar style
     @Binding
     private var sidebarStyle: AppPreferences.SidebarStyle
 
+    /// Navigator mode select model
     @ObservedObject
     private var model: NavigatorModeSelectModel = .shared
 
+    /// Initialize NavigatorSidebarToolbar
+    /// 
+    /// - Parameter selection: The selection
+    /// - Parameter style: The sidebar style
+    /// - Parameter toolbarNumber: The toolbar number
+    /// 
+    /// - Returns: A new instance of NavigatorSidebarToolbar
     init(selection: Binding<Int>,
          style: Binding<AppPreferences.SidebarStyle>,
          toolbarNumber: Int) {
@@ -32,6 +46,7 @@ struct NavigatorSidebarToolbar: View {
         self._toolbarNumber = State(initialValue: toolbarNumber)
     }
 
+    /// The view body.
     var body: some View {
         if sidebarStyle == .xcode { // top
             HStack(spacing: 2) {
@@ -57,6 +72,7 @@ struct NavigatorSidebarToolbar: View {
         }
     }
 
+    /// The icons
     @ViewBuilder
     var icons: some View {
         ForEach(model.icons[toolbarNumber]) { icon in

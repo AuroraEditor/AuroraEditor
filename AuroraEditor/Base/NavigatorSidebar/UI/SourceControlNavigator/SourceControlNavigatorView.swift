@@ -8,26 +8,34 @@
 
 import SwiftUI
 
+/// A view for source control navigator.
 struct SourceControlNavigatorView: View {
 
+    /// The workspace document.
     @EnvironmentObject
     private var workspace: WorkspaceDocument
 
+    /// Application preferences model
     @ObservedObject
     private var preferences: AppPreferencesModel = .shared
 
+    /// The selected section.
     @State
     private var selectedSection: Int = 0
 
+    /// The repository model.
     @ObservedObject
     var repositoryModel: RepositoryModel
 
+    /// Initializes the view.
+    /// 
+    /// - Parameter workspace: The workspace document.
     init(workspace: WorkspaceDocument) {
         self.repositoryModel = .init(workspace: workspace)
     }
 
+    /// The view body.
     var body: some View {
-
         if repositoryModel.isGitRepository {
             VStack {
 
@@ -88,6 +96,9 @@ struct SourceControlNavigatorView: View {
         }
     }
 
+    /// Checks if the user has git accounts.
+    /// 
+    /// - Returns: A boolean value indicating whether the user has git accounts.
     private func doesUserHaveGitAccounts() -> Bool {
         return !preferences.preferences.accounts.sourceControlAccounts.gitAccount.isEmpty
     }

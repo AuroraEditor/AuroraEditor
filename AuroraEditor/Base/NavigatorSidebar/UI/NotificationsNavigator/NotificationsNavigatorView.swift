@@ -8,14 +8,18 @@
 
 import SwiftUI
 
+/// The view for the notifications navigator.
 struct NotificationsNavigatorView: View {
 
+    /// The notifications model
     @ObservedObject
     private var model: NotificationsModel = .shared
 
+    /// The preferences model
     @ObservedObject
     private var preferences: AppPreferencesModel = .shared
 
+    /// The view body.
     var body: some View {
         VStack {
             if preferences.preferences.notifications.notificationsEnabled {
@@ -48,11 +52,15 @@ struct NotificationsNavigatorView: View {
         }
     }
 
+    /// Whether to show the no filter results message.
     private var shouldShowNoFilterResultsMessage: Bool {
         return filterResults().isEmpty || (model.filter == .ERROR
                                            && model.notifications.filter { $0.severity == .error }.isEmpty)
     }
 
+    /// Get the list of notifications to display.
+    /// 
+    /// - Returns: The list of notifications to display.
     private func notificationList() -> [INotification] {
         guard !preferences.preferences.notifications.doNotDisturb else {
             return model.notifications.filter { $0.severity == .error }
@@ -69,6 +77,9 @@ struct NotificationsNavigatorView: View {
         return model.notifications
     }
 
+    /// Filter the results based on the search query.
+    /// 
+    /// - Returns: The filtered results.
     private func filterResults() -> [INotification] {
         return model.notifications.filter { notification in
             model.searchNotifications.isEmpty ||

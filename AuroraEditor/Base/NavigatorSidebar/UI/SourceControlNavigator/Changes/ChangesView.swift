@@ -8,17 +8,22 @@
 
 import SwiftUI
 
+/// A view for changes.
 struct ChangesView: View {
 
+    /// The workspace.
     @EnvironmentObject
     var workspace: WorkspaceDocument
 
+    /// Application preferences model
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// The changes model.
     @ObservedObject
     var changesModel: SourceControlModel
 
+    /// The view body.
     var body: some View {
         VStack(alignment: .center) {
             if prefs.sourceControlActive() {

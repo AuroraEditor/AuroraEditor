@@ -16,6 +16,7 @@ import SwiftUI
 /// When selecting a file it will open in the editor.
 ///
 struct ProjectNavigator: View {
+    /// The view body.
     var body: some View {
         ProjectNavigatorView()
     }
