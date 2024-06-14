@@ -10,9 +10,12 @@ import XCTest
 @testable import Git
 import ShellClient
 
+/// Git client tests
 final class GitClientTests: XCTestCase {
     // FIXME: Update GitClient.getCommitHistory implementation on date or this test case
     // Currently this will fail on some non en_US locale like zh_CN
+
+    /// Test history
     func testHistory() throws {
         let shellClient: ShellClient = .always(
             // swiftlint:disable:next line_length
@@ -29,10 +32,10 @@ final class GitClientTests: XCTestCase {
                 id: fetched.id,
                 hash: "e5fe4bf",
                 commitHash: "e5fe4bf",
-                message: "Merge pull request #260 from lukepistrol/terminal-color-fix",
-                author: "Luke",
+                message: "Merge pull request #1 from test/fixing-bug",
+                author: "Person",
                 authorEmail: "test@test.com",
-                commiter: "Luke",
+                commiter: "Person",
                 commiterEmail: "test@test.com",
                 remoteURL: nil,
                 date: Date(timeIntervalSince1970: 1648261692)

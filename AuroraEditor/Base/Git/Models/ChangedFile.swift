@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 
+/// A struct that represents a changed file in a git repository
 public struct ChangedFile: Codable, Hashable, Identifiable {
     /// ID of the changed file
     public var id = UUID()
@@ -19,7 +20,10 @@ public struct ChangedFile: Codable, Hashable, Identifiable {
     /// Link of the file
     public let fileLink: URL
 
+    /// systemImage
+    /// 
     /// Use it like this
+    /// 
     /// ```swift
     /// Image(systemName: item.systemImage)
     /// ```
@@ -54,6 +58,8 @@ public struct ChangedFile: Codable, Hashable, Identifiable {
 
     // MARK: Intents
     /// Allows the user to view the file or folder in the finder application
+    /// 
+    /// - Parameter workspaceURL: The URL of the workspace
     public func showInFinder(workspaceURL: URL) {
         let workspace = workspaceURL.absoluteString
         let file = fileLink.absoluteString
@@ -61,6 +67,7 @@ public struct ChangedFile: Codable, Hashable, Identifiable {
             Log.error("Failed to decode URL")
             return
         }
+
         NSWorkspace.shared.activateFileViewerSelecting([url])
     }
 }

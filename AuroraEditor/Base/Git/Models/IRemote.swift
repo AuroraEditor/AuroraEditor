@@ -14,7 +14,9 @@ import Foundation
 public var forkedRemotePrefix = "aurora-editor-"
 
 /// Fork pull request remote name generator
+/// 
 /// - Parameter remoteName: Name
+/// 
 /// - Returns: Prefix+remote name
 public func forkPullRequestRemoteName(remoteName: String) -> String {
     return "\(forkedRemotePrefix)\(remoteName)"
@@ -24,14 +26,25 @@ public func forkPullRequestRemoteName(remoteName: String) -> String {
 public protocol IRemote {
     /// Name
     var name: String { get }
+
     /// URL
     var url: String { get }
 }
 
+/// Git remote
 public class GitRemote: IRemote {
+    /// Name
     public var name: String
+
+    /// URL
     public var url: String
 
+    /// Initialize
+    /// 
+    /// - Parameter name: Name
+    /// - Parameter url: URL
+    /// 
+    /// - Returns: Git remote
     init(name: String, url: String) {
         self.name = name
         self.url = url

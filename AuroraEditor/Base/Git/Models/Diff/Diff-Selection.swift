@@ -12,8 +12,10 @@ import Foundation
 enum DiffSelectionType: String {
     /// The entire file should be committed
     case all = "All"
+
     /// A subset of lines in the file have been selected for committing
     case partial = "Partial"
+
     /// The file should be excluded from committing
     case none = "None"
 }
@@ -23,6 +25,13 @@ enum DiffSelectionType: String {
 /// DiffSelectionType.All, a false selection state matches
 /// DiffSelectionType.None and if the selection type is partial there's
 /// never a match.
+/// 
+/// - Parameter selectionType: The selection type to match against
+/// - Parameter selected: The boolean selection state to match
+/// 
+/// - Returns: Whether the selection state matches the selection type
+/// 
+/// - Throws: DiffSelectionError.unknownSelectionType
 func typeMatchesSelection(selectionType: DiffSelectionType,
                           selected: Bool) throws -> Bool {
     switch selectionType {
@@ -48,7 +57,7 @@ func typeMatchesSelection(selectionType: DiffSelectionType,
 /// as selected or not selected. Internally the class maintains a list of lines
 /// whose selection state has diverged from the default selection state.
 class DiffSelection {
-
+    /// The default selection state of the file
     var defaultSelectionType: DiffSelectionType
 
     /// Any line numbers where the selection differs from the default state.
@@ -59,6 +68,12 @@ class DiffSelection {
 
     /// Initialize a new selection instance where either all lines are selected by default
     /// or not lines are selected by default.
+    /// 
+    /// - Parameter initialSelection: The initial selection state
+    /// 
+    /// - Returns: A new DiffSelection instance
+    /// 
+    /// - Throws: DiffSelectionError.unknownDiffSelection
     public func fromInitialSelection(initialSelection: DiffSelectionType) throws -> DiffSelection {
         if initialSelection != .all && initialSelection != .none {
             // swiftlint:disable:next line_length
@@ -70,6 +85,11 @@ class DiffSelection {
                              selectableLines: nil)
     }
 
+    /// Initialize a new selection instance where either all lines are selected by default
+    /// 
+    /// - Parameter defaultSelectionType: The default selection state
+    /// - Parameter divergingLines: Any line numbers where the selection differs from the default state
+    /// - Parameter selectableLines: Optional set of line numbers which can be selected
     init(defaultSelectionType: DiffSelectionType,
          divergingLines: Set<Int>? = nil,
          selectableLines: Set<Int>? = nil) {
@@ -79,6 +99,8 @@ class DiffSelection {
     }
 
     /// Returns a value indicating the computed overall state of the selection
+    /// 
+    /// - Returns: The computed selection state
     public func getSelectionType() -> DiffSelectionType {
         let divergingLines = self.divergingLines
         let selectableLines = self.selectableLines
@@ -117,6 +139,10 @@ class DiffSelection {
     }
 
     /// Returns a value indicating wether the given line number is selected or not
+    /// 
+    /// - Parameter lineIndex: The index (line number) of the line to check
+    /// 
+    /// - Returns: Whether the line is selected or not
     public func isSelected(lineIndex: Int) throws -> Bool {
         let lineIsDivergent = (self.divergingLines == nil) && ((self.divergingLines?.contains(lineIndex)) != nil)
 
@@ -132,6 +158,10 @@ class DiffSelection {
     /// Returns a value indicating wether the given line number is selectable.
     /// A line not being selectable usually means it's a hunk header or a context
     /// line.
+    /// 
+    /// - Parameter lineIndex: The index (line number) of the line to check
+    /// 
+    /// - Returns: Whether the line is selectable or not
     public func isSelectable(lineIndex: Int) -> Bool {
         return (((self.selectableLines != nil) ? self.selectableLines?.contains(lineIndex) : true) != nil)
     }
@@ -139,11 +169,14 @@ class DiffSelection {
     /// Returns a copy of this selection instance with the provided
     /// line selection update.
     ///
-    /// @param lineIndex - The index (line number) of the line which should
+    /// - Parameter lineIndex: The index (line number) of the line which should
     /// be selected or unselected.
-    ///
-    /// @param selected - Whether the given line number should be marked
+    /// - Parameter selected: Whether the given line number should be marked
     /// as selected or not.
+    /// 
+    /// - Returns: A new DiffSelection instance with the updated selection state
+    /// 
+    /// - Throws: DiffSelectionError.unknownSelectionType
     public func withLineSection(lineIndex: Int, selected: Bool) throws -> DiffSelection {
         return try self.withRangeSelection(from: lineIndex,
                                        length: 1,
@@ -157,16 +190,18 @@ class DiffSelection {
     /// the selection state of more than one line at a time as it's
     /// more efficient.
     ///
-    /// @param from -  The line index (inclusive) from where to start
+    /// - Parameter from: The line index (inclusive) from where to start
     /// updating the line selection state.
-    ///
-    /// @param to -  The number of lines for which to update the
+    /// - Parameter to: The number of lines for which to update the
     /// selection state. A value of zero means no lines
     /// are updated and a value of 1 means only the
     /// line given by lineIndex will be updated.
-    ///
-    /// @param selected - Whether the lines should be marked as selected
+    /// - Parameter selected: Whether the lines should be marked as selected
     /// or not.
+    /// 
+    /// - Returns: A new DiffSelection instance with the updated selection state
+    /// 
+    /// - Throws: DiffSelectionError.unknownSelectionType
     public func withRangeSelection(from: Int,
                                    length: Int,
                                    selected: Bool) throws -> DiffSelection {
@@ -219,12 +254,20 @@ class DiffSelection {
 
     /// Returns a copy of this selection instance where the selection state
     /// of the specified line has been toggled (inverted).
+    /// 
+    /// - Parameter lineIindex: The index (line number) of the line which should
+    /// 
+    /// - Returns: A new DiffSelection instance with the updated selection state
+    /// 
+    /// - Throws: DiffSelectionError.unknownSelectionType
     public func withToggleLineSelection(lineIindex: Int) throws -> DiffSelection {
         return try self.withLineSection(lineIndex: lineIindex,
                                     selected: !self.isSelected(lineIndex: lineIindex))
     }
 
     /// Returns a copy of this selection instance with all lines selected.
+    /// 
+    /// - Returns: A new DiffSelection instance with the updated selection state
     public func withSelectAll() -> DiffSelection {
         return DiffSelection(defaultSelectionType: .all,
                              divergingLines: nil,
@@ -232,6 +275,8 @@ class DiffSelection {
     }
 
     /// Returns a copy of this selection instance with no lines selected.
+    /// 
+    /// - Returns: A new DiffSelection instance with the updated selection state
     public func withSelectNone() -> DiffSelection {
         return DiffSelection(defaultSelectionType: .none,
                              divergingLines: nil,
@@ -239,7 +284,9 @@ class DiffSelection {
     }
 
     /// With selectable lines
+    /// 
     /// - Parameter selectableLines: Selectable lines
+    /// 
     /// - Returns: Diff Selection
     public func withSelectableLines(selectableLines: Set<Int>) -> DiffSelection {
         let divergingLines = (self.divergingLines != nil) ? self.divergingLines?.filter {
@@ -252,8 +299,14 @@ class DiffSelection {
     }
 }
 
+/// Diff selection error
 enum DiffSelectionError: Error {
+    /// Unknown selection type
     case unknownSelectionType(String)
+
+    /// Unknown diff selection
     case unknownDiffSelection(String)
+
+    /// Unknown base selection
     case unknownBaseSelection(String)
 }

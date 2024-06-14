@@ -402,3 +402,4 @@ extension FileSystemClient.FileItem: Comparable {
         lhs.url.lastPathComponent < rhs.url.lastPathComponent
     }
 }
+// swiftlint:disable:this file_length

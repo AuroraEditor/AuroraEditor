@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// The type of expansion that can be performed on a hunk header.
 enum DiffHunkExpansionType: String {
     /// The hunk header cannot be expanded at all.
     case none = "None"
@@ -30,12 +31,28 @@ enum DiffHunkExpansionType: String {
 
 /// Each diff is made up of a number of hunks
 class DiffHunk {
+    /// The hunk header
     var header: DiffHunkHeader
+
+    /// The lines in the hunk
     var lines: [DiffLine]
+
+    /// The line number in the unified diff where this hunk starts
     var unifiedDiffStart: Int
+
+    /// The line number in the unified diff where this hunk ends
     var unifiedDiffEnd: Int
+
+    /// The type of expansion that can be performed on this hunk
     var expansionType: DiffHunkExpansionType
 
+    /// Initialize a new diff hunk
+    /// 
+    /// - Parameter header: The hunk header
+    /// - Parameter lines: The lines in the hunk
+    /// - Parameter unifiedDiffStart: The line number in the unified diff where this hunk starts
+    /// - Parameter unifiedDiffEnd: The line number in the unified diff where this hunk ends
+    /// - Parameter expansionType: The type of expansion that can be performed on this hunk
     init(header: DiffHunkHeader,
          lines: [DiffLine],
          unifiedDiffStart: Int,
@@ -49,12 +66,26 @@ class DiffHunk {
     }
 }
 
+/// The header of a hunk in a diff
 class DiffHunkHeader {
+    /// The old start line
     var oldStartLine: Int
+
+    /// The number of lines in the old file
     var oldLineCount: Int
+
+    /// The new start line
     var newStartLine: Int
+
+    /// The number of lines in the new file
     var newLineCount: Int
 
+    /// Initialize a new hunk header
+    /// 
+    /// - Parameter oldStartLine: The old start line
+    /// - Parameter oldLineCount: The number of lines in the old file
+    /// - Parameter newStartLine: The new start line
+    /// - Parameter newLineCount: The number of lines in the new file
     init(oldStartLine: Int, oldLineCount: Int, newStartLine: Int, newLineCount: Int) {
         self.oldStartLine = oldStartLine
         self.oldLineCount = oldLineCount
@@ -63,12 +94,14 @@ class DiffHunkHeader {
     }
 
     /// to diff line representation
+    /// 
     /// - Returns: diff line representation
     public func toDiffLineRepresentation() -> String {
         return "@@ -\(self.oldStartLine),\(self.oldLineCount) +\(self.newStartLine),\(self.newLineCount) @@"
     }
 }
 
+/// Interface: Raw diff
 class IRawDiff {
     /// The plain text contents of the diff header. This contains
     /// everything from the start of the diff up until the first
@@ -99,6 +132,15 @@ class IRawDiff {
     /// Whether or not the diff has invisible bidi characters
     var hasHiddenBidiChars: Bool
 
+    /// Initialize a new raw diff
+    /// 
+    /// - Parameter header: The plain text contents of the diff header
+    /// - Parameter contents: The plain text contents of the diff
+    /// - Parameter hunks: Each hunk in the diff
+    /// - Parameter isBinary: Whether or not the unified diff indicates that the contents \
+    ///                       could not be diffed due to one of the versions being binary
+    /// - Parameter maxLineNumber: The largest line number in the diff
+    /// - Parameter hasHiddenBidiChars: Whether or not the diff has invisible bidi characters
     init(header: String,
          contents: String,
          hunks: [DiffHunk],
