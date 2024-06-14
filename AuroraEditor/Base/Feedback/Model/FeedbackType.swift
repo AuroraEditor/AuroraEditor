@@ -10,6 +10,9 @@ import Foundation
 
 // Feedback type model
 struct FeedbackType: Identifiable, Hashable {
+    /// Feedback type name
     let name: String
+
+    /// Feedback type id
     let id: String
 }

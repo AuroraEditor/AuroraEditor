@@ -10,6 +10,9 @@ import Foundation
 
 // Issue model
 struct IssueArea: Identifiable, Hashable {
+    /// Issue name
     let name: String
+
+    /// Issue id
     let id: String
 }

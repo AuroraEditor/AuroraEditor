@@ -10,6 +10,9 @@ import SwiftUI
 
 // Shows the feedback window model
 final class FeedbackWindowController: NSWindowController, NSToolbarDelegate {
+    /// Initialize feedback window controller
+    /// 
+    /// - Parameter view: view
     convenience init<T: View>(view: T, size: NSSize) {
         let hostingController = NSHostingController(rootView: view)
         let window = NSWindow(contentViewController: hostingController)
@@ -21,6 +24,9 @@ final class FeedbackWindowController: NSWindowController, NSToolbarDelegate {
         window.titlebarSeparatorStyle = .none
     }
 
+    /// Show window
+    /// 
+    /// - Parameter sender: sender
     override func showWindow(_ sender: Any?) {
         window?.center()
         window?.alphaValue = 0.0
@@ -36,6 +42,7 @@ final class FeedbackWindowController: NSWindowController, NSToolbarDelegate {
         shouldStayOpened()
     }
 
+    /// Should stay opened
     private func shouldStayOpened() {
         if FeedbackModel.shared.isSubmitted {
             self.closeAnimated()
@@ -46,6 +53,7 @@ final class FeedbackWindowController: NSWindowController, NSToolbarDelegate {
         }
     }
 
+    /// Feedback toolbar
     private func feedbackToolbar() {
         let toolbar = NSToolbar(identifier: UUID().uuidString)
         toolbar.delegate = self
@@ -54,6 +62,7 @@ final class FeedbackWindowController: NSWindowController, NSToolbarDelegate {
         self.window?.toolbar = toolbar
     }
 
+    /// Close animated
     func closeAnimated() {
         NSAnimationContext.beginGrouping()
         NSAnimationContext.current.duration = 0.4

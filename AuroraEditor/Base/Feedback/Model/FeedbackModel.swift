@@ -8,35 +8,61 @@
 
 import SwiftUI
 
+/// Feedback model
 public class FeedbackModel: ObservableObject {
-    public static let shared: FeedbackModel = .init() // Accessing Environment<OpenURLAction>'s
+    /// Shared instance
+    public static let shared: FeedbackModel = .init()
+    // Accessing Environment<OpenURLAction>'s
     // value outside of being installed on a View.
     // This will always read the default value and will not update.
 
+    /// App preferences
     private var prefs: AppPreferencesModel = .shared
+
+    /// Keychain
     private let keychain = AuroraEditorKeychain()
 
-    @Environment(\.openURL) var openIssueURL
+    /// Open URL environment
+    @Environment(\.openURL)
+    var openIssueURL
 
+    /// is submitted
     @Published
     var isSubmitted: Bool = false
+
+    /// failed to submit
     @Published
     var failedToSubmit: Bool = false
+
+    /// Feedback title
     @Published
     var feedbackTitle: String = ""
+
+    /// Issue description
     @Published
     var issueDescription: String = ""
+
+    /// Steps to reproduce description
     @Published
     var stepsReproduceDescription: String = ""
+
+    /// Expectation description
     @Published
     var expectationDescription: String = ""
+
+    /// What happened description
     @Published
     var whatHappenedDescription: String = ""
+
+    /// Issue area list selection
     @Published
     var issueAreaListSelection: IssueArea.ID = "none"
+
+    /// Feedback type list selection
     @Published
     var feedbackTypeListSelection: FeedbackType.ID = "none"
 
+    /// Feedback type list
     @Published
     var feedbackTypeList = [FeedbackType(name: "Choose...", id: "none"),
                             FeedbackType(name: "Incorrect/Unexpected Behaviour", id: "behaviour"),
@@ -45,6 +71,7 @@ public class FeedbackModel: ObservableObject {
                             FeedbackType(name: "Suggestion", id: "suggestions"),
                             FeedbackType(name: "Other", id: "other")]
 
+    /// Issue area list
     @Published
     var issueAreaList = [IssueArea(name: "Please select the problem area", id: "none"),
                          IssueArea(name: "Project Navigator", id: "projectNavigator"),
@@ -56,6 +83,8 @@ public class FeedbackModel: ObservableObject {
 
     /// Gets the ID of the selected issue type and then
     /// cross references it to select the right Label based on the type
+    /// 
+    /// - Returns: issue label
     private func getIssueLabel() -> String {
         switch issueAreaListSelection {
         case "projectNavigator":
@@ -76,6 +105,9 @@ public class FeedbackModel: ObservableObject {
     }
 
     /// This is just temporary till we have bot that will handle this
+    /// Get feedback type title
+    /// 
+    /// - Returns: feedback type title
     private func getFeebackTypeTitle() -> String {
         switch feedbackTypeListSelection {
         case "behaviour":
@@ -95,6 +127,8 @@ public class FeedbackModel: ObservableObject {
 
     /// Gets the ID of the selected feedback type and then
     /// cross references it to select the right Label based on the type
+    /// 
+    /// - Returns: feedback type label
     private func getFeebackTypeLabel() -> String {
         switch feedbackTypeListSelection {
         case "behaviour":
@@ -115,6 +149,13 @@ public class FeedbackModel: ObservableObject {
     /// The format for the issue body is how it will be displayed on
     /// repos issues. If any changes are made use markdown format
     /// because the text gets converted when created.
+    /// 
+    /// - Parameter description: description
+    /// - Parameter steps: steps
+    /// - Parameter expectation: expectation
+    /// - Parameter actuallyHappened: actually happened
+    /// 
+    /// - Returns: issue body
     private func createIssueBody(description: String,
                                  steps: String?,
                                  expectation: String?,
@@ -138,6 +179,13 @@ public class FeedbackModel: ObservableObject {
         """
     }
 
+    /// Create issue
+    /// 
+    /// - Parameter title: title
+    /// - Parameter description: description
+    /// - Parameter steps: steps
+    /// - Parameter expectation: expectation
+    /// - Parameter actuallyHappened: actually happened
     public func createIssue(title: String,
                             description: String,
                             steps: String?,
