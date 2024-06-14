@@ -8,16 +8,22 @@
 
 import SwiftUI
 
+/// The plus menu in the toolbar.
 public struct ToolbarPlusMenu: View {
 
-    @State var workspace: WorkspaceDocument?
+    /// Workspace document.
+    @State
+    var workspace: WorkspaceDocument?
 
+    /// Control active state.
     @Environment(\.controlActiveState)
     private var controlActive
 
+    /// Display popover state.
     @State
     private var displayPopover: Bool = false
 
+    /// The view body.
     public var body: some View {
         Button {
             workspace?.openTab(item: WebTab(url: URL(string: "https://auroraeditor.com")))

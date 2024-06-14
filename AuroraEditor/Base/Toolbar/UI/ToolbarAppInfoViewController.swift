@@ -9,14 +9,28 @@
 import Cocoa
 import SwiftUI
 
+/// Toolbar app info view controller.
 class ToolbarAppInfoViewController: NSViewController {
+
+    /// Notification service
     private let notificationService: NotificationService = .init()
+
+    /// Notification model
     private let notificationModel: NotificationsModel = .shared
 
-    @IBOutlet var appNameLabel: NSTextField!
-    @IBOutlet var buildStatusLabel: NSTextField!
-    @IBOutlet var timeLabel: NSTextField!
+    /// App name label
+    @IBOutlet
+    var appNameLabel: NSTextField!
 
+    /// Build status label
+    @IBOutlet
+    var buildStatusLabel: NSTextField!
+
+    /// Time label
+    @IBOutlet
+    var timeLabel: NSTextField!
+
+    /// View did load
     override func viewDidLoad() {
         super.viewDidLoad()
         appNameLabel.stringValue = "AuroraEditor"
@@ -24,13 +38,20 @@ class ToolbarAppInfoViewController: NSViewController {
         timeLabel.stringValue = "Today at " + getTime()
     }
 
+    /// Get the current time.
+    /// 
+    /// - Returns: The current time.
     func getTime() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss"
         return formatter.string(from: Date())
     }
 
-    @IBAction func appInfoClicked(_ sender: Any) {
+    /// App info button clicked
+    /// 
+    /// - Parameter sender: The sender.
+    @IBAction
+    func appInfoClicked(_ sender: Any) {
         // Handle app info button click
         notificationService.notify(notification: INotification(
             id: "121DD622-1624-4AF7-ADF7-528F81512925",
@@ -42,17 +63,30 @@ class ToolbarAppInfoViewController: NSViewController {
     }
 }
 
+/// Toolbar app info view.
 class ToolbarAppInfoView: NSView {
-    private var activeState: ControlActiveState = .inactive // Implement ControlActiveState
+
+    /// Active state
+    private var activeState: ControlActiveState = .inactive // TODO: Implement ControlActiveState
+
+    /// Notification service
     private let notificationService: NotificationService = .init()
+
+    /// Notification model
     private let notificationModel: NotificationsModel = .shared
 
+    /// Get the current time.
+    /// 
+    /// - Returns: The current time.
     func getTime() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss"
         return formatter.string(from: Date())
     }
 
+    /// Draw the view.
+    /// 
+    /// - Parameter dirtyRect: The dirty rect.
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 
@@ -98,6 +132,9 @@ class ToolbarAppInfoView: NSView {
         }
     }
 
+    /// Mouse down event.
+    /// 
+    /// - Parameter event: The event.
     override func mouseUp(with event: NSEvent) {
         super.mouseUp(with: event)
         // Handle mouse click events here
