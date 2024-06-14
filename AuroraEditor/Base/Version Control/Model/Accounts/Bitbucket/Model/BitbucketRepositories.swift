@@ -10,18 +10,41 @@ import Foundation
 
 /// BitbucketRepositories
 open class BitbucketRepositories: Codable {
+
+    /// Identifier
     open var id: String
+
+    /// Owner
     open var owner: BitbucketUser
+
+    /// Name
     open var name: String?
+
+    /// Full name
     open var fullName: String?
+
+    /// Private
     open var isPrivate: Bool
+
+    /// Description
     open var repositoryDescription: String?
+
+    /// URLs
     open var gitURL: String?
+
+    /// SSH URL
     open var sshURL: String?
+
+    /// Clone URL
     open var cloneURL: String?
+
+    /// Size
     open var size: Int
+
+    /// Source Control Management
     open var scm: String?
 
+    /// Coding keys
     enum CodingKeys: String, CodingKey {
         case id = "uuid"
         case owner
@@ -41,17 +64,20 @@ open class BitbucketRepositories: Codable {
 public enum PaginatedResponse<T> {
     /// Success
     case success(values: T, nextParameters: [String: String])
+
     /// Failure
     case failure(Error)
 }
 
 public extension BitbucketAccount {
     /// Repositories
+    /// 
     /// - Parameters:
     ///   - session: GIT URLSession
     ///   - userName: Username
     ///   - nextParameters: Next parameters
     ///   - completion: completion
+    /// 
     /// - Returns: URLSessionDataTaskProtocol
     func repositories(_ session: GitURLSession = URLSession.shared,
                       userName: String? = nil,
@@ -77,11 +103,13 @@ public extension BitbucketAccount {
     }
 
     /// Repository
+    /// 
     /// - Parameters:
     ///   - session: GIT URLSession
     ///   - owner: Owner
     ///   - name: Name
     ///   - completion: completion
+    /// 
     /// - Returns: URLSessionDataTaskProtocol
     func repository(_ session: GitURLSession = URLSession.shared,
                     owner: String,

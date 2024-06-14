@@ -17,19 +17,26 @@ import SwiftTerm
 /// for use in SwiftUI.
 ///
 public struct TerminalEmulatorView: NSViewRepresentable {
+
+    /// Application preferences model
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// Theme model
     @StateObject
     private var themeModel: ThemeModel = .shared
 
+    /// Last terminal
     internal static var lastTerminal: [String: LocalProcessTerminalView] = [:]
 
+    /// Terminal
     @State
     internal var terminal: LocalProcessTerminalView
 
+    /// System font
     private let systemFont: NSFont = .monospacedSystemFont(ofSize: 11, weight: .medium)
 
+    /// Font
     private var font: NSFont {
         if !prefs.preferences.terminal.font.customFont {
             return systemFont
@@ -40,8 +47,12 @@ public struct TerminalEmulatorView: NSViewRepresentable {
         ) ?? systemFont
     }
 
+    /// URL
     private var url: URL
 
+    /// Initializer
+    /// 
+    /// - Parameter url: URL
     public init(url: URL) {
         self.url = url
         self._terminal = State(initialValue: TerminalEmulatorView.lastTerminal[url.path] ?? .init(frame: .zero))
@@ -72,6 +83,8 @@ public struct TerminalEmulatorView: NSViewRepresentable {
     /// if getpwuid_r(getuid(), &pwd, buffer, bufsize, &result) != 0 { return "/bin/bash" }
     ///    return String(cString: pwd.pw_shell)
     /// ```
+    /// 
+    /// - Returns: A string of the shell path
     private func getShell() -> String {
         switch prefs.preferences.terminal.shell {
         case .system:
@@ -84,6 +97,8 @@ public struct TerminalEmulatorView: NSViewRepresentable {
     }
 
     /// Gets the default shell from the current user and returns the string of the shell path.
+    /// 
+    /// - Returns: A string of the shell path
     private func autoDetectDefaultShell() -> String {
         let bufsize = sysconf(_SC_GETPW_R_SIZE_MAX)
         guard bufsize != -1 else { return "/bin/bash" }
@@ -166,6 +181,7 @@ public struct TerminalEmulatorView: NSViewRepresentable {
         return terminal
     }
 
+    /// Sets up the terminal session
     public func setupSession() {
         terminal.getTerminal().silentLog = true
         if TerminalEmulatorView.lastTerminal[url.path] == nil {
@@ -196,6 +212,7 @@ public struct TerminalEmulatorView: NSViewRepresentable {
         TerminalEmulatorView.lastTerminal[url.path] = terminal
     }
 
+    /// Returns the scroller of the terminal
     private var scroller: NSScroller? {
         for subView in terminal.subviews {
             if let scroller = subView as? NSScroller {
@@ -205,6 +222,10 @@ public struct TerminalEmulatorView: NSViewRepresentable {
         return nil
     }
 
+    /// Updates the terminal view
+    /// 
+    /// - Parameter view: The terminal view
+    /// - Parameter context: The context
     public func updateNSView(_ view: LocalProcessTerminalView, context: Context) {
         if view.font != font { // Fixes Memory leak
             view.font = font
@@ -227,10 +248,17 @@ public struct TerminalEmulatorView: NSViewRepresentable {
         )
     }
 
+    /// Makes a coordinator
     public func makeCoordinator() -> Coordinator {
         Coordinator(url: url)
     }
 
+    /// Get cursor style
+    /// 
+    /// - Parameter style: The cursor style
+    /// - Parameter shouldBlink: Should the cursor blink
+    /// 
+    /// - Returns: The cursor style
     private func getCursorStyle(_ style: AppPreferences.TerminalCursorStyle, shouldBlink: Bool) -> CursorStyle {
         switch style {
         case .block:
