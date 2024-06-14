@@ -8,12 +8,20 @@
 
 import Foundation
 
+/// GitHub Actions Job
 struct Job: Codable {
+    /// Total count
     let totalCount: Int
+
+    /// Jobs
     let jobs: [Jobs]
 
+    /// Coding keys
     enum CodingKeys: String, CodingKey {
+        /// Total count
         case totalCount = "total_count"
+
+        /// Jobs
         case jobs
     }
 }

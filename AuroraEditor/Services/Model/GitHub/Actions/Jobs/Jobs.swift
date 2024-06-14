@@ -8,22 +8,51 @@
 
 import Foundation
 
+/// GitHub Actions Jobs
 struct Jobs: Codable {
+    /// Identifier
     let id: Int
+
+    /// Run identifier
     let runId: Int
+
+    /// Run URL
     let runURL: String
+
+    /// Run attempt
     let runAttempt: Int
+
+    /// URL
     let url: String
+
+    /// HTML URL
     let htmlURL: String
+
+    /// Status
     let status: String
+
+    /// Conclusion
     let conclusion: String
+
+    /// Started at
     let startedAt: String
+
+    /// Completed at
     let completedAt: String
+
+    /// Name
     let name: String
+
+    /// Steps
     let steps: [JobSteps]
+
+    /// Runner name
     let runnerName: String?
+
+    /// Runner group name
     let runnerGroupName: String?
 
+    /// Coding keys
     enum CodingKeys: String, CodingKey {
         case id
         case runId = "run_id"

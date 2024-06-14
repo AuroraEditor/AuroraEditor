@@ -8,10 +8,15 @@
 
 import Foundation
 
+/// GitHub Actions Workflow Run
 struct WorkflowRuns: Codable {
+    /// Total count
     let totalCount: Int
+
+    /// Workflow runs
     let workflowRuns: [WorkflowRun]?
 
+    /// Coding keys
     enum CodingKeys: String, CodingKey {
         case totalCount = "total_count"
         case workflowRuns = "workflow_runs"

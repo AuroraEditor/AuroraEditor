@@ -8,21 +8,48 @@
 
 import Foundation
 
+/// GitHub Actions Workflow Run
 struct WorkflowRun: Codable {
+    /// Identifier
     let id: Int
+
+    /// Name
     let name: String
+
+    /// Node ID
     let nodeId: String
+
+    /// Head Branch
     let headBranch: String
+
+    /// Run Number
     let runNumber: Int
+
+    /// Status
     let status: String
+
+    /// Conclusion
     let conclusion: String
+
+    /// Workflow ID
     let workflowId: Int
+
+    /// URL
     let url: String
+
+    /// HTML URL
     let htmlURL: String
+
+    /// Created At
     let createdAt: String
+
+    /// Updated At
     let updatedAt: String
+
+    /// Head Commit
     let headCommit: WorkflowRunCommit
 
+    /// Coding Keys
     enum CodingKeys: String, CodingKey {
         case id
         case name
@@ -40,11 +67,21 @@ struct WorkflowRun: Codable {
     }
 }
 
+/// GitHub Actions Workflow Run Commit
 struct WorkflowRunCommit: Codable {
+    /// Identifier
     let id: String
+
+    /// Tree ID
     let treeId: String
+
+    /// Message
     let message: String
+
+    /// Timestamp
     let timestamp: String
+
+    /// Author
     let author: CommitAuthor
 
     enum CodingKeys: String, CodingKey {
@@ -56,7 +93,11 @@ struct WorkflowRunCommit: Codable {
     }
 }
 
+/// GitHub Actions Workflow Run Commit Author
 struct CommitAuthor: Codable {
+    /// Name
     let name: String
+
+    /// Email
     let email: String
 }

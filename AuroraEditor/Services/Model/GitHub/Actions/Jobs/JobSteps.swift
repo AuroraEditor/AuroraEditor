@@ -8,14 +8,27 @@
 
 import Foundation
 
+/// GitHub Actions Job Steps
 struct JobSteps: Codable {
+    /// Name
     let name: String
+
+    /// Status
     let status: String
+
+    /// Conclusion
     let conclusion: String
+
+    /// Number
     let number: Int
+
+    /// Started at
     let startedAt: String
+
+    /// Completed at
     let completedAt: String
 
+    /// Coding keys
     enum CodingKeys: String, CodingKey {
         case name
         case status
