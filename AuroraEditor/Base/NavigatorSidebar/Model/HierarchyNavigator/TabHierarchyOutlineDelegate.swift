@@ -9,16 +9,37 @@
 import SwiftUI
 
 extension TabHierarchyViewController: NSOutlineViewDelegate {
+    /// Should show cell expansion for table column
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter tableColumn: the table column
+    /// - Parameter item: the item
+    /// 
+    /// - Returns: a boolean indicating whether the cell should be expanded
     func outlineView(_ outlineView: NSOutlineView,
                      shouldShowCellExpansionFor tableColumn: NSTableColumn?,
                      item: Any) -> Bool {
         true
     }
 
+    /// Should show cell for item
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter tableColumn: the table column
+    /// - Parameter item: the item
+    /// 
+    /// - Returns: a boolean indicating whether the cell should be shown
     func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
         true
     }
 
+    /// View for table column
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter tableColumn: the table column
+    /// - Parameter item: the item
+    /// 
+    /// - Returns: the view
     func outlineView(_ outlineView: NSOutlineView,
                      viewFor tableColumn: NSTableColumn?,
                      item: Any) -> NSView? {
@@ -46,26 +67,55 @@ extension TabHierarchyViewController: NSOutlineViewDelegate {
         return nil
     }
 
+    /// Selection did change
+    /// 
+    /// - Parameter notification: the notification
     func outlineViewSelectionDidChange(_ notification: Notification) {
         // open the tab only on double click, not here.
     }
 
-    // Do not allow a header to be selected
+    /// Should select item
+    /// 
+    /// We do not allow a header to be selected
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter item: the item
+    /// 
+    /// - Returns: a boolean indicating whether the item should be selected
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
         if item is TabHierarchyCategory {
             return false
         }
+
         return true
     }
 
+    /// Height of row by item
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter item: the item
+    /// 
+    /// - Returns: the height of the row
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
         rowHeight // This can be changed to 20 to match Xcode's row height.
     }
 
+    /// Item for persistent object
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter item: the item
+    /// 
+    /// - Returns: The persistent object
     func outlineView(_ outlineView: NSOutlineView, itemForPersistentObject object: Any) -> Any? {
         return nil
     }
 
+    /// Persistent object for item
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter item: the item
+    /// 
+    /// - Returns: The persistent object
     func outlineView(_ outlineView: NSOutlineView, persistentObjectForItem item: Any?) -> Any? {
         return nil
     }
@@ -77,6 +127,7 @@ extension TabHierarchyViewController: NSMenuDelegate {
     /// Once a menu gets requested by a `right click` setup the menu
     ///
     /// If the right click happened outside a row this will result in no menu being shown.
+    /// 
     /// - Parameter menu: The menu that got requested
     func menuNeedsUpdate(_ menu: NSMenu) {
         let row = outlineView.clickedRow

@@ -8,24 +8,34 @@
 
 import SwiftUI
 
+/// A standard table cell view that is used in the navigator sidebar.
 class StandardTableViewCell: NSTableCellView {
 
+    /// The label of the cell
     var label: NSTextField!
+
+    /// The secondary label of the cell
     var secondaryLabel: NSTextField!
+
+    /// The icon of the cell
     var icon: NSImageView!
 
+    /// The workspace document
     var workspace: WorkspaceDocument?
 
+    /// The file item the cell represents
     var secondaryLabelRightAlignmed: Bool = true {
         didSet {
             resizeSubviews(withOldSize: .zero)
         }
     }
 
+    /// The application preferences
     private let prefs = AppPreferencesModel.shared.preferences.general
 
     /// Initializes the `TableViewCell` with an `icon` and `label`
     /// Both the icon and label will be colored, and sized based on the user's preferences.
+    /// 
     /// - Parameters:
     ///   - frameRect: The frame of the cell.
     ///   - item: The file item the cell represents.
@@ -41,6 +51,10 @@ class StandardTableViewCell: NSTableCellView {
         setupViews(frame: frameRect, isEditable: false)
     }
 
+    /// Set up the views
+    /// 
+    /// - Parameter frameRect: the frame
+    /// - Parameter isEditable: whether the cell is editable
     private func setupViews(frame frameRect: NSRect, isEditable: Bool) {
         // Create the label
         label = createLabel()
@@ -65,10 +79,16 @@ class StandardTableViewCell: NSTableCellView {
     }
 
     // MARK: Create and config stuff
+
+    /// Create the label
     func createLabel() -> NSTextField {
         return SpecialSelectTextField(frame: .zero)
     }
 
+    /// Configure label
+    /// 
+    /// - Parameter label: label
+    /// - Parameter isEditable: whether the cell is editable
     func configLabel(label: NSTextField, isEditable: Bool) {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.drawsBackground = false
@@ -80,10 +100,14 @@ class StandardTableViewCell: NSTableCellView {
         label.lineBreakMode = .byTruncatingMiddle
     }
 
+    /// Create secondary label
     func createSecondaryLabel() -> NSTextField {
         return NSTextField(frame: .zero)
     }
 
+    /// Configure secondary label
+    /// 
+    /// - Parameter secondaryLabel: secondary label
     func configSecondaryLabel(secondaryLabel: NSTextField) {
         secondaryLabel.translatesAutoresizingMaskIntoConstraints = false
         secondaryLabel.drawsBackground = false
@@ -96,20 +120,33 @@ class StandardTableViewCell: NSTableCellView {
         secondaryLabel.textColor = NSColor(Color.secondary)
     }
 
+    /// Create icon
     func createIcon() -> NSImageView {
         return NSImageView(frame: .zero)
     }
 
+    /// Configure icon
+    /// 
+    /// - Parameter icon: icon
     func configIcon(icon: NSImageView) {
         icon.translatesAutoresizingMaskIntoConstraints = false
         icon.symbolConfiguration = .init(pointSize: fontSize, weight: .regular, scale: .medium)
     }
 
+    /// Create constraints
+    /// 
+    /// - Parameter frameRect: the frame
     func createConstraints(frame frameRect: NSRect) {
         resizeSubviews(withOldSize: .zero)
     }
 
+    // MARK: Layout
+    /// The width of the icon
     let iconWidth: CGFloat = 22
+
+    /// Resize the subviews
+    /// 
+    /// - Parameter oldSize: the old size
     override func resizeSubviews(withOldSize oldSize: NSSize) {
         super.resizeSubviews(withOldSize: oldSize)
 
@@ -145,7 +182,7 @@ class StandardTableViewCell: NSTableCellView {
         }
     }
 
-    /// *Not Implemented*
+    /// Initializes the cell.
     required init?(coder: NSCoder) {
         fatalError("""
             init?(coder: NSCoder) isn't implemented on `StandardTableViewCell`.
@@ -163,6 +200,7 @@ class StandardTableViewCell: NSTableCellView {
         }
     }
 
+    /// Special select text field
     class SpecialSelectTextField: NSTextField {
 //        override func becomeFirstResponder() -> Bool {
             // TODO: Set text range

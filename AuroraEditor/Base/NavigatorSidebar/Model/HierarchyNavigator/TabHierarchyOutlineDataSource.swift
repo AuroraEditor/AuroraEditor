@@ -9,6 +9,12 @@
 import SwiftUI
 
 extension TabHierarchyViewController: NSOutlineViewDataSource {
+    /// Returns the number of children for a given item.
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter item: the item
+    /// 
+    /// - Returns: the number of children
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         guard let workspace = workspace else { return 0 }
         if let item = item {
@@ -34,6 +40,13 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
         return 0
     }
 
+    /// Returns the child for a given index.
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter index: the index
+    /// - Parameter item: the item
+    /// 
+    /// - Returns: the child
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         guard let workspace = workspace else { return 0 }
 
@@ -54,8 +67,10 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
             case .savedTabs:
                 return workspace.selectionState.savedTabs[index]
             case .openTabs:
-                return TabBarItemStorage(tabBarID: workspace.selectionState.openedTabs[index],
-                                         category: .openTabs)
+                return TabBarItemStorage(
+                    tabBarID: workspace.selectionState.openedTabs[index],
+                    category: .openTabs
+                )
             case .unknown:
                 break
             }
@@ -67,6 +82,12 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
         return 0
     }
 
+    /// Returns a boolean indicating if the item is expandable.
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter item: the item
+    /// 
+    /// - Returns: a boolean indicating if the item is expandable
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         // if it is a header, return true
         if item is TabHierarchyCategory {
@@ -84,6 +105,12 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
 
     // MARK: Drag and Drop
 
+    /// Returns the pasteboard writer for the item.
+    ///
+    /// - Parameter outlineView: the outline view
+    /// - Parameter item: the item
+    /// 
+    /// - Returns: the pasteboard writer
     func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
         guard let item = item as? TabBarItemStorage else {
             Log.fault("Item is not a tab storage item")
@@ -100,6 +127,14 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
         return pboarditem
     }
 
+    /// Validates the drop operation.
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter info: the dragging info
+    /// - Parameter item: the item
+    /// - Parameter index: the index
+    /// 
+    /// - Returns: the drag operation
     func outlineView(_ outlineView: NSOutlineView,
                      validateDrop info: NSDraggingInfo,
                      proposedItem item: Any?,
@@ -123,6 +158,14 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
         return .move
     }
 
+    /// Accepts the drop operation.
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter info: the dragging info
+    /// - Parameter item: the item
+    /// - Parameter index: the index
+    /// 
+    /// - Returns: a boolean indicating if the drop was successful
     func outlineView(_ outlineView: NSOutlineView,
                      acceptDrop info: NSDraggingInfo,
                      item: Any?,
@@ -162,6 +205,13 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
         return moveItemToNewLocation(item: recievedItem, to: item, at: index)
     }
 
+    /// Moves the item to its new location.
+    /// 
+    /// - Parameter recievedItem: the item to move
+    /// - Parameter item: the item
+    /// - Parameter index: the index
+    /// 
+    /// - Returns: a boolean indicating if the move was successful
     func moveItemToNewLocation(item recievedItem: TabBarItemStorage, to item: Any?, at index: Int) -> Bool {
         // Add the item to its new location
         if let destinationItem = item as? TabHierarchyCategory {
@@ -193,10 +243,15 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
 }
 
 extension NSDragOperation {
+    /// Deny operation
     static let deny: NSDragOperation = NSDragOperation(arrayLiteral: [])
 }
 
 fileprivate extension Array {
+    /// Safely insert an element at an index. If the index is out of bounds, append the element.
+    /// 
+    /// - Parameter element: the element
+    /// - Parameter index: the index
     mutating func safeInsert(_ element: Self.Element, at index: Int) {
         if index >= 0 && index < count {
             self.insert(element, at: index)

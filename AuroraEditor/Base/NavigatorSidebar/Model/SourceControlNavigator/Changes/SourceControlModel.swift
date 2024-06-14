@@ -13,13 +13,19 @@ import Version_Control
 /// This model handle the fetching and adding of changes etc... for the
 /// Source Control Navigator
 public final class SourceControlModel: ObservableObject {
-
+    /// The state of the model
     enum State {
+        /// The model is loading
         case loading
+
+        /// The model has encountered an error
         case error
+
+        /// The model has successfully loaded
         case success
     }
 
+    /// The current state of the model
     @Published
     var state: State = .loading
 
@@ -36,14 +42,16 @@ public final class SourceControlModel: ObservableObject {
     @Published
     public var changed: [FileItem]
 
+    /// Whether the workspace is a git repository
     @Published
     public var isGitRepository: Bool = false
 
+    /// A set of cancellables
     private var cancellables = Set<AnyCancellable>()
 
     /// Initialize with a GitClient
+    /// 
     /// - Parameter workspaceURL: the current workspace URL we also need this to open files in finder
-    ///
     public init(workspaceURL: URL) {
         self.workspaceURL = workspaceURL
         self.isGitRepository = Check().checkIfProjectIsRepo(workspaceURL: workspaceURL)
@@ -66,6 +74,9 @@ public final class SourceControlModel: ObservableObject {
         }
     }
 
+    /// Discard changes for a file
+    /// 
+    /// - Parameter file: the file to discard changes for
     public func discardFileChanges(file: FileItem) {
         do {
             try gitClient.discardFileChanges(url: file.url.path)
@@ -74,6 +85,7 @@ public final class SourceControlModel: ObservableObject {
         }
     }
 
+    /// Discard changes for the project
     public func discardProjectChanges() {
         do {
             try gitClient.discardProjectChanges()
@@ -82,8 +94,12 @@ public final class SourceControlModel: ObservableObject {
         }
     }
 
+    /// Is reloading
     private var isReloading: Bool = false
 
+    /// Reload the changed files
+    /// 
+    /// - Returns: the files that have changed
     @discardableResult
     public func reloadChangedFiles() -> [FileItem] {
         guard isReloading == false else { return [] }

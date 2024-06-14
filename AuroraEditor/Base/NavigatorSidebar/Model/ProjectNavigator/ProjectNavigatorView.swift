@@ -11,15 +11,21 @@ import Combine
 
 /// Wraps an ``ProjectNavigatorViewController`` inside a `NSViewControllerRepresentable`
 struct ProjectNavigatorView: NSViewControllerRepresentable {
-
+    /// The workspace document
     @EnvironmentObject
     var workspace: WorkspaceDocument
 
+    /// App preferences model
     @StateObject
     var prefs: AppPreferencesModel = .shared
 
     typealias NSViewControllerType = ProjectNavigatorViewController
 
+    /// Make the view controller
+    /// 
+    /// - Parameter context: the context
+    /// 
+    /// - Returns: the view controller
     func makeNSViewController(context: Context) -> ProjectNavigatorViewController {
         let controller = ProjectNavigatorViewController()
         controller.workspace = workspace
@@ -33,6 +39,10 @@ struct ProjectNavigatorView: NSViewControllerRepresentable {
         return controller
     }
 
+    /// Update the view controller
+    /// 
+    /// - Parameter nsViewController: the view controller
+    /// - Parameter context: the context
     func updateNSViewController(_ nsViewController: ProjectNavigatorViewController, context: Context) {
         nsViewController.iconColor = prefs.preferences.general.fileIconStyle
         nsViewController.rowHeight = prefs.preferences.general.projectNavigatorSize.rowHeight
@@ -43,11 +53,18 @@ struct ProjectNavigatorView: NSViewControllerRepresentable {
         return
     }
 
+    /// Make the coordinator
     func makeCoordinator() -> Coordinator {
         Coordinator(workspace)
     }
 
+    /// Coordinator for the view
     class Coordinator: NSObject {
+        /// Initialize the coordinator
+        /// 
+        /// - Parameter workspace: the workspace document
+        /// 
+        /// - Returns: the coordinator
         init(_ workspace: WorkspaceDocument) {
             self.workspace = workspace
             super.init()
@@ -61,10 +78,16 @@ struct ProjectNavigatorView: NSViewControllerRepresentable {
             })
         }
 
+        /// The listener
         var listener: AnyCancellable?
+
+        /// The workspace document
         var workspace: WorkspaceDocument
+
+        /// The view controller
         var controller: ProjectNavigatorViewController?
 
+        /// Deinirializer
         deinit {
             listener?.cancel()
         }

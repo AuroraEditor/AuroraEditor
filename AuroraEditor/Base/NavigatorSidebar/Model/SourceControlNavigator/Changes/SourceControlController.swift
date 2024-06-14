@@ -8,20 +8,33 @@
 
 import SwiftUI
 
+/// A `NSViewController` that displays the source control changes in the workspace.
 final class SourceControlController: NSViewController {
 
     typealias Item = FileItem
 
+    /// The scroll view that contains the outline view.
     private var scrollView: NSScrollView!
+
+    /// The outline view that displays the source control changes.
     private var outlineView: NSOutlineView!
 
+    /// The workspace document.
     var workspace: WorkspaceDocument?
 
+    /// The icon color style for the items.
     var iconColor: AppPreferences.FileIconStyle = .color
+
+    /// The file extension visibility for the items.
     var fileExtensionVisibility: AppPreferences.FileExtensionsVisibility = .showAll
+
+    /// The file extensions that should be shown.
     var shownFileExtensions: AppPreferences.FileExtensions = .default
+
+    /// The file extensions that should be hidden.
     var hiddenFileExtensions: AppPreferences.FileExtensions = .default
 
+    /// The row height for the outline view.
     var rowHeight: Double = 22 {
         didSet {
             outlineView.rowHeight = rowHeight
@@ -29,8 +42,10 @@ final class SourceControlController: NSViewController {
         }
     }
 
+    /// Whether to send a selection update when the outline view selection changes.
     private var shouldSendSelectionUpdate: Bool = true
 
+    /// Reload the data in the outline view.
     override func loadView() {
         self.scrollView = NSScrollView()
         self.view = scrollView
@@ -56,16 +71,20 @@ final class SourceControlController: NSViewController {
         scrollView.autohidesScrollers = true
     }
 
+    /// Initialize the controller.
     init() {
         super.init(nibName: nil, bundle: nil)
     }
 
+    /// Initialize the controller.
     required init?(coder: NSCoder) {
         fatalError()
     }
 
     /// Get the appropriate color for the items icon depending on the users preferences.
+    /// 
     /// - Parameter item: The `FileItem` to get the color for
+    /// 
     /// - Returns: A `NSColor` for the given `FileItem`.
     private func color(for item: Item) -> NSColor {
         if item.children == nil && iconColor == .color {
@@ -77,14 +96,33 @@ final class SourceControlController: NSViewController {
 }
 
 extension SourceControlController: NSOutlineViewDataSource {
+    /// Get the number of children for a given item.
+    /// 
+    /// - Parameters:
+    ///   - outlineView: The outline view
+    ///   - item: the item
+    /// 
+    /// - Returns: The number of children
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         return workspace?.fileSystemClient?.model?.changed.count ?? 0
     }
 
+    /// Get the child for a given index.
+    /// 
+    /// - Parameter outlineView: The outline view
+    /// - Parameter index: The index
+    /// 
+    /// - Returns: The child
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         return workspace?.fileSystemClient?.model?.changed[index] ?? 0
     }
 
+    /// Get the object for a given item.
+    /// 
+    /// - Parameter outlineView: The outline view
+    /// - Parameter item: The item
+    /// 
+    /// - Returns: The object
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         if let item = item as? Item {
             return item.children != nil
@@ -94,16 +132,36 @@ extension SourceControlController: NSOutlineViewDataSource {
 }
 
 extension SourceControlController: NSOutlineViewDelegate {
+    /// Should show cell expansion for table column.
+    /// 
+    /// - Parameter outlineView: The outline view
+    /// - Parameter tableColumn: The table column
+    /// - Parameter item: The item
+    /// 
+    /// - Returns: Whether to show cell expansion
     func outlineView(_ outlineView: NSOutlineView,
                      shouldShowCellExpansionFor tableColumn: NSTableColumn?,
                      item: Any) -> Bool {
         true
     }
 
+    /// Should show cell outline for table column.
+    /// 
+    /// - Parameter outlineView: The outline view
+    /// - Parameter item: The item
+    /// 
+    /// - Returns: Whether to show cell outline
     func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
         true
     }
 
+    /// Get the view for the table column.
+    /// 
+    /// - Parameter outlineView: The outline view
+    /// - Parameter tableColumn: The table column
+    /// - Parameter item: The item
+    /// 
+    /// - Returns: The view for the table column
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
 
         guard let tableColumn = tableColumn else { return nil }
@@ -113,6 +171,11 @@ extension SourceControlController: NSOutlineViewDelegate {
         return SourceControlTableViewCell(frame: frameRect, item: item as? Item)
     }
 
+    /// Get the label for the outline view.
+    /// 
+    /// - Parameter item: The item
+    /// 
+    /// - Returns: The label for the outline view
     private func outlineViewLabel(for item: Item) -> String {
         switch fileExtensionVisibility {
         case .hideAll:
@@ -126,6 +189,9 @@ extension SourceControlController: NSOutlineViewDelegate {
         }
     }
 
+    /// Selection did change
+    /// 
+    /// - Parameter notification: notification
     func outlineViewSelectionDidChange(_ notification: Notification) {
         guard let outlineView = notification.object as? NSOutlineView else {
             return
@@ -141,6 +207,12 @@ extension SourceControlController: NSOutlineViewDelegate {
         }
     }
 
+    /// Get the height of a row in the outline view.
+    /// 
+    /// - Parameter outlineView: The outline view
+    /// - Parameter item: The item
+    /// 
+    /// - Returns: The height of the row
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
         rowHeight // This can be changed to 20 to match Xcode's row height.
     }
@@ -151,6 +223,7 @@ extension SourceControlController: NSMenuDelegate {
     /// Once a menu gets requested by a `right click` setup the menu
     ///
     /// If the right click happened outside a row this will result in no menu being shown.
+    /// 
     /// - Parameter menu: The menu that got requested
     func menuNeedsUpdate(_ menu: NSMenu) {
         let row = outlineView.clickedRow

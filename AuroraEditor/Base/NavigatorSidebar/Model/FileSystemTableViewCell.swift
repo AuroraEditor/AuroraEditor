@@ -10,19 +10,27 @@ import SwiftUI
 
 class FileSystemTableViewCell: StandardTableViewCell {
 
+    /// The `FileItem` the cell represents.
     var fileItem: FileSystemClient.FileItem!
 
+    /// Change label large width constraint
     var changeLabelLargeWidth: NSLayoutConstraint!
+
+    /// Change label small width constraint
     var changeLabelSmallWidth: NSLayoutConstraint!
 
+    /// Application preferences
     private let prefs = AppPreferencesModel.shared.preferences.general
 
     /// Initializes the `OutlineTableViewCell` with an `icon` and `label`
     /// Both the icon and label will be colored, and sized based on the user's preferences.
+    /// 
     /// - Parameters:
     ///   - frameRect: The frame of the cell.
     ///   - item: The file item the cell represents.
     ///   - isEditable: Set to true if the user should be able to edit the file name.
+    /// 
+    /// - Returns: An `OutlineTableViewCell` with the given `FileItem`.
     init(frame frameRect: NSRect, item: FileSystemClient.FileItem?, isEditable: Bool = true) {
         super.init(frame: frameRect, isEditable: isEditable)
 
@@ -32,11 +40,18 @@ class FileSystemTableViewCell: StandardTableViewCell {
         addModel()
     }
 
+    /// Configures the label with the given `NSTextField` and sets the delegate to `self`.
+    /// 
+    /// - Parameter label: The label to configure.
+    /// - Parameter isEditable: Set to true if the user should be able to edit the file name.
     override func configLabel(label: NSTextField, isEditable: Bool) {
         super.configLabel(label: label, isEditable: isEditable)
         label.delegate = self
     }
 
+    /// Adds an icon to the cell.
+    /// 
+    /// - Parameter item: The `FileItem` to add the icon for.
     func addIcon(item: FileItem) {
         var imageName = item.systemImage
         if item.watcherCode == nil {
@@ -54,12 +69,13 @@ class FileSystemTableViewCell: StandardTableViewCell {
         label.stringValue = label(for: item)
     }
 
+    /// Adds a model to the cell.
     func addModel() {
         secondaryLabel.stringValue = fileItem.gitStatus?.description ?? ""
         if secondaryLabel.stringValue == "?" { secondaryLabel.stringValue = "A" }
     }
 
-    /// *Not Implemented*
+    /// Initializes the cell.
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         fatalError("""
@@ -68,7 +84,7 @@ class FileSystemTableViewCell: StandardTableViewCell {
             """)
     }
 
-    /// *Not Implemented*
+    /// Initializes the cell.
     required init?(coder: NSCoder) {
         fatalError("""
             init?(coder: NSCoder) isn't implemented on `OutlineTableViewCell`.
@@ -87,7 +103,9 @@ class FileSystemTableViewCell: StandardTableViewCell {
     }
 
     /// Generates a string based on user's file name preferences.
+    /// 
     /// - Parameter item: The FileItem to generate the name for.
+    /// 
     /// - Returns: A `String` with the name to display.
     func label(for item: FileSystemClient.FileItem) -> String {
         switch prefs.fileExtensionsVisibility {
@@ -103,7 +121,9 @@ class FileSystemTableViewCell: StandardTableViewCell {
     }
 
     /// Get the appropriate color for the items icon depending on the users preferences.
+    /// 
     /// - Parameter item: The `FileItem` to get the color for
+    /// 
     /// - Returns: A `NSColor` for the given `FileItem`.
     func color(for item: FileSystemClient.FileItem) -> NSColor {
         if item.children == nil && prefs.fileIconStyle == .color {
@@ -114,11 +134,20 @@ class FileSystemTableViewCell: StandardTableViewCell {
     }
 }
 
+/// Red color for error
 let errorRed = NSColor(red: 1, green: 0, blue: 0, alpha: 0.2)
+
 extension FileSystemTableViewCell: NSTextFieldDelegate {
+    /// Control text did change
+    /// 
+    /// - Parameter obj: The notification object.
     func controlTextDidChange(_ obj: Notification) {
         label.backgroundColor = validateFileName(for: label?.stringValue ?? "") ? .none : errorRed
     }
+
+    /// Control text did end editing
+    /// 
+    /// - Parameter obj: The notification object.
     func controlTextDidEndEditing(_ obj: Notification) {
         label.backgroundColor = validateFileName(for: label?.stringValue ?? "") ? .none : errorRed
         if validateFileName(for: label?.stringValue ?? "") {
@@ -129,6 +158,11 @@ extension FileSystemTableViewCell: NSTextFieldDelegate {
         }
     }
 
+    /// Validate the file name
+    /// 
+    /// - Parameter newName: The new name to validate.
+    /// 
+    /// - Returns: A `Bool` indicating if the file name is valid.
     func validateFileName(for newName: String) -> Bool {
         guard newName != fileItem.fileName else { return true }
 
@@ -142,6 +176,7 @@ extension FileSystemTableViewCell: NSTextFieldDelegate {
 }
 
 extension String {
+    /// Check if the string is a valid file name
     var isValidFilename: Bool {
         let regex = "[^:]"
         let testString = NSPredicate(format: "SELF MATCHES %@", regex)

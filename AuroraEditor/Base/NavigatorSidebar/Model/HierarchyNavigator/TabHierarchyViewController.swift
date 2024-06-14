@@ -13,11 +13,16 @@ import SwiftUI
 /// Adds a ``outlineView`` inside a ``scrollView`` which shows the user-created tab hierarchy of the
 /// currently open project, similar to Orion Browser's vertical tabs.
 class TabHierarchyViewController: NSViewController {
+    /// The scroll view
     var scrollView: NSScrollView!
+
+    /// The outline view
     var outlineView: NSOutlineView!
 
+    /// The workspace document
     var workspace: WorkspaceDocument?
 
+    /// The row height of the outline view
     var rowHeight: Double = 22 {
         didSet {
             outlineView.rowHeight = rowHeight
@@ -62,10 +67,12 @@ class TabHierarchyViewController: NSViewController {
         outlineView.expandItem(outlineView.item(atRow: 1))
     }
 
+    /// Initializer
     init() {
         super.init(nibName: nil, bundle: nil)
     }
 
+    /// Required initializer
     required init?(coder: NSCoder) {
         fatalError()
     }

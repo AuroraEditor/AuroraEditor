@@ -10,43 +10,70 @@ import Foundation
 import Combine
 import Version_Control
 
+/// This model handle the fetching and adding of changes etc... for the
 public final class RepositoryModel: ObservableObject {
 
+    /// The workspace document
     let workspace: WorkspaceDocument
 
+    /// Whether the git creation sheet is open
     @Published
     var openGitCreationSheet: Bool = false
 
+    /// The repository name
     @Published
     var repositoryName: String = ""
 
+    /// The repository description
     @Published
     var repositoryDescription: String = ""
 
+    /// The repository local path
     @Published
     var repositoryLocalPath: String = ""
 
+    /// Whether to add a README
     @Published
     var addReadme: Bool = false
 
+    /// Whether the workspace is a git repository
     @Published
     var isGitRepository: Bool = false
 
     // Git repo stuff
+
+    /// The git client
     var gitClient: GitClient?
+
+    /// The repo name
     @Published
     var repoName: String?
+
+    /// The branches
     @Published
     var branches: RepoBranches?
+
+    /// The recent locations
     @Published
     var recentLocations: RepoRecentLocations?
+
+    /// The tags
     @Published
     var tags: RepoTags?
+
+    /// The stashed changes
     @Published
     var stashedChanges: RepoStashedChanges?
+
+    /// The remotes
     @Published
     var remotes: RepoRemotes?
 
+    /// Initialize the model
+    /// 
+    /// - Parameter workspace: the workspace document
+    /// 
+    /// - Returns: the model
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
         self.repositoryLocalPath = workspace.workspaceURL().path
@@ -54,6 +81,9 @@ public final class RepositoryModel: ObservableObject {
         self.isGitRepository = Check().checkIfProjectIsRepo(workspaceURL: workspace.workspaceURL())
     }
 
+    /// Add git repo details
+    /// 
+    /// - Parameter client: the git client
     func addGitRepoDetails(client: GitClient? = nil) {
         if let client = client {
             self.gitClient = client
@@ -107,9 +137,16 @@ public final class RepositoryModel: ObservableObject {
         watchBranches()
     }
 
+    /// Watch branches
     var currentBranchNameListener: AnyCancellable?
+
+    /// Watch branch names
     var branchNamesListener: AnyCancellable?
+
+    /// Watch all branch names
     var allBranchNamesListener: AnyCancellable?
+
+    /// Watch branches
     func watchBranches() {
         currentBranchNameListener = gitClient?.currentBranchName.sink(receiveValue: { newName in
             guard let branches = self.branches, let branchContents = branches.contents as? [RepoBranch] else { return }
@@ -134,6 +171,7 @@ public final class RepositoryModel: ObservableObject {
         })
     }
 
+    /// Deinitializer
     deinit {
         currentBranchNameListener?.cancel()
         branchNamesListener?.cancel()

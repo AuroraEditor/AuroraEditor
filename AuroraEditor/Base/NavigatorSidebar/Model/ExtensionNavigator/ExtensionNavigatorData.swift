@@ -9,16 +9,21 @@
 import Foundation
 import Combine
 
+/// View model for extension navigator.
 public class ExtensionNavigatorData: ObservableObject {
-    // Tells if all records have been loaded. (Used to hide/show activity spinner)
+    /// Tells if all records have been loaded. (Used to hide/show activity spinner)
     var listFull = false
-    // Tracks last page loaded. Used to load next page (current + 1)
+
+    /// Tracks last page loaded. Used to load next page (current + 1)
     var currentPage = 1
-    // Limit of records per page. (Only if backend supports, it usually does)
+
+    /// Limit of records per page. (Only if backend supports, it usually does)
     let perPage = 10
 
+    /// Cancellable array to store all the requests.
     private var cancellable: AnyCancellable?
 
+    /// Fetches the data from the backend.
     func fetch() {
 //        cancellable = ExtensionsStoreAPI.plugins(page: currentPage)
 //            .tryMap { $0.items }
@@ -33,6 +38,7 @@ public class ExtensionNavigatorData: ObservableObject {
 //        }
     }
 
+    /// Installs the plugin.
     func install() {
         // ExtensionsManager.shared?.install(plugin: plugin, release: .ini)
     }

@@ -9,24 +9,36 @@
 import Foundation
 import Combine
 
+/// View model for extension installation.
 final class ExtensionInstallationViewModel: ObservableObject {
-
+    /// State of the view model.
     enum State {
+        /// Loading state.
         case loading
+
+        /// Error state.
         case error
+
+        /// Success state.
         case success
     }
 
+    /// State of the view model.
     @Published
     var state: State = .loading
 
+    /// Extensions.
     @Published
     var extensions: [Plugin] = []
 
+    /// Initialize a new extension installation view model.
+    /// 
+    /// - Returns: a new extension installation view model.
     init() {
         fetchExtensions()
     }
 
+    /// Fetch extensions.
     func fetchExtensions() {
         AuroraNetworking().request(baseURL: Constants.auroraEditorBaseURL,
                                    path: Constants.extensions,
@@ -62,6 +74,9 @@ final class ExtensionInstallationViewModel: ObservableObject {
         })
     }
 
+    /// Download extension.
+    /// 
+    /// - Parameter extensionId: the extension id
     func downloadExtension(extensionId: String) {
         AuroraNetworking().request(baseURL: Constants.auroraEditorBaseURL,
                                    path: Constants.downloadExtension(extensionId: extensionId),

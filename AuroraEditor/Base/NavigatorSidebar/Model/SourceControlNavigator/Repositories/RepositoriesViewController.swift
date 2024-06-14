@@ -14,13 +14,19 @@ import SwiftUI
 /// currently open project.
 final class RepositoriesViewController: NSViewController {
 
+    /// The repository model
     var repository: RepositoryModel!
 
+    /// The scroll view
     var scrollView: NSScrollView!
+
+    /// The outline view
     var outlineView: NSOutlineView!
 
+    /// The workspace document
     var workspace: WorkspaceDocument?
 
+    /// The icon color style for the items
     var rowHeight: Double = 22 {
         didSet {
             outlineView.rowHeight = rowHeight
@@ -64,10 +70,12 @@ final class RepositoriesViewController: NSViewController {
         outlineView.expandItem(outlineView.item(atRow: 1))
     }
 
+    /// Initialize the view controller
     init() {
         super.init(nibName: nil, bundle: nil)
     }
 
+    /// Initialize the view controller
     required init?(coder: NSCoder) {
         fatalError()
     }
@@ -103,6 +111,12 @@ final class RepositoriesViewController: NSViewController {
 // MARK: - NSOutlineViewDataSource
 
 extension RepositoriesViewController: NSOutlineViewDataSource {
+    /// Get the number of children for a given item.
+    /// 
+    /// - Parameter outlineView: The outline view
+    /// - Parameter item: the item
+    /// 
+    /// - Returns: The number of children
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if item is RepositoryModel {
             // item is a repo
@@ -118,6 +132,12 @@ extension RepositoriesViewController: NSOutlineViewDataSource {
         return 1
     }
 
+    /// Get the child for a given index.
+    /// 
+    /// - Parameter outlineView: The outline view
+    /// - Parameter index: The index
+    /// 
+    /// - Returns: The child
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         if let item = item as? RepositoryModel {
             // item is a repo.
@@ -149,6 +169,12 @@ extension RepositoriesViewController: NSOutlineViewDataSource {
         return 0
     }
 
+    /// Get the object for a given item.
+    /// 
+    /// - Parameter outlineView: The outline view
+    /// - Parameter item: The item
+    /// 
+    /// - Returns: The object
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         // only repos and containers are expandable
         return item is RepositoryModel || item is RepoContainer
@@ -158,20 +184,40 @@ extension RepositoriesViewController: NSOutlineViewDataSource {
 // MARK: - NSOutlineViewDelegate
 
 extension RepositoriesViewController: NSOutlineViewDelegate {
+    /// Should show cell expansion for table column.
+    /// 
+    /// - Parameter outlineView: The outline view
+    /// - Parameter tableColumn: The table column
+    /// 
+    /// - Returns: Whether to show cell expansion
     func outlineView(_ outlineView: NSOutlineView,
                      shouldShowCellExpansionFor tableColumn: NSTableColumn?,
                      item: Any) -> Bool {
         true
     }
 
+    /// Should show cell outline for table column.
+    /// 
+    /// - Parameter outlineView: The outline view
+    /// - Parameter item: The item
+    /// 
+    /// - Returns: Whether to show cell outline
     func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
         true
     }
 
-    // swiftlint:disable:next cyclomatic_complexity
-    func outlineView(_ outlineView: NSOutlineView,
-                     viewFor tableColumn: NSTableColumn?,
-                     item: Any) -> NSView? {
+    /// Get the view for the table column.
+    /// 
+    /// - Parameter outlineView: The outline view
+    /// - Parameter tableColumn: The table column
+    /// 
+    /// - Returns: The view
+    func outlineView(
+        // swiftlint:disable:previous cyclomatic_complexity
+        _ outlineView: NSOutlineView,
+        viewFor tableColumn: NSTableColumn?,
+        item: Any
+    ) -> NSView? {
         guard let tableColumn = tableColumn else { return nil }
 
         let frameRect = NSRect(x: 0, y: 0, width: tableColumn.width, height: rowHeight)
@@ -221,6 +267,9 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
         return nil
     }
 
+    /// Handle the selection change.
+    /// 
+    /// - Parameter notification: The notification
     func outlineViewSelectionDidChange(_ notification: Notification) {
         let selectedIndex = outlineView.selectedRow
         if outlineView.item(atRow: selectedIndex) is RepoContainer {
@@ -231,11 +280,23 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
         }
     }
 
+    /// Outline view height of row by item
+    /// 
+    /// - Parameter outlineView: The outline view
+    /// - Parameter item: The item
+    /// 
+    /// - Returns: The height of the row
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
         rowHeight // This can be changed to 20 to match Xcode's row height.
     }
 
     // TODO: Return item for persistent object
+    /// Return item for persistent object
+    /// 
+    /// - Parameter outlineView: The outline view
+    /// - Parameter object: The object
+    /// 
+    /// - Returns: The item
     func outlineView(_ outlineView: NSOutlineView, itemForPersistentObject object: Any) -> Any? {
         return nil
 //        guard let id = object as? Item.ID,
@@ -244,6 +305,12 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
     }
 
     // TODO: Return object for persistent item
+    /// Return object for persistent item
+    /// 
+    /// - Parameter outlineView: The outline view
+    /// - Parameter item: The item
+    /// 
+    /// - Returns: The object
     func outlineView(_ outlineView: NSOutlineView, persistentObjectForItem item: Any?) -> Any? {
         return nil
 //        guard let item = item as? Item else { return nil }
@@ -257,6 +324,7 @@ extension RepositoriesViewController: NSMenuDelegate {
     /// Once a menu gets requested by a `right click` setup the menu
     ///
     /// If the right click happened outside a row this will result in no menu being shown.
+    /// 
     /// - Parameter menu: The menu that got requested
     func menuNeedsUpdate(_ menu: NSMenu) {
         let row = outlineView.clickedRow

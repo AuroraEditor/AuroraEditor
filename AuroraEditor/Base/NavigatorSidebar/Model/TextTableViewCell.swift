@@ -8,10 +8,21 @@
 
 import SwiftUI
 
+/// A table cell view that contains a text field.
 class TextTableViewCell: NSTableCellView {
 
+    /// The label of the cell
     var label: NSTextField!
 
+    /// The text field of the cell
+    /// 
+    /// This is the same as the label, but is exposed for easier access to the text field.
+    /// 
+    /// - Parameter frame: the frame
+    /// - Parameter isEditable: whether the cell is editable
+    /// - Parameter startingText: the starting text
+    /// 
+    /// - Returns: the cell
     init(frame frameRect: NSRect, isEditable: Bool = true, startingText: String = "") {
         super.init(frame: frameRect)
         setupViews(frame: frameRect, isEditable: isEditable)
@@ -24,6 +35,10 @@ class TextTableViewCell: NSTableCellView {
         setupViews(frame: frameRect, isEditable: false)
     }
 
+    /// Set up the views
+    /// 
+    /// - Parameter frameRect: the frame
+    /// - Parameter isEditable: whether the cell is editable
     private func setupViews(frame frameRect: NSRect, isEditable: Bool) {
         // Create the label
         label = createLabel()
@@ -35,10 +50,16 @@ class TextTableViewCell: NSTableCellView {
     }
 
     // MARK: Create and config stuff
+
+    /// Create the label
     func createLabel() -> NSTextField {
         return NSTextField(frame: .zero)
     }
 
+    /// Config the label
+    /// 
+    /// - Parameter label: the label
+    /// - Parameter isEditable: whether the cell is editable
     func configLabel(label: NSTextField, isEditable: Bool) {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.drawsBackground = false
@@ -52,10 +73,16 @@ class TextTableViewCell: NSTableCellView {
         label.alphaValue = 0.7
     }
 
+    /// Create constraints
+    /// 
+    /// - Parameter frameRect: the frame
     func createConstraints(frame frameRect: NSRect) {
         resizeSubviews(withOldSize: .zero)
     }
 
+    /// Resize subviews
+    /// 
+    /// - Parameter oldSize: the old size
     override func resizeSubviews(withOldSize oldSize: NSSize) {
         super.resizeSubviews(withOldSize: oldSize)
         label.frame = NSRect(x: 2, y: 2.5,
@@ -72,7 +99,7 @@ class TextTableViewCell: NSTableCellView {
         }
     }
 
-    /// *Not Implemented*
+    /// Initialize the cell.
     required init(coder: NSCoder) {
         fatalError("""
             init?(coder: NSCoder) isn't implemented on `TextTableViewCell`.

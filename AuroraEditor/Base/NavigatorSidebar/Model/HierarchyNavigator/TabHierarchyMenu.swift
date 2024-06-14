@@ -15,25 +15,35 @@ final class TabHierarchyMenu: NSMenu {
     /// The workspace, for opening the item
     var workspace: WorkspaceDocument?
 
+    /// The outline view, for reloading data
     var outlineView: NSOutlineView
 
+    /// The item to display the menu for
     var item: TabBarItemStorage?
 
+    /// Initializes the menu with the given outline view
+    /// 
+    /// - Parameter sender: the outline view
+    /// 
+    /// - Returns: the menu
     init(sender: NSOutlineView) {
         outlineView = sender
         super.init(title: "Options")
     }
 
+    /// Required initialiser
     @available(*, unavailable)
     required init(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     /// Creates a `NSMenuItem` depending on the given arguments
+    /// 
     /// - Parameters:
     ///   - title: The title of the menu item
     ///   - action: A `Selector` or `nil` of the action to perform.
     ///   - key: A `keyEquivalent` of the menu item. Defaults to an empty `String`
+    /// 
     /// - Returns: A `NSMenuItem` which has the target `self`
     private func menuItem(_ title: String, action: Selector?, key: String = "") -> NSMenuItem {
         let mItem = NSMenuItem(title: title, action: action, keyEquivalent: key)
@@ -43,6 +53,7 @@ final class TabHierarchyMenu: NSMenu {
     }
 
     /// Setup the menu and disables certain items when `isFile` is false
+    /// 
     /// - Parameter isFile: A flag indicating that the item is a file instead of a directory
     private func setupMenu() {
         if item != nil {
@@ -61,6 +72,7 @@ final class TabHierarchyMenu: NSMenu {
         setupMenu()
     }
 
+    /// Opens the item in the workspace
     @objc
     func openItem() {
         guard let item = item,
@@ -70,6 +82,7 @@ final class TabHierarchyMenu: NSMenu {
         }
     }
 
+    /// Deletes the item from the workspace
     @objc
     func deleteItem() {
         guard let item = item,

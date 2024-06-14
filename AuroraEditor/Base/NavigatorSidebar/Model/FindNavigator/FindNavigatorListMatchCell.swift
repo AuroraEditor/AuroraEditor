@@ -10,11 +10,21 @@ import SwiftUI
 
 /// A `NSTableCellView` showing an icon and label
 final class FindNavigatorListMatchCell: NSTableCellView {
-
+    /// The label
     private var label: NSTextField!
+
+    /// The icon
     private var icon: NSImageView!
+
+    /// The match item
     private var matchItem: SearchResultMatchModel
 
+    /// Initialize a new FindNavigatorListMatchCell
+    /// 
+    /// - Parameter frame: frame
+    /// - Parameter matchItem: match item
+    /// 
+    /// - Returns: a new FindNavigatorListMatchCell
     init(frame: CGRect, matchItem: SearchResultMatchModel) {
         self.matchItem = matchItem
         super.init(frame: CGRect(x: frame.origin.x,
@@ -63,6 +73,9 @@ final class FindNavigatorListMatchCell: NSTableCellView {
         ])
     }
 
+    /// Required initializer
+    /// 
+    /// - Parameter coder: the decoder
     required init?(coder: NSCoder) {
         fatalError()
     }

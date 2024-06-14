@@ -9,14 +9,27 @@
 import SwiftUI
 
 extension ProjectNavigatorViewController: NSOutlineViewDataSource {
+    /// Returns the number of children for a given item.
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter item: the item
+    /// 
+    /// - Returns: the number of children
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         guard let workspace = self.workspace else { return 0 }
         if let item = item as? Item {
             return item.appearanceWithinChildrenOf(searchString: workspace.filter)
         }
+
         return content.count
     }
 
+    /// Returns the child for a given index.
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter index: the index
+    /// 
+    /// - Returns: the child
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         guard let workspace = self.workspace,
               let item = item as? Item
@@ -25,6 +38,12 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
         return item.childrenSatisfying(searchString: workspace.filter)[index]
     }
 
+    /// Returns the object for a given item.
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter item: the item
+    /// 
+    /// - Returns: the object
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         if let item = item as? Item {
             return item.children != nil
@@ -33,6 +52,13 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
     }
 
     // MARK: Drag and Drop
+
+    /// Pasteboard writer for item
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter item: the item
+    /// 
+    /// - Returns: the pasteboard writer
     func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
         guard let fileItem = item as? FileItem else {
             Log.fault("Item is not file item")
@@ -43,6 +69,14 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
         return pboarditem
     }
 
+    /// Validates the drop operation.
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter info: the dragging info
+    /// - Parameter item: the item
+    /// - Parameter index: the index
+    /// 
+    /// - Returns: the drag operation
     func outlineView(_ outlineView: NSOutlineView,
                      validateDrop info: NSDraggingInfo,
                      proposedItem item: Any?,
@@ -65,6 +99,14 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
         return NSDragOperation.move
     }
 
+    /// Accepts the drop operation.
+    /// 
+    /// - Parameter outlineView: the outline view
+    /// - Parameter info: the dragging info
+    /// - Parameter item: the item
+    /// - Parameter index: the index
+    /// 
+    /// - Returns: a boolean indicating if the drop was successful
     func outlineView(_ outlineView: NSOutlineView,
                      acceptDrop info: NSDraggingInfo,
                      item: Any?,

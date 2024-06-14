@@ -10,11 +10,18 @@ import SwiftUI
 
 /// A `NSTableCellView` showing an ``icon`` and a ``label``
 final class RepositoriesTableViewCell: StandardTableViewCell {
-    // swiftlint:disable:next function_body_length
-    init(frame frameRect: NSRect,
-         repository: RepositoryModel,
-         represents cellType: CellType = .repo,
-         item: RepoItem? = nil
+
+    /// Initialize the cell
+    /// 
+    /// - Parameter frameRect: the frame
+    /// - Parameter repository: the repository model
+    /// - Parameter cellType: the cell type
+    init(
+        // swiftlint:disable:previous function_body_length
+        frame frameRect: NSRect,
+        repository: RepositoryModel,
+        represents cellType: CellType = .repo,
+        item: RepoItem? = nil
     ) {
         super.init(frame: frameRect)
 
@@ -96,22 +103,44 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
         resizeSubviews(withOldSize: .zero)
     }
 
+    /// The type of cell
     enum CellType {
         // groups
+
+        /// Repository
         case repo
+
+        /// Branches
         case branches
+
+        /// Recent locations
         case recentLocations
+
+        /// Tags
         case tags
+
+        /// Stashed changes
         case stashedChanges
+
+        /// Remotes
         case remotes
+
+        /// Single remote
         case remote
 
         // items
+
+        /// Branch
         case branch
+
+        /// Tag
         case tag
+
+        /// Change
         case change
     }
 
+    /// Initialize the cell
     required init?(coder: NSCoder) {
         fatalError("""
             init?(coder: NSCoder) isn't implemented on `RepositoriesTableViewCell`.

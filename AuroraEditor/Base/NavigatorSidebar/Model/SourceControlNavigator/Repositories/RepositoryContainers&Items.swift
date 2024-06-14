@@ -17,7 +17,14 @@ import SwiftUI
 /// Subclasses then add their own init functions, so that `contents` is filled with an array of the relevant class,
 /// such as ``RepoBranch`` for ``RepoBranches``.
 class RepoContainer {
+    /// Contents of the container
     var contents: [Any]
+
+    /// Initialize repo container
+    /// 
+    /// - Parameter contents: the contents
+    /// 
+    /// - Returns: RepoContainer
     init(contents: [Any]) {
         self.contents = contents
     }
@@ -25,8 +32,15 @@ class RepoContainer {
 
 /// `RepoBranches` is the container class for ``RepoBranch``s
 class RepoBranches: RepoContainer {
+    /// The current branch index
     var current: Int
 
+    /// Initialize repo branches
+    /// 
+    /// - Parameter contents: the contents
+    /// - Parameter current: the current branch index
+    /// 
+    /// - Returns: RepoBranches
     init(contents: [RepoBranch], current: Int = 0) {
         self.current = current
         super.init(contents: contents)
@@ -37,6 +51,9 @@ class RepoBranches: RepoContainer {
 /// Recent locations are the reason why we need container classes, because there is otherwise no way to distinguish
 /// between ``RepoBranches`` and `RepoRecentLocation`, because they're both `[RepoBranch]` under the hood.
 class RepoRecentLocations: RepoContainer {
+    /// Initialize repo recent locations
+    /// 
+    /// - Parameter contents: the contents
     init(contents: [RepoBranch]) {
         super.init(contents: contents)
     }
@@ -44,6 +61,9 @@ class RepoRecentLocations: RepoContainer {
 
 /// `RepoTags` is the container class for ``RepoTag``s
 class RepoTags: RepoContainer {
+    /// Initialize repo tags
+    /// 
+    /// - Parameter contents: the contents
     init(contents: [RepoTag]) {
         super.init(contents: contents)
     }
@@ -51,6 +71,9 @@ class RepoTags: RepoContainer {
 
 /// `RepoStashedChanges` is the container class for ``RepoChange``s
 class RepoStashedChanges: RepoContainer {
+    /// Initialize repo stashed changes
+    /// 
+    /// - Parameter contents: the contents
     init(contents: [RepoChange]) {
         super.init(contents: contents)
     }
@@ -58,6 +81,9 @@ class RepoStashedChanges: RepoContainer {
 
 /// `RepoRemotes` is the container class for ``RepoRemote``s
 class RepoRemotes: RepoContainer {
+    /// Initialize repo remotes
+    /// 
+    /// - Parameter contents: the contents
     init(contents: [RepoRemote]) {
         super.init(contents: contents)
     }
@@ -67,8 +93,13 @@ class RepoRemotes: RepoContainer {
 /// of why containers are needed, because this class too is a `[RepoBranch]` under the hood, much like
 /// ``RepoBranches`` and ``RepoRecentLocations``.
 class RepoRemote: RepoContainer {
+    /// The name of the remote
     var name: String
 
+    /// Initialize repo remote
+    /// 
+    /// - Parameter content: the contents
+    /// - Parameter name: the name of the remote
     init(content: [RepoBranch], name: String) {
         self.name = name
         super.init(contents: content)
@@ -82,8 +113,14 @@ class RepoRemote: RepoContainer {
 /// is determined by the subclass. In the future, if any features are to be implemented, all that one needs to do is
 /// add the function/property to the subclass.
 class RepoItem {
+    /// The name of the item
     var name: String
 
+    /// Initialize repo item
+    /// 
+    /// - Parameter name: the name of the item
+    /// 
+    /// - Returns: RepoItem
     init(name: String) {
         self.name = name
     }

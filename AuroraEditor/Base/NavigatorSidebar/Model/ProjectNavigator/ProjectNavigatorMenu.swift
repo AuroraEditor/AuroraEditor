@@ -13,6 +13,7 @@ import UniformTypeIdentifiers
 final class ProjectNavigatorMenu: NSMenu {
     typealias Item = FileSystemClient.FileItem
 
+    /// The git client
     let gitClient: GitClient?
 
     /// The item to show the contextual menu for
@@ -21,26 +22,41 @@ final class ProjectNavigatorMenu: NSMenu {
     /// The workspace, for opening the item
     var workspace: WorkspaceDocument?
 
+    /// The file manager
     private let fileManger = FileManager.default
 
+    /// The outline view
     var outlineView: NSOutlineView
 
+    /// Initializes the menu with the given outline view and workspace URL
+    /// 
+    /// - Parameter sender: the outline view
+    /// - Parameter workspaceURL: the workspace URL
+    /// 
+    /// - Returns: the menu
     init(sender: NSOutlineView, workspaceURL: URL) {
         outlineView = sender
         gitClient = workspace?.fileSystemClient?.model?.gitClient
         super.init(title: "Options")
     }
 
+    /// Initializes the menu with the given outline view
+    /// 
+    /// - Parameter coder: coder
+    /// 
+    /// - Returns: the menu
     @available(*, unavailable)
     required init(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     /// Creates a `NSMenuItem` depending on the given arguments
+    /// 
     /// - Parameters:
     ///   - title: The title of the menu item
     ///   - action: A `Selector` or `nil` of the action to perform.
     ///   - key: A `keyEquivalent` of the menu item. Defaults to an empty `String`
+    /// 
     /// - Returns: A `NSMenuItem` which has the target `self`
     private func menuItem(_ title: String, action: Selector?, key: String = "") -> NSMenuItem {
         let mItem = NSMenuItem(title: title, action: action, keyEquivalent: key)
@@ -50,6 +66,7 @@ final class ProjectNavigatorMenu: NSMenu {
     }
 
     /// Setup the menu and disables certain items when `isFile` is false
+    /// 
     /// - Parameter isFile: A flag indicating that the item is a file instead of a directory
     private func setupMenu() {
         guard let item = item else { return }
@@ -98,6 +115,10 @@ final class ProjectNavigatorMenu: NSMenu {
     }
 
     /// Submenu for **Open As** menu item.
+    /// 
+    /// - Parameter item: The item to open
+    /// 
+    /// - Returns: The submenu
     private func openAsMenu(item: Item) -> NSMenu {
         let openAsMenu = NSMenu(title: "Open As")
         func getMenusItems() -> ([NSMenuItem], [NSMenuItem]) {
@@ -150,6 +171,10 @@ final class ProjectNavigatorMenu: NSMenu {
     }
 
     /// Submenu for **Source Control** menu item.
+    /// 
+    /// - Parameter item: The item to open
+    /// 
+    /// - Returns: The submenu
     private func sourceControlMenu(item: Item) -> NSMenu {
         guard let workspaceURL = workspace?.workspaceURL() else {
             // TODO: Investigate more robust solutions
@@ -265,28 +290,46 @@ final class ProjectNavigatorMenu: NSMenu {
 }
 
 extension NSMenuItem {
+    /// Menu item for None
+    /// 
+    /// - Returns: The menu item
     fileprivate static func none() -> NSMenuItem {
         let item = NSMenuItem(title: "<None>", action: nil, keyEquivalent: "")
         item.isEnabled = false
         return item
     }
 
+    /// Menu item for Source Code
+    /// 
+    /// - Returns: The menu item
     fileprivate static func sourceCode() -> NSMenuItem {
         NSMenuItem(title: "Source Code", action: nil, keyEquivalent: "")
     }
 
+    /// Menu item for Property List
+    /// 
+    /// - Returns: The menu item
     fileprivate static func propertyList() -> NSMenuItem {
         NSMenuItem(title: "Property List", action: nil, keyEquivalent: "")
     }
 
+    /// Menu item for ASCII Property List
+    /// 
+    /// - Returns: The menu item
     fileprivate static func asciiPropertyList() -> NSMenuItem {
         NSMenuItem(title: "ASCII Property List", action: nil, keyEquivalent: "")
     }
 
+    /// Menu item for Hex
+    /// 
+    /// - Returns: The menu item
     fileprivate static func hex() -> NSMenuItem {
         NSMenuItem(title: "Hex", action: nil, keyEquivalent: "")
     }
 
+    /// Menu item for Quick Look
+    /// 
+    /// - Returns: The menu item
     fileprivate static func quickLook() -> NSMenuItem {
         NSMenuItem(title: "Quick Look", action: nil, keyEquivalent: "")
     }

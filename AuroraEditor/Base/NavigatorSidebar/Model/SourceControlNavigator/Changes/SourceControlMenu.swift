@@ -9,20 +9,32 @@
 import SwiftUI
 import Version_Control
 
+/// A `NSMenu` that displays source control options for a file.
 final class SourceControlMenu: NSMenu {
 
     typealias Item = FileItem
 
+    /// The git client for the workspace.
     private let gitClient: GitClient
 
+    /// The item that the menu is for.
     var item: Item?
 
+    /// The workspace document.
     var workspace: WorkspaceDocument?
 
+    /// The file manager.
     private let fileManger = FileManager.default
 
+    /// The outline view that the menu is for.
     private var outlineView: NSOutlineView
 
+    /// Initialize the menu.
+    /// 
+    /// - Parameter sender: the outline view
+    /// - Parameter workspaceURL: the workspace URL
+    /// 
+    /// - Returns: the menu
     init(sender: NSOutlineView, workspaceURL: URL) {
         outlineView = sender
         gitClient = GitClient(
@@ -32,11 +44,18 @@ final class SourceControlMenu: NSMenu {
         super.init(title: "Source Control Options")
     }
 
+    /// Initialize the menu.
     @available(*, unavailable)
     required init(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    /// Set the menu for a menu item.
+    /// 
+    /// - Parameter submenu: the menu
+    /// - Parameter item: the item
+    /// 
+    /// - Returns: the menu item
     private func menuItem(_ title: String, action: Selector?, key: String = "") -> NSMenuItem {
         let mItem = NSMenuItem(title: title, action: action, keyEquivalent: key)
         mItem.target = self
@@ -44,6 +63,7 @@ final class SourceControlMenu: NSMenu {
         return mItem
     }
 
+    /// Set the menu for a menu item.
     func setupMenu() {
 
         let showInFinder = menuItem("Show in Finder", action: #selector(showInFinder))
@@ -108,24 +128,29 @@ final class SourceControlMenu: NSMenu {
 }
 
 extension NSMenuItem {
+    /// None menu item
     fileprivate static func none() -> NSMenuItem {
         let item = NSMenuItem(title: "<None>", action: nil, keyEquivalent: "")
         item.isEnabled = false
         return item
     }
 
+    /// Property list menu item
     fileprivate static func propertyList() -> NSMenuItem {
         NSMenuItem(title: "Property List", action: nil, keyEquivalent: "")
     }
 
+    /// ASCII property list menu item
     fileprivate static func asciiPropertyList() -> NSMenuItem {
         NSMenuItem(title: "ASCII Property List", action: nil, keyEquivalent: "")
     }
 
+    /// Hex menu item
     fileprivate static func hex() -> NSMenuItem {
         NSMenuItem(title: "Hex", action: nil, keyEquivalent: "")
     }
 
+    /// Quick Look menu item
     fileprivate static func quickLook() -> NSMenuItem {
         NSMenuItem(title: "Quick Look", action: nil, keyEquivalent: "")
     }

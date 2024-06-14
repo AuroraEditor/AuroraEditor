@@ -8,19 +8,35 @@
 
 import SwiftUI
 
+/// A view controller that displays search results in a list view.
 final class FindNavigatorListViewController: NSViewController {
-
+    /// The workspace document
     public var workspace: WorkspaceDocument
+
+    /// The selected item
     public var selectedItem: Any?
 
     typealias FileItem = FileSystemClient.FileItem
+
+    /// The search ID
     private var searchId: UUID?
+
+    /// The search items
     private var searchItems: [SearchResultModel] = []
+
+    /// The scroll view
     private var scrollView: NSScrollView!
+
+    /// The outline view
     private var outlineView: NSOutlineView!
+
+    /// The application preferences
     private let prefs = AppPreferencesModel.shared.preferences
+
+    /// The collapsed rows
     private var collapsedRows: Set<Int> = []
 
+    /// The row height
     var rowHeight: Double = 22 {
         didSet {
             outlineView?.reloadData()
@@ -48,24 +64,37 @@ final class FindNavigatorListViewController: NSViewController {
         scrollView.hasVerticalScroller = true
     }
 
+    /// Initialize a new FindNavigatorListViewController
+    /// 
+    /// - Parameter workspace: the workspace document
+    /// 
+    /// - Returns: a new FindNavigatorListViewController
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
         super.init(nibName: nil, bundle: nil)
     }
 
+    /// Initialize a new FindNavigatorListViewController
+    /// 
+    /// - Parameter coder: the coder
+    /// 
+    /// - Returns: a new FindNavigatorListViewController
     required init?(coder: NSCoder) {
         fatalError("init?(coder: NSCoder) not implemented by FindNavigatorListViewController")
     }
 
+    /// Accepts first responder
     override var acceptsFirstResponder: Bool { true }
 
     /// Sets the search items for the view without loading anything.
+    /// 
     /// - Parameter searchItems: The search items to set.
     public func setSearchResults(_ searchItems: [SearchResultModel]) {
         self.searchItems = searchItems
     }
 
     /// Updates the view with new search results and updates the UI.
+    /// 
     /// - Parameter searchItems: The search items to set.
     /// - Parameter searchText: The search text, used to preserve result deletions across view updates.
     public func updateNewSearchResults(_ searchItems: [SearchResultModel], searchId: UUID?) {
@@ -82,6 +111,9 @@ final class FindNavigatorListViewController: NSViewController {
         }
     }
 
+    /// Handles key up events
+    /// 
+    /// - Parameter event: the event
     override func keyUp(with event: NSEvent) {
         if event.charactersIgnoringModifiers == String(NSEvent.SpecialKey.delete.unicodeScalar) {
             deleteSelectedItem()
@@ -121,6 +153,9 @@ final class FindNavigatorListViewController: NSViewController {
         outlineView.selectRowIndexes(IndexSet([selectedRow]), byExtendingSelection: false)
     }
 
+    /// Selects a search result in the outline view
+    /// 
+    /// - Parameter selectedItem: The item to select.
     public func selectSearchResult(_ selectedItem: Any) {
         let index = outlineView.row(forItem: selectedItem)
         guard index >= 0 && index != outlineView.selectedRow else { return }
@@ -130,45 +165,81 @@ final class FindNavigatorListViewController: NSViewController {
 
 // MARK: - NSOutlineViewDataSource
 
+/// The NSOutlineViewDataSource implementation for FindNavigatorListViewController
 extension FindNavigatorListViewController: NSOutlineViewDataSource {
-
+    /// Returns the number of children for the given item.
+    /// 
+    /// - Parameter outlineView: The outline view.
+    /// - Parameter item: The item to get the number of children for.
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if let item = item as? SearchResultModel {
             return item.lineMatches.count
         }
+
         return searchItems.count
     }
 
+    /// Returns the child at the given index for the given item.
+    /// 
+    /// - Parameter outlineView: The outline view.
+    /// - Parameter index: The index of the child to get.
+    /// - Parameter item: The item to get the child for.
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         if let item = item as? SearchResultModel {
             return item.lineMatches[index]
         }
+
         return searchItems[index]
     }
 
+    /// Returns whether the given item is expandable.
+    /// 
+    /// - Parameter outlineView: The outline view.
+    /// - Parameter item: The item to check.
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         if item is SearchResultModel {
             return true
         }
+
         return false
     }
-
 }
 
 // MARK: - NSOutlineViewDelegate
 
+/// The NSOutlineViewDelegate implementation for FindNavigatorListViewController
 extension FindNavigatorListViewController: NSOutlineViewDelegate {
-
+    /// Returns the view for the given table column and item.
+    /// 
+    /// - Parameter outlineView: The outline view.
+    /// - Parameter tableColumn: The table column.
+    /// - Parameter item: The item to get the view for.
+    /// 
+    /// - Returns: The view for the given table column and item.
     func outlineView(_ outlineView: NSOutlineView,
                      shouldShowCellExpansionFor tableColumn: NSTableColumn?,
                      item: Any) -> Bool {
         return item as? SearchResultModel != nil
     }
 
+    /// Returns the view for the given table column and item.
+    /// 
+    /// - Parameter outlineView: The outline view.
+    /// - Parameter tableColumn: The table column.
+    /// - Parameter item: The item to get the view for.
+    /// 
+    /// - Returns: The view for the given table column and item.
     func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
         true
     }
 
+    /// Returns the view for the given table column and item.
+    /// 
+    /// - Parameter outlineView: The outline view.
+    /// - Parameter tableColumn: The table column.
+    /// - Parameter item: The item to get the view for.
+    /// 
+    /// - Returns: The view for the given table column and item.
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         guard let tableColumn = tableColumn else { return nil }
         if let item = item as? SearchResultMatchModel {
@@ -190,6 +261,9 @@ extension FindNavigatorListViewController: NSOutlineViewDelegate {
         }
     }
 
+    /// Outline view selection did change
+    /// 
+    /// - Parameter notification: notification
     func outlineViewSelectionDidChange(_ notification: Notification) {
         guard let outlineView = notification.object as? NSOutlineView else {
             return
@@ -212,6 +286,12 @@ extension FindNavigatorListViewController: NSOutlineViewDelegate {
         }
     }
 
+    /// Returns the height of the row for the given item.
+    /// 
+    /// - Parameter outlineView: The outline view.
+    /// - Parameter item: The item to get the row height for.
+    /// 
+    /// - Returns: The height of the row for the given item.
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
         if let item = item as? SearchResultMatchModel {
             let tempView = NSTextField(wrappingLabelWithString: item.attributedLabel().string)
@@ -231,6 +311,9 @@ extension FindNavigatorListViewController: NSOutlineViewDelegate {
         }
     }
 
+    /// Outline view column did resize
+    /// 
+    /// - Parameter notification: notification
     func outlineViewColumnDidResize(_ notification: Notification) {
         let indexes = IndexSet(integersIn: 0..<searchItems.count)
         outlineView.noteHeightOfRows(withIndexesChanged: indexes)
@@ -240,6 +323,7 @@ extension FindNavigatorListViewController: NSOutlineViewDelegate {
 
 // MARK: - NSMenuDelegate
 
+/// The NSMenuDelegate implementation for FindNavigatorListViewController
 extension FindNavigatorListViewController: NSMenuDelegate {
 
 }

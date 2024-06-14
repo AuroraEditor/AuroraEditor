@@ -9,29 +9,48 @@
 import SwiftUI
 import Version_Control
 
+/// A menu that shows options related to source control for a file.
 final class SourceControlRelatedMenu: NSMenu {
     typealias Item = FileItem
 
+    /// The git client for the workspace.
     private let gitClient: GitClient
 
+    /// The item that the menu is for.
     var item: Item?
 
+    /// The workspace document.
     var workspace: WorkspaceDocument?
 
+    /// The file manager.
     private let fileManager = FileManager.default
 
+    /// The outline view that the menu is for.
     private var outlineView: NSOutlineView
 
+    /// Initialize the menu.
+    /// 
+    /// - Parameter sender: the outline view
+    /// - Parameter workspaceURL: the workspace URL
+    /// 
+    /// - Returns: the menu
     init(sender: NSOutlineView, workspaceURL: URL) {
         outlineView = sender
         gitClient = GitClient(directoryURL: workspaceURL, shellClient: sharedShellClient.shellClient)
         super.init(title: "Source Control Related Options")
     }
 
+    /// Initialize the menu.
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    /// Set the menu for a menu item.
+    /// 
+    /// - Parameter submenu: the menu
+    /// - Parameter item: the item
+    /// 
+    /// - Returns: the menu item
     private func menuItem(_ title: String, action: Selector?, key: String = "") -> NSMenuItem {
         let mItem = NSMenuItem(title: title, action: action, keyEquivalent: key)
         mItem.target = self
@@ -39,6 +58,7 @@ final class SourceControlRelatedMenu: NSMenu {
         return mItem
     }
 
+    /// Setup the menu.
     func setupMenu() {
         let commitFile = menuItem("Commit \"\(item?.fileName ?? "Selected Files")\"...", action: nil)
 
@@ -60,6 +80,7 @@ final class SourceControlRelatedMenu: NSMenu {
     }
 
     // TODO: Need to find a way to check for changes in the current selected file
+    /// Commit the changes in the file.
     @objc
     private func discardChangesInFile() {
         let alert = NSAlert()
@@ -78,12 +99,14 @@ final class SourceControlRelatedMenu: NSMenu {
         }
     }
 
+    /// Add the selected files to the staging area.
     @objc
     private func addSelectedFiles() {
         guard let fileName = item?.fileName else { return }
         try? gitClient.stage(files: [fileName])
     }
 
+    /// Unstage the selected files.
     @objc private func unstageSelectedFiles() {
         guard let fileName = item?.fileName else { return }
         try? gitClient.unstage(files: [fileName])

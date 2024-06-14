@@ -9,6 +9,7 @@
 import Foundation
 import Version_Control
 
+/// Formats commit messages for Git.
 struct CommitMessageFormatter {
 
     /**

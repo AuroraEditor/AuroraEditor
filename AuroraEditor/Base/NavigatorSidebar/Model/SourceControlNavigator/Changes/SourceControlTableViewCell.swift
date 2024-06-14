@@ -8,12 +8,22 @@
 
 import SwiftUI
 
+/// Source control table view cell.
 final class SourceControlTableViewCell: FileSystemTableViewCell {
-
+    /// Initialize the cell.
+    /// 
+    /// - Parameter frameRect: the frame
+    /// - Parameter item: the item
+    /// - Parameter isEditable: whether the cell is editable
+    /// 
+    /// - Returns: the cell
     override init(frame frameRect: NSRect, item: FileSystemClient.FileItem?, isEditable _: Bool = false) {
         super.init(frame: frameRect, item: item, isEditable: false)
     }
 
+    /// Add an icon to the cell.
+    /// 
+    /// - Parameter item: the item
     override func addIcon(item: FileItem) {
         let image = NSImage(systemSymbolName: item.systemImage, accessibilityDescription: nil)!
         fileItem = item
@@ -23,6 +33,7 @@ final class SourceControlTableViewCell: FileSystemTableViewCell {
         label.stringValue = label(for: item)
     }
 
+    /// Add a model to the cell.
     override func addModel() {
         super.addModel()
         // add colour
@@ -34,6 +45,7 @@ final class SourceControlTableViewCell: FileSystemTableViewCell {
         resizeSubviews(withOldSize: .zero)
     }
 
+    /// Initialize the cell.
     required init?(coder: NSCoder) {
         fatalError()
     }

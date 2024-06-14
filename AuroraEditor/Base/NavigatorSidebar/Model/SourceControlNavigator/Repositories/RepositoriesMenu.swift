@@ -16,27 +16,39 @@ final class RepositoriesMenu: NSMenu {
     /// The workspace, for opening the item
     var workspace: WorkspaceDocument?
 
+    /// The repository model
     var repository: RepositoryModel?
 
+    /// The outline view that the menu is for
     var outlineView: NSOutlineView
 
+    /// The item that the menu is for
     var item: RepoItem?
 
+    /// Initialize the menu
+    /// 
+    /// - Parameter sender: the outline view
+    /// - Parameter workspaceURL: the workspace URL
+    /// 
+    /// - Returns: the menu
     init(sender: NSOutlineView, workspaceURL: URL) {
         outlineView = sender
         super.init(title: "Options")
     }
 
+    /// Initialize the menu
     @available(*, unavailable)
     required init(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     /// Creates a `NSMenuItem` depending on the given arguments
+    /// 
     /// - Parameters:
     ///   - title: The title of the menu item
     ///   - action: A `Selector` or `nil` of the action to perform.
     ///   - key: A `keyEquivalent` of the menu item. Defaults to an empty `String`
+    /// 
     /// - Returns: A `NSMenuItem` which has the target `self`
     private func menuItem(_ title: String, action: Selector?, key: String = "") -> NSMenuItem {
         let mItem = NSMenuItem(title: title, action: action, keyEquivalent: key)
@@ -46,6 +58,7 @@ final class RepositoriesMenu: NSMenu {
     }
 
     /// Setup the menu and disables certain items when `isFile` is false
+    /// 
     /// - Parameter isFile: A flag indicating that the item is a file instead of a directory
     private func setupMenu() {
         guard let branch = item as? RepoBranch else { return }
@@ -71,6 +84,7 @@ final class RepositoriesMenu: NSMenu {
         ]
     }
 
+    /// Creates a new branch
     @objc
     private func createNewBranch() {
         guard let branch = item as? RepoBranch else { return }
@@ -79,6 +93,7 @@ final class RepositoriesMenu: NSMenu {
         workspace?.data.branchRevision = branch.name
     }
 
+    /// Creates a new tag
     @objc
     private func createNewTag() {
         guard let branch = item as? RepoBranch else { return }
@@ -104,17 +119,21 @@ final class RepositoriesMenu: NSMenu {
         workspace?.data.showTagCreationSheet.toggle()
     }
 
+    /// Add a new remote
     @objc
     func addNewRemote() {
         workspace?.data.showAddRemoteView.toggle()
     }
 
-    @objc func switchToBranch(_ sender: Any?) {
+    /// Switch to branch
+    @objc
+    func switchToBranch(_ sender: Any?) {
         guard let branch = item as? RepoBranch else { return }
         try? workspace?.fileSystemClient?.model?.gitClient.checkoutBranch(name: branch.name)
         self.outlineView.reloadData()
     }
 
+    /// Rename branch
     @objc
     private func renameBranch() {
         guard let branch = item as? RepoBranch else { return }
@@ -123,6 +142,7 @@ final class RepositoriesMenu: NSMenu {
         workspace?.data.showRenameBranchSheet.toggle()
     }
 
+    /// Delete branch
     @objc
     func deleteBranch() {
         guard let branch = item as? RepoBranch else { return }
@@ -154,6 +174,9 @@ final class RepositoriesMenu: NSMenu {
         setupMenu()
     }
 
+    /// Check if the selected branch is the current one
+    /// 
+    /// - Returns: `true` if the selected branch is the current one, `false` otherwise
     func isSelectedBranchCurrentOne() -> Bool {
         guard let branch = item as? RepoBranch else { return false }
         do {

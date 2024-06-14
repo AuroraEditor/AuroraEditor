@@ -8,12 +8,17 @@
 
 import SwiftUI
 
+/// Tab hierarchy table view cell
 class TabHierarchyTableViewCell: StandardTableViewCell {
-
+    /// Tab item ID
     var tabItem: TabBarItemID?
 
+    /// Application preferences
     private let prefs = AppPreferencesModel.shared.preferences.general
 
+    /// Add tab item
+    /// 
+    /// - Parameter tabItem: the tab item
     func addTabItem(tabItem: TabBarItemID) {
         self.tabItem = tabItem
         let tabItemRepresentable = workspace?.selectionState.getItemByTab(id: tabItem)
