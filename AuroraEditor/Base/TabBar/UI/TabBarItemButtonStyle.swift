@@ -8,13 +8,18 @@
 
 import SwiftUI
 
+/// Tab bar item button style.
 struct TabBarItemButtonStyle: ButtonStyle {
+
+    /// Color scheme
     @Environment(\.colorScheme)
     var colorScheme
 
+    /// Application preferences model
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// Modifies the button.
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .background(

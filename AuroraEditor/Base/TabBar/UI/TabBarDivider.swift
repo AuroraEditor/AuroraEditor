@@ -10,14 +10,19 @@ import SwiftUI
 
 /// The vertical divider between tab bar items.
 struct TabDivider: View {
+
+    /// Color scheme
     @Environment(\.colorScheme)
     var colorScheme
 
+    /// Application preferences model
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// Divider width
     let width: CGFloat = 1
 
+    /// The view body.
     var body: some View {
         Rectangle()
             .frame(width: width)
@@ -34,12 +39,16 @@ struct TabDivider: View {
 
 /// The top border for tab bar (between tab bar and titlebar).
 struct TabBarTopDivider: View {
+
+    /// Color scheme
     @Environment(\.colorScheme)
     var colorScheme
 
+    /// Application preferences model
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// The view body.
     var body: some View {
         ZStack(alignment: .top) {
             if prefs.preferences.general.tabBarStyle == .native {
@@ -58,8 +67,11 @@ struct TabBarTopDivider: View {
 ///
 /// This is generally used in the top divider of tab bar when tab bar style is set to `native`.
 struct TabBarNativeShadow: View {
+
+    /// The shadow color
     let shadowColor = Color(nsColor: .shadowColor)
 
+    /// The view body.
     var body: some View {
         LinearGradient(
             colors: [

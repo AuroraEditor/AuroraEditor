@@ -10,10 +10,13 @@ import SwiftUI
 
 extension TabBar {
 
-    // Disable the rule because this function is implementing the drag gesture and its animations.
-    // It is fairly complicated, so ignore the function body length limitation for now.
-    // swiftlint:disable:next function_body_length cyclomatic_complexity
+    /// Make a drag gesture for the tab item.
+    /// 
+    /// - Parameter id: the tab item id
+    /// 
+    /// - Returns: a drag gesture
     func makeTabDragGesture(id: TabBarItemID) -> some Gesture {
+        // swiftlint:disable:previous function_body_length cyclomatic_complexity
         return DragGesture(minimumDistance: 2, coordinateSpace: .global)
             .onChanged({ value in
                 if draggingTabId != id {
@@ -123,6 +126,11 @@ extension TabBar {
             })
     }
 
+    /// Make the tab item geometry reader.
+    /// 
+    /// - Parameter id: the tab item id
+    /// 
+    /// - Returns: a geometry reader
     func makeTabItemGeometryReader(id: TabBarItemID) -> some View {
             GeometryReader { tabItemGeoReader in
                 Rectangle()
@@ -147,65 +155,104 @@ extension TabBar {
             }
         }
 
+    /// Tab bar item on drop delegate.
     struct TabBarItemOnDropDelegate: DropDelegate {
-            private let currentTabId: TabBarItemID
-            @Binding
-            private var openedTabs: [TabBarItemID]
-            @Binding
-            private var onDragTabId: TabBarItemID?
-            @Binding
-            private var onDragLastLocation: CGPoint?
-            @Binding
-            private var isOnDragOverTabs: Bool
-            @Binding
-            private var tabWidth: [TabBarItemID: CGFloat]
 
-            public init(
-                currentTabId: TabBarItemID,
-                openedTabs: Binding<[TabBarItemID]>,
-                onDragTabId: Binding<TabBarItemID?>,
-                onDragLastLocation: Binding<CGPoint?>,
-                isOnDragOverTabs: Binding<Bool>,
-                tabWidth: Binding<[TabBarItemID: CGFloat]>
-            ) {
-                self.currentTabId = currentTabId
-                self._openedTabs = openedTabs
-                self._onDragTabId = onDragTabId
-                self._onDragLastLocation = onDragLastLocation
-                self._isOnDragOverTabs = isOnDragOverTabs
-                self._tabWidth = tabWidth
-            }
+        /// The current tab item id.
+        private let currentTabId: TabBarItemID
 
-            func dropEntered(info: DropInfo) {
-                isOnDragOverTabs = true
-                guard let onDragTabId = onDragTabId,
-                      currentTabId != onDragTabId,
-                      let from = openedTabs.firstIndex(of: onDragTabId),
-                      let toIndex = openedTabs.firstIndex(of: currentTabId)
-                else { return }
-                if openedTabs[toIndex] != onDragTabId {
-                    withAnimation {
-                        openedTabs.move(
-                            fromOffsets: IndexSet(integer: from),
-                            toOffset: toIndex > from ? toIndex + 1 : toIndex
-                        )
-                    }
+        /// The opened tabs.
+        @Binding
+        private var openedTabs: [TabBarItemID]
+
+        /// The tab item id on drag.
+        @Binding
+        private var onDragTabId: TabBarItemID?
+
+        /// The last location of the drag.
+        @Binding
+        private var onDragLastLocation: CGPoint?
+
+        /// Whether the drag is over the tabs.
+        @Binding
+        private var isOnDragOverTabs: Bool
+
+        /// The tab item width.
+        @Binding
+        private var tabWidth: [TabBarItemID: CGFloat]
+
+        /// Initialize the tab bar item on drop delegate.
+        /// 
+        /// - Parameter currentTabId: the current tab item id
+        /// - Parameter openedTabs: the opened tabs
+        /// - Parameter onDragTabId: the tab item id on drag
+        /// - Parameter onDragLastLocation: the last location of the drag
+        /// - Parameter isOnDragOverTabs: whether the drag is over the tabs
+        /// - Parameter tabWidth: the tab item width
+        /// 
+        /// - Returns: a new tab bar item on drop delegate
+        public init(
+            currentTabId: TabBarItemID,
+            openedTabs: Binding<[TabBarItemID]>,
+            onDragTabId: Binding<TabBarItemID?>,
+            onDragLastLocation: Binding<CGPoint?>,
+            isOnDragOverTabs: Binding<Bool>,
+            tabWidth: Binding<[TabBarItemID: CGFloat]>
+        ) {
+            self.currentTabId = currentTabId
+            self._openedTabs = openedTabs
+            self._onDragTabId = onDragTabId
+            self._onDragLastLocation = onDragLastLocation
+            self._isOnDragOverTabs = isOnDragOverTabs
+            self._tabWidth = tabWidth
+        }
+
+        /// Drop entered.
+        /// 
+        /// - Parameter info: the drop info
+        func dropEntered(info: DropInfo) {
+            isOnDragOverTabs = true
+            guard let onDragTabId = onDragTabId,
+                  currentTabId != onDragTabId,
+                  let from = openedTabs.firstIndex(of: onDragTabId),
+                  let toIndex = openedTabs.firstIndex(of: currentTabId)
+            else { return }
+            if openedTabs[toIndex] != onDragTabId {
+                withAnimation {
+                    openedTabs.move(
+                        fromOffsets: IndexSet(integer: from),
+                        toOffset: toIndex > from ? toIndex + 1 : toIndex
+                    )
                 }
             }
-
-            func dropExited(info: DropInfo) {
-                // Do nothing.
-            }
-
-            func dropUpdated(info: DropInfo) -> DropProposal? {
-                return DropProposal(operation: .move)
-            }
-
-            func performDrop(info: DropInfo) -> Bool {
-                isOnDragOverTabs = false
-                onDragTabId = nil
-                onDragLastLocation = nil
-                return true
-            }
         }
+
+        /// Drop exited.
+        /// 
+        /// - Parameter info: the drop info
+        func dropExited(info: DropInfo) {
+            // Do nothing.
+        }
+
+        /// Drop updated.
+        /// 
+        /// - Parameter info: the drop info
+        /// 
+        /// - Returns: a drop proposal
+        func dropUpdated(info: DropInfo) -> DropProposal? {
+            return DropProposal(operation: .move)
+        }
+
+        /// Perform drop.
+        /// 
+        /// - Parameter info: the drop info
+        /// 
+        /// - Returns: a boolean indicating whether the drop is successful
+        func performDrop(info: DropInfo) -> Bool {
+            isOnDragOverTabs = false
+            onDragTabId = nil
+            onDragLastLocation = nil
+            return true
+        }
+    }
 }

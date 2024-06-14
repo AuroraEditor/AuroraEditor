@@ -10,24 +10,29 @@ import SwiftUI
 
 struct TabBar: View {
     /// The height of tab bar.
-    /// I am not making it a private variable because it may need to be used in outside views.
     static let height = 28.0
 
+    /// Color scheme.
     @Environment(\.colorScheme)
     private var colorScheme
 
+    /// The active state of the control.
     @Environment(\.controlActiveState)
     var activeState
 
+    /// The workspace document.
     @EnvironmentObject
     var workspace: WorkspaceDocument
 
+    /// The source control model.
     @ObservedObject
     var sourceControlModel: SourceControlModel
 
+    /// The preferences model.
     @StateObject
     var prefs: AppPreferencesModel = .shared
 
+    /// The leading accessories of tab bar.
     @State
     var expectedTabWidth: CGFloat = 0
 
@@ -108,6 +113,8 @@ struct TabBar: View {
     /// Update the expected tab width when corresponding UI state is updated.
     ///
     /// This function will be called when the number of tabs or the parent size is changed.
+    /// 
+    /// - Parameter proxy: The geometry proxy to calculate the new width using.
     private func updateExpectedTabWidth(proxy: GeometryProxy) {
         expectedTabWidth = max(
             // Equally divided size of a native tab.
@@ -119,6 +126,7 @@ struct TabBar: View {
 
     /// Conditionally updates the `expectedTabWidth`.
     /// Called when the tab count changes or the temporary tab changes.
+    /// 
     /// - Parameter geometryProxy: The geometry proxy to calculate the new width using.
     private func updateForTabCountChange(geometryProxy: GeometryProxy) {
         // Only update the expected width when user is not hovering over tabs.
@@ -130,6 +138,7 @@ struct TabBar: View {
         }
     }
 
+    /// The view body.
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
             // Tab bar navigation control.

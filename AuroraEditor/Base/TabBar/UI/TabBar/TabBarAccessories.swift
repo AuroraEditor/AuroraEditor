@@ -119,9 +119,13 @@ extension TabBar {
         }
     }
 
-    // If the currently selected tab is the first item in
-    // the list we disable the left navigation button otherwise
-    // if it's > 0 we enable it.
+    /// Disables the left navigation button when the current tab
+    /// 
+    /// If the currently selected tab is the first item in
+    /// the list we disable the left navigation button otherwise
+    /// if it's > 0 we enable it.
+    ///
+    /// - Returns: A `Bool` indicating if the left navigation button should be disabled.
     private func disableTabNavigationLeft() -> Bool {
         let openedTabs = workspace.selectionState.openedTabs
         let currentTab = workspace.selectionState.selectedId
@@ -136,10 +140,14 @@ extension TabBar {
         return false
     }
 
-    // Disables the right navigation button when the current tab
-    // is the last item in the list, if the current item is not the
-    // last item we re-enable it allowing the user to navigate forward
-    // of any open tabs they may have.
+    /// Disables the right navigation button when the current tab
+    /// 
+    /// Disables the right navigation button when the current tab
+    /// is the last item in the list, if the current item is not the
+    /// last item we re-enable it allowing the user to navigate forward
+    /// of any open tabs they may have.
+    /// 
+    /// - Returns: A `Bool` indicating if the right navigation button should be disabled.
     private func disableTabNavigationRight() -> Bool {
         let openedTabs = workspace.selectionState.openedTabs
         let currentTab = workspace.selectionState.selectedId
@@ -151,6 +159,7 @@ extension TabBar {
         return false
     }
 
+    /// Recent Menu Button
     private var recentMenuButton: some View {
         VStack {
             if #available(macOS 13, *) {
@@ -236,6 +245,7 @@ extension TabBar {
         }
     }
 
+    /// Text Editor Menu
     private func textEditorMenu() -> some View {
         VStack {
             Button {

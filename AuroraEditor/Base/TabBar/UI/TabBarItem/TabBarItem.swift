@@ -8,47 +8,62 @@
 
 import SwiftUI
 
+/// Tab bar item view.
 struct TabBarItem: View {
 
+    /// Is fullscreen
     @Environment(\.isFullscreen)
     private var isFullscreen
 
+    /// Active state
     @Environment(\.controlActiveState)
     var activeState
 
+    /// Color scheme
     @Environment(\.colorScheme)
     var colorScheme
 
+    /// Workspace document
     @EnvironmentObject
     var workspace: WorkspaceDocument
 
+    /// Application preferences model
     @StateObject
     var prefs: AppPreferencesModel = .shared
 
+    /// Hover state
     @State
     var isHovering: Bool = false
 
+    /// Hover state for close button
     @State
     var isHoveringClose: Bool = false
 
+    /// Pressing close button
     @State
     var isPressingClose: Bool = false
 
+    /// Is appeared
     @State
     var isAppeared: Bool = false
 
+    /// Expected width
     @Binding
     private var expectedWidth: CGFloat
 
+    /// Tab bar item
     var item: TabBarItemRepresentable
 
+    /// Is temporary
     @State
     var isTemporary: Bool = true
 
+    /// Is active
     var isActive: Bool {
         item.tabID == workspace.selectionState.selectedId
     }
 
+    /// Switch action
     func switchAction() {
         // Only set the `selectedId` when they are not equal to avoid performance issue for now.
         if workspace.selectionState.selectedId != item.tabID {
@@ -56,6 +71,7 @@ struct TabBarItem: View {
         }
     }
 
+    /// Close action
     func closeAction() {
         if prefs.preferences.general.tabBarStyle == .native {
             isAppeared = false
@@ -72,6 +88,10 @@ struct TabBarItem: View {
         }
     }
 
+    /// Initialize the tab bar item view.
+    /// 
+    /// - Parameter expectedWidth: The expected width of the tab bar item.
+    /// - Parameter item: The tab bar item.
     init(
         expectedWidth: Binding<CGFloat>,
         item: TabBarItemRepresentable
@@ -80,6 +100,7 @@ struct TabBarItem: View {
         self.item = item
     }
 
+    /// Content
     @ViewBuilder
     var content: some View {
         HStack(spacing: 0.0) {
@@ -150,6 +171,7 @@ struct TabBarItem: View {
         }
     }
 
+    /// The view body.
     var body: some View {
         Button(
             action: switchAction,

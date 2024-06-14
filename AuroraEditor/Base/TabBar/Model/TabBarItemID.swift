@@ -10,6 +10,7 @@ import SwiftUI
 
 /// Enum to represent item's ID to tab bar
 public enum TabBarItemID: Codable, Identifiable, Hashable {
+    /// Identifier of the item
     public var id: String {
         switch self {
         case .codeEditor(let path):
@@ -29,6 +30,7 @@ public enum TabBarItemID: Codable, Identifiable, Hashable {
         }
     }
 
+    /// Represents file representation of the item
     public var fileRepresentation: String {
         switch self {
         case .codeEditor(let path):
@@ -57,11 +59,15 @@ public enum TabBarItemID: Codable, Identifiable, Hashable {
     /// Represents web tab
     case webTab(String)
 
+    /// Represents project history tab
     case projectHistory(String)
 
+    /// Represents branch history tab
     case branchHistory(String)
 
+    /// Represents actions workflow tab
     case actionsWorkflow(String)
 
+    /// Represents extension custom view tab
     case extensionCustomView(String)
 }

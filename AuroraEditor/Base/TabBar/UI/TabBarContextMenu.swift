@@ -10,6 +10,13 @@ import Foundation
 import SwiftUI
 
 extension View {
+    /// Adds a context menu to the view.
+    /// 
+    /// - Parameter item: The item to add the context menu to.
+    /// - Parameter workspace: The workspace document.
+    /// - Parameter isTemporary: Whether the tab is temporary.
+    /// 
+    /// - Returns: The modified view.
     func tabBarContextMenu(item: TabBarItemRepresentable,
                            workspace: WorkspaceDocument,
                            isTemporary: Bool) -> some View {
@@ -17,7 +24,15 @@ extension View {
     }
 }
 
+/// A view modifier that adds a context menu to the view.
 struct TabBarContextMenu: ViewModifier {
+    /// Initialize the context menu.
+    /// 
+    /// - Parameter item: The item to add the context menu to.
+    /// - Parameter workspace: The workspace document.
+    /// - Parameter isTemporary: Whether the tab is temporary.
+    /// 
+    /// - Returns: A new context menu view modifier.
     init(item: TabBarItemRepresentable,
          workspace: WorkspaceDocument,
          isTemporary: Bool) {
@@ -26,12 +41,17 @@ struct TabBarContextMenu: ViewModifier {
         self.isTemporary = isTemporary
     }
 
+    /// The workspace document.
     @ObservedObject
     var workspace: WorkspaceDocument
 
+    /// The tab bar item.
     private var item: TabBarItemRepresentable
+
+    /// Whether the tab is temporary.
     private var isTemporary: Bool
 
+    /// The view body.
     func body(content: Content) -> some View { // swiftlint:disable:this function_body_length
         content.contextMenu(menuItems: {
             Group {
@@ -104,6 +124,7 @@ struct TabBarContextMenu: ViewModifier {
     // MARK: - Actions
 
     /// Copies the absolute path of the given `FileItem`
+    /// 
     /// - Parameter item: The `FileItem` to use.
     private func copyPath(item: FileSystemClient.FileItem) {
         NSPasteboard.general.clearContents()
@@ -111,6 +132,7 @@ struct TabBarContextMenu: ViewModifier {
     }
 
     /// Copies the relative path from the workspace folder to the given file item to the pasteboard.
+    /// 
     /// - Parameter item: The `FileItem` to use.
     private func copyRelativePath(item: FileSystemClient.FileItem) {
         guard let rootPath = workspace.fileSystemClient?.folderURL else {

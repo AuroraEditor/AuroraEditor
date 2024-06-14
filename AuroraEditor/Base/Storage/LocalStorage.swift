@@ -20,6 +20,7 @@ import Foundation
 ///  ```
 class LocalStorage {
 
+    /// The `UserDefaults` object that is used to store the data.
     private let storage = UserDefaults.standard
 
     /// This function registers any `UserDefault` locations that may not exist

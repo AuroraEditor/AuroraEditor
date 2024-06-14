@@ -9,6 +9,7 @@
 import SwiftUI
 
 extension TabBarItem {
+    /// Icon of the tab item
     @ViewBuilder
     var iconTextView: some View {
         HStack(alignment: .center, spacing: 5) {
@@ -127,12 +128,18 @@ extension TabBarItem {
 }
 
 fileprivate extension WorkspaceDocument {
+    /// Get the key equivalent for the tab item.
+    /// 
+    /// - Parameter item: The tab item.
+    /// 
+    /// - Returns: The key equivalent.
     func getTabKeyEquivalent(item: TabBarItemRepresentable) -> KeyEquivalent {
         for counter in 0..<9 where self.selectionState.openFileItems.count > counter &&
         self.selectionState.openFileItems[counter].tabID == item.tabID {
             return KeyEquivalent(Character("\(counter + 1)")
             )
         }
+
         return "0"
     }
 }

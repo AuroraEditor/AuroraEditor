@@ -10,9 +10,12 @@ import SwiftUI
 
 /// This is the Xcode style background material for tab bar and breadcrumbs.
 struct TabBarXcodeBackground: View {
+
+    /// Color scheme
     @Environment(\.colorScheme)
     private var colorScheme
 
+    /// The view body.
     var body: some View {
         EffectView(
             NSVisualEffectView.Material.contentBackground,
