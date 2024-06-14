@@ -10,7 +10,7 @@ import SwiftUI
 
 // MARK: - AppKit version
 extension NSScrollView {
-
+    /// Vertical scroll fraction
     var verticalScrollFraction: CGFloat {
         get {
             let verticalScrollRange = (documentView?.bounds.height ?? 0) - documentVisibleRect.height

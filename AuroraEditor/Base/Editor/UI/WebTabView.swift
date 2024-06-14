@@ -9,16 +9,33 @@
 import SwiftUI
 import WebKit
 
+/// Represents a web tab view.
 struct WebTabView: View {
+    /// Web tab
+    @ObservedObject
+    var webTab: WebTab
 
-    @ObservedObject var webTab: WebTab
-    @State var updateType: WebWKView.UpdateType = .none
-    @State var canGoBack: Bool = false
-    @State var canGoForward: Bool = false
+    /// Update type
+    @State
+    var updateType: WebWKView.UpdateType = .none
 
-    @State var navigationFailed: Bool = false
-    @State var errorMessage: String = ""
+    /// Can go back
+    @State
+    var canGoBack: Bool = false
 
+    /// Can go forward
+    @State
+    var canGoForward: Bool = false
+
+    /// Navigation failed
+    @State
+    var navigationFailed: Bool = false
+
+    /// Error message
+    @State
+    var errorMessage: String = ""
+
+    /// The view body
     var body: some View {
         VStack {
             if #available(macOS 13, *) {
@@ -53,6 +70,7 @@ struct WebTabView: View {
         }
     }
 
+    /// The URL bar
     private var urlBar: some View {
         HStack {
             HStack {
@@ -77,32 +95,38 @@ struct WebTabView: View {
         .frame(maxWidth: .infinity)
     }
 
+    /// The refresh button
     private var refreshButton: some View {
         Button {
             updateType = .refresh
         } label: {
             Image(systemName: "arrow.clockwise")
+                .accessibilityLabel("Refresh")
         }
         .buttonStyle(.borderless)
         .frame(maxWidth: 10)
     }
 
+    /// The navigation back button
     private var navigationButtonBack: some View {
         Button {
             updateType = .back
         } label: {
             Image(systemName: "chevron.left")
+                .accessibilityLabel("Navigate Back")
         }
         .disabled(!canGoBack)
         .buttonStyle(.borderless)
         .frame(maxWidth: 10)
     }
 
+    /// The navigation forward button
     private var navigationButtonForward: some View {
         Button {
             updateType = .forward
         } label: {
             Image(systemName: "chevron.right")
+                .accessibilityLabel("Navigate Forward")
         }
         .disabled(!canGoForward)
         .buttonStyle(.borderless)

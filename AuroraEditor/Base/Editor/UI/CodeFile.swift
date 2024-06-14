@@ -12,15 +12,24 @@ import SwiftUI
 import UniformTypeIdentifiers
 import QuickLookUI
 
+/// Error for code file.
 public enum CodeFileError: Error {
+    /// Failed to decode file.
     case failedToDecode
+
+    /// Failed to encode file.
     case failedToEncode
+
+    /// File type error.
     case fileTypeError
 }
 
+/// Code file document.
+/// 
+/// This is a document that can be opened in the editor.
 @objc(CodeFileDocument)
 public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem {
-
+    /// File content.
     @Published
     var content = ""
 
@@ -52,10 +61,12 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
 
     // MARK: - NSDocument
 
+    /// Auto save in place. [no]
     override public class var autosavesInPlace: Bool {
         false
     }
 
+    /// Make window controllers.
     override public func makeWindowControllers() {
         // [SwiftUI] Add a "hidden" button to be able to close it with `⌘W`
         var view: some View {
@@ -95,6 +106,13 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
         addWindowController(windowController)
     }
 
+    /// Read from file.
+    /// 
+    /// - Parameter typeName: The type of the file.
+    /// 
+    /// - Returns: Data of the file.
+    /// 
+    /// - Throws: Error if failed to read.
     override public func data(ofType _: String) throws -> Data {
         guard let data = content.data(using: .utf8) else { throw CodeFileError.failedToEncode }
         return data
@@ -102,13 +120,24 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
 
     /// This fuction is used for decoding files.
     /// It should not throw error as unsupported files can still be opened by QLPreviewView.
+    /// 
+    /// - Parameter data: The data of the file.
+    /// - Parameter typeName: The type of the file.
+    /// 
+    /// - Throws: Error if failed to read.
     override public func read(from data: Data, ofType _: String) throws {
         guard let content = String(data: data, encoding: .utf8) else { return }
         self.content = content
     }
 
     /// Save document. (custom function)
+    /// 
+    /// This function will save the file, and check if the file is saved correctly.
+    /// If the file is not saved correctly, it will throw an fatal error.
     public func saveFileDocument() {
+        // TODO: Make the errors non-fatal so that the user can be notified.
+        // And restore their work.
+
         guard let url = self.fileURL,
               let contents = content.data(using: .utf8) else {
             fatalError("\(#function): Failed to get URL and file type.")

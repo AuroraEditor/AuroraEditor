@@ -8,14 +8,19 @@
 
 import SwiftUI
 
+/// Image file view
 public struct ImageFileView: View {
-
+    /// The image to display
     private let image: NSImage?
 
+    /// Initialize image file view
+    /// 
+    /// - Parameter image: image
     public init(image: NSImage?) {
         self.image = image
     }
 
+    /// The body of the view
     public var body: some View {
         GeometryReader { proxy in
             if let image = image {
@@ -23,9 +28,11 @@ public struct ImageFileView: View {
                     Image(nsImage: image)
                         .resizable()
                         .scaledToFit()
+                        .accessibilityLabel("Image preview")
                 } else {
                     Image(nsImage: image)
                         .frame(width: proxy.size.width, height: proxy.size.height)
+                        .accessibilityLabel("Image preview")
                 }
             } else {
                 EmptyView()

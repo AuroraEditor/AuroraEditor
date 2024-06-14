@@ -9,6 +9,8 @@
 
 import SwiftUI
 
+// TODO: @0xWDG Look if this can be removed.
+
 let labelColor = NSColor.labelColor
 
 typealias TextStorageEditActions = NSTextStorageEditActions

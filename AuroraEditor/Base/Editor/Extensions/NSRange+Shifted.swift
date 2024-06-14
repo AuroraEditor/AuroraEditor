@@ -8,9 +8,12 @@
 
 import Foundation
 
+// TODO: @0xWDG Look if this can be removed.
 public extension NSRange {
     /// Shift NSRange
+    /// 
     /// - Parameter amount: by amount
+    /// 
     /// - Returns: Shifted NSRange
     func shifted(by amount: Int) -> NSRange {
         return NSRange(location: location + amount, length: length)

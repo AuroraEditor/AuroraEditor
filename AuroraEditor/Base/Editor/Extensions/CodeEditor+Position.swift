@@ -9,6 +9,9 @@
 import Foundation
 
 extension CodeEditor.Position: RawRepresentable, Codable {
+    /// Initialize position
+    /// 
+    /// - Parameter rawValue: raw value
     public init?(rawValue: String) {
         func parseNSRange(lexeme: String) -> NSRange? {
             let components = lexeme.components(separatedBy: ":")
@@ -26,6 +29,7 @@ extension CodeEditor.Position: RawRepresentable, Codable {
         } else { self = CodeEditor.Position() }
     }
 
+    /// Raw value
     public var rawValue: String {
         let selectionsString = selections.map { "\($0.location):\($0.length)" }.joined(separator: ";"),
             verticalScrollFractionString = String(describing: verticalScrollFraction)
