@@ -23,7 +23,9 @@ public enum Time {
     }()
 
     /// Parses RFC 3339 date strings into NSDate
+    /// 
     /// - parameter string: The string representation of the date
+    /// 
     /// - returns: An `NSDate` with a successful parse, otherwise `nil`
     static func rfc3339Date(_ string: String?) -> Date? {
         guard let string = string else { return nil }

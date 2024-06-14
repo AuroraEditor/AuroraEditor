@@ -9,7 +9,7 @@
 import Foundation
 
 extension URL {
-
+    /// URL parameters
     var URLParameters: [String: String] {
         guard let components = URLComponents(url: self, resolvingAgainstBaseURL: false) else { return [:] }
         var params = [String: String]()
@@ -19,6 +19,9 @@ extension URL {
         return params
     }
 
+    /// Bitbucket URL parameters
+    /// 
+    /// - Returns: URL parameters
     func bitbucketURLParameters() -> [String: String] {
             let stringParams = absoluteString.components(separatedBy: "?").last
             let params = stringParams?.components(separatedBy: "&")

@@ -9,9 +9,12 @@
 import Foundation
 import SwiftUI
 
+/// Avatar
 class Avatar {
     /// Get Git Avatar
+    /// 
     /// - Parameter authorEmail: Author's email
+    /// 
     /// - Returns: Avatar image
     public func gitAvatar(authorEmail: String) -> some View {
         VStack {
@@ -32,7 +35,9 @@ class Avatar {
     }
 
     /// Get Controbuter Avatar
+    /// 
     /// - Parameter contributerAvatarURL: Contributers's avatar url
+    /// 
     /// - Returns: Contributer avatar image
     public func contributorAvatar(contributorAvatarURL: String) -> some View {
         CachingAsyncImageView(contributorAvatarURL: contributorAvatarURL,
@@ -42,6 +47,11 @@ class Avatar {
             .accessibilityLabel("Contributor Avatar")
     }
 
+    /// Default Avatar
+    /// 
+    /// - Parameter author: Author's email
+    /// 
+    /// - Returns: Default avatar image
     private func defaultAvatar(author: String) -> some View {
         VStack {
             Image(systemName: "person.crop.circle.fill")
@@ -53,7 +63,9 @@ class Avatar {
     }
 
     /// Generate avatar hash
+    /// 
     /// - Parameter authorEmail: Author's email address
+    /// 
     /// - Returns: Avatar hash
     public func generateAvatarHash(_ authorEmail: String) -> String {
         let hash = authorEmail.md5(trim: true, caseSensitive: false)
@@ -61,7 +73,9 @@ class Avatar {
     }
 
     /// Generate (random) avatar color
+    /// 
     /// - Parameter authorEmail: Author's email address
+    /// 
     /// - Returns: Color
     public func avatarColor(author: String) -> Color {
         let hash = generateAvatarHash(author).hash

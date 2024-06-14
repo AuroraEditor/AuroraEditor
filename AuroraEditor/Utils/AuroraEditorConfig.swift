@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// EditorConfig
 class AuroraEditorConfig {
     /// .editorconfig keys
     enum EditorConfigKeys: String {
@@ -93,8 +94,10 @@ class AuroraEditorConfig {
         // swiftlint:disable:previous identifier_name
     }
 
+    /// Parsed .editorconfig
     var parsed: [String: [String: Any]]? = [:]
 
+    /// Default .editorconfig
     var defaults: [String: [String: Any]] = [
         "*": [
             "indent_style": "space",
@@ -108,6 +111,9 @@ class AuroraEditorConfig {
         ]
     ]
 
+    /// Initialize EditorConfig
+    /// 
+    /// - Parameter fromPath: from path
     init(fromPath: String) {
         if let configFile = findEditorConfig(fromPath: fromPath),
            let configData = FileManager.default.contents(atPath: configFile),
@@ -120,9 +126,12 @@ class AuroraEditorConfig {
     }
 
     /// Get value for type
+    /// 
     /// - Parameters:
     ///   - value: value type
     ///   - for: for type
+    /// 
+    /// - Returns: value
     public func get(value: EditorConfigKeys, for file: String = "*") -> String {
         if let value = getKeyNameFor(parsed, file: file)?[value.rawValue] as? String {
             return value
@@ -144,10 +153,22 @@ class AuroraEditorConfig {
         return ""
     }
 
+    /// Should invert value?
+    /// 
+    /// - Parameter value: value
+    /// - Parameter inverted: inverted
+    /// 
+    /// - Returns: inverted value
     private func shouldInvert(_ value: Bool, inverted: Bool) -> Bool {
         return inverted ? !value : value
     }
 
+    /// Get key name for
+    /// 
+    /// - Parameter inDict: in dictionary
+    /// - Parameter file: file
+    /// 
+    /// - Returns: key name
     private func getKeyNameFor(_ inDict: [String: [String: Any]]?, file: String) -> [String: Any]? {
         var invert = false
 
@@ -191,6 +212,11 @@ class AuroraEditorConfig {
         return nil
     }
 
+    /// Find .editorconfig
+    /// 
+    /// - Parameter fromPath: from path
+    /// 
+    /// - Returns: .editorconfig path
     private func findEditorConfig(fromPath: String) -> String? {
         let components = fromPath.components(separatedBy: "/")
         for number in stride(from: 0, to: components.count, by: 1) {

@@ -74,11 +74,21 @@ import Foundation
  |      |                          |      |
  +------+--------------------------+------+
  */
-func calculateDropProposalPosition(in rect: CGRect,
-                                   for point: CGPoint,
-                                   margin: CGFloat,
-                                   hitboxSizes: [SplitViewProposalDropPosition: CGFloat] = [:],
-                                   availablePositions: [SplitViewProposalDropPosition] = []
+/// Calculate drop proposal position
+/// 
+/// - Parameter rect: rect
+/// - Parameter point: point
+/// - Parameter margin: margin
+/// - Parameter hitboxSizes: hitbox sizes
+/// - Parameter availablePositions: available positions
+/// 
+/// - Returns: drop proposal position
+func calculateDropProposalPosition(
+    in rect: CGRect,
+    for point: CGPoint,
+    margin: CGFloat,
+    hitboxSizes: [SplitViewProposalDropPosition: CGFloat] = [:],
+    availablePositions: [SplitViewProposalDropPosition] = []
 ) -> SplitViewProposalDropPosition? {
     let leadingRect = CGRect(
         x: rect.minX,

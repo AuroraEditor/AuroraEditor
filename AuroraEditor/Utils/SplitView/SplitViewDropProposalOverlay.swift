@@ -9,24 +9,43 @@
 import Foundation
 import SwiftUI
 
+/// Split view proposal drop position
 private enum Const {
+    /// Padding
     static let padding: CGFloat = 5.5
+
+    /// Duration of the animation
     static let animationDuration: TimeInterval = 0.2
+
+    /// Overlay corner radius
     static let overlayCornerRadius: CGFloat = 5
+
+    /// Overlay border color opacity
     static let overlayBorderColorOpacity: CGFloat = 0.2
+
+    /// Overlay border line width
     static let overlayBorderLineWidth: CGFloat = 1
+
+    /// Overlay icon size
     static let overlayIconSize: CGFloat = 30.5
 }
 
+/// Split view drop proposal overlay
 struct SplitViewDropProposalOverlay: View {
+    /// Matched geometry effect
     private enum MatchedGeometryEffect {
+        /// Overlay
         case overlay
     }
 
-    @Namespace private var animation
+    /// Animation namespace
+    @Namespace
+    private var animation
 
+    /// Proposal position
     let proposalPosition: SplitViewProposalDropPosition?
 
+    /// The view body
     var body: some View {
         contentView
             .padding(Const.padding)
@@ -36,6 +55,7 @@ struct SplitViewDropProposalOverlay: View {
             )
     }
 
+    /// Content view
     @ViewBuilder
     private var contentView: some View {
         ZStack {
@@ -58,6 +78,7 @@ struct SplitViewDropProposalOverlay: View {
         }
     }
 
+    /// Leading position overlay
     private var leadingPositionOverlay: some View {
         HStack(spacing: 0) {
             overlay
@@ -65,6 +86,7 @@ struct SplitViewDropProposalOverlay: View {
         }
     }
 
+    /// Trailing position overlay
     private var trailingPositionOverlay: some View {
         HStack(spacing: 0) {
             Color.clear
@@ -72,6 +94,7 @@ struct SplitViewDropProposalOverlay: View {
         }
     }
 
+    /// Top position overlay
     private var topPositionOverlay: some View {
         VStack(spacing: 0) {
             overlay
@@ -79,6 +102,7 @@ struct SplitViewDropProposalOverlay: View {
         }
     }
 
+    /// Bottom position overlay
     private var bottomPositionOverlay: some View {
         VStack(spacing: 0) {
             Color.clear
@@ -86,15 +110,18 @@ struct SplitViewDropProposalOverlay: View {
         }
     }
 
+    /// Center position overlay
     private var centerPositionOverlay: some View {
         overlay
     }
 
+    /// No position overlay
     private var noPositionOverlay: some View {
         overlay
             .frame(width: 0, height: 0)
     }
 
+    /// Overlay
     private var overlay: some View {
         ZStack {
             EffectView(

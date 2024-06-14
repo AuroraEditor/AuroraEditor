@@ -13,6 +13,10 @@ public extension Binding where Value: Equatable {
     /// This proxyfies the binding, so you can use it in a `@StateObject` or `@ObservedObject`.\
     /// (while the original is unloaded)
     /// This should fix crashes in forEach loops, and Lists.
+    /// 
+    /// - Parameter source: The source binding.
+    /// 
+    /// - Returns: A binding proxy.
     static func proxy(_ source: Binding<Value>) -> Binding<Value> {
             self.init(
                 get: { source.wrappedValue },

@@ -9,8 +9,14 @@
 import Foundation
 import SwiftTerm
 
+/// SwiftTerm Color extension
 internal extension SwiftTerm.Color {
-    /// 0.0-1.0
+    // 0.0-1.0
+    /// Initialize color with red, green and blue values (Double)
+    /// 
+    /// - Parameter red: red value
+    /// - Parameter green: green value
+    /// - Parameter blue: blue value
     convenience init(dRed red: Double, green: Double, blue: Double) {
         let multiplier: Double = 65535
         self.init(red: UInt16(red * multiplier),
@@ -18,7 +24,12 @@ internal extension SwiftTerm.Color {
                   blue: UInt16(blue * multiplier))
     }
 
-    /// 0-255
+    // 0-255
+    /// Initialize color with red, green and blue values (UInt8)
+    /// 
+    /// - Parameter red: red value
+    /// - Parameter green: green value
+    /// - Parameter blue: blue value
     convenience init(iRed red: UInt8, green: UInt8, blue: UInt8) {
         let divisor: Double = 255
         self.init(dRed: Double(red) / divisor,
@@ -26,7 +37,10 @@ internal extension SwiftTerm.Color {
                   blue: Double(blue) / divisor)
     }
 
-    /// 0x000000 - 0xFFFFFF
+    // 0x000000 - 0xFFFFFF
+    /// Initialize color with red, green and blue values
+    /// 
+    /// - Parameter hex: hex value
     convenience init(hex: Int) {
         let red = UInt8((hex >> 16) & 0xFF)
         let green = UInt8((hex >> 8) & 0xFF)
@@ -35,6 +49,9 @@ internal extension SwiftTerm.Color {
     }
 
     /// 0x000000 - 0xFFFFFF
+    /// Initialize color with red, green and blue values
+    /// 
+    /// - Parameter hex: hex value
     convenience init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int: UInt64 = 0

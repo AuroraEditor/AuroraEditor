@@ -9,6 +9,7 @@
 import Foundation
 
 extension String {
+    /// Bitbucket query parameters
     var bitbucketQueryParameters: [String: String] {
         let parametersArray = components(separatedBy: "&")
         var parameters = [String: String]()

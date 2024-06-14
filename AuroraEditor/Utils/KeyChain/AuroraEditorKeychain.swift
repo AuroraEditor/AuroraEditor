@@ -12,11 +12,13 @@ import Security
 /// AuroraEditorKeychain
 open class AuroraEditorKeychain {
 
+    /// Last query parameters used in the keychain.
     var lastQueryParameters: [String: Any]? // Used by the unit tests
 
     /// Contains result code from the last operation. Value is noErr (0) for a successful result.
     open var lastResultCode: OSStatus = noErr
 
+    /// Key prefix for all entries in keychain.
     var keyPrefix = "" // Can be useful in test.
 
     /**
@@ -27,6 +29,7 @@ open class AuroraEditorKeychain {
      */
     open var accessGroup: String?
 
+    /// A lock to ensure that the keychain is accessed by one operation at a time.
     private let lock = NSLock()
 
     /// AuroraEditorKeychain
@@ -283,6 +286,11 @@ open class AuroraEditorKeychain {
         "\(keyPrefix)\(key)"
     }
 
+    /// Adds access group value to the query if accessGroup is present.
+    /// 
+    /// - Parameter items: The query items.
+    /// 
+    /// - Returns: The query items with access group added if present.
     func addAccessGroupWhenPresent(_ items: [String: Any]) -> [String: Any] {
         guard let accessGroup = accessGroup else { return items }
 

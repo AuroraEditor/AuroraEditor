@@ -6,10 +6,20 @@
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
+/// Split view proposal drop position
 public enum SplitViewProposalDropPosition: Equatable, CaseIterable {
+    /// Leading
     case leading
+
+    /// Trailing
     case trailing
+
+    /// Top
     case top
+
+    /// Bottom
     case bottom
+
+    /// Center
     case center
 }

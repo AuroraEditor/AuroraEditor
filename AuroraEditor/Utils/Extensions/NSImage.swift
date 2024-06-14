@@ -10,6 +10,11 @@ import Foundation
 import AppKit
 
 extension NSImage {
+    /// Resize image
+    /// 
+    /// - Parameter targetSize: target size
+    /// 
+    /// - Returns: resized image
     func resizing(to targetSize: NSSize) -> NSImage {
         if size.width <= targetSize.width && size.height <= targetSize.height {
             return self

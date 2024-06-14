@@ -8,7 +8,13 @@
 
 import SwiftUI
 
+/// Vibrant effect
 struct VibrantEffect: NSViewRepresentable {
+    /// Make NS view
+    ///
+    /// - Parameter context: context
+    /// 
+    /// - Returns: NSVisualEffectView
     func makeNSView(context: Context) -> NSVisualEffectView {
         let view = NSVisualEffectView()
 

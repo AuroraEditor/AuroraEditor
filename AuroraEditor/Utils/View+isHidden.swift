@@ -16,8 +16,9 @@ extension View {
     ///     Text("Label")
     ///         .isHidden(true)
     ///
-    /// - Parameters:
-    ///   - hidden: Set to `false` to show the view. Set to `true` to hide the view.
+    /// - Parameter  hidden: Set to `false` to show the view. Set to `true` to hide the view.
+    /// 
+    /// - Returns: A view that is hidden when the `hidden` parameter is set to `true`.
     @ViewBuilder func isHidden(_ hidden: Bool) -> some View {
         if hidden {
             self.hidden()

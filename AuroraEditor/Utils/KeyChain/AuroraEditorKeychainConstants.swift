@@ -48,6 +48,11 @@ public enum AuroraEditorKeychainConstants {
     /// A value that corresponds to matching an unlimited number of items
     public static var secMatchLimitAll: String { toString(kSecMatchLimitAll) }
 
+    /// Converts a CFString to a String
+    /// 
+    /// - Parameter value: The CFString to convert
+    /// 
+    /// - Returns: The CFString as a String
     static func toString(_ value: CFString) -> String {
         value as String
     }

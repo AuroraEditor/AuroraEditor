@@ -8,6 +8,12 @@
 
 import Foundation
 
+/// += operator for dictionaries
+/// 
+/// - parameter left: left dictionary
+/// - parameter right: right dictionary
+/// 
+/// - returns: merged dictionary
 internal func += <KeyType, ValueType> (
     left: inout [KeyType: ValueType],
     right: [KeyType: ValueType]) {

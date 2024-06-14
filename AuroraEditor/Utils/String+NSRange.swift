@@ -9,7 +9,11 @@
 import Foundation
 
 extension String {
-    // make string subscriptable with NSRange
+    /// make string subscriptable with NSRange
+    /// 
+    /// - Parameter value: NSRange
+    /// 
+    /// - Returns: Substring
     subscript(value: NSRange) -> Substring? {
         let upperBound = String.Index(utf16Offset: Int(value.upperBound), in: self)
         let lowerBound = String.Index(utf16Offset: Int(value.lowerBound), in: self)

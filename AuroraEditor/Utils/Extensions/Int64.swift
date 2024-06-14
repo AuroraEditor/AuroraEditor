@@ -9,6 +9,7 @@
 import Foundation
 
 extension Int64 {
+    /// File size as string
     var fileSizeString: String {
         let formatter = ByteCountFormatter()
         formatter.allowedUnits = [.useBytes, .useKB, .useMB, .useGB]

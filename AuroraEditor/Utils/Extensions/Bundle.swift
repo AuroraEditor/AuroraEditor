@@ -34,5 +34,8 @@ public extension Bundle {
 }
 
 extension Bundle {
-  static var module: Bundle { Bundle(identifier: "com.auroraeditor")! }
+    /// Returns the bundle for the AuroraEditor module
+    static var module: Bundle {
+        Bundle(identifier: "com.auroraeditor")!
+    }
 }

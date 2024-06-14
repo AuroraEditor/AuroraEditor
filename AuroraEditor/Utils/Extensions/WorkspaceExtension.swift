@@ -9,7 +9,9 @@
 import Foundation
 
 extension WorkspaceDocument {
-
+    /// Workspace URL
+    /// 
+    /// - Returns: workspace URL
     func workspaceURL() -> URL {
         guard let workspaceFolder = self.fileSystemClient?.folderURL else {
             fatalError("Unconstructable URL")

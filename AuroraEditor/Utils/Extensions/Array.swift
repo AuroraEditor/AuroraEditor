@@ -9,6 +9,11 @@
 import Foundation
 
 extension Array {
+    /// Safe subscript
+    /// 
+    /// - Parameter safe index: safe index
+    /// 
+    /// - Returns: element
     subscript (safe index: Int) -> Element? {
         return indices ~= index ? self[index] : nil
     }

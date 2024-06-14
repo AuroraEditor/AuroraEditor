@@ -9,6 +9,7 @@
 import SwiftUI
 import os
 
+@available(*, deprecated, message: "Use OSLog `Loger(...,...)` instead")
 /// Aurora Editor logger
 ///
 /// Logger configuration:\

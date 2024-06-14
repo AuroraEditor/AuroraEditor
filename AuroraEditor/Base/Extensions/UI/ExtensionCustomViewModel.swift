@@ -33,7 +33,7 @@ final class ExtensionCustomViewModel: Codable, Equatable, Identifiable, TabBarIt
     /// Title of the extension custom view model.
     @Published
     public var title: String
-    
+
     /// Sender of the extension custom view model.
     var sender: String
 

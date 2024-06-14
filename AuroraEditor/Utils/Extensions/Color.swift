@@ -11,6 +11,7 @@ import SwiftUI
 public extension Color {
 
     /// Initializes a `Color` from a HEX String (e.g.: `#1D2E3F`) and an optional alpha value.
+    /// 
     /// - Parameters:
     ///   - hex: A String of a HEX representation of a color (format: `#1D2E3F`)
     ///   - alpha: A Double indicating the alpha value from `0.0` to `1.0`
@@ -22,6 +23,7 @@ public extension Color {
     }
 
     /// Initializes a `Color` from an Int (e.g.: `0x1D2E3F`)and an optional alpha value.
+    /// 
     /// - Parameters:
     ///   - hex: An Int of a HEX representation of a color (format: `0x1D2E3F`)
     ///   - alpha: A Double indicating the alpha value from `0.0` to `1.0`
@@ -59,6 +61,7 @@ public extension Color {
 public extension NSColor {
 
     /// Initializes a `NSColor` from a HEX String (e.g.: `#1D2E3F`) and an optional alpha value.
+    /// 
     /// - Parameters:
     ///   - hex: A String of a HEX representation of a color (format: `#1D2E3F`)
     ///   - alpha: A Double indicating the alpha value from `0.0` to `1.0`
@@ -70,6 +73,7 @@ public extension NSColor {
     }
 
     /// Initializes a `NSColor` from an Int  (e.g.: `0x1D2E3F`)and an optional alpha value.
+    /// 
     /// - Parameters:
     ///   - hex: An Int of a HEX representation of a color (format: `0x1D2E3F`)
     ///   - alpha: A Double indicating the alpha value from `0.0` to `1.0`

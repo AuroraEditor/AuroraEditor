@@ -8,22 +8,39 @@
 
 import Foundation
 
+/// AuroraProjectFile
 struct AuroraProjectFile: Codable {
+    /// Filename
     var file: String
+
+    /// Time
     var time: Int
 }
 
 /// AuroraProject
 struct AuroraProject: Codable {
+    /// Aurora Project name
     var auroraProject: String?
-    var files: [String]?
-    var lastSearch: String?
-    var lastReplace: String?
-    var lastOpenFile: String?
-    var state: String? // State.
 
-    /* Nerd stats */
+    /// Files
+    var files: [String]?
+
+    /// Last search
+    var lastSearch: String?
+
+    /// Last replace
+    var lastReplace: String?
+
+    /// Last open file
+    var lastOpenFile: String?
+
+    /// State
+    var state: String?
+
+    /// Total time spend on this project
     var totalTimeSpend: Int?
+
+    /// Time spend on files
     var timeOn: [AuroraProjectFile]?
 }
 

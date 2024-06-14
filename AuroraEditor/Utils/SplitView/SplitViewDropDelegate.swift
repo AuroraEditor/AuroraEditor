@@ -9,17 +9,32 @@
 import Foundation
 import SwiftUI
 
+/// Split view drop delegate
 struct SplitViewDropDelegate: DropDelegate {
-
+    /// Proposal position
     @Binding
     var proposalPosition: SplitViewProposalDropPosition?
 
+    /// Available positions
     let availablePositions: [SplitViewProposalDropPosition]
+
+    /// Geometry proxy
     let geometryProxy: GeometryProxy
+
+    /// Margin
     let margin: CGFloat
+
+    /// Hitbox sizes
     let hitboxSizes: [SplitViewProposalDropPosition: CGFloat]
+
+    /// On drop closure
     let onDrop: ((SplitViewProposalDropPosition, DropInfo) -> Void)?
 
+    /// Perform drop
+    /// 
+    /// - Parameter info: drop info
+    /// 
+    /// - Returns: drop performed
     func performDrop(info: DropInfo) -> Bool {
         if let proposalPosition = proposalPosition {
             onDrop?(proposalPosition, info)
@@ -28,6 +43,11 @@ struct SplitViewDropDelegate: DropDelegate {
         return false
     }
 
+    /// Drop updated
+    /// 
+    /// - Parameter info: drop info
+    /// 
+    /// - Returns: drop proposal
     func dropUpdated(info: DropInfo) -> DropProposal? {
         let localFrame = geometryProxy.frame(in: .local)
 
@@ -46,6 +66,9 @@ struct SplitViewDropDelegate: DropDelegate {
         return nil
     }
 
+    /// Drop exited
+    /// 
+    /// - Parameter info: drop info
     func dropExited(info: DropInfo) {
         proposalPosition = nil
     }

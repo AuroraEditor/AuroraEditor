@@ -11,6 +11,7 @@ import SwiftUI
 internal extension View {
 
     /// Changes the cursor appearance when hovering attached View
+    /// 
     /// - Parameters:
     ///   - active: onHover() value
     ///   - isDragging: indicate that dragging is happening. If true this will not change the cursor.
@@ -24,6 +25,12 @@ internal extension View {
         }
     }
 
+    /// Font with line height
+    /// 
+    /// - Parameter fontSize: font size
+    /// - Parameter lineHeight: line height
+    /// 
+    /// - Returns: modified content
     func fontWithLineHeight(fontSize: CGFloat, lineHeight: CGFloat) -> some View {
         ModifiedContent(content: self,
                         modifier: FontWithLineHeight(font: NSFont(name: "SF Pro Text",

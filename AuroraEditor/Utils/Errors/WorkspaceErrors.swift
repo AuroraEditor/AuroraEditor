@@ -9,5 +9,6 @@
 import Foundation
 
 enum WorkspaceErrors: String, Error {
+    /// Couldn't unwrap extension navigator due to nil value
     case extensionNavigatorData = "Couldn't unwrap extension navigator due to nil value"
 }

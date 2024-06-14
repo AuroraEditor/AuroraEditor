@@ -8,20 +8,35 @@
 
 import Foundation
 
+/// Queue specific key
 private let queueSpecificKey = DispatchSpecificKey<NSObject>()
 
+/// Global Main Queue
 let globalMainQueue = Queue(queue: DispatchQueue.main, specialIsMainQueue: true)
+
+/// Global User Interactive Queue
 let globalUserInteractiveQueue = Queue(queue: DispatchQueue.global(qos: .userInteractive),
                                                specialIsMainQueue: false)
+
+/// Global User Initiated Queue
 let globalUserInitiatedQueue = Queue(queue: DispatchQueue.global(qos: .userInitiated),
                                              specialIsMainQueue: false)
+
+/// Global Utility Queue
 let globalDefaultQueue = Queue(queue: DispatchQueue.global(qos: .default), specialIsMainQueue: false)
+
+/// Global Background Queue
 let globalBackgroundQueue = Queue(queue: DispatchQueue.global(qos: .background), specialIsMainQueue: false)
 
 /// Queue
 public final class Queue {
+    /// Native Queue
     private let nativeQueue: DispatchQueue
+
+    /// Specific
     private var specific = NSObject()
+
+    /// Special is Main Queue
     private let specialIsMainQueue: Bool
 
     /// Queue
@@ -30,36 +45,45 @@ public final class Queue {
     }
 
     /// Global Queue
+    /// 
     /// - Returns: Global Queue
     public class func mainQueue() -> Queue {
         return globalMainQueue
     }
 
     /// Global Default Queue
+    /// 
     /// - Returns: globalDefaultQueue
     public class func concurrentDefaultQueue() -> Queue {
         return globalDefaultQueue
     }
 
     /// Global Background Queue
+    /// 
     /// - Returns: globalBackgroundQueue
     public class func concurrentBackgroundQueue() -> Queue {
         return globalBackgroundQueue
     }
 
     /// Init with queue
+    /// 
     /// - Parameter queue: queue
     public init(queue: DispatchQueue) {
         self.nativeQueue = queue
         self.specialIsMainQueue = false
     }
 
+    /// Init with queue
+    /// 
+    /// - Parameter queue: queue
+    /// - Parameter specialIsMainQueue: special is main queue
     fileprivate init(queue: DispatchQueue, specialIsMainQueue: Bool) {
         self.nativeQueue = queue
         self.specialIsMainQueue = specialIsMainQueue
     }
 
     /// Init
+    /// 
     /// - Parameters:
     ///   - name: name
     ///   - qos: quality of service
@@ -72,6 +96,7 @@ public final class Queue {
     }
 
     /// Is current
+    /// 
     /// - Returns: current queue?
     public func isCurrent() -> Bool {
         if DispatchQueue.getSpecific(key: queueSpecificKey) === self.specific {
@@ -84,6 +109,7 @@ public final class Queue {
     }
 
     /// Execute async
+    /// 
     /// - Parameter function: block to execute
     public func async(_ function: @escaping () -> Void) {
         if self.isCurrent() {
@@ -94,6 +120,7 @@ public final class Queue {
     }
 
     /// Execute sync
+    /// 
     /// - Parameter function: block to execute
     public func sync(_ function: () -> Void) {
         if self.isCurrent() {
@@ -104,6 +131,7 @@ public final class Queue {
     }
 
     /// Dispatch
+    /// 
     /// - Parameter function: block to execute
     public func justDispatch(_ function: @escaping () -> Void) {
         self.nativeQueue.async(execute: function)
@@ -119,6 +147,7 @@ public final class Queue {
     }
 
     /// Execute after
+    /// 
     /// - Parameters:
     ///   - delay: Delay
     ///   - function: block to execute

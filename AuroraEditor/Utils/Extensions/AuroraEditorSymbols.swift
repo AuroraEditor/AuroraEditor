@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+/// Image extension
 public extension Image {
 
     /// Creates an Image representing a custom SF Symbol
@@ -45,7 +46,9 @@ public extension Image {
 public extension NSImage {
 
     /// Returns a NSImage representing a custom SF Symbol
+    /// 
     /// - Parameter named: The name of the symbol in `Symbols.xcassets`
+    /// 
     /// - Returns: a NSImage
     static func symbol(named: String) -> NSImage {
         Bundle.module.image(forResource: named) ?? .init()

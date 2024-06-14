@@ -10,9 +10,11 @@ import Foundation
 import SwiftUI
 
 /// Show a message box
+/// 
 /// - Parameters:
 ///   - type: Style/Type
 ///   - message: Message
+/// 
 /// - Returns: true on ok, false on cancel
 @discardableResult
 func auroraMessageBox(type: NSAlert.Style, message: String) -> Bool {

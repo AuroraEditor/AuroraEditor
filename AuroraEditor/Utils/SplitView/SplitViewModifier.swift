@@ -8,17 +8,32 @@
 
 import SwiftUI
 
+/// Split view proposal drop position
 struct SplitViewModifier: ViewModifier {
-
+    /// Proposal position
     @Binding
     var proposalPosition: SplitViewProposalDropPosition?
 
+    /// Available positions
     let availablePositions: [SplitViewProposalDropPosition]
+
+    /// Margin
     let margin: CGFloat
+
+    /// Is proportional
     let isProportional: Bool
+
+    /// Hitbox sizes
     let hitboxSizes: [SplitViewProposalDropPosition: CGFloat]
+
+    /// On drop closure
     let onDrop: ((SplitViewProposalDropPosition, DropInfo) -> Void)?
 
+    /// Body
+    /// 
+    /// - Parameter content: content
+    /// 
+    /// - Returns: some View
     func body(content: Content) -> some View {
         GeometryReader { geometryProxy in
             ZStack {
@@ -43,6 +58,11 @@ struct SplitViewModifier: ViewModifier {
         }
     }
 
+    /// Get hitbox sizes
+    /// 
+    /// - Parameter geometryProxy: geometry proxy
+    /// 
+    /// - Returns: Proposal drop position sizes
     func getHitboxSizes(geometryProxy: GeometryProxy) -> [SplitViewProposalDropPosition: CGFloat] {
         let localFrame = geometryProxy.frame(in: .local)
         return [

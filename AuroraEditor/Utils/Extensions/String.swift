@@ -11,28 +11,35 @@ import AppKit
 import CryptoKit
 
 extension String {
-
+    /// Last path component
     var lastPathComponent: String {
         return NSString(string: self).lastPathComponent
     }
 
+    /// String by deleting path extension
     var stringByDeletingPathExtension: String {
         return NSString(string: self).deletingPathExtension
     }
 
     /**
      Returns a string colored with the specified color.
+
      - parameter color: The string representation of the color.
+
      - returns: A string colored with the specified color.
      */
     func withColor(_ color: String?) -> String {
         return ""
     }
 
+    /// Capitalizes the first letter of a string.
+    /// 
+    /// - Returns: A `String` with the first letter capitalized.
     func capitalizingFirstLetter() -> String {
         return prefix(1).uppercased() + self.lowercased().dropFirst()
     }
 
+    /// Capitalizes the first letter of a string.
     mutating func capitalizeFirstLetter() {
         self = self.capitalizingFirstLetter()
     }
@@ -41,10 +48,12 @@ extension String {
 
     /// Safely returns an offset index in a string.
     /// Use ``safeOffset(_:offsetBy:)`` to default to limiting to the start or end indexes.
+    /// 
     /// - Parameters:
     ///   - idx: The index to start at.
     ///   - offsetBy: The number (of characters) to offset from the first index.
     ///   - limitedBy: An index to limit the offset by.
+    /// 
     /// - Returns: A `String.Index`
     func safeOffset(_ idx: String.Index, offsetBy offset: Int, limitedBy: String.Index) -> String.Index {
         // This is the odd case this method solves. Swift's
@@ -86,9 +95,11 @@ extension String {
     /// Safely returns an offset index in a string.
     /// This method will default to limiting to the start or end of the string.
     /// See ``safeOffset(_:offsetBy:limitedBy:)`` for custom limit indexes.
+    /// 
     /// - Parameters:
     ///   - idx: The index to start at.
     ///   - offsetBy: The number (of characters) to offset from the first index.
+    /// 
     /// - Returns: A `String.Index`
     func safeOffset(_ idx: String.Index, offsetBy offset: Int) -> String.Index {
         if offset < 0 {
@@ -101,25 +112,45 @@ extension String {
         }
     }
 
+    /// Escape white spaces
+    /// 
+    /// - Returns: A `String` with escaped white spaces.
     func escapedWhiteSpaces() -> String {
         self.replacingOccurrences(of: " ", with: "\\ ")
     }
 
     /// Escape single quotes
+    /// 
+    /// - Returns: A `String` with escaped single quotes.
     func escapedQuotes() -> String {
         return self.replacingOccurrences(of: "'", with: "\'")
     }
 
+    /// Index
+    /// 
+    /// - Parameter from: from
+    /// 
+    /// - Returns: Index
     func index(from: Int) -> Index {
         return self.index(self.startIndex, offsetBy: from)
     }
 
+    /// Substring
+    /// 
+    /// - Parameter toIndex: to index
+    /// 
+    /// - Returns: Substring
     func substring(_ toIndex: Int) -> String {
         let index = index(from: toIndex)
         return String(self[..<index])
     }
 
     /// Get all regex matches within a body of text
+    /// 
+    /// - Parameter regex: The regex pattern to match
+    /// - Parameter text: The text to search
+    /// 
+    /// - Returns: An array of strings
     func matches(for regex: String, in text: String) -> [String] {
         do {
             let regex = try NSRegularExpression(pattern: regex)
@@ -134,6 +165,7 @@ extension String {
         }
     }
 
+    /// Get all regex matches within a body of text
     func abbreviatingWithTildeInPath() -> String {
         (self as NSString).abbreviatingWithTildeInPath
     }
@@ -141,12 +173,14 @@ extension String {
     // MARK: Occurences
 
     /// Removes all `new-line` characters in a `String`
+    /// 
     /// - Returns: A String
     func removingNewLines() -> String {
         self.replacingOccurrences(of: "\n", with: "")
     }
 
     /// Removes all `space` characters in a `String`
+    /// 
     /// - Returns: A String
     func removingSpaces() -> String {
         self.replacingOccurrences(of: " ", with: "")
@@ -159,6 +193,7 @@ extension String {
     /// - Parameters:
     ///   - trim: If `true` the input string will be trimmed from whitespaces and new-lines. Defaults to `false`.
     ///   - caseSensitive: If `false` the input string will be converted to lowercase characters. Defaults to `true`.
+    /// 
     /// - Returns: A String in HEX format
     func md5(trim: Bool = false, caseSensitive: Bool = true) -> String {
         var string = self
@@ -182,6 +217,7 @@ extension String {
     /// - Parameters:
     ///   - trim: If `true` the input string will be trimmed from whitespaces and new-lines. Defaults to `false`.
     ///   - caseSensitive: If `false` the input string will be converted to lowercase characters. Defaults to `true`.
+    /// 
     /// - Returns: A String in HEX format
     func sha256(trim: Bool = false, caseSensitive: Bool = true) -> String {
         var string = self
@@ -202,7 +238,11 @@ extension String {
 
     // MARK: Range
 
-    // make string subscriptable with NSRange
+    /// make string subscriptable with NSRange
+    ///
+    /// - Parameter value: NSRange
+    /// 
+    /// - Returns: Substring
     subscript(value: NSRange) -> Substring? {
         let upperBound = String.Index(utf16Offset: Int(value.upperBound), in: self)
         let lowerBound = String.Index(utf16Offset: Int(value.lowerBound), in: self)
@@ -217,6 +257,7 @@ extension String {
     /// Percent-encodes a string to be URL-safe
     ///
     /// See https://useyourloaf.com/blog/how-to-percent-encode-a-url-string/ for more info
+    /// 
     /// - returns: An optional string, with percent encoding to match RFC3986
     func stringByAddingPercentEncodingForRFC3986() -> String? {
         let unreserved = "-._~/?"
@@ -225,6 +266,7 @@ extension String {
         return addingPercentEncoding(withAllowedCharacters: allowed)
     }
 
+    /// Decodes a percent-encoded string
     var bitbucketQueryParameters: [String: String] {
         let parametersArray = components(separatedBy: "&")
         var parameters = [String: String]()

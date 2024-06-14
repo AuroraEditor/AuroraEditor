@@ -13,7 +13,9 @@ public extension Date {
     /// Returns a formatted & localized string of a relative duration compared to the current date & time
     /// when the date is in `today` or `yesterday`. Otherwise it returns a formatted date in `short`
     /// format. The time is omitted.
+    /// 
     /// - Parameter locale: The locale. Defaults to `Locale.current`
+    /// 
     /// - Returns: A localized formatted string
     func relativeStringToNow(locale: Locale = .current) -> String {
         if Calendar.current.isDateInToday(self) ||
@@ -39,6 +41,7 @@ public extension Date {
     }
 
     /// Year month day format
+    /// 
     /// - Returns: date in yyyy-MM-dd
     func yearMonthDayFormat() -> String {
         let dateFormatter = DateFormatter()
@@ -47,6 +50,7 @@ public extension Date {
     }
 
     /// GIT date format
+    /// 
     /// - Returns: date in E MMM dd HH:mm:ss yyyy Z
     func gitDateFormat(commitDate: String) -> Date? {
         let dateFormatter = DateFormatter()

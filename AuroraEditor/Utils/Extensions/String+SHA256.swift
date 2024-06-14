@@ -16,6 +16,7 @@ public extension String {
     /// - Parameters:
     ///   - trim: If `true` the input string will be trimmed from whitespaces and new-lines. Defaults to `false`.
     ///   - caseSensitive: If `false` the input string will be converted to lowercase characters. Defaults to `true`.
+    /// 
     /// - Returns: A String in HEX format
     func sha256(trim: Bool = false, caseSensitive: Bool = true) -> String {
         var string = self

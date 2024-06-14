@@ -8,7 +8,13 @@
 
 import SwiftUI
 
+/// Group box style
 struct AEGroupBox: GroupBoxStyle {
+    /// Make body
+    /// 
+    /// - Parameter configuration: configuration
+    /// 
+    /// - Returns: Custom GroupBox
     func makeBody(configuration: Configuration) -> some View {
         VStack(alignment: .leading) {
             configuration.label

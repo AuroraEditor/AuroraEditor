@@ -66,10 +66,12 @@ public enum AuroraEditorKeychainAccessOptions {
      */
     case accessibleWhenPasscodeSetThisDeviceOnly
 
+    /// The default value for keychain items.
     static var defaultOption: AuroraEditorKeychainAccessOptions {
         .accessibleWhenUnlocked
     }
 
+    /// The value of the keychain access options.
     var value: String {
         switch self {
         case .accessibleWhenUnlocked:
@@ -89,6 +91,11 @@ public enum AuroraEditorKeychainAccessOptions {
         }
     }
 
+    /// Converts a CFString to a String.
+    /// 
+    /// - Parameter value: The CFString to convert
+    /// 
+    /// - Returns: The CFString as a String
     func toString(_ value: CFString) -> String {
         AuroraEditorKeychainConstants.toString(value)
     }
