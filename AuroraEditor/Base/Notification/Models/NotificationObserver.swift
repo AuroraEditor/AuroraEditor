@@ -20,6 +20,8 @@ class NotificationObserver: NSObject {
     /// Initializes a new `NotificationObserver` instance.
     ///
     /// - Parameter object: The `NotificationsModel` instance to observe for changes.
+    /// 
+    /// - Returns: A new `NotificationObserver` instance.
     init(object: NotificationsModel) {
         objectToObserve = object
         super.init()

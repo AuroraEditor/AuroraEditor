@@ -8,10 +8,12 @@
 
 import SwiftUI
 
+/// Application version
 var appVersion: String {
     Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
 }
 
+/// Application build
 var appBuild: String {
     Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? ""
 }

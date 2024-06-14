@@ -14,10 +14,13 @@ import SnapshotTesting
 import SwiftUI
 import XCTest
 
+/// Unit tests for the Welcome module.
 final class WelcomeModuleUnitTests: XCTestCase {
 
+    /// Whether to record snapshots.
     let record: Bool = false
 
+    /// Test recent project item light snapshot.
     func testRecentProjectItemLightSnapshot() throws {
         let view = RecentProjectItem(projectPath: "Project Path")
             .preferredColorScheme(.light)
@@ -27,6 +30,7 @@ final class WelcomeModuleUnitTests: XCTestCase {
         assertSnapshot(matching: hosting, as: .image, record: record)
     }
 
+    /// Test recent project item dark snapshot.
     func testRecentProjectItemDarkSnapshot() throws {
         let view = RecentProjectItem(projectPath: "Project Path")
             .preferredColorScheme(.dark)
@@ -36,6 +40,7 @@ final class WelcomeModuleUnitTests: XCTestCase {
         assertSnapshot(matching: hosting, as: .image, record: record)
     }
 
+    /// Test recent js project item light snapshot.
     func testRecentJSFileLightSnapshot() throws {
         let view = RecentProjectItem(projectPath: "Project Path/test.js")
             .preferredColorScheme(.light)
@@ -45,6 +50,7 @@ final class WelcomeModuleUnitTests: XCTestCase {
         assertSnapshot(matching: hosting, as: .image, record: record)
     }
 
+    /// Test recent js project item dark snapshot.
     func testRecentJSFileDarkSnapshot() throws {
         let view = RecentProjectItem(projectPath: "Project Path/test.js")
             .preferredColorScheme(.dark)
@@ -54,6 +60,7 @@ final class WelcomeModuleUnitTests: XCTestCase {
         assertSnapshot(matching: hosting, as: .image, record: record)
     }
 
+    /// Test welcome action view light snapshot.
     func testWelcomeActionViewLightSnapshot() throws {
         let view = WelcomeActionView(
             iconName: "plus.square",
@@ -66,6 +73,7 @@ final class WelcomeModuleUnitTests: XCTestCase {
         assertSnapshot(matching: hosting, as: .image, record: record)
     }
 
+    /// Test welcome action view dark snapshot.
     func testWelcomeActionViewDarkSnapshot() throws {
         let view = WelcomeActionView(
             iconName: "plus.square",

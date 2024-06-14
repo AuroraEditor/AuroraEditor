@@ -42,7 +42,7 @@ private struct MessageBorder: ViewModifier {
     @Environment(\.colorScheme)
     var colourScheme: ColorScheme
 
-    /// The body of the view.
+    //// The view body.
     /// 
     /// - Parameter content: The content of the view.
     /// 
@@ -103,7 +103,7 @@ private struct MessagePopupCategoryView: View {
     @Environment(\.popupWidth)
     var popupWidth: CGFloat?
 
-    /// The body of the view.
+    //// The view body.
     var body: some View {
 
         let backgroundColour = colourScheme == .dark ? Color.black : Color.white
@@ -167,7 +167,7 @@ struct MessagePopupView: View {
     /// The width of the text in the message category with the widest text.
     @State private var popupWidth: CGFloat?
 
-    /// The body of the view.
+    //// The view body.
     var body: some View {
 
         let categories = messagesByCategory(messages)

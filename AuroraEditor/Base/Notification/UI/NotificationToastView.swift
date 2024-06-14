@@ -11,14 +11,18 @@ import SwiftUI
 /// The `NotificationToastView` SwiftUI view displays a notification toast with title and message.
 struct NotificationToastView: View {
     // Observed object for managing notifications.
-    @ObservedObject private var model: NotificationsModel = .shared
+    @ObservedObject
+    private var model: NotificationsModel = .shared
 
     // Environment value for color scheme.
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme)
+    var colorScheme
 
     // The notification to display.
-    @State public var notification: INotification
+    @State
+    public var notification: INotification
 
+    /// The view body.
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .center) {
@@ -65,6 +69,9 @@ struct NotificationToastView: View {
         }
     }
 
+    /// Get the current time stamp.
+    /// 
+    /// - Returns: The current time stamp.
     func getCurrentTimeStamp() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss"

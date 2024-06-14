@@ -10,14 +10,19 @@ import Foundation
 import SwiftUI
 
 extension AppDelegate {
+    /// Application version
     private var appVersion: String {
         return Bundle.versionString ?? "No Version"
     }
 
+    /// Application build
     private var appBuild: String {
         return Bundle.buildString ?? "No Build"
     }
 
+    /// Setup the status item
+    /// 
+    /// - Parameter statusItem: status item
     func setup(statusItem: NSStatusItem) {
         if let button = statusItem.button {
             button.image = NSImage(named: "MenuBarIcon")
@@ -47,6 +52,9 @@ extension AppDelegate {
         statusItem.menu = menu
     }
 
+    /// Update the recent projects
+    /// 
+    /// - Parameter menuItem: menu item
     func updateRecentProjects(in menuItem: NSMenuItem) {
         DispatchQueue.main.async {
             RecentProjectsStore.shared.$paths
@@ -67,6 +75,9 @@ extension AppDelegate {
         }
     }
 
+    /// Open file
+    /// 
+    /// - Parameter sender: sender
     @objc
     func openFile(_ sender: Any?) {
         guard let sender = sender as? RecentProjectMenuItem else { return }
@@ -84,16 +95,25 @@ extension AppDelegate {
         }
     }
 
+    /// New file
+    /// 
+    /// - Parameter sender: sender
     @objc
     func newFile(_ sender: Any?) {
         AuroraEditorDocumentController.shared.newDocument(nil)
     }
 
+    /// Clone project
+    /// 
+    /// - Parameter sender: sender
     @objc
     func cloneProject(_ sender: Any?) {
         GitCloneView.openGitClientWindow()
     }
 
+    /// Open project
+    /// 
+    /// - Parameter sender: sender
     @objc
     func openProject(_ sender: Any?) {
         AuroraEditorDocumentController.shared.openDocument(
@@ -102,16 +122,25 @@ extension AppDelegate {
         )
     }
 
+    /// Copy information
+    /// 
+    /// - Parameter sender: sender
     @objc
     func copyInformation(_ sender: Any?) {
         AuroraEditor.copyInformation()
     }
 
+    /// Open about window
+    /// 
+    /// - Parameter sender: sender
     @objc
     func about(_ sender: Any?) {
         AppDelegate.openAboutWindow()
     }
 
+    /// Hide menu item
+    /// 
+    /// - Parameter sender: sender
     @objc
     func hideMenuItem(_ sender: Any?) {
         statusItem?.button?.isHidden = true
@@ -119,14 +148,28 @@ extension AppDelegate {
     }
 }
 
+/// Recent project menu item
 class RecentProjectMenuItem: NSMenuItem {
+    /// URL string
     var urlString: String = ""
 
+    /// Initialize the menu item
+    /// 
+    /// - Parameter title: title
+    /// - Parameter selector: selector
+    /// - Parameter charCode: char code
+    /// 
+    /// - Returns: menu item
     override init(title: String, action selector: Selector?, keyEquivalent charCode: String) {
         urlString = title
         super.init(title: urlString.abbreviatingWithTildeInPath(), action: selector, keyEquivalent: charCode)
     }
 
+    /// Initialize the menu item
+    /// 
+    /// - Parameter coder: coder
+    /// 
+    /// - Returns: menu item
     required init(coder: NSCoder) {
         super.init(coder: coder)
     }

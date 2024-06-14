@@ -8,10 +8,14 @@
 
 import SwiftUI
 
+/// Notification icon
 struct NotificationIcon: View {
 
-    @State public var notification: INotification
+    /// Notification
+    @State
+    public var notification: INotification
 
+    //// The view body.
     var body: some View {
         switch notification.notificationType {
         case .system:

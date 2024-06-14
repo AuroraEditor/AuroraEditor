@@ -66,6 +66,7 @@ extension Severity {
     /// Converts a `Severity` enum value into its string representation.
     ///
     /// - Parameter severity: The `Severity` value to convert.
+    /// 
     /// - Returns: The string representation of the `Severity`.
     public func toString(severity: Severity) -> String {
         switch severity {

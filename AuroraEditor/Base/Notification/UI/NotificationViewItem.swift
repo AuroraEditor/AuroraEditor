@@ -14,11 +14,14 @@ struct NotificationViewItem: View {
     var notification: INotification
 
     // Observed object for managing notifications.
-    @ObservedObject private var model: NotificationsModel = .shared
+    @ObservedObject
+    private var model: NotificationsModel = .shared
 
     // State to control whether to show additional actions for the notification.
-    @State private var showActions: Bool = false
+    @State
+    private var showActions: Bool = false
 
+    /// The view body.
     var body: some View {
         VStack {
             HStack(alignment: .center) {

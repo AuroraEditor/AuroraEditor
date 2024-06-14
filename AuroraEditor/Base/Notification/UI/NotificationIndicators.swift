@@ -12,12 +12,14 @@ import SwiftUI
 /// based on the severity of notifications and user preferences.
 struct NotificationIndicators: View {
     /// The shared instance of the `NotificationsModel`.
-    @StateObject private var model: NotificationsModel = .shared
+    @StateObject
+    private var model: NotificationsModel = .shared
 
     /// The observed object for user preferences.
-    @ObservedObject private var preferences: AppPreferencesModel = .shared
+    @ObservedObject
+    private var preferences: AppPreferencesModel = .shared
 
-    /// The body of the view.
+    /// The view body.
     var body: some View {
         // Display an error notification indicator button if there are error notifications.
         if let errorNotifications = filteredNotifications(severity: .error), !errorNotifications.isEmpty {

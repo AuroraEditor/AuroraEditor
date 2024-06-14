@@ -12,16 +12,29 @@ import SwiftUI
 // write boilerplate code every time a new action needs to
 // be added to the WelcomeView
 public struct WelcomeActionView: View {
+    /// Icon name
     var iconName: String
+
+    /// Title
     var title: String
+
+    /// Subtitle
     var subtitle: String
 
+    /// Initialize a new WelcomeActionView
+    /// 
+    /// - Parameter iconName: icon name
+    /// - Parameter title: title
+    /// - Parameter subtitle: subtitle
+    /// 
+    /// - Returns: a new WelcomeActionView
     public init(iconName: String, title: String, subtitle: String) {
         self.iconName = iconName
         self.title = title
         self.subtitle = subtitle
     }
 
+    /// The view body.
     public var body: some View {
         HStack(spacing: 16) {
             Image(systemName: iconName)

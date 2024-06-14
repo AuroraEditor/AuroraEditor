@@ -12,6 +12,10 @@ import Version_Control
 extension WelcomeWindowView {
 
     /// Helper function which opens welcome view
+    /// 
+    /// - Parameter function: function
+    /// - Parameter file: file
+    /// - Parameter line: line
     static func openWelcomeWindow(function: String = #function,
                                   file: String = #file,
                                   line: Int = #line) {

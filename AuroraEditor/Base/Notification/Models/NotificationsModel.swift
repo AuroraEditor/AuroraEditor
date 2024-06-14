@@ -97,6 +97,7 @@ class NotificationsModel: ObservableObject, INotificationsModel {
     /// A private utility function to check if a given notification has a duplicate ID.
     ///
     /// - Parameter notification: The notification to check for duplication.
+    /// 
     /// - Returns: `true` if the notification is a duplicate; otherwise, `false`.
     private func hasDuplicateNotification(notification: INotification) -> Bool {
         let notificationID = notification.id ?? ""
