@@ -8,14 +8,18 @@
 
 import SwiftUI
 
+/// Explore item view.
 struct ExploreItemView: View {
 
+    /// The extension data.
     @State
     var extensionData: Plugin
 
+    /// Extensions model
     @State
     var extensionsModel: ExtensionInstallationViewModel
 
+    /// The view body.
     var body: some View {
         HStack {
             AsyncImage(url: URL(string: "\(extensionData.extensionImage)")) { phase in

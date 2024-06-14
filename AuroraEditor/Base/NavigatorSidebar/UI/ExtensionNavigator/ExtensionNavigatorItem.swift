@@ -8,9 +8,14 @@
 
 import SwiftUI
 
+/// Extension navigator item.
 struct ExtensionNavigatorItem: View {
-    @EnvironmentObject var document: WorkspaceDocument
 
+    /// Workspace document
+    @EnvironmentObject
+    var document: WorkspaceDocument
+
+    /// View body
     var body: some View {
         Button {
 //            document.openTab(item: plugin)

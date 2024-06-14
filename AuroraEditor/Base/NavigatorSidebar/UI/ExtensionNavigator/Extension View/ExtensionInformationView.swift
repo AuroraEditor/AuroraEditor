@@ -8,11 +8,14 @@
 
 import SwiftUI
 
+/// Extension information view.
 struct ExtensionInformationView: View {
 
+    /// The extension info.
     @State
     var extensionInfo: Plugin
 
+    /// The view body.
     var body: some View {
         VStack(alignment: .leading) {
             Text("Information")

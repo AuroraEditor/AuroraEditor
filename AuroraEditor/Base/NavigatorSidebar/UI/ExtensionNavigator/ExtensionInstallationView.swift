@@ -8,18 +8,26 @@
 
 import SwiftUI
 
+/// Extension installation view.
 struct ExtensionInstallationView: View {
 
+    /// Plugin model
     @State
     var extensionData: Plugin
 
+    /// The view body.
     @EnvironmentObject
     var document: WorkspaceDocument
+
+    /// reopen alert
     @State
     var reopenAlert = false
+
+    /// Installed
     @State
     var installed: Bool = false
 
+    /// The view body.
     var body: some View {
         VStack {
 //            Text(self.model.plugin.manifest.displayName)

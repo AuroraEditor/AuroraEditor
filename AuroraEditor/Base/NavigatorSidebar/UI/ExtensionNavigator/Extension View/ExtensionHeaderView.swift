@@ -8,11 +8,14 @@
 
 import SwiftUI
 
+/// Extension header view.
 struct ExtensionHeaderView: View {
 
+    /// The extension info.
     @State
     var extensionInfo: Plugin
 
+    /// The view body.
     var body: some View {
         VStack {
             HStack(alignment: .top) {

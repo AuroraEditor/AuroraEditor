@@ -8,17 +8,22 @@
 
 import SwiftUI
 
+/// Extension description view.
 struct ExtensionDescriptionView: View {
 
+    /// Open URL
     @Environment(\.openURL)
     var githubRepo
 
+    /// Open URL
     @Environment(\.openURL)
     var githubIssues
 
+    /// The extension info.
     @State
     var extensionInfo: Plugin
 
+    /// The view body.
     var body: some View {
         HStack(alignment: .top) {
             Text("\(extensionInfo.extensionDescription)")

@@ -8,8 +8,10 @@
 
 import SwiftUI
 
+/// Extension what's new view.
 struct ExtensionWhatsNewView: View {
 
+    /// The view body.
     var body: some View {
         VStack {
             HStack {

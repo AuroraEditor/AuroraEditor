@@ -8,7 +8,10 @@
 
 import SwiftUI
 
+/// Extension privacy view.
 struct ExtensionPrivacyView: View {
+
+    /// The view body.
     var body: some View {
         VStack(alignment: .leading) {
             HStack {

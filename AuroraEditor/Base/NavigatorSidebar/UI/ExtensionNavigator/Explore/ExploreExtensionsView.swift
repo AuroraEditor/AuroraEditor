@@ -8,13 +8,17 @@
 
 import SwiftUI
 
+/// Explore extensions view.
 struct ExploreExtensionsView: View {
 
+    /// Extensions model
     @StateObject
     private var extensionsModel: ExtensionInstallationViewModel = .init()
 
+    /// The workspace document.
     var document: WorkspaceDocument
 
+    /// The view body.
     var body: some View {
         VStack {
             switch extensionsModel.state {

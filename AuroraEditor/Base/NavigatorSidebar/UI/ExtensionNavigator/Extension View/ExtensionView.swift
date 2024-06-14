@@ -8,11 +8,14 @@
 
 import SwiftUI
 
+/// Extension view.
 struct ExtensionView: View {
 
+    /// Extension data
     @State
     var extensionData: Plugin
 
+    /// The view body.
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {

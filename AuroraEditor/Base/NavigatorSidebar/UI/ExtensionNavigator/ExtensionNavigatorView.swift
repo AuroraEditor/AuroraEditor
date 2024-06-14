@@ -9,19 +9,26 @@
 import SwiftUI
 import Combine
 
+/// Extension navigator data.
 struct ExtensionNavigator: View {
+
+    /// Workspace document
     @EnvironmentObject
     var workspace: WorkspaceDocument
 
+    /// Extension navigator data
     @ObservedObject
     var data: ExtensionNavigatorData
 
+    /// Show the navigator
     @State
     var showing = false
 
+    /// Selected section
     @State
     private var selectedSection: Int = 1
 
+    /// The view body.
     var body: some View {
         VStack {
             SegmentedControl($selectedSection,
