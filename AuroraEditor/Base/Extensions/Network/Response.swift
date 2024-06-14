@@ -12,6 +12,7 @@ import Foundation
 public struct Response<T> {
     /// Value
     public let value: T
+
     /// URL Response
     public let response: URLResponse
 }

@@ -107,6 +107,7 @@ class JSPromise: NSObject, JSPromiseExports {
         // Check if we have a resolve (`then`).
         guard let resolve = resolve else { return }
 
+        // Result
         var result: JSValue?
 
         // If we can unwrap the value

@@ -11,9 +11,13 @@ import WebKit
 
 /// Should we use a extension View or a WebView.
 struct ExtensionOrWebView: View {
+    /// The view to show
     let view: Any?
+
+    /// The sender of the view
     let sender: String
 
+    /// Initialize the view
     var body: some View {
         if let swiftUIView = view as? any View {
             // Check if the provided view conforms to any View
@@ -34,13 +38,21 @@ struct ExtensionOrWebView: View {
     }
 }
 
+/// WKWebView for extensions
 struct ExtensionWKWebView: NSViewRepresentable {
     typealias NSViewType = NSView
 
     /// Page to load
     var pageHTML: String?
+
+    /// Sender of the view
     var sender: String
 
+    /// Create the NSView
+    /// 
+    /// - Parameter context: Context
+    /// 
+    /// - Returns: The NSView
     func makeNSView(context: Context) -> NSView {
         let webKitView = WKWebView()
 
@@ -58,6 +70,10 @@ struct ExtensionWKWebView: NSViewRepresentable {
         return webKitView
     }
 
+    /// Update the NSView
+    /// 
+    /// - Parameter nsView: The NSView
+    /// - Parameter context: The context
     func updateNSView(_ nsView: NSView, context: Context) {
         // make sure web view and page url exist, and add a delegate
         guard let webView = nsView as? WKWebView else { return }
@@ -68,6 +84,7 @@ struct ExtensionWKWebView: NSViewRepresentable {
     }
 
     /// Convenience function to load a page
+    /// 
     /// - Parameters:
     ///   - webView: The web view
     ///   - url: The URL to load
@@ -87,14 +104,20 @@ struct ExtensionWKWebView: NSViewRepresentable {
         }
     }
 
+    /// Coordinator
     class Coordinator: NSObject, WKNavigationDelegate {
+        /// Parent
         var parent: ExtensionWKWebView
 
+        /// Initialize the coordinator
+        /// 
+        /// - Parameter parent: Parent
         init(_ parent: ExtensionWKWebView) {
             self.parent = parent
         }
     }
 
+    /// Make coordinator
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }

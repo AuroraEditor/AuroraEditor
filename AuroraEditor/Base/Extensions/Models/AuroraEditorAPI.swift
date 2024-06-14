@@ -9,16 +9,25 @@
 import Foundation
 import AEExtensionKit
 
+/// Aurora Editor API
 final class AuroraEditorAPI: ExtensionAPI {
-     var extensionId: String
-     var workspace: WorkspaceDocument
+    /// Extension ID
+    var extensionId: String
 
-     var workspaceURL: URL {
-         workspace.fileURL!
-     }
+    /// Workspace
+    var workspace: WorkspaceDocument
 
-     init(extensionId: String, workspace: WorkspaceDocument) {
-         self.extensionId = extensionId
-         self.workspace = workspace
-     }
+    /// Workspace URL
+    var workspaceURL: URL {
+        workspace.fileURL!
+    }
+
+    /// Initialize Aurora Editor API
+    /// 
+    /// - Parameter extensionId: extension ID
+    /// - Parameter workspace: workspace
+    init(extensionId: String, workspace: WorkspaceDocument) {
+        self.extensionId = extensionId
+        self.workspace = workspace
+    }
  }

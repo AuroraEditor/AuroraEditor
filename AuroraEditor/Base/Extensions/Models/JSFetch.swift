@@ -10,7 +10,7 @@ import JavaScriptCore
 
 /// JavaScript `fetch` function
 ///
-/// WARNING: Depends on JSPromise.
+/// - Note: Depends on JSPromise.
 class JSFetch {
     /// Shared instance so it will not be unloaded.
     static let shared: JSFetch = .init()

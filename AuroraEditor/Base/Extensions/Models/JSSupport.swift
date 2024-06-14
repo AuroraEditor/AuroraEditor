@@ -65,9 +65,13 @@ class JSSupport: ExtensionInterface {
     /// - Parameter script: extension path
     public func loadJSExtension(path: String) -> Bool {
         do {
+            // Read the contents of the file
             let content = try String(contentsOfFile: path)
 
+            // Evaluate the script
             context.evaluateScript(aeContextDidLoad + content)
+
+            // Check if the extension has loaded correctly
             if let result = context.objectForKeyedSubscript("AEContext").call(withArguments: nil),
                // If the value is not AEContext, it has failed to load
                // See `aeContextDidLoad` fore more information.
@@ -86,6 +90,7 @@ class JSSupport: ExtensionInterface {
         return true
     }
 
+    /// Register JS Functions
     func registerJS() {
         registerErrorHandler()
         registerScripts()
@@ -102,6 +107,7 @@ class JSSupport: ExtensionInterface {
         }
     }
 
+    /// Register the required functions for the JS API.
     func registerFunctions() {
         let log: @convention (block) (String) -> Bool = { (message: String) in
             self.jsLogger.debug("JSAPI Message: \(message)")
@@ -154,9 +160,10 @@ class JSSupport: ExtensionInterface {
     }
 
     /// Respond to an (AuroraEditor) JavaScript function.
-    /// - Parameters:
-    ///   - action: action to perform
-    ///   - parameters: with parameters
+    ///
+    /// - Parameter action: action to perform
+    /// - Parameter parameters: with parameters
+    /// 
     /// - Returns: response value from javascript
     func respond(action: String, parameters: [String: Any]) -> JSValue? {
         return context
@@ -181,9 +188,10 @@ class JSSupport: ExtensionInterface {
     }
 
     /// Respond to an (AuroraEditor) JavaScript function.
-    /// - Parameters:
-    ///   - action: action to perform
-    ///   - parameters: with parameters
+    /// 
+    /// - Parameter action: action to perform
+    /// - Parameter parameters: with parameters
+    /// 
     /// - Returns: response value from javascript
     func respondToAE(action: String, parameters: [String: Any]) -> JSValue? {
         return context
@@ -193,7 +201,9 @@ class JSSupport: ExtensionInterface {
     }
 
     /// Evaluate a script on the current context
+    /// 
     /// - Parameter script: script to evaluate
+    /// 
     /// - Returns: the JS Value
     func evaluate(script: String) -> JSValue? {
         return context
@@ -201,6 +211,12 @@ class JSSupport: ExtensionInterface {
     }
 
     // MARK: - Aurora Editor Extension interface
+    /// Respond to an (AuroraEditor) JavaScript function.
+    /// 
+    /// - Parameter action: action to perform
+    /// - Parameter parameters: with parameters
+    /// 
+    /// - Returns: response value from javascript
     func respond(action: String, parameters: [String: Any]) -> Bool {
         if let val = self.respond(action: action, parameters: parameters), val.isBoolean {
             return val.toBool()
@@ -209,6 +225,7 @@ class JSSupport: ExtensionInterface {
         return true
     }
 
+    /// Register JSSupport as an extension
     func register() -> AEExtensionKit.ExtensionManifest {
         return .init(
             name: extensionName,

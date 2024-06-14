@@ -9,9 +9,15 @@
 import Foundation
 import Combine
 
+/// Extensions Store API Errors
 public enum ExtensionsStoreAPIError: Error {
+    /// No tarball available
     case noTarball
+
+    /// URL failure
     case urlFailure
+
+    /// Path error
     case pathError
 }
 
@@ -85,7 +91,14 @@ public enum ExtensionsStoreAPI {
 //    }
 }
 
+/// Agent to run requests
 final class Agent {
+    /// Run request
+    /// 
+    /// - Parameter request: request to be run
+    /// - Parameter decoder: JSON decoder
+    /// 
+    /// - Returns: publisher with the response
     func run<T: Decodable>(_ request: URLRequest,
                            _ decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<Response<T>, Error> {
         URLSession.shared

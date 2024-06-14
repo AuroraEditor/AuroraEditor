@@ -31,6 +31,7 @@ public final class ExtensionsManager {
     /// Extensions logger
     private let logger = Logger(subsystem: "com.auroraeditor", category: "Extensions")
 
+    /// Initialize ExtensionsManager
     init() {
         logger.info("[ExtensionsManager] init()")
 
@@ -55,6 +56,7 @@ public final class ExtensionsManager {
     }
 
     /// Set workspace document
+    /// 
     /// - Parameter workspace: Workspace document
     func set(workspace: WorkspaceDocument) {
         self.workspace = workspace
@@ -62,7 +64,9 @@ public final class ExtensionsManager {
     }
 
     /// Create an Aurora API Callback handler.
+    /// 
     /// - Parameter file: extension name
+    /// 
     /// - Returns: AuroraAPI
     private func auroraAPICallback(file: String) -> AuroraAPI {
         return { function, parameters in
@@ -80,6 +84,7 @@ public final class ExtensionsManager {
     }
 
     /// Load plugins
+    /// 
     /// all extensions in `~/Library/com.auroraeditor/Extensions` will be loaded.
     public func loadPlugins() {
         loadedExtensions = [:]
@@ -129,6 +134,9 @@ public final class ExtensionsManager {
         }
     }
 
+    /// Load JS Extension
+    /// 
+    /// - Parameter directory: Directory
     private func loadJSExtension(at directory: String) {
         let extensionName = directory.replacingOccurrences(of: ".JSext", with: "")
 
@@ -149,7 +157,9 @@ public final class ExtensionsManager {
     }
 
     /// Load the bundle at path
+    /// 
     /// - Parameter path: path
+    /// 
     /// - Returns: ExtensionBuilder.Tyoe
     private func loadBundle(path: String, isResigned: Bool = false) -> ExtensionBuilder.Type? {
         let bundleURL = extensionsFolder.appendingPathComponent(path, isDirectory: true)
@@ -201,6 +211,11 @@ public final class ExtensionsManager {
         return AEext
     }
 
+    /// Resign the bundle
+    /// 
+    /// - Parameter bundle: Bundle
+    /// 
+    /// - Returns: Process
     private func resign(bundle: URL) -> Process? {
         if !FileManager().fileExists(atPath: "/usr/bin/xcrun") {
             return nil
@@ -227,9 +242,9 @@ public final class ExtensionsManager {
     }
 
     /// Send event to all loaded extensions
-    /// - Parameters:
-    ///   - event: Event to send
-    ///   - parameters: Parameters to send
+    /// 
+    /// - Parameter event: Event to send
+    /// - Parameter parameters: Parameters to send
     public func sendEvent(event: String, parameters: [String: Any]) {
         DispatchQueue.main.async {
             let params = Array(parameters.keys).joined(separator: ": ..., ")
@@ -246,7 +261,9 @@ public final class ExtensionsManager {
     }
 
     /// Is installed
+    /// 
     /// - Parameter plugin: Plugin
+    /// 
     /// - Returns: Is installed?
     public func isInstalled(plugin: Plugin) -> Bool? {
         return false

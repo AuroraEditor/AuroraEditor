@@ -8,14 +8,23 @@
 
 import Foundation
 
+/// Page
 public struct Page<T: Codable>: Codable {
+    /// Items
     public var items: [T]
 
+    /// Metadata
     public var metadata: Metadata
 
+    /// Metadata
     public struct Metadata: Codable {
+        /// Total items
         public var total: Int
+
+        /// Items per page
         public var per: Int
+
+        /// Current page
         public var page: Int
     }
 }
