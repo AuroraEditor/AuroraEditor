@@ -8,14 +8,18 @@
 
 import SwiftUI
 
+/// File creation grid view
 struct FileCreationGridView: View {
-
+    /// File creation model
     @StateObject
     private var creationSheetModel: FileCreationModel = .shared
 
-    private var gridItemLayout: [GridItem] = Array(repeating: .init(.flexible()),
-                                                   count: 5)
+    /// Grid item layout
+    private var gridItemLayout: [GridItem] = Array(
+        repeating: .init(.flexible()), count: 5
+    )
 
+    /// The view body
     var body: some View {
         ScrollView(.vertical) {
             Section {
@@ -45,12 +49,16 @@ struct FileCreationGridView: View {
         .border(.gray.opacity(0.3))
     }
 
+    /// Grid column view
     struct GridColumn: View {
+        /// File selection item
         let item: FileSelectionItem
 
+        /// Selected item
         @Binding
         var selectedItem: FileSelectionItem
 
+        /// The view body
         var body: some View {
             Button(action: {
                 selectedItem = item

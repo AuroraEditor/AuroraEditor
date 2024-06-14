@@ -6,8 +6,14 @@
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
 
+/// File selection item
 struct FileSelectionItem: Codable, Hashable {
+    /// Language name
     var languageName: String
+
+    /// Language icon
     var langaugeIcon: String
+
+    /// Language extension
     var languageExtension: String
 }

@@ -9,13 +9,19 @@
 import Foundation
 import SwiftUI
 
+/// New File Model
 class NewFileModel: ObservableObject {
+    /// Workspace
     var workspace: WorkspaceDocument?
 
+    /// Initialize New File Model
+    /// 
+    /// - Parameter workspace: workspace
     init(workspace: WorkspaceDocument? = nil) {
         self.workspace = workspace
     }
 
+    /// Show file creation sheet
     @Published
     var showFileCreationSheet: Bool = false {
         didSet {
@@ -25,12 +31,17 @@ class NewFileModel: ObservableObject {
         }
     }
 
+    /// Source URL
     @Published
     var sourceURL: URL?
 
+    /// Outline view selection
     @Published
     var outlineViewSelection: FileItem?
 
+    /// Show sheet with URL
+    /// 
+    /// - Parameter url: URL
     func showSheetWithUrl(url: URL?) {
         showFileCreationSheet.toggle()
         sourceURL = url

@@ -8,20 +8,25 @@
 
 import SwiftUI
 
+/// File creation selection view
 struct FileCreationSelectionView: View {
-
+    /// Presentation mode
     @Environment(\.presentationMode)
     var presentationMode
 
+    /// File creation model
     @StateObject
     private var creationSheetModel: FileCreationModel = .shared
 
+    /// Workspace
     @State
     var workspace: WorkspaceDocument?
 
+    /// Show file naming sheet
     @State
     var showFileNamingSheet: Bool = false
 
+    /// The view body
     var body: some View {
         VStack(alignment: .leading) {
             Text("Choose a template for your new file:")

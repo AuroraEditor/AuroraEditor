@@ -8,23 +8,29 @@
 
 import SwiftUI
 
+/// File creation naming view
 struct FileCreationNamingView: View {
-
+    /// Presentation mode
     @Environment(\.presentationMode)
     var presentationMode
 
+    /// File creation model
     @ObservedObject
     private var creationSheetModel: FileCreationModel = .shared
 
+    /// Workspace
     @State
     var workspace: WorkspaceDocument?
 
+    /// File name
     @State
     var fileName: String = ""
 
+    /// Tags
     @State
     var tags: String = ""
 
+    /// The view body
     var body: some View {
         VStack(alignment: .trailing) {
             HStack {

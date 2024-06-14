@@ -8,12 +8,15 @@
 
 import AppKit
 
+/// File creation model
 class FileCreationModel: ObservableObject {
-
+    /// Shared instance
     public static var shared: FileCreationModel = .init()
 
+    /// File manager
     private let fileManager: FileManager = .default
 
+    /// Language items
     @Published
     var languageItems = [
         FileSelectionItem(languageName: "Java",
@@ -66,11 +69,17 @@ class FileCreationModel: ObservableObject {
                           languageExtension: "dockerfile")
     ]
 
+    /// Selected language item
     @Published
     var selectedLanguageItem: FileSelectionItem = FileSelectionItem(languageName: "Java",
                                                                     langaugeIcon: "java",
                                                                     languageExtension: "java")
 
+    /// Create a new file with the selected language
+    /// 
+    /// - Parameter workspace: Workspace document
+    /// - Parameter fileName: File name
+    /// - Parameter completionHandler: Completion handler
     func createLanguageFile(workspace: WorkspaceDocument,
                             fileName: String,
                             completionHandler: @escaping (Result<String, Error>) -> Void) {
@@ -107,6 +116,10 @@ class FileCreationModel: ObservableObject {
         }
     }
 
+    /// Create a new file with the selected language
+    /// 
+    /// - Parameter path: at path
+    /// - Parameter fileName: file name
     private func createFileWithStarterContent(atPath path: String, fileName: String) {
         let fileContent = """
 //
@@ -123,6 +136,8 @@ class FileCreationModel: ObservableObject {
     }
 }
 
+/// File creation error
 enum FileCreationError: Error {
+    /// Unable to replace
     case unableToReplace(String)
 }
