@@ -8,14 +8,28 @@
 
 import SwiftUI
 
+// This view creates a list of recent projects that have been
 public struct RecentProjectsView: View {
+    /// The recent projects store
+    @ObservedObject
+    private var recentsStore: RecentProjectsStore = .shared
 
-    @ObservedObject private var recentsStore: RecentProjectsStore = .shared
-    @State private var selectedProjectPath: String? = ""
+    /// The selected project path
+    @State
+    private var selectedProjectPath: String? = ""
 
+    /// Open document closure
     private let openDocument: (URL?, @escaping () -> Void) -> Void
+
+    /// Dismiss window closure
     private let dismissWindow: () -> Void
 
+    /// Initialize a new RecentProjectsView
+    /// 
+    /// - Parameter openDocument: open document closure
+    /// - Parameter dismissWindow: dismiss window closure
+    /// 
+    /// - Returns: a new RecentProjectsView
     public init(
         openDocument: @escaping (URL?, @escaping () -> Void) -> Void,
         dismissWindow: @escaping () -> Void
@@ -36,6 +50,11 @@ public struct RecentProjectsView: View {
     }
 
     // MARK: Context Menu Items
+    /// Context menu item to show the project in Finder
+    /// 
+    /// - Parameter projectPath: the path of the project
+    /// 
+    /// - Returns: a new view
     func contextMenuShowInFinder(projectPath: String) -> some View {
         Group {
             Button("Show in Finder") {
@@ -48,6 +67,11 @@ public struct RecentProjectsView: View {
         }
     }
 
+    /// Context menu item to copy the path of the project
+    /// 
+    /// - Parameter path: the path of the project
+    /// 
+    /// - Returns: a new view
     func contextMenuCopy(path: String) -> some View {
         Group {
             Button("Copy Path") {
@@ -58,6 +82,11 @@ public struct RecentProjectsView: View {
         }
     }
 
+    /// Context menu item to delete the project from the recent projects
+    /// 
+    /// - Parameter projectPath: the path of the project
+    /// 
+    /// - Returns: a new view
     func contextMenuDelete(projectPath: String) -> some View {
         Group {
             Button("Remove from Recent Projects") {
@@ -66,12 +95,16 @@ public struct RecentProjectsView: View {
         }
     }
 
+    /// Open the document
+    /// 
+    /// - Parameter url: the url of the document
     func openDocument(for url: String) {
         Log.info("Opening document: \(url)")
         openDocument(URL(fileURLWithPath: url), dismissWindow)
         withAnimation { recentsStore.record(path: url) }
     }
 
+    /// The view body.
     public var body: some View {
         VStack(alignment: !recentsStore.paths.isEmpty ? .leading : .center, spacing: 10) {
             if !recentsStore.paths.isEmpty {

@@ -16,8 +16,12 @@ public final class RecentProjectsStore: ObservableObject {
     /// The publicly available singleton instance of ``RecentProjectsStore``
     public static let shared: RecentProjectsStore = .init()
 
+    /// Task for automatically removing paths which no longer exist in the filesystem.
     private var autoRemoveTask: Task<Void, Error>?
 
+    /// Initialize a new ``RecentProjectsStore``.
+    /// 
+    /// - Note: This initializer is private to enforce the singleton pattern.
     private init() {
         self.paths = load()
         autoRemove()
@@ -30,6 +34,9 @@ public final class RecentProjectsStore: ObservableObject {
     }
 
     /// Record the given path as a recent.
+    /// 
+    /// - Parameter path: the path to record
+    /// 
     /// - Note: if the given path does not exist in the filesystem, it is ignored.
     public func record(path: String) {
         guard let existingIndex = paths.firstIndex(of: path) else {
@@ -44,6 +51,8 @@ public final class RecentProjectsStore: ObservableObject {
     }
 
     /// Remove the given path if it exists in the store.
+    /// 
+    /// - Parameter path: the path to remove
     public func remove(path: String) {
         guard let pathIndex = paths.firstIndex(of: path) else { return }
         paths.remove(at: pathIndex)
@@ -55,6 +64,8 @@ public final class RecentProjectsStore: ObservableObject {
     }
 
     /// Load recent paths from user defaults.
+    /// 
+    /// - Returns: the loaded paths
     private func load() -> [String] {
         guard let paths = UserDefaults.standard.array(forKey: Self.key) as? [String] else {
             return []
@@ -78,6 +89,7 @@ public final class RecentProjectsStore: ObservableObject {
         }
     }
 
+    /// Deinitializer.
     deinit {
         autoRemoveTask?.cancel()
     }
