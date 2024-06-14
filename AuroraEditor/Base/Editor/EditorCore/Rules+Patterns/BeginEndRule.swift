@@ -8,13 +8,13 @@
 
 import Foundation
 
-///
+// TODO: @0xWDG Look if this can be removed.
 /// The representation of the Begin/End rule.
-///
 public class BeginEndRule: Rule, Pattern {
-
+    /// The id of the rule.
     public let id: UUID
 
+    /// The grammar this rule belongs to.
     public weak var grammar: Grammar?
 
     /// The name of the rule, i.e. the scope.
@@ -36,14 +36,28 @@ public class BeginEndRule: Rule, Pattern {
     /// The name/scope assigned to text matched between the begin/end patterns.
     let contentScopeName: ScopeName?
 
+    /// The captures for the begin pattern.
     var beginCaptures: [Capture]
 
+    /// The captures for the end pattern.
     var endCaptures: [Capture]
 
+    /// Whether the end pattern has back references.
     var endHasBackReferences: Bool
 
+    /// The resolved rules from the patterns.
     private var rules: [Rule]?
 
+    /// Creates a begin/end rule.
+    /// 
+    /// - parameter name: The name of the rule.
+    /// - parameter begin: The begin pattern.
+    /// - parameter end: The end pattern.
+    /// - parameter contentName: The name of the content scope.
+    /// - parameter patterns: The patterns to apply within the begin/end patterns.
+    /// - parameter beginCaptures: The captures for the begin pattern.
+    /// - parameter endCaptures: The captures for the end pattern.
+    /// - parameter endHasBackReferences: Whether the end pattern has back references.
     public init(
         name: String,
         begin: String,
@@ -99,11 +113,23 @@ public class BeginEndRule: Rule, Pattern {
         self.endHasBackReferences = endHasBackReferences
     }
 
+    /// Resolves the rule into rules.
+    /// 
+    /// - parameter parser: The parser to use for resolving patterns.
+    /// - parameter grammar: The grammar to use for resolving patterns.
+    /// 
+    /// - returns: The resolved rules.
     public func resolve(parser: Parser, grammar: Grammar) -> [Rule] {
         self.grammar = grammar
         return [self]
     }
 
+    /// Resolves the rule into rules.
+    /// 
+    /// - parameter parser: The parser to use for resolving patterns.
+    /// - parameter grammar: The grammar to use for resolving patterns.
+    /// 
+    /// - returns: The resolved rules.
     func resolveRules(parser: Parser, grammar: Grammar) -> [Rule] {
         if let rules = rules {
             return rules

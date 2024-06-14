@@ -9,11 +9,15 @@
 import Foundation
 import AppKit
 
+// TODO: @0xWDG Look if this can be removed.
 /// Tokenized line
 public class TokenizedLine {
-
+    /// Tokens
     var tokens: [Token]
 
+    /// Initialize TokenizedLine
+    /// 
+    /// - Parameter tokens: Tokens
     init(tokens: [Token] = []) {
         self.tokens = tokens
     }
@@ -26,27 +30,43 @@ public class TokenizedLine {
         return last.range.upperBound
     }
 
+    /// Add token
+    /// 
+    /// - Parameter token: Token
     func addToken(_ token: Token) {
         cleanLast()
         tokens.append(token)
     }
 
+    /// Add tokens
+    /// 
+    /// - Parameter tokens: Tokens
     func addTokens(_ tokens: [Token]) {
         cleanLast()
         self.tokens += tokens
     }
 
+    /// Clean last token
     func cleanLast() {
         if tokens.last?.range.length == 0 {
             tokens.removeLast()
         }
     }
 
+    /// Increase last token length
+    /// 
+    /// - Parameter len: Length
     func increaseLastTokenLength(by len: Int = 1) {
         guard !tokens.isEmpty else { return }
         tokens[tokens.count - 1].range.length += len
     }
 
+    /// Apply theme attributes
+    /// 
+    /// - Parameter attributes: Attributes
+    /// - Parameter attributedString: Attributed string
+    /// - Parameter style: Style
+    /// - Parameter range: Range
     private static func applyThemeAttributes(_ attributes: [ThemeAttribute],
                                              toStr attributedString: NSMutableAttributedString,
                                              withStyle style: NSMutableParagraphStyle,
@@ -65,14 +85,12 @@ public class TokenizedLine {
         }
     }
 
-    ///
     /// Applies the theming of the tokenized line to a given mutable attributed string at the given location.
     ///
     /// - Parameter attributedString: The mutable attributed string to apply the attributes to.
     /// - Parameter loc: The (NSString indexed) location to apply the theming from.
     /// - Parameter inSelectedScope: Whether the current selection is on any part of the line that is being themed.
     /// - Parameter applyBaseAttributes: Whether the base should be applied as well selection scope attributes.
-    ///
     public func applyTheme(
         _ attributedString: NSMutableAttributedString,
         at loc: Int,
@@ -132,6 +150,11 @@ public class TokenizedLine {
 }
 
 extension NSAttributedString {
+    /// Range within string
+    /// 
+    /// - Parameter range: Range
+    /// 
+    /// - Returns: Range within string
     func rangeWithinString(from range: NSRange) -> NSRange? {
         NSRange(location: 0, length: self.length).intersection(range)
     }

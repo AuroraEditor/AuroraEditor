@@ -10,6 +10,7 @@ import Foundation
 
 import AppKit
 
+// TODO: @0xWDG Look if this can be removed.
 public class FirstLineHeadIndentThemeAttribute: LineThemeAttribute, Codable {
 
     public var key = "first-line-head-indent"

@@ -8,6 +8,7 @@
 
 import Foundation
 
+// TODO: @0xWDG Look if this can be removed.
 public class LigatureThemeAttribute: TokenThemeAttribute, Codable {
 
     public var key = "ligature"

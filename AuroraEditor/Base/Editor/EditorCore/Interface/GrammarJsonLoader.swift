@@ -8,14 +8,21 @@
 
 import Foundation
 
+// TODO: @0xWDG Look if this can be removed.
+/// A class that loads a grammar from a JSON file.
 class GrammarJsonLoader {
 
+    /// The shared instance of the GrammarJsonLoader
     static let shared: GrammarJsonLoader = .init()
 
-    private init() {} // prevent GrammarJsonLoader from being created anywhere else
+    // prevent GrammarJsonLoader from being created anywhere else
+    /// Initializes a new instance of the GrammarJsonLoader
+    private init() {}
 
     /// Function that, taking in a filename for a bundled tmlanguage JSON file, returns a ``Grammar`` from its contents
+    /// 
     /// - Parameter fileName: The name of the JSON file, not including the `.json` at the end
+    /// 
     /// - Returns: A ``Grammar`` representing the contents of the JSON, or nil if the given json is invalid.
     public func loadBundledJson(fileName: String) -> Grammar? {
         if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
@@ -33,7 +40,9 @@ class GrammarJsonLoader {
     }
 
     /// Function that, taking in a URL for a tmlanguage JSON file, returns a ``Grammar`` from its contents
+    /// 
     /// - Parameter url: The URL of the JSON file
+    /// 
     /// - Returns: A ``Grammar`` representing the contents of the JSON, or
     /// nil if the given URL cannot be read as a grammar json.
     public func loadJson(from url: URL) -> Grammar? {
@@ -58,6 +67,7 @@ class GrammarJsonLoader {
     /// Along with that are ``Repository``s, which seem to be groups of ``Pattern``s
     ///
     /// - Parameter jsonStr: A String representing the JSON data
+    /// 
     /// - Returns: A ``Grammar`` class if it succeeded, `nil` otherwise.
     public func grammarFromJson(jsonStr: String) -> Grammar? {
 
@@ -83,7 +93,9 @@ class GrammarJsonLoader {
     }
 
     /// Given an array of `[String: Any]` values, returns an array of ``Pattern``s
+    /// 
     /// - Parameter jsonArray: An array of `[String: Any]` values
+    /// 
     /// - Returns: An array of ``Pattern``s with contents from the json array, or `[]` if an error occurred
     func patternsFromJsonArray(jsonArray: [[String: Any]]?) -> [Pattern] {
         guard let jsonArray = jsonArray else { return [] }
@@ -97,7 +109,9 @@ class GrammarJsonLoader {
     }
 
     /// Given a String-keyed dictionary of `[String: Any]` values, returns a dictionary of ``Pattern``s
+    /// 
     /// - Parameter jsonDict: An array of `[String: Any]` values
+    /// 
     /// - Returns: A dictionary of ``Pattern``s with contents from the json dictionary, or `[:]` if an error occurred
     func patternsFromJsonDict(jsonDict: [String: [String: Any]]?) -> [String: Pattern]? {
         guard let jsonDict = jsonDict else { return nil }
@@ -117,7 +131,9 @@ class GrammarJsonLoader {
     }
 
     /// Given a dictionary of `[String: Any]` values, returns a ``Repository``, or `nil` if not possible
+    /// 
     /// - Parameter jsonDict: An array of `[String: Any]` values
+    /// 
     /// - Returns: A ``Repository`` if the given jsonDict is a valid Repository, or `nil` otherwise
     func repositoryFromJsonDict(jsonDict: [String: [String: Any]]?) -> Repository? {
         guard let jsonDict = jsonDict else { return nil }
@@ -138,9 +154,11 @@ class GrammarJsonLoader {
 
     /// Given a JSON dictionary and the name of the dictionary, returns a ``Pattern`` if the JSON's keys matches the
     /// properties of any ``Pattern``
+    /// 
     /// - Parameters:
     ///   - json: The JSON dictionary to turn into a pattern
     ///   - keyName: The name of the pattern, used as a fallback.
+    /// 
     /// - Returns: A ``Pattern`` if the JSON's data matches that of a ``Pattern`` type, `nil` if not.
     func patternFromJson(json: [String: Any], keyName: String) -> Pattern? {
         // if the json contains a `begin`, `beginCaptures`, `end`,
@@ -197,7 +215,9 @@ class GrammarJsonLoader {
     ///     // ....
     /// }
     /// ```
+    /// 
     /// - Parameter captures: A JSON dictionary matching the above format
+    /// 
     /// - Returns: An array of strings, representing the values of all the `name` fields in the dictionary
     func jsonDictToStringArray(captures: [String: [String: String]]?) -> [String] {
         guard let captures = captures else { return [] }
@@ -221,7 +241,9 @@ class GrammarJsonLoader {
     ///     // ....
     /// }
     /// ```
+    /// 
     /// - Parameter captures: A JSON dictionary
+    /// 
     /// - Returns: An array of ``Capture``s containing ``Pattern``s created from the `patterns` field of the json
     func jsonDictToCaptures(captures: [String: [String: Any]]?) -> [Capture] {
         guard let captures = captures else { return [] }
@@ -267,6 +289,7 @@ extension GrammarJsonLoader {
 
     /// Adds a `String` ``LanguageFile`` pair to the index of languages, overriding any
     /// language that was preexisting sharing the same `language` name.
+    /// 
     /// - Parameters:
     ///   - language: The name of the language to add, eg. "html". Use lowercase.
     ///   - grammar: A closure that returns an optional grammar, called when the grammar for the language is needed.
@@ -278,10 +301,12 @@ extension GrammarJsonLoader {
     }
 
     /// Modifies a property in an existing language
+    /// 
     /// - Parameters:
     ///   - language: The name of the language to modify
     ///   - grammar: A closure that returns an optional grammar. Leave as nil to leave it as it is.
     ///   - fileExtensions: An array of file extensions that the grammar applies to. Leave as nil to leave it as it is.
+    /// 
     /// - Returns: True if something was replaced, false otherwise (language not found or didn't change anything)
     static func modifyLanguageProperty(language: String,
                                        grammar: (() -> Grammar?)? = nil,
@@ -303,15 +328,28 @@ extension GrammarJsonLoader {
     }
 
     /// The language data for a particular language
+    /// 
     /// - Parameter language: The name of the language
+    /// 
     /// - Returns: The data for the language, a ``LanguageFile``
     static func languageFileFor(language: String) -> LanguageFile? { languageFiles[language] }
 
+    /// The language data for a particular file extension
     struct LanguageFile {
+        /// The file extensions that the grammar applies to
         var fileExtensions: Set<String>
-        var grammar: () -> Grammar? // NOTE: grammar is a closure to avoid creating too many Grammars
+
+        /// The closure that returns the grammar for the language
+        /// 
+        /// - Note: grammar is a closure to avoid creating too many Grammars
+        var grammar: () -> Grammar?
     }
 
+    /// Returns the grammar for a given file extension
+    /// 
+    /// - Parameter fileExtension: The file extension to get the grammar for
+    /// 
+    /// - Returns: The grammar for the file extension, or the default grammar if not found
     static func grammarFor(extension fileExtension: String) -> Grammar {
         // see if one is cached already
         if let grammar = loadedGrammars[fileExtension] {
@@ -331,5 +369,6 @@ extension GrammarJsonLoader {
         return languageFiles["text"]!.grammar()!
     }
 
+    /// A cache of loaded grammars
     private static var loadedGrammars: [String: Grammar] = [:]
 }

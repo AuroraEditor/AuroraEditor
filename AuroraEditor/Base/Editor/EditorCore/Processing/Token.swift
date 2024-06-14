@@ -8,18 +8,20 @@
 
 import Foundation
 
+// TODO: @0xWDG Look if this can be removed.
 /// Token
 public struct Token {
     /// Token range
     public var range: NSRange
+
     /// Token scopes
     var scopes: [Scope]
+
     /// Token scope names
     public var scopeNames: [ScopeName] {
         return scopes.map({ $0.name })
     }
 
-    ///
     /// Merges the new token onto the base token and returns a new merged token.
     ///
     /// Both tokens must have the same range.
@@ -32,8 +34,8 @@ public struct Token {
     ///
     /// - parameter base: The token to be merged onto.
     /// - parameter new: The token to merge onto the base.
+    /// 
     /// - returns: The merged token.
-    ///
     static func mergeTokens(base: Token, new: Token) -> Token {
         guard base.range == new.range else {
             fatalError("Should not be merging tokens with different ranges.")
@@ -57,18 +59,27 @@ public struct Token {
         return merged
     }
 
+    /// Merges the new token onto the base token and returns a new merged token.
+    /// 
+    /// - parameter token: The token to merge onto the base.
+    /// 
+    /// - returns: The merged token.
     func mergedWith(_ token: Token) -> Token {
         return Self.mergeTokens(base: self, new: token)
     }
 
     /// Shift token (alias for: `range.shifted`)
+    /// 
     /// - Parameter amount: amount
     public mutating func shift(by amount: Int) {
         range = range.shifted(by: amount)
     }
 
     /// Shift token (alias for: `range.shifted`)
+    /// 
     /// - Parameter amount: amount
+    /// 
+    /// - Returns: The shifted token
     public func shifted(by amount: Int) -> Token {
         var new = self
         new.range = range.shifted(by: amount)

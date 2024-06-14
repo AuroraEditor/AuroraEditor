@@ -8,6 +8,7 @@
 
 import Foundation
 
+// TODO: @0xWDG Look if this can be removed.
 /// The representation of a grammar
 public class Grammar {
 
@@ -29,10 +30,13 @@ public class Grammar {
     /// This grammar's repository of patterns
     public var repository: Repository?
 
+    /// The rules for this grammar
     private var _rules: [Rule]?
 
+    /// The parser that owns this grammar
     internal weak var parser: Parser?
 
+    /// The rules for this grammar
     var rules: [Rule] {
         if let rules = _rules {
             return rules
@@ -42,6 +46,7 @@ public class Grammar {
     }
 
     /// Initialize Grammar
+    /// 
     /// - Parameters:
     ///   - scopeName: Scope name
     ///   - fileTypes: File types
@@ -66,7 +71,9 @@ public class Grammar {
     }
 
     /// Create first line state
+    /// 
     /// - Parameter theme: Theme
+    /// 
     /// - Returns: Line State
     public func createFirstLineState(theme: HighlightTheme = .default) -> LineState {
         return LineState(scopes: [
@@ -80,7 +87,9 @@ public class Grammar {
     }
 
     /// Base Attributes
+    /// 
     /// - Parameter theme: Theme
+    /// 
     /// - Returns: [NSAttributedString.Key: Any]
     public func baseAttributes(forTheme theme: HighlightTheme) -> [NSAttributedString.Key: Any] {
         let line = TokenizedLine(tokens: [
@@ -100,6 +109,9 @@ public class Grammar {
         return str.attributes(at: 0, effectiveRange: nil)
     }
 
+    /// Resolve rules
+    /// 
+    /// - Returns: [Rule]
     private func resolveRules() -> [Rule] {
         guard let parser = parser else {
             fatalError(

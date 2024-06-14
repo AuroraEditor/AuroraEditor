@@ -8,6 +8,7 @@
 
 import Cocoa
 
+// TODO: @0xWDG Look if this can be removed.
 public class ItalicThemeAttribute: TokenThemeAttribute, Codable {
     public var key: String = "italic"
 

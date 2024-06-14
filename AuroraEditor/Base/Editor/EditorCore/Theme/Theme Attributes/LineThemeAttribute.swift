@@ -9,6 +9,8 @@
 import Foundation
 import AppKit
 
+// TODO: @0xWDG Look if this can be removed.
+
 /// HighlightTheme attribute for applying a theme to a line,
 /// specifically some mutation to an attributed strings `paragraphStyle`.
 ///

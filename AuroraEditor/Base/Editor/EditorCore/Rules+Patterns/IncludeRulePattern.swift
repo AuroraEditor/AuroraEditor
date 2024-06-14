@@ -8,14 +8,25 @@
 
 import Foundation
 
+// TODO: @0xWDG Look if this can be removed.
+/// A pattern that includes other patterns.
 public class IncludeRulePattern: Pattern {
-
+    /// The name of the pattern to include.
     var include: String
 
+    /// Includes a pattern identified by its name.
+    /// 
+    /// - Parameter include: The name of the pattern to include.
     public init(include: String) {
         self.include = include
     }
 
+    /// Resolves the include pattern into rules.
+    /// 
+    /// - parameter parser: The parser to use for resolving patterns.
+    /// - parameter grammar: The grammar to use for resolving patterns.
+    /// 
+    /// - returns: The resolved rules.
     public func resolve(parser: Parser, grammar: Grammar) -> [Rule] {
         guard let repo = grammar.repository else {
             fatalError("""

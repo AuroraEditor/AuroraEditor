@@ -10,6 +10,7 @@ import Foundation
 
 import AppKit
 
+// TODO: @0xWDG Look if this can be removed.
 public class LineHeightThemeAttribute: LineThemeAttribute, Codable {
 
     public var key = "line-height"

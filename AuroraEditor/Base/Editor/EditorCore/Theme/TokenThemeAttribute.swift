@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+// TODO: @0xWDG Look if this can be removed.
 /// HighlightTheme attribute for applying a theme to a single token with a given range.
 ///
 /// - Important: Do not try to configure the `paragraphStyle` attribute, as it may not produce the expected

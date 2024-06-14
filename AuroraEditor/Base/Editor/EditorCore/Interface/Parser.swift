@@ -8,16 +8,20 @@
 
 import Foundation
 
+// TODO: @0xWDG Look if this can be removed.
 /// Code Parser
 public class Parser { // swiftlint:disable:this type_body_length
 
     // Must be anchored to the start of the range and enforce word and line boundaries
+    /// Matching options
     static let matchingOptions = NSRegularExpression
         .MatchingOptions(arrayLiteral: .anchored, .withTransparentBounds, .withoutAnchoringBounds)
 
+    /// Grammars
     private let grammars: [Grammar]
 
     /// Initialize Parser
+    /// 
     /// - Parameter grammars: Grammar
     public init(grammars: [Grammar]) {
         self.grammars = grammars
@@ -25,23 +29,39 @@ public class Parser { // swiftlint:disable:this type_body_length
     }
 
     /// Grammar with scope
+    /// 
     /// - Parameter scope: scope
+    /// 
     /// - Returns: Grammar
     public func grammar(withScope scope: String) -> Grammar? {
         return grammars.first(where: { $0.scopeName == scope })
     }
 
-    // swiftlint:disable:next function_body_length function_parameter_count
-    fileprivate func applyCapture(grammar: Grammar,
-                                  pattern: NSRegularExpression,
-                                  capturesToApply: [Capture],
-                                  line: String,
-                                  loc: Int,
-                                  endLoc: Int,
-                                  theme: HighlightTheme,
-                                  state: LineState,
-                                  matchTokens: inout [Token],
-                                  tokens: inout [Token]) {
+    /// Apply capture
+    /// 
+    /// - Parameter grammar: Grammar
+    /// - Parameter pattern: Pattern
+    /// - Parameter capturesToApply: Captures
+    /// - Parameter line: Line
+    /// - Parameter loc: Location
+    /// - Parameter endLoc: End location
+    /// - Parameter theme: Theme
+    /// - Parameter state: LineState
+    /// - Parameter matchTokens: Match tokens
+    /// - Parameter tokens: Tokens
+    fileprivate func applyCapture(
+        // swiftlint:disable:previous function_body_length function_parameter_count
+        grammar: Grammar,
+        pattern: NSRegularExpression,
+        capturesToApply: [Capture],
+        line: String,
+        loc: Int,
+        endLoc: Int,
+        theme: HighlightTheme,
+        state: LineState,
+        matchTokens: inout [Token],
+        tokens: inout [Token]
+    ) {
         // Apply capture groups
         for (index, captureRange) in captures(pattern: pattern, str: line,
                                               in: NSRange(location: loc, length: endLoc - loc)).enumerated() {
@@ -140,11 +160,13 @@ public class Parser { // swiftlint:disable:this type_body_length
     }
 
     /// Tokenize
+    /// 
     /// - Parameters:
     ///   - line: Line
     ///   - state: Line State
     ///   - theme: HighlightTheme
     ///   - range: Range
+    /// 
     /// - Returns: TokenizeResult
     public func tokenize( // swiftlint:disable:this cyclomatic_complexity function_body_length
         line: String,
@@ -349,6 +371,13 @@ public class Parser { // swiftlint:disable:this type_body_length
         return TokenizeResult(state: state, tokenizedLine: tokenizedLine, matchTokens: matchTokens)
     }
 
+    /// Matches
+    /// 
+    /// - Parameter pattern: Pattern
+    /// - Parameter str: String
+    /// - Parameter range: Range
+    /// 
+    /// - Returns: Location of matches
     func matches(pattern: NSRegularExpression, str: String, in range: NSRange) -> Int? {
         let matchRange = pattern.rangeOfFirstMatch(in: str, options: Self.matchingOptions, range: range)
         if matchRange.location != NSNotFound {
@@ -358,6 +387,13 @@ public class Parser { // swiftlint:disable:this type_body_length
         }
     }
 
+    /// Captures
+    /// 
+    /// - Parameter pattern: Pattern
+    /// - Parameter str: String
+    /// - Parameter range: Range
+    /// 
+    /// - Returns: Captures
     func captures(pattern: NSRegularExpression, str: String, in range: NSRange) -> [NSRange] {
         if let match = pattern.firstMatch(in: str, options: Self.matchingOptions, range: range) {
             return (0..<match.numberOfRanges).compactMap { index -> NSRange? in
@@ -372,3 +408,4 @@ public class Parser { // swiftlint:disable:this type_body_length
         }
     }
 }
+// swiftlint:disable:this file_length

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+// TODO: @0xWDG Look if this can be removed.
 /// Base theme attribute protocol
 ///
 /// - Important: Do not just conform to `ThemeAttribute`, instead conform to either `TokenThemeAttribute`

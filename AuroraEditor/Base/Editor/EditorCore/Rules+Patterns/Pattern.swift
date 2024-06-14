@@ -8,7 +8,7 @@
 
 import Foundation
 
-///
+// TODO: @0xWDG Look if this can be removed.
 /// Represents a defined pattern in a grammar.
 ///
 /// The pattern represents one of the following rules:
@@ -17,7 +17,6 @@ import Foundation
 /// - Include rule
 ///
 /// Acts as a definition of a rule which will be created when necessary.
-///
 public protocol Pattern {
 
     ///

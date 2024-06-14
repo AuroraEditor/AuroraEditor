@@ -8,16 +8,29 @@
 
 import Foundation
 
+// TODO: @0xWDG Look if this can be removed.
+/// A rule that matches a pattern.
 public class MatchRule: Rule, Pattern {
-
+    /// The id of the rule.
     public let id: UUID
 
+    /// The grammar that the rule belongs to.
     public weak var grammar: Grammar?
 
+    /// Scope name of the rule.
     let scopeName: ScopeName
+
+    /// The regex pattern to match.
     var match: NSRegularExpression
+
+    /// The captures for the rule.
     var captures: [Capture]
 
+    /// Creates a match rule.
+    /// 
+    /// - parameter name: The name of the rule.
+    /// - parameter match: The regex pattern to match.
+    /// - parameter captures: The captures for the rule.
     public init(
         name: String,
         match: String,
@@ -44,6 +57,12 @@ public class MatchRule: Rule, Pattern {
         self.captures = captures
     }
 
+    /// Resolves the match rule into rules.
+    /// 
+    /// - parameter parser: The parser to use for resolving patterns.
+    /// - parameter grammar: The grammar to use for resolving patterns.
+    /// 
+    /// - returns: The resolved rules.
     public func resolve(parser: Parser, grammar: Grammar) -> [Rule] {
         self.grammar = grammar
         return [self]

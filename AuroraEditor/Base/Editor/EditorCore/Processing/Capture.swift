@@ -8,6 +8,8 @@
 
 import Foundation
 
+// TODO: @0xWDG Look if this can be removed.
+
 ///
 /// The representation of a capture definition.
 ///
@@ -33,13 +35,18 @@ public class Capture: Pattern {
     ///
     /// - parameter name: Scope to apply to the capture.
     /// - parameter patterns: Patterns to apply to the capture.
-    ///
     public init(name: String? = nil, isActive: Bool = true, patterns: [Pattern] = []) {
         self.scopeName = ScopeName(rawValue: name ?? "")
         self.isActive = isActive
         self.patterns = patterns
     }
 
+    /// Resolves the capture into rules.
+    /// 
+    /// - parameter parser: The parser to use for resolving patterns.
+    /// - parameter grammar: The grammar to use for resolving patterns.
+    /// 
+    /// - returns: The resolved rules.
     public func resolve(parser: Parser, grammar: Grammar) -> [Rule] {
         if let rules = rules {
             return rules

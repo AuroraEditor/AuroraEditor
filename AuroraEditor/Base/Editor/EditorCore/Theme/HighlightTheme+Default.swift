@@ -8,7 +8,7 @@
 
 import Foundation
 import AppKit
-
+// TODO: @0xWDG Look if this can be removed.
 public extension HighlightTheme {
     /// Default Highlight theme
     static let `default`: HighlightTheme = HighlightTheme(settings: [

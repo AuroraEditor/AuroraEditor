@@ -8,11 +8,18 @@
 
 import Foundation
 
+// TODO: @0xWDG Look if this can be removed.
+/// Scope name.
 public class ScopeName: RawRepresentable {
-
+    /// The raw value of the scope name.
     public let rawValue: String
+
+    /// The components of the scope name.
     public let components: [String]
 
+    /// Initialize ScopeName
+    /// 
+    /// - Parameter rawValue: Raw value
     public required init(rawValue: String) {
         self.rawValue = rawValue
         self.components = rawValue.split(separator: ".").map(String.init)

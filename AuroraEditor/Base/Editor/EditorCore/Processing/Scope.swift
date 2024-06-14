@@ -8,18 +8,50 @@
 
 import Foundation
 
+// TODO: @0xWDG Look if this can be removed.
+/// Scope for a rule.
 class Scope {
+    /// The name of the scope.
     var name: ScopeName
+
+    /// The rules for this scope.
     var rules: [Rule]
+
+    /// The end pattern for this scope.
     var end: NSRegularExpression?
+
+    /// The attributes to apply to the scope.
     var attributes: [ThemeAttribute]
+
+    /// The attributes to apply to the scope when it is in a selection.
     var inSelectionAttributes: [ThemeAttribute]
+
+    /// The attributes to apply to the scope when it is out of a selection.
     var outSelectionAttributes: [ThemeAttribute]
+
+    /// Whether this scope is a content scope.
     var isContentScope = false
+
+    /// The theme for this scope.
     var theme: HighlightTheme?
+
+    /// The captures for the end pattern.
     var endCaptures: [Capture]
+
+    /// The grammar this scope belongs to.
     var grammar: Grammar?
 
+    /// Initialize Scope
+    /// 
+    /// - Parameter name: Scope name
+    /// - Parameter rules: Rules
+    /// - Parameter end: End
+    /// - Parameter attributes: Attributes
+    /// - Parameter inSelectionAttributes: In selection attributes
+    /// - Parameter outSelectionAttributes: Out selection attributes
+    /// - Parameter isContentScope: Is content scope
+    /// - Parameter endCaptures: End captures
+    /// - Parameter grammar: Grammar
     init(
         name: ScopeName,
         rules: [Rule],
@@ -42,6 +74,15 @@ class Scope {
         self.grammar = grammar
     }
 
+    /// Initialize Scope
+    /// 
+    /// - Parameter name: Scope name
+    /// - Parameter rules: Rules
+    /// - Parameter end: End
+    /// - Parameter theme: Theme
+    /// - Parameter isContentScope: Is content scope
+    /// - Parameter endCaptures: End captures
+    /// - Parameter grammar: Grammar
     init(
         name: ScopeName,
         rules: [Rule],
@@ -64,7 +105,12 @@ class Scope {
 }
 
 extension Scope: Equatable {
-
+    /// Equate
+    /// 
+    /// - Parameter lhs: left hand side
+    /// - Parameter rhs: right hand side
+    /// 
+    /// - Returns: true if equal
     static func == (lhs: Scope, rhs: Scope) -> Bool {
         if lhs.name != rhs.name { return false }
         if lhs.end != rhs.end { return false }
