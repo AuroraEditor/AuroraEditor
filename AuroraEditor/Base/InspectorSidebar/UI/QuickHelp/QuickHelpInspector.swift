@@ -11,12 +11,15 @@ import SwiftUI
 // will give you a summary, decleration and discussion.
 struct QuickHelpInspector: View {
 
+    /// The preferences model
     @ObservedObject
     var preferences: AppPreferencesModel = .shared
 
+    /// The workspace document
     @EnvironmentObject
     var workspace: WorkspaceDocument
 
+    /// The view body
     var body: some View {
         VStack(alignment: .leading) {
             Text("Quick Help")
@@ -46,6 +49,7 @@ struct QuickHelpInspector: View {
         .padding(5)
     }
 
+    /// The view body when there is no quick help
     @ViewBuilder
     var noQuickHelp: some View {
         Text("No Quick Help")

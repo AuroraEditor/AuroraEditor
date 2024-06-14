@@ -8,13 +8,17 @@
 
 import SwiftUI
 
+/// The toolbar at the top of the inspector sidebar.
 struct InspectorSidebarToolbarTop: View {
+    /// The active selection
     @Binding
     private var selection: Int
 
+    /// Targeted
     @State
     var targeted: Bool = true
 
+    /// Icons
     @State
     private var icons = [
         InspectorDockIcon(
@@ -34,19 +38,28 @@ struct InspectorSidebarToolbarTop: View {
         )
     ]
 
+    /// Has changed location
     @State
     private var hasChangedLocation: Bool = false
 
+    /// Dragging item
     @State
     private var draggingItem: InspectorDockIcon?
 
+    /// Drug item location
     @State
     private var drugItemLocation: CGPoint?
 
+    /// Initialize with a selection
+    /// 
+    /// - Parameter selection: the selection
+    /// 
+    /// - Returns: a new InspectorSidebarToolbarTop instance
     init(selection: Binding<Int>) {
         self._selection = selection
     }
 
+    /// The view body
     var body: some View {
         HStack(spacing: 10) {
             ForEach(icons) { icon in
@@ -77,6 +90,13 @@ struct InspectorSidebarToolbarTop: View {
         .animation(.default, value: icons)
     }
 
+    /// Make an inspector icon
+    /// 
+    /// - Parameter systemImage: the system image
+    /// - Parameter title: the title
+    /// - Parameter id: the id
+    /// 
+    /// - Returns: a new inspector icon
     func makeInspectorIcon(systemImage: String, title: String, id: Int) -> some View {
         Button {
             selection = id
@@ -99,6 +119,12 @@ struct InspectorSidebarToolbarTop: View {
         .buttonStyle(.plain)
     }
 
+    /// Get image (safe)
+    /// 
+    /// - Parameter named: the name
+    /// - Parameter accesibilityDescription: the accesibility description
+    /// 
+    /// - Returns: an image
     private func getSafeImage(named: String, accesibilityDescription: String?) -> Image {
         if let nsImage = NSImage(systemSymbolName: named, accessibilityDescription: accesibilityDescription) {
             return Image(nsImage: nsImage)
@@ -107,27 +133,42 @@ struct InspectorSidebarToolbarTop: View {
         }
     }
 
+    /// Inspector dock icon
     private struct InspectorDockIcon: Identifiable, Equatable {
+        /// The image name
         let imageName: String
+
+        /// The title
         let title: String
+
+        /// The identifier
         var id: Int
     }
 
+    /// Inspector sidebar dock icon delegate
     private struct InspectorSidebarDockIconDelegate: DropDelegate {
+        /// The item
         let item: InspectorDockIcon
 
+        /// Current inspector dock icon
         @Binding
         var current: InspectorDockIcon?
 
+        /// Icons
         @Binding
         var icons: [InspectorDockIcon]
 
+        /// Has changed location
         @Binding
         var hasChangedLocation: Bool
 
+        /// Drug item location
         @Binding
         var drugItemLocation: CGPoint?
 
+        /// Drop entered
+        /// 
+        /// - Parameter info: the drop info
         func dropEntered(info: DropInfo) {
             if current == nil {
                 current = item
@@ -146,14 +187,23 @@ struct InspectorSidebarToolbarTop: View {
             }
         }
 
+        /// Drop exited
+        /// 
+        /// - Parameter info: the drop info
         func dropExited(info: DropInfo) {
             drugItemLocation = nil
         }
 
+        /// Drop updated
+        /// 
+        /// - Parameter info: the drop info
         func dropUpdated(info: DropInfo) -> DropProposal? {
             DropProposal(operation: .move)
         }
 
+        /// Perform drop
+        /// 
+        /// - Parameter info: the drop info
         func performDrop(info: DropInfo) -> Bool {
             hasChangedLocation = false
             drugItemLocation = nil

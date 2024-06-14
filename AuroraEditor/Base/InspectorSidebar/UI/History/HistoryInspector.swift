@@ -12,21 +12,29 @@ import Version_Control
 // useful particularly if you are using git.
 struct HistoryInspector: View {
 
+    /// The model for the History Inspector
     @ObservedObject
     private var model: HistoryInspectorModel
 
+    /// The preferences model
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// The selected commit history
     @State
     var selectedCommitHistory: CommitHistory?
 
-    /// Initialize with GitClient
-    /// - Parameter gitClient: a GitClient
+    /// Initialize with a workspace URL and a file URL
+    ///
+    /// - Parameter workspaceURL: the current workspace URL
+    /// - Parameter fileURL: the current file URL
+    /// 
+    /// - Returns: a new HistoryInspector instance
     init(workspaceURL: URL, fileURL: String) {
         self.model = .init(workspaceURL: workspaceURL, fileURL: fileURL)
     }
 
+    /// The body of the view
     var body: some View {
         VStack {
             if prefs.sourceControlActive() {

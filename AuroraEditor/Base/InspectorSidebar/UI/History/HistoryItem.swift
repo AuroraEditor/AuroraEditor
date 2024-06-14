@@ -11,11 +11,14 @@ import Version_Control
 // The source control history cell view
 struct HistoryItem: View {
 
+    /// The commit history
     var commit: CommitHistory
 
+    /// The selected commit history
     @Binding
     var selection: CommitHistory?
 
+    /// Show an popup?
     private var showPopup: Binding<Bool> {
         Binding<Bool> {
             selection == commit
@@ -28,13 +31,22 @@ struct HistoryItem: View {
         }
     }
 
-    @Environment(\.openURL) private var openCommit
+    /// Open URL environment
+    @Environment(\.openURL)
+    private var openCommit
 
+    /// Initialize with a commit history and a selection
+    /// 
+    /// - Parameter commit: the commit history
+    /// - Parameter selection: the selection
+    /// 
+    /// - Returns: a new HistoryItem instance
     init(commit: CommitHistory, selection: Binding<CommitHistory?>) {
         self.commit = commit
         self._selection = selection
     }
 
+    /// The view body
     var body: some View {
         VStack(alignment: .trailing) {
             HStack(alignment: .top) {

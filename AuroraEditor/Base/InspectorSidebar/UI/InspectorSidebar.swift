@@ -12,13 +12,22 @@ import SwiftUI
 // views that the inspector has like the file inspector, history and
 // Quick Help.
 struct InspectorSidebar: View {
+    /// The active state of the control
+    @Environment(\.controlActiveState)
+    private var activeState
 
-    @Environment(\.controlActiveState) private var activeState
-    @EnvironmentObject private var workspace: WorkspaceDocument
-    @State private var selection: Int = 0
+    /// The workspace
+    @EnvironmentObject
+    private var workspace: WorkspaceDocument
 
+    /// The current selection
+    @State
+    private var selection: Int = 0
+
+    /// The preferences model
     let prefs: AppPreferencesModel
 
+    /// The view body
     var body: some View {
         VStack {
             if let selectedItem = selectedFileItem {
@@ -49,6 +58,7 @@ struct InspectorSidebar: View {
         .opacity(activeState == .inactive ? 0.45 : 1)
     }
 
+    /// The selected file item
     private var selectedFileItem: FileItem? {
         guard let selectedId = workspace.selectionState.selectedId else { return nil }
         return workspace.selectionState.openFileItems.first { $0.tabID == selectedId }
