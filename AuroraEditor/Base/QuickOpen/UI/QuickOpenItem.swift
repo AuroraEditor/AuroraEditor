@@ -8,10 +8,20 @@
 
 import SwiftUI
 
+/// A view that represents a single item in the quick open list.
 public struct QuickOpenItem: View {
+    /// Base directory
     private let baseDirectory: URL
+
+    /// File item
     private let fileItem: FileSystemClient.FileItem
 
+    /// Initialize a new QuickOpenItem
+    /// 
+    /// - Parameter baseDirectory: base directory
+    /// - Parameter fileItem: file item
+    /// 
+    /// - Returns: a new QuickOpenItem
     public init(
         baseDirectory: URL,
         fileItem: FileSystemClient.FileItem
@@ -20,6 +30,7 @@ public struct QuickOpenItem: View {
         self.fileItem = fileItem
     }
 
+    /// The view body.
     public var body: some View {
         HStack(spacing: 8) {
             Image(nsImage: NSWorkspace.shared.icon(forFile: fileItem.url.path))

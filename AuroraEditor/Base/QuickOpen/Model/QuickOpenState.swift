@@ -9,18 +9,36 @@
 import Combine
 import Foundation
 
+/// Quick open state
 public final class QuickOpenState: ObservableObject {
-    @Published var openQuicklyQuery: String = ""
-    @Published var openQuicklyFiles: [FileSystemClient.FileItem] = []
-    @Published var isShowingOpenQuicklyFiles: Bool = false
+    /// Open quickly query
+    @Published
+    var openQuicklyQuery: String = ""
 
+    /// Open quickly files
+    @Published
+    var openQuicklyFiles: [FileSystemClient.FileItem] = []
+
+    /// Is showing open quickly files
+    @Published
+    var isShowingOpenQuicklyFiles: Bool = false
+
+    /// File URL
     public let fileURL: URL
+
+    /// Queue
     private let queue = DispatchQueue(label: "com.auroraeditor.quickOpen.searchFiles")
 
+    /// Initialize a new QuickOpenState
+    /// 
+    /// - Parameter fileURL: file URL
+    /// 
+    /// - Returns: a new QuickOpenState
     public init(fileURL: URL) {
         self.fileURL = fileURL
     }
 
+    /// Fetch open quickly
     func fetchOpenQuickly() {
         guard !openQuicklyQuery.isEmpty else {
             openQuicklyFiles = []

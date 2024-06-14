@@ -9,18 +9,34 @@
 import SwiftUI
 
 public struct QuickOpenPreviewView: View {
+    /// Queue
     private let queue = DispatchQueue(label: "com.auroraeditor.quickOpen.preview")
-    private let item: FileSystemClient.FileItem
-    @State private var content: String = ""
-    @State private var loaded = false
-    @State private var error: String?
 
-    public init(
-        item: FileSystemClient.FileItem
-    ) {
+    /// File item
+    private let item: FileSystemClient.FileItem
+
+    /// Initialize a new QuickOpenPreviewView
+    @State
+    private var content: String = ""
+
+    /// Initialize a new QuickOpenPreviewView
+    @State
+    private var loaded = false
+
+    /// Initialize a new QuickOpenPreviewView
+    @State
+    private var error: String?
+
+    /// Initialize a new QuickOpenPreviewView
+    /// 
+    /// - Parameter item: file item
+    /// 
+    /// - Returns: a new QuickOpenPreviewView
+    public init(item: FileSystemClient.FileItem) {
         self.item = item
     }
 
+    /// The view body.
     public var body: some View {
         VStack {
             if let codeFile = try? CodeFileDocument(
