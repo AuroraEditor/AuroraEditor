@@ -8,14 +8,19 @@
 
 import SwiftUI
 
+/// A button to split the terminal.
 internal struct StatusBarSplitTerminalButton: View {
+
+    /// The model of the status bar.
     @ObservedObject
     private var model: StatusBarModel
 
+    /// Initialize with model.
     internal init(model: StatusBarModel) {
         self.model = model
     }
 
+    /// The view body.
     internal var body: some View {
         Button {
             // todo

@@ -11,7 +11,6 @@ import SwiftUI
 /// # StatusBarModel
 ///
 /// A model class to host and manage data for the ``StatusBarView``
-///
 public class StatusBarModel: ObservableObject {
 
     // TODO: Implement logic for updating values
@@ -75,7 +74,8 @@ public class StatusBarModel: ObservableObject {
     /// The minimum height of the drawe
     private(set) var minHeight: Double = 100
 
-    /// Initialize with a GitClient
+    /// Initialize with a workspace URL
+    /// 
     /// - Parameter workspaceURL: the current workspace URL
     public init(workspaceURL: URL) {
         self.workspaceURL = workspaceURL

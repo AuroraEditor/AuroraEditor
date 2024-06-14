@@ -12,8 +12,10 @@ import SnapshotTesting
 import SwiftUI
 import XCTest
 
+/// Unit tests for the StatusBar.
 final class StatusBarUnitTests: XCTestCase {
 
+    /// Test the status bar model in light mode.
     func testStatusBarCollapsedLight() throws {
         let view = StatusBarView(model: .init(workspaceURL: URL(fileURLWithPath: "")))
         let hosting = NSHostingView(rootView: view)
@@ -22,6 +24,7 @@ final class StatusBarUnitTests: XCTestCase {
         assertSnapshot(matching: hosting, as: .image)
     }
 
+    /// Test the status bar model in dark mode.
     func testStatusBarCollapsedDark() throws {
         let view = StatusBarView(model: .init(workspaceURL: URL(fileURLWithPath: "")))
         let hosting = NSHostingView(rootView: view)
@@ -30,6 +33,7 @@ final class StatusBarUnitTests: XCTestCase {
         assertSnapshot(matching: hosting, as: .image)
     }
 
+    /// Test the status bar model in light mode.
     func testStatusBarExpandedLight() throws {
         let model = StatusBarModel(workspaceURL: URL(fileURLWithPath: ""))
         model.selectedTab = 1
@@ -42,6 +46,7 @@ final class StatusBarUnitTests: XCTestCase {
         assertSnapshot(matching: hosting, as: .image(size: .init(width: 600, height: 350)))
     }
 
+    /// Test the status bar model in dark mode.
     func testStatusBarExpandedDark() throws {
         let model = StatusBarModel(workspaceURL: URL(fileURLWithPath: ""))
         model.selectedTab = 1

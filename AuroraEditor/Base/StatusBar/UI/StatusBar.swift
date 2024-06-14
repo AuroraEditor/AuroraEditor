@@ -18,21 +18,27 @@ import SwiftUI
 /// host a terminal or additional debug information
 ///
 public struct StatusBarView: View {
+
+    /// The active state of the control
     @Environment(\.controlActiveState)
     private var controlActive
 
+    /// The model of the status bar
     @ObservedObject
     private var model: StatusBarModel
 
+    /// The workspace document
     @EnvironmentObject
     private var workspace: WorkspaceDocument
 
     /// Initialize with model
+    /// 
     /// - Parameter model: The statusbar model
     init(model: StatusBarModel) {
         self.model = model
     }
 
+    /// The view body
     public var body: some View {
         VStack(spacing: 0) {
             bar

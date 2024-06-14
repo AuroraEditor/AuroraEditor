@@ -12,7 +12,9 @@ import Combine
 /// Run commands in shell
 public class ShellClient {
     /// Generate a process and pipe to run commands
+    /// 
     /// - Parameter args: commands to run
+    /// 
     /// - Returns: command output
     func generateProcessAndPipe(_ args: [String]) -> (Process, Pipe) {
         var arguments = ["-c"]
@@ -41,7 +43,9 @@ public class ShellClient {
     }
 
     /// Run a command with Publisher
+    /// 
     /// - Parameter args: command to run
+    /// 
     /// - Returns: command output
     @discardableResult
     func runLive(_ args: String...) -> AnyPublisher<String, Never> {
@@ -78,6 +82,7 @@ public class ShellClient {
     }
 
     /// Shell client
+    /// 
     /// - Returns: description
     static func live() -> ShellClient {
         return ShellClient()

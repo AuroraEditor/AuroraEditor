@@ -14,8 +14,10 @@ import Foundation
 public struct BracketCount {
     /// Round bracket count
     public var roundBracketCount: Int
+
     /// Curly bracket count
     public var curlyBracketCount: Int
+
     /// Square bracket count
     public var squareBracketCount: Int
 
@@ -27,8 +29,10 @@ public struct BracketCount {
 public enum BracketType {
     /// Round
     case round
+
     /// Curly
     case curly
+
     /// Square
     case square
 }
@@ -37,6 +41,7 @@ public enum BracketType {
 public enum BracketDisplayType {
     /// Seperated
     case seperated
+
     /// Textual
     case textual
 }

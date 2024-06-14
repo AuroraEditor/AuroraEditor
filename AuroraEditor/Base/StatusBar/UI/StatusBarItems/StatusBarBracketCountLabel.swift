@@ -8,20 +8,29 @@
 
 import SwiftUI
 
+/// A label that displays the bracket count.
 internal struct StatusBarBracketCountLabel: View {
+
+    /// The active state of the control.
     @Environment(\.controlActiveState)
     private var controlActive
 
+    /// The model of the status bar.
     @ObservedObject
     private var model: StatusBarModel
 
+    /// The workspace document.
     @EnvironmentObject
     private var workspace: WorkspaceDocument
 
+    /// Initialize with model.
+    /// 
+    /// - Parameter model: The statusbar model.
     internal init(model: StatusBarModel) {
         self.model = model
     }
 
+    /// The view body.
     internal var body: some View {
         HStack {
             if model.bracketDisplay == .seperated {
@@ -51,10 +60,12 @@ internal struct StatusBarBracketCountLabel: View {
         .onHover { isHovering($0) }
     }
 
+    /// The foreground color of the text.
     private var foregroundColor: Color {
         controlActive == .inactive ? Color(nsColor: .disabledControlTextColor) : .primary
     }
 
+    /// The view builder for the text.
     @ViewBuilder
     func textForString(string: String) -> some View {
         GroupBox {

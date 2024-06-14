@@ -8,17 +8,25 @@
 
 import SwiftUI
 
+/// A selector for the indent of the status bar.
 internal struct StatusBarIndentSelector: View {
+
+    /// The model of the status bar.
     @ObservedObject
     private var model: StatusBarModel
 
+    /// The preferences of the app.
     @StateObject
     private var prefs: AppPreferencesModel = .shared
 
+    /// Initialize with model.
+    /// 
+    /// - Parameter model: The statusbar model.
     internal init(model: StatusBarModel) {
         self.model = model
     }
 
+    /// The view body.
     internal var body: some View {
         Menu {
             Button {} label: {

@@ -8,14 +8,21 @@
 
 import SwiftUI
 
+/// A selector for the line end of the status bar.
 internal struct StatusBarLineEndSelector: View {
+
+    /// The model of the status bar.
     @ObservedObject
     private var model: StatusBarModel
 
+    /// Initialize with model.
+    /// 
+    /// - Parameter model: The statusbar model.
     internal init(model: StatusBarModel) {
         self.model = model
     }
 
+    /// The view body.
     internal var body: some View {
         Menu {
             // LF, CRLF

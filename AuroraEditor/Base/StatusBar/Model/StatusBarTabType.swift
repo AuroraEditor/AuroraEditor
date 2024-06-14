@@ -10,11 +10,19 @@ import Foundation
 
 /// A collection of types describing possible tabs in the Status Bar.
 public enum StatusBarTabType: String, CaseIterable, Identifiable {
+    /// The terminal tab.
     case terminal
+
+    /// The debugger tab.
     case debugger
+
+    /// The output tab.
     case output
 
+    /// The id of the tab.
     public var id: String { self.rawValue }
+
+    /// All tab options.
     public static var allOptions: [String] {
         StatusBarTabType.allCases.map(\.rawValue.capitalized)
     }
