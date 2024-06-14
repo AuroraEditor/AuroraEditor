@@ -8,7 +8,11 @@
 
 import Foundation
 
+/// Text encoding
 struct TextEncoding: Identifiable, Hashable {
+    /// Name
     let name: String
+
+    /// Identifier
     let id: String
 }

@@ -9,15 +9,22 @@
 import Foundation
 import Version_Control
 
+/// The model for the History Inspector
 public final class HistoryInspectorModel: ObservableObject {
 
     /// The state of the current History Inspector View
     enum State {
+        /// Loading
         case loading
+
+        /// Error
         case error
+
+        /// Success
         case success
     }
 
+    /// The current state of the History Inspector
     @Published
     var state: State = .loading
 
@@ -35,8 +42,11 @@ public final class HistoryInspectorModel: ObservableObject {
     public var commitHistory: [CommitHistory]
 
     /// Initialize with a GitClient
+    /// 
     /// - Parameter workspaceURL: the current workspace URL
+    /// - Parameter fileURL: the current file URL
     ///
+    /// - Returns: a new HistoryInspectorModel instance
     public init(workspaceURL: URL, fileURL: String) {
         self.workspaceURL = workspaceURL
         self.fileURL = fileURL

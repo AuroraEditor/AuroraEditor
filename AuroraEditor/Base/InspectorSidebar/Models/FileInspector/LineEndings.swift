@@ -8,7 +8,11 @@
 
 import Foundation
 
+/// Line endings
 struct LineEndings: Identifiable, Hashable {
+    /// Name
     let name: String
+
+    /// Identifier
     let id: String
 }

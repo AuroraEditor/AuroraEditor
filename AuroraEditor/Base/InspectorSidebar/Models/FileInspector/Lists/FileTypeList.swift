@@ -11,33 +11,40 @@ import Foundation
 /// A collection of file types and their associated extensions,
 ///  which can be selected in the inspector to override default values
 final class FileTypeList {
+    /// Aurora Editor project file
     var languageTypeAuroraEditor = [
         LanguageType(name: "Aurora Editor Project", ext: "aeproj")
     ]
 
+    /// Objective-C source file
     var languageTypeObjCList = [
         LanguageType(name: "Objective-C(++) Source", ext: "m")
     ]
 
+    /// C source file
     var sourcecodeCList = [
         LanguageType(name: "C Header", ext: "h"),
         LanguageType(name: "C Source", ext: "c")
     ]
 
+    /// C++ source file
     var sourcecodeCPlusList = [
         LanguageType(name: "C++ Header", ext: "hpp"),
         LanguageType(name: "C++ Source", ext: "cpp")
     ]
 
+    /// Swift source file
     var sourcecodeSwiftList = [
         LanguageType(name: "Swift Source", ext: "swift")
     ]
 
+    /// Assembly source file
     var sourcecodeAssemblyList = [
         LanguageType(name: "Assembly", ext: "asm"),
         LanguageType(name: "LLVM Assembly", ext: "ll")
     ]
 
+    /// Source code script file
     var sourcecodeScriptList = [
         LanguageType(name: "AppleScript Uncompiled Source", ext: "?ASUS"),
         LanguageType(name: "JavaScript Source", ext: "js"),
@@ -47,6 +54,7 @@ final class FileTypeList {
         LanguageType(name: "Ruby Script", ext: "rb")
     ]
 
+    /// Source code various files
     var sourcecodeVariousList = [
         LanguageType(name: "Ada Source", ext: "ads"),
         LanguageType(name: "DTrace Source", ext: "dtrace"),
@@ -64,6 +72,7 @@ final class FileTypeList {
         LanguageType(name: "Rez Source", ext: "r")
     ]
 
+    /// Property list files
     var propertyList = [
         LanguageType(name: "Property List Binary", ext: "bplist"),
         LanguageType(name: "Property List Text", ext: "?pplist"),
@@ -71,18 +80,21 @@ final class FileTypeList {
         LanguageType(name: "XML", ext: "xml")
     ]
 
+    /// Shell script files
     var shellList = [
         LanguageType(name: "Bash Shell Script", ext: "sh"),
         LanguageType(name: "Shell Script", ext: "command"),
         LanguageType(name: "CSH Shell Script", ext: "csh")
     ]
 
+    /// Mach-O files
     var machOList = [
         LanguageType(name: "Mach-O Object Code", ext: "o"),
         LanguageType(name: "Mach-O Dynamic Library", ext: "dylb"),
         LanguageType(name: "Mach-O Bundle", ext: "bundle")
     ]
 
+    /// Text files
     var textList = [
         LanguageType(name: "Cascading Style Sheets", ext: "css"),
         LanguageType(name: "HTML", ext: "html"),
@@ -93,6 +105,7 @@ final class FileTypeList {
         LanguageType(name: "YAML", ext: "yaml")
     ]
 
+    /// Audio files
     var audioList = [
         LanguageType(name: "AIFF Audio", ext: "aiff"),
         LanguageType(name: "MIDI Audio", ext: "midi"),
@@ -101,6 +114,7 @@ final class FileTypeList {
         LanguageType(name: "AU Audio", ext: "au")
     ]
 
+    /// Image files
     var imageList = [
         LanguageType(name: "BMP Image", ext: "bmp"),
         LanguageType(name: "GIF Image", ext: "gif"),
@@ -113,12 +127,14 @@ final class FileTypeList {
         LanguageType(name: "TIFF Image", ext: "tiff")
     ]
 
+    /// Video files
     var videoList = [
         LanguageType(name: "AVI Video", ext: "avi"),
         LanguageType(name: "MPEG Video", ext: "mp4"),
         LanguageType(name: "QuickTime Video", ext: "mov")
     ]
 
+    /// Archive files
     var archiveList = [
         LanguageType(name: "BinHex Archive", ext: "binhex"),
         LanguageType(name: "J2EE Enterprise Archive", ext: "j2ee"),
@@ -131,6 +147,7 @@ final class FileTypeList {
         LanguageType(name: "tar Archive", ext: "tar")
     ]
 
+    /// Other files
     var otherList = [
         LanguageType(name: "AppleScript", ext: "applescript"),
         LanguageType(name: "AppleScript Script Suite Definition", ext: "scpt"),

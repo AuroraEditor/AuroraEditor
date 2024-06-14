@@ -8,7 +8,11 @@
 
 import Foundation
 
+/// Ident using
 struct IndentUsing: Identifiable, Hashable {
+    /// Name
     let name: String
+
+    /// Identifier
     let id: String
 }

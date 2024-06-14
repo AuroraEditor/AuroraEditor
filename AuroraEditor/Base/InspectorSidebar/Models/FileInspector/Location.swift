@@ -8,7 +8,11 @@
 
 import Foundation
 
+/// File location
 struct FileLocation: Identifiable, Hashable {
+    /// Name
     let name: String
+
+    /// Identifier
     let id: String
 }
