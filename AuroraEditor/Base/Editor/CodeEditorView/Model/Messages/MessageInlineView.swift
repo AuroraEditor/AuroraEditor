@@ -13,11 +13,14 @@ import SwiftUI
 ///
 /// NB: The array of messages may not be empty.
 struct MessageInlineView: View {
+    /// Messages
     let messages: [Message]
+
+    /// Theme
     let theme: Message.Theme
 
+    /// The view body
     var body: some View {
-
         let categories = messagesByCategory(messages).map { $0.key }
 
         GeometryReader { geometryProxy in

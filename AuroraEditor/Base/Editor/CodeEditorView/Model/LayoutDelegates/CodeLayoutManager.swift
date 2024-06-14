@@ -11,8 +11,16 @@ import AppKit
 /// Customised layout manager for code layout.
 class CodeLayoutManager: NSLayoutManager {
 
+    /// The gutter view associated with this layout manager.
     weak var gutterView: GutterView?
 
+    /// Process editing for the text storages
+    /// 
+    /// - Parameter textStorage: The text storage
+    /// - Parameter editMask: The edit mask
+    /// - Parameter newCharRange: The new character range
+    /// - Parameter delta: The change in length
+    /// - Parameter invalidatedCharRange: The invalidated character range
     override func processEditing(for textStorage: NSTextStorage,
                                  edited editMask: TextStorageEditActions,
                                  range newCharRange: NSRange,
@@ -43,6 +51,9 @@ class CodeLayoutManager: NSLayoutManager {
     /// Custom background drawing is done first, then default background drawing is done,
     /// potentially overriding the custom background drawing. Inspiration from
     /// https://instagram-engineering.com/building-type-mode-for-stories-on-ios-and-android-8804e927feba
+    /// 
+    /// - Parameter glyphsToShow: The range of glyphs to show
+    /// - Parameter origin: The origin
     override public func drawBackground(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
         defer {
             // Call super last to apply normal highlighting with higher priority.
@@ -110,6 +121,9 @@ class CodeLayoutManager: NSLayoutManager {
         })
     }
 
+    /// Get the block rect for the given range.
+    /// 
+    /// - Parameter range: The range
     func getBlockRect(forRange range: NSRange) -> NSRect {
         var targetRange = range
 
@@ -145,6 +159,12 @@ class CodeLayoutManager: NSLayoutManager {
     }
 
     // Adapted from: https://stackoverflow.com/a/44303971
+    /// Fill the rounded background rect array.
+    /// 
+    /// - Parameter rectArray: The rect array
+    /// - Parameter rectCount: The rect count
+    /// - Parameter color: The color
+    /// - Parameter cornerRadius: The corner radius
     func fillRoundedBackgroundRectArray(_ rectArray: UnsafePointer<NSRect>,
                                         count rectCount: Int,
                                         color: NSColor,
@@ -157,6 +177,10 @@ class CodeLayoutManager: NSLayoutManager {
         drawBackground(path: path, cornerRadius: cornerRadius)
     }
 
+    /// Draw the background.
+    /// 
+    /// - Parameter path: The path
+    /// - Parameter cornerRadius: The corner radius
     private func drawBackground(path: CGPath, cornerRadius: CGFloat) {
         let cgContext = NSGraphicsContext.current?.cgContext
         cgContext?.setLineWidth(cornerRadius * 2.0)
@@ -169,6 +193,11 @@ class CodeLayoutManager: NSLayoutManager {
         cgContext?.drawPath(using: .fillStroke)
     }
 
+    /// Get the rounded background path.
+    /// 
+    /// - Parameter rectArray: The rect array
+    /// - Parameter rectCount: The rect count
+    /// - Parameter cornerRadius: The corner radius
     func getRoundedBackgroundPath(_ rectArray: UnsafePointer<NSRect>,
                                   count rectCount: Int,
                                   cornerRadius: CGFloat) -> CGPath {
@@ -208,6 +237,11 @@ class CodeLayoutManager: NSLayoutManager {
         return path
     }
 
+    /// Fill the rounded background rect.
+    /// 
+    /// - Parameter rect: The rect
+    /// - Parameter color: The color
+    /// - Parameter cornerRadius: The corner radius
     func fillRoundedBackgroundRect(_ rect: NSRect, color: NSColor, cornerRadius: CGFloat) {
         let path = CGMutablePath()
 
@@ -223,9 +257,8 @@ extension NSLayoutManager {
 
     /// Enumerate the fragment rectangles covering the characters located on the line with the given character index.
     ///
-    /// - Parameters:
-    ///   - charIndex: The character index determining the line whose rectangles we want to enumerate.
-    ///   - block: Block that gets invoked once for every fragement rectangles on that line.
+    /// - Parameter charIndex: The character index determining the line whose rectangles we want to enumerate.
+    /// - Parameter block: Block that gets invoked once for every fragement rectangles on that line.
     func enumerateFragmentRects(forLineContaining charIndex: Int, using block: @escaping (CGRect) -> Void) {
         guard let text = textStorage?.string as NSString? else { return }
 

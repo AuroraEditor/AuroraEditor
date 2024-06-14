@@ -11,6 +11,8 @@ import AppKit
 extension CodeView {
     /// Update the layout of the specified message view if its geometry got invalidated by
     /// `CodeTextContainer.lineFragmentRect(forProposedRect:at:writingDirection:remaining:)`.
+    /// 
+    /// - Parameter id: The ID of the message view to update.
     func layoutMessageView(
         identifiedBy id: UUID
     ) {
@@ -76,6 +78,8 @@ extension CodeView {
     }
 
     /// Adds a new message to the set of messages for this code view.
+    /// 
+    /// - Parameter message: The message to add.
     func report(message: Located<Message>) {
         guard let messageBundle = codeStorageDelegate.add(message: message) else { return }
 
@@ -83,6 +87,8 @@ extension CodeView {
     }
 
     /// Removes a given message. If it doesn't exist, do nothing. This function is quite expensive.
+    /// 
+    /// - Parameter message: The message to retract.
     func retract(message: Message) {
         guard let (messageBundle, line) = codeStorageDelegate.remove(message: message) else { return }
 
@@ -92,6 +98,9 @@ extension CodeView {
     /// Given a new or updated message bundle, update the corresponding message view appropriately.
     /// This includes covering the two special cases, where we create a new view or we remove a view for\
     ///  good (as its last message was deleted).
+    /// 
+    /// - Parameter messageBundle: The message bundle to update the view for.
+    /// - Parameter line: The line where the message bundle is located.
     private func updateMessageView(for messageBundle: LineInfo.MessageBundle, at line: Int) {
         guard let charRange = codeStorageDelegate.lineMap.lookup(line: line)?.range else { return }
 

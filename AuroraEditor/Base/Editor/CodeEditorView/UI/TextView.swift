@@ -17,12 +17,23 @@ protocol TextView {
     associatedtype Font
 
     // This is necessary as these members are optional in AppKit and not optional in UIKit.
+
+    /// The text view's layout manager.
     var optLayoutManager: NSLayoutManager? { get }
+
+    /// The text view's text container.
     var optTextContainer: NSTextContainer? { get }
+
+    /// The text view's text storage.
     var optCodeStorage: CodeStorage? { get }
 
+    /// The text view's background color.
     var textBackgroundColor: Color? { get }
+
+    /// The text view's font.
     var textFont: Font? { get }
+
+    /// The text view's text color.
     var textContainerOrigin: CGPoint { get }
 
     /// The text displayed by the text view.
@@ -43,6 +54,8 @@ protocol TextView {
     var documentVisibleRect: CGRect { get }
 
     /// Temporarily highlight the visible part of the given range.
+    /// 
+    /// - Parameter range: The range to highlight.
     func showFindIndicator(for range: NSRange)
 }
 

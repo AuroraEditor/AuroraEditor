@@ -11,10 +11,12 @@ import System
 
 /// Location in a text file.
 public struct Location {
-    /// Fi;le
+    /// File
     public let file: FilePath
+
     /// Line
     public let line: Int
+
     /// Column
     public let column: Int
 
@@ -34,6 +36,7 @@ public struct Location {
 public struct Located<Entity> {
     /// Location
     public let location: Location
+
     /// Entity
     public let entity: Entity
 
@@ -48,12 +51,21 @@ public struct Located<Entity> {
 }
 
 extension Located: Equatable where Entity: Equatable {
+    /// Equate
+    /// 
+    /// - Parameter lhs: left hand side
+    /// - Parameter rhs: right hand side
+    ///
+    /// - Returns: true if equal
     public static func == (lhs: Located<Entity>, rhs: Located<Entity>) -> Bool {
         lhs.entity == rhs.entity
     }
 }
 
 extension Located: Hashable where Entity: Hashable {
+    /// Hash
+    /// 
+    /// - Parameter hasher: hasher
     public func hash(into hasher: inout Hasher) { hasher.combine(entity) }
 }
 
@@ -61,8 +73,10 @@ extension Located: Hashable where Entity: Hashable {
 public struct Span {
     /// Start location
     public let start: Location
+
     /// End line
     public let endLine: Int
+
     /// End Column
     public let endColumn: Int
 

@@ -8,8 +8,14 @@
 
 import AppKit
 
+/// Delegate for the layout manager.
 class CodeLayoutManagerDelegate: NSObject, NSLayoutManagerDelegate {
 
+    /// Layout manager
+    /// 
+    /// - Parameter layoutManager: layout manager
+    /// - Parameter textContainer: text container
+    /// - Parameter proposedRect: proposed rect
     func layoutManager(_ layoutManager: NSLayoutManager,
                        didCompleteLayoutFor textContainer: NSTextContainer?,
                        atEnd layoutFinishedFlag: Bool) {

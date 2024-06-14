@@ -14,10 +14,20 @@ import AppKit
 // MARK: - Visual debugging support
 
 // FIXME: It should be possible to enable this via a defaults setting.
+
+/// Flag to enable visual debugging of the text storage.
 let visualDebugging = false
+
+/// Visual debugging: edited colours
 let visualDebuggingEditedColour = NSColor(red: 0.5, green: 1.0, blue: 0.5, alpha: 0.3)
+
+/// Visual debugging: line colours
 let visualDebuggingLinesColour = NSColor(red: 0.5, green: 0.5, blue: 1.0, alpha: 0.3)
+
+/// Visual debugging: trao;omg colours
 let visualDebuggingTrailingColour = NSColor(red: 1.0, green: 0.5, blue: 0.5, alpha: 0.3)
+
+/// Visual debugging: token colours
 let visualDebuggingTokenColour = NSColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5)
 
 // MARK: - Tokens
@@ -34,7 +44,10 @@ extension NSAttributedString.Key {
 
 /// The supported comment styles.
 enum CommentStyle {
+    /// Single line comments
     case singleLineComment
+
+    /// Nested comments
     case nestedComment
 }
 
@@ -51,22 +64,36 @@ struct LineInfo {
     /// NB: We don't identify a message bundle by the line number on which it appears, because edits further up can
     ///    increase and decrease the line number of a given bundle. We need a stable identifier.
     struct MessageBundle: Identifiable {
+        /// The unique identifier of the message bundle.
         let id: UUID
+
+        /// The messages reported for this line.
         var messages: [Message]
 
+        /// Initialise a message bundle with a set of messages.
+        /// 
+        /// - Parameter messages: The messages to include in the bundle.
         init(messages: [Message]) {
             self.id = UUID()
             self.messages = messages
         }
     }
 
-    var commentDepthStart: Int   // nesting depth for nested comments at the start of this line
-    var commentDepthEnd: Int   // nesting depth for nested comments at the end of this line
+    /// nesting depth for nested comments at the start of this line
+    var commentDepthStart: Int
+
+    /// nesting depth for nested comments at the end of this line  
+    var commentDepthEnd: Int
 
     // FIXME: we are not currently using the following three variables (they are maintained, but they are never useful).
-    var roundBracketDiff: Int   // increase or decrease of the nesting level of round brackets on this line
-    var squareBracketDiff: Int   // increase or decrease of the nesting level of square brackets on this line
-    var curlyBracketDiff: Int   // increase or decrease of the nesting level of curly brackets on this line
+    /// increase or decrease of the nesting level of round brackets on this line
+    var roundBracketDiff: Int
+
+    /// increase or decrease of the nesting level of square brackets on this line
+    var squareBracketDiff: Int
+
+    /// increase or decrease of the nesting level of curly brackets on this line 
+    var curlyBracketDiff: Int
 
     /// The messages reported for this line.
     ///
@@ -76,7 +103,7 @@ struct LineInfo {
 
 // MARK: - Delegate class
 class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
-
+    /// The line map that tracks line information.
     var lineMap = LineMap<LineInfo>(string: "")
 
     /// The message bundle IDs that got invalidated by the last editing operation because the lines to which they were
@@ -87,6 +114,12 @@ class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
     /// needs to be determined before attribute fixing and the like.
     private var processingOneCharacterEdit: Bool?
 
+    /// Textstorage will process editing.
+    /// 
+    /// - Parameter textStorage: The text storage that this delegate serves.
+    /// - Parameter editedMask: The mask of the editing actions that were performed.
+    /// - Parameter editedRange: The range of the text that was edited.
+    /// - Parameter delta: The change in length of the text.
     func textStorage(_ textStorage: NSTextStorage,
                      willProcessEditing editedMask: TextStorageEditActions,
                      range editedRange: NSRange,
@@ -103,6 +136,12 @@ class CodeStorageDelegate: NSObject, NSTextStorageDelegate {
     //     becomes *very* important to (a) refrain from any character changes and (b) from any attribute changes that
     //     result in attributes that need to be fixed; otherwise, we end up with an inconsistent attributed string.
     //     (In particular, changing the font attribute at this point is potentially dangerous.)
+    /// Text storage did process editing.
+    /// 
+    /// - Parameter textStorage: The text storage that this delegate serves.
+    /// - Parameter editedMask: The mask of the editing actions that were performed.
+    /// - Parameter editedRange: The range of the text that was edited.
+    /// - Parameter delta: The change in length of the text.
     func textStorage(_ textStorage: NSTextStorage,
                      didProcessEditing editedMask: TextStorageEditActions,
                      range editedRange: NSRange, // Apple docs are incorrect here: this is the range *after* editing

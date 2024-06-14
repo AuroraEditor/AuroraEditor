@@ -12,6 +12,9 @@ extension CodeStorage {
 
     /// Insert the given string, such that it safe in an ongoing insertion cycle and does leave the cursor (insertion
     /// point) in place if the insertion is at the location of the insertion point.
+    ///
+    /// - Parameter string: The string to insert.
+    /// - Parameter index: The index at which to insert the string.
     func cursorInsert(string: String, at index: Int) {
 
         Dispatch.DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(10)) {

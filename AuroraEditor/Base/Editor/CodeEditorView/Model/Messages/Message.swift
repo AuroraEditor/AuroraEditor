@@ -56,6 +56,9 @@ public struct Message: Identifiable, Hashable {
 
 /// Order and sort an array of messages by categories.
 ///
+/// - Parameter messages: The messages to sort.
+/// 
+/// - Returns: An array of messages sorted by category.
 func messagesByCategory(_ messages: [Message]) -> [(key: Message.Category, value: [Message])] {
     Array(Dictionary(grouping: messages) { $0.category }).sorted { $0.key < $1.key }
 }

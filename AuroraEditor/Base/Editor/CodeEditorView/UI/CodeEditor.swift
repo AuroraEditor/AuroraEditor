@@ -16,7 +16,6 @@ public struct CodeEditor {
     public struct LayoutConfiguration: Equatable {
 
         /// Show the minimap if possible. (Currently only supported on macOS.)
-        ///
         public let showMinimap: Bool
 
         /// Creates a layout configuration.
@@ -27,6 +26,7 @@ public struct CodeEditor {
             self.showMinimap = showMinimap
         }
 
+        /// Standard layout configuration.
         public static let standard = LayoutConfiguration(showMinimap: true)
     }
 
@@ -44,26 +44,55 @@ public struct CodeEditor {
         /// which represent the completely scrolled up and down position, respectively.
         public var verticalScrollFraction: CGFloat
 
+        /// Creates a text editing position.
+        /// 
+        /// - Parameter selections: The selection ranges.
+        /// - Parameter verticalScrollFraction: The vertical scroll position.
         public init(selections: [NSRange], verticalScrollFraction: CGFloat) {
             self.selections = selections
             self.verticalScrollFraction = verticalScrollFraction
         }
 
+        /// Creates a text editing position with an empty selection at the beginning of the text.
         public init() {
             self.init(selections: [NSRange(location: 0, length: 0)], verticalScrollFraction: 0)
         }
     }
 
+    /// Layout configuration.
     let layout: LayoutConfiguration
 
-    @Binding var text: String
-    @Binding var position: Position
-    @Binding var caretPosition: CursorLocation
-    @Binding var bracketCount: BracketCount
-    @Binding var currentToken: Token?
-    @Binding var messages: Set<Located<Message>>
-    @Binding var theme: AuroraTheme
-    @Binding var fileExtension: String
+    /// Text to edit.
+    @Binding
+    var text: String
+
+    /// Current edit position.
+    @Binding
+    var position: Position
+
+    /// Current caret position.
+    @Binding
+    var caretPosition: CursorLocation
+
+    /// Current bracket count.
+    @Binding
+    var bracketCount: BracketCount
+
+    /// Current token.
+    @Binding
+    var currentToken: Token?
+
+    /// Messages reported at the appropriate lines of the edited text.
+    @Binding
+    var messages: Set<Located<Message>>
+
+    /// Theme for syntax highlighting.
+    @Binding
+    var theme: AuroraTheme
+
+    /// File extension for syntax highlighting.
+    @Binding
+    var fileExtension: String
 
     /// Creates a fully configured code editor.
     ///
@@ -98,11 +127,25 @@ public struct CodeEditor {
 
     /// Text Coordinator
     public class TCoordinator {
-        @Binding var text: String
-        @Binding var position: Position
-        @Binding var caretPosition: CursorLocation
-        @Binding var bracketCount: BracketCount
-        @Binding var currentToken: Token?
+        /// Text
+        @Binding
+        var text: String
+
+        /// Position
+        @Binding
+        var position: Position
+
+        /// Caret position
+        @Binding
+        var caretPosition: CursorLocation
+
+        /// Bracket count
+        @Binding
+        var bracketCount: BracketCount
+
+        /// Current token
+        @Binding
+        var currentToken: Token?
 
         /// In order to avoid update cycles, where view code tries to update SwiftUI state variables (such as the view's
         /// bindings) during a SwiftUI view update, we use `updatingView` as a flag that indicates whether the view is
@@ -112,6 +155,13 @@ public struct CodeEditor {
         /// This is the last observed value of `messages`, to enable us to compute the difference in the next update.
         public var lastMessages: Set<Located<Message>> = Set()
 
+        /// The text storage that holds the text to be edited.
+        /// 
+        /// - Parameter text: The text to be edited.
+        /// - Parameter position: The current edit position.
+        /// - Parameter caretPosition: The current caret position.
+        /// - Parameter bracketCount: The current bracket count.
+        /// - Parameter currentToken: The current token.
         init(_ text: Binding<String>,
              _ position: Binding<Position>,
              _ caretPosition: Binding<CursorLocation>,

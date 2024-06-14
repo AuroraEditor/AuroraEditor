@@ -12,8 +12,13 @@ import SwiftUI
 
 /// Key to track the width for a set of message popup views.
 private struct PopupWidth: PreferenceKey, EnvironmentKey {
-
+    /// The default value is `nil`.
     static let defaultValue: CGFloat? = nil
+
+    /// Reduce function to combine the values of the same type.
+    /// 
+    /// - Parameter value: The current value.
+    /// - Parameter nextValue: The next value.
     static func reduce(value: inout CGFloat?, nextValue: () -> CGFloat?) {
         if let next = nextValue() { value = value.flatMap { max(next, $0) } ?? next }
     }
@@ -21,20 +26,28 @@ private struct PopupWidth: PreferenceKey, EnvironmentKey {
 
 /// Accessor for the environment value identified by the key.
 extension EnvironmentValues {
-
+    /// The width of the popup.
     var popupWidth: CGFloat? {
         get { self[PopupWidth.self] }
         set { self[PopupWidth.self] = newValue }
     }
 }
 
+/// A view modifier that adds a border to the view.
 private struct MessageBorder: ViewModifier {
+    /// The corner radius of the border.
     let cornerRadius: CGFloat
 
-    @Environment(\.colorScheme) var colourScheme: ColorScheme
+    /// The colour scheme.
+    @Environment(\.colorScheme)
+    var colourScheme: ColorScheme
 
+    /// The body of the view.
+    /// 
+    /// - Parameter content: The content of the view.
+    /// 
+    /// - Returns: The view with a border.
     func body(content: Content) -> some View {
-
         let shadowColour = colourScheme == .dark ? Color(.sRGBLinear, white: 0, opacity: 0.66)
         : Color(.sRGBLinear, white: 0, opacity: 0.33)
 
@@ -56,6 +69,11 @@ private struct MessageBorder: ViewModifier {
 }
 
 extension View {
+    /// Add a border to the view.
+    /// 
+    /// - Parameter cornerRadius: The corner radius of the border.
+    /// 
+    /// - Returns: The view with a border.
     fileprivate func messageBorder(cornerRadius: CGFloat) -> some View {
         modifier(MessageBorder(cornerRadius: cornerRadius))
     }
@@ -65,15 +83,27 @@ extension View {
 ///
 /// NB: The array of messages may not be empty.
 private struct MessagePopupCategoryView: View {
+    /// The category of the messages.
     let category: Message.Category
+
+    /// The messages to display.
     let messages: [Message]
+
+    /// The theme of the messages.
     let theme: Message.Theme
 
+    /// The corner radius of the popup.
     let cornerRadius: CGFloat = 10
 
-    @Environment(\.colorScheme) var colourScheme: ColorScheme
-    @Environment(\.popupWidth)  var popupWidth: CGFloat?
+    /// The colour scheme.
+    @Environment(\.colorScheme)
+    var colourScheme: ColorScheme
 
+    /// The width of the popup.
+    @Environment(\.popupWidth)
+    var popupWidth: CGFloat?
+
+    /// The body of the view.
     var body: some View {
 
         let backgroundColour = colourScheme == .dark ? Color.black : Color.white
@@ -85,7 +115,8 @@ private struct MessagePopupCategoryView: View {
             // Category icon
             ZStack(alignment: .top) {
                 colour.opacity(0.5)
-                Text("XX")       // We want the icon to have the height of text
+                // We want the icon to have the height of text
+                Text("XX")
                     .hidden()
                     .overlay( theme(category).icon.frame(alignment: .center) )
                     .padding([.leading, .trailing], 5)
@@ -101,9 +132,11 @@ private struct MessagePopupCategoryView: View {
             }
             .padding([.leading, .trailing], 5)
             .padding([.top, .bottom], 3)
-            .frame(maxWidth: popupWidth, alignment: .leading)       // Constrain width if `popupWidth` is not `nil`
+            // Constrain width if `popupWidth` is not `nil`
+            .frame(maxWidth: popupWidth, alignment: .leading)
             .background(colour.opacity(0.3))
-            .background(GeometryReader { proxy in                   // Propagate current width up the view tree
+            .background(GeometryReader { proxy in
+                // Propagate current width up the view tree
                 Color.clear.preference(key: PopupWidth.self, value: proxy.size.width)
             })
 
@@ -123,13 +156,18 @@ private struct MessagePopupCategoryView: View {
     }
 }
 
+/// A view that displays a popup with all the messages.
 struct MessagePopupView: View {
+    /// The messages to display.
     let messages: [Message]
+
+    /// The theme of the messages.
     let theme: Message.Theme
 
     /// The width of the text in the message category with the widest text.
     @State private var popupWidth: CGFloat?
 
+    /// The body of the view.
     var body: some View {
 
         let categories = messagesByCategory(messages)

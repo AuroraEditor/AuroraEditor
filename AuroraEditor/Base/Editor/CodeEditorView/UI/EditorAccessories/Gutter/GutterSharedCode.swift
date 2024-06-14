@@ -10,9 +10,13 @@ import AppKit
 
 // MARK: - Shared code
 extension GutterView {
-
+    /// The text view's layout manager.
     var optLayoutManager: NSLayoutManager? { textView.optLayoutManager }
+
+    /// The text view's text container.
     var optTextContainer: NSTextContainer? { textView.optTextContainer }
+
+    /// The text view's line map.
     var optLineMap: LineMap<LineInfo>? { textView.optLineMap }
 
     // MARK: - Gutter notifications
@@ -60,6 +64,9 @@ extension GutterView {
 
     // MARK: - Gutter drawing
 
+    /// Draw the gutter view.
+    /// 
+    /// - Parameter rect: The rectangle that needs to be redrawn.
     override func draw(_ rect: CGRect) {
         guard let layoutManager = optLayoutManager,
               let textContainer = optTextContainer,
@@ -74,6 +81,12 @@ extension GutterView {
         drawGutterView(rect, layoutManager, textContainer)
     }
 
+    /// Draw the minimap gutter view.
+    /// 
+    /// - Parameter rect: The rectangle that needs to be redrawn.
+    /// - Parameter layoutManager: The layout manager.
+    /// - Parameter lineMap: The line map.
+    /// - Parameter textContainer: The text container.
     func drawMinimapGutterView(_ rect: CGRect,
                                _ layoutManager: NSLayoutManager,
                                _ lineMap: LineMap<LineInfo>,
@@ -114,6 +127,11 @@ extension GutterView {
         }
     }
 
+    /// Draw the gutter view.
+    /// 
+    /// - Parameter rect: The rectangle that needs to be redrawn.
+    /// - Parameter layoutManager: The layout manager.
+    /// - Parameter textContainer: The text container.
     func drawGutterView(_ rect: CGRect,
                         _ layoutManager: NSLayoutManager,
                         _ textContainer: NSTextContainer) {
@@ -150,6 +168,9 @@ extension GutterView {
         }
     }
 
+    /// Update the gutter view.
+    /// 
+    /// - Parameter rect: The rectangle that needs to be redrawn.
     func updateGutter(for rect: CGRect) {
         guard let layoutManager = optLayoutManager,
               let textContainer = optTextContainer,

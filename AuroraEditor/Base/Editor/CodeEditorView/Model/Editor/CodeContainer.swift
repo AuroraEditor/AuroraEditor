@@ -8,8 +8,15 @@
 
 import AppKit
 
+/// A custom text container that is aware of the line fragments it lays out.
 class CodeContainer: NSTextContainer {
-
+    /// Line fragment rect for the line that contains the character at the given index.
+    /// 
+    /// - Parameter proposedRect: The proposed line fragment rect.
+    /// - Parameter characterIndex: The index of the character in the text storage.
+    /// - Parameter baseWritingDirection: The base writing direction.
+    /// - Parameter remainingRect: The remaining rect.
+    /// - Returns: The line fragment rect for the line that contains the character at the given index.
     override func lineFragmentRect(forProposedRect proposedRect: CGRect,
                                    at characterIndex: Int,
                                    writingDirection baseWritingDirection: NSWritingDirection,

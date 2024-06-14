@@ -14,51 +14,77 @@ import AppKit
 
 // `NSTextStorage` is a class cluster; hence, we realise our subclass by decorating an embeded vanilla text storage.
 class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
-
+    /// The theme to use
     var theme: AuroraTheme
 
+    /// The theme to use for highlighting
     var highlightTheme: HighlightTheme
 
+    /// Initialises a new code storage instance.
+    /// 
+    /// - Parameter coder: coder
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    /// Initialises a new code storage instance.
+    /// 
+    /// - Parameter pasteboardPropertyList: pasteboard property list
+    /// - Parameter ofType: type
     required init?(pasteboardPropertyList propertyList: Any, ofType type: NSPasteboard.PasteboardType) {
         fatalError("init(pasteboardPropertyList:ofType:) has not been implemented")
     }
 
+    /// Initialises a new code storage instance.
     private var storage: NSMutableAttributedString
 
+    /// The line ranges
     private var lineRanges: [NSRange]
 
+    /// The line start locations
     private var lineStartLocs: [Int] {
         return lineRanges.map { $0.location }
     }
 
+    /// The full range
     private var nContentLines: Int {
         return lineRanges.count - (lineRanges.last!.length == 0 ? 1 : 0)
     }
 
+    /// The full range
     private var states = [LineState?]()
 
+    /// The tokenized lines
     private var tokenizedLines = [TokenizedLine?]()
 
+    /// The match tokens
     private var matchTokens = [[Token]]()
 
+    /// The parser
     private var parser: Parser
 
+    /// Grammar
     private var grammar: Grammar
 
+    /// The last processed range
     var lastProcessedRange = NSRange(location: 0, length: 0)
 
+    /// Whether the storage is processing editing
     private var _isProcessingEditing = false
 
+    /// Whether the storage is processing editing
     public var isProcessingEditing: Bool {
         _isProcessingEditing
     }
 
+    /// The edited range
     var selectionLines = Set<Int>()
 
+    /// Initialises a new code storage instance.
+    /// 
+    /// - Parameter parser: parser
+    /// - Parameter baseGrammar: base grammar
+    /// - Parameter theme: theme
     init(parser: Parser, baseGrammar: Grammar, theme: AuroraTheme) {
         storage = NSMutableAttributedString(string: "", attributes: nil)
         self.lineRanges = [NSRange(location: 0, length: 0)]
@@ -70,15 +96,26 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
     }
 
     // MARK: - Required NSTextStorage methods
+    /// Text storage
     override public var string: String {
         return storage.string
     }
 
+    /// Attributes at location
+    /// 
+    /// - Parameter location: location
+    /// - Parameter range: range
+    /// 
+    /// - Returns: attributes
     override public func attributes(at location: Int,
                                     effectiveRange range: NSRangePointer?) -> [NSAttributedString.Key: Any] {
         return storage.attributes(at: location, effectiveRange: range)
     }
 
+    /// Replaces characters in range
+    /// 
+    /// - Parameter range: range
+    /// - Parameter str: string
     override public func replaceCharacters(in range: NSRange, with str: String) {
         beginEditing()
 
@@ -117,6 +154,10 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         endEditing()
     }
 
+    /// Update line ranges
+    /// 
+    /// - Parameter range: range
+    /// - Parameter str: string
     private func updateLineRanges(forCharactersReplacedInRange range: NSRange, with str: String) {
         // First remove the line start locations in the affected range
         var line = 0
@@ -165,6 +206,7 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         }
     }
 
+    /// Check line ranges
     func checkLineRanges() {
         assert(!lineRanges.isEmpty)
 
@@ -181,6 +223,10 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         }
     }
 
+    /// Set attributes
+    /// 
+    /// - Parameter attrs: attributes
+    /// - Parameter range: range
     override public func setAttributes(_ attrs: [NSAttributedString.Key: Any]?, range: NSRange) {
         beginEditing()
         storage.setAttributes(attrs, range: range)
@@ -188,6 +234,12 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         endEditing()
     }
 
+    /// Get edited lines
+    /// 
+    /// - Parameter lineStartLocs: line start locations
+    /// - Parameter editedRange: edited range
+    /// 
+    /// - Returns: edited lines
     private func getEditedLines(lineStartLocs: [Int], editedRange: NSRange) -> (Int, Int) {
         var first = 0
         while first < lineStartLocs.count - 1 {
@@ -209,11 +261,11 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         return (first, last)
     }
 
-    ///
     /// Gets the last line that need to be processed at a minimum given the last edited line.
     ///
     /// - Parameter lastEditedLine: The index of the last edited line.
     /// - Parameter editedRange: The range of characters which have been edited.
+    ///
     /// - Returns: The last line that needs to be processed at a minimum.
     ///
     private func getLastProcessingLine(lastEditedLine: Int, editedRange: NSRange, text: String) -> Int {
@@ -231,13 +283,11 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         return lastEditedLine
     }
 
-    ///
     /// Modifies the length of the states and tokenized lines array based on the first edited
     /// line to prepare for the processing based of the previous states.
     ///
     /// - Parameter firstEditedLine: The first line that was edited.
     /// - Parameter changeInLines: The number of lines added or deleted.
-    ///
     private func adjustCache(firstEditedLine: Int, changeInLines: Int) {
         if changeInLines < 0 {
             for _ in 0..<abs(changeInLines) {
@@ -266,16 +316,29 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         return min(line, lineRanges.count - 1)
     }
 
+    /// Get the line of the character at the given index.
+    /// 
+    /// - Parameter index: The index of the character in the text storage.
     public func getLine(_ index: Int) -> String {
         return (string as NSString).substring(with: lineRanges[index])
     }
 
+    /// Get location on line
+    /// 
+    /// - Parameter loc: location
+    /// 
+    /// - Returns: location on line
     public func getLocationOnLine(_ loc: Int) -> Int {
         let line = getLocationLine(loc)
 
         return loc - lineRanges[line].location
     }
 
+    /// Get line range
+    /// 
+    /// - Parameter line: line
+    /// 
+    /// - Returns: line range
     public func getLineRange(_ line: Int) -> NSRange? {
         guard line >= 0 && line < lineRanges.count else {
             return nil
@@ -283,6 +346,12 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         return lineRanges[line]
     }
 
+    /// Get the line of the cursor at the given ramge.
+    /// 
+    /// - Parameter lineRanges: The ranges of the lines in the text storage.
+    /// - Parameter editedRange: The range of the edit.
+    /// 
+    /// - Returns: The line of the character at the given index.
     private func getCursorLine(lineRanges: [NSRange], editedRange: NSRange) -> Int {
         // We figure out line the cursor will be on
         var cursorLine = 0
@@ -296,14 +365,13 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         return cursorLine
     }
 
-    ///
     /// Processes syntax highlighting on the minimum range possible.
     ///
     /// - Parameter editedRange: The range of the edit, if known. If the edited range is  provided
     ///     the syntax highlighting will be done by processing the least amount of the document as possible
     ///     using the pevious state of the document.
+    /// 
     /// - Returns: The processed range: the range of the string that was processed and attributes were applied.
-    ///
     func processSyntaxHighlighting(editedRange: NSRange) -> NSRange { // swiftlint:disable:this function_body_length
         // Return if empty
         if string.isEmpty {
@@ -407,6 +475,7 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         return processedRange
     }
 
+    /// Process editing
     override public func processEditing() {
         let editedRange = self.editedRange
         _isProcessingEditing = true
@@ -443,6 +512,11 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         }
     }
 
+    /// Replace
+    /// 
+    /// - Parameter parser: parser
+    /// - Parameter baseGrammar: base grammar
+    /// - Parameter theme: theme
     public func replace(parser: Parser, baseGrammar: Grammar, theme: HighlightTheme) {
         self.parser = parser
         self.grammar = baseGrammar
@@ -451,6 +525,10 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         edited(.editedCharacters, range: fullRange, changeInLength: 0)
     }
 
+    /// Update selected ranges
+    ///
+    /// - Parameter selectedRanges: The selected ranges
+    ///
     /// - Returns: The ranges that had changed
     public func updateSelectedRanges(_ selectedRanges: [NSRange]) -> NSRange {
         // Return if empty
@@ -515,6 +593,11 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         }
     }
 
+    /// Get tokens
+    /// 
+    /// - Parameter scope: scope
+    /// 
+    /// - Returns: tokens
     public func getTokens(forScope scope: String) -> [(String, NSRange)] {
         var res = [(String, NSRange)]()
         let str = (storage.string as NSString)
@@ -529,7 +612,7 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
 }
 
 extension NSAttributedString {
-
+    /// Get the range of the string.
     var fullRange: NSRange {
         return NSRange(location: 0, length: length)
     }

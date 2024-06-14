@@ -12,6 +12,7 @@ import SwiftUI
 
 /// Customised text view for the minimap.
 class MinimapView: NSTextView {
+    /// Code view that this minimap is associated with.
     weak var codeView: CodeView?
 
     // Highlight the current line.
@@ -36,6 +37,7 @@ class MinimapView: NSTextView {
 ///   - width: Overall width available for main and minimap code view *without* gutter and padding.
 ///   - font: The fixed pitch font of the main text view.
 ///   - withMinimap: Determines whether to include the presence of a minimap into the calculation.
+///
 /// - Returns: The width of the code view in number of characters.
 func codeWidthInCharacters(for width: CGFloat, with font: NSFont, withMinimap: Bool) -> CGFloat {
     let minimapCharWidth = withMinimap ? minimapFontSize(for: font.pointSize) / 2 : 0
@@ -44,11 +46,12 @@ func codeWidthInCharacters(for width: CGFloat, with font: NSFont, withMinimap: B
 
 /// Compute the font size for the minimap from the font size of the main text view.
 ///
-/// - Parameter fontSize: The font size of the main text view
-/// - Returns: The font size for the minimap
-///
 /// The result is always divisible by two, to enable the use of full pixels for the font width while avoiding aspect
 /// ratios that are too unbalanced.
+/// 
+/// - Parameter fontSize: The font size of the main text view
+///
+/// - Returns: The font size for the minimap
 func minimapFontSize(for fontSize: CGFloat) -> CGFloat {
     return max(1, ceil(fontSize / 20)) * 2
 }

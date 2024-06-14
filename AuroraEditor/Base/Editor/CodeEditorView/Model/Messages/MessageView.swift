@@ -12,6 +12,7 @@ import SwiftUI
 /// SwiftUI view that displays an array of messages that lie on the same line. It supports switching between an inline
 /// format and a full popup format by clicking/tapping on the message.
 struct MessageView: View {
+    /// The geometry of the view.
     struct Geometry {
 
         /// The maximum width that the inline view may use.
@@ -27,12 +28,20 @@ struct MessageView: View {
         let popupOffset: CGFloat
     }
 
-    let messages: [Message]        // The array of messages that are displayed by this view
-    let theme: Message.Theme    // The message display theme to use
+    /// The array of messages that are displayed by this view
+    let messages: [Message]
+
+    /// The message display theme to use       
+    let theme: Message.Theme
+
+    /// The view geometry
     let geometry: Geometry
 
-    @Binding var unfolded: Bool       // False => inline view; true => popup view
+    /// Whether the view is unfolded (i.e., showing the full popup view) or not.
+    /// False => inline view; true => popup view
+    @Binding var unfolded: Bool
 
+    /// The view body
     var body: some View {
 
         // Overlaying the two different views (and switching between them by adjusting their opacity ensures that the
@@ -64,9 +73,11 @@ struct MessageView: View {
     }
 }
 
+// MARK: - Message inline view
 extension MessageView {
 
     // FIXME: This should maybe depend on the font size and may need to be configurable.
+    /// The minimum width of the inline view.
     static let minimumInlineWidth = CGFloat(60)
 
     /// The distance of the popup view from the right side of the text container.
@@ -103,13 +114,22 @@ let message1 = Message(category: .error, length: 1, summary: "It's wrong!", desc
     message4 = Message(category: .live, length: 1, summary: "Thread 1", description: nil),
     message5 = Message(category: .informational, length: 1, summary: "Cool stuff!", description: nil)
 
+/// Preview of the message view
 struct MessageViewPreview: View {
+    /// The messages to display
     let messages: [Message]
+
+    /// The theme to use
     let theme: Message.Theme
+
+    /// The geometry of the view
     let geometry: MessageView.Geometry
 
-    @State private var unfolded: Bool = false
+    /// Unfolded state
+    @State
+    private var unfolded: Bool = false
 
+    /// The view body
     var body: some View {
         MessageView(messages: messages,
                     theme: theme,
@@ -118,8 +138,10 @@ struct MessageViewPreview: View {
     }
 }
 
+// MARK: - Previews
+/// Preview of the message view
 struct MessageViews_Previews: PreviewProvider {
-
+    /// The preview content
     static var previews: some View {
 
         // Inline view

@@ -12,6 +12,10 @@ extension GutterView {
 
     /// Compute the full width rectangle in the gutter from a text container rectangle, such that they both have the
     /// same vertical extension.
+    /// 
+    /// - Parameter textRect: The text container rectangle.
+    /// 
+    /// - Returns: The gutter rectangle.
     public func gutterRectFrom(textRect: CGRect) -> CGRect {
         return CGRect(origin: CGPoint(x: 0, y: textRect.origin.y + textView.textContainerOrigin.y),
                       size: CGSize(width: frame.size.width, height: textRect.size.height))
@@ -19,6 +23,10 @@ extension GutterView {
 
     /// Compute the line number glyph rectangle in the gutter from a text container rectangle, such that they both have
     /// the same vertical extension.
+    /// 
+    /// - Parameter textRect: The text container rectangle.
+    /// 
+    /// - Returns: The gutter rectangle.
     public func gutterRectForLineNumbersFrom(textRect: CGRect) -> CGRect {
         let gutterRect = gutterRectFrom(textRect: textRect)
         return CGRect(x: gutterRect.origin.x + gutterRect.size.width * 2 / 7,
@@ -29,6 +37,10 @@ extension GutterView {
 
     /// Compute the full width rectangle in the text container from a gutter rectangle, such that they both have the
     /// same vertical extension.
+    /// 
+    /// - Parameter gutterRect: The gutter rectangle.
+    /// 
+    /// - Returns: The text container rectangle.
     public func textRectFrom(gutterRect: CGRect) -> CGRect {
         let containerWidth = optTextContainer?.size.width ?? 0
         return CGRect(origin: CGPoint(x: frame.size.width, y: gutterRect.origin.y - textView.textContainerOrigin.y),

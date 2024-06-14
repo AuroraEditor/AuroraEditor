@@ -8,14 +8,19 @@
 
 import AppKit
 
+/// Minimap type setter
 class MinimapTypeSetter: NSATSTypesetter {
 
-    // Perform layout for the minimap. We don't layout the actual glyphs, but small rectangles representing the glyphs.
-    //
-    // This is a very simplified layout procedure that works for the specific setup of our code views. It completely
-    // ignores some features of text views, such as areas to exclude, where `remainingRect` would be non-empty. It
-    // currently also ignores all extra line and paragraph spacing and fails to call some methods that might adjust
-    // layout decisions.
+    /// Perform layout for the minimap. We don't layout the actual glyphs, but small rectangles representing the glyphs.
+    ///
+    /// This is a very simplified layout procedure that works for the specific setup of our code views. It completely
+    /// ignores some features of text views, such as areas to exclude, where `remainingRect` would be non-empty. It
+    /// currently also ignores all extra line and paragraph spacing and fails to call some methods that might adjust
+    /// layout decisions.
+    ///
+    /// - Parameter lineFragmentOrigin: The origin of the line fragment.
+    ///
+    /// - Returns: The index of the next glyph to layout.
     override func layoutParagraph(
         at lineFragmentOrigin: UnsafeMutablePointer<NSPoint>
     ) -> Int {
@@ -26,6 +31,9 @@ class MinimapTypeSetter: NSATSTypesetter {
     }
 
     // TODO: Heavy optimisation since this is really slow, especially for large files
+    /// Update the layout of the paragraph.
+    /// 
+    /// - Parameter lineFragmentOrigin: The origin of the line fragment.
     func updateParagraphLayout( // swiftlint:disable:this function_body_length
         at lineFragmentOrigin: UnsafeMutablePointer<NSPoint>
     ) {
@@ -180,7 +188,14 @@ class MinimapTypeSetter: NSATSTypesetter {
         endParagraph()
     }
 
-    // Adjust the height of the fragment rectangles for empty lines.
+    /// Adjust the height of the fragment rectangles for empty lines.
+    /// 
+    /// - Parameter lineFragmentRect: The rectangle of the line fragment.
+    /// - Parameter lineFragmentUsedRect: The used rectangle of the line fragment.
+    /// - Parameter paragraphSeparatorGlyphRange: The range of the paragraph separator glyph.
+    /// - Parameter lineOrigin: The origin of the line.
+    /// 
+    /// - Returns: The rectangle of the line fragment.
     override func getLineFragmentRect(_ lineFragmentRect: UnsafeMutablePointer<NSRect>,
                                       usedRect lineFragmentUsedRect: UnsafeMutablePointer<NSRect>,
                                       forParagraphSeparatorGlyphRange paragraphSeparatorGlyphRange: NSRange,

@@ -11,9 +11,14 @@ import AppKit
 /// Customised layout manager for the minimap.
 class MinimapLayoutManager: NSLayoutManager {
 
-    // In place of drawing the actual glyphs, we draw small rectangles in the glyph's foreground colour. We ignore the
-    // actual glyph metrics and draw all glyphs as a fixed-sized rectangle whose height is determined by the "used
-    // rectangle" and whose width is a fraction of the actual (monospaced) font of the glyph (rounded to full points).
+    /// Draw glyphs for the minimap.
+    /// 
+    /// In place of drawing the actual glyphs, we draw small rectangles in the glyph's foreground colour. We ignore the
+    /// actual glyph metrics and draw all glyphs as a fixed-sized rectangle whose height is determined by the "used
+    /// rectangle" and whose width is a fraction of the actual (monospaced) font of the glyph (rounded to full points).
+    ///
+    /// - Parameter glyphsToShow: The range of glyphs to draw.
+    /// - Parameter origin: The origin of the glyphs.
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: CGPoint) {
         guard let textStorage = self.textStorage else { return }
 

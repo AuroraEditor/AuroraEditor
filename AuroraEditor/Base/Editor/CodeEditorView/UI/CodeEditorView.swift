@@ -9,8 +9,13 @@
 import AppKit
 import SwiftUI
 
+/// A view that displays a code editor.
 extension CodeEditor: NSViewRepresentable {
     /// Generates and returns a scroll view with a CodeView set as its document view.
+    /// 
+    /// - Parameter context: The context in which the view is being created.
+    /// 
+    /// - Returns: A scroll view with a CodeView set as its document view.
     public func makeNSView(context: Context) -> NSScrollView { // swiftlint:disable:this function_body_length
         let loadedGrammar = GrammarJsonLoader.grammarFor(extension: fileExtension)
 
@@ -98,6 +103,10 @@ extension CodeEditor: NSViewRepresentable {
         return scrollView
     }
 
+    /// Updates the given scroll view with the given context.
+    /// 
+    /// - Parameter scrollView: The scroll view to update.
+    /// - Parameter context: The context in which the view is being updated.
     public func updateNSView(_ scrollView: NSScrollView, context: Context) {
         guard let codeView = scrollView.documentView as? CodeView else { return }
         context.coordinator.updatingView = true
@@ -116,19 +125,31 @@ extension CodeEditor: NSViewRepresentable {
         context.coordinator.updatingView = false
     }
 
+    /// Creates a coordinator for the code editor.
+    /// 
+    /// - Returns: A coordinator for the code editor.
     public func makeCoordinator() -> Coordinator {
         return Coordinator($text, $position, $caretPosition, $bracketCount, $currentToken)
     }
 
+    /// A coordinator for the code editor.
     public final class Coordinator: TCoordinator {
+        /// Bounds changed notification observer.
         var boundsChangedNotificationObserver: NSObjectProtocol?
 
+        /// Deinitilizer.
         deinit {
             if let observer = boundsChangedNotificationObserver {
                 NotificationCenter.default.removeObserver(observer)
             }
         }
 
+        /// Calculating caret position.
+        /// 
+        /// - Parameter txt: The text.
+        /// - Parameter pos: The position.
+        /// 
+        /// - Returns: The caret position.
         private func calculateCaretPosition(txt: String, pos: NSRange) -> CursorLocation {
             var row = 0
             var col = 0
@@ -168,6 +189,12 @@ extension CodeEditor: NSViewRepresentable {
             return .init(line: row, column: col)
         }
 
+        /// Get the scopes at the cursor position.
+        /// 
+        /// - Parameter txt: The text.
+        /// - Parameter pos: The position.
+        /// 
+        /// - Returns: The token.
         private func getScopesAtCursor(txt: NSAttributedString, pos: Int) -> Token? {
             guard pos < txt.length else { return nil }
             let attributes = txt.attributes(at: pos, effectiveRange: nil)
@@ -175,6 +202,12 @@ extension CodeEditor: NSViewRepresentable {
             return token
         }
 
+        /// Get the bracket count at the cursor position.
+        /// 
+        /// - Parameter txt: The text.
+        /// - Parameter pos: The position.
+        /// 
+        /// - Returns: The bracket count.
         private func getBracketCountAtCursor(txt: String, pos: Int) -> BracketCount {
             var bracketCount = BracketCount(
                 roundBracketCount: 0,
@@ -225,6 +258,9 @@ extension CodeEditor: NSViewRepresentable {
             return bracketCount
         }
 
+        /// Text did change.
+        /// 
+        /// - Parameter textView: The text view.
         func textDidChange(_ textView: NSTextView) {
             guard !updatingView else { return }
 
@@ -233,6 +269,9 @@ extension CodeEditor: NSViewRepresentable {
             }
         }
 
+        /// Selection did change.
+        /// 
+        /// - Parameter textView: The text view.
         func selectionDidChange(_ textView: NSTextView) {
             guard !updatingView else { return }
 
@@ -255,6 +294,9 @@ extension CodeEditor: NSViewRepresentable {
             }
         }
 
+        /// Scroll position did change.
+        /// 
+        /// - Parameter scrollView: The scroll view.
         func scrollPositionDidChange(_ scrollView: NSScrollView) {
             guard !updatingView else { return }
 
@@ -265,12 +307,19 @@ extension CodeEditor: NSViewRepresentable {
     }
 
     /// Update messages for a code view in the given context.
+    /// 
+    /// - Parameter codeView: The code view to update.
+    /// - Parameter context: The context in which the view is being updated.
     private func updateMessages(in codeView: CodeView, with context: Context) {
         update(oldMessages: context.coordinator.lastMessages, to: messages, in: codeView)
         context.coordinator.lastMessages = messages
     }
 
     /// Update the message set of the given code view.
+    /// 
+    /// - Parameter oldMessages: The old message set.
+    /// - Parameter updatedMessages: The updated message set.
+    /// - Parameter codeView: The code view to update.
     private func update(oldMessages: Set<Located<Message>>,
                         to updatedMessages: Set<Located<Message>>,
                         in codeView: CodeView) {

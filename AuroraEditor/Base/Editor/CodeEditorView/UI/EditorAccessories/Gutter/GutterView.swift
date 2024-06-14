@@ -10,11 +10,16 @@
 
 import AppKit
 
+/// Font descriptor
 private typealias FontDescriptor = NSFontDescriptor
 
+/// Font descriptor feature identifier
 private let fontDescriptorFeatureIdentifier = FontDescriptor.FeatureKey.typeIdentifier
+
+/// Font descriptor type identifier
 private let fontDescriptorTypeIdentifier = FontDescriptor.FeatureKey.selectorIdentifier
 
+/// Line number colour
 private let lineNumberColour = NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
 
 class GutterView: NSView {
@@ -36,6 +41,11 @@ class GutterView: NSView {
 
     /// Create and configure a gutter view for the given text view. This will also set the appropiate exclusion path for
     /// text container.
+    /// 
+    /// - Parameter frame: The frame of the gutter view.
+    /// - Parameter textView: The text view that this gutter belongs to.
+    /// - Parameter theme: The current code editor theme.
+    /// - Parameter getMessageViews: Accessor for the associated text view's message views.
     init(frame: CGRect,
          textView: NSTextView,
          theme: AuroraTheme,
@@ -75,15 +85,25 @@ class GutterView: NSView {
         super.init(frame: frame)
     }
 
+    /// Draw the gutter view.
+    /// 
+    /// - Parameter coder: The coder
     required init(coder: NSCoder) {
         fatalError("CodeEditorView.GutterView.init(coder:) not implemented")
     }
 
-    // Imitate the coordinate system of the associated text view.
+    /// Imitate the coordinate system of the associated text view.
     override var isFlipped: Bool { textView.isFlipped }
 
+    /// Last refreshed frame
     var lastRefreshedFrame: CGRect = .zero
+
+    /// Lines
     var lines: [NSString] = []
+
+    /// Line number rects
     var gutterRects: [CGRect] = []
+
+    /// Line attributes
     var lineAttributes: [[NSAttributedString.Key: NSObject]] = []
 }
