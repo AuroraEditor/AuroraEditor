@@ -10,5 +10,5 @@ import SwiftUI
 
 /// A `NSTableCellView` showing an ``icon`` and a ``label``
 final class ProjectNavigatorTableViewCell: FileSystemTableViewCell {
-    
+
 }
