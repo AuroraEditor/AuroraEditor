@@ -14,6 +14,7 @@ excluded:
   - AuroraEditorCli/Package.swift # Package.swift should not be linted
   - Tools # Tools should not be linted
   - AEquicklook # Check if we can move the js/css into a separate file and load via bundle. @0xWDG
+  - "AuroraEditor/Base/Version Control" # This will be removed soon, @nanashili remove when done.
 
 # Exclude triggering type names.
 type_name:
