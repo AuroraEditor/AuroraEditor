@@ -5716,6 +5716,9 @@
     "Image" : {
 
     },
+    "Image preview" : {
+
+    },
     "Implementation needed" : {
 
     },
@@ -5819,7 +5822,13 @@
     "Navigate back" : {
 
     },
+    "Navigate Back" : {
+
+    },
     "Navigate forward" : {
+
+    },
+    "Navigate Forward" : {
 
     },
     "Navigate to Related Items" : {
@@ -7552,6 +7561,9 @@
 
     },
     "Recent Files" : {
+
+    },
+    "Refresh" : {
 
     },
     "Remind me Later" : {

@@ -8,8 +8,8 @@
 
 import SwiftUI
 import AuroraEditorTextView
-import AuroraEditorInputView
 import AuroraEditorLanguage
+import AuroraEditorSourceEditor
 
 /// A view that wraps the code editor view.
 public struct CodeEditorViewWrapper: View {
@@ -43,9 +43,6 @@ public struct CodeEditorViewWrapper: View {
 
     /// Is editable state
     private let editable: Bool
-
-    /// The undo manager
-    private let undoManager = CEUndoManager()
 
     /// Code editor view wrapper initializer
     /// 
@@ -94,32 +91,52 @@ public struct CodeEditorViewWrapper: View {
     @State
     var cursorPosition = [CursorPosition(line: 1, column: 1)]
 
+    /// Undo manager
+    var undoManager: AEUndoManager = .init()
+
+    /// Default theme
+    let defaultTheme: EditorTheme = .init(
+        text: NSColor(hex: "#D9D9D9"),
+        insertionPoint: NSColor(hex: "#D9D9D9"),
+        invisibles: NSColor(hex: "#D9D9D9"),
+        background: NSColor(hex: "#292a30"),
+        lineHighlight: NSColor(hex: "#2f3239"),
+        selection: NSColor(hex: "#2f3239"),
+        keywords: NSColor(hex: "#FC5FA3"),
+        commands: NSColor(hex: "#D9D9D9"),
+        types: NSColor(hex: "#5DD8FF"),
+        attributes: NSColor(hex: "#D9D9D9"),
+        variables: NSColor(hex: "#D9D9D9"),
+        values: NSColor(hex: "#D9D9D9"),
+        numbers: NSColor(hex: "#D7C986"),
+        strings: NSColor(hex: "#FC6A5D"),
+        characters: NSColor(hex: "#D0BF69"),
+        comments: NSColor(hex: "#6C7986")
+    )
+
     /// The view body
     public var body: some View {
-        AuroraEditorTextView($codeFile.content,
-                             language: getLanguage(),
-                             theme: .init(text: NSColor(hex: "#D9D9D9"),
-                                          insertionPoint: NSColor(hex: "#D9D9D9"),
-                                          invisibles: NSColor(hex: "#D9D9D9"),
-                                          background: NSColor(hex: "#292a30"),
-                                          lineHighlight: NSColor(hex: "#2f3239"),
-                                          selection: NSColor(hex: "#2f3239"),
-                                          keywords: NSColor(hex: "#FC5FA3"),
-                                          commands: NSColor(hex: "#D9D9D9"),
-                                          types: NSColor(hex: "#5DD8FF"),
-                                          attributes: NSColor(hex: "#D9D9D9"),
-                                          variables: NSColor(hex: "#D9D9D9"),
-                                          values: NSColor(hex: "#D9D9D9"),
-                                          numbers: NSColor(hex: "#D7C986"),
-                                          strings: NSColor(hex: "#FC6A5D"),
-                                          characters: NSColor(hex: "#D0BF69"),
-                                          comments: NSColor(hex: "#6C7986")),
-                             font: font,
-                             tabWidth: 4,
-                             lineHeight: 1.45,
-                             wrapLines: true,
-                             cursorPositions: $cursorPosition,
-                             bracketPairHighlight: .flash)
+        AuroraEditorSourceEditor(
+            $codeFile.content,
+            language: getLanguage(),
+            theme: defaultTheme,
+            font: font,
+            tabWidth: 4,
+            indentOption: .spaces(count: 4),
+            lineHeight: 1.45,
+            wrapLines: true,
+            editorOverscroll: 0,
+            cursorPositions: $cursorPosition,
+            useThemeBackground: false,
+            highlightProvider: nil, // TODO: @nanashili help?
+            contentInsets: nil,
+            isEditable: true,
+            isSelectable: true,
+            letterSpacing: 1,
+            bracketPairHighlight: nil,
+            undoManager: undoManager,
+            coordinators: [] // TODO: @nanashili help?
+        )
         .onChange(of: themeModel.selectedTheme, perform: { newTheme in
             self.theme = newTheme ?? themeModel.themes.first!
         })
