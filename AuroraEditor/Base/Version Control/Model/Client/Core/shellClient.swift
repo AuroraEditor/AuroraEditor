@@ -14,5 +14,6 @@ public var sharedShellClient: World = .init()
 // Inspired by: https://vimeo.com/291588126
 /// World. (not used?)
 public struct World {
+    /// Shell client
     var shellClient: ShellClient = .live()
 }

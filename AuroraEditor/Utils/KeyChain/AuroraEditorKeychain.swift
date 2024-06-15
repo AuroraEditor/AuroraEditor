@@ -21,12 +21,10 @@ open class AuroraEditorKeychain {
     /// Key prefix for all entries in keychain.
     var keyPrefix = "" // Can be useful in test.
 
-    /**
-     Specify an access group that will be used to access keychain items.
-     Access groups can be used to share keychain items between applications.
-     When access group value is nil all application access groups are being accessed.
-     Access group name is used by all functions: set, get, delete and clear.
-     */
+    /// Specify an access group that will be used to access keychain items.
+    /// Access groups can be used to share keychain items between applications.
+    /// When access group value is nil all application access groups are being accessed.
+    /// Access group name is used by all functions: set, get, delete and clear.
     open var accessGroup: String?
 
     /// A lock to ensure that the keychain is accessed by one operation at a time.
@@ -35,23 +33,21 @@ open class AuroraEditorKeychain {
     /// AuroraEditorKeychain
     public init() { }
 
-    /**
-     - parameter keyPrefix: a prefix that is added before the key in get/set methods.
-     Note that `clear` method still clears everything from the Keychain.
-     */
+    /// - parameter keyPrefix: a prefix that is added before the key in get/set methods.
+    /// Note that `clear` method still clears everything from the Keychain.
     public init(keyPrefix: String) {
         self.keyPrefix = keyPrefix
     }
 
-    /**
-     Stores the text value in the keychain item under the given key.
-     - parameter key: Key under which the text value is stored in the keychain.
-     - parameter value: Text string to be written to the keychain.
-     - parameter withAccess: Value that indicates when your app needs access to the text in the keychain item.
-     By default the .AccessibleWhenUnlocked option is used that permits the data to be accessed only
-     while the device is unlocked by the user.
-     - returns: True if the text was successfully written to the keychain.
-     */
+    /// Stores the text value in the keychain item under the given key.
+    /// 
+    /// - parameter key: Key under which the text value is stored in the keychain.
+    /// - parameter value: Text string to be written to the keychain.
+    /// - parameter withAccess: Value that indicates when your app needs access to the text in the keychain item.
+    /// By default the .AccessibleWhenUnlocked option is used that permits the data to be accessed only
+    /// while the device is unlocked by the user.
+    /// 
+    /// - returns: True if the text was successfully written to the keychain.
     @discardableResult
     open func set(_ value: String,
                   forKey key: String,
@@ -63,15 +59,15 @@ open class AuroraEditorKeychain {
         return false
     }
 
-    /**
-     Stores the data in the keychain item under the given key.
-     - parameter key: Key under which the data is stored in the keychain.
-     - parameter value: Data to be written to the keychain.
-     - parameter withAccess: Value that indicates when your app needs access to the text in the keychain item.
-     By default the .AccessibleWhenUnlocked option is used that permits the data to be accessed
-     only while the device is unlocked by the user.
-     - returns: True if the text was successfully written to the keychain.
-     */
+    /// Stores the data in the keychain item under the given key.
+    /// 
+    /// - parameter key: Key under which the data is stored in the keychain.
+    /// - parameter value: Data to be written to the keychain.
+    /// - parameter withAccess: Value that indicates when your app needs access to the text in the keychain item.
+    /// By default the .AccessibleWhenUnlocked option is used that permits the data to be accessed
+    /// only while the device is unlocked by the user.
+    /// 
+    /// - returns: True if the text was successfully written to the keychain.
     @discardableResult
     open func set(_ value: Data,
                   forKey key: String,
@@ -102,15 +98,15 @@ open class AuroraEditorKeychain {
         return lastResultCode == noErr
     }
 
-    /**
-     Stores the boolean value in the keychain item under the given key.
-     - parameter key: Key under which the value is stored in the keychain.
-     - parameter value: Boolean to be written to the keychain.
-     - parameter withAccess: Value that indicates when your app needs access to the value in the keychain item.
-     By default the .AccessibleWhenUnlocked option is used that permits the data to be accessed
-     only while the device is unlocked by the user.
-     - returns: True if the value was successfully written to the keychain.
-     */
+    /// Stores the boolean value in the keychain item under the given key.
+    /// 
+    /// - parameter key: Key under which the value is stored in the keychain.
+    /// - parameter value: Boolean to be written to the keychain.
+    /// - parameter withAccess: Value that indicates when your app needs access to the value in the keychain item.
+    /// By default the .AccessibleWhenUnlocked option is used that permits the data to be accessed
+    /// only while the device is unlocked by the user.
+    /// 
+    /// - returns: True if the value was successfully written to the keychain.
     @discardableResult
     open func set(_ value: Bool,
                   forKey key: String,
@@ -122,11 +118,11 @@ open class AuroraEditorKeychain {
         return set(data, forKey: key, withAccess: access)
     }
 
-    /**
-     Retrieves the text value from the keychain that corresponds to the given key.
-     - parameter key: The key that is used to read the keychain item.
-     - returns: The text value from the keychain. Returns nil if unable to read the item.
-     */
+    /// Retrieves the text value from the keychain that corresponds to the given key.
+    /// 
+    /// - parameter key: The key that is used to read the keychain item.
+    /// 
+    /// - returns: The text value from the keychain. Returns nil if unable to read the item.
     open func get(_ key: String) -> String? {
         if let data = getData(key) {
 
@@ -140,12 +136,12 @@ open class AuroraEditorKeychain {
         return nil
     }
 
-    /**
-     Retrieves the data from the keychain that corresponds to the given key.
-     - parameter key: The key that is used to read the keychain item.
-     - parameter asReference: If true, returns the data as reference (needed for things like NEVPNProtocol).
-     - returns: The text value from the keychain. Returns nil if unable to read the item.
-     */
+    /// Retrieves the data from the keychain that corresponds to the given key.
+    /// 
+    /// - parameter key: The key that is used to read the keychain item.
+    /// - parameter asReference: If true, returns the data as reference (needed for things like NEVPNProtocol).
+    /// 
+    /// - returns: The text value from the keychain. Returns nil if unable to read the item.
     open func getData(_ key: String, asReference: Bool = false) -> Data? {
         // The lock prevents the code to be run simultaneously
         // From multiple threads which may result in crashing
@@ -182,22 +178,22 @@ open class AuroraEditorKeychain {
         return nil
     }
 
-    /**
-     Retrieves the boolean value from the keychain that corresponds to the given key.
-     - parameter key: The key that is used to read the keychain item.
-     - returns: The boolean value from the keychain. Returns nil if unable to read the item.
-     */
+    /// Retrieves the boolean value from the keychain that corresponds to the given key.
+    /// 
+    /// - parameter key: The key that is used to read the keychain item.
+    /// 
+    /// - returns: The boolean value from the keychain. Returns nil if unable to read the item.
     open func getBool(_ key: String) -> Bool? {
         guard let data = getData(key) else { return nil }
         guard let firstBit = data.first else { return nil }
         return firstBit == 1
     }
 
-    /**
-     Deletes the single keychain item specified by the key.
-     - parameter key: The key that is used to delete the keychain item.
-     - returns: True if the item was successfully deleted.
-     */
+    /// Deletes the single keychain item specified by the key.
+    /// 
+    /// - parameter key: The key that is used to delete the keychain item.
+    /// 
+    /// - returns: True if the item was successfully deleted.
     @discardableResult
     open func delete(_ key: String) -> Bool {
         // The lock prevents the code to be run simultaneously
@@ -208,10 +204,9 @@ open class AuroraEditorKeychain {
         return deleteNoLock(key)
     }
 
-    /**
-     Return all keys from keychain
-     - returns: An string array with all keys from the keychain.
-     */
+    /// Return all keys from keychain
+    /// 
+    /// - returns: An string array with all keys from the keychain.
     public var allKeys: [String] {
         var query: [String: Any] = [
             AuroraEditorKeychainConstants.class: kSecClassGenericPassword,
@@ -238,11 +233,11 @@ open class AuroraEditorKeychain {
         return []
     }
 
-    /**
-     Same as `delete` but is only accessed internally, since it is not thread safe.
-     - parameter key: The key that is used to delete the keychain item.
-     - returns: True if the item was successfully deleted.
-     */
+    /// Same as `delete` but is only accessed internally, since it is not thread safe.
+    /// 
+    /// - parameter key: The key that is used to delete the keychain item.
+    /// 
+    /// - returns: True if the item was successfully deleted.
     @discardableResult
     func deleteNoLock(_ key: String) -> Bool {
         let prefixedKey = keyWithPrefix(key)
@@ -260,11 +255,10 @@ open class AuroraEditorKeychain {
         return lastResultCode == noErr
     }
 
-    /**
-     Deletes all Keychain items used by the app.
-     Note that this method deletes all items regardless of the prefix settings used for initializing the class.
-     - returns: True if the keychain items were successfully deleted.
-     */
+    /// Deletes all Keychain items used by the app.
+    /// Note that this method deletes all items regardless of the prefix settings used for initializing the class.
+    /// 
+    /// - returns: True if the keychain items were successfully deleted.
     @discardableResult
     open func clear() -> Bool {
         // The lock prevents the code to be run simultaneously

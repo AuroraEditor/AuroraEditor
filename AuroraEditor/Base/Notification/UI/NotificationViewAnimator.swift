@@ -109,16 +109,14 @@ class NotificationViewAnimator {
         .store(in: &cancelables)
     }
 
-    /**
-     Observes the `showNotificationToast` property of the `model`
-     and handles showing the notification view.
-
-     This function listens for changes in the `showNotificationToast` property and displays
-     the notification view when `showToast` is `true`. It also starts a timer to hide the notification
-     view after 5 seconds if the user is not hovering over it.
-
-     - Note: The `cancelTimer` function is called to ensure any existing timer is canceled before starting a new one.
-     */
+    /// Observes the `showNotificationToast` property of the `model`
+    /// and handles showing the notification view.
+    ///
+    /// This function listens for changes in the `showNotificationToast` property and displays
+    /// the notification view when `showToast` is `true`. It also starts a timer to hide the notification
+    /// view after 5 seconds if the user is not hovering over it.
+    ///
+    /// - Note: The `cancelTimer` function is called to ensure any existing timer is canceled before starting a new one.
     func observeShowNotification() {
         model.$showNotificationToast.sink { [weak self] showToast in
             guard let self = self else { return }
@@ -134,15 +132,13 @@ class NotificationViewAnimator {
         }.store(in: &cancelables)
     }
 
-    /**
-     Starts a timer to hide the notification view after 5 seconds if the user is not hovering over it.
-
-     This function schedules a timer to hide the notification view after 5 seconds if the user is not
-     actively hovering over it. The timer task checks the `hoveringOnToast` property and, if not
-     hovering and the notification view is not hidden, slides out the notification view.
-
-     - Note: Any existing timer is canceled before starting a new one to prevent timer conflicts.
-     */
+    /// Starts a timer to hide the notification view after 5 seconds if the user is not hovering over it.
+    ///
+    /// This function schedules a timer to hide the notification view after 5 seconds if the user is not
+    /// actively hovering over it. The timer task checks the `hoveringOnToast` property and, if not
+    /// hovering and the notification view is not hidden, slides out the notification view.
+    ///
+    /// - Note: Any existing timer is canceled before starting a new one to prevent timer conflicts.
     internal func startTimer() {
         cancelTimer()
 
@@ -161,12 +157,10 @@ class NotificationViewAnimator {
         DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: task)
     }
 
-    /**
-     Cancels the currently active timer, if one exists.
-
-     This function checks if there's an existing timer task (`timerTask`) and cancels it if it's still pending.
-     It ensures that the timer is cleared, preventing conflicts between multiple timer instances.
-     */
+    /// Cancels the currently active timer, if one exists.
+    ///
+    /// This function checks if there's an existing timer task (`timerTask`) and cancels it if it's still pending.
+    /// It ensures that the timer is cleared, preventing conflicts between multiple timer instances.
     internal func cancelTimer() {
         if let task = timerTask {
             if !task.isCancelled {

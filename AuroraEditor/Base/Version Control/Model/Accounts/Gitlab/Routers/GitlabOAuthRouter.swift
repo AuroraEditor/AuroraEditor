@@ -8,10 +8,23 @@
 
 import Foundation
 
+/// Gitlab OAuth Router
 enum GitlabOAuthRouter: Router {
+
+    /// Authorize
+    /// 
+    /// - Parameter config: Gitlab OAuth Configuration
+    /// - Parameter redirectURI: Redirect URI
     case authorize(GitlabOAuthConfiguration, String)
+
+    /// Access Token
+    /// 
+    /// - Parameter config: Gitlab OAuth Configuration
+    /// - Parameter code: Code
+    /// - Parameter redirectURI: Redirect URI
     case accessToken(GitlabOAuthConfiguration, String, String)
 
+    /// Configuration
     var configuration: GitConfiguration? {
         switch self {
         case .authorize(let config, _): return config
@@ -19,6 +32,7 @@ enum GitlabOAuthRouter: Router {
         }
     }
 
+    /// HTTP Method
     var method: HTTPMethod {
         switch self {
         case .authorize:
@@ -28,6 +42,7 @@ enum GitlabOAuthRouter: Router {
         }
     }
 
+    /// HTTP Encoding
     var encoding: HTTPEncoding {
         switch self {
         case .authorize:
@@ -37,6 +52,7 @@ enum GitlabOAuthRouter: Router {
         }
     }
 
+    /// Path
     var path: String {
         switch self {
         case .authorize:
@@ -46,6 +62,7 @@ enum GitlabOAuthRouter: Router {
         }
     }
 
+    /// Parameters
     var params: [String: Any] {
         switch self {
         case let .authorize(config, redirectURI):
@@ -53,16 +70,17 @@ enum GitlabOAuthRouter: Router {
                 "client_id": config.token as AnyObject,
                 "response_type": "code" as AnyObject,
                 "redirect_uri": redirectURI as AnyObject]
-        case let .accessToken(config, code, rediredtURI):
+        case let .accessToken(config, code, redirectURI):
             return [
                 "client_id": config.token as AnyObject,
                 "client_secret": config.secret as AnyObject,
                 "code": code as AnyObject, "grant_type":
                     "authorization_code" as AnyObject,
-                "redirect_uri": rediredtURI as AnyObject]
+                "redirect_uri": redirectURI as AnyObject]
         }
     }
 
+    /// URL Request
     var URLRequest: Foundation.URLRequest? {
         switch self {
         case .authorize(let config, _):

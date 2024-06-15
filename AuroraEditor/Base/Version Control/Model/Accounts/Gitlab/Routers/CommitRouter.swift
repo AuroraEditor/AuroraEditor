@@ -8,14 +8,52 @@
 
 import Foundation
 
+/// Commit Router
 enum CommitRouter: Router {
-    case readCommits(GitConfiguration, id: String, refName: String, since: String, until: String)
-    case readCommit(GitConfiguration, id: String, sha: String)
-    case readCommitDiffs(GitConfiguration, id: String, sha: String)
-    case readCommitComments(GitConfiguration, id: String, sha: String)
-    // swiftlint:disable:next line_length
-    case readCommitStatuses(GitConfiguration, id: String, sha: String, ref: String, stage: String, name: String, all: Bool)
 
+    /// Read commits
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter id: Identifier
+    /// - Parameter refName: Ref name
+    /// - Parameter since: Since
+    /// - Parameter until: Until
+    case readCommits(GitConfiguration, id: String, refName: String, since: String, until: String)
+
+    /// Read commit
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter id: Identifier
+    /// - Parameter sha: SHA
+    case readCommit(GitConfiguration, id: String, sha: String)
+
+    /// Read commit diffs
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter id: Identifier
+    /// - Parameter sha: SHA
+    case readCommitDiffs(GitConfiguration, id: String, sha: String)
+
+    /// Read commit comments
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter id: Identifier
+    /// - Parameter sha: SHA
+    case readCommitComments(GitConfiguration, id: String, sha: String)
+
+    /// Read commit statuses
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter id: Identifier
+    /// - Parameter sha: SHA
+    /// - Parameter ref: Ref
+    /// - Parameter stage: Stage
+    /// - Parameter name: Name
+    /// - Parameter all: All
+    case readCommitStatuses(GitConfiguration, id: String, sha: String, ref: String, stage: String, name: String, all: Bool)
+    // swiftlint:disable:previous line_length
+
+    /// Configuration
     var configuration: GitConfiguration? {
         switch self {
         case .readCommits(let config, _, _, _, _): return config
@@ -26,14 +64,17 @@ enum CommitRouter: Router {
         }
     }
 
+    /// HTTP Method
     var method: HTTPMethod {
         .GET
     }
 
+    /// HTTP Encoding
     var encoding: HTTPEncoding {
         .url
     }
 
+    /// Parameters
     var params: [String: Any] {
         switch self {
         case let .readCommits(_, _, refName, since, until):
@@ -49,6 +90,7 @@ enum CommitRouter: Router {
         }
     }
 
+    /// Path
     var path: String {
         switch self {
         case let .readCommits(_, id, _, _, _):

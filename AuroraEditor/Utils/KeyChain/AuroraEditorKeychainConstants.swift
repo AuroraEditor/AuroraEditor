@@ -14,11 +14,9 @@ public enum AuroraEditorKeychainConstants {
     /// Specifies a Keychain access group. Used for sharing Keychain items between apps.
     public static var accessGroup: String { toString(kSecAttrAccessGroup) }
 
-    /**
-     A value that indicates when your app needs access to the data in a keychain item.
-     The default value is AccessibleWhenUnlocked.
-     For a list of possible values, see AuroraEditorKeychainAccessOptions.
-     */
+    /// A value that indicates when your app needs access to the data in a keychain item.
+    /// The default value is AccessibleWhenUnlocked.
+    /// For a list of possible values, see AuroraEditorKeychainAccessOptions.
     public static var accessible: String { toString(kSecAttrAccessible) }
 
     /// Used for specifying a String key when setting/getting a Keychain value.

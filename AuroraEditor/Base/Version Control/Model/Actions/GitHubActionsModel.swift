@@ -9,67 +9,112 @@
 import Foundation
 import Version_Control
 
+/// Github actions model
 class GitHubActions: ObservableObject {
 
+    /// State
     enum State {
+
+        /// Loading
         case loading
+
+        /// Error
         case error
+
+        /// Success
         case success
+
+        /// Repistory failure
         case repoFailure
     }
 
+    /// Workflow Run State
     enum WorkflowRunState {
+
+        /// Loading
         case loading
+
+        /// Error
         case error
+
+        /// Success
         case success
+
+        /// Empty
         case empty
     }
 
+    /// Jobs State
     enum JobsState {
+
+        /// Loading
         case loading
+
+        /// Error
         case error
+
+        /// Success
         case success
+
+        /// Empty
         case empty
     }
 
+    /// State
     @Published
     var state: State = .loading
 
+    /// Workflow Run State
     @Published
     var workflowRunState: WorkflowRunState = .loading
 
+    /// Jobs Run State
     @Published
     var jobsState: JobsState = .loading
 
+    /// Workspace document
     let workspace: WorkspaceDocument
 
+    /// Workflows
     @Published
     var workflows: [Workflow] = []
 
+    /// Workflow Runs
     @Published
     var workflowRuns: [WorkflowRun] = []
 
+    /// Workflow Jobs
     @Published
     var workflowJobs: [JobSteps] = []
 
+    /// Workflow Job
     @Published
     var workflowJob: [Jobs] = []
 
+    /// Repo Owner
     @Published
     var repoOwner: String = ""
 
+    /// Repo
     @Published
     var repo: String = ""
 
+    /// Job Id
     @Published
     var jobId: String = ""
 
+    /// Initialize Github Actions
+    /// 
+    /// - Parameter workspace: Workspace Document
+    /// 
+    /// - Returns: Github Actions
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
 
         getRepoInformation()
     }
 
+    /// Fetch workflows
     func fetchWorkflows() {
         AuroraNetworking().request(baseURL: GithubNetworkingConstants.baseURL,
                                    path: GithubNetworkingConstants.workflows(repoOwner,
@@ -103,6 +148,9 @@ class GitHubActions: ObservableObject {
         })
     }
 
+    /// Fetch workflow runs
+    /// 
+    /// - Parameter workflowId: Workflow ID
     func fetchWorkflowRuns(workflowId: String) {
         DispatchQueue.main.async {
             self.workflowRunState = .loading
@@ -147,6 +195,9 @@ class GitHubActions: ObservableObject {
         })
     }
 
+    /// Fetch workflow jobs
+    /// 
+    /// - Parameter runId: Run ID
     func fetchWorkflowJobs(runId: String) {
         DispatchQueue.main.async {
             self.jobsState = .loading
@@ -195,6 +246,11 @@ class GitHubActions: ObservableObject {
         })
     }
 
+    /// Re-run workflow jobs
+    /// 
+    /// - Parameter jobId: Job ID
+    /// - Parameter enableDebugging: Enable Debugging
+    /// - Parameter completion: Completion
     func reRunWorkflowJobs(jobId: String,
                            enableDebugging: Bool,
                            completion: @escaping (Result<String, Error>) -> Void) {
@@ -225,6 +281,9 @@ class GitHubActions: ObservableObject {
         })
     }
 
+    /// Download workflow logs
+    /// 
+    /// - Parameter jobId: Job ID
     func downloadWorkflowLogs(jobId: String) {
         AuroraNetworking().request(baseURL: GithubNetworkingConstants.baseURL,
                                    path: GithubNetworkingConstants.reRunJob(repoOwner,
@@ -242,6 +301,7 @@ class GitHubActions: ObservableObject {
         })
     }
 
+    /// Get repo information
     func getRepoInformation() {
         do {
             let remote = try Remote().getRemoteURL(

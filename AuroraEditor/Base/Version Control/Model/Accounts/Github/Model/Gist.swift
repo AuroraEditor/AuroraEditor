@@ -226,18 +226,16 @@ public extension GithubAccount {
         }
     }
 
-    /**
-     Edits an gist with a single file.
-
-     - parameter session: GitURLSession, defaults to URLSession.sharedSession()
-     - parameter id: The of the gist to update.
-     - parameter description: The description of the gist.
-     - parameter filename: The name of the file in the gist.
-     - parameter fileContent: The content of the file in the gist.
-     - parameter completion: Callback for the gist that is created.
-
-     - returns: URLSessionTask
-     */
+    /// Edits an gist with a single file.
+    ///
+    /// - parameter session: GitURLSession, defaults to URLSession.sharedSession()
+    /// - parameter id: The of the gist to update.
+    /// - parameter description: The description of the gist.
+    /// - parameter filename: The name of the file in the gist.
+    /// - parameter fileContent: The content of the file in the gist.
+    /// - parameter completion: Callback for the gist that is created.
+    ///
+    /// - returns: URLSessionTask
     @discardableResult
     func patchGistFile(_ session: GitURLSession = URLSession.shared,
                        id: String,

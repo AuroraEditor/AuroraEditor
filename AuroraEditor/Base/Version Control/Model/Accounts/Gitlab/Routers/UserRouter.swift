@@ -8,23 +8,32 @@
 
 import Foundation
 
+/// User Router
 enum UserRouter: Router {
+
+    /// Read Authenticated User
+    /// 
+    /// - Parameter config: Git Configuration
     case readAuthenticatedUser(GitConfiguration)
 
+    /// Configuration
     var configuration: GitConfiguration? {
         switch self {
         case .readAuthenticatedUser(let config): return config
         }
     }
 
+    /// HTTP Method
     var method: HTTPMethod {
         .GET
     }
 
+    /// HTTP Encoding
     var encoding: HTTPEncoding {
         .url
     }
 
+    /// Path
     var path: String {
         switch self {
         case .readAuthenticatedUser:
@@ -32,6 +41,7 @@ enum UserRouter: Router {
         }
     }
 
+    /// Parameters
     var params: [String: Any] {
         [:]
     }

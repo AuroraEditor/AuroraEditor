@@ -12,34 +12,32 @@ import Version_Control
 /// Formats commit messages for Git.
 struct CommitMessageFormatter {
 
-    /**
-     Formats a commit message for Git.
-
-     - Parameters:
-     - directoryURL: The URL of the directory where the commit is being made.
-     - context: The `CommitContext` containing commit information.
-
-     - Returns: A formatted commit message as a `String`.
-
-     This function takes a `summary`, an optional `description`, and an optional array of `trailers`
-     from a `CommitContext`. It concatenates the `summary` and `description`, ensuring they are
-     separated by two newlines, and trims any trailing whitespace. If there are trailers, it attempts to merge
-     them with the commit message.
-
-     If merging trailers fails, it logs a debug message, but the commit message remains unchanged.
-
-     - Note: Git always trims whitespace at the end of commit messages, so it's important to format
-     the message accordingly.
-
-     - Parameter directoryURL: The URL of the directory where the commit is being made.
-     - Parameter context: The `CommitContext` containing commit information.
-
-     - Returns: A formatted commit message as a `String`.
-     - Throws: If merging trailers fails, it throws an error.
-
-     - SeeAlso: `CommitContext`
-     - SeeAlso: `mergeTrailers(directoryURL:commitMessage:trailers:)`
-     */
+    /// Formats a commit message for Git.
+    ///
+    /// - Parameters:
+    /// - directoryURL: The URL of the directory where the commit is being made.
+    /// - context: The `CommitContext` containing commit information.
+    ///
+    /// - Returns: A formatted commit message as a `String`.
+    ///
+    /// This function takes a `summary`, an optional `description`, and an optional array of `trailers`
+    /// from a `CommitContext`. It concatenates the `summary` and `description`, ensuring they are
+    /// separated by two newlines, and trims any trailing whitespace. If there are trailers, it attempts to merge
+    /// them with the commit message.
+    ///
+    /// If merging trailers fails, it logs a debug message, but the commit message remains unchanged.
+    ///
+    /// - Note: Git always trims whitespace at the end of commit messages, so it's important to format
+    /// the message accordingly.
+    ///
+    /// - Parameter directoryURL: The URL of the directory where the commit is being made.
+    /// - Parameter context: The `CommitContext` containing commit information.
+    ///
+    /// - Returns: A formatted commit message as a `String`.
+    /// - Throws: If merging trailers fails, it throws an error.
+    ///
+    /// - SeeAlso: `CommitContext`
+    /// - SeeAlso: `mergeTrailers(directoryURL:commitMessage:trailers:)`
     func formatCommitMessage(directoryURL: URL,
                              context: CommitContext) -> String {
         let summary = context.summary

@@ -27,11 +27,15 @@ public struct DefaultBranch {
 
     // TODO: Bug where global config value is not being processed correctly
     /// Returns the configured default branch when creating new repositories
+    /// 
+    /// - Returns: The default branch name to use.
     func getConfiguredDefaultBranch() throws -> String? {
         return try getGlobalConfigVlaue(name: defaultBranchSettingName)
     }
 
     /// Returns the configured default branch when creating new repositories
+    /// 
+    /// - Returns: The default branch name to use.
     func getDefaultBranch() throws -> String {
         // return try getConfiguredDefaultBranch() ?? defaultBranchInAE
         return defaultBranchInAE
@@ -39,7 +43,7 @@ public struct DefaultBranch {
 
     /// Sets the configured default branch when creating new repositories.
     ///
-    /// @param branchName - The default branch name to use.
+    /// - param branchName: The default branch name to use.
     func setDefaultBranch(branchName: String) throws -> String {
         return try setGlobalConfigValue(name: defaultBranchSettingName,
                                     value: branchName)

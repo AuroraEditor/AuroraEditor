@@ -13,16 +13,27 @@ import Foundation
 /// GIT Author
 class GitAuthor {
 
+    /// Name
     var name: String
+
+    /// Email
     var email: String
 
+    /// Initialize Git Author
+    /// 
+    /// - Parameter name: Name
+    /// - Parameter email: Email
+    /// 
+    /// - Returns: Git Author
     init(name: String?, email: String?) {
         self.name = name ?? "Unknown"
         self.email = email ?? "Unknown"
     }
 
     /// Parse gith author
+    /// 
     /// - Parameter nameAddr: Name + Address
+    /// 
     /// - Returns: GitAuthor
     public func parse(nameAddr: String) -> GitAuthor? {
         let value = nameAddr.components(separatedBy: "/^(.*?)\\s+<(.*?)>//")
@@ -31,6 +42,7 @@ class GitAuthor {
     }
 
     /// To String
+    /// 
     /// - Returns: Stringified
     public func toString() -> String {
         return "\(self.name) \(self.email)"

@@ -15,29 +15,45 @@ import OSLog
 
 // A protocol to make calls to terminal to init a git call.
 public class GitClient: ObservableObject { // swiftlint:disable:this type_body_length
+
+    /// Directory URL
     var directoryURL: URL
+
+    /// Shell Client
     var shellClient: ShellClient
 
     /// The max number of recent branches to find.
     private var recentBranchesLimit = 5
 
+    /// Pull with rebase
     @Published
     var pullWithRebase: Bool?
 
+    /// All branches
     @Published
     public var allBranches: [GitBranch] = []
 
+    /// Recent branches
     @Published
     var recentBranches: [GitBranch] = []
 
+    /// Default branch
     @Published
     var defaultBranch: GitBranch?
 
+    /// Upstream default branch
     @Published
     var upstreamDefaultBranch: GitBranch?
 
+    /// Logger
     private let logger = Logger(subsystem: "com.auroraeditor", category: "version-control")
 
+    /// Initialize Git Client
+    /// 
+    /// - Parameter directoryURL: Directory URL
+    /// - Parameter shellClient: Shell Client
+    /// 
+    /// - Returns: Git Client
     init(directoryURL: URL, shellClient: ShellClient) {
         self.directoryURL = directoryURL
         self.shellClient = shellClient
@@ -58,18 +74,38 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         loadBranches()
     }
 
+    /// Current branch name
     public var currentBranchName: AnyPublisher<String, Never>
+
+    /// Current branch name subject
     private var currentBranchNameSubject = CurrentValueSubject<String, Never>("Unknown Branch")
+
+    /// Published branch name
     @Published var publishedBranchName: String?
 
+    /// Branch names
     public var branchNames: AnyPublisher<[String], Never>
+
+    /// Branch names subject
     private var branchNamesSubject = CurrentValueSubject<[String], Never>([])
+
+    /// Published branch names
     @Published var publishedBranchNames: [String] = []
 
+    /// All branch names
     public var allBranchNames: AnyPublisher<[String], Never>
+
+    /// All branch names subject
     private var allBranchNamesSubject = CurrentValueSubject<[String], Never>([])
+
+    /// Published all branch names
     @Published var publishedAllBranchNames: [String] = []
 
+    /// Get current branch name
+    /// 
+    /// - Returns: Branch name
+    /// 
+    /// - Throws: GitClientError
     public func getCurrentBranchName() throws -> String {
         let result = try GitShell().git(args: ["rev-parse", "--abbrev-ref", "HEAD"],
                                         path: directoryURL,
@@ -86,6 +122,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
 
     // MARK: - BRANCHES
 
+    /// Load branches
     public func loadBranches() {
         let localAndRemoteBranches = try? Branch().getBranches(directoryURL: directoryURL)
 
@@ -108,6 +145,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         self.checkPullWithRebase()
     }
 
+    /// Refresh default branch
     public func refreshDefaultBranch() {
         do {
             defaultBranch = try DefaultBranch().findDefaultBranch(directoryURL: directoryURL,
@@ -127,6 +165,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         }
     }
 
+    /// Refresh recent branches
     private func refreshRecentBranches(recentBranchNames: [String]?) {
         guard let recentBranchNames = recentBranchNames, !recentBranchNames.isEmpty else {
             self.recentBranches = []
@@ -156,6 +195,11 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         self.recentBranches = recentBranches
     }
 
+    /// Get branch names
+    /// 
+    /// - Returns: Branch names
+    /// 
+    /// - Throws: GitClientError
     public func checkoutBranch(name: String) throws {
         guard currentBranchNameSubject.value != name else { return }
         let output = try shellClient.run(
@@ -172,6 +216,9 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
 
     // MARK: - PULL
 
+    /// Pull
+    /// 
+    /// - Throws: GitClientError
     public func pull() throws {
         let output = try shellClient.run(
             "cd \(directoryURL.relativePath);git pull"
@@ -181,6 +228,9 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         }
     }
 
+    /// Pull with rebase
+    /// 
+    /// - Throws: GitClientError
     private func checkPullWithRebase() {
         do {
             if let result = try Config().getConfigValue(directoryURL: directoryURL,
@@ -203,6 +253,13 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         }
     }
 
+    /// Pull with rebase
+    /// 
+    /// - Parameter path: Path
+    /// - Parameter branch: Branch
+    /// - Parameter allBranches: All Branches
+    /// 
+    /// - Returns: AnyPublisher<CloneProgressResult, GitClientError>
     public func cloneRepository(path: String, branch: String, allBranches: Bool) ->
     AnyPublisher<CloneProgressResult, GitClientError> {
         let command = allBranches ?
@@ -229,6 +286,11 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
             .eraseToAnyPublisher()
     }
 
+    /// Value to progress
+    /// 
+    /// - Parameter value: Value
+    /// 
+    /// - Returns: CloneProgressResult
     private func valueToProgress(value: String) -> CloneProgressResult {
         // TODO: Make a more solid parsing system.
         if value.contains("Cloning into") {
@@ -278,8 +340,14 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         }
     }
 
+    /// Get changed files
+    /// 
     /// Displays paths that have differences between the index file and the current HEAD commit,
     /// paths that have differences between the working tree and the index file, and paths in the working tree
+    /// 
+    /// - Returns: Changed files
+    /// 
+    /// - Throws: GitClientError
     public func getChangedFiles() throws -> [FileItem] {
         let output = try shellClient.run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git status -s --porcelain -u"
@@ -306,10 +374,15 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
     }
 
     /// Get commit history
+    /// 
     /// - Parameters:
     ///   - entries: number of commits we want to fetch. Will use max if nil
     ///   - fileLocalPath: specify a local file (e.g. `AuroraEditorModules/Package.swift`)
     ///   to retrieve a file commit history. Optional.
+    /// 
+    /// - Returns: Commit history
+    /// 
+    /// - Throws: GitClientError
     public func getCommitHistory(entries: Int?, fileLocalPath: String?) throws -> [CommitHistory] {
         var entriesString = ""
         let fileLocalPath = fileLocalPath?.escapedWhiteSpaces() ?? ""
@@ -347,6 +420,11 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
             }
     }
 
+    /// Discard file changes
+    /// 
+    /// - Parameter url: URL
+    /// 
+    /// - Throws: GitClientError
     public func discardFileChanges(url: String) throws {
         let output = try shellClient.run("cd \(directoryURL.relativePath.escapedWhiteSpaces());git restore \(url)")
         if output.contains("fatal") {
@@ -356,6 +434,9 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         }
     }
 
+    /// Discard project changes
+    /// 
+    /// - Throws: GitClientError
     public func discardProjectChanges() throws {
         let output = try shellClient.run("cd \(directoryURL.relativePath.escapedWhiteSpaces());git restore .")
         if output.contains("fatal") {
@@ -365,6 +446,11 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         }
     }
 
+    /// Stash changes
+    /// 
+    /// - Parameter message: Message
+    /// 
+    /// - Throws: GitClientError
     public func stashChanges(message: String?) throws {
         if message == nil {
             let output = try shellClient.run("cd \(directoryURL.relativePath.escapedWhiteSpaces());git stash")
@@ -385,6 +471,11 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         }
     }
 
+    /// Stage files
+    /// 
+    /// - Parameter files: Files
+    /// 
+    /// - Throws: GitClientError
     public func stage(files: [String]) throws {
         let output = try shellClient.run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git add \(files.joined(separator: " "))"
@@ -396,6 +487,11 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         }
     }
 
+    /// Unstage files
+    /// 
+    /// - Parameter files: Files
+    /// 
+    /// - Throws: GitClientError
     public func unstage(files: [String]) throws {
         let output = try shellClient.run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());" +
@@ -408,6 +504,11 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         }
     }
 
+    /// Commit
+    /// 
+    /// - Parameter message: Message
+    /// 
+    /// - Throws: GitClientError
     public func commit(message: String) throws {
         let output = try shellClient.run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());" +
@@ -419,4 +520,5 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
             logger.info("Successfully commited with message \"\(message)\"")
         }
     }
-} // swiftlint:disable:this file_length
+}
+// swiftlint:disable:this file_length
