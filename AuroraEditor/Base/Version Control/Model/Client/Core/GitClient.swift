@@ -13,6 +13,7 @@ import Combine
 import Version_Control
 import OSLog
 
+@available(*, deprecated, renamed: "VersionControl", message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")
 // A protocol to make calls to terminal to init a git call.
 public class GitClient: ObservableObject { // swiftlint:disable:this type_body_length
 

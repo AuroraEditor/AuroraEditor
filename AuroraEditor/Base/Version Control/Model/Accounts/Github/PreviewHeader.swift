@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(*, deprecated, renamed: "VersionControl", message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")
 /// Some APIs provide additional data for new (preview) APIs if a custom header is added to the request.
 ///
 /// - Note: Preview APIs are subject to change.

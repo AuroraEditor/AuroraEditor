@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(*, deprecated, renamed: "VersionControl", message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")
 public extension GitlabAccount {
     /// Fetches the Projects for which the authenticated user is a member.
     /// 

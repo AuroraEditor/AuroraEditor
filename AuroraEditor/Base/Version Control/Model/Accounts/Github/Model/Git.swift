@@ -11,6 +11,7 @@ import Foundation
 import FoundationNetworking
 #endif
 
+@available(*, deprecated, renamed: "VersionControl", message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")
 public extension GithubAccount {
 
     /// Deletes a reference.

@@ -9,6 +9,7 @@
 import Foundation
 import Version_Control
 
+@available(*, deprecated, renamed: "VersionControl", message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")
 /// Github actions model
 class GitHubActions: ObservableObject {
 

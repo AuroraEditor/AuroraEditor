@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(*, deprecated, renamed: "VersionControl", message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")
 /// Gitlab Base URL
 public let gitlabBaseURL = "https://gitlab.com/api/v4/"
 

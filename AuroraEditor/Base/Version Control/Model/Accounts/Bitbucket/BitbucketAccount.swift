@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(*, deprecated, renamed: "VersionControl", message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")
 /// BitBucket base URL
 public let bitbucketBaseURL = "https://api.bitbucket.org/2.0"
 

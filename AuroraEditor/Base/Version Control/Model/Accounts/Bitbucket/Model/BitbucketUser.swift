@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 
+@available(*, deprecated, renamed: "VersionControl", message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")
 /// Bitbucket user
 open class BitbucketUser: Codable {
 

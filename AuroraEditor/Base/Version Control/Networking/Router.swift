@@ -11,6 +11,7 @@
 
 import Foundation
 
+@available(*, deprecated, renamed: "VersionControl", message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")
 /// HTTP Encoding
 public enum HTTPEncoding: Int {
     case url, form, json

@@ -10,6 +10,7 @@
 
 import Foundation
 
+@available(*, deprecated, renamed: "VersionControl", message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")
 // TODO: Rebuild Networking Layer for Accounts
 public protocol JSONPostRouter: Router {
     /// Post JSON
