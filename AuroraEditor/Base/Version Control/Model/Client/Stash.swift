@@ -13,17 +13,27 @@ import Foundation
 /// GIT Stash
 public struct Stash {
 
+    /// Stash entry marker
     let editorStashEntryMarker = "!!AuroraEditor"
 
+    /// Stash entry message regex
     let editorStashEntryMessageRe = "/!!AuroraEditor<(.+)>$/"
 
+    /// Stash result
     class StashResult {
         /// The stash entries created by Desktop
         var aeEntries: [StashEntry]
+
         /// The total amount of stash entries,
         /// i.e. stash entries created both by AE and outside of AE
         var stashEntryCount: Int
 
+        /// Initialize a new stash result
+        /// 
+        /// - Parameter aeEntries: The stash entries created by Desktop
+        /// - Parameter stashEntryCount: The total amount of stash entries
+        /// 
+        /// - Returns: A new stash result
         init(aeEntries: [StashEntry], stashEntryCount: Int) {
             self.aeEntries = aeEntries
             self.stashEntryCount = stashEntryCount
@@ -33,6 +43,12 @@ public struct Stash {
     /// Get the list of stash entries created by Desktop in the current repository
     /// using the default ordering of refs (which is LIFO ordering),
     /// as well as the total amount of stash entries.
+    /// 
+    /// - Parameter directoryURL: The directory to get the stash entries in
+    /// 
+    /// - Returns: The stash result
+    /// 
+    /// - Throws: Error
     @discardableResult
     func getStashes(directoryURL: URL) throws -> StashResult {
         let delimiter = "1F"
@@ -63,6 +79,11 @@ public struct Stash {
     }
 
     /// Returns the last AE created stash entry for the given branch
+    /// 
+    /// - Parameter directoryURL: The directory to get the stash entry in
+    /// - Parameter branch: The branch to get the stash entry for
+    /// 
+    /// - Throws: Error
     func getLastAEStashEntryForBranch(directoryURL: URL,
                                       branch: String) throws {
         let stash = try getStashes(directoryURL: directoryURL)
@@ -70,11 +91,23 @@ public struct Stash {
     }
 
     /// Creates a stash entry message that indicates the entry was created by Aurora Editor
+    /// 
+    /// - Parameter branchName: The branch name to include in the message
+    /// 
+    /// - Returns: The stash entry message
     func createAEStashMessage(branchName: String) -> String {
         return "\(editorStashEntryMarker)\(branchName)"
     }
 
     /// Stash the working directory changes for the current branch
+    /// 
+    /// - Parameter directoryURL: The directory to stash the changes in
+    /// - Parameter branch: The branch to stash the changes for
+    /// - Parameter untrackedFilesToStage: The untracked files to stage
+    /// 
+    /// - Returns: Whether the stash entry was created
+    /// 
+    /// - Throws: Error
     func createAEStashEntry(directoryURL: URL,
                             branch: String,
                             untrackedFilesToStage: [FileItem]) throws -> Bool {
@@ -96,6 +129,14 @@ public struct Stash {
         return true
     }
 
+    /// Get the stash entry that matches the given SHA
+    /// 
+    /// - Parameter directoryURL: The directory to get the stash entry in
+    /// - Parameter sha: The SHA to match
+    /// 
+    /// - Returns: The stash entry
+    /// 
+    /// - Throws: Error
     private func getStashEntryMatchingSha(directoryURL: URL, sha: String) throws -> String? {
         try getStashes(directoryURL: directoryURL)
         return ""
@@ -103,7 +144,10 @@ public struct Stash {
 
     /// Removes the given stash entry if it exists
     ///
-    /// @param stashSha the SHA that identifies the stash entry
+    /// - Parameter directoryURL: The directory to remove the stash entry from
+    /// - Parameter sha: The SHA that identifies the stash entry
+    /// 
+    /// - Throws: Error
     func dropAEStashEntry(directoryURL: URL, sha: String) throws {
         let entryToDelete = try getStashEntryMatchingSha(directoryURL: directoryURL,
                                                          sha: sha)
@@ -120,6 +164,11 @@ public struct Stash {
     /// To see the commit hash of stash entry, run
     /// `git log -g refs/stash --pretty="%nentry: %gd%nsubject: %gs%nhash: %H%n"`
     /// in a repo with some stash entries.
+    /// 
+    /// - Parameter directoryURL: The directory to pop the stash entry in
+    /// - Parameter sha: The SHA that identifies the stash entry
+    /// 
+    /// - Throws: Error
     func popStashEntry(directoryURL: URL, sha: String) throws {
         let stashToPop = try getStashEntryMatchingSha(directoryURL: directoryURL, sha: sha)
 
@@ -132,12 +181,22 @@ public struct Stash {
         }
     }
 
+    /// Extract the branch name from the stash entry message
+    /// 
+    /// - Parameter message: The stash entry message
+    /// 
+    /// - Returns: The branch name
     private func extractBranchFromMessage(message: String) -> String? {
         let match = editorStashEntryMessageRe
         return match.substring(1).isEmpty ? nil : match.substring(1)
     }
 
     /// Get the files that were changed in the given stash commit
+    /// 
+    /// - Parameter directoryURL: The directory to get the files in
+    /// - Parameter stashSha: The SHA of the stash commit
+    /// 
+    /// - Throws: Error
     func getStashedFiles(directoryURL: URL, stashSha: String) throws {
         let args = ["stash",
                     "show",

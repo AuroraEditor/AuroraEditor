@@ -12,6 +12,12 @@ import Foundation
 
 /// Stages a file with the given manual resolution method.
 /// Useful for resolving binary conflicts at commit-time.
+/// 
+/// - Parameter directoryURL: The project url
+/// - Parameter file: The file to stage
+/// - Parameter manualResoultion: The manual resolution method
+/// 
+/// - Throws: Error
 func stageManualConflictResolution(directoryURL: URL,
                                    file: FileItem,
                                    manualResoultion: ManualConflictResolution) throws {

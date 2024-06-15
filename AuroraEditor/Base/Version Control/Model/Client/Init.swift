@@ -11,6 +11,10 @@
 import Foundation
 
 /// Init a new git repository in the given path.
+/// 
+/// - Parameter directoryURL: The directory to init the git repository in.
+/// 
+/// - Throws: Error
 func initGitRepository(directoryURL: URL) throws {
     try ShellClient().run(
         // swiftlint:disable:next line_length

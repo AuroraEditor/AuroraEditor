@@ -8,10 +8,19 @@
 
 import Foundation
 
+/// The type of repository that was found.
 enum RepositoryType {
+
+    /// A bare repository.
     case bare
+
+    /// A regular repository.
     case regular
+
+    /// The repository was not found.
     case missing
+
+    /// The repository was found but is unsafe.
     case unsafe
 }
 
@@ -20,6 +29,10 @@ enum RepositoryType {
 ///
 /// Returns 'bare', 'regular', or 'missing' if the repository couldn't be
 /// found.
+/// 
+/// - Parameter path: The path to the repository.
+/// 
+/// - Returns: The type of repository.
 func getRepositoryType(path: String) throws -> RepositoryType {
     if FileManager().directoryExistsAtPath(path) {
         return .missing

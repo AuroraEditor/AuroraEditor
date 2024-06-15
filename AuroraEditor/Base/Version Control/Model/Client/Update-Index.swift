@@ -14,21 +14,15 @@ protocol IUpdateIndexOptions {
     /// Whether or not to add a file when it exists in the working directory
     /// but not in the index. Defaults to true (note that this differs from the
     /// default behavior of Git which is to ignore new files).
-    ///
-    /// @default true
     var add: Bool? { get set }
 
     /// Whether or not to remove a file when it exists in the index but not
     /// in the working directory. Defaults to true (note that this differs from
     /// the default behavior of Git which is to ignore removed files).
-    ///
-    /// @default true
     var remove: Bool? { get set }
 
     /// Whether or not to forcefully remove a file from the index even though it
     /// exists in the working directory. This implies remove.
-    ///
-    /// @default false
     var forceRemove: Bool? { get set }
 
     /// Whether or not to replace conflicting entries in the index with that of
@@ -45,17 +39,32 @@ protocol IUpdateIndexOptions {
     /// newly created directory, causing the original foo file to be deleted
     /// in the index. This behavior matches what `git add` would do in a similar
     /// scenario.
-    ///
-    /// @default true
     var replace: Bool? { get set }
 }
 
+/// Options for updating the index
 class UpdateIndexOptions: IUpdateIndexOptions {
+
+    /// Add
     var add: Bool?
+
+    /// Remove
     var remove: Bool?
+
+    /// Force remove
     var forceRemove: Bool?
+
+    /// Replace
     var replace: Bool?
 
+    /// Initialize the options
+    /// 
+    /// - Parameter add: Add
+    /// - Parameter remove: Remove
+    /// - Parameter forceRemove: Force remove
+    /// - Parameter replace: Replace
+    /// 
+    /// - Returns: The options
     init(add: Bool? = nil, remove: Bool? = nil, forceRemove: Bool? = nil, replace: Bool? = nil) {
         self.add = add
         self.remove = remove
@@ -64,6 +73,13 @@ class UpdateIndexOptions: IUpdateIndexOptions {
     }
 }
 
+/// Update the index
+/// 
+/// - Parameter directoryURL: The directory to update the index in
+/// - Parameter paths: The paths to update
+/// - Parameter options: The options for updating the index
+/// 
+/// - Throws: Error
 func updateIndex(directoryURL: URL,
                  paths: [String],
                  options: UpdateIndexOptions?) throws {
@@ -96,6 +112,12 @@ func updateIndex(directoryURL: URL,
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args)")
 }
 
+/// Stage files
+/// 
+/// - Parameter directoryURL: The directory to stage the files in
+/// - Parameter files: The files to stage
+/// 
+/// - Throws: Error
 func stageFiles(directoryURL: URL,
                 files: [FileItem]) throws {
     var normal: [String] = []

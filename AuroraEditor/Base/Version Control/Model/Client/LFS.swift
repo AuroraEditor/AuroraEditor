@@ -11,6 +11,10 @@
 import Foundation
 
 /// Install the global LFS filters.
+/// 
+/// - Parameter force: Force the installation of the filters.
+/// 
+/// - Throws: Error
 func installGlobalLFSFilters(force: Bool) throws {
     var args = ["lfs", "install", "--skip-repo"]
 
@@ -22,6 +26,11 @@ func installGlobalLFSFilters(force: Bool) throws {
 }
 
 /// Install LFS hooks in the project
+/// 
+/// - Parameter directoryURL: The project url
+/// - Parameter force: Force the installation of the hooks.
+/// 
+/// - Throws: Error
 func installLFSHooks(directoryURL: URL,
                      force: Bool) throws {
     var args = ["lfs", "install"]
@@ -35,6 +44,10 @@ func installLFSHooks(directoryURL: URL,
 }
 
 /// Is the repository configured to track any paths with LFS?
+/// 
+/// - Parameter directoryURL: The project url
+/// 
+/// - Returns: True if the repository is using LFS
 func isUsingLFS(directoryURL: URL) throws -> Bool {
     let result = try ShellClient.live().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git lfs track")
@@ -43,6 +56,13 @@ func isUsingLFS(directoryURL: URL) throws -> Bool {
 }
 
 /// Is the repository configured to track any paths with LFS?
+/// 
+/// - Parameter directoryURL: The project url
+/// - Parameter path: The path to check
+/// 
+/// - Returns: True if the path is tracked by LFS
+/// 
+/// - Throws: Error
 func isTrackedByLFS(directoryURL: URL,
                     path: String) throws -> Bool {
     let result = try ShellClient.live().run(
@@ -71,7 +91,12 @@ func isTrackedByLFS(directoryURL: URL,
 /// Query a Git repository and filter the set of provided relative paths to see
 /// which are not covered by the current Git LFS configuration.
 ///
-/// @param filePaths List of relative paths in the repository
+/// - Parameter directoryURL: The project url
+/// - Parameter filePaths: The paths to check
+/// 
+/// - Returns: The list of paths not tracked by LFS
+/// 
+/// - Throws: Error
 func filesNotTrackedByLFS(directoryURL: URL,
                           filePaths: [String]) throws -> [String] {
     var filesNotTrackedByGitLFS: [String] = []

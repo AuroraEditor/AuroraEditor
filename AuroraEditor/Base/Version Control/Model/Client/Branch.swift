@@ -12,12 +12,27 @@ import Foundation
 
 /// Branches
 public struct Branches {
+    /// Branch Name
+    /// 
+    /// - Parameter directoryURL: Directory URL
+    /// 
+    /// - Returns: Branch Name
+    /// 
+    /// - Throws: Error
     func getCurrentBranch(directoryURL: URL) throws -> String {
         return try ShellClient.live().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git rev-parse --abbrev-ref HEAD"
         ).removingNewLines()
     }
 
+    /// Get all branches
+    /// 
+    /// - Parameter allBranches: All Branches
+    /// - Parameter directoryURL: Directory URL
+    /// 
+    /// - Returns: Branches
+    /// 
+    /// - Throws: Error
     func getBranches(_ allBranches: Bool = false, directoryURL: URL) throws -> [String] {
         if allBranches == true {
             return try ShellClient.live().run(
@@ -35,11 +50,13 @@ public struct Branches {
 
     /// Create a new branch from the given start point.
     ///
-    /// @param name - The name of the new branch
-    ///
-    /// @param startPoint - A committish string that the new branch should be based
-    /// on, or undefined if the branch should be created based
-    /// off of the current state of HEAD
+    /// - Parameter directoryURL: The directory to create the branch in
+    /// - Paramter name: The name of the new branch
+    /// - Paramter startPoint: A committish string that the new branch should be based
+    /// on, or undefined if the branch should be created based off of the current state of HEAD
+    /// - Paramter noTrack: If true, the new branch will not be set to track a remote branch
+    /// 
+    /// - Throws: Error
     func createBranch(directoryURL: URL,
                       name: String,
                       startPoint: String?,
@@ -55,6 +72,12 @@ public struct Branches {
     }
 
     /// Rename the given branch to a new name.
+    /// 
+    /// - Parameter directoryURL: The directory to rename the branch in
+    /// - Parameter branch: The name of the branch to rename
+    /// - Parameter newName: The new name for the branch
+    /// 
+    /// - Throws: Error
     func renameBranch(directoryURL: URL,
                       branch: String,
                       newName: String) throws {
@@ -63,6 +86,13 @@ public struct Branches {
     }
 
     /// Delete the branch locally.
+    /// 
+    /// - Parameter directoryURL: The directory to delete the branch in
+    /// - Parameter branchName: The name of the branch to delete
+    /// 
+    /// - Returns: Bool
+    /// 
+    /// - Throws: Error
     func deleteLocalBranch(directoryURL: URL,
                            branchName: String) throws -> Bool {
         try ShellClient().run(
@@ -71,8 +101,11 @@ public struct Branches {
     }
     /// Deletes a remote branch
     ///
-    /// @param remoteName - the name of the remote to delete the branch from
-    /// @param remoteBranchName - the name of the branch on the remote
+    /// - Parameter directoryURL: the directory to delete the branch from
+    /// - Parameter remoteName: the name of the remote to delete the branch from
+    /// - Parameter remoteBranchName: the name of the branch on the remote
+    /// 
+    /// - Throws: Error
     func deleteRemoteBranch(directoryURL: URL,
                             remoteName: String,
                             remoteBranchName: String) throws {
@@ -97,8 +130,10 @@ public struct Branches {
 
     /// Finds branches that have a tip equal to the given committish
     ///
-    /// @param commitish - a sha, HEAD, etc that the branch(es) tip should be
-    /// @returns - list branch names. null if an error is encountered
+    /// - Parameter directoryURL: The directory to search for branches in
+    /// - Parameter commitsh: The commit hash to search for
+    /// 
+    /// - Returns: The names of the branches that point at the given commit
     func getBranchesPointedAt(directoryURL: URL,
                               commitsh: String) throws -> [String]? {
         let args = [
@@ -115,5 +150,6 @@ public struct Branches {
         return resultRange
     }
 
+    /// Get the name of the branch that the given branch is tracking
     func getMergedBranches() {}
 }

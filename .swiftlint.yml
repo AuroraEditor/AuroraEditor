@@ -160,6 +160,14 @@ custom_rules:
     message: "Do not use /** style doc comments."
     severity: warning
 
+  # Dont use @param in doc comments
+  no_param_in_doc_comments:
+    included: ".*.swift"
+    name: "No @param in Doc Comments"
+    regex: "@param"
+    message: "Do not use @param in doc comments."
+    severity: warning
+
 file_header:
   required_pattern: |
                   \/\/

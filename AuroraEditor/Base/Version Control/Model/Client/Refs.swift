@@ -20,7 +20,9 @@ public struct Refs {
     /// - main -> refs/heads/main
     /// - heads/AuroraEditor/main -> refs/heads/AuroraEditor/main
     ///
-    /// @param name - The local branch name
+    /// - Parameter name: The local branch name
+    /// 
+    /// - Returns: The branch name in ref syntax
     func formatAsLocalRef(name: String) -> String {
         if name.starts(with: "heads/") {
             // In some cases, Git will report this name explicitly to distinguish from
@@ -41,12 +43,13 @@ public struct Refs {
     /// for files. Because refs can be removed easily from a Git repository,
     /// symbolic refs should only be used when absolutely necessary.
     ///
-    /// @param directoryURL - The project url
-    ///
-    /// @param - ref The symbolic ref to resolve
-    ///
-    /// @returns - the canonical ref, if found, or `nil` if `ref` cannot be found or
-    /// is not a symbolic ref
+    /// - Parameter directoryURL: The project url
+    /// - Parameter ref: The symbolic ref to resolve
+    /// 
+    /// - Returns: The canonical ref, if found, or `nil` if `ref` cannot be found or is not a symbolic ref
+    ///            is not a symbolic ref
+    /// 
+    /// - Throws: Error
     func getSymbolicRef(directoryURL: URL,
                         ref: String) throws -> String? {
         let result = try ShellClient.live().run(

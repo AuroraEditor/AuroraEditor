@@ -8,6 +8,11 @@
 
 import Foundation
 
+/// Check if the current project is a git repository
+/// 
+/// - Parameter workspaceURL: Workspace URL
+/// 
+/// - Returns: a boolean value
 func checkIfProjectIsRepo(workspaceURL: URL) -> Bool {
     do {
         let type = try getRepositoryType(path: workspaceURL.path)

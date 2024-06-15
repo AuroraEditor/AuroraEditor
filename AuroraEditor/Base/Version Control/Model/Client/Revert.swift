@@ -12,7 +12,11 @@ import Foundation
 
 /// Creates a new commit that reverts the changes of a previous commit
 ///
-/// @param sha - The SHA of the commit to be reverted
+/// - Parameter directoryURL: The project url
+/// - Parameter commit: The commit to revert
+/// - Parameter progressCallback: The progress callback
+/// 
+/// - Throws: Error
 func revertCommit(directoryURL: URL,
                   commit: GitCommit,
                   progressCallback: RevertProgress?) throws {

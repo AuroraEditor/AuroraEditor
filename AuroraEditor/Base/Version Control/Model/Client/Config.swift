@@ -12,10 +12,15 @@ import Foundation
 
 /// Look up a config value by name in the repository.
 ///
-/// @param onlyLocal Whether or not the value to be retrieved should stick to
+/// - Parameter directoryURL: The directory to look up the value in.
+/// - Parameter name: The name of the configuration value to look up.
+/// - Parameter onlyLocal Whether or not the value to be retrieved should stick to
 /// the local repository settings. It is false by default. This
-/// is equivalent to using the `--local` argument in the
-/// `git config` invocation.
+/// is equivalent to using the `--local` argument in the `git config` invocation.
+/// 
+/// - Returns: The value of the configuration value, or nil if it does not exist.
+/// 
+/// - Throws: Error
 func getConfigValue(directoryURL: URL,
                     name: String,
                     onlyLocal: Bool = false) throws -> String? {
@@ -26,6 +31,12 @@ func getConfigValue(directoryURL: URL,
 }
 
 /// Look up a global config value by name.
+/// 
+/// - Parameter name: The name of the configuration value to look up.
+/// 
+/// - Returns: The value of the configuration value, or nil if it does not exist.
+/// 
+/// - Throws: Error
 func getGlobalConfigVlaue(name: String) throws -> String? {
     return try getConfigValueInPath(name: name,
                                     path: nil,
@@ -38,6 +49,12 @@ func getGlobalConfigVlaue(name: String) throws -> String? {
 /// Treats the returned value as a boolean as per Git's
 /// own definition of a boolean configuration value (i.e.
 /// 0 -> false, "off" -> false, "yes" -> true etc)
+/// 
+/// - Parameter name: The name of the configuration value to look up.
+/// 
+/// - Returns: The value of the configuration value, or nil if it does not exist.
+/// 
+/// - Throws: Error
 func getGlobalBooleanConfigValue(name: String) throws -> Bool? {
     let value = try getConfigValueInPath(name: name,
                                          path: nil,
@@ -48,18 +65,21 @@ func getGlobalBooleanConfigValue(name: String) throws -> Bool? {
 
 /// Look up a config value by name
 ///
-/// @param path - The path to execute the `git` command in. If null
-/// we'll use the global configuration (i.e. --global)
-/// and execute the Git call from the same location that
-/// Aurora Editor is installed in.
-///
-/// @param onlyLocal - Whether or not the value to be retrieved should stick to
-/// the local repository settings (if a path is specified). It
-/// is false by default. It is equivalent to using the `--local`
-/// argument in the `git config` invocation.
-///
-///  @param type - Canonicalize configuration values according to the
-///  expected type (i.e. 0 -> false, "on" -> true etc).
+/// - Parameter name: The name of the configuration value to look up.
+/// - Parameter path: The path to execute the `git` command in. If null
+///                   we'll use the global configuration (i.e. --global)
+///                   and execute the Git call from the same location that
+///                   Aurora Editor is installed in.
+/// - Parameter onlyLocal: Whether or not the value to be retrieved should stick to
+///                        the local repository settings (if a path is specified). It
+///                        is false by default. It is equivalent to using the `--local`
+///                        argument in the `git config` invocation.
+/// - Parameter type: Canonicalize configuration values according to the
+///                  expected type (i.e. 0 -> false, "on" -> true etc).
+/// 
+/// - Returns: The value of the configuration value, or nil if it does not exist.
+/// 
+/// - Throws: Error
 func getConfigValueInPath(name: String,
                           path: String?,
                           onlyLocal: Bool = false,
@@ -95,6 +115,10 @@ func getConfigValueInPath(name: String,
 }
 
 /// Get the path to the global git config.
+/// 
+/// - Returns: The path to the global git config, or nil if it does not exist.
+/// 
+/// - Throws: Error
 func getGlobalConfig() throws -> String? {
     let result = try ShellClient.live().run(
         "git config --global --list --show-origin --name-only -z"
@@ -119,6 +143,12 @@ func getGlobalConfig() throws -> String? {
 }
 
 /// Set the local config value by name.
+/// 
+/// - Parameter directoryURL: The directory to set the value in.
+/// - Parameter name: The name of the configuration value to set.
+/// - Parameter value: The value to set the configuration value to.
+/// 
+/// - Throws: Error
 func setConfigValue(directoryURL: URL,
                     name: String,
                     value: String) throws {
@@ -128,6 +158,13 @@ func setConfigValue(directoryURL: URL,
 }
 
 /// Set the global config value by name.
+/// 
+/// - Parameter name: The name of the configuration value to set.
+/// - Parameter value: The value to set the configuration value to.
+/// 
+/// - Returns: The value of the configuration value, or nil if it does not exist.
+/// 
+/// - Throws: Error
 func setGlobalConfigValue(name: String,
                           value: String) throws -> String {
     return try setConfigValueInPath(name: name,
@@ -146,12 +183,21 @@ func addGlobalConfigValue(name: String,
 /// Adds a path to the `safe.directories` configuration variable if it's not
 /// already present. Adding a path to `safe.directory` will cause Git to ignore
 /// if the path is owner by a different user than the current.
+/// 
+/// - Parameter path: The path to add to the `safe.directories` configuration variable.
+/// 
+/// - Throws: Error
 func addSafeDirectory(path: String) throws {
     try addGlobalConfigValueIfMissing(name: "safe.directory",
                                       value: path)
 }
 
 /// Set the global config value by name.
+/// 
+/// - Parameter name: The name of the configuration value to set.
+/// - Parameter value: The value to set the configuration value to.
+/// 
+/// - Throws: Error
 func addGlobalConfigValueIfMissing(name: String,
                                    value: String) throws {
     let result = try ShellClient.live().run(
@@ -165,10 +211,16 @@ func addGlobalConfigValueIfMissing(name: String,
 
 /// Set config value by name
 ///
-///  @param path The path to execute the `git` command in. If null
-///  we'll use the global configuration (i.e. --global)
-///  and execute the Git call from the same location that
-///  Aurora Editor is installed in.
+/// - Parameter name: The name of the configuration value to set.
+/// - Parameter value: The value to set the configuration value to.
+/// - Parameter path: The path to execute the `git` command in. If null
+///                   we'll use the global configuration (i.e. --global)
+///                   and execute the Git call from the same location that
+///                   Aurora Editor is installed in.
+///
+/// - Returns: The value of the configuration value, or nil if it does not exist.
+////
+/// - Throws: Error
 @discardableResult
 func setConfigValueInPath(name: String,
                           value: String,
@@ -196,6 +248,11 @@ func setConfigValueInPath(name: String,
 }
 
 /// Remove the local config value by name.
+/// 
+/// - Parameter directoryURL: The directory to remove the value in.
+/// - Parameter name: The name of the configuration value to remove.
+/// 
+/// - Throws: Error
 func removeConfigValue(directoryURL: URL,
                        name: String) throws {
     try removeConfigValueInPath(name: name,
@@ -203,10 +260,20 @@ func removeConfigValue(directoryURL: URL,
 }
 
 /// Remove the global config value by name.
+/// 
+/// - Parameter name: The name of the configuration value to remove.
+/// 
+/// - Throws: Error
 func removeGlobalConfigValue(name: String) throws {
     try removeConfigValueInPath(name: name, path: nil)
 }
 
+/// Remove the config value by name
+/// 
+/// - Parameter name: The name of the configuration value to remove.
+/// - Parameter path: The path to execute the `git` command in. If null
+/// 
+/// - Throws: Error
 func removeConfigValueInPath(name: String,
                              path: String?) throws {
 

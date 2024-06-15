@@ -12,23 +12,28 @@ import Foundation
 
 /// GIT Cherry pick
 public struct CherryPick {
+
     /// The app-specific results from attempting to cherry pick commits
     enum CherryPickResult: String {
         /// Git completed the cherry pick without reporting any errors, and the caller can
         /// signal success to the user.
         case completedWithoutError = "CompletedWithoutError"
+
         /// The cherry pick encountered conflicts while attempting to cherry pick and
         /// need to be resolved before the user can continue.
         case conflictsEncountered = "ConflictsEncountered"
+
         /// The cherry pick was not able to continue as tracked files were not staged in
         /// the index.
         case outstandingFilesNotStaged = "OutstandingFilesNotStaged"
+
         /// The cherry pick was not attempted:
         /// - it could not check the status of the repository.
         /// - there was an invalid revision range provided.
         /// - there were uncommitted changes present.
         /// - there were errors in checkout the target branch
         case unableToStart = "UnableToStart"
+
         /// An unexpected error as part of the cherry pick flow was caught and handled.
         /// Check the logs to find the relevant Git details.
         case error = "Error"
@@ -36,7 +41,7 @@ public struct CherryPick {
 
     /// A function to initiate cherry picking in the app.
     ///
-    /// @param commits - array of commits to cherry-pick
+    /// - Parameter commits: array of commits to cherry-pick
     /// For a cherry-pick operation, it does not matter what order the commits
     /// appear. But, it is best practice to send them in ascending order to prevent
     /// conflicts. First one on the array is first to be cherry-picked.
@@ -75,11 +80,15 @@ public struct CherryPick {
     /// need manual resolution or were changed by the user to address inline
     /// conflicts.
     ///
-    /// @param files - The working directory of files. These are the files that are
+    /// - Parameter files: The working directory of files. These are the files that are
     /// detected to have changes that we want to stage for the cherry pick.
     func continueCherryPick() {}
 
     /// Abandon the current cherry pick operation
+    /// 
+    /// - Parameter directoryURL: The directory to abandon the cherry pick in
+    /// 
+    /// - Throws: Error
     func abortCherryPick(directoryURL: URL) throws {
         try ShellClient().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git cherry-pick --abort"
@@ -87,6 +96,10 @@ public struct CherryPick {
     }
 
     /// Check if the `.git/CHERRY_PICK_HEAD` file exists
+    /// 
+    /// - Parameter directoryURL: The directory to check for the cherry pick head
+    /// 
+    /// - Returns: Bool
     func isCherryPickHeadFound(directoryURL: URL) -> Bool {
         do {
             let cherryPickHeadPath = try String(contentsOf: directoryURL) + ".git/CHERRY_PICK_HEAD"

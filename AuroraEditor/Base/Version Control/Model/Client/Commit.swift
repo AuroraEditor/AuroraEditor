@@ -14,11 +14,15 @@ import Foundation
 public struct Commit {
 
     /// Create Commit
+    /// 
     /// - Parameters:
     ///   - repository: repository to execute merge in
     ///   - message: commit message
     ///   - files: files to commit
+    /// 
     /// - returns: the commit SHA
+    /// 
+    /// - throws: Error
     func createCommit(directoryURL: URL,
                       message: String,
                       files: [FileItem],

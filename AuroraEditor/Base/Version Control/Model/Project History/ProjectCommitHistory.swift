@@ -9,46 +9,69 @@
 import SwiftUI
 import Version_Control
 
+/// Project Commit History
 final class ProjectCommitHistory: Equatable, Identifiable, TabBarItemRepresentable, ObservableObject {
 
     /// The state of the current Project Commit History View
     enum State {
+
+        /// Loading
         case loading
+
+        /// Error
         case error
+
+        /// Success
         case success
+
+        /// Empty
         case empty
     }
 
+    /// The state of the current Project Commit History View
     @Published
     var state: State = .loading
 
+    /// The workspace document
     let workspace: WorkspaceDocument
 
+    /// Equatable
+    /// 
+    /// - Parameter lhs: The left hand side
+    /// - Parameter rhs: The right hand side
+    /// 
+    /// - Returns: Whether the two are equal
     static func == (lhs: ProjectCommitHistory, rhs: ProjectCommitHistory) -> Bool {
         guard lhs.tabID == rhs.tabID else { return false }
         guard lhs.title == rhs.title else { return false }
         return true
     }
 
+    /// The tab ID
     public var tabID: TabBarItemID {
         .projectHistory(workspace.workspaceURL().lastPathComponent)
     }
 
+    /// The title
     public var title: String {
         workspace.workspaceURL().lastPathComponent
     }
 
+    /// The icon
     public var icon: Image {
         Image(systemName: "clock")
     }
 
+    /// The icon color
     public var iconColor: Color {
         return .secondary
     }
 
+    /// The project history
     @Published
     var projectHistory: [Commit] = []
 
+    /// The git history date
     @Published
     var gitHistoryDate: CommitDate? {
         didSet {
@@ -63,6 +86,11 @@ final class ProjectCommitHistory: Equatable, Identifiable, TabBarItemRepresentab
         }
     }
 
+    /// Initialize with a workspace document
+    /// 
+    /// - Parameter workspace: The workspace document
+    /// 
+    /// - Returns: A Project Commit History instance
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
 
@@ -83,6 +111,9 @@ final class ProjectCommitHistory: Equatable, Identifiable, TabBarItemRepresentab
         }
     }
 
+    /// Reload the project history
+    /// 
+    /// - Throws: Error
     func reloadProjectHistory() throws {
         var additionArgs: [String] = []
 

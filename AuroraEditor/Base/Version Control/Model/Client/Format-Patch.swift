@@ -11,6 +11,14 @@
 import Foundation
 
 /// Generate a patch representing the changes associated with a range of commits
+/// 
+/// - Parameter directoryURL: The directory to generate the patch in.
+/// - Parameter base: The commit to start the patch from.
+/// - Parameter head: The commit to end the patch at.
+/// 
+/// - Returns: The patch as a string.
+/// 
+/// - Throws: Error
 func formatPatch(directoryURL: URL,
                  base: String,
                  head: String) throws -> String {

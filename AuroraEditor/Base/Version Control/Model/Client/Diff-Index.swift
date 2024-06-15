@@ -10,18 +10,41 @@ import Foundation
 
 /// Possible statuses of an entry in Git
 enum IndexStatus: Int {
+
+    /// Unknown status
     case unknown = 0
+
+    /// Added
     case added
+
+    /// Copied
     case copied
+
+    /// Deleted
     case deleted
+
+    /// Modified
     case modified
+
+    /// Renamed
     case renamed
+
+    /// Type changed
     case typeChanged
+
+    /// Unmerged
     case unmerged
 }
 
 typealias NoRenameIndexStatus = IndexStatus
 
+/// Get the index status from the status string
+/// 
+/// - Parameter status: The status string
+/// 
+/// - Returns: The index status
+/// 
+/// - Throws: IndexError
 func getIndexStatus(status: String) throws -> IndexStatus {
     switch status.substring(0) {
     case "A":
@@ -45,6 +68,13 @@ func getIndexStatus(status: String) throws -> IndexStatus {
     }
 }
 
+/// Get the no-rename index status from the status string
+/// 
+/// - Parameter status: The status string
+/// 
+/// - Returns: The no-rename index status
+/// 
+/// - Throws: IndexError
 func getNoRenameIndexStatus(status: String) throws -> NoRenameIndexStatus {
     let parsed = try getIndexStatus(status: status)
 
@@ -69,6 +99,13 @@ func getNoRenameIndexStatus(status: String) throws -> NoRenameIndexStatus {
 /// The SHA for the nil tree
 let nilTreeSHA = "4b825dc642cb6eb9a060e54bf8d69288fbee4904"
 
+/// Get the changes in the index
+/// 
+/// - Parameter directoryURL: The directory URL
+/// 
+/// - Returns: A dictionary of file paths and their index status
+/// 
+/// - Throws: ShellClientError
 func getIndexChanges(directoryURL: URL) throws -> [String: NoRenameIndexStatus] {
     let args = ["diff-index", "--cahced", "name-status", "--no-renames", "-z"]
 
@@ -91,7 +128,12 @@ func getIndexChanges(directoryURL: URL) throws -> [String: NoRenameIndexStatus] 
     return map
 }
 
+/// Index error
 enum IndexError: Error {
+
+    /// Unknown index status
     case unknownIndex(String)
+
+    /// No-rename index status
     case noRenameIndex(String)
 }

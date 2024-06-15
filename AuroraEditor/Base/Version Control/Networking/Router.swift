@@ -38,14 +38,19 @@ public struct HTTPHeader {
 public protocol GitConfiguration {
     /// API Endpoint
     var apiEndpoint: String? { get }
+
     /// Access Token
     var accessToken: String? { get }
+
     /// Access Token Header Field Name
     var accessTokenFieldName: String? { get }
+
     /// Authorization header
     var authorizationHeader: String? { get }
+
     /// Error Domain
     var errorDomain: String? { get }
+
     /// Custom Headers
     var customHeaders: [HTTPHeader]? { get }
 }
@@ -79,32 +84,42 @@ public let errorKey = "ErrorKey"
 public protocol Router {
     /// HTTP Method
     var method: HTTPMethod { get }
+
     /// URL Path
     var path: String { get }
+
     /// HTTP Encoding
     var encoding: HTTPEncoding { get }
+
     /// Params
     var params: [String: Any] { get }
+
     /// Configuration
     var configuration: GitConfiguration? { get }
 
     /// URL Query
+    /// 
     /// - Parameter parameters: parameters
+    /// 
     /// - Returns: URLQueryItem
     func urlQuery(_ parameters: [String: Any]) -> [URLQueryItem]?
 
     /// URL Request
+    /// 
     /// - Parameters:
     ///   - urlComponents: URLComponents
     ///   - parameters: Parameters
+    /// 
     /// - Returns: URLRequest
     func request(_ urlComponents: URLComponents, parameters: [String: Any]) -> URLRequest?
 
     /// Load JSON
+    /// 
     /// - Parameters:
     ///   - session: URL Session
     ///   - expectedResultType: T
     ///   - completion: (T, Error)
+    /// 
     /// - Returns: URLSessionDataTaskProtocol
     func loadJSON<T: Codable>(
         _ session: GitURLSession,
@@ -112,11 +127,13 @@ public protocol Router {
         completion: @escaping (_ json: T?, _ error: Error?) -> Void) -> URLSessionDataTaskProtocol?
 
     /// Load
+    /// 
     /// - Parameters:
     ///   - session: URL Session
     ///   - dateDecodingStrategy: date decoding strategy
     ///   - expectedResultType: T
     ///   - completion: (T, Error)
+    /// 
     /// - Returns: URLSessionDataTaskProtocol
     func load<T: Codable>(
         _ session: GitURLSession,
@@ -125,11 +142,13 @@ public protocol Router {
         completion: @escaping (_ json: T?, _ error: Error?) -> Void) -> URLSessionDataTaskProtocol?
 
     /// Load JSON
+    /// 
     /// - Parameters:
     ///   - session: URL Session
     ///   - decoder: decoder
     ///   - expectedResultType: T
     ///   - completion: (T, Error)
+    /// 
     /// - Returns: URLSessionDataTaskProtocol
     func load<T: Codable>(
         _ session: GitURLSession,
@@ -138,12 +157,14 @@ public protocol Router {
         completion: @escaping (_ json: T?, _ error: Error?) -> Void) -> URLSessionDataTaskProtocol?
 
     /// Request
+    /// 
     /// - Returns: URLRequest
     func request() -> URLRequest?
 }
 
 public extension Router {
     /// Request
+    /// 
     /// - Returns: URLRequest
     func request() -> URLRequest? {
         let url = URL(string: path, relativeTo: URL(string: configuration?.apiEndpoint ?? "")!)
@@ -174,6 +195,10 @@ public extension Router {
     /// Due to the complexity of the the urlQuery method we disabled lint for the this method
     /// only so that it doesn't complain... Note this level of complexity is needed to give us as
     /// much success rate as possible due to all git providers having different types of url schemes.
+    /// 
+    /// - Parameter parameters: parameters
+    /// 
+    /// - Returns: URLQueryItem
     func urlQuery(_ parameters: [String: Any]) -> [URLQueryItem]? {
         guard !parameters.isEmpty else { return nil }
 
@@ -212,9 +237,11 @@ public extension Router {
     }
 
     /// Request
+    /// 
     /// - Parameters:
     ///   - urlComponents: URL Components
     ///   - parameters: Parameters
+    /// 
     /// - Returns: URLRequest
     func request(_ urlComponents: URLComponents, parameters: [String: Any]) -> URLRequest? {
 
@@ -252,10 +279,12 @@ public extension Router {
     }
 
     /// [DEPRECATED] loadJSON
+    /// 
     /// - Parameters:
     ///   - session: DEPRECATED
     ///   - expectedResultType: DEPRECATED
     ///   - completion: DEPRECATED
+    /// 
     /// - Returns: DEPRECATED
     @available(*, deprecated, message: "Plase use `load` method instead")
     func loadJSON<T: Codable>(
@@ -266,11 +295,13 @@ public extension Router {
     }
 
     /// Load
+    /// 
     /// - Parameters:
     ///   - session: URL Session
     ///   - dateDecodingStrategy: date decoding strategy
     ///   - expectedResultType: T
     ///   - completion: (T, Error) -> Void
+    /// 
     /// - Returns: URLSessionDataTaskProtocol
     func load<T: Codable>(
         _ session: GitURLSession = URLSession.shared,
@@ -288,11 +319,13 @@ public extension Router {
     }
 
     /// Load
+    /// 
     /// - Parameters:
     ///   - session: URLSession
     ///   - decoder: Decoder
     ///   - _: T
     ///   - completion: (T, Error) -> Void
+    /// 
     /// - Returns: URLSessionDataTaskProtocol
     func load<T: Codable>(
         _ session: GitURLSession = URLSession.shared,
@@ -344,10 +377,12 @@ public extension Router {
     }
 
     /// Load
+    /// 
     /// - Parameters:
     ///   - session: URLSession
     ///   - decoder: Decoder
     ///   - _: T
+    /// 
     /// - Returns: T
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func load<T: Codable>(
@@ -380,10 +415,12 @@ public extension Router {
     }
 
     /// Load
+    /// 
     /// - Parameters:
     ///   - session: URLSession
     ///   - dateDecodingStrategy: date decoding strategy
     ///   - expectedResultType: T
+    /// 
     /// - Returns: T
     @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
     func load<T: Codable>(
@@ -401,9 +438,11 @@ public extension Router {
     }
 
     /// Load
+    /// 
     /// - Parameters:
     ///   - session: URLSession
     ///   - completion: (error) -> Void
+    ///
     /// - Returns: URLSessionDataTaskProtocol
     func load(
         _ session: GitURLSession = URLSession.shared,
@@ -446,6 +485,9 @@ public extension Router {
 private extension CharacterSet {
 
     /// https://github.com/Alamofire/Alamofire/blob/3.5rameterEncoding.swift#L220-L225
+    /// Returns the character set for characters allowed in the query component of a URL.
+    /// 
+    /// - Returns: The character set.
     static func URLQueryAllowedCharacterSet() -> CharacterSet {
 
         // does not include "?" or "/" due to RFC 3986 - Section 3.4
@@ -465,4 +507,5 @@ public extension HTTPURLResponse {
         let successRange = 200 ..< 300
         return successRange.contains(statusCode)
     }
-} // swiftlint:disable:this file_length
+}
+// swiftlint:disable:this file_length

@@ -9,6 +9,12 @@
 import Foundation
 
 /// Returns a list of files with conflict markers present
+/// 
+/// - Parameter directoryURL: Directory URL
+/// 
+/// - Returns: A dictionary of file names and the number of conflict markers
+/// 
+/// - Throws: ShellClientError
 func getFilesWithConflictMarkers(directoryURL: URL) throws -> [String: Int] {
     let args = ["diff", "--check"]
     let output = try ShellClient().run(

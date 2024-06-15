@@ -8,38 +8,68 @@
 
 import Foundation
 
+/// Diff prefix add
 private let diffPrefixAdd = "+"
+
+/// Diff prefix delete
 private let diffPrefixDelete = "-"
+
+/// Diff prefix context
 private let diffPrefixContext = " "
+
+/// Diff prefix no new line
 private let diffPrefixNoNewLine = "\\"
 
+/// Diff line prefix type
 enum DiffLinePrefixType: String {
+
+    /// Add
     case add = "+"
+
+    /// Delete
     case delete = "-"
+
+    /// Context
     case context = " "
+
+    /// No new line
     case noNewLine = "\\"
 }
 
 typealias DiffLinePrefix = DiffLinePrefixType
 
+/// Diff line prefix characters
 let diffLinePrefixChars: Set<DiffLinePrefix> = [.add, .delete, .context, .noNewLine]
 
+/// Diff line prefix characters
 class IDiffHeaderInfo {
     /// Whether or not the diff header contained a marker indicating
     /// that a diff couldn't be produced due to the contents of the
     /// new and/or old file was binary.
     var isBinary: Bool
 
+    /// Initialize the diff header info
+    /// 
+    /// - Parameter isBinary: Is binary
+    /// 
+    /// - Returns: Diff header info
     init(isBinary: Bool) {
         self.isBinary = isBinary
     }
 }
 
+/// Diff hunk header
 class DiffParser {
-    // swiftlint:disable:next identifier_name
+
+    /// Git diff hunk ls
     private var ls: Int!
-    // swiftlint:disable:next identifier_name
+    // swiftlint:disable:previous identifier_name
+
+    /// Git diff hunk le
     private var le: Int!
+    // swiftlint:disable:previous identifier_name
+
+    /// Git diff hunk text
     private var text: String!
 
     /// Resets the internal parser state so that it can be reused.
@@ -54,7 +84,7 @@ class DiffParser {
     /// Aligns the internal character pointers at the boundaries of
     /// the next line.
     ///
-    /// Returns true if successful or false if the end of the diff
+    /// - Return: true if successful or false if the end of the diff
     /// has been reached.
     private func nextLine() -> Bool {
         self.ls = self.le + 1
@@ -139,6 +169,12 @@ class DiffParser {
     /// `@@ -84,10 +82,8 @@ func parseRawDiff(lines: [String]) -> Diff {`
     ///
     /// Where everything after the last @@ is what's known as the hunk, or section, heading
+    /// 
+    /// - Parameter line: The line to parse
+    /// 
+    /// - Returns: The parsed hunk header
+    /// 
+    /// - Throws: DiffParserError
     private func parseHunkHeader(line: String) throws -> DiffHunkHeader {
         let m = line
 
@@ -159,6 +195,11 @@ class DiffParser {
 
     // TODO: Find a way to parse line prefix and hunk
 
+    /// Parses a hunk from the diff text.
+    /// 
+    /// - Parameter text: The diff text
+    /// 
+    /// - Returns: The parsed hunk
     func parse(text: String) -> IRawDiff {
         self.text = text
 
@@ -213,6 +254,11 @@ class DiffParser {
     }
 }
 
+/// Diff parser error
 enum DiffParserError: Error {
+
+    /// Invalid hunk header
+    /// 
+    /// - Parameter Error: The error message
     case invalidHunkHeader(String)
 }

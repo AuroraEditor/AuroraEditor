@@ -10,6 +10,12 @@
 
 import Foundation
 
+/// Apply Patch To Index
+/// 
+/// - Parameter directoryURL: Directory URL
+/// - Parameter file: File Item
+/// 
+/// - Throws: Error
 func applyPatchToIndex(directoryURL: URL,
                        file: FileItem) throws {
     // If the file was a rename we have to recreate that rename since we've

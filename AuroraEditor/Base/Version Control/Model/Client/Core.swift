@@ -24,6 +24,8 @@ var gitNetworkArguments: [String] {
 
 /// Returns the arguments to use on any git operation that can end up
 /// triggering a rebase.
+/// 
+/// - Returns: The arguments to use on any git operation that can end up
 func gitRebaseArguments() -> [String] {
     // Explicitly set the rebase backend to merge.
     // We need to force this option to be sure that AE
@@ -34,6 +36,8 @@ func gitRebaseArguments() -> [String] {
 }
 
 /// Returns the SHA of the passed in IGitResult
+/// 
+/// - Parameter result: The result to parse
 func parseCommitSHA(result: String) -> String {
     return String(result.split(separator: "]")[0].split(separator: " ")[1])
 }

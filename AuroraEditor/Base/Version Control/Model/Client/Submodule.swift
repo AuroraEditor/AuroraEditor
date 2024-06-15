@@ -10,6 +10,14 @@
 
 import Foundation
 
+/// List the submodules in a repository
+/// 
+/// - Parameter directoryURL: The directory to list submodules in.
+/// - Parameter paths: The paths to list submodules for.
+/// 
+/// - Returns: The submodules in the repository.
+/// 
+/// - Throws: Error
 func listSubmodules(directoryURL: URL,
                     paths: [String]) throws -> [SubmoduleEntry] {
     let submodulesFile = FileManager.default.fileExists(atPath: "\(directoryURL).gitmodules")

@@ -18,6 +18,12 @@ public struct GitIgnore {
     /// Returns a promise which will either be rejected or resolved
     /// with the contents of the file. If there's no .gitignore file
     /// in the repository root the promise will resolve with null.
+    /// 
+    /// - Parameter directoryURL: The project url
+    /// 
+    /// - Returns: The contents of the .gitignore file.
+    /// 
+    /// - Throws: Error
     func readGitIgnoreAtRoot(directoryURL: URL) throws -> String? {
         let ignorePath = try String(contentsOf: directoryURL) + ".gitignore"
         let content = try String(contentsOf: URL(string: ignorePath)!)
@@ -28,6 +34,11 @@ public struct GitIgnore {
     ///
     /// If the repository root doesn't contain a .gitignore file one
     /// will be created, otherwise the current file will be overwritten.
+    /// 
+    /// - Parameter directoryURL: The project url
+    /// - Parameter text: The text to save
+    /// 
+    /// - Throws: Error
     func saveGitIgnore(directoryURL: URL,
                        text: String) throws {
         let ignorePath = try String(contentsOf: directoryURL) + ".gitignore"
@@ -42,6 +53,11 @@ public struct GitIgnore {
     }
 
     /// Add the given pattern or patterns to the root gitignore file
+    /// 
+    /// - Parameter directoryURL: The project url
+    /// - Parameter patterns: The patterns to add
+    /// 
+    /// - Throws: Error
     func appendIgnoreRule(directoryURL: URL, patterns: [String]) throws {
         let text = try readGitIgnoreAtRoot(directoryURL: directoryURL)
 
@@ -58,6 +74,11 @@ public struct GitIgnore {
     /// Convenience method to add the given file path(s) to the repository's gitignore.
     ///
     /// The file path will be escaped before adding.
+    /// 
+    /// - Parameter directoryURL: The project url
+    /// - Parameter filePath: The file path to add
+    /// 
+    /// - Throws: Error
     func appendIgnoreFile(directoryURL: URL,
                           filePath: [String]) throws {
         let escapedFilePaths = filePath.map {
@@ -69,6 +90,10 @@ public struct GitIgnore {
 
     // WARNING: I have a feeling this may not work, @#CK Apple
     /// Escapes a string from special characters used in a gitignore file
+    /// 
+    /// - Parameter pattern: The pattern to escape
+    /// 
+    /// - Returns: The escaped pattern
     func escapeGitSpecialCharacters(pattern: String) -> String {
         let specialCharacters = "/[\\[\\]!\\*\\#\\?]/g"
 
@@ -80,8 +105,12 @@ public struct GitIgnore {
     /// This setting looks at core.autocrlf to decide which line endings to use
     /// when updating the .gitignore file.
     ///
-    /// @param text - The text to format.
-    /// @param directoryURL - The project url
+    /// - Parameter text: The text to format
+    /// - Parameter directoryURL: The project url
+    /// 
+    /// - Returns: The formatted text
+    /// 
+    /// - Throws: Error
     @discardableResult
     func formatGitIgnoreContents(text: String,
                                  directoryURL: URL) throws -> String {

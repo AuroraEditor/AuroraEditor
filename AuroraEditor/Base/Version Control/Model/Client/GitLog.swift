@@ -8,13 +8,32 @@
 
 import Foundation
 
+/// Commit Date
 enum CommitDate: String {
+
+    /// Last 24 Hours
     case lastDay = "Last 24 Hours"
+
+    /// Last 7 Days
     case lastSevenDays = "Last 7 Days"
+
+    /// Last 30 Days
     case lastThirtyDays = "Last 30 Days"
 }
 
 /// Get the repository's commits using `revisionRange` and limited to `limit`
+/// 
+/// - Parameter directoryURL: Directory URL
+/// - Parameter revisionRange: Revision Range
+/// - Parameter limit: Limit
+/// - Parameter skip: Skip
+/// - Parameter additionalArgs: Additional Arguments
+/// - Parameter commitsSince: Commits Since
+/// - Parameter getMerged: Get Merged
+/// 
+/// - Returns: Commit History
+/// 
+/// - Throws: Error
 func getCommits(directoryURL: URL,
                 revisionRange: String = "",
                 limit: Int,

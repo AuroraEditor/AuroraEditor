@@ -15,6 +15,11 @@ import Foundation
 ///
 /// Each parameter can be the commit SHA or a ref name, or specify an empty
 /// string to represent HEAD.
+/// 
+/// - Parameter from: The commit SHA or ref name to start from.
+/// - Parameter to: The commit SHA or ref name to end at.
+/// 
+/// - Returns: The range string.
 func revRange(from: String, to toNumber: String) -> String {
     return "\(from)..\(toNumber)"
 }
@@ -25,6 +30,11 @@ func revRange(from: String, to toNumber: String) -> String {
 ///
 /// Each parameter can be the commit SHA or a ref name, or specify an empty
 /// string to represent HEAD.
+/// 
+/// - Parameter from: The commit SHA or ref name to start from.
+/// - Parameter to: The commit SHA or ref name to end at.
+/// 
+/// - Returns: The range string.
 func revRangeInclusive(from: String, to toNumber: String) -> String {
     return "\(from)^...\(toNumber)"
 }
@@ -35,11 +45,23 @@ func revRangeInclusive(from: String, to toNumber: String) -> String {
 ///
 /// Each parameter can be the commit SHA or a ref name, or you can use an empty
 /// string to represent HEAD.
+/// 
+/// - Parameter from: The commit SHA or ref name to start from.
+/// - Parameter to: The commit SHA or ref name to end at.
+/// 
+/// - Returns: The range string.
 func revSymmetricDifference(from: String, to toNumber: String) -> String {
     return "\(from)...\(toNumber)"
 }
 
 /// Calculate the number of commits the range is ahead and behind.
+/// 
+/// - Parameter directoryURL: The directory to run the command in.
+/// - Parameter range: The range to calculate the ahead/behind for.
+/// 
+/// - Returns: The number of commits ahead and behind.
+/// 
+/// - Throws: Error
 func getAheadBehind(directoryURL: URL,
                     range: String) throws -> AheadBehind? {
     // `--left-right` annotates the list of commits in the range with which side
@@ -76,6 +98,13 @@ func getAheadBehind(directoryURL: URL,
     return AheadBehind(ahead: ahead!, behind: behind!)
 }
 
+/// Calculate the number of commits the target branch is ahead and behind the
+/// base branch.
+/// 
+/// - Parameter directoryURL: The directory to run the command in.
+/// - Parameter branch: The branch to calculate the ahead/behind for.
+/// 
+/// - Returns: The number of commits ahead and behind.
 func getBranchAheadBehind(directoryURL: URL,
                           branch: String) {
 }
@@ -89,6 +118,14 @@ func getBranchAheadBehind(directoryURL: URL,
 ///
 /// Returns `nil` when the rebase is not possible to perform, because of a
 /// missing commit ID
+/// 
+/// - Parameter directoryURL: The directory to run the command in.
+/// - Parameter baseBranchSha: The commit SHA or ref name to start from.
+/// - Parameter targetBranchSha: The commit SHA or ref name to end at.
+/// 
+/// - Returns: The list of commits.
+/// 
+/// - Throws: Error
 func getCommitsBetweenCommits(directoryURL: URL,
                               baseBranchSha: String,
                               targetBranchSha: String) throws -> [CommitOneLine]? {
@@ -99,6 +136,13 @@ func getCommitsBetweenCommits(directoryURL: URL,
 /// Get a list of commits inside the provided range.
 ///
 /// Returns `nil` when it is not possible to perform because of a bad range.
+/// 
+/// - Parameter directoryURL: The directory to run the command in.
+/// - Parameter range: The range to get the commits from.
+/// 
+/// - Returns: The list of commits.
+/// 
+/// - Throws: Error
 func getCommitsInRange(directoryURL: URL,
                        range: String) throws -> [CommitOneLine]? {
 

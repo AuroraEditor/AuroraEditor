@@ -11,6 +11,8 @@
 import Foundation
 
 /// Remove all files from the index
+/// 
+/// - Parameter directoryURL: The directory to remove all files from the index
 func unstageAllFiles(directoryURL: URL) {
     do {
         try ShellClient().run(
@@ -25,7 +27,12 @@ func unstageAllFiles(directoryURL: URL) {
     }
 }
 
-/// Remove conflicted file from  working tree and index
+/// Remove conflicted file from working tree and index
+/// 
+/// - Parameter directoryURL: The directory to remove the conflicted file from
+/// - Parameter file: The file to remove
+/// 
+/// - Throws: Error
 func removeConflictedFile(directoryURL: URL,
                           file: FileItem) throws {
     try ShellClient().run(

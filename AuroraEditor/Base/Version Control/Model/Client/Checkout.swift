@@ -15,9 +15,10 @@ public struct Checkout {
 
     /// Check out the given branch.
     ///
-    /// @param repository - The repository in which the branch checkout should
-    ///                take place
-    /// @param branch - The branch name that should be checked out
+    /// - Parameter directoryURL: The directory to check out the branch in
+    /// - Parameter branch: The name of the branch to check out
+    /// 
+    /// - Throws: Error
     func checkoutBranch(directoryURL: URL, branch: String) throws {
         try ShellClient.live().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git checkout \(branch)"
@@ -25,6 +26,11 @@ public struct Checkout {
     }
 
     /// Check out the paths at HEAD.
+    /// 
+    /// - Parameter directoryURL: The directory to check out the paths in
+    /// - Parameter paths: The paths to check out
+    /// 
+    /// - Throws: Error
     func checkoutPaths(directoryURL: URL, paths: [String]) throws {
         try ShellClient.live().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git checkout HEAD --\(paths)"

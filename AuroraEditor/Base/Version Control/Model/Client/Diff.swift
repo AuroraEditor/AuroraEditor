@@ -23,6 +23,10 @@ let maxReasonableDiffSize = maxDiffBufferSize / 16 // ~4.375MB in decimal
 let maxCharactersPerLine = 5000
 
 /// Is the diff too large for us to reasonably represent?
+/// 
+/// - Parameter diff: The diff to check
+/// 
+/// - Returns: Whether or not the diff is too large
 func isDiffToLarge(diff: IRawDiff) -> Bool {
     for hunk in diff.hunks {
         for line in hunk.lines {
@@ -37,8 +41,14 @@ func isDiffToLarge(diff: IRawDiff) -> Bool {
 
 /// Render the difference between a file in the given commit and its parent
 ///
-/// @param commitish - A commit SHA or some other identifier that ultimately dereferences
-/// to a commit.
+/// - Parameter directoryURL: The directory to look up the value in.
+/// - Parameter file: The file to diff
+/// - Parameter commitish: The commit hash to diff against
+/// - Parameter hideWhitespaceInDiff: Whether or not to hide whitespace changes
+/// 
+/// - Returns: The diff
+/// 
+/// - Throws: Error
 func getCommitDiff(directoryURL: URL,
                    file: FileItem,
                    commitish: String,
@@ -72,6 +82,13 @@ func getCommitDiff(directoryURL: URL,
                      lineEndingsChange: nil)
 }
 
+/// Render the difference between a file in the given commit range
+/// 
+/// - Parameter directoryURL: The directory to look up the value in.
+/// - Parameter file: The file to diff
+/// - Parameter commits: The commit hashes to diff between
+/// - Parameter hideWhitespacesInDiff: Whether or not to hide whitespace changes
+/// - Parameter useNillTreeSHA: Whether or not to use the nil tree SHA
 func getCommitRangeDiff(directoryURL: URL,
                         file: FileItem,
                         commits: [String],
@@ -111,6 +128,11 @@ func getCommitRangeDiff(directoryURL: URL,
                          lineEndingsChange: nil)
 }
 
+/// Get the changes in the working directory
+/// 
+/// - Parameter directoryURL: The directory URL
+/// - Parameter shas: The commit hashes to diff between
+/// - Parameter useNillTreeSHA: Whether or not to use the nil tree SHA
 func getCommitRangeChangeFiles(directoryURL: URL,
                                shas: [String],
                                useNillTreeSHA: Bool = false) {
@@ -120,6 +142,12 @@ func getCommitRangeChangeFiles(directoryURL: URL,
 /// Render the diff for a file within the repository working directory. The file will be
 /// compared against HEAD if it's tracked, if not it'll be compared to an empty file meaning
 /// that all content in the file will be treated as additions.
+/// 
+/// - Parameter workspaceURL: The workspace URL
+/// - Parameter file: The file to diff
+/// - Parameter hideWhitespaceInDiff: Whether or not to hide whitespace changes
+/// 
+/// - Throws: Error
 func getWorkingDirectoryDiff(workspaceURL: URL,
                              file: FileItem,
                              hideWhitespaceInDiff: Bool = false) throws {
@@ -151,6 +179,13 @@ func getWorkingDirectoryDiff(workspaceURL: URL,
 /// changes based on what the user has configured.
 let lineEndingsChangeRegex = "warning: (CRLF|CR|LF) will be replaced by (CRLF|CR|LF) in .*"
 
+/// Get binary paths in the repository
+/// 
+/// - Parameter directoryURL: The directory URL
+/// 
+/// - Returns: The binary paths
+/// 
+/// - Throws: Error
 func getBinaryPaths(directoryURL: URL, ref: String) throws -> [String] {
     let output = try ShellClient.live().run(
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git diff --numstat -z \(ref)")
@@ -158,6 +193,13 @@ func getBinaryPaths(directoryURL: URL, ref: String) throws -> [String] {
     return [""]
 }
 
+/// Get the diff
+/// 
+/// - Parameter directoryURL: The directory URL
+/// - Parameter file: The file to diff
+/// - Parameter diff: The diff
+/// - Parameter oldestCommitish: The oldest commit hash
+/// - Parameter lineEndignsChange: The line endings change
 func convertDiff(directoryURL: URL,
                  file: FileItem,
                  diff: IRawDiff,
@@ -172,6 +214,11 @@ func convertDiff(directoryURL: URL,
                                 hasHiddenBidiChars: diff.hasHiddenBidiChars))
 }
 
+/// Parse the diff from the raw output
+/// 
+/// - Parameter output: The output
+/// 
+/// - Returns: The diff
 func diffFromRawDiffOutput(output: String) -> IRawDiff {
     let result = output
     let pieces = result.split(separator: "\0").map { String($0) }
@@ -179,6 +226,16 @@ func diffFromRawDiffOutput(output: String) -> IRawDiff {
     return parser.parse(text: pieces[-1])
 }
 
+/// Build the diff
+/// 
+/// - Parameter directoryURL: The directory URL
+/// - Parameter file: The file to diff
+/// - Parameter oldestCommitish: The oldest commit hash
+/// - Parameter lineEndingsChange: The line endings change
+/// 
+/// - Returns: The diff
+/// 
+/// - Throws: Error
 func buildDiff(directoryURL: URL,
                file: FileItem,
                oldestCommitish: String,
@@ -206,8 +263,14 @@ func buildDiff(directoryURL: URL,
                        lineEndignsChange: lineEndingsChange)
 }
 
+/// The regex to match binary files in the diff
 let binaryListRegex = "/-\t-\t(?:\0.+\0)?([^\0]*)/gi"
 
+/// Diff errors
 enum DiffErrors: Error {
+
+    /// No commits
+    /// 
+    /// - Parameter message: The message
     case noCommits(String)
 }

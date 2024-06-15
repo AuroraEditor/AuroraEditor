@@ -14,8 +14,11 @@ import Foundation
 public struct Tag {
     /// Create a new tag on the given target commit.
     ///
-    /// @param name - The name of the new tag.
-    /// @param targetCommitSha  - The SHA of the commit where the new tag will live on.
+    /// - Parameter directoryURL: The project url
+    /// - Parameter name: The name of the new tag.
+    /// - Parameter targetCommitSha: The SHA of the commit where the new tag will live on.
+    /// 
+    /// - Throws: Error
     func createTag(directoryURL: URL,
                    name: String,
                    targetCommitSha: String) throws {
@@ -26,7 +29,10 @@ public struct Tag {
 
     /// Delete a Tag
     ///
-    /// @param name - The name of the tag to delete.
+    /// - Parameter directoryURL: The project url
+    /// - Parameter name: The name of the tag to delete.
+    /// 
+    /// - Throws: Error
     func deleteTag(directoryURL: URL, name: String) throws {
         try ShellClient().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git tag -d \(name)"
@@ -34,6 +40,10 @@ public struct Tag {
     }
 
     /// Gets all the local tags. Returns a Map with the tag name and the commit it points to.
+    /// 
+    /// - Parameter directoryURL: The project url
+    /// 
+    /// - Returns: The tags as a map.
     func getAllTags(directoryURL: URL) throws -> [String: String] {
         let tags = try ShellClient.live().run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git show-ref --tags -d"
@@ -45,8 +55,13 @@ public struct Tag {
 
     /// Fetches the tags that will get pushed to the remote repository.
     ///
-    /// @param remote - The remote to check for unpushed tags
-    /// @param branchName  - The branch that will be used on the push command
+    /// - Parameter directoryURL: The project url
+    /// - Parameter remote: The remote to check for unpushed tags
+    /// - Parameter branchName: The branch that will be used on the push command
+    /// 
+    /// - Returns: The tags that will be pushed.
+    /// 
+    /// - Throws: Error
     func fetchTagsToPush(directoryURL: URL,
                          remote: GitRemote,
                          branchName: String) throws -> [String] {
