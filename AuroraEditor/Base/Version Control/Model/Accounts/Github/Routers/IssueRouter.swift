@@ -8,16 +8,87 @@
 
 import Foundation
 
+/// Issue Router
 enum IssueRouter: JSONPostRouter {
+
+    /// Read Authenticated Issues
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter page: Page
+    /// - Parameter perPage: Per Page
+    /// - Parameter state: State
     case readAuthenticatedIssues(GitConfiguration, String, String, Openness)
+
+    /// Read Issue
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter owner: Owner
+    /// - Parameter repository: Repository
+    /// - Parameter number: Number
     case readIssue(GitConfiguration, String, String, Int)
+
+    /// Read Issues
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter owner: Owner
+    /// - Parameter repository: Repository
+    /// - Parameter page: Page
+    /// - Parameter perPage: Per Page
+    /// - Parameter state: State
     case readIssues(GitConfiguration, String, String, String, String, Openness)
+
+    /// Post Issue
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter owner: Owner
+    /// - Parameter repository: Repository
+    /// - Parameter title: Title
+    /// - Parameter body: Body
+    /// - Parameter assignee: Assignee
+    /// - Parameter labels: Labels
     case postIssue(GitConfiguration, String, String, String, String?, String?, [String])
+
+    /// Patch Issue
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter owner: Owner
+    /// - Parameter repository: Repository
+    /// - Parameter number: Number
+    /// - Parameter title: Title
+    /// - Parameter body: Body
+    /// - Parameter assignee: Assignee
+    /// - Parameter state: State
     case patchIssue(GitConfiguration, String, String, Int, String?, String?, String?, Openness?)
+
+    /// Comment Issue
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter owner: Owner
+    /// - Parameter repository: Repository
+    /// - Parameter number: Number
+    /// - Parameter body: Body
     case commentIssue(GitConfiguration, String, String, Int, String)
+
+    /// Read Issue Comments
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter owner: Owner
+    /// - Parameter repository: Repository
+    /// - Parameter number: Number
+    /// - Parameter page: Page
+    /// - Parameter perPage: Per Page
     case readIssueComments(GitConfiguration, String, String, Int, String, String)
+
+    /// Patch Issue Comment
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter owner: Owner
+    /// - Parameter repository: Repository
+    /// - Parameter number: Number
+    /// - Parameter body: Body
     case patchIssueComment(GitConfiguration, String, String, Int, String)
 
+    /// HTTP Method
     var method: HTTPMethod {
         switch self {
         case .postIssue, .patchIssue, .commentIssue, .patchIssueComment:
@@ -27,6 +98,7 @@ enum IssueRouter: JSONPostRouter {
         }
     }
 
+    /// Encoding
     var encoding: HTTPEncoding {
         switch self {
         case .postIssue, .patchIssue, .commentIssue, .patchIssueComment:
@@ -36,6 +108,7 @@ enum IssueRouter: JSONPostRouter {
         }
     }
 
+    /// Configuration
     var configuration: GitConfiguration? {
         switch self {
         case let .readAuthenticatedIssues(config, _, _, _): return config
@@ -49,6 +122,7 @@ enum IssueRouter: JSONPostRouter {
         }
     }
 
+    /// Parameters
     var params: [String: Any] {
         switch self {
         case let .readAuthenticatedIssues(_, page, perPage, state):
@@ -93,6 +167,7 @@ enum IssueRouter: JSONPostRouter {
         }
     }
 
+    /// Path
     var path: String {
         switch self {
         case .readAuthenticatedIssues:

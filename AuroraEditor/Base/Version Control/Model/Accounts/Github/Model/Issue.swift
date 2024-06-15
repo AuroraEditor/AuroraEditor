@@ -11,28 +11,68 @@ import Foundation
 import FoundationNetworking
 #endif
 
+/// Github Issue
 open class Issue: Codable {
+
+    /// Issue Identifier
     open private(set) var id: Int = -1
+
+    /// Issue URL
     open var url: URL?
+
+    /// Issue Repository URL
     open var repositoryURL: URL?
+
+    /// Issue Labels URL
     @available(*, deprecated)
     open var labelsURL: URL?
+
+    /// Issue Comments URL
     open var commentsURL: URL?
+
+    /// Issue Events URL
     open var eventsURL: URL?
+
+    /// Issue HTML URL
     open var htmlURL: URL?
+
+    /// Issue Number
     open var number: Int
+
+    /// Issue State
     open var state: Openness?
+
+    /// Issue Title
     open var title: String?
+
+    /// Issue Body
     open var body: String?
+
+    /// Issue User
     open var user: GithubUser?
+
+    /// Issue Assignee
     open var assignee: GithubUser?
+
+    /// Issue Locked
     open var locked: Bool?
+
+    /// Issue Comments
     open var comments: Int?
+
+    /// Issue Closed At
     open var closedAt: Date?
+
+    /// Issue Created At
     open var createdAt: Date?
+
+    /// Issue Updated At
     open var updatedAt: Date?
+
+    /// Issue Closed By
     open var closedBy: GithubUser?
 
+    /// Coding keys
     enum CodingKeys: String, CodingKey {
         case id
         case url
@@ -56,14 +96,15 @@ open class Issue: Codable {
 }
 
 public extension GithubAccount {
-    /**
-     Fetches the issues of the authenticated user
-     - parameter session: GitURLSession, defaults to URLSession.sharedSession()
-     - parameter state: Issue state. Defaults to open if not specified.
-     - parameter page: Current page for issue pagination. `1` by default.
-     - parameter perPage: Number of issues per page. `100` by default.
-     - parameter completion: Callback for the outcome of the fetch.
-     */
+    /// Fetches the issues of the authenticated user
+    /// 
+    /// - parameter session: GitURLSession, defaults to URLSession.sharedSession()
+    /// - parameter state: Issue state. Defaults to open if not specified.
+    /// - parameter page: Current page for issue pagination. `1` by default.
+    /// - parameter perPage: Number of issues per page. `100` by default.
+    /// - parameter completion: Callback for the outcome of the fetch.
+    /// 
+    /// - returns: URLSessionDataTaskProtocol
     @discardableResult
     func myIssues(_ session: GitURLSession = URLSession.shared,
                   state: Openness = .open,
@@ -88,14 +129,15 @@ public extension GithubAccount {
         }
     }
 
-    /**
-     Fetches an issue in a repository
-     - parameter session: GitURLSession, defaults to URLSession.sharedSession()
-     - parameter owner: The user or organization that owns the repository.
-     - parameter repository: The name of the repository.
-     - parameter number: The number of the issue.
-     - parameter completion: Callback for the outcome of the fetch.
-     */
+    /// Fetches an issue in a repository
+    /// 
+    /// - parameter session: GitURLSession, defaults to URLSession.sharedSession()
+    /// - parameter owner: The user or organization that owns the repository.
+    /// - parameter repository: The name of the repository.
+    /// - parameter number: The number of the issue.
+    /// - parameter completion: Callback for the outcome of the fetch.
+    ///
+    /// - returns: URLSessionDataTaskProtocol
     @discardableResult
     func issue(_ session: GitURLSession = URLSession.shared,
                owner: String,
@@ -121,16 +163,17 @@ public extension GithubAccount {
         }
     }
 
-    /**
-     Fetches all issues in a repository
-     - parameter session: GitURLSession, defaults to URLSession.sharedSession()
-     - parameter owner: The user or organization that owns the repository.
-     - parameter repository: The name of the repository.
-     - parameter state: Issue state. Defaults to open if not specified.
-     - parameter page: Current page for issue pagination. `1` by default.
-     - parameter perPage: Number of issues per page. `100` by default.
-     - parameter completion: Callback for the outcome of the fetch.
-     */
+    /// Fetches all issues in a repository
+    /// 
+    /// - parameter session: GitURLSession, defaults to URLSession.sharedSession()
+    /// - parameter owner: The user or organization that owns the repository.
+    /// - parameter repository: The name of the repository.
+    /// - parameter state: Issue state. Defaults to open if not specified.
+    /// - parameter page: Current page for issue pagination. `1` by default.
+    /// - parameter perPage: Number of issues per page. `100` by default.
+    /// - parameter completion: Callback for the outcome of the fetch.
+    ///
+    /// - returns: URLSessionDataTaskProtocol
     @discardableResult
     func issues(_ session: GitURLSession = URLSession.shared,
                 owner: String,
@@ -157,20 +200,21 @@ public extension GithubAccount {
         }
     }
 
-    /**
-     Creates an issue in a repository.
-     - parameter session: GitURLSession, defaults to URLSession.sharedSession()
-     - parameter owner: The user or organization that owns the repository.
-     - parameter repository: The name of the repository.
-     - parameter title: The title of the issue.
-     - parameter body: The body text of the issue in GitHub-flavored Markdown format.
-     - parameter assignee: The name of the user to assign the issue to.
-                           This parameter is ignored if the user lacks push access to the repository.
-     - parameter labels: An array of label names to add to the issue. If the labels do not exist,
-                         GitHub will create them automatically.
-                         This parameter is ignored if the user lacks push access to the repository.
-     - parameter completion: Callback for the issue that is created.
-     */
+    /// Creates an issue in a repository.
+    /// 
+    /// - parameter session: GitURLSession, defaults to URLSession.sharedSession()
+    /// - parameter owner: The user or organization that owns the repository.
+    /// - parameter repository: The name of the repository.
+    /// - parameter title: The title of the issue.
+    /// - parameter body: The body text of the issue in GitHub-flavored Markdown format.
+    /// - parameter assignee: The name of the user to assign the issue to.
+    ///                       This parameter is ignored if the user lacks push access to the repository.
+    /// - parameter labels: An array of label names to add to the issue. If the labels do not exist,
+    ///                     GitHub will create them automatically.
+    ///                     This parameter is ignored if the user lacks push access to the repository.
+    /// - parameter completion: Callback for the issue that is created.
+    ///
+    /// - returns: URLSessionDataTaskProtocol
     @discardableResult
     func postIssue(_ session: GitURLSession = URLSession.shared,
                    owner: String,
@@ -202,19 +246,20 @@ public extension GithubAccount {
         }
     }
 
-    /**
-     Edits an issue in a repository.
-     - parameter session: GitURLSession, defaults to URLSession.sharedSession()
-     - parameter owner: The user or organization that owns the repository.
-     - parameter repository: The name of the repository.
-     - parameter number: The number of the issue.
-     - parameter title: The title of the issue.
-     - parameter body: The body text of the issue in GitHub-flavored Markdown format.
-     - parameter assignee: The name of the user to assign the issue to.
-                           This parameter is ignored if the user lacks push access to the repository.
-     - parameter state: Whether the issue is open or closed.
-     - parameter completion: Callback for the issue that is created.
-     */
+    /// Edits an issue in a repository.
+    /// 
+    /// - parameter session: GitURLSession, defaults to URLSession.sharedSession()
+    /// - parameter owner: The user or organization that owns the repository.
+    /// - parameter repository: The name of the repository.
+    /// - parameter number: The number of the issue.
+    /// - parameter title: The title of the issue.
+    /// - parameter body: The body text of the issue in GitHub-flavored Markdown format.
+    /// - parameter assignee: The name of the user to assign the issue to.
+    ///                       This parameter is ignored if the user lacks push access to the repository.
+    /// - parameter state: Whether the issue is open or closed.
+    /// - parameter completion: Callback for the issue that is created.
+    ///
+    /// - returns: URLSessionDataTaskProtocol
     @discardableResult
     func patchIssue(_ session: GitURLSession = URLSession.shared,
                     owner: String,
@@ -244,6 +289,7 @@ public extension GithubAccount {
     }
 
     /// Posts a comment on an issue using the given body.
+    /// 
     /// - Parameters:
     ///   - session: GitURLSession, defaults to URLSession.sharedSession()
     ///   - owner: The user or organization that owns the repository.
@@ -251,6 +297,8 @@ public extension GithubAccount {
     ///   - number: The number of the issue.
     ///   - body: The contents of the comment.
     ///   - completion: Callback for the comment that is created.
+    /// 
+    /// - Returns: URLSessionDataTaskProtocol
     @discardableResult
     func commentIssue(_ session: GitURLSession = URLSession.shared,
                       owner: String,
@@ -281,14 +329,17 @@ public extension GithubAccount {
     }
 
     /// Fetches all comments for an issue
+    /// 
     /// - Parameters:
-    /// - session: GitURLSession, defaults to URLSession.sharedSession()
-    /// - owner: The user or organization that owns the repository.
-    /// - repository: The name of the repository.
-    /// - number: The number of the issue.
-    /// - page: Current page for comments pagination. `1` by default.
-    /// - perPage: Number of comments per page. `100` by default.
-    /// - completion: Callback for the outcome of the fetch.
+    ///   - session: GitURLSession, defaults to URLSession.sharedSession()
+    ///   - owner: The user or organization that owns the repository.
+    ///   - repository: The name of the repository.
+    ///   - number: The number of the issue.
+    ///   - page: Current page for comments pagination. `1` by default.
+    ///   - perPage: Number of comments per page. `100` by default.
+    ///   - completion: Callback for the outcome of the fetch.
+    /// 
+    /// - Returns: URLSessionDataTaskProtocol
     @discardableResult
     func issueComments(_ session: GitURLSession = URLSession.shared,
                        owner: String,
@@ -317,6 +368,7 @@ public extension GithubAccount {
     }
 
     /// Edits a comment on an issue using the given body.
+    /// 
     /// - Parameters:
     ///   - session: GitURLSession, defaults to URLSession.sharedSession()
     ///   - owner: The user or organization that owns the repository.
@@ -324,6 +376,8 @@ public extension GithubAccount {
     ///   - number: The number of the comment.
     ///   - body: The contents of the comment.
     ///   - completion: Callback for the comment that is created.
+    /// 
+    /// - Returns: URLSessionDataTaskProtocol
     @discardableResult
     func patchIssueComment(
         _ session: GitURLSession = URLSession.shared,
@@ -352,3 +406,4 @@ public extension GithubAccount {
         }
     }
 }
+// swiftlint:disable:this file_length

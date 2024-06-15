@@ -11,22 +11,52 @@ import Foundation
 import FoundationNetworking
 #endif
 
+/// Github Repositories
 open class GithubRepositories: Codable {
+
+    /// Repository Identifier
     open private(set) var id: Int = -1
+
+    /// Repository Owner
     open private(set) var owner = GithubUser()
+
+    /// Repository Name
     open var name: String?
+
+    /// Repository Full Name
     open var fullName: String?
+
+    /// Repository Private
     open private(set) var isPrivate: Bool = false
+
+    /// Repository Description
     open var repositoryDescription: String?
+
+    /// Repository Fork
     open private(set) var isFork: Bool = false
+
+    /// Repository Git URL
     open var gitURL: String?
+
+    /// Repository SSH URL
     open var sshURL: String?
+
+    /// Repository Clone URL
     open var cloneURL: String?
+
+    /// Repository HTML URL
     open var htmlURL: String?
+
+    /// Repository Size
     open private(set) var size: Int? = -1
+
+    /// Repository Last Push
     open var lastPush: Date?
+
+    /// Repository Stargazers Count
     open var stargazersCount: Int?
 
+    /// Coding keys
     enum CodingKeys: String, CodingKey {
         case id
         case owner
@@ -47,15 +77,16 @@ open class GithubRepositories: Codable {
 
 public extension GithubAccount {
 
-    /**
-        Fetches the Repositories for a user or organization
-            - parameter session: GitURLSession, defaults to URLSession.shared
-            - parameter owner: The user or organization that owns the repositories. If `nil`,
-                               fetches repositories for the authenticated user.
-            - parameter page: Current page for repository pagination. `1` by default.
-            - parameter perPage: Number of repositories per page. `100` by default.
-            - parameter completion: Callback for the outcome of the fetch.
-     */
+    /// Fetches the Repositories for a user or organization
+    /// 
+    /// - parameter session: GitURLSession, defaults to URLSession.shared
+    /// - parameter owner: The user or organization that owns the repositories. If `nil`,
+    ///                    fetches repositories for the authenticated user.
+    /// - parameter page: Current page for repository pagination. `1` by default.
+    /// - parameter perPage: Number of repositories per page. `100` by default.
+    /// - parameter completion: Callback for the outcome of the fetch.
+    /// 
+    /// - returns: URLSessionDataTaskProtocol
     @discardableResult
     func repositories(_ session: GitURLSession = URLSession.shared,
                       owner: String? = nil,
@@ -82,13 +113,14 @@ public extension GithubAccount {
         }
     }
 
-    /**
-         Fetches a repository for a user or organization
-         - parameter session: GitURLSession, defaults to URLSession.shared
-         - parameter owner: The user or organization that owns the repositories.
-         - parameter name: The name of the repository to fetch.
-         - parameter completion: Callback for the outcome of the fetch.
-     */
+    /// Fetches a repository for a user or organization
+    ///
+    /// - parameter session: GitURLSession, defaults to URLSession.shared
+    /// - parameter owner: The user or organization that owns the repositories.
+    /// - parameter name: The name of the repository to fetch.
+    /// - parameter completion: Callback for the outcome of the fetch.
+    ///
+    /// - returns: URLSessionDataTaskProtocol
     @discardableResult
     func repository(_ session: GitURLSession = URLSession.shared,
                     owner: String,

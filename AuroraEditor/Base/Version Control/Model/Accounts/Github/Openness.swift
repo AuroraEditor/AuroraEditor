@@ -8,8 +8,15 @@
 
 import Foundation
 
+/// Github issue/pull request state
 public enum Openness: String, Codable {
+
+    /// Open
     case open
+
+    /// Closed
     case closed
+
+    /// All
     case all
 }

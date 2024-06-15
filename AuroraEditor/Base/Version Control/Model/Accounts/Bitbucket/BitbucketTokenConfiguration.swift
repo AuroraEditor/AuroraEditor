@@ -8,13 +8,30 @@
 
 import Foundation
 
+/// Bitbucket token configuration
 public struct BitbucketTokenConfiguration: GitConfiguration {
+
+    /// API endpoint
     public var apiEndpoint: String?
+
+    /// Access token
     public var accessToken: String?
+
+    /// Refresh token
     public var refreshToken: String?
+
+    /// Expiration date
     public var expirationDate: Date?
+
+    /// Error domain
     public let errorDomain = "com.auroraeditor.models.accounts.bitbucket"
 
+    /// Initialize Bitbucket token configuration
+    /// 
+    /// - Parameter json: JSON
+    /// - Parameter url: URL
+    /// 
+    /// - Returns: Bitbucket token configuration
     public init(json: [String: AnyObject], url: String = bitbucketBaseURL) {
         apiEndpoint = url
         accessToken = json["access_token"] as? String
@@ -24,6 +41,14 @@ public struct BitbucketTokenConfiguration: GitConfiguration {
         expirationDate = currentDate.addingTimeInterval(TimeInterval(expiresIn ?? 0))
     }
 
+    /// Initialize Bitbucket token configuration
+    /// 
+    /// - Parameter token: Token
+    /// - Parameter refreshToken: Refresh token
+    /// - Parameter expirationDate: Expiration date
+    /// - Parameter url: URL
+    /// 
+    /// - Returns: Bitbucket token configuration
     public init(_ token: String? = nil,
                 refreshToken: String? = nil,
                 expirationDate: Date? = nil,

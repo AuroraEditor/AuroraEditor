@@ -8,10 +8,23 @@
 
 import Foundation
 
+/// Bitbucket repository router
 public enum BitbucketRepositoryRouter: Router {
+
+    /// Read repositories
+    /// 
+    /// - Parameter configuration: Git configuration
+    /// - Parameter parameters: Parameters
     case readRepositories(GitConfiguration, String?, [String: String])
+
+    /// Read repository
+    /// 
+    /// - Parameter configuration: Git configuration
+    /// - Parameter owner: Owner
+    /// - Parameter name: Name
     case readRepository(GitConfiguration, String, String)
 
+    /// Configuration
     public var configuration: GitConfiguration? {
         switch self {
         case .readRepositories(let config, _, _): return config
@@ -19,14 +32,17 @@ public enum BitbucketRepositoryRouter: Router {
         }
     }
 
+    /// HTTP method
     public var method: HTTPMethod {
         .GET
     }
 
+    /// Encoding
     public var encoding: HTTPEncoding {
         .url
     }
 
+    /// Parameters
     public var params: [String: Any] {
         switch self {
         case .readRepositories(_, let userName, var nextParameters):
@@ -41,6 +57,7 @@ public enum BitbucketRepositoryRouter: Router {
         }
     }
 
+    /// Path
     public var path: String {
         switch self {
         case .readRepositories(_, let userName, _):

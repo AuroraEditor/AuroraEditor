@@ -11,33 +11,85 @@ import Foundation
 import FoundationNetworking
 #endif
 
+/// Github User
 open class GithubUser: Codable {
+
+    /// User Identifier
     open internal(set) var id: Int = -1
+
+    /// User Login
     open var login: String?
+
+    /// User Avatar URL
     open var avatarURL: String?
+
+    /// User Gravatar ID
     open var gravatarID: String?
+
+    /// User Type
     open var type: String?
+
+    /// User Name
     open var name: String?
+
+    /// User Company
     open var company: String?
+
+    /// User Email
     open var email: String?
+
+    /// User Number of Public Repos
     open var numberOfPublicRepos: Int?
+
+    /// User Number of Public Gists
     open var numberOfPublicGists: Int?
+
+    /// User Number of Private Repos
     open var numberOfPrivateRepos: Int?
+
+    /// User Node ID
     open var nodeID: String?
+
+    /// User URL
     open var url: String?
+
+    /// User HTML URL
     open var htmlURL: String?
+
+    /// User Gists URL
     open var gistsURL: String?
+
+    /// User Starred URL
     open var starredURL: String?
+
+    /// User Subscriptions URL
     open var subscriptionsURL: String?
+
+    /// User Repos URL
     open var reposURL: String?
+
+    /// User Events URL
     open var eventsURL: String?
+
+    /// User Received Events URL
     open var receivedEventsURL: String?
+
+    /// User Created At
     open var createdAt: Date?
+
+    /// User Updated At
     open var updatedAt: Date?
+
+    /// User Number of Private Gists
     open var numberOfPrivateGists: Int?
+
+    /// User Number of Own Private Repos
     open var numberOfOwnPrivateRepos: Int?
+
+    /// User Two Factor Authentication Enabled
     open var twoFactorAuthenticationEnabled: Bool?
 
+    /// Coding keys
     enum CodingKeys: String, CodingKey {
         case id
         case login
@@ -68,12 +120,13 @@ open class GithubUser: Codable {
 }
 
 public extension GithubAccount {
-    /**
-         Fetches a user or organization
-         - parameter session: GitURLSession, defaults to URLSession.shared
-         - parameter name: The name of the user or organization.
-         - parameter completion: Callback for the outcome of the fetch.
-     */
+    /// Fetches a user or organization
+    /// 
+    /// - parameter session: GitURLSession, defaults to URLSession.shared
+    /// - parameter name: The name of the user or organization.
+    /// - parameter completion: Callback for the outcome of the fetch.
+    ///
+    /// - Returns: URLSessionDataTaskProtocol
     @discardableResult
     func user(
         _ session: GitURLSession = URLSession.shared,
@@ -96,11 +149,12 @@ public extension GithubAccount {
         }
     }
 
-    /**
-         Fetches the authenticated user
-         - parameter session: GitURLSession, defaults to URLSession.shared
-         - parameter completion: Callback for the outcome of the fetch.
-     */
+    /// Fetches the authenticated user
+    /// 
+    /// - parameter session: GitURLSession, defaults to URLSession.shared
+    /// - parameter completion: Callback for the outcome of the fetch.
+    ///
+    /// - Returns: URLSessionDataTaskProtocol
     @discardableResult
     func me(
         _ session: GitURLSession = URLSession.shared,

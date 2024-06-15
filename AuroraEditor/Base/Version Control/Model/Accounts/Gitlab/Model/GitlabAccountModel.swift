@@ -9,20 +9,21 @@
 import Foundation
 
 public extension GitlabAccount {
-    /**
-     Fetches the Projects for which the authenticated user is a member.
-     - parameter page: Current page for project pagination. `1` by default.
-     - parameter perPage: Number of projects per page. `100` by default.
-     - parameter archived: Limit by archived status. Default is false, set to `true` to only show archived projects.
-     - parameter visibility: Limit by visibility `public`, `internal` or `private`. Default is `""`
-     - parameter orderBy: Return projects ordered by `id`, `name`, `path`, `created_at`, `updated_at`,
-     or `last_activity_at` fields. Default is `created_at`.
-     - parameter sort: Return projects sorted in asc or desc order. Default is `desc`.
-     - parameter search: Return list of authorized projects matching the search criteria. Default is `""`
-     - parameter simple: Return only the ID, URL, name, and path of each project. Default is false,
-     set to `true` to only show simple info.
-     - parameter completion: Callback for the outcome of the fetch.
-     */
+    /// Fetches the Projects for which the authenticated user is a member.
+    /// 
+    /// - parameter page: Current page for project pagination. `1` by default.
+    /// - parameter perPage: Number of projects per page. `100` by default.
+    /// - parameter archived: Limit by archived status. Default is false, set to `true` to only show archived projects.
+    /// - parameter visibility: Limit by visibility `public`, `internal` or `private`. Default is `""`
+    /// - parameter orderBy: Return projects ordered by `id`, `name`, `path`, `created_at`, `updated_at`,
+    /// or `last_activity_at` fields. Default is `created_at`.
+    /// - parameter sort: Return projects sorted in asc or desc order. Default is `desc`.
+    /// - parameter search: Return list of authorized projects matching the search criteria. Default is `""`
+    /// - parameter simple: Return only the ID, URL, name, and path of each project. Default is false,
+    /// set to `true` to only show simple info.
+    /// - parameter completion: Callback for the outcome of the fetch.
+    /// 
+    /// - returns: URLSessionDataTaskProtocol
     func projects(_ session: GitURLSession = URLSession.shared,
                   page: String = "1",
                   perPage: String = "20",
@@ -58,12 +59,13 @@ public extension GitlabAccount {
                         }
                     }
 
-    /**
-     Fetches project for a specified ID.
-     - parameter id: The ID or namespace/project-name of the project.
-     Make sure that the namespace/project-name is URL-encoded, eg. "%2F" for "/".
-     - parameter completion: Callback for the outcome of the fetch.
-     */
+    /// Fetches project for a specified ID.
+    /// 
+    /// - parameter id: The ID or namespace/project-name of the project.
+    /// Make sure that the namespace/project-name is URL-encoded, eg. "%2F" for "/".
+    /// - parameter completion: Callback for the outcome of the fetch.
+    ///
+    /// - returns: URLSessionDataTaskProtocol
     func project(_ session: GitURLSession = URLSession.shared,
                  id: String,
                  completion: @escaping (_ response: Result<Project, Error>) -> Void) -> URLSessionDataTaskProtocol? {
@@ -84,20 +86,21 @@ public extension GitlabAccount {
         }
     }
 
-    /**
-     Fetches the Projects which the authenticated user can see.
-     - parameter page: Current page for project pagination. `1` by default.
-     - parameter perPage: Number of projects per page. `100` by default.
-     - parameter archived: Limit by archived status. Default is false, set to `true` to only show archived projects.
-     - parameter visibility: Limit by visibility `public`, `internal` or `private`. Default is `""`
-     - parameter orderBy: Return projects ordered by `id`, `name`, `path`, `created_at`, `updated_at`,
-     or `last_activity_at` fields. Default is `created_at`.
-     - parameter sort: Return projects sorted in asc or desc order. Default is `desc`.
-     - parameter search: Return list of authorized projects matching the search criteria. Default is `""`
-     - parameter simple: Return only the ID, URL, name, and path of each project. Default is false,
-     set to `true` to only show simple info.
-     - parameter completion: Callback for the outcome of the fetch.
-     */
+    /// Fetches the Projects which the authenticated user can see.
+    /// 
+    /// - parameter page: Current page for project pagination. `1` by default.
+    /// - parameter perPage: Number of projects per page. `100` by default.
+    /// - parameter archived: Limit by archived status. Default is false, set to `true` to only show archived projects.
+    /// - parameter visibility: Limit by visibility `public`, `internal` or `private`. Default is `""`
+    /// - parameter orderBy: Return projects ordered by `id`, `name`, `path`, `created_at`, `updated_at`,
+    /// or `last_activity_at` fields. Default is `created_at`.
+    /// - parameter sort: Return projects sorted in asc or desc order. Default is `desc`.
+    /// - parameter search: Return list of authorized projects matching the search criteria. Default is `""`
+    /// - parameter simple: Return only the ID, URL, name, and path of each project. Default is false,
+    /// set to `true` to only show simple info.
+    /// - parameter completion: Callback for the outcome of the fetch.
+    ///
+    /// - returns: URLSessionDataTaskProtocol
     func visibleProjects(_ session: GitURLSession = URLSession.shared,
                          page: String = "1",
                          perPage: String = "20",
@@ -134,20 +137,21 @@ public extension GitlabAccount {
                                 }
                             }
 
-    /**
-     Fetches the Projects which are owned by the authenticated user.
-     - parameter page: Current page for project pagination. `1` by default.
-     - parameter perPage: Number of projects per page. `100` by default.
-     - parameter archived: Limit by archived status. Default is false, set to `true` to only show archived projects.
-     - parameter visibility: Limit by visibility `public`, `internal` or `private`. Default is `""`
-     - parameter orderBy: Return projects ordered by `id`, `name`, `path`, `created_at`, `updated_at`,
-     or `last_activity_at` fields. Default is `created_at`.
-     - parameter sort: Return projects sorted in asc or desc order. Default is `desc`.
-     - parameter search: Return list of authorized projects matching the search criteria. Default is `""`
-     - parameter simple: Return only the ID, URL, name, and path of each project. Default is false,
-     set to `true` to only show simple info.
-     - parameter completion: Callback for the outcome of the fetch.
-     */
+    /// Fetches the Projects which are owned by the authenticated user.
+    /// 
+    /// - parameter page: Current page for project pagination. `1` by default.
+    /// - parameter perPage: Number of projects per page. `100` by default.
+    /// - parameter archived: Limit by archived status. Default is false, set to `true` to only show archived projects.
+    /// - parameter visibility: Limit by visibility `public`, `internal` or `private`. Default is `""`
+    /// - parameter orderBy: Return projects ordered by `id`, `name`, `path`, `created_at`, `updated_at`,
+    /// or `last_activity_at` fields. Default is `created_at`.
+    /// - parameter sort: Return projects sorted in asc or desc order. Default is `desc`.
+    /// - parameter search: Return list of authorized projects matching the search criteria. Default is `""`
+    /// - parameter simple: Return only the ID, URL, name, and path of each project. Default is false,
+    /// set to `true` to only show simple info.
+    /// - parameter completion: Callback for the outcome of the fetch.
+    ///
+    /// - returns: URLSessionDataTaskProtocol
     func ownedProjects(_ session: GitURLSession = URLSession.shared,
                        page: String = "1",
                        perPage: String = "20",
@@ -184,20 +188,21 @@ public extension GitlabAccount {
                             }
                         }
 
-    /**
-     Fetches the Projects which are starred by the authenticated user.
-     - parameter page: Current page for project pagination. `1` by default.
-     - parameter perPage: Number of projects per page. `100` by default.
-     - parameter archived: Limit by archived status. Default is false, set to `true` to only show archived projects.
-     - parameter visibility: Limit by visibility `public`, `internal` or `private`. Default is `""`
-     - parameter orderBy: Return projects ordered by `id`, `name`, `path`, `created_at`, `updated_at`,
-     or `last_activity_at` fields. Default is `created_at`.
-     - parameter sort: Return projects sorted in asc or desc order. Default is `desc`.
-     - parameter search: Return list of authorized projects matching the search criteria. Default is `""`
-     - parameter simple: Return only the ID, URL, name, and path of each project.
-     Default is false, set to `true` to only show simple info.
-     - parameter completion: Callback for the outcome of the fetch.
-     */
+    /// Fetches the Projects which are starred by the authenticated user.
+    /// 
+    /// - parameter page: Current page for project pagination. `1` by default.
+    /// - parameter perPage: Number of projects per page. `100` by default.
+    /// - parameter archived: Limit by archived status. Default is false, set to `true` to only show archived projects.
+    /// - parameter visibility: Limit by visibility `public`, `internal` or `private`. Default is `""`
+    /// - parameter orderBy: Return projects ordered by `id`, `name`, `path`, `created_at`, `updated_at`,
+    /// or `last_activity_at` fields. Default is `created_at`.
+    /// - parameter sort: Return projects sorted in asc or desc order. Default is `desc`.
+    /// - parameter search: Return list of authorized projects matching the search criteria. Default is `""`
+    /// - parameter simple: Return only the ID, URL, name, and path of each project.
+    /// Default is false, set to `true` to only show simple info.
+    /// - parameter completion: Callback for the outcome of the fetch.
+    ///
+    /// - returns: URLSessionDataTaskProtocol
     func starredProjects(_ session: GitURLSession = URLSession.shared,
                          page: String = "1",
                          perPage: String = "20",
@@ -234,20 +239,21 @@ public extension GitlabAccount {
                                 }
                             }
 
-    /**
-     Fetches all GitLab projects in the server **(admin only)**.
-     - parameter page: Current page for project pagination. `1` by default.
-     - parameter perPage: Number of projects per page. `100` by default.
-     - parameter archived: Limit by archived status. Default is false, set to `true` to only show archived projects.
-     - parameter visibility: Limit by visibility `public`, `internal` or `private`. Default is `""`
-     - parameter orderBy: Return projects ordered by `id`, `name`, `path`, `created_at`, `updated_at`,
-     or `last_activity_at` fields. Default is `created_at`.
-     - parameter sort: Return projects sorted in asc or desc order. Default is `desc`.
-     - parameter search: Return list of authorized projects matching the search criteria. Default is `""`
-     - parameter simple: Return only the ID, URL, name, and path of each project.
-     Default is false, set to `true` to only show simple info.
-     - parameter completion: Callback for the outcome of the fetch.
-     */
+    /// Fetches all GitLab projects in the server **(admin only)**.
+    /// 
+    /// - parameter page: Current page for project pagination. `1` by default.
+    /// - parameter perPage: Number of projects per page. `100` by default.
+    /// - parameter archived: Limit by archived status. Default is false, set to `true` to only show archived projects.
+    /// - parameter visibility: Limit by visibility `public`, `internal` or `private`. Default is `""`
+    /// - parameter orderBy: Return projects ordered by `id`, `name`, `path`, `created_at`, `updated_at`,
+    /// or `last_activity_at` fields. Default is `created_at`.
+    /// - parameter sort: Return projects sorted in asc or desc order. Default is `desc`.
+    /// - parameter search: Return list of authorized projects matching the search criteria. Default is `""`
+    /// - parameter simple: Return only the ID, URL, name, and path of each project.
+    /// Default is false, set to `true` to only show simple info.
+    /// - parameter completion: Callback for the outcome of the fetch.
+    ///
+    /// - returns: URLSessionDataTaskProtocol
     func allProjects(_ session: GitURLSession = URLSession.shared,
                      page: String = "1",
                      perPage: String = "20",
@@ -284,13 +290,14 @@ public extension GitlabAccount {
                             }
                         }
 
-    /**
-     Fetches the events for the specified project. Sorted from newest to oldest.
-     - parameter page: Current page for project pagination. `1` by default.
-     - parameter perPage: Number of projects per page. `100` by default.
-     - parameter id: The ID or NAMESPACE/PROJECT_NAME of the project.
-     - parameter completion: Callback for the outcome of the fetch.
-     */
+    /// Fetches the events for the specified project. Sorted from newest to oldest.
+    ///
+    /// - parameter page: Current page for project pagination. `1` by default.
+    /// - parameter perPage: Number of projects per page. `100` by default.
+    /// - parameter id: The ID or NAMESPACE/PROJECT_NAME of the project.
+    /// - parameter completion: Callback for the outcome of the fetch.
+    /// 
+    /// - returns: URLSessionDataTaskProtocol
     func projectEvents(_ session: GitURLSession = URLSession.shared,
                        id: String,
                        page: String = "1",

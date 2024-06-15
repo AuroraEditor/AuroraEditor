@@ -8,15 +8,25 @@
 
 import Foundation
 
+/// Git Router
 enum GitRouter: JSONPostRouter {
+
+    /// Delete Reference
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter owner: Owner
+    /// - Parameter repo: Repository
+    /// - Parameter reference: Reference
     case deleteReference(GitConfiguration, String, String, String)
 
+    /// Configuration
     var configuration: GitConfiguration? {
         switch self {
         case let .deleteReference(config, _, _, _): return config
         }
     }
 
+    /// HTTP Method
     var method: HTTPMethod {
         switch self {
         case .deleteReference:
@@ -24,6 +34,7 @@ enum GitRouter: JSONPostRouter {
         }
     }
 
+    /// Encoding
     var encoding: HTTPEncoding {
         switch self {
         case .deleteReference:
@@ -31,6 +42,7 @@ enum GitRouter: JSONPostRouter {
         }
     }
 
+    /// Parameters
     var params: [String: Any] {
         switch self {
         case .deleteReference:
@@ -38,6 +50,7 @@ enum GitRouter: JSONPostRouter {
         }
     }
 
+    /// Path
     var path: String {
         switch self {
         case let .deleteReference(_, owner, repo, reference):

@@ -8,9 +8,15 @@
 
 import Foundation
 
+/// Avatar URL
 open class AvatarURL: Codable {
+
+    /// URL
     open var url: URL?
 
+    /// Initialize
+    /// 
+    /// - Parameter json: JSON
     public init(_ json: [String: AnyObject]) {
         if let urlString = json["url"] as? String, let urlFromString = URL(string: urlString) {
             url = urlFromString

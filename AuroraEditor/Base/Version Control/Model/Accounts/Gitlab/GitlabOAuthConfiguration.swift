@@ -8,16 +8,39 @@
 
 import Foundation
 
+/// Gitlab OAuth Configuration
 public struct GitlabOAuthConfiguration: GitConfiguration {
 
+    /// API Endpoint
     public var apiEndpoint: String?
+
+    /// Access Token
     public var accessToken: String?
+
+    /// Token
     public let token: String
+
+    /// Secret
     public let secret: String
+
+    /// Redirect URI
     public let redirectURI: String
+
+    /// Web Endpoint
     public let webEndpoint: String
+
+    /// Error Domain
     public let errorDomain = "com.auroraeditor.models.accounts.gitlab"
 
+    /// Initialize Gitlab OAuth Configuration
+    /// 
+    /// - Parameter url: API Endpoint
+    /// - Parameter webURL: Web Endpoint
+    /// - Parameter token: Token
+    /// - Parameter secret: Secret
+    /// - Parameter redirectURI: Redirect URI
+    /// 
+    /// - Returns: Gitlab OAuth Configuration
     public init(_ url: String = gitlabBaseURL,
                 webURL: String = gitlabWebURL,
                 token: String,
@@ -30,10 +53,18 @@ public struct GitlabOAuthConfiguration: GitConfiguration {
         self.redirectURI = redirectURI
     }
 
+    /// Authenticate
+    /// 
+    /// - Returns: URL
     public func authenticate() -> URL? {
         GitlabOAuthRouter.authorize(self, redirectURI).URLRequest?.url
     }
 
+    /// Authorize
+    /// 
+    /// - Parameter session: Git URL Session
+    /// - Parameter code: Code
+    /// - Parameter completion: Completion
     public func authorize(_ session: GitURLSession = URLSession.shared,
                           code: String,
                           completion: @escaping (_ config: GitlabTokenConfiguration) -> Void) {
@@ -64,6 +95,11 @@ public struct GitlabOAuthConfiguration: GitConfiguration {
         }
     }
 
+    /// Handle Open URL
+    /// 
+    /// - Parameter session: Git URL Session
+    /// - Parameter url: URL
+    /// - Parameter completion: Completion
     public func handleOpenURL(_ session: GitURLSession = URLSession.shared,
                               url: URL,
                               completion: @escaping (_ config: GitlabTokenConfiguration) -> Void) {

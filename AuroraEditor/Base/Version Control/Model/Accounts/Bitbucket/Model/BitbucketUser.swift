@@ -11,8 +11,14 @@ import SwiftUI
 
 /// Bitbucket user
 open class BitbucketUser: Codable {
+
+    /// Identifier
     open var id: String?
+
+    /// Login
     open var login: String?
+
+    /// Name
     open var name: String?
 
     enum CodingKeys: String, CodingKey {
@@ -22,10 +28,19 @@ open class BitbucketUser: Codable {
     }
 }
 
+/// Bitbucket email
 open class Email: Codable {
+
+    /// is primary email
     open var isPrimary: Bool
+
+    /// is confirmed email
     open var isConfirmed: Bool
+
+    /// email type
     open var type: String?
+
+    /// email
     open var email: String?
 
     enum CodingKeys: String, CodingKey {
@@ -39,9 +54,11 @@ open class Email: Codable {
 public extension BitbucketAccount {
 
     /// Current user
+    /// 
     /// - Parameters:
     ///   - session: URL session
     ///   - completion: completion
+    /// 
     /// - Returns: URLSessionDataTaskProtocol
     func me(
         _ session: GitURLSession = URLSession.shared,
@@ -63,9 +80,11 @@ public extension BitbucketAccount {
         }
 
     /// Get Emails
+    /// 
     /// - Parameters:
     ///   - session: GIT Session
     ///   - completion: completion
+    /// 
     /// - Returns: URLSessionDataTaskProtocol
     func emails(
         _ session: GitURLSession = URLSession.shared,

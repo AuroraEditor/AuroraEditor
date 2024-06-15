@@ -8,18 +8,44 @@
 
 import Foundation
 
+/// Event Note
 open class EventNote: Codable {
+
+    /// Identifier
     open var id: Int?
+
+    /// Body
     open var body: String?
+
+    /// Attachment
     open var attachment: String?
+
+    /// Author
     open var author: GitlabUser?
+
+    /// Created At
     open var createdAt: Date?
+
+    /// System
     open var system: Bool?
+
+    /// Upvote
     open var upvote: Bool?
+
+    /// Downvote
     open var downvote: Bool?
+
+    /// Noteable ID
     open var noteableID: Int?
+
+    /// Noteable Type
     open var noteableType: String?
 
+    /// Initialize Event Note
+    /// 
+    /// - Parameter json: JSON
+    /// 
+    /// - Returns: Event Note
     public init(_ json: [String: AnyObject]) {
         id = json["id"] as? Int
         body = json["body"] as? String

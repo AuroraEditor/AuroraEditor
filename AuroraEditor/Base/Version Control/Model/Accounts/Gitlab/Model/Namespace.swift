@@ -8,21 +8,53 @@
 
 import Foundation
 
+/// Git Name Space
 open class GitNameSpace: Codable {
+
+    /// Identifier
     open var id: Int?
+
+    /// Name
     open var name: String?
+
+    /// Path
     open var path: String?
+
+    /// Owner ID
     open var ownerID: Int?
+
+    /// Created At
     open var createdAt: Date?
+
+    /// Updated At
     open var updatedAt: Date?
+
+    /// Namespace Description
     open var namespaceDescription: String?
+
+    /// Avatar
     open var avatar: AvatarURL?
+
+    /// Share With Group Locked
     open var shareWithGroupLocked: Bool?
+
+    /// Visibility Level
     open var visibilityLevel: Int?
+
+    /// Request Access Enabled
     open var requestAccessEnabled: Bool?
+
+    /// Deleted At
     open var deletedAt: Date?
+
+    /// LFS Enabled
     open var lfsEnabled: Bool?
 
+    /// Initialize Git Name Space
+    /// 
+    /// - Parameter json: JSON
+    /// 
+    /// - Returns: Git Name Space
     public init(_ json: [String: AnyObject]) {
         if let id = json["id"] as? Int {
             self.id = id

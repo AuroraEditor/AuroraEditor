@@ -20,6 +20,7 @@ public struct GitlabAccount {
     public let configuration: GitConfiguration
 
     /// Initialize Gitlab cccount
+    /// 
     /// - Parameter config: GIT Configuration
     public init(_ config: GitConfiguration = GitlabTokenConfiguration()) {
         configuration = config

@@ -8,10 +8,20 @@
 
 import Foundation
 
+/// Project Access
 open class ProjectAccess: Codable {
+
+    /// Access Level
     open var accessLevel: Int?
+
+    /// Notification Level
     open var notificationLevel: Int?
 
+    /// Initialize Project Access
+    /// 
+    /// - Parameter json: JSON
+    /// 
+    /// - Returns: Project Access
     public init(_ json: [String: AnyObject]) {
         accessLevel = json["access_level"] as? Int
         notificationLevel = json["notification_level"] as? Int

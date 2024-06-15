@@ -20,6 +20,7 @@ public struct GithubAccount {
     public let configuration: GithubTokenConfiguration
 
     /// Initialize GitHub Account
+    /// 
     /// - Parameter config: GitHub Configuration
     public init(_ config: GithubTokenConfiguration = GithubTokenConfiguration()) {
         configuration = config

@@ -13,11 +13,13 @@ import FoundationNetworking
 
 public extension GithubAccount {
     /// Post Public key
+    /// 
     /// - Parameters:
     ///   - session: URL Session
     ///   - publicKey: Public key
     ///   - title: title
     ///   - completion: completion
+    /// 
     /// - Returns: URLSessionDataTaskProtocol
     func postPublicKey(_ session: GitURLSession = URLSession.shared,
                        publicKey: String,
@@ -42,15 +44,24 @@ public extension GithubAccount {
     }
 }
 
+/// Public Key Router
 enum PublicKeyRouter: JSONPostRouter {
+
+    /// Post Public Key
+    /// 
+    /// - Parameter publicKey: Public Key
+    /// - Parameter title: Title
+    /// - Parameter config: Git Configuration
     case postPublicKey(String, String, GitConfiguration)
 
+    /// Configuration
     var configuration: GitConfiguration? {
         switch self {
         case let .postPublicKey(_, _, config): return config
         }
     }
 
+    /// HTTP Method
     var method: HTTPMethod {
         switch self {
         case .postPublicKey:
@@ -58,6 +69,7 @@ enum PublicKeyRouter: JSONPostRouter {
         }
     }
 
+    /// Encoding
     var encoding: HTTPEncoding {
         switch self {
         case .postPublicKey:
@@ -65,6 +77,7 @@ enum PublicKeyRouter: JSONPostRouter {
         }
     }
 
+    /// Path
     var path: String {
         switch self {
         case .postPublicKey:
@@ -72,6 +85,7 @@ enum PublicKeyRouter: JSONPostRouter {
         }
     }
 
+    /// Parameters
     var params: [String: Any] {
         switch self {
         case let .postPublicKey(publicKey, title, _):

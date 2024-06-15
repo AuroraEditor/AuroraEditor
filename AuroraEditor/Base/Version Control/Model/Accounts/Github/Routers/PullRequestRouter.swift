@@ -8,10 +8,30 @@
 
 import Foundation
 
+/// Pull Request Router
 enum PullRequestRouter: JSONPostRouter {
+
+    /// Read Pull Request
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter owner: Owner
+    /// - Parameter repository: Repository
+    /// - Parameter number: Number
     case readPullRequest(GitConfiguration, String, String, String)
+
+    /// Read Pull Requests
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter owner: Owner
+    /// - Parameter repository: Repository
+    /// - Parameter base: Base
+    /// - Parameter head: Head
+    /// - Parameter state: State
+    /// - Parameter sort: Sort
+    /// - Parameter direction: Direction
     case readPullRequests(GitConfiguration, String, String, String?, String?, Openness, SortType, SortDirection)
 
+    /// HTTP Method
     var method: HTTPMethod {
         switch self {
         case .readPullRequest,
@@ -20,6 +40,7 @@ enum PullRequestRouter: JSONPostRouter {
         }
     }
 
+    /// Encoding
     var encoding: HTTPEncoding {
         switch self {
         default:
@@ -27,6 +48,7 @@ enum PullRequestRouter: JSONPostRouter {
         }
     }
 
+    /// Configuration
     var configuration: GitConfiguration? {
         switch self {
         case let .readPullRequest(config, _, _, _): return config
@@ -34,6 +56,7 @@ enum PullRequestRouter: JSONPostRouter {
         }
     }
 
+    /// Parameters
     var params: [String: Any] {
         switch self {
         case .readPullRequest:
@@ -57,6 +80,7 @@ enum PullRequestRouter: JSONPostRouter {
         }
     }
 
+    /// Path
     var path: String {
         switch self {
         case let .readPullRequest(_, owner, repository, number):

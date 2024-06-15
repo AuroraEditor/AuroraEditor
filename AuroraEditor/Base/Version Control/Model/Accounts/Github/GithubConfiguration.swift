@@ -11,10 +11,19 @@ import Foundation
 import FoundationNetworking
 #endif
 
+/// Github token configuration
 public struct GithubTokenConfiguration: GitConfiguration {
+
+    /// API Endpoint
     public var apiEndpoint: String?
+
+    /// Access Token
     public var accessToken: String?
+
+    /// Error Domain
     public let errorDomain: String? = "com.auroraeditor.models.accounts.github"
+
+    /// Authorization Header
     public let authorizationHeader: String? = "Basic"
 
     /// Custom `Accept` header for API previews.
@@ -23,11 +32,19 @@ public struct GithubTokenConfiguration: GitConfiguration {
     /// see: https://developer.github.com/changes/2016-05-12-reactions-api-preview/
     private var previewCustomHeaders: [HTTPHeader]?
 
+    /// Custom Headers
     public var customHeaders: [HTTPHeader]? {
         /// More (non-preview) headers can be appended if needed in the future
         return previewCustomHeaders
     }
 
+    /// Initialize Github Token Configuration
+    /// 
+    /// - Parameter token: Token
+    /// - Parameter url: URL
+    /// - Parameter previewHeaders: Preview Headers
+    /// 
+    /// - Returns: Github Token Configuration
     public init(_ token: String? = nil, url: String = githubBaseURL, previewHeaders: [PreviewHeader] = []) {
         apiEndpoint = url
         accessToken = token?.data(using: .utf8)!.base64EncodedString()
@@ -35,13 +52,28 @@ public struct GithubTokenConfiguration: GitConfiguration {
     }
 }
 
+/// Github OAuth Configuration
 public struct OAuthConfiguration: GitConfiguration {
+
+    /// API Endpoint
     public var apiEndpoint: String?
+
+    /// Access Token
     public var accessToken: String?
+
+    /// Token
     public let token: String
+
+    /// Secret
     public let secret: String
+
+    /// Scopes
     public let scopes: [String]
+
+    /// Web Endpoint
     public let webEndpoint: String
+
+    /// Error Domain
     public let errorDomain = "com.auroraeditor.models.accounts.github"
 
     /// Custom `Accept` header for API previews.
@@ -50,11 +82,22 @@ public struct OAuthConfiguration: GitConfiguration {
     /// see: https://developer.github.com/changes/2016-05-12-reactions-api-preview/
     private var previewCustomHeaders: [HTTPHeader]?
 
+    /// Custom Headers
     public var customHeaders: [HTTPHeader]? {
         /// More (non-preview) headers can be appended if needed in the future
         return previewCustomHeaders
     }
 
+    /// Initialize OAuth Configuration
+    /// 
+    /// - Parameter url: URL
+    /// - Parameter webURL: Web URL
+    /// - Parameter token: Token
+    /// - Parameter secret: Secret
+    /// - Parameter scopes: Scopes
+    /// - Parameter previewHeaders: Preview Headers
+    /// 
+    /// - Returns: OAuth Configuration
     public init(_ url: String = githubBaseURL,
                 webURL: String = githubWebURL,
                 token: String,
@@ -70,10 +113,18 @@ public struct OAuthConfiguration: GitConfiguration {
         previewCustomHeaders = previewHeaders.map { $0.header }
     }
 
+    /// Authenticate
+    /// 
+    /// - Returns: URL
     public func authenticate() -> URL? {
         GithubOAuthRouter.authorize(self).URLRequest?.url
     }
 
+    /// Authorize
+    /// 
+    /// - Parameter session: GitURLSession
+    /// - Parameter code: Code
+    /// - Parameter completion: Completion
     public func authorize(
         _ session: GitURLSession = URLSession.shared,
         code: String,
@@ -100,6 +151,11 @@ public struct OAuthConfiguration: GitConfiguration {
         }
     }
 
+    /// Handle Open URL
+    /// 
+    /// - Parameter session: GitURLSession
+    /// - Parameter url: URL
+    /// - Parameter completion: Completion
     public func handleOpenURL(
         _ session: GitURLSession = URLSession.shared,
         url: URL,
@@ -112,6 +168,11 @@ public struct OAuthConfiguration: GitConfiguration {
         }
     }
 
+    /// Access Token From Response
+    /// 
+    /// - Parameter response: Response
+    /// 
+    /// - Returns: Access Token
     public func accessTokenFromResponse(_ response: String) -> String? {
         let accessTokenParam = response.components(separatedBy: "&").first
         if let accessTokenParam = accessTokenParam {
@@ -121,10 +182,21 @@ public struct OAuthConfiguration: GitConfiguration {
     }
 }
 
+/// Github OAuth Router
 enum GithubOAuthRouter: Router {
+
+    /// Authorize
+    /// 
+    /// - Parameter config: OAuth Configuration
     case authorize(OAuthConfiguration)
+
+    /// Access Token
+    /// 
+    /// - Parameter config: OAuth Configuration
+    /// - Parameter code: Code
     case accessToken(OAuthConfiguration, String)
 
+    /// Configuration
     var configuration: GitConfiguration? {
         switch self {
         case let .authorize(config): return config
@@ -132,6 +204,7 @@ enum GithubOAuthRouter: Router {
         }
     }
 
+    /// HTTP Method
     var method: HTTPMethod {
         switch self {
         case .authorize:
@@ -141,6 +214,7 @@ enum GithubOAuthRouter: Router {
         }
     }
 
+    /// Encoding
     var encoding: HTTPEncoding {
         switch self {
         case .authorize:
@@ -150,6 +224,7 @@ enum GithubOAuthRouter: Router {
         }
     }
 
+    /// Path
     var path: String {
         switch self {
         case .authorize:
@@ -159,6 +234,7 @@ enum GithubOAuthRouter: Router {
         }
     }
 
+    /// Parameters
     var params: [String: Any] {
         switch self {
         case let .authorize(config):
@@ -175,6 +251,7 @@ enum GithubOAuthRouter: Router {
     typealias FoundationURLRequestType = Foundation.URLRequest
     #endif
 
+    /// URL Request
     var URLRequest: FoundationURLRequestType? {
         switch self {
         case let .authorize(config):

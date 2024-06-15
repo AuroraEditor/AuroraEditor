@@ -152,6 +152,14 @@ custom_rules:
     message: "Do not use preview macro."
     severity: warning
 
+  # Don't use /** style doc comments
+  no_double_star_doc_comments:
+    included: ".*.swift"
+    name: "No Double Star Doc Comments"
+    regex: "/\\*\\*\n"
+    message: "Do not use /** style doc comments."
+    severity: warning
+
 file_header:
   required_pattern: |
                   \/\/

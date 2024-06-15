@@ -8,21 +8,49 @@
 
 import Foundation
 
+/// Project Hook
 open class ProjectHook: Codable {
+
+    /// Identifier
     open var id: Int?
+
+    /// URL
     open var url: URL?
+
+    /// Project ID
     open var projectID: Int?
+
+    /// Push Events
     open var pushEvents: Bool?
+
+    /// Issues Events
     open var issuesEvents: Bool?
+
+    /// Merge Requests Events
     open var mergeRequestsEvents: Bool?
+
+    /// Tag Push Events
     open var tagPushEvents: Bool?
+
+    /// Note Events
     open var noteEvents: Bool?
+
+    /// Build Events
     open var buildEvents: Bool?
+
+    /// Pipeline Events
     open var pipelineEvents: Bool?
+
+    /// Wiki Page Events
     open var wikiPageEvents: Bool?
+
+    /// Enable SSL Verification
     open var enableSSLVerification: Bool?
+
+    /// Created At
     open var createdAt: Date?
 
+    /// Coding Keys
     enum CodingKeys: String, CodingKey {
         case id
         case url
@@ -42,12 +70,13 @@ open class ProjectHook: Codable {
 
 public extension GitlabAccount {
 
-    /**
-     Get a list of project hooks.
-     - parameter id: The ID of the project or namespace/project name.
-     Make sure that the namespace/project-name is URL-encoded, eg. "%2F" for "/".
-     - parameter completion: Callback for the outcome of the fetch.
-     */
+    /// Get a list of project hooks.
+    /// 
+    /// - parameter id: The ID of the project or namespace/project name.
+    /// Make sure that the namespace/project-name is URL-encoded, eg. "%2F" for "/".
+    /// - parameter completion: Callback for the outcome of the fetch.
+    ///
+    /// - returns: The data task that was created.
     func projectHooks(_ session: GitURLSession = URLSession.shared,
                       id: String,
                       completion: @escaping (
@@ -69,14 +98,15 @@ public extension GitlabAccount {
                             }
                         }
 
-    /**
-     Get a specific hook from a project.
-     - parameter id: The ID of the project or namespace/project name.
-     Make sure that the namespace/project-name is URL-encoded, eg. "%2F" for "/".
-     - parameter hookId: The ID of the hook in the project
-     (you can get the ID of a hook by searching for it with the **allProjectHooks** request).
-     - parameter completion: Callback for the outcome of the fetch.
-     */
+    /// Get a specific hook from a project.
+    /// 
+    /// - parameter id: The ID of the project or namespace/project name.
+    /// Make sure that the namespace/project-name is URL-encoded, eg. "%2F" for "/".
+    /// - parameter hookId: The ID of the hook in the project
+    /// (you can get the ID of a hook by searching for it with the **allProjectHooks** request).
+    /// - parameter completion: Callback for the outcome of the fetch.
+    /// 
+    /// - returns: The data task that was created.
     func projectHook(_ session: GitURLSession = URLSession.shared,
                      id: String,
                      hookId: String,

@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// A Git UI Model
 public final class GitUIModel: ObservableObject {
     /// A GitClient instance
     private(set) var gitClient: GitClient
@@ -16,8 +17,10 @@ public final class GitUIModel: ObservableObject {
     private(set) var workspaceURL: URL
 
     /// Initialize with a GitClient
+    /// 
     /// - Parameter workspaceURL: the current workspace URL
     ///
+    /// - Returns: a GitUIModel instance
     public init(workspaceURL: URL) {
         self.workspaceURL = workspaceURL
         gitClient = GitClient(
@@ -26,6 +29,9 @@ public final class GitUIModel: ObservableObject {
         )
     }
 
+    /// Stage changes
+    /// 
+    /// - Parameter message: the stash message
     public func stashChanges(message: String?) {
         do {
             try gitClient.stashChanges(message: message ?? "")

@@ -8,13 +8,49 @@
 
 import Foundation
 
+/// Gist Router
 enum GistRouter: JSONPostRouter {
+
+    /// Read Authenticated Gists
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter page: Page
+    /// - Parameter perPage: Per Page
     case readAuthenticatedGists(GitConfiguration, String, String)
+
+    /// Read Gists
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter owner: Owner
+    /// - Parameter page: Page
+    /// - Parameter perPage: Per Page
     case readGists(GitConfiguration, String, String, String)
+
+    /// Read Gist
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter id: Identifier
     case readGist(GitConfiguration, String)
+
+    /// Post Gist File
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter description: Description
+    /// - Parameter filename: Filename
+    /// - Parameter fileContent: File Content
+    /// - Parameter publicAccess: Public Access
     case postGistFile(GitConfiguration, String, String, String, Bool)
+
+    /// Patch Gist File
+    /// 
+    /// - Parameter config: Git Configuration
+    /// - Parameter id: Identifier
+    /// - Parameter description: Description
+    /// - Parameter filename: Filename
+    /// - Parameter fileContent: File Content
     case patchGistFile(GitConfiguration, String, String, String, String)
 
+    /// HTTP Method
     var method: HTTPMethod {
         switch self {
         case .postGistFile, .patchGistFile:
@@ -24,6 +60,7 @@ enum GistRouter: JSONPostRouter {
         }
     }
 
+    /// HTTP Encoding
     var encoding: HTTPEncoding {
         switch self {
         case .postGistFile, .patchGistFile:
@@ -33,6 +70,7 @@ enum GistRouter: JSONPostRouter {
         }
     }
 
+    /// Configuration
     var configuration: GitConfiguration? {
         switch self {
         case let .readAuthenticatedGists(config, _, _): return config
@@ -43,6 +81,7 @@ enum GistRouter: JSONPostRouter {
         }
     }
 
+    /// Parameters
     var params: [String: Any] {
         switch self {
         case let .readAuthenticatedGists(_, page, perPage):
@@ -73,6 +112,7 @@ enum GistRouter: JSONPostRouter {
         }
     }
 
+    /// Path
     var path: String {
         switch self {
         case .readAuthenticatedGists:

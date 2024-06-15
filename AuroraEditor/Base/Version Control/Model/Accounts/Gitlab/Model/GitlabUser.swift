@@ -8,25 +8,65 @@
 
 import Foundation
 
+/// Gitlab User
 open class GitlabUser: Codable {
+
+    /// Identifier
     open var id: Int
+
+    /// Username
     open var username: String?
+
+    /// State
     open var state: String?
+
+    /// Avatar URL
     open var avatarURL: URL?
+
+    /// Web URL
     open var webURL: URL?
+
+    /// Created At
     open var createdAt: Date?
+
+    /// Is Admin
     open var isAdmin: Bool?
+
+    /// Name
     open var name: String?
+
+    /// Last Sign In At
     open var lastSignInAt: Date?
+
+    /// Confirmed At
     open var confirmedAt: Date?
+
+    /// Email
     open var email: String?
+
+    /// Projects Limit
     open var projectsLimit: Int?
+
+    /// Current Sign In At
     open var currentSignInAt: Date?
+
+    /// Can Create Group
     open var canCreateGroup: Bool?
+
+    /// Can Create Project
     open var canCreateProject: Bool?
+
+    /// Two Factor Enabled
     open var twoFactorEnabled: Bool?
+
+    /// External
     open var external: Bool?
 
+    /// Initialize Gitlab User
+    /// 
+    /// - Parameter json: JSON
+    /// 
+    /// - Returns: Gitlab User
     public init(_ json: [String: Any]) {
         if let id = json["id"] as? Int {
             name = json["name"] as? String
@@ -58,10 +98,11 @@ open class GitlabUser: Codable {
 
 public extension GitlabAccount {
 
-    /**
-     Fetches the currently logged in user
-     - parameter completion: Callback for the outcome of the fetch.
-     */
+    /// Fetches the currently logged in user
+    /// 
+    /// - parameter completion: Callback for the outcome of the fetch.
+    /// 
+    /// - Returns: URLSessionDataTaskProtocol
     @discardableResult
     func me(
         _ session: GitURLSession = URLSession.shared,
