@@ -15,6 +15,7 @@ public extension Image {
     /// - Parameter symbol: The name of the symbol in `Symbols.xcassets`
     init(symbol: String) {
         self.init(symbol, bundle: Bundle.module)
+            .accessibilityLabel(Text(symbol))
     }
 
     // MARK: - Symbols
