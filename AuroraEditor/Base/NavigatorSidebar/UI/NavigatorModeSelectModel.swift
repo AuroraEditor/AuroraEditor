@@ -101,14 +101,16 @@ class NavigatorModeSelectModel: ObservableObject {
     /// - Parameter accesibilityDescription: The accesibility description.
     /// 
     /// - Returns: The image.
-    private func getSafeImage(named: String, accesibilityDescription: String?) -> Image {
+    private func getSafeImage(named: String, accesibilityDescription: String?) -> some View {
         if let nsImage = NSImage(
             systemSymbolName: named,
             accessibilityDescription: accesibilityDescription
         ) {
             return Image(nsImage: nsImage)
+                .accessibilityLabel(Text("\(accesibilityDescription ?? ""))"))
         } else {
             return Image(symbol: named)
+                .accessibilityLabel(Text("\(accesibilityDescription ?? ""))"))
         }
     }
 }

@@ -120,22 +120,6 @@ struct InspectorSidebarToolbarTop: View {
         .buttonStyle(.plain)
     }
 
-    /// Get image (safe)
-    /// 
-    /// - Parameter named: the name
-    /// - Parameter accesibilityDescription: the accesibility description
-    /// 
-    /// - Returns: an image
-    private func getSafeImage(named: String, accesibilityDescription: String?) -> Image {
-        if let nsImage = NSImage(systemSymbolName: named, accessibilityDescription: accesibilityDescription) {
-            return Image(nsImage: nsImage)
-                .accessibilityLabel(Text(accesibilityDescription ?? ""))
-        } else {
-            return Image(symbol: named)
-                .accessibilityLabel(Text(accesibilityDescription ?? ""))
-        }
-    }
-
     /// Inspector dock icon
     private struct InspectorDockIcon: Identifiable, Equatable {
         /// The image name

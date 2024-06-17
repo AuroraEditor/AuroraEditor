@@ -46,6 +46,9 @@
         }
       }
     },
+    "%@)" : {
+
+    },
     "%lld" : {
 
     },
@@ -2587,6 +2590,12 @@
         }
       }
     },
+    "Account Avatar" : {
+
+    },
+    "Active Branch" : {
+
+    },
     "Add" : {
 
     },
@@ -2600,6 +2609,12 @@
 
     },
     "Add Folder" : {
+
+    },
+    "Add item" : {
+
+    },
+    "Add Split view" : {
 
     },
     "Agree" : {
@@ -2617,13 +2632,22 @@
     "Audio" : {
 
     },
+    "Aura Editor Icon" : {
+
+    },
     "Aurora Editor" : {
 
     },
     "Aurora Editor %@" : {
 
     },
+    "Aurora Editor Contributors" : {
+
+    },
     "Aurora Editor is up to date" : {
+
+    },
+    "Aurora Editor Logo" : {
 
     },
     "Auroraeditor" : {
@@ -2653,6 +2677,9 @@
     "Blink cursor" : {
 
     },
+    "Bold" : {
+
+    },
     "Branch" : {
 
     },
@@ -2677,6 +2704,9 @@
     "Checking for Updates..." : {
 
     },
+    "Checkmark Icon" : {
+
+    },
     "Checkout" : {
 
     },
@@ -2695,10 +2725,25 @@
     "Chrome" : {
 
     },
+    "Clear" : {
+
+    },
+    "Clear button" : {
+
+    },
+    "Clear filter" : {
+
+    },
     "Clear Menu" : {
 
     },
     "Clear Recents" : {
+
+    },
+    "Clear Terminal" : {
+
+    },
+    "Clear text" : {
 
     },
     "Click Reopen to open the application again. This report will be sent automatically to the AuroraEditor team." : {
@@ -2735,6 +2780,9 @@
 
     },
     "Code Coverage" : {
+
+    },
+    "Command Palette" : {
 
     },
     "Comments" : {
@@ -2809,6 +2857,12 @@
     "Cursor" : {
 
     },
+    "Custom Notification" : {
+
+    },
+    "Delete" : {
+
+    },
     "Description" : {
 
     },
@@ -2816,6 +2870,9 @@
 
     },
     "Developer" : {
+
+    },
+    "Developer???" : {
 
     },
     "Disagree" : {
@@ -3318,6 +3375,12 @@
     "Error" : {
 
     },
+    "Error Icon" : {
+
+    },
+    "Errors only" : {
+
+    },
     "Example:" : {
 
     },
@@ -3331,6 +3394,12 @@
 
     },
     "Example: The autocomplete window flickered on screen and Aurora Editor crashed.\nSee attached crashlog." : {
+
+    },
+    "Extension Icon" : {
+
+    },
+    "Extension Notification" : {
 
     },
     "Extension Privacy" : {
@@ -3378,10 +3447,16 @@
     "File Hierarchy View" : {
 
     },
+    "File Icon" : {
+
+    },
     "File Name" : {
 
     },
     "Filter" : {
+
+    },
+    "Filter icon" : {
 
     },
     "Finished Cloning" : {
@@ -3405,7 +3480,19 @@
     "Get Extension" : {
 
     },
+    "Git Branch" : {
+
+    },
+    "Git Branche" : {
+
+    },
+    "Git Client Icon" : {
+
+    },
     "Git Repository URL" : {
+
+    },
+    "GitHub" : {
 
     },
     "GitHub Repo" : {
@@ -5686,7 +5773,13 @@
     "Great repository names are short and memorable." : {
 
     },
+    "Grid View" : {
+
+    },
     "Hello, World!" : {
+
+    },
+    "Help" : {
 
     },
     "Hi" : {
@@ -5698,6 +5791,9 @@
     "Hide Details" : {
 
     },
+    "History" : {
+
+    },
     "History Editor Help" : {
 
     },
@@ -5705,6 +5801,9 @@
 
     },
     "https://example.com" : {
+
+    },
+    "Icon" : {
 
     },
     "Identity and Type" : {
@@ -5731,6 +5830,9 @@
     "Indent Using" : {
 
     },
+    "Info" : {
+
+    },
     "Information" : {
 
     },
@@ -5741,6 +5843,9 @@
 
     },
     "Inspector" : {
+
+    },
+    "Inspector %@" : {
 
     },
     "Install Now" : {
@@ -5755,7 +5860,13 @@
     "Issues" : {
 
     },
+    "Italic" : {
+
+    },
     "Keep Open" : {
+
+    },
+    "Language Icon" : {
 
     },
     "Languages" : {
@@ -5776,6 +5887,9 @@
           }
         }
       }
+    },
+    "List View" : {
+
     },
     "Loading" : {
       "comment" : "Loading"
@@ -5805,6 +5919,9 @@
 
     },
     "main = putStrLn \"Hello World!\"" : {
+
+    },
+    "Maximize" : {
 
     },
     "Merged" : {
@@ -5852,6 +5969,9 @@
     "New Folder" : {
 
     },
+    "New item" : {
+
+    },
     "Next" : {
 
     },
@@ -5894,6 +6014,9 @@
     "No Selection" : {
 
     },
+    "No Source Control" : {
+
+    },
     "Not yet implemented" : {
 
     },
@@ -5906,6 +6029,9 @@
     "Notification Centre shows notifications ranging from account security, GitHub build actions state and even notifications from extensions" : {
 
     },
+    "Notification Icon" : {
+
+    },
     "Notifications have been disabled. Enable notifications in settings to continue receiving notifications." : {
 
     },
@@ -5915,10 +6041,25 @@
     "OK" : {
 
     },
+    "Open" : {
+
+    },
+    "Open Branch Picker" : {
+
+    },
+    "Open in Finder" : {
+
+    },
     "Open in New Window" : {
 
     },
     "Open New Web Tab" : {
+
+    },
+    "Open Update Settings" : {
+
+    },
+    "Open web tab" : {
 
     },
     "Optional Message" : {
@@ -5952,6 +6093,9 @@
 
     },
     "Problem Details and System Configuration" : {
+
+    },
+    "Project Icon" : {
 
     },
     "project.inspector.file" : {
@@ -7566,10 +7710,16 @@
     "Refresh" : {
 
     },
+    "Reload" : {
+
+    },
     "Remind me Later" : {
 
     },
     "Remote Name:" : {
+
+    },
+    "Remove" : {
 
     },
     "Remove from Recent Projects" : {
@@ -7584,7 +7734,13 @@
     "Reopen" : {
 
     },
+    "Required Field" : {
+
+    },
     "Restart Required" : {
+
+    },
+    "Restore" : {
 
     },
     "Reveal in Project Navigator" : {
@@ -7594,6 +7750,12 @@
 
     },
     "Search Documentation" : {
+
+    },
+    "Search for" : {
+
+    },
+    "Search for a file" : {
 
     },
     "See Details" : {
@@ -7618,6 +7780,9 @@
 
     },
     "Set up job" : {
+
+    },
+    "Setting Icon" : {
 
     },
     "settings.account.account.type" : {
@@ -44713,6 +44878,9 @@
         }
       }
     },
+    "Severity Icon" : {
+
+    },
     "Shell Script" : {
 
     },
@@ -44737,16 +44905,28 @@
     "Show this window when Aurora launches" : {
 
     },
+    "Show/Hide Drawer" : {
+
+    },
     "Side By Side Comparison" : {
 
     },
     "Size" : {
 
     },
+    "Sort" : {
+
+    },
     "Sounds, Banners" : {
 
     },
+    "Source Control Account Icon" : {
+
+    },
     "Source Control Disabled" : {
+
+    },
+    "Source Control Menu" : {
 
     },
     "Source Files" : {
@@ -44773,6 +44953,9 @@
     "spaces" : {
 
     },
+    "Split Terminal" : {
+
+    },
     "Split View" : {
 
     },
@@ -44795,6 +44978,9 @@
 
     },
     "Switch to \"%@\"..." : {
+
+    },
+    "System Notification" : {
 
     },
     "Tab Bar Style:" : {
@@ -44851,10 +45037,16 @@
     "Type" : {
 
     },
+    "Underline" : {
+
+    },
     "Universal" : {
 
     },
     "UPDATE" : {
+
+    },
+    "Update Notification" : {
 
     },
     "Updates Available" : {
