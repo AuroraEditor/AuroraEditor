@@ -105,6 +105,7 @@ struct FindNavigatorModeSelector: View {
         Image(systemName: "chevron.compact.right")
             .foregroundStyle(.secondary)
             .imageScale(.small)
+            .accessibilityHidden(true)
     }
 
     /// The view body.
