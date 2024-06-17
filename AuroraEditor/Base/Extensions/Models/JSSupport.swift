@@ -178,8 +178,8 @@ class JSSupport: ExtensionInterface {
                 }
 
                 // It confirms to Codable, that _should_ be safe
-                if let safeValue = val as? Codable {
-                    return safeValue // We want the "Any" returned.
+                if val as? Codable != nil {
+                    return val // We want the "Any" returned.
                 }
 
                 // This is probably unsafe, do not return.
