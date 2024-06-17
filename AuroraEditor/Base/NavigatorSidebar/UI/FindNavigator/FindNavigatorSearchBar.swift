@@ -56,6 +56,7 @@ struct FindNavigatorSearchBar: View {
         HStack {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(Color(nsColor: .secondaryLabelColor))
+                .accessibilityLabel(Text("Search for"))
             textField
             if !text.isEmpty {
                 clearSearchButton
@@ -92,6 +93,7 @@ struct FindNavigatorSearchBar: View {
         } label: {
             Image(systemName: "xmark.circle.fill")
                 .symbolRenderingMode(.hierarchical)
+                .accessibilityLabel(Text("Clear text"))
         }
         .buttonStyle(.plain)
         .opacity(activeState == .inactive ? 0.45 : 1)
