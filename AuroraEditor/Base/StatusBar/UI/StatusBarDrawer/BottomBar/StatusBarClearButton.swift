@@ -28,6 +28,7 @@ internal struct StatusBarClearButton: View {
         } label: {
             Image(systemName: "trash")
                 .foregroundColor(.secondary)
+                .accessibilityLabel(Text("Clear Terminal"))
         }
         .buttonStyle(.plain)
     }

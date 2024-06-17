@@ -80,6 +80,7 @@ struct EditorThemeAttributeView: View {
                                                  Color(nsColor: NSColor.labelColor) :
                                                     Color(nsColor: NSColor.secondaryLabelColor))
                                 .cornerRadius(5)
+                                .accessibilityLabel(Text("Bold"))
                                 .onTapGesture {
                                     var doesExist = false
                                     replaceAttribute(setting: setting,
@@ -92,8 +93,10 @@ struct EditorThemeAttributeView: View {
                                                      with: BoldThemeAttribute())
                                     isBold = !doesExist
                                 }
+                                .accessibilityAddTraits(.isButton)
                             Image(systemName: "italic")
                                 .frame(width: 23, height: 23)
+                                .accessibilityLabel(Text("Italic"))
                                 .background(isItalic ?
                                             Color.accentColor : Color.gray.opacity(0.5))
                                 .foregroundColor(isItalic ?
@@ -112,8 +115,10 @@ struct EditorThemeAttributeView: View {
                                                      with: ItalicThemeAttribute())
                                     isItalic = !doesExist
                                 }
+                                .accessibilityAddTraits(.isButton)
                             Image(systemName: "underline")
                                 .frame(width: 23, height: 23)
+                                .accessibilityLabel(Text("Underline"))
                                 .background(isUnderline ?
                                             Color.accentColor : Color.gray.opacity(0.5))
                                 .foregroundColor(isUnderline ?
@@ -133,6 +138,7 @@ struct EditorThemeAttributeView: View {
                                                             .labelColor))
                                     isUnderline = !doesExist
                                 }
+                                .accessibilityAddTraits(.isButton)
                         }
                     }
                 }

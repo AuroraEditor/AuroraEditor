@@ -37,6 +37,7 @@ public struct QuickOpenItem: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 32, height: 32)
+                .accessibilityLabel(Text("File Icon"))
             VStack(alignment: .leading, spacing: 0) {
                 Text(fileItem.url.lastPathComponent).font(.system(size: 13))
                     .lineLimit(1)

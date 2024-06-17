@@ -84,6 +84,7 @@ struct AcknowledgementRow: View {
             }, label: {
                 Image(systemName: "arrow.right.circle.fill")
                     .foregroundColor(Color(nsColor: .tertiaryLabelColor))
+                    .accessibilityLabel(Text("Go to"))
             }).buttonStyle(.plain)
         }
     }

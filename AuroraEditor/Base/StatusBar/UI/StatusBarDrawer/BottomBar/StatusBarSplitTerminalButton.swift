@@ -27,6 +27,7 @@ internal struct StatusBarSplitTerminalButton: View {
         } label: {
             Image(systemName: "square.split.2x1")
                 .foregroundColor(.secondary)
+                .accessibilityLabel(Text("Split Terminal"))
         }
         .buttonStyle(.plain)
     }

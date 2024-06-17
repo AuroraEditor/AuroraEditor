@@ -111,6 +111,7 @@ struct CommandPaletteView: View {
                         .frame(width: 20, height: 20)
                         .padding(.trailing, 12)
                         .offset(x: 0, y: 1)
+                        .accessibilityLabel(Text("Command Palette"))
                     ActionAwareInput(onDown: onKeyDown,
                                      onTextChange: onQueryChange,
                                      text: $state.commandQuery)
@@ -128,9 +129,11 @@ struct CommandPaletteView: View {
                                 command.command()
                                 self.onClose()
                             }
+                            .accessibilityAddTraits(.isButton)
                             .onTapGesture(count: 1) {
                                 self.selectedCommand = command
                             }
+                            .accessibilityAddTraits(.isButton)
                             .background(self.selectedCommand == command ?
                                         RoundedRectangle(cornerRadius: 5, style: .continuous)
                                 .fill(Color(red: 0, green: 0.38, blue: 0.816, opacity: 0.85)) :

@@ -29,16 +29,19 @@ struct ExploreItemView: View {
                         .scaledToFit()
                         .frame(width: 36, height: 36)
                         .cornerRadius(8)
+                        .accessibilityLabel(Text("Extension Icon"))
                 } else if phase.error != nil {
                     Image(systemName: "lasso")
                         .frame(width: 36, height: 36)
                         .background(.blue)
                         .cornerRadius(8)
+                        .accessibilityLabel(Text("Extension Icon"))
                 } else {
                     Image(systemName: "lasso")
                         .frame(width: 36, height: 36)
                         .background(.blue)
                         .cornerRadius(8)
+                        .accessibilityLabel(Text("Extension Icon"))
                 }
             }
 

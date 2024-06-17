@@ -46,9 +46,11 @@ struct NotificationToastView: View {
                     Image(systemName: "xmark")
                         .font(.system(size: 11))
                         .frame(maxWidth: 24, maxHeight: 24)
+                        .accessibilityLabel(Text("Dismiss"))
                         .onTapGesture {
                             model.showNotificationToast = false
                         }
+                        .accessibilityAddTraits(.isButton)
                 }
             }
 

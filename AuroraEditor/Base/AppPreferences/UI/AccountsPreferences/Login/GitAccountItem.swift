@@ -20,6 +20,7 @@ struct GitAccountItem: View {
             Image(symbol: "vault.fill")
                 .resizable()
                 .frame(width: 24.0, height: 24.0)
+                .accessibilityLabel(Text("Source Control Account Icon"))
 
             VStack(alignment: .leading) {
                 Text(sourceControlAccount.gitProvider)

@@ -119,10 +119,12 @@ struct SourceControlGitView: View {
             Button {} label: {
                 Image(systemName: "plus")
                     .foregroundColor(Color.secondary)
+                    .accessibilityLabel(Text("Add"))
             }
             .buttonStyle(.plain)
             Button {} label: {
                 Image(systemName: "minus")
+                .accessibilityLabel(Text("Remove"))
             }
             .disabled(true)
             .buttonStyle(.plain)

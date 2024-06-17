@@ -49,6 +49,7 @@ struct ApplicationsDetailsView: View {
                 Image(nsImage: NSApp.applicationIconImage)
                     .resizable()
                     .frame(width: 75, height: 75)
+                    .accessibilityLabel(Text("Aurora Editor Logo"))
 
                 Text("Aurora Editor")
                     .font(.system(size: 24, weight: .regular))
@@ -84,6 +85,7 @@ struct ApplicationsDetailsView: View {
                     .onTapGesture {
                         aboutDetailState = .license
                     }
+                    .accessibilityAddTraits(.isButton)
                     .foregroundColor(aboutDetailState == .license ? .white : .secondary)
                     .padding(.vertical, 5)
                     .padding(.horizontal)
@@ -94,6 +96,7 @@ struct ApplicationsDetailsView: View {
                     .onTapGesture {
                         aboutDetailState = .contributers
                     }
+                    .accessibilityAddTraits(.isButton)
                     .foregroundColor(aboutDetailState == .contributers ? .white : .secondary)
                     .padding(.vertical, 5)
                     .padding(.horizontal)
@@ -104,6 +107,7 @@ struct ApplicationsDetailsView: View {
                     .onTapGesture {
                         aboutDetailState = .credits
                     }
+                    .accessibilityAddTraits(.isButton)
                     .foregroundColor(aboutDetailState == .credits ? .white : .secondary)
                     .padding(.vertical, 5)
                     .padding(.horizontal)

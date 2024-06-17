@@ -64,8 +64,9 @@ struct FileCreationGridView: View {
                 selectedItem = item
             }, label: {
                 VStack {
-                    Image(item.langaugeIcon)
+                    Image(item.langaugeIcon) // FIXME: TYPO
                         .padding(.bottom, 10)
+                        .accessibilityLabel(Text("Language Icon"))
 
                     Text(item.languageName)
                         .multilineTextAlignment(.center)

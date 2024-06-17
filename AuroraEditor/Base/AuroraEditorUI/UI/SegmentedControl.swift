@@ -103,6 +103,7 @@ struct SegmentedControlItem: View {
             .onTapGesture {
                 action()
             }
+            .accessibilityAddTraits(.isButton)
             .onHover { hover in
                 isHovering = hover
             }

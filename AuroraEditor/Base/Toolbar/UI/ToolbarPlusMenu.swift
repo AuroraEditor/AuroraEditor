@@ -30,6 +30,7 @@ public struct ToolbarPlusMenu: View {
         } label: {
             Image(systemName: "globe")
                 .scaledToFill()
+                .accessibilityLabel(Text("Open web tab"))
         }
         .buttonStyle(.plain)
     }

@@ -36,6 +36,7 @@ struct SourceControlToolbarBottom: View {
                 .disabled(true) // TODO: Implementation Needed
         } label: {
             Image(systemName: "ellipsis.circle")
+                .accessibilityLabel(Text("Source Control Menu"))
         }
         .menuStyle(.borderlessButton)
         .menuIndicator(.hidden)

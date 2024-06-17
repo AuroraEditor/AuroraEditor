@@ -115,9 +115,11 @@ public struct RecentProjectsView: View {
                             .gesture(TapGesture(count: 2).onEnded {
                                 openDocument(for: projectPath)
                             })
+                            .accessibilityAddTraits(.isButton)
                             .simultaneousGesture(TapGesture().onEnded {
                                 selectedProjectPath = projectPath
                             })
+                            .accessibilityAddTraits(.isButton)
                             .contextMenu {
                                 contextMenuShowInFinder(projectPath: projectPath)
                                 contextMenuCopy(path: projectPath)

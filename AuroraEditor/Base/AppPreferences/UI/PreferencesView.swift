@@ -36,6 +36,7 @@ struct PreferencesView: View {
                                     .scaledToFit()
                                     .foregroundColor(.white)
                                     .frame(width: 23, height: 23)
+                                    .accessibilityLabel(Text("Setting Icon"))
                                     .background {
                                         LinearGradient(gradient: Gradient(colors: [item.colorStart, item.colorEnd]),
                                                        startPoint: .top,

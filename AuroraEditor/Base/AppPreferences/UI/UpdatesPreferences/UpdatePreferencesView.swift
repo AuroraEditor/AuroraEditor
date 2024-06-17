@@ -72,6 +72,7 @@ struct UpdatePreferencesView: View {
                                 Image(systemName: "info.circle")
                                     .foregroundColor(.secondary)
                                     .font(.system(size: 12, weight: .medium))
+                                    .accessibilityLabel(Text("Open Update Settings"))
                             }
                             .buttonStyle(.plain)
                             .sheet(isPresented: $openUpdateSettings) {

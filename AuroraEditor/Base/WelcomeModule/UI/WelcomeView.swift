@@ -78,6 +78,7 @@ public struct WelcomeView: View {
                 Image(nsImage: NSApp.applicationIconImage)
                     .resizable()
                     .frame(width: 128, height: 128)
+                    .accessibilityLabel(Text("Aura Editor Icon"))
                 Text("Welcome to Aurora")
                     .font(.system(size: 38))
                 Text("Version \(appVersion) (\(appBuild))")
@@ -93,6 +94,7 @@ public struct WelcomeView: View {
                     .onTapGesture {
                         copyInformation()
                     }
+                    .accessibilityAddTraits(.isButton)
 
                 Spacer().frame(height: 20)
                 HStack {
@@ -106,6 +108,7 @@ public struct WelcomeView: View {
                             newDocument()
                             dismissWindow()
                         }
+                        .accessibilityAddTraits(.isButton)
 
                         WelcomeActionView(
                             iconName: "plus.square.on.square",
@@ -115,6 +118,7 @@ public struct WelcomeView: View {
                         .onTapGesture {
                             showGitClone = true
                         }
+                        .accessibilityAddTraits(.isButton)
                         .disabled(!prefs.sourceControlActive())
 
                         WelcomeActionView(
@@ -125,6 +129,7 @@ public struct WelcomeView: View {
                         .onTapGesture {
                             openDocument(nil, dismissWindow)
                         }
+                        .accessibilityAddTraits(.isButton)
 
                         WelcomeActionView(
                             iconName: "cursorarrow.and.square.on.square.dashed",

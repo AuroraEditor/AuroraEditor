@@ -29,6 +29,7 @@ struct ChangedFileItemView: View {
             Image(systemName: changedFile.systemImage)
                 .frame(width: 11, height: 11)
                 .foregroundColor(selection == changedFile.id ? .white : changedFile.iconColor)
+                .accessibilityLabel(Text("Changed File Icon"))
 
             Text(changedFile.fileName)
                 .font(.system(size: 11))
@@ -43,5 +44,6 @@ struct ChangedFileItemView: View {
         .onTapGesture {
             workspace.openTab(item: changedFile)
         }
+        .accessibilityAddTraits(.isButton)
     }
 }

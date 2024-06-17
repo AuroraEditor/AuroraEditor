@@ -74,6 +74,7 @@ public struct BreadcrumbsView: View {
         Image(systemName: "chevron.compact.right")
             .font(.system(size: 18, weight: .thin, design: .monospaced))
             .foregroundStyle(.primary)
+            .accessibilityHidden(true)
             .opacity(activeState != .inactive ? 0.8 : 0.5)
     }
 

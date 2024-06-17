@@ -73,6 +73,7 @@ struct GithubLoginView: View {
                         HStack {
                             Image(systemName: "checkmark")
                                 .foregroundColor(.secondary)
+                                .accessibilityLabel(Text("Checkmark Icon"))
                             Text("settings.github.login.access.public.key")
                                 .font(.system(size: 10))
                                 .foregroundColor(.secondary)
@@ -80,6 +81,7 @@ struct GithubLoginView: View {
                         HStack {
                             Image(systemName: "checkmark")
                                 .foregroundColor(.secondary)
+                                .accessibilityLabel(Text("Checkmark Icon"))
                             Text("settings.github.login.access.discussion")
                                 .font(.system(size: 10))
                                 .foregroundColor(.secondary)
@@ -87,6 +89,7 @@ struct GithubLoginView: View {
                         HStack {
                             Image(systemName: "checkmark")
                                 .foregroundColor(.secondary)
+                                .accessibilityLabel(Text("Checkmark Icon"))
                             Text("settings.github.login.access.repo")
                                 .font(.system(size: 10))
                                 .foregroundColor(.secondary)
@@ -94,6 +97,7 @@ struct GithubLoginView: View {
                         HStack {
                             Image(systemName: "checkmark")
                                 .foregroundColor(.secondary)
+                                .accessibilityLabel(Text("Checkmark Icon"))
                             Text("settings.github.login.access.user")
                                 .font(.system(size: 10))
                                 .foregroundColor(.secondary)

@@ -110,6 +110,7 @@ public struct QuickOpenView: View {
                         .frame(width: 20, height: 20)
                         .padding(.trailing, 12)
                         .offset(x: 0, y: 1)
+                        .accessibilityLabel(Text("Search for a file"))
                     ActionAwareInput(onDown: onKeyDown,
                                      onTextChange: onQueryChange,
                                      text: $state.openQuicklyQuery)
@@ -133,9 +134,11 @@ public struct QuickOpenView: View {
                                 self.openFile(file)
                                 self.onClose()
                             }
+                            .accessibilityAddTraits(.isButton)
                             .onTapGesture(count: 1) {
                                 self.selectedItem = file
                             }
+                            .accessibilityAddTraits(.isButton)
                         }
                         .frame(minWidth: 250, maxWidth: 250)
                         if state.openQuicklyFiles.isEmpty {

@@ -33,6 +33,7 @@ internal struct StatusBarToggleDrawerButton: View {
         } label: {
             Image(systemName: "rectangle.bottomthird.inset.filled")
                 .imageScale(.medium)
+                .accessibilityLabel(Text("Show/Hide Drawer"))
         }
         .tint(model.isExpanded ? .accentColor : .primary)
         .keyboardShortcut("Y", modifiers: [.command, .shift])

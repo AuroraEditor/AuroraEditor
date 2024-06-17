@@ -56,6 +56,7 @@ struct MessageView: View {
                     MessagePopupView(messages: messages, theme: theme)
                         .frame(maxWidth: geometry.popupWidth)
                         .onTapGesture { unfolded.toggle() }
+                        .accessibilityAddTraits(.isButton)
                     Spacer(minLength: MessageView.popupRightSideOffset)
                 }
             }
@@ -67,6 +68,7 @@ struct MessageView: View {
                        maxHeight: geometry.lineHeight)
                 .transition(.opacity)
                 .onTapGesture { unfolded.toggle() }
+                .accessibilityAddTraits(.isButton)
                 .opacity(unfolded ? 0.0 : 1.0)
 
         }

@@ -161,6 +161,7 @@ public struct ThemePreferencesView: View {
         HStack {
             Button {} label: {
                 Image(systemName: "plus")
+                    .accessibilityLabel(Text("Add"))
             }
             .disabled(true)
             .help("Not yet implemented")
@@ -169,6 +170,7 @@ public struct ThemePreferencesView: View {
                 themeModel.delete(themeModel.selectedTheme!)
             } label: {
                 Image(systemName: "minus")
+                    .accessibilityLabel(Text("Delete"))
             }
             .disabled(themeModel.selectedTheme == nil || themeModel.themes.count <= 1)
             .help("settings.theme.delete.selected")
@@ -176,6 +178,7 @@ public struct ThemePreferencesView: View {
             Divider()
             Button { try? themeModel.loadThemes() } label: {
                 Image(systemName: "arrow.clockwise")
+                    .accessibilityLabel(Text("Reload"))
             }
             .buttonStyle(.plain)
             Spacer()
@@ -184,6 +187,7 @@ public struct ThemePreferencesView: View {
             } label: {
                 Image(systemName: "list.dash")
                     .foregroundColor(listView ? .accentColor : .primary)
+                    .accessibilityLabel(Text("List View"))
             }
             .buttonStyle(.plain)
             Button {
@@ -192,6 +196,7 @@ public struct ThemePreferencesView: View {
                 Image(systemName: "square.grid.2x2")
                     .symbolVariant(listView ? .none : .fill)
                     .foregroundColor(listView ? .primary : .accentColor)
+                    .accessibilityLabel(Text("Grid View"))
             }
             .buttonStyle(.plain)
         }
@@ -231,12 +236,14 @@ public struct ThemePreferencesView: View {
                             }
                         } label: {
                             Image(systemName: "plus")
+                                .accessibilityLabel(Text("Add"))
                         }
                         .buttonStyle(.plain)
                     }
                     Spacer()
                     Button {} label: {
                         Image(systemName: "info.circle")
+                            .accessibilityLabel(Text("Info"))
                     }
                     .buttonStyle(.plain)
                 }

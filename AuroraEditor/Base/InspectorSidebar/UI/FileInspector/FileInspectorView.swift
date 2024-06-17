@@ -63,6 +63,7 @@ struct FileInspectorView: View {
                             .onTapGesture {
                                 hideidentityType.toggle()
                             }
+                            .accessibilityAddTraits(.isButton)
                     }
                 }
 
@@ -112,6 +113,7 @@ struct FileInspectorView: View {
                                             .resizable()
                                             .foregroundColor(.secondary)
                                             .frame(width: 13, height: 11)
+                                            .accessibilityHidden(true)
                                     }
                                 }.frame(maxWidth: 150)
                             }
@@ -134,6 +136,7 @@ struct FileInspectorView: View {
                                         .resizable()
                                         .foregroundColor(.secondary)
                                         .frame(width: 11, height: 11)
+                                        .accessibilityLabel(Text("Open in Finder"))
                                         .onTapGesture {
                                             guard let url = URL(string: "file://\(inspectorModel.fileURL)") else {
                                                 Log.fault("Failed to decode")
@@ -142,6 +145,7 @@ struct FileInspectorView: View {
 
                                             NSWorkspace.shared.activateFileViewerSelecting([url])
                                         }
+                                        .accessibilityAddTraits(.isButton)
 
                                 }
                                 .frame(maxWidth: 150, alignment: .leading)
@@ -176,6 +180,7 @@ struct FileInspectorView: View {
                             .onTapGesture {
                                 hideTextSettings.toggle()
                             }
+                            .accessibilityAddTraits(.isButton)
                     }
                 }
 

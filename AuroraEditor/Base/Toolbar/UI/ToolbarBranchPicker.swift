@@ -52,11 +52,13 @@ public struct ToolbarBranchPicker: View {
                     .font(.title3)
                     .imageScale(.medium)
                     .foregroundColor(controlActive == .inactive ? inactiveColor : .primary)
+                    .accessibilityLabel(Text("Git Branche"))
             } else {
                 Image(systemName: "square.dashed")
                     .font(.title3)
                     .imageScale(.medium)
                     .foregroundColor(controlActive == .inactive ? inactiveColor : .accentColor)
+                    .accessibilityLabel(Text("No Source Control"))
             }
             VStack(alignment: .leading, spacing: 2) {
                 Text(title)
@@ -71,6 +73,7 @@ public struct ToolbarBranchPicker: View {
                                 .padding(.trailing)
                             if isHovering {
                                 Image(systemName: "chevron.down")
+                                    .accessibilityLabel(Text("Open Branch Picker"))
                             }
                         }
                         .font(.subheadline)
@@ -86,6 +89,7 @@ public struct ToolbarBranchPicker: View {
                 displayPopover.toggle()
             }
         }
+        .accessibilityAddTraits(.isButton)
         .onHover { active in
             isHovering = active
         }
@@ -191,11 +195,13 @@ public struct ToolbarBranchPicker: View {
                         } icon: {
                             Image("git.branch")
                                 .imageScale(.large)
+                                .accessibilityLabel(Text("Git Branch"))
                         }
                         .foregroundColor(isHovering ? .white : .secondary)
                         if active {
                             Image(systemName: "checkmark.circle.fill")
                                 .foregroundColor(isHovering ? .white : .green)
+                                .accessibilityLabel(Text("Active Branch"))
                         }
                     }
                     .contentShape(Rectangle())

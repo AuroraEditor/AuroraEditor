@@ -30,6 +30,7 @@ public struct RecentProjectItem: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 32, height: 32)
+                .accessibilityLabel(Text("Project Icon"))
             VStack(alignment: .leading) {
                 Text(projectPath.components(separatedBy: "/").last ?? "").font(.system(size: 13))
                     .lineLimit(1)

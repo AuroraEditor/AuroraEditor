@@ -42,6 +42,7 @@ public struct WelcomeActionView: View {
                 .foregroundColor(.accentColor)
                 .font(.system(size: 30, weight: .light))
                 .frame(width: 24)
+                .accessibilityLabel(Text("Icon"))
             VStack(alignment: .leading) {
                 Text(title)
                     .bold()

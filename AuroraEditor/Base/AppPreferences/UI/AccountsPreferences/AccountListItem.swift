@@ -26,10 +26,12 @@ struct AccountListItem: View {
                 Image(systemName: gitClientSymbol)
                     .resizable()
                     .frame(width: 28.0, height: 28.0)
+                    .accessibilityLabel(Text("Git Client Icon"))
             } else {
                 Image(gitClientSymbol)
                     .resizable()
                     .frame(width: 28.0, height: 28.0)
+                    .accessibilityLabel(Text("Git Client Icon"))
             }
             Text(gitClientName)
                 .font(.system(size: 12))

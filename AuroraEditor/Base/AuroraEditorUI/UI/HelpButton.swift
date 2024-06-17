@@ -31,6 +31,7 @@ public struct HelpButton: View {
                     .frame(width: 20, height: 20)
                 Image(systemName: "questionmark")
                     .font(.system(size: 12.5, weight: .medium))
+                    .accessibilityLabel(Text("Help"))
             }
         })
         .buttonStyle(PlainButtonStyle())

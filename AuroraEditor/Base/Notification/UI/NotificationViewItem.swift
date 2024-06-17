@@ -30,9 +30,11 @@ struct NotificationViewItem: View {
                     Image(systemName: notification.severity.iconName())
                         .symbolRenderingMode(.multicolor)
                         .font(.system(size: 14))
+                        .accessibilityLabel(Text("Severity Icon"))
                 } else {
                     Image(nsImage: NSImage(contentsOf: ((notification.icon ?? URL(string: ""))!))!)
                         .font(.system(size: 14))
+                        .accessibilityLabel(Text("Notification Icon"))
                 }
 
                 VStack(alignment: .leading) {
@@ -48,6 +50,7 @@ struct NotificationViewItem: View {
                         if notification.notificationType == .extensionSystem {
                             withAnimation {
                                 Image(systemName: showActions ? "chevron.up" : "chevron.down")
+                                    .accessibilityLabel(Text(showActions ? "Open" : "Close"))
                                     .foregroundColor(.secondary)
                                     .font(.system(size: 11))
                             }
@@ -69,6 +72,7 @@ struct NotificationViewItem: View {
                     }
                 }
             }
+            .accessibilityAddTraits(.isButton)
 
             // Display additional actions (if expanded).
             if showActions {
@@ -91,6 +95,7 @@ struct NotificationViewItem: View {
             if notification.notificationType == .update {
             }
         }
+        .accessibilityAddTraits(.isButton)
         .contextMenu {
             // Context menu items for the notification.
             Button("Copy") {

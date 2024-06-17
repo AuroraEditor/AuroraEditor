@@ -106,6 +106,7 @@ struct InspectorSidebarToolbarTop: View {
                 .symbolVariant(id == selection ? .fill : .none)
                 .foregroundColor(id == selection ? .accentColor : .secondary)
                 .frame(width: 16, alignment: .center)
+                .accessibilityLabel(Text("Inspector \(title)"))
                 .onDrag {
                     if let index = icons.firstIndex(where: { $0.imageName == systemImage }) {
                         draggingItem = icons[index]
@@ -128,8 +129,10 @@ struct InspectorSidebarToolbarTop: View {
     private func getSafeImage(named: String, accesibilityDescription: String?) -> Image {
         if let nsImage = NSImage(systemSymbolName: named, accessibilityDescription: accesibilityDescription) {
             return Image(nsImage: nsImage)
+                .accessibilityLabel(Text(accesibilityDescription ?? ""))
         } else {
             return Image(symbol: named)
+                .accessibilityLabel(Text(accesibilityDescription ?? ""))
         }
     }
 

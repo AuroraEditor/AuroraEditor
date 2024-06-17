@@ -85,6 +85,7 @@ public struct FeedbackView: View {
                         HStack {
                             Image(systemName: "arrow.right.circle.fill")
                                 .foregroundColor(.red)
+                                .accessibilityLabel(Text("Required Field"))
                             Text("Please provide a descriptive title for your feedback:")
                         }.padding(.leading, -23)
                     } else {
@@ -104,6 +105,7 @@ public struct FeedbackView: View {
                         HStack {
                             Image(systemName: "arrow.right.circle.fill")
                                 .foregroundColor(.red)
+                                .accessibilityLabel(Text("Required Field"))
                             Text("Which area are you seeing an issue with?")
                         }.padding(.leading, -23)
                     } else {
@@ -131,6 +133,7 @@ public struct FeedbackView: View {
                     HStack {
                         Image(systemName: "arrow.right.circle.fill")
                             .foregroundColor(.red)
+                            .accessibilityLabel(Text("Required Field"))
                         Text("What type of feedback are you reporting?")
                     }.padding(.leading, -23)
                 } else {
@@ -168,6 +171,7 @@ public struct FeedbackView: View {
                         HStack {
                             Image(systemName: "arrow.right.circle.fill")
                                 .foregroundColor(.red)
+                                .accessibilityLabel(Text("Required Field"))
                             Text("Please describe the issue:")
                         }.padding(.leading, -23)
                     } else {

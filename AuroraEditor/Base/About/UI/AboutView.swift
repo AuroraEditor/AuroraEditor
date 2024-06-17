@@ -69,6 +69,7 @@ public struct AboutView: View {
             Color.gray.opacity(0.2).cornerRadius(20)
             HStack {
                 Image(systemName: "arrow.right.circle")
+                    .accessibilityLabel(Text("Aurora Editor Contributors"))
                 Text("AuroraEditor/Contributors")
             }
             .font(.system(size: 11))
@@ -80,6 +81,7 @@ public struct AboutView: View {
                 openURL(url)
             }
         }
+        .accessibilityAddTraits(.isButton)
         .padding(.bottom, 25)
     }
 

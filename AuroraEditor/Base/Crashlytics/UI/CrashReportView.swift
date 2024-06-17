@@ -43,6 +43,7 @@ public struct CrashReportView: View {
                 Image(systemName: "exclamationmark.triangle.fill")
                     .symbolRenderingMode(.multicolor)
                     .font(.system(size: 50))
+                    .accessibilityLabel(Text("Error Icon"))
 
                 Spacer()
 
@@ -62,6 +63,7 @@ public struct CrashReportView: View {
 
                 HStack {
                     Image(systemName: hideComment ? "chevron.up" : "chevron.down")
+                        .accessibilityLabel(Text(hideComment ? "Open" : "Close"))
 
                     Text("Comments")
                         .font(.system(size: 12))
@@ -71,6 +73,7 @@ public struct CrashReportView: View {
                         hideComment.toggle()
                     }
                 }
+                .accessibilityAddTraits(.isButton)
                 .padding(.bottom, hideComment ? 5 : 0)
                 .padding(.top, 5)
 

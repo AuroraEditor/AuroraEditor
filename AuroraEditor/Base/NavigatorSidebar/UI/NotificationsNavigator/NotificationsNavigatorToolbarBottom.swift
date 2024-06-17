@@ -65,6 +65,7 @@ struct NotificationsNavigatorToolbarBottom: View {
         } label: {
             Image(systemName: "xmark.circle.fill")
                 .symbolRenderingMode(.hierarchical)
+                .accessibilityLabel(Text("Clear filter"))
         }
         .buttonStyle(.plain)
         .opacity(activeState == .inactive ? 0.45 : 1)
@@ -78,6 +79,7 @@ struct NotificationsNavigatorToolbarBottom: View {
             Image(systemName: "clock")
                 .font(.system(size: 11))
                 .symbolRenderingMode(.hierarchical)
+                .accessibilityLabel(Text("History"))
         }
         .buttonStyle(.plain)
         .opacity(activeState == .inactive ? 0.45 : 1)
@@ -96,6 +98,7 @@ struct NotificationsNavigatorToolbarBottom: View {
             Image(systemName: "exclamationmark.octagon.fill")
                 .font(.system(size: 11))
                 .symbolRenderingMode(model.filter == .ERROR ? .multicolor : .hierarchical)
+                .accessibilityLabel(Text("Errors only"))
         }
         .buttonStyle(.plain)
         .opacity(activeState == .inactive ? 0.45 : 1)

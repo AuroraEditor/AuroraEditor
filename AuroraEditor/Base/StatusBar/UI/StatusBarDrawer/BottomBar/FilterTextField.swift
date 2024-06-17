@@ -23,6 +23,7 @@ struct FilterTextField: View {
         HStack {
             Image(systemName: "line.3.horizontal.decrease.circle")
                 .foregroundColor(Color(nsColor: .secondaryLabelColor))
+                .accessibilityLabel(Text("Filter icon"))
             textField
             if !text.isEmpty { clearButton }
         }
@@ -47,6 +48,7 @@ struct FilterTextField: View {
             self.text = ""
         } label: {
             Image(systemName: "xmark.circle.fill")
+                .accessibilityLabel(Text("Clear"))
         }
         .foregroundColor(.secondary)
         .buttonStyle(PlainButtonStyle())

@@ -28,6 +28,7 @@ struct SourceControlSearchToolbar: View {
         HStack {
             Image(systemName: "line.3.horizontal.decrease.circle")
                 .foregroundColor(.secondary)
+                .accessibilityLabel(Text("Filter icon"))
             textField
             if !text.isEmpty { clearButton }
         }
@@ -51,6 +52,7 @@ struct SourceControlSearchToolbar: View {
             self.text = ""
         } label: {
             Image(systemName: "xmark.circle.fill")
+                .accessibilityLabel(Text("Clear button"))
         }
         .foregroundColor(.secondary)
         .buttonStyle(PlainButtonStyle())

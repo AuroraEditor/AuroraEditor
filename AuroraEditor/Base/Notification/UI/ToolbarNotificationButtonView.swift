@@ -30,6 +30,7 @@ struct ToolbarNotificationButtonView: View {
                 Image(systemName: notificationType.iconName())
                     .symbolRenderingMode(.multicolor)
                     .imageScale(.small)
+                    .accessibilityLabel(Text("Notification Icon"))
 
                 // Display the notification count.
                 Text("\(notificationCount)")

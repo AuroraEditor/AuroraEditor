@@ -69,6 +69,7 @@ public struct BreadcrumbsComponent: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 12)
+                .accessibilityHidden(true)
                 .foregroundStyle(
                     prefs.preferences.general.fileIconStyle == .color
                     ? color
@@ -110,6 +111,6 @@ public struct BreadcrumbsComponent: View {
                                in: NSApp.keyWindow?.contentView)
                 }
             }
-        }
+        }.accessibilityAddTraits(.isButton)
     }
 }

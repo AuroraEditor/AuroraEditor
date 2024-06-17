@@ -41,6 +41,7 @@ public struct ToolbarAppInfo: View {
             HStack {
                 HStack {
                     Image(systemName: "app.dashed")
+                        .accessibilityLabel(Text("Developer???"))
                         .onTapGesture {
                             notificationService.notify(
                                 notification: INotification(
@@ -52,6 +53,7 @@ public struct ToolbarAppInfo: View {
                                 )
                             )
                         }
+                        .accessibilityAddTraits(.isButton)
 
                     Text("AuroraEditor")
                         .font(.system(size: 11))
@@ -65,8 +67,10 @@ public struct ToolbarAppInfo: View {
                                 )
                             )
                         }
+                        .accessibilityAddTraits(.isButton)
 
                     Image(systemName: "chevron.right")
+                        .accessibilityLabel(Text("Open"))
 
                     Text("Chrome")
                         .font(.system(size: 11))

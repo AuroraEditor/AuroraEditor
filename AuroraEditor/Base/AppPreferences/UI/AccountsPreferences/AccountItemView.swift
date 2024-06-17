@@ -89,5 +89,6 @@ struct AccountItemView: View {
             .resizable()
             .foregroundColor(.gray)
             .frame(width: 42, height: 42)
+            .accessibilityLabel(Text("Account Avatar"))
     }
 }

@@ -22,6 +22,7 @@ internal struct StatusBarMaximizeButton: View {
         } label: {
             Image(systemName: "arrowtriangle.up.square")
                 .foregroundColor(model.isMaximized ? .accentColor : .primary)
+                .accessibilityLabel(Text(model.isMaximized ? "Restore" : "Maximize"))
         }
         .buttonStyle(.plain)
     }

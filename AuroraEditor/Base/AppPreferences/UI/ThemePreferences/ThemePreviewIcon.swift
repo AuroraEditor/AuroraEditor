@@ -66,6 +66,7 @@ struct ThemePreviewIcon: View {
                 self.selection = theme
             }
         }
+        .accessibilityAddTraits(.isButton)
     }
 
     /// The sidebar

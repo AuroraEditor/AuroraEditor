@@ -28,6 +28,7 @@ struct UpdateView: View {
                             Image(systemName: "info.circle")
                                 .foregroundColor(.secondary)
                                 .font(.system(size: 12, weight: .medium))
+                                .accessibilityLabel(Text("Info Icon"))
                         }
                         .buttonStyle(.plain)
                     }
