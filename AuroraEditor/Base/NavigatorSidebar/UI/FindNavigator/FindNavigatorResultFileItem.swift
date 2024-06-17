@@ -79,6 +79,7 @@ struct FindNavigatorResultFileItem: View {
                     Image(systemName: "text.alignleft")
                         .font(.system(size: 12))
                         .padding(.top, 2)
+                        .accessibilityLabel(Text("Align to the left"))
                     foundLineResult(result.lineContent, keywordRange: result.keywordRange)
                         .lineLimit(prefs.preferences.general.findNavigatorDetail.rawValue)
                         .foregroundColor(Color(nsColor: .secondaryLabelColor))
@@ -89,6 +90,7 @@ struct FindNavigatorResultFileItem: View {
         } label: {
             HStack {
                 Image(systemName: fileItem.systemImage)
+                    .accessibilityHidden(true)
                 Text(fileItem.fileName)
                     .foregroundColor(Color(nsColor: NSColor.headerTextColor))
                     .font(.system(size: 13, weight: .semibold)) +
