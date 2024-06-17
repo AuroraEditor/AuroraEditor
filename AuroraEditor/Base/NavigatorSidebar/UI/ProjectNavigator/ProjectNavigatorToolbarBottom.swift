@@ -79,6 +79,7 @@ struct ProjectNavigatorToolbarBottom: View {
             }
         } label: {
             Image(systemName: "plus")
+                .accessibilityLabel(Text("New item"))
         }
         .menuStyle(.borderlessButton)
         .menuIndicator(.hidden)
@@ -96,6 +97,7 @@ struct ProjectNavigatorToolbarBottom: View {
             }
         } label: {
             Image(systemName: "line.3.horizontal.decrease.circle")
+                .accessibilityLabel(Text("Sort"))
         }
         .menuStyle(.borderlessButton)
         .frame(maxWidth: 30)
@@ -111,6 +113,7 @@ struct ProjectNavigatorToolbarBottom: View {
         } label: {
             Image(systemName: "xmark.circle.fill")
                 .symbolRenderingMode(.hierarchical)
+                .accessibilityLabel(Text("Clear"))
         }
         .buttonStyle(.plain)
         .opacity(activeState == .inactive ? 0.45 : 1)
