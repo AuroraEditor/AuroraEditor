@@ -50,6 +50,7 @@ struct NavigatorSidebarToolbarBottom: View {
             }
         } label: {
             Image(systemName: "plus")
+                .accessibilityLabel(Text("Add item"))
         }
         .menuStyle(.borderlessButton)
         .menuIndicator(.hidden)
@@ -67,6 +68,7 @@ struct NavigatorSidebarToolbarBottom: View {
             }
         } label: {
             Image(systemName: "line.3.horizontal.decrease.circle")
+                .accessibilityLabel(Text("Sort"))
         }
         .menuStyle(.borderlessButton)
         .frame(maxWidth: 30)
