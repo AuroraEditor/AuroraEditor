@@ -141,6 +141,7 @@ struct SplitViewDropProposalOverlay: View {
             Image(systemName: "plus")
                 .foregroundColor(Color(nsColor: .secondaryLabelColor))
                 .font(.system(size: Const.overlayIconSize, weight: .light))
+                .accessibilityLabel(Text("Add Split view"))
         }
         .matchedGeometryEffect(id: MatchedGeometryEffect.overlay, in: animation)
     }
