@@ -26,16 +26,19 @@ struct ExtensionHeaderView: View {
                             .scaledToFit()
                             .frame(width: 130, height: 130)
                             .cornerRadius(28)
+                            .accessibilityHidden(true)
                     } else if phase.error != nil {
                         Image(systemName: "lasso")
                             .frame(width: 130, height: 130)
                             .background(.blue)
                             .cornerRadius(28)
+                            .accessibilityHidden(true)
                     } else {
                         Image(systemName: "lasso")
                             .frame(width: 130, height: 130)
                             .background(.blue)
                             .cornerRadius(28)
+                            .accessibilityHidden(true)
                     }
                 }
 
