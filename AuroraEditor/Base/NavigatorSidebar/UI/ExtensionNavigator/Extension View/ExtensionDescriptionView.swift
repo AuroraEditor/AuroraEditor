@@ -44,6 +44,7 @@ struct ExtensionDescriptionView: View {
                         Image("github")
                             .resizable()
                             .frame(width: 22, height: 22)
+                            .accessibilityLabel(Text("GitHub"))
                     }
                 }
                 .buttonStyle(.plain)
@@ -57,6 +58,7 @@ struct ExtensionDescriptionView: View {
                         Image("github")
                             .resizable()
                             .frame(width: 22, height: 22)
+                            .accessibilityLabel(Text("GitHub"))
                     }
                     .padding(.top, -5)
                 }
