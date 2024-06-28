@@ -64,9 +64,6 @@ struct TabBarItem: View {
         item.tabID == workspace.selectionState.selectedId
     }
 
-    /// Logger
-    let logger = Logger(subsystem: "com.auroraeditor", category: "Tab bar item")
-
     /// Switch action
     func switchAction() {
         // Only set the `selectedId` when they are not equal to avoid performance issue for now.
@@ -186,7 +183,6 @@ struct TabBarItem: View {
             TapGesture(count: 2)
                 .onEnded { _ in
                     if isTemporary {
-                        self.logger.info("Converting temp tab")
                         workspace.convertTemporaryTab()
                     }
                 }

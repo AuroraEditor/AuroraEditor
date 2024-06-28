@@ -159,9 +159,7 @@ extension String {
                 String(text[Range($0.range, in: text)!])
             }
         } catch let error {
-            /// Logger
             let logger = Logger(subsystem: "com.auroraeditor", category: "String")
-
             logger.fault("invalid regex: \(error.localizedDescription)")
             return []
         }

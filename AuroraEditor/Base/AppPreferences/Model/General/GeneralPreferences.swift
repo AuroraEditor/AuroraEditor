@@ -355,7 +355,6 @@ public extension AppPreferences {
 // TODO: Move To class.
 /// Aurora Editor Commandline installation
 func aeCommandLine() {
-    /// Logger
     let logger = Logger(subsystem: "com.auroraeditor", category: "AE Command Line Installer")
 
     do {

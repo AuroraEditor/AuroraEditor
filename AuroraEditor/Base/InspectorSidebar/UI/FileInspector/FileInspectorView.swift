@@ -402,3 +402,4 @@ struct FileInspectorView: View {
         }
     }
 }
+// swiftlint:disable:this file_length

@@ -205,7 +205,6 @@ struct TabBar: View {
                             updateForTabCountChange(geometryProxy: geometryProxy)
                         }
                         .onChange(of: workspace.selectionState.temporaryTab, perform: { _ in
-                            self.logger.info("Temp tab changed")
                             updateForTabCountChange(geometryProxy: geometryProxy)
                         })
                         // When window size changes, re-compute the expected tab width.

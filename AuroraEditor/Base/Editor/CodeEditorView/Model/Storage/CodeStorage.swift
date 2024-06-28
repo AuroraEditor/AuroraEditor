@@ -561,7 +561,9 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         var rangesChanged = [NSRange]()
         for (lineIndex, tokenizedLine) in tokenizedLines.enumerated() {
             guard let tokenizedLine = tokenizedLine else {
-                self.logger.info("Warning: Unexpectedly found nil tokenized line at index \(lineIndex) in updateSelectedRanges")
+                self.logger.info(
+                    "Warning: Unexpectedly found nil tokenized line at index \(lineIndex) in updateSelectedRanges"
+                )
                 continue
             }
 
