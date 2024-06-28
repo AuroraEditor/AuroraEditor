@@ -23,7 +23,7 @@ struct WorkflowJobsView: View {
     private var jobName: String
 
     /// Logger
-    let logger = Logger(subsystem: "com.auroraeditor", category: "Workflow Jobs View")
+    let logger: Logger
 
 
     init(workspace: WorkspaceDocument,
@@ -32,6 +32,7 @@ struct WorkflowJobsView: View {
         self.actionsModel = .init(workspace: workspace)
         self.runId = runId
         self.jobName = jobName
+        self.logger = Logger(subsystem: "com.auroraeditor", category: "Workflow Jobs View")
         actionsModel.fetchWorkflowJobs(runId: runId)
     }
 
