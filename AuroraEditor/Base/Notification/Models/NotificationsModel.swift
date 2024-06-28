@@ -7,6 +7,7 @@
 //
 
 import AppKit
+import OSLog
 
 /// The `NotificationsModel` manages notification-related data and settings.
 class NotificationsModel: ObservableObject, INotificationsModel {
@@ -46,6 +47,9 @@ class NotificationsModel: ObservableObject, INotificationsModel {
                                                                     message: "",
                                                                     notificationType: .custom)
 
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Notifications Model")
+
     /// Adds a notification to the notification manager, considering various conditions and settings.
     ///
     /// - Parameters:
@@ -61,7 +65,7 @@ class NotificationsModel: ObservableObject, INotificationsModel {
         // from the list in settings.
         let notificationList = LocalStorage().listDoNotShowNotifications()
         if notificationList.contains(where: { $0.id == notification.id }) {
-            Log.warning("This notification \(notification.id ?? "") has been marked by the user to not show again.")
+            self.logger.warning("This notification \(notification.id ?? "") has been marked by the user to not show again.")
             return
         }
 
@@ -69,7 +73,7 @@ class NotificationsModel: ObservableObject, INotificationsModel {
         // the notification doesn't already exist. If it does, for whatever reason, we close
         // the notification and remove it from the list. If it does not exist, we continue as normal.
         if hasDuplicateNotification(notification: notification) {
-            Log.fault("Notification already exists")
+            self.logger.fault("Notification already exists")
             return
         }
 

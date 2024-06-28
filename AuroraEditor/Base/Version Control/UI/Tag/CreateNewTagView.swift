@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Version_Control
+import OSLog
 
 struct CreateNewTagView: View {
     @Environment(\.dismiss)
@@ -20,6 +21,9 @@ struct CreateNewTagView: View {
 
     @State
     var tagName: String = ""
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "VCS Create new tag view")
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -59,7 +63,7 @@ struct CreateNewTagView: View {
                 } else {
                     Button {
                         do {
-                            Log.debug("\(commitHash)")
+                            logger.debug("\(commitHash)")
 
                             // Create a tag
                             try Tag().createTag(
@@ -70,7 +74,7 @@ struct CreateNewTagView: View {
 
                             dismiss()
                         } catch {
-                            Log.fault("Unable to create tag...")
+                            logger.fault("Unable to create tag...")
                         }
                     } label: {
                         Text("Create")

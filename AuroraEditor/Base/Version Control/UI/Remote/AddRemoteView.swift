@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Version_Control
+import OSLog
 
 struct AddRemoteView: View {
     @Environment(\.dismiss)
@@ -20,6 +21,9 @@ struct AddRemoteView: View {
 
     @State
     var remoteUrl: String = ""
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "VCS Add Remote View")
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -64,7 +68,7 @@ struct AddRemoteView: View {
                                                    url: remoteUrl)
                             dismiss()
                         } catch {
-                            Log.error("Unable to add exisiting remote.")
+                            logger.error("Unable to add exisiting remote.")
                         }
                     } label: {
                         Text("Add")

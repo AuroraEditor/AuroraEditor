@@ -25,6 +25,9 @@ public extension Bundle {
         guard let path = Bundle.main.url(forResource: "", withExtension: "githash"),
               let data = try? Data(contentsOf: path),
               let commit = String(data: data, encoding: .utf8) else {
+            /// Logger
+            let logger = Logger(subsystem: "com.auroraeditor", category: "Bundle")
+
             Log.fault("Failed to get latest commit data.")
             return nil
         }

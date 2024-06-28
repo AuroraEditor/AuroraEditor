@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OSLog
 
 /// EditorConfig
 class AuroraEditorConfig {
@@ -94,6 +95,9 @@ class AuroraEditorConfig {
         // swiftlint:disable:previous identifier_name
     }
 
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Editor Config")
+
     /// Parsed .editorconfig
     var parsed: [String: [String: Any]]? = [:]
 
@@ -119,8 +123,8 @@ class AuroraEditorConfig {
            let configData = FileManager.default.contents(atPath: configFile),
            let configINI = String(data: configData, encoding: .utf8) {
             let parsed = AuroraINIParser(ini: configINI).parse()
-            Log.info("INI=\(configFile)")
-            Log.info("\(parsed)")
+            logger.info("INI=\(configFile)")
+            logger.info("\(parsed)")
             self.parsed = parsed
         }
     }
@@ -149,7 +153,7 @@ class AuroraEditorConfig {
             return value
         }
 
-        Log.fault("There is no value for \(value.rawValue) for file \(file)")
+        logger.fault("There is no value for \(value.rawValue) for file \(file)")
         return ""
     }
 
@@ -179,7 +183,7 @@ class AuroraEditorConfig {
                 }
 
                 if pattern.contains("**") {
-                    Log.info("** is not (yet) supported")
+                    logger.info("** is not (yet) supported")
                     continue
                 } else if pattern.hasPrefix("*.") {
                     let search = pattern.replacingOccurrences(of: "*.", with: "")

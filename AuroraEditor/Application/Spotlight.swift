@@ -49,7 +49,7 @@ class CoreSpotlight {
         // Send values to spotlight
         CSSearchableIndex.default().indexSearchableItems(searchableItems) { error in
             if let error = error {
-                Log.error("\(error)")
+                self.logger.error("\(error)")
             }
         }
     }

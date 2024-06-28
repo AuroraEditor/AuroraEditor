@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Version_Control
+import OSLog
 
 @available(*, deprecated, renamed: "VersionControl", message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")
 /// Branch Commit History
@@ -38,6 +39,9 @@ final class BranchCommitHistory: Equatable, Identifiable, TabBarItemRepresentabl
 
     /// The branch name
     let branchName: String
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor.vcs", category: "Branch commit history")
 
     /// Equatable
     /// 
@@ -84,7 +88,7 @@ final class BranchCommitHistory: Equatable, Identifiable, TabBarItemRepresentabl
                 do {
                     try self.reloadProjectHistory()
                 } catch {
-                    Log.error("Failed to get commits")
+                    logger.error("Failed to get commits")
                 }
             }
         }

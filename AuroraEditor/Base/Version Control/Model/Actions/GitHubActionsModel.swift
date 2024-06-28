@@ -8,6 +8,7 @@
 
 import Foundation
 import Version_Control
+import OSLog
 
 @available(*, deprecated, renamed: "VersionControl", message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")
 /// Github actions model
@@ -103,6 +104,9 @@ class GitHubActions: ObservableObject {
     /// Job Id
     @Published
     var jobId: String = ""
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor.vcs", category: "GitHub Actions")
 
     /// Initialize Github Actions
     /// 

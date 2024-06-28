@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Version_Control
+import OSLog
 
 struct RenameBranchView: View {
 
@@ -21,6 +22,9 @@ struct RenameBranchView: View {
 
     @State
     var newBranchName: String = "main"
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "VCS Rename branch view")
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -102,7 +106,7 @@ struct RenameBranchView: View {
                                                       newName: newBranchName)
                             dismiss()
                         } catch {
-                            Log.error("Unable to rename current branch.")
+                            logger.error("Unable to rename current branch.")
                         }
                     } label: {
                         Text("Rename")

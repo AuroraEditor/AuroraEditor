@@ -244,7 +244,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
                 case "false":
                     self.pullWithRebase = false
                 default:
-                    Log.warning("Unexpected value found for pull.rebase in config: '\(result)'")
+                    logger.warning("Unexpected value found for pull.rebase in config: '\(result)'")
                     // Ensure any previous value is purged from app state
                     self.pullWithRebase = nil
                 }

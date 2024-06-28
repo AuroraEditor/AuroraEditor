@@ -9,6 +9,7 @@
 import SwiftUI
 import Combine
 import AuroraEditorLanguage
+import OSLog
 
 /// AuroraEditorApplication
 /// 
@@ -56,6 +57,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     /// Set of cancellable objects for Combine subscriptions.
     var cancellable = Set<AnyCancellable>()
 
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "App Delegate")
+
     /// Initialize the application delegate.
     /// - Parameter notification: The notification object.
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -81,7 +85,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                         for: url,
                         withContentsOf: url,
                         display: true) { document, _, _ in
-                            Log.info("Opened project: \(url.absoluteString)")
+                            self.logger.info("Opened project: \(url.absoluteString)")
                             document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
                     }
                 }
@@ -100,10 +104,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                         for: url,
                         withContentsOf: url,
                         display: true) { document, _, _ in
-                            Log.info("Opened file via command line: \(url.absoluteString)")
+                            self.logger.info("Opened file via command line: \(url.absoluteString)")
                             document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
                     }
-                    Log.info("No need to open the Welcome Screen (command line)")
+
+                    self.logger.info("No need to open the Welcome Screen (command line)")
                 }
             }
         }
@@ -169,7 +174,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     /// 
     /// - Parameter funct: The caller function name.
     func handleOpen(funct: String = #function) {
-        Log.info("handleOpen() called from \(funct)")
+        self.logger.info("handleOpen() called from \(funct)")
         let behavior = AppPreferencesModel.shared.preferences.general.reopenBehavior
 
         switch behavior {
@@ -274,7 +279,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     private func checkForFilesToOpen() {
         // Access UserDefaults with a specific suite name.
         guard let defaults = UserDefaults(suiteName: "com.auroraeditor.shared") else {
-            Log.fault("Failed to get/init shared defaults")
+            self.logger.fault("Failed to get/init shared defaults")
             return
         }
 
@@ -299,7 +304,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                     withContentsOf: fileURL,
                     display: true) { document, _, _ in
                         // Log information about the opened file.
-                        Log.info("checkForFilesToOpen(): Opened \(fileURL.absoluteString)")
+                        self.logger.info("checkForFilesToOpen(): Opened \(fileURL.absoluteString)")
 
                         // Synchronize the window title with the document name.
                         document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()

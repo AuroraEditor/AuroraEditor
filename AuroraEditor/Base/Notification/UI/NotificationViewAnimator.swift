@@ -9,6 +9,7 @@
 import AppKit
 import Combine
 import SwiftUI
+import OSLog
 
 /// A class that manages the animation of a notification view sliding into and out of view.
 class NotificationViewAnimator {
@@ -26,6 +27,9 @@ class NotificationViewAnimator {
 
     /// A task for scheduling actions with a delay.
     private var timerTask: DispatchWorkItem?
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Notification view animator")
 
     /// Initializes a new `NotificationViewManager` instance.
     ///
