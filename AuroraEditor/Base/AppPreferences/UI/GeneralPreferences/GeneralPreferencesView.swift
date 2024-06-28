@@ -41,7 +41,7 @@ public struct GeneralPreferencesView: View {
         }
 
         self.openInAuroraEditor = defaults.bool(forKey: "enableOpenInAE")
-        self.logger =  = Logger(subsystem: "com.auroraeditor", category: "General Preferences View")
+        self.logger = Logger(subsystem: "com.auroraeditor", category: "General Preferences View")
     }
 
     /// The view body
