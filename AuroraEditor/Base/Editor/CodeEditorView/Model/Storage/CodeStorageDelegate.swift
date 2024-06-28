@@ -11,6 +11,8 @@
 
 import AppKit
 
+typealias TextStorageEditActions = NSTextStorageEditActions
+
 // MARK: - Visual debugging support
 
 // FIXME: It should be possible to enable this via a defaults setting.

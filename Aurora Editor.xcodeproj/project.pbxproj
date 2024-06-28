@@ -443,7 +443,6 @@
 		2BD5CF2628D602CE00F95E5A /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1428D602CE00F95E5A /* ViewModifiers.swift */; };
 		2BD5CF2728D602CE00F95E5A /* OSDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1528D602CE00F95E5A /* OSDefinitions.swift */; };
 		2BD5CF2828D602CE00F95E5A /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1628D602CE00F95E5A /* ScrollView.swift */; };
-		2BD5CF2D28D602CE00F95E5A /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1B28D602CE00F95E5A /* Theme.swift */; };
 		2BD5CF2E28D602CE00F95E5A /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1C28D602CE00F95E5A /* MessageView.swift */; };
 		2BDE0F772BC8874900C20B85 /* JSTimerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE0F762BC8874800C20B85 /* JSTimerSupport.swift */; };
 		2BDFA8F928D1079700980385 /* WebTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8F728D1079600980385 /* WebTab.swift */; };
@@ -1075,7 +1074,6 @@
 		2BD5CF1428D602CE00F95E5A /* ViewModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		2BD5CF1528D602CE00F95E5A /* OSDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSDefinitions.swift; sourceTree = "<group>"; };
 		2BD5CF1628D602CE00F95E5A /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
-		2BD5CF1B28D602CE00F95E5A /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		2BD5CF1C28D602CE00F95E5A /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		2BDE0F762BC8874800C20B85 /* JSTimerSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSTimerSupport.swift; sourceTree = "<group>"; };
 		2BDFA8F728D1079600980385 /* WebTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebTab.swift; sourceTree = "<group>"; };
@@ -3290,7 +3288,6 @@
 			children = (
 				2BD5CF0C28D602CE00F95E5A /* EditorLocation.swift */,
 				2BD5CF1328D602CE00F95E5A /* LineMap.swift */,
-				2BD5CF1B28D602CE00F95E5A /* Theme.swift */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -4494,7 +4491,6 @@
 				20FACF652AB60DB400B09012 /* NotificationViewAnimator.swift in Sources */,
 				2072FA18280D871200C7F8D4 /* TextEncoding.swift in Sources */,
 				93D5F5D928CE123200286EBD /* TextTableViewCell.swift in Sources */,
-				2BD5CF2D28D602CE00F95E5A /* Theme.swift in Sources */,
 				2B04575928E6FFE300024F2D /* ThemeAttribute+Error.swift in Sources */,
 				A03E21F92B0D542B008A6A77 /* CachingImageView.swift in Sources */,
 				93AD8B0A28FD457600317072 /* ThemeJsonLoader+AuroraTheme(Old).swift in Sources */,
