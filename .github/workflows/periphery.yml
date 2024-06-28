@@ -19,7 +19,8 @@ jobs:
 
       - name: Install Periphery
         run: |
-          brew install periphery
+          brew tap peripheryapp/periphery
+          brew cask install periphery
         shell: bash
 
       - name: Runner environment
