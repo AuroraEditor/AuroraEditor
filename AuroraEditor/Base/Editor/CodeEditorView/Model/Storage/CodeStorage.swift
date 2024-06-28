@@ -8,6 +8,7 @@
 //  This file contains `NSTextStorage` extensions for code editing.
 
 import AppKit
+import OSLog
 
 // MARK: -
 // MARK: `NSTextStorage` subclass
@@ -19,6 +20,9 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
 
     /// The theme to use for highlighting
     var highlightTheme: HighlightTheme
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "CodeStorage")
 
     /// Initialises a new code storage instance.
     /// 
@@ -465,7 +469,7 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         // Important for fixing fonts where the font does not contain the glyph in the text, e.g. emojis.
         fixAttributes(in: processedRange)
 
-        Log.info("Lines processed: \(processingLines.first) to \(processingLines.last)")
+        self.logger.info("Lines processed: \(processingLines.first) to \(processingLines.last)")
 
         guard !self.tokenizedLines.contains(where: { $0 == nil }) &&
                 self.tokenizedLines.count == nContentLines else {
@@ -498,8 +502,8 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         }
 
         let range = processSyntaxHighlighting(editedRange: editedRange)
-        Log.info("editedRange: \(editedRange)")
-        Log.info("Range processed: \(range)")
+        self.logger.info("editedRange: \(editedRange)")
+        self.logger.info("Range processed: \(range)")
 
         self.lastProcessedRange = range
 
@@ -557,7 +561,7 @@ class CodeStorage: NSTextStorage { // swiftlint:disable:this type_body_length
         var rangesChanged = [NSRange]()
         for (lineIndex, tokenizedLine) in tokenizedLines.enumerated() {
             guard let tokenizedLine = tokenizedLine else {
-                Log.info("Warning: Unexpectedly found nil tokenized line at index \(lineIndex) in updateSelectedRanges")
+                self.logger.info("Warning: Unexpectedly found nil tokenized line at index \(lineIndex) in updateSelectedRanges")
                 continue
             }
 

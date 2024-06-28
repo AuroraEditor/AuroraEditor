@@ -64,7 +64,7 @@ public struct ChangedFile: Codable, Hashable, Identifiable {
         let workspace = workspaceURL.absoluteString
         let file = fileLink.absoluteString
         guard let url = URL(string: workspace + file) else {
-            Log.error("Failed to decode URL")
+            self.loggererror("Failed to decode URL")
             return
         }
 

@@ -29,7 +29,7 @@ public extension Bundle {
             /// Logger
             let logger = Logger(subsystem: "com.auroraeditor", category: "Bundle")
 
-            Log.fault("Failed to get latest commit data.")
+            logger.fault("Failed to get latest commit data.")
             return nil
         }
 

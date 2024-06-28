@@ -10,6 +10,7 @@ import SwiftUI
 import AppKit
 import Version_Control
 import Combine
+import OSLog
 
 /// Dynamic data for extensions.
 class ExtensionDynamicData: ObservableObject {
@@ -98,6 +99,9 @@ struct WorkspaceView: View {
 
     /// Extension view storage.
     private let extensionView = ExtensionViewStorage.shared
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Workspace View")
 
     /// Tab content
     /// 
@@ -202,7 +206,7 @@ struct WorkspaceView: View {
             )
 
             workspace.broadcaster.broadcaster.sink { broadcast in
-                Log.info("\(broadcast.command)")
+                self.logger.info("\(broadcast.command)")
                 extensionDynamic.name = broadcast.sender
                 extensionDynamic.title = (broadcast.parameters["title"] as? String) ?? extensionDynamic.name
 
@@ -238,7 +242,7 @@ struct WorkspaceView: View {
                     )
                     sheetIsOpened = true
                 } else if broadcast.command == "openTab" {
-                    Log.info("openTab")
+                    self.logger.info("openTab")
                     workspace.openTab(
                         item: ExtensionCustomViewModel(
                             name: extensionDynamic.title,
@@ -263,7 +267,7 @@ struct WorkspaceView: View {
                     windowController.window?.title = extensionDynamic.title
                     windowController.showWindow(self)
                 } else {
-                    Log.info("Unknown broadcast command \(broadcast.command)")
+                    self.logger.info("Unknown broadcast command \(broadcast.command)")
                 }
             }.store(in: &cancelables)
         }

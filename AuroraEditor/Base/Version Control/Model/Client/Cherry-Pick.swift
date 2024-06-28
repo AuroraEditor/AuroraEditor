@@ -106,7 +106,7 @@ public struct CherryPick {
             return FileManager.default.fileExists(atPath: cherryPickHeadPath)
         } catch {
             // swiftlint:disable:next line_length
-            Log.warning("[cherryPick] a problem was encountered reading .git/CHERRY_PICK_HEAD, so it is unsafe to continue cherry-picking")
+            self.loggerwarning("[cherryPick] a problem was encountered reading .git/CHERRY_PICK_HEAD, so it is unsafe to continue cherry-picking")
             return false
         }
     }

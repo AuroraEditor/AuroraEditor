@@ -8,10 +8,13 @@
 
 import SwiftUI
 import Version_Control
+import OSLog
 
 @available(*, deprecated, renamed: "VersionControl", message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")
 /// Project Commit History
 final class ProjectCommitHistory: Equatable, Identifiable, TabBarItemRepresentable, ObservableObject {
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Project Commit History")
 
     /// The state of the current Project Commit History View
     enum State {
@@ -81,7 +84,7 @@ final class ProjectCommitHistory: Equatable, Identifiable, TabBarItemRepresentab
                 do {
                     try self.reloadProjectHistory()
                 } catch {
-                    Log.error("Failed to get commits")
+                    self.logger.error("Failed to get commits")
                 }
             }
         }

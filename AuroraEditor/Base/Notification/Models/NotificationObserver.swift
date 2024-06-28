@@ -7,6 +7,7 @@
 //
 
 import AppKit
+import OSLog
 
 /// The `NotificationObserver` class observes changes in the `showNotificationToast`
 /// property of a `NotificationsModel` instance.
@@ -16,6 +17,9 @@ class NotificationObserver: NSObject {
 
     /// An observation token to keep track of the observation.
     var observation: NSKeyValueObservation?
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Notification Observer")
 
     /// Initializes a new `NotificationObserver` instance.
     ///
@@ -31,7 +35,7 @@ class NotificationObserver: NSObject {
             \.objectToObserve.showNotificationToast,
              options: [.old, .new]
         ) { _, change in
-            Log.debug("Show notification changed from: \(change.oldValue!), updated to: \(change.newValue!)")
+            self.logger.debug("Show notification changed from: \(change.oldValue!), updated to: \(change.newValue!)")
         }
     }
 }

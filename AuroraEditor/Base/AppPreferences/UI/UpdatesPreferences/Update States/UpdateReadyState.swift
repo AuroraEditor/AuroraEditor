@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 /// A view that represents the update ready state.
 struct UpdateReadyState: View {
@@ -24,6 +25,9 @@ struct UpdateReadyState: View {
     /// Show install alert
     @State
     private var showInstallAlert: Bool = false
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Update Ready State")
 
     /// Update ready state
     /// 
@@ -54,7 +58,7 @@ struct UpdateReadyState: View {
                                isPresented: $showInstallAlert, actions: {
                             Button(role: .destructive) {
                                 guard let url = repository.updateFileUrl else {
-                                    Log.debug("Invalid Url")
+                                    self.logger.debug("Invalid Url")
                                     return
                                 }
 

@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Combine
+import OSLog
 
 /// A `NSViewController` that handles the **ProjectNavigator** in the **NavigatorSideabr**.
 ///
@@ -28,6 +29,9 @@ final class ProjectNavigatorViewController: NSViewController {
 
     /// The set of cancelables
     var cancelables: Set<AnyCancellable> = .init()
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Project Navigator View Controller")
 
     /// Gets the folder structure
     ///
@@ -112,12 +116,12 @@ final class ProjectNavigatorViewController: NSViewController {
             guard let item = self.outlineView.item(atRow: self.outlineView.selectedRow) as? FileItem
             else { return }
 
-            Log.info("Created file at \(item.url.debugDescription)")
+            self.logger.info("Created file at \(item.url.debugDescription)")
             item.addFile(fileName: "untitled")
         case "newDirAtPos":
             guard let item = self.outlineView.item(atRow: self.outlineView.selectedRow) as? FileItem
             else { return }
-            Log.info("Created folder at \(item.url.debugDescription)")
+            self.logger.info("Created folder at \(item.url.debugDescription)")
             item.addFolder(folderName: "untitled")
         default: break
         }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OSLog
 
 /// A model to handle the editor account
 class EditorAccountModel: ObservableObject {
@@ -18,6 +19,9 @@ class EditorAccountModel: ObservableObject {
 
     /// The keychain
     private let keychain = AuroraEditorKeychain()
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Editor Account Model")
 
     @Published
     /// A boolean to dismiss the dialog
@@ -79,7 +83,7 @@ class EditorAccountModel: ObservableObject {
 
                 }
             case .failure(let failure):
-                Log.fault("\(failure)")
+                self.logger.fault("\(failure)")
             }
         })
     }
@@ -101,7 +105,7 @@ class EditorAccountModel: ObservableObject {
             switch response {
             case .success(let user):
                 if gitAccounts.contains(where: { $0.id == gitAccountName.lowercased() }) {
-                    Log.warning("Account with the username already exists!")
+                    self.logger.warning("Account with the username already exists!")
                 } else {
                     self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
                         SourceControlAccounts(
@@ -123,7 +127,7 @@ class EditorAccountModel: ObservableObject {
                     successCallback()
                 }
             case .failure(let error):
-                Log.fault("\(error)")
+                self.logger.fault("\(error)")
             }
         }
     }
@@ -148,7 +152,7 @@ class EditorAccountModel: ObservableObject {
             switch response {
             case .success(let user):
                 if gitAccounts.contains(where: { $0.id == gitAccountName.lowercased() }) {
-                    Log.warning("Account with the username already exists!")
+                    self.logger.warning("Account with the username already exists!")
                 } else {
                     self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
                         SourceControlAccounts(id: "gitlab-sh-" + gitAccountName.lowercased(),
@@ -167,7 +171,7 @@ class EditorAccountModel: ObservableObject {
                     successCallback()
                 }
             case .failure(let error):
-                Log.fault("\(error)")
+                self.logger.fault("\(error)")
             }
         }
     }
@@ -189,7 +193,7 @@ class EditorAccountModel: ObservableObject {
             switch response {
             case .success(let user):
                 if gitAccounts.contains(where: { $0.id == gitAccountName.lowercased() }) {
-                    Log.warning("Account with the username already exists!")
+                    self.logger.warning("Account with the username already exists!")
                 } else {
                     DispatchQueue.main.async {
                         self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
@@ -210,7 +214,7 @@ class EditorAccountModel: ObservableObject {
                     successCallback()
                 }
             case .failure(let error):
-                Log.fault("\(error)")
+                self.logger.fault("\(error)")
             }
         }
     }
@@ -237,7 +241,7 @@ class EditorAccountModel: ObservableObject {
             switch response {
             case .success(let user):
                 if gitAccounts.contains(where: { $0.id == gitAccountName.lowercased() }) {
-                    Log.warning("Account with the username already exists!")
+                    self.logger.warning("Account with the username already exists!")
                 } else {
                     self.prefs.preferences.accounts.sourceControlAccounts.gitAccount.append(
                         SourceControlAccounts(id: "github-ent-" + gitAccountName.lowercased(),
@@ -256,7 +260,7 @@ class EditorAccountModel: ObservableObject {
                     successCallback()
                 }
             case .failure(let error):
-                Log.fault("\(error)")
+                self.logger.fault("\(error)")
             }
         }
     }

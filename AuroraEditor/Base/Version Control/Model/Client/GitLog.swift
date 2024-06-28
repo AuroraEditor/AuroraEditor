@@ -1,5 +1,5 @@
 //
-//  GitLog.swift
+//  Gitself.loggerswift
 //  Aurora Editor
 //
 //  Created by Nanashi Li on 2022/09/08.
@@ -89,7 +89,7 @@ func getCommits(directoryURL: URL,
         "cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args.joined(separator: " "))"
     )
 
-    Log.debug("cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args.joined(separator: " "))")
+    self.loggerdebug("cd \(directoryURL.relativePath.escapedWhiteSpaces());git \(args.joined(separator: " "))")
 
     return try result.split(separator: "\n")
         .map { line -> CommitHistory in

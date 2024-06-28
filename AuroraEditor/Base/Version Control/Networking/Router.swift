@@ -10,6 +10,7 @@
 // built for any other networking except those of git accounts
 
 import Foundation
+import OSLog
 
 @available(*, deprecated, renamed: "VersionControl", message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")
 /// HTTP Encoding
@@ -230,7 +231,9 @@ public extension Router {
                     }
                 }
             default:
-                Log.fault("Cannot encode object of type \(type(of: value))")
+                /// Logger
+                let logger = Logger(subsystem: "com.auroraeditor", category: "Router")
+                logger.fault("Cannot encode object of type \(type(of: value))")
             }
         }
 

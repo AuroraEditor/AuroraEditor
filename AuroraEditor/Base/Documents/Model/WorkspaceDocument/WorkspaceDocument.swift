@@ -11,6 +11,7 @@ import AppKit
 import SwiftUI
 import Combine
 import AEExtensionKit
+import OSLog
 
 /// A class that represents a workspace document.
 @objc(WorkspaceDocument)
@@ -110,6 +111,9 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     /// The window controller
     var windowController: AuroraEditorWindowController?
 
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Workspace Document")
+
     /// Make window controllers
     override func makeWindowControllers() {
         let window = NSWindow(
@@ -160,7 +164,7 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
             editorConfig = AuroraEditorConfig(fromPath: url.path)
         }
 
-        Log.info("Created document \(self)")
+        self.logger.info("Created document \(self)")
     }
 
     /// Retrieves selection state from UserDefaults using SHA256 hash of project  path as key
@@ -185,7 +189,7 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
             selectionState = try readSelectionState()
             selectionState.workspace = self
         } catch {
-            Log.warning("Couldn't retrieve selection state from user defaults")
+            self.logger.warning("Couldn't retrieve selection state from user defaults")
         }
 
         fileSystemClient?
@@ -214,7 +218,7 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
             }
             .store(in: &cancellables)
 
-        Log.info("Made document from read: \(self)")
+        self.logger.info("Made document from read: \(self)")
     }
 
     /// Write to URL
@@ -239,7 +243,7 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         do {
             try saveSelectionState()
         } catch {
-            Log.fault("Couldn't save selection state from user defaults")
+            self.logger.fault("Couldn't save selection state from user defaults")
         }
 
         selectionState.selectedId = nil
@@ -266,6 +270,6 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         self.extensionNavigatorData = nil
 
         super.close()
-        Log.info("Closed document \(self)")
+        self.logger.info("Closed document \(self)")
     }
 }

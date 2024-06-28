@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+import OSLog
 
 // This model handles sending crash report data to the Aurora Editor
 // Github repo.
@@ -20,6 +21,9 @@ public class CrashReportModel: ObservableObject {
 
     /// The keychain.
     private let keychain = AuroraEditorKeychain()
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Crash Report Model")
 
     /// The open URL environment.
     @Environment(\.openURL)
@@ -80,7 +84,7 @@ public class CrashReportModel: ObservableObject {
                 self.isSubmitted.toggle()
             case .failure(let error):
                 self.failedToSubmit.toggle()
-                Log.fault("\(error.localizedDescription)")
+                self.logger.fault("\(error.localizedDescription)")
             }
         }
     }

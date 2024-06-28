@@ -61,7 +61,7 @@ struct ExtensionInstallationView: View {
 //                                   }
 //                                }
 //                            } catch let error {
-//                                Log.error(error.localizedDescription)
+//                                self.loggererror(error.localizedDescription)
 //                            }
 //                        }
 //                    } label: {
@@ -74,7 +74,7 @@ struct ExtensionInstallationView: View {
 //                           try ExtensionsManager.shared?.remove(plugin: self.model.plugin)
 //                            self.installed = ExtensionsManager.shared?.isInstalled(plugin: model.plugin) ?? false
 //                        } catch let error {
-//                            Log.error(error.localizedDescription)
+//                            self.loggererror(error.localizedDescription)
 //                        }
 //                    } label: {
 //                        Text("Uninstall")

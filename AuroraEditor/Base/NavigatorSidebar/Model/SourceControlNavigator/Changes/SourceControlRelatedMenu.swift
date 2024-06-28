@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Version_Control
+import OSLog
 
 /// A menu that shows options related to source control for a file.
 final class SourceControlRelatedMenu: NSMenu {
@@ -27,6 +28,9 @@ final class SourceControlRelatedMenu: NSMenu {
 
     /// The outline view that the menu is for.
     private var outlineView: NSOutlineView
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Source Control Related Menu")
 
     /// Initialize the menu.
     /// 
@@ -94,7 +98,7 @@ final class SourceControlRelatedMenu: NSMenu {
             do {
                 try gitClient.discardFileChanges(url: (item?.url.path)!)
             } catch {
-                Log.fault("Error when trying to discard changes in file!")
+                self.logger.fault("Error when trying to discard changes in file!")
             }
         }
     }

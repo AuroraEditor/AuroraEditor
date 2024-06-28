@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 /// A view for committing changes.
 struct CommitChangesView: View {
@@ -29,6 +30,9 @@ struct CommitChangesView: View {
     /// Whether to stage all changes.
     @State
     private var stageAll: Bool = false
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor.vcs", category: "Commit Changes View")
 
     /// The view body.
     /// 
@@ -142,7 +146,7 @@ struct CommitChangesView: View {
     /// Commits the changes.
     private func commit() {
         guard let client = gitClient else {
-            Log.fault("No git client!")
+            self.logger.fault("No git client!")
             return
         }
         do {
@@ -157,10 +161,10 @@ struct CommitChangesView: View {
                 }
                 try client.commit(message: message)
             } else {
-                Log.info("No changes to commit!")
+                self.logger.info("No changes to commit!")
             }
         } catch let err {
-            Log.fault("\(err)")
+            self.logger.fault("\(err)")
         }
     }
 }

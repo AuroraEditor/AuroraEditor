@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct ReRunJobSheetView: View {
     @Environment(\.dismiss)
@@ -19,6 +20,9 @@ struct ReRunJobSheetView: View {
     private var enableDebugging: Bool = false
 
     @State var ghJobId: String = ""
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Re Run Job Sheet View")
 
     init(workspace: WorkspaceDocument, jobId: String) {
         self.actions = .init(workspace: workspace)
@@ -62,7 +66,7 @@ struct ReRunJobSheetView: View {
                             case .success:
                                 dismiss()
                             case .failure(let failure):
-                                Log.fault("\(failure)")
+                                self.logger.fault("\(failure)")
                             }
                         }
                     )

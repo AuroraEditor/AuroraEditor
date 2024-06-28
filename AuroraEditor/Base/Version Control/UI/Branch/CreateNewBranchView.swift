@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Version_Control
+import OSLog
 
 struct CreateNewBranchView: View {
     @Environment(\.dismiss)
@@ -23,6 +24,9 @@ struct CreateNewBranchView: View {
 
     @State
     var branchName: String = ""
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Create New Branch View")
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -98,7 +102,7 @@ struct CreateNewBranchView: View {
 
                             dismiss()
                         } catch {
-                            Log.error("Unable to add exisiting remote.")
+                            self.logger.error("Unable to add exisiting remote.")
                         }
                     } label: {
                         Text("Create Branch")

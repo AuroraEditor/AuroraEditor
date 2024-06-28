@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OSLog
 
 // TODO: @0xWDG Look if this can be removed.
 public class HighlightTheme: Codable {
@@ -14,6 +15,10 @@ public class HighlightTheme: Codable {
     var root: ThemeTrieElement
 
     var settings: [ThemeSetting]
+
+    /// Logger
+    static let logger = Logger(subsystem: "com.auroraeditor", category: "Highlight Theme")
+
 
     public init(settings: [ThemeSetting]) {
         self.settings = settings
@@ -100,7 +105,7 @@ public class HighlightTheme: Codable {
             }
         }
         guard prev != nil else {
-            Log.info("Error: prev is nil")
+            self.logger.info("Error: prev is nil")
             return
         }
         curr.attributes = (prev?.attributes ?? [:])
@@ -117,7 +122,7 @@ public class HighlightTheme: Codable {
         }
 
         if !setting.parentScopes.isEmpty {
-            Log.warning("HighlightTheme parent scopes not implemented")
+            self.logger.warning("HighlightTheme parent scopes not implemented")
         }
     }
 

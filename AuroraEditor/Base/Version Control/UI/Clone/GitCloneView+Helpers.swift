@@ -165,7 +165,7 @@ extension GitCloneView {
                             isPresented = false
                             // open the document
                             let repoFileURL = URL(fileURLWithPath: repoPath)
-                            Log.info("Opening \(repoFileURL)")
+                            self.logger.info("Opening \(repoFileURL)")
                             AuroraEditorDocumentController.shared.openDocument(
                                 withContentsOf: repoFileURL,
                                 display: true,

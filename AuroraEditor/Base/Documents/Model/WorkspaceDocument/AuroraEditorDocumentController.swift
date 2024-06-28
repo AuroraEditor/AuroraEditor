@@ -7,20 +7,24 @@
 //
 
 import Cocoa
+import OSLog
 
 /// A class that manages the document controller.
 final class AuroraEditorDocumentController: NSDocumentController {
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Aurora Editor Document Controller")
+
     /// Opens a document.
     /// 
     /// - Parameter sender: The sender.
     override func openDocument(_ sender: Any?) {
         self.openDocument(onCompletion: { document, documentWasAlreadyOpen in
             guard let document = document else {
-                Log.fault("Failed to unwrap document")
+                self.logger.fault("Failed to unwrap document")
                 return
             }
 
-            Log.info("\(document), \(documentWasAlreadyOpen)")
+            self.logger.info("\(document), \(documentWasAlreadyOpen)")
         }, onCancel: {})
     }
 
@@ -54,6 +58,8 @@ extension NSDocumentController {
     /// 
     /// - Parameter onCompletion: The completion handler.
     final func openDocument(onCompletion: @escaping (NSDocument?, Bool) -> Void, onCancel: @escaping () -> Void) {
+        let logger = Logger(subsystem: "com.auroraeditor", category: "NSDocumentController")
+
         let dialog = NSOpenPanel()
 
         dialog.title = "Open Workspace or File"
@@ -79,8 +85,8 @@ extension NSDocumentController {
                     }
                     RecentProjectsStore.shared.record(path: url.path)
                     onCompletion(document, documentWasAlreadyOpen)
-                    Log.info("Document: \(document)")
-                    Log.info("Was already open? \(documentWasAlreadyOpen)")
+                    logger.info("Document: \(document)")
+                    logger.info("Was already open? \(documentWasAlreadyOpen)")
                 }
             } else if result == NSApplication.ModalResponse.cancel {
                 onCancel()

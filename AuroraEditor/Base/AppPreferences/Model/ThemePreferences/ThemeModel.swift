@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 /// The Theme View Model. Accessible via the singleton "``ThemeModel/shared``".
 ///
@@ -19,13 +20,16 @@ public final class ThemeModel: ObservableObject {
     /// The shared instance of the `ThemeModel`
     public static let shared: ThemeModel = .init()
 
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Theme Model")
+
     /// The selected appearance in the sidebar.
     /// - **0**: dark mode themes
     /// - **1**: light mode themes
     @Published
     var selectedAppearance: Int = 0 {
         didSet {
-            Log.info("Selected appearance: \(self.selectedAppearance)")
+            logger.info("Selected appearance: \(self.selectedAppearance)")
         }
     }
 
@@ -57,19 +61,19 @@ public final class ThemeModel: ObservableObject {
 
     /// Only themes where ``Theme/appearance`` == ``Theme/ThemeType/dark``
     public var darkThemes: [AuroraTheme] {
-        Log.info("Dark themes requested")
+        logger.info("Dark themes requested")
         return themes.filter { $0.appearance == .dark }
     }
 
     /// Only themes where ``Theme/appearance`` == ``Theme/ThemeType/light``
     public var lightThemes: [AuroraTheme] {
-        Log.info("Light themes requested")
+        logger.info("Light themes requested")
         return themes.filter { $0.appearance == .light }
     }
 
     /// Only themes where ``Theme/appearance`` == ``Theme/ThemeType/universal``
     public var universalThemes: [AuroraTheme] {
-        Log.info("Universal themes requested")
+        logger.info("Universal themes requested")
         return themes.filter { $0.appearance == .universal }
     }
 
@@ -78,7 +82,7 @@ public final class ThemeModel: ObservableObject {
         do {
             try loadThemes()
         } catch {
-            Log.fault("\(error)")
+            self.logger.fault("\(error)")
         }
     }
 
@@ -113,7 +117,7 @@ public final class ThemeModel: ObservableObject {
         // load each theme from disk
         try content.forEach { file in
             let fileURL = url.appendingPathComponent(file)
-            Log.info("Loading \(fileURL)")
+            self.logger.info("Loading \(fileURL)")
             if var theme = ThemeJsonLoader.shared.loadOldAEThemeJson(from: fileURL) ??
                 ThemeJsonLoader.shared.loadVscJson(from: fileURL) ??
                 ThemeJsonLoader.shared.loadTmThemeXml(from: fileURL) {
@@ -205,7 +209,7 @@ public final class ThemeModel: ObservableObject {
                     )
                 }
             } catch {
-                Log.fault("\(error)")
+                self.logger.fault("\(error)")
                 throw error
             }
         }
@@ -224,7 +228,7 @@ public final class ThemeModel: ObservableObject {
         do {
             try self.loadThemes()
         } catch {
-            Log.fault("\(error)")
+            logger.fault("\(error)")
         }
     }
 
@@ -249,7 +253,7 @@ public final class ThemeModel: ObservableObject {
             // reload themes
             try self.loadThemes()
         } catch {
-            Log.fault("\(error)")
+            logger.fault("\(error)")
         }
     }
 
@@ -297,7 +301,7 @@ public final class ThemeModel: ObservableObject {
         //                }
         //
         //            } catch {
-        //                Log.fault("\(error)")
+        //                self.logger.fault("\(error)")
         //            }
         //        }
     }

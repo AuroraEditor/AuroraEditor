@@ -21,13 +21,13 @@ func checkIfProjectIsRepo(workspaceURL: URL) -> Bool {
             // If the path is considered unsafe by Git we won't be able to
             // verify that it's a repository (or worktree). So we'll fall back to this
             // naive approximation.
-            Log.debug(type)
+            self.loggerdebug(type)
             return FileManager().directoryExistsAtPath("\(workspaceURL)/.git")
         }
 
         return type != .missing
     } catch {
-        Log.error("We couldn't verify if the current project is a git repo!")
+        self.loggererror("We couldn't verify if the current project is a git repo!")
         return false
     }
 }

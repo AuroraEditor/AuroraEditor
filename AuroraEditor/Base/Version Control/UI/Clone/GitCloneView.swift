@@ -10,6 +10,7 @@ import SwiftUI
 import Foundation
 import Combine
 import Version_Control
+import OSLog
 
 // swiftlint:disable:next type_body_length
 public struct GitCloneView: View {
@@ -43,6 +44,9 @@ public struct GitCloneView: View {
 
     @State var activeSheet: ActiveSheet?
 
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Git Clone View")
+
     enum ActiveSheet: Identifiable {
         case verify, select, error(String)
         var id: UUID {
@@ -67,7 +71,7 @@ public struct GitCloneView: View {
                 throw fatalError()
             }
             if branch.contains("fatal:") {
-                Log.warning("Error: getRemoteHead")
+                self.logger.warning("Error: getRemoteHead")
                 activeSheet = .error("Error: getRemoteHead")
             } else {
                 self.mainBranch = branch
@@ -79,7 +83,7 @@ public struct GitCloneView: View {
                 }
             }
         } catch {
-            Log.error("Failed to find main branch name.")
+            self.logger.error("Failed to find main branch name.")
         }
     }
 
@@ -88,7 +92,7 @@ public struct GitCloneView: View {
             let branches = try Remote().getRemotes(directoryURL: URL(string: url)!)
 
             if branches.isEmpty {
-                Log.warning("Error: getRemoteBranch")
+                self.logger.warning("Error: getRemoteBranch")
                 activeSheet = .error("Error: getRemoteBranch")
             } else {
                 self.arrayBranch = branches
@@ -103,7 +107,7 @@ public struct GitCloneView: View {
                 }
             }
         } catch {
-            Log.error("Failed to find branches.")
+            self.logger.error("Failed to find branches.")
         }
     }
 

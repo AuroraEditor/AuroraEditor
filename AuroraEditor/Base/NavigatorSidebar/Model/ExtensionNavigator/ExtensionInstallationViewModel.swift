@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import OSLog
 
 /// View model for extension installation.
 final class ExtensionInstallationViewModel: ObservableObject {
@@ -31,6 +32,9 @@ final class ExtensionInstallationViewModel: ObservableObject {
     @Published
     var extensions: [Plugin] = []
 
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Extensions Installation View Model")
+
     /// Initialize a new extension installation view model.
     /// 
     /// - Returns: a new extension installation view model.
@@ -51,7 +55,7 @@ final class ExtensionInstallationViewModel: ObservableObject {
                 do {
                     let decoder = JSONDecoder()
                     guard let extensions = try decoder.decode([Plugin]?.self, from: data) else {
-                        Log.debug(
+                        self.logger.debug(
                             "Error: Unable to decode \(String(data: data, encoding: .utf8) ?? "")"
                         )
                         DispatchQueue.main.async {
@@ -64,11 +68,11 @@ final class ExtensionInstallationViewModel: ObservableObject {
                         self.extensions = extensions
                     }
                 } catch {
-                    Log.fault("\(error)")
+                    self.logger.fault("\(error)")
                 }
             case .failure(let failure):
                 self.state = .error
-                Log.fault("\(failure)")
+                self.logger.fault("\(failure)")
             }
 
         })
@@ -86,9 +90,9 @@ final class ExtensionInstallationViewModel: ObservableObject {
                                    completionHandler: { completion in
             switch completion {
             case .success(let success):
-                Log.debug("\(String(data: success, encoding: .utf8) ?? "")")
+                self.logger.debug("\(String(data: success, encoding: .utf8) ?? "")")
             case .failure(let failure):
-                Log.debug("\(failure)")
+                self.logger.debug("\(failure)")
             }
 
         })

@@ -55,7 +55,7 @@ extension NavigatorSidebar {
     func moveTopToBottom(icon: SidebarDockIcon) {
         defer {
             // select a new focus for the top toolbar
-            Log.info("Focusing new icon: \(icon.id) \(icon.title)")
+            self.logger.info("Focusing new icon: \(icon.id) \(icon.title)")
             selections[0] = model.icons[0][0].id
         }
         // create the second toolbar if it does not exist

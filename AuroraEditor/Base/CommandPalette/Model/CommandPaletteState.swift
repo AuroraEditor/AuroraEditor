@@ -8,6 +8,7 @@
 
 import Combine
 import Foundation
+import OSLog
 
 /// The state of the command palette.
 public final class CommandPaletteState: ObservableObject {
@@ -30,6 +31,9 @@ public final class CommandPaletteState: ObservableObject {
     /// The queue to perform the search.
     private let queue = DispatchQueue(label: "com.auroraeditor.quickOpen.commandPalette")
 
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Command Pallete State")
+
     /// Creates a new instance of the command palette state.
     init(possibleCommands: [Command] = []) {
         self.possibleCommands = possibleCommands
@@ -38,7 +42,7 @@ public final class CommandPaletteState: ObservableObject {
     /// Fetches the commands that match the query.
     func fetchCommands() {
         guard !commandQuery.isEmpty else {
-            Log.info("Query is empty")
+            self.logger.info("Query is empty")
             DispatchQueue.main.async {
                 self.commands = []
                 self.isShowingCommands = false

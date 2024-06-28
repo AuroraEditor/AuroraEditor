@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 // Useful reference for vscode themes: https://code.visualstudio.com/api/references/theme-color
 
@@ -14,6 +15,9 @@ import SwiftUI
 class ThemeJsonLoader {
     /// The shared instance of the ``ThemeJsonLoader``
     static let shared: ThemeJsonLoader = .init()
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Theme JSON Loader")
 
     /// The private initializer
     /// prevent ThemeJsonLoader from being created anywhere else
@@ -34,10 +38,10 @@ class ThemeJsonLoader {
                 let data = try Data(contentsOf: url)
                 return themeFromVscJson(jsonStr: String(decoding: data, as: UTF8.self))
             } catch {
-                Log.fault("\(error)")
+                self.logger.fault("\(error)")
             }
         } else {
-            Log.info("Json not found")
+            self.logger.info("Json not found")
         }
         return nil
     }

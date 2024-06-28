@@ -32,13 +32,13 @@ extension ThemeJsonLoader {
                                                                         options: .mutableContainers,
                                                                         format: nil) as? [String: Any]
             else {
-                Log.info("Failed to read plist for \(url)")
+                self.logger.info("Failed to read plist for \(url)")
                 return nil
             }
 
             return themeFromTmThemeJson(json: json)
         } catch {
-            Log.info("Error loading theme: \(String(describing: error))")
+            self.logger.info("Error loading theme: \(String(describing: error))")
         }
 
         return nil

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 /// A view that represents the crash report view.
 public struct CrashReportView: View {
@@ -29,6 +30,9 @@ public struct CrashReportView: View {
     @State
     private var hideComment: Bool = false
 
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Crash Report View")
+
     /// The crash report view
     /// 
     /// - Parameter errorDetails: The error details
@@ -48,7 +52,7 @@ public struct CrashReportView: View {
                 Spacer()
 
                 HelpButton {
-                    Log.info("Help")
+                    self.logger.info("Help")
                 }
             }
             VStack(alignment: .leading) {
@@ -120,7 +124,7 @@ public struct CrashReportView: View {
                     Button {
                         UserDefaults.standard.removeObject(forKey: "crash")
                         if prefs.preferences.accounts.sourceControlAccounts.gitAccount.isEmpty {
-                            Log.info("Failed to find a github account")
+                            self.logger.info("Failed to find a github account")
                             restartApplication()
                         } else {
                             reportModel.createIssue(comments: reportModel.comments,

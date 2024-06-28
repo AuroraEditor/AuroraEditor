@@ -9,9 +9,12 @@
 import SwiftUI
 import UniformTypeIdentifiers
 import Version_Control
+import OSLog
 
 /// A subclass of `NSMenu` implementing the contextual menu for the project navigator
 final class RepositoriesMenu: NSMenu {
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Repositories menu")
 
     /// The workspace, for opening the item
     var workspace: WorkspaceDocument?
@@ -113,7 +116,7 @@ final class RepositoriesMenu: NSMenu {
 
             workspace?.data.commitHash = commitHash.sha
         } catch {
-            Log.fault("Unable to fetch commits for branch: \(branch.name)")
+            self.logger.fault("Unable to fetch commits for branch: \(branch.name)")
         }
 
         workspace?.data.showTagCreationSheet.toggle()
@@ -160,10 +163,10 @@ final class RepositoriesMenu: NSMenu {
                 ) {
                     self.outlineView.reloadData()
                 } else {
-                    Log.fault("Failed to delete branch \(branch.name)")
+                    self.logger.fault("Failed to delete branch \(branch.name)")
                 }
             } catch {
-                Log.fault("Failed to delete branch \(branch.name)")
+                self.logger.fault("Failed to delete branch \(branch.name)")
             }
         }
     }
@@ -184,7 +187,7 @@ final class RepositoriesMenu: NSMenu {
 
             return currentBranch == branch.name
         } catch {
-            Log.fault("Failed to find current branch name.")
+            self.logger.fault("Failed to find current branch name.")
             return false
         }
     }

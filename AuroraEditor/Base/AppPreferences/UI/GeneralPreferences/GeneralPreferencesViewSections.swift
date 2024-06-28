@@ -279,7 +279,7 @@ extension GeneralPreferencesView {
                     guard let defaults = UserDefaults(
                         suiteName: "com.auroraeditor.shared"
                     ) else {
-                        Log.fault("Failed to get/init shared defaults")
+                        self.logger.fault("Failed to get/init shared defaults")
                         return
                     }
 

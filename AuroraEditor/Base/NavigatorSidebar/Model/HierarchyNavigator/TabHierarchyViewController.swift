@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 /// A `NSViewController` that handles the **Tab Heirarchy View** in the **Hierarchy Navigator**.
 ///
@@ -34,6 +35,9 @@ class TabHierarchyViewController: NSViewController {
     /// Used b/c the state may update when the selection changes, but we don't necessarily want
     /// to open the file a second time.
     private var shouldSendSelectionUpdate: Bool = true
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Tab Hierarchy View Controller")
 
     /// Setup the ``scrollView`` and ``outlineView``
     override func loadView() {

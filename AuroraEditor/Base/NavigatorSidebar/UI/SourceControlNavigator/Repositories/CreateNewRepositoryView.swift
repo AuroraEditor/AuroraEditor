@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Version_Control
+import OSLog
 
 // TODO: Still need to add support for repo name, description and readme
 
@@ -17,6 +18,9 @@ struct CreateNewRepositoryView: View {
     /// The repository model.
     @ObservedObject
     var repositoryModel: RepositoryModel
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Create New Repository View")
 
     /// The view body.
     var body: some View {
@@ -80,7 +84,7 @@ struct CreateNewRepositoryView: View {
                         repositoryModel.isGitRepository = Check().checkIfProjectIsRepo(workspaceURL: projectPath)
                         repositoryModel.openGitCreationSheet.toggle()
                     } catch {
-                        Log.fault("Unable to create a repo for project")
+                        self.logger.fault("Unable to create a repo for project")
                     }
                 } label: {
                     Text("Create Repository")

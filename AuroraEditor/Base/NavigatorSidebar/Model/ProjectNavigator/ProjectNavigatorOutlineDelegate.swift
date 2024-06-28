@@ -65,7 +65,7 @@ extension ProjectNavigatorViewController: NSOutlineViewDelegate {
         if !workspace.selectionState.openedTabs.contains(navigatorItem.tabID) &&
             !navigatorItem.isFolder && shouldSendSelectionUpdate {
             workspace.openTab(item: navigatorItem)
-            Log.info("Opened a new tab for: \(navigatorItem.url)")
+            self.logger.info("Opened a new tab for: \(navigatorItem.url)")
         }
     }
 

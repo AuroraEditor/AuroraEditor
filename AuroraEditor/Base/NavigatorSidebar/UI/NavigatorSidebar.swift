@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 /// The sidebar of the navigator.
 struct NavigatorSidebar: View {
@@ -33,6 +34,9 @@ struct NavigatorSidebar: View {
 
     /// Toolbar padding
     private let toolbarPadding: Double = -8.0
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Navigator Sidebar")
 
     /// The view body.
     var body: some View {

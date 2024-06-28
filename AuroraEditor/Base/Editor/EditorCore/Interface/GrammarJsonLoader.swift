@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OSLog
 
 // TODO: @0xWDG Look if this can be removed.
 /// A class that loads a grammar from a JSON file.
@@ -14,6 +15,9 @@ class GrammarJsonLoader {
 
     /// The shared instance of the GrammarJsonLoader
     static let shared: GrammarJsonLoader = .init()
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Grammar JSON loader")
 
     // prevent GrammarJsonLoader from being created anywhere else
     /// Initializes a new instance of the GrammarJsonLoader
@@ -31,10 +35,10 @@ class GrammarJsonLoader {
                 let data = try Data(contentsOf: url)
                 return grammarFromJson(jsonStr: String(decoding: data, as: UTF8.self))
             } catch {
-                Log.fault("\(error)")
+                self.logger.fault("\(error)")
             }
         } else {
-            Log.info("Json not found")
+            self.logger.info("Json not found")
         }
         return nil
     }
@@ -50,7 +54,7 @@ class GrammarJsonLoader {
             let data = try Data(contentsOf: url)
             return grammarFromJson(jsonStr: String(decoding: data, as: UTF8.self))
         } catch {
-            Log.fault("\(error)")
+            self.logger.fault("\(error)")
         }
         return nil
     }
@@ -74,13 +78,13 @@ class GrammarJsonLoader {
         guard let jsonData = jsonStr.data(using: .utf8),
               let json = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any]
         else {
-            Log.info("Failed to load json")
+            self.logger.info("Failed to load json")
             return nil
         }
 
         // make sure the scope has a name
         guard let scopeName = json["scopeName"] as? String else {
-            Log.info("Json does not contain `scopeName` required data")
+            self.logger.info("Json does not contain `scopeName` required data")
             return nil
         }
 
@@ -200,7 +204,7 @@ class GrammarJsonLoader {
         }
 
         // if none of the above, return nil
-        Log.info("Json \(keyName) with keys \(json.keys) did not match anything")
+        self.logger.info("Json \(keyName) with keys \(json.keys) did not match anything")
         return nil
     }
 

@@ -23,7 +23,7 @@ func unstageAllFiles(directoryURL: URL) {
             //          which will block this
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git rm -cached -r -f .")
     } catch {
-        Log.error("Failed to unstage all files")
+        self.loggererror("Failed to unstage all files")
     }
 }
 

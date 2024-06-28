@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OSLog
 
 @available(*, deprecated, renamed: "VersionControl", message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")
 /// A Git UI Model
@@ -16,6 +17,9 @@ public final class GitUIModel: ObservableObject {
 
     /// The base URL of the workspace
     private(set) var workspaceURL: URL
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "GitUIModel")
 
     /// Initialize with a GitClient
     /// 
@@ -37,7 +41,7 @@ public final class GitUIModel: ObservableObject {
         do {
             try gitClient.stashChanges(message: message ?? "")
         } catch {
-            Log.fault("Failed to stash changes!")
+            self.logger.fault("Failed to stash changes!")
         }
     }
 }

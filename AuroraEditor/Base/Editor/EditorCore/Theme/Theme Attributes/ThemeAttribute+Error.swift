@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import OSLog
 
 // TODO: @0xWDG Look if this can be removed.
 extension ThemeAttribute {
 
     func error(_ details: String = "") {
-        Log.fault("Failed to apply ThemeAttribute '\(key)'. \(details)")
+        let logger = Logger(subsystem: "com.auroraeditor", category: "Theme Attribute")
+        logger.fault("Failed to apply ThemeAttribute '\(key)'. \(details)")
     }
 }

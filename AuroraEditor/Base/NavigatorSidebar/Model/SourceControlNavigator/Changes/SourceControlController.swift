@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 /// A `NSViewController` that displays the source control changes in the workspace.
 final class SourceControlController: NSViewController {
@@ -41,6 +42,9 @@ final class SourceControlController: NSViewController {
             outlineView.reloadData()
         }
     }
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Source Control Controller")
 
     /// Whether to send a selection update when the outline view selection changes.
     private var shouldSendSelectionUpdate: Bool = true
@@ -203,7 +207,7 @@ extension SourceControlController: NSOutlineViewDelegate {
 
         if !navigatorItem.isFolder && shouldSendSelectionUpdate && navigatorItem.doesExist {
             workspace?.openTab(item: navigatorItem)
-            Log.warning("Opened a new tab for: \(navigatorItem.url)")
+            self.logger.warning("Opened a new tab for: \(navigatorItem.url)")
         }
     }
 

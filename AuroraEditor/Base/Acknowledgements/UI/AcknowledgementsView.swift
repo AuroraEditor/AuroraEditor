@@ -138,7 +138,7 @@ final class AcknowledgementWindowController: NSWindowController {
 
     /// De-initializes the window controller
     deinit {
-        Log.info("Acknowledgement window controller de-init'd")
+        self.loggerinfo("Acknowledgement window controller de-init'd")
         if let escapeDetectEvent = escapeDetectEvent {
             NSEvent.removeMonitor(escapeDetectEvent)
         }

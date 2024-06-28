@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 // This view creates a list of recent projects that have been
 public struct RecentProjectsView: View {
@@ -23,6 +24,9 @@ public struct RecentProjectsView: View {
 
     /// Dismiss window closure
     private let dismissWindow: () -> Void
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Recent Projects View")
 
     /// Initialize a new RecentProjectsView
     /// 
@@ -99,7 +103,7 @@ public struct RecentProjectsView: View {
     /// 
     /// - Parameter url: the url of the document
     func openDocument(for url: String) {
-        Log.info("Opening document: \(url)")
+        self.logger.info("Opening document: \(url)")
         openDocument(URL(fileURLWithPath: url), dismissWindow)
         withAnimation { recentsStore.record(path: url) }
     }

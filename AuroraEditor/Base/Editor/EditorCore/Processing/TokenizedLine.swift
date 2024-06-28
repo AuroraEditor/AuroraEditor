@@ -8,12 +8,16 @@
 
 import Foundation
 import AppKit
+import OSLog
 
 // TODO: @0xWDG Look if this can be removed.
 /// Tokenized line
 public class TokenizedLine {
     /// Tokens
     var tokens: [Token]
+
+    /// Logger
+    static let logger = Logger(subsystem: "com.auroraeditor", category: "Tokenized Line")
 
     /// Initialize TokenizedLine
     /// 
@@ -77,10 +81,10 @@ public class TokenizedLine {
             } else if let tokenAttr = attr as? TokenThemeAttribute {
                 tokenAttr.apply(to: attributedString, withRange: range)
             } else {
-                Log.info("""
+                logger.info("""
                          Warning: ThemeAttribute with key \(attr.key) does not conform \
                          to either LineThemeAttribute or TokenThemeAttribtue so it will not be applied.
-                         """)
+                """)
             }
         }
     }

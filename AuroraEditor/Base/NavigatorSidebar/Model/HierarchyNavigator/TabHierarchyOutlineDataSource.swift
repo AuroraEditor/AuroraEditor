@@ -113,7 +113,7 @@ extension TabHierarchyViewController: NSOutlineViewDataSource {
     /// - Returns: the pasteboard writer
     func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
         guard let item = item as? TabBarItemStorage else {
-            Log.fault("Item is not a tab storage item")
+            self.logger.fault("Item is not a tab storage item")
             return nil
         }
 

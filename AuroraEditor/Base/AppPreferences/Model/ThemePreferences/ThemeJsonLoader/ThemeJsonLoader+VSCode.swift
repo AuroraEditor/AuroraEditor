@@ -21,7 +21,7 @@ extension ThemeJsonLoader {
             let data = try Data(contentsOf: url)
             return themeFromVscJson(jsonStr: String(decoding: data, as: UTF8.self))
         } catch {
-            Log.info("Error loading theme: \(String(describing: error))")
+            self.logger.info("Error loading theme: \(String(describing: error))")
         }
 
         return nil
@@ -34,7 +34,7 @@ extension ThemeJsonLoader {
         guard let jsonData = jsonStr.data(using: .utf8),
               let json = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any]
         else {
-            Log.info("Failed to load vsc json")
+            self.logger.info("Failed to load vsc json")
             return nil
         }
 
@@ -52,7 +52,7 @@ extension ThemeJsonLoader {
         // get the HighlightTheme and EditorColors
         let highlightTheme = highlightThemeFromJson(json: settings)
         let editor = editorFromVscJson(json: colors, highlightTheme: highlightTheme, type: type)
-        Log.info("Selection Color: \(editor.selection.color)")
+        self.logger.info("Selection Color: \(editor.selection.color)")
 
         // if the theme does not contain a source, add one
         if !highlightTheme.settings.contains(where: { $0.isSource }) {
@@ -95,7 +95,7 @@ extension ThemeJsonLoader {
         let lineHighlight = json["editor.lineHighlightBackground"]
         let selection = json["editor.selectionHighlightBackground"]
 
-        Log.info("Selection: \(String(describing: selection))")
+        self.logger.info("Selection: \(String(describing: selection))")
 
         let defaultAttr = type == "light" ? AuroraTheme.EditorColors.defaultLight :
         AuroraTheme.EditorColors.defaultDark

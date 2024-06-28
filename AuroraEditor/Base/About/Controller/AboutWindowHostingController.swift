@@ -7,12 +7,16 @@
 //
 
 import SwiftUI
+import OSLog
 
 // This class helps display the AboutView
 final class AboutWindowHostingController<T: View>: NSWindowController {
 
     /// The event handler for the escape key
     private var escapeDetectEvent: Any?
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "About window hosting controller")
 
     /// Initializes the window controller with the given view and size
     /// 
@@ -73,7 +77,7 @@ final class AboutWindowHostingController<T: View>: NSWindowController {
 
     /// De-initializes the window controller
     deinit {
-        Log.info("About Window controller de-init'd")
+        logger.info("About Window controller de-init'd")
         removeEscapeKeyEventHandler()
     }
 

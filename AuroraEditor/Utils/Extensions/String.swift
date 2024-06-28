@@ -162,7 +162,7 @@ extension String {
             /// Logger
             let logger = Logger(subsystem: "com.auroraeditor", category: "String")
 
-            Log.fault("invalid regex: \(error.localizedDescription)")
+            logger.fault("invalid regex: \(error.localizedDescription)")
             return []
         }
     }

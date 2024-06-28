@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OSLog
 
 // TODO: @0xWDG Look if this can be removed.
 /// Code Parser
@@ -19,6 +20,9 @@ public class Parser { // swiftlint:disable:this type_body_length
 
     /// Grammars
     private let grammars: [Grammar]
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Parser")
 
     /// Initialize Parser
     /// 
@@ -173,7 +177,7 @@ public class Parser { // swiftlint:disable:this type_body_length
         state: LineState,
         withTheme theme: HighlightTheme = .default,
         inRange range: NSRange? = nil) -> TokenizeResult {
-        Log.debug("Tokenizing line: \(line)")
+        self.logger.debug("Tokenizing line: \(line)")
         var state = state
 
         var loc = range?.location ?? 0

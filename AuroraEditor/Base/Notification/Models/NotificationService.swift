@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OSLog
 
 // The `NotificationManager` class manages notification-related settings and "Do Not Disturb" mode.
 class NotificationService: INotificationService {
@@ -16,6 +17,9 @@ class NotificationService: INotificationService {
 
     /// A shared instance of user preferences for the app.
     private let preferences: AppPreferencesModel = .shared
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Notification Service")
 
     /// Initializes a new instance of `NotificationManager`.
     init() {
@@ -79,7 +83,7 @@ class NotificationService: INotificationService {
 
             // TODO: Check if the user has previously chosen not to show the notification.
             // TODO: Add notification actions.
-            Log.info("\(id)")
+            logger.info("\(id)")
         }
 
         // Add the notification to the model.

@@ -125,7 +125,7 @@ class NotificationViewAnimator {
         model.$showNotificationToast.sink { [weak self] showToast in
             guard let self = self else { return }
 
-            Log.debug("The current view should show: \(showToast)")
+            logger.debug("The current view should show: \(showToast)")
 
             if showToast {
                 self.notificationView.isHidden = false

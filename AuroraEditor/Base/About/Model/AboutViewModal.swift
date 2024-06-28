@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OSLog
 
 /// About View Modal
 /// 
@@ -25,6 +26,9 @@ public class AboutViewModal: ObservableObject {
     @Published
     /// The state of the detail view
     var aboutDetailState: AboutDetailState = .license
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "About view modal")
 
     /// Initializes the class
     init() {
@@ -46,7 +50,7 @@ public class AboutViewModal: ObservableObject {
             case .success(let data):
                 let decoder = JSONDecoder()
                 guard let contributors = try? decoder.decode([Contributor].self, from: data) else {
-                    Log.debug(
+                    self.logger.debug(
                         "Error: Unable to decode \(String(data: data, encoding: .utf8) ?? "")"
                     )
                     return
@@ -55,7 +59,7 @@ public class AboutViewModal: ObservableObject {
                     self.contributors.append(contentsOf: contributors)
                 }
             case .failure(let error):
-                Log.debug("\(error)")
+                self.logger.fault("\(error)")
             }
         }
     }

@@ -235,7 +235,7 @@ class DiffParser {
 
             do {
                 // TODO: Add hunker parser here
-                Log.warning("Hunk parser needs to be added")
+                self.loggerwarning("Hunk parser needs to be added")
             }
 
             let contents = self.text.substring(headerEnd! + 1)

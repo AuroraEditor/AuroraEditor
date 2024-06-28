@@ -101,7 +101,7 @@ extension WorkspaceDocument {
                     ]
                 )
             } catch let err {
-                Log.fault("\(err)")
+                self.logger.fault("\(err)")
             }
         }
     }
@@ -259,7 +259,7 @@ extension WorkspaceDocument {
                     as? FileSystemClient.FileItem else { return }
             selectionState.openedCodeFiles.removeValue(forKey: item)
             if let idx = selectionState.openFileItems.firstIndex(of: item) {
-                Log.info("Removing temp tab")
+                self.logger.info("Removing temp tab")
                 selectionState.openFileItems.remove(at: idx)
             }
         case .extensionInstallation:

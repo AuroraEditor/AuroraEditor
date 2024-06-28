@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 /// A view that represents the update invalid checksum state.
 struct UpdateInvalidChecksumState: View {
@@ -20,6 +21,9 @@ struct UpdateInvalidChecksumState: View {
     /// Update model
     @State
     private var model: UpdateObservedModel
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Update Invalid Checksum State")
 
     /// Update invalid checksum state
     /// 
@@ -45,7 +49,7 @@ struct UpdateInvalidChecksumState: View {
                         Spacer()
                         Button {
                             guard let url = repository.updateFileUrl else {
-                                Log.debug("Invalid Url")
+                                self.logger.debug("Invalid Url")
                                 return
                             }
                             NSWorkspace.shared.open(URL(string: "aeupdateservice:\\\(url)")!)

@@ -8,9 +8,13 @@
 
 import Foundation
 import Version_Control
+import OSLog
 
 /// Formats commit messages for Git.
 struct CommitMessageFormatter {
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Commit message formatter")
+
 
     /// Formats a commit message for Git.
     ///
@@ -60,7 +64,7 @@ struct CommitMessageFormatter {
                                                                 commitMessage: message,
                                                                 trailers: trailers)
             } catch {
-                Log.debug("Failed to merge trailers")
+                self.logger.debug("Failed to merge trailers")
             }
         }
 

@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 import SwiftUI
+import OSLog
 
 enum AuthType: Codable {
     case github
@@ -20,6 +21,9 @@ enum AuthType: Codable {
 
 class AuroraNetworking {
     static let shared = AuroraNetworking()
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Aurora Networking")
 
     let keychain = AuroraEditorKeychain()
 
@@ -125,7 +129,7 @@ class AuroraNetworking {
                         completionHandler(
                             .success(sitedata)
                         )
-                        return Log.debug("[\(function)] HTTP OK")
+                        return self.logger.debug("[\(function)] HTTP OK")
                     default:
                         return completionHandler(
                             .failure(
@@ -293,7 +297,7 @@ class AuroraNetworking {
         }
 
 #if DEBUG
-        Log.debug("Network debug start")
+        self.logger.debug("Network debug start")
         if let request = request {
             self.networkLogRequest(request: request)
         }
@@ -306,49 +310,49 @@ class AuroraNetworking {
             self.networkLogData(data: data)
         }
 
-        Log.debug("End of network debug\n")
+        self.logger.debug("End of network debug\n")
 #endif
     }
 
     private func networkLogRequest(request: URLRequest) {
-        Log.debug("URLRequest:")
-        Log.debug("  \(request.httpMethod!) \(request.url!)")
-        Log.debug("\n  Headers:")
+        self.logger.debug("URLRequest:")
+        self.logger.debug("  \(request.httpMethod!) \(request.url!)")
+        self.logger.debug("\n  Headers:")
         for (header, cont) in request.allHTTPHeaderFields! {
-            Log.debug("    \(header): \(cont)")
+            self.logger.debug("    \(header): \(cont)")
         }
-        Log.debug("\n  Body:")
+        self.logger.debug("\n  Body:")
         if let httpBody = request.httpBody,
            let body = String(data: httpBody, encoding: .utf8) {
-            Log.debug("    \(body)")
+            self.logger.debug("    \(body)")
         }
-        Log.debug("\n")
+        self.logger.debug("\n")
     }
 
     private func networkLogResponse(response: HTTPURLResponse) {
-        Log.debug("HTTPURLResponse:")
-        Log.debug("  HTTP \(response.statusCode)")
+        self.logger.debug("HTTPURLResponse:")
+        self.logger.debug("  HTTP \(response.statusCode)")
         for (header, cont) in response.allHeaderFields {
-            Log.debug("    \(header): \(cont as? String ?? "")")
+            self.logger.debug("    \(header): \(cont as? String ?? "")")
         }
     }
 
     private func networkLogData(data: Data) {
         if let stringData = String(data: data, encoding: .utf8) {
-            Log.debug("\n  Body:")
+            self.logger.debug("\n  Body:")
             for line in stringData.split(separator: "\n") {
-                Log.debug("    \(line)")
+                self.logger.debug("    \(line)")
             }
 
             do {
-                Log.debug("\n  Decoded JSON:")
+                self.logger.debug("\n  Decoded JSON:")
                 if let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                     for (key, value) in dictionary {
-                        Log.debug("    \(key): \"\(value as? String ?? "")\"")
+                        self.logger.debug("    \(key): \"\(value as? String ?? "")\"")
                     }
                 }
             } catch {
-                Log.fault("\(error.localizedDescription)")
+                self.logger.fault("\(error.localizedDescription)")
             }
         }
     }

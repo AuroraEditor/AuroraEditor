@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 /// Tab bar item view.
 struct TabBarItem: View {
@@ -62,6 +63,9 @@ struct TabBarItem: View {
     var isActive: Bool {
         item.tabID == workspace.selectionState.selectedId
     }
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Tab bar item")
 
     /// Switch action
     func switchAction() {
@@ -182,7 +186,7 @@ struct TabBarItem: View {
             TapGesture(count: 2)
                 .onEnded { _ in
                     if isTemporary {
-                        Log.info("Converting temp tab")
+                        self.logger.info("Converting temp tab")
                         workspace.convertTemporaryTab()
                     }
                 }

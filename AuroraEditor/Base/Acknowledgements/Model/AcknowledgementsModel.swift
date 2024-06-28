@@ -47,7 +47,7 @@ final class AcknowledgementsModel: ObservableObject {
                 }
             }
         } catch {
-            Log.info(error.localizedDescription)
+            self.logger.info(error.localizedDescription)
         }
     }
 }

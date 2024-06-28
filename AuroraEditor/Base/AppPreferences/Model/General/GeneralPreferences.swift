@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 public extension AppPreferences {
 
@@ -351,8 +352,12 @@ public extension AppPreferences {
     }
 }
 
+// TODO: Move To class.
 /// Aurora Editor Commandline installation
 func aeCommandLine() {
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "AE Command Line Installer")
+
     do {
         let url = Bundle.main.url(forResource: "ae", withExtension: nil, subdirectory: "Resources")
         let destination = "/usr/local/bin/ae"
@@ -362,7 +367,7 @@ func aeCommandLine() {
         }
 
         guard let shellUrl = url?.path else {
-            Log.fault("Failed to get URL to shell command")
+            logger.fault("Failed to get URL to shell command")
             return
         }
 
@@ -381,12 +386,14 @@ func aeCommandLine() {
             }
         }
     } catch {
-        Log.fault("\(error)")
+        logger.fault("\(error)")
     }
 }
 
 /// Fallback shell installation
 func fallbackShellInstallation(commandPath: String, destinationPath: String) {
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Fallback Shell Installation")
+
     let cmd = [
         "osascript",
         "-e",
@@ -408,7 +415,7 @@ func fallbackShellInstallation(commandPath: String, destinationPath: String) {
     do {
         try task.run()
     } catch {
-        Log.fault("\(error)")
+        logger.fault("\(error)")
     }
 }
 // swiftlint:disable:this file_length

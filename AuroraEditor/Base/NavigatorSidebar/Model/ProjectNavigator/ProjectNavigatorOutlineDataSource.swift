@@ -61,7 +61,7 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
     /// - Returns: the pasteboard writer
     func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
         guard let fileItem = item as? FileItem else {
-            Log.fault("Item is not file item")
+            self.logger.fault("Item is not file item")
             return nil
         }
         let pboarditem = NSPasteboardItem()
@@ -122,7 +122,7 @@ extension ProjectNavigatorViewController: NSOutlineViewDataSource {
             let fileName = draggedURL.lastPathComponent
             try FileManager.default.moveItem(at: draggedURL, to: targetFileItem.url.appendingPathComponent(fileName))
         } catch {
-            Log.fault("Moving item \(draggedURL) to \(targetFileItem.url) failed: \(error)")
+            self.logger.fault("Moving item \(draggedURL) to \(targetFileItem.url) failed: \(error)")
             return false
         }
         return true

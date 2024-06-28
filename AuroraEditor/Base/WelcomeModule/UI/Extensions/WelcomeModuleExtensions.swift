@@ -19,7 +19,7 @@ extension WelcomeWindowView {
     static func openWelcomeWindow(function: String = #function,
                                   file: String = #file,
                                   line: Int = #line) {
-        Log.info("openWelcomeWindow is called from \(function) on \(line) in \(file)")
+        self.logger.info("openWelcomeWindow is called from \(function) on \(line) in \(file)")
         let window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 800, height: 460),
             styleMask: [.titled, .fullSizeContentView],

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct WorkflowJobsView: View {
     @ObservedObject
@@ -20,6 +21,10 @@ struct WorkflowJobsView: View {
 
     @State
     private var jobName: String
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Workflow Jobs View")
+
 
     init(workspace: WorkspaceDocument,
          runId: String,
@@ -65,7 +70,7 @@ struct WorkflowJobsView: View {
                             jobId: actionsModel.jobId
                         )
                         .log {
-                            Log.info("Currently selected job id: \(actionsModel.jobId)")
+                            self.logger.info("Currently selected job id: \(actionsModel.jobId)")
                         }
                     }
 

@@ -25,7 +25,7 @@ func listSubmodules(directoryURL: URL,
     let submodulesDir = FileManager.default.fileExists(atPath: "\(directoryURL).git/modules", isDirectory: &isDirectory)
 
     if !submodulesFile && !submodulesDir {
-        Log.info("No submodules found. Skipping \"git submodule status\"")
+        self.loggerinfo("No submodules found. Skipping \"git submodule status\"")
         return []
     }
 

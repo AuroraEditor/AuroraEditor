@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OSLog
 
 // TODO: @0xWDG Look if this can be removed.
 /// A rule that matches a pattern.
@@ -25,6 +26,9 @@ public class MatchRule: Rule, Pattern {
 
     /// The captures for the rule.
     var captures: [Capture]
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Match Rule")
 
     /// Creates a match rule.
     /// 
@@ -51,7 +55,7 @@ public class MatchRule: Rule, Pattern {
             message += "name(\"\(name)\"), regex(\"\(match)\"), "
             message += "error: \"\(error.localizedDescription)\""
 
-            Log.warning("\(message)")
+            self.logger.warning("\(message)")
             self.match = .init()
         }
         self.captures = captures

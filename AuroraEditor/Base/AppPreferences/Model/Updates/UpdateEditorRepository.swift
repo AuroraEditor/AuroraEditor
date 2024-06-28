@@ -9,6 +9,7 @@
 import Foundation
 import ZIPFoundation
 import AppKit
+import OSLog
 
 /// A repository that manages the download and installation of editor updates.
 class UpdateEditorRepository: NSObject, URLSessionDownloadDelegate {
@@ -39,6 +40,9 @@ class UpdateEditorRepository: NSObject, URLSessionDownloadDelegate {
     /// The time at which the download started.
     private var downloadStartTime: TimeInterval = 0
 
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Update Editor Repository")
+
     /// Initializes a new `UpdateEditorRepository` instance.
     override init() {
         self.fileManager = FileManager.default
@@ -67,7 +71,7 @@ class UpdateEditorRepository: NSObject, URLSessionDownloadDelegate {
         let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
 
         if let url = URL(string: downloadURL) {
-            Log.debug("\(downloadURL)")
+            self.logger.debug("\(downloadURL)")
             downloadTask = session.downloadTask(with: url)
             downloadTask?.resume()
 
@@ -234,7 +238,7 @@ class UpdateEditorRepository: NSObject, URLSessionDownloadDelegate {
                            task: URLSessionTask,
                            didCompleteWithError error: Error?) {
         if let error = error {
-            Log.debug("Download failed with error: \(error.localizedDescription)")
+            logger.debug("Download failed with error: \(error.localizedDescription)")
 
             // Handle the error based on its type or domain
             if let urlError = error as? URLError {
@@ -332,7 +336,7 @@ class UpdateEditorRepository: NSObject, URLSessionDownloadDelegate {
             }
         } catch {
             // Handle any potential errors here
-            Log.debug("Error: \(error)")
+            logger.debug("Error: \(error)")
         }
 
         return nil

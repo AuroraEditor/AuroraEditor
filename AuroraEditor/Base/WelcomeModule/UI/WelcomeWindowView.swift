@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Version_Control
+import OSLog
 
 /// The main window when opening Aurora Editor when there
 public struct WelcomeWindowView: View {
@@ -22,6 +23,9 @@ public struct WelcomeWindowView: View {
 
     /// Shell client
     private let shellClient: ShellClient
+
+    /// Logger
+    static let logger = Logger(subsystem: "com.auroraeditor", category: "Welcome Window View")
 
     /// Initialize a new WelcomeWindowView
     /// 

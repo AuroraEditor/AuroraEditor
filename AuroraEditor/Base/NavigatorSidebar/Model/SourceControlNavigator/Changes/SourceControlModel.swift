@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 import Version_Control
+import OSLog
 
 /// This model handle the fetching and adding of changes etc... for the
 /// Source Control Navigator
@@ -49,6 +50,10 @@ public final class SourceControlModel: ObservableObject {
     /// A set of cancellables
     private var cancellables = Set<AnyCancellable>()
 
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Source Control Model")
+
+
     /// Initialize with a GitClient
     /// 
     /// - Parameter workspaceURL: the current workspace URL we also need this to open files in finder
@@ -81,7 +86,7 @@ public final class SourceControlModel: ObservableObject {
         do {
             try gitClient.discardFileChanges(url: file.url.path)
         } catch {
-            Log.fault("Failed to discard changes")
+            self.logger.fault("Failed to discard changes")
         }
     }
 
@@ -90,7 +95,7 @@ public final class SourceControlModel: ObservableObject {
         do {
             try gitClient.discardProjectChanges()
         } catch {
-            Log.fault("Failed to discard changes")
+            self.logger.fault("Failed to discard changes")
         }
     }
 

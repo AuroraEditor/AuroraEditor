@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OSLog
 
 // TODO: @0xWDG Look if this can be removed.
 /// The representation of the Begin/End rule.
@@ -48,6 +49,10 @@ public class BeginEndRule: Rule, Pattern {
     /// The resolved rules from the patterns.
     private var rules: [Rule]?
 
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "BeginEndRule")
+
+
     /// Creates a begin/end rule.
     /// 
     /// - parameter name: The name of the rule.
@@ -83,7 +88,7 @@ public class BeginEndRule: Rule, Pattern {
             message += "name(\"\(name)\"), begin(\"\(begin)\"), end(\"\(end)\"), "
             message += "error: \"\(error.localizedDescription)\""
 
-            Log.warning("\(message)")
+            self.logger.warning("\(message)")
             self.begin = .init()
         }
         do {
@@ -99,7 +104,7 @@ public class BeginEndRule: Rule, Pattern {
             message += "name(\"\(name)\"), begin(\"\(begin)\"), end(\"\(end)\"), "
             message += "error: \"\(error.localizedDescription)\""
 
-            Log.warning("\(message)")
+            self.logger.warning("\(message)")
             self.end = .init()
         }
         self.patterns = patterns

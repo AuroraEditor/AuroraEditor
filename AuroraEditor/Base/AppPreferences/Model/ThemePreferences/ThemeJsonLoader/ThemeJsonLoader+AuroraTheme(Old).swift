@@ -20,7 +20,7 @@ extension ThemeJsonLoader {
             let data = try Data(contentsOf: url)
             return themeFromOldAEThemeJson(jsonStr: String(decoding: data, as: UTF8.self))
         } catch {
-            Log.info("Error loading theme: \(String(describing: error))")
+            self.logger.info("Error loading theme: \(String(describing: error))")
         }
 
         return nil
@@ -33,7 +33,7 @@ extension ThemeJsonLoader {
         guard let jsonData = jsonStr.data(using: .utf8),
               let json = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any]
         else {
-            Log.info("Failed to load vsc json")
+            self.logger.info("Failed to load vsc json")
             return nil
         }
 

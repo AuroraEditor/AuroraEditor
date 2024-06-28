@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OSLog
 
 /// The model for the update json
 private var prefs: AppPreferencesModel = .shared
@@ -15,6 +16,9 @@ private var prefs: AppPreferencesModel = .shared
 public class UpdateObservedModel: ObservableObject {
     /// The shared instance of the update model
     public static let shared: UpdateObservedModel = .init()
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Update Observed Model")
 
     /// The commit hash of the current build
     private var commitHash: String {
@@ -134,7 +138,7 @@ public class UpdateObservedModel: ObservableObject {
                         DispatchQueue.main.async {
                             self.updateState = .error
                         }
-                        Log.fault(
+                        self.logger.fault(
                             "Error: \(error), \(String(data: data, encoding: .utf8) ?? "")"
                         )
                     }
@@ -142,7 +146,7 @@ public class UpdateObservedModel: ObservableObject {
                     DispatchQueue.main.async {
                         self.updateState = .error
                     }
-                    Log.debug("\(failure)")
+                    self.logger.debug("\(failure)")
                 }
             })
         }

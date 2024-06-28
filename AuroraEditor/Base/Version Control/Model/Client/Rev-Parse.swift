@@ -59,7 +59,7 @@ func getRepositoryType(path: String) throws -> RepositoryType {
         // in reality it's almost always going to be that the process couldn't be
         // launched inside of `path` meaning it didn't exist. This would constitute
         // a race condition given that we stat the path before executing Git.
-        Log.error("Git doesn't exist, returning as missing")
+        self.loggererror("Git doesn't exist, returning as missing")
         return .missing
     }
 }
