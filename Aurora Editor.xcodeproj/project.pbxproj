@@ -437,11 +437,9 @@
 		2BCDF9D8295F2EBB00570253 /* .githash in Copy .githash */ = {isa = PBXBuildFile; fileRef = 2BCDF9D6295F2E9700570253 /* .githash */; };
 		2BD0BD142977331400629A86 /* VibrantEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0BD132977331400629A86 /* VibrantEffect.swift */; };
 		2BD5CF1E28D602CE00F95E5A /* EditorLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF0C28D602CE00F95E5A /* EditorLocation.swift */; };
-		2BD5CF2428D602CE00F95E5A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1228D602CE00F95E5A /* Message.swift */; };
 		2BD5CF2628D602CE00F95E5A /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1428D602CE00F95E5A /* ViewModifiers.swift */; };
 		2BD5CF2728D602CE00F95E5A /* OSDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1528D602CE00F95E5A /* OSDefinitions.swift */; };
 		2BD5CF2828D602CE00F95E5A /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1628D602CE00F95E5A /* ScrollView.swift */; };
-		2BD5CF2E28D602CE00F95E5A /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1C28D602CE00F95E5A /* MessageView.swift */; };
 		2BDE0F772BC8874900C20B85 /* JSTimerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE0F762BC8874800C20B85 /* JSTimerSupport.swift */; };
 		2BDFA8F928D1079700980385 /* WebTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8F728D1079600980385 /* WebTab.swift */; };
 		2BDFA90428D107B200980385 /* WebWKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8FB28D107B200980385 /* WebWKView.swift */; };
@@ -488,7 +486,6 @@
 		936312EA28CCCAD9004CD24B /* TabBarAccessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936312E928CCCAD9004CD24B /* TabBarAccessories.swift */; };
 		93672E8528B2684F0086132E /* ToolbarPlusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93672E8428B2684F0086132E /* ToolbarPlusMenu.swift */; };
 		93813D2428D749CC00A492D4 /* CodeViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D2328D749CC00A492D4 /* CodeViewDelegate.swift */; };
-		93813D3528D74E5400A492D4 /* CodeStorageDelegate+Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93813D3428D74E5400A492D4 /* CodeStorageDelegate+Messages.swift */; };
 		9384904428FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9384904328FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift */; };
 		9384904628FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9384904528FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift */; };
 		9384904828FBA5E2006FB263 /* auroraeditor-github-light.json in Resources */ = {isa = PBXBuildFile; fileRef = 9384904728FBA5E2006FB263 /* auroraeditor-github-light.json */; };
@@ -500,9 +497,6 @@
 		93ACA43728C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACA43628C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift */; };
 		93AD8B0A28FD457600317072 /* ThemeJsonLoader+AuroraTheme(Old).swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AD8B0928FD457600317072 /* ThemeJsonLoader+AuroraTheme(Old).swift */; };
 		93B1D10C28CD907A005A8C24 /* TabBar+Drag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B1D10B28CD907A005A8C24 /* TabBar+Drag.swift */; };
-		93CACA2328D7515F00978753 /* StatefulMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CACA2228D7515F00978753 /* StatefulMessageView.swift */; };
-		93CACA2528D751CF00978753 /* MessageInlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CACA2428D751CF00978753 /* MessageInlineView.swift */; };
-		93CACA2728D7524800978753 /* MessagePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CACA2628D7524800978753 /* MessagePopupView.swift */; };
 		93CAE19828F6F11200454C6F /* ThemeJsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CAE19728F6F11200454C6F /* ThemeJsonLoader.swift */; };
 		93CB9AE028C72BC20068074A /* GitCloneView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CB9ADF28C72BC20068074A /* GitCloneView+Helpers.swift */; };
 		93D5F5D028CE05BC00286EBD /* HierarchyNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5F5CF28CE05BC00286EBD /* HierarchyNavigator.swift */; };
@@ -1066,11 +1060,9 @@
 		2BCDF9D6295F2E9700570253 /* .githash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .githash; sourceTree = "<group>"; };
 		2BD0BD132977331400629A86 /* VibrantEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrantEffect.swift; sourceTree = "<group>"; };
 		2BD5CF0C28D602CE00F95E5A /* EditorLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorLocation.swift; sourceTree = "<group>"; };
-		2BD5CF1228D602CE00F95E5A /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		2BD5CF1428D602CE00F95E5A /* ViewModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		2BD5CF1528D602CE00F95E5A /* OSDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSDefinitions.swift; sourceTree = "<group>"; };
 		2BD5CF1628D602CE00F95E5A /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
-		2BD5CF1C28D602CE00F95E5A /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		2BDE0F762BC8874800C20B85 /* JSTimerSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSTimerSupport.swift; sourceTree = "<group>"; };
 		2BDFA8F728D1079600980385 /* WebTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebTab.swift; sourceTree = "<group>"; };
 		2BDFA8FB28D107B200980385 /* WebWKView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebWKView.swift; sourceTree = "<group>"; };
@@ -1118,7 +1110,6 @@
 		936312E928CCCAD9004CD24B /* TabBarAccessories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAccessories.swift; sourceTree = "<group>"; };
 		93672E8428B2684F0086132E /* ToolbarPlusMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarPlusMenu.swift; sourceTree = "<group>"; };
 		93813D2328D749CC00A492D4 /* CodeViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewDelegate.swift; sourceTree = "<group>"; };
-		93813D3428D74E5400A492D4 /* CodeStorageDelegate+Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodeStorageDelegate+Messages.swift"; sourceTree = "<group>"; };
 		9384904328FB9C95006FB263 /* ThemeJsonLoader+VSCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThemeJsonLoader+VSCode.swift"; sourceTree = "<group>"; };
 		9384904528FB9CCB006FB263 /* ThemeJsonLoader+TextMate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThemeJsonLoader+TextMate.swift"; sourceTree = "<group>"; };
 		9384904728FBA5E2006FB263 /* auroraeditor-github-light.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "auroraeditor-github-light.json"; sourceTree = "<group>"; };
@@ -1130,9 +1121,6 @@
 		93ACA43628C32FF500672994 /* AuroraEditorWindowController+NSToolbarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuroraEditorWindowController+NSToolbarDelegate.swift"; sourceTree = "<group>"; };
 		93AD8B0928FD457600317072 /* ThemeJsonLoader+AuroraTheme(Old).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThemeJsonLoader+AuroraTheme(Old).swift"; sourceTree = "<group>"; };
 		93B1D10B28CD907A005A8C24 /* TabBar+Drag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBar+Drag.swift"; sourceTree = "<group>"; };
-		93CACA2228D7515F00978753 /* StatefulMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulMessageView.swift; sourceTree = "<group>"; };
-		93CACA2428D751CF00978753 /* MessageInlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInlineView.swift; sourceTree = "<group>"; };
-		93CACA2628D7524800978753 /* MessagePopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePopupView.swift; sourceTree = "<group>"; };
 		93CAE19728F6F11200454C6F /* ThemeJsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeJsonLoader.swift; sourceTree = "<group>"; };
 		93CB9ADF28C72BC20068074A /* GitCloneView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GitCloneView+Helpers.swift"; sourceTree = "<group>"; };
 		93D5F5CF28CE05BC00286EBD /* HierarchyNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyNavigator.swift; sourceTree = "<group>"; };
@@ -3252,7 +3240,6 @@
 			children = (
 				93813D2C28D74BAB00A492D4 /* Editor */,
 				93813D2228D749A600A492D4 /* LayoutDelegates */,
-				93813D2928D74B3500A492D4 /* Messages */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3263,19 +3250,6 @@
 				93813D2328D749CC00A492D4 /* CodeViewDelegate.swift */,
 			);
 			path = LayoutDelegates;
-			sourceTree = "<group>";
-		};
-		93813D2928D74B3500A492D4 /* Messages */ = {
-			isa = PBXGroup;
-			children = (
-				93813D3428D74E5400A492D4 /* CodeStorageDelegate+Messages.swift */,
-				2BD5CF1228D602CE00F95E5A /* Message.swift */,
-				93CACA2428D751CF00978753 /* MessageInlineView.swift */,
-				93CACA2628D7524800978753 /* MessagePopupView.swift */,
-				2BD5CF1C28D602CE00F95E5A /* MessageView.swift */,
-				93CACA2228D7515F00978753 /* StatefulMessageView.swift */,
-			);
-			path = Messages;
 			sourceTree = "<group>";
 		};
 		93813D2C28D74BAB00A492D4 /* Editor */ = {
@@ -4115,7 +4089,6 @@
 				2093CDE7289AAE83003A88DD /* CheckoutBranchView.swift in Sources */,
 				93159FDC28D5F40C00C55C5A /* CodeEditorViewWrapper.swift in Sources */,
 				93ECCFFB2902D02E00605FB3 /* CodeFile.swift in Sources */,
-				93813D3528D74E5400A492D4 /* CodeStorageDelegate+Messages.swift in Sources */,
 				93813D2428D749CC00A492D4 /* CodeViewDelegate.swift in Sources */,
 				2032B50E28A256130089EBB6 /* Collection.swift in Sources */,
 				2093CDDE289AA522003A88DD /* Color.swift in Sources */,
@@ -4291,10 +4264,6 @@
 				A03E21FB2B0D54C1008A6A77 /* CachingAsyncImageView.swift in Sources */,
 				2093CDA1289AA167003A88DD /* Loopable.swift in Sources */,
 				2093CCB1289AA032003A88DD /* LSPClient.swift in Sources */,
-				2BD5CF2428D602CE00F95E5A /* Message.swift in Sources */,
-				93CACA2528D751CF00978753 /* MessageInlineView.swift in Sources */,
-				93CACA2728D7524800978753 /* MessagePopupView.swift in Sources */,
-				2BD5CF2E28D602CE00F95E5A /* MessageView.swift in Sources */,
 				2093CD4A289AA095003A88DD /* Namespace.swift in Sources */,
 				93983D2D28CE012500E54409 /* NavigatorModeSelectModel.swift in Sources */,
 				93DEBF7E295C441E002EAD63 /* NavigatorSidebar+Splitting.swift in Sources */,
@@ -4411,7 +4380,6 @@
 				20B5BDA928B130FF00B2A02F /* SplitViewModifier.swift in Sources */,
 				9354D4BB28AD2872004C6D18 /* StandardTableViewCell.swift in Sources */,
 				2093CDE8289AAE87003A88DD /* StashChangesSheet.swift in Sources */,
-				93CACA2328D7515F00978753 /* StatefulMessageView.swift in Sources */,
 				2093CC90289A9FEE003A88DD /* StatusBar.swift in Sources */,
 				938E8E83291CBC3400DB8320 /* StatusBarBracketCountLabel.swift in Sources */,
 				2093CC97289A9FF5003A88DD /* StatusBarBreakpointButton.swift in Sources */,
