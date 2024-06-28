@@ -437,9 +437,7 @@
 		2BCDF9D8295F2EBB00570253 /* .githash in Copy .githash */ = {isa = PBXBuildFile; fileRef = 2BCDF9D6295F2E9700570253 /* .githash */; };
 		2BD0BD142977331400629A86 /* VibrantEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0BD132977331400629A86 /* VibrantEffect.swift */; };
 		2BD5CF1E28D602CE00F95E5A /* EditorLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF0C28D602CE00F95E5A /* EditorLocation.swift */; };
-		2BD5CF2128D602CE00F95E5A /* CodeStorageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF0F28D602CE00F95E5A /* CodeStorageDelegate.swift */; };
 		2BD5CF2428D602CE00F95E5A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1228D602CE00F95E5A /* Message.swift */; };
-		2BD5CF2528D602CE00F95E5A /* LineMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1328D602CE00F95E5A /* LineMap.swift */; };
 		2BD5CF2628D602CE00F95E5A /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1428D602CE00F95E5A /* ViewModifiers.swift */; };
 		2BD5CF2728D602CE00F95E5A /* OSDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1528D602CE00F95E5A /* OSDefinitions.swift */; };
 		2BD5CF2828D602CE00F95E5A /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5CF1628D602CE00F95E5A /* ScrollView.swift */; };
@@ -1068,9 +1066,7 @@
 		2BCDF9D6295F2E9700570253 /* .githash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .githash; sourceTree = "<group>"; };
 		2BD0BD132977331400629A86 /* VibrantEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrantEffect.swift; sourceTree = "<group>"; };
 		2BD5CF0C28D602CE00F95E5A /* EditorLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorLocation.swift; sourceTree = "<group>"; };
-		2BD5CF0F28D602CE00F95E5A /* CodeStorageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeStorageDelegate.swift; sourceTree = "<group>"; };
 		2BD5CF1228D602CE00F95E5A /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		2BD5CF1328D602CE00F95E5A /* LineMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineMap.swift; sourceTree = "<group>"; };
 		2BD5CF1428D602CE00F95E5A /* ViewModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		2BD5CF1528D602CE00F95E5A /* OSDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSDefinitions.swift; sourceTree = "<group>"; };
 		2BD5CF1628D602CE00F95E5A /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
@@ -3257,7 +3253,6 @@
 				93813D2C28D74BAB00A492D4 /* Editor */,
 				93813D2228D749A600A492D4 /* LayoutDelegates */,
 				93813D2928D74B3500A492D4 /* Messages */,
-				93813D2F28D74C1B00A492D4 /* Storage */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3287,17 +3282,8 @@
 			isa = PBXGroup;
 			children = (
 				2BD5CF0C28D602CE00F95E5A /* EditorLocation.swift */,
-				2BD5CF1328D602CE00F95E5A /* LineMap.swift */,
 			);
 			path = Editor;
-			sourceTree = "<group>";
-		};
-		93813D2F28D74C1B00A492D4 /* Storage */ = {
-			isa = PBXGroup;
-			children = (
-				2BD5CF0F28D602CE00F95E5A /* CodeStorageDelegate.swift */,
-			);
-			path = Storage;
 			sourceTree = "<group>";
 		};
 		9384904228FB9C69006FB263 /* ThemeJsonLoader */ = {
@@ -4130,7 +4116,6 @@
 				93159FDC28D5F40C00C55C5A /* CodeEditorViewWrapper.swift in Sources */,
 				93ECCFFB2902D02E00605FB3 /* CodeFile.swift in Sources */,
 				93813D3528D74E5400A492D4 /* CodeStorageDelegate+Messages.swift in Sources */,
-				2BD5CF2128D602CE00F95E5A /* CodeStorageDelegate.swift in Sources */,
 				93813D2428D749CC00A492D4 /* CodeViewDelegate.swift in Sources */,
 				2032B50E28A256130089EBB6 /* Collection.swift in Sources */,
 				2093CDDE289AA522003A88DD /* Color.swift in Sources */,
@@ -4299,7 +4284,6 @@
 				2B04575C28E6FFE300024F2D /* LigatureThemeAttribute.swift in Sources */,
 				2072FA1A280D872600C7F8D4 /* LineEndings.swift in Sources */,
 				2B04574C28E6FFE300024F2D /* LineHeightThemeAttribute.swift in Sources */,
-				2BD5CF2528D602CE00F95E5A /* LineMap.swift in Sources */,
 				2B04574628E6FFE300024F2D /* LineThemeAttribute.swift in Sources */,
 				2B11FF822AB0E87C005B649C /* AuroraINIParser.swift in Sources */,
 				D7211D4327E066CE008F2ED7 /* Localized+Ex.swift in Sources */,
