@@ -34,7 +34,7 @@ public struct GeneralPreferencesView: View {
     /// Initializes the general preferences view
     public init() {
         self.logger = Logger(subsystem: "com.auroraeditor", category: "General Preferences View")
-        
+
         guard let defaults = UserDefaults(
             suiteName: "com.auroraeditor.shared"
         ) else {
