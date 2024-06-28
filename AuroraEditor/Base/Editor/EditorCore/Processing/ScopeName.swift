@@ -8,7 +8,6 @@
 
 import Foundation
 
-// TODO: @0xWDG Look if this can be removed.
 /// Scope name.
 @available(*, deprecated)
 public class ScopeName: RawRepresentable {
