@@ -36,7 +36,6 @@ public struct GeneralPreferencesView: View {
         guard let defaults = UserDefaults(
             suiteName: "com.auroraeditor.shared"
         ) else {
-            self.logger.fault("Failed to get/init shared defaults")
             return
         }
 
