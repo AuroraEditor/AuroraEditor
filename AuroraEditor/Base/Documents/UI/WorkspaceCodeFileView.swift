@@ -8,6 +8,7 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
+import OSLog
 
 /// A view that represents the code file editor in the workspace.
 struct WorkspaceCodeFileView: View {
@@ -31,13 +32,16 @@ struct WorkspaceCodeFileView: View {
         return NSFont(name: name, size: Double(size)) ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
     }()
 
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Workspace Code File View")
+
     /// The code view
     @ViewBuilder
     var codeView: some View {
         ZStack {
             if let item = workspace.selectionState.openFileItems.first(where: { file in
                 if file.tabID == workspace.selectionState.selectedId {
-                    Log.info("Item loaded is: \(file.url)")
+                    self.logger.info("Item loaded is: \(file.url)")
                 }
 
                 return file.tabID == workspace.selectionState.selectedId
@@ -51,15 +55,15 @@ struct WorkspaceCodeFileView: View {
                                        onDrop: { position, _ in
                                 switch position {
                                 case .top:
-                                    Log.info("Dropped at the top")
+                                    self.logger.info("Dropped at the top")
                                 case .bottom:
-                                    Log.info("Dropped at the bottom")
+                                    self.logger.info("Dropped at the bottom")
                                 case .leading:
-                                    Log.info("Dropped at the start")
+                                    self.logger.info("Dropped at the start")
                                 case .trailing:
-                                    Log.info("Dropped at the end")
+                                    self.logger.info("Dropped at the end")
                                 case .center:
-                                    Log.info("Dropped at the center")
+                                    self.logger.info("Dropped at the center")
                                 }
                             })
                     } else {
@@ -70,15 +74,15 @@ struct WorkspaceCodeFileView: View {
                                        onDrop: { position, _ in
                                 switch position {
                                 case .top:
-                                    Log.info("Dropped at the top")
+                                    self.logger.info("Dropped at the top")
                                 case .bottom:
-                                    Log.info("Dropped at the bottom")
+                                    self.logger.info("Dropped at the bottom")
                                 case .leading:
-                                    Log.info("Dropped at the start")
+                                    self.logger.info("Dropped at the start")
                                 case .trailing:
-                                    Log.info("Dropped at the end")
+                                    self.logger.info("Dropped at the end")
                                 case .center:
-                                    Log.info("Dropped at the center")
+                                    self.logger.info("Dropped at the center")
                                 }
                             })
                     }

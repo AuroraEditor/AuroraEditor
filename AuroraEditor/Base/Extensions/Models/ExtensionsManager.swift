@@ -29,7 +29,7 @@ public final class ExtensionsManager {
     private var workspace: WorkspaceDocument?
 
     /// Extensions logger
-    private let logger = Logger(subsystem: "com.auroraeditor", category: "Extensions")
+    private let logger = Logger(subsystem: "com.auroraeditor.extensions", category: "Extensions Manager")
 
     /// Initialize ExtensionsManager
     init() {
@@ -71,7 +71,7 @@ public final class ExtensionsManager {
     private func auroraAPICallback(file: String) -> AuroraAPI {
         return { function, parameters in
             if let workspace = self.workspace {
-                Log.info("Broadcasting \(function), \(parameters)")
+                self.logger.info("Broadcasting \(function), \(parameters)")
                 workspace.broadcaster.broadcast(
                     sender: file.replacingOccurrences(of: ".AEext", with: ""),
                     command: function,
@@ -254,7 +254,7 @@ public final class ExtensionsManager {
             )
 
             // Let the extensions know we opened a file (from a workspace)
-            for (id, AEExt) in ExtensionsManager.shared.loadedExtensions {
+            for (_, AEExt) in ExtensionsManager.shared.loadedExtensions {
                 AEExt.respond(action: event, parameters: parameters)
             }
         }

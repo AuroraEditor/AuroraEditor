@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 /// Feedback model
 public class FeedbackModel: ObservableObject {
@@ -80,6 +81,9 @@ public class FeedbackModel: ObservableObject {
                          IssueArea(name: "Debugger", id: "debugger"),
                          IssueArea(name: "Editor", id: "editor"),
                          IssueArea(name: "Other", id: "other")]
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "Feeback model")
 
     /// Gets the ID of the selected issue type and then
     /// cross references it to select the right Label based on the type
@@ -193,7 +197,7 @@ public class FeedbackModel: ObservableObject {
                             actuallyHappened: String?) {
         let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
         guard let firstGitAccount = gitAccounts.first else {
-            Log.warning("Did not find an account name.")
+            self.logger.warning("Did not find an account name.")
             guard let safeTitle = "\(getFeebackTypeTitle()) \(title)"
                 .addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
                   let safeBody = createIssueBody(description: description,
@@ -205,7 +209,7 @@ public class FeedbackModel: ObservableObject {
                     string: "https://github.com/AuroraEditor/AuroraEditor/issues/" +
                     "new?title=\(safeTitle)&body=\(safeBody)"
                   ) else {
-                Log.fault("Failed to generate URL")
+                self.logger.fault("Failed to generate URL")
                 return
             }
 
@@ -232,10 +236,10 @@ public class FeedbackModel: ObservableObject {
                     )
                 }
                 self.isSubmitted.toggle()
-                Log.info("\(issue.number)")
+                self.logger.info("\(issue.number)")
             case .failure(let error):
                 self.failedToSubmit.toggle()
-                Log.fault("\(error)")
+                self.logger.fault("\(error)")
             }
         }
     }

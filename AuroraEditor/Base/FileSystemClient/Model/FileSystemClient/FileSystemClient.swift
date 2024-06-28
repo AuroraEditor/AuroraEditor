@@ -8,6 +8,7 @@
 
 import Combine
 import Foundation
+import OSLog
 
 /// File System Client
 public class FileSystemClient {
@@ -43,6 +44,9 @@ public class FileSystemClient {
     /// Subject
     private var subject = CurrentValueSubject<[FileItem], Never>([])
 
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "File system client")
+
     /// A function that, given a file's path, returns a `FileItem` if it exists
     /// within the scope of the `FileSystemClient`.
     /// 
@@ -64,7 +68,7 @@ public class FileSystemClient {
         stopListeningToDirectory()
         workspaceItem.children = []
         flattenedFileItems = [workspaceItem.id: workspaceItem]
-        Log.info("Cleaned up watchers and file items")
+        logger.info("Cleaned up watchers and file items")
     }
 
     // MARK: Watchers

@@ -123,13 +123,13 @@ extension FileItem {
                 previousName.replacingOccurrences(of: ".\(fileExtension)", with: "")
             fileUrl = fileUrl.deletingLastPathComponent().appendingPathComponent("\(fileName) copy\(fileExtension)")
         }
-        Log.info("Duplicating file to \(fileUrl)")
+        self.logger.info("Duplicating file to \(fileUrl)")
 
         if FileItem.fileManger.fileExists(atPath: self.url.path) {
             do {
                 try FileItem.fileManger.copyItem(at: self.url, to: fileUrl)
             } catch {
-                Log.fault("Error at \(self.url.path) to \(fileUrl.path)")
+                self.logger.fault("Error at \(self.url.path) to \(fileUrl.path)")
                 fatalError(error.localizedDescription)
             }
         }

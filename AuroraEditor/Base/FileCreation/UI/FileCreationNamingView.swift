@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 /// File creation naming view
 struct FileCreationNamingView: View {
@@ -29,6 +30,9 @@ struct FileCreationNamingView: View {
     /// Tags
     @State
     var tags: String = ""
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "File creation naming view")
 
     /// The view body
     var body: some View {
@@ -74,7 +78,7 @@ struct FileCreationNamingView: View {
                             presentationMode.wrappedValue.dismiss()
                             workspace.newFileModel.showFileCreationSheet.toggle()
                         case .failure(let failure):
-                            Log.fault("\(failure)")
+                            self.logger.fault("\(failure)")
                         }
                     }
                 } label: {

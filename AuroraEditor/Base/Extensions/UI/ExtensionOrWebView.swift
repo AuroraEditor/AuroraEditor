@@ -8,6 +8,7 @@
 
 import SwiftUI
 import WebKit
+import OSLog
 
 /// Should we use a extension View or a WebView.
 struct ExtensionOrWebView: View {
@@ -47,6 +48,10 @@ struct ExtensionWKWebView: NSViewRepresentable {
 
     /// Sender of the view
     var sender: String
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor.extensions", category: "Extension WKWebView")
+
 
     /// Create the NSView
     /// 
@@ -96,7 +101,7 @@ struct ExtensionWKWebView: NSViewRepresentable {
 
         // if the URL is valid (has a protocol), load the page
         if let html = pageHTML {
-            Log.info("Allow access to: \(baseURL)")
+            logger.info("Allow access to: \(baseURL)")
             webView.loadFileURL(baseURL, allowingReadAccessTo: baseURL)
             webView.loadHTMLString(html, baseURL: baseURL)
         } else {

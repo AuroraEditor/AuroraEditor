@@ -9,6 +9,7 @@
 import Foundation
 import AppKit
 import CryptoKit
+import OSLog
 
 extension String {
     /// Last path component

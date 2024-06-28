@@ -10,6 +10,7 @@ import Foundation
 import SwiftUI
 import UniformTypeIdentifiers
 import Version_Control
+import OSLog
 
 public extension FileSystemClient {
     /// The coding keys for the ``FileSystemClient``.
@@ -60,6 +61,9 @@ public extension FileSystemClient {
         /// The file system client
         public var fileSystemClient: FileSystemClient?
 
+        /// Logger
+        let logger = Logger(subsystem: "com.auroraeditor", category: "File Item")
+
         /// Activates the watcher for the file
         /// 
         /// - Returns: `true` if the watcher was activated successfully
@@ -76,7 +80,7 @@ public extension FileSystemClient {
                 queue: DispatchQueue.global()
             )
             if descriptor > 2000 {
-                Log.info("Watcher \(descriptor) used up on \(self.url.path)")
+                self.logger.info("Watcher \(descriptor) used up on \(self.url.path)")
             }
             source.setEventHandler { watcherCode(self) }
             source.setCancelHandler { close(descriptor) }

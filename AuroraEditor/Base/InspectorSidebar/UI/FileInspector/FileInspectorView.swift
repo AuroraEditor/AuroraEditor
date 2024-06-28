@@ -6,6 +6,7 @@
 //  Copyright © 2023 Aurora Company. All rights reserved.
 //
 import SwiftUI
+import OSLog
 
 /// File inspector view
 struct FileInspectorView: View {
@@ -33,6 +34,9 @@ struct FileInspectorView: View {
     /// Hide text settings
     @State
     private var hideTextSettings: Bool = true
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "File inspector view")
 
     /// Initialize file inspector view
     /// 
@@ -139,7 +143,7 @@ struct FileInspectorView: View {
                                         .accessibilityLabel(Text("Open in Finder"))
                                         .onTapGesture {
                                             guard let url = URL(string: "file://\(inspectorModel.fileURL)") else {
-                                                Log.fault("Failed to decode")
+                                                self.logger.fault("Failed to decode")
                                                 return
                                             }
 
