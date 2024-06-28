@@ -32,7 +32,7 @@ struct CommitChangesView: View {
     private var stageAll: Bool = false
 
     /// Logger
-    let logger = Logger(subsystem: "com.auroraeditor.vcs", category: "Commit Changes View")
+    let logger: Logger = Logger(subsystem: "com.auroraeditor.vcs", category: "Commit Changes View")
 
     /// The view body.
     /// 
@@ -161,10 +161,10 @@ struct CommitChangesView: View {
                 }
                 try client.commit(message: message)
             } else {
-                self.logger.info("No changes to commit!")
+                logger.info("No changes to commit!")
             }
         } catch let err {
-            self.logger.fault("\(err)")
+            logger.fault("\(err)")
         }
     }
 }
