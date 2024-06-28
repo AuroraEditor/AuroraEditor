@@ -17,6 +17,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install Periphery
+        run: |
+          brew install periphery
+        shell: bash
+
+      - name: Runner environment
+        run: |
+          echo "MacOS Version"
+          sw_vers
+          echo "Xcode Version"
+          xcodebuild -version
+          echo "Toolchain version"
+          swift -version
+          echo "Periphery (version)"
+          periphery version
+
       - name: Run Periphery
         run: |
           periphery scan --format github-actions --relative-results
