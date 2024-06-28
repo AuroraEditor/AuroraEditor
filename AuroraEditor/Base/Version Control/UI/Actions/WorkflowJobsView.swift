@@ -22,9 +22,6 @@ struct WorkflowJobsView: View {
     @State
     private var jobName: String
 
-    /// Logger
-    let logger: Logger = Logger(subsystem: "com.auroraeditor", category: "Workflow Jobs View")
-
     init(workspace: WorkspaceDocument,
          runId: String,
          jobName: String) {
@@ -68,9 +65,6 @@ struct WorkflowJobsView: View {
                             workspace: actionsModel.workspace,
                             jobId: actionsModel.jobId
                         )
-                        .log {
-                            logger.info("Currently selected job id: \(actionsModel.jobId)")
-                        }
                     }
 
                     // TODO: Find a way to show it for each job

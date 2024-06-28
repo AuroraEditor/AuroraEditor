@@ -31,9 +31,6 @@ struct CommitChangesView: View {
     @State
     private var stageAll: Bool = false
 
-    /// Logger
-    let logger: Logger = Logger(subsystem: "com.auroraeditor.vcs", category: "Commit Changes View")
-
     /// The view body.
     /// 
     /// - Parameter workspace: The workspace.
@@ -145,8 +142,10 @@ struct CommitChangesView: View {
 
     /// Commits the changes.
     private func commit() {
+        let logger: Logger = Logger(subsystem: "com.auroraeditor.vcs", category: "Commit Changes View")
+
         guard let client = gitClient else {
-            self.logger.fault("No git client!")
+            logger.fault("No git client!")
             return
         }
         do {
