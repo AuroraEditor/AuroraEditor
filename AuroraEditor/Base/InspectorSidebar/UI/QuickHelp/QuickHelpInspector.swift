@@ -27,23 +27,6 @@ struct QuickHelpInspector: View {
                 .fontWeight(.bold)
                 .font(.system(size: 13))
                 .frame(minWidth: 250, maxWidth: .infinity, alignment: .leading)
-
-            if let currentToken = workspace.data.currentToken,
-               preferences.preferences.textEditing.showScopes {
-                VStack(alignment: .leading) {
-                    Text("Current Textmate Scope")
-                        .foregroundColor(.primary)
-                        .fontWeight(.bold)
-                        .font(.system(size: 11))
-                        .padding(.top, 2)
-                    Text(currentToken.scopes.map({ $0.name.rawValue }).joined(separator: "\n"))
-                        .font(.system(size: 11))
-                        .textSelection(.enabled)
-                }
-                Divider()
-            } else {
-                noQuickHelp
-            }
         }
         .frame(minWidth: 250, maxWidth: .infinity)
         .padding(5)

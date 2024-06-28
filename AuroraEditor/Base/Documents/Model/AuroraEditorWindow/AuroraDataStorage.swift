@@ -120,14 +120,6 @@ class AuroraDataStorage: ObservableObject {
 
     }
 
-    /// The current token
-    @Published
-    var currentToken: Token? {
-        didSet {
-            update()
-        }
-    }
-
     /// Function that updates the ``AuroraEditorWindowController`` and the ``WorkspaceDocument``.
     /// Views may reference this class via either of them, and therefore both need to be updated in order
     /// to make sure that the command is recieved by all listeners.
