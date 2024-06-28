@@ -25,7 +25,6 @@ struct WorkflowJobsView: View {
     /// Logger
     let logger: Logger
 
-
     init(workspace: WorkspaceDocument,
          runId: String,
          jobName: String) {
