@@ -53,7 +53,6 @@ public final class SourceControlModel: ObservableObject {
     /// Logger
     let logger = Logger(subsystem: "com.auroraeditor", category: "Source Control Model")
 
-
     /// Initialize with a GitClient
     /// 
     /// - Parameter workspaceURL: the current workspace URL we also need this to open files in finder

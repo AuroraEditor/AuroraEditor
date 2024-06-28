@@ -52,7 +52,6 @@ struct ExtensionWKWebView: NSViewRepresentable {
     /// Logger
     let logger = Logger(subsystem: "com.auroraeditor.extensions", category: "Extension WKWebView")
 
-
     /// Create the NSView
     /// 
     /// - Parameter context: Context

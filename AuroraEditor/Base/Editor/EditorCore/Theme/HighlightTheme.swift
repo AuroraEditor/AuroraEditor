@@ -19,7 +19,6 @@ public class HighlightTheme: Codable {
     /// Logger
     static let logger = Logger(subsystem: "com.auroraeditor", category: "Highlight Theme")
 
-
     public init(settings: [ThemeSetting]) {
         self.settings = settings
         self.root = HighlightTheme.createTrie(settings: settings)

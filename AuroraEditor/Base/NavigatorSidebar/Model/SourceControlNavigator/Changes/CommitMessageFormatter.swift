@@ -15,7 +15,6 @@ struct CommitMessageFormatter {
     /// Logger
     let logger = Logger(subsystem: "com.auroraeditor", category: "Commit message formatter")
 
-
     /// Formats a commit message for Git.
     ///
     /// - Parameters:

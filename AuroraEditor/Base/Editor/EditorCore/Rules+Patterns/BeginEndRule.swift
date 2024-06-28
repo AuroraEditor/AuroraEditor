@@ -52,7 +52,6 @@ public class BeginEndRule: Rule, Pattern {
     /// Logger
     let logger = Logger(subsystem: "com.auroraeditor", category: "BeginEndRule")
 
-
     /// Creates a begin/end rule.
     /// 
     /// - parameter name: The name of the rule.

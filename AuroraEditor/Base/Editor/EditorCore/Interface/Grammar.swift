@@ -8,7 +8,7 @@
 
 import Foundation
 
-//@available(*, deprecated, message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")
+// @available(*, deprecated, message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")
 // TODO: @0xWDG Look if this can be removed.
 /// The representation of a grammar
 public class Grammar {
