@@ -31,13 +31,14 @@ public struct CrashReportView: View {
     private var hideComment: Bool = false
 
     /// Logger
-    let logger = Logger(subsystem: "com.auroraeditor", category: "Crash Report View")
+    let logger: Logger
 
     /// The crash report view
     /// 
     /// - Parameter errorDetails: The error details
     public init(errorDetails: String) {
         self.errorDetails = errorDetails
+        self.logger = Logger(subsystem: "com.auroraeditor", category: "Crash Report View")
     }
 
     /// The view body

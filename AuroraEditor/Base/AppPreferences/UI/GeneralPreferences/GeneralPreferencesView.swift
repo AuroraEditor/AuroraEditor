@@ -29,7 +29,7 @@ public struct GeneralPreferencesView: View {
     var openInAuroraEditor: Bool = true
 
     /// Logger
-    let logger = Logger(subsystem: "com.auroraeditor", category: "General Preferences View")
+    let logger: Logger
 
     /// Initializes the general preferences view
     public init() {
@@ -41,6 +41,7 @@ public struct GeneralPreferencesView: View {
         }
 
         self.openInAuroraEditor = defaults.bool(forKey: "enableOpenInAE")
+        self.logger =  = Logger(subsystem: "com.auroraeditor", category: "General Preferences View")
     }
 
     /// The view body

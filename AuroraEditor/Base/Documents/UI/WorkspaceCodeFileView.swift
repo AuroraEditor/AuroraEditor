@@ -33,7 +33,11 @@ struct WorkspaceCodeFileView: View {
     }()
 
     /// Logger
-    let logger = Logger(subsystem: "com.auroraeditor", category: "Workspace Code File View")
+    let logger: Logger
+
+    init() {
+        self.logger = Logger(subsystem: "com.auroraeditor", category: "Workspace Code File View")
+    }
 
     /// The code view
     @ViewBuilder

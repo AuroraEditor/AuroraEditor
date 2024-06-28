@@ -23,7 +23,7 @@ struct UpdateInvalidChecksumState: View {
     private var model: UpdateObservedModel
 
     /// Logger
-    let logger = Logger(subsystem: "com.auroraeditor", category: "Update Invalid Checksum State")
+    let logger: Logger
 
     /// Update invalid checksum state
     /// 
@@ -36,6 +36,7 @@ struct UpdateInvalidChecksumState: View {
         self.repository = repository
         self.prefs = prefs
         self.model = model
+        self.logger = Logger(subsystem: "com.auroraeditor", category: "Update Invalid Checksum State")
     }
 
     /// The view body
