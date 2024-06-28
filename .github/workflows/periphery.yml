@@ -1,0 +1,22 @@
+name: Periphery (unused code detection)
+
+on:
+  push:
+    branches: [main, development]
+  pull_request:
+    branches: [main, development]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  periphery:
+    runs-on: macos-13
+    timeout-minutes: 10 # If a action exceeds 10 mins, it probably isn't ever going to complete.
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run Periphery
+        run: |
+          periphery scan --format github-actions --relative-results
