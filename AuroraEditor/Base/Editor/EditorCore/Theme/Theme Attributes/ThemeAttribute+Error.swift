@@ -9,7 +9,6 @@
 import Foundation
 import OSLog
 
-// TODO: @0xWDG Look if this can be removed.
 extension ThemeAttribute {
 
     func error(_ details: String = "") {

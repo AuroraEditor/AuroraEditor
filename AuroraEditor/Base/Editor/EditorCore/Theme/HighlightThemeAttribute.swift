@@ -7,11 +7,12 @@
 //
 
 import Foundation
-// TODO: @0xWDG Look if this can be removed.
+
 /// Base theme attribute protocol
 ///
 /// - Important: Do not just conform to `ThemeAttribute`, instead conform to either `TokenThemeAttribute`
 /// or `LineThemeAttribute`. Only then will the attribute be applied.
+@available(*, deprecated)
 public protocol ThemeAttribute: Codable {
 
     /// Unique key for this type of attribute

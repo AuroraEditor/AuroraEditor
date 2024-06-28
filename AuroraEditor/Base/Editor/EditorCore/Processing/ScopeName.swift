@@ -10,6 +10,7 @@ import Foundation
 
 // TODO: @0xWDG Look if this can be removed.
 /// Scope name.
+@available(*, deprecated)
 public class ScopeName: RawRepresentable {
     /// The raw value of the scope name.
     public let rawValue: String

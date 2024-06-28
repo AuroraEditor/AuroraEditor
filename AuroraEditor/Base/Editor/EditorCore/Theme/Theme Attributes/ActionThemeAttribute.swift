@@ -8,9 +8,9 @@
 
 import Foundation
 
-// TODO: @0xWDG Look if this can be removed.
 // DO NOT allow this to be a codable.
 // It allows for arbritrary execution of code, which is insecure.
+@available(*, deprecated)
 public class ActionThemeAttribute: TokenThemeAttribute {
 
     public typealias Handler = (String, NSRange) -> Void

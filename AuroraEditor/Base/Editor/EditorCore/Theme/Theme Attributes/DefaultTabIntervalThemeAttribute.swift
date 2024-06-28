@@ -10,7 +10,7 @@ import Foundation
 
 import AppKit
 
-// TODO: @0xWDG Look if this can be removed.
+@available(*, deprecated)
 public class DefaultTabIntervalThemeAttribute: LineThemeAttribute, Codable {
 
     public let key = "default-tab-interval"

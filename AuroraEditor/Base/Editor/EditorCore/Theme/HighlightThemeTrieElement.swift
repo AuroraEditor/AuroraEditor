@@ -7,7 +7,8 @@
 //
 
 import Foundation
-// TODO: @0xWDG Look if this can be removed.
+
+@available(*, deprecated)
 class ThemeTrieElement {
 
     var children: [String: ThemeTrieElement]

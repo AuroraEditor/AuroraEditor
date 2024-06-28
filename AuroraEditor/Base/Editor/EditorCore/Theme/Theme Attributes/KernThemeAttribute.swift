@@ -8,7 +8,7 @@
 
 import Foundation
 
-// TODO: @0xWDG Look if this can be removed.
+@available(*, deprecated)
 public class KernThemeAttribute: TokenThemeAttribute, Codable {
 
     public var key = "kern"

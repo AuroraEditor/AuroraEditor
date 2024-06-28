@@ -7,7 +7,8 @@
 //
 
 import Foundation
-// TODO: @0xWDG Look if this can be removed.
+
+@available(*, deprecated)
 public struct ThemeSetting: Codable { // swiftlint:disable:this type_body_length
     var isSource: Bool {
         scopes.count == 1 && scopes.first! == "source"

@@ -10,6 +10,7 @@ import Foundation
 import OSLog
 
 // TODO: @0xWDG Look if this can be removed.
+@available(*, deprecated)
 public class HighlightTheme: Codable {
 
     var root: ThemeTrieElement

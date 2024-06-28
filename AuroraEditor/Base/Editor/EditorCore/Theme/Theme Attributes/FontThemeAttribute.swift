@@ -9,7 +9,7 @@
 import Foundation
 import AppKit
 
-// TODO: @0xWDG Look if this can be removed.
+@available(*, deprecated)
 public class FontThemeAttribute: TokenThemeAttribute {
 
     public let key = "font-style"

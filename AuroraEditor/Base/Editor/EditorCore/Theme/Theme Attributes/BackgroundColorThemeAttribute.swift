@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// TODO: @0xWDG Look if this can be removed.
+@available(*, deprecated)
 public class BackgroundColorThemeAttribute: TokenThemeAttribute, Codable {
 
     public struct RoundingStyle: Hashable, Equatable, RawRepresentable {
