@@ -17,12 +17,12 @@ extension GeneralPreferencesView {
             Spacer()
             Picker("", selection: $prefs.preferences.general.appAppearance) {
                 Text("settings.general.appearance.system")
-                    .tag(AppPreferences.Appearances.system)
+                    .tag(Appearances.system)
                 Divider()
                 Text("settings.general.appearance.light")
-                    .tag(AppPreferences.Appearances.light)
+                    .tag(Appearances.light)
                 Text("settings.general.appearance.dark")
-                    .tag(AppPreferences.Appearances.dark)
+                    .tag(Appearances.dark)
             }
             .pickerStyle(.automatic)
             .labelsHidden()
@@ -45,9 +45,9 @@ extension GeneralPreferencesView {
             VStack {
                 Picker("", selection: $prefs.preferences.general.showIssues) {
                     Text("settings.general.issues.inline")
-                        .tag(AppPreferences.Issues.inline)
+                        .tag(Issues.inline)
                     Text("settings.general.issues.minimized")
-                        .tag(AppPreferences.Issues.minimized)
+                        .tag(Issues.minimized)
                 }
                 .labelsHidden()
                 .frame(width: inputWidth)
@@ -69,14 +69,14 @@ extension GeneralPreferencesView {
 
             Picker("", selection: $prefs.preferences.general.fileExtensionsVisibility) {
                 Text("settings.general.file.extensions.hide")
-                    .tag(AppPreferences.FileExtensionsVisibility.hideAll)
+                    .tag(FileExtensionsVisibility.hideAll)
                 Text("settings.general.file.extensions.all")
-                    .tag(AppPreferences.FileExtensionsVisibility.showAll)
+                    .tag(FileExtensionsVisibility.showAll)
                 Divider()
                 Text("settings.general.file.extensions.only")
-                    .tag(AppPreferences.FileExtensionsVisibility.showOnly)
+                    .tag(FileExtensionsVisibility.showOnly)
                 Text("settings.general.file.extensions.hode")
-                    .tag(AppPreferences.FileExtensionsVisibility.hideOnly)
+                    .tag(FileExtensionsVisibility.hideOnly)
             }
             .labelsHidden()
             .frame(width: inputWidth)
@@ -101,9 +101,9 @@ extension GeneralPreferencesView {
             Spacer()
             Picker("", selection: $prefs.preferences.general.fileIconStyle) {
                 Text("settings.general.file.icon.style.color")
-                    .tag(AppPreferences.FileIconStyle.color)
+                    .tag(FileIconStyle.color)
                 Text("settings.general.file.icon.style.monochrome")
-                    .tag(AppPreferences.FileIconStyle.monochrome)
+                    .tag(FileIconStyle.monochrome)
             }
             .labelsHidden()
             .pickerStyle(.radioGroup)
@@ -117,9 +117,9 @@ extension GeneralPreferencesView {
             Spacer()
             Picker("", selection: $prefs.preferences.general.tabBarStyle) {
                 Text("settings.general.tabs.style.xcode")
-                    .tag(AppPreferences.TabBarStyle.xcode)
+                    .tag(TabBarStyle.xcode)
                 Text("settings.general.tabs.style.aurora")
-                    .tag(AppPreferences.TabBarStyle.native)
+                    .tag(TabBarStyle.native)
             }
             .labelsHidden()
             .pickerStyle(.radioGroup)
@@ -134,9 +134,9 @@ extension GeneralPreferencesView {
             Spacer()
             Picker("Tab Bar Style:", selection: $prefs.preferences.general.sidebarStyle) {
                 Text("settings.general.navigator.position.top")
-                    .tag(AppPreferences.SidebarStyle.xcode)
+                    .tag(SidebarStyle.xcode)
                 Text("settings.general.navigator.position.left")
-                    .tag(AppPreferences.SidebarStyle.vscode)
+                    .tag(SidebarStyle.vscode)
             }
             .labelsHidden()
             .pickerStyle(.radioGroup)
@@ -151,9 +151,9 @@ extension GeneralPreferencesView {
             Spacer()
             Picker("", selection: $prefs.preferences.general.menuItemShowMode) {
                 Text("settings.general.menu.bar.shown")
-                    .tag(AppPreferences.MenuBarShow.shown)
+                    .tag(MenuBarShow.shown)
                 Text("settings.general.menu.bar.hidden")
-                    .tag(AppPreferences.MenuBarShow.hidden)
+                    .tag(MenuBarShow.hidden)
             }
             .labelsHidden()
             .pickerStyle(.radioGroup)
@@ -168,12 +168,12 @@ extension GeneralPreferencesView {
             Spacer()
             Picker("", selection: $prefs.preferences.general.reopenBehavior) {
                 Text("settings.general.open.welcome")
-                    .tag(AppPreferences.ReopenBehavior.welcome)
+                    .tag(ReopenBehavior.welcome)
                 Divider()
                 Text("settings.general.open.panel")
-                    .tag(AppPreferences.ReopenBehavior.openPanel)
+                    .tag(ReopenBehavior.openPanel)
                 Text("settings.general.open.document")
-                    .tag(AppPreferences.ReopenBehavior.newDocument)
+                    .tag(ReopenBehavior.newDocument)
             }
             .labelsHidden()
             .frame(width: inputWidth)
@@ -188,11 +188,11 @@ extension GeneralPreferencesView {
             Spacer()
             Picker("", selection: $prefs.preferences.general.projectNavigatorSize) {
                 Text("settings.general.navigator.size.small")
-                    .tag(AppPreferences.ProjectNavigatorSize.small)
+                    .tag(ProjectNavigatorSize.small)
                 Text("settings.general.navigator.size.medium")
-                    .tag(AppPreferences.ProjectNavigatorSize.medium)
+                    .tag(ProjectNavigatorSize.medium)
                 Text("settings.general.navigator.size.large")
-                    .tag(AppPreferences.ProjectNavigatorSize.large)
+                    .tag(ProjectNavigatorSize.large)
             }
             .labelsHidden()
             .frame(width: inputWidth)
@@ -206,7 +206,7 @@ extension GeneralPreferencesView {
             Text("settings.general.navigator.find")
             Spacer()
             Picker("", selection: $prefs.preferences.general.findNavigatorDetail) {
-                ForEach(AppPreferences.NavigatorDetail.allCases, id: \.self) { tag in
+                ForEach(NavigatorDetail.allCases, id: \.self) { tag in
                     Text(tag.label).tag(tag)
                 }
             }
@@ -223,7 +223,7 @@ extension GeneralPreferencesView {
             Text("settings.general.navigator.issue")
             Spacer()
             Picker("", selection: $prefs.preferences.general.issueNavigatorDetail) {
-                ForEach(AppPreferences.NavigatorDetail.allCases, id: \.self) { tag in
+                ForEach(NavigatorDetail.allCases, id: \.self) { tag in
                     Text(tag.label).tag(tag)
                 }
             }
@@ -295,12 +295,12 @@ extension GeneralPreferencesView {
               Text("Preferences")
               Spacer()
               HStack {
-                  Text(AppPreferencesModel.shared.baseURL.path)
+				  Text(FileManager.default.auroraEditorBaseURL.path)
                       .foregroundColor(.secondary)
                   Button {
                       NSWorkspace.shared.selectFile(
                           nil,
-                          inFileViewerRootedAtPath: AppPreferencesModel.shared.baseURL.path
+                          inFileViewerRootedAtPath: FileManager.default.auroraEditorBaseURL.path
                       )
                   } label: {
                       Image(systemName: "arrow.right.circle.fill")

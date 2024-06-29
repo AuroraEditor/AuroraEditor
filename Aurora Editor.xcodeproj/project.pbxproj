@@ -40,7 +40,6 @@
 		202327D628D5CA970031FFB6 /* WorkflowJobsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */; };
 		202327D828D5CB200031FFB6 /* WorkflowJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327D728D5CB200031FFB6 /* WorkflowJobCell.swift */; };
 		202327E028D607B20031FFB6 /* ReRunJobSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */; };
-		2029DA8728E2FCEC00D68786 /* swift.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 2029DA8628E2FCEC00D68786 /* swift.tmLanguage.json */; };
 		202F2E35289E7277000D3CAD /* SearchResultMatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E34289E7277000D3CAD /* SearchResultMatchModel.swift */; };
 		202F2E37289E740D000D3CAD /* FindNavigatorResultList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E36289E740D000D3CAD /* FindNavigatorResultList.swift */; };
 		202F2E39289E7444000D3CAD /* FindNavigatorListMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2E38289E7444000D3CAD /* FindNavigatorListMatchCell.swift */; };
@@ -268,17 +267,6 @@
 		209D2F56297BD806005AB73C /* ApplicationsDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D2F55297BD806005AB73C /* ApplicationsDetailsView.swift */; };
 		209D2F5E297BDF47005AB73C /* License.md in Resources */ = {isa = PBXBuildFile; fileRef = 209D2F5D297BDF47005AB73C /* License.md */; };
 		209D2F60297BDF83005AB73C /* Credits.md in Resources */ = {isa = PBXBuildFile; fileRef = 209D2F5F297BDF83005AB73C /* Credits.md */; };
-		209DAF2328E647BE00E31109 /* typeScript.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2228E647BE00E31109 /* typeScript.tmLanguage.json */; };
-		209DAF2528E648A700E31109 /* JSON.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2428E648A700E31109 /* JSON.tmLanguage.json */; };
-		209DAF2728E6494800E31109 /* JSONC.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2628E6494800E31109 /* JSONC.tmLanguage.json */; };
-		209DAF2928E6498C00E31109 /* docker.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2828E6498C00E31109 /* docker.tmLanguage.json */; };
-		209DAF2B28E649AC00E31109 /* css.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2A28E649AC00E31109 /* css.tmLanguage.json */; };
-		209DAF2D28E649D400E31109 /* html-derivative.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2C28E649D400E31109 /* html-derivative.tmLanguage.json */; };
-		209DAF2F28E64A0500E31109 /* html.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF2E28E64A0500E31109 /* html.tmLanguage.json */; };
-		209DAF3128E64A3200E31109 /* JavaScript.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF3028E64A3200E31109 /* JavaScript.tmLanguage.json */; };
-		209DAF3328E64A5500E31109 /* JavaScriptReact.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF3228E64A5500E31109 /* JavaScriptReact.tmLanguage.json */; };
-		209DAF3528E64A9F00E31109 /* php.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF3428E64A9F00E31109 /* php.tmLanguage.json */; };
-		209DAF3728E64AE800E31109 /* ruby.tmLanguage.json in Resources */ = {isa = PBXBuildFile; fileRef = 209DAF3628E64AE800E31109 /* ruby.tmLanguage.json */; };
 		20B5BD9C28B11C6200B2A02F /* WelcomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BD9B28B11C6200B2A02F /* WelcomeModel.swift */; };
 		20B5BDA128B130EA00B2A02F /* DropProposalPositionCalculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BDA028B130EA00B2A02F /* DropProposalPositionCalculations.swift */; };
 		20B5BDA328B130F000B2A02F /* SplitEditorDropProposalPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5BDA228B130F000B2A02F /* SplitEditorDropProposalPosition.swift */; };
@@ -546,6 +534,10 @@
 		A09913B22AD013640016DF53 /* LicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09913B12AD013640016DF53 /* LicenseView.swift */; };
 		A0C0386A2ACF1C1E00DACE3F /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = A0C038692ACF1C1E00DACE3F /* Sentry */; };
 		A0C0386C2ACF1C1E00DACE3F /* SentrySwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A0C0386B2ACF1C1E00DACE3F /* SentrySwiftUI */; };
+		A0DD4EEA2C30BEA2007E4124 /* DatabaseQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DD4EE92C30BEA2007E4124 /* DatabaseQueue.swift */; };
+		A0DD4EEC2C30BEAC007E4124 /* PersistableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DD4EEB2C30BEAC007E4124 /* PersistableRecord.swift */; };
+		A0DD4EEE2C30BECC007E4124 /* AppPreferencesDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DD4EED2C30BECC007E4124 /* AppPreferencesDatabase.swift */; };
+		A0DD4EF12C30BEFB007E4124 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = A0DD4EF02C30BEFB007E4124 /* GRDB */; };
 		B658FB3427DA9E1000EA4DBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B658FB3327DA9E1000EA4DBD /* Assets.xcassets */; };
 		B6EE989027E8879A00CDD8AB /* InspectorSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE988F27E8879A00CDD8AB /* InspectorSidebar.swift */; };
 		B6EE989227E887C600CDD8AB /* InspectorSidebarToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EE989127E887C600CDD8AB /* InspectorSidebarToolbar.swift */; };
@@ -657,7 +649,6 @@
 		202327D528D5CA970031FFB6 /* WorkflowJobsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowJobsView.swift; sourceTree = "<group>"; };
 		202327D728D5CB200031FFB6 /* WorkflowJobCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowJobCell.swift; sourceTree = "<group>"; };
 		202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReRunJobSheetView.swift; sourceTree = "<group>"; };
-		2029DA8628E2FCEC00D68786 /* swift.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = swift.tmLanguage.json; sourceTree = "<group>"; };
 		202F2E34289E7277000D3CAD /* SearchResultMatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultMatchModel.swift; sourceTree = "<group>"; };
 		202F2E36289E740D000D3CAD /* FindNavigatorResultList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorResultList.swift; sourceTree = "<group>"; };
 		202F2E38289E7444000D3CAD /* FindNavigatorListMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorListMatchCell.swift; sourceTree = "<group>"; };
@@ -706,17 +697,6 @@
 		209D2F55297BD806005AB73C /* ApplicationsDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationsDetailsView.swift; sourceTree = "<group>"; };
 		209D2F5D297BDF47005AB73C /* License.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = License.md; sourceTree = "<group>"; };
 		209D2F5F297BDF83005AB73C /* Credits.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Credits.md; sourceTree = "<group>"; };
-		209DAF2228E647BE00E31109 /* typeScript.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = typeScript.tmLanguage.json; sourceTree = "<group>"; };
-		209DAF2428E648A700E31109 /* JSON.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSON.tmLanguage.json; sourceTree = "<group>"; };
-		209DAF2628E6494800E31109 /* JSONC.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONC.tmLanguage.json; sourceTree = "<group>"; };
-		209DAF2828E6498C00E31109 /* docker.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = docker.tmLanguage.json; sourceTree = "<group>"; };
-		209DAF2A28E649AC00E31109 /* css.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = css.tmLanguage.json; sourceTree = "<group>"; };
-		209DAF2C28E649D400E31109 /* html-derivative.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "html-derivative.tmLanguage.json"; sourceTree = "<group>"; };
-		209DAF2E28E64A0500E31109 /* html.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = html.tmLanguage.json; sourceTree = "<group>"; };
-		209DAF3028E64A3200E31109 /* JavaScript.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JavaScript.tmLanguage.json; sourceTree = "<group>"; };
-		209DAF3228E64A5500E31109 /* JavaScriptReact.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JavaScriptReact.tmLanguage.json; sourceTree = "<group>"; };
-		209DAF3428E64A9F00E31109 /* php.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = php.tmLanguage.json; sourceTree = "<group>"; };
-		209DAF3628E64AE800E31109 /* ruby.tmLanguage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ruby.tmLanguage.json; sourceTree = "<group>"; };
 		20B5BD9B28B11C6200B2A02F /* WelcomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeModel.swift; sourceTree = "<group>"; };
 		20B5BDA028B130EA00B2A02F /* DropProposalPositionCalculations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropProposalPositionCalculations.swift; sourceTree = "<group>"; };
 		20B5BDA228B130F000B2A02F /* SplitEditorDropProposalPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitEditorDropProposalPosition.swift; sourceTree = "<group>"; };
@@ -1159,6 +1139,9 @@
 		A08E00822AD48C740091725D /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		A08E00842AD48D660091725D /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		A09913B12AD013640016DF53 /* LicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseView.swift; sourceTree = "<group>"; };
+		A0DD4EE92C30BEA2007E4124 /* DatabaseQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseQueue.swift; sourceTree = "<group>"; };
+		A0DD4EEB2C30BEAC007E4124 /* PersistableRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistableRecord.swift; sourceTree = "<group>"; };
+		A0DD4EED2C30BECC007E4124 /* AppPreferencesDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferencesDatabase.swift; sourceTree = "<group>"; };
 		B658FB2C27DA9E0F00EA4DBD /* Aurora Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Aurora Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B658FB3127DA9E0F00EA4DBD /* WorkspaceView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = WorkspaceView.swift; sourceTree = "<group>"; tabWidth = 4; };
 		B658FB3327DA9E1000EA4DBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1221,6 +1204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0386D872B8667F000EFAFBA /* Version-Control in Frameworks */,
+				A0DD4EF12C30BEFB007E4124 /* GRDB in Frameworks */,
 				2BA8F0862C1DADBD005A06A3 /* AuroraEditorSourceEditor in Frameworks */,
 				2BA8F0892C1DADD4005A06A3 /* AuroraEditorTextView in Frameworks */,
 				2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */,
@@ -1312,25 +1296,6 @@
 				202327DF28D607B20031FFB6 /* ReRunJobSheetView.swift */,
 			);
 			path = Sheet;
-			sourceTree = "<group>";
-		};
-		2029DA8528E2FCA600D68786 /* CodeLanguages */ = {
-			isa = PBXGroup;
-			children = (
-				209DAF2A28E649AC00E31109 /* css.tmLanguage.json */,
-				209DAF2828E6498C00E31109 /* docker.tmLanguage.json */,
-				209DAF2C28E649D400E31109 /* html-derivative.tmLanguage.json */,
-				209DAF2E28E64A0500E31109 /* html.tmLanguage.json */,
-				209DAF3028E64A3200E31109 /* JavaScript.tmLanguage.json */,
-				209DAF3228E64A5500E31109 /* JavaScriptReact.tmLanguage.json */,
-				209DAF2428E648A700E31109 /* JSON.tmLanguage.json */,
-				209DAF2628E6494800E31109 /* JSONC.tmLanguage.json */,
-				209DAF3428E64A9F00E31109 /* php.tmLanguage.json */,
-				209DAF3628E64AE800E31109 /* ruby.tmLanguage.json */,
-				2029DA8628E2FCEC00D68786 /* swift.tmLanguage.json */,
-				209DAF2228E647BE00E31109 /* typeScript.tmLanguage.json */,
-			);
-			path = CodeLanguages;
 			sourceTree = "<group>";
 		};
 		202F2E2C289E6608000D3CAD /* UI */ = {
@@ -1898,6 +1863,8 @@
 				20F8378F28C7B45700EAE842 /* WorkspaceExtension.swift */,
 				A0142F0C2ACB71830002F95D /* Int64.swift */,
 				A03E21FC2B0D5B46008A6A77 /* NSImage.swift */,
+				A0DD4EE92C30BEA2007E4124 /* DatabaseQueue.swift */,
+				A0DD4EEB2C30BEAC007E4124 /* PersistableRecord.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2137,6 +2104,7 @@
 				20D837FE289A7ACD00D91D05 /* AppPreferencesModel.swift */,
 				20B6A1FD28AFE107004EC8D7 /* SettingItem.swift */,
 				20B6A1FF28AFE124004EC8D7 /* SettingsModel.swift */,
+				A0DD4EED2C30BECC007E4124 /* AppPreferencesDatabase.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3414,7 +3382,6 @@
 			children = (
 				93CB9AE128C736720068074A /* Application */,
 				20D83712289A7A9200D91D05 /* Base */,
-				2029DA8528E2FCA600D68786 /* CodeLanguages */,
 				28069DA527F5BD320016BC47 /* DefaultThemes */,
 				D7211D4427E066D4008F2ED7 /* Localization */,
 				20BE727F28D0834800EEDE5F /* Services */,
@@ -3578,6 +3545,7 @@
 				A0386D8C2B866E2300EFAFBA /* SwiftTerm */,
 				2BA8F0852C1DADBD005A06A3 /* AuroraEditorSourceEditor */,
 				2BA8F0882C1DADD4005A06A3 /* AuroraEditorTextView */,
+				A0DD4EF02C30BEFB007E4124 /* GRDB */,
 			);
 			productName = AuroraEditor;
 			productReference = B658FB2C27DA9E0F00EA4DBD /* Aurora Editor.app */;
@@ -3669,6 +3637,7 @@
 				A0386D8B2B866E2300EFAFBA /* XCRemoteSwiftPackageReference "SwiftTerm" */,
 				2BA8F0842C1DADBD005A06A3 /* XCRemoteSwiftPackageReference "AuroraEditorSourceEditor" */,
 				2BA8F0872C1DADD4005A06A3 /* XCRemoteSwiftPackageReference "AuroraEditorTextView" */,
+				A0DD4EEF2C30BEFB007E4124 /* XCRemoteSwiftPackageReference "GRDB" */,
 			);
 			productRefGroup = B658FB2D27DA9E0F00EA4DBD /* Products */;
 			projectDirPath = "";
@@ -3743,22 +3712,10 @@
 				28A51002281673530087B0CC /* auroraeditor-xcode-light.json in Resources */,
 				209D2F60297BDF83005AB73C /* Credits.md in Resources */,
 				28A51005281701B40087B0CC /* creeper.tmTheme in Resources */,
-				209DAF2B28E649AC00E31109 /* css.tmLanguage.json in Resources */,
-				209DAF2928E6498C00E31109 /* docker.tmLanguage.json in Resources */,
-				209DAF2D28E649D400E31109 /* html-derivative.tmLanguage.json in Resources */,
-				209DAF2F28E64A0500E31109 /* html.tmLanguage.json in Resources */,
-				209DAF3128E64A3200E31109 /* JavaScript.tmLanguage.json in Resources */,
-				209DAF3328E64A5500E31109 /* JavaScriptReact.tmLanguage.json in Resources */,
-				209DAF2528E648A700E31109 /* JSON.tmLanguage.json in Resources */,
-				209DAF2728E6494800E31109 /* JSONC.tmLanguage.json in Resources */,
 				209D2F5E297BDF47005AB73C /* License.md in Resources */,
 				043C321A27E32295006AE443 /* MainMenu.xib in Resources */,
 				209D024B289ABC340082441F /* Package.resolved in Resources */,
-				209DAF3528E64A9F00E31109 /* php.tmLanguage.json in Resources */,
-				209DAF3728E64AE800E31109 /* ruby.tmLanguage.json in Resources */,
-				2029DA8728E2FCEC00D68786 /* swift.tmLanguage.json in Resources */,
 				2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */,
-				209DAF2328E647BE00E31109 /* typeScript.tmLanguage.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4041,6 +3998,7 @@
 				20C0CBDD297B083E00E9F9F0 /* Contributor.swift in Sources */,
 				2093CD5C289AA0D8003A88DD /* CrashReportController.swift in Sources */,
 				2093CD5E289AA0DD003A88DD /* CrashReportModel.swift in Sources */,
+				A0DD4EEC2C30BEAC007E4124 /* PersistableRecord.swift in Sources */,
 				2093CD5B289AA0D5003A88DD /* CrashReportView.swift in Sources */,
 				A0142F032ACB6ADF0002F95D /* UpdateErrorState.swift in Sources */,
 				2096A82428CF76D400F6ED39 /* CreateNewBranchView.swift in Sources */,
@@ -4102,6 +4060,7 @@
 				935EB99C28A8F26900E8F798 /* FileSystemTableViewCell.swift in Sources */,
 				2072FA16280D83A500C7F8D4 /* FileTypeList.swift in Sources */,
 				A0142F072ACB6B0B0002F95D /* UpdateCancelledState.swift in Sources */,
+				A0DD4EEA2C30BEA2007E4124 /* DatabaseQueue.swift in Sources */,
 				20D9E32C28CB68DE00FE3339 /* FilterCommitHistoryView.swift in Sources */,
 				2093CC99289A9FFD003A88DD /* FilterTextField.swift in Sources */,
 				D7012EE827E757850001E1EF /* FindNavigator.swift in Sources */,
@@ -4153,6 +4112,7 @@
 				20FACF732AB60E7600B09012 /* NotificationsFilter.swift in Sources */,
 				2B04575728E6FFE300024F2D /* HeadIndentThemeAttribute.swift in Sources */,
 				2093CD71289AA0FC003A88DD /* HelpButton.swift in Sources */,
+				A0DD4EEE2C30BECC007E4124 /* AppPreferencesDatabase.swift in Sources */,
 				2B04575A28E6FFE300024F2D /* HiddenThemeAttribute.swift in Sources */,
 				93D5F5D028CE05BC00286EBD /* HierarchyNavigator.swift in Sources */,
 				2B04574428E6FFE300024F2D /* HighlightTheme+Default.swift in Sources */,
@@ -5102,6 +5062,14 @@
 				minimumVersion = 8.13.0;
 			};
 		};
+		A0DD4EEF2C30BEFB007E4124 /* XCRemoteSwiftPackageReference "GRDB" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -5157,6 +5125,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A0C038682ACF1C1E00DACE3F /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
 			productName = SentrySwiftUI;
+		};
+		A0DD4EF02C30BEFB007E4124 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0DD4EEF2C30BEFB007E4124 /* XCRemoteSwiftPackageReference "GRDB" */;
+			productName = GRDB;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

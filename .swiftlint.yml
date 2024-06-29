@@ -91,14 +91,6 @@ nesting:
 
 # Custom rules
 custom_rules:
-  # Prefer spaces over tabs.
-  spaces_over_tabs:
-    included: ".*\\.swift"
-    name: "Spaces over Tabs"
-    regex: "\t"
-    message: "Prefer spaces for indents over tabs. See Xcode setting: 'Text Editing' -> 'Indentation'"
-    severity: warning
-
   # @Something needs a new line
   at_attributes_newlining:
     name: "Significant attributes"

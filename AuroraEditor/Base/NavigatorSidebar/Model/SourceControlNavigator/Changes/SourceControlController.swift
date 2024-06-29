@@ -24,16 +24,16 @@ final class SourceControlController: NSViewController {
     var workspace: WorkspaceDocument?
 
     /// The icon color style for the items.
-    var iconColor: AppPreferences.FileIconStyle = .color
+    var iconColor: FileIconStyle = .color
 
     /// The file extension visibility for the items.
-    var fileExtensionVisibility: AppPreferences.FileExtensionsVisibility = .showAll
+    var fileExtensionVisibility: FileExtensionsVisibility = .showAll
 
     /// The file extensions that should be shown.
-    var shownFileExtensions: AppPreferences.FileExtensions = .default
+    var shownFileExtensions: FileExtensions = .default
 
     /// The file extensions that should be hidden.
-    var hiddenFileExtensions: AppPreferences.FileExtensions = .default
+    var hiddenFileExtensions: FileExtensions = .default
 
     /// The row height for the outline view.
     var rowHeight: Double = 22 {

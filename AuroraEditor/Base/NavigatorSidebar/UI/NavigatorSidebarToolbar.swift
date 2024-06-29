@@ -25,7 +25,7 @@ struct NavigatorSidebarToolbar: View {
 
     /// The sidebar style
     @Binding
-    private var sidebarStyle: AppPreferences.SidebarStyle
+    private var sidebarStyle: SidebarStyle
 
     /// Navigator mode select model
     @ObservedObject
@@ -39,7 +39,7 @@ struct NavigatorSidebarToolbar: View {
     /// 
     /// - Returns: A new instance of NavigatorSidebarToolbar
     init(selection: Binding<Int>,
-         style: Binding<AppPreferences.SidebarStyle>,
+         style: Binding<SidebarStyle>,
          toolbarNumber: Int) {
         self._selection = selection
         self._sidebarStyle = style

@@ -7,88 +7,66 @@
 //
 
 import SwiftTerm
+import GRDB
 
-public extension AppPreferences {
+/// The global settings for the terminal emulator
+struct TerminalPreferences: Codable, FetchableRecord, PersistableRecord, DatabaseValueConvertible {
 
-    /// The global settings for the terminal emulator
-    struct TerminalPreferences: Codable {
+	public var id: Int64 = 1
 
-        /// If true terminal appearance will always be `dark`. Otherwise it adapts to the system setting.
-        public var darkAppearance: Bool = false
+	/// If true terminal appearance will always be `dark`. Otherwise it adapts to the system setting.
+	public var darkAppearance: Bool = false
 
-        /// If true, the terminal treats the `Option` key as the `Meta` key
-        public var optionAsMeta: Bool = false
+	/// If true, the terminal treats the `Option` key as the `Meta` key
+	public var optionAsMeta: Bool = false
 
-        /// The selected shell to use.
-        public var shell: TerminalShell = .system
+	/// The selected shell to use.
+	public var shell: TerminalShell = .system
 
-        /// The font to use in terminal.
-        public var font: TerminalFont = .init()
+	/// The cursor style to apply on the terminal. Defaults to `block`.
+	public var cursorStyle: TerminalCursorStyle = .block
 
-        /// The cursor style to apply on the terminal. Defaults to `block`.
-        public var cursorStyle: TerminalCursorStyle = .block
+	/// Boolean value for whether the cursor should blink.
+	public var blinkCursor: Bool = false
 
-        /// Boolean value for whether the cursor should blink.
-        public var blinkCursor: Bool = false
+	// MARK: - Terminal Font Variable
 
-        /// Default initializer
-        public init() {}
+	/// Indicates whether or not to use a custom font
+	public var customTerminalFont: Bool = false
 
-        /// Explicit decoder init for setting default values when key is not present in `JSON`
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.darkAppearance = try container.decodeIfPresent(Bool.self, forKey: .darkAppearance) ?? false
-            self.optionAsMeta = try container.decodeIfPresent(Bool.self, forKey: .optionAsMeta) ?? false
-            self.shell = try container.decodeIfPresent(TerminalShell.self, forKey: .shell) ?? .system
-            self.font = try container.decodeIfPresent(TerminalFont.self, forKey: .font) ?? .init()
-        }
-    }
+	/// The font size for the custom font
+	public var terminalFontSize: Int = 11
 
-    /// The shell options.
-    /// - **bash**: uses the bash shell
-    /// - **zsh**: uses the ZSH shell
-    /// - **system**: uses the system default shell (most likely ZSH)
-    enum TerminalShell: String, Codable {
-        /// Uses the bash shell
-        case bash
-        /// Uses the ZSH shell
-        case zsh
-        /// Uses the system default shell (most likely ZSH)
-        case system
-    }
+	/// The name of the custom font
+	public var terminalFontName: String = "SFMono-Medium"
 
-    /// The font to use in the terminal
-    struct TerminalFont: Codable {
-        /// Indicates whether or not to use a custom font
-        public var customFont: Bool = false
+	static let databaseTableName = "TerminalPreferences"
 
-        /// The font size for the custom font
-        public var size: Int = 11
+	/// Default initializer
+	public init() {}
+}
 
-        /// The name of the custom font
-        public var name: String = "SFMono-Medium"
+/// The shell options.
+/// - **bash**: uses the bash shell
+/// - **zsh**: uses the ZSH shell
+/// - **system**: uses the system default shell (most likely ZSH)
+enum TerminalShell: String, Codable {
+	/// Uses the bash shell
+	case bash
+	/// Uses the ZSH shell
+	case zsh
+	/// Uses the system default shell (most likely ZSH)
+	case system
+}
 
-        /// Default initializer
-        public init() {}
-
-        /// Explicit decoder init for setting default values when key is not present in `JSON`
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.customFont = try container.decodeIfPresent(Bool.self, forKey: .customFont) ?? false
-            self.size = try container.decodeIfPresent(Int.self, forKey: .size) ?? 11
-            self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? "SFMono-Medium"
-        }
-    }
-
-    /// The possible terminal cursor shapes.
-    enum TerminalCursorStyle: String, Codable, CaseIterable, Identifiable {
-        /// The unique identifier for the cursor style
-        public var id: String { rawValue }
-        /// Cursor appears as a block shape █
-        case block
-        /// Cursor appears as an underline _
-        case underline
-        /// Cursor appears as a vertical bar |
-        case verticalBar = "vertical bar"
-    }
+/// The possible terminal cursor shapes.
+enum TerminalCursorStyle: String, Codable, CaseIterable, Identifiable {
+	/// The unique identifier for the cursor style
+	public var id: String { rawValue }
+	/// Cursor appears as a block shape █
+	case block
+	/// Cursor appears as an underline _
+	case underline
+	/// Cursor appears as a vertical bar |
+	case verticalBar = "vertical bar"
 }

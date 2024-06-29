@@ -60,13 +60,13 @@ struct AutomaticallyUpdateSheet: View {
                     Picker("", selection: $prefs.preferences.updates.updateChannel) {
                         Text("settings.update.channel.release")
                             .font(.system(size: 11))
-                            .tag(AppPreferences.UpdateChannel.release)
+                            .tag(UpdateChannel.release)
                         Text("settings.update.channel.beta")
                             .font(.system(size: 11))
-                            .tag(AppPreferences.UpdateChannel.beta)
+                            .tag(UpdateChannel.beta)
                         Text("settings.update.channel.nightly")
                             .font(.system(size: 11))
-                            .tag(AppPreferences.UpdateChannel.nightly)
+                            .tag(UpdateChannel.nightly)
                     }
                     .labelsHidden()
                     .frame(width: 80)

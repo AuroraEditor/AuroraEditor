@@ -29,7 +29,7 @@ struct SourceControlGitView: View {
                     Text("settings.source.control.git.author.name")
                     Spacer()
                     TextField("settings.source.control.git.author",
-                              text: $prefs.preferences.sourceControl.git.authorName)
+							  text: $prefs.preferences.sourceControlGit.authorName)
                         .frame(width: inputWidth)
                         .textFieldStyle(.roundedBorder)
                 }
@@ -42,7 +42,7 @@ struct SourceControlGitView: View {
                     Text("settings.source.control.git.author.email")
                     Spacer()
                     TextField("settings.source.control.git.email",
-                              text: $prefs.preferences.sourceControl.git.authorEmail)
+                              text: $prefs.preferences.sourceControlGit.authorEmail)
                         .frame(width: inputWidth)
                         .textFieldStyle(.roundedBorder)
                 }
@@ -55,12 +55,12 @@ struct SourceControlGitView: View {
                     Text("settings.source.control.git.ignored.files")
                     Spacer()
                     VStack(spacing: 1) {
-                        List($prefs.preferences.sourceControl.git.ignoredFiles,
+                        List($prefs.preferences.sourceControlGit.ignoredFiles,
                              selection: $ignoredFileSelection) { ignoredFile in
                             IgnoredFileView(ignoredFile: ignoredFile)
                         }
                         .overlay(Group {
-                            if prefs.preferences.sourceControl.git.ignoredFiles.isEmpty {
+                            if prefs.preferences.sourceControlGit.ignoredFiles.isEmpty {
                                 Text("settings.source.control.git.ignored.files.none")
                                     .foregroundColor(.secondary)
                                     .font(.system(size: 11))
@@ -90,7 +90,7 @@ struct SourceControlGitView: View {
                     Text("settings.source.control.git.prefer.rebase")
                     Spacer()
                     Toggle("",
-                           isOn: $prefs.preferences.sourceControl.git.preferRebaseWhenPulling)
+                           isOn: $prefs.preferences.sourceControlGit.preferRebaseWhenPulling)
                     .labelsHidden()
                     .toggleStyle(.switch)
                 }
@@ -103,7 +103,7 @@ struct SourceControlGitView: View {
                     Text("settings.source.control.git.show.commits")
                     Spacer()
                     Toggle("",
-                           isOn: $prefs.preferences.sourceControl.git.showMergeCommitsPerFileLog)
+                           isOn: $prefs.preferences.sourceControlGit.showMergeCommitsPerFileLog)
                     .labelsHidden()
                     .toggleStyle(.switch)
                 }

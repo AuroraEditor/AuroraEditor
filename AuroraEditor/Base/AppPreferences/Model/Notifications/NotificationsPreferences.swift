@@ -7,44 +7,14 @@
 //
 
 import Foundation
+import GRDB
 
-public extension AppPreferences {
-    /// The global settings for the notification system
-    struct NotificationsPreferences: Codable {
+struct NotificationsPreferences: Codable, FetchableRecord, PersistableRecord, DatabaseValueConvertible {
+	var id: Int64 = 1
+	var notificationsEnabled: Bool = true
+	var notificationDisplayTime: Int = 5000
+	var doNotDisturb: Bool = false
+	var allProfiles: Bool = false
 
-        /// Allows notifications to be sent to the user
-        public var notificationsEnabled: Bool = true
-
-        public var notificationDisplayTime: Int = 5000
-
-        /// if true, the notifications system ignores all notifications except errors
-        public var doNotDisturb: Bool = false
-
-        /// if true, notifications will be allowed on all profiles
-        public var allProfiles: Bool = false
-
-        /// Default initializer
-        public init() {}
-
-        /// Explicit decoder init for setting default values when key is not present in `JSON`
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.notificationsEnabled = try container.decodeIfPresent(
-                Bool.self,
-                forKey: .notificationsEnabled
-            ) ?? true
-            self.notificationDisplayTime = try container.decodeIfPresent(
-                Int.self,
-                forKey: .notificationDisplayTime
-            ) ?? 5000
-            self.doNotDisturb = try container.decodeIfPresent(
-                Bool.self,
-                forKey: .doNotDisturb
-            ) ?? false
-            self.allProfiles = try container.decodeIfPresent(
-                Bool.self,
-                forKey: .allProfiles
-            ) ?? false
-        }
-    }
+	static let databaseTableName = "NotificationsPreferences"
 }

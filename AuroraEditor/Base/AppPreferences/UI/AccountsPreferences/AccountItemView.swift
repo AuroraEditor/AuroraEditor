@@ -16,7 +16,7 @@ struct AccountItemView: View {
 
     /// The account
     @Binding
-    var account: SourceControlAccounts
+	var account: AccountPreferences
 
     /// The delete callback
     var onDeleteCallback: (String) -> Void
@@ -26,26 +26,26 @@ struct AccountItemView: View {
         GroupBox {
             VStack(alignment: .leading) {
                 HStack {
-                    AsyncImage(url: URL(string: account.gitAccountImage)) { phase in
-                        if let image = phase.image {
-                            image
-                                .resizable()
-                                .clipShape(Circle())
-                                .frame(width: 42, height: 42)
-                        } else if phase.error != nil {
-                            defaultAvatar
-                        } else {
-                            defaultAvatar
-                        }
-                    }
+					AsyncImage(url: URL(string: account.accountImage)) { phase in
+						if let image = phase.image {
+							image
+								.resizable()
+								.clipShape(Circle())
+								.frame(width: 42, height: 42)
+						} else if phase.error != nil {
+							defaultAvatar
+						} else {
+							defaultAvatar
+						}
+					}
 
-                    Text(account.gitAccountName)
+					Text(account.accountName)
                         .foregroundColor(.primary)
 
                     Spacer()
 
                     Button {
-                        openGithubProfile(URL(string: "\(account.gitProviderLink)/\(account.gitAccountUsername)")!)
+						openGithubProfile(URL(string: "\(account.providerLink)/\(account.accountUsername)")!)
                     } label: {
                         Text("settings.account.show.profile")
                             .foregroundColor(.primary)
@@ -61,7 +61,7 @@ struct AccountItemView: View {
 
                     Spacer()
 
-                    Text(account.gitAccountUsername)
+					Text(account.accountUsername)
                 }
                 .padding(.horizontal, 10)
                 .padding(.vertical, 5)
@@ -69,14 +69,14 @@ struct AccountItemView: View {
                 Divider()
 
                 HStack {
-                    Text("settings.account.username.description \(account.gitProvider)")
+					Text("settings.account.username.description \(account.provider)")
                         .foregroundColor(.secondary)
                         .font(.system(size: 11))
                         .padding(6)
                         .padding(.horizontal, 5)
                     Spacer()
                     Button("global.delete") {
-                        onDeleteCallback(account.id)
+						onDeleteCallback(account.id)
                     }
                 }
             }

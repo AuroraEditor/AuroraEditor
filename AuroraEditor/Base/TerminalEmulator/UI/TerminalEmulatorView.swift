@@ -38,12 +38,12 @@ public struct TerminalEmulatorView: NSViewRepresentable {
 
     /// Font
     private var font: NSFont {
-        if !prefs.preferences.terminal.font.customFont {
+		if !prefs.preferences.terminal.customTerminalFont {
             return systemFont
         }
         return NSFont(
-            name: prefs.preferences.terminal.font.name,
-            size: CGFloat(prefs.preferences.terminal.font.size)
+			name: prefs.preferences.terminal.terminalFontName,
+			size: CGFloat(prefs.preferences.terminal.terminalFontSize)
         ) ?? systemFont
     }
 
@@ -259,7 +259,7 @@ public struct TerminalEmulatorView: NSViewRepresentable {
     /// - Parameter shouldBlink: Should the cursor blink
     /// 
     /// - Returns: The cursor style
-    private func getCursorStyle(_ style: AppPreferences.TerminalCursorStyle, shouldBlink: Bool) -> CursorStyle {
+    private func getCursorStyle(_ style: TerminalCursorStyle, shouldBlink: Bool) -> CursorStyle {
         switch style {
         case .block:
             return shouldBlink ? .blinkBlock : .steadyBlock

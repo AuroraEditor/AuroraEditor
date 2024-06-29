@@ -10,68 +10,80 @@ import SwiftUI
 
 /// The preference accounts view
 public struct PreferenceAccountsView: View {
-    /// The open account dialog
-    @State
-    private var openAccountDialog = false
+	/// The open account dialog
+	@State
+	private var openAccountDialog = false
 
-    /// The preferences model
-    @StateObject
-    private var prefs: AppPreferencesModel = .shared
+	/// The preferences model
+	@StateObject
+	private var prefs: AppPreferencesModel = .shared
 
-    /// Initializes the preference accounts view
-    public init() {}
+	@State
+	private var accounts: [AccountPreferences] = []
 
-    /// The view body
-    public var body: some View {
-        PreferencesContent {
-            if prefs.preferences.accounts.sourceControlAccounts.gitAccount.isEmpty {
-                Text("settings.account.no.account")
-                    .padding(.horizontal)
-                    .multilineTextAlignment(.center)
-                    .font(.system(size: 16))
-                    .foregroundColor(.secondary)
-            } else {
-                List($prefs.preferences.accounts.sourceControlAccounts.gitAccount) { account in
-                    AccountItemView(account: account, onDeleteCallback: removeSourceControlAccount)
-                }
-                .frame(minHeight: 435)
-                .padding(.horizontal, -10)
-                .listStyle(.plain)
-            }
+	/// Initializes the preference accounts view
+	public init() {
+		_accounts = State(initialValue: AccountPreferences.fetchAll())
+	}
 
-            HStack {
-                Spacer()
-                Button {
-                    openAccountDialog.toggle()
-                } label: {
-                    Text("settings.account.add")
-                        .foregroundColor(.white)
-                }
-                .buttonStyle(.borderedProminent)
-                .sheet(isPresented: $openAccountDialog) {
-                    AccountSelectionDialog()
-                }
-            }
-        }
-    }
+	/// The view body
+	public var body: some View {
+		PreferencesContent {
+			if accounts.isEmpty {
+				Text("settings.account.no.account")
+					.padding(.horizontal)
+					.multilineTextAlignment(.center)
+					.font(.system(size: 16))
+					.foregroundColor(.secondary)
+			} else {
+				List {
+					ForEach($accounts) { account in
+						AccountItemView(account: account, onDeleteCallback: removeAccount)
+					}
+					.onDelete(perform: deleteAccount)
+				}
+				.frame(minHeight: 435)
+				.padding(.horizontal, -10)
+				.listStyle(PlainListStyle())
+			}
 
-    /// Removes the source control account
-    /// 
-    /// - Parameter selectedAccountId: The selected account ID
-    func removeSourceControlAccount(selectedAccountId: String) {
-        var gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
+			HStack {
+				Spacer()
+				Button {
+					openAccountDialog.toggle()
+				} label: {
+					Text("settings.account.add")
+						.foregroundColor(.white)
+				}
+				.buttonStyle(BorderedProminentButtonStyle())
+				.sheet(isPresented: $openAccountDialog) {
+					AccountSelectionDialog()
+				}
+			}
+		}
+	}
 
-        for account in gitAccounts where account.id == selectedAccountId {
-            let index = gitAccounts.firstIndex(of: account)
-            gitAccounts.remove(at: index ?? 0)
-        }
+	/// Deletes the selected account
+	///
+	/// - Parameter indexSet: The index set of the account to remove
+	private func deleteAccount(at indexSet: IndexSet) {
+		indexSet.forEach { index in
+			let account = accounts[index]
+			AccountPreferences.delete(account)
+			accounts.remove(at: index)
+		}
+	}
 
-        prefs.preferences.accounts.sourceControlAccounts.gitAccount = gitAccounts
-    }
+	/// Removes the source control account
+	///
+	/// - Parameter selectedAccountId: The selected account ID
+	private func removeAccount(selectedAccountId: String) {
+		accounts.removeAll { $0.id == selectedAccountId }
+	}
 }
 
 struct PreferenceAccountsView_Previews: PreviewProvider {
-    static var previews: some View {
-        PreferenceAccountsView()
-    }
+	static var previews: some View {
+		PreferenceAccountsView()
+	}
 }

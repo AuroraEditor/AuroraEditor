@@ -36,7 +36,7 @@ struct SourceControlGeneralView: View {
                             Text("settings.source.control.general.enable")
                             Spacer()
                             Toggle("",
-                                   isOn: $prefs.preferences.sourceControl.general.enableSourceControl)
+								   isOn: $prefs.preferences.sourceControlGeneral.enableSourceControl)
                             .labelsHidden()
                             .toggleStyle(.switch)
                         }
@@ -47,7 +47,7 @@ struct SourceControlGeneralView: View {
                             Text("settings.source.control.general.refresh")
                             Spacer()
                             Toggle("",
-                                   isOn: $prefs.preferences.sourceControl.general.refreshStatusLocaly)
+                                   isOn: $prefs.preferences.sourceControlGeneral.refreshStatusLocaly)
                             .labelsHidden()
                             .toggleStyle(.switch)
                             .disabled(!prefs.sourceControlActive())
@@ -59,7 +59,7 @@ struct SourceControlGeneralView: View {
                             Text("settings.source.control.general.fetch")
                             Spacer()
                             Toggle("",
-                                   isOn: $prefs.preferences.sourceControl.general.fetchRefreshServerStatus)
+                                   isOn: $prefs.preferences.sourceControlGeneral.fetchRefreshServerStatus)
                             .labelsHidden()
                             .toggleStyle(.switch)
                             .disabled(!prefs.sourceControlActive())
@@ -71,7 +71,7 @@ struct SourceControlGeneralView: View {
                             Text("settings.source.control.general.add.remove")
                             Spacer()
                             Toggle("",
-                                   isOn: $prefs.preferences.sourceControl.general.addRemoveAutomatically)
+                                   isOn: $prefs.preferences.sourceControlGeneral.addRemoveAutomatically)
                             .labelsHidden()
                             .toggleStyle(.switch)
                             .disabled(!prefs.sourceControlActive())
@@ -83,7 +83,7 @@ struct SourceControlGeneralView: View {
                             Text("settings.source.control.general.select.files")
                             Spacer()
                             Toggle("",
-                                   isOn: $prefs.preferences.sourceControl.general.selectFilesToCommit)
+                                   isOn: $prefs.preferences.sourceControlGeneral.selectFilesToCommit)
                             .labelsHidden()
                             .toggleStyle(.switch)
                             .disabled(!prefs.sourceControlActive())
@@ -106,7 +106,7 @@ struct SourceControlGeneralView: View {
                         Text("settings.source.control.general.show.changes")
                         Spacer()
                         Toggle("",
-                               isOn: $prefs.preferences.sourceControl.general.showSourceControlChanges)
+                               isOn: $prefs.preferences.sourceControlGeneral.showSourceControlChanges)
                         .labelsHidden()
                         .toggleStyle(.switch)
                         .disabled(!prefs.sourceControlActive())
@@ -118,7 +118,7 @@ struct SourceControlGeneralView: View {
                         Text("Include upstream changes")
                         Spacer()
                         Toggle("Include upstream changes",
-                               isOn: $prefs.preferences.sourceControl.general.includeUpstreamChanges)
+                               isOn: $prefs.preferences.sourceControlGeneral.includeUpstreamChanges)
                         .labelsHidden()
                         .toggleStyle(.switch)
                         .disabled(!prefs.sourceControlActive())
@@ -139,7 +139,7 @@ struct SourceControlGeneralView: View {
                     Text("settings.source.control.general.open.issues.browser")
                     Spacer()
                     Toggle("",
-                           isOn: $prefs.preferences.sourceControl.general.openFeedbackInBrowser)
+                           isOn: $prefs.preferences.sourceControlGeneral.openFeedbackInBrowser)
                     .labelsHidden()
                     .toggleStyle(.switch)
                 }
@@ -151,11 +151,11 @@ struct SourceControlGeneralView: View {
                     Text("settings.source.control.general.comparison")
                     Spacer()
                     Picker("",
-                           selection: $prefs.preferences.sourceControl.general.revisionComparisonLayout) {
+                           selection: $prefs.preferences.sourceControlGeneral.revisionComparisonLayout) {
                         Text("settings.source.control.general.comparison.revision.lect")
-                            .tag(AppPreferences.RevisionComparisonLayout.localLeft)
+                            .tag(RevisionComparisonLayout.localLeft)
                         Text("settings.source.control.general.comparison.revision.right")
-                            .tag(AppPreferences.RevisionComparisonLayout.localRight)
+                            .tag(RevisionComparisonLayout.localRight)
                     }
                     .labelsHidden()
                     .frame(width: inputWidth)
@@ -168,11 +168,11 @@ struct SourceControlGeneralView: View {
                     Text("settings.source.control.general.navigator")
                     Spacer()
                     Picker("",
-                           selection: $prefs.preferences.sourceControl.general.controlNavigatorOrder) {
+                           selection: $prefs.preferences.sourceControlGeneral.controlNavigatorOrder) {
                         Text("settings.source.control.general.navigator.sort.name")
-                            .tag(AppPreferences.ControlNavigatorOrder.sortByName)
+                            .tag(ControlNavigatorOrder.sortByName)
                         Text("settings.source.control.general.navigator.sort.date")
-                            .tag(AppPreferences.ControlNavigatorOrder.sortByDate)
+                            .tag(ControlNavigatorOrder.sortByDate)
                     }
                     .labelsHidden()
                     .frame(width: inputWidth)

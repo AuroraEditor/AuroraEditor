@@ -7,41 +7,99 @@
 //
 
 import Foundation
+import GRDB
 
-public extension AppPreferences {
-    /// The global settings for text editing
-    struct AccountsPreferences: Codable {
-        /// An integer indicating how many spaces a `tab` will generate
-        public var sourceControlAccounts: GitAccounts = .init()
+struct AccountPreferences: Codable, FetchableRecord,
+						   PersistableRecord, DatabaseValueConvertible,
+						   Identifiable, Equatable {
+	/// The unique identifier for the account
+	public var id: String = ""
 
-        /// Default initializer
-        public init() {}
+	/// The name of the provider
+	public var provider: String = ""
 
-        /// Explicit decoder init for setting default values when key is not present in `JSON`
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.sourceControlAccounts = try container.decodeIfPresent(
-                GitAccounts.self,
-                forKey: .sourceControlAccounts
-            ) ?? .init()
-        }
-    }
+	/// The link to the provider
+	public var providerLink: String = ""
 
-    /// The global settings for text editing
-    struct GitAccounts: Codable {
-        /// This id will store the account name as the identifiable
-        public var gitAccount: [SourceControlAccounts] = []
+	/// The description of the provider
+	public var providerDescription: String = ""
 
-        public var sshKey: String = ""
+	/// The name of the account
+	public var accountName: String = ""
 
-        /// Default initializer
-        public init() {}
+	/// The email of the account
+	public var accountEmail: String = ""
 
-        /// Explicit decoder init for setting default values when key is not present in `JSON`
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.gitAccount = try container.decodeIfPresent([SourceControlAccounts].self, forKey: .gitAccount) ?? []
-            self.sshKey = try container.decodeIfPresent(String.self, forKey: .sshKey) ?? ""
-        }
-    }
+	/// The username of the account
+	public var accountUsername: String = ""
+
+	/// The image of the account
+	public var accountImage: String = ""
+
+	// If bool we use the HTTP protocol else if false we use SHH
+	/// The cloning protocol
+	public var gitCloningProtocol: Bool = false
+
+	/// The SSH key of the account
+	public var gitSSHKey: String = ""
+
+	/// Is the token valid
+	public var isTokenValid: Bool = false
+
+	static let databaseTableName = "AccountPreferences"
+
+	// MARK: - Database Functions
+
+	/// Creates a new account record in the database.
+	/// - Parameter account: The `AccountPreferences` instance to save.
+	/// - Throws: An error if the database operation fails.
+	static func create(account: AccountPreferences) {
+		do {
+			let dbQueue = try DatabaseQueue.fetchDatabase()
+			try dbQueue.write { database in
+				try account.save(database)
+			}
+		} catch {}
+	}
+
+	/// Fetches all records from the AccountPreferences table.
+	/// - Returns: An array of AccountPreferences instances.
+	/// - Throws: An error if the database operation fails.
+	static func fetchAll() -> [AccountPreferences] {
+		do {
+			let dbQueue = try DatabaseQueue.fetchDatabase()
+			return try dbQueue.read { database in
+				try AccountPreferences.fetchAll(database)
+			}
+		} catch {
+			return []
+		}
+	}
+
+	/// Checks if the user has any Git accounts.
+	/// - Returns: A boolean indicating if any Git accounts exist.
+	static func doesUserHaveGitAccounts() -> Bool {
+		do {
+			let dbQueue = try DatabaseQueue.fetchDatabase()
+			return try dbQueue.read { database in
+				let count = try Int.fetchOne(database, sql: """
+					SELECT COUNT(*) FROM \(databaseTableName)
+					""") ?? 0
+				return count > 0 // swiftlint:disable:this empty_count
+			}
+		} catch {
+			return false
+		}
+	}
+
+	/// Deletes an account record from the database.
+	/// - Parameter account: The `AccountPreferences` instance to delete.
+	static func delete(_ account: AccountPreferences) {
+		do {
+			let dbQueue = try DatabaseQueue.fetchDatabase()
+			try dbQueue.write { database in
+				try account.delete(database)
+			}
+		} catch {}
+	}
 }

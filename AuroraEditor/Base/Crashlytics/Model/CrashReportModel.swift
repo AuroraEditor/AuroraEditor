@@ -62,16 +62,24 @@ public class CrashReportModel: ObservableObject {
         """
     }
 
+	// God I was fucking stupid here! What is this logic omfg
     /// Creates a Github Issue
     ///
     /// - Parameter comments: The comments for the issue.
     /// - Parameter crashData: The crash data for the issue.
     public func createIssue(comments: String,
                             crashData: String) {
-        let gitAccounts = prefs.preferences.accounts.sourceControlAccounts.gitAccount
+		var gitAccounts: [AccountPreferences] = []
+
+		do {
+			gitAccounts = try AccountPreferences.fetchAll()
+		} catch {
+			self.logger.fault("Failed to fetch accounts")
+		}
+
         let firstGitAccount = gitAccounts.first
 
-        let config = GithubTokenConfiguration(keychain.get(firstGitAccount!.gitAccountName))
+		let config = GithubTokenConfiguration(keychain.get(firstGitAccount!.accountName))
         GithubAccount(config).postIssue(owner: "AuroraEditor",
                                         repository: "AuroraEditor",
                                         title: "💣 - Crash - ID: \(UUID().uuidString)",

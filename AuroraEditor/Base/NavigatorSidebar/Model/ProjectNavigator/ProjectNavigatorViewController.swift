@@ -48,16 +48,16 @@ final class ProjectNavigatorViewController: NSViewController {
     var workspace: WorkspaceDocument?
 
     /// The icon color style
-    var iconColor: AppPreferences.FileIconStyle = .color
+    var iconColor: FileIconStyle = .color
 
     /// The file extensions visibility
-    var fileExtensionsVisibility: AppPreferences.FileExtensionsVisibility = .showAll
+    var fileExtensionsVisibility: FileExtensionsVisibility = .showAll
 
     /// The shown file extensions
-    var shownFileExtensions: AppPreferences.FileExtensions = .default
+    var shownFileExtensions: FileExtensions = .default
 
     /// The hidden file extensions
-    var hiddenFileExtensions: AppPreferences.FileExtensions = .default
+    var hiddenFileExtensions: FileExtensions = .default
 
     /// The row height of the outline view
     var rowHeight: Double = 22 {

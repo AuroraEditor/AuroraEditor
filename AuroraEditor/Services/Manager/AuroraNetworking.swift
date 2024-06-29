@@ -19,7 +19,7 @@ enum AuthType: Codable {
     case none
 }
 
-class AuroraNetworking {
+class AuroraNetworking { // swiftlint:disable:this type_body_length
     static let shared = AuroraNetworking()
 
     /// Logger
@@ -54,13 +54,21 @@ class AuroraNetworking {
         // Create a URL Request
         var request = URLRequest(url: url)
 
+		var gitAccounts: [AccountPreferences] = []
+
+		do {
+			gitAccounts = try AccountPreferences.fetchAll()
+		} catch {
+			self.logger.fault("Failed to fetch accounts")
+		}
+
         if useAuthType == .github {
             request.addValue(
                 "application/vnd.github+json",
                 forHTTPHeaderField: "Accept"
             )
 
-            let username = prefs.preferences.accounts.sourceControlAccounts.gitAccount.first?.gitAccountUsername
+			let username = gitAccounts.first?.accountUsername
 
             request.setValue(
                 "Bearer \(keychain.get("github_\(username!)")!)",
@@ -72,8 +80,7 @@ class AuroraNetworking {
                 forHTTPHeaderField: "Content-Type"
             )
 
-            let username = prefs.preferences.accounts.sourceControlAccounts.gitAccount.first?
-                .gitAccountUsername.contains("auroraeditor_")
+			let username = gitAccounts.first?.accountUsername.contains("auroraeditor_")
 
             request.setValue(
                 "Bearer \(keychain.get("auroraeditor_\(username!)")!)",
@@ -140,7 +147,6 @@ class AuroraNetworking {
                 }
             }.resume()
 
-            // Release the session from memory
             session = nil
         }
 
@@ -167,7 +173,6 @@ class AuroraNetworking {
         line: Int = #line,
         function: String = #function
     ) {
-        // Check if the URL is valid
         guard let siteURL = URL(string: baseURL + path) else {
             completionHandler(
                 .failure(

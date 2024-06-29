@@ -78,8 +78,8 @@ public struct CodeEditorViewWrapper: View {
     /// The current font
     @State
     private var font: NSFont = {
-        let size = AppPreferencesModel.shared.preferences.textEditing.font.size
-        let name = AppPreferencesModel.shared.preferences.textEditing.font.name
+		let size = AppPreferencesModel.shared.preferences.editorFont.size
+        let name = AppPreferencesModel.shared.preferences.editorFont.name
         return NSFont(name: name, size: Double(size)) ?? NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
     }()
 

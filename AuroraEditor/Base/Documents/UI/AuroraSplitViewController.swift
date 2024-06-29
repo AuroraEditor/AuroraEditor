@@ -29,7 +29,7 @@ class AuroraSplitViewController: NSSplitViewController {
     ///  should not be persisted one by one.
     /// rather than that, we would like to store only the latest event of size change
     /// by using `Publiher.debounce` in `Combine` framework.
-    private let generalPrefsSubject: PassthroughSubject<AppPreferences.GeneralPreferences, Never> = .init()
+    private let generalPrefsSubject: PassthroughSubject<GeneralPreferences, Never> = .init()
 
     /// `cancellables` stores all the `AnyCancellable` which is used in this class.
     private var cancellables: Set<AnyCancellable> = []
@@ -84,7 +84,7 @@ class AuroraSplitViewController: NSSplitViewController {
             return
         }
 
-        let prefsKeyPath: [WritableKeyPath<AppPreferences.GeneralPreferences, Double>] = [
+        let prefsKeyPath: [WritableKeyPath<GeneralPreferences, Double>] = [
             \.navigationSidebarWidth,
             \.workspaceSidebarWidth,
             \.inspectorSidebarWidth
