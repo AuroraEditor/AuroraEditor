@@ -13,7 +13,7 @@ excluded:
   - AuroraEditorModules/.build # Where Swift Package Manager checks out dependency sources
   - AuroraEditorCli/Package.swift # Package.swift should not be linted
   - Tools # Tools should not be linted
-  - "AuroraEditor/Base/Version Control" # This will be removed soon, @nanashili remove when done.
+  - "AuroraEditor/Features/Version Control" # This will be removed soon, @nanashili remove when done.
 
 # Exclude triggering type names.
 type_name:
