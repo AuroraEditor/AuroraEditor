@@ -17,8 +17,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2B3DAA3B2BFD1BD400A7773D"
-               BuildableName = "AEquicklook.appex"
-               BlueprintName = "AEquicklook"
+               BuildableName = "Quick Look.appex"
+               BlueprintName = "Quick Look"
                ReferencedContainer = "container:Aurora Editor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

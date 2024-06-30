@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A01AB2D02ACC9EDA0029EDF0"
-               BuildableName = "AEUpdateService.app"
-               BlueprintName = "AEUpdateService"
+               BuildableName = "Update Service.app"
+               BlueprintName = "Update Service"
                ReferencedContainer = "container:Aurora Editor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
