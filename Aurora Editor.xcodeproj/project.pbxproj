@@ -47,7 +47,6 @@
 		2032B50E28A256130089EBB6 /* Collection+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B50D28A256130089EBB6 /* Collection+Subscript.swift */; };
 		2032B51028A256F50089EBB6 /* Array+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B50F28A256F50089EBB6 /* Array+Subscript.swift */; };
 		2032B51328A26B390089EBB6 /* AboutWindowHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */; };
-		2036DD5528DB3DB5003BECB7 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2036DD5428DB3DB5003BECB7 /* Queue.swift */; };
 		20439038290D27DB00126A3F /* WorkspaceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20439037290D27DB00126A3F /* WorkspaceErrors.swift */; };
 		2043903C290D385600126A3F /* ExploreExtensionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043903B290D385600126A3F /* ExploreExtensionsView.swift */; };
 		2043903E290D38D700126A3F /* ExploreItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2043903D290D38D700126A3F /* ExploreItemView.swift */; };
@@ -650,7 +649,6 @@
 		2032B50D28A256130089EBB6 /* Collection+Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Subscript.swift"; sourceTree = "<group>"; };
 		2032B50F28A256F50089EBB6 /* Array+Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Subscript.swift"; sourceTree = "<group>"; };
 		2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowHostingController.swift; sourceTree = "<group>"; };
-		2036DD5428DB3DB5003BECB7 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		20425E47297EE74D0022FE5A /* sort-Xcode-project-file.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = "sort-Xcode-project-file.pl"; sourceTree = "<group>"; };
 		20425E49297EED860022FE5A /* ClearDerivedData.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ClearDerivedData.sh; sourceTree = "<group>"; };
 		20425E4B297EEE350022FE5A /* unused_strings.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = unused_strings.py; sourceTree = "<group>"; };
@@ -1227,6 +1225,7 @@
 		043C321227E31FE8006AE443 /* Documents */ = {
 			isa = PBXGroup;
 			children = (
+				20439035290D27C600126A3F /* Errors */,
 				200FB696289D112C006E12D4 /* Model */,
 				200FB695289D1125006E12D4 /* UI */,
 			);
@@ -1741,12 +1740,9 @@
 		20D83713289A7A9900D91D05 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				20439035290D27C600126A3F /* Errors */,
 				20D83744289A7ACD00D91D05 /* KeyChain */,
-				2B11FF812AB0E87C005B649C /* AuroraINIParser.swift */,
 				2B5CAC812B87E701006B6C66 /* Log.swift */,
 				2B23B2F72B8521CD00C6B066 /* NotificationKeys.swift */,
-				2036DD5428DB3DB5003BECB7 /* Queue.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3212,6 +3208,7 @@
 			isa = PBXGroup;
 			children = (
 				2B53D1FD2B77A2660064114F /* AuroraEditorConfig.swift */,
+				2B11FF812AB0E87C005B649C /* AuroraINIParser.swift */,
 				2B71C0A32874AD61008E0859 /* AuroraProject.swift */,
 			);
 			path = EditorConfig;
@@ -4158,7 +4155,6 @@
 				2093CD27289AA084003A88DD /* PublicKey.swift in Sources */,
 				2093CD2C289AA089003A88DD /* PullRequest.swift in Sources */,
 				2093CD29289AA084003A88DD /* PullRequestRouter.swift in Sources */,
-				2036DD5528DB3DB5003BECB7 /* Queue.swift in Sources */,
 				20EBB507280C32D300F3A5DA /* QuickHelpInspector.swift in Sources */,
 				2093CCAF289AA02D003A88DD /* QuickOpenItem.swift in Sources */,
 				2093CCB0289AA02D003A88DD /* QuickOpenPreviewView.swift in Sources */,
