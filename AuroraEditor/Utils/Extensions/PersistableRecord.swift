@@ -7,7 +7,7 @@
 //
 
 import GRDB
-import os.log
+import OSLog
 import Foundation
 
 /// Extension on `PersistableRecord` protocol to provide a utility
@@ -21,38 +21,22 @@ import Foundation
 ///            protocols to be saved or updated.
 extension PersistableRecord where Self: TableRecord {
     static func saveOrUpdate(_ model: Self) {
-        let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "database")
+        let log = Logger(subsystem: "com.auroraeditor", category: "database")
 
         do {
             let dbQueue = try DatabaseQueue.fetchDatabase()
             try dbQueue.write { database in
                 if try model.exists(database) {
                     try model.update(database)
-                    os_log(
-                        "Updated %@ successfully.",
-                        log: log,
-                        type: .info,
-                        Self.databaseTableName
-                    )
+                    log.info("Updated \(Self.databaseTableName) successfully.")
                 } else {
                     // Save new record
                     try model.insert(database)
-                    os_log(
-                        "Saved %@ successfully.",
-                        log: log,
-                        type: .info,
-                        Self.databaseTableName
-                    )
+                    log.info("Saved \(Self.databaseTableName) successfully.")
                 }
             }
         } catch {
-            os_log(
-                "Failed to save %@: %@",
-                log: log,
-                type: .error,
-                Self.databaseTableName,
-                error.localizedDescription
-            )
+            log.error("Failed to save \(Self.databaseTableName) \(error.localizedDescription).")
         }
     }
 }
