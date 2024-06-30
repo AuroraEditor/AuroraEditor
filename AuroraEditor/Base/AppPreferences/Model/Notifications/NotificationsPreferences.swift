@@ -10,11 +10,11 @@ import Foundation
 import GRDB
 
 struct NotificationsPreferences: Codable, FetchableRecord, PersistableRecord, DatabaseValueConvertible {
-	var id: Int64 = 1
-	var notificationsEnabled: Bool = true
-	var notificationDisplayTime: Int = 5000
-	var doNotDisturb: Bool = false
-	var allProfiles: Bool = false
+    var id: Int64 = 1
+    var notificationsEnabled: Bool = true
+    var notificationDisplayTime: Int = 5000
+    var doNotDisturb: Bool = false
+    var allProfiles: Bool = false
 
-	static let databaseTableName = "NotificationsPreferences"
+    static let databaseTableName = "NotificationsPreferences"
 }

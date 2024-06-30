@@ -10,12 +10,12 @@ import GRDB
 import Foundation
 
 extension DatabaseQueue {
-	/// Fetches the database queue at the preferences database path.
-	/// - Returns: The fetched `DatabaseQueue` instance.
-	/// - Throws: An error if the database queue cannot be fetched.
-	static func fetchDatabase() throws -> DatabaseQueue {
-		let databasePath = try FileManager.preferencesDatabasePath()
-		let dbQueue = try DatabaseQueue(path: databasePath)
-		return dbQueue
-	}
+    /// Fetches the database queue at the preferences database path.
+    /// - Returns: The fetched `DatabaseQueue` instance.
+    /// - Throws: An error if the database queue cannot be fetched.
+    static func fetchDatabase() throws -> DatabaseQueue {
+        let databasePath = try FileManager.preferencesDatabasePath()
+        let dbQueue = try DatabaseQueue(path: databasePath)
+        return dbQueue
+    }
 }

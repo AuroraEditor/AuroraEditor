@@ -295,7 +295,7 @@ extension GeneralPreferencesView {
               Text("Preferences")
               Spacer()
               HStack {
-				  Text(FileManager.default.auroraEditorBaseURL.path)
+                  Text(FileManager.default.auroraEditorBaseURL.path)
                       .foregroundColor(.secondary)
                   Button {
                       NSWorkspace.shared.selectFile(

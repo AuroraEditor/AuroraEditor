@@ -54,13 +54,13 @@ class AuroraNetworking { // swiftlint:disable:this type_body_length
         // Create a URL Request
         var request = URLRequest(url: url)
 
-		var gitAccounts: [AccountPreferences] = []
+        var gitAccounts: [AccountPreferences] = []
 
-		do {
-			gitAccounts = try AccountPreferences.fetchAll()
-		} catch {
-			self.logger.fault("Failed to fetch accounts")
-		}
+        do {
+            gitAccounts = try AccountPreferences.fetchAll()
+        } catch {
+            self.logger.fault("Failed to fetch accounts")
+        }
 
         if useAuthType == .github {
             request.addValue(
@@ -68,7 +68,7 @@ class AuroraNetworking { // swiftlint:disable:this type_body_length
                 forHTTPHeaderField: "Accept"
             )
 
-			let username = gitAccounts.first?.accountUsername
+            let username = gitAccounts.first?.accountUsername
 
             request.setValue(
                 "Bearer \(keychain.get("github_\(username!)")!)",
@@ -80,7 +80,7 @@ class AuroraNetworking { // swiftlint:disable:this type_body_length
                 forHTTPHeaderField: "Content-Type"
             )
 
-			let username = gitAccounts.first?.accountUsername.contains("auroraeditor_")
+            let username = gitAccounts.first?.accountUsername.contains("auroraeditor_")
 
             request.setValue(
                 "Bearer \(keychain.get("auroraeditor_\(username!)")!)",

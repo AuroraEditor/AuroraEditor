@@ -29,7 +29,7 @@ struct SourceControlGitView: View {
                     Text("settings.source.control.git.author.name")
                     Spacer()
                     TextField("settings.source.control.git.author",
-							  text: $prefs.preferences.sourceControlGit.authorName)
+                              text: $prefs.preferences.sourceControlGit.authorName)
                         .frame(width: inputWidth)
                         .textFieldStyle(.roundedBorder)
                 }

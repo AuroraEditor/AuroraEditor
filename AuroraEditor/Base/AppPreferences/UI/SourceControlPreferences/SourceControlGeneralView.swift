@@ -36,7 +36,7 @@ struct SourceControlGeneralView: View {
                             Text("settings.source.control.general.enable")
                             Spacer()
                             Toggle("",
-								   isOn: $prefs.preferences.sourceControlGeneral.enableSourceControl)
+                                   isOn: $prefs.preferences.sourceControlGeneral.enableSourceControl)
                             .labelsHidden()
                             .toggleStyle(.switch)
                         }

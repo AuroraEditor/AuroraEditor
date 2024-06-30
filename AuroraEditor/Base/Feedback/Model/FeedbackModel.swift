@@ -195,13 +195,13 @@ public class FeedbackModel: ObservableObject {
                             steps: String?,
                             expectation: String?,
                             actuallyHappened: String?) {
-		var gitAccounts: [AccountPreferences] = []
+        var gitAccounts: [AccountPreferences] = []
 
-		do {
-			gitAccounts = try AccountPreferences.fetchAll()
-		} catch {
-			self.logger.fault("Failed to fetch accounts")
-		}
+        do {
+            gitAccounts = try AccountPreferences.fetchAll()
+        } catch {
+            self.logger.fault("Failed to fetch accounts")
+        }
 
         guard let firstGitAccount = gitAccounts.first else {
             self.logger.warning("Did not find an account name.")
@@ -225,7 +225,7 @@ public class FeedbackModel: ObservableObject {
             return
         }
 
-		let config = GithubTokenConfiguration(keychain.get(firstGitAccount.accountName))
+        let config = GithubTokenConfiguration(keychain.get(firstGitAccount.accountName))
         GithubAccount(config).postIssue(owner: "AuroraEditor",
                                         repository: "AuroraEditor",
                                         title: "\(getFeebackTypeTitle()) \(title)",
@@ -237,7 +237,7 @@ public class FeedbackModel: ObservableObject {
                                         labels: [getFeebackTypeLabel(), getIssueLabel()]) { response in
             switch response {
             case .success(let issue):
-				if self.prefs.preferences.sourceControlGeneral.openFeedbackInBrowser {
+                if self.prefs.preferences.sourceControlGeneral.openFeedbackInBrowser {
                     self.openIssueURL(issue.htmlURL ?? URL(
                         string: "https://github.com/AuroraEditor/AuroraEditor/issues")!
                     )

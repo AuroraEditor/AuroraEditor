@@ -97,20 +97,20 @@ struct SourceControlNavigatorView: View {
         }
     }
 
-	/// Checks if the user has git accounts stored in the preferences database.
-	/// - Returns: A boolean value indicating whether the user has git accounts.
-	/// - Throws: An error if there is an issue accessing the database or executing the query.
-	func doesUserHaveGitAccounts() -> Bool {
-		do {
-			let dbQueue = try DatabaseQueue.fetchDatabase()
-			return try dbQueue.read { database -> Bool in
-				let count = try Int.fetchOne(database, sql: """
-					SELECT COUNT(*) FROM \(AccountPreferences.databaseTableName)
-					""") ?? 0
-				return count > 0 // swiftlint:disable:this empty_count
-			}
-		} catch {
-			return false
-		}
-	}
+    /// Checks if the user has git accounts stored in the preferences database.
+    /// - Returns: A boolean value indicating whether the user has git accounts.
+    /// - Throws: An error if there is an issue accessing the database or executing the query.
+    func doesUserHaveGitAccounts() -> Bool {
+        do {
+            let dbQueue = try DatabaseQueue.fetchDatabase()
+            return try dbQueue.read { database -> Bool in
+                let count = try Int.fetchOne(database, sql: """
+                    SELECT COUNT(*) FROM \(AccountPreferences.databaseTableName)
+                    """) ?? 0
+                return count > 0 // swiftlint:disable:this empty_count
+            }
+        } catch {
+            return false
+        }
+    }
 }

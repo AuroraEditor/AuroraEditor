@@ -72,18 +72,19 @@ public struct TerminalPreferencesView: View {
         HStack {
             Text("settings.global.font")
             Spacer()
-			Picker("", selection: $prefs.preferences.terminal.customTerminalFont) {
-				Text("settings.global.font.system")
-					.tag(false)
-				Text("settings.global.font.custom")
-					.tag(true)
-			}
+            Picker("", selection: $prefs.preferences.terminal.customTerminalFont) {
+                Text("settings.global.font.system")
+                    .tag(false)
+                Text("settings.global.font.custom")
+                    .tag(true)
+            }
             .labelsHidden()
             .frame(width: inputWidth)
             if prefs.preferences.terminal.customTerminalFont {
                 FontPicker(
-					"\(prefs.preferences.terminal.terminalFontName) \(prefs.preferences.terminal.terminalFontSize)",
-					name: $prefs.preferences.terminal.terminalFontName, size: $prefs.preferences.terminal.terminalFontSize
+                    "\(prefs.preferences.terminal.terminalFontName) \(prefs.preferences.terminal.terminalFontSize)",
+                    name: $prefs.preferences.terminal.terminalFontName,
+                    size: $prefs.preferences.terminal.terminalFontSize
                 )
             }
         }

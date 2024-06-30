@@ -38,12 +38,12 @@ public struct TerminalEmulatorView: NSViewRepresentable {
 
     /// Font
     private var font: NSFont {
-		if !prefs.preferences.terminal.customTerminalFont {
+        if !prefs.preferences.terminal.customTerminalFont {
             return systemFont
         }
         return NSFont(
-			name: prefs.preferences.terminal.terminalFontName,
-			size: CGFloat(prefs.preferences.terminal.terminalFontSize)
+            name: prefs.preferences.terminal.terminalFontName,
+            size: CGFloat(prefs.preferences.terminal.terminalFontSize)
         ) ?? systemFont
     }
 

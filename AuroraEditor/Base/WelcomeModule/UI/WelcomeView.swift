@@ -173,7 +173,7 @@ public struct WelcomeView: View {
                         Toggle("Show this window when Aurora launches", isOn: .init(get: {
                             prefs.preferences.general.reopenBehavior == .welcome
                         }, set: { new in
-							prefs.preferences.general.reopenBehavior = new ? .welcome : .openPanel
+                            prefs.preferences.general.reopenBehavior = new ? .welcome : .openPanel
                         }))
                         .toggleStyle(.checkbox)
                         Spacer()

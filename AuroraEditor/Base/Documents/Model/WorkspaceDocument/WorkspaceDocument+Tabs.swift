@@ -95,9 +95,9 @@ extension WorkspaceDocument {
                 ExtensionsManager.shared.sendEvent(
                     event: "didOpen",
                     parameters: [
-                        "workspace": self.fileURL?.relativeString ?? "Unknown",
                         "file": item.url.relativeString,
-                        "contents": String(data: fileData ?? Data(), encoding: .utf8) ?? ""
+                        "contents": String(data: fileData ?? Data(), encoding: .utf8) ?? "",
+                        "workspace": self.fileURL?.relativeString ?? "Unknown"
                     ]
                 )
             } catch let err {

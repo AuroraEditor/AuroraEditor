@@ -120,7 +120,7 @@ public struct CrashReportView: View {
 
                     Button {
                         UserDefaults.standard.removeObject(forKey: "crash")
-						if AccountPreferences.doesUserHaveGitAccounts() {
+                        if AccountPreferences.doesUserHaveGitAccounts() {
                             restartApplication()
                         } else {
                             reportModel.createIssue(comments: reportModel.comments,
