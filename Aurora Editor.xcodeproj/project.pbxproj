@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -517,7 +517,7 @@
 		A05D17C22ACDCE94002153C9 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05D17C12ACDCE94002153C9 /* Main.swift */; };
 		A05D17C92ACE0028002153C9 /* UpdateInvalidChecksumState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05D17C72ACDFAA9002153C9 /* UpdateInvalidChecksumState.swift */; };
 		A05D17CB2ACE041E002153C9 /* UpdateUpToDateState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05D17CA2ACE041E002153C9 /* UpdateUpToDateState.swift */; };
-		A05D17CE2ACE190A002153C9 /* Update Service.app in Resources */ = {isa = PBXBuildFile; fileRef = A01AB2D12ACC9EDA0029EDF0 /* Update Service.app */; };
+		A07404BF2C31D684006391E0 /* Update Service.app in Resources */ = {isa = PBXBuildFile; fileRef = A01AB2D12ACC9EDA0029EDF0 /* Update Service.app */; };
 		A07C1CD42AE4518900E8B17D /* NotificationIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07C1CD32AE4518900E8B17D /* NotificationIcon.swift */; };
 		A08E00812AD48C2A0091725D /* LoaderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E00802AD48C2A0091725D /* LoaderState.swift */; };
 		A08E00832AD48C740091725D /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E00822AD48C740091725D /* Loader.swift */; };
@@ -3302,6 +3302,7 @@
 			indentWidth = 4;
 			sourceTree = "<group>";
 			tabWidth = 4;
+			usesTabs = 1;
 		};
 		B658FB2D27DA9E0F00EA4DBD /* Products */ = {
 			isa = PBXGroup;
@@ -3517,7 +3518,7 @@
 				};
 			};
 			buildConfigurationList = B658FB2727DA9E0F00EA4DBD /* Build configuration list for PBXProject "Aurora Editor" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -3632,6 +3633,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A07404BF2C31D684006391E0 /* Update Service.app in Resources */,
 				2B5B25552885D9C3009C7384 /* .gitignore in Resources */,
 				2B5B25532885D9BA009C7384 /* .swiftlint.yml in Resources */,
 				B658FB3427DA9E1000EA4DBD /* Assets.xcassets in Resources */,
@@ -3642,7 +3644,6 @@
 				043C321A27E32295006AE443 /* MainMenu.xib in Resources */,
 				209D024B289ABC340082441F /* Package.resolved in Resources */,
 				2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */,
-				A05D17CE2ACE190A002153C9 /* Update Service.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4669,7 +4670,7 @@
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -4735,7 +4736,7 @@
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
