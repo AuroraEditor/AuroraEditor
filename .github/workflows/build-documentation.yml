@@ -20,6 +20,7 @@ jobs:
       - name: Build Documentation
         run: |
           xcodebuild docbuild -scheme "Aurora Editor" \
+          OTHER_SWIFT_FLAGS='-symbol-graph-minimum-access-level private' \
           OTHER_DOCC_FLAGS="--transform-for-static-hosting --output-path docs"
 
       - name: Init new repo in dist folder and commit generated files
