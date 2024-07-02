@@ -73,3 +73,6 @@ Aurora Editor is licensed under the MIT License, ensuring that it remains free a
 ## 📏 Code of Conduct
 
 We are committed to maintaining a welcoming and inclusive environment for everyone. Please review our [Code of Conduct](https://github.com/AuroraEditor/AuroraEditor/blob/main/CODE_OF_CONDUCT.md) to understand our community guidelines and expectations.
+
+## 🔛🔝 Stats
+![Alt](https://repobeats.axiom.co/api/embed/2ef1e222dc8117fc1afb2ff45d273756aa296647.svg "Repobeats analytics image")
