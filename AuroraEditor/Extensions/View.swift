@@ -26,10 +26,10 @@ internal extension View {
     }
 
     /// Font with line height
-    /// 
+    ///
     /// - Parameter fontSize: font size
     /// - Parameter lineHeight: line height
-    /// 
+    ///
     /// - Returns: modified content
     func fontWithLineHeight(fontSize: CGFloat, lineHeight: CGFloat) -> some View {
         ModifiedContent(
