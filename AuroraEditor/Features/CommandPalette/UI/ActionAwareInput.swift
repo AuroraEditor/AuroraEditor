@@ -90,10 +90,12 @@ class ActionAwareInputView: NSTextView, NSTextFieldDelegate {
     /// 
     /// - Parameter event: The event.
     override public func keyDown(with event: NSEvent) {
-        if onDown!(event) {
-            // We don't want to pass event down the pipe if it was handled.
-            // By handled I mean its keycode was used for something else than typing
-            return
+        if let onDown = onDown {
+            if onDown(event) {
+                // We don't want to pass event down the pipe if it was handled.
+                // By handled I mean its keycode was used for something else than typing
+                return
+            }
         }
 
         super.keyDown(with: event)

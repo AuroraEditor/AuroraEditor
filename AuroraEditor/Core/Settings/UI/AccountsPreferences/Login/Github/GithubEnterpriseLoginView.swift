@@ -74,7 +74,9 @@ struct GithubEnterpriseLoginView: View {
             HStack {
                 HStack {
                     Button {
-                        createToken(URL(string: "https://github.com/settings/tokens/new")!)
+                        createToken(
+                            URL("https://github.com/settings/tokens/new")
+                        )
                     } label: {
                         Text("settings.github.enterprise.login.create")
                             .foregroundColor(.primary)

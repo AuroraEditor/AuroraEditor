@@ -11,6 +11,7 @@ import OSLog
 
 /// A model to handle the editor account
 class EditorAccountModel: ObservableObject {
+    // swiftlint:disable:previous type_body_length
     /// The callback for a successful login
     typealias LoginSuccessfulCallback = () -> Void
 
@@ -231,6 +232,11 @@ class EditorAccountModel: ObservableObject {
                 } else {
                     DispatchQueue.main.async {
                         do {
+                            guard let userLogin = user.login,
+                                  let userAvatar = user.avatarURL else {
+                                return
+                            }
+
                             try AccountPreferences.create(
                                 account: AccountPreferences(
                                     provider: "GitHub",
@@ -238,8 +244,8 @@ class EditorAccountModel: ObservableObject {
                                     providerDescription: "GitHub",
                                     accountName: gitAccountName,
                                     accountEmail: user.email ?? "Not Found",
-                                    accountUsername: user.login!,
-                                    accountImage: user.avatarURL!,
+                                    accountUsername: userLogin,
+                                    accountImage: userAvatar,
                                     gitCloningProtocol: true,
                                     gitSSHKey: "",
                                     isTokenValid: true
@@ -290,6 +296,11 @@ class EditorAccountModel: ObservableObject {
                     self.logger.warning("Account with the username already exists!")
                 } else {
                     do {
+                        guard let userLogin = user.login,
+                              let userAvatar = user.avatarURL else {
+                            return
+                        }
+
                         try AccountPreferences.create(
                             account: AccountPreferences(
                                 provider: "GitHub",
@@ -297,8 +308,8 @@ class EditorAccountModel: ObservableObject {
                                 providerDescription: "GitHub",
                                 accountName: gitAccountName,
                                 accountEmail: user.email ?? "Not Found",
-                                accountUsername: user.login!,
-                                accountImage: user.avatarURL!,
+                                accountUsername: userLogin,
+                                accountImage: userAvatar,
                                 gitCloningProtocol: true,
                                 gitSSHKey: "",
                                 isTokenValid: true

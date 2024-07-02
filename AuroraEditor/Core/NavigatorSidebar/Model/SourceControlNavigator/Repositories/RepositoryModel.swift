@@ -92,7 +92,7 @@ public final class RepositoryModel: ObservableObject {
         self.repoName = workspace.fileSystemClient?.folderURL?.lastPathComponent
 
         // reponame must not be nil or ""
-        guard repoName != nil && !repoName!.isEmpty else { return }
+        guard let repoName = repoName, !repoName.isEmpty else { return }
 
         let branchNames: [String] = gitClient?.allBranches.map { $0.name } ?? []
         let currentBranchName = (try? gitClient?.getCurrentBranchName()) ?? ""

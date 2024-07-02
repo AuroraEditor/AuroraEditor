@@ -30,7 +30,8 @@ struct ChangesView: View {
                 if changesModel.isGitRepository {
                     switch workspace.fileSystemClient?.model?.state {
                     case .success:
-                        if workspace.fileSystemClient!.model!.changed.isEmpty {
+                        if let changed = workspace.fileSystemClient?.model?.changed,
+                           changed.isEmpty {
                             Text("No Changes")
                                 .font(.system(size: 16))
                                 .foregroundColor(.secondary)

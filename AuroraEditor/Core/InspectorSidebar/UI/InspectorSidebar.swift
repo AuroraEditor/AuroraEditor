@@ -33,10 +33,16 @@ struct InspectorSidebar: View {
             if let selectedItem = selectedFileItem {
                 switch selection {
                 case 0:
-                    FileInspectorView(workspaceURL: workspace.fileURL!, fileURL: selectedItem.url.path)
-                        .frame(maxWidth: .infinity)
+                    FileInspectorView(
+                        workspaceURL: workspace.documentURL,
+                        fileURL: selectedItem.url.path
+                    )
+                    .frame(maxWidth: .infinity)
                 case 1:
-                    HistoryInspector(workspaceURL: workspace.fileURL!, fileURL: selectedItem.url.path)
+                    HistoryInspector(
+                        workspaceURL: workspace.documentURL,
+                        fileURL: selectedItem.url.path
+                    )
                 case 2:
                     QuickHelpInspector().padding(5)
                 default:

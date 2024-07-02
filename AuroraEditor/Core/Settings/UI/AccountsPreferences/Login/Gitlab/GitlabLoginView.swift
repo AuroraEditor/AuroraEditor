@@ -65,7 +65,7 @@ struct GitlabLoginView: View {
             HStack {
                 HStack {
                     Button {
-                        createToken(URL(string: "https://gitlab.com/-/profile/personal_access_tokens")!)
+                        createToken(URL( "https://gitlab.com/-/profile/personal_access_tokens"))
                     } label: {
                         Text("settings.gitlab.login.create")
                             .foregroundColor(.primary)

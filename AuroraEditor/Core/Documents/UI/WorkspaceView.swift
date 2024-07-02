@@ -165,7 +165,7 @@ struct WorkspaceView: View {
                 .safeAreaInset(edge: .top, spacing: 0) {
                     VStack(spacing: 0) {
                         TabBar(sourceControlModel: workspace.fileSystemClient?.model ??
-                            .init(workspaceURL: workspace.fileURL!))
+                            .init(workspaceURL: workspace.documentURL))
                         Divider().foregroundColor(.secondary)
                     }
                 }
@@ -273,11 +273,11 @@ struct WorkspaceView: View {
         }
         .onDisappear {
             // Unregister the observer when the view is going to disappear.
-            if enterFullscreenObserver != nil {
-                NotificationCenter.default.removeObserver(enterFullscreenObserver!)
+            if let enterFullscreenObserver = enterFullscreenObserver {
+                NotificationCenter.default.removeObserver(enterFullscreenObserver)
             }
-            if leaveFullscreenObserver != nil {
-                NotificationCenter.default.removeObserver(leaveFullscreenObserver!)
+            if let leaveFullscreenObserver = leaveFullscreenObserver {
+                NotificationCenter.default.removeObserver(leaveFullscreenObserver)
             }
         }
         // Send the environment to all subviews.

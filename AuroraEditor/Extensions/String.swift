@@ -156,7 +156,11 @@ extension String {
             let results = regex.matches(in: text,
                                         range: NSRange(text.startIndex..., in: text))
             return results.map {
-                String(text[Range($0.range, in: text)!])
+                if let range = Range($0.range, in: text) {
+                    String(text[range])
+                } else {
+                    ""
+                }
             }
         } catch let error {
             let logger = Logger(subsystem: "com.auroraeditor", category: "String")
@@ -205,8 +209,7 @@ extension String {
         if !caseSensitive { string = string.lowercased() }
 
         // compute the hash
-        // (note that `String.data(using: .utf8)!` is safe since it will never fail)
-        let computed = Insecure.MD5.hash(data: string.data(using: .utf8)!)
+        let computed = Insecure.MD5.hash(data: Data(string.utf8))
 
         // map the result to a hex string and return
         return computed.compactMap { String(format: "%02x", $0) }.joined()
@@ -229,8 +232,7 @@ extension String {
         if !caseSensitive { string = string.lowercased() }
 
         // compute the hash
-        // (note that `String.data(using: .utf8)!` is safe since it will never fail)
-        let computed = SHA256.hash(data: string.data(using: .utf8)!)
+        let computed = SHA256.hash(data: Data(string.utf8))
 
         // map the result to a hex string and return
         return computed.compactMap { String(format: "%02x", $0) }.joined()

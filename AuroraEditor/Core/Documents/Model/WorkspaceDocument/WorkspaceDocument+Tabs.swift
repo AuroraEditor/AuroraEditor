@@ -58,7 +58,8 @@ extension WorkspaceDocument {
 
             // But, if there is already a temporary tab, close it first
             if selectionState.temporaryTab != nil {
-                if let index = selectionState.openedTabs.firstIndex(of: selectionState.temporaryTab!) {
+                if let tempTab = selectionState.temporaryTab,
+                   let index = selectionState.openedTabs.firstIndex(of: tempTab) {
                     closeTemporaryTab()
                     selectionState.openedTabs[index] = item.tabID
                 } else {

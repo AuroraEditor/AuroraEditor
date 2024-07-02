@@ -70,7 +70,7 @@ struct UpdateAvailableState: View {
                         .padding(.vertical, 5)
 
                     Link("More Info...",
-                         destination: URL(string: "https://auroraeditor.com")!)
+                         destination: URL("https://auroraeditor.com"))
                     .font(.system(size: 12))
                     .foregroundColor(.accentColor)
                 }
@@ -85,6 +85,10 @@ struct UpdateAvailableState: View {
     /// 
     /// - Returns: The download size
     private func getDownloadSize() -> String {
-        return Int64(model.updateModelJson!.size)?.fileSizeString ?? "Unknown Size"
+        guard let updateJSON = model.updateModelJson else {
+            return "Unknown Size"
+        }
+
+        return Int64(updateJSON.size)?.fileSizeString ?? "Unknown Size"
     }
 }

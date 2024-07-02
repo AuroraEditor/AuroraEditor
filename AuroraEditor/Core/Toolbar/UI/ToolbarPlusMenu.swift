@@ -26,7 +26,7 @@ public struct ToolbarPlusMenu: View {
     /// The view body.
     public var body: some View {
         Button {
-            workspace?.openTab(item: WebTab(url: URL(string: "https://auroraeditor.com")))
+            workspace?.openTab(item: WebTab(url: URL("https://auroraeditor.com")))
         } label: {
             Image(systemName: "globe")
                 .scaledToFill()

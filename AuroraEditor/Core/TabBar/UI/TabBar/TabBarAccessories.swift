@@ -21,9 +21,8 @@ extension TabBar {
             TabBarAccessoryIcon(
                 icon: .init(systemName: "chevron.left"),
                 action: {
-                    let currentTab = workspace.selectionState.selectedId
-
-                    guard let idx = workspace.selectionState.openedTabs.firstIndex(of: currentTab!) else { return }
+                    guard let currentTab = workspace.selectionState.selectedId,
+                          let idx = workspace.selectionState.openedTabs.firstIndex(of: currentTab) else { return }
 
                     if workspace.selectionState.selectedId == currentTab {
                         workspace.selectionState.selectedId = workspace.selectionState.openedTabs[idx - 1]
@@ -39,9 +38,8 @@ extension TabBar {
             TabBarAccessoryIcon(
                 icon: .init(systemName: "chevron.right"),
                 action: {
-                    let currentTab = workspace.selectionState.selectedId
-
-                    guard let idx = workspace.selectionState.openedTabs.firstIndex(of: currentTab!) else { return }
+                    guard let currentTab = workspace.selectionState.selectedId,
+                          let idx = workspace.selectionState.openedTabs.firstIndex(of: currentTab) else { return }
 
                     if workspace.selectionState.selectedId == currentTab {
                         workspace.selectionState.selectedId = workspace.selectionState.openedTabs[idx + 1]

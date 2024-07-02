@@ -11,7 +11,8 @@ import Foundation
 @available(*, deprecated)
 public struct ThemeSetting: Codable { // swiftlint:disable:this type_body_length
     var isSource: Bool {
-        scopes.count == 1 && scopes.first! == "source"
+        scopes.count == 1 &&
+        scopes.first ?? "" == "source"
     }
 
     var scopes: [String]

@@ -40,6 +40,10 @@ public extension Bundle {
 extension Bundle {
     /// Returns the bundle for the AuroraEditor module
     static var module: Bundle {
-        Bundle(identifier: "com.auroraeditor")!
+        guard let bundle = Bundle(identifier: "com.auroraeditor") else {
+            fatalError("Failed to get bundle!")
+        }
+
+        return bundle
     }
 }

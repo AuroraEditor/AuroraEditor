@@ -19,7 +19,7 @@ class JSSupport: ExtensionInterface {
     var jsLogger: Logger
 
     /// The current JavaScript context where we are running in
-    var context = JSContext()!
+    var context = JSContext()
 
     /// Responder (typealias because of cleaner code)
     typealias Responder = @convention (block) (String, [String: Any]) -> Any
@@ -69,10 +69,10 @@ class JSSupport: ExtensionInterface {
             let content = try String(contentsOfFile: path)
 
             // Evaluate the script
-            context.evaluateScript(aeContextDidLoad + content)
+            context?.evaluateScript(aeContextDidLoad + content)
 
             // Check if the extension has loaded correctly
-            if let result = context.objectForKeyedSubscript("AEContext").call(withArguments: nil),
+            if let result = context?.objectForKeyedSubscript("AEContext").call(withArguments: nil),
                // If the value is not AEContext, it has failed to load
                // See `aeContextDidLoad` fore more information.
                 result.toString() != "AEContext" {
@@ -102,7 +102,7 @@ class JSSupport: ExtensionInterface {
     /// `Console.app` to view JS Errors, use `com.auroraeditor.JSSupport` as subsystem
     /// and the category is your extension name.
     func registerErrorHandler() {
-        context.exceptionHandler = { _, exception in
+        context?.exceptionHandler = { _, exception in
             self.jsLogger.error("JS Error: \(exception?.description ?? "Unknown error")")
         }
     }
@@ -131,7 +131,7 @@ class JSSupport: ExtensionInterface {
         }
 
         // Create AuroraEditor.log(...)
-        context
+        context?
             .objectForKeyedSubscript("AuroraEditor")
             .setObject(
                 unsafeBitCast(log, to: AnyObject.self),
@@ -139,7 +139,7 @@ class JSSupport: ExtensionInterface {
             )
 
         // Create AuroraEditor.respond(...)
-        context
+        context?
             .objectForKeyedSubscript("AuroraEditor")
             .setObject(
                 unsafeBitCast(respond, to: AnyObject.self),
@@ -149,6 +149,10 @@ class JSSupport: ExtensionInterface {
 
     /// Register the required AuroraEditor class.
     func registerScripts() {
+        guard let context = context else {
+            return
+        }
+
         // Make sure AuroraEditor is defined.
         // This script will be filled with aliases and more.
         context
@@ -166,7 +170,7 @@ class JSSupport: ExtensionInterface {
     /// 
     /// - Returns: response value from javascript
     func respond(action: String, parameters: [String: Any]) -> JSValue? {
-        return context
+        return context?
             .objectForKeyedSubscript(action)?
             .call(withArguments: Array(parameters.values).compactMap { val in
                 // Custom view models can crash, only return their name.
@@ -194,7 +198,7 @@ class JSSupport: ExtensionInterface {
     /// 
     /// - Returns: response value from javascript
     func respondToAE(action: String, parameters: [String: Any]) -> JSValue? {
-        return context
+        return context?
             .objectForKeyedSubscript("AuroraEditor")?
             .objectForKeyedSubscript(action)?
             .call(withArguments: Array(parameters.values))
@@ -206,7 +210,7 @@ class JSSupport: ExtensionInterface {
     /// 
     /// - Returns: the JS Value
     func evaluate(script: String) -> JSValue? {
-        return context
+        return context?
             .evaluateScript(script)
     }
 

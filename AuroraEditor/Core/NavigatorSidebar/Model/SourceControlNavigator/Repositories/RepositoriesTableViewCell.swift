@@ -26,7 +26,8 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
         super.init(frame: frameRect)
 
         // Add text and image
-        var image = NSImage()
+        var image: NSImage?
+
         switch cellType {
         case .repo:
             label.stringValue = "\(repository.repoName ?? "Unknown Repo")"
@@ -51,27 +52,27 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
 
         case .branches:
             label.stringValue = "Branches"
-            image = NSImage(named: "git.branch")!
+            image = NSImage(named: "git.branch")
 
         case .recentLocations:
             label.stringValue = "Recent Locations"
-            image = NSImage(named: "git.branch")!
+            image = NSImage(named: "git.branch")
 
         case .tags:
             label.stringValue = "Tags"
-            image = NSImage(systemSymbolName: "tag", accessibilityDescription: nil)!
+            image = NSImage(systemSymbolName: "tag", accessibilityDescription: nil)
 
         case .stashedChanges:
             label.stringValue = "Stashed Changes"
-            image = NSImage(systemSymbolName: "tray", accessibilityDescription: nil)!
+            image = NSImage(systemSymbolName: "tray", accessibilityDescription: nil)
 
         case .remotes:
             label.stringValue = "Remotes"
-            image = NSImage(named: "vault")!
+            image = NSImage(named: "vault")
 
         case .remote:
             label.stringValue = "origin" // TODO: Modifiable remote name
-            image = NSImage(named: "vault")!
+            image = NSImage(named: "vault")
 
         case .branch:
             var currentBranch = "Unknown Branch"
@@ -84,18 +85,21 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
             if label.stringValue == currentBranch {
                 secondaryLabel.stringValue = "*"
             }
-            image = NSImage(named: "git.branch")!
+            image = NSImage(named: "git.branch")
 
         case .tag:
             label.stringValue = item?.name ?? "Unknown Tag"
-            image = NSImage(systemSymbolName: "tag", accessibilityDescription: nil)!
+            image = NSImage(systemSymbolName: "tag", accessibilityDescription: nil)
 
         case .change:
             label.stringValue = item?.name ?? "Unknown Change"
-            image = NSImage(systemSymbolName: "tray", accessibilityDescription: nil)!
+            image = NSImage(systemSymbolName: "tray", accessibilityDescription: nil)
         }
-        icon.image = image
-        icon.contentTintColor = .gray
+
+        if let image = image {
+            icon.image = image
+            icon.contentTintColor = .gray
+        }
 
         if cellType == .repo {
             self.secondaryLabelRightAlignmed = false

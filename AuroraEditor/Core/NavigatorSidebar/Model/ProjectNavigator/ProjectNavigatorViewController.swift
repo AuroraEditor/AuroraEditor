@@ -74,6 +74,10 @@ final class ProjectNavigatorViewController: NSViewController {
 
     /// Setup the ``scrollView`` and ``outlineView``
     override func loadView() {
+        guard let fileURL = workspace?.fileURL else {
+            fatalError("No file url provided")
+        }
+
         self.scrollView = NSScrollView()
         self.view = scrollView
 
@@ -83,7 +87,10 @@ final class ProjectNavigatorViewController: NSViewController {
         outlineView.autosaveExpandedItems = true
         outlineView.autosaveName = workspace?.fileSystemClient?.folderURL?.path ?? ""
         outlineView.headerView = nil
-        outlineView.menu = ProjectNavigatorMenu(sender: self.outlineView, workspaceURL: (workspace?.fileURL)!)
+        outlineView.menu = ProjectNavigatorMenu(
+            sender: self.outlineView,
+            workspaceURL: fileURL
+        )
         outlineView.menu?.delegate = self
         outlineView.doubleAction = #selector(onItemDoubleClicked)
 

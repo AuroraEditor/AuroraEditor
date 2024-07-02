@@ -58,16 +58,18 @@ extension TabBar {
                     // Wrap `previousTabIndex` because it may be `nil`.
                     guard let previousTabIndex = previousIndex,
                           let previousTabLocation = tabLocations[openedTabs[previousTabIndex]],
-                          let previousTabWidth = tabWidth[openedTabs[previousTabIndex]]
+                          let previousTabWidth = tabWidth[openedTabs[previousTabIndex]],
+                          var draggingStartLocation = draggingStartLocation,
+                          var tabOffsetsForId = tabOffsets[id]
                     else { return }
                     if currentLocation < max(
                         previousTabLocation.maxX - previousTabWidth * 0.1,
                         previousTabLocation.minX + currentTabWidth * 0.9
                     ) {
                         let changing = previousTabWidth - 1 // One offset for overlapping divider.
-                        draggingStartLocation! -= changing
+                        draggingStartLocation -= changing
                         withAnimation {
-                            tabOffsets[id]! += changing
+                            tabOffsetsForId += changing
                             openedTabs.move(
                                 fromOffsets: IndexSet(integer: previousTabIndex),
                                 toOffset: currentIndex + 1
@@ -82,16 +84,18 @@ extension TabBar {
                     // Wrap `previousTabIndex` because it may be `nil`.
                     guard let nextTabIndex = nextIndex,
                           let nextTabLocation = tabLocations[openedTabs[nextTabIndex]],
-                          let nextTabWidth = tabWidth[openedTabs[nextTabIndex]]
+                          let nextTabWidth = tabWidth[openedTabs[nextTabIndex]],
+                          var draggingStartLocation = draggingStartLocation,
+                          var tabOffsetsId = tabOffsets[id]
                     else { return }
                     if currentLocation > min(
                         nextTabLocation.minX + nextTabWidth * 0.1,
                         nextTabLocation.maxX - currentTabWidth * 0.9
                     ) {
                         let changing = nextTabWidth - 1 // One offset for overlapping divider.
-                        draggingStartLocation! += changing
+                        draggingStartLocation += changing
                         withAnimation {
-                            tabOffsets[id]! -= changing
+                            tabOffsetsId -= changing
                             openedTabs.move(
                                 fromOffsets: IndexSet(integer: nextTabIndex),
                                 toOffset: currentIndex
@@ -102,7 +106,8 @@ extension TabBar {
                 }
 
                 // Only update the last dragging location when there is enough offset.
-                if draggingLastLocation == nil || abs(value.location.x - draggingLastLocation!) >= 10 {
+                if var draggingLastLocation = draggingLastLocation,
+                   abs(value.location.x - draggingLastLocation) >= 10 {
                     draggingLastLocation = value.location.x
                 }
             })

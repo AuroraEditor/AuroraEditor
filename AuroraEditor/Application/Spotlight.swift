@@ -43,7 +43,7 @@ class CoreSpotlight {
             )
         }
 
-        let items = searchableItems.map { $0.attributeSet.title! }
+        let items = searchableItems.flatMap { $0.attributeSet.title }
         logger.debug("Sent \(searchableItems.count) recent projects to spotlight \(items)")
 
         // Send values to spotlight

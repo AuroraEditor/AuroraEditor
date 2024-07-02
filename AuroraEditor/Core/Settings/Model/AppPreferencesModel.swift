@@ -37,9 +37,13 @@ public final class AppPreferencesModel: ObservableObject {
 
     /// Private initializer to set up the database path, initialize preferences, and observe database changes.
     private init() {
-        self.databasePath = FileManager.default
+        guard let applicationSupport = FileManager.default
             .urls(for: .applicationSupportDirectory, in: .userDomainMask)
-            .first!
+            .first else {
+            fatalError("Cannot find Application Support Directory")
+        }
+
+        self.databasePath = applicationSupport
             .appendingPathComponent("com.auroraeditor")
             .appendingPathComponent("preferences.sqlite")
             .path

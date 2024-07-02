@@ -77,9 +77,11 @@ public class CrashReportModel: ObservableObject {
             self.logger.fault("Failed to fetch accounts")
         }
 
-        let firstGitAccount = gitAccounts.first
+        guard let firstGitAccount = gitAccounts.first else {
+            return
+        }
 
-        let config = GithubTokenConfiguration(keychain.get(firstGitAccount!.accountName))
+        let config = GithubTokenConfiguration(keychain.get(firstGitAccount.accountName))
         GithubAccount(config).postIssue(owner: "AuroraEditor",
                                         repository: "AuroraEditor",
                                         title: "💣 - Crash - ID: \(UUID().uuidString)",

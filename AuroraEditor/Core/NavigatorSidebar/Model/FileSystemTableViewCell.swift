@@ -61,7 +61,12 @@ class FileSystemTableViewCell: StandardTableViewCell {
             // watcher failed to activate
             imageName = "eye.trianglebadge.exclamationmark"
         }
-        let image = NSImage(systemSymbolName: imageName, accessibilityDescription: nil)!
+        guard let image = NSImage(
+            systemSymbolName: imageName,
+            accessibilityDescription: nil
+        ) else {
+            return
+        }
         fileItem = item
         icon.image = image
         icon.contentTintColor = color(for: item)

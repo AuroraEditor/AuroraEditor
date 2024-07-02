@@ -27,9 +27,9 @@ final class AcknowledgementsModel: ObservableObject {
     public func fetchDependencies() {
         self.acknowledgements.removeAll()
         do {
-            if let bundlePath = Bundle.main.path(forResource: "Package.resolved", ofType: nil) {
-                let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8)
-                let parsedJSON = try JSONDecoder().decode(RootObject.self, from: jsonData!)
+            if let bundlePath = Bundle.main.path(forResource: "Package.resolved", ofType: nil),
+               let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8) {
+                let parsedJSON = try JSONDecoder().decode(RootObject.self, from: jsonData)
                 for dependency in parsedJSON.object.pins.sorted(by: { $0.package < $1.package })
                 where dependency.package.range(
                         of: "[Aa]rora[Ee]ditor",

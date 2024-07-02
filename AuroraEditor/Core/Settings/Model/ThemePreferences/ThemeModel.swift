@@ -29,6 +29,14 @@ public final class ThemeModel: ObservableObject {
         }
     }
 
+    public var defaultTheme: AuroraTheme {
+        guard let theme = self.themes.first else {
+            fatalError("No themes found!")
+        }
+
+        return theme
+    }
+
     @Published public var selectedTheme: AuroraTheme? {
         didSet {
             DispatchQueue.main.async {

@@ -66,7 +66,9 @@ struct AuroraEditorLoginView: View {
             HStack {
                 HStack {
                     Button {
-                        createAccount(URL(string: "https://auroraeditor.com/#/sign-up")!)
+                        createAccount(
+                            URL("https://auroraeditor.com/#/sign-up")
+                        )
                     } label: {
                         Text("settings.aurora.login.create")
                             .foregroundColor(.primary)

@@ -35,7 +35,14 @@ class NotificationObserver: NSObject {
             \.objectToObserve.showNotificationToast,
              options: [.old, .new]
         ) { _, change in
-            self.logger.debug("Show notification changed from: \(change.oldValue!), updated to: \(change.newValue!)")
+            guard let oldValue = change.oldValue,
+                  let newValue = change.newValue else {
+                return
+            }
+
+            self.logger.debug(
+                "Show notification changed from: \(oldValue), updated to: \(newValue)"
+            )
         }
     }
 }

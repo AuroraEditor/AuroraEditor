@@ -12,10 +12,12 @@ extension WorkspaceDocument {
     /// Workspace URL
     /// 
     /// - Returns: workspace URL
+    @available(*, deprecated, renamed: "folderURL")
     func workspaceURL() -> URL {
         guard let workspaceFolder = self.fileSystemClient?.folderURL else {
             fatalError("Unconstructable URL")
         }
+
         return workspaceFolder
     }
 }

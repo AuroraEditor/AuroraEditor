@@ -39,15 +39,20 @@ class AEUpdateService: NSObject {
             // Copy files
             try FileManager.default.copyItem(atPath: sourcePath, toPath: destinationPath.path)
 
+            guard let volumes = listVolumes(),
+                  let volume = findAuroraEditorVolume(volumes),
+                  let url = URL(string: "auroraeditor://") else {
+                    throw NSError(domain: "com.auroraeditor.update", code: 1)
+                  }
             // Unmount the disk image
             let unmountProcess = Process()
             unmountProcess.launchPath = "/usr/bin/hdiutil"
-            unmountProcess.arguments = ["detach", findAuroraEditorVolume(listVolumes()!)!]
+            unmountProcess.arguments = ["detach", volume]
             unmountProcess.launch()
             unmountProcess.waitUntilExit()
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-                NSWorkspace.shared.open(URL(string: "auroraeditor:\\")!)
+                NSWorkspace.shared.open(url)
                 exit(0)
             }
         } catch {

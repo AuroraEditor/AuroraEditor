@@ -11,7 +11,7 @@ import SwiftUI
 /// A view that represents a preview icon of a theme.
 struct ThemePreviewIcon: View {
     /// Theme Preview Icon
-    /// 
+    ///
     /// - Parameter theme: The theme to preview
     /// - Parameter selection: The selection binding
     /// - Parameter colorScheme: The color scheme
@@ -268,7 +268,7 @@ struct ThemePreviewIcon: View {
     }
 
     /// Code statement
-    /// 
+    ///
     /// - Parameter color: The color
     /// - Parameter length: The length
     private func codeStatement(_ color: String, length: Double) -> some View {
@@ -278,7 +278,7 @@ struct ThemePreviewIcon: View {
     }
 
     /// Code space
-    /// 
+    ///
     /// - Parameter length: The length
     private func codeSpace(_ length: Double) -> some View {
         Rectangle()
@@ -289,9 +289,9 @@ struct ThemePreviewIcon: View {
 
 extension ThemePreviewIcon {
     /// The color hex for scope
-    /// 
+    ///
     /// - Parameter scope: The scope
-    /// 
+    ///
     /// - Returns: The color hex
     private func colorHexForScope(scope: String) -> String {
         let comment = theme.editor.highlightTheme.settings.first(where: {
@@ -312,16 +312,24 @@ extension ThemePreviewIcon {
     }
 }
 
- private struct ThemePreviewIcon_Previews: PreviewProvider {
+private struct ThemePreviewIcon_Previews: PreviewProvider {
     static var previews: some View {
-        ThemePreviewIcon(ThemeModel.shared.themes.first!,
-                         selection: .constant(ThemeModel.shared.themes.first),
-                         colorScheme: .light)
+        if let first = ThemeModel.shared.themes.first {
+            ThemePreviewIcon(
+                first,
+                selection: .constant(ThemeModel.shared.themes.first),
+                colorScheme: .light
+            )
             .preferredColorScheme(.light)
+        }
 
-        ThemePreviewIcon(ThemeModel.shared.themes.last!,
-                         selection: .constant(nil),
-                         colorScheme: .dark)
+        if let last = ThemeModel.shared.themes.last {
+            ThemePreviewIcon(
+                last,
+                selection: .constant(nil),
+                colorScheme: .dark
+            )
             .preferredColorScheme(.dark)
+        }
     }
- }
+}

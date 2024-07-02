@@ -146,8 +146,11 @@ struct NavigatorSidebar: View {
             case 2: FindNavigator(state: workspace.searchState ?? .init(workspace))
             case 5: NotificationsNavigatorView()
             case 6: HierarchyNavigator()
-            case 7: ExtensionNavigator(data: workspace.extensionNavigatorData!)
-                    .environmentObject(workspace)
+            case 7:
+                if let extensionNavigatorData = workspace.extensionNavigatorData {
+                    ExtensionNavigator(data: extensionNavigatorData)
+                        .environmentObject(workspace)
+                }
             default:
                 needsImplementation
             }

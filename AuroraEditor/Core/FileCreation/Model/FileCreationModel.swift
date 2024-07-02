@@ -121,18 +121,23 @@ class FileCreationModel: ObservableObject {
     /// - Parameter path: at path
     /// - Parameter fileName: file name
     private func createFileWithStarterContent(atPath path: String, fileName: String) {
+        let name = Host.current().localizedName ?? "Aurora Editor"
         let fileContent = """
 //
 //  \(fileName)
 //
-//  Created by \(Host.current().localizedName!) on \(Date().yearMonthDayFormat()).
+//  Created by \(name) on \(Date().yearMonthDayFormat()).
 //
 """.data(using: .utf8)
 
-        fileManager.createFile(atPath: path,
-                               contents: fileContent,
-                               attributes: [.ownerAccountName: Host.current().localizedName!,
-                                            .creationDate: Date()])
+        fileManager.createFile(
+            atPath: path,
+            contents: fileContent,
+            attributes: [
+                .ownerAccountName: name,
+                .creationDate: Date()
+            ]
+        )
     }
 }
 

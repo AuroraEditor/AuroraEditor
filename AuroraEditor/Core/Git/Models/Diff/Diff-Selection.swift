@@ -120,11 +120,12 @@ class DiffSelection {
             // all lines are divergent and return the inverse of default selection.
             // To avoid looping through the set that often our happy path is
             // if there's a size mismatch.
-        if (selectableLines != nil) && selectableLines?.count == divergingLines?.count {
+        if let selectableLines = selectableLines,
+           selectableLines?.count == divergingLines?.count {
             var allSelectableLinesAreDivergent: Bool = false
 
-            for line in selectableLines! {
-                allSelectableLinesAreDivergent = divergingLines!.contains(line)
+            for line in selectableLines {
+                allSelectableLinesAreDivergent = divergingLines?.contains(line)
             }
 
             if allSelectableLinesAreDivergent {
@@ -214,7 +215,11 @@ class DiffSelection {
         }
 
         if computedSelectionType == .partial {
-            var newDivergingLines: Set<Int> = self.divergingLines!
+            guard let currentDivergingLines = self.divergingLines else {
+                return
+            }
+
+            var newDivergingLines: Set<Int> = currentDivergingLines
 
             if try typeMatchesSelection(selectionType: self.defaultSelectionType,
                                     selected: selected) {

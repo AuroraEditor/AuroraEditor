@@ -32,9 +32,12 @@ struct NotificationViewItem: View {
                         .font(.system(size: 14))
                         .accessibilityLabel(Text("Severity Icon"))
                 } else {
-                    Image(nsImage: NSImage(contentsOf: ((notification.icon ?? URL(string: ""))!))!)
-                        .font(.system(size: 14))
-                        .accessibilityLabel(Text("Notification Icon"))
+                    if let url = notification.icon,
+                       let nsImage = NSImage(contentsOf: url) {
+                        Image(nsImage: nsImage)
+                            .font(.system(size: 14))
+                            .accessibilityLabel(Text("Notification Icon"))
+                    }
                 }
 
                 VStack(alignment: .leading) {

@@ -19,7 +19,7 @@ final class AuroraEditorAPI: ExtensionAPI {
 
     /// Workspace URL
     var workspaceURL: URL {
-        workspace.fileURL!
+        return workspace.documentURL
     }
 
     /// Initialize Aurora Editor API

@@ -415,6 +415,7 @@
 		2B7C8CC62BC5B3160061DE0D /* JSSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */; };
 		2B7C8CC92BC5B3A10061DE0D /* AuroraJSSupportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7C8CC72BC5B3440061DE0D /* AuroraJSSupportTests.swift */; };
 		2B89F85428B13E9D007CB9C1 /* AuroraMessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */; };
+		2BA10C862C34841B0040B192 /* emptyURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA10C852C34841B0040B192 /* emptyURL.swift */; };
 		2BA8F0862C1DADBD005A06A3 /* AuroraEditorSourceEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 2BA8F0852C1DADBD005A06A3 /* AuroraEditorSourceEditor */; };
 		2BA8F0892C1DADD4005A06A3 /* AuroraEditorTextView in Frameworks */ = {isa = PBXBuildFile; productRef = 2BA8F0882C1DADD4005A06A3 /* AuroraEditorTextView */; };
 		2BCBAAC82927C41E00D4DFB2 /* BindingProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBAAC72927C41E00D4DFB2 /* BindingProxy.swift */; };
@@ -1024,6 +1025,7 @@
 		2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSSupport.swift; sourceTree = "<group>"; };
 		2B7C8CC72BC5B3440061DE0D /* AuroraJSSupportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraJSSupportTests.swift; sourceTree = "<group>"; };
 		2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraMessageBox.swift; sourceTree = "<group>"; };
+		2BA10C852C34841B0040B192 /* emptyURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = emptyURL.swift; sourceTree = "<group>"; };
 		2BCBAAC72927C41E00D4DFB2 /* BindingProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingProxy.swift; sourceTree = "<group>"; };
 		2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+isHidden.swift"; sourceTree = "<group>"; };
 		2BCDF9D6295F2E9700570253 /* .githash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .githash; sourceTree = "<group>"; };
@@ -1737,6 +1739,7 @@
 				A03E21F62B0D53CB008A6A77 /* ImageCache.swift */,
 				2B5CAC812B87E701006B6C66 /* Log.swift */,
 				2B23B2F72B8521CD00C6B066 /* NotificationKeys.swift */,
+				2BA10C852C34841B0040B192 /* emptyURL.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -4062,6 +4065,7 @@
 				A03E21F72B0D53CB008A6A77 /* ImageCache.swift in Sources */,
 				2BDFA90728D107B200980385 /* ImageFileView.swift in Sources */,
 				2072FA1C280D874000C7F8D4 /* IndentUsing.swift in Sources */,
+				2BA10C862C34841B0040B192 /* emptyURL.swift in Sources */,
 				20FACF7D2AB60F0C00B09012 /* INeverShowAgainOptions.swift in Sources */,
 				20FACF7F2AB60F2600B09012 /* INotification.swift in Sources */,
 				20FACF812AB60F3C00B09012 /* INotificationHandle.swift in Sources */,

@@ -48,7 +48,7 @@ struct UpdateInvalidChecksumState: View {
                             guard let url = repository.updateFileUrl else {
                                 return
                             }
-                            NSWorkspace.shared.open(URL(string: "aeupdateservice:\\\(url)")!)
+                            NSWorkspace.shared.open(URL("aeupdateservice://\(url)"))
                         } label: {
                             Text("Install Now")
                         }
@@ -67,8 +67,7 @@ struct UpdateInvalidChecksumState: View {
                     Divider()
                         .padding(.vertical, 5)
 
-                    Link("More Info...",
-                         destination: URL(string: "https://auroraeditor.com")!)
+                    Link("More Info...", destination: URL("https://auroraeditor.com"))
                     .font(.system(size: 12))
                     .foregroundColor(.accentColor)
                 }

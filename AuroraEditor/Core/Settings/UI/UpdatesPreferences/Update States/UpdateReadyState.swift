@@ -57,7 +57,7 @@ struct UpdateReadyState: View {
                                     return
                                 }
 
-                                NSWorkspace.shared.open(URL(string: "updateservice:\\\(url)")!)
+                                NSWorkspace.shared.open(URL("updateservice://\(url)"))
 
                                 exit(0)
                             } label: {
@@ -87,7 +87,7 @@ struct UpdateReadyState: View {
                         .padding(.vertical, 5)
 
                     Link("More Info...",
-                         destination: URL(string: "https://auroraeditor.com")!)
+                         destination: URL("https://auroraeditor.com"))
                     .font(.system(size: 12))
                     .foregroundColor(.accentColor)
                 }

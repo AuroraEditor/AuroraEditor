@@ -25,7 +25,11 @@ final class GitClientTests: XCTestCase {
             directoryURL: URL(fileURLWithPath: ""),
             shellClient: shellClient
         )
-        let fetched = try gitClient.getCommitHistory(nil, nil).first!
+
+        guard let fetched = try gitClient.getCommitHistory(nil, nil).first else {
+            XCTFail("Failed to get commit history")
+        }
+
         XCTAssertEqual(
             fetched,
             Commit(

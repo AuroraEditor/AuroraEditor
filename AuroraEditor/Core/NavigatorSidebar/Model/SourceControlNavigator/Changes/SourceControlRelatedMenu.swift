@@ -96,7 +96,11 @@ final class SourceControlRelatedMenu: NSMenu {
         alert.addButton(withTitle: "Cancel")
         if alert.runModal() == .alertFirstButtonReturn {
             do {
-                try gitClient.discardFileChanges(url: (item?.url.path)!)
+                guard let url = item?.url.path else {
+                    throw NSError(domain: ".", code: 1)
+                }
+
+                try gitClient.discardFileChanges(url: url)
             } catch {
                 self.logger.fault("Error when trying to discard changes in file!")
             }

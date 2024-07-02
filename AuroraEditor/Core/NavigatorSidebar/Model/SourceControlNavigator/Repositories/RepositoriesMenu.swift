@@ -99,13 +99,14 @@ final class RepositoriesMenu: NSMenu {
     /// Creates a new tag
     @objc
     private func createNewTag() {
-        guard let branch = item as? RepoBranch else { return }
+        guard let branch = item as? RepoBranch,
+              let url = workspace?.folderURL else { return }
 
         // Get a list of commits for the selected branch. We only get the latest 2 commits of
         // the branch so that we know what commit is newer.
         do {
             let commits = try GitLog().getCommits(
-                directoryURL: (workspace!.workspaceURL()),
+                directoryURL: url,
                 revisionRange: branch.name,
                 limit: 2,
                 skip: 0
@@ -148,7 +149,8 @@ final class RepositoriesMenu: NSMenu {
     /// Delete branch
     @objc
     func deleteBranch() {
-        guard let branch = item as? RepoBranch else { return }
+        guard let branch = item as? RepoBranch,
+              let url = workspace?.folderURL else { return }
 
         let alert = NSAlert()
         alert.messageText = "Do you want to delete the branch “\(branch.name)”?"
@@ -158,7 +160,7 @@ final class RepositoriesMenu: NSMenu {
         if alert.runModal() == .alertFirstButtonReturn {
             do {
                 if try Branch().deleteLocalBranch(
-                    directoryURL: (workspace?.workspaceURL())!,
+                    directoryURL: url,
                     branchName: branch.name
                 ) {
                     self.outlineView.reloadData()
@@ -181,9 +183,10 @@ final class RepositoriesMenu: NSMenu {
     /// 
     /// - Returns: `true` if the selected branch is the current one, `false` otherwise
     func isSelectedBranchCurrentOne() -> Bool {
-        guard let branch = item as? RepoBranch else { return false }
+        guard let branch = item as? RepoBranch,
+              let url = workspace?.folderURL else { return false }
         do {
-            let currentBranch = try Branch().getCurrentBranch(directoryURL: (workspace?.workspaceURL())!)
+            let currentBranch = try Branch().getCurrentBranch(directoryURL: url)
 
             return currentBranch == branch.name
         } catch {

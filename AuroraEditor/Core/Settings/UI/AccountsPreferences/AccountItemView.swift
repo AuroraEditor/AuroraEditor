@@ -45,7 +45,7 @@ struct AccountItemView: View {
                     Spacer()
 
                     Button {
-                        openGithubProfile(URL(string: "\(account.providerLink)/\(account.accountUsername)")!)
+                        openGithubProfile(URL( "\(account.providerLink)/\(account.accountUsername)"))
                     } label: {
                         Text("settings.account.show.profile")
                             .foregroundColor(.primary)

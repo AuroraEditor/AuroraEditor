@@ -17,7 +17,7 @@ struct SettingItem: Identifiable {
     let name: String
 
     /// The image of the setting item
-    let image: NSImage
+    let image: NSImage?
 
     /// Color start
     let colorStart: Color

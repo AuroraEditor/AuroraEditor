@@ -41,7 +41,9 @@ public struct ToolbarBranchPicker: View {
     /// - Parameter workspace: An instance of the current `FileSystemClient`
     public init(fileSystemClient: FileSystemClient?) {
         self.fileSystemClient = fileSystemClient
-        self.changesModel = .init(workspaceURL: (fileSystemClient?.folderURL)!)
+        self.changesModel = .init(
+            workspaceURL: fileSystemClient?.folderURL ?? emptyURL
+        )
     }
 
     /// The view body.

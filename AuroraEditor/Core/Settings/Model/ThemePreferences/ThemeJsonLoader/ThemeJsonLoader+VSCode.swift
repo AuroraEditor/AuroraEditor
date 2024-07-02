@@ -88,30 +88,25 @@ extension ThemeJsonLoader {
     func editorFromVscJson(json: [String: String],
                            highlightTheme: HighlightTheme,
                            type: String) -> AuroraTheme.EditorColors {
-        let text = json["editor.foreground"]
-        let insertionPoint = json["editorCursor.foreground"]
-        let invisibles = json["editorWhitespace.foreground"]
-        let background = json["editor.background"]
-        let lineHighlight = json["editor.lineHighlightBackground"]
-        let selection = json["editor.selectionHighlightBackground"]
-
-        self.logger.info("Selection: \(String(describing: selection))")
-
         let defaultAttr = type == "light" ? AuroraTheme.EditorColors.defaultLight :
         AuroraTheme.EditorColors.defaultDark
 
-        return AuroraTheme.EditorColors(text: text != nil ? Attributes(color: text!) :
-                                            defaultAttr.text,
-                                        insertionPoint: insertionPoint != nil ? Attributes(color: insertionPoint!) :
-                                            defaultAttr.insertionPoint,
-                                        invisibles: invisibles != nil ? Attributes(color: invisibles!) :
-                                            defaultAttr.invisibles,
-                                        background: background != nil ? Attributes(color: background!) :
-                                            defaultAttr.background,
-                                        lineHighlight: lineHighlight != nil ? Attributes(color: lineHighlight!) :
-                                            defaultAttr.lineHighlight,
-                                        selection: selection != nil ? Attributes(color: selection!) :
-                                            defaultAttr.selection,
-                                        highlightTheme: highlightTheme)
+        let text = json["editor.foreground"] ?? defaultAttr.text.color
+        let insertionPoint = json["editorCursor.foreground"] ?? defaultAttr.insertionPoint.color
+        let invisibles = json["editorWhitespace.foreground"] ?? defaultAttr.invisibles.color
+        let background = json["editor.background"] ?? defaultAttr.background.color
+        let lineHighlight = json["editor.lineHighlightBackground"] ?? defaultAttr.lineHighlight.color
+        let selection = json["editor.selectionHighlightBackground"] ?? defaultAttr.selection.color
+
+        self.logger.info("Selection: \(String(describing: selection))")
+
+        return AuroraTheme.EditorColors(
+            text: Attributes(color: text),
+            insertionPoint: Attributes(color: insertionPoint),
+            invisibles: Attributes(color: invisibles),
+            background: Attributes(color: background),
+            lineHighlight: Attributes(color: lineHighlight),
+            selection: Attributes(color: selection),
+            highlightTheme: highlightTheme)
     }
 }

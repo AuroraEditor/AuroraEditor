@@ -41,7 +41,8 @@ class ImageCache {
     /// - Parameter data: Data
     /// - Parameter response: URLResponse
     func cacheImage(data: Data, response: URLResponse) {
+        guard let url = response.url else { return }
         let cachedData = CachedURLResponse(response: response, data: data)
-        cache.storeCachedResponse(cachedData, for: URLRequest(url: response.url!))
+        cache.storeCachedResponse(cachedData, for: URLRequest(url: url))
     }
 }

@@ -68,8 +68,8 @@ func extractCoAuthors(trailers: [Trailer]) -> [GitAuthor] {
 
     for trailer in trailers where isCoAuthoredByTrailer(trailer: trailer) {
         let author = GitAuthor(name: nil, email: nil).parse(nameAddr: trailer.value)
-        if author != nil {
-            coAuthors.append(author!)
+        if let author = author {
+            coAuthors.append(author)
         }
     }
 

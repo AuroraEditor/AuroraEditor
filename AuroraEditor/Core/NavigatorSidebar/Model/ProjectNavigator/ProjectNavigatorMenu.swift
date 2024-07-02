@@ -135,13 +135,16 @@ final class ProjectNavigatorMenu: NSMenu {
             if type.conforms(to: .propertyList) {
                 primaryItems.append(.propertyList())
             }
-            if type.conforms(to: UTType(filenameExtension: "xcassets")!) {
+            if let utType = UTType(filenameExtension: "xcassets"),
+               type.conforms(to: utType) {
                 primaryItems.append(NSMenuItem(title: "Asset Catalog Document", action: nil, keyEquivalent: ""))
             }
-            if type.conforms(to: UTType(filenameExtension: "xib")!) {
+            if let utType = UTType(filenameExtension: "xib"),
+               type.conforms(to: utType) {
                 primaryItems.append(NSMenuItem(title: "Interface Builder XIB Document", action: nil, keyEquivalent: ""))
             }
-            if type.conforms(to: UTType(filenameExtension: "xcodeproj")!) {
+            if let utType = UTType(filenameExtension: "xcodeproj"),
+                type.conforms(to: utType) {
                 primaryItems.append(NSMenuItem(title: "Xcode Project", action: nil, keyEquivalent: ""))
             }
             var secondaryItems = [NSMenuItem]()
@@ -260,21 +263,25 @@ final class ProjectNavigatorMenu: NSMenu {
     /// Action that deletes the item.
     @objc
     private func delete() {
+        guard let item = item else {
+            return
+        }
+
         let deleteConfirmation = NSAlert()
-        let message = "\(item!.fileName)\(item!.isFolder ? " and its children" : "")"
+        let message = "\(item.fileName)\(item.isFolder ? " and its children" : "")"
         deleteConfirmation.messageText = "Do you want to move \(message) to the bin?"
         deleteConfirmation.alertStyle = .critical
         deleteConfirmation.addButton(withTitle: "Delete")
         deleteConfirmation.buttons.last?.hasDestructiveAction = true
         deleteConfirmation.addButton(withTitle: "Cancel")
         if deleteConfirmation.runModal() == .alertFirstButtonReturn { // "Delete" button
-            if fileManger.fileExists(atPath: item?.url.path ?? "") {
+            if fileManger.fileExists(atPath: item.url.path) {
                 do {
-                    if workspace?.selectionState.openedTabs.contains((item?.tabID)!) ?? false {
-                        workspace?.closeTab(item: item!.tabID)
+                    if workspace?.selectionState.openedTabs.contains(item.tabID) ?? false {
+                        workspace?.closeTab(item: item.tabID)
                     }
                     // TODO: When file gets deleted we should update the Project Navigator
-                    try fileManger.removeItem(at: item!.url)
+                    try fileManger.removeItem(at: item.url)
                 } catch {
                     fatalError(error.localizedDescription)
                 }

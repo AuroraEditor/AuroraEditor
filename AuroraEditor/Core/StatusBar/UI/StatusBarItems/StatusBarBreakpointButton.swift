@@ -38,7 +38,9 @@ internal struct StatusBarBreakpointButton: View {
 
 struct StatusBarBreakpointButton_Previews: PreviewProvider {
     static var previews: some View {
-        let url = URL(string: "~/Developer")!
-        StatusBarBreakpointButton(model: StatusBarModel(workspaceURL: url))
+        let url = URL("~/Developer")
+        StatusBarBreakpointButton(
+            model: StatusBarModel(workspaceURL: url)
+        )
     }
 }

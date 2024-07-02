@@ -33,10 +33,10 @@ final class WorkspaceClientUnitTests: XCTestCase {
         let randomCount = Int.random(in: 1 ... 100)
         let files = generateRandomFiles(amount: randomCount)
         try files.forEach {
-            let fakeData = "fake string".data(using: .utf8)
-            let fileUrl = directory
-                .appendingPathComponent($0)
-            try fakeData!.write(to: fileUrl)
+            if let fakeData = "fake string".data(using: .utf8),
+               let fileUrl = directory.appendingPathComponent($0) {
+                try fakeData.write(to: fileUrl)
+            }
         }
         let client: WorkspaceClient = try .default(
             fileManager: .default,
@@ -80,10 +80,10 @@ final class WorkspaceClientUnitTests: XCTestCase {
         let randomCount = Int.random(in: 1 ... 100)
         var files = generateRandomFiles(amount: randomCount)
         try files.forEach {
-            let fakeData = "fake string".data(using: .utf8)
-            let fileUrl = directory
-                .appendingPathComponent($0)
-            try fakeData!.write(to: fileUrl)
+            if let fakeData = "fake string".data(using: .utf8),
+               let fileUrl = directory.appendingPathComponent($0) {
+                try fakeData.write(to: fileUrl)
+            }
         }
 
         let client: WorkspaceClient = try .default(
@@ -104,10 +104,10 @@ final class WorkspaceClientUnitTests: XCTestCase {
         let nextBatchOfFiles = generateRandomFiles(amount: 1)
         files.append(contentsOf: nextBatchOfFiles)
         try files.forEach {
-            let fakeData = "fake string".data(using: .utf8)
-            let fileUrl = directory
-                .appendingPathComponent($0)
-            try fakeData!.write(to: fileUrl)
+            if let fakeData = "fake string".data(using: .utf8),
+               let fileUrl = directory.appendingPathComponent($0) {
+                try fakeData.write(to: fileUrl)
+            }
         }
 
         waitForExpectations(timeout: 1.5)
@@ -130,6 +130,6 @@ final class WorkspaceClientUnitTests: XCTestCase {
     /// Generate random string
     func randomString(length: Int) -> String {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        return String((0 ..< length).map { _ in letters.randomElement()! })
+        return String((0 ..< length).flatMap { _ in letters.randomElement() })
     }
 }

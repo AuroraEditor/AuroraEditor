@@ -32,9 +32,15 @@ internal extension View {
     /// 
     /// - Returns: modified content
     func fontWithLineHeight(fontSize: CGFloat, lineHeight: CGFloat) -> some View {
-        ModifiedContent(content: self,
-                        modifier: FontWithLineHeight(font: NSFont(name: "SF Pro Text",
-                                                                  size: fontSize)!,
-                                                     lineHeight: lineHeight))
+        ModifiedContent(
+            content: self,
+            modifier: FontWithLineHeight(
+                font: NSFont(
+                    name: "SF Pro Text",
+                    size: fontSize
+                ) ?? .systemFont(ofSize: fontSize),
+                lineHeight: lineHeight
+            )
+        )
     }
 }

@@ -36,8 +36,13 @@ public class HighlightTheme: Codable {
             }
         }
         return expanded.sorted { (first, second) -> Bool in
-            if first.scopes.first!.scopeComponents.count != second.scopes.first!.scopeComponents.count {
-                return first.scopes.first!.scopeComponents.count < second.scopes.first!.scopeComponents.count
+            guard let firstScope = first.scopes.first,
+                  let secondScope = second.scopes.first else {
+                return false
+            }
+
+            if firstScope.scopeComponents.count != secondScope.scopeComponents.count {
+                return firstScope.scopeComponents.count < secondScope.scopeComponents.count
             }
             return first.parentScopes.count < second.parentScopes.count
         }
@@ -83,10 +88,14 @@ public class HighlightTheme: Codable {
     }
 
     static func addSettingToTrie(root: ThemeTrieElement, setting: ThemeSetting) {
+        guard let first = setting.scopes.first else {
+            return
+        }
+
         var curr = root
         var prev: ThemeTrieElement?
         // TODO: Optimise to collapse
-        for comp in setting.scopes.first!.scopeComponents {
+        for comp in first.scopeComponents {
             if let child = curr.children[String(comp)] {
                 prev = curr
                 curr = child

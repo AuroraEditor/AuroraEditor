@@ -68,24 +68,26 @@ class AuroraNetworking { // swiftlint:disable:this type_body_length
                 forHTTPHeaderField: "Accept"
             )
 
-            let username = gitAccounts.first?.accountUsername
-
-            request.setValue(
-                "Bearer \(keychain.get("github_\(username!)")!)",
-                forHTTPHeaderField: "Authorization"
-            )
+            if let username = gitAccounts.first?.accountUsername,
+               let token = keychain.get("github_\(username)") {
+                request.setValue(
+                    "Bearer \(token)",
+                    forHTTPHeaderField: "Authorization"
+                )
+            }
         } else if useAuthType == .auroraeditor {
             request.addValue(
                 "application/json",
                 forHTTPHeaderField: "Content-Type"
             )
 
-            let username = gitAccounts.first?.accountUsername.contains("auroraeditor_")
-
-            request.setValue(
-                "Bearer \(keychain.get("auroraeditor_\(username!)")!)",
-                forHTTPHeaderField: "Authorization"
-            )
+            if let username = gitAccounts.first?.accountUsername.contains("auroraeditor_"),
+               let token = keychain.get("auroraeditor_\(username)") {
+                request.setValue(
+                    "Bearer \(token)",
+                    forHTTPHeaderField: "Authorization"
+                )
+            }
         } else if useAuthType == .none {
             request.addValue(
                 "application/json",
@@ -140,7 +142,9 @@ class AuroraNetworking { // swiftlint:disable:this type_body_length
                     default:
                         return completionHandler(
                             .failure(
-                                NetworkingError(message: String(data: sitedata, encoding: .utf8)!)
+                                NetworkingError(
+                                    message: String(decoding: sitedata, as: UTF8.self)
+                                )
                             )
                         )
                     }
@@ -321,10 +325,12 @@ class AuroraNetworking { // swiftlint:disable:this type_body_length
 
     private func networkLogRequest(request: URLRequest) {
         self.logger.debug("URLRequest:")
-        self.logger.debug("  \(request.httpMethod!) \(request.url!)")
+        self.logger.debug("  \(request.httpMethod ?? "") \(request.url ?? emptyURL)")
         self.logger.debug("\n  Headers:")
-        for (header, cont) in request.allHTTPHeaderFields! {
-            self.logger.debug("    \(header): \(cont)")
+        if let headerFields = request.allHTTPHeaderFields {
+            for (header, cont) in headerFields {
+                self.logger.debug("    \(header): \(cont)")
+            }
         }
         self.logger.debug("\n  Body:")
         if let httpBody = request.httpBody,

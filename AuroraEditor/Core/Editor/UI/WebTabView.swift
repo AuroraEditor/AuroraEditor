@@ -137,6 +137,6 @@ struct WebTabView: View {
 struct WebTabView_Previews: PreviewProvider {
     static var previews: some View {
         WebTabView(webTab: WebTab(
-            url: URL(string: "https://auroraeditor.com")))
+            url: URL("https://auroraeditor.com")))
     }
 }

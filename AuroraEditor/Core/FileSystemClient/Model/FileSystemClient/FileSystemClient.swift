@@ -123,8 +123,8 @@ public class FileSystemClient {
     /// 
     /// - Parameter directory: The directory to stop watching, or nil to stop watching everything.
     func stopListeningToDirectory(directory: URL? = nil) {
-        if directory != nil {
-            flattenedFileItems[directory!.relativePath]?.watcher?.cancel()
+        if let directory = directory {
+            flattenedFileItems[directory.relativePath]?.watcher?.cancel()
         } else {
             for item in flattenedFileItems.values {
                 item.watcher?.cancel()

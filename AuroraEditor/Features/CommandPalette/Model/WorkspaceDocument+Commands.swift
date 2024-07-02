@@ -151,7 +151,7 @@ extension WorkspaceDocument {
                 self.broadcaster.broadcast(sender: "AuroraEditor", command: "newDirAtPos")
             }),
             Command(name: "Open Web Tab", command: {
-                self.openTab(item: WebTab(url: URL(string: "https://auroraeditor.com")))
+                self.openTab(item: WebTab(url: URL("https://auroraeditor.com")))
             }),
             Command(name: "Close Current Tab", command: {
                 if let currentTab = self.selectionState.selectedId {

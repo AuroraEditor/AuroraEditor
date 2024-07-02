@@ -111,6 +111,26 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     /// The window controller
     var windowController: AuroraEditorWindowController?
 
+    /// Document URL
+    ///
+    /// This is a safe-wrapper for `fileURL`
+    var documentURL: URL {
+        guard let url = self.fileURL else {
+            fatalError("The WorkspaceDocument doesn't have a file URL")
+        }
+
+        return url
+    }
+
+    /// Workspace Folder URL
+    var folderURL: URL {
+        guard let workspaceFolder = self.fileSystemClient?.folderURL else {
+            fatalError("Unconstructable URL")
+        }
+
+        return workspaceFolder
+    }
+
     /// Logger
     let logger = Logger(subsystem: "com.auroraeditor", category: "Workspace Document")
 

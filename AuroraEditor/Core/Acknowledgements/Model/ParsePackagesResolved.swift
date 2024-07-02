@@ -21,7 +21,11 @@ struct Dependency: Decodable {
 
     /// The URL to the repository of the dependency
     var repositoryURL: URL {
-        URL(string: repositoryLink)!
+        guard let url = URL(string: repositoryLink) else {
+            fatalError("We can't find the URL of the repository")
+        }
+
+        return url
     }
 }
 

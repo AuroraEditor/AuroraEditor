@@ -41,6 +41,10 @@ final class RepositoriesViewController: NSViewController {
 
     /// Setup the ``scrollView`` and ``outlineView``
     override func loadView() {
+        guard let workspace = workspace else {
+            return
+        }
+
         self.scrollView = NSScrollView()
         self.view = scrollView
 
@@ -48,9 +52,12 @@ final class RepositoriesViewController: NSViewController {
         outlineView.dataSource = self
         outlineView.delegate = self
         outlineView.autosaveExpandedItems = true
-        outlineView.autosaveName = workspace?.fileSystemClient?.folderURL?.path ?? ""
+        outlineView.autosaveName = workspace.fileSystemClient?.folderURL?.path ?? ""
         outlineView.headerView = nil
-        outlineView.menu = RepositoriesMenu(sender: self.outlineView, workspaceURL: (workspace?.fileURL)!)
+        outlineView.menu = RepositoriesMenu(
+            sender: self.outlineView,
+            workspaceURL: workspace.documentURL
+        )
         outlineView.menu?.delegate = self
         outlineView.doubleAction = #selector(onItemDoubleClicked)
 
@@ -271,11 +278,15 @@ extension RepositoriesViewController: NSOutlineViewDelegate {
     /// 
     /// - Parameter notification: The notification
     func outlineViewSelectionDidChange(_ notification: Notification) {
+        guard let workspace = workspace else {
+            return
+        }
+
         let selectedIndex = outlineView.selectedRow
         if outlineView.item(atRow: selectedIndex) is RepoContainer {
-            workspace?.openTab(item: ProjectCommitHistory(workspace: workspace!))
+            workspace.openTab(item: ProjectCommitHistory(workspace: workspace))
         } else if let selectedBranch = outlineView.item(atRow: selectedIndex) as? RepoBranch {
-            workspace?.openTab(item: BranchCommitHistory(workspace: workspace!,
+            workspace.openTab(item: BranchCommitHistory(workspace: workspace,
                                                          branchName: selectedBranch.name))
         }
     }

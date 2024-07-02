@@ -160,7 +160,9 @@ public class AuroraCrashlytics: NSObject {
     private static let RecieveException: @convention(c) (NSException) -> Swift.Void = { (exteption) -> Void in
         // swiftlint:disable:previous redundant_void_return
         if appOldExceptionHandler != nil {
-            appOldExceptionHandler!(exteption)
+            if let appOldExceptionHandler = appOldExceptionHandler {
+                appOldExceptionHandler(exteption)
+            }
         }
 
         guard AuroraCrashlytics.isOpen == true else {

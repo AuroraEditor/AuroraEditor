@@ -54,7 +54,14 @@ struct UpdateInProgressState: View {
         }
         .padding(5)
         .onAppear(perform: {
-            repository.downloadUpdateFile(downloadURL: model.updateModelJson!.url) { progress, eta  in
+            guard let updateModelJson = model.updateModelJson else {
+                DispatchQueue.main.async {
+                    model.updateState = .error
+                }
+                return
+            }
+
+            repository.downloadUpdateFile(downloadURL: updateModelJson.url) { progress, eta  in
                 downloadProgress = progress
                 etaProgress = eta ?? "Unknown Size and Time of Completion"
             }

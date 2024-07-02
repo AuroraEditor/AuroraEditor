@@ -152,7 +152,8 @@ struct TabBar: View {
                             spacing: -1
                         ) {
                             ForEach(openedTabs, id: \.id) { id in
-                                if let item = workspace.selectionState.getItemByTab(id: id) {
+                                if let item = workspace.selectionState.getItemByTab(id: id),
+                                   let tabWidthForId = tabWidth[id] {
                                     TabBarItem(
                                         expectedWidth: $expectedTabWidth,
                                         item: item
@@ -163,7 +164,7 @@ struct TabBar: View {
                                     // When a tab is dragged out, we shrink the space of it.
                                     .padding(
                                         .trailing,
-                                        !isOnDragOverTabs && onDragTabId == id ? (-tabWidth[id]! + 1) : 0
+                                        !isOnDragOverTabs && onDragTabId == id ? (-tabWidthForId + 1) : 0
                                     )
                                     .offset(x: tabOffsets[id] ?? 0, y: 0)
                                     .highPriorityGesture(

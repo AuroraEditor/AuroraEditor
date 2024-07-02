@@ -25,7 +25,11 @@ final class SourceControlTableViewCell: FileSystemTableViewCell {
     /// 
     /// - Parameter item: the item
     override func addIcon(item: FileItem) {
-        let image = NSImage(systemSymbolName: item.systemImage, accessibilityDescription: nil)!
+        guard let image = NSImage(
+            systemSymbolName: item.systemImage,
+            accessibilityDescription: nil
+        ) else { return }
+
         fileItem = item
         icon.image = image
         icon.contentTintColor = color(for: item)

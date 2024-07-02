@@ -62,8 +62,9 @@ struct EditorThemeAttributeView: View {
                             if let color = attribute?.color {
                                 return Color(nsColor: color)
                             } else {
-                                return (themeModel.selectedTheme ?? themeModel.themes.first!)
-                                    .editor.text.swiftColor
+                                return (
+                                    themeModel.selectedTheme ?? themeModel.defaultTheme
+                                ).editor.text.swiftColor
                             }
                         }, set: { newColor in
                             replaceAttribute(setting: setting,

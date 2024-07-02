@@ -167,7 +167,9 @@ public struct ThemePreferencesView: View {
             .help("Not yet implemented")
             .buttonStyle(.plain)
             Button {
-                themeModel.delete(themeModel.selectedTheme!)
+                if let selectedTheme = themeModel.selectedTheme {
+                    themeModel.delete(selectedTheme)
+                }
             } label: {
                 Image(systemName: "minus")
                     .accessibilityLabel(Text("Delete"))

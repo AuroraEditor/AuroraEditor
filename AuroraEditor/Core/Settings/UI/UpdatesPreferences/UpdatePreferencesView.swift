@@ -85,7 +85,7 @@ struct UpdatePreferencesView: View {
                             .padding(.vertical, -4)
 
                         Link("settings.update.learn.more",
-                             destination: URL(string: "https://auroraeditor.com")!)
+                             destination: URL("https://auroraeditor.com"))
                         .font(.system(size: 11))
                         .foregroundColor(.accentColor)
                     }

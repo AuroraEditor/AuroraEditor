@@ -35,6 +35,13 @@ public class TextAlignmentThemeAttribute: LineThemeAttribute, Codable {
 
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
-        self.value = NSTextAlignment(rawValue: try container.decode(Int.self, forKey: .value))!
+
+        guard let value = NSTextAlignment(
+            rawValue: try container.decode(Int.self, forKey: .value)
+        ) else {
+            throw NSError(domain: "com.auroraeditor.nsTextAlignment", code: 1)
+        }
+
+        self.value = value
     }
 }

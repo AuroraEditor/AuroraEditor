@@ -169,7 +169,11 @@ class UpdateEditorRepository: NSObject, URLSessionDownloadDelegate {
                            totalBytesWritten: Int64,
                            totalBytesExpectedToWrite: Int64) {
 
-        let fixedWrittenSize = (Double(model.updateModelJson!.size) ?? -1)
+        guard let updateModelJson = model.updateModelJson else {
+            return
+        }
+
+        let fixedWrittenSize = (Double(updateModelJson.size) ?? -1)
 
         // Calculate and report the download progress as a percentage
         let progress = Double(totalBytesWritten) / fixedWrittenSize

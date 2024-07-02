@@ -31,19 +31,22 @@ struct PreferencesView: View {
                                        tag: item.id,
                                        selection: $viewModel.selectedId) {
                             HStack {
-                                Image(nsImage: item.image)
-                                    .imageScale(.small)
-                                    .scaledToFit()
-                                    .foregroundColor(.white)
-                                    .frame(width: 23, height: 23)
-                                    .accessibilityLabel(Text("Setting Icon"))
-                                    .background {
-                                        LinearGradient(gradient: Gradient(colors: [item.colorStart, item.colorEnd]),
-                                                       startPoint: .top,
-                                                       endPoint: .bottom)
-                                        .opacity(0.85)
-                                    }
-                                    .cornerRadius(5)
+                                if let image = item.image {
+                                    Image(nsImage: image)
+                                        .imageScale(.small)
+                                        .scaledToFit()
+                                        .foregroundColor(.white)
+                                        .frame(width: 23, height: 23)
+                                        .accessibilityLabel(Text("Setting Icon"))
+                                        .background {
+                                            LinearGradient(gradient: Gradient(colors: [item.colorStart, item.colorEnd]),
+                                                           startPoint: .top,
+                                                           endPoint: .bottom)
+                                            .opacity(0.85)
+                                        }
+                                        .cornerRadius(5)
+                                }
+
                                 Text(item.name)
                             }
                         }

@@ -150,13 +150,15 @@ public struct CrashReportView: View {
 
     /// Restart the application
     private func restartApplication() {
-        let url = URL(fileURLWithPath: Bundle.main.resourcePath!)
-        let path = url.deletingLastPathComponent().deletingLastPathComponent().absoluteString
-        let task = Process()
-        task.launchPath = "/usr/bin/open"
-        task.arguments = [path]
-        task.launch()
-        exit(0)
+        if let resourcePath = Bundle.main.resourcePath {
+            let url = URL(fileURLWithPath: resourcePath)
+            let path = url.deletingLastPathComponent().deletingLastPathComponent().absoluteString
+            let task = Process()
+            task.launchPath = "/usr/bin/open"
+            task.arguments = [path]
+            task.launch()
+            exit(0)
+        }
     }
 
     /// Close the application

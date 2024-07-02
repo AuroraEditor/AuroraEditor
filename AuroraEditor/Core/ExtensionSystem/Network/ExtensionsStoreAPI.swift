@@ -26,7 +26,7 @@ public enum ExtensionsStoreAPIError: Error {
 /// Structure to work with Extensions Store API
 public enum ExtensionsStoreAPI {
 //
-//    static let base = URL(string: "https://codeedit.pkasila.net/api/")!
+//    static let base = URL("https://codeedit.pkasila.net/api/")!
 //    static let agent = Agent()
 //
 //    /// Lists plugins on the specified page

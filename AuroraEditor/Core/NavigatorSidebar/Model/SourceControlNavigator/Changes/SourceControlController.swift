@@ -51,6 +51,10 @@ final class SourceControlController: NSViewController {
 
     /// Reload the data in the outline view.
     override func loadView() {
+        guard let fileURL = workspace?.fileURL else {
+            fatalError("No file url provided")
+        }
+
         self.scrollView = NSScrollView()
         self.view = scrollView
 
@@ -59,7 +63,10 @@ final class SourceControlController: NSViewController {
         outlineView.delegate = self
         outlineView.autosaveExpandedItems = true
         outlineView.headerView = nil
-        outlineView.menu = SourceControlMenu(sender: outlineView, workspaceURL: (workspace?.fileURL)!)
+        outlineView.menu = SourceControlMenu(
+            sender: outlineView,
+            workspaceURL: fileURL
+        )
         outlineView.menu?.delegate = self
 
         let column = NSTableColumn(identifier: .init(rawValue: "SourceControlCell"))

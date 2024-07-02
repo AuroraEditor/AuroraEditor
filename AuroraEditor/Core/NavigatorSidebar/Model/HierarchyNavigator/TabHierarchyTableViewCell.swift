@@ -26,8 +26,13 @@ class TabHierarchyTableViewCell: StandardTableViewCell {
         case .codeEditor:
             // set the image
             guard let fileItem = tabItemRepresentable as? FileItem else { break }
-            let image = NSImage(systemSymbolName: fileItem.systemImage, accessibilityDescription: nil)!
-            icon.image = image
+
+            if let image = NSImage(
+                systemSymbolName: fileItem.systemImage,
+                accessibilityDescription: nil
+            ) {
+                icon.image = image
+            }
 
             // set the image color and tooltip
             if fileItem.children == nil && prefs.fileIconStyle == .color {

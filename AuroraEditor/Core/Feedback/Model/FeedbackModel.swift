@@ -87,7 +87,7 @@ public class FeedbackModel: ObservableObject {
 
     /// Gets the ID of the selected issue type and then
     /// cross references it to select the right Label based on the type
-    /// 
+    ///
     /// - Returns: issue label
     private func getIssueLabel() -> String {
         switch issueAreaListSelection {
@@ -110,7 +110,7 @@ public class FeedbackModel: ObservableObject {
 
     /// This is just temporary till we have bot that will handle this
     /// Get feedback type title
-    /// 
+    ///
     /// - Returns: feedback type title
     private func getFeebackTypeTitle() -> String {
         switch feedbackTypeListSelection {
@@ -131,7 +131,7 @@ public class FeedbackModel: ObservableObject {
 
     /// Gets the ID of the selected feedback type and then
     /// cross references it to select the right Label based on the type
-    /// 
+    ///
     /// - Returns: feedback type label
     private func getFeebackTypeLabel() -> String {
         switch feedbackTypeListSelection {
@@ -153,12 +153,12 @@ public class FeedbackModel: ObservableObject {
     /// The format for the issue body is how it will be displayed on
     /// repos issues. If any changes are made use markdown format
     /// because the text gets converted when created.
-    /// 
+    ///
     /// - Parameter description: description
     /// - Parameter steps: steps
     /// - Parameter expectation: expectation
     /// - Parameter actuallyHappened: actually happened
-    /// 
+    ///
     /// - Returns: issue body
     private func createIssueBody(description: String,
                                  steps: String?,
@@ -184,17 +184,20 @@ public class FeedbackModel: ObservableObject {
     }
 
     /// Create issue
-    /// 
+    ///
     /// - Parameter title: title
     /// - Parameter description: description
     /// - Parameter steps: steps
     /// - Parameter expectation: expectation
     /// - Parameter actuallyHappened: actually happened
-    public func createIssue(title: String,
-                            description: String,
-                            steps: String?,
-                            expectation: String?,
-                            actuallyHappened: String?) {
+    public func createIssue(
+        // swiftlint:disable:previous function_body_length
+        title: String,
+        description: String,
+        steps: String?,
+        expectation: String?,
+        actuallyHappened: String?
+    ) {
         var gitAccounts: [AccountPreferences] = []
 
         do {
@@ -238,8 +241,9 @@ public class FeedbackModel: ObservableObject {
             switch response {
             case .success(let issue):
                 if self.prefs.preferences.sourceControlGeneral.openFeedbackInBrowser {
-                    self.openIssueURL(issue.htmlURL ?? URL(
-                        string: "https://github.com/AuroraEditor/AuroraEditor/issues")!
+                    self.openIssueURL(
+                        issue.htmlURL
+                        ?? URL("https://github.com/AuroraEditor/AuroraEditor/issues")
                     )
                 }
                 self.isSubmitted.toggle()

@@ -79,6 +79,8 @@ opt_in_rules:
   - local_doc_comment # Local doc comment should be avoided
   - accessibility_label_for_image # Accessibility label for image should be set
   - accessibility_trait_for_button # Accessibility trait for button should be set
+  - force_unwrapping # Force unwrapping should be avoided
+  - duplicate_imports # Duplicate imports should be avoided
 
 analyzer_rules:
   - unused_import # Detect unused imports

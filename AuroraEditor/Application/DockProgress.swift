@@ -225,7 +225,11 @@ private extension NSBezierPath {
 
 private extension NSBezierPath {
     func copyPath() -> Self {
-        (copy() as? Self)!
+        guard let sself = (copy() as? Self) else {
+            fatalError("Couldn't get self")
+        }
+
+        return sself
     }
 
     func rotationTransform(byRadians radians: Double, centerPoint point: CGPoint) -> AffineTransform {

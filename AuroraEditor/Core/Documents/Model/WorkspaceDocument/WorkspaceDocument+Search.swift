@@ -158,17 +158,18 @@ extension WorkspaceDocument {
                 var foundMatch = false
                 for appearance in appearances {
                     let appearanceString = String(line[appearance])
-                    guard appearanceString.count >= 2 else { continue }
+                    guard appearanceString.count >= 2,
+                          let firstappearanceString = appearanceString.first else { continue }
 
                     var startsWith = false
                     var endsWith = false
                     if appearanceString.hasPrefix(searchterm) ||
-                        !appearanceString.first!.isLetter ||
+                        !firstappearanceString.isLetter ||
                         !appearanceString.character(at: 2).isLetter {
                         startsWith = true
                     }
                     if appearanceString.hasSuffix(searchterm) ||
-                        !appearanceString.last!.isLetter ||
+                        !firstappearanceString.isLetter ||
                         !appearanceString.character(at: appearanceString.count - 2).isLetter {
                         endsWith = true
                     }

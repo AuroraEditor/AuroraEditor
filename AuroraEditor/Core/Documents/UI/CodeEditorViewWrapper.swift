@@ -135,7 +135,8 @@ public struct CodeEditorViewWrapper: View {
             coordinators: []
         )
         .onChange(of: themeModel.selectedTheme, perform: { newTheme in
-            self.theme = newTheme ?? themeModel.themes.first!
+            guard let newTheme = newTheme else { return }
+            self.theme = newTheme
         })
         .onChange(of: cursorPosition) { newValue in
             self.workspace.data.caretPos = .init(
