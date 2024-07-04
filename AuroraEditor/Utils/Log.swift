@@ -34,6 +34,7 @@ extension View {
     /// - Parameter closure: Code need to run
     /// - Returns: self
     func log(_ closure: () -> Void) -> some View {
+        _ = closure()
         return self
     }
 }
