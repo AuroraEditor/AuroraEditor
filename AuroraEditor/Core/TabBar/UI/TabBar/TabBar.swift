@@ -152,8 +152,10 @@ struct TabBar: View {
                             spacing: -1
                         ) {
                             ForEach(openedTabs, id: \.id) { id in
-                                if let item = workspace.selectionState.getItemByTab(id: id),
-                                   let tabWidthForId = tabWidth[id] {
+                                if let item = workspace.selectionState.getItemByTab(id: id) {
+                                    // This is optional sometimes, then return 0
+                                    let tabWidthForId = tabWidth[id] ?? 0
+
                                     TabBarItem(
                                         expectedWidth: $expectedTabWidth,
                                         item: item
