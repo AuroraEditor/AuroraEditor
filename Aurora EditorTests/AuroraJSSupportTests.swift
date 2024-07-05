@@ -41,7 +41,7 @@ final class AuroraJSSupportTests: XCTestCase {
 
     /// Create a "custom" function, and run that custom function.
     func testJSAPIUsingRespondToCustomApi() {
-        guard let script = jsSupport?.evaluate(script: "function AECustomApiTest(v) { return v }"),
+        guard let script = jsSupport?.evaluate(script: "function AECustomApiTest(v) { return v.val }"),
               let value = jsSupport?.respond(
                 action: "AECustomApiTest",
                 parameters: ["val": "AECustomApiTest using respond()"]
