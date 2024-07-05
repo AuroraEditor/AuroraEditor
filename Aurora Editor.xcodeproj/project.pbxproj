@@ -1869,10 +1869,10 @@
 		20D837BF289A7ACD00D91D05 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2B6B3D712C38213600B041B5 /* JavaScript Support */,
 				0463E51027FCC1DF00806D5C /* AuroraEditorAPI.swift */,
 				20D837BE289A7ACD00D91D05 /* ExtensionsManager.swift */,
 				2B615ABB2BC865E400A5457F /* ExtensionViewStorage.swift */,
+				2B6B3D712C38213600B041B5 /* JavaScript Support */,
 				20D837C2289A7ACD00D91D05 /* Plugin.swift */,
 				20D837C0289A7ACD00D91D05 /* PluginRelease.swift */,
 			);
@@ -2915,8 +2915,8 @@
 			children = (
 				2B74A3F12C0F90B2002498F5 /* JSCFetch.swift */,
 				2B74A3EF2C0F8FFA002498F5 /* JSCPromise.swift */,
-				2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */,
 				2BDE0F762BC8874800C20B85 /* JSCTimerSupport.swift */,
+				2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */,
 			);
 			path = "JavaScript Support";
 			sourceTree = "<group>";
