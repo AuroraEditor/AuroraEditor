@@ -29,6 +29,8 @@ class JSSupport: ExtensionInterface {
     /// if the result of the total evaluation is "AEContext", the extension did load correctly,
     /// if the result is any other than that then either the extension developer has a early return,
     /// or a syntax error.
+    ///
+    /// - Note: Default value `;function AEContext() { return \"AEContext\" };`
     let aeContextDidLoad = ";function AEContext() { return \"AEContext\" };"
 
     /// Extension name.
@@ -37,8 +39,18 @@ class JSSupport: ExtensionInterface {
     /// Save the current Workspace Document
     var workspace: WorkspaceDocument?
 
-    /// Initialize
-    /// - Parameter workspace: workspace document
+    /// Initialize JavaScript Support for Aurora Editor
+    ///
+    /// This class initializes JavaScript Support for Aurora Editor, this class
+    /// sets up a logger `com.auroraeditor.JSSupport`, the category
+    /// will be the name of the extension (as given as parameter).
+    /// Further it register extensions to the JavaScript Context, so that your extension can use
+    /// JavaScript functions which are not supported by default, such as timers, promises, network requests.
+    /// and many more for more JavaScript Context functions search on https://docs.auroraeditor.com
+    /// for classes which start with `JSC` as ``JSCFetch``, ``JSCPromise``, ``JSCTimerSupport``
+    ///
+    /// - Parameter name: Extension name
+    /// - Parameter workspace: Workspace document
     init?(name: String, path: String, workspace: WorkspaceDocument?) {
         // Set the extension name
         self.extensionName = name
@@ -53,7 +65,9 @@ class JSSupport: ExtensionInterface {
         )
 
         // Register JS Functions
-        registerJS()
+        registerErrorHandler()
+        registerScripts()
+        registerFunctions()
 
         // Load the JS Extension, do NEVER return nil if we are running tests.
         if !loadJSExtension(path: path) && name != "AEXCTestCase" {
@@ -61,8 +75,15 @@ class JSSupport: ExtensionInterface {
         }
     }
 
-    /// Register JS Extension
+    /// Register and Load a JavaScript Extension
+    ///
+    /// This functions tries to register the extension into Aurora Editor, it loads the extension, then it adds
+    /// the value of `aeContextDidLoad` to check if the file is valid and doesn't cause any errors.
+    /// If the file loaded, and ae context was able to return `AEContext` that means that the extension is
+    /// loaded successfully and can be used.
+    ///
     /// - Parameter script: extension path
+    /// - Returns: True if is loaded
     public func loadJSExtension(path: String) -> Bool {
         do {
             // Read the contents of the file
@@ -90,19 +111,18 @@ class JSSupport: ExtensionInterface {
         return true
     }
 
-    /// Register JS Functions
-    func registerJS() {
-        registerErrorHandler()
-        registerScripts()
-        registerFunctions()
-    }
-
     /// Register the exception handler for JS.
     /// We should show this for extension developers, so they can use
     /// `Console.app` to view JS Errors, use `com.auroraeditor.JSSupport` as subsystem
     /// and the category is your extension name.
     func registerErrorHandler() {
         context?.exceptionHandler = { _, exception in
+            // Remove `TypeError: undefined is not an object` warnings,
+            // Since they are triggered as well if a function doesnt return a value.
+            if exception?.description == "TypeError: undefined is not an object" {
+                return
+            }
+
             self.jsLogger.error("JS Error: \(exception?.description ?? "Unknown error")")
         }
     }
@@ -145,9 +165,19 @@ class JSSupport: ExtensionInterface {
                 unsafeBitCast(respond, to: AnyObject.self),
                 forKeyedSubscript: "respond" as (NSCopying & NSObjectProtocol)
             )
+
+        // Create AuroraEditor.respondTo(...)
+        context?
+            .objectForKeyedSubscript("AuroraEditor")
+            .setObject(
+                unsafeBitCast(respond, to: AnyObject.self),
+                forKeyedSubscript: "respondTo" as (NSCopying & NSObjectProtocol)
+            )
     }
 
-    /// Register the required AuroraEditor class.
+    /// Register all JavaScript Context extensions.
+    ///
+    /// Register the required AuroraEditor class, and load all JavaScript Context extensions
     func registerScripts() {
         guard let context = context else {
             return
@@ -158,44 +188,43 @@ class JSSupport: ExtensionInterface {
         context
             .evaluateScript("var AuroraEditor = {};")
 
-        JSTimerSupport.shared.registerInto(jsContext: context)
-        JSPromise.shared.registerInto(jsContext: context)
-        JSFetch.shared.registerInto(jsContext: context)
+        JSCTimerSupport.shared.registerInto(jsContext: context)
+        JSCPromise.shared.registerInto(jsContext: context)
+        JSCFetch.shared.registerInto(jsContext: context)
     }
 
     /// Respond to an (AuroraEditor) JavaScript function.
     ///
     /// - Parameter action: action to perform
     /// - Parameter parameters: with parameters
-    /// 
+    ///
     /// - Returns: response value from javascript
     func respond(action: String, parameters: [String: Any]) -> JSValue? {
+        var JSONParameters = self.anyArrayToJSON(array: parameters)
+
+        jsLogger.debug(
+            "Calling function \(action), with \(JSONParameters)"
+        )
+
+        // Re ensure that the string is safe
+        JSONParameters = escape(JSON: JSONParameters)
+
+        // Constructor to run `function(parameters)`
+        let action = """
+            if (typeof \(action) === 'function') {
+                \(action)(JSON.parse(\"\(JSONParameters)\"))
+            }
+            """
+
         return context?
-            .objectForKeyedSubscript(action)?
-            .call(withArguments: Array(parameters.values).compactMap { val in
-                // Custom view models can crash, only return their name.
-                // The problem is that it is inerhited from Codable so
-                // as? Codable will always pass, so we need to check this
-                // on the first possible position.
-                if let newVal = val as? ExtensionCustomViewModel {
-                    return newVal.name as Any
-                }
-
-                // It confirms to Codable, that _should_ be safe
-                if val as? Codable != nil {
-                    return val // We want the "Any" returned.
-                }
-
-                // This is probably unsafe, do not return.
-                return nil
-            })
+            .evaluateScript(action)
     }
 
     /// Respond to an (AuroraEditor) JavaScript function.
-    /// 
+    ///
     /// - Parameter action: action to perform
     /// - Parameter parameters: with parameters
-    /// 
+    ///
     /// - Returns: response value from javascript
     func respondToAE(action: String, parameters: [String: Any]) -> JSValue? {
         return context?
@@ -205,21 +234,72 @@ class JSSupport: ExtensionInterface {
     }
 
     /// Evaluate a script on the current context
-    /// 
+    ///
     /// - Parameter script: script to evaluate
-    /// 
+    ///
     /// - Returns: the JS Value
     func evaluate(script: String) -> JSValue? {
         return context?
             .evaluateScript(script)
     }
 
+    // MARK: - Array to JSON converter.
+
+    /// (Any) Array to JSON converter
+    /// - Parameter array: input array
+    /// - Returns: JSON String
+    func anyArrayToJSON(array: [String: Any]) -> String {
+        // Open JSON string
+        var json = "{"
+
+        for (key, value) in array {
+            if let boolValue = value as? Bool {
+                // Value is a boolean, booleans should not be escaped
+                json.append("\"\(key)\":\(boolValue ? "true" : "false"),")
+            } else if let numbericValue = value as? (any Numeric) {
+                // Value is numeric, numeric characters don't need to be escaped
+                json.append("\"\(key)\":\(numbericValue),")
+            } else if var stringValue = value as? String {
+                // Value is a string, strings need to be escaped
+                json.append("\"\(key)\":\"\(escape(JSON: stringValue))\",")
+            } else {
+                // Value is an unknown type.
+                jsLogger.fault("Could not recast \(key), type is: \(type(of: value))")
+            }
+        }
+
+        // Remove last ,
+        json.removeLast()
+
+        // Close the JSON String
+        json.append("}")
+
+        return json
+    }
+
+    /// Escape string to become JSON Safe
+    /// - Parameter JSON: Input JSON/String
+    /// - Returns: Safe string
+    func escape(JSON: String) -> String {
+        return JSON
+            // Escape any escape characters
+            .replacingOccurrences(of: "\\", with: "\\\\")
+            // Escape " to \"
+            .replacingOccurrences(of: "\"", with: "\\\"")
+            // Escape newline to \n
+            .replacingOccurrences(of: "\n", with: "\\n")
+            // Escape (carriage)return to \r
+            .replacingOccurrences(of: "\r", with: "\\r")
+            // Escape tabs to \t
+            .replacingOccurrences(of: "\t", with: "\\t")
+    }
+
     // MARK: - Aurora Editor Extension interface
     /// Respond to an (AuroraEditor) JavaScript function.
-    /// 
+    ///
     /// - Parameter action: action to perform
     /// - Parameter parameters: with parameters
-    /// 
+    ///
     /// - Returns: response value from javascript
     func respond(action: String, parameters: [String: Any]) -> Bool {
         if let val = self.respond(action: action, parameters: parameters), val.isBoolean {

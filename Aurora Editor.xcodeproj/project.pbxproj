@@ -405,9 +405,10 @@
 		2B615AB72BC85A4300A5457F /* ExtensionCustomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B615AB62BC85A4300A5457F /* ExtensionCustomViewModel.swift */; };
 		2B615ABA2BC865B500A5457F /* ExtensionOrWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B615AB92BC865B500A5457F /* ExtensionOrWebView.swift */; };
 		2B615ABC2BC865E400A5457F /* ExtensionViewStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B615ABB2BC865E400A5457F /* ExtensionViewStorage.swift */; };
+		2B6B3D6D2C3820A100B041B5 /* ExtensionDocumentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B3D6C2C3820A000B041B5 /* ExtensionDocumentation.docc */; };
 		2B6CB09E2AFFA3B1001E4955 /* AEUpdateService.app in Resources */ = {isa = PBXBuildFile; fileRef = A01AB2D12ACC9EDA0029EDF0 /* AEUpdateService.app */; };
-		2B74A3F02C0F8FFA002498F5 /* JSPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B74A3EF2C0F8FFA002498F5 /* JSPromise.swift */; };
-		2B74A3F22C0F90B2002498F5 /* JSFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B74A3F12C0F90B2002498F5 /* JSFetch.swift */; };
+		2B74A3F02C0F8FFA002498F5 /* JSCPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B74A3EF2C0F8FFA002498F5 /* JSCPromise.swift */; };
+		2B74A3F22C0F90B2002498F5 /* JSCFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B74A3F12C0F90B2002498F5 /* JSCFetch.swift */; };
 		2B7A56B62BD5037C00A728D7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2B7A56B52BD5036900A728D7 /* Localizable.xcstrings */; };
 		2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468438427DC76E200F8E88E /* AppDelegate.swift */; };
 		2B7AC06B282452FB0082A5B8 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7AC06A282452FB0082A5B8 /* Media.xcassets */; };
@@ -421,7 +422,7 @@
 		2BCBAACA2927C65500D4DFB2 /* View+isHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */; };
 		2BCDF9D8295F2EBB00570253 /* .githash in Copy .githash */ = {isa = PBXBuildFile; fileRef = 2BCDF9D6295F2E9700570253 /* .githash */; };
 		2BD0BD142977331400629A86 /* VibrantEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0BD132977331400629A86 /* VibrantEffect.swift */; };
-		2BDE0F772BC8874900C20B85 /* JSTimerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE0F762BC8874800C20B85 /* JSTimerSupport.swift */; };
+		2BDE0F772BC8874900C20B85 /* JSCTimerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE0F762BC8874800C20B85 /* JSCTimerSupport.swift */; };
 		2BDFA8F928D1079700980385 /* WebTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8F728D1079600980385 /* WebTab.swift */; };
 		2BDFA90428D107B200980385 /* WebWKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8FB28D107B200980385 /* WebWKView.swift */; };
 		2BDFA90528D107B200980385 /* OtherFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA8FC28D107B200980385 /* OtherFileView.swift */; };
@@ -1015,9 +1016,10 @@
 		2B615AB62BC85A4300A5457F /* ExtensionCustomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionCustomViewModel.swift; sourceTree = "<group>"; };
 		2B615AB92BC865B500A5457F /* ExtensionOrWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionOrWebView.swift; sourceTree = "<group>"; };
 		2B615ABB2BC865E400A5457F /* ExtensionViewStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewStorage.swift; sourceTree = "<group>"; };
+		2B6B3D6C2C3820A000B041B5 /* ExtensionDocumentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = ExtensionDocumentation.docc; sourceTree = "<group>"; };
 		2B71C0A32874AD61008E0859 /* AuroraProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraProject.swift; sourceTree = "<group>"; };
-		2B74A3EF2C0F8FFA002498F5 /* JSPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSPromise.swift; sourceTree = "<group>"; };
-		2B74A3F12C0F90B2002498F5 /* JSFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSFetch.swift; sourceTree = "<group>"; };
+		2B74A3EF2C0F8FFA002498F5 /* JSCPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSCPromise.swift; sourceTree = "<group>"; };
+		2B74A3F12C0F90B2002498F5 /* JSCFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSCFetch.swift; sourceTree = "<group>"; };
 		2B7A56B52BD5036900A728D7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2B7AC06A282452FB0082A5B8 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSSupport.swift; sourceTree = "<group>"; };
@@ -1028,7 +1030,7 @@
 		2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+isHidden.swift"; sourceTree = "<group>"; };
 		2BCDF9D6295F2E9700570253 /* .githash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .githash; sourceTree = "<group>"; };
 		2BD0BD132977331400629A86 /* VibrantEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrantEffect.swift; sourceTree = "<group>"; };
-		2BDE0F762BC8874800C20B85 /* JSTimerSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSTimerSupport.swift; sourceTree = "<group>"; };
+		2BDE0F762BC8874800C20B85 /* JSCTimerSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSCTimerSupport.swift; sourceTree = "<group>"; };
 		2BDFA8F728D1079600980385 /* WebTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebTab.swift; sourceTree = "<group>"; };
 		2BDFA8FB28D107B200980385 /* WebWKView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebWKView.swift; sourceTree = "<group>"; };
 		2BDFA8FC28D107B200980385 /* OtherFileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherFileView.swift; sourceTree = "<group>"; };
@@ -1856,6 +1858,7 @@
 		20D837BC289A7ACD00D91D05 /* ExtensionSystem */ = {
 			isa = PBXGroup;
 			children = (
+				2B6B3D6C2C3820A000B041B5 /* ExtensionDocumentation.docc */,
 				20D837BF289A7ACD00D91D05 /* Models */,
 				20D83912289A80E700D91D05 /* Network */,
 				20D83913289A811600D91D05 /* UI */,
@@ -1866,13 +1869,10 @@
 		20D837BF289A7ACD00D91D05 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2B6B3D712C38213600B041B5 /* JavaScript Support */,
 				0463E51027FCC1DF00806D5C /* AuroraEditorAPI.swift */,
 				20D837BE289A7ACD00D91D05 /* ExtensionsManager.swift */,
 				2B615ABB2BC865E400A5457F /* ExtensionViewStorage.swift */,
-				2B74A3F12C0F90B2002498F5 /* JSFetch.swift */,
-				2B74A3EF2C0F8FFA002498F5 /* JSPromise.swift */,
-				2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */,
-				2BDE0F762BC8874800C20B85 /* JSTimerSupport.swift */,
 				20D837C2289A7ACD00D91D05 /* Plugin.swift */,
 				20D837C0289A7ACD00D91D05 /* PluginRelease.swift */,
 			);
@@ -2908,6 +2908,17 @@
 				2B3DAA4F2BFD24C500A7773D /* QLHighlighter.swift */,
 			);
 			path = AEquicklook;
+			sourceTree = "<group>";
+		};
+		2B6B3D712C38213600B041B5 /* JavaScript Support */ = {
+			isa = PBXGroup;
+			children = (
+				2B74A3F12C0F90B2002498F5 /* JSCFetch.swift */,
+				2B74A3EF2C0F8FFA002498F5 /* JSCPromise.swift */,
+				2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */,
+				2BDE0F762BC8874800C20B85 /* JSCTimerSupport.swift */,
+			);
+			path = "JavaScript Support";
 			sourceTree = "<group>";
 		};
 		2BDFA90C28D10B9200980385 /* FileCreation */ = {
@@ -4011,6 +4022,7 @@
 				934D2F0A28C591FD0034E5C8 /* GeneralPreferencesViewSections.swift in Sources */,
 				2093CD31289AA089003A88DD /* Gist.swift in Sources */,
 				2093CD2A289AA084003A88DD /* GistRouter.swift in Sources */,
+				2B6B3D6D2C3820A100B041B5 /* ExtensionDocumentation.docc in Sources */,
 				2093CD35289AA089003A88DD /* Git.swift in Sources */,
 				2093CDB5289AA1A2003A88DD /* GitAccountItem.swift in Sources */,
 				2093CD15289AA054003A88DD /* GitClient.swift in Sources */,
@@ -4076,11 +4088,11 @@
 				2093CD24289AA084003A88DD /* IssueRouter.swift in Sources */,
 				20FACF6A2AB60E1C00B09012 /* IssueType.swift in Sources */,
 				2B04574B28E6FFE300024F2D /* ItalicThemeAttribute.swift in Sources */,
-				2B74A3F22C0F90B2002498F5 /* JSFetch.swift in Sources */,
+				2B74A3F22C0F90B2002498F5 /* JSCFetch.swift in Sources */,
 				2093CD4C289AA0A2003A88DD /* JSONPostRouter.swift in Sources */,
-				2B74A3F02C0F8FFA002498F5 /* JSPromise.swift in Sources */,
+				2B74A3F02C0F8FFA002498F5 /* JSCPromise.swift in Sources */,
 				2B7C8CC62BC5B3160061DE0D /* JSSupport.swift in Sources */,
-				2BDE0F772BC8874900C20B85 /* JSTimerSupport.swift in Sources */,
+				2BDE0F772BC8874900C20B85 /* JSCTimerSupport.swift in Sources */,
 				2B04574D28E6FFE300024F2D /* KernThemeAttribute.swift in Sources */,
 				20EBB50D280C383700F3A5DA /* LanguageType.swift in Sources */,
 				209D2F4A297BBE61005AB73C /* LicenseDetailView.swift in Sources */,

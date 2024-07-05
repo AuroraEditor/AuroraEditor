@@ -12,18 +12,18 @@ import JavaScriptCore
     /// JavaScript `then` function
     /// - Parameter resolve: callback to resolve
     /// - Returns: promise
-    func then(_ resolve: JSValue) -> JSPromise?
+    func then(_ resolve: JSValue) -> JSCPromise?
 
     /// JavaScript `catch` function
     /// - Parameter resolve: callback to resolve
     /// - Returns: promise
-    func `catch`(_ reject: JSValue) -> JSPromise?
+    func `catch`(_ reject: JSValue) -> JSCPromise?
 }
 
 /// JavaScript Promise support
-class JSPromise: NSObject, JSPromiseExports {
+class JSCPromise: NSObject, JSPromiseExports {
     /// Shared instance so it will not be unloaded.
-    static let shared: JSPromise = .init()
+    static let shared: JSCPromise = .init()
 
     /// Resolve callback
     var resolve: JSValue?
@@ -32,7 +32,7 @@ class JSPromise: NSObject, JSPromiseExports {
     var reject: JSValue?
 
     /// Next promise
-    var next: JSPromise?
+    var next: JSCPromise?
 
     /// Timer
     var timer: Timer?
@@ -41,7 +41,7 @@ class JSPromise: NSObject, JSPromiseExports {
     /// - Parameter jsContext: The current JavaScript context.
     func registerInto(jsContext: JSContext) {
         jsContext.setObject(
-            JSPromise.self,
+            JSCPromise.self,
             forKeyedSubscript: "Promise" as (NSCopying & NSObjectProtocol)
         )
 
@@ -50,12 +50,12 @@ class JSPromise: NSObject, JSPromiseExports {
         """)
     }
 
-    func then(_ resolve: JSValue) -> JSPromise? {
+    func then(_ resolve: JSValue) -> JSCPromise? {
         // Setup the resolver (callback)
         self.resolve = resolve
 
         // Create another JSPromise
-        self.next = JSPromise()
+        self.next = JSCPromise()
 
         // Set the timer to 1s
         self.timer?.fireDate = Date(timeInterval: 1, since: Date())
@@ -70,12 +70,12 @@ class JSPromise: NSObject, JSPromiseExports {
         return self.next
     }
 
-    func `catch`(_ reject: JSValue) -> JSPromise? {
+    func `catch`(_ reject: JSValue) -> JSCPromise? {
         // Setup the reject (callback)
         self.reject = reject
 
         // Create another JSPromise
-        self.next = JSPromise()
+        self.next = JSCPromise()
 
         // Set the timer to 1s
         self.timer?.fireDate = Date(timeInterval: 1, since: Date())

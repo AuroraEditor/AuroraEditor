@@ -46,10 +46,10 @@ import JavaScriptCore
 /// - `setTimeout(callback, time)`
 /// - `clearTimeout(identifier)`
 /// - `setInterval(callback, time)`
-@objc class JSTimerSupport: NSObject, AEJSTimer {
+@objc class JSCTimerSupport: NSObject, AEJSTimer {
 
-    /// Shared instance of `JSTimerSupport`.
-    static let shared: JSTimerSupport = .init()
+    /// Shared instance of `JSCTimerSupport`.
+    static let shared: JSCTimerSupport = .init()
 
     /// Storage for the timers
     var timers = [String: Timer]()
@@ -58,7 +58,7 @@ import JavaScriptCore
     /// - Parameter jsContext: The current JavaScript context.
     func registerInto(jsContext: JSContext) {
         jsContext.setObject(
-            JSTimerSupport.shared,
+            JSCTimerSupport.shared,
             forKeyedSubscript: "AETimer" as (NSCopying & NSObjectProtocol)
         )
 
