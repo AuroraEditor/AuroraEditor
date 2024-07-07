@@ -281,7 +281,10 @@ final class ProjectNavigatorMenu: NSMenu {
                         workspace?.closeTab(item: item.tabID)
                     }
                     // TODO: When file gets deleted we should update the Project Navigator
-                    try fileManger.removeItem(at: item.url)
+                    try FileItem.fileManger.trashItem(
+                        at: item.url,
+                        resultingItemURL: nil
+                    )
                 } catch {
                     fatalError(error.localizedDescription)
                 }
