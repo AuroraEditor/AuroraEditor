@@ -28,19 +28,31 @@ struct ExploreItemView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 36, height: 36)
-                        .cornerRadius(8)
+                        .clipShape(
+                            RoundedRectangle(
+                                cornerRadius: 8
+                            )
+                        )
                         .accessibilityLabel(Text("Extension Icon"))
                 } else if phase.error != nil {
                     Image(systemName: "lasso")
                         .frame(width: 36, height: 36)
                         .background(.blue)
-                        .cornerRadius(8)
+                        .clipShape(
+                            RoundedRectangle(
+                                cornerRadius: 8
+                            )
+                        )
                         .accessibilityLabel(Text("Extension Icon"))
                 } else {
                     Image(systemName: "lasso")
                         .frame(width: 36, height: 36)
                         .background(.blue)
-                        .cornerRadius(8)
+                        .clipShape(
+                            RoundedRectangle(
+                                cornerRadius: 8
+                            )
+                        )
                         .accessibilityLabel(Text("Extension Icon"))
                 }
             }
@@ -65,7 +77,11 @@ struct ExploreItemView: View {
                     .foregroundColor(.accentColor)
             }
             .buttonStyle(.bordered)
-            .cornerRadius(40)
+            .clipShape(
+                RoundedRectangle(
+                    cornerRadius: 40
+                )
+            )
         }
     }
 }

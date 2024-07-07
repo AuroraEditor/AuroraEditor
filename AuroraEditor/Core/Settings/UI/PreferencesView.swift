@@ -44,7 +44,11 @@ struct PreferencesView: View {
                                                            endPoint: .bottom)
                                             .opacity(0.85)
                                         }
-                                        .cornerRadius(5)
+                                        .clipShape(
+                                            RoundedRectangle(
+                                                cornerRadius: 5
+                                            )
+                                        )
                                 }
 
                                 Text(item.name)

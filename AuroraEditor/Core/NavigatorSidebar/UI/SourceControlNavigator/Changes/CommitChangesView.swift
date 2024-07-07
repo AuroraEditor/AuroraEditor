@@ -60,7 +60,16 @@ struct CommitChangesView: View {
             .textFieldStyle(.plain)
             .background(.ultraThickMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 6))
-            .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.secondary, lineWidth: 0.5).cornerRadius(6))
+            // TODO: This is used a lot, it should be a view extension/modifier.
+            .overlay(
+                RoundedRectangle(cornerRadius: 6)
+                    .stroke(Color.secondary, lineWidth: 0.5)
+                    .clipShape(
+                        RoundedRectangle(
+                            cornerRadius: 6
+                        )
+                    )
+            )
             .disabled(getFirstFileSummary() == "Unable to commit")
 
             TextField(text: $descriptionText) {
@@ -72,7 +81,15 @@ struct CommitChangesView: View {
             .frame(height: 66, alignment: .topLeading)
             .background(.ultraThickMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 6))
-            .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.secondary, lineWidth: 0.5).cornerRadius(6))
+            .overlay(
+                RoundedRectangle(cornerRadius: 6)
+                    .stroke(Color.secondary, lineWidth: 0.5)
+                    .clipShape(
+                        RoundedRectangle(
+                            cornerRadius: 6
+                        )
+                    )
+            )
 
             Toggle(isOn: $stageAll) {
                 Text("Stage All")

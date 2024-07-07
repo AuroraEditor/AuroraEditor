@@ -90,7 +90,11 @@ struct ApplicationsDetailsView: View {
                     .padding(.vertical, 5)
                     .padding(.horizontal)
                     .background(aboutDetailState == .license ? Color(nsColor: NSColor(.accentColor)) : .clear)
-                    .cornerRadius(20)
+                    .clipShape(
+                        RoundedRectangle(
+                            cornerRadius: 20
+                        )
+                    )
 
                 Text("about.contributors")
                     .onTapGesture {
@@ -101,7 +105,11 @@ struct ApplicationsDetailsView: View {
                     .padding(.vertical, 5)
                     .padding(.horizontal)
                     .background(aboutDetailState == .contributers ? Color(nsColor: NSColor(.accentColor)) : .clear)
-                    .cornerRadius(20)
+                    .clipShape(
+                        RoundedRectangle(
+                            cornerRadius: 20
+                        )
+                    )
 
                 Text("about.credits")
                     .onTapGesture {
@@ -112,7 +120,11 @@ struct ApplicationsDetailsView: View {
                     .padding(.vertical, 5)
                     .padding(.horizontal)
                     .background(aboutDetailState == .credits ? Color(nsColor: NSColor(.accentColor)) : .clear)
-                    .cornerRadius(20)
+                    .clipShape(
+                        RoundedRectangle(
+                            cornerRadius: 20
+                        )
+                    )
             }
 
             Spacer()

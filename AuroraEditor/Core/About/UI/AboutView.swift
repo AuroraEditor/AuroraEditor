@@ -66,7 +66,13 @@ public struct AboutView: View {
     private var contributorFooter: some View {
         let contributorsURL = "https://github.com/AuroraEditor/AuroraEditor/contributors"
         return ZStack {
-            Color.gray.opacity(0.2).cornerRadius(20)
+            Color.gray
+                .opacity(0.2)
+                .clipShape(
+                    RoundedRectangle(
+                        cornerRadius: 20
+                    )
+                )
             HStack {
                 Image(systemName: "arrow.right.circle")
                     .accessibilityLabel(Text("Aurora Editor Contributors"))

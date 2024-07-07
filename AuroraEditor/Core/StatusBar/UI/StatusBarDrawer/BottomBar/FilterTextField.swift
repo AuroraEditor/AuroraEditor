@@ -31,7 +31,12 @@ struct FilterTextField: View {
         .padding(.vertical, 3)
         .overlay(
             RoundedRectangle(cornerRadius: 4)
-                .stroke(Color.gray, lineWidth: 0.5).cornerRadius(4)
+                .stroke(Color.gray, lineWidth: 0.5)
+                .clipShape(
+                    RoundedRectangle(
+                        cornerRadius: 4
+                    )
+                )
         )
     }
 
