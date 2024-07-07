@@ -396,7 +396,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
         dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
         let output = try shellClient.run(
             // swiftlint:disable:next line_length
-            "cd \(directoryURL.relativePath.escapedWhiteSpaces());git log --follow --pretty=%h¦%H¦%s¦%aN¦%ae¦%cn¦%ce¦%aD¦ \(entriesString) \(fileLocalPath)"
+            "cd \(directoryURL.relativePath.escapedWhiteSpaces());git log -z --follow --pretty=%h¦%H¦%s¦%aN¦%ae¦%cn¦%ce¦%aD¦ \(entriesString) \(fileLocalPath)"
         )
         let remote = try shellClient.run(
             "cd \(directoryURL.relativePath.escapedWhiteSpaces());git ls-remote --get-url"
@@ -406,7 +406,7 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
             throw GitClientError.notGitRepository
         }
         return output
-            .split(separator: "\n")
+            .split(separator: "\0")
             .map { line -> CommitHistory in
                 let parameters = line.components(separatedBy: "¦")
                 return CommitHistory(
