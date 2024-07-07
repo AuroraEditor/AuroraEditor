@@ -104,7 +104,10 @@ extension FileItem {
         if deleteConfirmation.runModal() == .alertFirstButtonReturn { // "Delete" button
             if FileItem.fileManger.fileExists(atPath: self.url.path) {
                 do {
-                    try FileItem.fileManger.removeItem(at: self.url)
+                    try FileItem.fileManger.trashItem(
+                        at: self.url,
+                        resultingItemURL: nil
+                    )
                 } catch {
                     fatalError(error.localizedDescription)
                 }
