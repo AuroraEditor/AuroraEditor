@@ -104,7 +104,6 @@ extension FileItem {
         if deleteConfirmation.runModal() == .alertFirstButtonReturn { // "Delete" button
             if FileItem.fileManger.fileExists(atPath: self.url.path) {
                 do {
-                    logger.info("Should trash item \(self.url)")
                     try FileItem.fileManger.trashItem(
                         at: self.url,
                         resultingItemURL: nil
