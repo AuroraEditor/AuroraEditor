@@ -25,19 +25,31 @@ struct ExtensionHeaderView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 130, height: 130)
-                            .cornerRadius(28)
+                            .clipShape(
+                                RoundedRectangle(
+                                    cornerRadius: 28
+                                )
+                            )
                             .accessibilityHidden(true)
                     } else if phase.error != nil {
                         Image(systemName: "lasso")
                             .frame(width: 130, height: 130)
                             .background(.blue)
-                            .cornerRadius(28)
+                            .clipShape(
+                                RoundedRectangle(
+                                    cornerRadius: 28
+                                )
+                            )
                             .accessibilityHidden(true)
                     } else {
                         Image(systemName: "lasso")
                             .frame(width: 130, height: 130)
                             .background(.blue)
-                            .cornerRadius(28)
+                            .clipShape(
+                                RoundedRectangle(
+                                    cornerRadius: 28
+                                )
+                            )
                             .accessibilityHidden(true)
                     }
                 }
@@ -62,7 +74,11 @@ struct ExtensionHeaderView: View {
                     .frame(width: 170, height: 38)
                     .buttonStyle(.plain)
                     .background(Color(nsColor: NSColor(.accentColor)))
-                    .cornerRadius(24)
+                    .clipShape(
+                        RoundedRectangle(
+                            cornerRadius: 24
+                        )
+                    )
                 }
                 .padding(.leading, 34)
             }

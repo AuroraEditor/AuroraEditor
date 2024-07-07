@@ -67,7 +67,15 @@ struct FindNavigatorSearchBar: View {
         .padding(.vertical, 3)
         .background(.ultraThinMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 6))
-        .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray, lineWidth: 0.5).cornerRadius(6))
+        .overlay(
+            RoundedRectangle(cornerRadius: 6)
+                .stroke(Color.gray, lineWidth: 0.5)
+                .clipShape(
+                    RoundedRectangle(
+                        cornerRadius: 6
+                    )
+                )
+        )
     }
 
     /// The text field

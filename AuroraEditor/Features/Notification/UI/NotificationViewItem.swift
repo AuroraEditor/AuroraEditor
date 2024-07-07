@@ -89,7 +89,7 @@ struct NotificationViewItem: View {
                     Spacer()
                 }
                 .shadow(radius: 0)
-                .cornerRadius(20)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
                 .buttonStyle(.bordered)
             }
         }

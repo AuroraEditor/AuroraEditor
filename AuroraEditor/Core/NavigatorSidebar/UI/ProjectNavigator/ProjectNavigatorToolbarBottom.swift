@@ -50,7 +50,15 @@ struct ProjectNavigatorToolbarBottom: View {
             .padding(.vertical, 3)
             .background(colorScheme == .dark ? Color(hex: "#FFFFFF").opacity(0.1) : Color(hex: "#808080").opacity(0.2))
             .clipShape(RoundedRectangle(cornerRadius: 6))
-            .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray, lineWidth: 0.5).cornerRadius(6))
+            .overlay(
+                RoundedRectangle(cornerRadius: 6)
+                    .stroke(Color.gray, lineWidth: 0.5)
+                    .clipShape(
+                        RoundedRectangle(
+                            cornerRadius: 6
+                        )
+                    )
+            )
             .padding(.trailing, 5)
             .padding(.leading, -8)
         }

@@ -108,7 +108,11 @@ extension TabBarItem {
                             .opacity(isPressingClose ? 0.29 : (isHoveringClose ? 0.11 : 0))
                     )
                 )
-                .cornerRadius(2)
+                .clipShape(
+                    RoundedRectangle(
+                        cornerRadius: 2
+                    )
+                )
                 .accessibilityLabel(Text("Close"))
                 .onHover { hover in
                     isHoveringClose = hover

@@ -90,7 +90,11 @@ public struct ToolbarAppInfo: View {
             }
             .padding(5)
             .background(.ultraThinMaterial)
-            .cornerRadius(6)
+            .clipShape(
+                RoundedRectangle(
+                    cornerRadius: 6
+                )
+            )
 
             NotificationIndicators()
         }

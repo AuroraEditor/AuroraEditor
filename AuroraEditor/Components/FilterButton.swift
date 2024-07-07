@@ -25,7 +25,7 @@ struct FilterButton: View {
         }
         .padding(7)
         .border(Color.secondary, width: 0.5)
-        .cornerRadius(20)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
         .accessibilityLabel(Text("Filter icon"))
     }
 }

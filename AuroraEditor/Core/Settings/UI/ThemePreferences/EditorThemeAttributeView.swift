@@ -80,7 +80,11 @@ struct EditorThemeAttributeView: View {
                                 .foregroundColor(isBold ?
                                                  Color(nsColor: NSColor.labelColor) :
                                                     Color(nsColor: NSColor.secondaryLabelColor))
-                                .cornerRadius(5)
+                                .clipShape(
+                                    RoundedRectangle(
+                                        cornerRadius: 5
+                                    )
+                                )
                                 .accessibilityLabel(Text("Bold"))
                                 .onTapGesture {
                                     var doesExist = false
@@ -103,7 +107,11 @@ struct EditorThemeAttributeView: View {
                                 .foregroundColor(isItalic ?
                                                  Color(nsColor: NSColor.labelColor) :
                                                     Color(nsColor: NSColor.secondaryLabelColor))
-                                .cornerRadius(5)
+                                .clipShape(
+                                    RoundedRectangle(
+                                        cornerRadius: 5
+                                    )
+                                )
                                 .onTapGesture {
                                     var doesExist = false
                                     replaceAttribute(setting: setting,
@@ -125,7 +133,11 @@ struct EditorThemeAttributeView: View {
                                 .foregroundColor(isUnderline ?
                                                  Color(nsColor: NSColor.labelColor) :
                                                     Color(nsColor: NSColor.secondaryLabelColor))
-                                .cornerRadius(5)
+                                .clipShape(
+                                    RoundedRectangle(
+                                        cornerRadius: 5
+                                    )
+                                )
                                 .onTapGesture {
                                     var doesExist = false
                                     replaceAttribute(setting: setting,

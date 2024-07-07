@@ -63,7 +63,7 @@ struct NotificationToastView: View {
         .padding(.horizontal, 10)
         .frame(minWidth: 350, minHeight: 75)
         .background(colorScheme == .light ? .white : Color(hex: "#252525"))
-        .cornerRadius(8)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
         .shadow(radius: 1)
         .onHover { hovering in
             // Track if the mouse is hovering over the notification for interaction.

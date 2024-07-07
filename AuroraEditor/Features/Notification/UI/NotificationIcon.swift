@@ -22,23 +22,23 @@ struct NotificationIcon: View {
             Image(systemName: notification.severity.iconName())
                 .symbolRenderingMode(.hierarchical)
                 .font(.system(size: 14))
-                .cornerRadius(5)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
                 .accessibilityLabel(Text("System Notification"))
         case .update:
             Image(systemName: "square.and.arrow.down.fill")
                 .symbolRenderingMode(.hierarchical)
                 .font(.system(size: 14))
-                .cornerRadius(5)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
                 .accessibilityLabel(Text("Update Notification"))
         case .extensionSystem:
             AsyncImage(url: notification.icon)
                 .font(.system(size: 14))
-                .cornerRadius(5)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
                 .accessibilityLabel(Text("Extension Notification"))
         case .custom:
             AsyncImage(url: notification.icon)
                 .font(.system(size: 14))
-                .cornerRadius(5)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
                 .accessibilityLabel(Text("Custom Notification"))
         }
     }

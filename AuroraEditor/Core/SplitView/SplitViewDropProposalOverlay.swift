@@ -129,7 +129,11 @@ struct SplitViewDropProposalOverlay: View {
                 blendingMode: .withinWindow,
                 emphasized: false
             )
-            .cornerRadius(Const.overlayCornerRadius)
+            .clipShape(
+                RoundedRectangle(
+                    cornerRadius: Const.overlayCornerRadius
+                )
+            )
             .overlay {
                 RoundedRectangle(cornerRadius: Const.overlayCornerRadius)
                     .stroke(
