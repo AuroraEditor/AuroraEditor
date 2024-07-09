@@ -131,7 +131,7 @@ final class ProjectCommitHistory: Equatable, Identifiable, TabBarItemRepresentab
                 additionArgs.append("--since=\"7 days ago\"")
             case .lastThirtyDays:
                 additionArgs.append("--since=\"30 days ago\"")
-            case .none:
+            case .none, .some(.none):
                 additionArgs = []
             }
         }
