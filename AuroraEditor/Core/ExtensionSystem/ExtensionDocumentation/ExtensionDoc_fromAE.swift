@@ -101,7 +101,4 @@ public protocol ExtensionDocumentationFromAuroraEditor {
     /// - Parameter identifier: Notification identifier
     /// - Parameter extension: Extension name
     func didDismissNotification(identifier: String, extension: String)
-
-    /// No operation.
-    func noop()
 }

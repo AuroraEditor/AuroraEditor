@@ -55,7 +55,4 @@ public protocol ExtensionDocumentationToAuroraEditor {
     ///
     /// - Note: JSON Views do not yet return on interactions (e.g. button is clicked)
     func openWindow(view: any View)
-
-    /// No operation.
-    func noop()
 }
