@@ -12,6 +12,7 @@ import AEExtensionKit
 
 /// This class does not execute any code, this is made to generate documentation for the extension system
 /// This are items which an extension can expect from AuroraEditor.
+// periphery:ignore
 public protocol ExtensionDocumentationToAuroraEditor {
 
     /// Open settings
