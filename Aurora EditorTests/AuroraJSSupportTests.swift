@@ -45,7 +45,7 @@ final class AuroraJSSupportTests: XCTestCase {
               let value = jsSupport?.respond(
                 action: "AECustomApiTest",
                 parameters: ["val": "AECustomApiTest using respond()"]
-              ), value.toString() == "AECustomApiTest using respond()" else {
+              ), script.isUndefined, value.toString() == "AECustomApiTest using respond()" else {
             XCTFail("Error: No value returned.")
             return
         }
