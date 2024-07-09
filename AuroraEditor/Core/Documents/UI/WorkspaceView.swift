@@ -12,28 +12,6 @@ import Version_Control
 import Combine
 import OSLog
 
-/// Dynamic data for extensions.
-class ExtensionDynamicData: ObservableObject {
-    /// The name of the extension.
-    @Published
-    public var name: String
-
-    /// The title of the window.
-    @Published
-    public var title: String = ""
-
-    /// The view to display.
-    @Published
-    public var view: AnyView = AnyView(EmptyView())
-
-    /// Creates a new instance of the dynamic data.
-    init() {
-        self.name = ""
-        self.title = ""
-        self.view = AnyView(EmptyView())
-    }
-}
-
 /// Workspace view.
 struct WorkspaceView: View {
     /// The height of the tab bar.
@@ -48,10 +26,10 @@ struct WorkspaceView: View {
 
     /// The workspace document.
     @EnvironmentObject
-    private var workspace: WorkspaceDocument
+    var workspace: WorkspaceDocument
 
     /// The notification service.
-    private let notificationService: NotificationService = .init()
+    let notificationService: NotificationService = .init()
 
     /// The cancelables.
     @State
@@ -88,17 +66,17 @@ struct WorkspaceView: View {
 
     /// The sheet state.
     @State
-    private var sheetIsOpened = false
+    var sheetIsOpened = false
 
     /// The dynamic extension data.
     @ObservedObject
-    private var extensionDynamic = ExtensionDynamicData()
+    var extensionDynamic = ExtensionDynamicData()
 
     /// The extensions manager.
-    private let extensionsManagerShared = ExtensionsManager.shared
+    let extensionsManagerShared = ExtensionsManager.shared
 
     /// Extension view storage.
-    private let extensionView = ExtensionViewStorage.shared
+    let extensionView = ExtensionViewStorage.shared
 
     /// Logger
     let logger = Logger(subsystem: "com.auroraeditor", category: "Workspace View")
@@ -136,7 +114,7 @@ struct WorkspaceView: View {
             }
         case .extensionCustomView:
             if let customTab = workspace.selectionState.selected as? ExtensionCustomViewModel {
-                ExtensionOrWebView(view: extensionView.storage.first(where: {
+                ExtensionCustomView(view: extensionView.storage.first(where: {
                     $0.key == customTab.id
                 })?.value, sender: customTab.sender)
             }
@@ -206,69 +184,7 @@ struct WorkspaceView: View {
             )
 
             workspace.broadcaster.broadcaster.sink { broadcast in
-                self.logger.info("\(broadcast.command)")
-                extensionDynamic.name = broadcast.sender
-                extensionDynamic.title = (broadcast.parameters["title"] as? String) ?? extensionDynamic.name
-
-                if broadcast.command == "NOOP" {
-                    // Got a noop command, we can ignore this.
-                } else if broadcast.command == "openSettings" {
-                    workspace.windowController?.openSettings()
-                } else if broadcast.command == "showNotification" {
-                    notificationService.notify(
-                        notification: INotification(
-                            id: UUID().uuidString,
-                            severity: .info,
-                            title: extensionDynamic.title,
-                            message: (broadcast.parameters["message"] as? String) ?? "",
-                            notificationType: .extensionSystem,
-                            silent: false
-                        )
-                    )
-                } else if broadcast.command == "showWarning" {
-                    notificationService.warn(
-                        title: extensionDynamic.title,
-                        message: (broadcast.parameters["message"] as? String) ?? ""
-                    )
-                } else if broadcast.command == "showError" {
-                    notificationService.error(
-                        title: extensionDynamic.title,
-                        message: (broadcast.parameters["message"] as? String) ?? ""
-                    )
-                } else if broadcast.command == "openSheet",
-                    let view = broadcast.parameters["view"] {
-                    extensionDynamic.view = AnyView(
-                        ExtensionOrWebView(view: view, sender: broadcast.sender)
-                    )
-                    sheetIsOpened = true
-                } else if broadcast.command == "openTab" {
-                    self.logger.info("openTab")
-                    workspace.openTab(
-                        item: ExtensionCustomViewModel(
-                            name: extensionDynamic.title,
-                            view: broadcast.parameters["view"],
-                            sender: broadcast.sender
-                        )
-                    )
-                } else if broadcast.command == "openWindow",
-                   let view = broadcast.parameters["view"] {
-                    let window = NSWindow()
-                    window.styleMask = NSWindow.StyleMask(rawValue: 0xf)
-                    window.contentViewController = NSHostingController(
-                        rootView: ExtensionOrWebView(view: view, sender: broadcast.sender).padding(5)
-                    )
-                    window.setFrame(
-                        NSRect(x: 700, y: 200, width: 500, height: 500),
-                        display: false
-                    )
-                    let windowController = NSWindowController()
-                    windowController.contentViewController = window.contentViewController
-                    windowController.window = window
-                    windowController.window?.title = extensionDynamic.title
-                    windowController.showWindow(self)
-                } else {
-                    self.logger.info("Unknown broadcast command \(broadcast.command)")
-                }
+                broadcastHandler(broadcast: broadcast)
             }.store(in: &cancelables)
         }
         .onDisappear {

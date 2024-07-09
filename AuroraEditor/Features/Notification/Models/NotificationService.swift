@@ -96,12 +96,15 @@ class NotificationService: INotificationService {
     ///   - title: The title of the informational notification.
     ///   - message: The message associated with the informational notification.
     func editorUpdate(title: String, message: String) {
-        model.addNotification(notification: INotification(id: "AuroraEditor-Update",
-                                                          severity: .info,
-                                                          title: title,
-                                                          message: message,
-                                                          notificationType: .update,
-                                                          silent: false))
+        model.addNotification(notification: INotification(
+            id: "AuroraEditor-Update",
+            severity: .info,
+            title: title,
+            message: message,
+            sender: "Aurora Editor Updater",
+            notificationType: .update,
+            silent: false)
+        )
     }
 
     /// Adds an informational notification to the notifications model.
@@ -109,13 +112,16 @@ class NotificationService: INotificationService {
     /// - Parameters:
     ///   - title: The title of the informational notification.
     ///   - message: The message associated with the informational notification.
-    func info(title: String, message: String) {
-        model.addNotification(notification: INotification(id: UUID().uuidString,
-                                                          severity: .info,
-                                                          title: title,
-                                                          message: message,
-                                                          notificationType: .system,
-                                                          silent: false))
+    func info(title: String, message: String, sender: String) {
+        model.addNotification(notification: INotification(
+            id: UUID().uuidString,
+            severity: .info,
+            title: title,
+            message: message,
+            sender: sender,
+            notificationType: .system,
+            silent: false
+        ))
     }
 
     /// Adds a warning notification to the notifications model.
@@ -123,13 +129,15 @@ class NotificationService: INotificationService {
     /// - Parameters:
     ///   - title: The title of the warning notification.
     ///   - message: The message associated with the warning notification.
-    func warn(title: String, message: String) {
-        model.addNotification(notification: INotification(id: UUID().uuidString,
-                                                          severity: .warning,
-                                                          title: title,
-                                                          message: message,
-                                                          notificationType: .system,
-                                                          silent: false))
+    func warn(title: String, message: String, sender: String) {
+        model.addNotification(notification: INotification(
+            id: UUID().uuidString,
+            severity: .warning,
+            title: title,
+            message: message,
+            sender: sender,
+            notificationType: .system,
+            silent: false))
     }
 
     /// Adds an error notification to the notifications model.
@@ -137,12 +145,15 @@ class NotificationService: INotificationService {
     /// - Parameters:
     ///   - title: The title of the error notification.
     ///   - message: The message associated with the error notification.
-    func error(title: String, message: String) {
-        model.addNotification(notification: INotification(id: UUID().uuidString,
-                                                          severity: .error,
-                                                          title: title,
-                                                          message: message,
-                                                          notificationType: .system,
-                                                          silent: false))
+    func error(title: String, message: String, sender: String) {
+        model.addNotification(notification: INotification(
+            id: UUID().uuidString,
+            severity: .error,
+            title: title,
+            message: message,
+            sender: sender,
+            notificationType: .system,
+            silent: false
+        ))
     }
 }

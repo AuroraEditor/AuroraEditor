@@ -25,19 +25,22 @@ protocol INotificationService {
     /// - Parameters:
     ///   - title: The title of the informational notification.
     ///   - message: The message associated with the informational notification.
-    func info(title: String, message: String)
+    ///   - sender: The sender who fired the notification.
+    func info(title: String, message: String, sender: String)
 
     /// A convenient way to report warning messages.
     ///
     /// - Parameters:
     ///   - title: The title of the warning notification.
     ///   - message: The message associated with the warning notification.
-    func warn(title: String, message: String)
+    ///   - sender: The sender who fired the notification.
+    func warn(title: String, message: String, sender: String)
 
     /// A convenient way to report error messages.
     ///
     /// - Parameters:
     ///   - title: The title of the error notification.
     ///   - message: The message associated with the error notification.
-    func error(title: String, message: String)
+    ///   - sender: The sender who fired the notification.
+    func error(title: String, message: String, sender: String)
 }

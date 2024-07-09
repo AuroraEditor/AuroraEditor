@@ -58,6 +58,7 @@ class ToolbarAppInfoViewController: NSViewController {
             severity: .info,
             title: "Info Notification",
             message: "This is a test",
+            sender: "Toolbar App Info View Controller",
             notificationType: .system
         ))
     }
@@ -145,6 +146,7 @@ class ToolbarAppInfoView: NSView {
                 severity: .info,
                 title: "Info Notification",
                 message: "This is a test",
+                sender: "Toolbar App Info View",
                 notificationType: .system
             ))
         }

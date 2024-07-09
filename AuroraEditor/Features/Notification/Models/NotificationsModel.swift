@@ -42,10 +42,13 @@ class NotificationsModel: ObservableObject, INotificationsModel {
 
     /// The data for the notification toast, which is currently displayed.
     @Published
-    public var notificationToastData: INotification = INotification(severity: .info,
-                                                                    title: "",
-                                                                    message: "",
-                                                                    notificationType: .custom)
+    public var notificationToastData: INotification = INotification(
+        severity: .info,
+        title: "",
+        message: "",
+        sender: "NotificationsModel",
+        notificationType: .custom
+    )
 
     /// Logger
     let logger = Logger(subsystem: "com.auroraeditor", category: "Notifications Model")

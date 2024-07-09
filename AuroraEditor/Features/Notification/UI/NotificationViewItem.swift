@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 /// The `NotificationViewItem` SwiftUI view displays individual notification items with actions and context menus.
 struct NotificationViewItem: View {
@@ -20,6 +21,12 @@ struct NotificationViewItem: View {
     // State to control whether to show additional actions for the notification.
     @State
     private var showActions: Bool = false
+
+    /// Notification system logger
+    private let logger = Logger(
+        subsystem: "com.auroraeditor",
+        category: "Notification view"
+    )
 
     /// The view body.
     var body: some View {
@@ -105,17 +112,6 @@ struct NotificationViewItem: View {
                 let pasteboard = NSPasteboard.general
                 pasteboard.clearContents()
                 pasteboard.setString(notification.message, forType: .string)
-            }
-
-            Divider()
-
-            if notification.notificationType == .extensionSystem {
-                Button("View Extension") {
-                    // Action to view an extension (specific to extension system notifications).
-                    // TODO: @Wesley
-                }
-
-                Divider()
             }
 
             Button("Ignore Notification") {

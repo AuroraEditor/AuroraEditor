@@ -9,9 +9,10 @@
 import SwiftUI
 import WebKit
 import OSLog
+import DynamicUI
 
 /// Should we use a extension View or a WebView.
-struct ExtensionOrWebView: View {
+struct ExtensionCustomView: View {
     /// The view to show
     let view: Any?
 
@@ -25,16 +26,61 @@ struct ExtensionOrWebView: View {
             // This means this is a usable view for us.
 
             AnyView(swiftUIView)
+                .onAppear {
+                    ExtensionsManager.shared.sendEvent(
+                        event: "didOpenExtensionView",
+                        parameters: [
+                            "type": "SwiftUI",
+                            "extension": sender,
+                            "view": swiftUIView
+                        ]
+                    )
+                }
+        } else if let string = view as? String,
+                  let json = string.data(using: .utf8),
+                  (
+                    try? JSONDecoder().decode([UIComponent].self, from: json)
+                  ) != nil {
+            DynamicUI(json: json)
+                .onAppear {
+                    ExtensionsManager.shared.sendEvent(
+                        event: "didOpenExtensionView",
+                        parameters: [
+                            "type": "DynamicUI",
+                            "extension": sender,
+                            "view": string
+                        ]
+                    )
+                }
         } else if let webViewContents = view as? String {
             // The view is a String, this can only means that
             // the view is written in HTML/CSS/Javascript.
 
             ExtensionWKWebView(pageHTML: webViewContents, sender: sender)
+                .onAppear {
+                    ExtensionsManager.shared.sendEvent(
+                        event: "didOpenExtensionView",
+                        parameters: [
+                            "type": "WebView",
+                            "extension": sender,
+                            "view": webViewContents
+                        ]
+                    )
+                }
         } else {
             // This type, we cannot cast,
             // Either it's empty, or unsupported.
 
-            Text("Failed to cast to view")
+            Text("Failed to cast to view").onAppear {
+                ExtensionsManager.shared.sendEvent(
+                    event: "didFailToOpenExtensionView",
+                    parameters: [
+                        "type": "Unknown",
+                        "extension": sender,
+                        "view": view ?? ("" as Any)
+                    ]
+                )
+            }
         }
     }
 }
@@ -50,7 +96,10 @@ struct ExtensionWKWebView: NSViewRepresentable {
     var sender: String
 
     /// Logger
-    let logger = Logger(subsystem: "com.auroraeditor.extensions", category: "Extension WKWebView")
+    let logger = Logger(
+        subsystem: "com.auroraeditor.extensions",
+        category: "Extension WKWebView"
+    )
 
     /// Create the NSView
     /// 
@@ -118,6 +167,17 @@ struct ExtensionWKWebView: NSViewRepresentable {
         /// - Parameter parent: Parent
         init(_ parent: ExtensionWKWebView) {
             self.parent = parent
+        }
+
+        deinit {
+            ExtensionsManager.shared.sendEvent(
+                event: "didCloseExtensionView",
+                parameters: [
+                    "type": "WebView",
+                    "extension": parent.sender,
+                    "view": parent.pageHTML ?? ""
+                ]
+            )
         }
     }
 

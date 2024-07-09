@@ -49,6 +49,7 @@ public struct ToolbarAppInfo: View {
                                     severity: .info,
                                     title: "Info Notification",
                                     message: "This is a test",
+                                    sender: "Toolbar App Info",
                                     notificationType: .system
                                 )
                             )
@@ -63,6 +64,7 @@ public struct ToolbarAppInfo: View {
                                     severity: .error,
                                     title: "Info Notification",
                                     message: "This should work!",
+                                    sender: "Toolbar App Info",
                                     notificationType: .system
                                 )
                             )
