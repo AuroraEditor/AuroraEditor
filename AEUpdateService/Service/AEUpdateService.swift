@@ -76,7 +76,7 @@ class AEUpdateService: NSObject {
         listProcess.waitUntilExit()
 
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        return String(data: data, encoding: .utf8)
+        return String(decoding: data, as: UTF8.self)
     }
 
     /// Function to parse the list of volumes and identify the Aurora Editor volume

@@ -24,8 +24,7 @@ public extension Bundle {
     /// Returns the main bundle's commitHash string if available (e.g. 7dbca499d2ae5e4a6d674c6cb498a862e930f4c3)
     static var commitHash: String? {
         guard let path = Bundle.main.url(forResource: "", withExtension: "githash"),
-              let data = try? Data(contentsOf: path),
-              let commit = String(data: data, encoding: .utf8) else {
+              let data = try? Data(contentsOf: path) else {
             /// Logger
             let logger = Logger(subsystem: "com.auroraeditor", category: "Bundle")
 
@@ -33,7 +32,7 @@ public extension Bundle {
             return nil
         }
 
-        return commit
+        return String(decoding: data, as: UTF8.self)
     }
 }
 

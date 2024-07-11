@@ -56,7 +56,7 @@ final class ExtensionInstallationViewModel: ObservableObject {
                     let decoder = JSONDecoder()
                     guard let extensions = try decoder.decode([Plugin]?.self, from: data) else {
                         self.logger.debug(
-                            "Error: Unable to decode \(String(data: data, encoding: .utf8) ?? "")"
+                            "Error: Unable to decode \(String(decoding: data, as: UTF8.self))"
                         )
                         DispatchQueue.main.async {
                             self.state = .error
@@ -90,7 +90,7 @@ final class ExtensionInstallationViewModel: ObservableObject {
                                    completionHandler: { completion in
             switch completion {
             case .success(let success):
-                self.logger.debug("\(String(data: success, encoding: .utf8) ?? "")")
+                self.logger.debug("\(String(decoding: success, as: UTF8.self))")
             case .failure(let failure):
                 self.logger.debug("\(failure)")
             }

@@ -125,7 +125,7 @@ class AuroraNetworking { // swiftlint:disable:this type_body_length
 
                 // Save our cookies
                 AuroraNetworking.cookies = session?.configuration.httpCookieStorage?.cookies
-                AuroraNetworking.fullResponse = String(data: sitedata, encoding: .utf8)
+                AuroraNetworking.fullResponse = String(decoding: sitedata, as: UTF8.self)
 
                 if let httpResponse = response as? HTTPURLResponse {
                     self.networkLog(
@@ -333,9 +333,8 @@ class AuroraNetworking { // swiftlint:disable:this type_body_length
             }
         }
         self.logger.debug("\n  Body:")
-        if let httpBody = request.httpBody,
-           let body = String(data: httpBody, encoding: .utf8) {
-            self.logger.debug("    \(body)")
+        if let httpBody = request.httpBody {
+            self.logger.debug("    \(String(decoding: httpBody, as: UTF8.self))")
         }
         self.logger.debug("\n")
     }
@@ -349,31 +348,25 @@ class AuroraNetworking { // swiftlint:disable:this type_body_length
     }
 
     private func networkLogData(data: Data) {
-        if let stringData = String(data: data, encoding: .utf8) {
-            self.logger.debug("\n  Body:")
-            for line in stringData.split(separator: "\n") {
-                self.logger.debug("    \(line)")
-            }
+        let stringData = String(decoding: data, as: UTF8.self)
+        self.logger.debug("\n  Body:")
+        for line in stringData.split(separator: "\n") {
+            self.logger.debug("    \(line)")
+        }
 
-            do {
-                self.logger.debug("\n  Decoded JSON:")
-                if let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                    for (key, value) in dictionary {
-                        self.logger.debug("    \(key): \"\(value as? String ?? "")\"")
-                    }
+        do {
+            self.logger.debug("\n  Decoded JSON:")
+            if let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                for (key, value) in dictionary {
+                    self.logger.debug("    \(key): \"\(value as? String ?? "")\"")
                 }
-            } catch {
-                self.logger.fault("\(error.localizedDescription)")
             }
+        } catch {
+            self.logger.fault("\(error.localizedDescription)")
         }
     }
 
     private func handleNetworkError(data: Data) -> String {
-        if let errorData = String(data: data, encoding: .utf8) {
-            for line in errorData.split(separator: "\n") {
-                return String(line)
-            }
-        }
-        return ""
+        return String(decoding: data, as: UTF8.self)
     }
 }

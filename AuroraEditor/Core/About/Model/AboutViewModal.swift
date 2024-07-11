@@ -51,7 +51,7 @@ public class AboutViewModal: ObservableObject {
                 let decoder = JSONDecoder()
                 guard let contributors = try? decoder.decode([Contributor].self, from: data) else {
                     self.logger.debug(
-                        "Error: Unable to decode \(String(data: data, encoding: .utf8) ?? "")"
+                        "Error: Unable to decode \(String(decoding: data, as: UTF8.self))"
                     )
                     return
                 }

@@ -33,9 +33,8 @@ final class WorkspaceClientUnitTests: XCTestCase {
         let randomCount = Int.random(in: 1 ... 100)
         let files = generateRandomFiles(amount: randomCount)
         try files.forEach {
-            if let fakeData = "fake string".data(using: .utf8),
-               let fileUrl = directory.appendingPathComponent($0) {
-                try fakeData.write(to: fileUrl)
+            if let fileUrl = directory.appendingPathComponent($0) {
+                try Data("fake string".utf8).write(to: fileUrl)
             }
         }
         let client: WorkspaceClient = try .default(
@@ -80,9 +79,8 @@ final class WorkspaceClientUnitTests: XCTestCase {
         let randomCount = Int.random(in: 1 ... 100)
         var files = generateRandomFiles(amount: randomCount)
         try files.forEach {
-            if let fakeData = "fake string".data(using: .utf8),
-               let fileUrl = directory.appendingPathComponent($0) {
-                try fakeData.write(to: fileUrl)
+            if let fileUrl = directory.appendingPathComponent($0) {
+                try Data("fake string".utf8).write(to: fileUrl)
             }
         }
 
@@ -104,9 +102,8 @@ final class WorkspaceClientUnitTests: XCTestCase {
         let nextBatchOfFiles = generateRandomFiles(amount: 1)
         files.append(contentsOf: nextBatchOfFiles)
         try files.forEach {
-            if let fakeData = "fake string".data(using: .utf8),
-               let fileUrl = directory.appendingPathComponent($0) {
-                try fakeData.write(to: fileUrl)
+            if let fileUrl = directory.appendingPathComponent($0) {
+                try Data("fake string".utf8).write(to: fileUrl)
             }
         }
 

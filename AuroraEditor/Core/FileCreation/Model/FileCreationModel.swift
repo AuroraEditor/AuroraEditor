@@ -122,13 +122,13 @@ class FileCreationModel: ObservableObject {
     /// - Parameter fileName: file name
     private func createFileWithStarterContent(atPath path: String, fileName: String) {
         let name = Host.current().localizedName ?? "Aurora Editor"
-        let fileContent = """
+        let fileContent = Data("""
 //
 //  \(fileName)
 //
 //  Created by \(name) on \(Date().yearMonthDayFormat()).
 //
-""".data(using: .utf8)
+""".utf8)
 
         fileManager.createFile(
             atPath: path,

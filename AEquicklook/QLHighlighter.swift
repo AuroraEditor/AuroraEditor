@@ -23,7 +23,7 @@ class QLHighlighter {
     /// 
     /// - Parameter contents: The contents
     init(contents: Data) {
-        self.code = (String(data: contents, encoding: .utf8) ?? "Failed to decode")
+        self.code = String(decoding: contents, as: UTF8.self)
             .replacingOccurrences(of: "<", with: "&lt;")
             .replacingOccurrences(of: ">", with: "&gt;")
 

@@ -39,7 +39,7 @@ public class ShellClient {
         let (task, pipe) = generateProcessAndPipe(args)
         try task.run()
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        return String(data: data, encoding: .utf8) ?? ""
+        return String(decoding: data, as: .utf8)
     }
 
     /// Run a command with Publisher
@@ -69,12 +69,12 @@ public class ShellClient {
                     subject.send(completion: .finished)
                     return
                 }
-                if let line = String(data: data, encoding: .utf8)?
-                    .split(whereSeparator: \.isNewline) {
-                    line
-                        .map(String.init)
-                        .forEach(subject.send(_:))
-                }
+
+                String(decoding: data, as: .utf8)
+                    .split(whereSeparator: \.isNewline)
+                    .map(String.init)
+                    .forEach(subject.send(_:))
+
                 outputHandler.waitForDataInBackgroundAndNotify()
             }
         task.launch()

@@ -91,8 +91,8 @@ extension WorkspaceDocument {
             filePaths.map { url in
                 FileSystemClient.FileItem(url: url, children: nil)
             }.forEach { fileItem in
-                guard let data = try? Data(contentsOf: fileItem.url),
-                      let string = String(data: data, encoding: .utf8) else { return }
+                guard let data = try? Data(contentsOf: fileItem.url) else { return }
+                let string = String(decoding: data, as: UTF8.self)
                 var fileSearchResult: SearchResultModel?
 
                 // Loop through each line and look for any matches

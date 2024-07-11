@@ -139,7 +139,7 @@ public class UpdateObservedModel: ObservableObject {
                             self.updateState = .error
                         }
                         self.logger.fault(
-                            "Error: \(error), \(String(data: data, encoding: .utf8) ?? "")"
+                            "Error: \(error), \(String(decoding: data, as: UTF8.self))"
                         )
                     }
                 case .failure(let failure):

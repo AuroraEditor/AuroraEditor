@@ -334,7 +334,7 @@ class UpdateEditorRepository: NSObject, URLSessionDownloadDelegate {
 
             if process.terminationStatus == 0 {
                 let data = pipe.fileHandleForReading.readDataToEndOfFile()
-                if let checksum = String(data: data, encoding: .utf8)?.components(separatedBy: " ").first {
+                if let checksum = String(decoding: data, as: UTF8.self).components(separatedBy: " ").first {
                     return checksum
                 }
             }

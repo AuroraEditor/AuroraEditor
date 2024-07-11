@@ -125,12 +125,7 @@ open class AuroraEditorKeychain {
     /// - returns: The text value from the keychain. Returns nil if unable to read the item.
     open func get(_ key: String) -> String? {
         if let data = getData(key) {
-
-            if let currentString = String(data: data, encoding: .utf8) {
-                return currentString
-            }
-
-            lastResultCode = -67853 // - errSecInvalidEncoding
+            return String(decoding: data, as: UTF8.self)
         }
 
         return nil

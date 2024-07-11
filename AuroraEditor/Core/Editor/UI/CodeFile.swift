@@ -126,8 +126,7 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
     /// 
     /// - Throws: Error if failed to read.
     override public func read(from data: Data, ofType _: String) throws {
-        guard let content = String(data: data, encoding: .utf8) else { return }
-        self.content = content
+        self.content = String(decoding: data, as: UTF8.self)
     }
 
     /// Save document. (custom function)
