@@ -5,7 +5,6 @@
 # Disabled rule, reason.
 disabled_rules:
   - todo # New project, we have a lot of // TODO:
-  - static_over_final_class # We need to fix this (later)
   - non_optional_string_data_conversion # We need to fix this (later)
 
 # paths to ignore during linting.
@@ -67,7 +66,7 @@ opt_in_rules:
   - closure_end_indentation # Closure end should be indented the same as the line the closure starts
   - operator_usage_whitespace # Operator should be surrounded by whitespace
   - closure_parameter_position # Closure parameters should be on the same line as the opening brace
-  - collection_alignment  # Collection should have the same alignment
+  - collection_alignment # Collection should have the same alignment
   - last_where # Use last(where:) instead of filter().last
   - unused_optional_binding # Unused optional binding should be avoided
   - toggle_bool # use .toggle() instead of !variable
@@ -93,7 +92,6 @@ nesting:
 
 # Custom rules
 custom_rules:
-
   # Prefer spaces over tabs.
   spaces_over_tabs:
     included: ".*\\.swift"
@@ -175,10 +173,10 @@ custom_rules:
 
 file_header:
   required_pattern: |
-                  \/\/
-                  \/\/  .*?\.swift
-                  \/\/  Aurora Editor(| UITests| Tests| Updater)
-                  \/\/
-                  \/\/  Created by .*? on .*?\.
-                  \/\/  Copyright © \d{4} Aurora Company. All rights reserved.
-                  \/\/
+    \/\/
+    \/\/  .*?\.swift
+    \/\/  Aurora Editor(| UITests| Tests| Updater)
+    \/\/
+    \/\/  Created by .*? on .*?\.
+    \/\/  Copyright © \d{4} Aurora Company. All rights reserved.
+    \/\/

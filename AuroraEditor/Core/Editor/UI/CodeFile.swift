@@ -62,7 +62,7 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
     // MARK: - NSDocument
 
     /// Auto save in place. [no]
-    override public class var autosavesInPlace: Bool {
+    override public static var autosavesInPlace: Bool {
         false
     }
 
