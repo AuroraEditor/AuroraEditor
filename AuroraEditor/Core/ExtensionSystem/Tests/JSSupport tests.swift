@@ -1,5 +1,5 @@
 //
-//  AuroraJSSupportTests.swift
+//  JSSupport tests.swift
 //  Aurora Editor
 //
 //  Created by Wesley de Groot on 09/04/2024.
@@ -10,7 +10,7 @@ import XCTest
 @testable import AuroraEditor
 
 /// AuroraJSSupport Tests
-final class DepAuroraJSSupportTests: XCTestCase {
+final class AuroraJSSupportTests: XCTestCase {
     /// The JSSupport instance
     let jsSupport = JSSupport(
         name: "AEXCTestCase",
