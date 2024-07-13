@@ -4,11 +4,13 @@ on:
   push:
     branches:
       - "development"
+  pull_request:
+    branches: [main, development]
   workflow_dispatch:
 
 jobs:
   build-docc:
-    runs-on: macos-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2

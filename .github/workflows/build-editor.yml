@@ -6,6 +6,8 @@ on:
       - development
       - beta
       - main
+  pull_request:
+    branches: [main, development]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -14,7 +16,7 @@ concurrency:
 jobs:
   build_editor:
     if: github.repository_owner == 'AuroraEditor'
-    runs-on: macos-13
+    runs-on: self-hosted
     timeout-minutes: 30 # If a build exceeds 30 mins, it probably isn't ever going to complete
     steps:
       - name: "Cleanup build folder"
