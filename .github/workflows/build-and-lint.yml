@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   build_and_lint:
-    runs-on: macos-13
+    runs-on: self-hosted
     timeout-minutes: 10 # If a action exceeds 10 mins, it probably isn't ever going to complete.
     steps:
       - uses: actions/checkout@v3
