@@ -28,6 +28,9 @@ final class RepositoriesMenu: NSMenu {
     /// The item that the menu is for
     var item: RepoItem?
 
+    @ObservedObject
+    private var versionControl: VersionControlModel = .shared
+
     /// Initialize the menu
     /// 
     /// - Parameter sender: the outline view
@@ -185,13 +188,8 @@ final class RepositoriesMenu: NSMenu {
     func isSelectedBranchCurrentOne() -> Bool {
         guard let branch = item as? RepoBranch,
               let url = workspace?.folderURL else { return false }
-        do {
-            let currentBranch = try Branch().getCurrentBranch(directoryURL: url)
 
-            return currentBranch == branch.name
-        } catch {
-            self.logger.fault("Failed to find current branch name.")
-            return false
-        }
+        let currentBranch = versionControl.currentWorkspaceBranch
+        return currentBranch == branch.name
     }
 }

@@ -16,8 +16,12 @@ import SwiftUI
 /// When selecting a file it will open in the editor.
 ///
 struct ProjectNavigator: View {
+
+    @ObservedObject
+    var prefs: AppPreferencesModel = .shared
+
     /// The view body.
     var body: some View {
-        ProjectNavigatorView()
+        ProjectNavigatorView(prefs: prefs)
     }
 }

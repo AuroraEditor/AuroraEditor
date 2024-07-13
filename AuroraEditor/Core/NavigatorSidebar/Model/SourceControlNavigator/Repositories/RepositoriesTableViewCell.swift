@@ -97,12 +97,12 @@ final class RepositoriesTableViewCell: StandardTableViewCell {
         }
 
         if let image = image {
-            icon.image = image
-            icon.contentTintColor = .gray
+            fileIcon.image = image
+            fileIcon.contentTintColor = .gray
         }
 
         if cellType == .repo {
-            self.secondaryLabelRightAlignmed = false
+            self.secondaryLabelRightAligned = false
         }
         resizeSubviews(withOldSize: .zero)
     }

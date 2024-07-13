@@ -16,14 +16,7 @@ import OSLog
 public final class SourceControlModel: ObservableObject {
     /// The state of the model
     enum State {
-        /// The model is loading
-        case loading
-
-        /// The model has encountered an error
-        case error
-
-        /// The model has successfully loaded
-        case success
+        case loading, error, success
     }
 
     /// The current state of the model
@@ -106,26 +99,39 @@ public final class SourceControlModel: ObservableObject {
     /// - Returns: the files that have changed
     @discardableResult
     public func reloadChangedFiles() -> [FileItem] {
-        guard isReloading == false else { return [] }
+        guard !isReloading else { return [] }
+
+        isReloading = true
+
         do {
-            isReloading = true
             let newChanged = try gitClient.getChangedFiles()
-            DispatchQueue.main.async { self.state = .success }
-            let difference = newChanged.map({ $0.url }).difference(from: changed.map({ $0.url }))
-            var differentFiles = newChanged.filter { difference.contains($0.url) }
-            differentFiles += changed.filter { difference.contains($0.url) }
-            DispatchQueue.main.async {
-                if !differentFiles.isEmpty { self.changed = newChanged }
+
+            let oldUrls = Set(changed.map { $0.url })
+            let newUrls = Set(newChanged.map { $0.url })
+
+            let differentUrls = oldUrls.symmetricDifference(newUrls)
+            let differentFiles = (changed + newChanged).filter {
+                differentUrls.contains($0.url)
+            }
+
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                if !differentFiles.isEmpty {
+                    self.changed = newChanged
+                }
+                self.state = .success
                 self.isReloading = false
             }
+
             return differentFiles
         } catch {
-            isReloading = false
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 self.changed = []
                 self.state = .success
+                self.isReloading = false
             }
+            return []
         }
-        return []
     }
 }

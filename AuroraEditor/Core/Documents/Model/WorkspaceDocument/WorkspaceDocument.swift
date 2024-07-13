@@ -22,6 +22,8 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     /// The extension navigator data
     var extensionNavigatorData: ExtensionNavigatorData? = ExtensionNavigatorData()
 
+    private var workspaceUtils: WorkspaceUtils?
+
     /// The selection state
     @Published
     var selectionState: WorkspaceSelectionState = .init()
@@ -125,7 +127,7 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     /// Workspace Folder URL
     var folderURL: URL {
         guard let workspaceFolder = self.fileSystemClient?.folderURL else {
-            fatalError("Unconstructable URL")
+            return emptyURL
         }
 
         return workspaceFolder
@@ -169,6 +171,7 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         self.statusBarModel = .init(workspaceURL: url)
         self.commandPaletteState = .init(possibleCommands: [])
         self.newFileModel = .init(workspace: self)
+        self.workspaceUtils = WorkspaceUtils(workspace: self)
         setupCommands()
 
         NotificationCenter.default.addObserver(
@@ -185,6 +188,8 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
         }
 
         self.logger.info("Created document \(self)")
+
+        workspaceUtils?.setupVersionControlMonitor()
     }
 
     /// Retrieves selection state from UserDefaults using SHA256 hash of project  path as key
@@ -291,5 +296,7 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
 
         super.close()
         self.logger.info("Closed document \(self)")
+
+        workspaceUtils?.cleanupVersionControlMonitor()
     }
 }

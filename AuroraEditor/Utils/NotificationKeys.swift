@@ -17,4 +17,7 @@ extension Notification.Name {
 
     /// Did change navigator pane selection
     static let changeNavigatorPane = Notification.Name("AE.changeNavigatorPane")
+
+    /// The current branch has been updated
+    static let gitBranchUpdated = Notification.Name("AE.gitBranchUpdated")
 }

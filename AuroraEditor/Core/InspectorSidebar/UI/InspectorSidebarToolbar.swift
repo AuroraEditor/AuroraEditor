@@ -87,6 +87,9 @@ struct InspectorSidebarToolbarTop: View {
         .overlay(alignment: .bottom) {
             Divider()
         }
+        .overlay(alignment: .top) {
+            Divider()
+        }
         .animation(.default, value: icons)
     }
 

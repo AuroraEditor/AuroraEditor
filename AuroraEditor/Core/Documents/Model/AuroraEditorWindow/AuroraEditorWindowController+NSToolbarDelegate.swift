@@ -53,12 +53,11 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
             .sidebarTrackingSeparator,
             .branchPicker,
             .flexibleSpace,
-            .flexibleSpace,
             .toolbarAppInformation,
-            .flexibleSpace,
             .flexibleSpace,
             .libraryPopup,
             .itemListTrackingSeparator,
+            .flexibleSpace,
             .toggleInspector
         ]
     }
@@ -154,6 +153,22 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
             let view = NSHostingView(
                 rootView: ToolbarAppInfo().environmentObject(workspace)
             )
+
+            let weakWidth = view.widthAnchor.constraint(
+                equalToConstant: 760
+            )
+            weakWidth.priority = .defaultLow
+
+            let strongWidth = view.widthAnchor.constraint(
+                greaterThanOrEqualToConstant: 200
+            )
+            strongWidth.priority = .defaultHigh
+
+            NSLayoutConstraint.activate([
+                weakWidth,
+                strongWidth
+            ])
+
             toolbarItem.view = view
 
             return toolbarItem
@@ -174,7 +189,10 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
         case .branchPicker:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.branchPicker)
             let view = NSHostingView(
-                rootView: ToolbarBranchPicker(fileSystemClient: workspace.fileSystemClient)
+                rootView: ToolbarBranchPicker(
+                    workspace: workspace,
+                    versionControl: versionControl
+                )
             )
             toolbarItem.view = view
 
@@ -206,7 +224,10 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
     /// of the navigator pane in a split view interface. It also notifies extensions of the change.
     @objc func toggleNavigatorPane() {
         guard let navigatorPane = splitViewController.splitViewItems.first else { return }
-        navigatorPane.animator().isCollapsed.toggle()
+
+        NSAnimationContext.runAnimationGroup { _ in
+            navigatorPane.animator().isCollapsed.toggle()
+        }
 
         ExtensionsManager.shared.sendEvent(
             event: "didToggleNavigatorPane",
@@ -222,59 +243,13 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
     /// of the inspector pane in a split view interface. It also updates related preferences and
     /// notifies extensions of the change.
     @objc func toggleInspectorPane() {
-        guard let inspectorPane = splitViewController.splitViewItems.last,
-              let window = window,
-              let toolbar = window.toolbar
-        else { return }
+        guard let inspectorPane = splitViewController.splitViewItems.last else { return }
 
-        inspectorPane.animator().isCollapsed.toggle()
-        prefs.preferences.general.keepInspectorSidebarOpen = !inspectorPane.isCollapsed
-
-        // Find the indices of the separator, flexible space, and other items.
-        if let itemListTrackingSeparatorIndex = toolbar.items.firstIndex(where: {
-            $0.itemIdentifier == .itemListTrackingSeparator
-        }), let flexibleSpaceIndex = toolbar.items.firstIndex(where: {
-            $0.itemIdentifier == .flexibleSpace
-        }), let toggleInspectorIndex = toolbar.items.firstIndex(where: {
-            $0.itemIdentifier == .toggleInspector
-        }), let libraryPopupIndex = toolbar.items.firstIndex(where: {
-            $0.itemIdentifier == .libraryPopup
-        }) {
-            // Ensure that all indices are within bounds.
-            if itemListTrackingSeparatorIndex < toolbar.items.count &&
-                flexibleSpaceIndex < toolbar.items.count &&
-                toggleInspectorIndex < toolbar.items.count &&
-                libraryPopupIndex < toolbar.items.count {
-
-                // Update the toolbar items based on the inspector's collapse state.
-                if inspectorPane.isCollapsed {
-                    // Remove the separator and flexible space.
-                    toolbar.removeItem(at: itemListTrackingSeparatorIndex)
-                    toolbar.removeItem(at: flexibleSpaceIndex)
-
-                    // Re-add the library popup after the toggleInspector item.
-                    if toggleInspectorIndex + 1 <= toolbar.items.count {
-                        toolbar.insertItem(
-                            withItemIdentifier: .libraryPopup,
-                            at: toggleInspectorIndex + 1
-                        )
-                    }
-                } else {
-                    // Remove the library popup before the separator.
-                    toolbar.removeItem(at: libraryPopupIndex)
-
-                    // Insert the separator and flexible space.
-                    toolbar.insertItem(
-                        withItemIdentifier: .itemListTrackingSeparator,
-                        at: itemListTrackingSeparatorIndex
-                    )
-                    toolbar.insertItem(
-                        withItemIdentifier: .flexibleSpace,
-                        at: flexibleSpaceIndex + 1
-                    )
-                }
-            }
+        NSAnimationContext.runAnimationGroup { _ in
+            inspectorPane.animator().isCollapsed.toggle()
         }
+
+        prefs.preferences.general.keepInspectorSidebarOpen = !inspectorPane.isCollapsed
 
         ExtensionsManager.shared.sendEvent(
             event: "didToggleInspectorPane",

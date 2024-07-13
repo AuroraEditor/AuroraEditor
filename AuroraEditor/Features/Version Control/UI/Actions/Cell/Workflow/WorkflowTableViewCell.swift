@@ -23,11 +23,11 @@ final class WorkflowTableViewCell: StandardTableViewCell {
         secondaryLabel.stringValue = item?.path ?? ""
         secondaryLabel.lineBreakMode = .byTruncatingMiddle
 
-        self.secondaryLabelRightAlignmed = false
+        self.secondaryLabelRightAligned = false
 
         image = NSImage(systemSymbolName: "diamond", accessibilityDescription: nil)!
-        icon.image = image
-        icon.contentTintColor = .gray
+        fileIcon.image = image
+        fileIcon.contentTintColor = .gray
 
         resizeSubviews(withOldSize: .zero)
     }

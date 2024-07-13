@@ -21,6 +21,8 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
     /// The workspace document.
     var workspace: WorkspaceDocument
 
+    var versionControl: VersionControlModel = .shared
+
     /// The overlay panel.
     var overlayPanel: OverlayPanel?
 
@@ -46,10 +48,12 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
 
         self.workspace.data.windowController = self
 
-        setupSplitView(with: self.workspace)
+        setupSplitView(with: workspace)
         setupToolbar()
 
         updateLayoutOfWindowAndSplitView()
+
+        versionControl.initializeModel(workspaceURL: workspace.folderURL)
     }
 
     /// Creates a new instance of the window controller.
@@ -61,37 +65,69 @@ final class AuroraEditorWindowController: NSWindowController, ObservableObject {
     /// Setup split view.
     /// 
     /// - Parameter workspace: The workspace document.
-    private func setupSplitView(with workspace: WorkspaceDocument) {
+    private func setupSplitView(with workspace: WorkspaceDocument) { // swiftlint:disable:this function_body_length
         let splitVC = AuroraSplitViewController(prefs: prefs)
+        splitVC.splitView.autosaveName = "MainSplitView"
+        splitVC.splitView.dividerStyle = .thin
+        splitVC.splitView.isVertical = true
 
-        let navigatorView = NavigatorSidebar().environmentObject(workspace)
-        let navigationViewController = NSHostingController(rootView: navigatorView)
+        // Navigator Sidebar
+        let navigatorView = NavigatorSidebar()
+            .environmentObject(workspace)
+        let navigationViewController = NSHostingController(
+            rootView: navigatorView
+        )
         let navigator = NSSplitViewItem(
             sidebarWithViewController: navigationViewController
         )
         navigator.titlebarSeparatorStyle = .none
-        navigator.minimumThickness = 260
+        navigator.minimumThickness = 200
+        navigator.maximumThickness = 400
         navigator.collapseBehavior = .useConstraints
+        navigator.canCollapse = true
+        navigator.isSpringLoaded = true
+        navigator.holdingPriority = NSLayoutConstraint.Priority(
+            NSLayoutConstraint.Priority.defaultLow.rawValue + 1
+        )
         splitVC.addSplitViewItem(navigator)
 
-        let workspaceView = WorkspaceView().environmentObject(workspace)
-        let workspaceViewController = NSHostingController(rootView: workspaceView)
+        // Workspace (Main Content)
+        let workspaceView = WorkspaceView()
+            .environmentObject(workspace)
+        let workspaceViewController = NSHostingController(
+            rootView: workspaceView
+        )
         let mainContent = NSSplitViewItem(
             viewController: workspaceViewController
         )
         mainContent.titlebarSeparatorStyle = .line
+        mainContent.holdingPriority = .defaultLow
         splitVC.addSplitViewItem(mainContent)
 
-        let inspectorView = InspectorSidebar(prefs: prefs).environmentObject(workspace)
-        let inspectorViewController = NSHostingController(rootView: inspectorView)
-        let inspector = NSSplitViewItem(
-            viewController: inspectorViewController
+        // Inspector Sidebar
+        let inspectorView = InspectorSidebar(prefs: prefs)
+            .environmentObject(workspace)
+        let inspectorViewController = NSHostingController(
+            rootView: inspectorView
         )
-        inspector.titlebarSeparatorStyle = .line
-        inspector.minimumThickness = 260
-        inspector.isCollapsed = !prefs.preferences.general.keepInspectorSidebarOpen
+        let inspector = NSSplitViewItem(
+            inspectorWithViewController: inspectorViewController
+        )
+        inspector.titlebarSeparatorStyle = .none
+        inspector.minimumThickness = 200
+        inspector.maximumThickness = 400
+        inspector.canCollapse = true
         inspector.collapseBehavior = .useConstraints
+        inspector.isSpringLoaded = true
+        inspector.isCollapsed = !prefs.preferences.general.keepInspectorSidebarOpen
+        inspector.holdingPriority = NSLayoutConstraint.Priority(
+            NSLayoutConstraint.Priority.defaultLow.rawValue + 1
+        )
         splitVC.addSplitViewItem(inspector)
+
+        // Set up the initial sidebar states
+        splitVC.toggleSidebar(navigator)
+        splitVC.toggleSidebar(inspector)
 
         // Create an instance of NotificationViewAnimator
         notificationAnimator = NotificationViewAnimator(

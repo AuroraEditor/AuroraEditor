@@ -17,8 +17,20 @@ final class SourceControlTableViewCell: FileSystemTableViewCell {
     /// - Parameter isEditable: whether the cell is editable
     /// 
     /// - Returns: the cell
-    override init(frame frameRect: NSRect, item: FileSystemClient.FileItem?, isEditable _: Bool = false) {
-        super.init(frame: frameRect, item: item, isEditable: false)
+    override init(
+        frame frameRect: NSRect,
+        item: FileSystemClient.FileItem?,
+        versionControlModel: VersionControlModel?,
+        workspace: WorkspaceDocument?,
+        isEditable _: Bool = false
+    ) {
+        super.init(
+            frame: frameRect,
+            item: item,
+            versionControlModel: versionControlModel,
+            workspace: workspace,
+            isEditable: false
+        )
     }
 
     /// Add an icon to the cell.
@@ -31,8 +43,8 @@ final class SourceControlTableViewCell: FileSystemTableViewCell {
         ) else { return }
 
         fileItem = item
-        icon.image = image
-        icon.contentTintColor = color(for: item)
+        fileIcon.image = image
+        fileIcon.contentTintColor = color(for: item)
         toolTip = item.fileName
         label.stringValue = label(for: item)
     }

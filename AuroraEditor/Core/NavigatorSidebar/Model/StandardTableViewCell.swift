@@ -18,13 +18,16 @@ class StandardTableViewCell: NSTableCellView {
     var secondaryLabel: NSTextField!
 
     /// The icon of the cell
-    var icon: NSImageView!
+    var fileIcon: NSImageView!
+
+    /// The arrow down icon next to the secondary label
+    var upstreamChangesPullIcon: NSImageView!
 
     /// The workspace document
     var workspace: WorkspaceDocument?
 
     /// The file item the cell represents
-    var secondaryLabelRightAlignmed: Bool = true {
+    var secondaryLabelRightAligned: Bool = true {
         didSet {
             resizeSubviews(withOldSize: .zero)
         }
@@ -38,11 +41,21 @@ class StandardTableViewCell: NSTableCellView {
     /// 
     /// - Parameters:
     ///   - frameRect: The frame of the cell.
-    ///   - item: The file item the cell represents.
     ///   - isEditable: Set to true if the user should be able to edit the file name.
-    init(frame frameRect: NSRect, isEditable: Bool = true) {
+    init(
+        frame frameRect: NSRect,
+        isEditable: Bool = true,
+        workspace: WorkspaceDocument?
+    ) {
         super.init(frame: frameRect)
-        setupViews(frame: frameRect, isEditable: isEditable)
+        setupViews(
+            frame: frameRect,
+            isEditable: isEditable
+        )
+
+        if let workspace = workspace {
+            self.workspace = workspace
+        }
     }
 
     // Default init, assumes isEditable to be false
@@ -63,26 +76,46 @@ class StandardTableViewCell: NSTableCellView {
 
         // Create the secondary label
         secondaryLabel = createSecondaryLabel()
-        configSecondaryLabel(secondaryLabel: secondaryLabel)
+        configSecondaryLabel(
+            secondaryLabel: secondaryLabel,
+            fontSize: 11
+        )
 
-        // Create the icon
-        icon = createIcon()
-        configIcon(icon: icon)
-        addSubview(icon)
-        imageView = icon
+        // Create the main icon
+        fileIcon = createIcon()
+        configIcon(
+            icon: fileIcon,
+            pointSize: fontSize,
+            weight: .regular,
+            scale: .medium
+        )
 
-        // add constraints
-        createConstraints(frame: frameRect)
+        // Create the arrow down icon
+        upstreamChangesPullIcon = createIcon()
+        configIcon(
+            icon: upstreamChangesPullIcon,
+            pointSize: 11,
+            weight: .bold,
+            scale: .small
+        )
+
+        // Add subviews
+        addSubview(fileIcon)
         addSubview(label)
         addSubview(secondaryLabel)
-        addSubview(icon)
+        addSubview(upstreamChangesPullIcon)
+
+        imageView = fileIcon
+
+        // Add constraints
+        createConstraints(frame: frameRect)
     }
 
     // MARK: Create and config stuff
 
     /// Create the label
     func createLabel() -> NSTextField {
-        return SpecialSelectTextField(frame: .zero)
+        return NSTextField(frame: .zero)
     }
 
     /// Configure label
@@ -108,14 +141,20 @@ class StandardTableViewCell: NSTableCellView {
     /// Configure secondary label
     /// 
     /// - Parameter secondaryLabel: secondary label
-    func configSecondaryLabel(secondaryLabel: NSTextField) {
+    func configSecondaryLabel(
+        secondaryLabel: NSTextField,
+        fontSize: CGFloat
+    ) {
         secondaryLabel.translatesAutoresizingMaskIntoConstraints = false
         secondaryLabel.drawsBackground = false
         secondaryLabel.isBordered = false
         secondaryLabel.isEditable = false
         secondaryLabel.isSelectable = false
         secondaryLabel.layer?.cornerRadius = 10.0
-        secondaryLabel.font = .systemFont(ofSize: fontSize)
+        secondaryLabel.font = .systemFont(
+            ofSize: fontSize,
+            weight: .bold
+        )
         secondaryLabel.alignment = .center
         secondaryLabel.textColor = NSColor(Color.secondary)
     }
@@ -128,9 +167,19 @@ class StandardTableViewCell: NSTableCellView {
     /// Configure icon
     /// 
     /// - Parameter icon: icon
-    func configIcon(icon: NSImageView) {
+    func configIcon(
+        icon: NSImageView,
+        pointSize: CGFloat,
+        weight: NSFont.Weight,
+        scale: NSImage.SymbolScale
+    ) {
         icon.translatesAutoresizingMaskIntoConstraints = false
-        icon.symbolConfiguration = .init(pointSize: fontSize, weight: .regular, scale: .medium)
+        icon.symbolConfiguration = .init(
+            pointSize: pointSize,
+            weight: weight,
+            scale: scale
+        )
+        icon.contentTintColor = NSColor(Color.secondary)
     }
 
     /// Create constraints
@@ -143,42 +192,84 @@ class StandardTableViewCell: NSTableCellView {
     // MARK: Layout
     /// The width of the icon
     let iconWidth: CGFloat = 22
+    let smallIconWidth: CGFloat = 16
+    let arrowDownIconWidth: CGFloat = 7
 
     /// Resize the subviews
     /// 
     /// - Parameter oldSize: the old size
-    override func resizeSubviews(withOldSize oldSize: NSSize) {
+    override func resizeSubviews(withOldSize oldSize: NSSize) { // swiftlint:disable:this function_body_length
         super.resizeSubviews(withOldSize: oldSize)
 
-        icon.frame = NSRect(x: 2, y: 4,
-                            width: iconWidth, height: frame.height)
-        // center align the image
-        if let alignmentRect = icon.image?.alignmentRect {
-            icon.frame = NSRect(x: (iconWidth + 4 - alignmentRect.width) / 2, y: 4,
-                                width: alignmentRect.width, height: frame.height)
+        fileIcon.frame = NSRect(
+            x: 2,
+            y: 4,
+            width: iconWidth,
+            height: frame.height
+        )
+        if let alignmentRect = fileIcon.image?.alignmentRect {
+            fileIcon.frame = NSRect(
+                x: (iconWidth + 4 - alignmentRect.width) / 2,
+                y: 4,
+                width: alignmentRect.width,
+                height: frame.height
+            )
         }
 
-        // right align the secondary label
-        if secondaryLabelRightAlignmed {
+        if secondaryLabelRightAligned {
+            // Calculate the size of the secondaryLabel
             let secondLabelWidth = secondaryLabel.frame.size.width
-            let newSize = secondaryLabel.sizeThatFits(CGSize(width: secondLabelWidth,
-                                                             height: CGFloat.greatestFiniteMagnitude))
-            // somehow, a width of 0 makes it resize properly.
-            secondaryLabel.frame = NSRect(x: frame.width - newSize.width, y: 2.5,
-                                          width: 0, height: newSize.height)
+            let newSize = secondaryLabel.sizeThatFits(
+                CGSize(
+                    width: secondLabelWidth,
+                    height: CGFloat.greatestFiniteMagnitude
+                )
+            )
 
-            label.frame = NSRect(x: iconWidth + 2, y: 2.5,
-                                 width: secondaryLabel.frame.minX - icon.frame.maxX - 5, height: 25)
+            // Determine the x-position for the secondaryLabel and upstreamChangesPullIcon
+            let secondaryLabelXPosition: CGFloat
+            if newSize.width > 0 {
+                secondaryLabelXPosition = frame.width - newSize.width - arrowDownIconWidth - 6
+                secondaryLabel.frame = NSRect(
+                    x: secondaryLabelXPosition + arrowDownIconWidth + 2,
+                    y: (frame.height - newSize.height) / 2,
+                    width: newSize.width + 7.5,
+                    height: newSize.height
+                )
+            } else {
+                secondaryLabelXPosition = frame.width - arrowDownIconWidth - 6
+                secondaryLabel.frame = NSRect.zero
+            }
 
-        // put the secondary label right after the primary label
+            upstreamChangesPullIcon.frame = NSRect(
+                x: secondaryLabelXPosition,
+                y: (frame.height - newSize.height),
+                width: arrowDownIconWidth,
+                height: frame.height
+            )
+
+            label.frame = NSRect(
+                x: iconWidth + 2,
+                y: 2.5,
+                width: secondaryLabelXPosition - fileIcon.frame.maxX - 5,
+                height: 25
+            )
         } else {
             let mainLabelWidth = label.frame.size.width
             let newSize = label.sizeThatFits(CGSize(width: mainLabelWidth,
                                                     height: CGFloat.greatestFiniteMagnitude))
-            label.frame = NSRect(x: iconWidth + 2, y: 2.5,
-                                 width: newSize.width, height: 25)
-            secondaryLabel.frame = NSRect(x: label.frame.maxX + 2, y: 2.5,
-                                          width: frame.width - label.frame.maxX - 2, height: 25)
+            label.frame = NSRect(
+                x: iconWidth + 2,
+                y: 2.5,
+                width: newSize.width,
+                height: 25
+            )
+            secondaryLabel.frame = NSRect(
+                x: label.frame.maxX + 2,
+                y: 2.5,
+                width: frame.width - label.frame.maxX - 2,
+                height: 25
+            )
         }
     }
 
@@ -198,16 +289,5 @@ class StandardTableViewCell: NSTableCellView {
         case 24: return 14
         default: return 13
         }
-    }
-
-    /// Special select text field
-    class SpecialSelectTextField: NSTextField {
-//        override func becomeFirstResponder() -> Bool {
-            // TODO: Set text range
-            // this is the code to get the text range, however I cannot find a way to select it :(
-//            NSRange(location: 0, length: stringValue.distance(from: stringValue.startIndex,
-//                to: stringValue.lastIndex(of: ".") ?? stringValue.endIndex))
-//            return true
-//        }
     }
 }

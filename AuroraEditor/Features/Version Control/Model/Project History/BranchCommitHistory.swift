@@ -10,26 +10,12 @@ import SwiftUI
 import Version_Control
 import OSLog
 
-@available(*,
-            deprecated,
-            renamed: "VersionControl",
-            message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")/// Branch Commit History
+/// Branch Commit History
 final class BranchCommitHistory: Equatable, Identifiable, TabBarItemRepresentable, ObservableObject {
 
     /// The state of the current Branch Commit History View
     enum State {
-
-        /// Loading
-        case loading
-
-        /// Error
-        case error
-
-        /// Success
-        case success
-
-        /// Empty
-        case empty
+        case loading, error, success, empty
     }
 
     /// The state of the current Branch Commit History View
@@ -106,20 +92,21 @@ final class BranchCommitHistory: Equatable, Identifiable, TabBarItemRepresentabl
     init(workspace: WorkspaceDocument, branchName: String) {
         self.workspace = workspace
         self.branchName = branchName
+        loadProjectHistory()
+    }
 
+    /// Load the project history
+    private func loadProjectHistory() {
         DispatchQueue.main.async {
             self.state = .loading
         }
 
-        DispatchQueue.main.async {
-            do {
-                try self.reloadProjectHistory()
-            } catch {
-                DispatchQueue.main.async {
-                    self.state = .empty
-                }
-
-                self.projectHistory = []
+        do {
+            try reloadProjectHistory()
+        } catch {
+            logger.error("Failed to get commits: \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                self.state = .error
             }
         }
     }
@@ -128,37 +115,21 @@ final class BranchCommitHistory: Equatable, Identifiable, TabBarItemRepresentabl
     /// 
     /// - Throws: Error
     func reloadProjectHistory() throws {
+        var additionalArgs: [String] = []
 
-        var additionArgs: [String] = []
-//
-//        if gitHistoryDate != nil {
-//            switch gitHistoryDate {
-//            case .lastDay:
-//                additionArgs.append("--since=\"24 hours ago\"")
-//            case .lastSevenDays:
-//                additionArgs.append("--since=\"7 days ago\"")
-//            case .lastThirtyDays:
-//                additionArgs.append("--since=\"30 days ago\"")
-//            case .none:
-//                additionArgs = []
-//            }
-//        }
-
-        let projectHistory = try GitLog().getCommits(directoryURL: workspace.workspaceURL(),
-                                                     revisionRange: branchName,
-                                                     limit: 150,
-                                                     skip: 0,
-                                                     additionalArgs: additionArgs)
-        if projectHistory.isEmpty {
-            DispatchQueue.main.async {
-                self.state = .empty
-            }
-        } else {
-            DispatchQueue.main.async {
-                self.state = .success
-            }
+        if let historyDate = gitHistoryDate {
+            additionalArgs = historyDate.gitArgs
         }
 
-        self.projectHistory = projectHistory
+        let projectHistory = try GitLog().getCommits(directoryURL: workspace.folderURL,
+                                                     revisionRange: nil,
+                                                     limit: 150,
+                                                     skip: 0,
+                                                     additionalArgs: additionalArgs)
+
+        DispatchQueue.main.async {
+            self.projectHistory = projectHistory
+            self.state = projectHistory.isEmpty ? .empty : .success
+        }
     }
 }

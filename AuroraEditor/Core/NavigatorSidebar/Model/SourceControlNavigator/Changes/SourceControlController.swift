@@ -179,7 +179,12 @@ extension SourceControlController: NSOutlineViewDelegate {
 
         let frameRect = NSRect(x: 0, y: 0, width: tableColumn.width, height: rowHeight)
 
-        return SourceControlTableViewCell(frame: frameRect, item: item as? Item)
+        return SourceControlTableViewCell(
+            frame: frameRect,
+            item: item as? Item,
+            versionControlModel: nil,
+            workspace: nil
+        )
     }
 
     /// Get the label for the outline view.

@@ -11,20 +11,6 @@ import SwiftUI
 import Version_Control
 
 public extension CheckoutBranchView {
-    /// Get branches
-    /// - Returns: branches
-    func getBranches() -> [String] {
-        guard let url = URL(string: repoPath) else {
-            return [""]
-        }
-        do {
-            let branches = try Branch().getBranches(directoryURL: url)
-            return branches.map { $0.name }
-        } catch {
-            return [""]
-        }
-    }
-
     /// Checkout in branch
     func checkoutBranch() {
         var parsedBranch = selectedBranch

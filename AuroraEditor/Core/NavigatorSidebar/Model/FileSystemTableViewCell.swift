@@ -19,6 +19,8 @@ class FileSystemTableViewCell: StandardTableViewCell {
     /// Change label small width constraint
     var changeLabelSmallWidth: NSLayoutConstraint!
 
+    private var versionControl: VersionControlModel?
+
     /// Application preferences
     private let prefs = AppPreferencesModel.shared.preferences.general
 
@@ -31,12 +33,27 @@ class FileSystemTableViewCell: StandardTableViewCell {
     ///   - isEditable: Set to true if the user should be able to edit the file name.
     /// 
     /// - Returns: An `OutlineTableViewCell` with the given `FileItem`.
-    init(frame frameRect: NSRect, item: FileSystemClient.FileItem?, isEditable: Bool = true) {
-        super.init(frame: frameRect, isEditable: isEditable)
-
+    init(
+        frame frameRect: NSRect,
+        item: FileSystemClient.FileItem?,
+        versionControlModel: VersionControlModel?,
+        workspace: WorkspaceDocument?,
+        isEditable: Bool = true
+    ) {
+        self.versionControl = versionControlModel
+        super.init(
+            frame: frameRect,
+            isEditable: isEditable,
+            workspace: workspace
+        )
         if let item = item {
             addIcon(item: item)
         }
+
+        Task {
+            await matchChangedFilesWithLocalFiles()
+        }
+
         addModel()
     }
 
@@ -44,8 +61,14 @@ class FileSystemTableViewCell: StandardTableViewCell {
     /// 
     /// - Parameter label: The label to configure.
     /// - Parameter isEditable: Set to true if the user should be able to edit the file name.
-    override func configLabel(label: NSTextField, isEditable: Bool) {
-        super.configLabel(label: label, isEditable: isEditable)
+    override func configLabel(
+        label: NSTextField,
+        isEditable: Bool
+    ) {
+        super.configLabel(
+            label: label,
+            isEditable: isEditable
+        )
         label.delegate = self
     }
 
@@ -68,8 +91,8 @@ class FileSystemTableViewCell: StandardTableViewCell {
             return
         }
         fileItem = item
-        icon.image = image
-        icon.contentTintColor = color(for: item)
+        fileIcon.image = image
+        fileIcon.contentTintColor = color(for: item)
         toolTip = item.fileName
         label.stringValue = label(for: item)
     }
@@ -135,6 +158,37 @@ class FileSystemTableViewCell: StandardTableViewCell {
             return NSColor(item.iconColor)
         } else {
             return .controlAccentColor
+        }
+    }
+
+    /// Match changed files from the upstream repository with local file URLs.
+    ///
+    /// This function uses a Trie data structure to efficiently compare the paths of changed files
+    /// from the upstream repository with the local file URLs. If a match is found, it sets
+    /// the `arrowDownIcon.image` to indicate that the file has upstream changes.
+    ///
+    /// - Important: This method will return early if the workspace is not set or if the arrow down icon
+    ///              image cannot be created.
+    public func matchChangedFilesWithLocalFiles() async {
+        guard let workspace = workspace,
+              let arrowDownIconImage = NSImage(
+                systemSymbolName: "arrow.down",
+                accessibilityDescription: nil
+              ) else {
+            return
+        }
+
+        let changedUpstreamFiles = versionControl?.changedUpstreamFiles ?? []
+
+        let trie = Trie()
+        for file in changedUpstreamFiles {
+            let path = workspace.folderURL.appendingPathComponent(String(file)).path
+            trie.insert(path)
+        }
+
+        if trie.search(fileItem.url.path) {
+            upstreamChangesPullIcon.image = arrowDownIconImage
+            upstreamChangesPullIcon.contentTintColor = NSColor.secondaryLabelColor
         }
     }
 }

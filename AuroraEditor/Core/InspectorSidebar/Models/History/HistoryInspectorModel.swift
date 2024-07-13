@@ -14,32 +14,21 @@ public final class HistoryInspectorModel: ObservableObject {
 
     /// The state of the current History Inspector View
     enum State {
-        /// Loading
-        case loading
-
-        /// Error
-        case error
-
-        /// Success
-        case success
+        case loading, error, success
     }
 
     /// The current state of the History Inspector
     @Published
     var state: State = .loading
 
-    /// A GitClient instance
-    private(set) var gitClient: GitClient
-
-    /// The base URL of the workspace
-    private(set) var workspaceURL: URL
+    private(set) var workspace: URL
 
     /// The base URL of the workspace
     private(set) var fileURL: String
 
     /// The selected branch from the GitClient
     @Published
-    public var commitHistory: [CommitHistory]
+    public var commitHistory: [Commit] = []
 
     /// Initialize with a GitClient
     /// 
@@ -47,25 +36,27 @@ public final class HistoryInspectorModel: ObservableObject {
     /// - Parameter fileURL: the current file URL
     ///
     /// - Returns: a new HistoryInspectorModel instance
-    public init(workspaceURL: URL, fileURL: String) {
-        self.workspaceURL = workspaceURL
+    init(workspace: URL, fileURL: String) {
+        self.workspace = workspace
         self.fileURL = fileURL
-        gitClient = GitClient(
-            directoryURL: workspaceURL,
-            shellClient: sharedShellClient.shellClient
-        )
-        do {
-            let commitHistory = try gitClient.getCommitHistory(entries: 40, fileLocalPath: fileURL)
-            self.commitHistory = commitHistory
 
-            DispatchQueue.main.async {
-                self.state = .success
-            }
-        } catch {
-            commitHistory = []
-
-            DispatchQueue.main.async {
-                self.state = .success
+        DispatchQueue.global(qos: .background).async {
+            do {
+                let commitHistory = try GitLog().getCommits(directoryURL: workspace,
+                                                            fileURL: fileURL,
+                                                            revisionRange: nil,
+                                                            limit: 40,
+                                                            skip: 0,
+                                                            additionalArgs: [])
+                DispatchQueue.main.async {
+                    self.commitHistory = commitHistory
+                    self.state = .success
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.commitHistory = []
+                    self.state = .error
+                }
             }
         }
     }

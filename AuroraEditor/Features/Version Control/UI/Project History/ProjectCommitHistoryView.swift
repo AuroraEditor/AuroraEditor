@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Version_Control
 
 struct ProjectCommitHistoryView: View {
 
@@ -33,29 +34,26 @@ struct ProjectCommitHistoryView: View {
                                  prominent: true)
                 .frame(height: 27)
                 .padding(.horizontal, 8)
-                .padding(.bottom, 2)
-                .padding(.top, 1)
-                .onChange(of: selectedSection, perform: { _ in
-                    switch selectedSection {
+                .padding(.vertical, 2)
+                .onChange(of: selectedSection) { newSelection in
+                    switch newSelection {
                     case 1:
                         projectHistoryModel.gitHistoryDate = .lastDay
                     case 2:
                         projectHistoryModel.gitHistoryDate = .lastSevenDays
                     case 3:
                         projectHistoryModel.gitHistoryDate = .lastThirtyDays
-                    default: // case 0 also falls under this. Just show everything.
-                        projectHistoryModel.gitHistoryDate = .none
+                    default:
+                        projectHistoryModel.gitHistoryDate = CommitDate.none
                     }
-                })
+                }
 
                 Spacer()
 
                 FilterCommitHistoryView()
                     .frame(width: 300)
             }
-            .overlay(alignment: .bottom) {
-                Divider()
-            }
+            .overlay(Divider(), alignment: .bottom)
 
             switch projectHistoryModel.state {
             case .loading:

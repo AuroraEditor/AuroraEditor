@@ -4,6 +4,9 @@
     "" : {
 
     },
+    " committed on %@" : {
+
+    },
     "_" : {
 
     },
@@ -2593,9 +2596,6 @@
     "Account Avatar" : {
 
     },
-    "Active Branch" : {
-
-    },
     "Add" : {
 
     },
@@ -2681,6 +2681,9 @@
 
     },
     "Branch" : {
+
+    },
+    "Branch Menu" : {
 
     },
     "Build Succeeded" : {
@@ -2806,6 +2809,9 @@
     "Copy" : {
 
     },
+    "Copy Branch Name" : {
+
+    },
     "Copy Commit Message" : {
 
     },
@@ -2858,6 +2864,9 @@
 
     },
     "Delete" : {
+
+    },
+    "Delete Branch" : {
 
     },
     "Description" : {
@@ -3478,9 +3487,6 @@
 
     },
     "Git Branch" : {
-
-    },
-    "Git Branche" : {
 
     },
     "Git Client Icon" : {
@@ -7717,6 +7723,9 @@
 
     },
     "Rename" : {
+
+    },
+    "Rename \"%@\"..." : {
 
     },
     "Rename branch:" : {
@@ -45072,9 +45081,6 @@
 
     },
     "Video" : {
-
-    },
-    "View on %@..." : {
 
     },
     "View on Host..." : {

@@ -12,11 +12,11 @@ import Version_Control
 struct HistoryItem: View {
 
     /// The commit history
-    var commit: CommitHistory
+    var commit: Commit
 
     /// The selected commit history
     @Binding
-    var selection: CommitHistory?
+    var selection: Commit?
 
     /// Show an popup?
     private var showPopup: Binding<Bool> {
@@ -41,7 +41,7 @@ struct HistoryItem: View {
     /// - Parameter selection: the selection
     /// 
     /// - Returns: a new HistoryItem instance
-    init(commit: CommitHistory, selection: Binding<CommitHistory?>) {
+    init(commit: Commit, selection: Binding<Commit?>) {
         self.commit = commit
         self._selection = selection
     }
@@ -51,16 +51,16 @@ struct HistoryItem: View {
         VStack(alignment: .trailing) {
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
-                    Text(commit.author)
+                    Text(commit.author.name)
                         .fontWeight(.bold)
                         .font(.system(size: 11))
-                    Text(commit.message)
+                    Text(commit.summary)
                         .font(.system(size: 11))
                         .lineLimit(2)
                 }
                 Spacer()
                 VStack(alignment: .trailing, spacing: 5) {
-                    Text(commit.hash)
+                    Text(commit.shortSha)
                         .font(.system(size: 10))
                         .background(
                             RoundedRectangle(cornerRadius: 3)
@@ -69,7 +69,7 @@ struct HistoryItem: View {
                                 .foregroundColor(Color(nsColor: .quaternaryLabelColor))
                         )
                         .padding(.trailing, 5)
-                    Text(commit.date.relativeStringToNow())
+                    Text(commit.committer.date.relativeStringToNow())
                         .font(.system(size: 11))
                         .foregroundColor(.secondary)
                 }
@@ -87,35 +87,35 @@ struct HistoryItem: View {
                 Button("Copy Commit Message") {
                     let pasteboard = NSPasteboard.general
                     pasteboard.clearContents()
-                    pasteboard.setString(commit.message, forType: .string)
+                    pasteboard.setString(commit.summary, forType: .string)
                 }
                 Button("Copy Identifier") {}
                     .disabled(true) // TODO: Implementation Needed
-                Button("Email \(commit.author)...") {
+                Button("Email \(commit.author.name)...") {
                     let service = NSSharingService(named: NSSharingService.Name.composeEmail)
-                    service?.recipients = [commit.authorEmail]
+                    service?.recipients = [commit.author.email]
                     service?.perform(withItems: [])
                 }
                 Divider()
             }
             Group {
-                Button("Tag \(commit.hash)...") {}
+                Button("Tag \(commit.shortSha)...") {}
                     .disabled(true) // TODO: Implementation Needed
-                Button("New Branch from \(commit.hash)...") {}
+                Button("New Branch from \(commit.shortSha)...") {}
                     .disabled(true) // TODO: Implementation Needed
-                Button("Cherry-Pick \(commit.hash)...") {}
+                Button("Cherry-Pick \(commit.shortSha)...") {}
                     .disabled(true) // TODO: Implementation Needed
             }
             Group {
                 Divider()
-                if let commitRemoteURL = commit.commitBaseURL?.absoluteString {
-                    Button("View on \(commit.remoteString)...") {
-                        let commitURL = "\(commitRemoteURL)/\(commit.commitHash)"
-                        openCommit(URL(string: commitURL) ?? emptyURL)
-                    }
-                    Divider()
-                }
-                Button("Check Out \(commit.hash)...") {}
+//                if let commitRemoteURL = commit.?.absoluteString {
+//                    Button("View on \(commit.remoteString)...") {
+//                        let commitURL = "\(commitRemoteURL)/\(commit.commitHash)"
+//                        openCommit(URL(string: commitURL) ?? emptyURL)
+//                    }
+//                    Divider()
+//                }
+                Button("Check Out \(commit.shortSha)...") {}
                     .disabled(true) // TODO: Implementation Needed
                 Divider()
                 Button("History Editor Help") {}

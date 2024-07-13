@@ -214,11 +214,11 @@ struct WorkspaceView: View {
             FileCreationSelectionView(workspace: workspace)
         }
         .sheet(isPresented: $workspace.data.showStashChangesSheet) {
-            StashChangesSheet(workspaceURL: workspace.workspaceURL())
+            StashChangesSheet(workspaceURL: workspace.folderURL)
         }
         .sheet(isPresented: $workspace.data.showRenameBranchSheet) {
             RenameBranchView(workspace: workspace,
-                             currentBranchName: workspace.data.currentlySelectedBranch,
+                             branch: workspace.data.currentBranch,
                              newBranchName: workspace.data.currentlySelectedBranch)
         }
         .sheet(isPresented: $workspace.data.showAddRemoteView) {

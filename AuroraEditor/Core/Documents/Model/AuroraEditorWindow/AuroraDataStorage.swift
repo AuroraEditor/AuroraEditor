@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Version_Control
 
 /// A class that stores the data for the editor window.
 class AuroraDataStorage: ObservableObject {
@@ -77,6 +78,13 @@ class AuroraDataStorage: ObservableObject {
     /// Branch revision description
     @Published
     var branchRevisionDescription: String = "" {
+        didSet { update() }
+    }
+
+    @Published
+    var currentBranch: GitBranch = GitBranch(name: "",
+                                             type: .local,
+                                             ref: "") {
         didSet { update() }
     }
 

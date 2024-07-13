@@ -45,7 +45,12 @@ extension ProjectNavigatorViewController: NSOutlineViewDelegate {
 
         let frameRect = NSRect(x: 0, y: 0, width: tableColumn.width, height: rowHeight)
 
-        return ProjectNavigatorTableViewCell(frame: frameRect, item: item as? Item)
+        return ProjectNavigatorTableViewCell(
+            frame: frameRect,
+            item: item as? Item,
+            versionControlModel: versionControl,
+            workspace: workspace
+        )
     }
 
     /// Selection did change

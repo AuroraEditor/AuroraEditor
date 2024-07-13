@@ -75,7 +75,6 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
             .eraseToAnyPublisher()
 
         _ = try? getCurrentBranchName()
-        loadBranches()
     }
 
     /// Current branch name
@@ -125,29 +124,6 @@ public class GitClient: ObservableObject { // swiftlint:disable:this type_body_l
     }
 
     // MARK: - BRANCHES
-
-    /// Load branches
-    public func loadBranches() {
-        let localAndRemoteBranches = try? Branch().getBranches(directoryURL: directoryURL)
-
-        // Chances are that the recent branches list will contain the default
-        // branch which we filter out in refreshRecentBranches. So grab one
-        // more than we need to account for that.
-        let recentBranchNames = try? Branch().getRecentBranches(directoryURL: directoryURL,
-                                                                limit: recentBranchesLimit + 1)
-
-        guard let localAndRemoteBranches = localAndRemoteBranches else {
-            return
-        }
-
-        self.allBranches = BranchUtil().mergeRemoteAndLocalBranches(branches: localAndRemoteBranches)
-
-        // refreshRecentBranches is dependent on having a default branch
-        self.refreshDefaultBranch()
-        self.refreshRecentBranches(recentBranchNames: recentBranchNames)
-
-        self.checkPullWithRebase()
-    }
 
     /// Refresh default branch
     public func refreshDefaultBranch() {

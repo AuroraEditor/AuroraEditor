@@ -119,7 +119,9 @@ class GitHubActions: ObservableObject {
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
 
-        getRepoInformation()
+        Task {
+            await getRepoInformation()
+        }
     }
 
     /// Fetch workflows
@@ -310,9 +312,9 @@ class GitHubActions: ObservableObject {
     }
 
     /// Get repo information
-    func getRepoInformation() {
+    func getRepoInformation() async {
         do {
-            let remote = try Remote().getRemoteURL(
+            let remote = try await Remote().getRemoteURL(
                 directoryURL: workspace.workspaceURL(),
                 name: "origin"
             )

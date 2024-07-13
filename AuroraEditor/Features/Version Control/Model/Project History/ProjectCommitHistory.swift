@@ -10,28 +10,14 @@ import SwiftUI
 import Version_Control
 import OSLog
 
-@available(*,
-            deprecated,
-            renamed: "VersionControl",
-            message: "This will be deprecated in favor of the new VersionControl Remote SDK APIs.")/// Project Commit History
+/// Project Commit History
 final class ProjectCommitHistory: Equatable, Identifiable, TabBarItemRepresentable, ObservableObject {
     /// Logger
     let logger = Logger(subsystem: "com.auroraeditor", category: "Project Commit History")
 
     /// The state of the current Project Commit History View
     enum State {
-
-        /// Loading
-        case loading
-
-        /// Error
-        case error
-
-        /// Success
-        case success
-
-        /// Empty
-        case empty
+        case loading, error, success, empty
     }
 
     /// The state of the current Project Commit History View
@@ -55,12 +41,12 @@ final class ProjectCommitHistory: Equatable, Identifiable, TabBarItemRepresentab
 
     /// The tab ID
     public var tabID: TabBarItemID {
-        .projectHistory(workspace.workspaceURL().lastPathComponent)
+        .projectHistory(workspace.folderURL.lastPathComponent)
     }
 
     /// The title
     public var title: String {
-        workspace.workspaceURL().lastPathComponent
+        workspace.folderURL.lastPathComponent
     }
 
     /// The icon
@@ -100,20 +86,21 @@ final class ProjectCommitHistory: Equatable, Identifiable, TabBarItemRepresentab
     /// - Returns: A Project Commit History instance
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
+        loadProjectHistory()
+    }
 
+    /// Load the project history
+    private func loadProjectHistory() {
         DispatchQueue.main.async {
             self.state = .loading
         }
 
-        DispatchQueue.main.async {
-            do {
-                try self.reloadProjectHistory()
-            } catch {
-                DispatchQueue.main.async {
-                    self.state = .empty
-                }
-
-                self.projectHistory = []
+        do {
+            try reloadProjectHistory()
+        } catch {
+            logger.error("Failed to get commits: \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                self.state = .error
             }
         }
     }
@@ -122,36 +109,21 @@ final class ProjectCommitHistory: Equatable, Identifiable, TabBarItemRepresentab
     /// 
     /// - Throws: Error
     func reloadProjectHistory() throws {
-        var additionArgs: [String] = []
+        var additionalArgs: [String] = []
 
-//        if gitHistoryDate != nil {
-//            switch gitHistoryDate {
-//            case .lastDay:
-//                additionArgs.append("--since=\"24 hours ago\"")
-//            case .lastSevenDays:
-//                additionArgs.append("--since=\"7 days ago\"")
-//            case .lastThirtyDays:
-//                additionArgs.append("--since=\"30 days ago\"")
-//            case none:
-//                additionArgs = []
-//            }
-//        }
+        if let historyDate = gitHistoryDate {
+            additionalArgs = historyDate.gitArgs
+        }
 
-        let projectHistory = try GitLog().getCommits(directoryURL: workspace.workspaceURL(),
+        let projectHistory = try GitLog().getCommits(directoryURL: workspace.folderURL,
                                                      revisionRange: nil,
                                                      limit: 150,
                                                      skip: 0,
-                                                     additionalArgs: additionArgs)
-        if projectHistory.isEmpty {
-            DispatchQueue.main.async {
-                self.state = .empty
-            }
-        } else {
-            DispatchQueue.main.async {
-                self.state = .success
-            }
-        }
+                                                     additionalArgs: additionalArgs)
 
-        self.projectHistory = projectHistory
+        DispatchQueue.main.async {
+            self.projectHistory = projectHistory
+            self.state = projectHistory.isEmpty ? .empty : .success
+        }
     }
-    }
+}

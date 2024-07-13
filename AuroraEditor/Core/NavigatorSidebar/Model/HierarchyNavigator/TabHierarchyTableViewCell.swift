@@ -31,14 +31,14 @@ class TabHierarchyTableViewCell: StandardTableViewCell {
                 systemSymbolName: fileItem.systemImage,
                 accessibilityDescription: nil
             ) {
-                icon.image = image
+                fileIcon.image = image
             }
 
             // set the image color and tooltip
             if fileItem.children == nil && prefs.fileIconStyle == .color {
-                icon.contentTintColor = NSColor(fileItem.iconColor)
+                fileIcon.contentTintColor = NSColor(fileItem.iconColor)
             } else {
-                icon.contentTintColor = .secondaryLabelColor
+                fileIcon.contentTintColor = .secondaryLabelColor
             }
             toolTip = fileItem.fileName
             textField?.stringValue = "Unknown Code File"
@@ -46,22 +46,22 @@ class TabHierarchyTableViewCell: StandardTableViewCell {
             // TODO: get and then set the line number
             secondaryLabel.stringValue = "Line X"
         case .extensionInstallation:
-            icon.image = NSImage(systemSymbolName: "puzzlepiece.extension", accessibilityDescription: nil)
+            fileIcon.image = NSImage(systemSymbolName: "puzzlepiece.extension", accessibilityDescription: nil)
             textField?.stringValue = "Unknown Extension"
         case .webTab:
-            icon.image = NSImage(systemSymbolName: "globe", accessibilityDescription: nil)
+            fileIcon.image = NSImage(systemSymbolName: "globe", accessibilityDescription: nil)
             textField?.stringValue = "Unknown Web Tab"
         case .projectHistory:
-            icon.image = NSImage(named: "vault")
+            fileIcon.image = NSImage(named: "vault")
             textField?.stringValue = "Project History"
         case .branchHistory:
-            icon.image = NSImage(named: "vault")
+            fileIcon.image = NSImage(named: "vault")
             textField?.stringValue = "Branch History"
         case .actionsWorkflow:
-            icon.image = NSImage(named: "diamond")
+            fileIcon.image = NSImage(named: "diamond")
             textField?.stringValue = "GitHub Workflows"
         case .extensionCustomView:
-            icon.image = NSImage(named: "globe")
+            fileIcon.image = NSImage(named: "globe")
             textField?.stringValue = "Extension"
         }
 

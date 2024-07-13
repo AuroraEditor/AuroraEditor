@@ -14,14 +14,14 @@ import Version_Control
 // view.
 struct PopoverView: View {
     /// The commit history
-    private var commit: CommitHistory
+    private var commit: Commit
 
     /// Initialize with a commit history
     /// 
     /// - Parameter commit: the commit history
     /// 
     /// - Returns: a new PopoverView instance
-    init(commit: CommitHistory) {
+    init(commit: Commit) {
         self.commit = commit
     }
 
@@ -30,17 +30,17 @@ struct PopoverView: View {
         VStack {
             VStack(alignment: .leading, spacing: 10) {
                 HStack(alignment: .top) {
-                    Avatar().gitAvatar(authorEmail: commit.authorEmail)
+                    Avatar().gitAvatar(authorEmail: commit.author.email)
 
                     VStack(alignment: .leading) {
-                        Text(commit.author)
+                        Text(commit.author.name)
                             .fontWeight(.bold)
-                        Text(commit.date.formatted(date: .long, time: .shortened))
+                        Text(commit.committer.date.formatted(date: .long, time: .shortened))
                     }
 
                     Spacer()
 
-                    Text(commit.hash)
+                    Text(commit.shortSha)
                         .font(.system(size: 12))
                         .foregroundColor(.secondary)
                 }
@@ -59,9 +59,9 @@ struct PopoverView: View {
                 // TODO: Implementation Needed
                 ActionButton("Open in Code Review", systemImage: "arrow.left.arrow.right") {}
                     .disabled(true)
-                ActionButton("Email \(commit.author)", systemImage: "envelope") {
+                ActionButton("Email \(commit.author.name)", systemImage: "envelope") {
                     let service = NSSharingService(named: NSSharingService.Name.composeEmail)
-                    service?.recipients = [commit.authorEmail]
+                    service?.recipients = [commit.author.email]
                     service?.perform(withItems: [])
                 }
             }
@@ -131,25 +131,24 @@ struct PopoverView: View {
     /// 
     /// - Returns: the commit details
     private func commitDetails() -> String {
-        if commit.commiterEmail == "noreply@github.com" {
-            return commit.message.trimmingCharacters(in: .whitespacesAndNewlines)
-        } else if commit.authorEmail != commit.commiterEmail {
-            return commit.message.trimmingCharacters(in: .whitespacesAndNewlines)
+        if commit.committer.email == "noreply@github.com" {
+            return commit.summary.trimmingCharacters(in: .whitespacesAndNewlines)
         }
 
-        return "\(commit.message)\n\n\(coAuthDetail())".trimmingCharacters(in: .whitespacesAndNewlines)
+        let coAuthDetails = coAuthDetail()
+        return "\(commit.summary)\(coAuthDetails.isEmpty ? "" : "\n\n\(coAuthDetails)")"
+            .trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     /// The co-author details
     /// 
     ///  - Returns: the co-author details
     private func coAuthDetail() -> String {
-        if commit.commiterEmail == "noreply@github.com" {
-            return ""
-        } else if commit.authorEmail != commit.commiterEmail {
-            return "Co-authored-by: \(commit.commiter)\n<\(commit.commiterEmail)>"
-        }
+        let coAuthDetails = commit.coAuthors?
+            .filter { $0.email != "noreply@github.com" }
+            .map { "Co-authored-by: \($0.name) <\($0.email)>" }
+            .joined(separator: "\n")
 
-        return ""
+        return coAuthDetails ?? ""
     }
 }

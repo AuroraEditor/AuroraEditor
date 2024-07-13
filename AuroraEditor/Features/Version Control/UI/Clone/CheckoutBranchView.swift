@@ -16,6 +16,10 @@ public struct CheckoutBranchView: View {
     @Binding var repoPath: String
     // TODO: This has to be derived from git
     @State internal var selectedBranch = "main"
+
+    @EnvironmentObject
+    private var versionControl: VersionControlModel
+
     public init(isPresented: Binding<Bool>,
                 repoPath: Binding<String>,
                 shellClient: ShellClient) {
@@ -43,7 +47,9 @@ public struct CheckoutBranchView: View {
                         context[.trailing]
                         }
                     Menu {
-                        ForEach(getBranches().filter { !$0.contains("HEAD") }, id: \.self) { branch in
+                        ForEach(versionControl.workspaceBranches
+                            .map({ $0.name })
+                            .filter { !$0.contains("HEAD") }, id: \.self) { branch in
                             Button {
                                     guard selectedBranch != branch else { return }
                                     selectedBranch = branch

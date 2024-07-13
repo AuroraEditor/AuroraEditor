@@ -76,9 +76,9 @@ public final class RepositoryModel: ObservableObject {
     /// - Returns: the model
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
-        self.repositoryLocalPath = workspace.workspaceURL().path
-        self.repositoryName = workspace.workspaceURL().lastPathComponent
-        self.isGitRepository = Check().checkIfProjectIsRepo(workspaceURL: workspace.workspaceURL())
+        self.repositoryLocalPath = workspace.folderURL.path
+        self.repositoryName = workspace.folderURL.lastPathComponent
+        self.isGitRepository = Check().checkIfProjectIsRepo(workspaceURL: workspace.folderURL)
     }
 
     /// Add git repo details

@@ -22,7 +22,7 @@ struct HistoryInspector: View {
 
     /// The selected commit history
     @State
-    var selectedCommitHistory: CommitHistory?
+    var selectedCommitHistory: Commit?
 
     /// Initialize with a workspace URL and a file URL
     ///
@@ -31,7 +31,8 @@ struct HistoryInspector: View {
     /// 
     /// - Returns: a new HistoryInspector instance
     init(workspaceURL: URL, fileURL: String) {
-        self.model = .init(workspaceURL: workspaceURL, fileURL: fileURL)
+        self.model = .init(workspace: workspaceURL,
+                           fileURL: fileURL)
     }
 
     /// The body of the view
@@ -53,7 +54,8 @@ struct HistoryInspector: View {
                     } else {
                         List(selection: $selectedCommitHistory) {
                             ForEach(model.commitHistory) { commitHistory in
-                                HistoryItem(commit: commitHistory, selection: $selectedCommitHistory)
+                                HistoryItem(commit: commitHistory,
+                                            selection: $selectedCommitHistory)
                                     .tag(commitHistory)
                             }
                         }

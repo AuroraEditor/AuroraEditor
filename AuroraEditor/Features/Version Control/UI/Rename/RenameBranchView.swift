@@ -18,7 +18,7 @@ struct RenameBranchView: View {
     let workspace: WorkspaceDocument
 
     @State
-    var currentBranchName: String = "main"
+    var branch: GitBranch
 
     @State
     var newBranchName: String = "main"
@@ -37,7 +37,7 @@ struct RenameBranchView: View {
 
             HStack {
                 Text("From:")
-                Text(currentBranchName)
+                Text(branch.name)
                     .fontWeight(.medium)
             }
             .padding(.top, 5)
@@ -72,7 +72,6 @@ struct RenameBranchView: View {
             }
 
             HStack {
-
                 if newBranchName.count > 250 {
                     Text("Your new branch name is currently to long")
                         .foregroundColor(.red)
@@ -88,7 +87,7 @@ struct RenameBranchView: View {
                         .foregroundColor(.primary)
                 }
 
-                if currentBranchName == newBranchName
+                if branch.name == newBranchName
                     || newBranchName.isEmpty
                     || newBranchName.count < 3
                     || newBranchName.count > 250 {
@@ -100,10 +99,8 @@ struct RenameBranchView: View {
                 } else {
                     Button {
                         do {
-                            try Branch().renameBranch(directoryURL: workspace.workspaceURL(),
-                                                      branch: GitBranch(name: currentBranchName,
-                                                                        type: .local,
-                                                                        ref: ""),
+                            try Branch().renameBranch(directoryURL: workspace.folderURL,
+                                                      branch: branch,
                                                       newName: newBranchName)
                             dismiss()
                         } catch {
