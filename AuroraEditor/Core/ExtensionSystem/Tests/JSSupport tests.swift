@@ -42,10 +42,10 @@ final class AuroraJSSupportTests: XCTestCase {
     /// Create a "custom" function, and run that custom function.
     func testJSAPIUsingRespondToCustomApi() {
         guard let script = jsSupport?.evaluate(script: "function AECustomApiTest(v) { return v.val }"),
-              let value = jsSupport?.respond(
+              jsSupport?.respond(
                 action: "AECustomApiTest",
                 parameters: ["val": "AECustomApiTest using respond()"]
-              ), script.isUndefined, value.toString() == "AECustomApiTest using respond()" else {
+              ) as? String == "AECustomApiTest using respond()" else {
             XCTFail("Error: No value returned.")
             return
         }
