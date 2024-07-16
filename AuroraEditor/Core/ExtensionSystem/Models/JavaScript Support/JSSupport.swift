@@ -268,12 +268,13 @@ class JSSupport: ExtensionInterface {
     }
 
     // MARK: - Aurora Editor Extension interface
-    /// Respond to an (AuroraEditor) JavaScript function.
+    /// Send a action to an extension to respond to
     ///
     /// - Parameter action: action to perform
     /// - Parameter parameters: with parameters
     ///
-    /// - Returns: response value from javascript
+    /// - Returns: Response value from the extension
+    @discardableResult
     func respond(action: String, parameters: [String: Any]) -> Any {
         var JSONParameters = self.anyArrayToJSON(array: parameters)
 
