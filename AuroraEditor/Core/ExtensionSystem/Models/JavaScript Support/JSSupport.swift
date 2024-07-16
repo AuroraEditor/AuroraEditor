@@ -199,33 +199,6 @@ class JSSupport: ExtensionInterface {
     /// - Parameter parameters: with parameters
     ///
     /// - Returns: response value from javascript
-    func respond(to action: String, parameters: [String: Any]) -> JSValue? {
-        var JSONParameters = self.anyArrayToJSON(array: parameters)
-
-        jsLogger.debug(
-            "Calling function \(action), with \(JSONParameters)"
-        )
-
-        // Re ensure that the string is safe
-        JSONParameters = escape(JSON: JSONParameters)
-
-        // Constructor to run `function(parameters)`
-        let action = """
-            if (typeof \(action) === 'function') {
-                \(action)(JSON.parse(\"\(JSONParameters)\"))
-            }
-            """
-
-        return context?
-            .evaluateScript(action)
-    }
-
-    /// Respond to an (AuroraEditor) JavaScript function.
-    ///
-    /// - Parameter action: action to perform
-    /// - Parameter parameters: with parameters
-    ///
-    /// - Returns: response value from javascript
     func respondToAE(action: String, parameters: [String: Any]) -> JSValue? {
         return context?
             .objectForKeyedSubscript("AuroraEditor")?
@@ -259,7 +232,7 @@ class JSSupport: ExtensionInterface {
             } else if let numbericValue = value as? (any Numeric) {
                 // Value is numeric, numeric characters don't need to be escaped
                 json.append("\"\(key)\":\(numbericValue),")
-            } else if var stringValue = value as? String {
+            } else if let stringValue = value as? String {
                 // Value is a string, strings need to be escaped
                 json.append("\"\(key)\":\"\(escape(JSON: stringValue))\",")
             } else {
@@ -302,7 +275,23 @@ class JSSupport: ExtensionInterface {
     ///
     /// - Returns: response value from javascript
     func respond(action: String, parameters: [String: Any]) -> Any {
-        guard let val = self.respond(to: action, parameters: parameters) else {
+        var JSONParameters = self.anyArrayToJSON(array: parameters)
+
+        jsLogger.debug(
+            "Calling function \(action), with \(JSONParameters)"
+        )
+
+        // Re ensure that the string is safe
+        JSONParameters = escape(JSON: JSONParameters)
+
+        // Constructor to run `function(parameters)`
+        let action = """
+            if (typeof \(action) === 'function') {
+                \(action)(JSON.parse(\"\(JSONParameters)\"))
+            }
+            """
+
+        guard let val = context?.evaluateScript(action) else {
             return false
         }
 
