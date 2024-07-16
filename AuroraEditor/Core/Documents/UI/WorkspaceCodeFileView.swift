@@ -35,6 +35,8 @@ struct WorkspaceCodeFileView: View {
     /// Logger
     let logger: Logger
 
+    let extensionManager = ExtensionsManager.shared
+
     init() {
         self.logger = Logger(subsystem: "com.auroraeditor", category: "Workspace Code File View")
     }
@@ -70,8 +72,19 @@ struct WorkspaceCodeFileView: View {
                                     self.logger.info("Dropped at the center")
                                 }
                             })
+                    } else if let view = extensionManager.canBuildEditor(for: item) {
+                        ExtensionCustomView(
+                            view: view,
+                            sender: "WorkspaceCodeFileView"
+                        )
                     } else {
-                        codeEditorView(fileItem, for: item)
+                        CodeEditorViewWrapper(codeFile: fileItem, fileExtension: item.url.pathExtension)
+                            .safeAreaInset(edge: .top, spacing: 0) {
+                                VStack(spacing: 0) {
+                                    BreadcrumbsView(file: item, tappedOpenFile: workspace.openTab(item:))
+                                    Divider()
+                                }
+                            }
                             .splitView(availablePositions: [.top, .bottom, .center, .leading, .trailing],
                                        proposalPosition: $dropProposal,
                                        margin: 15,
@@ -96,24 +109,6 @@ struct WorkspaceCodeFileView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-
-    /// Code editor view
-    /// 
-    /// - Parameter codeFile: The code file document
-    /// - Parameter item: The file item
-    @ViewBuilder
-    private func codeEditorView(
-        _ codeFile: CodeFileDocument,
-        for item: FileSystemClient.FileItem
-    ) -> some View {
-        CodeEditorViewWrapper(codeFile: codeFile, fileExtension: item.url.pathExtension)
-            .safeAreaInset(edge: .top, spacing: 0) {
-                VStack(spacing: 0) {
-                    BreadcrumbsView(file: item, tappedOpenFile: workspace.openTab(item:))
-                    Divider()
-                }
-            }
     }
 
     /// Image file view

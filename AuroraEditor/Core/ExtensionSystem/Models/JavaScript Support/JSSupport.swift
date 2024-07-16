@@ -199,7 +199,7 @@ class JSSupport: ExtensionInterface {
     /// - Parameter parameters: with parameters
     ///
     /// - Returns: response value from javascript
-    func respond(action: String, parameters: [String: Any]) -> JSValue? {
+    func respond(to action: String, parameters: [String: Any]) -> JSValue? {
         var JSONParameters = self.anyArrayToJSON(array: parameters)
 
         jsLogger.debug(
@@ -301,12 +301,32 @@ class JSSupport: ExtensionInterface {
     /// - Parameter parameters: with parameters
     ///
     /// - Returns: response value from javascript
-    func respond(action: String, parameters: [String: Any]) -> Bool {
-        if let val = self.respond(action: action, parameters: parameters), val.isBoolean {
+    func respond(action: String, parameters: [String: Any]) -> Any {
+        guard let val = self.respond(to: action, parameters: parameters) else {
+            return false
+        }
+
+        if val.isBoolean {
             return val.toBool()
         }
 
-        return true
+        if val.isObject, let object = val.toObject() {
+            return object
+        }
+
+        if val.isString, let string = val.toString() {
+            return string
+        }
+
+        if val.isArray, let array = val.toArray() {
+            return array
+        }
+
+        if val.isNumber, let number = val.toNumber() {
+            return number
+        }
+
+        return false
     }
 
     /// Register JSSupport as an extension

@@ -56,7 +56,7 @@ public final class ExtensionsManager {
     }
 
     /// Set workspace document
-    /// 
+    ///
     /// - Parameter workspace: Workspace document
     func set(workspace: WorkspaceDocument) {
         self.workspace = workspace
@@ -64,9 +64,9 @@ public final class ExtensionsManager {
     }
 
     /// Create an Aurora API Callback handler.
-    /// 
+    ///
     /// - Parameter file: extension name
-    /// 
+    ///
     /// - Returns: AuroraAPI
     private func auroraAPICallback(file: String) -> AuroraAPI {
         return { function, parameters in
@@ -84,7 +84,7 @@ public final class ExtensionsManager {
     }
 
     /// Load plugins
-    /// 
+    ///
     /// all extensions in `~/Library/com.auroraeditor/Extensions` will be loaded.
     public func loadPlugins() {
         loadedExtensions = [:]
@@ -134,8 +134,32 @@ public final class ExtensionsManager {
         }
     }
 
+    /// Can build editor
+    ///
+    /// Is an extension able to build an editor for the provided file?
+    ///
+    /// - Parameter item: file item
+    /// - Returns: editor code, or null.
+    public func canBuildEditor(for item: FileSystemClient.FileItem) -> Any? {
+        let canOpenEvent = self.sendEvent(
+            event: "canOpen",
+            parameters: ["file": item.url.relativeString]
+        )
+
+        if canOpenEvent.compactMap({ $0 as? Bool }).contains(true) {
+            if let editorBuilder = self.sendEvent(
+                event: "buildEditor",
+                parameters: ["file": item.url.relativeString]
+            ).compactMap({ $0 as? [String: Any] }).first {
+               return editorBuilder["view"] ?? nil
+            }
+        }
+
+        return nil
+    }
+
     /// Load JS Extension
-    /// 
+    ///
     /// - Parameter directory: Directory
     private func loadJSExtension(at directory: String) {
         let extensionName = directory.replacingOccurrences(of: ".JSext", with: "")
@@ -157,9 +181,9 @@ public final class ExtensionsManager {
     }
 
     /// Load the bundle at path
-    /// 
+    ///
     /// - Parameter path: path
-    /// 
+    ///
     /// - Returns: ExtensionBuilder.Tyoe
     private func loadBundle(path: String, isResigned: Bool = false) -> ExtensionBuilder.Type? {
         let bundleURL = extensionsFolder.appendingPathComponent(path, isDirectory: true)
@@ -212,9 +236,9 @@ public final class ExtensionsManager {
     }
 
     /// Resign the bundle
-    /// 
+    ///
     /// - Parameter bundle: Bundle
-    /// 
+    ///
     /// - Returns: Process
     private func resign(bundle: URL) -> Process? {
         if !FileManager().fileExists(atPath: "/usr/bin/xcrun") {
@@ -231,37 +255,42 @@ public final class ExtensionsManager {
         task.launch()
         task.waitUntilExit()
 
-        #if DEBUG
+#if DEBUG
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         logger.info("Resign \(String(decoding: data, as: UTF8.self))")
-        #endif
+#endif
 
         return task
     }
 
     /// Send event to all loaded extensions
-    /// 
+    ///
     /// - Parameter event: Event to send
     /// - Parameter parameters: Parameters to send
-    public func sendEvent(event: String, parameters: [String: Any]) {
-        DispatchQueue.main.async {
-            let params = Array(parameters.keys).joined(separator: ": ..., ")
+    @discardableResult
+    public func sendEvent(event: String, parameters: [String: Any]) -> [Any] {
+        var reactions: [Any] = []
 
-            self.logger.info(
-                "[Extension] send \(event)(\(params)) to \(ExtensionsManager.shared.loadedExtensions.count) extensions."
-            )
+        let params = Array(parameters.keys).joined(separator: ": ..., ")
 
-            // Let the extensions know we opened a file (from a workspace)
-            for (_, AEExt) in ExtensionsManager.shared.loadedExtensions {
+        self.logger.info(
+            "[Extension] send \(event)(\(params)) to \(ExtensionsManager.shared.loadedExtensions.count) extensions."
+        )
+
+        // Let the extensions know we opened a file (from a workspace)
+        for (_, AEExt) in ExtensionsManager.shared.loadedExtensions {
+            reactions.append(
                 AEExt.respond(action: event, parameters: parameters)
-            }
+            )
         }
+
+        return reactions
     }
 
     /// Is installed
-    /// 
+    ///
     /// - Parameter plugin: Plugin
-    /// 
+    ///
     /// - Returns: Is installed?
     public func isInstalled(plugin: Plugin) -> Bool? {
         return false
