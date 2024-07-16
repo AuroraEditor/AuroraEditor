@@ -135,7 +135,7 @@ class JSSupport: ExtensionInterface {
             return true
         }
 
-        let respond: Responder = { (action: String, parameters: [String: Any])  in
+        let broadcaster: Responder = { (action: String, parameters: [String: Any]) in
             self.jsLogger.debug(
                 "JSAPI:\n Function: \(action)\n Parameters: \(String(describing: parameters))"
             )
@@ -162,7 +162,7 @@ class JSSupport: ExtensionInterface {
         context?
             .objectForKeyedSubscript("AuroraEditor")
             .setObject(
-                unsafeBitCast(respond, to: AnyObject.self),
+                unsafeBitCast(broadcaster, to: AnyObject.self),
                 forKeyedSubscript: "respond" as (NSCopying & NSObjectProtocol)
             )
 
@@ -170,7 +170,7 @@ class JSSupport: ExtensionInterface {
         context?
             .objectForKeyedSubscript("AuroraEditor")
             .setObject(
-                unsafeBitCast(respond, to: AnyObject.self),
+                unsafeBitCast(broadcaster, to: AnyObject.self),
                 forKeyedSubscript: "respondTo" as (NSCopying & NSObjectProtocol)
             )
     }
