@@ -165,7 +165,8 @@ jobs:
       - name: "Create Release Build Archive"
         run: |
           set -o pipefail
-          xcodebuild -workspace "Aurora Editor.xcworkspace" \
+          xcodebuild -quiet \
+            -workspace "Aurora Editor.xcworkspace" \
             -scheme "Aurora Editor (Release)" \
             -configuration Release archive \
             -archivePath "builds/Aurora Editor.xcarchive" \

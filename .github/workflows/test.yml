@@ -28,7 +28,8 @@ jobs:
 
       - name: Aurora Editor (Tests)
         run: |
-          xcodebuild -workspace "Aurora Editor.xcworkspace" \
+          xcodebuild -quiet \
+          -workspace "Aurora Editor.xcworkspace" \
           -scheme "Aurora Editor (Tests)" \
           CODE_SIGN_IDENTITY="" \
           CODE_SIGNING_REQUIRED=NO \
