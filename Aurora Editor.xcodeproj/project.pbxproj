@@ -5146,8 +5146,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AuroraEditor/AEExtensionKit.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
 			};
 		};
 		A0142EFC2ACB64AA0002F95D /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
