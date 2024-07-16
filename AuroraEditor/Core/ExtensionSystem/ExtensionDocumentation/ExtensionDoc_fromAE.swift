@@ -12,6 +12,19 @@ import AEExtensionKit
 /// This class does not execute any code, this is made to generate documentation for the extension system
 /// This are items which an extension can expect from AuroraEditor.
 public protocol ExtensionDocumentationFromAuroraEditor {
+    /// Build the editor view for a specific file.
+    ///
+    /// Please note the view will be rendered using the first "view" key provided in the return value
+
+    /// - Parameter file: The file url (relative path)
+    /// - Returns: An array containing the necessary elements to build an editor.
+    func buildEditor(file: String) -> [String: Any]
+
+    /// Can open a file
+    ///
+    /// - Parameter file: The file url (relative path)
+    /// - Returns: Whether the file can be opened or not using a custom editor
+    func canOpen(file: String) -> Bool
 
     /// Did open file
     ///
