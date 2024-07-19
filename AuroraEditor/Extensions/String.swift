@@ -22,6 +22,11 @@ extension String {
         return NSString(string: self).deletingPathExtension
     }
 
+    /// Is the String valid JSON?
+    var isValidJSON: Bool {
+        (try? JSONSerialization.jsonObject(with: Data(self.utf8))) != nil
+    }
+
     /// Returns a string colored with the specified color.
     ///
     /// - parameter color: The string representation of the color.
