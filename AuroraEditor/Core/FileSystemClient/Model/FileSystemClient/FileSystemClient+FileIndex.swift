@@ -16,12 +16,21 @@ extension FileSystemClient {
     /// 
     /// - Returns: `[FileItem]` representing the contents of the directory
     func loadFiles(fromURL url: URL) throws -> [FileItem] {
+        var alreadySeen: Set<URL> = []
+        return try loadFiles(fromURL: url, alreadySeen: &alreadySeen)
+    }
+
+    private func loadFiles(fromURL url: URL, alreadySeen: inout Set<URL>) throws -> [FileItem] {
         let directoryContents = try fileManager.contentsOfDirectory(at: url.resolvingSymlinksInPath(),
                                                                     includingPropertiesForKeys: nil)
         var items: [FileItem] = []
         for itemURL in directoryContents {
             // Skip file if it is in ignore list
             guard !ignoredFilesAndFolders.contains(itemURL.lastPathComponent) else { continue }
+
+            // Prevent infinite recursion
+            guard !alreadySeen.contains(itemURL) else { continue }
+            alreadySeen.insert(itemURL)
 
             var isDir: ObjCBool = false
 
@@ -30,7 +39,7 @@ extension FileSystemClient {
 
                 if isDir.boolValue {
                     // Recursively fetch subdirectories and files if the path points to a directory
-                    subItems = try loadFiles(fromURL: itemURL)
+                    subItems = try loadFiles(fromURL: itemURL, alreadySeen: &alreadySeen)
                 }
 
                 let newFileItem = FileItem(url: itemURL,
