@@ -233,8 +233,13 @@ class JSSupport: ExtensionInterface {
                 // Value is numeric, numeric characters don't need to be escaped
                 json.append("\"\(key)\":\(numbericValue),")
             } else if let stringValue = value as? String {
-                // Value is a string, strings need to be escaped
-                json.append("\"\(key)\":\"\(escape(JSON: stringValue))\",")
+                if stringValue.isValidJSON {
+                    // Value is JSON
+                    json.append("\"\(key)\":\(stringValue),")
+                } else {
+                    // Value is a string
+                    json.append("\"\(key)\":\"\(escape(JSON: stringValue))\",")
+                }
             } else {
                 // Value is an unknown type.
                 jsLogger.fault("Could not recast \(key), type is: \(type(of: value))")

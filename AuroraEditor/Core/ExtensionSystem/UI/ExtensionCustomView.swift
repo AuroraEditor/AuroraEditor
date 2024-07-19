@@ -13,6 +13,11 @@ import DynamicUI
 
 /// Should we use a extension View or a WebView.
 struct ExtensionCustomView: View {
+    let logger = Logger(
+        subsystem: "com.auroraeditor.extensions",
+        category: "ExtensionCustomView"
+    )
+
     /// The view to show
     let view: Any?
 
@@ -41,17 +46,43 @@ struct ExtensionCustomView: View {
                   (
                     try? JSONDecoder().decode([DynamicUIComponent].self, from: json)
                   ) != nil {
-            DynamicUI(json: json, callback: nil)
-                .onAppear {
+            DynamicUI(
+                json: json,
+                callback: { component in
+                    let eventHandler = component.eventHandler ?? "uiElementChanged"
+
+                    guard let data = try? JSONEncoder().encode(component) else {
+                        ExtensionsManager.shared.sendEvent(
+                            event: eventHandler,
+                            parameters: [
+                                "extension": sender,
+                                "view": string
+                            ]
+                        )
+
+                        return
+                    }
+
                     ExtensionsManager.shared.sendEvent(
-                        event: "didOpenExtensionView",
+                        event: eventHandler,
                         parameters: [
-                            "type": "DynamicUI",
                             "extension": sender,
-                            "view": string
+                            "view": string,
+                            "component": String(decoding: data, as: UTF8.self)
                         ]
                     )
                 }
+            )
+            .onAppear {
+                ExtensionsManager.shared.sendEvent(
+                    event: "didOpenExtensionView",
+                    parameters: [
+                        "type": "DynamicUI",
+                        "extension": sender,
+                        "view": string
+                    ]
+                )
+            }
         } else if let webViewContents = view as? String {
             // The view is a String, this can only means that
             // the view is written in HTML/CSS/Javascript.
@@ -102,9 +133,9 @@ struct ExtensionWKWebView: NSViewRepresentable {
     )
 
     /// Create the NSView
-    /// 
+    ///
     /// - Parameter context: Context
-    /// 
+    ///
     /// - Returns: The NSView
     func makeNSView(context: Context) -> NSView {
         let webKitView = WKWebView()
@@ -124,7 +155,7 @@ struct ExtensionWKWebView: NSViewRepresentable {
     }
 
     /// Update the NSView
-    /// 
+    ///
     /// - Parameter nsView: The NSView
     /// - Parameter context: The context
     func updateNSView(_ nsView: NSView, context: Context) {
@@ -137,14 +168,14 @@ struct ExtensionWKWebView: NSViewRepresentable {
     }
 
     /// Convenience function to load a page
-    /// 
+    ///
     /// - Parameters:
     ///   - webView: The web view
     ///   - url: The URL to load
     func loadPage(webView: WKWebView, pageHTML: String?) {
         let baseURL = ExtensionsManager.shared.extensionsFolder.appendingPathComponent(
-                sender + ".JSext",
-                isDirectory: true
+            sender + ".JSext",
+            isDirectory: true
         )
 
         // if the URL is valid (has a protocol), load the page
@@ -163,7 +194,7 @@ struct ExtensionWKWebView: NSViewRepresentable {
         var parent: ExtensionWKWebView
 
         /// Initialize the coordinator
-        /// 
+        ///
         /// - Parameter parent: Parent
         init(_ parent: ExtensionWKWebView) {
             self.parent = parent
