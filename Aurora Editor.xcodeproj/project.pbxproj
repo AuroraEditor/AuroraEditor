@@ -5122,8 +5122,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/0xWDG/DynamicUI";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.2;
+				kind = exactVersion;
+				version = 0.0.6;
 			};
 		};
 		2BA8F0842C1DADBD005A06A3 /* XCRemoteSwiftPackageReference "AuroraEditorSourceEditor" */ = {
@@ -5146,8 +5146,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AuroraEditor/AEExtensionKit.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.1;
+				kind = exactVersion;
+				version = 1.0.1;
 			};
 		};
 		A0142EFC2ACB64AA0002F95D /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
@@ -5162,16 +5162,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/migueldeicaza/SwiftTerm.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.5;
+				kind = exactVersion;
+				version = 1.2.5;
 			};
 		};
 		A0C008A72C46E85100B990D2 /* XCRemoteSwiftPackageReference "Version-Control-Kit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AuroraEditor/Version-Control-Kit";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.3;
+				kind = exactVersion;
+				version = 1.0.3;
 			};
 		};
 		A0C038682ACF1C1E00DACE3F /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
