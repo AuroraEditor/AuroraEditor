@@ -11,6 +11,7 @@ import AEExtensionKit
 
 /// This class does not execute any code, this is made to generate documentation for the extension system
 /// This are items which an extension can expect from AuroraEditor.
+/// To see what you can send to Aurora Editor see ``ExtensionDocumentationToAuroraEditor``.
 public protocol ExtensionDocumentationFromAuroraEditor {
     /// Build the editor view for a specific file.
     ///
