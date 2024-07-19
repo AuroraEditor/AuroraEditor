@@ -39,9 +39,9 @@ struct ExtensionCustomView: View {
         } else if let string = view as? String,
                   let json = string.data(using: .utf8),
                   (
-                    try? JSONDecoder().decode([UIComponent].self, from: json)
+                    try? JSONDecoder().decode([DynamicUIComponent].self, from: json)
                   ) != nil {
-            DynamicUI(json: json)
+            DynamicUI(json: json, callback: nil)
                 .onAppear {
                     ExtensionsManager.shared.sendEvent(
                         event: "didOpenExtensionView",
