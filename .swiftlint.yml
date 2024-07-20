@@ -88,6 +88,8 @@ nesting:
   type_level:
     warning: 2 # warning if you nest 2 level deep instead of 1
     error: 3 # error if you nest 3 level deep instead of 1
+comma: error
+vertical_whitespace: error
 
 # Custom rules
 custom_rules:
@@ -105,20 +107,6 @@ custom_rules:
     message: "Significant @attributes should be on an extra line"
     included: ".*.swift"
     regex: '(@objc\([^\)]+\)|@nonobjc|@discardableResult|@propertyWrapper|@UIApplicationMain|@dynamicMemberLookup|@_cdecl\([^\)]+\))[^\n]'
-    severity: error
-
-  # forbid multiple empty lines
-  multiple_empty_lines:
-    included: ".*.swift"
-    name: "Multiple Empty Lines"
-    regex: '((?:\s*\n){3,})'
-    message: "There are too many line breaks"
-    severity: error
-
-  # one space after a comma
-  comma_space_rule:
-    regex: ",[ ]{2,}"
-    message: "Expected only one space after ',"
     severity: error
 
   # Disable usage of // swiftlint:disable (rulename)
