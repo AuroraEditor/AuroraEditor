@@ -16,7 +16,7 @@ In the world of code editors, many modern solutions are based on Electron, resul
 
 ## 🌐 Join Our Community
 
-Become a part of our vibrant developer community by joining us on [Discord](https://discord.gg/5aecJ4rq9D) or [Slack](https://join.slack.com/t/auroraeditor/shared_invite/zt-1fti1r72d-8mWmJsj279vDV~YdKhcUEA). Engage in meaningful discussions, collaborate on exciting projects, and share your ideas. Our community is welcoming and supportive, offering a space for developers of all skill levels to grow and contribute.
+Become a part of our vibrant developer community by joining us on [Discord](https://discord.gg/5aecJ4rq9D), [Slack](https://join.slack.com/t/auroraeditor/shared_invite/zt-1fti1r72d-8mWmJsj279vDV~YdKhcUEA) or [Matrix (beta)](https://matrix.to/#/#AuroraEditor:matrix.org). Engage in meaningful discussions, collaborate on exciting projects, and share your ideas. Our community is welcoming and supportive, offering a space for developers of all skill levels to grow and contribute.
 
 ## 💾 Download Aurora Editor
 
