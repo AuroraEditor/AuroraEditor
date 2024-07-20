@@ -1,4 +1,5 @@
 name: build-documentation
+
 on:
   push:
     branches:
@@ -7,10 +8,34 @@ on:
 
 jobs:
   build-docc:
-    runs-on: self-hosted
+    runs-on: macos-14
     permissions:
       contents: write
     steps:
+      - name: "Cleanup build folder"
+        run: |
+          ls -la ./
+          rm -rf ./* || true
+          rm -rf ./.??* || true
+          ls -la ./
+
+
+      - name: "Install swiftlint"
+        run: |
+          brew install swiftlint
+
+      - name: "Select Xcode (Default)"
+        run: sudo xcode-select -s /Applications/Xcode_15.3.app
+
+      - name: Runner environment
+        run: |
+          echo "MacOS Version"
+          sw_vers
+          echo "Toolchain version"
+          swift -version
+          echo "SwiftLint (version)"
+          swiftlint version
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -40,8 +65,15 @@ jobs:
           echo "docs.auroraeditor.com" > CNAME
           echo "{\"meta\":{\"title\":\"$DOCURL Documentation\"}}" > theme-settings.json
           echo "<script>window.location.href = (document.location.host == 'auroraeditor.github.io' ? '/AuroraEditor' : '') + '/documentation/$DOCURL/'.toLowerCase();</script>" > index.html
-          echo "<script>window.location.href = (document.location.host == 'auroraeditor.github.io' ? '/AuroraEditor' : '') + '/documentation/$DOCURL/'.toLowerCase();</script>" > 404.html
           git init -b documentation
           git add -A .
           git commit -m "Deploy documentation"
           git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git" documentation:documentation
+
+      - name: Cleanup runner
+        if: always()
+        run: |
+          if [ -d "${{ github.workspace }}" ]; then
+            cd "${{ github.workspace }}"
+            rm -rf *
+          fi
