@@ -1,4 +1,4 @@
-name: Clean xcodeproj
+name: Clean & Sort Xcode Project
 run-name: "Remove DEVELOPMENT_TEAM from xcode project"
 
 on:
@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   clean:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     if: github.repository_owner == 'AuroraEditor'
     env:
       xcodeproj: "Aurora Editor.xcodeproj/project.pbxproj"
@@ -42,16 +42,28 @@ jobs:
             exit 1
           fi
 
-      - name: Setup github environment
-        if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
+      - name: Make Sort Xcode Project Script Executable
+        run: |
+          cd "$(pwd)/Tools"
+          chmod +x sort-Xcode-project-file.pl
+
+      - name: Sort Xcode Project
+        run: |
+          cd "$(pwd)/Tools"
+          ./sort-Xcode-project-file.pl --warnings "../Aurora Editor.xcodeproj"
+
+      - name: Setup GitHub Environment
         run: |
           git config --global user.name '${{github.actor}}'
           git config --global user.email '${{github.actor}}@users.noreply.github.com'
 
-      - name: push to Github
-        if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
+      - name: Push to GitHub
         run: |
           echo "Current branch: $GITHUB_HEAD_REF"
-          git add . --all
-          git commit -m "Removed development team"
-          git push origin HEAD:$GITHUB_HEAD_REF --force
+          if [ -n "$(git status --porcelain)" ]; then
+            git add . --all
+            git commit -m "Cleaned Up Xcode Project File"
+            git push origin HEAD:$GITHUB_HEAD_REF --force
+          else
+            echo "No changes to commit"
+          fi
