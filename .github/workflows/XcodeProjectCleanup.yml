@@ -1,4 +1,4 @@
-name: Clean xcodeproj
+name: Clean & Sort Xcode Project
 run-name: "Remove DEVELOPMENT_TEAM from xcode project"
 
 on:
@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   clean:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     if: github.repository_owner == 'AuroraEditor'
     env:
       xcodeproj: "Aurora Editor.xcodeproj/project.pbxproj"
@@ -42,16 +42,23 @@ jobs:
             exit 1
           fi
 
-      - name: Setup github environment
+      - name: Make Sort Xcode Project Script Executable
+        run: chmod +x "$(pwd)/Tools/sort-Xcode-project-file.pl"
+
+      - name: Sort Xcode Project
+        run: |
+          ./Tools/sort-Xcode-project-file.pl --warnings "$(pwd)/Aurora\ Editor.xcodeproj"
+
+      - name: Setup GitHub Environment
         if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
         run: |
           git config --global user.name '${{github.actor}}'
           git config --global user.email '${{github.actor}}@users.noreply.github.com'
 
-      - name: push to Github
+      - name: Push to Github
         if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
         run: |
           echo "Current branch: $GITHUB_HEAD_REF"
           git add . --all
-          git commit -m "Removed development team"
+          git commit -m "Cleaned Up Xcode Project File"
           git push origin HEAD:$GITHUB_HEAD_REF --force
