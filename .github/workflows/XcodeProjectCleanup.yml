@@ -53,15 +53,17 @@ jobs:
           ./sort-Xcode-project-file.pl --warnings "../Aurora Editor.xcodeproj"
 
       - name: Setup GitHub Environment
-        if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
         run: |
           git config --global user.name '${{github.actor}}'
           git config --global user.email '${{github.actor}}@users.noreply.github.com'
 
-      - name: Push to Github
-        if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
+      - name: Push to GitHub
         run: |
           echo "Current branch: $GITHUB_HEAD_REF"
-          git add . --all
-          git commit -m "Cleaned Up Xcode Project File"
-          git push origin HEAD:$GITHUB_HEAD_REF --force
+          if [ -n "$(git status --porcelain)" ]; then
+            git add . --all
+            git commit -m "Cleaned Up Xcode Project File"
+            git push origin HEAD:$GITHUB_HEAD_REF --force
+          else
+            echo "No changes to commit"
+          fi
