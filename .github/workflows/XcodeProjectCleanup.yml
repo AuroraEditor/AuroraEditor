@@ -43,11 +43,13 @@ jobs:
           fi
 
       - name: Make Sort Xcode Project Script Executable
-        run: chmod +x "$(pwd)/Tools/sort-Xcode-project-file.pl"
+        run: |
+          cd "$(pwd)/Tools"
+          chmod +x sort-Xcode-project-file.pl
 
       - name: Sort Xcode Project
         run: |
-          ./Tools/sort-Xcode-project-file.pl --warnings "$(pwd)/Aurora\ Editor.xcodeproj"
+          ./sort-Xcode-project-file.pl --warnings "$(pwd)/Aurora\ Editor.xcodeproj"
 
       - name: Setup GitHub Environment
         if: ${{ steps.needs-removal.outputs.needs-removal == 1 }}
