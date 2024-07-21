@@ -49,6 +49,7 @@ jobs:
 
       - name: Sort Xcode Project
         run: |
+          cd "$(pwd)/Tools"
           ./sort-Xcode-project-file.pl --warnings "$(pwd)/Aurora\ Editor.xcodeproj"
 
       - name: Setup GitHub Environment
