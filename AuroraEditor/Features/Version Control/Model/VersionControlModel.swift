@@ -48,6 +48,13 @@ class VersionControlModel: ObservableObject {
 
     @Published var workspaceEmail: String = ""
 
+    /// Repository owner and name
+    @Published var repository: String = ""
+
+    // MARK: GitHub Rules
+
+    @Published var cachedRepoRulesets: [Int: IAPIRepoRuleset] = [:]
+
     // MARK: GitHub Variables Start
 
     /// A list of mentionable users in the repo
@@ -55,8 +62,6 @@ class VersionControlModel: ObservableObject {
 
     /// The GitHub Repository Id
     @Published var githubRepoId: Int = -1
-
-    // MARK: GitHub Variables End
 
     /// A set of cancellable objects for Combine publishers.
     private var cancellables = Set<AnyCancellable>()
@@ -109,8 +114,8 @@ class VersionControlModel: ObservableObject {
                                                     name: "user.email",
                                                     onlyLocal: true) ??
             Config().getConfigValue(directoryURL: workspaceURL,
-                                        name: "user.email",
-                                        onlyLocal: false) ??
+                                    name: "user.email",
+                                    onlyLocal: false) ??
             ""
 
             DispatchQueue.main.async {
@@ -294,6 +299,7 @@ class VersionControlModel: ObservableObject {
 
             DispatchQueue.main.async {
                 self.githubRepositoryMentionables = response?.users ?? []
+                self.repository = "\(owner)/\(repo)"
             }
         } catch {
             DispatchQueue.main.async {

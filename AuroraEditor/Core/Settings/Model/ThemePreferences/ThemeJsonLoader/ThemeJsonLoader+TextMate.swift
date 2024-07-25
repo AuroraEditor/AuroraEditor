@@ -79,6 +79,16 @@ extension ThemeJsonLoader {
                                               background: defaultAttr.background,
                                               lineHighlight: defaultAttr.lineHighlight,
                                               selection: defaultAttr.selection,
+                                              keywords: defaultAttr.keywords,
+                                              commands: defaultAttr.commands,
+                                              types: defaultAttr.types,
+                                              attributes: defaultAttr.attributes,
+                                              variables: defaultAttr.variables,
+                                              values: defaultAttr.values,
+                                              numbers: defaultAttr.numbers,
+                                              strings: defaultAttr.strings,
+                                              characters: defaultAttr.characters,
+                                              comments: defaultAttr.comments,
                                               highlightTheme: highlightTheme)
 
         // add the default monospace font to the theme

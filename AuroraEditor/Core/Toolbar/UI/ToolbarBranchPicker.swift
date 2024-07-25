@@ -24,8 +24,8 @@ public struct ToolbarBranchPicker: View {
     @ObservedObject
     var workspace: WorkspaceDocument
 
-    @ObservedObject
-    var versionControl: VersionControlModel = .shared
+    @EnvironmentObject
+    var versionControl: VersionControlModel
 
     /// The hover state.
     @State
@@ -42,10 +42,8 @@ public struct ToolbarBranchPicker: View {
     @ObservedObject
     private var prefs: AppPreferencesModel = .shared
 
-    init(workspace: WorkspaceDocument,
-         versionControl: VersionControlModel) {
+    init(workspace: WorkspaceDocument) {
         self.workspace = workspace
-        self.versionControl = versionControl
     }
 
     /// The view body.
@@ -66,7 +64,6 @@ public struct ToolbarBranchPicker: View {
         }
         .popover(isPresented: $displayPopover, arrowEdge: .bottom) {
             BranchPopoverList(
-                versionControl: versionControl,
                 workspace: workspace,
                 currentBranch: versionControl.currentBranchObject
             )

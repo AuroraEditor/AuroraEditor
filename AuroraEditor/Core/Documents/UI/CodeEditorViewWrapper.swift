@@ -13,6 +13,9 @@ import AuroraEditorSourceEditor
 
 /// A view that wraps the code editor view.
 public struct CodeEditorViewWrapper: View {
+    @Environment(\.colorScheme)
+    var colorScheme
+
     /// The code file document
     @ObservedObject
     private var codeFile: CodeFileDocument
@@ -73,6 +76,7 @@ public struct CodeEditorViewWrapper: View {
             version: "0"
         )
         self.theme = currentTheme
+        self.editorTheme = currentTheme.editorTheme()
     }
 
     /// The current font
@@ -94,32 +98,15 @@ public struct CodeEditorViewWrapper: View {
     /// Undo manager
     var undoManager: AEUndoManager = .init()
 
-    /// Default theme
-    let defaultTheme: EditorTheme = .init(
-        text: NSColor(hex: "#D9D9D9"),
-        insertionPoint: NSColor(hex: "#D9D9D9"),
-        invisibles: NSColor(hex: "#D9D9D9"),
-        background: NSColor(hex: "#292a30"),
-        lineHighlight: NSColor(hex: "#2f3239"),
-        selection: NSColor(hex: "#2f3239"),
-        keywords: NSColor(hex: "#FC5FA3"),
-        commands: NSColor(hex: "#D9D9D9"),
-        types: NSColor(hex: "#5DD8FF"),
-        attributes: NSColor(hex: "#D9D9D9"),
-        variables: NSColor(hex: "#D9D9D9"),
-        values: NSColor(hex: "#D9D9D9"),
-        numbers: NSColor(hex: "#D7C986"),
-        strings: NSColor(hex: "#FC6A5D"),
-        characters: NSColor(hex: "#D0BF69"),
-        comments: NSColor(hex: "#6C7986")
-    )
+    @State
+    private var editorTheme: EditorTheme
 
     /// The view body
     public var body: some View {
         AuroraEditorSourceEditor(
             $codeFile.content,
             language: getLanguage(),
-            theme: defaultTheme,
+            theme: editorTheme,
             font: font,
             tabWidth: 4, // TODO: Add this in settings
             indentOption: .spaces(count: 4), // TODO: Add this in settings
@@ -134,9 +121,29 @@ public struct CodeEditorViewWrapper: View {
             undoManager: undoManager,
             coordinators: []
         )
+        .onAppear {
+            self.editorTheme = ThemeModel.shared
+                .getTheme(theme, with: colorScheme == .dark ? .darkAqua : .aqua)
+                .editorTheme()
+        }
+        .onChange(of: colorScheme) { value in
+            switch value {
+            case .dark:
+                self.editorTheme = ThemeModel.shared
+                    .getTheme(theme, with: value == .dark ? .darkAqua : .aqua)
+                    .editorTheme()
+            case .light:
+                self.editorTheme = ThemeModel.shared
+                    .getTheme(theme, with: value == .dark ? .darkAqua : .aqua)
+                    .editorTheme()
+            @unknown default:
+                break
+            }
+        }
         .onChange(of: themeModel.selectedTheme, perform: { newTheme in
             guard let newTheme = newTheme else { return }
             self.theme = newTheme
+            self.editorTheme = newTheme.editorTheme()
         })
         .onChange(of: cursorPosition) { newValue in
             self.workspace.data.caretPos = .init(
@@ -159,5 +166,28 @@ public struct CodeEditorViewWrapper: View {
         }
 
         return CodeLanguage.detectLanguageFrom(url: url)
+    }
+}
+
+extension AuroraTheme {
+    func editorTheme() -> EditorTheme {
+        .init(
+            text: editor.text.nsColor,
+            insertionPoint: editor.insertionPoint.nsColor,
+            invisibles: editor.invisibles.nsColor,
+            background: editor.background.nsColor,
+            lineHighlight: editor.lineHighlight.nsColor,
+            selection: editor.selection.nsColor,
+            keywords: editor.keywords.nsColor,
+            commands: editor.commands.nsColor,
+            types: editor.types.nsColor,
+            attributes: editor.attributes.nsColor,
+            variables: editor.variables.nsColor,
+            values: editor.values.nsColor,
+            numbers: editor.numbers.nsColor,
+            strings: editor.strings.nsColor,
+            characters: editor.characters.nsColor,
+            comments: editor.comments.nsColor
+        )
     }
 }

@@ -28,8 +28,8 @@ struct SourceControlNavigatorView: View {
     @ObservedObject
     var repositoryModel: RepositoryModel
 
-    @ObservedObject
-    private var versionControl: VersionControlModel = .shared
+    @EnvironmentObject
+    private var versionControl: VersionControlModel
 
     /// Initializes the view.
     /// 

@@ -20,7 +20,6 @@ final class SourceControlTableViewCell: FileSystemTableViewCell {
     override init(
         frame frameRect: NSRect,
         item: FileSystemClient.FileItem?,
-        versionControlModel: VersionControlModel?,
         isVersionControl: Bool = false,
         workspace: WorkspaceDocument?,
         isEditable _: Bool = false
@@ -28,7 +27,6 @@ final class SourceControlTableViewCell: FileSystemTableViewCell {
         super.init(
             frame: frameRect,
             item: item,
-            versionControlModel: versionControlModel,
             isVersionControl: true,
             workspace: workspace,
             isEditable: false

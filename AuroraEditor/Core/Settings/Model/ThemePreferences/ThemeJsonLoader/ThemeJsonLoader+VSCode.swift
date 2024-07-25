@@ -97,6 +97,16 @@ extension ThemeJsonLoader {
         let background = json["editor.background"] ?? defaultAttr.background.color
         let lineHighlight = json["editor.lineHighlightBackground"] ?? defaultAttr.lineHighlight.color
         let selection = json["editor.selectionHighlightBackground"] ?? defaultAttr.selection.color
+        let keywords = defaultAttr.keywords.color
+        let commands = defaultAttr.commands.color
+        let types = defaultAttr.types.color
+        let attributes = defaultAttr.attributes.color
+        let variables = defaultAttr.variables.color
+        let values = defaultAttr.values.color
+        let numbers = defaultAttr.numbers.color
+        let strings = defaultAttr.strings.color
+        let characters = defaultAttr.characters.color
+        let comments = defaultAttr.comments.color
 
         self.logger.info("Selection: \(String(describing: selection))")
 
@@ -107,6 +117,16 @@ extension ThemeJsonLoader {
             background: Attributes(color: background),
             lineHighlight: Attributes(color: lineHighlight),
             selection: Attributes(color: selection),
+            keywords: Attributes(color: keywords),
+            commands: Attributes(color: commands),
+            types: Attributes(color: types),
+            attributes: Attributes(color: attributes),
+            variables: Attributes(color: variables),
+            values: Attributes(color: values),
+            numbers: Attributes(color: numbers),
+            strings: Attributes(color: strings),
+            characters: Attributes(color: characters),
+            comments: Attributes(color: comments),
             highlightTheme: highlightTheme)
     }
 }

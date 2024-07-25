@@ -20,8 +20,8 @@ struct ChangesView: View {
     private var prefs: AppPreferencesModel = .shared
 
     /// The changes model.
-    @ObservedObject
-    var versionControl: VersionControlModel = .shared
+    @EnvironmentObject
+    var versionControl: VersionControlModel
 
     /// The view body.
     var body: some View {

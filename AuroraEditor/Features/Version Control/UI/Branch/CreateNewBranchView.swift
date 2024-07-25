@@ -25,6 +25,14 @@ struct CreateNewBranchView: View {
     @State
     var branchName: String = ""
 
+    @State
+    private var branchExists: Bool = false
+
+    @EnvironmentObject
+    private var versionControl: VersionControlModel
+
+    private let debouncer = Debouncer()
+
     /// Logger
     let logger = Logger(subsystem: "com.auroraeditor", category: "Create New Branch View")
 
@@ -43,6 +51,9 @@ struct CreateNewBranchView: View {
             HStack {
                 Text("To:")
                 TextField("", text: $branchName)
+                    .onChange(of: branchName) { newValue in
+                        branchExists = branchAlreadyExists(branchName: newValue)
+                    }
             }
 
             if !revisionDesciption.isEmpty {
@@ -66,6 +77,13 @@ struct CreateNewBranchView: View {
                     .padding(.top, 5)
             }
 
+            if branchExists {
+                BranchErrorMessageView(
+                    isWarning: false,
+                    errorMessage: "A branch named **\(branchName)** already exists."
+                )
+            }
+
             HStack {
                 Spacer()
 
@@ -78,7 +96,8 @@ struct CreateNewBranchView: View {
 
                 if branchName.isEmpty
                     || branchName.count < 3
-                    || branchName.count > 250 {
+                    || branchName.count > 250
+                    || branchExists {
                     Button {} label: {
                         Text("Create Branch")
                             .foregroundColor(.gray)
@@ -115,6 +134,10 @@ struct CreateNewBranchView: View {
         }
         .padding()
         .frame(width: 500, height: 190)
+    }
+
+    private func branchAlreadyExists(branchName: String) -> Bool {
+        return versionControl.workspaceBranches.contains(where: { $0.name == branchName })
     }
 }
 

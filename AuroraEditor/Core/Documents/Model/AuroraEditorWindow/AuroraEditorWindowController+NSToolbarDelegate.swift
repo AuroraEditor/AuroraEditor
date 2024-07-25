@@ -190,9 +190,9 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.branchPicker)
             let view = NSHostingView(
                 rootView: ToolbarBranchPicker(
-                    workspace: workspace,
-                    versionControl: versionControl
+                    workspace: workspace
                 )
+                .environmentObject(versionControl)
             )
             toolbarItem.view = view
 

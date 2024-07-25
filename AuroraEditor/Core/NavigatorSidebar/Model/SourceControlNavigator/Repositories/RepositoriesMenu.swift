@@ -28,8 +28,8 @@ final class RepositoriesMenu: NSMenu {
     /// The item that the menu is for
     var item: RepoItem?
 
-    @ObservedObject
-    private var versionControl: VersionControlModel = .shared
+    @EnvironmentObject
+    private var versionControl: VersionControlModel
 
     /// Initialize the menu
     /// 

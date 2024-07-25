@@ -16,6 +16,9 @@ struct NavigatorSidebar: View {
     @EnvironmentObject
     private var workspace: WorkspaceDocument
 
+    @EnvironmentObject
+    private var versionControl: VersionControlModel
+
     /// Application preferences model
     @StateObject
     var prefs: AppPreferencesModel = .shared
@@ -143,6 +146,7 @@ struct NavigatorSidebar: View {
             switch selections[toolbar] {
             case 0: ProjectNavigator()
             case 1: SourceControlNavigatorView(workspace: workspace)
+                    .environmentObject(versionControl)
             case 2: FindNavigator(state: workspace.searchState ?? .init(workspace))
             case 5: NotificationsNavigatorView()
             case 6: HierarchyNavigator()

@@ -254,7 +254,6 @@ extension FindNavigatorListViewController: NSOutlineViewDelegate {
             let view = ProjectNavigatorTableViewCell(
                 frame: frameRect,
                 item: (item as? SearchResultModel)?.file,
-                versionControlModel: nil,
                 workspace: workspace,
                 isEditable: false
             )

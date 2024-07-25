@@ -39,6 +39,16 @@
     "%@" : {
 
     },
+    "%@ to **%@**" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ to **%2$@**"
+          }
+        }
+      }
+    },
     "%@:" : {
 
     },
@@ -2695,6 +2705,9 @@
     "Build Succeeded" : {
 
     },
+    "Bypassed %@:" : {
+
+    },
     "Cancel" : {
       "comment" : "Cancel"
     },
@@ -2803,7 +2816,13 @@
     "Comments" : {
 
     },
-    "Commit to **%@**" : {
+    "Commit message rule failure" : {
+
+    },
+    "Commit Message Rule Failures" : {
+
+    },
+    "Commit warning label" : {
 
     },
     "Compatibility" : {
@@ -3421,6 +3440,9 @@
 
     },
     "Extension privacy practices may vary based, for example, on the feature being used or editor usage. [Learn More](https://auroraeditor.com)" : {
+
+    },
+    "Failed %@:" : {
 
     },
     "Failed to cast to view" : {
@@ -5792,9 +5814,6 @@
 
     },
     "Help" : {
-
-    },
-    "Hi" : {
 
     },
     "Hide" : {
@@ -45013,10 +45032,10 @@
     "Tags:" : {
 
     },
-    "Tap for information about ideal commit summary length" : {
+    "Tap for information about commit message rule failure" : {
 
     },
-    "Test" : {
+    "Tap for information about ideal commit summary length" : {
 
     },
     "Text" : {
@@ -45038,9 +45057,6 @@
 
     },
     "The workspace is configured with the following Git account: %@" : {
-
-    },
-    "This branch is tracking **\"upstream/main\"** and renaming this branch will not change the branch name on the remote." : {
 
     },
     "This IDE is currently enrolled in the %@ Build Programme" : {
@@ -47173,9 +47189,6 @@
 
     },
     "What's New" : {
-
-    },
-    "Whats up?" : {
 
     },
     "Which area are you seeing an issue with?" : {

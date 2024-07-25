@@ -48,7 +48,6 @@ extension ProjectNavigatorViewController: NSOutlineViewDelegate {
         return ProjectNavigatorTableViewCell(
             frame: frameRect,
             item: item as? Item,
-            versionControlModel: versionControl,
             workspace: workspace
         )
     }

@@ -30,6 +30,15 @@
 
 # Script to sort "children" and "files" sections in Xcode project.pbxproj files
 
+# USAGE:
+# chmod +x sort-Xcode-project-file.pl
+#
+# With Warnings:
+# ./sort-Xcode-project-file.pl --warnings /Users/User/Developer/Aurora/AuroraEditor/Aurora\ Editor.xcodeproj
+#
+# With No Warnings:
+# ./sort-Xcode-project-file.pl --no-warnings /Users/User/Developer/Aurora/AuroraEditor/Aurora\ Editor.xcodeproj
+
 use strict;
 use warnings;
 

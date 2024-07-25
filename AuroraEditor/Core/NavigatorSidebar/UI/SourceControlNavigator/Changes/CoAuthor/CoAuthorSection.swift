@@ -2,7 +2,7 @@
 //  CoAuthorSection.swift
 //  Aurora Editor
 //
-//  Created by Tihan-Nico Paxton on 2024/07/16.
+//  Created by Nanashi Li on 2024/07/16.
 //  Copyright © 2024 Aurora Company. All rights reserved.
 //
 
@@ -14,6 +14,8 @@ struct CoAuthorSection: View {
     @Binding var suggestions: [IAPIMentionableUser]
     @Binding var showSuggestions: Bool
     @Binding var filteredSuggestions: [IAPIMentionableUser]
+
+    @EnvironmentObject
     var versionControl: VersionControlModel
 
     var body: some View {

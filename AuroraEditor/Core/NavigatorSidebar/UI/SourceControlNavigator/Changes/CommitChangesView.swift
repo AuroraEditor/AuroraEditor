@@ -18,40 +18,56 @@ struct CommitChangesView: View {
 
     /// The summary text.
     @State
-    private var summaryText: String = ""
+    var summaryText: String = ""
 
     /// The description text.
     @State
-    private var descriptionText: String = ""
+    var descriptionText: String = ""
 
     /// The workspace.
     @State
     var workspace: WorkspaceDocument
 
-    @ObservedObject
-    private var versionControl: VersionControlModel = .shared
+    @EnvironmentObject
+    var versionControl: VersionControlModel
 
     /// Whether to stage all changes.
     @State
     private var stageAll: Bool = false
 
+    // MARK: - Co-Authors
+
     @State
     private var addCoAuthors: Bool = false
-
     @State
     private var addedCoAuthors: String = ""
-
     @State
     private var showSuggestions: Bool = false
     @State
     private var suggestions: [IAPIMentionableUser] = []
     @State
     private var filteredSuggestions: [IAPIMentionableUser] = []
-
     @State
     private var height: CGFloat = 95
     @State
     private var isExpanded: Bool = false
+
+    // MARK: - Commiting
+
+    @State
+    var repoRulesInfo: RepoRulesInfo?
+    @State
+    var commitToAmend: Commit?
+    @State
+    var coAuthorTrailers: [Trailer]? = []
+
+    // MARK: - Repository GitHub Rule Variables
+
+    @State
+    var repoRulesEnabled: Bool = false
+    @State var repoRuleCommitMessageFailures: RepoRulesMetadataFailures
+    @State var repoRuleCommitAuthorFailures: RepoRulesMetadataFailures
+    @State var repoRuleBranchNameFailures: RepoRulesMetadataFailures
 
     /// The view body.
     /// 
@@ -59,6 +75,9 @@ struct CommitChangesView: View {
     init(workspace: WorkspaceDocument) {
         self.workspace = workspace
         self.gitClient = workspace.fileSystemClient?.model?.gitClient
+        self.repoRuleCommitMessageFailures = RepoRulesMetadataFailures()
+        self.repoRuleCommitAuthorFailures = RepoRulesMetadataFailures()
+        self.repoRuleBranchNameFailures = RepoRulesMetadataFailures()
     }
 
     /// The view body.
@@ -76,8 +95,7 @@ struct CommitChangesView: View {
                         addedCoAuthors: $addedCoAuthors,
                         suggestions: $suggestions,
                         showSuggestions: $showSuggestions,
-                        filteredSuggestions: $filteredSuggestions,
-                        versionControl: versionControl
+                        filteredSuggestions: $filteredSuggestions
                     )
                     .onDisappear {
                         addedCoAuthors = ""
@@ -98,17 +116,15 @@ struct CommitChangesView: View {
             )
             .animation(.smooth(), value: height)
 
-            Button(action: commit) {
-                Spacer()
-                Text("Commit to **\(versionControl.currentWorkspaceBranch)**")
-                    .foregroundColor(.white)
-                    .font(.system(size: 11))
-                    .padding(.vertical, 5)
-                Spacer()
-            }
-            .buttonStyle(.borderedProminent)
-            .frame(width: .infinity)
-            .disabled(summaryText.isEmpty)
+            CommitButton(
+                workspaceFolder: workspace.folderURL,
+                summaryText: $summaryText,
+                descriptionText: $descriptionText,
+                branchName: $versionControl.currentWorkspaceBranch,
+                addedCoAuthors: $addedCoAuthors,
+                addCoAuthors: $addCoAuthors,
+                repoRuleBranchNameFailures: $repoRuleBranchNameFailures
+            )
         }
         .padding(10)
         .onChange(of: showSuggestions) { _ in updateHeight() }
@@ -116,6 +132,10 @@ struct CommitChangesView: View {
         .animation(.easeInOut, value: isExpanded)
         .onAppear {
             suggestions = versionControl.githubRepositoryMentionables
+
+            Task {
+                await updateRepoRuleFailures(forceUpdate: true)
+            }
         }
     }
 
@@ -141,34 +161,12 @@ struct CommitChangesView: View {
                 )
                 .help("The workspace is configured with the following Git account: \(versionControl.workspaceEmail)")
 
-                HStack(spacing: 0) {
-                    TextField(text: $summaryText) {
-                        Text(checkIfChangeIsOne() ? getFirstFileSummary() : "Summary (Required)")
-                            .font(.system(size: 11, weight: .medium))
-                    }
-                    .font(.system(size: 11, weight: .medium))
-                    .padding(.vertical, 6)
-                    .padding(.leading, 10)
-                    .padding(.trailing, 10)
-                    .textFieldStyle(.plain)
-
-                    if summaryText.count > 50 {
-                        Image(systemName: "info.circle")
-                            .padding(.trailing, 10)
-                            .help("Ideal commit summaries are concise (under 50 chars) and descriptive")
-                            .accessibilityLabel("Character count warning")
-                            .accessibilityHint("Tap for information about ideal commit summary length")
-                            .accessibilityAddTraits(.isButton)
-                            .transition(.scale.combined(with: .opacity))
-                    }
-                }
-                .background(.regularMaterial)
-                .clipShape(RoundedRectangle(cornerRadius: 6))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 6)
-                        .stroke(Color.secondary, lineWidth: 0.5)
+                CommitMessageView(
+                    workspace: workspace,
+                    summaryText: $summaryText,
+                    repoRulesEnabled: $repoRulesEnabled,
+                    repoRuleCommitMessageFailures: $repoRuleCommitMessageFailures
                 )
-                .disabled(getFirstFileSummary() == "Unable to commit")
             }
         }
     }
@@ -206,77 +204,6 @@ struct CommitChangesView: View {
         }
         .buttonStyle(.plain)
         .accessibilityAddTraits(.isButton)
-    }
-
-    /// Gets the first file summary.
-    /// 
-    /// Based on the Git Change type of the file we create a summary string
-    /// that matches that of the Git Change type
-    ///
-    /// - Returns: The summary string.
-    private func getFirstFileSummary() -> String {
-        let fileName = workspace.fileSystemClient?.model?.changed[0].fileName
-        switch workspace.fileSystemClient?.model?.changed[0].gitStatus {
-        case .modified:
-            return "Update \(fileName ?? "Unknown File")"
-        case .added:
-            return "Created \(fileName ?? "Unknown File")"
-        case .copied:
-            return "Copied \(fileName ?? "Unknown File")"
-        case .deleted:
-            return "Deleted \(fileName ?? "Unknown File")"
-        case .fileTypeChange:
-            return "Changed file type \(fileName ?? "Unknown File")"
-        case .renamed:
-            return "Renamed \(fileName ?? "Unknown File")"
-        case .unknown:
-            return "Summary (Required)"
-        case .updatedUnmerged:
-            return "Unmerged file \(fileName ?? "Unknown File")"
-        case .ignored:
-            return "Ignore file \(fileName ?? "Unknown File")"
-        case .unchanged:
-            return "Unchanged"
-        case .none:
-            return "Unable to commit"
-        }
-    }
-
-    /// Checks if the change is one.
-    /// 
-    /// If there is only one changed file in list we will return true else
-    /// if there is more than one we return false.
-    /// 
-    /// - Returns: Whether the change is one.
-    private func checkIfChangeIsOne() -> Bool {
-        return workspace.fileSystemClient?.model?.changed.count == 1
-    }
-
-    /// Commits the changes.
-    private func commit() {
-        let logger: Logger = Logger(subsystem: "com.auroraeditor.vcs", category: "Commit Changes View")
-
-        guard let client = gitClient else {
-            logger.fault("No git client!")
-            return
-        }
-        do {
-            let changedFiles = (try? client.getChangedFiles().map { $0.fileName }) ?? []
-            if !changedFiles.isEmpty {
-                if stageAll {
-                    try client.stage(files: changedFiles)
-                }
-                var message = summaryText
-                if !descriptionText.isEmpty {
-                    message += "\n\n" + descriptionText
-                }
-                try client.commit(message: message)
-            } else {
-                logger.info("No changes to commit!")
-            }
-        } catch let err {
-            logger.fault("\(err)")
-        }
     }
 }
 

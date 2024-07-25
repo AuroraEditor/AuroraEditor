@@ -13,8 +13,8 @@ import Version_Control
 struct BranchPopoverList: View {
     // MARK: - Properties
 
-    @ObservedObject
-    var versionControl: VersionControlModel = .shared
+    @EnvironmentObject
+    var versionControl: VersionControlModel
 
     @ObservedObject
     var workspace: WorkspaceDocument
@@ -37,7 +37,6 @@ struct BranchPopoverList: View {
                                 await versionControl.getWorkspaceBranches()
                             }
                         },
-                        versionControl: versionControl,
                         workspace: workspace,
                         branch: versionControl.currentBranchObject ?? GitBranch(
                             name: "Unknown Branch",
@@ -55,7 +54,6 @@ struct BranchPopoverList: View {
                                     await versionControl.getWorkspaceBranches()
                                 }
                             },
-                            versionControl: versionControl,
                             workspace: workspace,
                             branch: branch
                         )
@@ -70,7 +68,6 @@ struct BranchPopoverList: View {
                                     await versionControl.getWorkspaceBranches()
                                 }
                             },
-                            versionControl: versionControl,
                             workspace: workspace,
                             branch: branch
                         )

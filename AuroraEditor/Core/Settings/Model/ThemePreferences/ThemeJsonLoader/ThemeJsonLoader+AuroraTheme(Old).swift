@@ -89,7 +89,17 @@ extension ThemeJsonLoader {
             let invisibles = json["invisibles"]?["color"],
             let background = json["background"]?["color"],
             let lineHighlight = json["lineHighlight"]?["color"],
-            let selection = json["selection"]?["color"]
+            let selection = json["selection"]?["color"],
+            let keywords = json["keywords"]?["color"],
+            let commands = json["commands"]?["color"],
+            let types = json["types"]?["color"],
+            let attributes = json["attributes"]?["color"],
+            let variables = json["variables"]?["color"],
+            let values = json["values"]?["color"],
+            let numbers = json["numbers"]?["color"],
+            let strings = json["strings"]?["color"],
+            let characters = json["characters"]?["color"],
+            let comments = json["comments"]?["color"]
         else { return nil }
 
         // NOTE: Not sure if all these are correct. May need double checking.
@@ -131,6 +141,16 @@ extension ThemeJsonLoader {
             background: AuroraTheme.Attributes(color: background),
             lineHighlight: AuroraTheme.Attributes(color: lineHighlight),
             selection: AuroraTheme.Attributes(color: selection),
+            keywords: Attributes(color: keywords),
+            commands: Attributes(color: commands),
+            types: Attributes(color: types),
+            attributes: Attributes(color: attributes),
+            variables: Attributes(color: variables),
+            values: Attributes(color: values),
+            numbers: Attributes(color: numbers),
+            strings: Attributes(color: strings),
+            characters: Attributes(color: characters),
+            comments: Attributes(color: comments),
             highlightTheme: highlightTheme
         )
     }

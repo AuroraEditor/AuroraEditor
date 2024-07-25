@@ -19,10 +19,10 @@ struct BranchCell: View {
     var handleRefresh: () -> Void
 
     @State
-    var branch: GitBranch = .init(name: "", type: .local, ref: "")
+    var branch: GitBranch
 
-    @ObservedObject
-    private var versionControl: VersionControlModel = .shared
+    @EnvironmentObject
+    private var versionControl: VersionControlModel
 
     @ObservedObject
     private var workspace: WorkspaceDocument
@@ -33,12 +33,10 @@ struct BranchCell: View {
 
     init(
         handleRefresh: @escaping () -> Void,
-        versionControl: VersionControlModel,
         workspace: WorkspaceDocument,
         branch: GitBranch
     ) {
         self.handleRefresh = handleRefresh
-        self.versionControl = versionControl
         self.workspace = workspace
         self.branch = branch
     }

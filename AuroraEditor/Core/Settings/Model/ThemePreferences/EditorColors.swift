@@ -20,7 +20,17 @@ public extension AuroraTheme {
             lhs.insertionPoint == rhs.insertionPoint &&
             lhs.background == rhs.background &&
             lhs.lineHighlight == rhs.lineHighlight &&
-            lhs.selection == rhs.selection
+            lhs.selection == rhs.selection &&
+            lhs.keywords == rhs.keywords &&
+            lhs.commands == rhs.commands &&
+            lhs.types == rhs.types &&
+            lhs.attributes == rhs.attributes &&
+            lhs.variables == rhs.variables &&
+            lhs.values == rhs.values &&
+            lhs.numbers == rhs.numbers &&
+            lhs.strings == rhs.strings &&
+            lhs.characters == rhs.characters &&
+            lhs.comments == rhs.comments
         }
 
         /// Hashable implementation
@@ -30,6 +40,16 @@ public extension AuroraTheme {
             hasher.combine(background)
             hasher.combine(lineHighlight)
             hasher.combine(selection)
+            hasher.combine(keywords)
+            hasher.combine(commands)
+            hasher.combine(types)
+            hasher.combine(attributes)
+            hasher.combine(variables)
+            hasher.combine(values)
+            hasher.combine(numbers)
+            hasher.combine(strings)
+            hasher.combine(characters)
+            hasher.combine(comments)
         }
 
         /// text color
@@ -49,6 +69,16 @@ public extension AuroraTheme {
 
         /// selectionColor
         public var selection: Attributes
+        public var keywords: Attributes
+        public var commands: Attributes
+        public var types: Attributes
+        public var attributes: Attributes
+        public var variables: Attributes
+        public var values: Attributes
+        public var numbers: Attributes
+        public var strings: Attributes
+        public var characters: Attributes
+        public var comments: Attributes
 
         /// The highlight theme
         public var highlightTheme: HighlightTheme
@@ -72,6 +102,16 @@ public extension AuroraTheme {
                 case "background": return self.background
                 case "lineHighlight": return self.lineHighlight
                 case "selection": return self.selection
+                case "keywords":    return self.keywords
+                case "commands":    return self.commands
+                case "types":       return self.types
+                case "attributes":  return self.attributes
+                case "variables":   return self.variables
+                case "values":      return self.values
+                case "numbers":     return self.numbers
+                case "strings":     return self.strings
+                case "characters":  return self.characters
+                case "comments":    return self.comments
                 default: fatalError("Invalid key")
                 }
             }
@@ -83,6 +123,16 @@ public extension AuroraTheme {
                 case "background": self.background = newValue
                 case "lineHighlight": self.lineHighlight = newValue
                 case "selection": self.selection = newValue
+                case "keywords":    self.keywords = newValue
+                case "commands":    self.commands = newValue
+                case "types":        self.types = newValue
+                case "attributes":  self.attributes = newValue
+                case "variables":   self.variables = newValue
+                case "values":      self.values = newValue
+                case "numbers":     self.numbers = newValue
+                case "strings":     self.strings = newValue
+                case "characters":  self.characters = newValue
+                case "comments":    self.comments = newValue
                 default: fatalError("Invalid key")
                 }
             }
@@ -104,6 +154,16 @@ public extension AuroraTheme {
             background: Attributes,
             lineHighlight: Attributes,
             selection: Attributes,
+            keywords: Attributes,
+            commands: Attributes,
+            types: Attributes,
+            attributes: Attributes,
+            variables: Attributes,
+            values: Attributes,
+            numbers: Attributes,
+            strings: Attributes,
+            characters: Attributes,
+            comments: Attributes,
             highlightTheme: HighlightTheme
         ) {
             self.text = text
@@ -112,16 +172,37 @@ public extension AuroraTheme {
             self.background = background
             self.lineHighlight = lineHighlight
             self.selection = selection
+            self.keywords = keywords
+            self.commands = commands
+            self.types = types
+            self.attributes = attributes
+            self.variables = variables
+            self.values = values
+            self.numbers = numbers
+            self.strings = strings
+            self.characters = characters
+            self.comments = comments
             self.highlightTheme = highlightTheme
         }
 
         /// Encode the editor colors
         enum Keys: CodingKey {
-            case text, insertionPoint, invisibles, background, lineHighlight, selection, highlightTheme
+            case text, insertionPoint, invisibles, background, lineHighlight, selection
+            case keywords
+            case commands
+            case types
+            case attributes
+            case variables
+            case values
+            case numbers
+            case strings
+            case characters
+            case comments
+            case highlightTheme
         }
 
         /// Encode the editor colors
-        /// 
+        ///
         /// - Parameter encoder: The encoder
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: Keys.self)
@@ -131,6 +212,16 @@ public extension AuroraTheme {
             try container.encode(self.background, forKey: .background)
             try container.encode(self.lineHighlight, forKey: .lineHighlight)
             try container.encode(self.selection, forKey: .selection)
+            try container.encode(self.keywords, forKey: .keywords)
+            try container.encode(self.commands, forKey: .commands)
+            try container.encode(self.types, forKey: .types)
+            try container.encode(self.attributes, forKey: .attributes)
+            try container.encode(self.variables, forKey: .variables)
+            try container.encode(self.values, forKey: .values)
+            try container.encode(self.numbers, forKey: .numbers)
+            try container.encode(self.strings, forKey: .strings)
+            try container.encode(self.characters, forKey: .characters)
+            try container.encode(self.comments, forKey: .comments)
             try container.encode(self.highlightTheme, forKey: .highlightTheme)
         }
 
@@ -146,6 +237,16 @@ public extension AuroraTheme {
             self.background = try container.decode(Attributes.self, forKey: .background)
             self.lineHighlight = try container.decode(Attributes.self, forKey: .lineHighlight)
             self.selection = try container.decode(Attributes.self, forKey: .selection)
+            self.keywords = try container.decode(Attributes.self, forKey: .keywords)
+            self.commands = try container.decode(Attributes.self, forKey: .commands)
+            self.types = try container.decode(Attributes.self, forKey: .types)
+            self.attributes = try container.decode(Attributes.self, forKey: .attributes)
+            self.variables = try container.decode(Attributes.self, forKey: .variables)
+            self.values = try container.decode(Attributes.self, forKey: .values)
+            self.numbers = try container.decode(Attributes.self, forKey: .numbers)
+            self.strings = try container.decode(Attributes.self, forKey: .strings)
+            self.characters = try container.decode(Attributes.self, forKey: .characters)
+            self.comments = try container.decode(Attributes.self, forKey: .comments)
             self.highlightTheme = (try? container.decode(HighlightTheme.self, forKey: .highlightTheme)) ?? .default
         }
 
@@ -157,6 +258,16 @@ public extension AuroraTheme {
             background: Attributes(color: "#292a30"),
             lineHighlight: Attributes(color: "#2f3239"),
             selection: Attributes(color: "#636f83"),
+            keywords: Attributes(color: "#FF7AB3"),
+            commands: Attributes(color: "#67B7A4"),
+            types: Attributes(color: "#5DD8FF"),
+            attributes: Attributes(color: "#D0A8FF"),
+            variables: Attributes(color: "#41A1C0"),
+            values: Attributes(color: "#A167E6"),
+            numbers: Attributes(color: "#D0BF69"),
+            strings: Attributes(color: "#FC6A5D"),
+            characters: Attributes(color: "#D0BF69"),
+            comments: Attributes(color: "#73A74E"),
             highlightTheme: .default
         )
 
@@ -168,6 +279,16 @@ public extension AuroraTheme {
             background: Attributes(color: "#FFFFFF"),
             lineHighlight: Attributes(color: "#ecf5ff"),
             selection: Attributes(color: "#b2d7ff"),
+            keywords: Attributes(color: "#9B2393"),
+            commands: Attributes(color: "#326D74"),
+            types: Attributes(color: "#0B4F79"),
+            attributes: Attributes(color: "#3900A0"),
+            variables: Attributes(color: "#0F68A0"),
+            values: Attributes(color: "#6C36A9"),
+            numbers: Attributes(color: "#1C00CF"),
+            strings: Attributes(color: "#C41A16"),
+            characters: Attributes(color: "#1C00CF"),
+            comments: Attributes(color: "#267507"),
             highlightTheme: .default
         )
     }

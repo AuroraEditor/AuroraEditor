@@ -189,7 +189,6 @@ extension SourceControlController: NSOutlineViewDelegate {
         return SourceControlTableViewCell(
             frame: frameRect,
             item: item as? Item,
-            versionControlModel: nil,
             workspace: nil
         )
     }

@@ -19,7 +19,7 @@ class FileSystemTableViewCell: StandardTableViewCell {
     /// Change label small width constraint
     var changeLabelSmallWidth: NSLayoutConstraint!
 
-    private var versionControl: VersionControlModel?
+    private var versionControl: VersionControlModel = .shared
 
     /// Application preferences
     private let prefs = AppPreferencesModel.shared.preferences.general
@@ -36,16 +36,13 @@ class FileSystemTableViewCell: StandardTableViewCell {
     init(
         frame frameRect: NSRect,
         item: FileSystemClient.FileItem?,
-        versionControlModel: VersionControlModel?,
         isVersionControl: Bool = false,
         workspace: WorkspaceDocument?,
         isEditable: Bool = true
     ) {
-        self.versionControl = versionControlModel
         super.init(
             frame: frameRect,
             isEditable: isEditable,
-            isVersionControl: isVersionControl,
             workspace: workspace
         )
         if let item = item {
@@ -180,7 +177,7 @@ class FileSystemTableViewCell: StandardTableViewCell {
             return
         }
 
-        let changedUpstreamFiles = versionControl?.changedUpstreamFiles ?? []
+        let changedUpstreamFiles = versionControl.changedUpstreamFiles
 
         let trie = Trie()
         for file in changedUpstreamFiles {

@@ -28,6 +28,9 @@ struct WorkspaceView: View {
     @EnvironmentObject
     var workspace: WorkspaceDocument
 
+    @EnvironmentObject
+    var versionControl: VersionControlModel
+
     /// The notification service.
     let notificationService: NotificationService = .init()
 
@@ -220,6 +223,7 @@ struct WorkspaceView: View {
             RenameBranchView(workspace: workspace,
                              branch: workspace.data.currentBranch,
                              newBranchName: workspace.data.currentlySelectedBranch)
+            .environmentObject(versionControl)
         }
         .sheet(isPresented: $workspace.data.showAddRemoteView) {
             AddRemoteView(workspace: workspace)
@@ -228,6 +232,7 @@ struct WorkspaceView: View {
             CreateNewBranchView(workspace: workspace,
                                 revision: workspace.data.branchRevision,
                                 revisionDesciption: workspace.data.branchRevisionDescription)
+            .environmentObject(versionControl)
         }
         .sheet(isPresented: $workspace.data.showTagCreationSheet) {
             CreateNewTagView(workspace: workspace,

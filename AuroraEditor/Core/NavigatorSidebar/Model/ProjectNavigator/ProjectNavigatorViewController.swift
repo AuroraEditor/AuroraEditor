@@ -59,8 +59,8 @@ final class ProjectNavigatorViewController: NSViewController {
     /// The hidden file extensions
     var hiddenFileExtensions: FileExtensions = .default
 
-    @ObservedObject
-    var versionControl: VersionControlModel = .shared
+    @EnvironmentObject
+    var versionControl: VersionControlModel
 
     /// The row height of the outline view
     var rowHeight: Double = 22 {

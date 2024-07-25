@@ -91,10 +91,9 @@ public final class ThemeModel: ObservableObject {
                 ThemeJsonLoader.shared.loadTmThemeXml(from: fileURL) {
 
                 guard let terminalColors = try theme.terminal.allProperties() as? [String: AuroraTheme.Attributes],
-                      let editorColors = try theme.editor.allProperties().filter(
-                        {
-                        $0.value is AuroraTheme.Attributes
-                        }) as? [String: AuroraTheme.Attributes]
+                      let editorColors = try theme.editor
+                    .allProperties()
+                    .filter({ $0.value is AuroraTheme.Attributes }) as? [String: AuroraTheme.Attributes]
                 else {
                     fatalError("failed to load terminal and editor colors")
                 }
@@ -122,6 +121,23 @@ public final class ThemeModel: ObservableObject {
             $0.name == prefs.theme.selectedTheme }) { self.selectedTheme = existingTheme } else {
                 self.selectedTheme = try? getDefaultTheme(with: NSApp.effectiveAppearance.name)
             }
+    }
+
+    /// Search for the provided `theme`'s appearance variants.
+    /// - Parameter appearance: Search for this appearance variant.
+    /// - Returns: Self, if cannot find current theme for appeareance.
+    public func getTheme(_ theme: AuroraTheme, with appearance: NSAppearance.Name) -> AuroraTheme {
+        let colorSchemeAgnosticThemeName = theme
+            .name
+            .replacingOccurrences(of: "dark", with: "")
+            .replacingOccurrences(of: "light", with: "")
+            .lowercased()
+        if appearance == .darkAqua || appearance == .vibrantDark {
+            return self.darkThemes.first { $0.name.lowercased().contains(colorSchemeAgnosticThemeName) } ?? theme
+        } else if appearance == .aqua || appearance == .vibrantLight {
+            return self.lightThemes.first { $0.name.lowercased().contains(colorSchemeAgnosticThemeName) } ?? theme
+        }
+        return theme
     }
 
     private func getDefaultTheme(with appearance: NSAppearance.Name) throws -> AuroraTheme? {
