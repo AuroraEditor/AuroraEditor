@@ -1,4 +1,4 @@
-name: Build & Lint
+name: Build, Lint, and Test
 
 on:
   pull_request:
@@ -64,3 +64,28 @@ jobs:
           xcodebuild -resolvePackageDependencies
           xcodebuild -quiet -workspace "Aurora Editor.xcworkspace" -scheme "Aurora Editor" clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
+  run_tests:
+    runs-on: self-hosted
+    timeout-minutes: 10 # If an action exceeds 10 mins, it probably isn't ever going to complete.
+    needs: build_and_lint
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Runner environment
+        run: |
+          echo "MacOS Version"
+          sw_vers
+          echo "Toolchain version"
+          swift -version
+          echo "SwiftLint (version)"
+          swiftlint version
+
+      - name: Aurora Editor (Tests)
+        run: |
+          set -o pipefail
+          xcodebuild -quiet \
+          -workspace "Aurora Editor.xcworkspace" \
+          -scheme "Aurora Editor (Tests)" \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          test
