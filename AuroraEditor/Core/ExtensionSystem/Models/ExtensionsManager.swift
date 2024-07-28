@@ -274,7 +274,7 @@ public final class ExtensionsManager {
         let params = Array(parameters.keys).joined(separator: ": ..., ")
 
         self.logger.info(
-            "[Extension] send \(event)(\(params)) to \(ExtensionsManager.shared.loadedExtensions.count) extensions."
+            "Send \(event)(\(params)) to \(ExtensionsManager.shared.loadedExtensions.count) extensions."
         )
 
         // Let the extensions know we opened a file (from a workspace)

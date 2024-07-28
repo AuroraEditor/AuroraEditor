@@ -40,6 +40,14 @@ public protocol ExtensionDocumentationFromAuroraEditor {
     /// - Parameter contents: file contents
     func didOpen(workspace: String, file: String, contents: String)
 
+    /// Did edit file (in workspace)
+    ///
+    /// - Parameter workspace: workspace name
+    /// - Parameter file: file name
+    /// - Parameter contents: file contents
+    /// - Parameter isEdited: file is edited?
+    func didBeginEditing(workspace: String, file: String, contents: String, isEdited: Bool)
+
     /// Did save file
     ///
     /// - Parameter file: filename

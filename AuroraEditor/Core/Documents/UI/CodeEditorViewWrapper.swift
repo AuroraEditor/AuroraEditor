@@ -10,6 +10,7 @@ import SwiftUI
 import AuroraEditorTextView
 import AuroraEditorLanguage
 import AuroraEditorSourceEditor
+import OSLog
 
 /// A view that wraps the code editor view.
 public struct CodeEditorViewWrapper: View {
@@ -47,9 +48,13 @@ public struct CodeEditorViewWrapper: View {
     /// Is editable state
     private let editable: Bool
 
+    // Is syntact highlighting disabled?
     private var isSyntaxHighlightingDisabled: Bool {
         prefs.preferences.textEditing.isSyntaxHighlightingDisabled
     }
+
+    /// Logger
+    let logger = Logger(subsystem: "com.auroraeditor", category: "CodeEditorViewWrapper")
 
     /// Code editor view wrapper initializer
     /// 
@@ -133,6 +138,7 @@ public struct CodeEditorViewWrapper: View {
                 .editorTheme()
         }
         .onChange(of: colorScheme) { value in
+            logger.debug("Color scheme did change.")
             switch value {
             case .dark:
                 self.editorTheme = ThemeModel.shared
@@ -147,14 +153,34 @@ public struct CodeEditorViewWrapper: View {
             }
         }
         .onChange(of: themeModel.selectedTheme, perform: { newTheme in
+            logger.debug("Theme did change")
             guard let newTheme = newTheme else { return }
             self.theme = newTheme
             self.editorTheme = newTheme.editorTheme()
         })
         .onChange(of: cursorPosition) { newValue in
+            logger.debug("Did change caret position")
             self.workspace.data.caretPos = .init(
                 line: newValue[0].line,
                 column: newValue[0].column
+            )
+        }
+        .onChange(of: codeFile.content) { _ in
+            logger.debug("File contents did changed")
+            NotificationCenter.default.post(
+                name: .didBeginEditing,
+                object: $codeFile,
+                userInfo: [:]
+            )
+
+            ExtensionsManager.shared.sendEvent(
+                event: "didBeginEditing",
+                parameters: [
+                    "workspace": String(workspace.fileURL?.relativeString ?? "Unknown"),
+                    "file": String(codeFile.fileURL?.relativeString ?? "Unknown"),
+                    "contents": codeFile.content,
+                    "isEdited": codeFile.isDocumentEdited
+                ]
             )
         }
     }
