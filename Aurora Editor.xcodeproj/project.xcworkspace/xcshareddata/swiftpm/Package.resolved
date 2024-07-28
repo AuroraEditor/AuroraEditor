@@ -1,5 +1,5 @@
 {
-  "originHash" : "b4a09012bca674630f0c9b3cc7f40d56dfb9ec8251442879daa9caf82054c71a",
+  "originHash" : "f1c74e1c3d25eb341e3b57c75708287219a4ceb5cc606553d257043a804d8a76",
   "pins" : [
     {
       "identity" : "aeextensionkit",
@@ -25,7 +25,7 @@
       "location" : "https://github.com/AuroraEditor/AuroraEditorSourceEditor",
       "state" : {
         "branch" : "main",
-        "revision" : "53210fa0ea0918335ebd9aef62232c247259de15"
+        "revision" : "1286a1ab0a5a1a983477cccf1d824e5583d77ba7"
       }
     },
     {
@@ -34,7 +34,7 @@
       "location" : "https://github.com/AuroraEditor/AuroraEditorTextView",
       "state" : {
         "branch" : "main",
-        "revision" : "ae8aae6fab5ca0a9abd1744eb248c9a5e0cceebd"
+        "revision" : "aa4a710d40c41af90a28109b35bd1dea637515f6"
       }
     },
     {
@@ -52,7 +52,7 @@
       "location" : "https://github.com/groue/GRDB.swift",
       "state" : {
         "branch" : "master",
-        "revision" : "78448cf8f4ed39b259bd6718d074a57ae3b2e8ba"
+        "revision" : "04543755d8deeaacf122e2856e4fc056dc304277"
       }
     },
     {

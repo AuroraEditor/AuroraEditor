@@ -64,6 +64,12 @@ public struct TextEditingPreferencesView: View {
                 scopes
                     .padding(.bottom, 5)
                     .padding(.horizontal)
+
+                Divider()
+
+                disableSyntaxHighlighting
+                    .padding(.bottom, 5)
+                    .padding(.horizontal)
             }
             .padding(.bottom)
 
@@ -123,6 +129,22 @@ public struct TextEditingPreferencesView: View {
             Toggle("", isOn: $prefs.preferences.textEditing.showScopes)
                 .toggleStyle(.switch)
                 .labelsHidden()
+        }
+    }
+
+    /// The scopes toggle
+    private var disableSyntaxHighlighting: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text("Disable Syntax Highlighting")
+                Spacer()
+                Toggle("", isOn: $prefs.preferences.textEditing.isSyntaxHighlightingDisabled)
+                    .toggleStyle(.switch)
+                    .labelsHidden()
+            }
+            Text("Disabling syntax highlighting can improve performance by reducing the processing required to render the text editor, especially for large files.") // swiftlint:disable:this line_length
+                .font(.footnote)
+                .foregroundColor(.gray)
         }
     }
 

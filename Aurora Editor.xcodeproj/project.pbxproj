@@ -418,7 +418,6 @@
 		2B7C8CC62BC5B3160061DE0D /* JSSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */; };
 		2B89F85428B13E9D007CB9C1 /* AuroraMessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */; };
 		2BA10C862C34841B0040B192 /* emptyURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA10C852C34841B0040B192 /* emptyURL.swift */; };
-		2BA8F0862C1DADBD005A06A3 /* AuroraEditorSourceEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 2BA8F0852C1DADBD005A06A3 /* AuroraEditorSourceEditor */; };
 		2BA8F0892C1DADD4005A06A3 /* AuroraEditorTextView in Frameworks */ = {isa = PBXBuildFile; productRef = 2BA8F0882C1DADD4005A06A3 /* AuroraEditorTextView */; };
 		2BCBAAC82927C41E00D4DFB2 /* BindingProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBAAC72927C41E00D4DFB2 /* BindingProxy.swift */; };
 		2BCBAACA2927C65500D4DFB2 /* View+isHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */; };
@@ -517,6 +516,7 @@
 		A01AB2D82ACC9EDC0029EDF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A01AB2D72ACC9EDC0029EDF0 /* Assets.xcassets */; };
 		A01AB2DB2ACC9EDC0029EDF0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A01AB2DA2ACC9EDC0029EDF0 /* Preview Assets.xcassets */; };
 		A01AB2E72ACCA8B90029EDF0 /* AEUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01AB2E62ACCA8B90029EDF0 /* AEUpdateService.swift */; };
+		A01E68682C53D37D00083247 /* AuroraEditorSourceEditor in Frameworks */ = {isa = PBXBuildFile; productRef = A01E68672C53D37D00083247 /* AuroraEditorSourceEditor */; };
 		A02AA2122ADF20CE007933A5 /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02AA2112ADF20CE007933A5 /* FilterButton.swift */; };
 		A0386D872B8667F000EFAFBA /* Version-Control in Frameworks */ = {isa = PBXBuildFile; productRef = A08A78AF2AF4214B00E050D4 /* Version-Control */; };
 		A0386D8D2B866E2300EFAFBA /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = A0386D8C2B866E2300EFAFBA /* SwiftTerm */; };
@@ -552,6 +552,7 @@
 		A07C1CD42AE4518900E8B17D /* NotificationIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07C1CD32AE4518900E8B17D /* NotificationIcon.swift */; };
 		A07E896D2C4E73D900E58D40 /* BranchErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07E896C2C4E73D900E58D40 /* BranchErrorMessageView.swift */; };
 		A080945D2C34A2B000EDDA59 /* Version-Control in Frameworks */ = {isa = PBXBuildFile; productRef = A080945C2C34A2B000EDDA59 /* Version-Control */; };
+		A084DA0B2C555E4100B0D60C /* AuroraEditorSourceEditor in Frameworks */ = {isa = PBXBuildFile; productRef = A084DA0A2C555E4100B0D60C /* AuroraEditorSourceEditor */; };
 		A08E00812AD48C2A0091725D /* LoaderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E00802AD48C2A0091725D /* LoaderState.swift */; };
 		A08E00832AD48C740091725D /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E00822AD48C740091725D /* Loader.swift */; };
 		A08E00852AD48D660091725D /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E00842AD48D660091725D /* LoaderView.swift */; };
@@ -1280,7 +1281,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */,
-				2BA8F0862C1DADBD005A06A3 /* AuroraEditorSourceEditor in Frameworks */,
 				2BA8F0892C1DADD4005A06A3 /* AuroraEditorTextView in Frameworks */,
 				2B56E1492C3DB8E200A80B6C /* DynamicUI in Frameworks */,
 				A0DD4EF12C30BEFB007E4124 /* GRDB in Frameworks */,
@@ -1293,6 +1293,8 @@
 				A073E13C2C4D8B210081140D /* Version-Control in Frameworks */,
 				A0C008902C459B5100B990D2 /* Version-Control in Frameworks */,
 				A0142EFE2ACB64AA0002F95D /* ZIPFoundation in Frameworks */,
+				A01E68682C53D37D00083247 /* AuroraEditorSourceEditor in Frameworks */,
+				A084DA0B2C555E4100B0D60C /* AuroraEditorSourceEditor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3714,7 +3716,6 @@
 				A0142EFD2ACB64AA0002F95D /* ZIPFoundation */,
 				A08A78AF2AF4214B00E050D4 /* Version-Control */,
 				A0386D8C2B866E2300EFAFBA /* SwiftTerm */,
-				2BA8F0852C1DADBD005A06A3 /* AuroraEditorSourceEditor */,
 				2BA8F0882C1DADD4005A06A3 /* AuroraEditorTextView */,
 				A0DD4EF02C30BEFB007E4124 /* GRDB */,
 				A080945C2C34A2B000EDDA59 /* Version-Control */,
@@ -3722,6 +3723,8 @@
 				A0C0088F2C459B5100B990D2 /* Version-Control */,
 				A073E12A2C4B45920081140D /* Version-Control */,
 				A073E13B2C4D8B210081140D /* Version-Control */,
+				A01E68672C53D37D00083247 /* AuroraEditorSourceEditor */,
+				A084DA0A2C555E4100B0D60C /* AuroraEditorSourceEditor */,
 			);
 			productName = AuroraEditor;
 			productReference = B658FB2C27DA9E0F00EA4DBD /* Aurora Editor.app */;
@@ -3810,11 +3813,11 @@
 				A0142EFC2ACB64AA0002F95D /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 				A0C038682ACF1C1E00DACE3F /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
 				A0386D8B2B866E2300EFAFBA /* XCRemoteSwiftPackageReference "SwiftTerm" */,
-				2BA8F0842C1DADBD005A06A3 /* XCRemoteSwiftPackageReference "AuroraEditorSourceEditor" */,
 				2BA8F0872C1DADD4005A06A3 /* XCRemoteSwiftPackageReference "AuroraEditorTextView" */,
 				A0DD4EEF2C30BEFB007E4124 /* XCRemoteSwiftPackageReference "GRDB" */,
 				2B56E1472C3DB8E200A80B6C /* XCRemoteSwiftPackageReference "DynamicUI" */,
 				A073E13A2C4D8B210081140D /* XCRemoteSwiftPackageReference "Version-Control-Kit" */,
+				A084DA092C555E4100B0D60C /* XCRemoteSwiftPackageReference "AuroraEditorSourceEditor" */,
 			);
 			productRefGroup = B658FB2D27DA9E0F00EA4DBD /* Products */;
 			projectDirPath = "";
@@ -5229,14 +5232,6 @@
 				version = 0.0.7;
 			};
 		};
-		2BA8F0842C1DADBD005A06A3 /* XCRemoteSwiftPackageReference "AuroraEditorSourceEditor" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AuroraEditor/AuroraEditorSourceEditor";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		2BA8F0872C1DADD4005A06A3 /* XCRemoteSwiftPackageReference "AuroraEditorTextView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AuroraEditor/AuroraEditorTextView";
@@ -5277,6 +5272,14 @@
 				minimumVersion = 1.0.4;
 			};
 		};
+		A084DA092C555E4100B0D60C /* XCRemoteSwiftPackageReference "AuroraEditorSourceEditor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AuroraEditor/AuroraEditorSourceEditor";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		A0C038682ACF1C1E00DACE3F /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/getsentry/sentry-cocoa.git";
@@ -5310,11 +5313,6 @@
 			package = 2B56E1472C3DB8E200A80B6C /* XCRemoteSwiftPackageReference "DynamicUI" */;
 			productName = DynamicUI;
 		};
-		2BA8F0852C1DADBD005A06A3 /* AuroraEditorSourceEditor */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2BA8F0842C1DADBD005A06A3 /* XCRemoteSwiftPackageReference "AuroraEditorSourceEditor" */;
-			productName = AuroraEditorSourceEditor;
-		};
 		2BA8F0882C1DADD4005A06A3 /* AuroraEditorTextView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2BA8F0872C1DADD4005A06A3 /* XCRemoteSwiftPackageReference "AuroraEditorTextView" */;
@@ -5329,6 +5327,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A0142EFC2ACB64AA0002F95D /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
 			productName = ZIPFoundation;
+		};
+		A01E68672C53D37D00083247 /* AuroraEditorSourceEditor */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AuroraEditorSourceEditor;
 		};
 		A0386D8C2B866E2300EFAFBA /* SwiftTerm */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -5347,6 +5349,11 @@
 		A080945C2C34A2B000EDDA59 /* Version-Control */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "Version-Control";
+		};
+		A084DA0A2C555E4100B0D60C /* AuroraEditorSourceEditor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A084DA092C555E4100B0D60C /* XCRemoteSwiftPackageReference "AuroraEditorSourceEditor" */;
+			productName = AuroraEditorSourceEditor;
 		};
 		A08A78AF2AF4214B00E050D4 /* Version-Control */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -47,6 +47,10 @@ public struct CodeEditorViewWrapper: View {
     /// Is editable state
     private let editable: Bool
 
+    private var isSyntaxHighlightingDisabled: Bool {
+        prefs.preferences.textEditing.isSyntaxHighlightingDisabled
+    }
+
     /// Code editor view wrapper initializer
     /// 
     /// - Parameter codeFile: The code file document
@@ -114,6 +118,8 @@ public struct CodeEditorViewWrapper: View {
             wrapLines: true, // TODO: Add this in settings
             cursorPositions: $cursorPosition,
             useThemeBackground: true,
+            highlightProvider: nil,
+            isSyntaxHighlightingDisabled: isSyntaxHighlightingDisabled,
             contentInsets: nil, // TODO: Add this in settings
             isEditable: true,
             letterSpacing: 1, // TODO: Add this in settings

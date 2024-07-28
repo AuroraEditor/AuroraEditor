@@ -2909,6 +2909,12 @@
     "Developer???" : {
 
     },
+    "Disable Syntax Highlighting" : {
+
+    },
+    "Disabling syntax highlighting can improve performance by reducing the processing required to render the text editor, especially for large files." : {
+
+    },
     "Disagree" : {
 
     },

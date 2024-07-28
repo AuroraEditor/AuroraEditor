@@ -29,6 +29,8 @@ struct TextEditingPreferences: Codable, FetchableRecord, PersistableRecord, Data
     /// Indicates whether or not to autocomplete braces
     public var autocompleteBraces: Bool = true
 
+    public var isSyntaxHighlightingDisabled: Bool = false
+
     static let databaseTableName = "TextEditingPreferences"
 
     /// Default initializer
