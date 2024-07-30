@@ -36,9 +36,6 @@ struct GeneralPreferences: Codable, FetchableRecord, PersistableRecord, Database
     /// The style for file icons
     public var fileIconStyle: FileIconStyle = .color
 
-    /// Choose between native-styled tab bar and Xcode-liked tab bar.
-    public var tabBarStyle: TabBarStyle = .xcode
-
     /// Choose between Xcode-like and VSCode-like sidebar mode selection
     public var sidebarStyle: SidebarStyle = .xcode
 
@@ -173,6 +170,7 @@ enum FileIconStyle: String, Codable, FetchableRecord, PersistableRecord {
 /// - **xcode**: Xcode-liked tab bar
 enum TabBarStyle: String, Codable, FetchableRecord, PersistableRecord {
     /// Native-styled tab bar (like Finder)
+    @available(*, deprecated, renamed: "xcode", message: "Aurora Tabbar Style is Deprecated")
     case native
 
     /// Xcode-liked tab bar

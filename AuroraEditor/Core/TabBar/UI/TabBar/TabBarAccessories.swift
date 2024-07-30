@@ -55,11 +55,6 @@ extension TabBar {
         .padding(.horizontal, 7)
         .opacity(activeState != .inactive ? 1.0 : 0.5)
         .frame(maxHeight: .infinity) // Fill out vertical spaces.
-        .background {
-            if prefs.preferences.general.tabBarStyle == .native {
-                TabBarAccessoryNativeBackground(dividerAt: .trailing)
-            }
-        }
     }
 
     // TabBar items on right
@@ -110,11 +105,6 @@ extension TabBar {
         .padding(.horizontal, 7)
         .opacity(activeState != .inactive ? 1.0 : 0.5)
         .frame(maxHeight: .infinity) // Fill out vertical spaces.
-        .background {
-            if prefs.preferences.general.tabBarStyle == .native {
-                TabBarAccessoryNativeBackground(dividerAt: .leading)
-            }
-        }
     }
 
     /// Disables the left navigation button when the current tab

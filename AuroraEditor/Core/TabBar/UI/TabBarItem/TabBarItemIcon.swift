@@ -30,13 +30,7 @@ extension TabBarItem {
                 )
                 .lineLimit(1)
         }
-        .frame(
-            // To horizontally max-out the given width area ONLY in native tab bar style.
-            maxWidth: prefs.preferences.general.tabBarStyle == .native ? .infinity : nil,
-            // To max-out the parent (tab bar) area.
-            maxHeight: .infinity
-        )
-        .padding(.horizontal, prefs.preferences.general.tabBarStyle == .native ? 28 : 23)
+        .padding(.horizontal, 23)
         .overlay {
             ZStack {
                 if isActive {
@@ -71,7 +65,6 @@ extension TabBarItem {
                 .background(.blue)
                 // Close button.
                 Button(action: closeAction) {
-                    if prefs.preferences.general.tabBarStyle == .xcode {
                         Image(systemName: "xmark")
                             .font(.system(size: 11.2, weight: .regular, design: .rounded))
                             .frame(width: 16, height: 16)
@@ -84,11 +77,6 @@ extension TabBarItem {
                                 )
                                 : .secondary.opacity(0.80)
                             )
-                    } else {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 9.5, weight: .medium, design: .rounded))
-                            .frame(width: 16, height: 16)
-                    }
                 }
                 .buttonStyle(.borderless)
                 .foregroundColor(isPressingClose ? .primary : .secondary)
@@ -97,15 +85,12 @@ extension TabBarItem {
                     ? Color(nsColor: .white)
                         .opacity(isPressingClose ? 0.32 : isHoveringClose ? 0.18 : 0)
                     : (
-                        prefs.preferences.general.tabBarStyle == .xcode
-                        ? Color(nsColor: isActive ? .controlAccentColor : .black)
+                        Color(nsColor: isActive ? .controlAccentColor : .black)
                             .opacity(
                                 isPressingClose
                                 ? 0.25
                                 : (isHoveringClose ? (isActive ? 0.10 : 0.06) : 0)
                             )
-                        : Color(nsColor: .black)
-                            .opacity(isPressingClose ? 0.29 : (isHoveringClose ? 0.11 : 0))
                     )
                 )
                 .clipShape(
@@ -124,7 +109,7 @@ extension TabBarItem {
                 }
                 .opacity(isHovering ? 1 : 0)
                 .animation(.easeInOut(duration: 0.08), value: isHovering)
-                .padding(.leading, prefs.preferences.general.tabBarStyle == .xcode ? 3.5 : 4)
+                .padding(.leading, 3.5)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }

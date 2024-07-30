@@ -73,11 +73,6 @@ public struct GeneralPreferencesView: View {
                     Divider()
                 }
                 Group {
-                    tabBarStyleSection
-                        .padding(.vertical, 5)
-                    Divider()
-                }
-                Group {
                     sidebarStyleSection
                         .padding(.vertical, 5)
                     Divider()

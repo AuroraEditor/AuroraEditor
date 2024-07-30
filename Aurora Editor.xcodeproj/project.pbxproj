@@ -230,7 +230,6 @@
 		2093CDC3289AA25B003A88DD /* TabBarItemID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D83865289A7ACE00D91D05 /* TabBarItemID.swift */; };
 		2093CDC4289AA260003A88DD /* TabBarItemButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDA84AA284C0E4A00C1CC3A /* TabBarItemButtonStyle.swift */; };
 		2093CDC5289AA260003A88DD /* TabBarDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6F77862813625500D00A76 /* TabBarDivider.swift */; };
-		2093CDC6289AA260003A88DD /* TabBarNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6405A52817734700881FDF /* TabBarNative.swift */; };
 		2093CDC7289AA260003A88DD /* TabBarAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE513F51281B672D002260B9 /* TabBarAccessory.swift */; };
 		2093CDC8289AA260003A88DD /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287776E827E34BC700D46668 /* TabBar.swift */; };
 		2093CDC9289AA260003A88DD /* TabBarContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */; };
@@ -1233,7 +1232,6 @@
 		D7E201B127E8D50000CB86D0 /* FindNavigatorModeSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNavigatorModeSelector.swift; sourceTree = "<group>"; };
 		DE513F51281B672D002260B9 /* TabBarAccessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAccessory.swift; sourceTree = "<group>"; };
 		DE513F53281DE5D0002260B9 /* TabBarXcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarXcode.swift; sourceTree = "<group>"; };
-		DE6405A52817734700881FDF /* TabBarNative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNative.swift; sourceTree = "<group>"; };
 		DE6F77862813625500D00A76 /* TabBarDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarDivider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2467,7 +2465,6 @@
 				6CDA84AC284C1BA000C1CC3A /* TabBarContextMenu.swift */,
 				DE6F77862813625500D00A76 /* TabBarDivider.swift */,
 				6CDA84AA284C0E4A00C1CC3A /* TabBarItemButtonStyle.swift */,
-				DE6405A52817734700881FDF /* TabBarNative.swift */,
 				DE513F53281DE5D0002260B9 /* TabBarXcode.swift */,
 			);
 			path = UI;
@@ -4521,7 +4518,6 @@
 				2093CDC3289AA25B003A88DD /* TabBarItemID.swift in Sources */,
 				2093CDC2289AA25B003A88DD /* TabBarItemRepresentable.swift in Sources */,
 				9302A22428D183E300648D63 /* TabBarItemStorage.swift in Sources */,
-				2093CDC6289AA260003A88DD /* TabBarNative.swift in Sources */,
 				2093CDCA289AA260003A88DD /* TabBarXcode.swift in Sources */,
 				93D5F5D728CE0EF500286EBD /* TabHierarchyMenu.swift in Sources */,
 				934D2CDB28D207E100F22E38 /* TabHierarchyOutlineDataSource.swift in Sources */,

@@ -22,10 +22,6 @@ struct TabBarItemButtonStyle: ButtonStyle {
     /// Modifies the button.
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .background(
-                configuration.isPressed && prefs.preferences.general.tabBarStyle == .xcode
-                ? (colorScheme == .dark ? .white.opacity(0.08) : .black.opacity(0.09))
-                : .clear
-            )
+            .background(colorScheme == .dark ? .white.opacity(0.08) : .black.opacity(0.09))
     }
 }

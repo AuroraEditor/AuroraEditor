@@ -26,40 +26,11 @@ struct TabDivider: View {
     var body: some View {
         Rectangle()
             .frame(width: width)
-            .padding(.vertical, prefs.preferences.general.tabBarStyle == .xcode ? 8 : 0)
+            .padding(.vertical, 8)
             .foregroundColor(
-                prefs.preferences.general.tabBarStyle == .xcode
-                ? Color(nsColor: colorScheme == .dark ? .white : .black)
+                Color(nsColor: colorScheme == .dark ? .white : .black)
                     .opacity(0.12)
-                : Color(nsColor: colorScheme == .dark ? .controlColor : .black)
-                    .opacity(colorScheme == .dark ? 0.40 : 0.13)
             )
-    }
-}
-
-/// The top border for tab bar (between tab bar and titlebar).
-struct TabBarTopDivider: View {
-
-    /// Color scheme
-    @Environment(\.colorScheme)
-    var colorScheme
-
-    /// Application preferences model
-    @StateObject
-    private var prefs: AppPreferencesModel = .shared
-
-    /// The view body.
-    var body: some View {
-        ZStack(alignment: .top) {
-            if prefs.preferences.general.tabBarStyle == .native {
-                // Color background overlay in native style.
-                Color(nsColor: .black)
-                    .opacity(colorScheme == .dark ? 0.80 : 0.02)
-                    .frame(height: prefs.preferences.general.tabBarStyle == .xcode ? 1.0 : 0.8)
-                // Shadow of top divider in native style.
-                TabBarNativeShadow()
-            }
-        }
     }
 }
 

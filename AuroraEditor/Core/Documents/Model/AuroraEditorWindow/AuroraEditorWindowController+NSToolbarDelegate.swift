@@ -24,14 +24,8 @@ extension AuroraEditorWindowController: NSToolbarDelegate {
 
         self.window?.titleVisibility = .hidden
         self.window?.toolbarStyle = .unifiedCompact
-
-        if prefs.preferences.general.tabBarStyle == .native {
-            self.window?.titlebarAppearsTransparent = true
-            self.window?.titlebarSeparatorStyle = .none
-        } else {
-            self.window?.titlebarAppearsTransparent = false
-            self.window?.titlebarSeparatorStyle = .automatic
-        }
+        self.window?.titlebarAppearsTransparent = false
+        self.window?.titlebarSeparatorStyle = .automatic
 
         self.window?.toolbar = toolbar
     }

@@ -113,7 +113,7 @@ struct TabBar: View {
     /// Update the expected tab width when corresponding UI state is updated.
     ///
     /// This function will be called when the number of tabs or the parent size is changed.
-    /// 
+    ///
     /// - Parameter proxy: The geometry proxy to calculate the new width using.
     private func updateExpectedTabWidth(proxy: GeometryProxy) {
         expectedTabWidth = max(
@@ -126,7 +126,7 @@ struct TabBar: View {
 
     /// Conditionally updates the `expectedTabWidth`.
     /// Called when the tab count changes or the temporary tab changes.
-    /// 
+    ///
     /// - Parameter geometryProxy: The geometry proxy to calculate the new width using.
     private func updateForTabCountChange(geometryProxy: GeometryProxy) {
         // Only update the expected width when user is not hovering over tabs.
@@ -189,7 +189,7 @@ struct TabBar: View {
                             }
                         }
                         // This padding is to hide dividers at two ends under the accessory view divider.
-                        .padding(.horizontal, prefs.preferences.general.tabBarStyle == .native ? -1 : 0)
+                        .padding(.horizontal, -1)
                         .onAppear {
                             openedTabs = workspace.selectionState.openedTabs
                             // On view appeared, compute the initial expected width for tabs.
@@ -234,40 +234,22 @@ struct TabBar: View {
                 )
                 // To fill up the parent space of tab bar.
                 .frame(maxWidth: .infinity)
-                .background {
-                    if prefs.preferences.general.tabBarStyle == .native {
-                        TabBarNativeInactiveBackground()
-                    }
-                }
             }
             // Tab bar tools (e.g. split view).
             trailingAccessories
         }
         .frame(height: TabBar.height)
-        .overlay(alignment: .top) {
-            // When tab bar style is `xcode`, we put the top divider as an overlay.
-            if prefs.preferences.general.tabBarStyle == .xcode {
-                TabBarTopDivider()
-            }
+        .background {
+            TabBarXcodeBackground()
         }
         .background {
-            if prefs.preferences.general.tabBarStyle == .xcode {
-                TabBarXcodeBackground()
-            }
-        }
-        .background {
-            if prefs.preferences.general.tabBarStyle == .xcode {
-                EffectView(
-                    NSVisualEffectView.Material.titlebar,
-                    blendingMode: NSVisualEffectView.BlendingMode.withinWindow
-                )
-                // Set bottom padding to avoid material overlapping in bar.
-                .padding(.bottom, TabBar.height)
-                .edgesIgnoringSafeArea(.top)
-            } else {
-                TabBarNativeMaterial()
-                    .edgesIgnoringSafeArea(.top)
-            }
+            EffectView(
+                NSVisualEffectView.Material.titlebar,
+                blendingMode: NSVisualEffectView.BlendingMode.withinWindow
+            )
+            // Set bottom padding to avoid material overlapping in bar.
+            .padding(.bottom, TabBar.height)
+            .edgesIgnoringSafeArea(.top)
         }
         .padding(.leading, -1)
     }

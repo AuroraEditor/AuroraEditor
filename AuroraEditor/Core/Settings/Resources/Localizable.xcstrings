@@ -20491,6 +20491,7 @@
       }
     },
     "settings.general.tabs.style" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -20717,6 +20718,7 @@
       }
     },
     "settings.general.tabs.style.aurora" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {
@@ -20943,6 +20945,7 @@
       }
     },
     "settings.general.tabs.style.xcode" : {
+      "extractionState" : "stale",
       "localizations" : {
         "af" : {
           "stringUnit" : {

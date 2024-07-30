@@ -83,9 +83,6 @@ struct AppPreferencesDatabase { // swiftlint:disable:this convenience_type type_
             table.column("fileIconStyle", .text).defaults(
                 to: FileIconStyle.color.rawValue
             )
-            table.column("tabBarStyle", .text).defaults(
-                to: TabBarStyle.xcode.rawValue
-            )
             table.column("sidebarStyle", .text).defaults(
                 to: SidebarStyle.xcode.rawValue
             )

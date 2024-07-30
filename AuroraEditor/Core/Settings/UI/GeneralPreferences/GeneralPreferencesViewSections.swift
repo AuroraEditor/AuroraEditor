@@ -111,22 +111,6 @@ extension GeneralPreferencesView {
         .padding(.horizontal)
     }
 
-    var tabBarStyleSection: some View {
-        HStack {
-            Text("settings.general.tabs.style")
-            Spacer()
-            Picker("", selection: $prefs.preferences.general.tabBarStyle) {
-                Text("settings.general.tabs.style.xcode")
-                    .tag(TabBarStyle.xcode)
-                Text("settings.general.tabs.style.aurora")
-                    .tag(TabBarStyle.native)
-            }
-            .labelsHidden()
-            .pickerStyle(.radioGroup)
-        }
-        .padding(.horizontal)
-    }
-
     /// The sidebar style section
     var sidebarStyleSection: some View {
         HStack {

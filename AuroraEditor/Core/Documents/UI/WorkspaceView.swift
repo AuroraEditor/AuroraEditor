@@ -137,11 +137,7 @@ struct WorkspaceView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background {
-                    if prefs.preferences.general.tabBarStyle == .xcode {
-                        // Use the same background material as xcode tab bar style.
-                        // Only when the tab bar style is set to `xcode`.
-                        TabBarXcodeBackground()
-                    }
+                    TabBarXcodeBackground()
                 }
                 .safeAreaInset(edge: .top, spacing: 0) {
                     VStack(spacing: 0) {
@@ -201,18 +197,6 @@ struct WorkspaceView: View {
         }
         // Send the environment to all subviews.
         .environment(\.isFullscreen, self.isFullscreen)
-        // When tab bar style is changed, update NSWindow configuration as follows.
-        .onChange(of: prefs.preferences.general.tabBarStyle) { newStyle in
-            DispatchQueue.main.async {
-                if newStyle == .native {
-                    workspace.windowController?.window?.titlebarAppearsTransparent = true
-                    workspace.windowController?.window?.titlebarSeparatorStyle = .none
-                } else {
-                    workspace.windowController?.window?.titlebarAppearsTransparent = false
-                    workspace.windowController?.window?.titlebarSeparatorStyle = .automatic
-                }
-            }
-        }
         .sheet(isPresented: $workspace.newFileModel.showFileCreationSheet) {
             FileCreationSelectionView(workspace: workspace)
         }
