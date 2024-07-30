@@ -160,10 +160,12 @@ public struct CodeEditorViewWrapper: View {
         })
         .onChange(of: cursorPosition) { newValue in
             logger.debug("Did change caret position")
-            self.workspace.data.caretPos = .init(
-                line: newValue[0].line,
-                column: newValue[0].column
-            )
+            if !newValue.isEmpty {
+                self.workspace.data.caretPos = .init(
+                    line: newValue[0].line,
+                    column: newValue[0].column
+                )
+            }
         }
         .onChange(of: codeFile.content) { _ in
             logger.debug("File contents did changed")
