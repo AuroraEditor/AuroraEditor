@@ -189,7 +189,7 @@ struct TabBar: View {
                             }
                         }
                         // This padding is to hide dividers at two ends under the accessory view divider.
-                        .padding(.horizontal, -1)
+                        .padding(.horizontal, 0)
                         .onAppear {
                             openedTabs = workspace.selectionState.openedTabs
                             // On view appeared, compute the initial expected width for tabs.

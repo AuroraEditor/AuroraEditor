@@ -165,18 +165,6 @@ enum FileIconStyle: String, Codable, FetchableRecord, PersistableRecord {
     case monochrome
 }
 
-/// The style for tab bar
-/// - **native**: Native-styled tab bar (like Finder)
-/// - **xcode**: Xcode-liked tab bar
-enum TabBarStyle: String, Codable, FetchableRecord, PersistableRecord {
-    /// Native-styled tab bar (like Finder)
-    @available(*, deprecated, renamed: "xcode", message: "Aurora Tabbar Style is Deprecated")
-    case native
-
-    /// Xcode-liked tab bar
-    case xcode
-}
-
 /// The style for the sidebar's mode selection
 /// - **xcode**: Xcode-like mode selection
 /// - **vscode**: VSCode-like mode seliction
