@@ -246,16 +246,6 @@ extension TabBar {
     /// Text Editor Menu
     private func textEditorMenu() -> some View {
         VStack {
-            Button {
-                prefs.preferences.textEditing.showMinimap.toggle()
-            } label: {
-                Text("Show Editor Only")
-                    .font(.system(size: 11))
-            }
-            .keyboardShortcut(.return, modifiers: [.command])
-
-            Divider()
-
             Toggle(isOn: .constant(false)) {
                 Text("Inline Comparison")
                     .font(.system(size: 11))
@@ -269,12 +259,6 @@ extension TabBar {
             Divider()
 
             Group {
-                Toggle(isOn: $prefs.preferences.textEditing.showMinimap) {
-                    Text("Minimap")
-                        .font(.system(size: 11))
-                }
-                .keyboardShortcut("M", modifiers: [.control, .shift, .command])
-
                 Toggle(isOn: .constant(false)) {
                     Text("Authors")
                         .font(.system(size: 11))

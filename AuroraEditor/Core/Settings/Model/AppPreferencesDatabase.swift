@@ -213,9 +213,6 @@ struct AppPreferencesDatabase { // swiftlint:disable:this convenience_type type_
             table.column("defaultTabWidth", .integer).defaults(
                 to: 4
             )
-            table.column("showMinimap", .boolean).defaults(
-                to: false
-            )
             table.column("showScopes", .boolean).defaults(
                 to: false
             )

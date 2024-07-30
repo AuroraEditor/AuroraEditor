@@ -17,9 +17,6 @@ struct TextEditingPreferences: Codable, FetchableRecord, PersistableRecord, Data
     /// An integer indicating how many spaces a `tab` will generate
     public var defaultTabWidth: Int = 4
 
-    /// Indicates whether or not to show the minimap
-    public var showMinimap: Bool = false
-
     /// Indicates whether or not to show scopes
     public var showScopes: Bool = false
 

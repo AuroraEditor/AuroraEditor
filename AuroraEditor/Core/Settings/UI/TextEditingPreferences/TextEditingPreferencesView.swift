@@ -55,12 +55,6 @@ public struct TextEditingPreferencesView: View {
 
                 Divider()
 
-                minimap
-                    .padding(.bottom, 5)
-                    .padding(.horizontal)
-
-                Divider()
-
                 scopes
                     .padding(.bottom, 5)
                     .padding(.horizontal)
@@ -107,17 +101,6 @@ public struct TextEditingPreferencesView: View {
                     name: $prefs.preferences.editorFont.name, size: $prefs.preferences.editorFont.size
                 )
             }
-        }
-    }
-
-    /// The minimap toggle
-    private var minimap: some View {
-        HStack {
-            Text("settings.text.editing.show.minimap")
-            Spacer()
-            Toggle("", isOn: $prefs.preferences.textEditing.showMinimap)
-                .toggleStyle(.switch)
-                .labelsHidden()
         }
     }
 
