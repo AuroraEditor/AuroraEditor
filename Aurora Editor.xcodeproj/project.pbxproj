@@ -418,6 +418,7 @@
 		2B89F85428B13E9D007CB9C1 /* AuroraMessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */; };
 		2BA10C862C34841B0040B192 /* emptyURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA10C852C34841B0040B192 /* emptyURL.swift */; };
 		2BA8F0892C1DADD4005A06A3 /* AuroraEditorTextView in Frameworks */ = {isa = PBXBuildFile; productRef = 2BA8F0882C1DADD4005A06A3 /* AuroraEditorTextView */; };
+		2BBCB7CC2C5D157600ADB3BD /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBCB7CB2C5D157600ADB3BD /* Sequence.swift */; };
 		2BCBAAC82927C41E00D4DFB2 /* BindingProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBAAC72927C41E00D4DFB2 /* BindingProxy.swift */; };
 		2BCBAACA2927C65500D4DFB2 /* View+isHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */; };
 		2BCDF9D8295F2EBB00570253 /* .githash in Copy .githash */ = {isa = PBXBuildFile; fileRef = 2BCDF9D6295F2E9700570253 /* .githash */; };
@@ -1070,6 +1071,7 @@
 		2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSSupport.swift; sourceTree = "<group>"; };
 		2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraMessageBox.swift; sourceTree = "<group>"; };
 		2BA10C852C34841B0040B192 /* emptyURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = emptyURL.swift; sourceTree = "<group>"; };
+		2BBCB7CB2C5D157600ADB3BD /* Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 		2BCBAAC72927C41E00D4DFB2 /* BindingProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingProxy.swift; sourceTree = "<group>"; };
 		2BCBAAC92927C65500D4DFB2 /* View+isHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+isHidden.swift"; sourceTree = "<group>"; };
 		2BCDF9D6295F2E9700570253 /* .githash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .githash; sourceTree = "<group>"; };
@@ -3327,6 +3329,7 @@
 				A03E21FC2B0D5B46008A6A77 /* NSImage.swift */,
 				A0DD4EEB2C30BEAC007E4124 /* PersistableRecord.swift */,
 				20212682289BF84B00246DD7 /* String.swift */,
+				2BBCB7CB2C5D157600ADB3BD /* Sequence.swift */,
 				20D838FA289A7ACE00D91D05 /* SwiftTerm+Color+Init.swift */,
 				20D8389F289A7ACE00D91D05 /* Time.swift */,
 				20D8389D289A7ACE00D91D05 /* URL.swift */,
@@ -4372,6 +4375,7 @@
 				20FACF6F2AB60E4A00B09012 /* NotificationChangeType.swift in Sources */,
 				A07C1CD42AE4518900E8B17D /* NotificationIcon.swift in Sources */,
 				20FACF8A2AB60FA800B09012 /* NotificationIndicators.swift in Sources */,
+				2BBCB7CC2C5D157600ADB3BD /* Sequence.swift in Sources */,
 				2B23B2F82B8521CD00C6B066 /* NotificationKeys.swift in Sources */,
 				20FACF782AB60EB000B09012 /* NotificationObserver.swift in Sources */,
 				20FACF9D2AB6157A00B09012 /* NotificationPreferencesView.swift in Sources */,
