@@ -41,49 +41,25 @@ struct ExtensionCustomView: View {
                         ]
                     )
                 }
+        } else if let viewArray = view as? NSArray,
+                  let json = try? JSONSerialization.data(withJSONObject: viewArray, options: .prettyPrinted) {
+            // If a extension developer used view: [ ... components ... ] it will be casted as __NSArrayM
+            // Which is an Mutable NSArray, which we cast to NSArray (Since we don't need to change it)
+            // And then convert it to JSON Data.
+
+            dynamicJSONView(json: json)
         } else if let string = view as? String,
                   let json = string.data(using: .utf8),
                   (
                     try? JSONDecoder().decode([DynamicUIComponent].self, from: json)
                   ) != nil {
-            DynamicUI(
-                json: json,
-                callback: { component in
-                    let eventHandler = component.eventHandler ?? "uiElementChanged"
+            // If the extension developer used view: " ... viewdata " (AKA String), we change the string to data
+            // And do a pre-check if it conforms to ``DynamicUIComponent``
 
-                    guard let data = try? JSONEncoder().encode(component) else {
-                        ExtensionsManager.shared.sendEvent(
-                            event: eventHandler,
-                            parameters: [
-                                "extension": sender,
-                                "view": string
-                            ]
-                        )
-
-                        return
-                    }
-
-                    ExtensionsManager.shared.sendEvent(
-                        event: eventHandler,
-                        parameters: [
-                            "extension": sender,
-                            "view": string,
-                            "component": String(decoding: data, as: UTF8.self)
-                        ]
-                    )
-                }
-            )
-            .onAppear {
-                ExtensionsManager.shared.sendEvent(
-                    event: "didOpenExtensionView",
-                    parameters: [
-                        "type": "DynamicUI",
-                        "extension": sender,
-                        "view": string
-                    ]
-                )
-            }
-        } else if let webViewContents = view as? String {
+            dynamicJSONView(json: json)
+        } else if let webViewContents = view as? String,
+                  webViewContents.contains("<"),
+                  webViewContents.contains(">") {
             // The view is a String, this can only means that
             // the view is written in HTML/CSS/Javascript.
 
@@ -102,16 +78,62 @@ struct ExtensionCustomView: View {
             // This type, we cannot cast,
             // Either it's empty, or unsupported.
 
-            Text("Failed to cast to view").onAppear {
+            Text("Failed to cast to view")
+                .onAppear {
+                    ExtensionsManager.shared.sendEvent(
+                        event: "didFailToOpenExtensionView",
+                        parameters: [
+                            "type": "Unknown",
+                            "extension": sender,
+                            "view": view ?? ("" as Any)
+                        ]
+                    )
+                }
+        }
+    }
+
+    /// call `DynamicUI` with all required parameters
+    ///
+    /// - Parameter json: JSON input data
+    ///
+    /// - Returns: DynamicUI view
+    func dynamicJSONView(json: Data) -> some View {
+        DynamicUI(
+            json: json,
+            callback: { component in
+                let eventHandler = component.eventHandler ?? "uiElementChanged"
+
+                guard let data = try? JSONEncoder().encode(component) else {
+                    ExtensionsManager.shared.sendEvent(
+                        event: eventHandler,
+                        parameters: [
+                            "extension": sender,
+                            "view": String(decoding: json, as: UTF8.self)
+                        ]
+                    )
+
+                    return
+                }
+
                 ExtensionsManager.shared.sendEvent(
-                    event: "didFailToOpenExtensionView",
+                    event: eventHandler,
                     parameters: [
-                        "type": "Unknown",
                         "extension": sender,
-                        "view": view ?? ("" as Any)
+                        "view": String(decoding: json, as: UTF8.self),
+                        "component": String(decoding: data, as: UTF8.self)
                     ]
                 )
             }
+        )
+        .onAppear {
+            ExtensionsManager.shared.sendEvent(
+                event: "didOpenExtensionView",
+                parameters: [
+                    "type": "DynamicUI",
+                    "extension": sender,
+                    "view": String(decoding: json, as: UTF8.self)
+                ]
+            )
         }
     }
 }
