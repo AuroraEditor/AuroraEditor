@@ -24,6 +24,12 @@ struct ExtensionCustomView: View {
     /// The sender of the view
     let sender: String
 
+    @State
+    var didLoadPage = false
+
+    @State
+    var didFailToLoadPage = false
+
     /// Initialize the view
     var body: some View {
         if let swiftUIView = view as? any View {
@@ -63,7 +69,14 @@ struct ExtensionCustomView: View {
             // The view is a String, this can only means that
             // the view is written in HTML/CSS/Javascript.
 
-            ExtensionWKWebView(pageHTML: webViewContents, sender: sender)
+            ZStack {
+                ExtensionWKWebView(
+                    pageHTML: webViewContents,
+                    sender: sender,
+                    didLoadPage: $didLoadPage,
+                    didFailToLoadPage: $didFailToLoadPage
+                )
+                .opacity(didLoadPage ? 1 : 0)
                 .onAppear {
                     ExtensionsManager.shared.sendEvent(
                         event: "didOpenExtensionView",
@@ -74,6 +87,33 @@ struct ExtensionCustomView: View {
                         ]
                     )
                 }
+
+                VStack {
+                    ProgressView()
+                        .frame(width: 150, height: 150)
+                        .controlSize(.large)
+                        .padding()
+
+                    Text("Generating interface...")
+                }
+                .opacity(
+                    didFailToLoadPage
+                    // did fail to load
+                    ? 1 : (
+                        // did we load?
+                        didLoadPage ? 0 : 1
+                    )
+                )
+
+                if #available(macOS 14.0, *) {
+                    ContentUnavailableView(
+                        "Failed to load view",
+                        systemImage: "exclamationmark.arrow.triangle.2.circlepath",
+                        description: Text("Please try to load this window again.")
+                    )
+                    .opacity(didFailToLoadPage ? 1 : 0)
+                }
+            }
         } else {
             // This type, we cannot cast,
             // Either it's empty, or unsupported.
@@ -148,6 +188,12 @@ struct ExtensionWKWebView: NSViewRepresentable {
     /// Sender of the view
     var sender: String
 
+    @Binding
+    var didLoadPage: Bool
+
+    @Binding
+    var didFailToLoadPage: Bool
+
     /// Logger
     let logger = Logger(
         subsystem: "com.auroraeditor.extensions",
@@ -195,6 +241,11 @@ struct ExtensionWKWebView: NSViewRepresentable {
     ///   - webView: The web view
     ///   - url: The URL to load
     func loadPage(webView: WKWebView, pageHTML: String?) {
+        // We start a new request, we did not load or fail the page (yet)
+        self.didLoadPage = false
+        self.didFailToLoadPage = false
+
+        // Get the Base URL for the extension
         let baseURL = ExtensionsManager.shared.extensionsFolder.appendingPathComponent(
             sender + ".JSext",
             isDirectory: true
@@ -202,11 +253,14 @@ struct ExtensionWKWebView: NSViewRepresentable {
 
         // if the URL is valid (has a protocol), load the page
         if let html = pageHTML {
-            logger.info("Allow access to: \(baseURL)")
+            // Allow access to the extension directory.
             webView.loadFileURL(baseURL, allowingReadAccessTo: baseURL)
+
+            // Load the HTML String.
             webView.loadHTMLString(html, baseURL: baseURL)
         } else {
-            webView.loadHTMLString("No HTML passed to the view", baseURL: nil)
+            // We did fail to load.
+            self.didFailToLoadPage = true
         }
     }
 
@@ -223,6 +277,7 @@ struct ExtensionWKWebView: NSViewRepresentable {
         }
 
         deinit {
+            // We unload the extension view.
             ExtensionsManager.shared.sendEvent(
                 event: "didCloseExtensionView",
                 parameters: [
@@ -231,6 +286,16 @@ struct ExtensionWKWebView: NSViewRepresentable {
                     "view": parent.pageHTML ?? ""
                 ]
             )
+        }
+
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {
+            // We did load the page without error.
+            self.parent.didLoadPage = true
+        }
+
+        func webView(_ webView: WKWebView, didFail navigation: WKNavigation, withError error: any Error) {
+            // We did fail to load the page.
+            self.parent.didFailToLoadPage = true
         }
     }
 

@@ -3475,6 +3475,9 @@
     "Failed To Get History" : {
 
     },
+    "Failed to load view" : {
+
+    },
     "Failed to submit feedback" : {
 
     },
@@ -3518,6 +3521,9 @@
 
     },
     "Full Path" : {
+
+    },
+    "Generating interface..." : {
 
     },
     "GET" : {
@@ -6124,6 +6130,9 @@
 
     },
     "Please provide a descriptive title for your feedback:" : {
+
+    },
+    "Please try to load this window again." : {
 
     },
     "Preferences" : {
