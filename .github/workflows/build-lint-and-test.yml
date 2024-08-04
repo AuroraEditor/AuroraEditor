@@ -19,6 +19,10 @@ jobs:
           rm -rf ~/Library/Caches/org.swift.swiftpm/*
           echo "Clean up complete"
 
+      - name: "Kill all old instances"
+        run: |
+          killall Aurora\ Editor || true
+
       - uses: actions/checkout@v3
 
       - name: Runner environment

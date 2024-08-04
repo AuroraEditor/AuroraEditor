@@ -24,10 +24,14 @@ jobs:
           rm -rf ./.??* || true
           ls -la ./
 
+      - name: "Kill all old instances"
+        run: |
+          killall Aurora\ Editor || true
+
       - name: "Install swiftlint"
         run: |
           brew install swiftlint
-          
+
       - name: Runner environment
         run: |
           echo "MacOS Version"
