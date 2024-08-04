@@ -5233,7 +5233,7 @@
 			repositoryURL = "https://github.com/0xWDG/DynamicUI";
 			requirement = {
 				kind = exactVersion;
-				version = 0.0.7;
+				version = 0.0.8;
 			};
 		};
 		2BA8F0872C1DADD4005A06A3 /* XCRemoteSwiftPackageReference "AuroraEditorTextView" */ = {
