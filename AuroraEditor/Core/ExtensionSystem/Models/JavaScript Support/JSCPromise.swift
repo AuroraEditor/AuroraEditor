@@ -23,7 +23,7 @@ import JavaScriptCore
 /// JavaScript Promise support
 class JSCPromise: NSObject, JSPromiseExports {
     /// Shared instance so it will not be unloaded.
-    static let shared: JSCPromise = .init()
+    nonisolated(unsafe) static let shared: JSCPromise = .init()
 
     /// Resolve callback
     var resolve: JSValue?

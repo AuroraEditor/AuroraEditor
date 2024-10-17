@@ -12,6 +12,7 @@ import AppKit
 import OSLog
 
 /// A repository that manages the download and installation of editor updates.
+@MainActor
 class UpdateEditorRepository: NSObject, URLSessionDownloadDelegate {
     /// The file manager used to manage files on disk.
     private var fileManager: FileManager

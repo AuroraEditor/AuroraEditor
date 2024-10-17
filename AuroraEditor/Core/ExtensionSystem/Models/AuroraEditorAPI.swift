@@ -18,7 +18,7 @@ final class AuroraEditorAPI: ExtensionAPI {
     var workspace: WorkspaceDocument
 
     /// Workspace URL
-    var workspaceURL: URL {
+    nonisolated(unsafe) var workspaceURL: URL {
         return workspace.documentURL
     }
 

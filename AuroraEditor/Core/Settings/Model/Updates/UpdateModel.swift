@@ -10,9 +10,10 @@ import Foundation
 import OSLog
 
 /// The model for the update json
-private var prefs: AppPreferencesModel = .shared
+nonisolated(unsafe) private var prefs: AppPreferencesModel = .shared
 
 /// The model for the update json
+@MainActor
 public class UpdateObservedModel: ObservableObject {
     /// The shared instance of the update model
     public static let shared: UpdateObservedModel = .init()

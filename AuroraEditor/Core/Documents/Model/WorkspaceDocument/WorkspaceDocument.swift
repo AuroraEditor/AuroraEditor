@@ -9,7 +9,7 @@
 import Foundation
 import AppKit
 import SwiftUI
-import Combine
+@preconcurrency import Combine
 import AEExtensionKit
 import OSLog
 

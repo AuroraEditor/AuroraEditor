@@ -10,7 +10,7 @@ import SwiftUI
 import OSLog
 
 // This class helps display the AboutView
-final class AboutWindowHostingController<T: View>: NSWindowController {
+final class AboutWindowHostingController<T: View>: NSWindowController, Sendable {
 
     /// The event handler for the escape key
     private var escapeDetectEvent: Any?

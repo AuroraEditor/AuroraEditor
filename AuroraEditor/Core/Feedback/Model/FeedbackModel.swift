@@ -10,6 +10,7 @@ import SwiftUI
 import OSLog
 
 /// Feedback model
+@MainActor
 public class FeedbackModel: ObservableObject {
     /// Shared instance
     public static let shared: FeedbackModel = .init()

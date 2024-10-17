@@ -9,6 +9,7 @@
 import AppKit
 
 /// File creation model
+@MainActor
 class FileCreationModel: ObservableObject {
     /// Shared instance
     public static var shared: FileCreationModel = .init()

@@ -57,24 +57,31 @@ public extension NSImage {
     // MARK: - Symbols
 
     /// Image of a vault
+    @MainActor
     static let vault: NSImage = .symbol(named: "vault")
 
     /// Image of a vault (filled)
+    @MainActor
     static let vaultFill: NSImage = .symbol(named: "vault.fill")
 
     /// Image for commit
+    @MainActor
     static let commit: NSImage = .symbol(named: "commit")
 
     /// Image for checkout
+    @MainActor
     static let checkout: NSImage = .symbol(named: "checkout")
 
     /// Image for an breakpoint
+    @MainActor
     static let breakpoint: NSImage = .symbol(named: "breakpoint")
 
     /// Image for an breakpoint (filled)
+    @MainActor
     static let breakpointFill: NSImage = .symbol(named: "breakpoint.fill")
 
     /// Image for ChevronUpChevronDown
+    @MainActor
     static let customChevronUpChevronDown: NSImage = .symbol(named: "custom.chevron.up.chevron.down")
 
     // Add static properties for your symbols above this line

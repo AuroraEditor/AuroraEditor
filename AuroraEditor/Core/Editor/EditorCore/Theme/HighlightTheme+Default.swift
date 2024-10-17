@@ -12,7 +12,7 @@ import AppKit
 public extension HighlightTheme {
     /// Default Highlight theme
     @available(*, deprecated)
-    static let `default`: HighlightTheme = HighlightTheme(settings: [
+    nonisolated(unsafe) static let `default`: HighlightTheme = HighlightTheme(settings: [
         ThemeSetting(scope: "source", parentScopes: [], attributes: [
             ColorThemeAttribute(color: .exampleTextColor),
             FontThemeAttribute(font: .monospacedSystemFont(ofSize: fontSize, weight: .regular)),

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public struct QuickOpenPreviewView: View {
+public struct QuickOpenPreviewView: View, Sendable {
     /// Queue
     private let queue = DispatchQueue(label: "com.auroraeditor.quickOpen.preview")
 

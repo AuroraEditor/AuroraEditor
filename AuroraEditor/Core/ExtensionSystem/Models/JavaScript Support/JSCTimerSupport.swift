@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import JavaScriptCore
+@preconcurrency import JavaScriptCore
 
 /// JavaScript timer support
 ///
@@ -46,10 +46,11 @@ import JavaScriptCore
 /// - `setTimeout(callback, time)`
 /// - `clearTimeout(identifier)`
 /// - `setInterval(callback, time)`
-@objc class JSCTimerSupport: NSObject, AEJSTimer {
+@objc
+class JSCTimerSupport: NSObject, AEJSTimer {
 
     /// Shared instance of `JSCTimerSupport`.
-    static let shared: JSCTimerSupport = .init()
+    nonisolated(unsafe) static let shared: JSCTimerSupport = .init()
 
     /// Storage for the timers
     var timers = [String: Timer]()

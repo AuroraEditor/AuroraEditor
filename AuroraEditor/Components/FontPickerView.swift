@@ -21,6 +21,7 @@ final class FontPickerDelegate {
 
     /// Changes the font.
     @objc
+    @MainActor
     func changeFont(_ id: Any) {
         parent.fontSelected()
     }

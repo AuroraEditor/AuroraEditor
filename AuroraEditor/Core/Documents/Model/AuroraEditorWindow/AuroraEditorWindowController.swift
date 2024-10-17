@@ -10,6 +10,7 @@ import SwiftUI
 import Combine
 
 /// The window controller for Aurora Editor.
+@MainActor
 final class AuroraEditorWindowController: NSWindowController, ObservableObject {
     /// The preferences model.
     @Published

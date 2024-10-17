@@ -107,6 +107,7 @@ struct Loader: View {
     }
 
     /// animates the capsule to a direction
+    @MainActor
     func animateCapsule() {
         self.xOffset = self.loaderState.incrementBefore.0
         self.yOffset = self.loaderState.incrementBefore.1

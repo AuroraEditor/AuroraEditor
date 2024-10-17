@@ -96,6 +96,7 @@ enum Appearances: String, Codable, FetchableRecord, PersistableRecord {
     case dark
 
     /// Applies the selected appearance
+    @MainActor
     public func applyAppearance() {
         switch self {
         case .system:

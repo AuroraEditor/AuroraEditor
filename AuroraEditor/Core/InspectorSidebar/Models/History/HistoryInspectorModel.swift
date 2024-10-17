@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Version_Control
+@preconcurrency import Version_Control
 
 /// The model for the History Inspector
 public final class HistoryInspectorModel: ObservableObject {

@@ -9,6 +9,7 @@
 import SwiftUI
 
 /// The model for the navigator mode selector.
+@MainActor
 class NavigatorModeSelectModel: ObservableObject {
     /// Shared instance.
     static let shared: NavigatorModeSelectModel = .init()

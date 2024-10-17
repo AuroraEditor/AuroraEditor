@@ -16,6 +16,7 @@ import OSLog
 /// The main application class for Aurora Editor.
 /// 
 /// This class is responsible for initializing the application and setting the application delegate.
+@MainActor
 final class AuroraEditorApplication: NSApplication {
     /// The strong reference to the application delegate.
     let strongDelegate = AppDelegate()
@@ -40,7 +41,8 @@ final class AuroraEditorApplication: NSApplication {
 /// 
 /// This class is responsible for handling application lifecycle events, such as application
 /// launch, termination, and reopening. It also manages the status item and the main menu.
-/// 
+///
+@MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     func applicationWillFinishLaunching(_ notification: Notification) {
     }
@@ -279,6 +281,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     // MARK: - Open With AuroraEditor (Extension) functions
+    @MainActor
     private func checkForFilesToOpen() {
         // Access UserDefaults with a specific suite name.
         guard let defaults = UserDefaults(suiteName: "com.auroraeditor.shared") else {

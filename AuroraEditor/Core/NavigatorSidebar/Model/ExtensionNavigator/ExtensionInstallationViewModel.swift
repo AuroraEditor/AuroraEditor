@@ -11,6 +11,7 @@ import Combine
 import OSLog
 
 /// View model for extension installation.
+@MainActor
 final class ExtensionInstallationViewModel: ObservableObject {
     /// State of the view model.
     enum State {

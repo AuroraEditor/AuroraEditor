@@ -10,6 +10,7 @@ import Foundation
 
 extension WorkspaceDocument {
     /// The search state
+    @MainActor
     final class SearchState: ObservableObject {
         /// The workspace document
         weak var workspace: WorkspaceDocument?

@@ -13,7 +13,7 @@ import JavaScriptCore
 /// - Note: Depends on JSPromise.
 class JSCFetch {
     /// Shared instance so it will not be unloaded.
-    static let shared: JSCFetch = .init()
+    nonisolated(unsafe) static let shared: JSCFetch = .init()
 
     /// Register class into the current JavaScript Context.
     /// - Parameter jsContext: The current JavaScript context.
@@ -26,7 +26,7 @@ class JSCFetch {
 
     /// (Obj-C) The fetch function
     let fetch: @convention(block) (String) -> JSCPromise? = { link in
-        let promise = JSCPromise()
+        nonisolated(unsafe) let promise = JSCPromise()
         promise.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { timer in
             timer.invalidate()
 

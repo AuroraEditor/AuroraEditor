@@ -10,6 +10,7 @@ import SwiftUI
 import Version_Control
 
 /// A class that stores the data for the editor window.
+@MainActor
 class AuroraDataStorage: ObservableObject {
     /// The window controller that manages the window.
     var windowController: AuroraEditorWindowController?
@@ -90,6 +91,7 @@ class AuroraDataStorage: ObservableObject {
 
     /// Caret position
     @Published
+    @MainActor
     public var caretPos: CursorLocation = .init(line: 0, column: 0) {
         didSet {
             update()
@@ -106,6 +108,7 @@ class AuroraDataStorage: ObservableObject {
 
     /// Bracket count
     @Published
+    @MainActor
     public var bracketCount: BracketCount = .init(
         roundBracketCount: 0,
         curlyBracketCount: 0,

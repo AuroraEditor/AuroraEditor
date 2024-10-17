@@ -12,6 +12,7 @@ import OSLog
 /// About View Modal
 /// 
 /// This class is responsible for loading the content of the About view.
+@MainActor
 public class AboutViewModal: ObservableObject {
     /// The shared instance of the AboutViewModal
     static var shared: AboutViewModal = .init()
@@ -55,7 +56,7 @@ public class AboutViewModal: ObservableObject {
                     )
                     return
                 }
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     self.contributors.append(contentsOf: contributors)
                 }
             case .failure(let error):

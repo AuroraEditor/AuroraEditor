@@ -12,6 +12,7 @@ import SwiftUI
 import OSLog
 
 /// A class that manages the animation of a notification view sliding into and out of view.
+@MainActor
 class NotificationViewAnimator {
     /// The view representing the notification to be displayed.
     private var notificationView: NSView

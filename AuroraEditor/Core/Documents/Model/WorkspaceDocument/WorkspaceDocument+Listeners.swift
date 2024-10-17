@@ -10,6 +10,7 @@ import Foundation
 import Combine
 
 /// A class that represents the workspace document command listeners.
+@MainActor
 class WorkspaceNotificationModel: ObservableObject {
     /// The highlighted file item
     init() {
