@@ -173,6 +173,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     /// Code to run when the application is about to open a file.
     /// 
     /// - Parameter funct: The caller function name.
+    @MainActor
     func handleOpen(funct: String = #function) {
         self.logger.info("handleOpen() called from \(funct)")
         let behavior = AppPreferencesModel.shared.preferences.general.reopenBehavior
@@ -252,6 +253,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     /// Open about window
+    @MainActor
     static func openAboutWindow() {
         if !tryFocusWindow(of: AboutView.self) {
             AboutView().showWindow()
@@ -264,6 +266,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     ///   - type: The type of the NSHostingView to search for in windows.
     /// - Returns: `true` if a window containing the specified view type is found and brought
     ///             to the front; `false` otherwise.
+    @MainActor
     static func tryFocusWindow<T: View>(of type: T.Type) -> Bool {
         // Use the first(where:) method to find the first window with the desired contentView.
         if let window = NSApp.windows.first(where: { $0.contentView is NSHostingView<T> }) {

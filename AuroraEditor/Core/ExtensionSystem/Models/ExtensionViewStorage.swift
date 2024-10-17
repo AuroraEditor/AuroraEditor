@@ -12,6 +12,7 @@ import Foundation
 /// This class stores the views used by extensions
 class ExtensionViewStorage {
     /// Shared instance for Extension View Storage
+    @MainActor
     public static let shared: ExtensionViewStorage = .init()
 
     /// Extension View Storage (DO NOT MODIFY DIRECTLY)

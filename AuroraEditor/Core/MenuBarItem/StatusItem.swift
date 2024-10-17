@@ -134,6 +134,7 @@ extension AppDelegate {
     /// 
     /// - Parameter sender: sender
     @objc
+    @MainActor
     func about(_ sender: Any?) {
         AppDelegate.openAboutWindow()
     }
@@ -142,6 +143,7 @@ extension AppDelegate {
     /// 
     /// - Parameter sender: sender
     @objc
+    @MainActor
     func hideMenuItem(_ sender: Any?) {
         statusItem?.button?.isHidden = true
         AppPreferencesModel.shared.preferences.general.menuItemShowMode = .hidden
