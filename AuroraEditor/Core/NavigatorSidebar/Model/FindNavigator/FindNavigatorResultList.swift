@@ -61,6 +61,7 @@ struct FindNavigatorResultList: NSViewControllerRepresentable {
         /// - Parameter controller: the controller
         /// 
         /// - Returns: a new coordinator
+        @MainActor
         init(state: WorkspaceDocument.SearchState?, controller: FindNavigatorListViewController?) {
             self.controller = controller
             super.init()

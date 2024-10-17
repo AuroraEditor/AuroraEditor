@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 /// Wraps an ``ProjectNavigatorViewController`` inside a `NSViewControllerRepresentable`
-struct ProjectNavigatorView: NSViewControllerRepresentable, Equatable {
+struct ProjectNavigatorView: NSViewControllerRepresentable, @preconcurrency Equatable {
     @EnvironmentObject var workspace: WorkspaceDocument
     @ObservedObject var prefs: AppPreferencesModel
 
@@ -76,6 +76,7 @@ struct ProjectNavigatorView: NSViewControllerRepresentable, Equatable {
         /// - Parameter workspace: the workspace document
         /// 
         /// - Returns: the coordinator
+        @MainActor
         init(_ workspace: WorkspaceDocument) {
             self.workspace = workspace
             super.init()

@@ -74,6 +74,7 @@ final class TabHierarchyMenu: NSMenu {
 
     /// Opens the item in the workspace
     @objc
+    @MainActor
     func openItem() {
         guard let item = item,
               let itemTab = workspace?.selectionState.getItemByTab(id: item.tabBarID) else { return }
@@ -84,6 +85,7 @@ final class TabHierarchyMenu: NSMenu {
 
     /// Deletes the item from the workspace
     @objc
+    @MainActor
     func deleteItem() {
         guard let item = item,
               let workspace = workspace else { return }
