@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B658FB3C27DA9E1000EA4DBD"
-               BuildableName = "AuroraEditorTests.xctest"
-               BlueprintName = "AuroraEditorTests"
-               ReferencedContainer = "container:AuroraEditor.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "A01AB2D02ACC9EDA0029EDF0"
                BuildableName = "AEUpdateService.app"
                BlueprintName = "AEUpdateService"
@@ -84,15 +70,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B658FB3C27DA9E1000EA4DBD"
-            BuildableName = "AuroraEditorTests.xctest"
-            BlueprintName = "AuroraEditorTests"
-            ReferencedContainer = "container:AuroraEditor.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
