@@ -122,6 +122,16 @@ struct WorkspaceCodeFileView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .task {
+            // Reopen behaviour
+            if let selectedID = workspace.selectionState.selectedId,
+               workspace.selectionState.openFileItems.isEmpty,
+               let filePath = selectedID.filePath {
+                logger.info("We should reopen file: \(selectedID.fileRepresentation)")
+
+                workspace.openFile(item: .init(url: URL(fileURLWithPath: filePath)))
+            }
+        }
     }
 
     /// Image file view

@@ -50,6 +50,16 @@ public enum TabBarItemID: Codable, Identifiable, Hashable {
         }
     }
 
+    /// File path
+    public var filePath: String? {
+        switch self {
+        case .codeEditor(let path):
+            return path
+        default:
+            return nil
+        }
+    }
+
     /// Represents code editor tab
     case codeEditor(String)
 

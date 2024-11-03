@@ -77,7 +77,7 @@ extension WorkspaceDocument {
     /// Open a file tab
     /// 
     /// - Parameter item: The file item to open
-    private func openFile(item: FileSystemClient.FileItem) {
+    public func openFile(item: FileSystemClient.FileItem) {
         if !selectionState.openFileItems.contains(item) {
             selectionState.openFileItems.append(item)
         }
