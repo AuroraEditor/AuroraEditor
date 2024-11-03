@@ -138,8 +138,10 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
                 self.content = contents
             }
         }
+        Task { @MainActor in
+            logger.fault("Failed to decode contents.")
+        }
 
-        logger.fault("Failed to decode contents.")
         throw NSError(domain: "com.auroraeditor.CodeFileDocumentError", code: 1)
     }
 
