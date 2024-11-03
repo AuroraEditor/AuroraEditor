@@ -12,6 +12,7 @@ import OSLog
 
 /// ExtensionsManager
 /// This class handles all extensions
+@MainActor
 public final class ExtensionsManager {
     /// Shared instance of `ExtensionsManager`
     public static let shared: ExtensionsManager = ExtensionsManager()
@@ -120,11 +121,13 @@ public final class ExtensionsManager {
                     } else {
                         logger.warning("Failed to init() \(file)")
                         logger.fault("\(file) is compiled for a different version of AuroraEditor.")
-                        auroraMessageBox(
-                            type: .critical,
-                            message: "\(file) is compiled for a different version of AuroraEditor.\n" +
-                            "Please unload this plugin, or update it"
-                        )
+                        Task { @MainActor in
+                            auroraMessageBox(
+                                type: .critical,
+                                message: "\(file) is compiled for a different version of AuroraEditor.\n" +
+                                "Please unload this plugin, or update it"
+                            )
+                        }
                     }
                 }
             }
@@ -173,10 +176,12 @@ public final class ExtensionsManager {
             loadedExtensions[directory] = extensionInterface
         } else {
             logger.fault("Failed to load \(extensionName)")
-            auroraMessageBox(
-                type: .critical,
-                message: "Failed to load \(extensionName)"
-            )
+            Task { @MainActor in
+                auroraMessageBox(
+                    type: .critical,
+                    message: "Failed to load \(extensionName)"
+                )
+            }
         }
     }
 

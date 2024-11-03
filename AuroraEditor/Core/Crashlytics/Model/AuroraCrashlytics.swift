@@ -76,9 +76,10 @@ open class CrashModel: NSObject {
 }
 
 /// The old exception handler
-private var appOldExceptionHandler: (@convention(c) (NSException) -> Swift.Void)?
+nonisolated(unsafe) private var appOldExceptionHandler: (@convention(c) (NSException) -> Swift.Void)?
 
 /// The crashlytics
+@MainActor
 public class AuroraCrashlytics: NSObject {
     /// A boolean value indicating whether the crashlytics is open
     public private(set) static var isOpen: Bool = false

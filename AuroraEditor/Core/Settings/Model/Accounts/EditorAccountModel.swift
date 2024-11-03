@@ -10,6 +10,7 @@ import Foundation
 import OSLog
 
 /// A model to handle the editor account
+@MainActor
 class EditorAccountModel: ObservableObject {
     // swiftlint:disable:previous type_body_length
     /// The callback for a successful login

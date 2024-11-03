@@ -23,6 +23,7 @@ extension AppDelegate {
     /// Setup the status item
     /// 
     /// - Parameter statusItem: status item
+    @MainActor
     func setup(statusItem: NSStatusItem) {
         if let button = statusItem.button {
             button.image = NSImage(named: "MenuBarIcon")
@@ -55,6 +56,7 @@ extension AppDelegate {
     /// Update the recent projects
     /// 
     /// - Parameter menuItem: menu item
+    @MainActor
     func updateRecentProjects(in menuItem: NSMenuItem) {
         DispatchQueue.main.async {
             RecentProjectsStore.shared.$paths
@@ -79,6 +81,7 @@ extension AppDelegate {
     /// 
     /// - Parameter sender: sender
     @objc
+    @MainActor
     func openFile(_ sender: Any?) {
         guard let sender = sender as? RecentProjectMenuItem else { return }
         let repoPath = sender.urlString
@@ -99,6 +102,7 @@ extension AppDelegate {
     /// 
     /// - Parameter sender: sender
     @objc
+    @MainActor
     func newFile(_ sender: Any?) {
         AuroraEditorDocumentController.shared.newDocument(nil)
     }
@@ -107,6 +111,7 @@ extension AppDelegate {
     /// 
     /// - Parameter sender: sender
     @objc
+    @MainActor
     func cloneProject(_ sender: Any?) {
         GitCloneView.openGitClientWindow()
     }
@@ -115,6 +120,7 @@ extension AppDelegate {
     /// 
     /// - Parameter sender: sender
     @objc
+    @MainActor
     func openProject(_ sender: Any?) {
         AuroraEditorDocumentController.shared.openDocument(
             onCompletion: { _, _ in },
@@ -134,6 +140,7 @@ extension AppDelegate {
     /// 
     /// - Parameter sender: sender
     @objc
+    @MainActor
     func about(_ sender: Any?) {
         AppDelegate.openAboutWindow()
     }
@@ -142,6 +149,7 @@ extension AppDelegate {
     /// 
     /// - Parameter sender: sender
     @objc
+    @MainActor
     func hideMenuItem(_ sender: Any?) {
         statusItem?.button?.isHidden = true
         AppPreferencesModel.shared.preferences.general.menuItemShowMode = .hidden

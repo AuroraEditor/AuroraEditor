@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@available(*, deprecated, message: "Not used?")
 public extension Binding where Value: Equatable {
     /// Returns a binding proxy.
     /// This proxyfies the binding, so you can use it in a `@StateObject` or `@ObservedObject`.\
@@ -17,6 +18,7 @@ public extension Binding where Value: Equatable {
     /// - Parameter source: The source binding.
     /// 
     /// - Returns: A binding proxy.
+    @MainActor
     static func proxy(_ source: Binding<Value>) -> Binding<Value> {
             self.init(
                 get: { source.wrappedValue },

@@ -10,6 +10,7 @@ import Combine
 import Foundation
 
 /// Quick open state
+@MainActor
 public final class QuickOpenState: ObservableObject {
     /// Open quickly query
     @Published

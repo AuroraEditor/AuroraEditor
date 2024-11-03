@@ -9,6 +9,7 @@
 import Foundation
 
 /// Search mode Model
+@MainActor
 public struct SearchModeModel {
     /// Title
     public let title: String
@@ -126,7 +127,7 @@ public struct SearchModeModel {
     ]
 }
 
-extension SearchModeModel: Equatable {
+extension SearchModeModel: @preconcurrency Equatable {
     /// Equate
     /// 
     /// - Parameter lhs: left hand side

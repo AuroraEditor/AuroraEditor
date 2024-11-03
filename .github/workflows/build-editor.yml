@@ -14,7 +14,7 @@ concurrency:
 jobs:
   build_editor:
     if: github.repository_owner == 'AuroraEditor'
-    runs-on: macos-14
+    runs-on: macos-15
     timeout-minutes: 30 # If a build exceeds 30 mins, it probably isn't ever going to complete
     steps:
       - name: "Cleanup build folder"
@@ -44,7 +44,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: "Select Xcode (Default)"
-        run: sudo xcode-select -s /Applications/Xcode_15.3.app
+        run: sudo xcode-select -s /Applications/Xcode_16.app
 
         ### Certs
       - name: "Import Certificate: Development"

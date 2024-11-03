@@ -28,6 +28,7 @@ class WorkspaceUtils {
     ///
     /// This method initializes the `VersionControlMonitor` with the workspace's folder URL
     /// and starts monitoring the Git directory for changes.
+    @MainActor
     func setupVersionControlMonitor() {
         versionControlMonitor = VersionControlMonitor(workspaceURL: workspace.folderURL)
         versionControlMonitor?.startMonitoringGitDirectory()

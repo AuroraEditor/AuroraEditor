@@ -97,6 +97,7 @@ final class FindNavigatorListViewController: NSViewController {
     /// 
     /// - Parameter searchItems: The search items to set.
     /// - Parameter searchText: The search text, used to preserve result deletions across view updates.
+    @MainActor
     public func updateNewSearchResults(_ searchItems: [SearchResultModel], searchId: UUID?) {
         if searchId != self.searchId {
             self.searchItems = searchItems

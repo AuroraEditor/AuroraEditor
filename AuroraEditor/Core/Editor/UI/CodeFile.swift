@@ -29,6 +29,7 @@ public enum CodeFileError: Error {
 /// 
 /// This is a document that can be opened in the editor.
 @objc(CodeFileDocument)
+@MainActor
 public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem {
     /// File content.
     @Published
@@ -61,7 +62,7 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
     }
 
     /// This is the QLPreviewItemURL
-    public var previewItemURL: URL? {
+    nonisolated(unsafe) public var previewItemURL: URL? {
         fileURL
     }
 
@@ -133,8 +134,9 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
     /// - Throws: Error if failed to read.
     override public func read(from data: Data, ofType _: String) throws {
         if let contents = String(data: data, encoding: .utf8) {
-            self.content = contents
-            return
+            Task { @MainActor in
+                self.content = contents
+            }
         }
 
         logger.fault("Failed to decode contents.")

@@ -23,10 +23,10 @@ public class BackgroundColorThemeAttribute: TokenThemeAttribute, Codable {
             self.rawValue = rawValue
         }
 
-        public static let none = RoundingStyle(0)
-        public static let full = RoundingStyle(1)
-        public static let half = RoundingStyle(0.5)
-        public static let quarter = RoundingStyle(0.25)
+        nonisolated(unsafe) public static let none = RoundingStyle(0)
+        nonisolated(unsafe) public static let full = RoundingStyle(1)
+        nonisolated(unsafe) public static let half = RoundingStyle(0.5)
+        nonisolated(unsafe) public static let quarter = RoundingStyle(0.25)
     }
 
     public enum ColoringStyle {

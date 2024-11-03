@@ -12,10 +12,10 @@ import SwiftUI
 /// Extension Custom View Model
 final class ExtensionCustomViewModel: Codable, Equatable, Identifiable, TabBarItemRepresentable, ObservableObject {
     /// Equate two `ExtensionCustomViewModel` instances.
-    /// 
+    ///
     /// - Parameter lhs: First ExtensionCustomViewModel
     /// - Parameter rhs: Second ExtensionCustomViewModel
-    /// 
+    ///
     /// - Returns: True if equal
     static func == (lhs: ExtensionCustomViewModel, rhs: ExtensionCustomViewModel) -> Bool {
         guard lhs.id == rhs.id else { return false }
@@ -56,7 +56,7 @@ final class ExtensionCustomViewModel: Codable, Equatable, Identifiable, TabBarIt
     private let viewStorage = ExtensionViewStorage.shared
 
     /// Initialize custom view model for an extension.
-    /// 
+    ///
     /// - Parameter name: Name
     /// - Parameter view: View
     /// - Parameter sender: Sender
@@ -83,9 +83,9 @@ final class ExtensionCustomViewModel: Codable, Equatable, Identifiable, TabBarIt
     }
 
     /// Initialize extension custom view model from decoder.
-    /// 
+    ///
     /// - Parameter decoder: Decoder
-    /// 
+    ///
     /// - Throws: Decoding error
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: ExtensionCustomViewModelKey.self)
@@ -96,9 +96,9 @@ final class ExtensionCustomViewModel: Codable, Equatable, Identifiable, TabBarIt
     }
 
     /// Encode extension custom view model.
-    /// 
+    ///
     /// - Parameter encoder: Encoder
-    /// 
+    ///
     /// - Throws: Encoding error
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: ExtensionCustomViewModelKey.self)

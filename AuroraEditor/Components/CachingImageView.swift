@@ -10,7 +10,7 @@ import Foundation
 import AppKit
 
 /// A view that represents a caching image view.
-class CachingImageView: NSView {
+class CachingImageView: NSView, Sendable {
     /// The image URL.
     private var imageUrl: URL?
 
@@ -100,7 +100,7 @@ class CachingImageView: NSView {
                       let response = response,
                       error == nil,
                       url == self.imageUrl else {
-                    DispatchQueue.main.async {
+                    Task { @MainActor in
                         self?.image = self?.fallbackImage
                     }
                     return

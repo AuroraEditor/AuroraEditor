@@ -278,15 +278,17 @@ struct ExtensionWKWebView: NSViewRepresentable {
         }
 
         deinit {
-            // We unload the extension view.
-            ExtensionsManager.shared.sendEvent(
-                event: "didCloseExtensionView",
-                parameters: [
-                    "type": "WebView",
-                    "extension": parent.sender,
-                    "view": parent.pageHTML ?? ""
-                ]
-            )
+            Task { @MainActor in
+                // We unload the extension view.
+                ExtensionsManager.shared.sendEvent(
+                    event: "didCloseExtensionView",
+                    parameters: [
+                        "type": "WebView",
+                        "extension": parent.sender,
+                        "view": parent.pageHTML ?? ""
+                    ]
+                )
+            }
         }
 
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {

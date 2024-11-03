@@ -10,7 +10,7 @@ import SwiftUI
 import OSLog
 
 public final class ThemeModel: ObservableObject {
-    public static let shared: ThemeModel = .init()
+    nonisolated(unsafe) public static let shared: ThemeModel = .init()
 
     let logger = Logger(subsystem: "com.auroraeditor", category: "Theme Model")
 

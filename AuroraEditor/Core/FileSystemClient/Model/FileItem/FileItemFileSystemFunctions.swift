@@ -91,6 +91,7 @@ extension FileItem {
     }
 
     /// This function deletes the item or folder from the current project
+    @MainActor
     public func delete() {
         // This function also has to account for how the
         // - file system can change outside of the editor

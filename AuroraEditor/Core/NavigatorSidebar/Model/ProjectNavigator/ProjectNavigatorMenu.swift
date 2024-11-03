@@ -10,6 +10,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 /// A subclass of `NSMenu` implementing the contextual menu for the project navigator
+@MainActor
 final class ProjectNavigatorMenu: NSMenu {
     typealias Item = FileSystemClient.FileItem
 

@@ -96,6 +96,7 @@ enum Appearances: String, Codable, FetchableRecord, PersistableRecord {
     case dark
 
     /// Applies the selected appearance
+    @MainActor
     public func applyAppearance() {
         switch self {
         case .system:
@@ -149,7 +150,7 @@ struct FileExtensions: Codable, Hashable, FetchableRecord, PersistableRecord {
     }
 
     /// Default file extensions
-    public static var `default` = FileExtensions(extensions: [
+    public static let `default` = FileExtensions(extensions: [
         "c", "cc", "cpp", "h", "hpp", "m", "mm", "gif",
         "icns", "jpeg", "jpg", "png", "tiff", "swift"
     ])

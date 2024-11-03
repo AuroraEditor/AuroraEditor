@@ -17,18 +17,15 @@ import SwiftUI
 /// 
 /// - Returns: true on ok, false on cancel
 @discardableResult
+@MainActor
 func auroraMessageBox(type: NSAlert.Style, message: String) -> Bool {
-    let alert: NSAlert = NSAlert()
+    let alert = NSAlert()
     alert.messageText = "Aurora Editor"
     alert.informativeText = message
     alert.alertStyle = type
-    alert.addButton(
-        withTitle: NSLocalizedString("Ok", comment: "Ok")
-    )
+    alert.addButton(withTitle: NSLocalizedString("Ok", comment: "Ok"))
     if type != .critical {
-        alert.addButton(
-            withTitle: NSLocalizedString("Cancel", comment: "Cancel")
-        )
+        alert.addButton(withTitle: NSLocalizedString("Cancel", comment: "Cancel"))
     }
     let res = alert.runModal()
     if res == NSApplication.ModalResponse.alertFirstButtonReturn {

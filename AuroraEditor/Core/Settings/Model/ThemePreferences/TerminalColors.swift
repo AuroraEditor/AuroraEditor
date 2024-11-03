@@ -231,7 +231,7 @@ public extension AuroraTheme {
         }
 
         /// Default dark colors
-        public static let defaultDark: TerminalColors = .init(
+        nonisolated(unsafe) public static let defaultDark: TerminalColors = .init(
             text: Attributes(color: "#d9d9d9"),
             boldText: Attributes(color: "#d9d9d9"),
             cursor: Attributes(color: "#d9d9d9"),
@@ -256,7 +256,7 @@ public extension AuroraTheme {
         )
 
         /// Default light colors
-        public static let defaultLight: TerminalColors = .init(
+        nonisolated(unsafe) public static let defaultLight: TerminalColors = .init(
             text: Attributes(color: "#262626"),
             boldText: Attributes(color: "#262626"),
             cursor: Attributes(color: "#262626"),

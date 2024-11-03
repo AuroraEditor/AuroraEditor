@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-docc:
-    runs-on: macos-14
+    runs-on: macos-15
     permissions:
       contents: write
     steps:
@@ -25,7 +25,7 @@ jobs:
           brew install swiftlint
 
       - name: "Select Xcode (Default)"
-        run: sudo xcode-select -s /Applications/Xcode_15.3.app
+        run: sudo xcode-select -s /Applications/Xcode_16.app
 
       - name: Runner environment
         run: |

@@ -12,6 +12,7 @@ import OSLog
 
 // This model handles sending crash report data to the Aurora Editor
 // Github repo.
+@MainActor
 public class CrashReportModel: ObservableObject {
     /// The shared instance of the crash report model.
     public static let shared: CrashReportModel = .init()
