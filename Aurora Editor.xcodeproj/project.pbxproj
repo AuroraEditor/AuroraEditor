@@ -383,8 +383,6 @@
 		2B04576828E6FFE300024F2D /* TokenThemeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B04573628E6FFE300024F2D /* TokenThemeAttribute.swift */; };
 		2B11FF822AB0E87C005B649C /* AuroraINIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B11FF812AB0E87C005B649C /* AuroraINIParser.swift */; };
 		2B11FF8A2AB0E8F4005B649C /* AuroraINITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B11FF892AB0E8F4005B649C /* AuroraINITests.swift */; };
-		2B11FF972AB0EBF8005B649C /* Aurora_Editor_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B11FF962AB0EBF8005B649C /* Aurora_Editor_UITests.swift */; };
-		2B11FF992AB0EBF8005B649C /* Aurora_Editor_UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B11FF982AB0EBF8005B649C /* Aurora_Editor_UITestsLaunchTests.swift */; };
 		2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B18EC4528AEC84900494768 /* Symbols.xcassets */; };
 		2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */; };
 		2B23B2F82B8521CD00C6B066 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B23B2F72B8521CD00C6B066 /* NotificationKeys.swift */; };
@@ -593,13 +591,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		2B11FF8B2AB0E8F4005B649C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B658FB2427DA9E0F00EA4DBD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B658FB2B27DA9E0F00EA4DBD;
-			remoteInfo = "Aurora Editor";
-		};
-		2B11FF9A2AB0EBF8005B649C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B658FB2427DA9E0F00EA4DBD /* Project object */;
 			proxyType = 1;
@@ -1034,7 +1025,6 @@
 		2B11FF812AB0E87C005B649C /* AuroraINIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraINIParser.swift; sourceTree = "<group>"; };
 		2B11FF872AB0E8F4005B649C /* Aurora Editor (Tests).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Aurora Editor (Tests).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B11FF892AB0E8F4005B649C /* AuroraINITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraINITests.swift; sourceTree = "<group>"; };
-		2B11FF942AB0EBF8005B649C /* Aurora Editor (UITests).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Aurora Editor (UITests).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B11FF962AB0EBF8005B649C /* Aurora_Editor_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aurora_Editor_UITests.swift; sourceTree = "<group>"; };
 		2B11FF982AB0EBF8005B649C /* Aurora_Editor_UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aurora_Editor_UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2B15CA0028254139004E8F22 /* OpenWithAuroraEditor.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = OpenWithAuroraEditor.entitlements; sourceTree = "<group>"; };
@@ -1241,13 +1231,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		2B11FF842AB0E8F4005B649C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2B11FF912AB0EBF7005B649C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3563,7 +3546,6 @@
 				2B3DAA3C2BFD1BD400A7773D /* AEquicklook.appex */,
 				A01AB2D12ACC9EDA0029EDF0 /* AEUpdateService.app */,
 				2B11FF872AB0E8F4005B649C /* Aurora Editor (Tests).xctest */,
-				2B11FF942AB0EBF8005B649C /* Aurora Editor (UITests).xctest */,
 				B658FB2C27DA9E0F00EA4DBD /* Aurora Editor.app */,
 				2BE487EC28245162003F3F64 /* Open With Aurora Editor.appex */,
 			);
@@ -3622,24 +3604,6 @@
 			productName = "Aurora EditorTests";
 			productReference = 2B11FF872AB0E8F4005B649C /* Aurora Editor (Tests).xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		2B11FF932AB0EBF7005B649C /* Aurora Editor (UITests) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2B11FF9C2AB0EBF8005B649C /* Build configuration list for PBXNativeTarget "Aurora Editor (UITests)" */;
-			buildPhases = (
-				2B11FF902AB0EBF7005B649C /* Sources */,
-				2B11FF912AB0EBF7005B649C /* Frameworks */,
-				2B11FF922AB0EBF7005B649C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2B11FF9B2AB0EBF8005B649C /* PBXTargetDependency */,
-			);
-			name = "Aurora Editor (UITests)";
-			productName = "Aurora Editor UITests";
-			productReference = 2B11FF942AB0EBF8005B649C /* Aurora Editor (UITests).xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		2B3DAA3B2BFD1BD400A7773D /* AEquicklook */ = {
 			isa = PBXNativeTarget;
@@ -3756,10 +3720,6 @@
 						CreatedOnToolsVersion = 15.0;
 						TestTargetID = B658FB2B27DA9E0F00EA4DBD;
 					};
-					2B11FF932AB0EBF7005B649C = {
-						CreatedOnToolsVersion = 15.0;
-						TestTargetID = B658FB2B27DA9E0F00EA4DBD;
-					};
 					2B3DAA3B2BFD1BD400A7773D = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -3837,7 +3797,6 @@
 				B658FB2B27DA9E0F00EA4DBD /* Aurora Editor */,
 				2BE487EB28245162003F3F64 /* Open With Aurora Editor */,
 				2B11FF862AB0E8F4005B649C /* Aurora Editor (Tests) */,
-				2B11FF932AB0EBF7005B649C /* Aurora Editor (UITests) */,
 				A01AB2D02ACC9EDA0029EDF0 /* AEUpdateService */,
 				2B3DAA3B2BFD1BD400A7773D /* AEquicklook */,
 			);
@@ -3850,13 +3809,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B6CB09E2AFFA3B1001E4955 /* AEUpdateService.app in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2B11FF922AB0EBF7005B649C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4055,15 +4007,6 @@
 				A0C04CF72C43096700E3DDA1 /* AuroraEditorConfigTests.swift in Sources */,
 				2B11FF8A2AB0E8F4005B649C /* AuroraINITests.swift in Sources */,
 				2BF8CD4F2C417281009DC130 /* JSSupport tests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2B11FF902AB0EBF7005B649C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2B11FF972AB0EBF8005B649C /* Aurora_Editor_UITests.swift in Sources */,
-				2B11FF992AB0EBF8005B649C /* Aurora_Editor_UITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4636,11 +4579,6 @@
 			target = B658FB2B27DA9E0F00EA4DBD /* Aurora Editor */;
 			targetProxy = 2B11FF8B2AB0E8F4005B649C /* PBXContainerItemProxy */;
 		};
-		2B11FF9B2AB0EBF8005B649C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B658FB2B27DA9E0F00EA4DBD /* Aurora Editor */;
-			targetProxy = 2B11FF9A2AB0EBF8005B649C /* PBXContainerItemProxy */;
-		};
 		2B3DAA4A2BFD1BD400A7773D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2B3DAA3B2BFD1BD400A7773D /* AEquicklook */;
@@ -4711,51 +4649,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Aurora Editor.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Aurora Editor";
-			};
-			name = Release;
-		};
-		2B11FF9D2AB0EBF8005B649C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.auroraeditor.Aurora-Editor-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Aurora Editor";
-			};
-			name = Debug;
-		};
-		2B11FF9E2AB0EBF8005B649C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.auroraeditor.Aurora-Editor-UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Aurora Editor";
 			};
 			name = Release;
 		};
@@ -5179,15 +5072,6 @@
 			buildConfigurations = (
 				2B11FF8E2AB0E8F4005B649C /* Debug */,
 				2B11FF8F2AB0E8F4005B649C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2B11FF9C2AB0EBF8005B649C /* Build configuration list for PBXNativeTarget "Aurora Editor (UITests)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2B11FF9D2AB0EBF8005B649C /* Debug */,
-				2B11FF9E2AB0EBF8005B649C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
