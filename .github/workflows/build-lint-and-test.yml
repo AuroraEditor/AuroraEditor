@@ -87,6 +87,7 @@ jobs:
       - name: Aurora Editor (Tests)
         run: |
           set -o pipefail
+          (sleep 300  && killall AuroraEditor) &
           xcodebuild -quiet \
           -workspace "Aurora Editor.xcworkspace" \
           -scheme "Aurora Editor (Tests)" \
