@@ -325,7 +325,7 @@ class AuroraNetworking { // swiftlint:disable:this type_body_length
 
     private func networkLogRequest(request: URLRequest) {
         self.logger.debug("URLRequest:")
-        self.logger.debug("  \(request.httpMethod ?? "") \(request.url ?? emptyURL)")
+        self.logger.debug("  \(request.httpMethod ?? "") \(String(describing: request.url))")
         self.logger.debug("\n  Headers:")
         if let headerFields = request.allHTTPHeaderFields {
             for (header, cont) in headerFields {

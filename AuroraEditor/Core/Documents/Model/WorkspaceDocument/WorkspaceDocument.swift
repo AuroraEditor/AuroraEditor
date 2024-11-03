@@ -127,7 +127,10 @@ class WorkspaceDocument: NSDocument, ObservableObject, NSToolbarDelegate {
     /// Workspace Folder URL
     var folderURL: URL {
         guard let workspaceFolder = self.fileSystemClient?.folderURL else {
-            return emptyURL
+            return FileManager
+                .default
+                .homeDirectoryForCurrentUser
+                .appendingPathExtension("Documents")
         }
 
         return workspaceFolder
