@@ -137,7 +137,10 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
             Task { @MainActor in
                 self.content = contents
             }
+
+            return
         }
+
         Task { @MainActor in
             logger.fault("Failed to decode contents.")
         }
