@@ -23,7 +23,7 @@ jobs:
         run: |
           killall Aurora\ Editor || true
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Runner environment
         run: |
@@ -73,7 +73,7 @@ jobs:
     timeout-minutes: 10 # If an action exceeds 10 mins, it probably isn't ever going to complete.
     needs: build_and_lint
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Runner environment
         run: |

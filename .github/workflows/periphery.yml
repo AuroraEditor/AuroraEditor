@@ -13,7 +13,7 @@ jobs:
     runs-on: macos-14
     timeout-minutes: 10 # If a action exceeds 10 mins, it probably isn't ever going to complete.
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: "Select Xcode (Default)"
         run: sudo xcode-select -s /Applications/Xcode_15.3.app

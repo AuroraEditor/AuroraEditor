@@ -37,7 +37,7 @@ jobs:
           swiftlint version
 
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Create folder for generated documentation
         run: mkdir -p docs
