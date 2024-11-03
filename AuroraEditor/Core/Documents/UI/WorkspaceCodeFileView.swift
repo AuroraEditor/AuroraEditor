@@ -52,6 +52,7 @@ struct WorkspaceCodeFileView: View {
 
                 return file.tabID == workspace.selectionState.selectedId
             }) {
+                // openFileItems
                 if let fileItem = workspace.selectionState.openedCodeFiles[item] {
                     if fileItem.typeOfFile == .image {
                         imageFileView(fileItem, for: item)
@@ -72,13 +73,22 @@ struct WorkspaceCodeFileView: View {
                                     self.logger.info("Dropped at the center")
                                 }
                             })
+                            .log {
+                                self.logger.info("Image file view")
+                            }
                     } else if let view = extensionManager.canBuildEditor(for: item) {
                         ExtensionCustomView(
                             view: view,
                             sender: "WorkspaceCodeFileView"
                         )
+                        .log {
+                            self.logger.info("Custom extension view")
+                        }
                     } else {
                         CodeEditorViewWrapper(codeFile: fileItem, fileExtension: item.url.pathExtension)
+                            .log {
+                                self.logger.info("CodeEditorViewWrapper view")
+                            }
                             .safeAreaInset(edge: .top, spacing: 0) {
                                 VStack(spacing: 0) {
                                     BreadcrumbsView(file: item, tappedOpenFile: workspace.openTab(item:))
@@ -106,6 +116,9 @@ struct WorkspaceCodeFileView: View {
                 }
             } else {
                 EmptyEditorView()
+                    .log {
+                        self.logger.info("Empty editor view")
+                    }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

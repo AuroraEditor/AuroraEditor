@@ -11,6 +11,7 @@ import Foundation
 import SwiftUI
 import UniformTypeIdentifiers
 import QuickLookUI
+import OSLog
 
 /// Error for code file.
 public enum CodeFileError: Error {
@@ -32,6 +33,11 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
     /// File content.
     @Published
     var content = ""
+
+    private var logger = Logger(
+        subsystem: "com.AuroraEditor",
+        category: "CodeFileDocument"
+    )
 
     /// This is the main type of the document.
     /// For example, if the file is end with '.png', it will be an image,
@@ -128,8 +134,10 @@ public final class CodeFileDocument: NSDocument, ObservableObject, QLPreviewItem
     override public func read(from data: Data, ofType _: String) throws {
         if let contents = String(data: data, encoding: .utf8) {
             self.content = contents
+            return
         }
 
+        logger.fault("Failed to decode contents.")
         throw NSError(domain: "com.auroraeditor.CodeFileDocumentError", code: 1)
     }
 

@@ -104,7 +104,15 @@ extension WorkspaceDocument {
                     ]
                 )
             } catch let err {
-                self.logger.fault("\(err)")
+                self.logger.fault("Failed to open \(err)")
+
+                self.broadcaster.broadcast(
+                    sender: "WorkspaceDocument",
+                    command: "showError",
+                    parameters: [
+                        "message": "Unable to read \"\(item.fileName)\".\nError: \(err.localizedDescription)"
+                    ]
+                )
             }
         }
     }
