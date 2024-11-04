@@ -12,9 +12,9 @@ import AuroraEditorLanguage
 import OSLog
 
 /// AuroraEditorApplication
-/// 
+///
 /// The main application class for Aurora Editor.
-/// 
+///
 /// This class is responsible for initializing the application and setting the application delegate.
 @MainActor
 final class AuroraEditorApplication: NSApplication {
@@ -36,9 +36,9 @@ final class AuroraEditorApplication: NSApplication {
 
 @NSApplicationMain
 /// AppDelegate
-/// 
+///
 /// The main application delegate for Aurora Editor.
-/// 
+///
 /// This class is responsible for handling application lifecycle events, such as application
 /// launch, termination, and reopening. It also manages the status item and the main menu.
 ///
@@ -62,9 +62,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     /// Logger
     let logger = Logger(subsystem: "com.auroraeditor", category: "App Delegate")
 
+    var isRunningTests: Bool {
+        return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+    }
+
     /// Initialize the application delegate.
     /// - Parameter notification: The notification object.
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // swiftlint:disable:previous function_body_length
+
+        logger
+            .debug("\(self.isRunningTests ? "We are running tests." : "We are not running tests.")")
+
         // Register storage locations if needed.
         LocalStorage().registerStorage()
 
@@ -74,85 +83,88 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         // Apply application appearance preferences.
         AppPreferencesModel.shared.preferences.general.appAppearance.applyAppearance()
 
-        // Check for and open files associated with the application.
-        checkForFilesToOpen()
+        // We do NOT want permission dialogues while testing.
+        if !isRunningTests {
+            // Check for and open files associated with the application.
+            checkForFilesToOpen()
 
-        DispatchQueue.main.async {
-            if let projects = UserDefaults.standard.array(forKey: AppDelegate.recoverWorkspacesKey) as? [String],
-               !projects.isEmpty {
-                projects.forEach { path in
-                    let url = URL(fileURLWithPath: path)
-                    // Reopen documents associated with the projects.
-                    AuroraEditorDocumentController.shared.reopenDocument(
-                        for: url,
-                        withContentsOf: url,
-                        display: true) { document, _, _ in
-                            self.logger.info("Opened project: \(url.absoluteString)")
-                            document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
+            DispatchQueue.main.async {
+                if let projects = UserDefaults.standard.array(forKey: AppDelegate.recoverWorkspacesKey) as? [String],
+                   !projects.isEmpty {
+                    projects.forEach { path in
+                        let url = URL(fileURLWithPath: path)
+                        // Reopen documents associated with the projects.
+                        AuroraEditorDocumentController.shared.reopenDocument(
+                            for: url,
+                            withContentsOf: url,
+                            display: true) { document, _, _ in
+                                self.logger.info("Opened project: \(url.absoluteString)")
+                                document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
+                        }
+                    }
+                } else {
+                    // If no projects to recover, handle other open requests.
+                    self.handleOpen()
+                }
+
+                // Check for command-line arguments to open specific files.
+                for index in 0..<CommandLine.arguments.count {
+                    if CommandLine.arguments[index] == "--open" && (index + 1) < CommandLine.arguments.count {
+                        let path = CommandLine.arguments[index + 1]
+                        let url = URL(fileURLWithPath: path)
+
+                        AuroraEditorDocumentController.shared.reopenDocument(
+                            for: url,
+                            withContentsOf: url,
+                            display: true) { document, _, _ in
+                                self.logger.info("Opened file via command line: \(url.absoluteString)")
+                                document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
+                        }
+
+                        self.logger.info("No need to open the Welcome Screen (command line)")
                     }
                 }
-            } else {
-                // If no projects to recover, handle other open requests.
-                self.handleOpen()
             }
 
-            // Check for command-line arguments to open specific files.
-            for index in 0..<CommandLine.arguments.count {
-                if CommandLine.arguments[index] == "--open" && (index + 1) < CommandLine.arguments.count {
-                    let path = CommandLine.arguments[index + 1]
-                    let url = URL(fileURLWithPath: path)
-
-                    AuroraEditorDocumentController.shared.reopenDocument(
-                        for: url,
-                        withContentsOf: url,
-                        display: true) { document, _, _ in
-                            self.logger.info("Opened file via command line: \(url.absoluteString)")
-                            document?.windowControllers.first?.synchronizeWindowTitleWithDocumentName()
+            if NSApp.activationPolicy() == .regular {
+                if statusItem == nil {
+                    // Create a status item if the menu item show mode is set to "shown."
+                    if AppPreferencesModel.shared.preferences.general.menuItemShowMode == .shown {
+                        self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+                        guard let statusItem = statusItem else {
+                            return
+                        }
+                        setup(statusItem: statusItem)
                     }
-
-                    self.logger.info("No need to open the Welcome Screen (command line)")
                 }
             }
-        }
 
-        if NSApp.activationPolicy() == .regular {
-            if statusItem == nil {
-                // Create a status item if the menu item show mode is set to "shown."
-                if AppPreferencesModel.shared.preferences.general.menuItemShowMode == .shown {
-                    self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-                    guard let statusItem = statusItem else {
-                        return
-                    }
-                    setup(statusItem: statusItem)
-                }
-            }
+            // Check for updates
+            updateModel.checkForUpdates()
         }
 
         // Handle language registry
         handleLanguageRegisteredNotification()
-
-        // Check for updates
-        updateModel.checkForUpdates()
 
         // Initialize AE Spotlight
         CoreSpotlight().update()
     }
 
     /// Code to run when the application is about to terminate.
-    /// 
+    ///
     /// - Parameter aNotification: The notification object.
     func applicationWillTerminate(_ aNotification: Notification) {
     }
 
     /// Define if the application supports secure restorable state.
-    /// 
+    ///
     /// - Parameter notification: The notification object.
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
-        true
+        !isRunningTests
     }
 
     /// Code to run when the application is about reopen.
-    /// 
+    ///
     /// - Parameter notification: The notification object.
     /// - Parameter hasVisibleWindows: A boolean value indicating whether the application has visible windows.
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
@@ -166,17 +178,22 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     /// Code to run when the application is about to open an untitled file.
-    /// 
+    ///
     /// - Parameter sender: The sender of the action.
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         false
     }
 
     /// Code to run when the application is about to open a file.
-    /// 
+    ///
     /// - Parameter funct: The caller function name.
     @MainActor
     func handleOpen(funct: String = #function) {
+        if isRunningTests {
+            // Do not (reopen) if testing
+            return
+        }
+
         self.logger.info("handleOpen() called from \(funct)")
         let behavior = AppPreferencesModel.shared.preferences.general.reopenBehavior
 
@@ -191,7 +208,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     /// Code to run when the application is about to terminate.
-    /// 
+    ///
     /// - Parameter sender: The sender of the action.
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         // Extract the paths of open projects (WorkspaceDocuments).
@@ -219,7 +236,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 
     // MARK: - Open windows
     /// Open the preferences window.
-    /// 
+    ///
     /// - Parameter sender: The sender of the action.
     @IBAction func openPreferences(_ sender: Any) {
         if !AppDelegate.tryFocusWindow(of: PreferencesView.self) {
@@ -228,7 +245,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     // Open the welcome window.
-    /// 
+    ///
     /// - Parameter sender: The sender of the action.
     @IBAction func openWelcome(_ sender: Any) {
         if !AppDelegate.tryFocusWindow(of: WelcomeWindowView.self) {
@@ -237,7 +254,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     /// Open the about window.
-    /// 
+    ///
     /// - Parameter sender: The sender of the action.
     @IBAction public func openAbout(_ sender: Any) {
         if !AppDelegate.tryFocusWindow(of: AboutView.self) {
@@ -246,7 +263,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     /// Open the feedback window.
-    /// 
+    ///
     /// - Parameter sender: The sender of the action.
     @IBAction func openFeedback(_ sender: Any) {
         if !AppDelegate.tryFocusWindow(of: FeedbackView.self) {
@@ -336,7 +353,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         RubyLanguageHandler().registerLanguage()
         PlainTextLanguageHandler().registerLanguage()
     }
-
 }
 
 extension AppDelegate {
@@ -344,7 +360,7 @@ extension AppDelegate {
 }
 
 extension AppDelegate: AuroraCrashlyticsDelegate {
-    func auroraCrashlyticsDidCatchCrash(with model: CrashModel) {
+    nonisolated func auroraCrashlyticsDidCatchCrash(with model: CrashModel) {
         UserDefaults.standard.set(model.reason + "(\(Date()))", forKey: "crash")
     }
 }
