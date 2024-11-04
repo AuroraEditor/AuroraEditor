@@ -163,7 +163,9 @@ public struct WelcomeView: View {
                 HStack(alignment: .center) {
                     dismissButton
                     Spacer()
-                }.padding(13).transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.25)))
+                }
+                .padding(13)
+                .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.25)))
             }
             if isHovering {
                 VStack {
@@ -178,6 +180,9 @@ public struct WelcomeView: View {
                         .toggleStyle(.checkbox)
                         Spacer()
                     }
+                }
+                .onHover { isHovering in
+                    self.isHovering = isHovering
                 }
                 .padding(.horizontal, 56)
                 .padding(.bottom, 16)
@@ -223,6 +228,7 @@ public struct WelcomeView: View {
         .accessibilityLabel(Text("Close"))
         .onHover { hover in
             isHoveringClose = hover
+            isHovering = hover // Fix for macOS 15+
         }
     }
 }
