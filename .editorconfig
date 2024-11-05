@@ -1,5 +1,5 @@
 # This file is used to maintain consistent coding styles between different editors and IDEs
-# This is the default configuration for Aurora Editor
+# This is the default configuration for Aurora Editord
 
 # root = true will prevent the editor from looking for a .editorconfig file in sub directories
 root = true
