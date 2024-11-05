@@ -9,7 +9,7 @@ concurrency:
 
 jobs:
   build_and_lint:
-    runs-on: self-hosted
+    runs-on: macos-15
     timeout-minutes: 20 # If an action exceeds 20 mins, it probably isn't ever going to complete.
     steps:
       - name: Clean up
