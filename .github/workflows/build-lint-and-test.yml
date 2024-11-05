@@ -23,6 +23,10 @@ jobs:
         run: |
           killall Aurora\ Editor || true
 
+      - name: "Install swiftlint"
+        run: |
+          brew install swiftlint
+
       - uses: actions/checkout@v4
 
       - name: Runner environment
