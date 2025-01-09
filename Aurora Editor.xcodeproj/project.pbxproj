@@ -386,8 +386,6 @@
 		2B18EC4628AEC84900494768 /* Symbols.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B18EC4528AEC84900494768 /* Symbols.xcassets */; };
 		2B18EC4828AEC86C00494768 /* AuroraEditorSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */; };
 		2B23B2F82B8521CD00C6B066 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B23B2F72B8521CD00C6B066 /* NotificationKeys.swift */; };
-		2B2E6EF62D30749E00AFF169 /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2E6EF12D30749E00AFF169 /* FinderSync.swift */; };
-		2B2E6EF72D30749E00AFF169 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B2E6EF32D30749E00AFF169 /* Media.xcassets */; };
 		2B3A88A72BF77DC500BD4F5F /* Spotlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3A88A62BF77DC500BD4F5F /* Spotlight.swift */; };
 		2B3DAA3E2BFD1BD400A7773D /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3DAA3D2BFD1BD400A7773D /* Quartz.framework */; };
 		2B3DAA4B2BFD1BD400A7773D /* AEquicklook.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2B3DAA3C2BFD1BD400A7773D /* AEquicklook.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -1011,10 +1009,6 @@
 		2B18EC4528AEC84900494768 /* Symbols.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Symbols.xcassets; sourceTree = "<group>"; };
 		2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuroraEditorSymbols.swift; sourceTree = "<group>"; };
 		2B23B2F72B8521CD00C6B066 /* NotificationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
-		2B2E6EF12D30749E00AFF169 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
-		2B2E6EF22D30749E00AFF169 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2B2E6EF32D30749E00AFF169 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		2B2E6EF42D30749E00AFF169 /* OpenWithAuroraEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OpenWithAuroraEditor.entitlements; sourceTree = "<group>"; };
 		2B3A88A62BF77DC500BD4F5F /* Spotlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotlight.swift; sourceTree = "<group>"; };
 		2B3DAA3C2BFD1BD400A7773D /* AEquicklook.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AEquicklook.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B3DAA3D2BFD1BD400A7773D /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
@@ -1203,6 +1197,14 @@
 			);
 			target = 2B3DAA3B2BFD1BD400A7773D /* AEquicklook */;
 		};
+		2B2E6F262D30753100AFF169 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				FinderSync.swift,
+				Media.xcassets,
+			);
+			target = 2BE487EB28245162003F3F64 /* Open With Aurora Editor */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
@@ -1220,6 +1222,7 @@
 		2B2E6EDC2D30743100AFF169 /* AEquicklook */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (2B2E6EE42D30743200AFF169 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 2B2E6EE52D30743200AFF169 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = AEquicklook; sourceTree = "<group>"; };
 		2B2E6EE82D30743A00AFF169 /* Aurora Editor UITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Aurora Editor UITests"; sourceTree = "<group>"; };
 		2B2E6F112D3074E700AFF169 /* AEUpdateService */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AEUpdateService; sourceTree = "<group>"; };
+		2B2E6F232D30753100AFF169 /* OpenWithAuroraEditor */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (2B2E6F262D30753100AFF169 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = OpenWithAuroraEditor; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2941,17 +2944,6 @@
 			path = "Theme Attributes";
 			sourceTree = "<group>";
 		};
-		2B2E6EF52D30749E00AFF169 /* OpenWithAuroraEditor */ = {
-			isa = PBXGroup;
-			children = (
-				2B2E6EF12D30749E00AFF169 /* FinderSync.swift */,
-				2B2E6EF22D30749E00AFF169 /* Info.plist */,
-				2B2E6EF32D30749E00AFF169 /* Media.xcassets */,
-				2B2E6EF42D30749E00AFF169 /* OpenWithAuroraEditor.entitlements */,
-			);
-			path = OpenWithAuroraEditor;
-			sourceTree = "<group>";
-		};
 		2B4E86922C7E0A79002EF049 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -3448,7 +3440,7 @@
 			children = (
 				2B2E6ED32D30742C00AFF169 /* Tools */,
 				B658FB2E27DA9E0F00EA4DBD /* AuroraEditor */,
-				2B2E6EF52D30749E00AFF169 /* OpenWithAuroraEditor */,
+				2B2E6F232D30753100AFF169 /* OpenWithAuroraEditor */,
 				2B2E6EE82D30743A00AFF169 /* Aurora Editor UITests */,
 				2B2E6F112D3074E700AFF169 /* AEUpdateService */,
 				2B2E6EDC2D30743100AFF169 /* AEquicklook */,
@@ -3748,7 +3740,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B2E6EF72D30749E00AFF169 /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3941,7 +3932,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B2E6EF62D30749E00AFF169 /* FinderSync.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
