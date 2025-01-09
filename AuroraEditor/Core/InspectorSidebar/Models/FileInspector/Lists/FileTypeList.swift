@@ -154,7 +154,6 @@ final class FileTypeList {
         LanguageType(name: "AppleScript Script Terminology Definition", ext: "scptd"),
         LanguageType(name: "Exported Symbols", ext: "symbols"),
         LanguageType(name: "Java Bytecode", ext: "class"),
-        LanguageType(name: "Object Code", ext: "o"),
         LanguageType(name: "PDF document", ext: "pdf"),
         LanguageType(name: "Quartz Composer Composition", ext: "qtz"),
         LanguageType(name: "Text-Based Dynamic Library Definition", ext: "tbdld"),
