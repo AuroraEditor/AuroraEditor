@@ -189,9 +189,6 @@ struct TabBar: View {
                             }
                             Spacer() // Remove when .horizontal is fixed
                         }
-                        .background {
-                            Color.clear
-                        }
                         // This padding is to hide dividers at two ends under the accessory view divider.
                         .padding(.horizontal, 0)
                         .onAppear {
