@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 74;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -388,12 +388,7 @@
 		2B23B2F82B8521CD00C6B066 /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B23B2F72B8521CD00C6B066 /* NotificationKeys.swift */; };
 		2B3A88A72BF77DC500BD4F5F /* Spotlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3A88A62BF77DC500BD4F5F /* Spotlight.swift */; };
 		2B3DAA3E2BFD1BD400A7773D /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3DAA3D2BFD1BD400A7773D /* Quartz.framework */; };
-		2B3DAA412BFD1BD400A7773D /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3DAA402BFD1BD400A7773D /* PreviewViewController.swift */; };
-		2B3DAA462BFD1BD400A7773D /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2B3DAA452BFD1BD400A7773D /* Base */; };
 		2B3DAA4B2BFD1BD400A7773D /* AEquicklook.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2B3DAA3C2BFD1BD400A7773D /* AEquicklook.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		2B3DAA502BFD24C500A7773D /* QLHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3DAA4F2BFD24C500A7773D /* QLHighlighter.swift */; };
-		2B48F7422C03B62F000EAD67 /* highlight.js in Resources */ = {isa = PBXBuildFile; fileRef = 2B48F7412C03B62F000EAD67 /* highlight.js */; };
-		2B48F7442C03B63E000EAD67 /* highlight.css in Resources */ = {isa = PBXBuildFile; fileRef = 2B48F7432C03B63E000EAD67 /* highlight.css */; };
 		2B4E86942C7E0AAF002EF049 /* notifyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4E86932C7E0AAF002EF049 /* notifyExtensions.swift */; };
 		2B53D1FF2B77A82D0064114F /* AuroraEditorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B53D1FD2B77A2660064114F /* AuroraEditorConfig.swift */; };
 		2B56E13F2C3DAE2700A80B6C /* BroadcastHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56E13E2C3DAE2700A80B6C /* BroadcastHandler.swift */; };
@@ -412,7 +407,6 @@
 		2B74A3F22C0F90B2002498F5 /* JSCFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B74A3F12C0F90B2002498F5 /* JSCFetch.swift */; };
 		2B7A56B62BD5037C00A728D7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2B7A56B52BD5036900A728D7 /* Localizable.xcstrings */; };
 		2B7A583527E4BA0100D25D4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468438427DC76E200F8E88E /* AppDelegate.swift */; };
-		2B7AC06B282452FB0082A5B8 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7AC06A282452FB0082A5B8 /* Media.xcassets */; };
 		2B7C8CC62BC5B3160061DE0D /* JSSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */; };
 		2B89F85428B13E9D007CB9C1 /* AuroraMessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */; };
 		2BA8F0892C1DADD4005A06A3 /* AuroraEditorTextView in Frameworks */ = {isa = PBXBuildFile; productRef = 2BA8F0882C1DADD4005A06A3 /* AuroraEditorTextView */; };
@@ -434,7 +428,6 @@
 		2BDFA91928D10B9200980385 /* NewFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA91328D10B9200980385 /* NewFileModel.swift */; };
 		2BDFA91A28D10B9200980385 /* FileSelectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFA91428D10B9200980385 /* FileSelectionItem.swift */; };
 		2BE19D402B94B16300B6FCD8 /* CommitMessageFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE19D3F2B94B16300B6FCD8 /* CommitMessageFormatter.swift */; };
-		2BE487EF28245162003F3F64 /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE487EE28245162003F3F64 /* FinderSync.swift */; };
 		2BE487F428245162003F3F64 /* Open With Aurora Editor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BE487EC28245162003F3F64 /* Open With Aurora Editor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2BE5EDAD28AE64A700C0A4AE /* AEExtensionKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */; };
 		2BF86A4228AF9EA400079705 /* AEExtensionKit in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 2BE5EDAC28AE64A700C0A4AE /* AEExtensionKit */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -689,10 +682,6 @@
 		2032B50D28A256130089EBB6 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		2032B50F28A256F50089EBB6 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		2032B51228A26B390089EBB6 /* AboutWindowHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowHostingController.swift; sourceTree = "<group>"; };
-		20425E47297EE74D0022FE5A /* sort-Xcode-project-file.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = "sort-Xcode-project-file.pl"; sourceTree = "<group>"; };
-		20425E49297EED860022FE5A /* ClearDerivedData.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ClearDerivedData.sh; sourceTree = "<group>"; };
-		20425E4B297EEE350022FE5A /* unused_strings.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = unused_strings.py; sourceTree = "<group>"; };
-		20425E55297F03230022FE5A /* ExtractLocalizationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractLocalizationStrings.swift; sourceTree = "<group>"; };
 		20439037290D27DB00126A3F /* WorkspaceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceErrors.swift; sourceTree = "<group>"; };
 		2043903B290D385600126A3F /* ExploreExtensionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreExtensionsView.swift; sourceTree = "<group>"; };
 		2043903D290D38D700126A3F /* ExploreItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreItemView.swift; sourceTree = "<group>"; };
@@ -1025,22 +1014,12 @@
 		2B11FF812AB0E87C005B649C /* AuroraINIParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraINIParser.swift; sourceTree = "<group>"; };
 		2B11FF872AB0E8F4005B649C /* Aurora Editor (Tests).xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Aurora Editor (Tests).xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B11FF892AB0E8F4005B649C /* AuroraINITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraINITests.swift; sourceTree = "<group>"; };
-		2B11FF962AB0EBF8005B649C /* Aurora_Editor_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aurora_Editor_UITests.swift; sourceTree = "<group>"; };
-		2B11FF982AB0EBF8005B649C /* Aurora_Editor_UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aurora_Editor_UITestsLaunchTests.swift; sourceTree = "<group>"; };
-		2B15CA0028254139004E8F22 /* OpenWithAuroraEditor.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = OpenWithAuroraEditor.entitlements; sourceTree = "<group>"; };
 		2B18EC4528AEC84900494768 /* Symbols.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Symbols.xcassets; sourceTree = "<group>"; };
 		2B18EC4728AEC86C00494768 /* AuroraEditorSymbols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuroraEditorSymbols.swift; sourceTree = "<group>"; };
 		2B23B2F72B8521CD00C6B066 /* NotificationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
 		2B3A88A62BF77DC500BD4F5F /* Spotlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotlight.swift; sourceTree = "<group>"; };
 		2B3DAA3C2BFD1BD400A7773D /* AEquicklook.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AEquicklook.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B3DAA3D2BFD1BD400A7773D /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
-		2B3DAA402BFD1BD400A7773D /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
-		2B3DAA452BFD1BD400A7773D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PreviewViewController.xib; sourceTree = "<group>"; };
-		2B3DAA472BFD1BD400A7773D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2B3DAA482BFD1BD400A7773D /* AEquicklook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AEquicklook.entitlements; sourceTree = "<group>"; };
-		2B3DAA4F2BFD24C500A7773D /* QLHighlighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLHighlighter.swift; sourceTree = "<group>"; };
-		2B48F7412C03B62F000EAD67 /* highlight.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = highlight.js; sourceTree = "<group>"; };
-		2B48F7432C03B63E000EAD67 /* highlight.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = highlight.css; sourceTree = "<group>"; };
 		2B4E86932C7E0AAF002EF049 /* notifyExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = notifyExtensions.swift; path = AuroraEditor/Core/ExtensionSystem/Helpers/notifyExtensions.swift; sourceTree = SOURCE_ROOT; };
 		2B53D1FB2B77A2250064114F /* AuroraEditorConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorConfigTests.swift; sourceTree = "<group>"; };
 		2B53D1FD2B77A2660064114F /* AuroraEditorConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraEditorConfig.swift; sourceTree = "<group>"; };
@@ -1058,7 +1037,6 @@
 		2B74A3EF2C0F8FFA002498F5 /* JSCPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSCPromise.swift; sourceTree = "<group>"; };
 		2B74A3F12C0F90B2002498F5 /* JSCFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSCFetch.swift; sourceTree = "<group>"; };
 		2B7A56B52BD5036900A728D7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		2B7AC06A282452FB0082A5B8 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		2B7C8CC52BC5B3160061DE0D /* JSSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSSupport.swift; sourceTree = "<group>"; };
 		2B89F85328B13E9D007CB9C1 /* AuroraMessageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraMessageBox.swift; sourceTree = "<group>"; };
 		2BBCB7CB2C5D157600ADB3BD /* Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
@@ -1080,8 +1058,6 @@
 		2BDFA91428D10B9200980385 /* FileSelectionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSelectionItem.swift; sourceTree = "<group>"; };
 		2BE19D3F2B94B16300B6FCD8 /* CommitMessageFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitMessageFormatter.swift; sourceTree = "<group>"; };
 		2BE487EC28245162003F3F64 /* Open With Aurora Editor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Open With Aurora Editor.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2BE487EE28245162003F3F64 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
-		2BE487F028245162003F3F64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BF8CD4E2C417281009DC130 /* JSSupport tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "JSSupport tests.swift"; path = "AuroraEditor/Core/ExtensionSystem/Tests/JSSupport tests.swift"; sourceTree = SOURCE_ROOT; };
 		2BF915DE2AC03D5800A10273 /* SourceControlRelatedMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceControlRelatedMenu.swift; sourceTree = "<group>"; };
 		6C05A8AE284D0CA3007F4EAA /* WorkspaceDocument+Listeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkspaceDocument+Listeners.swift"; sourceTree = "<group>"; };
@@ -1228,6 +1204,42 @@
 		DE513F53281DE5D0002260B9 /* TabBarXcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarXcode.swift; sourceTree = "<group>"; };
 		DE6F77862813625500D00A76 /* TabBarDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarDivider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2B2E6EE42D30743200AFF169 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				/Localized/PreviewViewController.xib,
+				Info.plist,
+			);
+			target = 2B3DAA3B2BFD1BD400A7773D /* AEquicklook */;
+		};
+		2B2E6EF02D30743E00AFF169 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				FinderSync.swift,
+				Media.xcassets,
+			);
+			target = 2BE487EB28245162003F3F64 /* Open With Aurora Editor */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		2B2E6EE52D30743200AFF169 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 2B3DAA3A2BFD1BD400A7773D /* Resources */;
+			membershipExceptions = (
+				Base.lproj/PreviewViewController.xib,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2B2E6ED32D30742C00AFF169 /* Tools */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Tools; sourceTree = "<group>"; };
+		2B2E6EDC2D30743100AFF169 /* AEquicklook */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (2B2E6EE42D30743200AFF169 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 2B2E6EE52D30743200AFF169 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = AEquicklook; sourceTree = "<group>"; };
+		2B2E6EE82D30743A00AFF169 /* Aurora Editor UITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Aurora Editor UITests"; sourceTree = "<group>"; };
+		2B2E6EED2D30743E00AFF169 /* OpenWithAuroraEditor */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (2B2E6EF02D30743E00AFF169 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = OpenWithAuroraEditor; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2B11FF842AB0E8F4005B649C /* Frameworks */ = {
@@ -1404,17 +1416,6 @@
 				934D2F0228C4A5690034E5C8 /* GitClientError.swift */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		20425E46297EE7270022FE5A /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-				20425E49297EED860022FE5A /* ClearDerivedData.sh */,
-				20425E55297F03230022FE5A /* ExtractLocalizationStrings.swift */,
-				20425E47297EE74D0022FE5A /* sort-Xcode-project-file.pl */,
-				20425E4B297EEE350022FE5A /* unused_strings.py */,
-			);
-			path = Tools;
 			sourceTree = "<group>";
 		};
 		20439035290D27C600126A3F /* Errors */ = {
@@ -2959,29 +2960,6 @@
 			path = "Theme Attributes";
 			sourceTree = "<group>";
 		};
-		2B11FF952AB0EBF8005B649C /* Aurora Editor UITests */ = {
-			isa = PBXGroup;
-			children = (
-				2B11FF962AB0EBF8005B649C /* Aurora_Editor_UITests.swift */,
-				2B11FF982AB0EBF8005B649C /* Aurora_Editor_UITestsLaunchTests.swift */,
-			);
-			path = "Aurora Editor UITests";
-			sourceTree = "<group>";
-		};
-		2B3DAA3F2BFD1BD400A7773D /* AEquicklook */ = {
-			isa = PBXGroup;
-			children = (
-				2B3DAA482BFD1BD400A7773D /* AEquicklook.entitlements */,
-				2B48F7432C03B63E000EAD67 /* highlight.css */,
-				2B48F7412C03B62F000EAD67 /* highlight.js */,
-				2B3DAA472BFD1BD400A7773D /* Info.plist */,
-				2B3DAA402BFD1BD400A7773D /* PreviewViewController.swift */,
-				2B3DAA442BFD1BD400A7773D /* PreviewViewController.xib */,
-				2B3DAA4F2BFD24C500A7773D /* QLHighlighter.swift */,
-			);
-			path = AEquicklook;
-			sourceTree = "<group>";
-		};
 		2B4E86922C7E0A79002EF049 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -3037,17 +3015,6 @@
 				2BDFA91328D10B9200980385 /* NewFileModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		2BE487ED28245162003F3F64 /* OpenWithAuroraEditor */ = {
-			isa = PBXGroup;
-			children = (
-				2BE487EE28245162003F3F64 /* FinderSync.swift */,
-				2BE487F028245162003F3F64 /* Info.plist */,
-				2B7AC06A282452FB0082A5B8 /* Media.xcassets */,
-				2B15CA0028254139004E8F22 /* OpenWithAuroraEditor.entitlements */,
-			);
-			path = OpenWithAuroraEditor;
 			sourceTree = "<group>";
 		};
 		2BF8CD4D2C41725A009DC130 /* Tests */ = {
@@ -3527,12 +3494,12 @@
 		B658FB2327DA9E0F00EA4DBD = {
 			isa = PBXGroup;
 			children = (
-				20425E46297EE7270022FE5A /* Tools */,
+				2B2E6ED32D30742C00AFF169 /* Tools */,
 				B658FB2E27DA9E0F00EA4DBD /* AuroraEditor */,
-				2BE487ED28245162003F3F64 /* OpenWithAuroraEditor */,
-				2B11FF952AB0EBF8005B649C /* Aurora Editor UITests */,
+				2B2E6EED2D30743E00AFF169 /* OpenWithAuroraEditor */,
+				2B2E6EE82D30743A00AFF169 /* Aurora Editor UITests */,
 				A01AB2D22ACC9EDA0029EDF0 /* AEUpdateService */,
-				2B3DAA3F2BFD1BD400A7773D /* AEquicklook */,
+				2B2E6EDC2D30743100AFF169 /* AEquicklook */,
 				B658FB2D27DA9E0F00EA4DBD /* Products */,
 				5C403B8D27E20F8000788241 /* Frameworks */,
 			);
@@ -3616,6 +3583,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2B2E6EDC2D30743100AFF169 /* AEquicklook */,
 			);
 			name = AEquicklook;
 			productName = AEquicklook;
@@ -3735,7 +3705,6 @@
 				};
 			};
 			buildConfigurationList = B658FB2727DA9E0F00EA4DBD /* Build configuration list for PBXProject "Aurora Editor" */;
-			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -3790,6 +3759,7 @@
 				A073E13A2C4D8B210081140D /* XCRemoteSwiftPackageReference "Version-Control-Kit" */,
 				A084DA092C555E4100B0D60C /* XCRemoteSwiftPackageReference "AuroraEditorSourceEditor" */,
 			);
+			preferredProjectObjectVersion = 55;
 			productRefGroup = B658FB2D27DA9E0F00EA4DBD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -3816,9 +3786,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B3DAA462BFD1BD400A7773D /* Base in Resources */,
-				2B48F7442C03B63E000EAD67 /* highlight.css in Resources */,
-				2B48F7422C03B62F000EAD67 /* highlight.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3826,7 +3793,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B7AC06B282452FB0082A5B8 /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4014,8 +3980,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B3DAA412BFD1BD400A7773D /* PreviewViewController.swift in Sources */,
-				2B3DAA502BFD24C500A7773D /* QLHighlighter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4023,7 +3987,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BE487EF28245162003F3F64 /* FinderSync.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4591,17 +4554,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		2B3DAA442BFD1BD400A7773D /* PreviewViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2B3DAA452BFD1BD400A7773D /* Base */,
-			);
-			name = PreviewViewController.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		2B11FF8E2AB0E8F4005B649C /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -4985,7 +4937,6 @@
 		B658FB5227DA9E1000EA4DBD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AuroraEditor/AuroraEditor.entitlements;
@@ -5026,7 +4977,6 @@
 		B658FB5327DA9E1000EA4DBD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AuroraEditor/AuroraEditor.entitlements;
