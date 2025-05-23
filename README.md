@@ -23,7 +23,7 @@ Become a part of our vibrant developer community by joining us on [Discord](http
 
 ## 💾 Download Aurora Editor
 
-Experience the power and performance of Aurora Editor by downloading the latest version. We currently only have a nightyly build available as we get closer to a release build we will add them here.
+Experience the power and performance of Aurora Editor by downloading the latest version. We currently only have a nightly build available as we get closer to a release build we will add them here.
 
 - **[Download Nightly Build](https://nightly.link/AuroraEditor/AuroraEditor/workflows/build-editor/development/AuroraEditor.zip)**
 
