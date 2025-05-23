@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import FinderSync
+@preconcurrency import FinderSync
 
 /// Open with Aurora Editor Finder Menu Item
 class AEOpenWith: FIFinderSync {

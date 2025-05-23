@@ -170,6 +170,7 @@ public struct WelcomeView: View {
             if isHovering {
                 VStack {
                     Spacer()
+                        .allowsHitTesting(false)
                     HStack {
                         Spacer()
                         Toggle("Show this window when Aurora launches", isOn: .init(get: {
@@ -180,9 +181,9 @@ public struct WelcomeView: View {
                         .toggleStyle(.checkbox)
                         Spacer()
                     }
-                }
-                .onHover { isHovering in
-                    self.isHovering = isHovering
+                    .onHover { isHovering in
+                        self.isHovering = isHovering
+                    }
                 }
                 .padding(.horizontal, 56)
                 .padding(.bottom, 16)

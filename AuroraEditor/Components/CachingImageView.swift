@@ -12,7 +12,7 @@ import AppKit
 /// A view that represents a caching image view.
 class CachingImageView: NSView, Sendable {
     /// The image URL.
-    private var imageUrl: URL?
+    nonisolated(unsafe) private var imageUrl: URL?
 
     /// The image.
     var image: NSImage? {

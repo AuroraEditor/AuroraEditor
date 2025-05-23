@@ -75,20 +75,6 @@ final class AboutWindowHostingController<T: View>: NSWindowController, Sendable 
         animateWindow(toAlpha: 1.0)
     }
 
-    /// De-initializes the window controller
-    deinit {
-        logger.info("About Window controller de-init'd")
-        removeEscapeKeyEventHandler()
-    }
-
-    /// Removes the escape key event handler
-    private func removeEscapeKeyEventHandler() {
-        if let escapeDetectEvent = escapeDetectEvent {
-            NSEvent.removeMonitor(escapeDetectEvent)
-            self.escapeDetectEvent = nil
-        }
-    }
-
     /// Closes the window
     func closeAnimated() {
         animateWindow(toAlpha: 0.0) {

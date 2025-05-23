@@ -149,7 +149,7 @@ struct ExtensionCustomView: View {
                         event: eventHandler,
                         parameters: [
                             "extension": sender,
-                            "view": view
+                            "view": "Unknown view"
                         ]
                     )
 
@@ -160,7 +160,7 @@ struct ExtensionCustomView: View {
                     event: eventHandler,
                     parameters: [
                         "extension": sender,
-                        "view": String(data: json, encoding: .utf8) ?? "Unknown view",
+                        "view": view,
                         "component": String(data: data, encoding: .utf8) ?? "Unknown component"
                     ]
                 )

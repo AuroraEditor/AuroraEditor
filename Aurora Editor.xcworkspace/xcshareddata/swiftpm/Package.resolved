@@ -1,0 +1,142 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "AEExtensionKit",
+        "repositoryURL": "https://github.com/AuroraEditor/AEExtensionKit.git",
+        "state": {
+          "branch": null,
+          "revision": "65a24d417d018c5840cb354a6290a014b2e82b27",
+          "version": "1.0.1"
+        }
+      },
+      {
+        "package": "AuroraEditorLanguage",
+        "repositoryURL": "https://github.com/AuroraEditor/AuroraEditorLanguage.git",
+        "state": {
+          "branch": "main",
+          "revision": "5913b97306746894172f9976c96fd67a8b094b44",
+          "version": null
+        }
+      },
+      {
+        "package": "AuroraEditorSourceEditor",
+        "repositoryURL": "https://github.com/AuroraEditor/AuroraEditorSourceEditor",
+        "state": {
+          "branch": "main",
+          "revision": "09797bfefec96041e0d84fbc5e8306a3f101cc8e",
+          "version": null
+        }
+      },
+      {
+        "package": "AuroraEditorTextView",
+        "repositoryURL": "https://github.com/AuroraEditor/AuroraEditorTextView",
+        "state": {
+          "branch": "main",
+          "revision": "aa4a710d40c41af90a28109b35bd1dea637515f6",
+          "version": null
+        }
+      },
+      {
+        "package": "DynamicUI",
+        "repositoryURL": "https://github.com/0xWDG/DynamicUI",
+        "state": {
+          "branch": null,
+          "revision": "c545f89c7d15685ef3b4412236fed764cf4c2aed",
+          "version": "0.0.8"
+        }
+      },
+      {
+        "package": "GRDB",
+        "repositoryURL": "https://github.com/groue/GRDB.swift",
+        "state": {
+          "branch": null,
+          "revision": "2cf6c756e1e5ef6901ebae16576a7e4e4b834622",
+          "version": "6.29.3"
+        }
+      },
+      {
+        "package": "Rearrange",
+        "repositoryURL": "https://github.com/ChimeHQ/Rearrange",
+        "state": {
+          "branch": null,
+          "revision": "5ff7f3363f7a08f77e0d761e38e6add31c2136e1",
+          "version": "1.8.1"
+        }
+      },
+      {
+        "package": "Sentry",
+        "repositoryURL": "https://github.com/getsentry/sentry-cocoa.git",
+        "state": {
+          "branch": null,
+          "revision": "65b3d2a7608685e8d4a37c68fa2c64f28d0b537e",
+          "version": "8.51.1"
+        }
+      },
+      {
+        "package": "swift-collections",
+        "repositoryURL": "https://github.com/apple/swift-collections.git",
+        "state": {
+          "branch": null,
+          "revision": "c1805596154bb3a265fd91b8ac0c4433b4348fb0",
+          "version": "1.2.0"
+        }
+      },
+      {
+        "package": "SwiftTerm",
+        "repositoryURL": "https://github.com/migueldeicaza/SwiftTerm.git",
+        "state": {
+          "branch": null,
+          "revision": "e2b431dbf73f775fb4807a33e4572ffd3dc6933a",
+          "version": "1.2.5"
+        }
+      },
+      {
+        "package": "SwiftTreeSitter",
+        "repositoryURL": "https://github.com/ChimeHQ/SwiftTreeSitter.git",
+        "state": {
+          "branch": null,
+          "revision": "2599e95310b3159641469d8a21baf2d3d200e61f",
+          "version": "0.8.0"
+        }
+      },
+      {
+        "package": "TextFormation",
+        "repositoryURL": "https://github.com/ChimeHQ/TextFormation",
+        "state": {
+          "branch": null,
+          "revision": "b1ce9a14bd86042bba4de62236028dc4ce9db6a1",
+          "version": "0.9.0"
+        }
+      },
+      {
+        "package": "TextStory",
+        "repositoryURL": "https://github.com/ChimeHQ/TextStory",
+        "state": {
+          "branch": null,
+          "revision": "8dc9148b46fcf93b08ea9d4ef9bdb5e4f700e008",
+          "version": "0.9.0"
+        }
+      },
+      {
+        "package": "Version-Control",
+        "repositoryURL": "https://github.com/AuroraEditor/Version-Control-Kit",
+        "state": {
+          "branch": null,
+          "revision": "95f4f3d7b892ef635f769a89893d552e65e48bdd",
+          "version": "1.0.4"
+        }
+      },
+      {
+        "package": "ZIPFoundation",
+        "repositoryURL": "https://github.com/weichsel/ZIPFoundation.git",
+        "state": {
+          "branch": null,
+          "revision": "43ec568034b3731101dbf7670765d671c30f54f3",
+          "version": "0.9.16"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

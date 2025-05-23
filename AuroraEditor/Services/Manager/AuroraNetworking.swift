@@ -20,7 +20,7 @@ enum AuthType: Codable {
 }
 
 class AuroraNetworking { // swiftlint:disable:this type_body_length
-    static let shared = AuroraNetworking()
+    @MainActor static let shared = AuroraNetworking()
 
     /// Logger
     let logger = Logger(subsystem: "com.auroraeditor", category: "Aurora Networking")
@@ -30,10 +30,10 @@ class AuroraNetworking { // swiftlint:disable:this type_body_length
     private var prefs: AppPreferencesModel = .shared
 
     /// All the cookies
-    static var cookies: [HTTPCookie]? = []
+    nonisolated(unsafe) static var cookies: [HTTPCookie]? = []
 
     /// the full networkRequestResponse
-    static var fullResponse: String? = ""
+    nonisolated(unsafe) static var fullResponse: String? = ""
 
     /// The dispatch group
     static let group: DispatchGroup = .init()
