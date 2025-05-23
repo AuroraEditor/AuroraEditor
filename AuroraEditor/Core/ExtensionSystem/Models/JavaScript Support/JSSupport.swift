@@ -124,6 +124,14 @@ class JSSupport: ExtensionInterface {
             }
 
             self.jsLogger.error("JS Error: \(exception?.description ?? "Unknown error")")
+            self.workspace?.broadcaster.broadcast(
+                sender: "JSSupport",
+                command: "showError",
+                parameters: [
+                    "title": "Extension error (\(self.extensionName))",
+                    "message": exception?.description ?? "Unknown error"
+                ]
+            )
         }
     }
 
@@ -260,15 +268,15 @@ class JSSupport: ExtensionInterface {
     /// - Returns: Safe string
     func escape(JSON: String) -> String {
         return JSON
-            // Escape any escape characters
+        // Escape any escape characters
             .replacingOccurrences(of: "\\", with: "\\\\")
-            // Escape " to \"
+        // Escape " to \"
             .replacingOccurrences(of: "\"", with: "\\\"")
-            // Escape newline to \n
+        // Escape newline to \n
             .replacingOccurrences(of: "\n", with: "\\n")
-            // Escape (carriage)return to \r
+        // Escape (carriage)return to \r
             .replacingOccurrences(of: "\r", with: "\\r")
-            // Escape tabs to \t
+        // Escape tabs to \t
             .replacingOccurrences(of: "\t", with: "\\t")
     }
 

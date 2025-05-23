@@ -82,7 +82,7 @@ class AuroraCommandBroadcaster {
     /// - Parameters:
     ///   - name: The name of the `Broadcast` to send
     ///   - parameters: The parameters of the `Broadcast`, left blank for `[:]`
-    func broadcast(sender: String, command: String, parameters: [String: Any] = [:]) {
+    nonisolated func broadcast(sender: String, command: String, parameters: [String: Any] = [:]) {
         broadcast(command: Broadcast(sender: sender, command: command, parameters: parameters))
     }
 
